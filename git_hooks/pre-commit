@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # Hook used to indent all xcos files before commiting
 #
@@ -20,7 +20,6 @@ fi
 # Configuration check
 #
 XMLINDENT="$(git config --get hooks.xmlindent)"
-
 if test ! -x "$XMLINDENT"
 then
 	echo "Unable to find xmlindent executable on the configuration."
@@ -46,8 +45,8 @@ else
 	XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
 fi
 
-INDENT="$(git config --get hooks.astyle)"
-if test ! -x "$INDENT"
+ASTYLE="$(git config --get hooks.astyle)"
+if test ! -x "$ASTYLE"
 then
 	echo "Unable to find astyle executable on the configuration."
 	echo
@@ -101,6 +100,8 @@ indent() {
 		;;
 		esac
 	done
+
+    return 0;
 }
 
 # Indent the file with xmlindent if this is an xcos file
@@ -108,11 +109,11 @@ __indent_Xml() {
 
 	if test ! -x "$XMLINDENT"
 	then
-		return;
+		return 1;
 	fi
 	if test ! -f $file
 	then
-		return;
+		return 2;
 	fi
 
 	# ignored globs
@@ -122,25 +123,24 @@ __indent_Xml() {
 		if test $? -eq 0
 		then
 			echo "Formatting" $file	": ignored"
-			return
+			return 3;
 		fi
 	fi
 
 	echo "Formatting" $file
-	"$XMLINDENT" -i 2 -o "$file" "$file"
-	git add "$file"
+	"$XMLINDENT" -i 2 -o "$file" "$file" || return 4;
+	git add "$file" || return 5;
 }
 
 # Pre process before the indent
 __pre_indent() {
-
 	if test ! -x "$ASTYLE"
 	then
-		return;
+		return 1;
 	fi
 	if test ! -f $file
 	then
-		return;
+		return 2;
 	fi
 
 	# ignored globs
@@ -150,12 +150,12 @@ __pre_indent() {
 		if test $? -eq 0
 		then
 			echo "Indenting" $file	": ignored"
-			return
+			return 3;
 		fi
 	fi
 
 	echo "Indenting" $file
-
+    return 0;
 }
 
 # post process after the indent
@@ -167,17 +167,19 @@ COMMON_ASTYLE_ARGS="--pad-header -n --pad-oper --indent-col1-comments --indent-s
 
 # Indent the file with `astyle' if this is a C/CPP file
 __indent_C() {
-	__pre_indent
-	astyle $COMMON_ASTYLE_ARGS --style=linux --indent=spaces=4 -A1 "$file"
-	__post_indent
+	__pre_indent || return 1
+	$ASTYLE $COMMON_ASTYLE_ARGS --style=linux --indent=spaces=4 -A1 "$file" || return 2
+	__post_indent || return 3
+    return 0
 }
 
 # Indent the file with `astyle' if this is a Java file
 __indent_java() {
-	__pre_indent
-	astyle $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file"
-	__post_indent
-
+	__pre_indent || return 1
+	$ASTYLE $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file" || return 2
+	__post_indent || return 3
+    return 0
 }
 
 indent
+
