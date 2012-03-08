@@ -311,8 +311,7 @@
     <para>より多くのオプションが利用可能です.
       これにより性能を改善したり,ルックアンドフィールを変更したり,
       メモリ管理を変更したりといったことが可能です.
-      参照: <ulink url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
-      or <ulink url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink>
+      参照:  <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>
     </para>
   </refsection>
   <refsection>
