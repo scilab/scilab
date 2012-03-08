@@ -37,7 +37,7 @@ generateJavaFile()
     echo "public class GraphicObjectProperties {" >> $OutFile
     echo ""  >> $OutFile
 
-    cat $PropertiesFile | sed s/"@DECLARE@"/"public static final String"/g \
+    cat $PropertiesFile | sed s/"@DECLARE@"/"    public static final String"/g \
         | sed s/"@EQUAL@"/"="/g \
         | sed s/" @END@"/";"/g >> $OutFile
 
