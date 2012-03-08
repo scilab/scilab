@@ -589,7 +589,7 @@ msgstr "Variable %s ist keine gültige rationale Funktion.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Variable %s ist keine gültige Zustandsraum Repräsentation.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Undefinierte Funktion.\n"
 
 msgid "Function name already used.\n"

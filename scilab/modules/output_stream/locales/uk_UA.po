@@ -610,7 +610,7 @@ msgstr "Змінна %s не є коректною раціональною фу
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Змінна %s не є коректним відтворенням простору станів.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Невизначена функція.\n"
 
 msgid "Function name already used.\n"

@@ -552,7 +552,7 @@ msgstr "变量%s不是一个正确的有理函数。\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "变量%s不是一个正确的状态空间表达。\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "函数未定义。\n"
 
 msgid "Function name already used.\n"

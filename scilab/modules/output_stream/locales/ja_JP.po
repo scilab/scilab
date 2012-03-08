@@ -586,7 +586,7 @@ msgstr "変数 %s は有効な有利関数ではありません.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "変数 %s は有効な状態空間表現ではありません.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "関数が定義されていません.\n"
 
 msgid "Function name already used.\n"

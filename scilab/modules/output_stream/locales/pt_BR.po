@@ -595,7 +595,7 @@ msgstr "A variável %s não é uma função racional válida.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "A variável %s não é uma representação de espaço de estados válida.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Função indefinida.\n"
 
 msgid "Function name already used.\n"

@@ -764,7 +764,7 @@ msgstr "變數 %s 不是一有效之狀態函數表示.\n"
 
 #
 # File: src/c/errmsg.c, line: 757
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "未定義函數.\n"
 
 #

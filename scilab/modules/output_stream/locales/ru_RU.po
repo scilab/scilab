@@ -589,7 +589,7 @@ msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 "Переменная %s не является корректным представлениям пространства состояний.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Неопределённая функция.\n"
 
 msgid "Function name already used.\n"

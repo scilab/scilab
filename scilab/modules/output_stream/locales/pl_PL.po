@@ -602,7 +602,7 @@ msgstr "Zmienna %s nie jest prawidłową funkcja wymierną.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Zmienna %s nie jest prawidłową reprezentacją funkcji stanu.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Niezdefiniowa funkcja.\n"
 
 msgid "Function name already used.\n"

@@ -571,7 +571,7 @@ msgstr "Proměnná %s není platná racionální funkce.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Proměnná %s není platné znázornění stavu prostoru.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Neurčená funkce.\n"
 
 msgid "Function name already used.\n"
