@@ -34,13 +34,8 @@
   <refsection>
     <title>Description</title>
     <para>
-<<<<<<< HEAD
-    Converti et stocke sous forme d'entiers à 1, 2, 4 ou 8 octets.
-  </para>
-=======
-      Convertit et stocke sous forme d'entiers à 1,2 ou 4 octets.
+        Convertit et stocke sous forme d'entiers à 1, 2, 4 ou 8 octets.
     </para>
->>>>>>> origin/master
     <variablelist>
       <varlistentry>
         <term>itype=0</term>
