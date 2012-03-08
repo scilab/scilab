@@ -134,6 +134,20 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
     }while(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
 
+    if(iOccurs == 0)
+    {
+        out.push_back(Double::Empty());
+        if(_iRetCount > 1)
+        {
+            out.push_back(Double::Empty());
+        }
+
+        if(_iRetCount > 2)
+        {
+            out.push_back(new String(L""));
+        }
+        return Function::OK;
+    }
 
     Double* pStart = new Double(1, iOccurs);
     double* pdblStart = pStart->getReal();
