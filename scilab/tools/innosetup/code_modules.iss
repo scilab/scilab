@@ -75,6 +75,7 @@ function CreateModulesFile: Boolean;
         ModulesXmlFileLines[i] := '<module name="signal_processing" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="linear_algebra" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
 
         ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 
