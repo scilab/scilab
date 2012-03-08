@@ -12,6 +12,7 @@
 
 /*----------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 #include "gw_string.h"

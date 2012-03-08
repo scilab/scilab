@@ -11,13 +11,14 @@
  *
  */
 
-#include "matfile_manager.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
+#include "matfile_manager.h"
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
 
-#include "api_scilab.h"
+
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \

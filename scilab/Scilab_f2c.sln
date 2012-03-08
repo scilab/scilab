@@ -545,16 +545,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types", "modules\types\types.vcxproj", "{626B9142-13A1-4765-A072-FB08952E7BB8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences", "modules\preferences\src\c\preferences.vcxproj", "{7B893E9F-D032-44DE-9B71-197A29C4989B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E} = {43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences-Ant", "modules\preferences\src\java\preferences-JAVA.vcxproj", "{32352BC0-9D50-4479-8B77-698287CCB8DE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
-		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
-		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio-settings\test-level\test-level.vcxproj", "{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}"
 EndProject
@@ -1626,7 +1616,6 @@ Global
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|Win32.Build.0 = Release|Win32
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.ActiveCfg = Release|x64
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.Build.0 = Release|x64
-<<<<<<< HEAD
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.Build.0 = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|x64.ActiveCfg = Debug|x64
@@ -1635,20 +1624,10 @@ Global
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|Win32.Build.0 = Release|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|x64.ActiveCfg = Release|x64
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|x64.Build.0 = Release|x64
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Debug|Win32.Build.0 = Debug|Win32
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Debug|x64.ActiveCfg = Debug|x64
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Debug|x64.Build.0 = Debug|x64
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|Win32.ActiveCfg = Release|Win32
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|Win32.Build.0 = Release|Win32
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.ActiveCfg = Release|x64
-		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.Build.0 = Release|x64
-=======
 		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|x64.ActiveCfg = Debug|x64
 		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|Win32.ActiveCfg = Release|Win32
 		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|x64.ActiveCfg = Release|x64
->>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
