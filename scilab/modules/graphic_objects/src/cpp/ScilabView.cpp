@@ -97,6 +97,7 @@ void ScilabView::getFiguresId(int ids[])
 int ScilabView::getNbFigure(void)
 {
     return m_figureList.size();
+
 }
 
 void ScilabView::createObject(char *pstId)
@@ -162,7 +163,7 @@ void ScilabView::deleteObject(char *pstId)
     }
 
     // Remove the corresponding handle.
-    //m_handleList.erase(pstId);
+    m_handleList.erase(pstId);
 }
 
 void ScilabView::updateObject(char *pstId, char *pstProperty)
