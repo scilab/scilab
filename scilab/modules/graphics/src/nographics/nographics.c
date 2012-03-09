@@ -253,12 +253,6 @@ char **getStringMatrixFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetPointerFromJavaIndex(int javaIndex)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 long sciGetHandle(sciPointObj * pobj)
 {
     return (long)0;

@@ -32,7 +32,6 @@ GRAPHICS_IMPEXP void sciSetHandle (sciPointObj * pobj, long value);
 GRAPHICS_IMPEXP int sciAddNewHandle (sciPointObj * pobj);
 GRAPHICS_IMPEXP int sciDelHandle (sciPointObj * pobj);
 GRAPHICS_IMPEXP sciPointObj *sciGetPointerFromHandle (long handle);
-GRAPHICS_IMPEXP sciPointObj *sciGetPointerFromJavaIndex (int javaIndex);
 
 GRAPHICS_IMPEXP sciRelationShip *sciGetRelationship (sciPointObj * pobj);
 GRAPHICS_IMPEXP int sciSetParent (sciPointObj * pson, sciPointObj * pparent);

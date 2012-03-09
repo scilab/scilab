@@ -35,10 +35,7 @@
 #include "Scierror.h"
 #include "SciHandleTab.h"
 
-static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
 static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
-static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex);
-static sciPointObj * getPointerFromChildrenJavaIndex(sciPointObj * pObj, int javaIndex);
 
 /*********************************** Handle ******************************************/
 
@@ -106,93 +103,6 @@ long sciGetHandle (sciPointObj * pobj)
 sciPointObj * sciGetPointerFromHandle(long handle)
 {
 		return sciGetObjectFromHandle(handle);
-}
-
-/**sciGetPointerFromJavaIndex
- * Returns the object pointer form a Java UIElementMapper index
- */
-sciPointObj * sciGetPointerFromJavaIndex (int javaIndex)
-{
-	int nbFigure = sciGetNbFigure();
-	int * ids = NULL;
-	int i;
-
-	if (nbFigure == 0)
-	{
-		/* No figures, nothing to search */
-		return NULL;
-	}
-
-	ids = MALLOC(nbFigure * sizeof(int));
-	if (ids == NULL)
-	{
-		return NULL;
-	}
-
-	/* Get the id of all the figures */
-	sciGetFiguresId(ids);
-
-	for (i = 0; i < nbFigure; i++)
-	{
-		sciPointObj * found = getPointerFromJavaIndex(getFigureFromIndex(ids[i]), javaIndex);
-		if (found != NULL)
-		{
-			FREE(ids);
-			return found;
-		}
-	}
-
-	FREE(ids);
-
-	return NULL;
-}
-
-static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex)
-{
-	/* For now Uicontrol and Uimenus can only be sons of a figure */
-	/* So it is only necessary to look only for figure children. */
-	switch (sciGetEntityType(pObj))
-	{
-	case SCI_UICONTROL:
-		if (pUICONTROL_FEATURE(pObj)->hashMapIndex == javaIndex)
-		{
-			return pObj;
-		}
-		/* look inside the children */
-		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
-		break;
-	case SCI_UIMENU:
-		if (pUIMENU_FEATURE(pObj)->hashMapIndex == javaIndex)
-		{
-			return pObj;
-		}
-		/* look inside the children */
-		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
-		break;
-	case SCI_FIGURE:
-		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
-		break;
-	}
-
-	/* The object is not a one which can contained java objects */
-	return NULL;
-}
-
-static sciPointObj * getPointerFromChildrenJavaIndex(sciPointObj * pObj, int javaIndex)
-{
-	sciSons * children = sciGetSons(pObj);
-	while (children != NULL)
-	{
-		sciPointObj * found = getPointerFromJavaIndex(children->pointobj, javaIndex);
-		if (found != NULL)
-		{
-			return found;
-		}
-		children = children->pnext;
-	}
-
-	/* No pointer found from the children */
-	return NULL;
 }
 
 /************************************************ End Handle *************************************************/
