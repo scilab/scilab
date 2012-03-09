@@ -1974,7 +1974,6 @@ public class XcosDiagram extends ScilabGraph {
                             ex = ex.getCause();
                         }
                         instance.setLastError(ex.getMessage());
-                        ScilabModalDialog.show(null, ex.getMessage());
                     }
                     instance.notify();
                 }
