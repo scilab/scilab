@@ -304,6 +304,11 @@ libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
+BUILT_SOURCES=
+if SWIG
+  BUILT_SOURCES+=swig
+endif
+
 # For the code check (splint)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
@@ -358,9 +363,8 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-
 if GIWS
-BUILT_SOURCES=giws
+  BUILT_SOURCES+=giws
 endif
 
 if GUI

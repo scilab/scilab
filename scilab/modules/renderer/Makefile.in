@@ -63,9 +63,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@SWIG_TRUE@am__append_1 = swig
+
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+@GIWS_TRUE@am__append_2 = giws
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/renderer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -952,6 +957,7 @@ libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
+BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # For the code check (splint)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
@@ -1002,10 +1008,6 @@ src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
 src/jni/SubwinBackgroundDrawerGL.giws.xml
 
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-@GIWS_TRUE@BUILT_SOURCES = giws
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
 libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
@@ -1021,7 +1023,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
