@@ -317,7 +317,7 @@ assert_checkerror ( "error(103)" , msgerror );
 msgerror = msprintf(gettext("Variable %s is not a valid state space representation.\n"), "error");
 assert_checkerror ( "error(104)" , msgerror );
 
-msgerror = msprintf(gettext("Undefined fonction.\n"));
+msgerror = msprintf(gettext("Undefined function.\n"));
 assert_checkerror ( "error(105)" , msgerror );
 
 msgerror = msprintf(gettext("Function name already used.\n"));
