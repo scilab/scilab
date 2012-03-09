@@ -46,8 +46,6 @@ GRAPHICS_IMPEXP sciSons *sciGetLastSons (sciPointObj * pobj);
 GRAPHICS_IMPEXP sciSons * sciGetNextAccessibleSon( sciSons * son ) ;
 
 GRAPHICS_IMPEXP sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
-GRAPHICS_IMPEXP BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
-GRAPHICS_IMPEXP int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
 */
 
 /**
@@ -70,9 +68,6 @@ GRAPHIC_OBJECTS_IMPEXP void *sciGetPointerFromHandle(long handle);
 GRAPHIC_OBJECTS_IMPEXP long getHandle(char* UID);
 
 GRAPHIC_OBJECTS_IMPEXP char* getObjectFromHandle(long handle);
-
-GRAPHIC_OBJECTS_IMPEXP int swapHandles(long firstHandle, long secondHandle);
-
 
 // DEPRECATED functions : Should be removed
 GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);

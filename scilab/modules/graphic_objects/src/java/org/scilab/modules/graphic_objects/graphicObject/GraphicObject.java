@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.legend.Legend;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -331,7 +332,7 @@ public abstract class GraphicObject implements Cloneable {
         if (property == GraphicObjectPropertyType.PARENT) {
             setParent((String) value);
         } else if (property == GraphicObjectPropertyType.CHILDREN) {
-            setChildren((List<String>) value);
+            setChildren((String[]) value);
         } else if (property == GraphicObjectPropertyType.VALID) {
             setValid((Boolean) value);
         } else if (property == GraphicObjectPropertyType.HIDDEN) {
@@ -415,8 +416,15 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @param children the children to set
      */
-    public void setChildren(List<String> children) {
+    private void setChildren(List<String> children) {
         this.children = children;
+    }
+
+    /**
+     * @param children the children to set
+     */
+    public void setChildren(String[] children) {
+        this.children = new LinkedList<String>(Arrays.asList(children));
     }
 
     /**

@@ -307,15 +307,6 @@ char *ScilabView::getObjectFromHandle(long handle)
     return NULL;
 }
 
-void ScilabView::swapHandles(long firstHandle, long secondHandle)
-{
-    char *firstUID = getObjectFromHandle(firstHandle);
-    char *secondUID = getObjectFromHandle(secondHandle);
-
-    m_handleList[firstUID] = secondHandle;
-    m_handleList[secondUID] = firstHandle;
-}
-
 char *ScilabView::getFigureModel(void)
 {
     //std::cerr << "[ScilabView] getFigureModel = " << (m_figureModel == NULL ? "!! NULL !!" : m_figureModel) << std::endl;

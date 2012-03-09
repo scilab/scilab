@@ -74,7 +74,6 @@ public :
 
     static long   getObjectHandle(char *UID);
     static char*  getObjectFromHandle(long handle);
-    static void   swapHandles(long firstHandle, long secondHandle);
 
     static char*  getFigureModel(void);
     static void   setFigureModel(char *UID);

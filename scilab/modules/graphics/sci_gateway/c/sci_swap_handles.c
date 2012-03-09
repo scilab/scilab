@@ -20,6 +20,11 @@
 #include "HandleManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_swap_handles( char * fname, unsigned long fname_len )
 {
@@ -29,6 +34,14 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   int secondHdlRow ;
   int firstHdlStkIndex  ;
   int secondHdlStkIndex ;
+  char *pstHandle_1;
+  char *pstHandle_2;
+  char *pstParent_1;
+  char *pstParent_2;
+  int iChildrenCount = 0;
+  int *piChildrenCount = &iChildrenCount;
+  char **pstChildrenUID;
+  int i = 0;
 
   CheckRhs( 2, 2 ) ;
   CheckLhs( 0, 1 ) ;
@@ -43,8 +56,37 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   }
 
   /* get the two handles and swap them */
-  swapHandles( (unsigned long) *hstk( firstHdlStkIndex  ),
-               (unsigned long) *hstk( secondHdlStkIndex ) ) ;
+  pstHandle_1 = getObjectFromHandle(*hstk(firstHdlStkIndex));
+  pstHandle_2 = getObjectFromHandle(*hstk(secondHdlStkIndex));
+  getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, &pstParent_1);
+  getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, &pstParent_2);
+
+  // Check if objects do not have the same parent
+  if (strcmp(pstParent_1, pstParent_2) == 0)
+  {
+      getGraphicObjectProperty(pstParent_1, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
+      getGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
+
+      for (i = 0 ; i < iChildrenCount ; ++i)
+      {
+          if (strcmp(pstChildrenUID[i], pstHandle_1) == 0)
+          {
+              pstChildrenUID[i] = pstHandle_2;
+          }
+          else if (strcmp(pstChildrenUID[i], pstHandle_2) == 0)
+          {
+              pstChildrenUID[i] = pstHandle_1;
+          }
+      }
+
+      setGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, pstChildrenUID, jni_string_vector, iChildrenCount);
+
+  }
+  else
+  {
+      setGraphicObjectRelationship(pstParent_1, pstHandle_2);
+      setGraphicObjectRelationship(pstParent_2, pstHandle_1);
+  }
   LhsVar(1) = 0 ;
   PutLhsVar();
   return 0 ;

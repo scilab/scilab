@@ -37,12 +37,6 @@ char *getObjectFromHandle(long handle)
     return ScilabView::getObjectFromHandle(handle);
 }
 
-int swapHandles(long firstHandle, long secondHandle)
-{
-    ScilabView::swapHandles(firstHandle, secondHandle);
-    return 0;
-}
-
 // FIXME : remove me
 long sciGetHandle(void *pobj)
 {
