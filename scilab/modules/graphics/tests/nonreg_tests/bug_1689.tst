@@ -20,7 +20,7 @@ figureSize = [800, 600];
 
 // check that final figure size is the one specified
 hf = gcf();
-xset ("wpdim", figureSize(1), figureSize(2));
+xset ("wpdim", figureSize);
 if (hf.figure_size <> figureSize) then pause; end;
 
 
