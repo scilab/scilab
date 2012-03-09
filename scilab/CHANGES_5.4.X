@@ -263,6 +263,9 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
+* Bug #8339 fixed - Default path for the Mac OS X version is now HOME instead
+                    of "/".
+
 * Bug #8592 fixed - Add a explicit error message if macros are not available.
  
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
@@ -270,7 +273,7 @@ Bug fixes
 
 * Bug #8682 fixed - funcprot did not return the previous value when called with
                     an argument.
- 
+
 * Bug #8724 fixed - Sometimes, there was a critical error with uiget(file|dir).
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays

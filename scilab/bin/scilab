@@ -759,6 +759,7 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
         BINPATH=$(dirname $0)
@@ -770,6 +771,14 @@ case $OS in
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
+
+        # When started as an Application, the default path was "/"
+        # It is not really useful. Changing to HOME.
+        # See bugs 8339 and 10575 for rational
+        if test "$(pwd)" == "/"; then
+            cd $HOME
+        fi
+
         ;;
     *)
 esac
