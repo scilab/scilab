@@ -533,6 +533,9 @@ t.
 
 * Bug #10809, #10810 fixed - error_table help page was not up-to-date.
 
+* Bug #10828 fixed - Developer arguments were not displayed in the help of
+                     Scilab scripts.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================

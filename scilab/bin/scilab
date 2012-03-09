@@ -55,7 +55,7 @@ if test -n "$SCI"; then
 fi
 
 DISABLE_JAVA_DETECTION=0
-IS_SCILAB_BINARY=0
+IS_SCILAB_BINARY=1
 
 # Electric fence is a tool to check problem of memory
 start_electric_fence() {
@@ -836,23 +836,23 @@ do_help()
     echo     "      -h/--help       : display help about this command."
     echo     "      --texmacs       : reserved for TeXMacs."
     echo     " "
-    if test $IS_SCILAB_BINARY -eq 0; then
-        echo     "Developer arguments:"
-        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        valgrind (and override the existing valgrind arguments)."
-        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        callgrind (and override the existing callgrind arguments)."
-        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
-        echo     " "
-    fi
+
+    echo     "Developer arguments:"
+    echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+    echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+    echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+    echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                        valgrind (and override the existing valgrind arguments)."
+    echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                        callgrind (and override the existing callgrind arguments)."
+    echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+    echo     "      -disable-exception-catching : Disable Scilab exception catching system."
+    echo     " "
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
+
     echo     "      Several environment variables can be declared."
     echo     "      SCIVERBOSE               Provides debugging information of the startup"
     echo     "      JAVA_HOME                Declares which Java Virtual Machine to use"
