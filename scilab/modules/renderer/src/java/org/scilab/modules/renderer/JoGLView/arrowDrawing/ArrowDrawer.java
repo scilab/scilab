@@ -39,6 +39,8 @@ import java.nio.IntBuffer;
  * To do:
  * -optimize: segment projection occurs twice if a negative arrow size is specified.
  * -further comment (especially the reduction ratios).
+ * -rationalize: use a map for arrow tip vertex buffers instead of pre-allocating
+ *  data or using a single vertex buffer for small sets of segments.
  *
  * @author Manuel JULIACHS
  */
@@ -65,12 +67,17 @@ public class ArrowDrawer {
     /** The reduction ratio for negative arrow size values: size of an arrow head relative to the length. */
     private static final double REDUCTION_RATIO_DEPENDING = 0.15;
 
+    /** The vertex buffer used to draw arrow vertices for non-preallocated vertex data. */
+    ElementsBuffer drawerArrowVertices;
+
     /**
      * Constructor.
      * @param visitor the DrawerVisitor {@see DrawerVisitor}.
      */
     public ArrowDrawer(DrawerVisitor visitor) {
         this.visitor = visitor;
+
+        drawerArrowVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
     }
 
     /**
@@ -124,12 +131,11 @@ public class ArrowDrawer {
 
     /**
      * Draws arrows for a given object (a set of segments).
-     * Fills vertex data corresponding to the arrow tips' coordinates and draws the resulting
-     * tips in window coordinates.
+     * Arrow tip vertex data is written into the vertex buffer where segment vertex data is located.
      * @param parentAxesId the identifier of the object's parent Axes.
      * @param identifier the object's identifier.
      * @param arrowSize the arrow size.
-     * @param thickness the arrow segment thickness.
+     * @param lineThickness the arrow segment thickness.
      * @param isSegs specifies whether the object is a Segs object.
      * @param isColored specifies whether the object is drawn with per-arrow colors.
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
@@ -146,8 +152,53 @@ public class ArrowDrawer {
         IndicesBuffer segmentIndices = dataManager.getWireIndexBuffer(identifier);
         IndicesBuffer triangleIndices = dataManager.getIndexBuffer(identifier);
 
+        drawArrows(parentAxesId, vertices, dataManager.getColorBuffer(identifier), segmentIndices, triangleIndices, arrowSize, lineThickness, isSegs, isColored, lineColor);
+    }
+
+    /**
+     * Draw arrows for a set of segments.
+     * It uses ArrowDrawer's own vertex buffer to write back arrow vertex data and should therefore
+     * be used only for small sets of segments (typically Legend items). It does not allow per-segment colors.
+     * @param parentAxesId the identifier of segment set's parent Axes.
+     * @param vertices the segments' vertices.
+     * @param segmentIndices the segments' indices.
+     * @param arrowSize the arrow size.
+     * @param lineThickness the arrow segment thickness.
+     * @param lineColor the line color used for all the arrows.
+     * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
+     */
+    public void drawArrows(String parentAxesId, ElementsBuffer vertices, IndicesBuffer segmentIndices,
+        double arrowSize, double lineThickness, int lineColor) throws SciRendererException {
+
+        /*
+         * No colors are specified as a unique color is used for all the segments.
+         * As arrow tip vertices are written to the drawer's vertex buffer, triangle indices
+         * are also set to null.
+         */
+        drawArrows(parentAxesId, vertices, null, segmentIndices, null, arrowSize, lineThickness, false, false, lineColor);
+    }
+
+    /**
+     * Draw arrows for a set of line segments.
+     * It computes arrow tip vertex data in window coordinates, using the input segment vertex data.
+     * Depending on whether a triangle index buffer is available, the computed data is written into
+     * the segment vertex buffer or the drawer's own vertex buffer.
+     * @param parentAxesId the identifier of the Axes in which arrows are drawn.
+     * @param vertices the segments' vertices.
+     * @param colors the segments' colors.
+     * @param segmentIndices the segments' indices.
+     * @param triangleIndices the arrow tips' triangle indices.
+     * @param arrowSize the arrow size.
+     * @param lineThickness the arrow segment thickness.
+     * @param isSegs specifies whether arrows are drawn for a Segs object.
+     * @param isColored specifies whether per-arrow colors are used.
+     * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
+     * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
+     */
+    private void drawArrows(String parentAxesId, ElementsBuffer vertices, ElementsBuffer colors, IndicesBuffer segmentIndices, IndicesBuffer triangleIndices,
+        double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor) throws SciRendererException {
+
         int offset = vertices.getElementsSize();
-        double averageNorm = 0.0;
 
         int numSegments = segmentIndices.getData().capacity() / 2;
 
@@ -164,27 +215,42 @@ public class ArrowDrawer {
 
         arrowSize = computeArrowPixelSize(parentAxes, vertices, segmentIndices, numSegments, arrowSize, lineThickness, isSegs);
 
-        /* Computes and writes arrow vertex data to the object's vertex buffer */
-        fillArrowVertexData(projection, vertices, segmentIndices,
-            numSegments, triangleIndices, arrowSize);
+        /*
+         * If a triangle index buffer is available, arrow tip vertices are written
+         * into the same buffer as segment vertices, else, they are written into
+         * the drawer's arrow tip buffer.
+         */
+        if (triangleIndices != null) {
+            fillArrowVertexData(projection, vertices, segmentIndices,
+                numSegments, triangleIndices, arrowSize);
 
-        /* Forces update */
-        vertices.setData(vertices.getData(), offset);
+            /* Forces update */
+            vertices.setData(vertices.getData(), offset);
+        } else {
+            fillArrowVertexData(projection, vertices, segmentIndices,
+                numSegments, drawerArrowVertices, arrowSize);
+        }
 
         DefaultGeometry arrowTips = new DefaultGeometry();
 
         arrowTips.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
         arrowTips.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
         arrowTips.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-        arrowTips.setVertices(dataManager.getVertexBuffer(identifier));
-        arrowTips.setIndices(dataManager.getIndexBuffer(identifier));
+
+        if (triangleIndices != null) {
+            arrowTips.setVertices(vertices);
+            arrowTips.setIndices(triangleIndices);
+        } else {
+            /* No triangle indices are set as the drawer's vertex buffer contains only tip vertices. */
+            arrowTips.setVertices(drawerArrowVertices);
+        }
 
         Appearance arrowAppearance = new Appearance();
 
         if (isColored) {
-            arrowTips.setColors(dataManager.getColorBuffer(identifier));
+            arrowTips.setColors(colors);
         } else {
-            arrowAppearance.setFillColor(ColorFactory.createColor(colorMap, lineColor));
+            arrowAppearance.setFillColor(ColorFactory.createColor(visitor.getColorMap(), lineColor));
         }
 
         /* Draws in window coordinates */
@@ -195,9 +261,8 @@ public class ArrowDrawer {
 
     /**
      * Computes and fills arrow vertex data for a set of line segments.
-     * Arrow vertex data is computed in window coordinates and depends on the coordinates of the segment vertices.
-     * To do so, the vertices of each segment are projected, and then used to compute the 3 vertices of the corresponding arrow
-     * in window coordinates. These vertices are then written to the object's vertex buffer as specified by the triangle
+     * Arrow tip vertices are computed in window coordinates and depends on the coordinates of the segment vertices.
+     * These vertices are written to the segments' vertex buffer as specified by the triangle
      * index buffer. The vertex buffer therefore contains a total of (5*Nsegments) elements and must have been allocated beforehand.
      * @param projection the projection from object to window coordinates.
      * @param vertices the buffer storing the segments' vertices and to which arrow tips' vertices are written (5*Nsegments elements).
@@ -208,59 +273,147 @@ public class ArrowDrawer {
      */
     private void fillArrowVertexData(Transformation projection, ElementsBuffer vertices, IndicesBuffer segmentIndices,
         int numSegments, IndicesBuffer triangleIndices, double arrowSize) {
-        int i0;
-        int i1;
-        int[] triIndices = new int[3];
+        int[] segmentVertexOffsets = new int[2];
+        int[] triVertexOffsets  = new int[3];
         int offset = vertices.getElementsSize();
         IntBuffer segmentIndexData = segmentIndices.getData();
         IntBuffer triangleIndexData = triangleIndices.getData();
         FloatBuffer vertexData = vertices.getData();
 
         for (int i = 0; i < numSegments; i++) {
-            i0 = segmentIndexData.get(2*i);
-            i1 = segmentIndexData.get(2*i+1);
+            segmentVertexOffsets[0] = offset*segmentIndexData.get(2*i);
+            segmentVertexOffsets[1] = offset*segmentIndexData.get(2*i+1);
 
-            /* Compute the arrow tip vertices in window coordinates from the object coordinate segment vertices */
-            Vector3d v0 = new Vector3d(vertexData.get(i0*offset), vertexData.get(i0*offset+1), vertexData.get(i0*offset+2));
-            Vector3d v1 = new Vector3d(vertexData.get(i1*offset), vertexData.get(i1*offset+1), vertexData.get(i1*offset+2));
+            triVertexOffsets[0] = offset*triangleIndexData.get(3*i);
+            triVertexOffsets[1] = offset*triangleIndexData.get(3*i+1);
+            triVertexOffsets[2] = offset*triangleIndexData.get(3*i+2);
 
-            v0 = projection.project(v0);
-            v1 = projection.project(v1);
+            /* Vertex data is specified as both the input and output vertex buffer as it contains both the segment and arrow tip vertices. */
+            computeAndWriteSingleArrowVertexData(projection, vertexData, vertexData, segmentVertexOffsets, triVertexOffsets, offset, arrowSize);
+        }
+    }
 
-            Vector3d direction = v1.minus(v0).getNormalized();
+    /**
+     * Computes and fills arrow vertex data for a set of line segments.
+     * Arrow tip vertices are written into a separate vertex buffer, which is resized as needed.
+     * @param projection the projection from object to window coordinates.
+     * @param vertices the line segments' vertices (2*Nsegments elements).
+     * @param segmentIndices the line segments' indices (2*Nsegments elements).
+     * @param numSegments the number of segments (Nsegments).
+     * @param arrowVertices the arrow tip vertices (3*Nsegment elements).
+     * @param arrowSize the arrow size (in pixels).
+     */
+    private void fillArrowVertexData(Transformation projection, ElementsBuffer vertices, IndicesBuffer segmentIndices,
+        int numSegments, ElementsBuffer arrowVertices, double arrowSize) {
+        int[] segmentVertexOffsets = new int[2];
+        int[] triVertexOffsets = new int[3];
+        int offset = vertices.getElementsSize();
+        int arrowOffset;
+        IntBuffer segmentIndexData = segmentIndices.getData();
+        FloatBuffer vertexData = vertices.getData();
+        FloatBuffer arrowVertexData;
 
-            Vector3d[] singleArrowVertices = computeArrowVertices(v1, direction, arrowSize);
+        int bufferOffset = 0;
 
-            triIndices[0] = offset*triangleIndexData.get(3*i);
-            triIndices[1] = offset*triangleIndexData.get(3*i+1);
-            triIndices[2] = offset*triangleIndexData.get(3*i+2);
+        /* Check whether resizing is required and accordingly get vertex data */
+        if (isResizeRequired(arrowVertices, numSegments)) {
+            arrowOffset = 4;
+            arrowVertexData = FloatBuffer.allocate(arrowOffset*3*numSegments);
+        } else {
+            arrowOffset = arrowVertices.getElementsSize();
+            arrowVertexData = arrowVertices.getData();
+        }
 
-            vertexData.put(triIndices[0], (float) singleArrowVertices[0].getX());
-            vertexData.put(triIndices[0]+1, (float) singleArrowVertices[0].getY());
-            vertexData.put(triIndices[0]+2, (float) singleArrowVertices[0].getZ());
+        for (int i = 0; i < numSegments; i++) {
+            segmentVertexOffsets[0] = segmentIndexData.get(2*i)*offset;
+            segmentVertexOffsets[1] = segmentIndexData.get(2*i+1)*offset;
 
-            vertexData.put(triIndices[1], (float) singleArrowVertices[1].getX());
-            vertexData.put(triIndices[1]+1, (float) singleArrowVertices[1].getY());
-            vertexData.put(triIndices[1]+2, (float) singleArrowVertices[1].getZ());
+            triVertexOffsets[0] = bufferOffset;
+            triVertexOffsets[1] = bufferOffset+arrowOffset;
+            triVertexOffsets[2] = bufferOffset+2*arrowOffset;
 
-            vertexData.put(triIndices[2], (float) singleArrowVertices[2].getX());
-            vertexData.put(triIndices[2]+1, (float) singleArrowVertices[2].getY());
-            vertexData.put(triIndices[2]+2, (float) singleArrowVertices[2].getZ());
+            computeAndWriteSingleArrowVertexData(projection, vertexData, arrowVertexData, segmentVertexOffsets, triVertexOffsets, arrowOffset, arrowSize);
 
-            if (offset == 4) {
-                vertexData.put(triIndices[0]+3, 1.0f);
-                vertexData.put(triIndices[1]+3, 1.0f);
-                vertexData.put(triIndices[2]+3, 1.0f);
+            bufferOffset += 3*arrowOffset;
+        }
+
+        arrowVertices.setData(arrowVertexData, arrowOffset);
+    }
+
+    /**
+     * Determines whether the arrow vertex buffer passed as an argument must be resized or not
+     * depending on the number of segments for which arrow tip data must be computed.
+     * @param arrowVertices the arrow vertex buffer.
+     * @param numSegments the number of segments required.
+     * @return true if the buffer must be resized, false if not.
+     */
+    private boolean isResizeRequired(ElementsBuffer arrowVertices, int numSegments) {
+        boolean resize = false;
+
+        if (arrowVertices.getData() == null) {
+            resize = true;
+        } else {
+            int numPreviousVertices = arrowVertices.getData().capacity() / arrowVertices.getElementsSize();
+
+            if (3*numSegments != numPreviousVertices) {
+                resize = true;
             }
+        }
+
+        return resize;
+    }
+
+    /**
+     * Computes and returns the 3 vertices of an arrow tip corresponding to a single segment.
+     * Arrow vertex data is computed in window coordinates and depends on the coordinates of the segment vertices.
+     * To do so, the vertices of the segment are projected, and then used to compute the 3 vertices of the corresponding arrow.
+     * @param projection the projection from object to window coordinates.
+     * @param vertexData the segments' vertex data.
+     * @param arrowVertexData the arrow tip vertex data in which the computed vertices are output.
+     * @param segmentVertexOffsets the offsets of the segment's endpoints into the vertex buffer (2 elements).
+     * @param arrowVertexOffsets the offsets of the tip's vertices into the arrow vertex buffer (3 elements).
+     * @param offset the number of components taken by one arrow vertex (3 or 4).
+     * @param arrowSize the arrow size in pixels.
+     */
+    private void computeAndWriteSingleArrowVertexData(Transformation projection, FloatBuffer vertexData, FloatBuffer arrowVertexData,
+        int[] segmentVertexOffsets, int[] arrowVertexOffsets, int offset, double arrowSize) {
+
+        /* Compute the arrow tip vertices in window coordinates from the object coordinate segment vertices */
+        Vector3d v0 = new Vector3d(vertexData.get(segmentVertexOffsets[0]), vertexData.get(segmentVertexOffsets[0]+1), vertexData.get(segmentVertexOffsets[0]+2));
+        Vector3d v1 = new Vector3d(vertexData.get(segmentVertexOffsets[1]), vertexData.get(segmentVertexOffsets[1]+1), vertexData.get(segmentVertexOffsets[1]+2));
+
+        v0 = projection.project(v0);
+        v1 = projection.project(v1);
+
+        Vector3d direction = v1.minus(v0).getNormalized();
+
+        Vector3d[] singleArrowVertices = computeArrowVertices(v1, direction, arrowSize);
+
+        arrowVertexData.put(arrowVertexOffsets[0], (float) singleArrowVertices[0].getX());
+        arrowVertexData.put(arrowVertexOffsets[0]+1, (float) singleArrowVertices[0].getY());
+        arrowVertexData.put(arrowVertexOffsets[0]+2, (float) singleArrowVertices[0].getZ());
+
+        arrowVertexData.put(arrowVertexOffsets[1], (float) singleArrowVertices[1].getX());
+        arrowVertexData.put(arrowVertexOffsets[1]+1, (float) singleArrowVertices[1].getY());
+        arrowVertexData.put(arrowVertexOffsets[1]+2, (float) singleArrowVertices[1].getZ());
+
+        arrowVertexData.put(arrowVertexOffsets[2], (float) singleArrowVertices[2].getX());
+        arrowVertexData.put(arrowVertexOffsets[2]+1, (float) singleArrowVertices[2].getY());
+        arrowVertexData.put(arrowVertexOffsets[2]+2, (float) singleArrowVertices[2].getZ());
+
+        if (offset == 4) {
+            arrowVertexData.put(arrowVertexOffsets[0]+3, 1.0f);
+            arrowVertexData.put(arrowVertexOffsets[1]+3, 1.0f);
+            arrowVertexData.put(arrowVertexOffsets[2]+3, 1.0f);
         }
     }
 
     /**
      * Computes the average norm of a set of segments projected in window coordinates.
      * @param projection the projection from object to window coordinates.
-     * @param vertexData the segments' vertex data (5*Nsegments*offset elements).
+     * @param vertexData the segments' vertex data (at least 2*Nsegments*offset elements).
      * @param offset the number of components taken by one vertex (3 or 4).
-     * @param segmentIndexData the segment index data (2*Nsegments elements).
+     * @param indexData the segments' index data (2*Nsegments elements).
      * @param numSegments the number of segments (Nsegments).
      * @return the average norm of the projected segments.
      */
@@ -357,4 +510,12 @@ public class ArrowDrawer {
 
         return arrowVertices;
     }
+
+    /**
+     * Disposes all the ArrowDrawer resources.
+     */
+    public void disposeAll() {
+        visitor.getCanvas().getBuffersManager().dispose(drawerArrowVertices);
+    }
+
 }

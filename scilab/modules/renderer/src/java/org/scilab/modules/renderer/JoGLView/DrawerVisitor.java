@@ -194,6 +194,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return axesDrawer;
     }
 
+    /**
+     * @return the ArrowDrawer
+     */
+    public ArrowDrawer getArrowDrawer() {
+        return arrowDrawer;
+    }
+
     public ColorMap getColorMap() {
         return colorMap;
     }

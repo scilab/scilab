@@ -108,6 +108,9 @@ public class LegendDrawer {
         /** The vertices used to draw bars */
         private ElementsBuffer barVertices;
 
+        /** The indices used to draw lines */
+        private IndicesBuffer lineIndices;
+
         /** The indices used to draw a rectangle */
         private IndicesBuffer rectangleIndices;
 
@@ -131,10 +134,14 @@ public class LegendDrawer {
                 rectangleVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
                 lineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
                 barVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
+                lineIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
                 rectangleIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
                 rectangleOutlineIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
 
                 textSpriteMap = new ConcurrentHashMap<String, Sprite>();
+
+                int[] lineIndexData = new int[]{0, 1, 1, 2};
+                lineIndices.setData(lineIndexData);
         }
 
         /**
@@ -301,7 +308,7 @@ public class LegendDrawer {
 
                 /* The indices of a rectangle's triangles and a rectangle outline's segment loop */
                 int[] rectangleIndexData = new int[] {0, 1, 3, 0, 3, 2};
-                int[] rectangleOutlineIndexData = new int[] {0, 1, 3, 2};
+                int[] rectangleOutlineIndexData = new int[] {0, 1, 1, 3, 3, 2, 2, 0};
 
                 rectangleIndices.setData(rectangleIndexData);
                 rectangleOutlineIndices.setData(rectangleOutlineIndexData);
@@ -324,7 +331,7 @@ public class LegendDrawer {
 
                 /* Legend outline */
                 if (legend.getLineMode()) {
-                    legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
+                    legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                     legendRectangle.setWireIndices(rectangleOutlineIndices);
 
                     appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
@@ -446,7 +453,7 @@ public class LegendDrawer {
             boolean isBar = (polylineStyle == 6) || (polylineStyle == 7);
             boolean barDrawn = isBar || polyline.getFillMode();
 
-            /* Draw a bar if the curve is a bar or if is is filled */
+            /* Draw a bar if the curve is a bar or if it is filled */
             if (barDrawn) {
                 barVertices.setData(barVertexData, 4);
 
@@ -460,7 +467,7 @@ public class LegendDrawer {
 
                 /* Bar outline */
                 if (isBar || polyline.getLineMode()) {
-                    bar.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
+                    bar.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                     bar.setWireIndices(rectangleOutlineIndices);
 
                     barAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
@@ -488,6 +495,23 @@ public class LegendDrawer {
                     lineAppearance.setLinePattern(linePattern);
 
                     drawingTools.draw(line, lineAppearance);
+
+
+                }
+            }
+
+            /* Draw arrows */
+            if (polylineStyle == 4) {
+                if (barDrawn) {
+                    /*
+                     * Overlap can occur between the arrow heads of the bar's two smallest segments and the adjacent items.
+                     * To do: adjust arrow size to correct this.
+                     */
+                    visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), barVertices, rectangleOutlineIndices,
+                        polyline.getArrowSizeFactor(), lineThickness, lineColor);
+                } else {
+                    visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), lineVertices, lineIndices,
+                        polyline.getArrowSizeFactor(), lineThickness, lineColor);
                 }
             }
 
@@ -536,6 +560,7 @@ public class LegendDrawer {
                 visitor.getCanvas().getBuffersManager().dispose(rectangleVertices);
                 visitor.getCanvas().getBuffersManager().dispose(lineVertices);
                 visitor.getCanvas().getBuffersManager().dispose(barVertices);
+                visitor.getCanvas().getBuffersManager().dispose(lineIndices);
                 visitor.getCanvas().getBuffersManager().dispose(rectangleIndices);
                 visitor.getCanvas().getBuffersManager().dispose(rectangleOutlineIndices);
 
