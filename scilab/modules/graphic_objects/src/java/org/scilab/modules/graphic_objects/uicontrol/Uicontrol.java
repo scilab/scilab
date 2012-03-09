@@ -94,9 +94,9 @@ public class Uicontrol extends GraphicObject {
     private String fontWeight = DEFAULTFONTWEIGHT;
     private Double[] foregroundColor = {0.0, 0.0, 0.0};
     private String horizontalAlignment = "center";
-    private Integer[] listboxTop; 
-    private int max = 1; 
-    private int min; 
+    private Integer[] listboxTop;
+    private double max = 1.0;
+    private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = DEFAULTRELIEF;
     private String[] rownames = {""};
@@ -106,7 +106,7 @@ public class Uicontrol extends GraphicObject {
     private String[] string = {""};
     private String[] tabledata = {""};
     private String units = "pixels";
-    private Integer[] value; 
+    private Double[] value;
     private String verticalAlignment = "middle";
 
     /**
@@ -177,43 +177,43 @@ public class Uicontrol extends GraphicObject {
      */
     private String styleEnumToString(UicontrolStyle style) {
         String stringStyle = null;
-        switch(style) {
-        case CHECKBOX:
-            stringStyle = __GO_UI_CHECKBOX__;
-            break;
-        case EDIT:
-            stringStyle = __GO_UI_EDIT__;
-            break;
-        case FRAME:
-            stringStyle = __GO_UI_FRAME__;
-            break;
-        case IMAGERENDERER:
-            stringStyle = __GO_UI_IMAGERENDERER__;
-            break;
-        case LISTBOX:
-            stringStyle = __GO_UI_LISTBOX__;
-            break;
-        case POPUPMENU:
-            stringStyle = __GO_UI_POPUPMENU__;
-            break;
-        case PUSHBUTTON:
-            stringStyle = __GO_UI_PUSHBUTTON__;
-            break;
-        case RADIOBUTTON:
-            stringStyle = __GO_UI_RADIOBUTTON__;
-            break;
-        case SLIDER:
-            stringStyle = __GO_UI_SLIDER__;
-            break;
-        case TABLE:
-            stringStyle = __GO_UI_TABLE__;
-            break;
-        case TEXT:
-            stringStyle = __GO_UI_TEXT__;
-            break;
-        default:
-            stringStyle = null;
-            break;
+        switch (style) {
+            case CHECKBOX:
+                stringStyle = __GO_UI_CHECKBOX__;
+                break;
+            case EDIT:
+                stringStyle = __GO_UI_EDIT__;
+                break;
+            case FRAME:
+                stringStyle = __GO_UI_FRAME__;
+                break;
+            case IMAGERENDERER:
+                stringStyle = __GO_UI_IMAGERENDERER__;
+                break;
+            case LISTBOX:
+                stringStyle = __GO_UI_LISTBOX__;
+                break;
+            case POPUPMENU:
+                stringStyle = __GO_UI_POPUPMENU__;
+                break;
+            case PUSHBUTTON:
+                stringStyle = __GO_UI_PUSHBUTTON__;
+                break;
+            case RADIOBUTTON:
+                stringStyle = __GO_UI_RADIOBUTTON__;
+                break;
+            case SLIDER:
+                stringStyle = __GO_UI_SLIDER__;
+                break;
+            case TABLE:
+                stringStyle = __GO_UI_TABLE__;
+                break;
+            case TEXT:
+                stringStyle = __GO_UI_TEXT__;
+                break;
+            default:
+                stringStyle = null;
+                break;
         }
         return stringStyle;
     }
@@ -402,7 +402,7 @@ public class Uicontrol extends GraphicObject {
         } else if (property == UicontrolProperty.VERTICALALIGNMENT) {
             return getVerticalAlignment();
         } else {
-            return super.getProperty(property); 
+            return super.getProperty(property);
         }
     }
 
@@ -438,9 +438,9 @@ public class Uicontrol extends GraphicObject {
         } else if (property == UicontrolProperty.LISTBOXTOP) {
             setListboxTop((Integer[]) value);
         } else if (property == UicontrolProperty.MAX) {
-            setMax((Integer) value);
+            setMax((Double) value);
         } else if (property == UicontrolProperty.MIN) {
-            setMin((Integer) value);
+            setMin((Double) value);
         } else if (property == UicontrolProperty.POSITION) {
             setUiPosition((Double[]) value);
         } else if (property == UicontrolProperty.RELIEF) {
@@ -460,7 +460,7 @@ public class Uicontrol extends GraphicObject {
         } else if (property == UicontrolProperty.UNITS) {
             setUnits((String) value);
         } else if (property == UicontrolProperty.VALUE) {
-            setUiValue((Integer[]) value);
+            setUiValue((Double[]) value);
         } else if (property == UicontrolProperty.VERTICALALIGNMENT) {
             setVerticalAlignment((String) value);
         } else {
@@ -585,7 +585,7 @@ public class Uicontrol extends GraphicObject {
 
     /* Listbox Top */
     public Integer getListboxTopSize() {
-        return (listboxTop != null ? listboxTop.length : 0); 
+        return (listboxTop != null ? listboxTop.length : 0);
     }
 
     public Integer[] getListboxTop() {
@@ -597,20 +597,20 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Max */
-    public Integer getMax() {
+    public Double getMax() {
         return this.max;
     }
 
-    public void setMax(Integer max) {
+    public void setMax(double max) {
         this.max = max;
     }
 
     /* Min */
-    public Integer getMin() {
+    public Double getMin() {
         return this.min;
     }
 
-    public void setMin(Integer min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
@@ -732,14 +732,14 @@ public class Uicontrol extends GraphicObject {
 
     /* Value */
     public Integer getUiValueSize() {
-        return (value != null ? value.length : 0); 
+        return (value != null ? value.length : 0);
     }
 
-    public Integer[] getUiValue() {
+    public Double[] getUiValue() {
         return this.value;
     }
 
-    public void setUiValue(Integer[] value) {
+    public void setUiValue(Double[] value) {
         this.value = value;
     }
 

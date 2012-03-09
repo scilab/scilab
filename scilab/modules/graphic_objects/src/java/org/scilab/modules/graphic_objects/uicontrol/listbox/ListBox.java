@@ -31,7 +31,7 @@ public class ListBox extends Uicontrol {
         setRelief(__GO_UI_FLAT_RELIEF__);
 
         // Default value is the min value
-        Integer[] value = new Integer[1];
+        Double[] value = new Double[1];
         value[0] = getMin();
         setUiValue(value);
     }
