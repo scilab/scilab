@@ -77,10 +77,10 @@ ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy c_sub.c to TMPDIR
-   ilib_gen_Make: Copy sci_csub.c to TMPDIR
    ilib_gen_Make: Copy c_sum.c to TMPDIR
-   ilib_gen_Make: Copy sci_csum.c to TMPDIR
    ilib_gen_Make: Copy libfoo.c to TMPDIR
+   ilib_gen_Make: Copy sci_csub.c to TMPDIR
+   ilib_gen_Make: Copy sci_csum.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
    Generate a cleaner file
