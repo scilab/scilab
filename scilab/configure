@@ -4219,7 +4219,7 @@ fi
     echo "ac:  $ac_cv_sys_file_offset_bits"
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for _LARGEFILE64_SOURCE value needed for large files" >&5
 $as_echo_n "checking for _LARGEFILE64_SOURCE value needed for large files... " >&6; }
-if ${largefile64_source+:} false; then :
+if ${largefile64_cv_source+:} false; then :
   $as_echo_n "(cached) " >&6
 else
 
@@ -4279,8 +4279,8 @@ fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $largefile64_source" >&5
-$as_echo "$largefile64_source" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $largefile64_cv_source" >&5
+$as_echo "$largefile64_cv_source" >&6; }
 
     if test "x$largefile64_source" = "xyes"; then
         LARGEFILE_CFLAGS="-D_LARGEFILE64_SOURCE"
@@ -12184,17 +12184,18 @@ $as_echo_n "checking jgraphx... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jgraphx.jar" "$jardir/libjgraphx.jar" "$jardir/libjgraphx-java.jar" "$jardir/jgraphx*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12197 "configure"
+// #line 12198 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -12211,22 +12212,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -12254,17 +12255,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -12288,7 +12281,7 @@ $as_echo_n "checking minimal version (1.8.0.0) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12291 "configure"
+// #line 12284 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12339,7 +12332,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12342 "configure"
+// #line 12335 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12402,17 +12395,18 @@ $as_echo_n "checking jhdf5... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12415 "configure"
+// #line 12409 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12429,22 +12423,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -12472,17 +12466,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -12567,7 +12553,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12570 "configure"
+// #line 12556 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12622,7 +12608,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12625 "configure"
+// #line 12611 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12692,17 +12678,18 @@ $as_echo_n "checking flexdock... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/flexdock.jar" "$jardir/libflexdock.jar" "$jardir/libflexdock-java.jar" "$jardir/flexdock*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12705 "configure"
+// #line 12692 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12719,22 +12706,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -12762,17 +12749,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -12796,7 +12775,7 @@ $as_echo_n "checking minimal version (1.1.1) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12799 "configure"
+// #line 12778 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12847,7 +12826,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12850 "configure"
+// #line 12829 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12906,17 +12885,18 @@ $as_echo_n "checking looks... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/looks.jar" "$jardir/liblooks.jar" "$jardir/liblooks-java.jar" "$jardir/looks*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12919 "configure"
+// #line 12899 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -12933,22 +12913,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -12976,17 +12956,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13009,17 +12981,18 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jgoodies-looks.jar" "$jardir/libjgoodies-looks.jar" "$jardir/libjgoodies-looks-java.jar" "$jardir/jgoodies-looks*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13022 "configure"
+// #line 12995 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13036,22 +13009,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13079,17 +13052,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13113,17 +13078,18 @@ $as_echo_n "checking skinlf... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/skinlf.jar" "$jardir/libskinlf.jar" "$jardir/libskinlf-java.jar" "$jardir/skinlf*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13126 "configure"
+// #line 13092 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13140,22 +13106,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13183,17 +13149,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13216,17 +13174,18 @@ $as_echo_n "checking jogl... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13229 "configure"
+// #line 13188 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13243,22 +13202,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13286,17 +13245,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13427,17 +13378,18 @@ $as_echo_n "checking gluegen-rt... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13440 "configure"
+// #line 13392 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13454,22 +13406,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13497,17 +13449,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13587,17 +13531,18 @@ $as_echo_n "checking jhall... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jhall.jar" "$jardir/libjhall.jar" "$jardir/libjhall-java.jar" "$jardir/jhall*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13600 "configure"
+// #line 13545 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13614,22 +13559,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13657,17 +13602,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13690,17 +13627,18 @@ $as_echo_n "checking javahelp2... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/javahelp2.jar" "$jardir/libjavahelp2.jar" "$jardir/libjavahelp2-java.jar" "$jardir/javahelp2*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13703 "configure"
+// #line 13641 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13717,22 +13655,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13760,17 +13698,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13794,17 +13724,18 @@ $as_echo_n "checking jrosetta-API... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jrosetta-API.jar" "$jardir/libjrosetta-API.jar" "$jardir/libjrosetta-API-java.jar" "$jardir/jrosetta-API*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13807 "configure"
+// #line 13738 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13821,22 +13752,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13864,17 +13795,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13895,17 +13818,18 @@ $as_echo_n "checking jrosetta-api... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jrosetta-api.jar" "$jardir/libjrosetta-api.jar" "$jardir/libjrosetta-api-java.jar" "$jardir/jrosetta-api*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13908 "configure"
+// #line 13832 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13922,22 +13846,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -13965,17 +13889,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -13999,17 +13915,18 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jrosetta-engine.jar" "$jardir/libjrosetta-engine.jar" "$jardir/libjrosetta-engine-java.jar" "$jardir/jrosetta-engine*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14012 "configure"
+// #line 13929 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -14026,22 +13943,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14069,17 +13986,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14102,7 +14011,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14105 "configure"
+// #line 14014 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14153,7 +14062,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14156 "configure"
+// #line 14065 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14214,17 +14123,18 @@ $as_echo_n "checking jeuclid-core... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jeuclid-core.jar" "$jardir/libjeuclid-core.jar" "$jardir/libjeuclid-core-java.jar" "$jardir/jeuclid-core*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14227 "configure"
+// #line 14137 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -14241,22 +14151,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14284,17 +14194,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14319,17 +14221,18 @@ $as_echo_n "checking fop... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14332 "configure"
+// #line 14235 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -14346,22 +14249,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14389,17 +14292,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14422,17 +14317,18 @@ $as_echo_n "checking batik-all... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14435 "configure"
+// #line 14331 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14449,22 +14345,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14492,17 +14388,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14525,17 +14413,18 @@ $as_echo_n "checking batik... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14538 "configure"
+// #line 14427 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14552,22 +14441,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14595,17 +14484,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14629,7 +14510,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14632 "configure"
+// #line 14513 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14680,7 +14561,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14683 "configure"
+// #line 14564 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14739,17 +14620,18 @@ $as_echo_n "checking commons-io... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14752 "configure"
+// #line 14634 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -14766,22 +14648,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14809,17 +14691,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14842,17 +14716,18 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14855 "configure"
+// #line 14730 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -14869,22 +14744,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -14912,17 +14787,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14945,17 +14812,18 @@ $as_echo_n "checking avalon-framework... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14958 "configure"
+// #line 14826 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -14972,22 +14840,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15015,17 +14883,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15048,17 +14908,18 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15061 "configure"
+// #line 14922 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15075,22 +14936,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15118,17 +14979,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15151,17 +15004,18 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15164 "configure"
+// #line 15018 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15178,22 +15032,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15221,17 +15075,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15258,17 +15104,18 @@ $as_echo_n "checking commons-logging... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/commons-logging.jar" "$jardir/libcommons-logging.jar" "$jardir/libcommons-logging-java.jar" "$jardir/commons-logging*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15271 "configure"
+// #line 15118 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15285,22 +15132,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15328,17 +15175,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15361,17 +15200,18 @@ $as_echo_n "checking jlatexmath... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jlatexmath.jar" "$jardir/libjlatexmath.jar" "$jardir/libjlatexmath-java.jar" "$jardir/jlatexmath*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15374 "configure"
+// #line 15214 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15388,22 +15228,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15431,17 +15271,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15465,7 +15297,7 @@ $as_echo_n "checking minimal version (0.9.7) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15468 "configure"
+// #line 15300 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15516,7 +15348,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15519 "configure"
+// #line 15351 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15581,17 +15413,18 @@ $as_echo_n "checking checkstyle... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/checkstyle.jar" "$jardir/libcheckstyle.jar" "$jardir/libcheckstyle-java.jar" "$jardir/checkstyle*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15594 "configure"
+// #line 15427 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -15608,22 +15441,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15651,17 +15484,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15684,17 +15509,18 @@ $as_echo_n "checking commons-beanutils... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/commons-beanutils.jar" "$jardir/libcommons-beanutils.jar" "$jardir/libcommons-beanutils-java.jar" "$jardir/commons-beanutils*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15697 "configure"
+// #line 15523 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -15711,22 +15537,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15754,17 +15580,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15787,17 +15605,18 @@ $as_echo_n "checking antlr... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/antlr.jar" "$jardir/libantlr.jar" "$jardir/libantlr-java.jar" "$jardir/antlr*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15800 "configure"
+// #line 15619 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -15814,22 +15633,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15857,17 +15676,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15890,17 +15701,18 @@ $as_echo_n "checking testng... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15903 "configure"
+// #line 15715 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -15917,22 +15729,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -15960,17 +15772,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -15993,17 +15797,18 @@ $as_echo_n "checking beust-jcommander... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/beust-jcommander.jar" "$jardir/libbeust-jcommander.jar" "$jardir/libbeust-jcommander-java.jar" "$jardir/beust-jcommander*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16006 "configure"
+// #line 15811 "configure"
 import com.beust.jcommander.JCommander;
 
 public class conftest {
@@ -16020,22 +15825,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -16063,17 +15868,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -16095,17 +15892,18 @@ $as_echo_n "checking jcommander... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jcommander.jar" "$jardir/libjcommander.jar" "$jardir/libjcommander-java.jar" "$jardir/jcommander*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16108 "configure"
+// #line 15906 "configure"
 import com.beust.jcommander.JCommander;
 
 public class conftest {
@@ -16122,22 +15920,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -16165,17 +15963,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -16199,17 +15989,18 @@ $as_echo_n "checking qdox... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16212 "configure"
+// #line 16003 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -16226,22 +16017,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -16269,17 +16060,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -16302,17 +16085,18 @@ $as_echo_n "checking bsh... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16315 "configure"
+// #line 16099 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -16329,22 +16113,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -16372,17 +16156,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -16405,17 +16181,18 @@ $as_echo_n "checking junit... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16418 "configure"
+// #line 16195 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -16432,22 +16209,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -16475,17 +16252,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -22509,7 +22278,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
   save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the arpack library works" >&5
 $as_echo_n "checking whether the arpack library works... " >&6; }
-if ${cv_lib_arpack_ok+:} false; then :
+if ${lib_cv_arpack_ok+:} false; then :
   $as_echo_n "(cached) " >&6
 else
 
@@ -22672,8 +22441,8 @@ rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext \
 fi
 
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $cv_lib_arpack_ok" >&5
-$as_echo "$cv_lib_arpack_ok" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $lib_cv_arpack_ok" >&5
+$as_echo "$lib_cv_arpack_ok" >&6; }
   LIBS="$save_LIBS"
   ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -24278,7 +24047,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24281 "configure"
+#line 24050 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24588,7 +24357,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24591 "configure"
+#line 24360 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25155,17 +24924,18 @@ $as_echo_n "checking saxon... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/saxon.jar" "$jardir/libsaxon.jar" "$jardir/libsaxon-java.jar" "$jardir/saxon*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25168 "configure"
+// #line 24938 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -25182,22 +24952,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -25225,17 +24995,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -25258,17 +25020,18 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/jlatexmath-fop.jar" "$jardir/libjlatexmath-fop.jar" "$jardir/libjlatexmath-fop-java.jar" "$jardir/jlatexmath-fop*.jar"; do
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25271 "configure"
+// #line 25034 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -25285,22 +25048,22 @@ EOF
        if test ""no"" = "no"; then
            echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
        else
               cmd="$JAVA conftest"
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
 
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
 $as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
 
             else
                 echo "configure: failed program was:" >&5
@@ -25328,17 +25091,9 @@ $as_echo "$jar_resolved" >&6; }
 
             fi
 
-        fi
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -31575,7 +31330,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31578 "configure"
+#line 31333 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31681,7 +31436,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31684 "configure"
+#line 31439 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
