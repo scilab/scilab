@@ -280,7 +280,7 @@ r=rand(2,2,2)
     </para>
     <programlisting role="example"><![CDATA[  
 n=getdate("s");
-rand("seed",s);
+rand("seed",n);
  ]]></programlisting>
   </refsection>
   <refsection>
