@@ -17,8 +17,8 @@ function resMat = resize_matrix(mat, nbRow, nbCol, typeOfMat)
   // The type of the matrix may be modified by specifying the typeOfMat variable
 
   [lhs, rhs] = argn(0);
-  if rhs <> 4 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"resize_matrix", 4));
+  if rhs <> 3 & rhs <> 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"resize_matrix", 3, 4));
   end
 
   if ( nbRow <= 0 | nbCol <= 0 ) then

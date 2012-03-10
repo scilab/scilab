@@ -536,6 +536,9 @@ t.
 * Bug #10828 fixed - Developer arguments were not displayed in the help of
                      Scilab scripts.
 
+* Bug #10836 fixed - resize_matrix failed with 'boolean' specified as third
+                     input argument.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
