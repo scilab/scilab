@@ -59,7 +59,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
         #endif
 
 
-
 #ifndef GIWSEXPORT
 # if defined(_MSC_VER) || defined(__WIN32__) || defined(__CYGWIN__)
 #   if defined(STATIC_LINKED)

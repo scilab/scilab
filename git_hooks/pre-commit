@@ -65,6 +65,7 @@ then
 	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.hxx' "
 	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.cpp' "
 	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.c' "
+    echo "  git config --add astyle.ignored 'scilab/modules/javasci/src/java/org/scilab/modules/javasci/Call_Scilab*.java' "
 	echo
 	
 	ASTYLE_IGNORED=""
