@@ -24,6 +24,13 @@
 /*   double matrix functions   */
 /*******************************/
 
+static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg);
+static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg);
+static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg);
+static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
+
+
+
 SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {
     return getCommonMatrixOfDouble(_pvCtx, _piAddress, 0, _piRows, _piCols, _pdblReal, NULL);

@@ -56,7 +56,7 @@ static bool export_void(int _iH5File, int *_piVar, char* _pstName);
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
 
-static char fname[]			= "export_to_hdf5";
+
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {

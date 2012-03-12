@@ -23,8 +23,8 @@
 
 static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t * _piDims)
 {
-    hid_t iRet = 0;
-    int iLevel = _iLevel;
+    /*hid_t iRet = 0;
+    int iLevel = _iLevel;*/
 
     return H5P_DEFAULT;
 /*
@@ -162,6 +162,7 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
     return 0;
 }
 
+/*
 static int writeString(int _iFile, char *_pstDatasetName, char *_pstData)
 {
     hsize_t dims[1] = { 1 };
@@ -229,7 +230,7 @@ static int writeString(int _iFile, char *_pstDatasetName, char *_pstData)
 
     return 0;
 }
-
+*/
 int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, char **data)
 {
     int i;
@@ -1793,7 +1794,6 @@ int writeSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
 
 int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos)
 {
-    int iRet = 0;
     hsize_t dims[1] = { 2 };
     herr_t status = 0;
     hid_t space = 0;

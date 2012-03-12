@@ -10,7 +10,7 @@
  *
  */
 
-
+#include <stdlib.h>
 #include "TCL_ArrayExist.h"
 #include "Scierror.h"
 #include "localization.h"

@@ -41,19 +41,6 @@ int sci_xcosDiagramToScilab(char *fname, unsigned long fname_len)
     int *piAddr1 = NULL;
     char *pstXcosFile = NULL;
 
-    int iRows2 = 0;
-    int iCols2 = 0;
-    int iLen2 = 0;
-    int *piAddr2 = NULL;
-    char *pstH5File = NULL;
-
-    int iRows3 = 0;
-    int iCols3 = 0;
-    int *piAddr3 = NULL;
-    int *piForceWrite = NULL;
-
-    bool bForceWrite = false;
-
     //get xcos filename
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)

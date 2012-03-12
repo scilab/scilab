@@ -78,7 +78,6 @@ int sci_getdate(char *fname,unsigned long fname_len)
         {
             if (isScalar(pvApiCtx, piAddressVarOne))
             {
-                int iErr = 0;
                 double dTime = 0.;
 
                 char *pStr = NULL;

@@ -3100,8 +3100,6 @@ static void updateCommunListOffset(void* _pvCtx, int _iVar, const char* _pstName
 {
     //find list depth and update list offset for last item
     int i       = 0;
-    int *piRoot    = istk(iadr(*Lstk(_iVar)));
-    int iDepth    = 1; //we are already in a list
     int iMaxDepth   = 0; //we are already in a list
     int **piParent   = NULL;
 
@@ -3162,13 +3160,4 @@ static void closeList(int _iVar, int *_piEnd)
 
     updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
-
-static int isKindOfList(int* _piNode)
-{
-    if (_piNode[0] == sci_list || _piNode[0] == sci_tlist || _piNode[0] == sci_mlist)
-        return 1;
-    else
-        return 0;
-}
-
 /*--------------------------------------------------------------------------*/

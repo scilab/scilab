@@ -25,7 +25,6 @@ int sci_dec2base(char *fname, unsigned long fname_len)
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
     int m = 0, n = 0;
-    int i = 0;
 
     double *dValues = NULL;
     char **convertedValues = NULL;

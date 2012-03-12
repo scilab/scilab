@@ -20,6 +20,11 @@
 
 #include "call_scilab.h"
 
+
+static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData);
+static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData);
+
+
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;

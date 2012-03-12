@@ -137,7 +137,7 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    int iLhs = OutputArgument;
+
     if(_iMin <= OutputArgument && _iMax >= OutputArgument)
     {
         return 1;

@@ -23,9 +23,9 @@
 #define ROLE_VERSION "0.2.0"
 
 static char defaultdir[] = ".";
-static char version[] = "0.2.0 - 12-December-2005 (C) PLDaniels http:/*www.pldaniels.com/ripole";
+/*static char version[] = "0.2.0 - 12-December-2005 (C) PLDaniels http:/*www.pldaniels.com/ripole";
 static char help[] = "ripOLE -i <OLE2 file> [ -d <directory> ] [--save-unknown-streams] [--version|-V] [--verbose|-v] [--debug] [--help|-h]";
-
+*/
 /*-----------------------------------------------------------------\
   Function Name	: set_defaults
   Returns Type	: int

@@ -19,10 +19,5 @@ SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, 
 SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 SciErr readCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
-static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
-static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
-static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
-static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
-
 #endif /* __INTERNAL_POLY_API__ */
 

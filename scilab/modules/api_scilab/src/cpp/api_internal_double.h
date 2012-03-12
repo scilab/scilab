@@ -19,9 +19,4 @@ SciErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, in
 SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
 SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
-static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg);
-static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg);
-static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg);
-static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
-
 #endif /* __INTERNAL_DOUBLE_API__ */

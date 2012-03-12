@@ -24,8 +24,9 @@
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 static unsigned int isDirSeparator(const char c);
+#ifndef _MSC_VER
 static int normalizePath(char *path);
-
+#endif
 /*--------------------------------------------------------------------------*/
 char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 {
@@ -145,6 +146,7 @@ static unsigned int isDirSeparator(const char c)
 }
 
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 static int normalizePath(char *path)
 {
     char *dirs[PATH_MAX];
@@ -236,5 +238,5 @@ static int normalizePath(char *path)
         }
     }
 }
-
+#endif
 /*--------------------------------------------------------------------------*/

@@ -446,12 +446,6 @@ static void setVariableFormat(int numberDigits)
 }
 
 /*--------------------------------------------------------------------------*/
-static void setVariableMode(void)
-{
-    C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
-}
-
-/*--------------------------------------------------------------------------*/
 static void set_e_Format(int numberDigits)
 {
     int numberDigitsAdjusted = numberDigits;
