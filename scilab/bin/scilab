@@ -55,7 +55,7 @@ if test -n "$SCI"; then
 fi
 
 DISABLE_JAVA_DETECTION=0
-IS_SCILAB_BINARY=1
+IS_SCILAB_BINARY=0
 
 # Electric fence is a tool to check problem of memory
 start_electric_fence() {
