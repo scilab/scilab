@@ -102,7 +102,7 @@ function repositories = atomsRepositoryList(section)
 
     // Filter
     // =========================================================================
-    if atomsGetConfig("offLine") == "True" then
+    if atomsGetConfig("offline") == "True" then
 
         repositories_in = repositories;
         repositories    = [];

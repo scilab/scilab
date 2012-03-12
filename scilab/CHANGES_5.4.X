@@ -239,6 +239,8 @@ ATOMS
 * tbx_build_loader generates also a unloader.sce to allow to call .quit file of
    an ATOMS module.
 
+* Rename ATOMS option offLine to offline.
+
 * Bug #9798 fixed - .quit script of atoms modules were not evaluated when
                     leaving Scilab.
 

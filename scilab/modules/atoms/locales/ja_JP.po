@@ -440,10 +440,10 @@ msgid "Description"
 msgstr "記述"
 
 msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
-"ATOMSの設定のoffLineオプションがTrueに設定されています. atomsSystemUpdate "
+"ATOMSの設定のofflineオプションがTrueに設定されています. atomsSystemUpdate "
 "は利用可能な最新のモジュールをチェックしません."
 
 #, c-format

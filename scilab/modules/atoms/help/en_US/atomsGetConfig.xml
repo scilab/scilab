@@ -95,12 +95,13 @@
           <th>Values</th>
         </tr>
         <tr>
-          <td>offLine</td>
+          <td>offline</td>
           <td>
             If set to "True", the system only works with local repositories.
             The offline mode permits the user to install modules from a local
             repository or a local package (hard disk, USB keys, ...) even if
             the network is unreachable.
+            In version prior to 5.4.0, this tag was called offLine.
           </td>
           <td>
             True/<emphasis role="strong">False</emphasis>
@@ -173,7 +174,13 @@
 atomsGetConfig('Verbose')
 ]]></programlisting>
   </refsection>
-  <!-- ===================================================================== -->
-  <!-- Authors -->
-  <!-- ===================================================================== -->
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>offLine parameter renamed to offline</revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>

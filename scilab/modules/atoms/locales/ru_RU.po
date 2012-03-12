@@ -483,10 +483,10 @@ msgid "Description"
 msgstr "Описание"
 
 msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
-"Опция offLine настройки ATOMS установлена в значение True. atomsSystemUpdate "
+"Опция offline настройки ATOMS установлена в значение True. atomsSystemUpdate "
 "не проверяет доступность новейших модулей."
 
 #, c-format

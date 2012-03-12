@@ -419,9 +419,9 @@ msgid "Description"
 msgstr "描述"
 
 msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
-msgstr "ATOMS 設置中的 offLine 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
+msgstr "ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
 
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"

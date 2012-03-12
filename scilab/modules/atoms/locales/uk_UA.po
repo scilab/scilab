@@ -509,10 +509,10 @@ msgid "Description"
 msgstr "Опис"
 
 msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
-"Встановлено значення параметра налаштування ATOMS offLine рівне True. "
+"Встановлено значення параметра налаштування ATOMS offline рівне True. "
 "atomsSystemUpdate не виконано перевірку доступності найновіших модулів."
 
 #, c-format
