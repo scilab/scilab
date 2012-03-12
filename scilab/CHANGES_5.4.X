@@ -12,6 +12,8 @@ GUI:
 
 * New uicontrols added: TODO
 
+* Bug #7380 fixed - 'Value' property for uicontrol was rounded.
+
 
 Scilab Desktop
 ==============
