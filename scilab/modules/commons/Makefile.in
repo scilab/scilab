@@ -62,13 +62,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@NEED_JAVA_TRUE@am__append_1 = src/jni/GiwsException.cpp
+@GUI_TRUE@am__append_2 = libscicommons.la 
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws-exception
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
-@NEED_JAVA_TRUE@am__append_2 = src/jni/GiwsException.cpp
-@GUI_TRUE@am__append_3 = libscicommons.la 
-@SWIG_TRUE@am__append_4 = swig
-@GIWS_TRUE@am__append_5 = giws-exception
+@NEED_JAVA_TRUE@am__append_5 = java
 subdir = modules/commons
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -453,6 +453,37 @@ libscicommons_la_etc_DATA = \
 	etc/commons.start \
 	etc/XConfiguration-general.xsl
 
+COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
+		     src/jni/CommonFileUtils_wrap.c \
+		     src/c/fileutils.c
+
+COMMONS_CPP_SOURCES = $(am__append_1)
+COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
+libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
+			-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/
+
+libscicommons_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Isrc/jni/
+libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
+pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_2)
+libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(COMMONS_C_SOURCES)
+INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/ScilabCommons.i \
+                src/jni/CommonFileUtils.i
+
+BUILT_SOURCES = $(am__append_3) $(am__append_4)
+
+#### commons : gateway declaration ####
+libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscicommons_la_sci_gateway_DATA = 
+@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -465,7 +496,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -516,35 +547,6 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
-		     src/jni/CommonFileUtils_wrap.c \
-		     src/c/fileutils.c
-
-COMMONS_CPP_SOURCES = $(am__append_2)
-COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
-libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/
-
-libscicommons_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Isrc/jni/
-libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_3)
-libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC = $(COMMONS_C_SOURCES)
-INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabCommons.i
-BUILT_SOURCES = $(am__append_4) $(am__append_5)
-
-#### commons : gateway declaration ####
-libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscicommons_la_sci_gateway_DATA = 
-@GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

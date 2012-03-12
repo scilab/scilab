@@ -44,20 +44,11 @@ libscipreferences_la_src_xslt_xwizard_DATA = \
 	src/xslt/XWizard/XWizard-function.xsl \
 	src/xslt/XWizard/XWizard-xcos.xsl
 
-include $(top_srcdir)/Makefile.incl.am
-
 PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 
 PREFERENCES_C_SOURCES =
 
 PREFERENCES_CPP_SOURCES =
-
-GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
-
-if GIWS
-    BUILT_SOURCES=giws
-endif
-
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
@@ -113,11 +104,15 @@ CHECK_SRC= $(PREFERENCES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipreferences_la_CFLAGS)
 
 
-#### SWIG Declaration ####
+GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
 SWIG_WRAPPERS = 
 
+BUILT_SOURCES=
+if GIWS
+BUILT_SOURCES+=giws
+endif
 if SWIG
-    BUILT_SOURCES=swig
+BUILT_SOURCES+=swig
 endif
 
 libscipreferences_la_LIBADD = libscipreferences-algo.la \
@@ -133,3 +128,5 @@ libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
 if GUI
     USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

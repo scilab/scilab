@@ -25,8 +25,6 @@ libscicommons_la_etc_DATA = \
 	etc/commons.start \
 	etc/XConfiguration-general.xsl
 
-include $(top_srcdir)/Makefile.incl.am
-
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \
 		     src/c/fileutils.c
@@ -64,17 +62,16 @@ INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabCommons.i
+SWIG_WRAPPERS = src/jni/ScilabCommons.i \
+                src/jni/CommonFileUtils.i
 
-BUILT_SOURCES =
+BUILT_SOURCES=
 if SWIG
-BUILT_SOURCES += swig
+BUILT_SOURCES+=swig
 endif
-
 if GIWS
-BUILT_SOURCES += giws-exception
+BUILT_SOURCES+=giws-exception
 endif
-
 
 #### commons : gateway declaration ####
 libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -83,3 +80,5 @@ libscicommons_la_sci_gateway_DATA =
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

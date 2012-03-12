@@ -62,10 +62,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = libscihistory_browser.la 
+@GIWS_TRUE@am__append_2 = giws
+@SWIG_TRUE@am__append_3 = swig
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
-@GUI_TRUE@am__append_2 = libscihistory_browser.la 
+@NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/history_browser
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -451,6 +453,49 @@ libscihistory_browser_la_etc_DATA = etc/history_browser.quit \
 				etc/history_browser.start
 
 
+# List of the JNI files
+@GUI_TRUE@HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp
+@GUI_TRUE@HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
+@GUI_FALSE@HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@GUI_TRUE@HISTORY_BROWSER_C_SOURCES = 
+
+# List of the gateway c files
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_history_browser.c \
+@GUI_TRUE@sci_gateway/c/sci_browsehistory.c
+
+libscihistory_browser_la_CFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/libs/MALLOC/includes
+
+libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+-I$(srcdir)/src/jni/ \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/commons/src/jni/
+
+
+# Without the history_browser module 
+libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
+HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
+libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
+pkglib_LTLIBRARIES = libscihistory_browser-disable.la $(am__append_1)
+libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(HISTORY_BROWSER_C_SOURCES)
+INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
+GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
+SWIG_WRAPPERS = 
+BUILT_SOURCES = $(am__append_2) $(am__append_3)
+
+#### history_browser : gateway declaration ####
+libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscihistory_browser_la_sci_gateway_DATA = sci_gateway/history_browser_gateway.xml
+@GUI_TRUE@USEANT = 1
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -462,7 +507,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -513,52 +558,6 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-
-# List of the JNI files
-@GUI_TRUE@HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp
-@GUI_TRUE@HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
-@GUI_FALSE@HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
-@GUI_TRUE@HISTORY_BROWSER_C_SOURCES = 
-
-# List of the gateway c files
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_history_browser.c \
-@GUI_TRUE@sci_gateway/c/sci_browsehistory.c
-
-@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
-@SWIG_TRUE@BUILT_SOURCES = swig
-libscihistory_browser_la_CFLAGS = -I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes
-
-libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
--I$(srcdir)/src/jni/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/commons/src/jni/
-
-
-# Without the history_browser module 
-libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
-HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
-libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscihistory_browser-disable.la $(am__append_2)
-libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC = $(HISTORY_BROWSER_C_SOURCES)
-INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = 
-
-#### history_browser : gateway declaration ####
-libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_browser_la_sci_gateway_DATA = sci_gateway/history_browser_gateway.xml
-@GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

@@ -28,8 +28,6 @@ libsciui_data_la_etc_DATA = \
 	etc/XConfiguration-variables.xml \
 	etc/XConfiguration-variables.xsl
 
-include $(top_srcdir)/Makefile.incl.am
-
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 		      src/jni/EditVar.cpp \
 		      src/jni/FileBrowser.cpp
@@ -45,8 +43,15 @@ src/jni/BrowseVar.giws.xml \
 src/jni/EditVar.giws.xml \
 src/jni/FileBrowser.giws.xml
 
+SWIG_WRAPPERS = \
+src/jni/ui_data.i
+
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
+endif
+if SWIG
+BUILT_SOURCES+=swig
 endif
 
 
@@ -140,3 +145,5 @@ images/icons/16x16/mimetypes/user.png
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

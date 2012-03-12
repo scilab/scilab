@@ -63,10 +63,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = libscigraphic_export.la 
+@GIWS_TRUE@am__append_1 = giws
+@SWIG_TRUE@am__append_2 = swig
+@GUI_TRUE@am__append_3 = libscigraphic_export.la 
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/graphic_export
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -518,16 +520,10 @@ GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
 
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-@GIWS_TRUE@BUILT_SOURCES = giws
-@SWIG_TRUE@BUILT_SOURCES = swig
-
-#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
 src/jni/GL2PSWrapping.i
 
+BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
@@ -538,7 +534,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_1)
+pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_3)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscigraphic_export-algo.la 
 libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
@@ -558,7 +554,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro

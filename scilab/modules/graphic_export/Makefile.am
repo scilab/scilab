@@ -83,19 +83,15 @@ GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
 
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-
-if GIWS
-BUILT_SOURCES=giws
-endif
-
-#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
 src/jni/GL2PSWrapping.i
 
+BUILT_SOURCES=
+if GIWS
+BUILT_SOURCES+=giws
+endif
 if SWIG
-BUILT_SOURCES=swig
+BUILT_SOURCES+=swig
 endif
 
 # All the sources needed by libscigraphic_export.la

@@ -29,23 +29,12 @@ libsciscinotes_la_etc_DATA = \
 	etc/XConfiguration-scinotes.xml \
 	etc/XConfiguration-scinotes.xsl
 
-include $(top_srcdir)/Makefile.incl.am
-
-
 SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 
 SCINOTES_CPP_SOURCES = src/jni/SciNotes.cpp \
     src/cpp/callscinotes.cpp
-
-
-GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
-
-if GIWS
-    BUILT_SOURCES=giws
-endif
-
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
 
@@ -100,12 +89,15 @@ libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
 CHECK_SRC= $(SCINOTES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
-
-#### SWIG Declaration ####
+GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
 
+BUILT_SOURCES=
+if GIWS
+BUILT_SOURCES+=giws
+endif
 if SWIG
-    BUILT_SOURCES=swig
+BUILT_SOURCES+=swig
 endif
 
 libsciscinotes_la_LIBADD = libsciscinotes-algo.la
@@ -119,3 +111,5 @@ if BUILD_HELP
     USEANT=1
 endif
 endif
+
+include $(top_srcdir)/Makefile.incl.am

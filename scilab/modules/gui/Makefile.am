@@ -44,8 +44,6 @@ libscigui_la_etc_DATA = \
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree
 
-include $(top_srcdir)/Makefile.incl.am
-
 GUI_C_SOURCES = \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
@@ -160,19 +158,15 @@ src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
 src/jni/ScilabDisplayTree.giws.xml
 
-
-if GIWS
-BUILT_SOURCES=giws
-endif
-
-
-#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 
-if SWIG
-    BUILT_SOURCES=swig
+BUILT_SOURCES=
+if GIWS
+BUILT_SOURCES+=giws
 endif
-
+if SWIG
+BUILT_SOURCES+=swig
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \
@@ -424,3 +418,4 @@ if GUI
 USEANT=1
 endif
 
+include $(top_srcdir)/Makefile.incl.am
