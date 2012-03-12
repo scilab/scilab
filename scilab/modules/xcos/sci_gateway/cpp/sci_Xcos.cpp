@@ -211,7 +211,7 @@ static int callXcos(char *fname, char* file, char* var)
     {
         Xcos::xcos(getScilabJavaVM(), file, var);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname,
                  exception.getJavaDescription().c_str());
@@ -226,7 +226,7 @@ static int callXcos(char *fname, char* file, char* var)
         }
         return 1;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 

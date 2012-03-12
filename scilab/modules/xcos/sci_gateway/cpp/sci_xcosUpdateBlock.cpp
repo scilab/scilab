@@ -46,7 +46,7 @@ int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
         FREE(hdf5File);
         hdf5File = NULL;
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
@@ -54,7 +54,7 @@ int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
         hdf5File = NULL;
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 

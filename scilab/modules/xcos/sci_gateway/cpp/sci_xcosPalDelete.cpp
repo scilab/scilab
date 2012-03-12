@@ -45,12 +45,12 @@ int sci_xcosPalDelete(char *fname, unsigned long fname_len)
     {
         Palette::remove(getScilabJavaVM(), name, nameLength);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;

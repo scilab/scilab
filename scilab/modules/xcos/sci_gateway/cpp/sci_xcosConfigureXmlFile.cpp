@@ -54,7 +54,7 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
         FREE(init);
         FREE(relations);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
@@ -62,7 +62,7 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
         FREE(relations);
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
