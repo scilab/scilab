@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-08 14:04+0000\n"
+"PO-Revision-Date: 2012-03-08 12:07+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -326,7 +326,7 @@ msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "Chyba: Nelze určit proměnnou prostředí %s.\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Konsorcium Scilab (DIGITEO)\n"
@@ -1050,6 +1050,10 @@ msgstr "Úvod"
 
 msgid "Getting started with Scilab"
 msgstr "Začínáme se Scilabem"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s: Nelze nalézt '%s': Zkontrolujte, zda byla makra sestavena.\n"
 
 #, c-format
 msgid "Checking: %s\n"

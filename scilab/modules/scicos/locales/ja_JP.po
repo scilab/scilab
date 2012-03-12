@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-18 05:36+0000\n"
+"PO-Revision-Date: 2012-03-04 06:46+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1336,27 +1336,27 @@ msgstr "%s: gotoタグがユニークではありません"
 
 #, c-format
 msgid "%s: Port out of hierarchy"
-msgstr ""
+msgstr "%s: ポートが階層外です"
 
 #, c-format
 msgid "%s: Not connected super block input"
-msgstr ""
+msgstr "%s: スーパーブロック入力が接続されていません"
 
 #, c-format
 msgid "%s: Invalid super block at %d"
-msgstr ""
+msgstr "%s: スーパーブロックが %d で無効です"
 
 #, c-format
 msgid "%s: Empty diagram"
-msgstr ""
+msgstr "%s: ダイアグラムが空です"
 
 #, c-format
 msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
+msgstr "%s: 同じレベルに複数の GotoTagVisibilityがあります"
 
 #, c-format
 msgid "%s: Shared GotoTagVisibility across GOTO"
-msgstr ""
+msgstr "%s: GOTOを通じて GotoTagVisibility が共有されています"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"

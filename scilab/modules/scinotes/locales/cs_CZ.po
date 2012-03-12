@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -199,15 +199,6 @@ msgstr "Navigátor Kódu"
 
 msgid "Format"
 msgstr "Formát"
-
-msgid "Set Colors ..."
-msgstr "Nastavit barvy ..."
-
-msgid "Set Font"
-msgstr "Nastavit Písmo"
-
-msgid "Reset default font"
-msgstr "Resetovat výchozí písmo"
 
 msgid "Shift Right"
 msgstr "Posun vpravo"
@@ -413,6 +404,12 @@ msgstr "Žádné číslování řádků"
 
 msgid "Set Colors"
 msgstr "Nastavit barvy"
+
+msgid "Set Font"
+msgstr "Nastavit Písmo"
+
+msgid "Reset default font"
+msgstr "Resetovat výchozí písmo"
 
 msgid "Split horizontally"
 msgstr "Rozdělit vodorovně"

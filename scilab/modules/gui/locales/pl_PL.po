@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-12-03 14:24+0000\n"
+"PO-Revision-Date: 2012-02-23 20:27+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: pl\n"
 
 #, c-format
@@ -345,6 +345,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s: Wystąpił wyjątek Javy:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -355,7 +357,7 @@ msgstr "Impossible to get current look and feel"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid ""
@@ -371,7 +373,7 @@ msgstr "%s: Plik %s nie istnieje.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Błąd alokacji pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -383,12 +385,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano tablicy o "
+"wymiarach 1-na-n lub m-na-1.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -404,6 +408,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Nieprawidłowy parametr wejściowy nr %d: oczekiwano '%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
@@ -596,6 +601,9 @@ msgstr "&Wyczyść schowek"
 msgid "&Select all"
 msgstr "&Zaznacz wszystko"
 
+msgid "P&references"
+msgstr ""
+
 msgid "&Preferences"
 msgstr "&Ustawienia"
 
@@ -651,7 +659,7 @@ msgid "&Command History"
 msgstr "Historia poleceń"
 
 msgid "&File Browser"
-msgstr ""
+msgstr "Przeglądarka plików"
 
 msgid "Scilab &Help"
 msgstr "&Pomoc Scilab"
@@ -678,10 +686,10 @@ msgid "&File Exchange"
 msgstr "&File Exchange"
 
 msgid "&Mailing Lists"
-msgstr ""
+msgstr "Listy dyskusyjne"
 
 msgid "Mailing Lists &Archives"
-msgstr ""
+msgstr "Archiwum list dyskusyjnych"
 
 msgid "&Forge"
 msgstr "&Forge"
@@ -690,7 +698,7 @@ msgid "&Bugs And Requests"
 msgstr "&Zawiadomienie o błędzie"
 
 msgid "&Scilab Enterprises"
-msgstr ""
+msgstr "&Scilab Enterprises"
 
 msgid "Rotate"
 msgstr "Obróć"
@@ -1018,15 +1026,21 @@ msgid ""
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
+"OSTRZEŻENIE: Z powodu ograniczeń Twojego komputera Scilab zmienił tryb na "
+"taki, w którym nie ma możliwości jednoczesnego używania uicontrols i "
+"grafiki. Żeby uzyskać więcej informacji wprowadź %s ."
 
 msgid "In some cases, %s fixes the issue"
-msgstr ""
+msgstr "w niektórych sytuacjach %s usuwa ten problem"
 
 msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
 "driver."
 msgstr ""
+"Z powodu ograniczeń sterownika Twojej karty graficznej, która nie obsługuje "
+"OpenGL, Scilab nie jest w stanie wyświetlić żadnej grafiki. Proszę "
+"uaktualnić sterownik."
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1153,7 +1167,7 @@ msgid "Loading help browser..."
 msgstr "Ładowanie przeglądarki pomocy..."
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "Właściwość niedostępna w tym trybie..."
 
 msgid "No text selected"
 msgstr "Nie wybrano tekstu"
@@ -1197,21 +1211,24 @@ msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
 
 msgid "Empty tab"
-msgstr ""
+msgstr "Pusta karta"
 
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
+"Brak możliwości odzyskania karty z uuid %s.\n"
+"Proszę o zgłoszenie tego błędu i załączenie poprzedniegu komunikatu oraz "
+"pliku %s."
 
 msgid "Are you sure you want to close %s ?"
-msgstr ""
+msgstr "Jesteś pewny, że chcesz zamknąć %s ?"
 
 msgid "Are you sure you want to close %s and %s ?"
-msgstr ""
+msgstr "Jesteś pewny, że chcesz zamknąć %s  i %s ?"
 
 msgid "Exit"
-msgstr ""
+msgstr "Wyjście"
 
 msgid "An error occured: "
 msgstr "Wystąpił błąd: "
@@ -1601,7 +1618,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s: Nie znaleziono wyników.\n"
 
 #, c-format
 msgid "%s: No results found for property '%s' and value '%s'.\n"

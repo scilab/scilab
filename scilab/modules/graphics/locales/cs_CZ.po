@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-12-27 20:56+0000\n"
+"PO-Revision-Date: 2012-03-08 12:07+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -1300,6 +1300,10 @@ msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr "%s: Mapa barev příliš malá"
 
 msgid "Delete all datatips"
 msgstr "Smazat všechny popisky dat"

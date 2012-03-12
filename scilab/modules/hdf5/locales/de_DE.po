@@ -1,0 +1,59 @@
+# German translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-02-28 11:59+0000\n"
+"Last-Translator: Daniel Dietrich <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14933)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: falsche Anzahl von EIngangsargumenten: höchstens %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: definierte Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: \"%s\" ist ein Verzeichnis"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: kann Datei nicht öffnen %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Type: %dx%d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to open file: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid HDF5 Scilab format.\n"
+msgstr ""
+
+msgid "HDF5 is not installed"
+msgstr "HDF5 ist nicht installiert"
