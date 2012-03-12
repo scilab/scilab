@@ -1087,9 +1087,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 # This target enables tests for Scilab
 @JAVASCI_TRUE@check-local: $(top_builddir)/scilab-bin test
-@JAVASCI_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
-@JAVASCI_TRUE@	export LANG=C;\
-@JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@JAVASCI_TRUE@	if test -d $(mydatadir)/tests; then \
+@JAVASCI_TRUE@	  @COMMAND="try test_run('$(modulename)');catch exit(-1);end;exit(0)"; export LANG=C; $(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+@JAVASCI_TRUE@	fi
 @JAVASCI_TRUE@check-code:
 @JAVASCI_TRUE@	if test -f build.xml; then \
 @JAVASCI_TRUE@		$(ANT) checkstyle; \

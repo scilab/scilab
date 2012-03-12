@@ -993,9 +993,9 @@ uninstall-am: uninstall-libsciparallel_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
-	@COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	if test -d $(mydatadir)/tests; then \
+	  @COMMAND="try test_run('$(modulename)');catch exit(-1);end;exit(0)"; export LANG=C; $(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
 check-code:
 	if test -f build.xml; then \
 		$(ANT) checkstyle; \
