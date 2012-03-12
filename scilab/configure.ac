@@ -891,8 +891,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SKINLF=$PACKAGE_JAR_FILE
                 AC_SUBST(SKINLF)
 
-                # JOGL
-                AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
+                # JOGL 2
+                AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
                 JOGL=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL)
 
@@ -905,12 +905,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
-                          AC_CHECK_LIB([jogl ], [glTexParameterf],
-                       [JOGL_LIBS="-ljogl -lGL"],
+                          AC_CHECK_LIB([jogl_desktop ], [glTexParameterf],
+                       [JOGL_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
 interface for JOGL - or libGL are installed and if the version is correct. Note
@@ -923,7 +923,7 @@ the the JNI libraries."])],
                 fi
 
                 # JoGL Native <=> Java connector
-                AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+                AC_JAVA_CHECK_PACKAGE([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
                 GLUEGEN_RT=$PACKAGE_JAR_FILE
                 AC_SUBST(GLUEGEN_RT)
 
@@ -936,9 +936,9 @@ the the JNI libraries."])],
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
-                   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-                   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+                   symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
+                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
                 fi

@@ -13378,16 +13378,16 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar skinlf use
                 SKINLF=$PACKAGE_JAR_FILE
 
 
-                # JOGL
+                # JOGL 2
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking jogl" >&5
-$as_echo_n "checking jogl... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking jogl2" >&5
+$as_echo_n "checking jogl2... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
+      for jar in "$jardir/jogl2.jar" "$jardir/libjogl2.jar" "$jardir/libjogl2-java.jar" "$jardir/jogl2*.jar"; do
 
 # TODO check the behaviour when spaces
         jars_resolved=`ls $jar 2>/dev/null`
@@ -13464,10 +13464,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
       if test "" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
       else
-          as_fn_error $? "Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" "$LINENO" 5
+          as_fn_error $? "Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" "$LINENO" 5
       fi
     fi
 
@@ -13483,13 +13483,13 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used 
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl" >&5
-$as_echo_n "checking for glTexParameterf in -ljogl... " >&6; }
-if ${ac_cv_lib_jogl_glTexParameterf+:} false; then :
+                   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl_desktop" >&5
+$as_echo_n "checking for glTexParameterf in -ljogl_desktop... " >&6; }
+if ${ac_cv_lib_jogl_desktop_glTexParameterf+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-ljogl  $LIBS"
+LIBS="-ljogl_desktop  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -13509,34 +13509,34 @@ return glTexParameterf ();
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_jogl_glTexParameterf=yes
+  ac_cv_lib_jogl_desktop_glTexParameterf=yes
 else
-  ac_cv_lib_jogl_glTexParameterf=no
+  ac_cv_lib_jogl_desktop_glTexParameterf=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_jogl_glTexParameterf" >&5
-$as_echo "$ac_cv_lib_jogl_glTexParameterf" >&6; }
-if test "x$ac_cv_lib_jogl_glTexParameterf" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_jogl_desktop_glTexParameterf" >&5
+$as_echo "$ac_cv_lib_jogl_desktop_glTexParameterf" >&6; }
+if test "x$ac_cv_lib_jogl_desktop_glTexParameterf" = xyes; then :
   JOGL_LIBS="-ljogl"
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not link against -ljogl. Will try against -ljogl -lGL" >&5
-$as_echo "$as_me: WARNING: Could not link against -ljogl. Will try against -ljogl -lGL" >&2;}
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL" >&5
+$as_echo "$as_me: WARNING: Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL" >&2;}
 fi
 
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
-                          as_ac_Lib=`$as_echo "ac_cv_lib_jogl ''_glTexParameterf" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl " >&5
-$as_echo_n "checking for glTexParameterf in -ljogl ... " >&6; }
+                          as_ac_Lib=`$as_echo "ac_cv_lib_jogl_desktop ''_glTexParameterf" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for glTexParameterf in -ljogl_desktop " >&5
+$as_echo_n "checking for glTexParameterf in -ljogl_desktop ... " >&6; }
 if eval \${$as_ac_Lib+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-ljogl  -lGL $LIBS"
+LIBS="-ljogl_desktop  -lGL $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -13568,7 +13568,7 @@ eval ac_res=\$$as_ac_Lib
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
-  JOGL_LIBS="-ljogl -lGL"
+  JOGL_LIBS="-ljogl_desktop -lGL"
 else
   as_fn_error $? "\"libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
@@ -13584,14 +13584,14 @@ fi
 
                 # JoGL Native <=> Java connector
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking gluegen-rt" >&5
-$as_echo_n "checking gluegen-rt... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking gluegen2-rt" >&5
+$as_echo_n "checking gluegen2-rt... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
+      for jar in "$jardir/gluegen2-rt.jar" "$jardir/libgluegen2-rt.jar" "$jardir/libgluegen2-rt-java.jar" "$jardir/gluegen2-rt*.jar"; do
 
 # TODO check the behaviour when spaces
         jars_resolved=`ls $jar 2>/dev/null`
@@ -13601,7 +13601,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
 
     cat << \EOF > conftest.java
 // #line 13603 "configure"
-import com.sun.gluegen.runtime.CPU;
+import jogamp.common.os.MachineDescriptionRuntime;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -13668,10 +13668,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
       if test "" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&2;}
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar gluegen2-rt used by Scilab 3D rendering (looking for package jogamp.common.os.MachineDescriptionRuntime)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen2-rt used by Scilab 3D rendering (looking for package jogamp.common.os.MachineDescriptionRuntime)" >&2;}
       else
-          as_fn_error $? "Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" "$LINENO" 5
+          as_fn_error $? "Could not find or use the Java package/jar gluegen2-rt used by Scilab 3D rendering (looking for package jogamp.common.os.MachineDescriptionRuntime)" "$LINENO" 5
       fi
     fi
 
@@ -13687,15 +13687,15 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
-                   as_ac_Lib=`$as_echo "ac_cv_lib_gluegen-rt_$symbol" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $symbol in -lgluegen-rt" >&5
-$as_echo_n "checking for $symbol in -lgluegen-rt... " >&6; }
+                   symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
+                   as_ac_Lib=`$as_echo "ac_cv_lib_gluegen2-rt_$symbol" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $symbol in -lgluegen2-rt" >&5
+$as_echo_n "checking for $symbol in -lgluegen2-rt... " >&6; }
 if eval \${$as_ac_Lib+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lgluegen-rt -ldl $LIBS"
+LIBS="-lgluegen2-rt -ldl $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -13729,7 +13729,7 @@ $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
   GLUEGEN_RT_LIBS="-lgluegen-rt"
 else
-  as_fn_error $? "libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries." "$LINENO" 5
+  as_fn_error $? "libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries." "$LINENO" 5
 fi
 
                    LDFLAGS=$LDFLAGS_save
