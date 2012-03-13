@@ -385,14 +385,9 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                     return;
                 }
 
+                container.sortChildren();
                 List<mxICell> tmp = IOBlocks.getPorts(container, block.getClass());
-                BasicPort[] ports = new BasicPort[tmp.size()];
-                Arrays.sort(tmp.toArray(ports), new Comparator<BasicPort>() {
-                    @Override
-                    public int compare(BasicPort o1, BasicPort o2) {
-                        return o1.getOrdering() - o2.getOrdering();
-                    }
-                });
+                final BasicPort[] ports = new BasicPort[tmp.size()];
 
                 XcosDiagram graph = container.getParentDiagram();
                 if (graph == null) {

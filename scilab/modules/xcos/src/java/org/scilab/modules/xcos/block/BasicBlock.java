@@ -19,6 +19,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -203,6 +204,61 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     private static final PropertyChangeListener STYLE_UPDATER = new UpdateStyleFromInterfunction();
     private static final Logger LOG = Logger.getLogger(BasicBlock.class.getName());
 
+    /**
+     * Sort the children list in place.
+     *
+     * The sort put inputs then outputs the control then command ports. The
+     * local port order is preserved.The sort is performed in place and do not
+     * emit any event.
+     *
+     *
+     * @param children
+     *            the children to sort
+     */
+    public static final void sort(List<?> children) {
+        final List<Object> reference = new ArrayList<Object>(children);
+
+        Collections.sort(children, new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                final int o1Base = calcBaseIncrement(o1);
+                final int o2Base = calcBaseIncrement(o2);
+
+                int diff = o1Base - o2Base;
+                if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
+                    diff = diff + reference.indexOf(o1) - reference.indexOf(o2) + ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+                }
+
+                return diff;
+            }
+        });
+    }
+
+    /**
+     * Internal method to get a base index to compare with depending on the cell
+     * type.
+     *
+     * @param cell
+     *            the cell
+     * @return the base index
+     */
+    private static int calcBaseIncrement(Object cell) {
+        final int base;
+
+        if (cell instanceof InputPort) {
+            base = 1;
+        } else if (cell instanceof OutputPort) {
+            base = 2;
+        } else if (cell instanceof ControlPort) {
+            base = 3;
+        } else if (cell instanceof CommandPort) {
+            base = 4;
+        } else {
+            base = 0;
+        }
+
+        return base * (Integer.MAX_VALUE / 5);
+    }
     /**
      * Manage events for block parameters.
      *
@@ -1146,16 +1202,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 
         // sort children according to the ordering parameter (useful on
         // scilab-5.2.x diagrams)
-        Collections.sort(children, new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
-                    return ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
-                } else {
-                    return 0;
-                }
-            }
-        });
+        sort(children);
 
         // children lookup
         for (Object cell : children) {
@@ -1175,6 +1222,17 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         }
 
         return oldPorts;
+    }
+
+    /**
+     * Sort the children list in place.
+     *
+     * The sort put inputs then outputs the control then command ports. The
+     * local port order is preserved.The sort is performed in place and do not
+     * emit any event.
+     */
+    public void sortChildren() {
+        sort(children);
     }
 
     /**

@@ -36,7 +36,7 @@ import com.mxgraph.model.mxGeometry;
 
 /**
  * Protected class which decode graphic fields of a block.
- * 
+ *
  * This class is intentionally package-protected to prevent external use.
  */
 // CSOFF: ClassDataAbstractionCoupling
@@ -45,13 +45,10 @@ class BlockGraphicElement extends BlockPartsElement {
      * "in_style", "out_style" and style have been added on the 5.3-5.4 dev.
      * cycle they are not checked to be compatible with older versions.
      */
-    private static final List<String> DATA_FIELD_NAMES = asList("graphics",
-            "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein",
-            "peout", "gr_i", "id", "in_implicit", "out_implicit");
-    private static final List<String> DATA_FIELD_NAMES_FULL = asList(
-            "graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
-            "pein", "peout", "gr_i", "id", "in_implicit", "out_implicit",
-            "in_style", "out_style", "style");
+    private static final List<String> DATA_FIELD_NAMES = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
+            "id", "in_implicit", "out_implicit");
+    private static final List<String> DATA_FIELD_NAMES_FULL = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout",
+            "gr_i", "id", "in_implicit", "out_implicit", "in_style", "out_style", "style");
 
     private static final int ORIGIN_INDEX = 1;
     private static final int DIMS_INDEX = 2;
@@ -77,10 +74,10 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Decode Scicos element into the block.
-     * 
+     *
      * This decode method doesn't coverage Port management because we need model
      * informations to handle it.
-     * 
+     *
      * @param element
      *            the scicos element
      * @param into
@@ -92,8 +89,7 @@ class BlockGraphicElement extends BlockPartsElement {
      *      java.lang.Object)
      */
     @Override
-    public BasicBlock decode(ScilabType element, BasicBlock into)
-            throws ScicosFormatException {
+    public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
 
         if (into == null) {
             throw new IllegalArgumentException();
@@ -131,11 +127,11 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -204,9 +200,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
         // exprs
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && !(data.get(field) instanceof ScilabList)
-                && !(data.get(field) instanceof ScilabTList)
+        if (!(data.get(field) instanceof ScilabString) && !(data.get(field) instanceof ScilabList) && !(data.get(field) instanceof ScilabTList)
                 && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
@@ -248,15 +242,13 @@ class BlockGraphicElement extends BlockPartsElement {
 
         // in_implicit
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabString) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // out_implicit
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabString) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -273,7 +265,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Fill the block with the origin parameters
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -284,8 +276,7 @@ class BlockGraphicElement extends BlockPartsElement {
         double x;
         double y;
 
-        final double[][] real = ((ScilabDouble) data.get(ORIGIN_INDEX))
-                .getRealPart();
+        final double[][] real = ((ScilabDouble) data.get(ORIGIN_INDEX)).getRealPart();
         x = real[0][0];
         final double[] vector = real[real.length - 1];
         y = vector[vector.length - 1];
@@ -310,7 +301,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Fill the block with the dimension parameters
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -321,8 +312,7 @@ class BlockGraphicElement extends BlockPartsElement {
         double w;
         double h;
 
-        final double[][] real = ((ScilabDouble) data.get(DIMS_INDEX))
-                .getRealPart();
+        final double[][] real = ((ScilabDouble) data.get(DIMS_INDEX)).getRealPart();
         w = real[0][0];
         final double[] vector = real[real.length - 1];
         h = vector[vector.length - 1];
@@ -345,7 +335,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Fill the block with the flip and theta parameters
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -362,8 +352,7 @@ class BlockGraphicElement extends BlockPartsElement {
         /*
          * Rotation management
          */
-        int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1))
-                .getRealPart()[0][0];
+        int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
 
         // convert to a valid value
         theta = BlockPositioning.roundAngle(theta);
@@ -373,7 +362,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Check if the element can be decoded.
-     * 
+     *
      * @param element
      *            the Scicos element
      * @return true, if the Scicos types match.
@@ -389,7 +378,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -406,8 +395,7 @@ class BlockGraphicElement extends BlockPartsElement {
         if (data == null) {
             data = allocateElement();
         } else {
-            throw new IllegalArgumentException(
-                    "The element parameter must be null.");
+            throw new IllegalArgumentException("The element parameter must be null.");
         }
 
         data = (ScilabMList) beforeEncode(from, data);
@@ -427,26 +415,22 @@ class BlockGraphicElement extends BlockPartsElement {
 
         /*
          * Fields managed by specific elements.
-         * 
+         *
          * see InputPortElement and OutputPortElement.
          */
         field++; // pin
         field++; // pout
 
         field++; // pein
-        List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(from,
-                false, ControlPort.class);
+        List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class);
         data.set(field, BasicBlockInfo.getAllLinkId(ctrlPorts));
         field++; // peout
-        List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(from,
-                false, CommandPort.class);
+        List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class);
         data.set(field, BasicBlockInfo.getAllLinkId(cmdPorts));
 
         field++; // gr_i
         ScilabList graphics = (ScilabList) data.get(field);
-        ScilabString graphicsInstructions = new ScilabString(
-                "xstringb(orig(1),orig(2),\"" + from.getInterfaceFunctionName()
-                        + "\",sz(1),sz(2));");
+        ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\"" + from.getInterfaceFunctionName() + "\",sz(1),sz(2));");
         graphics.add(graphicsInstructions);
         graphics.add(new ScilabDouble(GRAPHICS_INSTRUCTION_SIZE));
 
@@ -456,7 +440,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
         /*
          * Fields managed by specific elements.
-         * 
+         *
          * see InputPortElement and OutputPortElement.
          */
         field++; // in_implicit
@@ -474,7 +458,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Encode the position and dimensions
-     * 
+     *
      * @param from
      *            the instance
      * @param field
@@ -486,8 +470,7 @@ class BlockGraphicElement extends BlockPartsElement {
         int internalField = field;
 
         internalField++; // orig
-        final double[][] orig = { { geom.getX(),
-                -geom.getY() - geom.getHeight() } };
+        final double[][] orig = { { geom.getX() - geom.getWidth(), -geom.getY() } };
         data.set(internalField, new ScilabDouble(orig));
 
         internalField++; // sz
@@ -499,12 +482,11 @@ class BlockGraphicElement extends BlockPartsElement {
 
     /**
      * Allocate a new element
-     * 
+     *
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList element = new ScilabMList(
-                DATA_FIELD_NAMES_FULL.toArray(new String[0]));
+        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES_FULL.toArray(new String[0]));
         element.add(new ScilabDouble()); // orig
         element.add(new ScilabDouble()); // sz
         element.add(new ScilabBoolean()); // flip
