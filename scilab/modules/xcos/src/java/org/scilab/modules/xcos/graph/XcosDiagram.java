@@ -1918,8 +1918,9 @@ public class XcosDiagram extends ScilabGraph {
      *
      * @param f
      *            the file to create
+     * @return true if creation is has been performed
      */
-    public void askForFileCreation(final File f) {
+    public boolean askForFileCreation(final File f) {
         AnswerOption answer;
         try {
             answer = ScilabModalDialog.show(getAsComponent(), new String[] { String.format(XcosMessages.FILE_DOESNT_EXIST, f.getCanonicalFile()) },
@@ -1930,8 +1931,10 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         if (answer == AnswerOption.YES_OPTION) {
-            saveDiagramAs(f);
+            return saveDiagramAs(f);
         }
+
+        return false;
     }
 
     /**

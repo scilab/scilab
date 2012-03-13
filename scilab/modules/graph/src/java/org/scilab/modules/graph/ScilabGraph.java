@@ -168,12 +168,14 @@ public class ScilabGraph extends mxGraph {
      * @param savedFile
      *            The new saved file
      */
-    public void setSavedFile(File savedFile) {
+    public void setSavedFile(final File savedFile) {
         this.savedFile = savedFile;
 
         // register the saved dir as the image base path (for relative images
         // location).
-        getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
+        if (savedFile != null && savedFile.getParentFile() != null) {
+            getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
+        }
     }
 
     /**

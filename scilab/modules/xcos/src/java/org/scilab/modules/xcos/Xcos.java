@@ -415,8 +415,8 @@ public final class Xcos {
 
         if (diag != null) {
             // loading disabled, unlock
-            setLastError("");
             synchronized (this) {
+                setLastError("");
                 notify();
             }
         } else {
@@ -429,17 +429,26 @@ public final class Xcos {
             diag.installListeners();
 
             /*
+             * Ask for file creation
+             */
+            if (f != null && !f.exists()) {
+                if (!diag.askForFileCreation(f)) {
+                    // loading disabled, unlock
+                    synchronized (this) {
+                        setLastError("");
+                        notify();
+                    }
+
+                    // return now, to avoid tab creation
+                    return;
+                }
+            }
+
+            /*
              * Create a visible window before loading
              */
             if (XcosTab.get(diag) == null) {
                 XcosTab.restore(diag);
-            }
-
-            /*
-             * Ask for file creation
-             */
-            if (f != null && !f.exists()) {
-                diag.askForFileCreation(f);
             }
 
             /*
