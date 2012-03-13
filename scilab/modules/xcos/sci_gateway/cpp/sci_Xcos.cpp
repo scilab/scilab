@@ -20,6 +20,7 @@ extern "C" {
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "getFullFilename.h"
 #include "Scierror.h"
 #include "getScilabJavaVM.h"
 }
@@ -137,16 +138,23 @@ int sci_Xcos(char *fname, unsigned long fname_len)
 
         for (i = m * n - 1; i >= 0; i--)
         {
-            if (callXcos(fname, var[i], NULL))
+            char* file = getFullFilename(var[i]);
+            if (file == NULL)
             {
                 FREE(len);
-                freeArrayOfString(var, i);
+                freeArrayOfString(var, m * n);
+                return 1;
+            }
+            if (callXcos(fname, file, NULL))
+            {
+                FREE(len);
+                freeArrayOfString(var, m * n);
                 return 1;
             }
         }
 
         FREE(len);
-        FREE(var);
+        freeArrayOfString(var, m * n);
 
         LhsVar(1) = 0;
         PutLhsVar();

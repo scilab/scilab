@@ -19,6 +19,9 @@ if ~isdef('BIGSOM_f') then pause, end
 // we launch xcos with an xcos demo file
 xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
 
+// we launch xcos with an xcos demo file with full path resolution
+xcos("SCI/modules/xcos/demos/Simple_Demo.xcos");
+
 // we launch xcos with cos file
 xcos(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
 
@@ -29,6 +32,3 @@ xcos(SCI + "/modules/scicos/palettes/Branching.cosf");
 scs_m = scicos_diagram();
 scs_m.objs($+1) = BIGSOM_f("define");
 xcos(scs_m);
-
-
-
