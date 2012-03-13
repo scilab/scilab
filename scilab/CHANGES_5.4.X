@@ -547,6 +547,8 @@ t.
 
 * Bug #10836 fixed - resize_matrix with boolean failed.
 
+* Bug #10839 fixed - dec2hex function was limited to 32 bits.
+
 * Bug #10847 fixed - dec2base returned a wrong error message with a complex
                      number as input argument.
 
