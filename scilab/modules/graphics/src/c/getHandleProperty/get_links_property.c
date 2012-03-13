@@ -47,6 +47,10 @@ int get_links_property(char *pobjUID)
         return -1;
     }
 
+    if (iLinksCount == 0) {
+        return sciReturnEmptyMatrix();
+    }
+
     handles = (long *)MALLOC(iLinksCount*sizeof(long));
     if (handles==NULL)
     {

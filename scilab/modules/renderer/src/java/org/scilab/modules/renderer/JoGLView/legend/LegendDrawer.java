@@ -38,6 +38,7 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -54,6 +55,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * - modify bounds depending on the location (for OUT_* values)
  * - take into account the actual tick/label size (instead of an arbitrary value)
  * - implement box clipping mode
+ * - use the GraphicController to update links / move the update code somewhere else
+ *   in order to perform it when objects are deleted, add the Links property to the set of
+ *   properties affecting the sprite's update.
  *
  * @author Manuel JULIACHS
  */
@@ -157,6 +161,20 @@ public class LegendDrawer {
                 String [] links = legend.getLinks();
 
                 /*
+                 * Determine whether any links have become invalid,
+                 * force the sprite's update and update the Legend's
+                 * links property as needed.
+                 */
+                int nbValidLinks = getNumberValidLinks(legend);
+
+                if (nbValidLinks < links.length) {
+                        dispose(legend.getIdentifier());
+                        updateLinks(legend, nbValidLinks);
+                }
+
+                links = legend.getLinks();
+
+                /*
                  * Set the projection and modelview transformations so that coordinates
                  * are specified in the {0,+1,0,+1,0,+1} space.
                  */
@@ -193,10 +211,20 @@ public class LegendDrawer {
                         canvasHeight = 1;
                 }
 
-                Texture legendSprite = getTexture(colorMap, legend);
-                Dimension textureSize = legendSprite.getDataProvider().getTextureSize();
-                double normSpriteWidth = textureSize.getWidth() / (double) canvasWidth;
-                double normSpriteHeight = textureSize.getHeight() / (double) canvasHeight;
+                Texture legendSprite = null;
+
+                if (nbValidLinks > 0) {
+                    legendSprite = getTexture(colorMap, legend);
+                }
+
+                double normSpriteWidth = 0;
+                double normSpriteHeight = 0;
+
+                if (nbValidLinks > 0) {
+                    Dimension textureSize = legendSprite.getDataProvider().getTextureSize();
+                    normSpriteWidth = (double) textureSize.getWidth() / (double) canvasWidth;
+                    normSpriteHeight = (double) textureSize.getHeight() / (double) canvasHeight;
+                }
 
                 double lineWidth;
 
@@ -344,7 +372,11 @@ public class LegendDrawer {
                                                  0.5f, 0.75f, Z_FRONT, 1.0f,
                                                  0.75f, 0.75f, Z_FRONT, 1.0f};
 
-                double normSpriteMargin = (double) legendSpriteDrawer.getMargin() / (double) canvasHeight;
+                double normSpriteMargin = 0.0;
+
+                if (nbValidLinks > 0) {
+                    normSpriteMargin = (double) legendSpriteDrawer.getMargin() / (double) canvasHeight;
+                }
 
                 lineVertexData[0] = (float) (legendCorner[0] + xOffset);
                 lineVertexData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset);
@@ -355,7 +387,11 @@ public class LegendDrawer {
                 lineVertexData[4] = 0.5f*(lineVertexData[0] + lineVertexData[8]);
                 lineVertexData[5] = lineVertexData[1];
 
-                float deltaHeight = (float) (normSpriteHeight - 2.0 * normSpriteMargin) / ((float)(links.length));
+                float deltaHeight = 0.0f;
+
+                if (links.length > 0) {
+                    deltaHeight = (float) (normSpriteHeight - 2.0 * normSpriteMargin) / ((float)(links.length));
+                }
 
                 lineVertexData[1] = lineVertexData[1] + 0.5f*deltaHeight;
                 lineVertexData[5] = lineVertexData[5] + 0.5f*deltaHeight;
@@ -400,7 +436,10 @@ public class LegendDrawer {
                 /* Legend text */
                 float [] spritePosition = new float[]{lineVertexData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
 
-                drawingTools.draw(legendSprite, AnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
+                /* Draw the sprite only if there are valid links */
+                if (nbValidLinks > 0) {
+                    drawingTools.draw(legendSprite, AnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
+                }
 
                 /* Restore the transformation stacks */
                 modelViewStack.pop();
@@ -574,5 +613,80 @@ public class LegendDrawer {
                 textureMap.put(legend.getIdentifier(), texture);
             }
             return texture;
+        }
+
+        /**
+         * Determines and returns the number of valid links for the given Legend object.
+         * @param legend the given Legend.
+         * @return the number of valid links.
+         */
+        private int getNumberValidLinks(Legend legend) {
+                int nbValidLinks = 0;
+                String [] links = legend.getLinks();
+
+                for (String link : links) {
+                        Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
+
+                        if (currentLine != null) {
+                                nbValidLinks++;
+                        }
+                }
+
+                return nbValidLinks;
+        }
+
+        /**
+         * Updates the links and text properties of the Legend depending
+         * on the number of valid links provided (the number of links
+         * to non-null objects).
+         * To do: use the graphic controller to perform the update;
+         * move the link update from LegendDrawer to somewhere more appropriate.
+         * @param legend the Legend to update.
+         * @param nbValidLinks the number of valid links.
+         */
+        private void updateLinks(Legend legend, int nbValidLinks) {
+                int i1 = 0;
+                ArrayList <String> newLinks = new ArrayList<String>(0);
+                String[] newStrings;
+                Integer[] newDims = new Integer[2];
+
+                /*
+                 * In case there are no valid links, we create a single empty String
+                 * in order to retain the Legend's font properties.
+                 */
+                if (nbValidLinks == 0) {
+                    newDims[0] = 1;
+                } else {
+                    newDims[0] = nbValidLinks;
+                }
+
+                newDims[1] = 1;
+
+                newStrings = new String[newDims[0]];
+
+                if (nbValidLinks == 0) {
+                    newStrings[0] = new String("");
+                }
+
+                String[] links = legend.getLinks();
+                String[] strings = legend.getTextStrings();
+
+                for (int i = 0; i < links.length; i++) {
+                        Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(links[i]);
+
+                        /* Text strings are stored in reverse order relative to links. */
+                        if (currentLine != null) {
+                                newLinks.add(links[i]);
+
+                                newStrings[nbValidLinks-i1-1] = new String(strings[strings.length-i-1]);
+                                i1++;
+                        }
+                }
+
+                /* Update the legend's links and text */
+                legend.setLinks(newLinks);
+
+                legend.setTextArrayDimensions(newDims);
+                legend.setTextStrings(newStrings);
         }
 }

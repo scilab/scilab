@@ -14,6 +14,8 @@ package org.scilab.modules.graphic_objects.legend;
 
 import java.util.ArrayList;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -114,9 +116,9 @@ public class Legend extends ClippableTextObject {
 	 */
 	public Object getProperty(Object property) {
 		if (property == LegendProperty.LINKS) {
-			return getLinks();
+			return getValidLinks();
 		} else if (property == LegendProperty.LINKSCOUNT) {
-			return getLinksCount();
+			return getValidLinksCount();
 		} else if (property == LegendProperty.LEGENDLOCATION) {
 			return getLegendLocation();
 		} else if (property == LegendProperty.POSITION) {
@@ -172,6 +174,42 @@ public class Legend extends ClippableTextObject {
 	 */
 	public void setLegendLocationAsEnum(LegendLocation legendLocation) {
 		this.legendLocation = legendLocation;
+	}
+
+	/**
+	 * @return the valid links
+	 */
+	public String[] getValidLinks() {
+		int numValidLinks = 0;
+		ArrayList <String> validLinks = new ArrayList<String>(0);
+
+		for (int i = 0; i < links.size(); i++) {
+			GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
+
+			if (object != null) {
+				validLinks.add(links.get(i));
+				numValidLinks++;
+			}
+		}
+
+		return validLinks.toArray(new String[validLinks.size()]);
+	}
+
+	/**
+	 * @return the valid links count
+	 */
+	public Integer getValidLinksCount() {
+		int numValidLinks = 0;
+
+		for (int i = 0; i < links.size(); i++) {
+			GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
+
+			if (object != null) {
+				numValidLinks++;
+			}
+		}
+
+		return numValidLinks;
 	}
 
 	/**
