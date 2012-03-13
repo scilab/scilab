@@ -25,10 +25,14 @@ refMat=int32([0,4,3,0;
 
 myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create a integer matrix
 assert_checkequal(myMatInteger, refMat);
+booleanMat=resize_matrix( refMat, 3, 5 , "boolean");
+assert_checkequal(booleanMat, [%f,%f,%f,%f,%f;%t,%f,%f,%f,%f;%f,%f,%f,%f,%f]);
 
 myMatBoolean = resize_matrix( myMat, 2, 2, 'boolean' );
+assert_checkequal(myMatBoolean, [%f,%f;%f,%f] );
 assert_checkequal(size(myMatBoolean), [2, 2]);
 myMatBoolean = resize_matrix( myMatBoolean, 3, 5 );
+assert_checkequal(myMatBoolean, [%f,%f,%f,%f,%f;%f,%f,%f,%f,%f;%f,%f,%f,%f,%f]);
 assert_checkequal(size(myMatBoolean), [3, 5]);
 
 // string matrix
