@@ -145,6 +145,12 @@ int sci_delete(char *fname, unsigned long fname_len)
             /* Parent type */
             getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
         }
+
+        if (strcmp(pstObjType, __GO_LABEL__) == 0)
+        {
+            Scierror(999, _("A Label object cannot be deleted.\n"));
+            return 0;
+        }
         deleteGraphicObject(pobjUID);
 
         /*
