@@ -20,6 +20,7 @@
 extern "C"
 {
 #include "xml_mlist.h"
+#include "dynlib_xml_scilab.h"
 }
 
 namespace org_modules_xml
@@ -32,7 +33,7 @@ namespace org_modules_xml
      *
      * Base class for the XML objects.
      */
-    class XMLObject
+    class XML_SCILAB_IMPEXP XMLObject
     {
 
 public:

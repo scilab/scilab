@@ -120,7 +120,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
         FREE(piLen);
 
-	fields = getFieldsForType(pstData[0], piAddr);
+	fields = (char**)getFieldsForType(pstData[0], piAddr);
 	if (fields)
 	{
 	    freeArrayOfString(pstData, rc);

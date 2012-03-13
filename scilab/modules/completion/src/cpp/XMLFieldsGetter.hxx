@@ -20,6 +20,9 @@
 extern "C"
 {
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 namespace org_modules_completion

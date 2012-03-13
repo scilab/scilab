@@ -24,6 +24,7 @@ extern "C"
 #include "api_scilab.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "xml_mlist.h"
 }
 
 using namespace org_modules_xml;
