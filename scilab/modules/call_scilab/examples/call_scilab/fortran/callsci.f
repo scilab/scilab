@@ -76,6 +76,6 @@ c
 c
 c     stop properly
 c
-      call sciquit
+c     call sciquit
       stop
       end
