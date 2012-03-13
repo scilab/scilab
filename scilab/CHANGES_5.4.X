@@ -244,9 +244,6 @@ ATOMS
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
-* Bug #10372 fixed - remove dependencies of MALLOC.h on Windows.h and machine.h
-                     on Windows.
-
 
 Bug fixes
 =========
@@ -341,6 +338,9 @@ Bug fixes
                      was set to bold.
 
 * Bug #10342 fixed - assert_checkerror help file had a wrong format.
+
+* Bug #10372 fixed - remove dependencies of MALLOC.h on Windows.h and machine.h
+                     on Windows.
 
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
