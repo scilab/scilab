@@ -25,15 +25,19 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 
+#include "deleteGraphicObject.h"
+#include "CurrentFigure.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1;
-  CheckRhs(-1,1);
-  if (Rhs >= 1) {
-    int i;
+    int m1,n1,l1;
+    char *pstCurrentFigure;
+    CheckRhs(-1,1);
+    if (Rhs >= 1) {
+        int i;
 		double * windowNumbers;
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+        GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 		/* First check that all the window numbers are valid */
 		windowNumbers = getDoubleMatrixFromStack(l1);
@@ -46,16 +50,22 @@ int sci_xdel(char *fname,unsigned long fname_len)
 			}
 		}
 
-    for (i = 0; i < m1*n1 ; i++)
-    {
-      sciDeleteWindow( (int) windowNumbers[i] ) ;
+        for (i = 0; i < m1*n1 ; i++)
+        {
+            sciDeleteWindow( (int) windowNumbers[i] ) ;
+        }
     }
-  } else {
-    sciDeleteWindow( sciGetNum(sciGetCurrentFigure()) ) ;
-  }
-  LhsVar(1)=0;
-  PutLhsVar();
-  return 0;
+    else
+    {
+        pstCurrentFigure = getCurrentFigure();
+        if (pstCurrentFigure != NULL)
+        {
+            deleteGraphicObject(pstCurrentFigure);
+        }
+    }
+    LhsVar(1)=0;
+    PutLhsVar();
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/
