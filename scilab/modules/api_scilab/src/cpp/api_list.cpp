@@ -42,7 +42,6 @@ static SciErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, i
 static SciErr getCommomListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
 static SciErr readCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
 static SciErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbItem);
-static int isKindOfList(int* _piNode);
 static void closeList(int _iVar, int *_piEnd);
 static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 static void updateNamedListOffset(void* _pvCtx, int _iVar, const char* _pstName, int *_piCurrentNode, int _iItemPos, int *_piEnd);

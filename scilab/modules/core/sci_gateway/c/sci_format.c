@@ -29,8 +29,6 @@ static int sci_format_norhs(char *fname);
 static void setVariableFormat(int numberDigits);
 static void set_e_Format(int numberDigits);
 static void getFormat(double *e_mode, double *numberDigits);
-static void setVariableMode(void);
-
 /*--------------------------------------------------------------------------*/
 int C2F(sci_format) (char *fname, unsigned long fname_len)
 {

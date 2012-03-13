@@ -72,8 +72,6 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    int iRhs = InputArgument;
-
     /*
      * store the name in recu array, fname can be a non null terminated char array
      * Get_Iname() can be used in other function to get the interface name

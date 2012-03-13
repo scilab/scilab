@@ -2301,7 +2301,7 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
     int ret = FALSE;
     int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
     int id[nsiz];
-    int lf = 0, op = 0, ile = 0, ils = 0, nnn = thestring_len;
+    int lf = 0, op = 0, ils = 0, nnn = thestring_len;
 
     if (nnn <= 2)
     {

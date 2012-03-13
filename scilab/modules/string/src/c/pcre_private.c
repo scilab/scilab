@@ -105,7 +105,6 @@ UTF8 support if PCRE is built without it. */
 static int callout_count = 0;
 static int callout_fail_count = 0;
 static int callout_fail_id = 0;
-static size_t gotten_store = 0;
 
 /* The buffers grow automatically if very long input lines are encountered. */
 

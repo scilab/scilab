@@ -140,13 +140,12 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
 }
 
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c)
 {
     return (c == '/' || c == '\\');
 }
-
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
 static int normalizePath(char *path)
 {
     char *dirs[PATH_MAX];

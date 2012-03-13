@@ -62,8 +62,6 @@ int xs2file(char * fname, ExportFileType fileType )
       char *real_filename = NULL;
       float jpegCompressionQuality = 0.95f;
       ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
-      long int lout = 0;
-      int out_n = 0;
       int m1 = 0, n1 = 0, l1 = 0;
       int figurenum = -1;
       sciPointObj* figurePtr = NULL;
