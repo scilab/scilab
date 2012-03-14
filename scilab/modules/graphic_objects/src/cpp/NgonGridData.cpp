@@ -13,10 +13,10 @@
 #include "NgonGridData.hxx"
 
 extern "C" {
-    #include <string.h>
-    #include <stdlib.h>
+#include <string.h>
+#include <stdlib.h>
 
-    #include "graphicObjectProperties.h"
+#include "graphicObjectProperties.h"
 }
 
 NgonGridData::NgonGridData(void)
@@ -61,7 +61,7 @@ NgonGridData::~NgonGridData(void)
     }
 }
 
-int NgonGridData::getPropertyFromName(char* propertyName)
+int NgonGridData::getPropertyFromName(char const* propertyName)
 {
     if (strcmp(propertyName, __GO_DATA_MODEL_NUM_X__) == 0)
     {
@@ -110,27 +110,27 @@ int NgonGridData::getPropertyFromName(char* propertyName)
 
 }
 
-int NgonGridData::setDataProperty(int property, void* value, int numElements)
+int NgonGridData::setDataProperty(int property, void const* value, int numElements)
 {
     if (property == GRID_SIZE)
     {
-        return setGridSize((int*) value);
+        return setGridSize((int const*) value);
     }
     else if (property == X_COORDINATES)
     {
-        setDataX((double*) value, numElements);
+        setDataX((double const*) value, numElements);
     }
     else if (property == Y_COORDINATES)
     {
-        setDataY((double*) value, numElements);
+        setDataY((double const*) value, numElements);
     }
     else if (property == Z_COORDINATES)
     {
-        setDataZ((double*) value, numElements);
+        setDataZ((double const*) value, numElements);
     }
     else if (property == Z_COORDINATES_SHIFT)
     {
-        setZCoordinatesShift((double*) value);
+        setZCoordinatesShift((double const*) value);
     }
     else
     {
@@ -185,7 +185,7 @@ void NgonGridData::getDataProperty(int property, void **_pvData)
 
 }
 
-int NgonGridData::setGridSize(int* gridSize)
+int NgonGridData::setGridSize(int const* gridSize)
 {
     int newXSize;
     int newYSize;
@@ -214,8 +214,8 @@ int NgonGridData::setGridSize(int* gridSize)
         return 0;
     }
 
-    newXSize = gridSize[0]*gridSize[1];
-    newYSize = gridSize[2]*gridSize[3];
+    newXSize = gridSize[0] * gridSize[1];
+    newYSize = gridSize[2] * gridSize[3];
 
 
     if (newXSize != xSize)
@@ -246,13 +246,13 @@ int NgonGridData::setGridSize(int* gridSize)
         }
     }
 
-    if (newXSize*newYSize != xSize*ySize)
+    if (newXSize*newYSize != xSize * ySize)
     {
         zModified = 1;
 
         try
         {
-            newZCoordinates = new double[newXSize*newYSize];
+            newZCoordinates = new double[newXSize * newYSize];
         }
         catch (const std::exception& e)
         {
@@ -292,14 +292,14 @@ int NgonGridData::setGridSize(int* gridSize)
 
         if (zModified)
         {
-            if (xSize*ySize > 0)
+            if (xSize * ySize > 0)
             {
                 delete [] zCoordinates;
             }
 
             zCoordinates = newZCoordinates;
 
-            numGons = (xSize-1)*(ySize-1);
+            numGons = (xSize - 1) * (ySize - 1);
         }
 
     }
@@ -339,7 +339,7 @@ int NgonGridData::getNumY(void)
 
 int NgonGridData::getNumZ(void)
 {
-    return xSize*ySize;
+    return xSize * ySize;
 }
 
 int* NgonGridData::getXDimensions(void)
@@ -352,7 +352,7 @@ int* NgonGridData::getYDimensions(void)
     return yDimensions;
 }
 
-void NgonGridData::setDataX(double* data, int numElements)
+void NgonGridData::setDataX(double const* data, int numElements)
 {
     if (numElements > xSize)
     {
@@ -365,7 +365,7 @@ void NgonGridData::setDataX(double* data, int numElements)
     }
 }
 
-void NgonGridData::setDataY(double* data, int numElements)
+void NgonGridData::setDataY(double const* data, int numElements)
 {
     if (numElements > ySize)
     {
@@ -378,9 +378,9 @@ void NgonGridData::setDataY(double* data, int numElements)
     }
 }
 
-void NgonGridData::setDataZ(double* data, int numElements)
+void NgonGridData::setDataZ(double const* data, int numElements)
 {
-    if (numElements > xSize*ySize)
+    if (numElements > xSize * ySize)
     {
         return;
     }
@@ -391,7 +391,7 @@ void NgonGridData::setDataZ(double* data, int numElements)
     }
 }
 
-void NgonGridData::setZCoordinatesShift(double* data)
+void NgonGridData::setZCoordinatesShift(double const* data)
 {
     zCoordinatesShift = *data;
 }

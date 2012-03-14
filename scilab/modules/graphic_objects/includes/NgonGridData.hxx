@@ -81,7 +81,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -90,7 +90,7 @@ public :
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -136,34 +136,34 @@ public :
      * @param[in] gridSize a pointer to a 4-element array: x vector (nb rows, nb cols) and y vector (nb rows, nb cols) dimensions
      * @return 1 if the property has been successfully set, 0 otherwise (failed allocation)
      */
-    int setGridSize(int* gridSize);
+    int setGridSize(int const* gridSize);
 
     /**
      * Sets the grid's x data
      * @param[in] data a pointer to the x data (numElements values)
      * @param[in] numElements the number of elements to set
      */
-    void setDataX(double* data, int numElements);
+    void setDataX(double const* data, int numElements);
 
     /**
      * Sets the grid's y data
      * @param[in] data a pointer to the y data (numElements values)
      * @param[in] numElements the number of elements to set
      */
-    void setDataY(double* data, int numElements);
+    void setDataY(double const* data, int numElements);
 
     /**
      * Sets the grid's z data
      * @param[in] data a pointer to the z data (numElements values)
      * @param[in] numElements the number of elements to set
      */
-    void setDataZ(double* data, int numElements);
+    void setDataZ(double const* data, int numElements);
 
     /**
      * Sets the grid's z coordinates shift
      * @param[in] data a pointer to the z shift value
      */
-    void setZCoordinatesShift(double* data);
+    void setZCoordinatesShift(double const* data);
 
     /**
      * Returns the grid's x data

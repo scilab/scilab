@@ -56,7 +56,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -65,7 +65,7 @@ public :
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -103,28 +103,28 @@ public :
      * @param[in] data a pointer to the data (3 * numElements values)
      * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
-    void setData(double* data, int numElements);
+    void setData(double const* data, int numElements);
 
     /**
      * Sets the x coordinates data
      * @param[in] data a pointer to the data (numElements values)
      * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
-    void setDataX(double* data, int numElements);
+    void setDataX(double const* data, int numElements);
 
     /**
      * Sets the y coordinates data
      * @param[in] data a pointer to the data (numElements values)
      * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
-    void setDataY(double* data, int numElements);
+    void setDataY(double const* data, int numElements);
 
     /**
      * Sets the z coordinates data
      * @param[in] data a pointer to the data (numElements values)
      * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
-    void setDataZ(double* data, int numElements);
+    void setDataZ(double const* data, int numElements);
 
     /**
      * Returns the number of elements (number of n-gons)
@@ -140,7 +140,7 @@ public :
      * @param[in] numElementsArray a pointer to a 3-element array (# n-gons, # vertices per n-gon, # color values)
      * @return 1 if it succeeded, 0 if the allocation failed
      */
-    int setNumElementsArray(int* numElementsArray);
+    int setNumElementsArray(int const* numElementsArray);
 
     /**
      * Returns the color values array
@@ -153,7 +153,7 @@ public :
      * @param[in] colors a pointer to the color values array
      * @param[in] numElements the number of color values in the data array
      */
-    void setColors(double* colors, int numElements);
+    void setColors(double const* colors, int numElements);
 
     /**
      * Returns the number of colors

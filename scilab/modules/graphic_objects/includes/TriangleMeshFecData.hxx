@@ -60,7 +60,7 @@ public:
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -69,7 +69,7 @@ public:
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -97,7 +97,7 @@ public:
      * @param[in] a pointer to the array of fec triangles values
      * @param[in] numElements the number of triangles to set
      */
-    void setFecTriangles(double* data, int numElements);
+    void setFecTriangles(double const* data, int numElements);
 
     /**
      * Returns the array of fec triangle values

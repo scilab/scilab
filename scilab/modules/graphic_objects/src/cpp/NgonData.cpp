@@ -34,7 +34,7 @@ NgonData::~NgonData(void)
 
 }
 
-int NgonData::getPropertyFromName(char* propertyName)
+int NgonData::getPropertyFromName(char const* propertyName)
 {
 
     if (strcmp(propertyName, __GO_DATA_MODEL_NUM_GONS__) == 0)
@@ -47,12 +47,12 @@ int NgonData::getPropertyFromName(char* propertyName)
     }
     else
     {
-         return Data3D::getPropertyFromName(propertyName);
+        return Data3D::getPropertyFromName(propertyName);
     }
 
 }
 
-int NgonData::setDataProperty(int property, void* value, int numElements)
+int NgonData::setDataProperty(int property, void const* value, int numElements)
 {
 
     if (property == NUM_GONS)

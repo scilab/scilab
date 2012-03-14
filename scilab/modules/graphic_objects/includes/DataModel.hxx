@@ -60,10 +60,10 @@ public :
      * property return value (also FALSE); returning an int, with -1 for a failed
      * allocation would possibly solve this problem.
      */
-    BOOL setGraphicObjectProperty(char *_pstID, char* _pstName, void* _dblValue, int numElements);
+    BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements);
 
     /** Returns a graphic object vector property */
-    void getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData);
+    void getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData);
 
     /**
      * Returns a graphic object integer property
@@ -72,15 +72,15 @@ public :
      * methods of the different Data classes when integer values are returned)
      * Probably redundant with getGraphicObjectProperty
      */
-    void getGraphicObjectIntProperty(char *_pstID, char* _pstName, void **_pvData);
+    void getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData);
 
     /** Creates a data object */
-    char* createDataObject(char* _pstID, char* _sType);
+    char const* createDataObject(char const* _pstID, char const* _sType);
 
     /**
      * Deletes a data object
      */
-    void deleteDataObject(char* _pstID);
+    void deleteDataObject(char const* _pstID);
 
 private :
     static DataModel *m_me;

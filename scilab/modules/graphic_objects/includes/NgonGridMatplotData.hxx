@@ -71,7 +71,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -80,7 +80,7 @@ public :
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -99,7 +99,7 @@ public :
      * @param[in] gridSize a pointer to a 4-element array: x vector (nb rows, nb cols) and y vector (nb rows, nb cols) dimensions
      * @return 1 if the property has been successfully set, 0 otherwise (failed allocation)
      */
-    int setGridSize(int* gridSize);
+    int setGridSize(int const* gridSize);
 
     /**
      * Sets the 2D bounding rectangle's coordinates
@@ -107,7 +107,7 @@ public :
      * To be done: use the same coordinate ordering as the internal array
      * @param[in] a pointer to a 4-element array: {xmin, ymin, xmax, ymax} bounds. If bounds is NULL, type is set to 0, else, it is set to 1
      */
-    void setBounds(double* bounds);
+    void setBounds(double const* bounds);
 
     /**
      * Returns the 2D bounding rectangle's coordinates
@@ -129,7 +129,7 @@ public :
      * @param[in] data a pointer to the z data (numElements values)
      * @param[in] numElements the number of elements to set
      */
-    void setDataZ(double* data, int numElements);
+    void setDataZ(double const* data, int numElements);
 };
 
 #endif

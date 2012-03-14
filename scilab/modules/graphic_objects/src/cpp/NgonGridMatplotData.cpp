@@ -13,10 +13,10 @@
 #include "NgonGridMatplotData.hxx"
 
 extern "C" {
-    #include <string.h>
-    #include <stdlib.h>
+#include <string.h>
+#include <stdlib.h>
 
-    #include "graphicObjectProperties.h"
+#include "graphicObjectProperties.h"
 }
 
 NgonGridMatplotData::NgonGridMatplotData(void)
@@ -29,7 +29,7 @@ NgonGridMatplotData::~NgonGridMatplotData(void)
 
 }
 
-int NgonGridMatplotData::getPropertyFromName(char* propertyName)
+int NgonGridMatplotData::getPropertyFromName(char const* propertyName)
 {
     if (strcmp(propertyName, __GO_DATA_MODEL_GRID_SIZE__) == 0)
     {
@@ -54,19 +54,19 @@ int NgonGridMatplotData::getPropertyFromName(char* propertyName)
 
 }
 
-int NgonGridMatplotData::setDataProperty(int property, void* value, int numElements)
+int NgonGridMatplotData::setDataProperty(int property, void const* value, int numElements)
 {
     if (property == GRID_SIZE)
     {
-        return setGridSize((int*) value);
+        return setGridSize((int const*) value);
     }
     else if (property == MATPLOT_BOUNDS)
     {
-        setBounds((double*) value);
+        setBounds((double const*) value);
     }
     else if (property == Z_COORDINATES)
     {
-        setDataZ((double*) value, numElements);
+        setDataZ((double const*) value, numElements);
     }
     else
     {
@@ -100,7 +100,7 @@ void NgonGridMatplotData::getDataProperty(int property, void **_pvData)
  * To be done: refactoring with NgonGridData, as these two classes'
  * setGridSize methods are almost identical.
  */
-int NgonGridMatplotData::setGridSize(int* gridSize)
+int NgonGridMatplotData::setGridSize(int const* gridSize)
 {
     int newXSize;
     int newYSize;
@@ -130,8 +130,8 @@ int NgonGridMatplotData::setGridSize(int* gridSize)
         return 0;
     }
 
-    newXSize = gridSize[0]*gridSize[1];
-    newYSize = gridSize[2]*gridSize[3];
+    newXSize = gridSize[0] * gridSize[1];
+    newYSize = gridSize[2] * gridSize[3];
 
     if (newXSize != xSize)
     {
@@ -163,20 +163,20 @@ int NgonGridMatplotData::setGridSize(int* gridSize)
 
     if (xSize > 0 && ySize > 0)
     {
-        formerGridSize = (xSize-1)*(ySize-1);
+        formerGridSize = (xSize - 1) * (ySize - 1);
     }
     else
     {
         formerGridSize = 0;
     }
 
-    if ((newXSize-1)*(newYSize-1) != formerGridSize)
+    if ((newXSize - 1) * (newYSize - 1) != formerGridSize)
     {
         zModified = 1;
 
         try
         {
-            newZCoordinates = new double[(newXSize-1)*(newYSize-1)];
+            newZCoordinates = new double[(newXSize - 1) * (newYSize - 1)];
         }
         catch (const std::exception& e)
         {
@@ -223,7 +223,7 @@ int NgonGridMatplotData::setGridSize(int* gridSize)
 
             zCoordinates = newZCoordinates;
 
-            numGons = (xSize-1)*(ySize-1);
+            numGons = (xSize - 1) * (ySize - 1);
 
         }
 
@@ -257,7 +257,7 @@ int NgonGridMatplotData::setGridSize(int* gridSize)
     return result;
 }
 
-void NgonGridMatplotData::setBounds(double* bounds)
+void NgonGridMatplotData::setBounds(double const* bounds)
 {
     if (bounds == NULL)
     {
@@ -298,9 +298,9 @@ void NgonGridMatplotData::computeCoordinates(void)
         }
 
         boundingRectangle[0] = 0.5;
-        boundingRectangle[1] = 0.5 + (double) (xSize-1);
+        boundingRectangle[1] = 0.5 + (double) (xSize - 1);
         boundingRectangle[2] = 0.5;
-        boundingRectangle[3] = 0.5 + (double) (ySize-1);
+        boundingRectangle[3] = 0.5 + (double) (ySize - 1);
     }
     else
     {
@@ -346,9 +346,9 @@ void NgonGridMatplotData::computeCoordinates(void)
 
 }
 
-void NgonGridMatplotData::setDataZ(double* data, int numElements)
+void NgonGridMatplotData::setDataZ(double const* data, int numElements)
 {
-    if (numElements > (xSize-1)*(ySize-1))
+    if (numElements > (xSize - 1) * (ySize - 1))
     {
         return;
     }

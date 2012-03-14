@@ -74,7 +74,7 @@ public:
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -83,7 +83,7 @@ public:
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -123,7 +123,7 @@ public:
      * @param[in] vertices a pointer the array of vertex {x,y,z} coordinates to set
      * @param[in] numElements the number of vertices
      */
-    void setVertices(double* vertices, unsigned int numElements);
+    void setVertices(double const* vertices, unsigned int numElements);
 
     /**
      * Returns the array of triangle indices
@@ -144,28 +144,28 @@ public:
      * @param[in] indices a pointer to the array of index triplet values
      * @param[in] numElements the number of triplets
      */
-    void setIndices(unsigned int* indices, unsigned int numElements);
+    void setIndices(unsigned int const* indices, unsigned int numElements);
 
     /**
      * Sets the x coordinates
      * @param[in] data a pointer to the array of x coordinates
      * @param[in] numElements the number of x coordinates to set
      */
-    void setDataX(double* data, unsigned int numElements);
+    void setDataX(double const* data, unsigned int numElements);
 
     /**
      * Sets the y coordinates
      * @param[in] data a pointer to the array of y coordinates
      * @param[in] numElements the number of y coordinates to set
      */
-    void setDataY(double* data, unsigned int numElements);
+    void setDataY(double const* data, unsigned int numElements);
 
     /**
      * Sets the z coordinates
      * @param[in] data a pointer to the array of z coordinates
      * @param[in] numElements the number of z coordinates to set
      */
-    void setDataZ(double* data, unsigned int numElements);
+    void setDataZ(double const* data, unsigned int numElements);
 
     /**
      * Returns the array of per-vertex values
@@ -178,7 +178,7 @@ public:
      * @param[in] data a pointer to the array of per-vertex values
      * @param[in] numElements the number of values to set
      */
-    void setValues(double* data, unsigned int numElements);
+    void setValues(double const* data, unsigned int numElements);
 
     /**
      * Resets the vertex coordinates

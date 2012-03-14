@@ -71,7 +71,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char* propertyName);
+    int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -80,7 +80,7 @@ public :
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    int setDataProperty(int property, void* value, int numElements);
+    int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property
@@ -119,7 +119,7 @@ public :
      * @param[in] data a pointer to the x shift array (numElements values)
      * @param[in] numElements the number of elements in the array
      */
-    int setXCoordinatesShift(double* data, int numElements);
+    int setXCoordinatesShift(double const* data, int numElements);
 
     /**
      * Returns the y coordinates shift array
@@ -133,7 +133,7 @@ public :
      * @param[in] data a pointer to the y shift array (numElements values)
      * @param[in] numElements the number of elements in the array
      */
-    int setYCoordinatesShift(double* data, int numElements);
+    int setYCoordinatesShift(double const* data, int numElements);
 
     /**
      * Returns the z coordinates shift array
@@ -147,7 +147,7 @@ public :
      * @param data the z shift array (numElements values)
      * @param numElements the number of elements in the array
      */
-    int setZCoordinatesShift(double* data, int numElements);
+    int setZCoordinatesShift(double const* data, int numElements);
 
     /**
      * Returns the x coordinates shift array flag
@@ -197,7 +197,7 @@ public :
      * @param[in] numElementsArray a pointer to a 2-element array (always 1, #vertices)
      * @return 1 if it succeeded, 0 if the allocation failed
      */
-    int setNumElementsArray(int* numElementsArray);
+    int setNumElementsArray(int const* numElementsArray);
 
     /**
      * Copies the former shift coordinates array into the new one
@@ -207,7 +207,7 @@ public :
      * @param[in] oldShift a pointer to the former shift coordinates array
      * @param[in] numElementsNew the new array's number of elements
      */
-    void copyShiftCoordinatesArray(double* newShift, double* oldShift, int numElementsNew);
+    void copyShiftCoordinatesArray(double * newShift, double const* oldShift, int numElementsNew);
 
     /**
      * Deletes the coordinates and shift arrays

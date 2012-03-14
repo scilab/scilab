@@ -20,7 +20,7 @@ extern "C" {
 
 DataModel *DataModel::m_me = NULL;
 
-BOOL DataModel::setGraphicObjectProperty(char *_pstID, char* _pstName, void* _dblValue, int numElements)
+BOOL DataModel::setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements)
 {
     Data3D* dataObject;
     int property;
@@ -35,7 +35,7 @@ BOOL DataModel::setGraphicObjectProperty(char *_pstID, char* _pstName, void* _db
     return (BOOL) returnValue;
 }
 
-void DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData)
+void DataModel::getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData)
 {
     Data3D* dataObject;
     int property;
@@ -47,7 +47,7 @@ void DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName, void **_p
     dataObject->getDataProperty(property, _pvData);
 }
 
-void DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName, void **_pvData)
+void DataModel::getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData)
 {
     Data3D* dataObject;
     int property;
@@ -61,7 +61,7 @@ void DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName, void *
     dataObject->getDataProperty(property, _pvData);
 }
 
-char* DataModel::createDataObject(char* _pstID, char* _sType)
+char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
 {
     Data3D* newObject;
 
@@ -71,7 +71,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
      */
     if (strcmp(_sType, __GO_GRAYPLOT__) == 0)
     {
-       newObject = new NgonGridData();
+        newObject = new NgonGridData();
     }
     else if (strcmp(_sType, __GO_MATPLOT__) == 0)
     {
@@ -103,7 +103,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
     return _pstID;
 }
 
-void DataModel::deleteDataObject(char* _pstID)
+void DataModel::deleteDataObject(char const* _pstID)
 {
     m_dataMap->erase(std::string(_pstID));
 }

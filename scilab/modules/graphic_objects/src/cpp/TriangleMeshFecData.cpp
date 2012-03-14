@@ -35,11 +35,11 @@ TriangleMeshFecData::TriangleMeshFecData(void)
 /* To be correctly implemented */
 TriangleMeshFecData::TriangleMeshFecData(unsigned int numberVertices, unsigned int numberTriangles)
 {
-    vertices = new double[3*numberVertices];
+    vertices = new double[3 * numberVertices];
 
-    indices = new unsigned int[3*numberTriangles];
+    indices = new unsigned int[3 * numberTriangles];
 
-    fecValues = new double[5*numberTriangles];
+    fecValues = new double[5 * numberTriangles];
 
     this->numberVertices = numberVertices;
     this->numberTriangles = numberTriangles;
@@ -64,7 +64,7 @@ TriangleMeshFecData::~TriangleMeshFecData(void)
     numberTriangles = 0;
 }
 
-int TriangleMeshFecData::getPropertyFromName(char* propertyName)
+int TriangleMeshFecData::getPropertyFromName(char const* propertyName)
 {
     if (strcmp(propertyName, __GO_DATA_MODEL_NUM_INDICES__) == 0)
     {
@@ -81,15 +81,15 @@ int TriangleMeshFecData::getPropertyFromName(char* propertyName)
 }
 
 
-int TriangleMeshFecData::setDataProperty(int property, void* value, int numElements)
+int TriangleMeshFecData::setDataProperty(int property, void const* value, int numElements)
 {
     if (property == NUM_INDICES)
     {
-        return setNumIndices(*((unsigned int*) value));
+        return setNumIndices(*((unsigned int const*) value));
     }
     else if (property == FEC_TRIANGLES)
     {
-        setFecTriangles((double*) value, numElements);
+        setFecTriangles((double const*) value, numElements);
     }
     else
     {
@@ -134,7 +134,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
 
         try
         {
-            newIndices = new unsigned int[3*numIndices];
+            newIndices = new unsigned int[3 * numIndices];
         }
         catch (const std::exception& e)
         {
@@ -143,7 +143,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
 
         try
         {
-            newFecValues = new double[5*numIndices];
+            newFecValues = new double[5 * numIndices];
         }
         catch (const std::exception& e)
         {
@@ -183,7 +183,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
     return result;
 }
 
-void TriangleMeshFecData::setFecTriangles(double* data, int numElements)
+void TriangleMeshFecData::setFecTriangles(double const* data, int numElements)
 {
     if ((unsigned int)numElements > numberTriangles)
     {
@@ -192,20 +192,20 @@ void TriangleMeshFecData::setFecTriangles(double* data, int numElements)
 
     for (int i = 0; i < numElements; i++)
     {
-        indices[3*i] =  scilabIndexToIndex((unsigned int) data[numElements+i]);
-        indices[3*i+1] = scilabIndexToIndex((unsigned int) data[2*numElements+i]);
-        indices[3*i+2] = scilabIndexToIndex((unsigned int) data[3*numElements+i]);
+        indices[3 * i] =  scilabIndexToIndex((unsigned int) data[numElements + i]);
+        indices[3 * i + 1] = scilabIndexToIndex((unsigned int) data[2 * numElements + i]);
+        indices[3 * i + 2] = scilabIndexToIndex((unsigned int) data[3 * numElements + i]);
 
         /* Triangle number */
         fecValues[i] = data[i];
 
         /* Triangle vertices */
-        fecValues[numElements+i] = data[numElements+i];
-        fecValues[2*numElements+i] = data[2*numElements+i];
-        fecValues[3*numElements+i] = data[3*numElements+i];
+        fecValues[numElements + i] = data[numElements + i];
+        fecValues[2 * numElements + i] = data[2 * numElements + i];
+        fecValues[3 * numElements + i] = data[3 * numElements + i];
 
         /* Flag */
-        fecValues[4*numElements+i] = data[4*numElements+i];
+        fecValues[4 * numElements + i] = data[4 * numElements + i];
     }
 }
 

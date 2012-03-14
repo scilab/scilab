@@ -28,12 +28,12 @@ Data3D::~Data3D(void)
 
 }
 
-int Data3D::getPropertyFromName(char* propertyName)
+int Data3D::getPropertyFromName(char const* propertyName)
 {
     return UNKNOWN_DATA_PROPERTY;
 }
 
-int Data3D::setDataProperty(int property, void* value, int numElements)
+int Data3D::setDataProperty(int property, void const* value, int numElements)
 {
     return 0;
 }

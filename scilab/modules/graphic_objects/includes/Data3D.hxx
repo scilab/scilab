@@ -49,7 +49,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    virtual int getPropertyFromName(char* propertyName);
+    virtual int getPropertyFromName(char const* propertyName);
 
     /**
      * Sets a data property
@@ -58,7 +58,7 @@ public :
      * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
-    virtual int setDataProperty(int property, void* value, int numElements);
+    virtual int setDataProperty(int property, void const* value, int numElements);
 
     /**
      * Returns a data property

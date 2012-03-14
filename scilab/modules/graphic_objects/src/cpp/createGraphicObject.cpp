@@ -22,22 +22,22 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-char *createGraphicObject(char *_sType)
+char *createGraphicObject(char const* _sType)
 {
     return CallGraphicController::askGraphicObject(getScilabJavaVM(), _sType);
 }
 
-char *cloneGraphicObject(char *_sId)
+char *cloneGraphicObject(char const* _sId)
 {
     return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
 }
 
-char *createDataObject(char *_sId, char *_sType)
+char const* createDataObject(char const* _sId, char const* _sType)
 {
     return DataController::createDataObject(_sId, _sType);
 }
 
-void buildFigureMenuBar(char *_sFigureId)
+void buildFigureMenuBar(char const* _sFigureId)
 {
     CallGraphicController::buildFigureMenuBar(getScilabJavaVM(), _sFigureId);
 }
