@@ -52,10 +52,14 @@ public class AxesRulerDrawer {
     private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
-    /**
-     * Ticks length in pixels.
-     */
-    private static final int TICKS_LENGTH = 10;
+    /** Ticks length in pixels. */
+    private static final int TICKS_LENGTH = 8;
+
+    /** Sub-ticks length in pixels. */
+    private static final int SUB_TICKS_LENGTH = 5;
+
+    /**Ticks sprites distance in pixels. */
+    private static final int SPRITE_DISTANCE = 12;
 
 
     private final RulerDrawerManager rulerDrawerManager;
@@ -82,6 +86,8 @@ public class AxesRulerDrawer {
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         DefaultRulerModel rulerModel = new DefaultRulerModel();
         rulerModel.setTicksLength(TICKS_LENGTH);
+        rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
+        rulerModel.setSpriteDistance(SPRITE_DISTANCE);
 
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 

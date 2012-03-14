@@ -36,6 +36,15 @@ import java.util.List;
  */
 public class AxisDrawer {
 
+    /** Ticks length in pixels. */
+    private static final int TICKS_LENGTH = 8;
+
+    /** Sub-ticks length in pixels. */
+    private static final int SUB_TICKS_LENGTH = 5;
+
+    /**Ticks sprites distance in pixels. */
+    private static final int SPRITE_DISTANCE = 12;
+
     private final DrawerVisitor drawerVisitor;
 
     public AxisDrawer(DrawerVisitor drawerVisitor) {
@@ -47,6 +56,9 @@ public class AxisDrawer {
         double max;
 
         DefaultRulerModel rulerModel = new DefaultRulerModel();
+        rulerModel.setSpriteDistance(SPRITE_DISTANCE);
+        rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
+        rulerModel.setTicksLength(TICKS_LENGTH);
 
         Double[] xTicksValues;
         Double[] yTicksValues;
