@@ -483,6 +483,8 @@ t.
 
 * Bug #10673 fixed - Typos fixed in the help page of ssrand.
 
+* Bug #10769 fixed - Remove some dead code from bsplin3val.
+
 * Bug #10685 fixed - inttrap help page moved to differential calculus module.
 
 * Bug #10710 fixed - Wrong error message fixed in xml module.
