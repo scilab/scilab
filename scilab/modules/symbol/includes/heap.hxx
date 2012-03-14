@@ -118,13 +118,17 @@ namespace symbol
             }
 
             ListScope::const_iterator it;
-            for (it = globals.begin() ; it != globals.end() ; it++)
+            if(globals.front()->get(key))
             {
-                if((*it)->get(key))
-                {
-                    return true;
-                }
+                return true;
             }
+            //for (it = globals.begin() ; it != globals.end() ; it++)
+            //{
+            //    if((*it)->get(key))
+            //    {
+            //        return true;
+            //    }
+            //}
             return false;
         }
 
