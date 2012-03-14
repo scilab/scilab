@@ -273,7 +273,6 @@ sci_gateway/fortran/sci_f_clearglobal.f \
 sci_gateway/fortran/sci_f_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_f_iserror.f \
-sci_gateway/fortran/sci_f_debug.f \
 sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
 

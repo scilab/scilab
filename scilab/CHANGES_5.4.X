@@ -435,6 +435,9 @@ t.
 
 * Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
 
+* Bug #10544 fixed - debug did not return the previous value when called with
+                     an argument.
+
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
 * Bug #10560 fixed - genetic algorithms demos failed.
@@ -543,6 +546,8 @@ t.
                      Scilab scripts.
 
 * Bug #10836 fixed - resize_matrix with boolean failed.
+
+* Bug #10861 fixed - debug([]) returned a wrong error message.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
