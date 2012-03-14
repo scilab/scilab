@@ -36,7 +36,13 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     ConfigVariable::IncreasePauseLevel();
     Runner::UnlockPrompt();
     ThreadId* pThread = ConfigVariable::getLastRunningThread();
+
+    //return to console so change mode to 2
+    int iOldMode = ConfigVariable::getPromptMode();
+    ConfigVariable::setPromptMode(2);
     pThread->suspend();
+    ConfigVariable::setPromptMode(iOldMode);
+    //return from console so change mode to initial
 
     // Running from here means we have been awaken by some resume / abort
     ConfigVariable::DecreasePauseLevel();
