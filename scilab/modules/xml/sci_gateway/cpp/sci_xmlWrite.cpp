@@ -40,7 +40,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
     SciErr err;
     int *addr = 0;
     char *path = 0;
-    const char *expandedPath = 0;
+    char *expandedPath = NULL;
     int indent = 1;
     int ret = 0;
 
@@ -112,7 +112,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
                 return 0;
             }
 
-            expandedPath = const_cast < const char *>(expandPathVariable(path));
+            expandedPath = expandPathVariable(path);
 
             freeAllocatedSingleString(path);
         }
