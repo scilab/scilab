@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -210,9 +210,9 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             public void mouseClicked(MouseEvent e) {
                 // Scilab indices in Value begin at 1 and Java indices begin at 0
                 int[] javaIndices = getList().getSelectedIndices().clone();
-                Integer[] scilabIndices = new Integer[javaIndices.length];
+                Double[] scilabIndices = new Double[javaIndices.length];
                 for (int i = 0; i < getList().getSelectedIndices().length; i++) {
-                    scilabIndices[i] = javaIndices[i] + 1;
+                    scilabIndices[i] = (double) javaIndices[i] + 1;
                 }
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
                 if (e.getButton() == MouseEvent.BUTTON1) {

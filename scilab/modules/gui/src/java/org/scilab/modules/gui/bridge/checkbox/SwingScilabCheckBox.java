@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -94,7 +94,7 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
      * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
     public void setDims(Size newSize) {
-        this.setSize(newSize.getWidth(), newSize.getHeight());		
+        this.setSize(newSize.getWidth(), newSize.getHeight());
     }
 
     /**
@@ -121,10 +121,10 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
         actListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer[] value = new Integer[1];
-                value[0] = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                Double[] value = new Double[1];
+                value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
                 if (isSelected()) {
-                    value[0] = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                    value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
                 }
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
                 callback.actionPerformed(e);
