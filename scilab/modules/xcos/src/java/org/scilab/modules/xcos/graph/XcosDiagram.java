@@ -1660,12 +1660,7 @@ public class XcosDiagram extends ScilabGraph {
      * @return save status
      */
     public boolean saveDiagram() {
-        boolean isSuccess = false;
-        if (getSavedFile() == null) {
-            isSuccess = saveDiagramAs(null);
-        } else {
-            isSuccess = saveDiagramAs(getSavedFile());
-        }
+        final boolean isSuccess = saveDiagramAs(getSavedFile());
 
         if (isSuccess) {
             setModified(false);
@@ -1703,7 +1698,17 @@ public class XcosDiagram extends ScilabGraph {
             } else {
                 final String title = getTitle();
                 if (title != null) {
-                    fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
+                    /*
+                     * Escape file to handle not supported character in file name (may be Windows only)
+                     * see http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx
+                     */
+                    final char[] regex = "<>:\"/\\|?*".toCharArray();
+                    String escaped = title;
+                    for (char c : regex) {
+                        escaped = escaped.replace(c, '-');
+                    }
+
+                    fc.setSelectedFile(new File(escaped + XcosFileType.XCOS.getDottedExtension()));
                 }
                 ConfigurationManager.configureCurrentDirectory(fc);
             }
@@ -1726,6 +1731,22 @@ public class XcosDiagram extends ScilabGraph {
             }
         }
 
+        /*
+         * If the file exists, ask for confirmation
+         */
+        if (writeFile.exists()) {
+            final boolean overwrite = ScilabModalDialog.show(XcosTab.get(this), XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
+                                      IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION;
+
+            if (!overwrite) {
+                info(XcosMessages.EMPTY_INFO);
+                return false;
+            }
+        }
+
+        /*
+         * Really save the data
+         */
         try {
             save(writeFile);
             setSavedFile(writeFile);
@@ -1736,6 +1757,7 @@ public class XcosDiagram extends ScilabGraph {
             isSuccess = true;
         } catch (final TransformerException e) {
             LOG.severe(e.toString());
+
             XcosDialogs.couldNotSaveFile(this);
         }
 

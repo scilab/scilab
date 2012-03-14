@@ -404,6 +404,15 @@ public final class Xcos {
         if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
         }
+        // if reuse then request focus
+        if (diag != null) {
+            XcosTab tab = XcosTab.get(diag);
+            if (tab != null) {
+                tab.setCurrent();
+                tab.requestFocus();
+            }
+        }
+
         if (diag != null) {
             // loading disabled, unlock
             setLastError("");
