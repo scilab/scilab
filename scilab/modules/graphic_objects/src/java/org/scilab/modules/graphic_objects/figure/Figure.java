@@ -12,6 +12,9 @@
 
 package org.scilab.modules.graphic_objects.figure;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ANTIALIASING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
@@ -31,9 +34,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEWPORT__;
-
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -46,7 +46,7 @@ public class Figure extends GraphicObject {
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
-    private enum RotationType { UNARY, MULTIPLE;
+    public enum RotationType { UNARY, MULTIPLE;
 
     /**
      * Converts an integer to the corresponding enum

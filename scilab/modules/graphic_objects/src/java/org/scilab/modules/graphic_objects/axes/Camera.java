@@ -132,16 +132,22 @@ public class Camera {
 
 	/**
 	 * @param rotationAngles the rotationAngles to set
+     * @return true if the rotation angles have changed.
 	 */
-	public void setRotationAngles(Double[] rotationAngles) {
-		if (rotationAngles[0] == DEFAULT_ROTATION_ANGLES[0] && rotationAngles[1] == DEFAULT_ROTATION_ANGLES[1]) {
-			view = ViewType.VIEW_2D;
-		} else if (view == ViewType.VIEW_2D) {
-			view = ViewType.VIEW_3D;
-		}
+	public boolean setRotationAngles(Double[] rotationAngles) {
+        if ((this.rotationAngles[0] != rotationAngles[0]) || (this.rotationAngles[1] != rotationAngles[1])) {
+            if (rotationAngles[0] == DEFAULT_ROTATION_ANGLES[0] && rotationAngles[1] == DEFAULT_ROTATION_ANGLES[1]) {
+                view = ViewType.VIEW_2D;
+            } else if (view == ViewType.VIEW_2D) {
+                view = ViewType.VIEW_3D;
+            }
 
-		this.rotationAngles[0] = rotationAngles[0];
-		this.rotationAngles[1] = rotationAngles[1];
+            this.rotationAngles[0] = rotationAngles[0];
+            this.rotationAngles[1] = rotationAngles[1];
+            return true;
+        } else {
+            return false;
+        }
 	}
 
 	/**

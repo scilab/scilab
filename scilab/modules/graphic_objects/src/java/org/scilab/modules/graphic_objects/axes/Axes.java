@@ -24,10 +24,13 @@ import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
@@ -633,7 +636,7 @@ public class Axes extends GraphicObject {
             } else if (property == Camera.CameraProperty.CUBESCALING) {
                 setCubeScaling((Boolean) value);
             } else if (property == Camera.CameraProperty.ROTATIONANGLES) {
-                setRotationAngles((Double[]) value);
+                return setRotationAngles((Double[]) value);
             } else if (property == Camera.CameraProperty.ROTATIONANGLES3D) {
                 setRotationAngles3d((Double[]) value);
             } else if (property == Box.BoxProperty.BOX) {
@@ -1992,9 +1995,32 @@ public class Axes extends GraphicObject {
 
         /**
          * @param rotationAngles the rotation angles to set
+         * @return the update status.
          */
-        public void setRotationAngles(Double[] rotationAngles) {
-            camera.setRotationAngles(rotationAngles);
+        public UpdateStatus setRotationAngles(Double[] rotationAngles) {
+            if (camera.setRotationAngles(rotationAngles)) {
+                try {
+                    GraphicController controller = GraphicController.getController();
+                    Figure figure = (Figure) controller.getObjectFromId(getParentFigure());
+                    if (figure.getRotationAsEnum().equals(Figure.RotationType.MULTIPLE)) {
+                        for (String child : figure.getChildren()) {
+                            if (child != null) {
+                                if (GraphicObjectProperties.__GO_AXES__.equals(controller.getProperty(child, GraphicObjectProperties.__GO_TYPE__))) {
+                                    controller.setProperty(
+                                            child,
+                                            GraphicObjectProperties.__GO_ROTATION_ANGLES__,
+                                            rotationAngles);
+                                }
+                            }
+                        }
+                    }
+                } catch (ClassCastException ignored) {
+                } catch (NullPointerException ignored) {
+                }
+                return UpdateStatus.Success;
+            } else {
+                return UpdateStatus.NoChange;
+            }
         }
 
         /**
