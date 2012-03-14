@@ -372,16 +372,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 scilabErrorW(L"\n");
 
                 //write error
-                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
-                scilabErrorW(L"\n");
+                scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write position
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                scilabErrorW(szError);
                 mclose(iID);
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                throw ScilabMessage(szError, 1, (*j)->location_get());
+                //throw ScilabMessage(szError, 1, (*j)->location_get());
+                //print already done, so just foward exception but with message
+                throw ScilabError();
             }
             break;
         }

@@ -43,6 +43,9 @@ namespace ast
 
         int             m_iErrorNumber;
         Location        m_ErrorLocation;
+
+    private :
+        void createScilabException(std::wstring _wstErrorMesssage = L"", int _iErrorNumber = 0, const Location& _ErrorLocation = *new Location());
     };
 
     class EXTERN_AST_TOOLS ScilabError : public ScilabException
@@ -59,12 +62,6 @@ namespace ast
     {
     public :
         InternalAbort(){}
-    };
-
-    class EXTERN_AST_TOOLS InternalError : public ScilabException
-    {
-    public :
-        InternalError(){}
     };
 
     class EXTERN_AST_TOOLS ScilabMessage : public ScilabException

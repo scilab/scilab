@@ -1089,7 +1089,7 @@ namespace ast
                                 wostringstream os;
                                 PrintVisitor printMe(os);
                                 (*itExp)->accept(printMe);
-                                os << std::endl << std::endl;
+                                //os << std::endl << std::endl;
                                 if(ConfigVariable::getLastErrorFunction() == L"")
                                 {
                                     ConfigVariable::setLastErrorFunction(pCall->getName());
@@ -1158,7 +1158,7 @@ namespace ast
                             wostringstream os;
                             PrintVisitor printMe(os);
                             pCall->accept(printMe);
-                            os << std::endl << std::endl;
+                            //os << std::endl << std::endl;
                             if(ConfigVariable::getLastErrorFunction() == L"")
                             {
                                 ConfigVariable::setLastErrorFunction(((InternalType*)result_get())->getAs<Callable>()->getName());
@@ -1185,16 +1185,15 @@ namespace ast
                         try
                         {
                             pCall->name_get().accept(*this);
-                            if(result_get() != NULL &&
-                                (result_get()->isMacro() || result_get()->isMacroFile()))
+                            if(result_get() != NULL && result_get()->isCallable())
                             {
                                 wostringstream os;
                                 PrintVisitor printMe(os);
                                 pCall->accept(printMe);
-                                os << std::endl << std::endl;
+                                //os << std::endl << std::endl;
                                 ConfigVariable::setLastErrorFunction(((InternalType*)result_get())->getAs<Callable>()->getName());
-                                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
-                                throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
+                                scilabErrorW(se.GetErrorMessage().c_str());
+                                throw ScilabMessage(os.str(), 999, (*itExp)->location_get());
                             }
                         }
                         catch(ScilabError se2)
@@ -1202,7 +1201,7 @@ namespace ast
                         }
                     }
 
-                    scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
+                    scilabErrorW(se.GetErrorMessage().c_str());
                     scilabErrorW(L"\n");
                     throw ScilabMessage((*itExp)->location_get());
                 }

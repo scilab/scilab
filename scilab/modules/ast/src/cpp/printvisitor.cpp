@@ -31,8 +31,12 @@ namespace ast {
             }
             (*i)->accept (*this);
             ++i;
-            *ostr << std::endl;
-            this->apply_indent();
+
+            if(e.lines_get().size() > 1)
+            {
+                *ostr << std::endl;
+                this->apply_indent();
+            }
         }
         *ostr << SCI_CLOSE_MATRIX;
         --indent;

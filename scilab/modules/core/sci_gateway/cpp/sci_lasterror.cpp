@@ -51,9 +51,17 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
     }
 
-    String* pErrorMessage = new String(ConfigVariable::getLastErrorMessage().c_str());
-    out.push_back(pErrorMessage);
-
+    //String* pErrorMessage = new String(
+    std::wstring wstLastErrorMessage = ConfigVariable::getLastErrorMessage();
+    if(wstLastErrorMessage.size() == 0)
+    {
+        out.push_back(Double::Empty());
+    }
+    else
+    {
+        out.push_back(new String(wstLastErrorMessage.c_str()));
+    }
+    
     if(_iRetCount > 1)
     {
         Double* pErrorNumber = new Double(ConfigVariable::getLastErrorNumber());
@@ -66,8 +74,15 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
 
             if(_iRetCount > 3)
             {
-                String* pErrorFunction = new String(ConfigVariable::getLastErrorFunction().c_str());
-                out.push_back(pErrorFunction);
+                std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
+                if(wstLastErrorFunction.size() == 0)
+                {
+                    out.push_back(Double::Empty());
+                }
+                else
+                {
+                    out.push_back(new String(wstLastErrorFunction.c_str()));
+                }
             }
         }
     }

@@ -325,15 +325,16 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
                 //write error
-                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
-                scilabErrorW(L"\n");
+                scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write positino
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                ScierrorW(999, _W("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                throw ScilabMessage(szError, 1, (*j)->location_get());
+                //throw ScilabMessage(szError, 1, (*j)->location_get());
+                //print already done, so just foward exception but with message
+                //throw ScilabError();
+                return Function::Error;
             }
             break;
 		}

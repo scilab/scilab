@@ -16,18 +16,48 @@ extern "C"
 {
 #include "lasterror.h"
 #include "charEncoding.h"
+#include "MALLOC.h"
 }
 
 namespace ast
 {
+
+    void ScilabException::createScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+    {
+        m_wstErrorMessage   = _wstErrorMesssage;
+        m_iErrorNumber      = _iErrorNumber;
+        m_ErrorLocation     = _ErrorLocation;
+    }
+
     ScilabException::ScilabException(std::wstring _wstErrorMesssage)
     {
-        m_wstErrorMessage = _wstErrorMesssage;
+        setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
+        createScilabException(_wstErrorMesssage);
     }
 
     ScilabException::ScilabException(std::string _stErrorMesssage)
     {
-        m_wstErrorMessage = to_wide_string(_stErrorMesssage.c_str());
+
+        wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+        setLastError(999, pwst, 0, NULL);
+        createScilabException(pwst);
+        FREE(pwst);
+    }
+
+    ScilabException::ScilabException(const Location& _ErrorLocation)
+    {
+        createScilabException(L"", 0, _ErrorLocation);
+    }
+
+    ScilabException::ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+    {
+        setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
+        createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
+    }
+
+    ScilabException::ScilabException()
+    {
+        createScilabException();
     }
 
     void ScilabException::SetErrorMessage(std::wstring _wstErrorMesssage)
@@ -38,25 +68,6 @@ namespace ast
     std::wstring ScilabException::GetErrorMessage(void)
     {
         return m_wstErrorMessage;
-    }
-
-
-    ScilabException::ScilabException(const Location& _ErrorLocation)
-    {
-        m_ErrorLocation     = _ErrorLocation;
-    }
-
-    ScilabException::ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
-    {
-        m_wstErrorMessage   = _wstErrorMesssage;
-        m_iErrorNumber      = _iErrorNumber;
-        m_ErrorLocation     = _ErrorLocation;
-    }
-
-    ScilabException::ScilabException()
-    {
-        m_wstErrorMessage   = L"";
-        m_iErrorNumber      = 0;
     }
 
     void ScilabException::SetErrorNumber(int _iErrorNumber)

@@ -48,7 +48,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 
     if(pIT == NULL || pIT->isCallable() == false)
     {
-        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n\n"), 999, *new Location());
+        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 999, *new Location());
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();
     try

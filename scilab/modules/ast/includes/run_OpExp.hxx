@@ -73,354 +73,105 @@ void visitprivate(const OpExp &e)
         case OpExp::plus :
             {
                 pResult = GenericPlus(pITL, pITR);
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-
-                result_set(pResult);
                 break;
             }
         case OpExp::minus :
             {
-                try
-                {
-                    pResult = GenericMinus(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-
-                result_set(pResult);
+                pResult = GenericMinus(pITL, pITR);
                 break;
             }
         case OpExp::times:
             {
-                try
-                {
-                    pResult = GenericTimes(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-                result_set(pResult);
+                pResult = GenericTimes(pITL, pITR);
                 break;
             }
         case OpExp::ldivide:
             {
-                pResult = callOverload(e.oper_get(), pITL, pITR);
-                result_set(pResult);
                 break;
             }
         case OpExp::rdivide:
             {
-                try
-                {
-                    pResult = GenericRDivide(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-                result_set(pResult);
+                pResult = GenericRDivide(pITL, pITR);
                 break;
             }
         case OpExp::dotrdivide :
             {
-                try
-                {
-                    pResult = GenericDotRDivide(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericDotRDivide(pITL, pITR);
                 break;
             }
         case OpExp::dottimes :
             {
-                try
-                {
-                    pResult = GenericDotTimes(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-                result_set(pResult);
+                pResult = GenericDotTimes(pITL, pITR);
                 break;
             }
         case OpExp::dotpower :
             {
-                try
-                {
-                    pResult = GenericDotPower(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-                result_set(pResult);
+                pResult = GenericDotPower(pITL, pITR);
                 break;
             }
         case OpExp::eq :
             {
-              try
-                {
-                    pResult = GenericComparisonEqual(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericComparisonEqual(pITL, pITR);
                 break;
             }
         case OpExp::ne :
             {
-              try
-                {
-                    pResult = GenericComparisonNonEqual(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericComparisonNonEqual(pITL, pITR);
                 break;
             }
         case OpExp::lt :
             {
-              try
-                {
-                    pResult = GenericLess(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericLess(pITL, pITR);
                 break;
             }
         case OpExp::le :
             {
-              try
-                {
-                    pResult = GenericLessEqual(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericLessEqual(pITL, pITR);
                 break;
             }
         case OpExp::gt :
             {
-              try
-                {
-                    pResult = GenericGreater(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericGreater(pITL, pITR);
                 break;
             }
         case OpExp::ge :
             {
-              try
-                {
-                    pResult = GenericGreaterEqual(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericGreaterEqual(pITL, pITR);
                 break;
             }
         case OpExp::power :
             {
-                try
-                {
-                    pResult = GenericPower(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-
-                }
-                result_set(pResult);
+                pResult = GenericPower(pITL, pITR);
                 break;
             }
         case OpExp::krontimes :
             {
-                try
-                {
-                    pResult = GenericKrontimes(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericKrontimes(pITL, pITR);
                 break;
             }
         case OpExp::kronrdivide :
             {
-                try
-                {
-                    pResult = GenericKronrdivide(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericKronrdivide(pITL, pITR);
                 break;
             }
         case OpExp::kronldivide :
             {
-                try
-                {
-                    pResult = GenericKronldivide(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
-                if (pResult == NULL)
-                {
-                    // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                result_set(pResult);
+                pResult = GenericKronldivide(pITL, pITR);
                 break;
             }
         default :
-            // By default call overload if we do not know this operator ...
-            result_set(callOverload(e.oper_get(), pITL, pITR));
             break;
         }
+        
+        //overloading
+        if (pResult == NULL)
+        {
+            // We did not have any algorithm matching, so we try to call OverLoad
+            pResult = callOverload(e.oper_get(), pITL, pITR);
+        }
+
+        result_set(pResult);
+
         //clear left and/or right operands
         if(pITL->isDeletable())
         {
@@ -434,6 +185,7 @@ void visitprivate(const OpExp &e)
     }
     catch(ScilabError error)
     {
+        result_clear();
         error.SetErrorLocation(e.location_get());
         throw error;
     }

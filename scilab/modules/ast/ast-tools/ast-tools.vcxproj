@@ -73,7 +73,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -84,10 +84,12 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>system_env.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -100,7 +102,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -111,10 +113,12 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>system_env.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -125,7 +129,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -136,10 +140,12 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>system_env.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -152,7 +158,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -163,10 +169,12 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>system_env.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -182,10 +190,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Localization_Import.def" />
+    <None Include="system_env_Import .def" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\bin\blasplus.lib" />
     <Library Include="..\..\..\bin\lapack.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
