@@ -39,7 +39,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  *
  * This class performs the drawing of scilab's Label entity.
  *
- * TODO, manage: {font_angle, auto_rotation, font_fractional}
+ * TODO, manage: {font_fractional}
  *
  * @author Manuel Juliachs
  */
@@ -100,9 +100,6 @@ public class LabelManager {
             return;
         }
 
-        /* Clipping must be disabled to draw labels */
-        drawingTools.getClippingManager().disableClipping();
-
         /*
          * The topmost transformation, which is the data transformation, must be popped before drawing
          * and restored afterwards because Labels, like Axes rulers, are drawn in box coordinates.
@@ -112,11 +109,6 @@ public class LabelManager {
         positionAndDraw(drawingTools, colorMap, label, labelPositioner, parentAxes, axesDrawer, drawnFlag);
 
         drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(axesDrawer.getDataTransformation());
-
-        /* Re-enable clipping */
-        for (int i = 0 ; i < 6 ; i++) {
-            drawingTools.getClippingManager().getClippingPlane(i).setEnable(true);
-        }
     }
 
     /**

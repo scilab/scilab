@@ -50,10 +50,8 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * To do:
  * - clean up the code
- * - implement arrow rendering (polyline_style == 4)
  * - modify bounds depending on the location (for OUT_* values)
  * - take into account the actual tick/label size (instead of an arbitrary value)
- * - correct clipping (works incorrectly when subplots are used)
  * - implement box clipping mode
  *
  * @author Manuel JULIACHS
@@ -160,7 +158,7 @@ public class LegendDrawer {
 
                 /*
                  * Set the projection and modelview transformations so that coordinates
-                 * are specified in the {0,+1,0,+1,0,+1} space then disable clipping
+                 * are specified in the {0,+1,0,+1,0,+1} space.
                  */
                 TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
                 TransformationStack projectionStack = drawingTools.getTransformationManager().getProjectionStack();
@@ -170,8 +168,6 @@ public class LegendDrawer {
 
                 Transformation orthoProj = TransformationFactory.getOrthographic(0.0, 1.0, 0.0, 1.0, -1.0, 0.0);
                 projectionStack.push(orthoProj);
-
-                drawingTools.getClippingManager().disableClipping();
 
 
                 /* First, compute the legend box's position and dimensions from the Axes' parameters and the text sprite's dimensions */
@@ -406,11 +402,7 @@ public class LegendDrawer {
 
                 drawingTools.draw(legendSprite, SpriteAnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
 
-                /* Re-enable clipping and restore the transformation stacks */
-                for (int i = 0; i < 6; i++) {
-                    drawingTools.getClippingManager().getClippingPlane(i).setEnable(true);
-                }
-
+                /* Restore the transformation stacks */
                 modelViewStack.pop();
                 projectionStack.pop();
 

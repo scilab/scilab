@@ -27,6 +27,8 @@ import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
@@ -189,34 +191,11 @@ public class AxesDrawer {
          */
         modelViewStack.pushRightMultiply(dataTransformation);
 
-        // TODO implement clipgrf
-        Double[] bounds = axes.getDisplayedBounds();
-        Vector4d[] equations = new Vector4d[]{
-                new Vector4d(+1, 0, 0, -bounds[0]),
-                new Vector4d(-1, 0, 0, +bounds[1]),
-
-                new Vector4d(0, +1, 0, -bounds[2]),
-                new Vector4d(0, -1, 0, +bounds[3]),
-
-                new Vector4d(0, 0, +1, -bounds[4]),
-                new Vector4d(0, 0, -1, +bounds[5])
-        };
-
-        Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
-        for (int i = 0 ; i < 6 ; i++) {
-            ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
-            plane.setTransformation(currentTransformation);
-            plane.setEquation(equations[i]);
-            plane.setEnable(true);
-        }
-
         /* Compute the front and back culling modes */
         computeFaceCullingModes(axes);
 
         visitor.askAcceptVisitor(axes.getChildren());
         modelViewStack.pop();
-
-        drawingTools.getClippingManager().disableClipping();
 
         // Reset transformation stacks.
         modelViewStack.pop();
@@ -851,6 +830,132 @@ public class AxesDrawer {
      */
     public FaceCullingMode getBackFaceCullingMode() {
         return this.backFaceCullingMode;
+    }
+
+    /**
+     * Enables clipping for the given {@link ClippableProperty}, which describes
+     * the clipping state of a clippable graphic object.
+     * Depending on the object's clip state property, clipping can be either
+     * disabled (OFF), performed against the parent Axes' box planes (CLIPGRF),
+     * or performed against the planes defined by the object's clip box.
+     * @param parentAxes the clipped object's parent Axes.
+     * @param clipProperty the clipping property of a clippable object.
+     */
+    public void enableClipping(Axes parentAxes, ClippableProperty clipProperty) {
+        DrawingTools drawingTools = visitor.getDrawingTools();
+
+        if (clipProperty.getClipState() != ClipStateType.OFF) {
+            int numPlanes = 0;
+            Vector4d[] equations = null;
+
+            if (clipProperty.getClipState() == ClipStateType.CLIPGRF) {
+                /*
+                 * All the clipping planes are set as clipping is performed
+                 * against the Axes box planes.
+                 */
+                numPlanes = 6;
+                Double[] bounds = parentAxes.getDisplayedBounds();
+
+                equations = new Vector4d[]{
+                    new Vector4d(+1, 0, 0, -bounds[0]),
+                    new Vector4d(-1, 0, 0, +bounds[1]),
+
+                    new Vector4d(0, +1, 0, -bounds[2]),
+                    new Vector4d(0, -1, 0, +bounds[3]),
+
+                    new Vector4d(0, 0, +1, -bounds[4]),
+                    new Vector4d(0, 0, -1, +bounds[5])
+                };
+            } else if (clipProperty.getClipState() == ClipStateType.ON) {
+                /*
+                 * The clip box property defines values only for the x and y axes,
+                 * we therefore set only the x and y clipping planes.
+                 */
+                numPlanes = 4;
+                Double[] clipBox = clipProperty.getClipBox();
+
+                /* Stores the xmin, xmax and ymin, ymax clipping bounds */
+                double[] clipBounds = new double[4];
+
+                /* The clip box stores the upper-left point coordinates. */
+                clipBounds[0] = clipBox[0];
+                clipBounds[1] = clipBox[0] + clipBox[2];
+                clipBounds[2] = clipBox[1] - clipBox[3];
+                clipBounds[3] = clipBox[1];
+
+                Double[] bounds = parentAxes.getMaximalDisplayedBounds();
+
+                /*
+                 * The logarithmic scale must be applied to clip bounds values.
+                 * If any of them are invalid, we set them to the displayed
+                 * left bounds (xmin or ymin).
+                 */
+                if (parentAxes.getXAxisLogFlag()) {
+                    if (clipBounds[0] <= 0.0) {
+                        clipBounds[0] = bounds[0];
+                    } else {
+                        clipBounds[0] = Math.log10(clipBounds[0]);
+                    }
+
+                    if (clipBounds[1] <= 0.0) {
+                        clipBounds[1] = bounds[0];
+                    } else {
+                        clipBounds[1] = Math.log10(clipBounds[1]);
+                    }
+                }
+
+                if (parentAxes.getYAxisLogFlag()) {
+                    if (clipBounds[2] <= 0.0) {
+                        clipBounds[2] = bounds[2];
+                    } else {
+                        clipBounds[2] = Math.log10(clipBounds[2]);
+                    }
+
+                    if (clipBounds[3] <= 0.0) {
+                        clipBounds[3] = bounds[2];
+                    } else {
+                        clipBounds[3] = Math.log10(clipBounds[3]);
+                    }
+                }
+
+                equations = new Vector4d[]{
+                    new Vector4d(+1, 0, 0, -clipBounds[0]),
+                    new Vector4d(-1, 0, 0, clipBounds[1]),
+
+                    new Vector4d(0, +1, 0, -clipBounds[2]),
+                    new Vector4d(0, -1, 0, clipBounds[3])
+                };
+            }
+
+            Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
+            for (int i = 0 ; i < numPlanes; i++) {
+                ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
+                plane.setTransformation(currentTransformation);
+                plane.setEquation(equations[i]);
+                plane.setEnable(true);
+            }
+        }
+    }
+
+    /**
+     * Disables clipping for the given {@link ClippableProperty}.
+     * @param clipProperty the clip property for which clipping is disabled.
+     */
+    public void disableClipping(ClippableProperty clipProperty) {
+        int numPlanes = 0;
+
+        if (clipProperty.getClipState() == ClipStateType.CLIPGRF) {
+            numPlanes = 6;
+        } else if (clipProperty.getClipState() == ClipStateType.ON) {
+            numPlanes = 4;
+        }
+
+        for (int i = 0 ; i < numPlanes; i++) {
+            ClippingPlane plane = visitor.getDrawingTools().getClippingManager().getClippingPlane(i);
+            plane.setEnable(false);
+        }
+
+        visitor.getDrawingTools().getClippingManager().disableClipping();
     }
 
     /**
