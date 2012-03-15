@@ -1414,7 +1414,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * A cell is deletable is it is not a locked block or an identifier cell
+     * A cell is deletable if it is not a locked block or an identifier cell
      *
      * @param cell
      *            the cell
@@ -1423,11 +1423,17 @@ public class XcosDiagram extends ScilabGraph {
      */
     @Override
     public boolean isCellDeletable(final Object cell) {
-        if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
+        final boolean isALockedBLock = cell instanceof BasicBlock && ((BasicBlock) cell).isLocked();
+        final boolean isAnIdentifier = cell.getClass().equals(mxCell.class);
+
+        if (isALockedBLock) {
             return false;
         }
+        if (isAnIdentifier) {
+            return true;
+        }
 
-        return !cell.getClass().equals(mxCell.class) && super.isCellDeletable(cell);
+        return super.isCellDeletable(cell);
     }
 
     /**
