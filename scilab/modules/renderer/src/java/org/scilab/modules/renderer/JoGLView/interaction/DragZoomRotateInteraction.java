@@ -8,17 +8,14 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
-package org.scilab.modules.gui.graphicWindow;
+package org.scilab.modules.renderer.JoGLView.interaction;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,7 +29,7 @@ import java.awt.event.MouseWheelListener;
  *
  * @author Pierre Lando
  */
-public class FigureInteraction {
+public class DragZoomRotateInteraction extends FigureInteraction {
 
     private static final int XY_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK;
     private static final int Z_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK;
@@ -47,14 +44,6 @@ public class FigureInteraction {
     private final MouseWheelListener mouseWheelListener;
     private final MouseMotionListener mouseMotionListener;
 
-    private final Component component;
-    private final Figure figure;
-
-    /**
-     * Current enable status.
-     */
-    private boolean isEnable;
-
     /**
      * Last important mouse event.
      */
@@ -63,67 +52,26 @@ public class FigureInteraction {
 
     /**
      * Default constructor.
-     * @param component Component to listen.
-     * @param figureId the Scilab figure Id.
+     * @param drawerVisitor parent drawer visitor.
      */
-    public FigureInteraction(Component component, String figureId) {
-        this.component = component;
-        this.figure = (Figure) GraphicController.getController().getObjectFromId(figureId);
-
+    public DragZoomRotateInteraction(DrawerVisitor drawerVisitor) {
+        super(drawerVisitor);
         mouseMotionListener = new FigureMouseMotionListener();
         mouseWheelListener = new FigureMouseWheelListener();
         mouseListener = new FigureMouseListener();
-
-        isEnable = false;
     }
 
-    /**
-     * Enable status setter.
-     * @param isEnable the new enable status.
-     */
-    public void setEnable(boolean isEnable) {
-        if (isEnable() != isEnable) {
-            if (isEnable) {
-                component.addMouseListener(mouseListener);
-                //component.addMouseMotionListener(mouseMotionListener);
-                component.addMouseWheelListener(mouseWheelListener);
-            } else {
-                component.removeMouseListener(mouseListener);
-                component.removeMouseMotionListener(mouseMotionListener);
-                component.removeMouseWheelListener(mouseWheelListener);
-            }
-            this.isEnable = isEnable;
+    @Override
+    protected void changeEnable(boolean isEnable) {
+        Component component = getDrawerVisitor().getComponent();
+        if (isEnable) {
+            component.addMouseListener(mouseListener);
+            component.addMouseWheelListener(mouseWheelListener);
+        } else {
+            component.removeMouseListener(mouseListener);
+            component.removeMouseMotionListener(mouseMotionListener);
+            component.removeMouseWheelListener(mouseWheelListener);
         }
-    }
-
-    /**
-     * Enable status getter.
-     * @return the enable status.
-     */
-    public boolean isEnable() {
-        return isEnable;
-    }
-
-    /**
-     * Compute the underlying {@link Axes} for the given point in figure coordinates.
-     * @param point given point in figure coordinates.
-     * @return the underlying {@link Axes} for the given point in figure coordinates.
-     */
-    private Axes getUnderlyingAxes(Point point) {
-        Axes underlyingAxes = null;
-        Integer[] size = figure.getAxesSize();
-        double x = point.getX() / size[0];
-        double y = point.getY() / size[1];
-        for (String childId : figure.getChildren()) {
-            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
-            if (child instanceof Axes) {
-                Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
-                if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
-                    underlyingAxes = (Axes) child;
-                }
-            }
-        }
-        return underlyingAxes;
     }
 
     /**
@@ -142,7 +90,7 @@ public class FigureInteraction {
                 if (currentAxes == null) {
                     currentAxes = getUnderlyingAxes(e.getPoint());
                     if (currentAxes != null) {
-                        component.addMouseMotionListener(mouseMotionListener);
+                        getDrawerVisitor().getComponent().addMouseMotionListener(mouseMotionListener);
                     }
                 }
             }
@@ -153,14 +101,9 @@ public class FigureInteraction {
         public void mouseReleased(MouseEvent e) {
             pressedButtons--;
             if (pressedButtons == 0) {
-                component.removeMouseMotionListener(mouseMotionListener);
+                getDrawerVisitor().getComponent().removeMouseMotionListener(mouseMotionListener);
                 currentAxes = null;
             }
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            GlobalEventWatcher.setAxesUID(figure.getIdentifier());
         }
     }
 
@@ -195,35 +138,6 @@ public class FigureInteraction {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             }
-        }
-
-
-        /**
-         * Tight given bounds to axes data bounds.
-         * @param axes the given axes.
-         * @param zoomBounds the zoomBounds.
-         * @return true if actually there is a zoom.
-         */
-        private boolean tightZoomBounds(Axes axes, Double[] zoomBounds) {
-            boolean zoomed = false;
-            Double[] dataBounds = axes.getMaximalDisplayedBounds();
-            for (int i : new int[] {0, 2, 4}) {
-                if (zoomBounds[i] < dataBounds[i]) {
-                    zoomBounds[i] = dataBounds[i];
-                } else {
-                    zoomed = true;
-                }
-            }
-
-            for (int i : new int[] {1, 3, 5}) {
-                if (zoomBounds[i] > dataBounds[i]) {
-                    zoomBounds[i] = dataBounds[i];
-                } else {
-                    zoomed = true;
-                }
-            }
-
-            return zoomed;
         }
     }
 

@@ -17,6 +17,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.textObject.Text;
 
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 
@@ -26,6 +27,17 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
  * See SCI/modules/renderer/src/jni/renderer.giws.xml for other details.
  **/
 public final class CallRenderer {
+	
+    /**
+     * Start an interactive zoom.
+     * @param id the uid of the figure where the zoom happen.
+     */
+    public static void startInteractiveZoom(String id) {
+        DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
+        if (visitor != null) {
+            visitor.getInteractionManager().startInteractiveZoom();
+        }
+    }
 
     /**
      * Updates the coordinate transformation of the Axes object given by the identifier.

@@ -16,34 +16,35 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-
-import javax.media.opengl.GL;
-import javax.media.opengl.GLCanvas;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLJPanel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabRubberBox;
-import org.scilab.modules.gui.graphicWindow.FigureInteraction;
 import org.scilab.modules.gui.graphicWindow.PanelLayout;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
+
+import javax.media.opengl.GL;
+import javax.media.opengl.GLCanvas;
+import javax.media.opengl.GLJPanel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
@@ -57,11 +58,23 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
-	/*
-	 * Using GLJPanel for MacOSX may lead to a deadlock on deletion.
-	 * Wrap call to removeNotify to ensure we are not outside Swing Thread
-	 * and PBuffer is not locked.
-	 */
+    /** The renderer canvas */
+    private final Canvas rendererCanvas;
+
+    /** The drawn figure */
+    private final Figure figure;
+
+    /** The drawer visitor used to draw the figure */
+    private final DrawerVisitor drawerVisitor;
+
+    /** The drawable component where the draw is performed */
+    private final Component drawableComponent;
+
+    /*
+      * Using GLJPanel for MacOSX may lead to a deadlock on deletion.
+      * Wrap call to removeNotify to ensure we are not outside Swing Thread
+      * and PBuffer is not locked.
+      */
 	private final class MacOSXGLJPanel extends GLJPanel
 	{
         private static final long serialVersionUID = -6166986369022555750L;
@@ -82,9 +95,10 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	        }
 	}
 
-    public SwingScilabCanvas(int figureId, Figure figure)
+    public SwingScilabCanvas(int figureId, final Figure figure)
 	{
 	    super(new PanelLayout());
+        this.figure = figure;
 
 	    /*
 	     * Even with the good Java 1.6 version
@@ -94,40 +108,57 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	     */
 	    if (OS.get() == OS.MAC) {
 		    GLJPanel glCanvas = new MacOSXGLJPanel();
+            drawableComponent = glCanvas;
 		    glCanvas.setEnabled(true);
 		    add(glCanvas, PanelLayout.GL_CANVAS);
 
-	        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
-	        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
-	        FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
-	        figureInteraction.setEnable(true);
+            rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
+            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+            rendererCanvas.setMainDrawer(drawerVisitor);
 
+            drawableComponent.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+                }
+            });
 	    }
 	    else {
 	    	GLCanvas glCanvas = new GLCanvas();
+            drawableComponent = glCanvas;
 	    	glCanvas.setEnabled(true);
 	    	add(glCanvas, PanelLayout.GL_CANVAS);
 
-	    	Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
-	    	canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
-	    	FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
-	    	figureInteraction.setEnable(true);
+            rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
+            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+            rendererCanvas.setMainDrawer(drawerVisitor);
+
+            drawableComponent.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+                }
+            });
 	    }
 	}
 
-	/**
-	 * Constructor
-	 *
-	 * @param cap
-	 *            GLCapabilities associated to the GLJPanel
-	 * @param figureIndex
-	 *            index of the displayed figure
-	 */
-	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
+    /**
+     * Rendering canvas getter.
+     * @return the SciRenderer canvas.
+     */
+    public Canvas getRendererCanvas() {
+        return rendererCanvas;
+    }
 
-	}
+    /**
+     * figure getter.
+     * @return the MVC figure.
+     */
+    public Figure getFigure() {
+        return figure;
+    }
 
-	/**
+    /**
 	 * Create a Scilab Canvas
 	 *
 	 * @param figureIndex index of the displayed figure
@@ -139,10 +170,18 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	    return null;
 	}
 
+    /**
+     * Drawable component getter.
+     * @return the drawable component.
+     */
+    Component getDrawableComponent() {
+        return drawableComponent;
+    }
+
 	/**
 	 * Draws a Scilab canvas
 	 *
-	 * @see org.scilab.modules.gui.UIElement#draw()
+	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#draw()
 	 */
 	public void draw() {
 		this.setVisible(true);
@@ -153,7 +192,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	 * Gets the dimensions (width and height) of a Scilab Canvas
 	 *
 	 * @return the size of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getDims()
+	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#getDims()
 	 */
 	public Size getDims() {
 		return new Size(this.getWidth(), this.getHeight());
@@ -163,7 +202,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
 	 *
 	 * @return the position of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
+	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#getPosition()
 	 */
 	public Position getPosition() {
 		return new Position(this.getX(), this.getY());
@@ -174,7 +213,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	 *
 	 * @param newSize
 	 *            the size we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
 		// get the greatest size we can use
@@ -199,7 +238,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	 *
 	 * @param newPosition
 	 *            the position we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
