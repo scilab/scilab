@@ -132,6 +132,9 @@ Elementary functions
 
 * The toeplitz macro was not vectorized.
 
+* Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
+
+
 CLI console:
 ============
 
