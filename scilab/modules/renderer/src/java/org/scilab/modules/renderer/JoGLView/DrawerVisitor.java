@@ -742,6 +742,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     return false;
                 }
             }
+
+            if (object instanceof Figure) {
+                if (GraphicObjectProperties.__GO_POSITION__.equals(property)) {
+                    return false;
+                }
+            }
+
             return true;
         } else {
             return false;
