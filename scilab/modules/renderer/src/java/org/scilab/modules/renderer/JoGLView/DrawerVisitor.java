@@ -698,6 +698,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
+                    dataManager.disposeAllTextureCoordinatesBuffers();
                     markManager.disposeAll();
                     textManager.disposeAll();
                     axesDrawer.disposeAll();

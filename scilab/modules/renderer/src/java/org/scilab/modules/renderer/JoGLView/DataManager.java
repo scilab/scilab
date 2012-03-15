@@ -351,6 +351,14 @@ public class DataManager {
     }
 
     /**
+     * Clears all the texture coordinates buffers.
+     */
+    public void disposeAllTextureCoordinatesBuffers() {
+        canvas.getBuffersManager().dispose(texturesCoordinatesBufferMap.values());
+        texturesCoordinatesBufferMap.clear();
+    }
+
+    /**
      * Fill the vertex, color, index and wire index buffers
      * of a given object.
      * @param id the object id.
