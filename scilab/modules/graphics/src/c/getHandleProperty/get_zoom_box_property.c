@@ -32,6 +32,7 @@
 /*------------------------------------------------------------------------*/
 int get_zoom_box_property(char *pobjUID)
 {
+    double dblTmp = 0;
     double* zoomBox;
     int iZoomEnabled = 0;
     int* zoomEnabled = &iZoomEnabled;
@@ -56,6 +57,12 @@ int get_zoom_box_property(char *pobjUID)
 
     if (iZoomEnabled)
     {
+        // Swap zoomBox values to feat Scilab View ordering.
+        // MVC stores [xmin, xmax, ymin, ymax, zmin, zmax]
+        // Scilab expects [xmin, ymin, xmax, ymax, zmin, zmax]
+        dblTmp = zoomBox[2];
+        zoomBox[2] = zoomBox[1];
+        zoomBox[1] = dblTmp;
         return sciReturnRowVector(zoomBox, 6);
     }
     else
