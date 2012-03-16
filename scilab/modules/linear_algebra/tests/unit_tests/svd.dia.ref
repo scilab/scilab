@@ -176,7 +176,7 @@ if svd([])<>[] then bugmes();quit;end
 
 if svd([],"e")<>[] then bugmes();quit;end
 
-[U,S,V]=svd([]);
+[U,S]=svd([]);
 
 if U<>[]|S<>[]  then bugmes();quit;end
 

@@ -61,9 +61,10 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"svd", 1, 2);
         return types::Function::Error;
     }
-    if(_iRetCount > 4 || _iRetCount == 2)
+
+    if(_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d, %d or %d expected.\n"), L"svd", 1, 3, 4);
+        ScierrorW(78, _W("%ls: Wrong number of output argument(s): At least %d expected.\n"), L"svd", 4);
         return types::Function::Error;
     }
 
@@ -158,6 +159,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             }
             pRk = new types::Double(1,1,false);
         }
+        case 2:
         case 3:
         {
             int economyRows = economy ? Min(pDbl->getRows(), pDbl->getCols()) : pDbl->getRows();
@@ -173,7 +175,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
                 double* V = (double*)MALLOC(pDbl->getCols()* economyCols * sizeof(doublecomplex));
 
                 iRet = iSvdM(pData, pDbl->getRows(), pDbl->getCols(), true /*isComplex*/, economy, tol, NULL, U, ptrS->get(), V, (pRk ? pRk->get() : NULL));
-                
+
                 vGetPointerFromDoubleComplex((doublecomplex*)U, ptrsU->getSize(), ptrsU->getReal(), ptrsU->getImg());
                 vFreeDoubleComplexFromPointer((doublecomplex*)U);
                 vGetPointerFromDoubleComplex((doublecomplex*)V, ptrsV->getSize(), ptrsV->getReal(), ptrsV->getImg());
@@ -208,27 +210,28 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     switch(_iRetCount)
     {
-        case 0:
-        case 1:
-        {
-            out.push_back(pSV);
-        }
-        break;
-        case 3:
-        {
-            out.push_back(ptrsU);
-            out.push_back(ptrS);
-            out.push_back(ptrsV);
-        }
-        break;
         case 4:
         {
             out.push_back(ptrsU);
             out.push_back(ptrS);
             out.push_back(ptrsV);
             out.push_back(pRk);
+            break;
         }
-        break;
+        case 3:
+        {
+            out.push_back(ptrsU);
+            out.push_back(ptrS);
+            out.push_back(ptrsV);
+            break;
+        }
+        case 2:
+        {
+            out.push_back(ptrsU);
+            out.push_back(ptrS);
+            break;
+        }
+        case 1: out.push_back(pSV);
        // default: // makes at the beginning of this gateway
     }
 

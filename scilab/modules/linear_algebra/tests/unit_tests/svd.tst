@@ -115,7 +115,7 @@ if Err(U*S*V'-Ac)>10000*%eps then pause,end
 if svd([])<>[] then pause,end
 if svd([],"e")<>[] then pause,end
 
-[U,S,V]=svd([]);
+[U,S]=svd([]);
 if U<>[]|S<>[]  then pause,end
 [U,S,V]=svd([]);
 if U<>[]|S<>[]|V<>[]  then pause,end
