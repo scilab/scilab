@@ -76,10 +76,8 @@
                       from 1 to <literal>size(j,'*')</literal>.
                     </para>
                     <para>
-                      <literal>i</literal> (<literal>j</literal>) Maximum
-                      value must be less or equal to
-                      <literal>size(x,1)</literal>
-                      (<literal>size(x,2)</literal>).
+                      Maximum value of <literal>i</literal> (<literal>j</literal>) must be less or 
+		      equal to <literal>size(x,1)</literal> (<literal>size(x,2)</literal>).
                     </para>
                   </listitem>
                   <listitem>
@@ -102,8 +100,10 @@
                       a row vector builds the row vector <literal>r</literal>
                       such as <literal>r(l)=x(int(i(l)))</literal> for
                       <literal>l</literal> from 1 to
-                      <literal>size(i,'*')</literal><literal>i</literal> Maximum
-                      value must be less or equal to
+                      <literal>size(i,'*')</literal>.
+		    </para>
+                    <para>
+		      Maximum value of <literal>i</literal> must be less or equal to
                       <literal>size(x,'*')</literal>.
                     </para>
                   </listitem>
@@ -119,7 +119,7 @@
                       columns.
                     </para>
                     <para>
-                      <literal>i</literal> Maximum value must be less or
+                      Maximum value of <literal>i</literal> must be less or
                       equal to <literal>size(x,'*')</literal>.
                     </para>
                   </listitem>
@@ -142,7 +142,7 @@
                       <literal>r(l,k)=x(int(i(l)),k))</literal> for
                       <literal>l</literal> from 1 to
                       <literal>size(i,'*')</literal> and <literal>k</literal>
-                      from 1 to <literal>size(x,2)</literal>
+                      from 1 to <literal>size(x,2)</literal>.
                     </para>
                   </listitem>
                   <listitem>
@@ -159,7 +159,7 @@
                     <para>
                       <literal>r=x(:)</literal> builds the column vector
                       <literal>r</literal> formed by the column concatenations
-                      of<literal> x</literal> columns. It is equivalent to
+                      of <literal> x</literal> columns. It is equivalent to
                       <literal>matrix(x,size(x,'*'),1)</literal>.
                     </para>
                   </listitem>
@@ -171,9 +171,9 @@
               <listitem>
                 <para>
                   If an index (<literal>i</literal> or
-                  <literal>j</literal> ) is a vector of booleans it is
+                  <literal>j</literal>) is a vector of booleans it is
                   interpreted as <literal>find(i)</literal> or respectively
-                  <literal>find(j)</literal>
+                  <literal>find(j)</literal>.
                 </para>
               </listitem>
             </varlistentry>
@@ -182,7 +182,7 @@
               <listitem>
                 <para>
                   If an index (<literal>i</literal> or
-                  <literal>j</literal> ) is a vector of polynomials or implicit
+                  <literal>j</literal>) is a vector of polynomials or implicit
                   polynomial vector it is interpreted as
                   <literal>horner(i,m)</literal> or respectively
                   <literal>horner(j,n)</literal> where <literal>m</literal> and
