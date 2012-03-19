@@ -28,7 +28,7 @@
           <para>an optional character with possible values:
             <literal>'l'</literal> (local), <literal>'n'</literal>
             (nolocal) and <literal>'a'</literal> (all). The default
-            value is <literal>'all'.</literal>
+            value is <literal>'a'.</literal>
           </para>
         </listitem>
       </varlistentry>
