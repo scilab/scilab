@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
+ *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -138,45 +138,44 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
     double *u;
     sco_data *sco;
 
-    int i;
     BOOL result;
 
     switch (flag)
     {
 
-    case Initialization:
-        sco = getScoData(block);
-        if (sco == NULL)
-        {
-            set_block_error(-5);
-        }
-        pFigureUID = getFigure(block);
-        if (pFigureUID == NULL)
-        {
-            // allocation error
-            set_block_error(-5);
-        }
-        break;
-
-    case StateUpdate:
-        pFigureUID = getFigure(block);
-
-        u = GetRealInPortPtrs(block, 1);
-
-        result = pushData(block, u);
-        if (result == FALSE)
-        {
-            Coserror("%s: unable to push some data.", "cmatview");
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
+            {
+                set_block_error(-5);
+            }
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+            }
             break;
-        }
-        break;
 
-    case Ending:
-        freeScoData(block);
-        break;
+        case StateUpdate:
+            pFigureUID = getFigure(block);
 
-    default:
-        break;
+            u = GetRealInPortPtrs(block, 1);
+
+            result = pushData(block, u);
+            if (result == FALSE)
+            {
+                Coserror("%s: unable to push some data.", "cmatview");
+                break;
+            }
+            break;
+
+        case Ending:
+            freeScoData(block);
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -191,7 +190,6 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
 static sco_data *getScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    BOOL result;
 
     if (sco == NULL)
     {
@@ -225,7 +223,6 @@ error_handler_sco:
 static void freeScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    int i, j;
 
     if (sco != NULL)
     {
@@ -293,10 +290,8 @@ static char *getFigure(scicos_block * block)
     signed int figNum;
     char *pFigureUID = NULL;
     char *pAxe = NULL;
-    static const int i__1 = 1;
+    int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
-
-    int i, j;
 
     // fast path for an existing object
     if (sco->scope.cachedFigureUID != NULL)
@@ -346,7 +341,6 @@ static char *getFigure(scicos_block * block)
 static char *getAxe(char *pFigureUID, scicos_block * block)
 {
     char *pAxe;
-    int i;
     sco_data *sco = (sco_data *) * (block->work);
 
     // fast path for an existing object
@@ -384,11 +378,7 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
 static char *getGrayplot(char *pAxeUID, scicos_block * block)
 {
     char *pGrayplot;
-    static const double d__0 = 0.0;
-    static const int i__0 = 0;
-    static const BOOL b__true = TRUE;
-
-    int color;
+    int i__0 = 0;
 
     sco_data *sco = (sco_data *) * (block->work);
 

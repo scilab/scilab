@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
+ *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -22,6 +22,7 @@
 #include "createGraphicObject.h"
 
 #include "CurrentFigure.h"
+#include "CurrentObject.h"
 
 #include "scicos_block4.h"
 #include "scicos.h"
@@ -166,45 +167,45 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
     switch (flag)
     {
 
-    case Initialization:
-        sco = getScoData(block);
-        if (sco == NULL)
-        {
-            set_block_error(-5);
-        }
-        pFigureUID = getFigure(block);
-        if (pFigureUID == NULL)
-        {
-            // allocation error
-            set_block_error(-5);
-        }
-        break;
-
-    case StateUpdate:
-        pFigureUID = getFigure(block);
-
-        t = get_scicos_time();
-        u = GetRealInPortPtrs(block, 1);
-
-        appendData(block, 0, t, u);
-
-        for (i = 0; i < block->insz[0]; i++)
-        {
-            result = pushData(block, 0, i);
-            if (result == FALSE)
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
             {
-                Coserror("%s: unable to push some data.", "cscope");
-                break;
+                set_block_error(-5);
             }
-        }
-        break;
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+            }
+            break;
 
-    case Ending:
-        freeScoData(block);
-        break;
+        case StateUpdate:
+            pFigureUID = getFigure(block);
 
-    default:
-        break;
+            t = get_scicos_time();
+            u = GetRealInPortPtrs(block, 1);
+
+            appendData(block, 0, t, u);
+
+            for (i = 0; i < block->insz[0]; i++)
+            {
+                result = pushData(block, 0, i);
+                if (result == FALSE)
+                {
+                    Coserror("%s: unable to push some data.", "cscope");
+                    break;
+                }
+            }
+            break;
+
+        case Ending:
+            freeScoData(block);
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -220,7 +221,6 @@ static sco_data *getScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
     int i, j, k, l;
-    BOOL result;
 
     if (sco == NULL)
     {
@@ -319,18 +319,18 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.data);
         FREE(sco->internal.time);
 
-//      Commented due to the C++ allocation
-//      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//      FREE(sco->scope.cachedFigureUID);
-//      sco->scope.cachedFigureUID = NULL;
-//      for (i=0; i<block->nin; i++) {
-//          for (j=0; j<block->insz[i]; j++) {
-//              FREE(sco->scope.cachedPolylinesUIDs[i][j]);
-//              sco->scope.cachedPolylinesUIDs[i][j] = NULL;
-//          }
-//          FREE(sco->scope.cachedAxeUID[i]);
-//          sco->scope.cachedAxeUID[i] = NULL;
-//      }
+        //      Commented due to the C++ allocation
+        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+        //      FREE(sco->scope.cachedFigureUID);
+        //      sco->scope.cachedFigureUID = NULL;
+        //      for (i=0; i<block->nin; i++) {
+        //          for (j=0; j<block->insz[i]; j++) {
+        //              FREE(sco->scope.cachedPolylinesUIDs[i][j]);
+        //              sco->scope.cachedPolylinesUIDs[i][j] = NULL;
+        //          }
+        //          FREE(sco->scope.cachedAxeUID[i]);
+        //          sco->scope.cachedAxeUID[i] = NULL;
+        //      }
 
         FREE(sco);
     }
@@ -380,7 +380,6 @@ error_handler:
 static void appendData(scicos_block * block, int input, double t, double *data)
 {
     int i;
-    static const int i__1 = 1;
 
     sco_data *sco = (sco_data *) * (block->work);
     int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
@@ -446,8 +445,6 @@ static BOOL pushData(scicos_block * block, int input, int row)
     char *pFigureUID;
     char *pAxeUID;
     char *pPolylineUID;
-
-    static const int i__0 = 0;
 
     double *data;
     sco_data *sco;
@@ -518,10 +515,10 @@ static char *getFigure(scicos_block * block)
     signed int figNum;
     char *pFigureUID = NULL;
     char *pAxe = NULL;
-    static const int i__1 = 1;
+    int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
-    int i, j;
+    int i;
 
     // fast path for an existing object
     if (sco->scope.cachedFigureUID != NULL)
@@ -594,7 +591,7 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
     if (pAxe == NULL)
     {
         cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+        pAxe = getCurrentObject();
     }
 
     /*
@@ -612,7 +609,6 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
     /*
      * then cache
      */
-
     sco->scope.cachedAxeUID = pAxe;
     return pAxe;
 }
@@ -620,9 +616,8 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
 static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
 {
     char *pPolyline;
-    static const double d__0 = 0.0;
-    static const int i__1 = 1;
-    static const BOOL b__true = TRUE;
+    double d__0 = 0.0;
+    BOOL b__true = TRUE;
 
     int color;
 
@@ -720,7 +715,6 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
     char *pFigureUID;
     char *pAxeUID;
 
-    BOOL result;
     double dataBounds[6];
     double period = block->rpar[3];
 

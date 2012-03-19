@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
+ *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -23,6 +23,7 @@
 #include "createGraphicObject.h"
 
 #include "CurrentFigure.h"
+#include "CurrentObject.h"
 
 #include "scicos_block4.h"
 #include "scicos.h"
@@ -164,52 +165,52 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
     switch (flag)
     {
 
-    case Initialization:
-        sco = getScoData(block);
-        if (sco == NULL)
-        {
-            set_block_error(-5);
-        }
-        pFigureUID = getFigure(block);
-        if (pFigureUID == NULL)
-        {
-            // allocation error
-            set_block_error(-5);
-            break;
-        }
-
-        setSegsBuffers(block, DEFAULT_MAX_NUMBER_OF_POINTS);
-        break;
-
-    case StateUpdate:
-        pFigureUID = getFigure(block);
-
-        t = get_scicos_time();
-
-        // select only the masked indexes
-        for (i = 0; i < nclk; i++)
-        {
-            mask = 1 << i;
-            if ((block->nevprt & mask) == mask)
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
             {
-                appendData(block, i, t);
+                set_block_error(-5);
+            }
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
-                result = pushData(block, i);
-                if (result == FALSE)
+            setSegsBuffers(block, DEFAULT_MAX_NUMBER_OF_POINTS);
+            break;
+
+        case StateUpdate:
+            pFigureUID = getFigure(block);
+
+            t = get_scicos_time();
+
+            // select only the masked indexes
+            for (i = 0; i < nclk; i++)
+            {
+                mask = 1 << i;
+                if ((block->nevprt & mask) == mask)
                 {
-                    Coserror("%s: unable to push some data.", "cevscpe");
-                    break;
+                    appendData(block, i, t);
+
+                    result = pushData(block, i);
+                    if (result == FALSE)
+                    {
+                        Coserror("%s: unable to push some data.", "cevscpe");
+                        break;
+                    }
                 }
             }
-        }
-        break;
+            break;
 
-    case Ending:
-        freeScoData(block);
-        break;
+        case Ending:
+            freeScoData(block);
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }
 
@@ -331,16 +332,16 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.maxNumberOfPoints);
         FREE(sco->internal.numberOfPoints);
 
-//      Commented due to the C++ allocation
-//      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//      FREE(sco->scope.cachedFigureUID);
-//      FREE(sco->scope.cachedAxeUID);
-//      sco->scope.cachedFigureUID = NULL;
-//      for (i=0; i<nclk; i++) {
-//              FREE(sco->scope.cachedPolylinesUIDs[i]);
-//              sco->scope.cachedPolylinesUIDs[i] = NULL;
-//      }
-//      sco->scope.cachedAxeUID = NULL;
+        //      Commented due to the C++ allocation
+        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+        //      FREE(sco->scope.cachedFigureUID);
+        //      FREE(sco->scope.cachedAxeUID);
+        //      sco->scope.cachedFigureUID = NULL;
+        //      for (i=0; i<nclk; i++) {
+        //              FREE(sco->scope.cachedPolylinesUIDs[i]);
+        //              sco->scope.cachedPolylinesUIDs[i] = NULL;
+        //      }
+        //      sco->scope.cachedAxeUID = NULL;
 
         FREE(sco->scope.cachedSegsUIDs);
 
@@ -354,7 +355,7 @@ static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoi
 
     double *ptr;
     int setLen;
-    int previousNumberOfPoints = sco->internal.maxNumberOfPoints;
+    int previousNumberOfPoints = sco->internal.maxNumberOfPoints[input];
 
     /*
      * Realloc base pointer
@@ -402,6 +403,9 @@ static void appendData(scicos_block * block, int input, double t)
     int maxNumberOfPoints = sco->internal.maxNumberOfPoints[input];
     int numberOfPoints = sco->internal.numberOfPoints[input];
 
+    int i;
+    int nclk = block->nipar - 6;
+
     /*
      * Handle the case where the t is greater than the data_bounds
      */
@@ -409,8 +413,12 @@ static void appendData(scicos_block * block, int input, double t)
     {
         sco->scope.periodCounter++;
 
+        // reset the number of points for all the segs
         numberOfPoints = 0;
-        sco->internal.numberOfPoints[input] = 0;
+        for (i = 0; i < nclk; i++)
+        {
+            sco->internal.numberOfPoints[i] = 0;
+        }
         if (setBounds(block, sco->scope.periodCounter) == FALSE)
         {
             set_block_error(-5);
@@ -449,9 +457,9 @@ static void appendData(scicos_block * block, int input, double t)
          */
         for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 0] = t;   // x
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 1] = 0;   // y
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 2] = (double)input;   // z
+            sco->internal.data[2 * input + 0][3 * (numberOfPoints + setLen) + 0] = t;   // x
+            sco->internal.data[2 * input + 0][3 * (numberOfPoints + setLen) + 1] = 0;   // y
+            sco->internal.data[2 * input + 0][3 * (numberOfPoints + setLen) + 2] = (double) input;   // z
         }
 
         /*
@@ -459,9 +467,9 @@ static void appendData(scicos_block * block, int input, double t)
          */
         for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 0] = t;   // x
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 1] = 0.8; // y
-            sco->internal.data[2 * input][3 * (numberOfPoints + setLen) + 2] = (double)input;   // z
+            sco->internal.data[2 * input + 1][3 * (numberOfPoints + setLen) + 0] = t;   // x
+            sco->internal.data[2 * input + 1][3 * (numberOfPoints + setLen) + 1] = 0.8; // y
+            sco->internal.data[2 * input + 1][3 * (numberOfPoints + setLen) + 2] = (double) input;   // z
         }
 
         sco->internal.numberOfPoints[input]++;
@@ -548,7 +556,7 @@ static char *getFigure(scicos_block * block)
     signed int figNum;
     char *pFigureUID = NULL;
     char *pAxe = NULL;
-    static const int i__1 = 1;
+    int i__1 = 1;
     sco_data *sco = getScoData(block);
 
     // fast path for an existing object
@@ -621,7 +629,7 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
     if (pAxe == NULL)
     {
         cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+        pAxe = getCurrentObject();
     }
 
     /*
@@ -639,15 +647,19 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
     /*
      * then cache
      */
-    sco->scope.cachedAxeUID = pAxe;
+    if (sco->scope.cachedAxeUID == NULL)
+    {
+        sco->scope.cachedAxeUID = pAxe;
+    }
     return pAxe;
 }
 
 static char *getSegs(char *pAxeUID, scicos_block * block, int input)
 {
     char *pSegs;
-    static const BOOL b__true = TRUE;
-    static const double d__1 = 1.0;
+    BOOL b__true = TRUE;
+    double d__1 = 1.0;
+    double d__0 = 0.0;
 
     int color;
 
@@ -684,6 +696,7 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
 
         // Setup properties
         setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+        setGraphicObjectProperty(pSegs, __GO_ARROW_SIZE__, &d__0, jni_double, 1);
 
         color = block->ipar[2 + input];
         if (color > 0)
@@ -737,7 +750,6 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
         {
             setGraphicObjectProperty(pSegsUID, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
         }
-
     }
 
     return result;
