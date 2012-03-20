@@ -39,7 +39,7 @@
 
 static unsigned int s = 0;
 
-unsigned int urandc()
+unsigned long int urandc(void)
 {
     s = 843314861ul * s + 453816693ul;  /* => on obtient ici un resultat modulo 2^32 */
 

@@ -83,7 +83,7 @@ static int mti=N;
 static int is_init=0;  
 static double DEFAULT_SEED=5489.0;
 
-unsigned int randmt()
+unsigned long int randmt(void)
 {
     unsigned int y;
     static unsigned int mag01[2]={0x0, MATRIX_A};

@@ -23,8 +23,8 @@
 #include "machine.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-static unsigned int isDirSeparator(const char c);
 #ifndef _MSC_VER
+static unsigned int isDirSeparator(const char c);
 static int normalizePath(char *path);
 #endif
 /*--------------------------------------------------------------------------*/
