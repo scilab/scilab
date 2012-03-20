@@ -907,6 +907,10 @@ if test "$SCILAB_MODE" = "nw"; then
     MORE_OPT="-nw"
 fi
 
+if test "$SCILAB_MODE" = "nwni"; then
+    MORE_OPT="-nwni"
+fi
+
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
 case $# in
