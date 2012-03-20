@@ -10,6 +10,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#if defined(__linux__)
+#undef _FORTIFY_SOURCE /* Avoid dependency on GLIBC_2.4 (__wcscat_chk/__wcscpy_chk) */
+#endif
 #ifndef _MSC_VER
 #include <errno.h>
 #else
@@ -293,12 +296,12 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
 
     if (wcFullFilename)
     {
-        wchar_t *wcdrv = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcdir = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcname = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcext = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdrv = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdir = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcname = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcext = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
 
-        wcfilename = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wcfilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
 
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
