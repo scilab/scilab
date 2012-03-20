@@ -47,8 +47,8 @@
       <varlistentry>
         <term>opts</term>
         <listitem>
-          <para>a vector of string 
-            :<literal>[compiler, architecture,[tk, modelicac, atlas,] release_mode, release_date, release_time]</literal>
+          <para>
+            a vector of string: <literal>[compiler, architecture,[tk, modelicac, atlas,] release_mode, release_date, release_time]</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -57,9 +57,9 @@
   <refsection>
     <title>Description</title>
     <para>
-      return in <literal>version</literal> the Scilab version name and in
+      <literal>[version, opts] = getversion()</literal> returns in <literal>version</literal> the Scilab version name and in
       <literal>opts</literal> build options which can be used to determine if
-      scilab has been build with tk or modelicac and give release date and time.
+      cilab has been build with tk or modelicac and gives release date and time.
     </para>
     <para> [tk, modelicac,] are optional. </para>
     <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
