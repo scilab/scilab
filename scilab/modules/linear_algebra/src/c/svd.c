@@ -211,11 +211,13 @@ static int iComputeSandVComplex( double const* pSV, doublecomplex const* pVT, in
 	{
 	  pV[i + j*iCols].r= pVT[j + i*economyCols].r;
 	  pV[i + j*iCols].i= -pVT[j + i*economyCols].i;
-	  if(!economy)
-	    {
-	      pV[j + i*economyCols].r= pVT[i + j*iCols].r;
-	      pV[j + i*economyCols].i= -pVT[i + j*iCols].i;
-	    }
+
+// usless condition ???
+//	  if(!economy) // economyCols == iCols
+//	    {
+//	      pV[j + i*economyCols].r= pVT[i + j*iCols].r;
+//	      pV[j + i*economyCols].i= -pVT[i + j*iCols].i;
+//	    }
 	}
     }
   return 0;
@@ -238,10 +240,11 @@ static int iComputeSandVReal( double const* pSV, double const* pVT, int iRows, i
       for(i= 0; i != iCols; ++i)
 	{
 	  pV[i + j*iCols]= pVT[j + i*economyCols];
-	  if(!economy)
-	    {
-	      pV[j + i*iCols]= pVT[i + j*iCols];
-	    }
+// usless condition ???
+//	  if(!economy) // economyCols == iCols
+//	    {
+//	      pV[j + i*iCols]= pVT[i + j*iCols];
+//	    }
 	}
     }
   return 0;
