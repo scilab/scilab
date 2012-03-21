@@ -11,9 +11,8 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
-import org.scilab.forge.scirenderer.tranformations.TransformationManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 /**
@@ -104,8 +103,8 @@ public class TitlePositioner extends LabelPositioner {
          * Returns the automatically computed sprite anchor position.
          * @return the sprite anchor position.
          */
-        protected SpriteAnchorPosition getAutoAnchorPosition() {
-                return SpriteAnchorPosition.DOWN;
+        protected AnchorPosition getAutoAnchorPosition() {
+                return AnchorPosition.DOWN;
         }
 
 }

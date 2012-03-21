@@ -757,24 +757,7 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 #endif
 
 
-    extern int getTextureWidth(char* id);
-    extern int getTextureHeight(char* id);
-    extern int fillTextureData(char* id, float* buffer, int bufferLength);
-    extern int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height);
-
-    extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
-    extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
-    extern void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
-    
-    extern int getIndicesSize(char* id);    
-    extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
-    
-    extern int getWireIndicesSize(char* id);    
-    extern int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
-
-    extern int getMarkIndicesSize(char* id);
-    extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
+  #include "DataLoader.hxx"
 
 
 #ifdef __cplusplus
@@ -822,7 +805,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_g
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  float *arg2 = (float *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int result;
   
@@ -850,7 +833,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillSubTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jint jarg7) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  float *arg2 = (float *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int arg4 ;
   int arg5 ;

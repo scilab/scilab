@@ -48,6 +48,7 @@ NIO_BUFFER_TYPEMAP(long long, BUFF, java.nio.LongBuffer);
 NIO_BUFFER_TYPEMAP(double, BUFF, java.nio.DoubleBuffer);
 */
 NIO_BUFFER_TYPEMAP(int, BUFF, java.nio.IntBuffer);
+NIO_BUFFER_TYPEMAP(unsigned char, BUFF, java.nio.ByteBuffer);
 NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 #undef NIO_BUFFER_TYPEMAP
 
@@ -62,26 +63,13 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
   }
 %}
 
-%apply float *BUFF {float *buffer};
-%apply int   *BUFF {int   *buffer};
+%apply int* BUFF {int* buffer};
+%apply unsigned char* BUFF {unsigned char* buffer};
+%apply float* BUFF {float* buffer};
 
-%inline %{
-    extern int getTextureWidth(char* id);
-    extern int getTextureHeight(char* id);
-    extern int fillTextureData(char* id, float* buffer, int bufferLength);
-    extern int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height);
+%include "../../includes/DataLoader.hxx"
 
-    extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
-    extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
-    extern void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
-    
-    extern int getIndicesSize(char* id);    
-    extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
-    
-    extern int getWireIndicesSize(char* id);    
-    extern int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
-
-    extern int getMarkIndicesSize(char* id);
-    extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
+%inline
+%{
+  #include "DataLoader.hxx"
 %}

@@ -17,14 +17,14 @@ public class DataLoader {
     return DataLoaderJNI.getTextureHeight(id);
   }
 
-  public static int fillTextureData(String id, java.nio.FloatBuffer buffer, int bufferLength) {
+  public static int fillTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength) {
     assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
       return DataLoaderJNI.fillTextureData(id, buffer, bufferLength);
     }
   }
 
-  public static int fillSubTextureData(String id, java.nio.FloatBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+  public static int fillSubTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
     assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
       return DataLoaderJNI.fillSubTextureData(id, buffer, bufferLength, x, y, width, height);
@@ -60,10 +60,10 @@ public class DataLoader {
     return DataLoaderJNI.getIndicesSize(id);
   }
 
-  public static int fillIndices(String id, java.nio.IntBuffer BUFF, int bufferLength, int logMask) {
-    assert BUFF.isDirect() : "Buffer must be allocated direct.";
+  public static int fillIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
-      return DataLoaderJNI.fillIndices(id, BUFF, bufferLength, logMask);
+      return DataLoaderJNI.fillIndices(id, buffer, bufferLength, logMask);
     }
   }
 
@@ -71,10 +71,10 @@ public class DataLoader {
     return DataLoaderJNI.getWireIndicesSize(id);
   }
 
-  public static int fillWireIndices(String id, java.nio.IntBuffer BUFF, int bufferLength, int logMask) {
-    assert BUFF.isDirect() : "Buffer must be allocated direct.";
+  public static int fillWireIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
-      return DataLoaderJNI.fillWireIndices(id, BUFF, bufferLength, logMask);
+      return DataLoaderJNI.fillWireIndices(id, buffer, bufferLength, logMask);
     }
   }
 
@@ -82,10 +82,10 @@ public class DataLoader {
     return DataLoaderJNI.getMarkIndicesSize(id);
   }
 
-  public static int fillMarkIndices(String id, java.nio.IntBuffer BUFF, int bufferLength) {
-    assert BUFF.isDirect() : "Buffer must be allocated direct.";
+  public static int fillMarkIndices(String id, java.nio.IntBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
-      return DataLoaderJNI.fillMarkIndices(id, BUFF, bufferLength);
+      return DataLoaderJNI.fillMarkIndices(id, buffer, bufferLength);
     }
   }
 

@@ -11,7 +11,7 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import java.util.ArrayList;
@@ -58,11 +58,11 @@ public class AxisLabelPositioner extends LabelPositioner {
          * Adding k*90 (respectively -k*90) degrees to its angle amounts to shifing by k elements to the right
          * (respectively to the left) from its location in the array, modulo the array size.
          */
-        private static final SpriteAnchorPosition[] allowedAnchorPositionsArray = {SpriteAnchorPosition.LEFT, SpriteAnchorPosition.DOWN,
-                                                                                    SpriteAnchorPosition.RIGHT, SpriteAnchorPosition.UP};
+        private static final AnchorPosition[] allowedAnchorPositionsArray = {AnchorPosition.LEFT, AnchorPosition.DOWN,
+                                                                                    AnchorPosition.RIGHT, AnchorPosition.UP};
 
         /** The list of allowed anchor positions. */
-        private static final ArrayList<SpriteAnchorPosition> allowedAnchorPositions = new ArrayList<SpriteAnchorPosition>(Arrays.asList(allowedAnchorPositionsArray));
+        private static final ArrayList<AnchorPosition> allowedAnchorPositions = new ArrayList<AnchorPosition>(Arrays.asList(allowedAnchorPositionsArray));
 
         /**
          * Constructor.
@@ -213,8 +213,8 @@ public class AxisLabelPositioner extends LabelPositioner {
          *
          * @return the sprite anchor position.
          */
-        protected SpriteAnchorPosition getAutoAnchorPosition() {
-                SpriteAnchorPosition anchorPosition = getUncorrectedAutoAnchorPosition();
+        protected AnchorPosition getAutoAnchorPosition() {
+                AnchorPosition anchorPosition = getUncorrectedAutoAnchorPosition();
 
                 double tmpRotationAngle;
 
@@ -261,15 +261,15 @@ public class AxisLabelPositioner extends LabelPositioner {
          * It is determined independently of the rotation angle.
          * @return the sprite anchor position.
          */
-        private SpriteAnchorPosition getUncorrectedAutoAnchorPosition() {
+        private AnchorPosition getUncorrectedAutoAnchorPosition() {
                 if (projectedTicksDirection.getY() > Math.abs(projectedTicksDirection.getX())) {
-                        return SpriteAnchorPosition.DOWN;
+                        return AnchorPosition.DOWN;
                 } else if (projectedTicksDirection.getY() < -Math.abs(projectedTicksDirection.getX())) {
-                        return SpriteAnchorPosition.UP;
+                        return AnchorPosition.UP;
                 } else if (projectedTicksDirection.getX() > 0.0) {
-                        return SpriteAnchorPosition.LEFT;
+                        return AnchorPosition.LEFT;
                 } else {
-                        return SpriteAnchorPosition.RIGHT;
+                        return AnchorPosition.RIGHT;
                 }
         }
 
@@ -280,37 +280,37 @@ public class AxisLabelPositioner extends LabelPositioner {
          * more frequent. To be further tested.
          * @return the sprite anchor position.
          */
-        private SpriteAnchorPosition getAutoAnchorPosition2() {
+        private AnchorPosition getAutoAnchorPosition2() {
                 if (projectedTicksDirection.getY() > 0.0) {
                     if (projectedTicksDirection.getY() > Math.sin(3.0 * Math.PI / 8.0)) {
-                            return SpriteAnchorPosition.DOWN;
+                            return AnchorPosition.DOWN;
                     } else if (projectedTicksDirection.getY() > Math.sin(Math.PI / 8.0)) {
                             if (projectedTicksDirection.getX() > 0.0) {
-                                    return SpriteAnchorPosition.LOWER_LEFT;
+                                    return AnchorPosition.LOWER_LEFT;
                             } else {
-                                    return SpriteAnchorPosition.LOWER_RIGHT;
+                                    return AnchorPosition.LOWER_RIGHT;
                             }
                     } else {
                             if (projectedTicksDirection.getX() > 0.0) {
-                                    return SpriteAnchorPosition.LEFT;
+                                    return AnchorPosition.LEFT;
                             } else {
-                                    return SpriteAnchorPosition.RIGHT;
+                                    return AnchorPosition.RIGHT;
                             }
                     }
                 } else {
                     if (projectedTicksDirection.getY() < -Math.sin(3.0 * Math.PI / 8.0)) {
-                            return SpriteAnchorPosition.UP;
+                            return AnchorPosition.UP;
                     } else if (projectedTicksDirection.getY() < -Math.sin(Math.PI / 8.0)) {
                             if (projectedTicksDirection.getX() > 0.0) {
-                                    return SpriteAnchorPosition.UPPER_LEFT;
+                                    return AnchorPosition.UPPER_LEFT;
                             } else {
-                                    return SpriteAnchorPosition.UPPER_RIGHT;
+                                    return AnchorPosition.UPPER_RIGHT;
                             }
                     } else {
                             if (projectedTicksDirection.getX() > 0.0) {
-                                    return SpriteAnchorPosition.LEFT;
+                                    return AnchorPosition.LEFT;
                             } else {
-                                    return SpriteAnchorPosition.RIGHT;
+                                    return AnchorPosition.RIGHT;
                             }
                     }
                }

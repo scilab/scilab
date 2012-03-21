@@ -2,10 +2,10 @@ package org.scilab.modules.renderer.JoGLView;
 
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
+import org.scilab.forge.scirenderer.data.AbstractDataProvider;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.texture.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
@@ -15,8 +15,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.Dimension;
-import java.nio.Buffer;
-import java.nio.FloatBuffer;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -191,11 +190,11 @@ class FecDrawer {
         }
 
         @Override
-        public FloatBuffer getData() {
+        public ByteBuffer getData() {
             ColorMap colorMap = drawerVisitor.getColorMap();
             Integer[] outsideColor = fec.getOutsideColor();
 
-            FloatBuffer buffer = FloatBuffer.allocate(4 * getTextureLength());
+            ByteBuffer buffer = ByteBuffer.allocate(4 * getTextureLength());
 
             int min;
             int max;
@@ -210,25 +209,25 @@ class FecDrawer {
 
 
             if (outsideColor[0] == 0) {
-                buffer.put(ColorFactory.createRGBAColor(colorMap, min));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, min)));
             } else if (outsideColor[0] > 0) {
-                buffer.put(ColorFactory.createRGBAColor(colorMap, outsideColor[0]));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[0])));
             } else {
                 // TODO: transparency.
-                buffer.put(ColorFactory.createRGBAColor(colorMap, -2));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
             }
 
             for (int i = min; i <= max; i++) {
-                buffer.put(ColorFactory.createRGBAColor(colorMap, i));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, i)));
             }
 
             if (outsideColor[1] == 0) {
-                buffer.put(ColorFactory.createRGBAColor(colorMap, max));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, max)));
             } else if (outsideColor[1] > 0) {
-                buffer.put(ColorFactory.createRGBAColor(colorMap, outsideColor[1]));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, outsideColor[1])));
             } else {
                 // TODO: transparency.
-                buffer.put(ColorFactory.createRGBAColor(colorMap, -2));
+                buffer.put(toByte(ColorFactory.createRGBAColor(colorMap, -2)));
             }
 
             buffer.rewind();
@@ -236,11 +235,11 @@ class FecDrawer {
         }
 
         @Override
-        public Buffer getSubData(int x, int y, int width, int height) {
-            FloatBuffer buffer = getData();
-            FloatBuffer tempBuffer = FloatBuffer.allocate(4 * width * height);
+        public ByteBuffer getSubData(int x, int y, int width, int height) {
+            ByteBuffer buffer = getData();
+            ByteBuffer tempBuffer = ByteBuffer.allocate(4 * width * height);
             buffer.position(x + y * getTextureLength());
-            float[] data = new float[4];
+            byte[] data = new byte[4];
             for (int i = x; i < x + width; i++) {
                 for (int j = y; j < y + height; j++) {
                     buffer.get(data);

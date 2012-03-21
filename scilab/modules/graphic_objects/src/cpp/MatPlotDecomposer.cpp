@@ -39,7 +39,7 @@ int MatPlotDecomposer::getTextureHeight(char* id)
 }
 
 
-int MatPlotDecomposer::fillTextureData(char* id, float* buffer, int bufferLength)
+int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 {
   double* value;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &value);
@@ -62,8 +62,8 @@ int MatPlotDecomposer::fillTextureData(char* id, float* buffer, int bufferLength
     {
       for (int j = 0 ; j < textureHeight ; j++)
       {
-        ColorComputer::getDirectColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[4 * (i + j * textureWidth)]);
-        buffer[4 * (i + j * textureWidth) + 3] = 1;
+        ColorComputer::getDirectByteColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[4 * (i + j * textureWidth)]);
+        buffer[4 * (i + j * textureWidth) + 3] = 255;
       }
     }
 
@@ -76,7 +76,7 @@ int MatPlotDecomposer::fillTextureData(char* id, float* buffer, int bufferLength
 }
 
 
-int MatPlotDecomposer::fillTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height)
+int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
   double* value;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &value);
@@ -95,8 +95,8 @@ int MatPlotDecomposer::fillTextureData(char* id, float* buffer, int bufferLength
     {
       for (int i = x ; i < x + width ; i++)
       {
-        ColorComputer::getDirectColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[k]);
-        buffer[k + 3] = 1;
+        ColorComputer::getDirectByteColor(value[j + i * textureHeight] - 1, colormap, colormapSize, &buffer[k]);
+        buffer[k + 3] = 255;
         k += 4;
       }
     }

@@ -12,11 +12,11 @@
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
 
 import org.scilab.forge.scirenderer.ruler.RulerSpriteFactory;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
-import org.scilab.forge.scirenderer.sprite.TextEntity;
+import org.scilab.forge.scirenderer.texture.TextEntity;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
+import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
@@ -77,7 +77,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     @Override
-    public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
+    public Texture create(double value, DecimalFormat adaptedFormat, TextureManager textureManager) {
         // Simple ack to avoid ticks with "-0" as label.
         if (value == -0) {
             value = 0;
@@ -86,16 +86,16 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         if (axisProperty.getAutoTicks()) {
             setScilabStyle(adaptedFormat);
             if (axisProperty.getLogFlag()) {
-                return createScientificStyleSprite(value, spriteManager);
+                return createScientificStyleSprite(value, textureManager);
             } else {
-                return createSimpleSprite(adaptedFormat.format(value), spriteManager);
+                return createSimpleSprite(adaptedFormat.format(value), textureManager);
             }
         } else {
             FormattedText formattedText = getTextAtValue(value);
-            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, spriteManager, formattedText);
-            Sprite sprite = spriteManager.createSprite(textObjectSpriteDrawer.getSpriteSize());
-            sprite.setDrawer(textObjectSpriteDrawer);
-            return sprite;
+            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
+            Texture texture = textureManager.createTexture();
+            texture.setDrawer(textObjectSpriteDrawer);
+            return texture;
         }
     }
 
@@ -111,13 +111,13 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     /**
-     * Create and return a sprite representing the given value.
+     * Create and return a texture representing the given value.
      * The returned sprites will look like "5x10^2"
      * @param value, the given value.
-     * @param spriteManager used sprite manager.
-     * @return a simple sprite representing the given value with the adapted format.
+     * @param textureManager used texture manager.
+     * @return a simple texture representing the given value with the adapted format.
      */
-    private Sprite createScientificStyleSprite(double value, SpriteManager spriteManager) {
+    private Texture createScientificStyleSprite(double value, TextureManager textureManager) {
         Integer exponent = (int) Math.floor(Math.log10(value));
         Double mantissa = value / Math.pow(10, exponent);
 
@@ -136,7 +136,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         mantissaTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         mantissaTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         mantissaTextEntity.setFont(mantissaFont);
-        final Dimension mantissaSize = spriteManager.getSize(mantissaTextEntity);
+        final Dimension mantissaSize = mantissaTextEntity.getSize();
 
         /**
          * Create exponent.
@@ -147,37 +147,42 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         exponentTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         exponentTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         exponentTextEntity.setFont(exponentFont);
-        final Dimension exponentSize = spriteManager.getSize(exponentTextEntity);
+        final Dimension exponentSize = exponentTextEntity.getSize();
 
-        Sprite sprite = spriteManager.createSprite(
-                            exponentSize.width + mantissaSize.width,
-                            exponentSize.height + mantissaSize.height
-                        );
+        Texture texture = textureManager.createTexture();
 
-        sprite.setDrawer(new SpriteDrawer() {
+        texture.setDrawer(new TextureDrawer() {
 
             @Override
-            public void draw(SpriteDrawingTools drawingTools) {
+            public void draw(TextureDrawingTools drawingTools) {
                 drawingTools.draw(mantissaTextEntity, 0, exponentSize.height);
                 drawingTools.draw(exponentTextEntity, mantissaSize.width, 0);
             }
 
             @Override
-            public OriginPosition getOriginPosition() {
-                return SpriteDrawer.OriginPosition.UPPER_LEFT;
+            public Dimension getTextureSize() {
+                return new Dimension(
+                        exponentSize.width + mantissaSize.width,
+                        exponentSize.height + mantissaSize.height
+                );
+            }
+
+            @Override
+            public TextureDrawer.OriginPosition getOriginPosition() {
+                return TextureDrawer.OriginPosition.UPPER_LEFT;
             }
         });
 
-        return sprite;
+        return texture;
     }
 
     /**
-     * Create and return a simple sprite representing the given value.
+     * Create and return a simple texture representing the given value.
      * @param text the formatted string representing the value.
-     * @param spriteManager used sprite manager.
-     * @return a simple sprite representing the given value with the adapted format.
+     * @param textureManager used texture manager.
+     * @return a simple texture representing the given value with the adapted format.
      */
-    private Sprite createSimpleSprite(String text, SpriteManager spriteManager) {
+    private Texture createSimpleSprite(String text, TextureManager textureManager) {
         Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
         final TextEntity textEntity = new TextEntity(text);
         textEntity.setTextAntiAliased(false);
@@ -185,22 +190,26 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         textEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         textEntity.setFont(font);
 
-        Dimension dimension = spriteManager.getSize(textEntity);
-        Sprite sprite = spriteManager.createSprite(dimension.width, dimension.height);
-        sprite.setDrawer(new SpriteDrawer() {
+        Texture texture = textureManager.createTexture();
+        texture.setDrawer(new TextureDrawer() {
 
             @Override
-            public void draw(SpriteDrawingTools drawingTools) {
+            public void draw(TextureDrawingTools drawingTools) {
                 drawingTools.draw(textEntity, 0, 0);
             }
 
             @Override
-            public OriginPosition getOriginPosition() {
-                return SpriteDrawer.OriginPosition.UPPER_LEFT;
+            public Dimension getTextureSize() {
+                return textEntity.getSize();
+            }
+
+            @Override
+            public TextureDrawer.OriginPosition getOriginPosition() {
+                return TextureDrawer.OriginPosition.UPPER_LEFT;
             }
         });
 
-        return sprite;
+        return texture;
     }
 
     /**

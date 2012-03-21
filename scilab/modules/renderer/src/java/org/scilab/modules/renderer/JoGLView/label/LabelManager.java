@@ -13,27 +13,27 @@
 package org.scilab.modules.renderer.JoGLView.label;
 
 import org.scilab.forge.scirenderer.DrawingTools;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.SciRendererException;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Camera;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 
 /**
  *
@@ -48,19 +48,19 @@ public class LabelManager {
     /**
      * The {@see Map} of existing {@see Sprite}.
      */
-    private final Map<String, Sprite> spriteMap = new ConcurrentHashMap<String, Sprite>();
+    private final Map<String, Texture> textureMap = new ConcurrentHashMap<String, Texture>();
 
     /**
      * The used sprite manager.
      */
-    private final SpriteManager spriteManager;
+    private final TextureManager textureManager;
 
     /**
      * Default constructor.
-     * @param spriteManager the sprite manager.
+     * @param textureManager the texture manager.
      */
-    public LabelManager(SpriteManager spriteManager) {
-        this.spriteManager = spriteManager;
+    public LabelManager(TextureManager textureManager) {
+        this.textureManager = textureManager;
     }
 
     /**
@@ -69,8 +69,9 @@ public class LabelManager {
      * @param colorMap the current {@see ColorMap}.
      * @param label the given Scilab {@see Label}.
      * @param axesDrawer the Axes drawer used to draw the label's parent Axes.
+     * @throws SciRendererException if the label is not drawable.
      */
-    public void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, AxesDrawer axesDrawer) {
+    public void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, AxesDrawer axesDrawer) throws SciRendererException {
         /* Only the z-axis Label may not be drawn depending on the view mode */
         boolean drawnFlag = true;
         String parentId;
@@ -123,11 +124,12 @@ public class LabelManager {
      * @param parentAxes the label's parent Axes.
      * @param axesDrawer the Axes drawer used to draw the label's parent Axes.
      * @param drawnFlag a flag indicating whether the label must be drawn or not.
+     * @throws SciRendererException if the label is not drawable.
      */
-    public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, Axes parentAxes, AxesDrawer axesDrawer, boolean drawnFlag) {
-        Sprite labelSprite = getSprite(colorMap, label);
+    public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, Axes parentAxes, AxesDrawer axesDrawer, boolean drawnFlag) throws SciRendererException {
+        Texture labelSprite = getTexture(colorMap, label);
 
-        labelPositioner.setLabelSprite(labelSprite);
+        labelPositioner.setLabelTexture(labelSprite);
         labelPositioner.setDrawingTools(drawingTools);
         labelPositioner.setParentAxes(parentAxes);
         labelPositioner.setAutoPosition(label.getAutoPosition());
@@ -142,7 +144,7 @@ public class LabelManager {
         labelPositioner.positionLabel();
 
         Vector3d labelPos = labelPositioner.getAnchorPoint();
-        SpriteAnchorPosition labelAnchor = labelPositioner.getAnchorPosition();
+        AnchorPosition labelAnchor = labelPositioner.getAnchorPosition();
 
         /* Set the lower-left corner position if auto-positioned */
         if (label.getAutoPosition()) {
@@ -271,13 +273,13 @@ public class LabelManager {
      * @param label the given Scilab {@see Label}.
      * @return the SciRenderer {@see Sprite} corresponding to the given Scilab {@see Label}.
      */
-    public Sprite getSprite(final ColorMap colorMap, final Label label) {
-        Sprite sprite = spriteMap.get(label.getIdentifier());
-        if (sprite == null) {
-            sprite = createSprite(colorMap, label);
-            spriteMap.put(label.getIdentifier(), sprite);
+    public Texture getTexture(final ColorMap colorMap, final Label label) {
+        Texture texture = textureMap.get(label.getIdentifier());
+        if (texture == null) {
+            texture = createSprite(colorMap, label);
+            textureMap.put(label.getIdentifier(), texture);
         }
-        return sprite;
+        return texture;
     }
 
     /**
@@ -286,22 +288,22 @@ public class LabelManager {
      * @param label the given label.
      * @return a new sprite for the given label.
      */
-    private Sprite createSprite(final ColorMap colorMap, final Label label) {
-        LabelSpriteDrawer spriteDrawer = new LabelSpriteDrawer(spriteManager, colorMap, label);
-        Sprite sprite = spriteManager.createRotatableSprite(spriteDrawer.getWidth(), spriteDrawer.getHeight());
+    private Texture createSprite(final ColorMap colorMap, final Label label) {
+        LabelSpriteDrawer spriteDrawer = new LabelSpriteDrawer(colorMap, label);
+        Texture sprite = textureManager.createTexture();
         sprite.setDrawer(spriteDrawer);
         return sprite;
     }
 
     /**
-     * Disposes the sprite corresponding to the given id.
+     * Disposes the texture corresponding to the given id.
      * @param id the given id.
      */
     public void dispose(String id) {
-        Sprite sprite = spriteMap.get(id);
-        if (sprite != null) {
-            spriteManager.dispose(sprite);
-            spriteMap.remove(id);
+        Texture texture = textureMap.get(id);
+        if (texture != null) {
+            textureManager.dispose(texture);
+            textureMap.remove(id);
         }
     }
 
@@ -309,7 +311,7 @@ public class LabelManager {
      * Disposes all the label text sprites.
      */
     public void disposeAll() {
-        spriteManager.dispose(spriteMap.values());
-        spriteMap.clear();
+        textureManager.dispose(textureMap.values());
+        textureMap.clear();
     }
 }

@@ -13,13 +13,15 @@ package org.scilab.modules.renderer.JoGLView.mark;
 
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
+import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+
+import java.awt.Dimension;
 
 /**
  * @author Pierre Lando
@@ -35,7 +37,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab color map.
      * @return a mark sprite corresponding to the given scilab mark.
      */
-    public static Sprite getMarkSprite(SpriteManager spriteManager, Mark mark, ColorMap colorMap) {
+    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap) {
         int finalSize;
 
         /**
@@ -47,17 +49,7 @@ public class MarkSpriteFactory {
             finalSize = mark.getSize();
         }
 
-        /**
-         * Add a margin such that (0, 0) was pixel aligned.
-         */
-        int margin;
-        if (finalSize % 2 == 0) {
-            margin = 3;
-        } else {
-            margin = 2;
-        }
-
-        Sprite sprite = spriteManager.createSprite(finalSize + margin, finalSize + margin);
+        Texture sprite = spriteManager.createTexture();
         sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap));
 
         return sprite;
@@ -70,7 +62,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab colormap to use.
      * @return the sprite drawer corresponding to the given mark.
      */
-    private static SpriteDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap) {
+    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap) {
 
         final Appearance appearance = new Appearance();
         Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
@@ -108,7 +100,7 @@ public class MarkSpriteFactory {
     /**
      * Abstract class for all scilab mark sprites.
      */
-    private static abstract class ScilabSpriteDrawer implements SpriteDrawer {
+    private static abstract class ScilabSpriteDrawer implements TextureDrawer {
         protected final Appearance appearance;
         protected final int size;
 
@@ -119,7 +111,20 @@ public class MarkSpriteFactory {
 
         @Override
         public OriginPosition getOriginPosition() {
-            return OriginPosition.CENTER;
+            return TextureDrawer.OriginPosition.CENTER;
+        }
+
+        @Override
+        public Dimension getTextureSize() {
+
+            /** Add a margin such that (0, 0) was pixel aligned. */
+            int margin;
+            if (size % 2 == 0) {
+                margin = 3;
+            } else {
+                margin = 2;
+            }
+            return new Dimension(size + margin, size + margin);
         }
     }
 
@@ -127,24 +132,17 @@ public class MarkSpriteFactory {
      * Dot sprite
      * Scilab ID = 0
      */
-    private static class DotSpriteDrawer implements SpriteDrawer {
+    private static class DotSpriteDrawer extends ScilabSpriteDrawer {
         private final Color color;
-        private final int size;
-
 
         public DotSpriteDrawer(Color color, int size) {
+            super(null, size);
             this.color = color;
-            this.size = size;
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillDisc(0, 0, size, color);
-        }
-
-        @Override
-        public OriginPosition getOriginPosition() {
-            return OriginPosition.CENTER;
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillDisc(0, 0, size, color);
         }
     }
 
@@ -164,9 +162,9 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.drawPolyline(coordinate1, appearance);
-            spriteDrawingTools.drawPolyline(coordinate2, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.drawPolyline(coordinate1, appearance);
+            textureDrawingTools.drawPolyline(coordinate2, appearance);
         }
     }
 
@@ -186,9 +184,9 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.drawPolyline(coordinate1, appearance);
-            spriteDrawingTools.drawPolyline(coordinate2, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.drawPolyline(coordinate1, appearance);
+            textureDrawingTools.drawPolyline(coordinate2, appearance);
         }
     }
 
@@ -208,11 +206,11 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillDisc(0, 0, size, appearance.getFillColor());
-            spriteDrawingTools.drawCircle(0, 0, size, appearance);
-            spriteDrawingTools.drawPolyline(coordinate1, appearance);
-            spriteDrawingTools.drawPolyline(coordinate2, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillDisc(0, 0, size, appearance.getFillColor());
+            textureDrawingTools.drawCircle(0, 0, size, appearance);
+            textureDrawingTools.drawPolyline(coordinate1, appearance);
+            textureDrawingTools.drawPolyline(coordinate2, appearance);
         }
     }
 
@@ -220,11 +218,12 @@ public class MarkSpriteFactory {
      * Filled diamond sprite
      * Scilab ID = 4
      */
-    private static class FilledDiamondSpriteDrawer implements SpriteDrawer {
+    private static class FilledDiamondSpriteDrawer extends ScilabSpriteDrawer {
         private final Appearance appearance;
         private final int[] coordinates;
 
         public FilledDiamondSpriteDrawer(Color color, int size) {
+            super(null, size);
             int r = size / 2;
 
             appearance = new Appearance();
@@ -235,13 +234,8 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillPolygon(coordinates, appearance);
-        }
-
-        @Override
-        public OriginPosition getOriginPosition() {
-            return OriginPosition.CENTER;
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillPolygon(coordinates, appearance);
         }
     }
 
@@ -265,8 +259,8 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillPolygon(coordinates, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillPolygon(coordinates, appearance);
         }
     }
 
@@ -285,8 +279,8 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillPolygon(coordinates, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillPolygon(coordinates, appearance);
         }
     }
 
@@ -329,10 +323,10 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            super.draw(spriteDrawingTools);
-            spriteDrawingTools.drawPolyline(coordinate1, appearance);
-            spriteDrawingTools.drawPolyline(coordinate2, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            super.draw(textureDrawingTools);
+            textureDrawingTools.drawPolyline(coordinate1, appearance);
+            textureDrawingTools.drawPolyline(coordinate2, appearance);
         }
     }
 
@@ -347,9 +341,9 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillDisc(0, 0, size, appearance.getFillColor());
-            spriteDrawingTools.drawCircle(0, 0, size, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillDisc(0, 0, size, appearance.getFillColor());
+            textureDrawingTools.drawCircle(0, 0, size, appearance);
         }
     }
 
@@ -374,11 +368,11 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.drawPolyline(coordinate1, appearance);
-            spriteDrawingTools.drawPolyline(coordinate2, appearance);
-            spriteDrawingTools.drawPolyline(coordinate3, appearance);
-            spriteDrawingTools.drawPolyline(coordinate4, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.drawPolyline(coordinate1, appearance);
+            textureDrawingTools.drawPolyline(coordinate2, appearance);
+            textureDrawingTools.drawPolyline(coordinate3, appearance);
+            textureDrawingTools.drawPolyline(coordinate4, appearance);
         }
     }
 
@@ -396,8 +390,8 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillPolygon(coordinate, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillPolygon(coordinate, appearance);
         }
     }
 
@@ -465,8 +459,8 @@ public class MarkSpriteFactory {
         }
 
         @Override
-        public void draw(SpriteDrawingTools spriteDrawingTools) {
-            spriteDrawingTools.fillPolygon(coordinates, appearance);
+        public void draw(TextureDrawingTools textureDrawingTools) {
+            textureDrawingTools.fillPolygon(coordinates, appearance);
         }
     }
 }

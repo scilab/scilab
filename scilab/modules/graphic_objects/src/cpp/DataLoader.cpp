@@ -60,7 +60,7 @@ int getTextureHeight(char* id)
   }
 }
 
-int fillTextureData(char* id, float* buffer, int bufferLength)
+int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 {
   char* type;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
@@ -74,7 +74,7 @@ int fillTextureData(char* id, float* buffer, int bufferLength)
   }
 }
 
-int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height)
+int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
   char* type;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);

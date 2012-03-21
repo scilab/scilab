@@ -17,8 +17,8 @@ import org.scilab.forge.scirenderer.ruler.RulerDrawer;
 import org.scilab.forge.scirenderer.ruler.RulerSpriteFactory;
 import org.scilab.forge.scirenderer.ruler.graduations.AbstractGraduations;
 import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
@@ -96,7 +96,7 @@ public class AxisDrawer {
 
         DrawingTools drawingTools = drawerVisitor.getDrawingTools();
 
-        RulerDrawer rulerDrawer = new RulerDrawer(drawerVisitor.getCanvas().getSpriteManager());
+        RulerDrawer rulerDrawer = new RulerDrawer(drawerVisitor.getCanvas().getTextureManager());
         rulerDrawer.setSpriteFactory(new AxisSpriteFactory(axis, min, max));
         rulerDrawer.draw(drawingTools, rulerModel);
 
@@ -321,18 +321,18 @@ public class AxisDrawer {
         }
 
         @Override
-        public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
+        public Texture create(double value, DecimalFormat adaptedFormat, TextureManager spriteManager) {
             String label = getLabel(value);
             if (label != null) {
                 FormattedText formattedText = new FormattedText();
                 formattedText.setFont(axis.getFont());
                 formattedText.setText(getLabel(value));
 
-                FormattedTextSpriteDrawer spriteDrawer = new FormattedTextSpriteDrawer(drawerVisitor.getColorMap(), spriteManager, formattedText);
-                Sprite sprite = spriteManager.createSprite(spriteDrawer.getSpriteSize());
-                sprite.setDrawer(spriteDrawer);
-            
-                return sprite;
+                FormattedTextSpriteDrawer textureDrawer = new FormattedTextSpriteDrawer(drawerVisitor.getColorMap(), formattedText);
+                Texture texture = spriteManager.createTexture();
+                texture.setDrawer(textureDrawer);
+
+                return texture;
             } else {
                 return null;
             }

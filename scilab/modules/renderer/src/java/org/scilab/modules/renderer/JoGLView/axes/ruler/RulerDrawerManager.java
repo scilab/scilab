@@ -12,7 +12,7 @@
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
 
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
@@ -52,17 +52,15 @@ class RulerDrawerManager {
      */
     private final Map<String, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<String, RulerDrawer[]>();
 
-    /**
-     * The {@see SpriteManager} of the current {@see Canvas}.
-     */
-    private final SpriteManager spriteManager;
+    /** The {@see TextureManager} of the current {@see Canvas}. */
+    private final TextureManager textureManager;
 
     /**
      * Default constructor.
-     * @param spriteManager the {@see SpriteManager} of the current {@see Canvas}.
+     * @param textureManager the {@see TextureManager} of the current {@see Canvas}.
      */
-    public RulerDrawerManager(SpriteManager spriteManager) {
-        this.spriteManager = spriteManager;
+    public RulerDrawerManager(TextureManager textureManager) {
+        this.textureManager = textureManager;
     }
 
     /**
@@ -73,7 +71,7 @@ class RulerDrawerManager {
     public RulerDrawer[] get(Axes axes) {
         RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
         if (rulerSpriteManager == null) {
-            rulerSpriteManager = new RulerDrawer[]{new RulerDrawer(spriteManager), new RulerDrawer(spriteManager), new RulerDrawer(spriteManager)};
+            rulerSpriteManager = new RulerDrawer[]{new RulerDrawer(textureManager), new RulerDrawer(textureManager), new RulerDrawer(textureManager)};
             rulerSpriteManager[0].setSpriteFactory(new AxesRulerSpriteFactory(axes, 0));
             rulerSpriteManager[1].setSpriteFactory(new AxesRulerSpriteFactory(axes, 1));
             rulerSpriteManager[2].setSpriteFactory(new AxesRulerSpriteFactory(axes, 2));

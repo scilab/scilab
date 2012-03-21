@@ -15,8 +15,7 @@ package org.scilab.modules.renderer.JoGLView.label;
 
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -29,16 +28,15 @@ import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
  *    -refactoring
  * @author Pierre Lando
  */
-public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements SpriteDrawer {
+public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
 
      /**
      * Default constructor.
-     * @param spriteManager the sprite manager to use.
      * @param colorMap the color map to use.
      * @param label the scilab {@see Label} to draw.
      */
-    public LabelSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final Label label) {
-        super(spriteManager, colorMap, label);
+    public LabelSpriteDrawer(final ColorMap colorMap, final Label label) {
+        super(colorMap, label);
         /* Alignment factor set to left */
         setAlignmentFactor(0.0f);
 

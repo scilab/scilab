@@ -71,6 +71,19 @@ public :
     static void getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
 
     /**
+     * Outputs an RGB color directly mapped to a scalar value s.
+     * The output color is looked up in an RGB colormap, using s as a direct index.
+     * White and black are respectively output when s <= -3 and -3 < s < 0 ; s is also
+     * clamped to the colormap's upper bound (colormapSize-1). If s is a Nan value, black is also
+     * output.
+     * @param[in] the scalar value used as an index.
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     */
+    static void getDirectByteColor(double s, double* colormap, int colormapSize, unsigned char* returnedColor);
+
+    /**
      * Returns a colormap index from a scalar value s.
      * Indices corresponding to white and black are respectively output when -4 < s <= -3 and -3 < s < 0;
      * if s <= -4, the lower colormap index is returned (0).

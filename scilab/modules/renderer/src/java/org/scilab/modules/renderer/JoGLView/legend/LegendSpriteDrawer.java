@@ -14,8 +14,7 @@ package org.scilab.modules.renderer.JoGLView.legend;
 
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -28,16 +27,15 @@ import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
  * To do: refactoring.
  * @author Pierre Lando
  */
-public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements SpriteDrawer {
+public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
 
     /**
      * Default constructor.
-     * @param spriteManager the sprite manager to use.
      * @param colorMap the color map to use.
      * @param legend the scilab {@see Legend} to draw.
      */
-    LegendSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final Legend legend) {
-        super(spriteManager, colorMap, legend);
+    LegendSpriteDrawer(final ColorMap colorMap, final Legend legend) {
+        super(colorMap, legend);
         Appearance appearance = computeAppearance(colorMap, legend);
         setAppearance(appearance);
         setThickness((int) Math.ceil(appearance.getLineWidth()));

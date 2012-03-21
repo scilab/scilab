@@ -17,8 +17,8 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
+import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
@@ -95,9 +95,9 @@ public class ContouredObjectDrawer {
         drawingTools.draw(geometry, appearance);
 
         if (contouredObject.getMarkMode()) {
-                Sprite sprite = markManager.getMarkSprite(contouredObject, colorMap);
+                Texture texture = markManager.getMarkSprite(contouredObject, colorMap);
                 ElementsBuffer positions = dataManager.getVertexBuffer(contouredObject.getIdentifier());
-                drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
+                drawingTools.draw(texture, AnchorPosition.CENTER, positions);
         }
     }
 }

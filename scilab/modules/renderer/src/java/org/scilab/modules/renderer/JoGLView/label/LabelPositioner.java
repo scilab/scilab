@@ -12,13 +12,15 @@
 package org.scilab.modules.renderer.JoGLView.label;
 
 import org.scilab.forge.scirenderer.DrawingTools;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
+import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
+
+import java.awt.Dimension;
 
 /**
  * LabelPositioner class.
@@ -79,10 +81,10 @@ public abstract class LabelPositioner {
         protected Vector3d anchorPoint;
 
         /** The label's sprite anchor position. */
-        protected SpriteAnchorPosition anchorPosition;
+        protected AnchorPosition anchorPosition;
 
         /** The label's associated sprite. */
-        protected Sprite labelSprite;
+        protected Texture labelTexture;
 
         /** The current drawing tools. */
         protected DrawingTools drawingTools;
@@ -123,8 +125,8 @@ public abstract class LabelPositioner {
                 userRotationAngle = 0.0;
                 labelDisplacement = new Vector3d(0.0, 0.0, 0.0);
                 anchorPoint = new Vector3d(0.0, 0.0, 0.0);
-                anchorPosition = SpriteAnchorPosition.LOWER_LEFT;
-                labelSprite = null;
+                anchorPosition = AnchorPosition.LOWER_LEFT;
+                labelTexture = null;
                 drawingTools = null;
                 parentAxes = null;
                 /* Labels are drawn in box coordinates as a default. */
@@ -260,16 +262,16 @@ public abstract class LabelPositioner {
          * Returns the label's sprite anchor position.
          * @return the labe's sprite anchor position.
          */
-        public SpriteAnchorPosition getAnchorPosition() {
+        public AnchorPosition getAnchorPosition() {
                 return anchorPosition;
         }
 
         /**
-         * Sets the label's associated sprite.
-         * @param labelSprite the sprite to set.
+         * Sets the label's associated texture.
+         * @param labelTexture the texture to set.
          */
-        public void setLabelSprite(Sprite labelSprite) {
-                this.labelSprite = labelSprite;
+        public void setLabelTexture(Texture labelTexture) {
+                this.labelTexture = labelTexture;
         }
 
         /**
@@ -368,8 +370,8 @@ public abstract class LabelPositioner {
          * Returns the automatically computed sprite anchor position.
          * @return the sprite anchor position.
          */
-        protected SpriteAnchorPosition getAutoAnchorPosition() {
-                return SpriteAnchorPosition.LEFT;
+        protected AnchorPosition getAutoAnchorPosition() {
+                return AnchorPosition.LEFT;
         }
 
         /**
@@ -380,7 +382,7 @@ public abstract class LabelPositioner {
                 if (autoPosition) {
                         anchorPosition = getAutoAnchorPosition();
                 } else {
-                        anchorPosition = SpriteAnchorPosition.LOWER_LEFT;
+                        anchorPosition = AnchorPosition.LOWER_LEFT;
                 }
         }
 
@@ -396,24 +398,24 @@ public abstract class LabelPositioner {
         private Vector3d computeLowerLeftCornerPosition(Vector3d anchorPoint, Vector3d halfWidth, Vector3d halfHeight) {
                 Vector3d returnedPosition = new Vector3d(anchorPoint);
 
-                if (anchorPosition == SpriteAnchorPosition.LEFT) {
+                if (anchorPosition == AnchorPosition.LEFT) {
                         returnedPosition = returnedPosition.minus(halfHeight);
-                } else if (anchorPosition == SpriteAnchorPosition.RIGHT) {
+                } else if (anchorPosition == AnchorPosition.RIGHT) {
                         returnedPosition = returnedPosition.minus(halfWidth.times(2.0));
                         returnedPosition = returnedPosition.minus(halfHeight);
-                } else if (anchorPosition == SpriteAnchorPosition.UP) {
+                } else if (anchorPosition == AnchorPosition.UP) {
                         returnedPosition = returnedPosition.minus(halfWidth);
                         returnedPosition = returnedPosition.minus(halfHeight.times(2.0));
-                } else if (anchorPosition == SpriteAnchorPosition.DOWN) {
+                } else if (anchorPosition == AnchorPosition.DOWN) {
                         returnedPosition = returnedPosition.minus(halfWidth);
-                } else if (anchorPosition == SpriteAnchorPosition.UPPER_LEFT) {
+                } else if (anchorPosition == AnchorPosition.UPPER_LEFT) {
                         returnedPosition = returnedPosition.minus(halfHeight.times(2.0));
-                } else if (anchorPosition == SpriteAnchorPosition.UPPER_RIGHT) {
+                } else if (anchorPosition == AnchorPosition.UPPER_RIGHT) {
                         returnedPosition = returnedPosition.minus(halfWidth.times(2.0));
                         returnedPosition = returnedPosition.minus(halfHeight.times(2.0));
-                } else if (anchorPosition == SpriteAnchorPosition.LOWER_LEFT) {
+                } else if (anchorPosition == AnchorPosition.LOWER_LEFT) {
                         // Do nothing: in this case, the positions of the anchor point and the lower-left corner are equal.
-                } else if (anchorPosition == SpriteAnchorPosition.LOWER_RIGHT) {
+                } else if (anchorPosition == AnchorPosition.LOWER_RIGHT) {
                         returnedPosition = returnedPosition.minus(halfWidth.times(2.0));
                 }
 
@@ -473,8 +475,9 @@ public abstract class LabelPositioner {
                     winRotation = TransformationFactory.getIdentity();
                 }
 
-                projHalfWidth = new Vector3d(0.5 * (double) labelSprite.getWidth(), 0.0, 0.0);
-                projHalfHeight = new Vector3d(0.0, 0.5 * (double) labelSprite.getHeight(), 0.0);
+                Dimension textureSize = labelTexture.getDataProvider().getTextureSize();
+                projHalfWidth = new Vector3d(0.5 * textureSize.getWidth(), 0.0, 0.0);
+                projHalfHeight = new Vector3d(0.0, 0.5 * textureSize.getHeight(), 0.0);
 
                 projHalfWidth = winRotation.projectDirection(projHalfWidth);
                 projHalfHeight = winRotation.projectDirection(projHalfHeight);

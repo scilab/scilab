@@ -12,10 +12,9 @@ package org.scilab.modules.renderer.JoGLView.util;
 
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
-import org.scilab.forge.scirenderer.sprite.TextEntity;
+import org.scilab.forge.scirenderer.texture.TextEntity;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
+import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Font;
@@ -29,12 +28,12 @@ import java.awt.Dimension;
 /**
  * @author Pierre Lando
  */
-public class FormattedTextSpriteDrawer implements SpriteDrawer {
+public class FormattedTextSpriteDrawer implements TextureDrawer {
     private final TextEntity textEntity;
     private final Dimension dimension;
     private final Icon icon;
 
-    public FormattedTextSpriteDrawer(ColorMap colorMap, SpriteManager spriteManager, FormattedText formattedText) {
+    public FormattedTextSpriteDrawer(ColorMap colorMap, FormattedText formattedText) {
         if (formattedText != null) {
             String text = formattedText.getText();
             Font font = formattedText.getFont();
@@ -61,7 +60,7 @@ public class FormattedTextSpriteDrawer implements SpriteDrawer {
                 textEntity.setTextUseFractionalMetrics(font.getFractional());
                 textEntity.setTextAntiAliased(false);
 
-                dimension = spriteManager.getSize(textEntity);
+                dimension = textEntity.getSize();
             }
         } else {
             icon = null;
@@ -71,12 +70,17 @@ public class FormattedTextSpriteDrawer implements SpriteDrawer {
     }
 
     @Override
-    public void draw(SpriteDrawingTools drawingTools) {
+    public void draw(TextureDrawingTools drawingTools) {
         if (textEntity != null) {
             drawingTools.draw(textEntity, 0, 0);
         } else if (icon != null) {
             drawingTools.draw(icon, 0, 0);
         }
+    }
+
+    @Override
+    public Dimension getTextureSize() {
+        return new Dimension(dimension);
     }
 
     @Override

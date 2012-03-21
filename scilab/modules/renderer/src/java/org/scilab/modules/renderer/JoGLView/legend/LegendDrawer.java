@@ -17,26 +17,27 @@ import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
-import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
+import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class LegendDrawer {
         private final DrawerVisitor visitor;
 
         /** The SpriteManager used */
-        private final SpriteManager spriteManager;
+        private final TextureManager textureManager;
 
         /** The MarkSpriteManager used */
         private final MarkSpriteManager markManager;
@@ -116,18 +117,16 @@ public class LegendDrawer {
         private IndicesBuffer rectangleOutlineIndices;
 
         /** The map storing legend text sprites */
-        private Map<String, Sprite> textSpriteMap;
+        private Map<String, Texture> textureMap;
 
         /**
          * Constructor.
          * @param visitor the DrawerVisitor {@see DrawerVisitor}.
-         * @param spriteManager the SpriteManager {@see SpriteManager}.
-         * @param markManager the MarkSpriteManager {@see MarkSpriteManager}.
          */
-        public LegendDrawer(DrawerVisitor visitor, SpriteManager spriteManager, MarkSpriteManager markManager) {
+        public LegendDrawer(DrawerVisitor visitor) {
                 this.visitor = visitor;
-                this.spriteManager = spriteManager;
-                this.markManager = markManager;
+                this.textureManager = visitor.getCanvas().getTextureManager();
+                this.markManager = visitor.getMarkManager();
 
                 rectangleVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
                 lineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
@@ -136,7 +135,7 @@ public class LegendDrawer {
                 rectangleIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
                 rectangleOutlineIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
 
-                textSpriteMap = new ConcurrentHashMap<String, Sprite>();
+                textureMap = new ConcurrentHashMap<String, Texture>();
 
                 int[] lineIndexData = new int[]{0, 1, 1, 2};
                 lineIndices.setData(lineIndexData);
@@ -145,6 +144,7 @@ public class LegendDrawer {
         /**
          * Draws the given Legend.
          * @param legend the Legend to draw.
+         * @throws SciRendererException if the draw fail.
          */
         public void draw(Legend legend) throws SciRendererException {
                 /* The coordinates of the legend box's lower-left corner */
@@ -193,10 +193,10 @@ public class LegendDrawer {
                         canvasHeight = 1;
                 }
 
-                Sprite legendSprite = getSprite(colorMap, legend);
-
-                double normSpriteWidth = (double) legendSprite.getWidth() / (double) canvasWidth;
-                double normSpriteHeight = (double) legendSprite.getHeight() / (double) canvasHeight;
+                Texture legendSprite = getTexture(colorMap, legend);
+                Dimension textureSize = legendSprite.getDataProvider().getTextureSize();
+                double normSpriteWidth = textureSize.getWidth() / (double) canvasWidth;
+                double normSpriteHeight = textureSize.getHeight() / (double) canvasHeight;
 
                 double lineWidth;
 
@@ -400,7 +400,7 @@ public class LegendDrawer {
                 /* Legend text */
                 float [] spritePosition = new float[]{lineVertexData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
 
-                drawingTools.draw(legendSprite, SpriteAnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
+                drawingTools.draw(legendSprite, AnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
 
                 /* Restore the transformation stacks */
                 modelViewStack.pop();
@@ -508,12 +508,12 @@ public class LegendDrawer {
             }
 
             if (polyline.getMarkMode()) {
-                Sprite markSprite = markManager.getMarkSprite(polyline, colorMap);
+                Texture markTexture = markManager.getMarkSprite(polyline, colorMap);
 
                 if (barDrawn) {
-                    drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, barVertices);
+                    drawingTools.draw(markTexture, AnchorPosition.CENTER, barVertices);
                 } else {
-                    drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
+                    drawingTools.draw(markTexture, AnchorPosition.CENTER, lineVertices);
                 }
             }
 
@@ -525,7 +525,7 @@ public class LegendDrawer {
          * @param property the property to update.
          */
         public void update(String id, String property) {
-                if (textSpriteMap.containsKey(id)) {
+                if (textureMap.containsKey(id)) {
                         if (SPRITE_PROPERTIES.contains(property)) {
                                 dispose(id);
                         }
@@ -537,45 +537,42 @@ public class LegendDrawer {
          * @param id the legend id.
          */
         public void dispose(String id) {
-                Sprite textSprite = textSpriteMap.get(id);
-
-                if (textSprite != null) {
-                        spriteManager.dispose(textSprite);
-                        textSpriteMap.remove(id);
-                }
+            Texture texture = textureMap.get(id);
+            if (texture != null) {
+                textureManager.dispose(texture);
+                    textureMap.remove(id);
+            }
         }
 
         /**
          * Disposes all the Legend resources.
          */
         public void disposeAll() {
-                visitor.getCanvas().getBuffersManager().dispose(rectangleVertices);
-                visitor.getCanvas().getBuffersManager().dispose(lineVertices);
-                visitor.getCanvas().getBuffersManager().dispose(barVertices);
-                visitor.getCanvas().getBuffersManager().dispose(lineIndices);
-                visitor.getCanvas().getBuffersManager().dispose(rectangleIndices);
-                visitor.getCanvas().getBuffersManager().dispose(rectangleOutlineIndices);
+            visitor.getCanvas().getBuffersManager().dispose(rectangleVertices);
+            visitor.getCanvas().getBuffersManager().dispose(lineVertices);
+            visitor.getCanvas().getBuffersManager().dispose(barVertices);
+            visitor.getCanvas().getBuffersManager().dispose(lineIndices);
+            visitor.getCanvas().getBuffersManager().dispose(rectangleIndices);
+            visitor.getCanvas().getBuffersManager().dispose(rectangleOutlineIndices);
 
-                spriteManager.dispose(textSpriteMap.values());
-                textSpriteMap.clear();
+            textureManager.dispose(textureMap.values());
+                textureMap.clear();
         }
 
         /**
-         * Returns the legend text sprite.
+         * Returns the legend text texture.
          * @param colorMap the color map.
          * @param legend the Legend.
          * @return the text sprite.
          */
-        private Sprite getSprite(ColorMap colorMap, Legend legend) {
-                Sprite textSprite = textSpriteMap.get(legend.getIdentifier());
-
-                if (textSprite == null) {
-                        this.legendSpriteDrawer = new LegendSpriteDrawer(this.spriteManager, colorMap, legend);
-                        textSprite = spriteManager.createSprite(legendSpriteDrawer.getWidth(), legendSpriteDrawer.getHeight());
-                        textSprite.setDrawer(legendSpriteDrawer);
-                        textSpriteMap.put(legend.getIdentifier(), textSprite);
-                }
-
-                return textSprite;
+        private Texture getTexture(ColorMap colorMap, Legend legend) {
+            Texture texture = textureMap.get(legend.getIdentifier());
+            if (texture == null) {
+                this.legendSpriteDrawer = new LegendSpriteDrawer(colorMap, legend);
+                texture = textureManager.createTexture();
+                texture.setDrawer(legendSpriteDrawer);
+                textureMap.put(legend.getIdentifier(), texture);
+            }
+            return texture;
         }
 }

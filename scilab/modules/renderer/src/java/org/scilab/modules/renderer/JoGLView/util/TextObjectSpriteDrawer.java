@@ -17,10 +17,9 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
-import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
-import org.scilab.forge.scirenderer.sprite.TextEntity;
+import org.scilab.forge.scirenderer.texture.TextEntity;
+import org.scilab.forge.scirenderer.texture.TextureDrawer;
+import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
@@ -34,14 +33,13 @@ import java.awt.Font;
  * A {@see SpriteDrawer} who draw a Scilab {@see Text} object.
  * @author Pierre Lando
  */
-public class TextObjectSpriteDrawer implements SpriteDrawer {
+public class TextObjectSpriteDrawer implements TextureDrawer {
 
     /**
      * Scilab text margin.
      */
     private static final int MARGIN = 2;
 
-    private final SpriteManager spriteManager;
     private Appearance appearance;
     private int thickness;
     private final Object[][] entities;
@@ -56,12 +54,10 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
 
     /**
      * Default constructor.
-     * @param spriteManager the sprite manager to use.
      * @param colorMap the color map to use.
      * @param textObject the scilab {@see Text} to draw.
      */
-    public TextObjectSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final TextObject textObject) {
-        this.spriteManager = spriteManager;
+    public TextObjectSpriteDrawer(final ColorMap colorMap, final TextObject textObject) {
         this.spaceWidth = computeSpaceWidth();
 
         String[][] stringArray = computeTextData(textObject);
@@ -88,13 +84,11 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
     /**
      * Constructor.
      * Specifies a scale factor used to scale the text matrix.
-     * @param spriteManager the sprite manager to use.
      * @param colorMap the color map to used.
      * @param textObject the scilab {@see TextObject} to draw.
      * @param scaleFactor the scale factor to apply.
      */
-    public TextObjectSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final TextObject textObject, double scaleFactor) {
-        this.spriteManager = spriteManager;
+    public TextObjectSpriteDrawer(final ColorMap colorMap, final TextObject textObject, double scaleFactor) {
         this.spaceWidth = computeSpaceWidth();
 
         String[][] stringArray = computeTextData(textObject);
@@ -145,7 +139,7 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
                         textEntity.setTextColor(textColor);
                         textEntity.setFont(font);
                         entities[column][line] = textEntity;
-                        dimension = spriteManager.getSize(textEntity);
+                        dimension = textEntity.getSize();
                     }
 
                     if (dimension != null) {
@@ -178,7 +172,7 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
     }
 
     @Override
-    public void draw(SpriteDrawingTools drawingTools) {
+    public void draw(TextureDrawingTools drawingTools) {
         // Draw background.
         if (appearance.getFillColor().getAlphaAsFloat() != 0) {
             drawingTools.clear(appearance.getFillColor());
@@ -197,7 +191,7 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
                 if (entity != null) {
                     if (entity instanceof TextEntity) {
                         TextEntity textEntity = (TextEntity) entity;
-                        double deltaX = alignmentFactor * (columnWidth[column] - spriteManager.getSize(textEntity).getWidth());
+                        double deltaX = alignmentFactor * (columnWidth[column] - textEntity.getSize().getWidth());
                         drawingTools.draw(textEntity, (int) (x + deltaX), y);
                         y += lineHeight[line] + currentMargin;
                         line++;
@@ -228,6 +222,11 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
     @Override
     public OriginPosition getOriginPosition() {
         return OriginPosition.UPPER_LEFT;
+    }
+
+    @Override
+    public Dimension getTextureSize() {
+        return new Dimension(width, height);
     }
 
     /**
@@ -330,7 +329,7 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
      */
     private int computeSpaceWidth() {
         TextEntity spaceText = new TextEntity("_");
-        return (int) Math.ceil(spriteManager.getSize(spaceText).getWidth());
+        return (int) Math.ceil(spaceText.getSize().getWidth());
     }
 
     /**

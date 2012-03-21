@@ -13,8 +13,10 @@
 #ifndef DATA_LOADER_HXX
 #define DATA_LOADER_HXX
 
+#ifdef __cplusplus
 extern "C"
 {
+#endif
 
   /**
    * Return the texture width for the given object.
@@ -37,7 +39,7 @@ extern "C"
    * @param[in] the buffer length in number of elements.
    * @return the length of writed data.
    */
-  int fillTextureData(char *id, float* buffer, int bufferLength);
+  int fillTextureData(char *id, unsigned char* buffer, int bufferLength);
 
   /**
    * Fill the given buffer with sub-texture data.
@@ -50,7 +52,7 @@ extern "C"
    * @param[in] the length of the sub-texture.
    * @return the length of writed data.
    */
-  int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height);
+  int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height);
 
   /**
    * Return the number of data elements for the given object.
@@ -70,7 +72,7 @@ extern "C"
    * @param[in] the conversion translation factor to apply to data.
    * @param[in] the bit mask specifying whether logarithmic coordinates are used.
    */
-  void fillVertices(char* id, float* BUFF, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+  void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
 
   /**
    * Fill the given buffer with color data from the given object.
@@ -79,7 +81,7 @@ extern "C"
    * @param[in] the buffer length in number of elements.
    * @param[in] the number of coordinate taken by one element in the buffer (3 for RGB, 4 for RGBA).
    */
-  void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize);
+  void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
 
   /**
    * Fill the given buffer with texture coordinates data from the given object.
@@ -104,7 +106,7 @@ extern "C"
    * @param[in] the bit mask specifying whether logarithmic coordinates are used.
    * @return the number of indices actually written.
    */
-  int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
+  int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
 
   /**
    * Return the number of indices for the wire of the given object.
@@ -121,7 +123,7 @@ extern "C"
    * @param[in] the bit mask specifying whether logarithmic coordinates are used.
    * @return the number of indices actually written.
    */
-  int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
+  int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask);
 
   /**
    * Return the number of mark indices of the given object.
@@ -137,9 +139,10 @@ extern "C"
    * @param[in] the buffer length.
    * @return the number of indices actually written.
    */
-  int fillMarkIndices(char* id, int* BUFF, int bufferLength);
+  int fillMarkIndices(char* id, int* buffer, int bufferLength);
 
-}
+#ifdef __cplusplus
+} //extern "C"
+#endif
 
 #endif /* DATA_LOADER_HXX */
-

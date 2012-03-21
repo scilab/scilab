@@ -17,6 +17,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
@@ -65,18 +66,19 @@ public class MainDataLoader {
         DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
     }
 
-    public static void fillTextureData(String id, FloatBuffer buffer, int bufferLength) {
+    public static void fillTextureData(String id, ByteBuffer buffer, int bufferLength) {
         DataLoader.fillTextureData(id, buffer, bufferLength);
     }
 
-    public static void fillTextureData(String identifier, FloatBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+    public static void fillTextureData(String identifier, ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
         DataLoader.fillSubTextureData(identifier, buffer, bufferLength, x, y, width, height);
     }
 
     /**
      * Returns the number of data elements for the given object.
-     * @param the id of the given object.
+     * @param id id of the given object.
      * @return the number of data elements.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getDataSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -94,13 +96,14 @@ public class MainDataLoader {
 
     /**
      * Fills the given buffer with vertex data from the given object.
-     * @param the id of the given object.
-     * @param the buffer to fill.
-     * @param the number of coordinates taken by one element in the buffer.
-     * @param the bit mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
-     * @param the conversion scale factor to apply to data.
-     * @param the conversion translation value to apply to data.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @param id id of the given object.
+     * @param buffer buffer to fill.
+     * @param elementsSize number of coordinates taken by one element in the buffer.
+     * @param coordinateMask bit mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param scale conversion scale factor to apply to data.
+     * @param translation conversion translation value to apply to data.
+     * @param logMask bit mask specifying whether logarithmic coordinates are used.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
             int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
@@ -119,9 +122,10 @@ public class MainDataLoader {
 
     /**
      * Fills the given buffer with color data from the given object.
-     * @param the id of the given object.
-     * @param the buffer to fill.
-     * @param the number of components taken by one element in the buffer (3 or 4).
+     * @param id id of the given object.
+     * @param buffer buffer to fill.
+     * @param elementsSize number of components taken by one element in the buffer (3 or 4).
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static void fillColors(String id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -139,8 +143,9 @@ public class MainDataLoader {
 
     /**
      * Returns the number of indices for the given object.
-     * @param the id of the given object.
+     * @param id id of the given object.
      * @return the object's number of indices.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getIndicesSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -158,10 +163,11 @@ public class MainDataLoader {
 
     /**
      * Fills the given buffer with indices data of the given object.
-     * @param the id of the given object.
-     * @param the buffer to fill.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @param id id of the given object.
+     * @param buffer buffer to fill.
+     * @param logMask bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -178,9 +184,10 @@ public class MainDataLoader {
     }
 
     /**
-     * Returns the number of wireframe indices of the given object.
-     * @param the id of the given object.
+     * Returns the number of wire-frame indices of the given object.
+     * @param id id of the given object.
      * @return the object's number of indices.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getWireIndicesSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -198,11 +205,12 @@ public class MainDataLoader {
     }
 
     /**
-     * Fills the given buffer with wireframe index data of the given object.
-     * @param the id of the given object.
-     * @param the buffer to fill.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * Fills the given buffer with wire-frame index data of the given object.
+     * @param id id of the given object.
+     * @param buffer buffer to fill.
+     * @param logMask bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
+     * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillWireIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
@@ -221,7 +229,7 @@ public class MainDataLoader {
     /**
      * Returns the number of mark indices of the given object.
      * To implement.
-     * @param the id of the given object.
+     * @param id id of the given object.
      * @return the number of mark indices.
      */
     public static int getMarkIndicesSize(String id) {
@@ -231,8 +239,8 @@ public class MainDataLoader {
     /**
      * Fills the given buffer with mark index data of the given object.
      * To implement.
-     * @param the id of the given object.
-     * @param the buffer to fill.
+     * @param id id of the given object.
+     * @param buffer buffer to fill.
      * @return the number of indices actually written.
      */
     public static int fillMarkIndices(String id, IntBuffer buffer) {

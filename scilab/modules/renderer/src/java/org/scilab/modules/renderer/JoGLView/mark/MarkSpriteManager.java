@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -8,11 +8,10 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
-
 package org.scilab.modules.renderer.JoGLView.mark;
 
-import org.scilab.forge.scirenderer.sprite.Sprite;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
@@ -32,20 +31,20 @@ public class MarkSpriteManager {
     /**
      * The SciRender sprite manager.
      */
-    private final SpriteManager spriteManager;
+    private final TextureManager textureManager;
 
     /**
      * The sprite map.
      */
-    private final Map<String, Sprite> spriteMap = new ConcurrentHashMap<String, Sprite>();
+    private final Map<String, Texture> spriteMap = new ConcurrentHashMap<String, Texture>();
 
 
     /**
      * Default constructor.
-     * @param spriteManager the sprite manager to use.
+     * @param textureManager the texture manager to use.
      */
-    public MarkSpriteManager(SpriteManager spriteManager) {
-        this.spriteManager = spriteManager;
+    public MarkSpriteManager(TextureManager textureManager) {
+        this.textureManager = textureManager;
     }
 
 
@@ -56,11 +55,11 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Sprite getMarkSprite(ContouredObject contouredObject, ColorMap colorMap) {
+    public Texture getMarkSprite(ContouredObject contouredObject, ColorMap colorMap) {
         String id = contouredObject.getIdentifier();
-        Sprite sprite = spriteMap.get(id);
+        Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(spriteManager, contouredObject.getMark(), colorMap);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -73,10 +72,10 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Sprite getMarkSprite(String id, Mark mark, ColorMap colorMap) {
-        Sprite sprite = spriteMap.get(id);
+    public Texture getMarkSprite(String id, Mark mark, ColorMap colorMap) {
+        Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(spriteManager, mark, colorMap);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -103,8 +102,8 @@ public class MarkSpriteManager {
      * @param id the given id.
      */
     public void dispose(String id) {
-        Sprite sprite = spriteMap.get(id);
-        spriteManager.dispose(sprite);
+        Texture sprite = spriteMap.get(id);
+        textureManager.dispose(sprite);
         spriteMap.remove(id);
     }
 
@@ -112,7 +111,7 @@ public class MarkSpriteManager {
      * Dispose all the mark sprite.
      */
     public void disposeAll() {
-        spriteManager.dispose(spriteMap.values());
+        textureManager.dispose(spriteMap.values());
         spriteMap.clear();
     }
 }
