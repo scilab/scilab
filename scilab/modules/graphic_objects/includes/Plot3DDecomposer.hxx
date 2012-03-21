@@ -66,7 +66,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
      * @param[in] the lower-left corner's y index.
-     * @param[in] the facet vertices' indices (4-element array: (i,j), (i+1,j), (i,j+1) and (i+1,j+1) indices).
+     * @param[in] the facet vertices' indices (4-element array: (i,j), (i+1,j), (i+1,j+1) and (i,j+1) indices).
      * @param[out] the triangles' vertex indices (6-element array: two consecutive triplets).
      */
     virtual void getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,

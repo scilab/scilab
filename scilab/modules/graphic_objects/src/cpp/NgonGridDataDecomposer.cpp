@@ -339,13 +339,13 @@ void NgonGridDataDecomposer::getFacetCoordinates(double* x, double* y, double*z,
     vertices[1][1] = y[j];
     vertices[1][2] = getZCoordinate(z, numX, numY, i+1, j);
 
-    vertices[2][0] = x[i];
+    vertices[2][0] = x[i+1];
     vertices[2][1] = y[j+1];
-    vertices[2][2] = getZCoordinate(z, numX, numY, i, j+1);
+    vertices[2][2] = getZCoordinate(z, numX, numY, i+1, j+1);
 
-    vertices[3][0] = x[i+1];
+    vertices[3][0] = x[i];
     vertices[3][1] = y[j+1];
-    vertices[3][2] = getZCoordinate(z, numX, numY, i+1, j+1);
+    vertices[3][2] = getZCoordinate(z, numX, numY, i, j+1);
 }
 
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j)
@@ -521,15 +521,15 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
 #if PER_VERTEX_VALUES
                 facetVertexIndices[0] = ij;
                 facetVertexIndices[1] = ip1j;
-                facetVertexIndices[2] = ijp1;
-                facetVertexIndices[3] = ip1jp1;
+                facetVertexIndices[2] = ip1jp1;
+                facetVertexIndices[3] = ijp1;
 #else
                 firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
 
                 facetVertexIndices[0] = firstVertexIndex;
                 facetVertexIndices[1] = firstVertexIndex+1;
-                facetVertexIndices[2] = firstVertexIndex+2;
-                facetVertexIndices[3] = firstVertexIndex+3;
+                facetVertexIndices[2] = firstVertexIndex+3;
+                facetVertexIndices[3] = firstVertexIndex+2;
 #endif
 
                 getFacetTriangles(x, y, z, numX, numY, i, j, facetVertexIndices, triangleVertexIndices);
@@ -562,10 +562,10 @@ void NgonGridDataDecomposer::getFacetTriangles(double* x, double* y, double* z, 
     /* Facets are plane: they are all decomposed the same way */
     triangleVertexIndices[0] = facetVertexIndices[0];
     triangleVertexIndices[1] = facetVertexIndices[1];
-    triangleVertexIndices[2] = facetVertexIndices[3];
+    triangleVertexIndices[2] = facetVertexIndices[2];
     triangleVertexIndices[3] = facetVertexIndices[0];
-    triangleVertexIndices[4] = facetVertexIndices[3];
-    triangleVertexIndices[5] = facetVertexIndices[2];
+    triangleVertexIndices[4] = facetVertexIndices[2];
+    triangleVertexIndices[5] = facetVertexIndices[3];
 }
 
 int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)

@@ -116,6 +116,16 @@ public :
      * @param[out] the triangle indices (v0, v1, v2), (v3, v4, v5).
      */
     static void getDecomposedRectangleTriangleIndices(int* indices);
+
+    /**
+     * Decomposes a quadrilateral facet into two triangles and outputs the resulting vertex indices.
+     * As there are two possible decompositions, it chooses the one which has the most coplanar triangles.
+     * The output triangles' vertex indices are in counter-clockwise order.
+     * @param[in] the facet vertices (4 (x,y,z) triplets, in counter-clockwise order).
+     * @param[in] the facet vertices' indices (4 elements, in counter-clockwise order).
+     * @param[out] the triangles' vertex indices (6 elements: two consecutive index triplets).
+     */
+    static void getDecomposedQuadTriangleIndices(double vertices[4][3], int* facetVertexIndices, int* triangleVertexIndices);
 };
 
 #endif

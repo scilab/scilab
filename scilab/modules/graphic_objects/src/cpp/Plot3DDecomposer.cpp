@@ -70,117 +70,16 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
     return zij;
 }
 
-/* To do: use a Vector3d class to perform vector operations. */
 void Plot3DDecomposer::getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
     int* facetVertexIndices, int* triangleVertexIndices)
 {
-    /* The coordinates of the facet's vertices: (i,j), (i+1,j), (i,j+1), (i+1,j+1) */
     double vertices[4][3];
 
-    /* The two decompositions' midpoints */
-    double mid0[3];
-    double mid1[3];
-
-    /* The vectors from one midpoint to its opposite vertices */
-    double mo0[3];
-    double mo1[3];
-
-    double nmo0;
-    double nmo1;
-
-    double dot0;
-    double dot1;
-
-    double denom;
-
-    /*
-     * Two decompositions are possible: either (v0,v1,v3) and (v0,v3,v2) or (v1,v3,v2) and (v1,v2,v0).
-     * The best one is the one that yields the most coplanar triangles. To estimate this, for each configuration,
-     * we compute the midpoint of the triangles' shared edge, which are respectively mid0 and mid1.
-     * The angles (v1 mid0 v2) and (v3 mid1 v0) give an approximation of the angles between the two triangles' planes
-     * for respectively the first and second condigurations.
-     */
-
+    /* Gets the facet's vertices: (i,j), (i+1,j), (i+1,j+1), (i,j+1) */
     getFacetCoordinates(x, y, z, numX, numY, i, j, vertices);
 
-    mid0[0] = 0.5*(vertices[0][0] + vertices[3][0]);
-    mid0[1] = 0.5*(vertices[0][1] + vertices[3][1]);
-    mid0[2] = 0.5*(vertices[0][2] + vertices[3][2]);
-    mid1[0] = 0.5*(vertices[1][0] + vertices[2][0]);
-    mid1[1] = 0.5*(vertices[1][1] + vertices[2][1]);
-    mid1[2] = 0.5*(vertices[1][2] + vertices[2][2]);
-
-    /* 1st decomposition */
-
-    /* mo0 = v1 - mid0 */
-    mo0[0] = vertices[1][0] - mid0[0];
-    mo0[1] = vertices[1][1] - mid0[1];
-    mo0[2] = vertices[1][2] - mid0[2];
-
-    /* mo1 = v2 - mid0 */
-    mo1[0] = vertices[2][0] - mid0[0];
-    mo1[1] = vertices[2][1] - mid0[1];
-    mo1[2] = vertices[2][2] - mid0[2];
-
-    nmo0 = mo0[0]*mo0[0] + mo0[1]*mo0[1] + mo0[2]*mo0[2];
-    nmo1 = mo1[0]*mo1[0] + mo1[1]*mo1[1] + mo1[2]*mo1[2];
-
-    if (nmo0 * nmo1 > 0.0)
-    {
-        denom = DecompositionUtils::getSquareRoot(nmo0*nmo1);
-    }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot0 = (mo0[0]*mo1[0] + mo0[1]*mo1[1] + mo0[2]*mo1[2]) / denom;
-
-    /* 2nd decomposition */
-
-    /* mo0 = v3 - mid1 */
-    mo0[0] = vertices[3][0] - mid1[0];
-    mo0[1] = vertices[3][1] - mid1[1];
-    mo0[2] = vertices[3][2] - mid1[2];
-
-    /* mo1 = v0 - mid1 */
-    mo1[0] = vertices[0][0] - mid1[0];
-    mo1[1] = vertices[0][1] - mid1[1];
-    mo1[2] = vertices[0][2] - mid1[2];
-
-    nmo0 = mo0[0]*mo0[0] + mo0[1]*mo0[1] + mo0[2]*mo0[2];
-    nmo1 = mo1[0]*mo1[0] + mo1[1]*mo1[1] + mo1[2]*mo1[2];
-
-    if (nmo0 * nmo1 > 0.0)
-    {
-        denom = DecompositionUtils::getSquareRoot(nmo0*nmo1);
-    }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot1 = (mo0[0]*mo1[0] + mo0[1]*mo1[1] + mo0[2]*mo1[2]) / denom;
-
-    /* The lower the dot product, the closer to -1, and the more coplanar the triangles are. */
-    if (dot0 <= dot1)
-    {
-        triangleVertexIndices[0] = facetVertexIndices[0];
-        triangleVertexIndices[1] = facetVertexIndices[1];
-        triangleVertexIndices[2] = facetVertexIndices[3];
-        triangleVertexIndices[3] = facetVertexIndices[0];
-        triangleVertexIndices[4] = facetVertexIndices[3];
-        triangleVertexIndices[5] = facetVertexIndices[2];
-    }
-    else
-    {
-        triangleVertexIndices[0] = facetVertexIndices[1];
-        triangleVertexIndices[1] = facetVertexIndices[3];
-        triangleVertexIndices[2] = facetVertexIndices[2];
-        triangleVertexIndices[3] = facetVertexIndices[1];
-        triangleVertexIndices[4] = facetVertexIndices[2];
-        triangleVertexIndices[5] = facetVertexIndices[0];
-    }
+    /* Decomposes the facet into two triangles and outputs their indices */
+    DecompositionUtils::getDecomposedQuadTriangleIndices(vertices, facetVertexIndices, triangleVertexIndices);
 }
 
 /*
