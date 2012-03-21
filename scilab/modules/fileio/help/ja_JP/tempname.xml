@@ -46,7 +46,8 @@
     <para>ユニークなファイル名を有するファイルをTMPDIRディレクトリに作成します.
     </para>
     <para>tmp_nam = tempname() は,テンポラリなファイル名として使用可能な
-    ユニークな文字列, tmp_namを返します.</para>
+      ユニークな文字列, tmp_namを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -56,11 +57,5 @@
       F2 = tempname('TMP')
       isfile(F2)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

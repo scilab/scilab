@@ -21,7 +21,7 @@ function x=atanm(a)
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"atanm",1));
   end
 
-  if type(x)<>1 then
+  if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanm",1));
   end
 

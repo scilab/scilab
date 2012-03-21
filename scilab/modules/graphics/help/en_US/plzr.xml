@@ -28,7 +28,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>list ( <literal>syslin</literal>)</para>
+          <para>
+            list ( <literal>syslin</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,8 +38,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    produces a pole-zero plot of the linear system
-    <literal>sl</literal> (<literal>syslin</literal> list)</para>
+      produces a pole-zero plot of the linear system
+      <literal>sl</literal> (<literal>syslin</literal> list)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -50,7 +53,7 @@ plzr(h);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="trzeros">trzeros</link>

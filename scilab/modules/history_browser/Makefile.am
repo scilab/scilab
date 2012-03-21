@@ -23,8 +23,6 @@ libscihistory_browser_la_etcdir = $(mydatadir)/etc
 libscihistory_browser_la_etc_DATA = etc/history_browser.quit \
 				etc/history_browser.start
 
-include $(top_srcdir)/Makefile.incl.am
-
 if GUI
 
 # List of the JNI files
@@ -32,17 +30,11 @@ HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp
 
 HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
 
-GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
-
 HISTORY_BROWSER_C_SOURCES = 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES =  sci_gateway/c/gw_history_browser.c \
 sci_gateway/c/sci_browsehistory.c
-
-if GIWS
-BUILT_SOURCES=giws
-endif
 
 else
 HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
@@ -79,12 +71,15 @@ libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSE
 CHECK_SRC= $(HISTORY_BROWSER_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
-
-#### SWIG Declaration ####
+GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
 SWIG_WRAPPERS = 
 
+BUILT_SOURCES=
+if GIWS
+BUILT_SOURCES+=giws
+endif
 if SWIG
-BUILT_SOURCES=swig
+BUILT_SOURCES+=swig
 endif
 
 
@@ -92,7 +87,8 @@ endif
 libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihistory_browser_la_sci_gateway_DATA = sci_gateway/history_browser_gateway.xml
 
-
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

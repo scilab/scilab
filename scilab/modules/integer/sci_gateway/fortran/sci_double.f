@@ -12,6 +12,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     ==================================================
       subroutine scidouble(fname)
       character*(*) fname
-      call stack_convert(0)
+      call stackconvert(0)
       end
 c     ==================================================

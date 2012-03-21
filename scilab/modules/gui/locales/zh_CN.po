@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 10:13+0000\n"
+"PO-Revision-Date: 2012-03-10 12:39+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: \n"
 
 #, c-format
@@ -504,6 +504,9 @@ msgstr "清空剪切板(&E)"
 msgid "&Select all"
 msgstr "全选(&S)"
 
+msgid "P&references"
+msgstr ""
+
 msgid "&Preferences"
 msgstr "首选项(&P)"
 
@@ -915,10 +918,10 @@ msgid "Evaluate selection with no echo"
 msgstr ""
 
 msgid "Windows BMP image"
-msgstr "Windows BMP 图像"
+msgstr "Windows BMP图像"
 
 msgid "GIF image"
-msgstr "GIF 图像"
+msgstr "GIF图像"
 
 msgid "JPEG image"
 msgstr "JPEG图像"
@@ -1114,26 +1117,14 @@ msgstr ""
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "版权所有 (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "CeCILL协议"
-
 msgid "About Scilab..."
 msgstr "关于Scilab..."
 
-msgid "Acknowledgements"
-msgstr "致谢"
-
 msgid "Close"
 msgstr "关闭"
+
+msgid "Acknowledgements"
+msgstr "致谢"
 
 msgid "Could not open: "
 msgstr ""

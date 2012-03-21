@@ -13,7 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_jvm.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "scilabmode.h"
 #include "Scierror.h"
 #include "callFunctionFromGateway.h"
@@ -32,6 +33,12 @@ int gw_jvm(void)
 {  
 	Rhs = Max(0, Rhs);
 
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	if ( (getScilabMode() != SCILAB_NWNI) )
 	{
 		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));	

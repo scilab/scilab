@@ -385,6 +385,22 @@ int gw_dynamic_ui_data(void)
         &ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
+/* preferences module */
+#define PREFERENCES_MODULE_NAME "preferences"
+static DynLibHandle hPreferencesLib = NULL;
+static PROC_GATEWAY ptr_gw_preferences = NULL;
+static char* dynlibname_preferences = NULL;
+static char* gatewayname_preferences = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_preferences(void)
+{
+    return gw_dynamic_generic(PREFERENCES_MODULE_NAME,
+        &dynlibname_preferences,
+        &gatewayname_preferences,
+        &hPreferencesLib,
+        &ptr_gw_preferences);
+}
+/*--------------------------------------------------------------------------*/       
 /* xml module */
 #define XML_MODULE_NAME "xml"
 static DynLibHandle hXmlLib = NULL;
@@ -548,6 +564,11 @@ void freeAllDynamicGateways(void)
         &hUi_dataLib,
         &ptr_gw_ui_data);
 
+    freeDynamicGateway(&dynlibname_preferences,
+        &gatewayname_preferences,
+        &hPreferencesLib,
+        &ptr_gw_preferences);
+
     freeDynamicGateway(&dynlibname_xml,
         &gatewayname_xml,
         &hXmlLib,
@@ -562,7 +583,6 @@ void freeAllDynamicGateways(void)
         &gatewayname_history_browser,
         &hHistory_browserLib,
         &ptr_gw_history_browser);
-
 }
 /*--------------------------------------------------------------------------*/
 

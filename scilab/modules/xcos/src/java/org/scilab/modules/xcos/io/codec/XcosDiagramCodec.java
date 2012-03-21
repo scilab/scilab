@@ -18,8 +18,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.io.ScilabGraphCodec;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
@@ -47,31 +47,25 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     private static final String AS_ATTRIBUTE = "as";
     private static final String SEP = " - ";
 
-    private static final String INCOMPATIBILITY_DETECTED = Messages
-            .gettext("Incompatibility detected");
-    private static final String PLEASE_CHECK_THE_DIAGRAM = Messages
-            .gettext("Please check the diagram, before trying to simulate it.");
-    private static final String SOME_BLOCKS_HAVE_BEEN_REMOVED = Messages
-            .gettext("Some blocks have been removed to ensure compatibility.");
+    private static final String INCOMPATIBILITY_DETECTED = Messages.gettext("Incompatibility detected");
+    private static final String PLEASE_CHECK_THE_DIAGRAM = Messages.gettext("Please check the diagram, before trying to simulate it.");
+    private static final String SOME_BLOCKS_HAVE_BEEN_REMOVED = Messages.gettext("Some blocks have been removed to ensure compatibility.");
 
     // The non saved fields are hardcoded and can have the same name.
     // CSOFF: MultipleStringLiterals
-    private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet",
-            "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-            "savedFile", "multiplicities", "opened", "modified", "undoManager",
-            "background" };
-    private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
-            "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
-            "selectionModel", "multiplicities", "opened", "modified",
-            "undoManager", "savedFile", "container",
-            "integratorAbsoluteTolerance", "integratorRelativeTolerance",
-            "maxIntegrationTimeInterval", "toleranceOnTime", "background" };
+    private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile",
+                                  "multiplicities", "opened", "modified", "undoManager", "background"
+                                                           };
+    private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = { "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
+                                  "multiplicities", "opened", "modified", "undoManager", "savedFile", "container", "integratorAbsoluteTolerance", "integratorRelativeTolerance",
+                                  "maxIntegrationTimeInterval", "toleranceOnTime", "background"
+                                                                     };
 
     // CSON: MultipleStringLiterals
 
     /**
      * Default constructor
-     * 
+     *
      * @param template
      *            the instance template
      */
@@ -81,7 +75,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * The constructor used for configuration
-     * 
+     *
      * @param template
      *            Prototypical instance of the object to be encoded/decoded.
      * @param exclude
@@ -92,8 +86,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param mapping
      *            Optional mapping from field- to attributenames.
      */
-    public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs,
-            Map<String, String> mapping) {
+    public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
     }
 
@@ -101,20 +94,17 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * Register this codec into the {@link mxCodecRegistry}.
      */
     public static void register() {
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(),
-                DIAGRAM_IGNORED_FIELDS, null, null);
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(
-                new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS,
-                null, null);
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }
 
     /**
      * Encode the fieldname value.
-     * 
+     *
      * This method encode the 'scicosParameters' variable to the parent node.
-     * 
+     *
      * @param enc
      *            Codec that controls the encoding process.
      * @param obj
@@ -130,8 +120,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      *      org.w3c.dom.Node)
      */
     @Override
-    protected void encodeValue(mxCodec enc, Object obj, String fieldname,
-            Object value, Node node) {
+    protected void encodeValue(mxCodec enc, Object obj, String fieldname, Object value, Node node) {
         super.encodeValue(enc, obj, fieldname, value, node);
 
         /*
@@ -177,7 +166,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * Load the ScicosParameters fields from the current object
-     * 
+     *
      * @param obj
      *            the {@link XcosDiagram} instance
      * @param fieldname
@@ -207,7 +196,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * Strip out any node with an invalid parent id. (5.3.1 diagrams may
      * contains invalid default parents, remove them.)
      */
@@ -217,17 +206,13 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         final Collection<Node> trash = new ArrayList<Node>();
 
         if (node instanceof Element) {
-            final Node model = ((Element) node).getElementsByTagName(
-                    "mxGraphModel").item(0);
+            final Node model = ((Element) node).getElementsByTagName("mxGraphModel").item(0);
             if (model instanceof Element) {
-                final Node root = ((Element) model)
-                        .getElementsByTagName("root").item(0);
+                final Node root = ((Element) model).getElementsByTagName("root").item(0);
                 if (root != null) {
-                    for (Node cell = root.getFirstChild(); cell != null; cell = cell
-                            .getNextSibling()) {
+                    for (Node cell = root.getFirstChild(); cell != null; cell = cell.getNextSibling()) {
 
-                        if (cell instanceof Element
-                                && cell.getLocalName().contentEquals("mxCell")) {
+                        if (cell instanceof Element && cell.getLocalName().contentEquals("mxCell")) {
                             cleanUpNode(ids, trash, cell);
                         }
                     }
@@ -244,7 +229,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * Add the cell to the ids or trash set
-     * 
+     *
      * @param ids
      *            the valid id set
      * @param trash
@@ -252,8 +237,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param cell
      *            the cell to clean or not
      */
-    private void cleanUpNode(final Set<String> ids,
-            final Collection<Node> trash, Node cell) {
+    private void cleanUpNode(final Set<String> ids, final Collection<Node> trash, Node cell) {
         final Node id = cell.getAttributes().getNamedItem("id");
         final Node parent = cell.getAttributes().getNamedItem("parent");
 
@@ -267,7 +251,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * Put a comment with versions.
-     * 
+     *
      * @param enc
      *            the encoder
      * @param obj
@@ -283,14 +267,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         final Package p = Package.getPackage("org.scilab.modules.xcos");
 
         trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion())
-                .append(SEP).append(p.getImplementationVersion()).toString());
+              .append(SEP).append(p.getImplementationVersion()).toString());
 
         return super.beforeEncode(enc, obj, node);
     }
 
     /**
      * Apply compatibility pattern to the decoded object
-     * 
+     *
      * @param dec
      *            Codec that controls the decoding process.
      * @param node
@@ -324,8 +308,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
                 return false;
             }
         };
-        final Collection<Object> blocks = mxGraphModel.filterDescendants(model,
-                filter);
+        final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
         if (!blocks.isEmpty()) {
             diag.addCells(blocks.toArray());
         }
@@ -337,8 +320,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         // 5.3.1 diagrams may contains invalid default parents, remove them.
         final Object root = model.getParent(parent);
         if (root != model.getRoot() && root != null) {
-            LogFactory.getLog(XcosDiagramCodec.class).debug(
-                    "Removing misplaced cells");
+            Logger.getLogger(XcosDiagramCodec.class.getName()).warning("Removing misplaced cells");
             model.setRoot(root);
         }
 
@@ -349,9 +331,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * Pop up an update dialog to alert the user.
      */
     public void showUpdateDialog() {
-        ScilabModalDialog.show(null, new String[] {
-                SOME_BLOCKS_HAVE_BEEN_REMOVED, "", PLEASE_CHECK_THE_DIAGRAM },
-                INCOMPATIBILITY_DETECTED, IconType.WARNING_ICON);
+        ScilabModalDialog.show(null, new String[] { SOME_BLOCKS_HAVE_BEEN_REMOVED, "", PLEASE_CHECK_THE_DIAGRAM }, INCOMPATIBILITY_DETECTED,
+                               IconType.WARNING_ICON);
     }
 }
 // CSON: ClassFanOutComplexity

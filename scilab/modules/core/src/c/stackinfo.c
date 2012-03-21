@@ -11,6 +11,9 @@
  *
  */
 #include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #ifdef HAVE_LIMITS_H
     #include <limits.h>
     #define MAXLONG LONG_MAX

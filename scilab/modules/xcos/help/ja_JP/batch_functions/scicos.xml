@@ -17,27 +17,21 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scicos">
-
   <refnamediv>
     <refname>scicos</refname>
-
     <refpurpose>OBSOLETE - see xcos</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-
     <synopsis>scs_m = scicos([toto])</synopsis>
   </refsynopsisdiv>
-
   <refsection id="Module_scicos">
     <title>モジュール</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -46,10 +40,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="SeeAlso_scicos">
     <title>参照</title>
-
     <itemizedlist>
       <listitem>
         <para>

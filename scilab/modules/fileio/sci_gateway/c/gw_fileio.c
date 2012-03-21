@@ -14,7 +14,7 @@
 #include "gw_fileio.h"
 #include "callFunctionFromGateway.h"
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 

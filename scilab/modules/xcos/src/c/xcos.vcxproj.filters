@@ -23,9 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\callxcos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainXCOS.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -50,7 +47,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp">
@@ -82,9 +79,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callxcos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_xcos.h">
       <Filter>Header Files</Filter>
     </ClInclude>

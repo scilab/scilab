@@ -13,6 +13,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif 
 #include "BOOL.h"
 #include "call_scilab.h"
 #include "lasterror.h"          /* clearLastError */
@@ -34,7 +37,7 @@
 #include "../../core/src/c/TerminateCore.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-#include "api_scilab.h"
+
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"
@@ -105,16 +108,10 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     static int iflag = -1, ierr = 0;
 
-    if (getScilabMode() != SCILAB_NWNI)
+    setScilabMode(SCILAB_API);
+    if (advancedMode == FALSE)
     {
-        if (advancedMode == FALSE)
-        {
-            DisableInteractiveMode();
-        }
-        else
-        {
-            setScilabMode(SCILAB_API);
-        }
+        DisableInteractiveMode();
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
@@ -165,7 +162,7 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         ScilabStartupUsed = strdup(ScilabStartup);
     }
 
-    if (Stacksize == NULL || Stacksize == -1)
+    if (Stacksize == 0 || Stacksize == -1)
     {
         StacksizeUsed = DEFAULTSTACKSIZE;
     }

@@ -68,6 +68,9 @@ public class ScilabGraph extends mxGraph {
 
     private transient mxRubberband rubberBand;
 
+    private transient String graphTab;
+    private transient String viewPortTab;
+
     /**
      * Manage the modification state on change
      */
@@ -165,12 +168,14 @@ public class ScilabGraph extends mxGraph {
      * @param savedFile
      *            The new saved file
      */
-    public void setSavedFile(File savedFile) {
+    public void setSavedFile(final File savedFile) {
         this.savedFile = savedFile;
 
         // register the saved dir as the image base path (for relative images
         // location).
-        getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
+        if (savedFile != null && savedFile.getParentFile() != null) {
+            getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
+        }
     }
 
     /**
@@ -214,6 +219,44 @@ public class ScilabGraph extends mxGraph {
             title = String.format(ScilabGraphMessages.UNTITLED, time);
         }
         return title;
+    }
+
+    /**
+     * Get the graph tab uuid
+     *
+     * @return
+     */
+    public String getGraphTab() {
+        return graphTab;
+    }
+
+    /**
+     * Set the graph tab uuid
+     *
+     * @param uuid
+     *            the diagram tab
+     */
+    public void setGraphTab(String uuid) {
+        this.graphTab = uuid;
+    }
+
+    /**
+     * Get the view port tab uuid
+     *
+     * @return the view port tab
+     */
+    public String getViewPortTab() {
+        return viewPortTab;
+    }
+
+    /**
+     * Set the view port tab uuid
+     *
+     * @param uuid
+     *            the view port tab
+     */
+    public void setViewPortTab(String uuid) {
+        this.viewPortTab = uuid;
     }
 
     /**

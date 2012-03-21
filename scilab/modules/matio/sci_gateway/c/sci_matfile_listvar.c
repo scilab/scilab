@@ -11,18 +11,18 @@
  *
  */
 
+#include "api_scilab.h"
 #include "matfile_manager.h"
-#include "MALLOC.h"
-#include "stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
 
-#include "api_scilab.h"
+
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \

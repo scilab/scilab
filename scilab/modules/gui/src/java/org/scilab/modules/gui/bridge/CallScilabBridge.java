@@ -68,7 +68,6 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.fontchooser.FontChooser;
@@ -2489,7 +2488,6 @@ public class CallScilabBridge {
      * @return execution status
      */
     public static boolean printString(String theString, String pageHeader) {
-        /* TODO use pageHeader */
         return PrinterHelper.printString(theString, pageHeader);
     }
 

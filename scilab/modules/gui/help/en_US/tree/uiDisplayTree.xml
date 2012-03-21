@@ -10,7 +10,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>uiDisplayTree(tree)
-	</synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Input parameters</title>
@@ -49,15 +49,41 @@ uiDisplayTree(treeRoot)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
-      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
-      <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
-      <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>
-      <member>        <link linkend="uiConcatTree">uiConcatTree</link>       </member>      <member>        <link linkend="uiEqualsTree">uiEqualsTree</link>       </member>      <member>        <link linkend="uiFindNode">uiFindNode</link>       </member>
-      <member>        <link linkend="uiGetParentNode">uiGetParentNode</link>       </member>      <member>        <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>       </member>
-      <member>        <link linkend="uiGetNodePosition">uiGetNodePosition</link>       </member>
+      <member>
+        <link linkend="uiCreateNode">uiCreateNode</link>
+      </member>
+      <member>
+        <link linkend="uiCreateTree">uiCreateTree</link>
+      </member>
+      <member>
+        <link linkend="uiDumpTree">uiDumpTree</link>
+      </member>
+      <member>
+        <link linkend="uiInsertNode">uiInsertNode</link>
+      </member>
+      <member>
+        <link linkend="uiDeleteNode">uiDeleteNode</link>
+      </member>
+      <member>
+        <link linkend="uiConcatTree">uiConcatTree</link>
+      </member>
+      <member>
+        <link linkend="uiEqualsTree">uiEqualsTree</link>
+      </member>
+      <member>
+        <link linkend="uiFindNode">uiFindNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetParentNode">uiGetParentNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

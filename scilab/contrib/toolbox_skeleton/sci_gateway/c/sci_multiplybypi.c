@@ -3,7 +3,6 @@
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"

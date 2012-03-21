@@ -91,6 +91,10 @@ if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
 
+# check is performed with scilab
+TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab -nwni -nb -noatomsautoload -f
+TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
+
 all-local: $(TARGETS_ALL)
 
 rootdir=$(pkgdatadir)/etc/
@@ -190,18 +194,6 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e \"$$COMMAND\"";\
 			$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e "$$COMMAND" || exit 1;\
 		done; \
-	else \
-		echo "Cannot find Scilab binary"; \
-	fi
-
-check-recursive: check-local
-	@echo "Check resursive disabled"
-check-local:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="try test_run_level(1);catch exit(-1);end;exit(0)";\
-		export LANG=C;\
-		echo "LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -e \"$$COMMAND\""; \
-		time $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

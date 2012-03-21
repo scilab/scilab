@@ -28,7 +28,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>row of polynomials i.e. <literal>1</literal>x<literal>k</literal> polynomial matrix</para>
+          <para>
+            row of polynomials i.e. <literal>1</literal>x<literal>k</literal> polynomial matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,8 +49,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[pg,U]=hrmt(v)</literal> returns a unimodular matrix <literal>U</literal> and  <literal>pg</literal> = gcd of row of
-    polynomials <literal>v</literal> such that <literal>v*U = [pg,0]</literal>.</para>
+    <para>
+      <literal>[pg,U]=hrmt(v)</literal> returns a unimodular matrix <literal>U</literal> and  <literal>pg</literal> = gcd of row of
+      polynomials <literal>v</literal> such that <literal>v*U = [pg,0]</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +64,7 @@ det(U)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcd">gcd</link>
@@ -69,9 +73,5 @@ det(U)
         <link linkend="htrianr">htrianr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

@@ -252,4 +252,20 @@ namespace org_modules_xml
 
         return oss.str();
     }
+
+    const char ** XMLAttr::getNames() const
+    {
+        int size = getSize();
+        int i = 0;
+        char ** arr = new char*[size + 1];
+        xmlNode * node = elem.getRealNode();
+
+        for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
+        {
+            arr[i] = (char *)cur->name;
+        }
+        arr[size] = 0;
+
+        return const_cast<const char**>(arr);
+    }
 }

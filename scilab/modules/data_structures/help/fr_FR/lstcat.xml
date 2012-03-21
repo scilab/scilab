@@ -18,22 +18,23 @@
         <term>li  </term>
         <listitem>
           <para>une liste ou une variable de type indifférent
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>lc  </term>
         <listitem>
           <para>une liste
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lc=lstcat(l1,..ln)</literal> concatène les composantes des listes <literal>li</literal> sous forme d'une liste unique. Si les <literal>li</literal> sont des variables d'un autre type elles sont tout simplement ajoutées comme termes supplémentaires dans la liste.
-  </para>
+    <para>
+      <literal>lc=lstcat(l1,..ln)</literal> concatène les composantes des listes <literal>li</literal> sous forme d'une liste unique. Si les <literal>li</literal> sont des variables d'un autre type elles sont tout simplement ajoutées comme termes supplémentaires dans la liste.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -43,7 +44,7 @@ lstcat(1,2,3)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="list">list</link>

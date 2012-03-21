@@ -36,6 +36,7 @@
 #endif
 
 #ifdef _MSC_VER
+#include <windows.h>
 #include "getLocaleInfo_Windows.h"
 #endif
 #ifdef __APPLE__

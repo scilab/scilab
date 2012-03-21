@@ -18,21 +18,22 @@
         <term>x  </term>
         <listitem>
           <para>matrice de tout type
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>l  </term>
         <listitem>
           <para>variable de type list, tlist ou mlist
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>indice de champ, voir <literal>insertion</literal> pour plus de détails.
-</para>
+          <para>
+            indice de champ, voir <literal>insertion</literal> pour plus de détails.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,8 +41,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction est équivalente à la syntaxe <literal>l(i)=x</literal> pour l'extraction avec la seule différence qu'elle s'applique aussi aux objets de type <literal>mlist</literal>.
-  </para>
+      Cette fonction est équivalente à la syntaxe <literal>l(i)=x</literal> pour l'extraction avec la seule différence qu'elle s'applique aussi aux objets de type <literal>mlist</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +57,7 @@ setfield(3,1:8,a);a // affectation du champ
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="insertion">insertion</link>

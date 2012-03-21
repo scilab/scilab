@@ -309,8 +309,4 @@ xrect(s.clip_box);
       </revision>
     </revhistory>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDMOUCHE</para>
-  </refsection>
 </refentry>

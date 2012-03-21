@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>getmodules</refname>
     <refpurpose>returns list of modules installed in
-  Scilab</refpurpose>
+      Scilab
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,15 +29,11 @@
     <para>Returns list of modules installed in Scilab.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="with_module">with_module</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.c</para>
   </refsection>
 </refentry>

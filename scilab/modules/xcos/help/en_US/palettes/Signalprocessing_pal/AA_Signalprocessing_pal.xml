@@ -17,43 +17,32 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Signalprocessing_pal"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Signalprocessing_pal">
   <refnamediv>
     <refname>Signalprocessing_pal</refname>
-
     <refpurpose>Signal processing palette</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
     <para>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="QUANT_f" fileref="../../../../../../modules/xcos/images/palettes/QUANT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="SAMPHOLD_m" fileref="../../../../../../modules/xcos/images/palettes/SAMPHOLD_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="QUANT_f" fileref="../../../../../../modules/xcos/images/palettes/QUANT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="SAMPHOLD_m" fileref="../../../../../../modules/xcos/images/palettes/SAMPHOLD_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Module_Signalprocessing_pal">
     <title>Module</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -62,36 +51,30 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_Signalprocessing_pal">
     <title>Description</title>
-
     <para>The signal processing palette contains blocks designed specifically
-    for signal processing applications.</para>
+      for signal processing applications.
+    </para>
   </refsection>
-
   <refsection id="Blocks_Signalprocessing_pal">
     <title>Blocks</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="MCLOCK_f">MCLOCK_f</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="MFCLCK_f">MFCLCK_f</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="CLKGotoTagVisibility">QUANT_f — Quantization</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SAMPHOLD_m">SAMPHOLD_m — Sample and hold</link>

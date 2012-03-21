@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -71,11 +71,6 @@
               <xref linkend="SeeAlso_SUPER_f">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SUPER_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -93,44 +88,52 @@
   <refsection id="Description_SUPER_f">
     <title>Description</title>
     <para>
-This block opens up a new Xcos window for editing a new block
-diagram. This diagram describes the internal functions of the super
-block.  
-</para>
+      This block opens up a new Xcos window for editing a new block
+      diagram. This diagram describes the internal functions of the super
+      block.  
+    </para>
     <para>
-Super block inputs and outputs (regular or event) are
-designated by special (input or output) blocks.  
-</para>
+      Super block inputs and outputs (regular or event) are
+      designated by special (input or output) blocks.  
+    </para>
     <para>
-Regular input blocks
-must be numbered from 1 to the number of regular input ports. Regular
-input ports of the super block are numbered from the top of the block
-shape to the bottom.  Regular output ports must be numbered from 1 to
-the number of regular output ports. Regular output ports of the super
-block are numbered from the top of the block shape to the bottom.
-Event input blocks must be numbered from 1 to the number of event
-input ports. Event input ports of the super block are numbered from
-the left of the block shape to the right.  Event output ports must be
-numbered from 1 to the number of event output ports. Event output
-ports of the super block are numbered from the left of the block shape
-to the right.
-
-</para>
+      Regular input blocks
+      must be numbered from 1 to the number of regular input ports. Regular
+      input ports of the super block are numbered from the top of the block
+      shape to the bottom.  Regular output ports must be numbered from 1 to
+      the number of regular output ports. Regular output ports of the super
+      block are numbered from the top of the block shape to the bottom.
+      Event input blocks must be numbered from 1 to the number of event
+      input ports. Event input ports of the super block are numbered from
+      the left of the block shape to the right.  Event output ports must be
+      numbered from 1 to the number of event output ports. Event output
+      ports of the super block are numbered from the left of the block shape
+      to the right.
+      
+    </para>
   </refsection>
   <refsection id="Defaultproperties_SUPER_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -149,19 +152,29 @@ to the right.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -185,16 +198,14 @@ to the right.
   <refsection id="SeeAlso_SUPER_f">
     <title>See also</title>
     <variablelist>
-      <varlistentry><term><xref linkend="DSUPER">Masked super block</xref></term>
+      <varlistentry>
+        <term>
+          <xref linkend="DSUPER">Masked super block</xref>
+        </term>
         <listitem>
           <para>Any super block can be masked to provide a black box implementation with parameters.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-  </refsection>
-  <refsection id="Authors_SUPER_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

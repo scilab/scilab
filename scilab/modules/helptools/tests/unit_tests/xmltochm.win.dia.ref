@@ -18,10 +18,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 1 [fr_FR]";
 xmltochm(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Construit le document maître:
+Génération du document maître :
 	SCI\modules\helptools\examples\example_1\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_1\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Génération du fichier d'aide [chm] in SCI\modules\helptools\examples\example_1\help\fr_FR.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
@@ -37,7 +37,7 @@ xmltochm(my_english_help_dir,my_english_help_title,'en_US');
 Building the master document:
 	SCI\modules\helptools\examples\example_1\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_1\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [chm] in SCI\modules\helptools\examples\example_1\help\en_US.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
@@ -54,10 +54,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 2 [fr_FR]";
 xmltochm(my_french_help_dir,my_french_help_title,'fr_FR');
 
-Construit le document maître:
+Génération du document maître :
 	SCI\modules\helptools\examples\example_2\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_2\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Génération du fichier d'aide [chm] in SCI\modules\helptools\examples\example_2\help\fr_FR.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
@@ -73,7 +73,7 @@ xmltochm(my_english_help_dir,my_english_help_title,'en_US');
 Building the master document:
 	SCI\modules\helptools\examples\example_2\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_2\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [chm] in SCI\modules\helptools\examples\example_2\help\en_US.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
@@ -90,10 +90,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 3 [fr_FR]";
 xmltochm(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Construit le document maître:
+Génération du document maître :
 	SCI\modules\helptools\examples\example_3\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_3\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Génération du fichier d'aide [chm] in SCI\modules\helptools\examples\example_3\help\fr_FR.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
@@ -109,7 +109,7 @@ xmltochm(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
 Building the master document:
 	SCI\modules\helptools\examples\example_3\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_3\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [chm] in SCI\modules\helptools\examples\example_3\help\en_US.
 chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size

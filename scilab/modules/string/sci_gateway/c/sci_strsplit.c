@@ -13,7 +13,6 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

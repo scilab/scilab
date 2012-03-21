@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: pt_BR\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1411,6 +1411,10 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
 "%d.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr ""
 
 msgid "Delete all datatips"
 msgstr "Deletar todos os datatips"

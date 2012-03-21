@@ -37,7 +37,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    ベクトル<literal>x</literal>のDFTを計算する関数.</para>
+      ベクトル<literal>x</literal>のDFTを計算する関数.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -60,9 +61,5 @@ dft(x,1)
         <link linkend="fft">fft</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
   </refsection>
 </refentry>

@@ -10,16 +10,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    L'apostrophe ou "quote" (<literal>'</literal>) est utilisé pour noter la transposition (conjuguée) des matrices.
-  </para>
+      L'apostrophe ou "quote" (<literal>'</literal>) est utilisé pour noter la transposition conjuguée (Conjuguée Hermitienne) des matrices.
+    </para>
     <para>
-    Le symbole (<literal>.'</literal>) doit être utilisé pour une transposition non conjuguée.
-  </para>
+      Le symbole (<literal>.'</literal>) doit être utilisé pour une transposition non conjuguée.
+    </para>
     <para>
-    L'apostrophe (') ou le guillemet (") sont aussi utilisés pour délimiter les chaînes de caractères (une chaîne de caractères est définie entre deux apostrophes ou guillemets). Une apostrophe ou un guillemet doivent être doublés s'ils font partie de la chaîne de caractères elle même.
-  </para>
+      L'apostrophe (') ou le guillemet (") sont aussi utilisés pour délimiter les chaînes de caractères (une chaîne de caractères est définie entre deux apostrophes ou guillemets). Une apostrophe ou un guillemet doivent être doublés s'ils font partie de la chaîne de caractères elle même.
+    </para>
     <para>
-  </para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -29,5 +29,13 @@
 x='Ceci est une chaîne de caractères'
 'Et Dieu dit : ''que la lumière soit'''
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="conj">conj</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

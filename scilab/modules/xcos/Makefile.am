@@ -21,20 +21,22 @@ libscixcos_la_root_DATA =  license.txt
 
 #### xcos : init scripts ####
 libscixcos_la_etcdir = $(mydatadir)/etc
-libscixcos_la_etc_DATA =	etc/xcos.quit \
-				etc/xcos.start \
-				etc/Xcos-style.xml \
-				etc/XcosFile.xsd \
-				etc/xcos.xml \
-				etc/XcosConfiguration.xsd \
-				etc/palettes.xml \
-				etc/PaletteConfiguration.xsd \
-				etc/Modelica.xsd
+libscixcos_la_etc_DATA = \
+	etc/xcos.quit \
+	etc/xcos.start \
+	etc/Xcos-style.xml \
+	etc/XcosFile.xsd \
+	etc/xcos.xml \
+	etc/XcosConfiguration.xsd \
+	etc/palettes.xml \
+	etc/PaletteConfiguration.xsd \
+	etc/Modelica.xsd \
+	etc/XConfiguration-xcos.xsl \
+	etc/XConfiguration-xcos.xml
 
 XCOS_C_SOURCES =
 
-XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
-			src/jni/Xcos.cpp \
+XCOS_CPP_SOURCES = 	src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
@@ -57,7 +59,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
-	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \

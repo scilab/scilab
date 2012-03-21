@@ -28,7 +28,9 @@
       <varlistentry>
         <term>g</term>
         <listitem>
-          <para>is a <literal>syslin</literal> linear system.</para>
+          <para>
+            is a <literal>syslin</literal> linear system.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,16 +50,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the L_infinity norm of <literal>g</literal>.</para>
-    <programlisting role = ""><![CDATA[
+      returns the L_infinity norm of <literal>g</literal>.
+    </para>
+    <programlisting role=""><![CDATA[
 n=sup [sigmax(g(jw)] 
    w
  ]]></programlisting>
     <para>
-    (sigmax largest singular value).</para>
+      (sigmax largest singular value).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="h_norm">h_norm</link>

@@ -9,24 +9,42 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>debug(level-int)
-level-int=debug()</synopsis>
+    <synopsis>debug(level_int)
+level_int = debug()
+previous_level_int = debug(level_int)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>level-int</term>
+        <term>level_int</term>
         <listitem>
-          <para>integer (-1 to 4)</para>
+          <para>integer value (-1 to 4)</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>previous_level_int</term>
+        <listitem>
+          <para>previous value</para>
+        </listitem>
+      </varlistentry>
+      
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>For the values 0,1,2,3,4 of <literal>level-int</literal> , <literal>debug</literal>
+    <para>For the values 0,1,2,3,4 of <literal>level_int</literal> , <literal>debug</literal>
     defines various levels of debugging. This is targeted to the parser, not
     to Scilab scripts, and is for Scilab experts only.</para>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+  
 </refentry>

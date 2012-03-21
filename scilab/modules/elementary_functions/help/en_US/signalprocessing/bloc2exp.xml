@@ -182,8 +182,4 @@ w=bloc2exp(syst);
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. S., F. D. (INRIA)</para>
-  </refsection>
 </refentry>

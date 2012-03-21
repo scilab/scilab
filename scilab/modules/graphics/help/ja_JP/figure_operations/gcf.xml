@@ -86,8 +86,4 @@ gcf() // カレントのウインドウのグラフィックハンドルを返�
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer, INRIA</para>
-  </refsection>
 </refentry>

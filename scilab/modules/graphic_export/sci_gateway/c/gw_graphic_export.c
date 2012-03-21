@@ -14,7 +14,8 @@
 
 #include <string.h>
 #include "gw_graphic_export.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
@@ -41,7 +42,15 @@ static gw_generic_table Tab[] =
 int gw_graphic_export(void)
 {  
 	Rhs = Max(0, Rhs);
-	if ( getScilabMode() != SCILAB_NWNI )
+
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+
+    if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if (!loadedDep) 
 		{

@@ -14,12 +14,9 @@ package org.scilab.modules.xcos.io.scicos;
 
 import static java.util.Arrays.asList;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
@@ -44,8 +41,7 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 public class BlockElement extends AbstractElement<BasicBlock> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block",
-            "graphics", "model", "gui", "doc");
+    private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
     private static final int INTERFUNCTION_INDEX = 3;
 
     /** Mutable field to easily get the data through methods */
@@ -68,18 +64,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
     private int ordering;
 
     /**
-     * The minimal X axis value, used to center block as Scicos did.
-     */
-    private double minX = Double.MAX_VALUE;
-
-    /**
-     * The minimal Y axis value, used to center block as Scicos did.
-     */
-    private double minY = Double.MAX_VALUE;
-
-    /**
      * Default constructor.
-     * 
+     *
      * The state change on each {@link BlockElement} instance so be careful when
      * allocated a new {@link BlockElement}.
      */
@@ -87,22 +73,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
     }
 
     /**
-     * @return the minX
-     */
-    public double getMinX() {
-        return minX;
-    }
-
-    /**
-     * @return the minY
-     */
-    public double getMinY() {
-        return minY;
-    }
-
-    /**
      * Decode the element into the block.
-     * 
+     *
      * @param element
      *            The current Scilab data
      * @param into
@@ -114,8 +86,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
      *      java.lang.Object)
      */
     @Override
-    public BasicBlock decode(ScilabType element, BasicBlock into)
-            throws ScicosFormatException {
+    public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
         data = (ScilabMList) element;
         BasicBlock block = into;
 
@@ -124,8 +95,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         /*
          * Instantiate the block if it doesn't exist
          */
-        final String interfunction = ((ScilabString) data
-                .get(INTERFUNCTION_INDEX)).getData()[0][0];
+        final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (block == null) {
             block = BlockFactory.createBlock(interfunction);
         }
@@ -152,7 +122,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
             // do not use BasicPort#addPort() to avoid the view update
             port.setOrdering(i + 1);
-            block.insert(port, i);
+            block.insert(port, numberOfInputPorts + i);
         }
 
         /*
@@ -176,9 +146,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         block.setOrdering(ordering);
         ordering++;
 
-        minX = Math.min(minX, block.getGeometry().getX());
-        minY = Math.min(minX, block.getGeometry().getY());
-
         block = afterDecode(element, block);
 
         return block;
@@ -186,7 +153,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Use the Scicos documentation structure to get the previous Xcos IDs.
-     * 
+     *
      * @param scilabType
      *            the scicos documentation field.
      * @param into
@@ -206,7 +173,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
          */
         ScilabList list = (ScilabList) scilabType;
 
-        if (list.size() > 1 && list.get(0) instanceof ScilabString) {
+        if (list.size() > 0 && list.get(0) instanceof ScilabString) {
             String uid = ((ScilabString) list.get(0)).getData()[0][0];
             if (isValidUid(uid)) {
                 into.setId(uid);
@@ -223,29 +190,28 @@ public class BlockElement extends AbstractElement<BasicBlock> {
      * @return true if the uid is valid, false otherwise
      */
     private boolean isValidUid(String uid) {
-        ByteArrayInputStream str = new ByteArrayInputStream(uid.getBytes());
-        DataInputStream inputStream = new DataInputStream(str);
+        final String[] components = uid.split(":");
 
-        try {
-            inputStream.readInt();
-            char sep1 = inputStream.readChar();
-            inputStream.readLong();
-            char sep2 = inputStream.readChar();
-            inputStream.readInt();
-
-            return inputStream.available() == 0 && sep1 == sep2 && sep1 == ':';
-        } catch (IOException e) {
-            return false;
+        boolean valid = components.length == 3;
+        if (valid) {
+            try {
+                Integer.parseInt(components[0], 16);
+                Long.parseLong(components[1], 16);
+                Integer.parseInt(components[2], 16);
+            } catch (IllegalArgumentException e) {
+                valid = false;
+            }
         }
+        return valid;
     }
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -311,8 +277,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
         // the last field must contain a list of nothing aka scicos doc
         field++;
-        if (!(data.get(field) instanceof ScilabList)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabList) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
@@ -322,7 +287,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Test if the current instance can be used to decode the element
-     * 
+     *
      * @param element
      *            the current element
      * @return true, if the element can be decoded, false otherwise
@@ -338,7 +303,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * Clear cell warnings before encoding
      */
     @Override
@@ -347,7 +312,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         if (graph == null) {
             from.setParentDiagram(Xcos.findParent(from));
             graph = from.getParentDiagram();
-            LogFactory.getLog(getClass()).error("Parent diagram was null");
+            Logger.getLogger(BlockElement.class.getName()).finest("Parent diagram was null");
         }
         if (graph.getAsComponent() != null) {
             graph.getAsComponent().removeCellOverlays(from);
@@ -357,7 +322,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -405,6 +370,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         final OutputPortElement outElement = new OutputPortElement(data);
         final int numberOfPorts = from.getChildCount();
 
+        // assume the children are sorted by type
         for (int i = 0; i < numberOfPorts; i++) {
             final Object instance = from.getChildAt(i);
 
@@ -428,7 +394,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Set the the port size per type.
-     * 
+     *
      * @param from
      *            the source block
      */
@@ -439,14 +405,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         int ein;
         int eout;
 
-        in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class)
-                .size();
-        out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class)
-                .size();
-        ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class)
-                .size();
-        eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class)
-                .size();
+        in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class).size();
+        out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class).size();
+        ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class).size();
+        eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class).size();
 
         // Setup the graphics and model ports size
         graphicElement.setPortsSize(in, out, ein, eout);
@@ -455,12 +417,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Allocate a new element
-     * 
+     *
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList element = new ScilabMList(
-                DATA_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
         element.add(new ScilabMList()); // graphics
         element.add(new ScilabMList()); // model
         element.add(new ScilabString()); // gui

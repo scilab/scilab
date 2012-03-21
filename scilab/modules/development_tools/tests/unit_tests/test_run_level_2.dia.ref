@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// Simple launcher for run level 2
+try
+    test_run_level(2);
+ 
+ Run all test level 2   
+   001/003 - [core] lasterror...................................passed
+   002/003 - [core] who.........................................passed
+   003/003 - [core] stacksize...................................passed
+
+   --------------------------------------------------------------------------
+   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+   001/001 - [string] tokens....................................passed
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+catch
+    exit(-1);
+exec('SCI/etc/scilab.quit',-1);quit;

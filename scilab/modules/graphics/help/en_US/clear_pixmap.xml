@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>clear_pixmap</refname>
     <refpurpose>erase the pixmap
-  buffer</refpurpose>
+      buffer
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,17 +26,20 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
-    the drawings are send to a pixmap memory instead of the screen display.
+    <para>
+      If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
+      the drawings are send to a pixmap memory instead of the screen display.
     </para>
     <para/>
-    <para>The <literal>clear_pixmap()</literal> instruction erase the pixmap, but not
-    the screen.</para>
+    <para>
+      The <literal>clear_pixmap()</literal> instruction erase the pixmap, but not
+      the screen.
+    </para>
     <para/>
     <para>The pixmap mode can be used to obtain smooth animations.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure_properties">figure_properties</link>
@@ -44,9 +48,5 @@
         <link linkend="show_pixmap">show_pixmap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

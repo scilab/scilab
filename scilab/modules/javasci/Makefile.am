@@ -40,6 +40,7 @@ src/c/javasci_SciIntegerArray.c
 
 JAVASCI_V2_C_SOURCES = \
 src/jni/call_scilab_wrap.c \
+src/jni/putLists.c \
 src/c/javasci2_helper.c
 
 pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la

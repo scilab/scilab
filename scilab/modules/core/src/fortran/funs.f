@@ -90,7 +90,7 @@ c     unterminated call to intload
       call intload(id,k)
       if(err.gt.0) return
       if (fun.eq.-1) then
-         buf='Overloaded load cannot occur in this context'
+         buf='Overloaded load cannot occur in this context '
          call error(999)
          return
       endif

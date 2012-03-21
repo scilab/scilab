@@ -12,7 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "api_scilab.h"

@@ -8,25 +8,29 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-06 14:28+0000\n"
+"PO-Revision-Date: 2012-03-04 06:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: XML object does not exist.\n"
@@ -51,7 +55,7 @@ msgstr "%s: XMLListが存在しません.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -121,6 +125,10 @@ msgstr "%s: 入力引数#%iの型が間違っています: XMLSet または XMLL
 #, c-format
 msgid "%s: XMLSet or XMLList does not exist.\n"
 msgstr "%s: XMLSetまたはXMLListが存在しません.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: XML document does not exist.\n"
@@ -222,6 +230,10 @@ msgid ""
 msgstr "%s: XML文書にURIが含まれておらず、第二引数もありません.\n"
 
 #, c-format
+msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 論理値を指定してください.\n"
+
+#, c-format
 msgid "%s: Cannot write the file: %s\n"
 msgstr "%s: ファイルに書き込めません: %s\n"
 
@@ -250,17 +262,20 @@ msgstr ""
 msgid "%s: XPath query returned a not handled type: %i\n"
 msgstr "%s: XPathクエリが処理できない型を返しました: %i\n"
 
+msgid "Invalid file name: "
+msgstr "ファイル名が無効です: "
+
 msgid "Cannot create a parser context"
 msgstr "パーサコンテキストを作成できません"
 
 msgid "Cannot create a buffer"
-msgstr ""
+msgstr "バッファを作成できません"
 
 msgid "Cannot create a reader"
-msgstr ""
+msgstr "リーダを作成できません"
 
 msgid "Invalid file"
-msgstr ""
+msgstr "ファイルが不正です"
 
 msgid "Cannot parse the DTD"
 msgstr "DTDをパースできません"

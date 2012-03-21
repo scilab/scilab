@@ -28,7 +28,9 @@
       <varlistentry>
         <term>hand</term>
         <listitem>
-          <para>ハンドル, <literal>lufact</literal>の出力</para>
+          <para>
+            ハンドル, <literal>lufact</literal>の出力
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,8 +42,10 @@
       <varlistentry>
         <term>L</term>
         <listitem>
-          <para>疎行列, lower triangular if <literal>hand</literal>が
-	正則行列から得られた場合は上三角</para>
+          <para>
+            疎行列, lower triangular if <literal>hand</literal>が
+            正則行列から得られた場合は上三角
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,20 +65,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	疎行列 <literal>A</literal>に関して
-	コマンド<literal>[hand,rk]=lufact(A)</literal>により得られた
-	<literal>hand</literal>を指定すると,<literal>[P,L,U,Q]=luget(hand)</literal>
-	は,<literal>P*L*U*Q=A</literal>となるような4つの疎行列を返します.</para>
+      疎行列 <literal>A</literal>に関して
+      コマンド<literal>[hand,rk]=lufact(A)</literal>により得られた
+      <literal>hand</literal>を指定すると,<literal>[P,L,U,Q]=luget(hand)</literal>
+      は,<literal>P*L*U*Q=A</literal>となるような4つの疎行列を返します.
+    </para>
     <para>
-    行列Aはフルランクである必要はありませんが正方行列である必要があります
-	(Aは疎行列と仮定されるため,正方化するために必要に応じて0を追加することができます).
-	</para>
+      行列Aはフルランクである必要はありませんが正方行列である必要があります
+      (Aは疎行列と仮定されるため,正方化するために必要に応じて0を追加することができます).
+    </para>
     <para>
-    <literal>A</literal>が正則でない場合,
-	行列<literal>L</literal>は(<literal>rk</literal>個の
-	独立した非ゼロ列について)列圧縮されます
-	正則な疎行列  <literal>Q'*inv(U)</literal> は
-	<literal>A</literal>を列圧縮します.</para>
+      <literal>A</literal>が正則でない場合,
+      行列<literal>L</literal>は(<literal>rk</literal>個の
+      独立した非ゼロ列について)列圧縮されます
+      正則な疎行列  <literal>Q'*inv(U)</literal> は
+      <literal>A</literal>を列圧縮します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

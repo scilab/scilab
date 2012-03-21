@@ -35,16 +35,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>square</literal>は, xおよびy軸に等軸スケールを適用する際に
-	使用されます.
-	指定された値 <literal>xmin, xmax, ymin, ymax</literal> は
-	グラフィックフレームの境界で, <literal>square</literal> は
-	等軸プロットとなるようにグラフィックウインドウの次元を変更します.
-	<literal>square</literal> はカレントのグラフィックスケールを設定し,
-	カレントのグラフィックスケールを指定する
-	グラフィックルーチン
-	(例えば, <literal>plot2d</literal>の<literal>fstrf="x0z"</literal>)
-	と組み合わせて使用することができます.</para>
+    <para>
+      <literal>square</literal>は, xおよびy軸に等軸スケールを適用する際に
+      使用されます.
+      指定された値 <literal>xmin, xmax, ymin, ymax</literal> は
+      グラフィックフレームの境界で, <literal>square</literal> は
+      等軸プロットとなるようにグラフィックウインドウの次元を変更します.
+      <literal>square</literal> はカレントのグラフィックスケールを設定し,
+      カレントのグラフィックスケールを指定する
+      グラフィックルーチン
+      (例えば, <literal>plot2d</literal>の<literal>fstrf="x0z"</literal>)
+      と組み合わせて使用することができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -67,9 +69,5 @@ xset("default")
         <link linkend="xsetech">xsetech</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

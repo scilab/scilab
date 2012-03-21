@@ -19,12 +19,13 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    datatipManagerMode()
-    datatipManagerMode('on')
-    datatipManagerMode('off')
-    datatipManagerMode(fig)
-    datatipManagerMode(fig,'on')
-    datatipManagerMode(fig,'off')</synopsis>
+      datatipManagerMode()
+      datatipManagerMode('on')
+      datatipManagerMode('off')
+      datatipManagerMode(fig)
+      datatipManagerMode(fig,'on')
+      datatipManagerMode(fig,'off')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,7 +34,7 @@
         <term>fig</term>
         <listitem>
           <para>
-           Graphic window handle or Graphic window id.
+            Graphic window handle or Graphic window id.
           </para>
         </listitem>
       </varlistentry>
@@ -46,17 +47,20 @@
       to add and edit tips at selected points of polylines. The selection is
       made by a right click on the selected point.
     </para>
-    <para><literal>datatipManagerMode()</literal>, toggles the data tips mode
+    <para>
+      <literal>datatipManagerMode()</literal>, toggles the data tips mode
       for the current figure while
       <literal>datatipManagerMode(fig)</literal> toggles the data tips mode
       for figure given by the handle <literal>fig</literal>.
     </para>
-    <para><literal>datatipManagerMode('on')</literal>, enables the data tips mode
+    <para>
+      <literal>datatipManagerMode('on')</literal>, enables the data tips mode
       for the current figure while
       <literal>datatipManagerMode(fig,'on')</literal> enables the data tips mode
       for figure given by the handle <literal>fig</literal>.
     </para>
-    <para><literal>datatipManagerMode('off')</literal>, disables the data tips mode
+    <para>
+      <literal>datatipManagerMode('off')</literal>, disables the data tips mode
       for the current figure while
       <literal>datatipManagerMode(fig,'off')</literal> disables the data tips mode
       for figure given by the handle <literal>fig</literal>.
@@ -77,12 +81,6 @@
       <member>
         <link linkend="datatipToggle">datatipToggle</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

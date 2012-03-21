@@ -28,7 +28,6 @@ length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "MALLOC.h"

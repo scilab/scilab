@@ -12,7 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "stack-c.h"
 #include "funcprot.h"
 #include "api_scilab.h"
 #include "Scierror.h"

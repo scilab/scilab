@@ -42,7 +42,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>dgettext</literal> get the translation of a string to the current locale in a specified message domain.</para>
+    <para>
+      <literal>dgettext</literal> get the translation of a string to the current locale in a specified message domain.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -51,17 +53,11 @@ dgettext('scilab','Startup execution:')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gettext">gettext</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Sylvestre Ledru</member>
     </simplelist>
   </refsection>
 </refentry>

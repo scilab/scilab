@@ -96,8 +96,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, byte[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -108,8 +108,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, short[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -120,8 +120,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, int[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -132,8 +132,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, long[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -523,6 +523,31 @@ public class ScilabInteger implements ScilabType {
         } else {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        switch (this.getPrec()) {
+        case sci_int8:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, byteData};
+        case sci_uint8:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, byteData};
+        case sci_int16:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, shortData};
+        case sci_uint16:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, shortData};
+        case sci_int32:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, intData};
+        case sci_uint32:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, intData};
+        case sci_int64:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, longData};
+        case sci_uint64:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, longData};
+        }
+        return null;
     }
 
     /**

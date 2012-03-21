@@ -16,10 +16,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -48,17 +48,15 @@ public class GraphHandler extends mxGraphHandler {
      */
     static {
         try {
-            mxGraphTransferable.dataFlavor = new DataFlavor(
-                    DataFlavor.javaJVMLocalObjectMimeType
-                            + "; class=com.mxgraph.swing.util.mxGraphTransferable");
+            mxGraphTransferable.dataFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + "; class=com.mxgraph.swing.util.mxGraphTransferable");
         } catch (ClassNotFoundException e) {
-            LogFactory.getLog(GraphHandler.class).error(e);
+            Logger.getLogger(GraphHandler.class.getName()).severe(e.toString());
         }
     }
 
     /**
      * Default constructor
-     * 
+     *
      * @param graphComponent
      *            the graph
      */
@@ -73,14 +71,14 @@ public class GraphHandler extends mxGraphHandler {
      * <li>An edge: create a new point on the edge</li>
      * <li>A block: open the block settings</li>
      * </ul>
-     * 
+     *
      * Handle right click on :
      * <ul>
      * <li>An empty area: set up the default context menu</li>
      * <li>An edge: create a new point on the edge</li>
      * <li>A block: open the block settings</li>
      * </ul>
-     * 
+     *
      * @param e
      *            the mouse event
      * @see com.mxgraph.swing.util.mxMouseAdapter#mouseClicked(java.awt.event.MouseEvent)
@@ -88,8 +86,7 @@ public class GraphHandler extends mxGraphHandler {
     // CSOFF: CyclomaticComplexity
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (graphComponent.isEnabled() && isEnabled() && !e.isConsumed()
-                && !graphComponent.isForceMarqueeEvent(e)) {
+        if (graphComponent.isEnabled() && isEnabled() && !e.isConsumed() && !graphComponent.isForceMarqueeEvent(e)) {
 
             cell = graphComponent.getCellAt(e.getX(), e.getY(), false);
 
@@ -111,20 +108,13 @@ public class GraphHandler extends mxGraphHandler {
                 /*
                  * Right click
                  */
-            } else if ((e.getClickCount() == 1 && SwingUtilities
-                    .isRightMouseButton(e))
-                    || e.isPopupTrigger()
-                    || XcosMessages.isMacOsPopupTrigger(e)) {
+            } else if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
                 if (cell == null) {
                     ((GraphComponent) graphComponent).displayContextMenu();
                 } else if (cell instanceof BasicLink) {
-                    ((BasicLink) cell)
-                            .openContextMenu((ScilabGraph) graphComponent
-                                    .getGraph());
+                    ((BasicLink) cell).openContextMenu((ScilabGraph) graphComponent.getGraph());
                 } else if (cell instanceof BasicBlock) {
-                    ((BasicBlock) cell)
-                            .openContextMenu((ScilabGraph) graphComponent
-                                    .getGraph());
+                    ((BasicBlock) cell).openContextMenu((ScilabGraph) graphComponent.getGraph());
                 }
 
                 e.consume();
@@ -141,14 +131,13 @@ public class GraphHandler extends mxGraphHandler {
 
     /**
      * Create a new text block at the point.
-     * 
+     *
      * @param e
      *            the current point
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        final TextBlock textBlock = (TextBlock) BlockFactory
-                .createBlock(BlockInterFunction.TEXT_f);
+        final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);
@@ -170,7 +159,7 @@ public class GraphHandler extends mxGraphHandler {
 
     /**
      * Add a point to a link.
-     * 
+     *
      * @param e
      *            the event
      * @param cell
@@ -178,8 +167,7 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void clickOnLink(MouseEvent e, BasicLink cell) {
         // getting the point list
-        List<mxPoint> points = graphComponent.getGraph().getCellGeometry(cell)
-                .getPoints();
+        List<mxPoint> points = graphComponent.getGraph().getCellGeometry(cell).getPoints();
         if (points == null) {
             points = new ArrayList<mxPoint>();
             cell.getGeometry().setPoints(points);
@@ -189,11 +177,9 @@ public class GraphHandler extends mxGraphHandler {
         final mxPoint pt = graphComponent.getPointForEvent(e);
 
         // translate the point if it is a loop link
-        if (cell.getSource() != null && cell.getTarget() != null
-                && cell.getSource().getParent() == cell.getTarget().getParent()
+        if (cell.getSource() != null && cell.getTarget() != null && cell.getSource().getParent() == cell.getTarget().getParent()
                 && cell.getSource().getParent() != null) {
-            final mxGeometry parent = cell.getSource().getParent()
-                    .getGeometry();
+            final mxGeometry parent = cell.getSource().getParent().getGeometry();
             pt.setX(pt.getX() - parent.getX());
             pt.setY(pt.getY() - parent.getY());
         }
@@ -203,8 +189,7 @@ public class GraphHandler extends mxGraphHandler {
         model.beginUpdate();
         try {
             final int index = cell.findNearestSegment(pt);
-            if (index < points.size()
-                    && points.get(index).getPoint().distanceSq(pt.getPoint()) == 0) {
+            if (index < points.size() && points.get(index).getPoint().distanceSq(pt.getPoint()) == 0) {
                 points.remove(index);
             } else {
                 points.add(index, pt);
@@ -219,15 +204,14 @@ public class GraphHandler extends mxGraphHandler {
 
     /**
      * Open a block
-     * 
+     *
      * @param e
      *            the mouse event
      * @param cell
      *            the block
      */
     private void openBlock(MouseEvent e, BasicBlock cell) {
-        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph())
-                .getContext());
+        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph()).getContext());
 
         e.consume();
     }

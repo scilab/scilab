@@ -14,7 +14,7 @@
   <refsection>
     <title>Description</title>
     <para>
-	Cette fonction re-initialise le wisdom fftw.
+      Cette fonction re-initialise le wisdom fftw.
     </para>
   </refsection>
   <refsection>
@@ -29,7 +29,7 @@ fftw_forget_wisdom();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

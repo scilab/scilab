@@ -23,7 +23,9 @@
       <varlistentry>
         <term>epsilon</term>
         <listitem>
-          <para>実数 : 通過域のリップル (<literal>0&lt;epsilon&lt;1</literal>)</para>
+          <para>
+            実数 : 通過域のリップル (<literal>0&lt;epsilon&lt;1</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,14 +51,11 @@
   <refsection>
     <title>説明n</title>
     <para>
-	1形チェビシェフフィルタの極.
-	伝達関数は以下のように指定されます :</para>
-    <programlisting role = ""><![CDATA[ 
+      1形チェビシェフフィルタの極.
+      伝達関数は以下のように指定されます :
+    </para>
+    <programlisting role=""><![CDATA[ 
 H(s)=gain/poly(poles,'s')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

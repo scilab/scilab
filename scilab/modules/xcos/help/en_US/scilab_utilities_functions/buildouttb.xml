@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -43,9 +43,9 @@
   <refsection id="Description_buildouttb">
     <title>Description</title>
     <para>
-Build an initialized outtb list.
-
-</para>
+      Build an initialized outtb list.
+      
+    </para>
     <programlisting role="example"><![CDATA[ 
 [outtb]=buildouttb(lnksz,lnktyp)
  ]]></programlisting>
@@ -54,14 +54,20 @@ Build an initialized outtb list.
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">outtb :</emphasis> a list of size n.</para>
+        <para>
+          <emphasis role="bold">outtb :</emphasis> a list of size n.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">lnksz :</emphasis> That parameter gives the size of Scilab object in outtb.</para>
+        <para>
+          <emphasis role="bold">lnksz :</emphasis> That parameter gives the size of Scilab object in outtb.
+        </para>
         <para> This matrix of integer or real numbers can have a n,2 or 2,n size.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">lnktyp :</emphasis> That parameters gives the type of Scilab object in outtb :</para>
+        <para>
+          <emphasis role="bold">lnktyp :</emphasis> That parameters gives the type of Scilab object in outtb :
+        </para>
         <para> 1 : double</para>
         <para> 2 : complex</para>
         <para> 3 : int32</para>
@@ -74,9 +80,5 @@ Build an initialized outtb list.
         <para> This matrix of integer or real numbers can have a n,1 or 1,n size.</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_buildouttb">
-    <title>Authors</title>
-    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>
 </refentry>

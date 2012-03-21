@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-07 10:31+0100\n"
+"Revision-Date: 2012-03-07 18:20+0100\n"
 
 # File: sci_gateway/c/sci_diary.c, line: 82
 # File: sci_gateway/c/sci_host.c, line: 56
@@ -30,7 +30,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_diary.c, line: 107
-# File: sci_gateway/c/sci_file.c, line: 478
+# File: sci_gateway/c/sci_file.c, line: 477
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -42,125 +42,125 @@ msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 66
-# File: sci_gateway/c/sci_file.c, line: 74
-# File: sci_gateway/c/sci_file.c, line: 82
-# File: sci_gateway/c/sci_file.c, line: 90
-# File: sci_gateway/c/sci_file.c, line: 98
-# File: sci_gateway/c/sci_file.c, line: 106
-# File: sci_gateway/c/sci_file.c, line: 129
-# File: sci_gateway/c/sci_file.c, line: 143
-# File: sci_gateway/c/sci_file.c, line: 157
-# File: sci_gateway/c/sci_file.c, line: 172
-# File: sci_gateway/c/sci_file.c, line: 189
-# File: sci_gateway/c/sci_file.c, line: 202
-# File: sci_gateway/c/sci_file.c, line: 219
-# File: sci_gateway/c/sci_file.c, line: 232
-# File: sci_gateway/c/sci_file.c, line: 249
-# File: sci_gateway/c/sci_file.c, line: 449
-# File: sci_gateway/c/sci_file.c, line: 457
-# File: sci_gateway/c/sci_file.c, line: 472
-# File: sci_gateway/c/sci_getenv.c, line: 56
-# File: sci_gateway/c/sci_getenv.c, line: 64
-# File: sci_gateway/c/sci_getenv.c, line: 78
-# File: sci_gateway/c/sci_getenv.c, line: 95
-# File: sci_gateway/c/sci_getenv.c, line: 110
-# File: sci_gateway/c/sci_getenv.c, line: 118
-# File: sci_gateway/c/sci_getenv.c, line: 133
-# File: sci_gateway/c/sci_getenv.c, line: 151
-# File: sci_gateway/c/sci_setenv.c, line: 51
-# File: sci_gateway/c/sci_setenv.c, line: 59
-# File: sci_gateway/c/sci_setenv.c, line: 67
-# File: sci_gateway/c/sci_setenv.c, line: 81
-# File: sci_gateway/c/sci_setenv.c, line: 95
-# File: sci_gateway/c/sci_setenv.c, line: 109
-# File: sci_gateway/c/sci_setenv.c, line: 126
-# File: sci_gateway/c/sci_setenv.c, line: 144
+# File: sci_gateway/c/sci_file.c, line: 65
+# File: sci_gateway/c/sci_file.c, line: 73
+# File: sci_gateway/c/sci_file.c, line: 81
+# File: sci_gateway/c/sci_file.c, line: 89
+# File: sci_gateway/c/sci_file.c, line: 97
+# File: sci_gateway/c/sci_file.c, line: 105
+# File: sci_gateway/c/sci_file.c, line: 128
+# File: sci_gateway/c/sci_file.c, line: 142
+# File: sci_gateway/c/sci_file.c, line: 156
+# File: sci_gateway/c/sci_file.c, line: 171
+# File: sci_gateway/c/sci_file.c, line: 188
+# File: sci_gateway/c/sci_file.c, line: 201
+# File: sci_gateway/c/sci_file.c, line: 218
+# File: sci_gateway/c/sci_file.c, line: 231
+# File: sci_gateway/c/sci_file.c, line: 248
+# File: sci_gateway/c/sci_file.c, line: 448
+# File: sci_gateway/c/sci_file.c, line: 456
+# File: sci_gateway/c/sci_file.c, line: 471
+# File: sci_gateway/c/sci_getenv.c, line: 55
+# File: sci_gateway/c/sci_getenv.c, line: 63
+# File: sci_gateway/c/sci_getenv.c, line: 77
+# File: sci_gateway/c/sci_getenv.c, line: 94
+# File: sci_gateway/c/sci_getenv.c, line: 109
+# File: sci_gateway/c/sci_getenv.c, line: 117
+# File: sci_gateway/c/sci_getenv.c, line: 132
+# File: sci_gateway/c/sci_getenv.c, line: 150
+# File: sci_gateway/c/sci_setenv.c, line: 50
+# File: sci_gateway/c/sci_setenv.c, line: 58
+# File: sci_gateway/c/sci_setenv.c, line: 66
+# File: sci_gateway/c/sci_setenv.c, line: 80
+# File: sci_gateway/c/sci_setenv.c, line: 94
+# File: sci_gateway/c/sci_setenv.c, line: 108
+# File: sci_gateway/c/sci_setenv.c, line: 125
+# File: sci_gateway/c/sci_setenv.c, line: 143
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 135
-# File: sci_gateway/c/sci_file.c, line: 149
-# File: sci_gateway/c/sci_file.c, line: 163
-# File: sci_gateway/c/sci_getenv.c, line: 84
-# File: sci_gateway/c/sci_getenv.c, line: 140
+# File: sci_gateway/c/sci_file.c, line: 134
+# File: sci_gateway/c/sci_file.c, line: 148
+# File: sci_gateway/c/sci_file.c, line: 162
+# File: sci_gateway/c/sci_getenv.c, line: 83
+# File: sci_gateway/c/sci_getenv.c, line: 139
 # File: sci_gateway/c/sci_host.c, line: 35
-# File: sci_gateway/c/sci_setenv.c, line: 101
-# File: sci_gateway/c/sci_setenv.c, line: 115
+# File: sci_gateway/c/sci_setenv.c, line: 100
+# File: sci_gateway/c/sci_setenv.c, line: 114
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 180
-# File: sci_gateway/c/sci_file.c, line: 210
-# File: sci_gateway/c/sci_file.c, line: 240
-# File: sci_gateway/c/sci_file.c, line: 264
-# File: sci_gateway/c/sci_file.c, line: 272
-# File: sci_gateway/c/sci_file.c, line: 335
-# File: sci_gateway/c/sci_file.c, line: 355
-# File: sci_gateway/c/sci_file.c, line: 376
-# File: sci_gateway/c/sci_file.c, line: 397
-# File: sci_gateway/c/sci_file.c, line: 419
-# File: sci_gateway/c/sci_file.c, line: 508
-# File: sci_gateway/c/sci_file.c, line: 536
-# File: sci_gateway/c/sci_file.c, line: 574
-# File: sci_gateway/c/sci_file.c, line: 601
-# File: sci_gateway/c/sci_file.c, line: 628
-# File: sci_gateway/c/sci_getenv.c, line: 101
-# File: sci_gateway/c/sci_getenv.c, line: 158
-# File: sci_gateway/c/sci_getenv.c, line: 194
-# File: sci_gateway/c/sci_getenv.c, line: 209
-# File: sci_gateway/c/sci_setenv.c, line: 133
-# File: sci_gateway/c/sci_setenv.c, line: 152
-# File: sci_gateway/c/sci_setenv.c, line: 166
+# File: sci_gateway/c/sci_file.c, line: 179
+# File: sci_gateway/c/sci_file.c, line: 209
+# File: sci_gateway/c/sci_file.c, line: 239
+# File: sci_gateway/c/sci_file.c, line: 263
+# File: sci_gateway/c/sci_file.c, line: 271
+# File: sci_gateway/c/sci_file.c, line: 334
+# File: sci_gateway/c/sci_file.c, line: 354
+# File: sci_gateway/c/sci_file.c, line: 375
+# File: sci_gateway/c/sci_file.c, line: 396
+# File: sci_gateway/c/sci_file.c, line: 418
+# File: sci_gateway/c/sci_file.c, line: 507
+# File: sci_gateway/c/sci_file.c, line: 535
+# File: sci_gateway/c/sci_file.c, line: 573
+# File: sci_gateway/c/sci_file.c, line: 600
+# File: sci_gateway/c/sci_file.c, line: 627
+# File: sci_gateway/c/sci_getenv.c, line: 100
+# File: sci_gateway/c/sci_getenv.c, line: 157
+# File: sci_gateway/c/sci_getenv.c, line: 193
+# File: sci_gateway/c/sci_getenv.c, line: 208
+# File: sci_gateway/c/sci_setenv.c, line: 132
+# File: sci_gateway/c/sci_setenv.c, line: 151
+# File: sci_gateway/c/sci_setenv.c, line: 165
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 285
+# File: sci_gateway/c/sci_file.c, line: 284
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 291
+# File: sci_gateway/c/sci_file.c, line: 290
 #, c-format
 msgid "%s: The file does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 464
+# File: sci_gateway/c/sci_file.c, line: 463
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 486
+# File: sci_gateway/c/sci_file.c, line: 485
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getenv.c, line: 70
-# File: sci_gateway/c/sci_getenv.c, line: 125
-# File: sci_gateway/c/sci_setenv.c, line: 73
-# File: sci_gateway/c/sci_setenv.c, line: 87
+# File: sci_gateway/c/sci_getenv.c, line: 69
+# File: sci_gateway/c/sci_getenv.c, line: 124
+# File: sci_gateway/c/sci_setenv.c, line: 72
+# File: sci_gateway/c/sci_setenv.c, line: 86
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getenv.c, line: 178
+# File: sci_gateway/c/sci_getenv.c, line: 177
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getenv.c, line: 218
+# File: sci_gateway/c/sci_getenv.c, line: 217
 #, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr ""
@@ -212,7 +212,13 @@ msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #
-# File: macros/input.sci, line: 37
+# File: macros/input.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/input.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""

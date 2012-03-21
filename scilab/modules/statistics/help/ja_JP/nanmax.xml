@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[m,index]=nanmax(x)
-[m,index]=nanmax(x,'r')
-[m,index]=nanmax(x,'c')</synopsis>
+      [m,index]=nanmax(x,'r')
+      [m,index]=nanmax(x,'c')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -38,32 +39,38 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,ある実数または数値行列<literal>x</literal>について,
-	最大の要素<literal>m</literal> (NaNは無視)を出力します.</para>
+      この関数は,ある実数または数値行列<literal>x</literal>について,
+      最大の要素<literal>m</literal> (NaNは無視)を出力します.
+    </para>
     <para>
-    <literal>x</literal>が数値ベクトルまたは行列の場合,
-	<literal>m=nanmax(x</literal>はスカラー<literal>m</literal>に
-	<literal>x</literal>に最大の要素(NaNを無視)を
-	返します.
-	<literal>[m,index] =nanmax(x,orient)</literal>は,
-	<literal>x</literal>の(NaNを無視した)最大要素の値を
-	スカラー<literal>m</literal>,そして,
-	<literal>x</literal>におけるこの要素のインデックスを
-	出力します.</para>
-    <para><literal>m=nanmax(x,'r')</literal> は,
-	<literal>x</literal>の各列の(NaNを無視した)最大要素を
-	1行size(x,2)列の行列に出力します.
-	<literal>[m,index]=nanmax(x,'r')</literal>を使用した場合,
-	1行size(x,2)列の行列indexはその対応する列がxの各列の最大要素の
-	インデクスとなります.</para>
+      <literal>x</literal>が数値ベクトルまたは行列の場合,
+      <literal>m=nanmax(x</literal>はスカラー<literal>m</literal>に
+      <literal>x</literal>に最大の要素(NaNを無視)を
+      返します.
+      <literal>[m,index] =nanmax(x,orient)</literal>は,
+      <literal>x</literal>の(NaNを無視した)最大要素の値を
+      スカラー<literal>m</literal>,そして,
+      <literal>x</literal>におけるこの要素のインデックスを
+      出力します.
+    </para>
     <para>
-	m=nanmax(x,'c') は,size(x,2)x1行列mに
-	xの各行の(NaNを無視した)最大要素を出力します.
-	[m,index]=nanmax(x,'c')を使用した場合,
-	size(x,2)x1行列indexは,対応する行がxの各行の
-	(NaNを無視した)最大要素のインデックスとなります.</para>
+      <literal>m=nanmax(x,'r')</literal> は,
+      <literal>x</literal>の各列の(NaNを無視した)最大要素を
+      1行size(x,2)列の行列に出力します.
+      <literal>[m,index]=nanmax(x,'r')</literal>を使用した場合,
+      1行size(x,2)列の行列indexはその対応する列がxの各列の最大要素の
+      インデクスとなります.
+    </para>
     <para>
-    Labostatでは, NAN 値は表における欠損値を意味します.</para>
+      m=nanmax(x,'c') は,size(x,2)x1行列mに
+      xの各行の(NaNを無視した)最大要素を出力します.
+      [m,index]=nanmax(x,'c')を使用した場合,
+      size(x,2)x1行列indexは,対応する行がxの各行の
+      (NaNを無視した)最大要素のインデックスとなります.
+    </para>
+    <para>
+      Labostatでは, NAN 値は表における欠損値を意味します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -75,12 +82,9 @@ m=nanmax(x,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

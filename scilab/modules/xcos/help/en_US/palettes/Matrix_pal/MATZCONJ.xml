@@ -17,45 +17,33 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="MATZCONJ"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATZCONJ">
   <refnamediv>
     <refname>MATZCONJ</refname>
-
     <refpurpose>Conjugate of Matrix's Elements</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/MATZCONJ.png"
-                     valign="middle"></imagedata>
+          <imagedata align="center" fileref="../../../../images/palettes/MATZCONJ.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Contents_MATZCONJ">
     <title>Contents</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="MATZCONJ">Conjugate of Matrix's Elements</link>
         </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
           <listitem>
@@ -63,7 +51,6 @@
               <xref linkend="Palette_MATZCONJ">Palette</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Description_MATZCONJ">Description</xref>
@@ -79,38 +66,27 @@
               <xref linkend="Defaultproperties_MATZCONJ">Default properties</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_MATZCONJ">Interfacing function</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Computationalfunction_MATZCONJ">Computational function</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Seealso_MATZCONJ">See also</xref>
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>
-              <xref linkend="Authors_MATZCONJ">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_MATZCONJ">
     <title>Palette</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -119,17 +95,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_MATZCONJ">
     <title>Description</title>
-
     <para>
       This blocks computes a matrix containing the conjugate of the elements of a complex input matrix.
     </para>
-    <para>The equivalent function of this block in Scilab is <link linkend="conj">conj</link>.</para>
-    <para />
+    <para>
+      The equivalent function of this block in Scilab is <link linkend="conj">conj</link>.
+    </para>
+    <para/>
   </refsection>
-
   <refsection id="Example_MATZCONJ">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
@@ -139,100 +114,96 @@
 --                  --                  --                  --
  ]]></programlisting>
   </refsection>
-
   <refsection id="Defaultproperties_MATZCONJ">
     <title>Default properties</title>
-
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular inputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-2] / type 2</emphasis>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-2] / type 2</emphasis>
         </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-
           <emphasis role="italic">matz_conj</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Interfacingfunction_MATZCONJ">
     <title>Interfacing function</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATZCONJ.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_MATZCONJ">
     <title>Computational function</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matz_conj.c</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Seealso_MATZCONJ">
     <title>See also</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -245,11 +216,5 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_MATZCONJ">
-    <title>Authors</title>
-
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

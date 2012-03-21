@@ -17,7 +17,6 @@ extern "C"
 {
 #include "xml.h"
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -52,11 +51,12 @@ int sci_xmlRead(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
+
     if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
@@ -74,7 +74,7 @@ int sci_xmlRead(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             freeAllocatedSingleString(path);
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);

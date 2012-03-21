@@ -19,36 +19,41 @@
   <refsection>
     <title>説明</title>
     <para>
-	このツールにより,曲線(ポリライン)上に情報を配置,移動,修正することが
-	できます.これはプログラムまたは対話的に行うことができます.
-	通常使用されるモードは対話モードです:
+      このツールにより,曲線(ポリライン)上に情報を配置,移動,修正することが
+      できます.これはプログラムまたは対話的に行うことができます.
+      通常使用されるモードは対話モードです:
     </para>
     <para>
-     datatipsモードは <link linkend="datatipToggle">datatipToggle()</link> または
-     <literal>Edit/Start datatip manager</literal> または指定するグラフィックウインドウの
-	ツールバーアイコンの
-<inlinemediaobject><imageobject><imagedata fileref="../../../../gui/images/icons/32x32/apps/datatips.png"/></imageobject></inlinemediaobject>をクリックすることにより有効にすることができます.
+      datatipsモードは <link linkend="datatipToggle">datatipToggle()</link> または
+      <literal>Edit/Start datatip manager</literal> または指定するグラフィックウインドウの
+      ツールバーアイコンの
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../gui/images/icons/32x32/apps/datatips.png"/>
+        </imageobject>
+      </inlinemediaobject>
+      をクリックすることにより有効にすることができます.
     </para>
     <para>一度有効になると,曲線を左クリックするだけで,
-	情報(カレントの点に関する情報を有する小さな箱)が曲線の最も近いdatapointに
-	追加されます.
-	デフォルトで各曲線は1つの情報を有することができますが,
-	右クリックコンテキストメニューにより複数のdatatipsを使用することが
-	可能です.
+      情報(カレントの点に関する情報を有する小さな箱)が曲線の最も近いdatapointに
+      追加されます.
+      デフォルトで各曲線は1つの情報を有することができますが,
+      右クリックコンテキストメニューにより複数のdatatipsを使用することが
+      可能です.
     </para>
     <para>
-	情報を移動するには,曲線の小さな正方形の記号の上で左ボタンを押し,
-	少し待ってから好きな位置にドラッグします.
+      情報を移動するには,曲線の小さな正方形の記号の上で左ボタンを押し,
+      少し待ってから好きな位置にドラッグします.
     </para>
     <para>
-	情報記号の上で右クリックするとコンテキストダイアログがオープンします.
-	このダイアログにより関連する曲線の全ての datatips に表示される専用の情報を
-	カスタマイズすることができます.
+      情報記号の上で右クリックするとコンテキストダイアログがオープンします.
+      このダイアログにより関連する曲線の全ての datatips に表示される専用の情報を
+      カスタマイズすることができます.
     </para>
     <para>
-	情報記号の上で真ん中のボタンをクリックすると,
-	選択された情報の向きを管理することができるコンテキスト依存のダイアログが
-	オープンされます.
+      情報記号の上で真ん中のボタンをクリックすると,
+      選択された情報の向きを管理することができるコンテキスト依存のダイアログが
+      オープンされます.
     </para>
   </refsection>
   <refsection>
@@ -122,12 +127,6 @@
       <member>
         <link linkend="datatipSetDisplay">datatipSetDisplay</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

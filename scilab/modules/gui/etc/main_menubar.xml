@@ -56,6 +56,9 @@
     <submenu label="&amp;Select all" accelerator="OSSCKEY A" icon="edit-select-all">
       <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
     </submenu>
+    <submenu label="P&amp;references">
+      <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
+    </submenu>
   </menu>
   <!-- Preferences menu -->
   <menu label="&amp;Preferences" enabled="false">
@@ -175,3 +178,4 @@
     </submenu>
   </menu>
 </menubar>
+

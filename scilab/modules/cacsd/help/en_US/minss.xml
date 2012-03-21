@@ -28,20 +28,26 @@
       <varlistentry>
         <term>sl,slc</term>
         <listitem>
-          <para> <literal>syslin</literal> lists (linear systems in state-space form)</para>
+          <para>
+            <literal>syslin</literal> lists (linear systems in state-space form)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>real (threshold for rank determination (see <literal>contr</literal>))</para>
+          <para>
+            real (threshold for rank determination (see <literal>contr</literal>))
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>minss</literal> returns in <literal>slc</literal> a minimal realization of <literal>sl</literal>.</para>
+    <para>
+      <literal>minss</literal> returns in <literal>slc</literal> a minimal realization of <literal>sl</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +58,7 @@ ssprint(minss(sl))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contr">contr</link>

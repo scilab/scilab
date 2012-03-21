@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("CACSD",SCI+"/modules/cacsd/help/en_US",%T);
+add_help_chapter("CACSD (Computer Aided Control Systems Design)",SCI+"/modules/cacsd/help/en_US",%T);
 

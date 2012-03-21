@@ -2056,7 +2056,6 @@ public final class ConfigSciNotesManager {
         if (!keyConfig.exists() || !fileConfig.exists()) {
             createUserCopy();
         }
-
         File xml = null;
         DocumentBuilder docBuilder = null;
         String factoryName = ScilabDocumentBuilderFactory.useDefaultDocumentBuilderFactoryImpl();

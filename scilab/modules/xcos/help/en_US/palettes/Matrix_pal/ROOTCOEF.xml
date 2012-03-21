@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_ROOTCOEF">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_ROOTCOEF">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -97,12 +92,10 @@
   </refsection>
   <refsection id="Description_ROOTCOEF">
     <title>Description</title>
-
     <para>
       This block computes the coefficients of a polynomial given its root values. This roots are given on the input
       in the form  of a column vector. The length of the root's vector must be specified in the <emphasis role="bold">input row size</emphasis> parameter.
     </para>
-
   </refsection>
   <refsection id="Dialogbox_ROOTCOEF">
     <title>Dialog box</title>
@@ -113,19 +106,16 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
-
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-
         <para>
           It indicates the type of the output. It support only the two types double (1) and complex (2).
           If we input another entry in this label xcos will print the message "Datatype is not supported".
         </para>
-
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
@@ -141,16 +131,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -169,19 +167,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -199,7 +207,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_ROOTCOEF">
     <title>Computational function</title>
     <itemizedlist>
@@ -210,10 +217,5 @@
         <para> SCI/modules/scicos_blocks/src/c/rootz_coef.c</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_ROOTCOEF">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

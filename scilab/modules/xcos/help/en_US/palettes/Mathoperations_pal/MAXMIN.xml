@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -81,11 +81,6 @@
               <xref linkend="Seealso_MAXMIN">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_MAXMIN">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -105,27 +100,39 @@
     <para>
       This block finds the minimum/maximum values (parameter <emphasis role="bold">Min or Max</emphasis>) and accepts one or two inputs depending on the parameter <emphasis role="bold">Number of input vectors</emphasis> :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left"><emphasis role="bold">Number of input vectors</emphasis></td>
-        <td align="left"><emphasis role="bold">Input</emphasis></td>
-        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Number of input vectors</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Input</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Operation</emphasis>
+        </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">1</emphasis>
+        </td>
         <td align="left">Vector</td>
         <td align="left">
           The input must be a vector and the bloc output is the minimum/maximum value of the elements of its input vector.
         </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">2</emphasis>
+        </td>
         <td align="left">Scalar</td>
         <td align="left">The block output is the minimal or maximal scalar.</td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">2</emphasis>
+        </td>
         <td align="left">Vector</td>
         <td align="left">
           The input vectors must have the same size. The block output is a vector with the same size as
@@ -145,8 +152,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -175,16 +182,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -203,19 +218,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -249,15 +274,11 @@
           <link linkend="MIN_f">MIN_f - Minimum value of vector's element (Xcos block)</link>
         </para>
       </listitem>
-       <listitem>
+      <listitem>
         <para>
           <link linkend="MAX_f">MAX_f - Maximum value of vector's elements (Xcos block)</link>
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_MAXMIN">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

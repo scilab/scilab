@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -43,10 +43,10 @@
   <refsection id="Description_set_blockerror">
     <title>Description</title>
     <para>
-Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in argument.  
-</para>
+      Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in argument.  
+    </para>
     <para>
-</para>
+    </para>
     <programlisting role="example"><![CDATA[ 
 set_blockerror(n)
  ]]></programlisting>
@@ -55,47 +55,45 @@ set_blockerror(n)
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">n</emphasis> : an error number. The following calls are allowed :</para>
+        <para>
+          <emphasis role="bold">n</emphasis> : an error number. The following calls are allowed :
+        </para>
         <itemizedlist>
           <listitem>
             <para>
               <emphasis role="bold">set_blockerror(-1)</emphasis>
             </para>
             <para>
-the block has been called with input out of its domain
-</para>
+              the block has been called with input out of its domain
+            </para>
           </listitem>
           <listitem>
             <para>
               <emphasis role="bold">set_blockerror(-2)</emphasis>
             </para>
             <para>
-singularity in a block
-</para>
+              singularity in a block
+            </para>
           </listitem>
           <listitem>
             <para>
               <emphasis role="bold">set_blockerror(-3)</emphasis>
             </para>
             <para>
-block produces an internal error
-</para>
+              block produces an internal error
+            </para>
           </listitem>
           <listitem>
             <para>
               <emphasis role="bold">set_blockerror(-16)</emphasis>
             </para>
             <para>
-cannot allocate memory in block
-          
-</para>
+              cannot allocate memory in block
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_set_blockerror">
-    <title>Authors</title>
-    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>
 </refentry>

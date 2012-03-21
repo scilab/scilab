@@ -10,11 +10,15 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#if defined(__linux__)
+#undef _FORTIFY_SOURCE /* Avoid dependency on GLIBC_2.4 (__wcscat_chk/__wcscpy_chk) */
+#endif
 #ifndef _MSC_VER
 #include <errno.h>
+#else
+#include <windows.h>
 #endif
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -150,7 +154,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
                         }
 
                         destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwo) +
-                                                                                 (int)wcslen(filename) + (int)wcslen(L"/") + 1));
+                                                              (int)wcslen(filename) + (int)wcslen(L"/") + 1));
                         wcscpy(destFullFilename, pStVarTwo);
                         wcscat(destFullFilename, L"/");
                         wcscat(destFullFilename, filename);

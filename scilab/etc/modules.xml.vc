@@ -88,6 +88,7 @@
 <module name="parallel" activate="yes"/>
 <module name="modules_manager" activate="yes"/>
 <module name="history_browser" activate="yes"/>
+<module name="preferences" activate="yes"/>
 <module name="xml" activate="yes"/>
 <!-- comments -->
 </modules>

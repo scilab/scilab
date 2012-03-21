@@ -107,7 +107,6 @@
               </imageobject>
             </mediaobject>
           </para>
-          
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -290,9 +289,5 @@
         <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
       </revision>
     </revhistory>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

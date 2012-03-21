@@ -31,9 +31,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	このプリミティブは, コンパイル済みの Scilab　関数<literal>function-name</literal>
-	を関数を内部表現にコード化したツリー (鱗状のtlists)に変換します.
-	<literal>tree2code</literal>と共に使用します.
+      このプリミティブは, コンパイル済みの Scilab　関数<literal>function-name</literal>
+      を関数を内部表現にコード化したツリー (鱗状のtlists)に変換します.
+      <literal>tree2code</literal>と共に使用します.
     </para>
   </refsection>
   <refsection>
@@ -50,12 +50,6 @@ write(%io(2),txt,'(a)');
       <member>
         <link linkend="tree2code">tree2code</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

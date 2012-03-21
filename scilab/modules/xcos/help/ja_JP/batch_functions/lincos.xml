@@ -17,20 +17,16 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="lincos"
-	xmlns="http://docbook.org/ns/docbook"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:svg="http://www.w3.org/2000/svg"
-	xmlns:mml="http://www.w3.org/1998/Math/MathML"
-	xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lincos">
   <refnamediv>
     <refname>lincos</refname>
     <refpurpose>xcosダイアグラムにより記述された一般的な動的システムから
-	線形化により定義された線形状態空間モデル</refpurpose>
+      線形化により定義された線形状態空間モデル
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -49,14 +45,14 @@
   <refsection id="Description_lincos">
     <title>説明</title>
     <para>
-xcosダイアグラムで指定されたモデルを線形化することにより
-線形状態空間システムを構築します.
-</para>
+      xcosダイアグラムで指定されたモデルを線形化することにより
+      線形状態空間システムを構築します.
+    </para>
     <para>
-出力は,連続時間状態空間線形システム型のScilabデータ構造体です.
-</para>
+      出力は,連続時間状態空間線形システム型のScilabデータ構造体です.
+    </para>
     <para>
-</para>
+    </para>
     <programlisting role="example"><![CDATA[ 
 sys= lincos(scs_m [,x0,u0 [,param] ])
  ]]></programlisting>
@@ -65,25 +61,35 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
     <title>パラメータ</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scs_m :</emphasis>xcosデータ構造体</para>
+        <para>
+          <emphasis role="bold">scs_m :</emphasis>xcosデータ構造体
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">x0 :</emphasis> 列ベクトル.連続時間状態変数で,
-	この近傍で線形化が行われます (デフォルト: 0)</para>
+        <para>
+          <emphasis role="bold">x0 :</emphasis> 列ベクトル.連続時間状態変数で,
+          この近傍で線形化が行われます (デフォルト: 0)
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">u0 :</emphasis> 列ベクトル. 
-	入力で,この近傍で線形化が行われます (デフォルト: 0)</para>
+        <para>
+          <emphasis role="bold">u0 :</emphasis> 列ベクトル. 
+          入力で,この近傍で線形化が行われます (デフォルト: 0)
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">param :</emphasis> param: 
-	2つの要素を有するリスト (デフォルト: list(1.d-6,0)).
-	param(1): スカラー. 線形化用の擾乱の大きさ; 以下の変動が使用されます
-	del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. 
-	param(2): スカラー. 時刻 t.</para>
+        <para>
+          <emphasis role="bold">param :</emphasis> param: 
+          2つの要素を有するリスト (デフォルト: list(1.d-6,0)).
+          param(1): スカラー. 線形化用の擾乱の大きさ; 以下の変動が使用されます
+          del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. 
+          param(2): スカラー. 時刻 t.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">sys :</emphasis> 状態空間システム</para>
+        <para>
+          <emphasis role="bold">sys :</emphasis> 状態空間システム
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -101,20 +107,18 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
       <listitem>
         <para>
           <link linkend="steadycos">steadycos - 
-	xcosダイアグラムで記述された一般の動的システムの状態変数の定常値を見つけます
-	(Scilab関数)</link>
+            xcosダイアグラムで記述された一般の動的システムの状態変数の定常値を見つけます
+            (Scilab関数)
+          </link>
         </para>
       </listitem>
       <listitem>
         <para>
           <link linkend="scicos_simulate">scicos_simulate - 
-	xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)</link>
+            xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)
+          </link>
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_lincos">
-    <title>作者</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

@@ -268,11 +268,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   end
 
   //** scicos simulation
-  //needreplay=%t
-  tf = scs_m.props.tf;
-  //setmenu(curwin,'Stop')
-  //timer()
-  needreplay = %t
+  tf = scs_m.props.tf
 
   //** run scicosim via 'start' flag
   ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
@@ -341,19 +337,30 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   n=size(files,1)
   for i=1:n
     load(TMPDIR+'/Workspace/'+files(i))
-    execstr(files(i)+'=struct('"values'",x,'"time'",t)')
-  end
-  execstr(txt)
-
-    // Hook according to SEP066
-    if isdef("post_xcos_simulate") then
-      try
-      post_xcos_simulate(%cpr, scs_m, needcompile);
-      catch
-      disp(_("Error in post_xcos_simulate: ending simulation."))
-      end
+    ierr = execstr(files(i)+'=struct('"values'",x,'"time'",t)', "errcatch")
+    if ierr <> 0
+       str_err = split_lasterror(lasterror());
+       message(['Simulation problem:';str_err]);
     end
 
-  needreplay = resume(needreplay);
+  end
+
+  // Hook according to SEP066
+  if isdef("post_xcos_simulate") then
+    try
+      post_xcos_simulate(%cpr, scs_m, needcompile);
+    catch
+      disp(_("Error in post_xcos_simulate: ending simulation."))
+    end
+  end
+
+  // finally restore the exported variables on the parent context
+  if ~isempty(txt) then
+    ierr = execstr(txt, "errcatch")
+    if ierr <> 0 then
+        str_err = split_lasterror(lasterror());
+        message(['Simulation problem while executing <'+txt+'>:';str_err]);
+    end
+  end
 endfunction
 

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Seealso_GOTO">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_GOTO">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,25 +93,25 @@
   <refsection id="Description_GOTO">
     <title>Description</title>
     <para>
-The main role of the GOTO/FROM blocks is to transport signals from a block to another block without connecting them physically. The GOTO block transports its input data to its corresponding FROM block. A simple GOTO block can send data to multiple FROM, although a FROM can receive data from only one GOTO.  
-</para>
+      The main role of the GOTO/FROM blocks is to transport signals from a block to another block without connecting them physically. The GOTO block transports its input data to its corresponding FROM block. A simple GOTO block can send data to multiple FROM, although a FROM can receive data from only one GOTO.  
+    </para>
     <para>
-The GOTO and FROM blocks are connected by the tag parameter.  
-</para>
+      The GOTO and FROM blocks are connected by the tag parameter.  
+    </para>
     <para>
-The "Tag Visibility" parameter indicates if the location of the FROM block is limited:  
-</para>
+      The "Tag Visibility" parameter indicates if the location of the FROM block is limited:  
+    </para>
     <para>- Local: means that the corresponding FROM of that GOTO must be in the same subsystem.  
-</para>
+    </para>
     <para>- Scoped: means that the corresponding FROM of that GOTO must be in the same subsystem or in any subsystem below the GotoTagVisibility block in the model hierarchy.  
-</para>
+    </para>
     <para>- Global: means that the corresponding FROM of that GOTO can be anywhere in the model.  
-</para>
+    </para>
     <para>
-This block can support all the data types.  
-</para>
+      This block can support all the data types.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_GOTO">
     <title>Dialog box</title>
@@ -128,8 +123,8 @@ This block can support all the data types.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -151,16 +146,24 @@ This block can support all the data types.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -171,19 +174,29 @@ This block can support all the data types.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -215,9 +228,5 @@ This block can support all the data types.
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_GOTO">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

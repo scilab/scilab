@@ -11,15 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
-  version="5.0-subset Scilab"
-  xml:lang="en"
-  xml:id="cdfgam">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfgam">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -71,18 +63,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
       Calculates any one parameter of the gamma
       distribution given values for the others.
     </para>
-
     <para>
       The gamma density is 
     </para>
-
     <para>
       <latex>
         \begin{eqnarray}
@@ -90,27 +79,21 @@
         \end{eqnarray}
       </latex>
     </para>
-
     <para>
       where a is the shape and r is the rate.
     </para>
-
-
     <para>
       Caution. As opposed to other technical computing languages,
       this function makes use of the rate parameter, and not the
       scale parameter.
       The rate parameter is linked to the scale parameter with the equation rate=1/scale.
     </para>
-
     <para>
       Computation of parameters such as X, Shape or Rate involve a seach for a value that
       produces  the desired  value  of P.   The search relies on the
       monotinicity of P with the other parameter.
     </para>
-
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <para>
@@ -118,25 +101,19 @@
       for the Gamma distribution function with <literal>Shape=1.0</literal> and 
       <literal>Rate=1.0</literal>.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
     Shape = 0.1
     Rate = 1.0
     x = 0.1
     // Expected : P = 0.8275518
     [P,Q]=cdfgam("PQ",x,Shape,Rate) 
- ]]>
-    </programlisting>
-
+ ]]></programlisting>
     <para>
       In the following example, we compute the probability of the event <literal>x=0.1</literal>
       and check that the search algorithms allows to consistently invert the 
       function.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
     Shape = 0.1
     Rate = 2.0
     x = 0.3
@@ -144,16 +121,12 @@
     [X1]     = cdfgam("X",Shape,Rate,P,Q)
     [Shape1] = cdfgam("Shape",Rate,P,Q,x)
     [Rate1] = cdfgam("Rate",P,Q,x,Shape)
- ]]>
-  </programlisting>
-
+ ]]></programlisting>
     <para>
       In the following example, we draw the Gamma distribution function 
       for various values of the shape and rate.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
     N = 1000;
     x = linspace(0,20,N)';
     Shape = [1 2 3 5 9];
@@ -171,11 +144,8 @@
     legend(lstr);
     xtitle("CDF of the Gamma distribution function","X","P");
     drawnow();
- ]]>
-  </programlisting>
-
-</refsection>
-
+ ]]></programlisting>
+  </refsection>
   <refsection>
     <title>Bibliography</title>
     <para>

@@ -41,10 +41,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La function <literal>get_figure_handle</literal> permet de retrouver le handle
-    d'une figure graphique à partir de son identifiant. Si une figure avec l'identifiant
-    spécifié en argument existe, alors elle est renvoyée par la fonction. Sinon,
-    la fonction renvoie une matrice vide.
+    <para>
+       La function <literal>get_figure_handle</literal> permet de retrouver le handle
+      d'une figure graphique à partir de son identifiant. Si une figure avec l'identifiant
+      spécifié en argument existe, alors elle est renvoyée par la fonction. Sinon,
+      la fonction renvoie une matrice vide.
     </para>
   </refsection>
   <refsection>
@@ -64,7 +65,7 @@ f42 = get_figure_handle(42);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>
@@ -83,10 +84,4 @@ f42 = get_figure_handle(42);
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-
-

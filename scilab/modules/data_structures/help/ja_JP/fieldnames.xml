@@ -42,7 +42,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    この関数は tlist, mlist, cell または構造体のフィールド名を返します.</para>
+      この関数は tlist, mlist, cell または構造体のフィールド名を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -60,7 +61,7 @@ fieldnames(tf2ss(1/%s))
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>
-      </member>  
+      </member>
       <member>
         <link linkend="getfield">getfield</link>
       </member>

@@ -159,6 +159,5 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
 end
-
 // ====================================================================
 clear ans

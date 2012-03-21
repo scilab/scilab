@@ -12,10 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
-#include "api_scilab.h"
-#include "stack-c.h"
-#include "MALLOC.h"
 #include "registry.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"

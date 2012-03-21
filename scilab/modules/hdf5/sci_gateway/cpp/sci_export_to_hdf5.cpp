@@ -15,7 +15,6 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_hdf5.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -57,7 +56,7 @@ static bool export_void(int _iH5File, int *_piVar, char* _pstName);
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
 
-static char fname[]			= "export_to_hdf5";
+
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
@@ -68,7 +67,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
     SciErr sciErr;
 
-    CheckLhs(1,1);//output parameter
+    CheckRhs(1, 100000);//output parameter
 
 #ifndef _MSC_VER
     forceJHDF5load();

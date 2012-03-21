@@ -29,7 +29,7 @@
         <term>X  </term>
         <listitem>
           <para>matrice complexe ou réelle, symétrique définie non-négative
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,8 +37,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    renvoie W telle que <literal>X=W*W'</literal> (en utilisant svd).
-  </para>
+      renvoie W telle que <literal>X=W*W'</literal> (en utilisant svd).
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -53,7 +53,7 @@ norm(W*W'-X,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="chol">chol</link>

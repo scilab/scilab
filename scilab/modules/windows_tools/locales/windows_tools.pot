@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-07 10:31+0100\n"
+"Revision-Date: 2012-03-07 18:20+0100\n"
 
 # File: sci_gateway/c/sci_chartooem.c, line: 30
 # File: sci_gateway/c/sci_oemtochar.c, line: 30
@@ -45,9 +45,9 @@ msgstr ""
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
 # File: sci_gateway/c/sci_oemtochar.c, line: 56
-# File: sci_gateway/c/sci_winqueryreg.c, line: 54
-# File: sci_gateway/c/sci_winqueryreg.c, line: 81
-# File: sci_gateway/c/sci_winqueryreg.c, line: 101
+# File: sci_gateway/c/sci_winqueryreg.c, line: 53
+# File: sci_gateway/c/sci_winqueryreg.c, line: 80
+# File: sci_gateway/c/sci_winqueryreg.c, line: 100
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -60,15 +60,15 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_createGUID.c, line: 56
-# File: sci_gateway/c/sci_dos.c, line: 234
-# File: sci_gateway/c/sci_dos.c, line: 262
-# File: sci_gateway/c/sci_dos.c, line: 272
-# File: sci_gateway/c/sci_dos.c, line: 286
-# File: sci_gateway/c/sci_winqueryreg.c, line: 66
-# File: sci_gateway/c/sci_winqueryreg.c, line: 118
-# File: sci_gateway/c/sci_winqueryreg.c, line: 136
-# File: sci_gateway/c/sci_winqueryreg.c, line: 166
-# File: sci_gateway/c/sci_winqueryreg.c, line: 237
+# File: sci_gateway/c/sci_dos.c, line: 233
+# File: sci_gateway/c/sci_dos.c, line: 261
+# File: sci_gateway/c/sci_dos.c, line: 271
+# File: sci_gateway/c/sci_dos.c, line: 285
+# File: sci_gateway/c/sci_winqueryreg.c, line: 65
+# File: sci_gateway/c/sci_winqueryreg.c, line: 117
+# File: sci_gateway/c/sci_winqueryreg.c, line: 135
+# File: sci_gateway/c/sci_winqueryreg.c, line: 165
+# File: sci_gateway/c/sci_winqueryreg.c, line: 236
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -87,44 +87,44 @@ msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dos.c, line: 61
-# File: sci_gateway/c/sci_dos.c, line: 69
-# File: sci_gateway/c/sci_dos.c, line: 83
-# File: sci_gateway/c/sci_dos.c, line: 100
-# File: sci_gateway/c/sci_dos.c, line: 126
-# File: sci_gateway/c/sci_dos.c, line: 134
-# File: sci_gateway/c/sci_dos.c, line: 148
-# File: sci_gateway/c/sci_dos.c, line: 169
-# File: sci_gateway/c/sci_winqueryreg.c, line: 48
-# File: sci_gateway/c/sci_winqueryreg.c, line: 75
-# File: sci_gateway/c/sci_winqueryreg.c, line: 95
+# File: sci_gateway/c/sci_dos.c, line: 60
+# File: sci_gateway/c/sci_dos.c, line: 68
+# File: sci_gateway/c/sci_dos.c, line: 82
+# File: sci_gateway/c/sci_dos.c, line: 99
+# File: sci_gateway/c/sci_dos.c, line: 125
+# File: sci_gateway/c/sci_dos.c, line: 133
+# File: sci_gateway/c/sci_dos.c, line: 147
+# File: sci_gateway/c/sci_dos.c, line: 168
+# File: sci_gateway/c/sci_winqueryreg.c, line: 47
+# File: sci_gateway/c/sci_winqueryreg.c, line: 74
+# File: sci_gateway/c/sci_winqueryreg.c, line: 94
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dos.c, line: 75
-# File: sci_gateway/c/sci_dos.c, line: 140
+# File: sci_gateway/c/sci_dos.c, line: 74
+# File: sci_gateway/c/sci_dos.c, line: 139
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dos.c, line: 89
-# File: sci_gateway/c/sci_dos.c, line: 154
+# File: sci_gateway/c/sci_dos.c, line: 88
+# File: sci_gateway/c/sci_dos.c, line: 153
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dos.c, line: 107
+# File: sci_gateway/c/sci_dos.c, line: 106
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dos.c, line: 117
-# File: sci_gateway/c/sci_dos.c, line: 302
+# File: sci_gateway/c/sci_dos.c, line: 116
+# File: sci_gateway/c/sci_dos.c, line: 301
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -154,27 +154,27 @@ msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 60
-# File: sci_gateway/c/sci_winqueryreg.c, line: 87
-# File: sci_gateway/c/sci_winqueryreg.c, line: 107
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 86
+# File: sci_gateway/c/sci_winqueryreg.c, line: 106
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 176
+# File: sci_gateway/c/sci_winqueryreg.c, line: 175
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 229
+# File: sci_gateway/c/sci_winqueryreg.c, line: 228
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr ""
 
 #
-# File: src/c/scilab_windows/splashScreen.c, line: 73
+# File: src/c/scilab_windows/splashScreen.cpp, line: 208
 msgid "Scilab Console"
 msgstr ""
 

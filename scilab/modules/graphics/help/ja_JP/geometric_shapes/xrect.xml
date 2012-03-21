@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>C呼び出し手順</title>
     <synopsis>xrect(x,y,w,h)
-xrect(rect) // rect =[x,y,w,h]</synopsis>
+      xrect(rect) // rect =[x,y,w,h]
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -36,9 +37,10 @@ xrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xrect</literal> は,ユーザ座標で<literal>[x,y,w,h]</literal> 
-    (左上の点, 幅, 高さ)により定義される矩形を描画します.
-	 </para>
+    <para>
+      <literal>xrect</literal> は,ユーザ座標で<literal>[x,y,w,h]</literal> 
+      (左上の点, 幅, 高さ)により定義される矩形を描画します.
+    </para>
     <para>警告: 高さは下向きが正であることに注意してください.</para>
   </refsection>
   <refsection>
@@ -60,9 +62,5 @@ xset("default")
         <link linkend="xrects">xrects</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

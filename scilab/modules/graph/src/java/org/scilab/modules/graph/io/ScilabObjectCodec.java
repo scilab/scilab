@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graph.io;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -30,153 +32,179 @@ import com.mxgraph.io.mxObjectCodec;
  * Codec for any Scilab object
  */
 public abstract class ScilabObjectCodec extends mxObjectCodec {
-	/** Height of the data */
-	protected static final String HEIGHT = "height";
-	/** Width of the data */
-	protected static final String WIDTH = "width";
-	/** columns index of the data */
-	protected static final String COLUMN = "column";
-	/** line index of the data */
-	protected static final String LINE = "line";
-	/** Data field */
-	protected static final String DATA = "data";
-	
-	/**
-	 * Throw when we cannot load the XML.
-	 */
-	public class UnrecognizeFormatException extends Exception {
-		/**
-		 * Default constructor
-		 */
-		public UnrecognizeFormatException() {
-			super();
-		}
-		
-		/**
-		 * Constructor from another exception
-		 * @param cause the source exception.
-		 */
-		public UnrecognizeFormatException(Exception cause) {
-			super(cause);
-		}
-	}
+    /** Height of the data */
+    protected static final String HEIGHT = "height";
+    /** Width of the data */
+    protected static final String WIDTH = "width";
+    /** columns index of the data */
+    protected static final String COLUMN = "column";
+    /** line index of the data */
+    protected static final String LINE = "line";
+    /** Data field */
+    protected static final String DATA = "data";
 
-	/**
-	 * The constructor used on the configuration
-	 * 
-	 * @param template
-	 *            Prototypical instance of the object to be encoded/decoded.
-	 * @param exclude
-	 *            Optional array of fieldnames to be ignored.
-	 * @param idrefs
-	 *            Optional array of fieldnames to be converted to/from
-	 *            references.
-	 * @param mapping
-	 *            Optional mapping from field- to attributenames.
-	 */
-	public ScilabObjectCodec(Object template, String[] exclude,
-			String[] idrefs, Map<String, String> mapping) {
-		super(template, exclude, idrefs, mapping);
-		
-		final HashSet<String> newExclude = new HashSet<String>(this.exclude);
-		newExclude.add("type");
-		this.exclude = newExclude;
-	}
+    /**
+     * Throw when we cannot load the XML.
+     */
+    public class UnrecognizeFormatException extends Exception {
+        /**
+         * Default constructor
+         */
+        public UnrecognizeFormatException() {
+            super();
+        }
 
-	/**
-	 * Register all known codecs on the {@link mxCodecRegistry}.
-	 */
-	public static void register() {
-		ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
-		mxCodecRegistry.register(scilabStringCodec);
-		ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
-		mxCodecRegistry.register(scilabBooleanCodec);
-		ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
-		mxCodecRegistry.register(scilabDoubleCodec);
-		ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
-		mxCodecRegistry.register(scilabIntegerCodec);
-		
-		ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
-		mxCodecRegistry.register(scilabListCodec);
-	}
-	
-	/**
-	 * get an integer value from a attributes.
-	 * 
-	 * @param dataAttrs the attributes
-	 * @param attribute the key to search
-	 * @return the value
-	 * @throws UnrecognizeFormatException when the key is not valid.
-	 */
-	private int getIntegerAttribute(final NamedNodeMap dataAttrs,
-			final String attribute) throws UnrecognizeFormatException {
-		final Node node = dataAttrs.getNamedItem(attribute);
-		if (node == null) {
-			throw new UnrecognizeFormatException();
-		}
-		
-		final int value;
-		try {
-			value = Integer.parseInt(node.getNodeValue());
-		} catch (NumberFormatException e) {
-			throw new UnrecognizeFormatException(e);
-		}
-		return value;
-	}
-	
-	/**
-	 * Get the height of the data attributes.
-	 * 
-	 * @param attrs
-	 *            the data attributes
-	 * @return the height
-	 * @throws UnrecognizeFormatException
-	 *             when the height hasn't been found.
-	 */
-	protected int getHeight(final NamedNodeMap attrs)
-			throws UnrecognizeFormatException {
-		return getIntegerAttribute(attrs, HEIGHT);
-	}
-	
-	/**
-	 * Get the width of the data attributes.
-	 * 
-	 * @param attrs
-	 *            the data attributes
-	 * @return the width
-	 * @throws UnrecognizeFormatException
-	 *             when the width hasn't been found.
-	 */
-	protected int getWidth(final NamedNodeMap attrs)
-			throws UnrecognizeFormatException {
-		return getIntegerAttribute(attrs, WIDTH);
-	}
-	
-	/**
-	 * Get the column index of the data attributes.
-	 * 
-	 * @param dataAttrs
-	 *            the data attributes
-	 * @return the column index
-	 * @throws UnrecognizeFormatException
-	 *             when the column index hasn't been found.
-	 */
-	protected int getColumnIndex(final NamedNodeMap dataAttrs)
-			throws UnrecognizeFormatException {
-		return getIntegerAttribute(dataAttrs, COLUMN);
-	}
-	
-	/**
-	 * Get the line index of the data attributes.
-	 * 
-	 * @param dataAttrs
-	 *            the data attributes
-	 * @return the column index
-	 * @throws UnrecognizeFormatException
-	 *             when the column index hasn't been found.
-	 */
-	protected int getLineIndex(final NamedNodeMap dataAttrs)
-			throws UnrecognizeFormatException {
-		return getIntegerAttribute(dataAttrs, LINE);
-	}
+        /**
+         * Constructor from another exception
+         *
+         * @param cause
+         *            the source exception.
+         */
+        public UnrecognizeFormatException(Exception cause) {
+            super(cause);
+        }
+    }
+
+    /**
+     * The constructor used on the configuration
+     *
+     * @param template
+     *            Prototypical instance of the object to be encoded/decoded.
+     * @param exclude
+     *            Optional array of fieldnames to be ignored.
+     * @param idrefs
+     *            Optional array of fieldnames to be converted to/from
+     *            references.
+     * @param mapping
+     *            Optional mapping from field- to attributenames.
+     */
+    public ScilabObjectCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
+        super(template, exclude, idrefs, mapping);
+
+        final HashSet<String> newExclude = new HashSet<String>(this.exclude);
+        newExclude.add("type");
+        this.exclude = newExclude;
+
+    }
+
+    /**
+     * Register all known codecs on the {@link mxCodecRegistry}.
+     */
+    public static void register() {
+        ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
+        mxCodecRegistry.register(scilabStringCodec);
+        ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+        mxCodecRegistry.register(scilabBooleanCodec);
+        ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+        mxCodecRegistry.register(scilabDoubleCodec);
+        ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+        mxCodecRegistry.register(scilabIntegerCodec);
+
+        ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[] { "scilabClass" }, null, null);
+        mxCodecRegistry.register(scilabListCodec);
+    }
+
+    /**
+     * Shortcut {@link mxObjectCodec#getMethod} for performance
+     */
+    @Override
+    protected Method getMethod(Object obj, String methodname, Class[] params) {
+        Class<?> type = obj.getClass();
+        Method method = null;
+
+        try {
+            method = type.getMethod(methodname, params);
+        } catch (SecurityException e) {
+        } catch (NoSuchMethodException e) {
+        }
+
+        return method;
+    }
+
+    /**
+     * Shortcut {@link mxObjectCodec#getField} for performance
+     */
+    @Override
+    protected Field getField(Object obj, String fieldname) {
+        // all data is accessed through the methods, not directly
+        return null;
+    }
+
+    /**
+     * get an integer value from a attributes.
+     *
+     * @param dataAttrs
+     *            the attributes
+     * @param attribute
+     *            the key to search
+     * @return the value
+     * @throws UnrecognizeFormatException
+     *             when the key is not valid.
+     */
+    private int getIntegerAttribute(final NamedNodeMap dataAttrs, final String attribute) throws UnrecognizeFormatException {
+        final Node node = dataAttrs.getNamedItem(attribute);
+        if (node == null) {
+            throw new UnrecognizeFormatException();
+        }
+
+        final int value;
+        try {
+            value = Integer.parseInt(node.getNodeValue());
+        } catch (NumberFormatException e) {
+            throw new UnrecognizeFormatException(e);
+        }
+        return value;
+    }
+
+    /**
+     * Get the height of the data attributes.
+     *
+     * @param attrs
+     *            the data attributes
+     * @return the height
+     * @throws UnrecognizeFormatException
+     *             when the height hasn't been found.
+     */
+    protected int getHeight(final NamedNodeMap attrs) throws UnrecognizeFormatException {
+        return getIntegerAttribute(attrs, HEIGHT);
+    }
+
+    /**
+     * Get the width of the data attributes.
+     *
+     * @param attrs
+     *            the data attributes
+     * @return the width
+     * @throws UnrecognizeFormatException
+     *             when the width hasn't been found.
+     */
+    protected int getWidth(final NamedNodeMap attrs) throws UnrecognizeFormatException {
+        return getIntegerAttribute(attrs, WIDTH);
+    }
+
+    /**
+     * Get the column index of the data attributes.
+     *
+     * @param dataAttrs
+     *            the data attributes
+     * @return the column index
+     * @throws UnrecognizeFormatException
+     *             when the column index hasn't been found.
+     */
+    protected int getColumnIndex(final NamedNodeMap dataAttrs) throws UnrecognizeFormatException {
+        return getIntegerAttribute(dataAttrs, COLUMN);
+    }
+
+    /**
+     * Get the line index of the data attributes.
+     *
+     * @param dataAttrs
+     *            the data attributes
+     * @return the column index
+     * @throws UnrecognizeFormatException
+     *             when the column index hasn't been found.
+     */
+    protected int getLineIndex(final NamedNodeMap dataAttrs) throws UnrecognizeFormatException {
+        return getIntegerAttribute(dataAttrs, LINE);
+    }
 }

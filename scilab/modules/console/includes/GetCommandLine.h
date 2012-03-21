@@ -18,9 +18,18 @@
 
 /**
 * getConsoleInputLine function
-* @return characters 
+* @return characters
 */
 CONSOLE_IMPEXP char *getConsoleInputLine(void);
+
+/**
+* line editor
+* @param buffer
+* @param buffer size
+* @param length line
+* @param eof
+*/
+CONSOLE_IMPEXP void C2F(eventloopprompt)(char *buffer, int *buf_size, int *len_line, int * eof);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GETCOMMANDLINE_H__ */

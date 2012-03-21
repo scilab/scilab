@@ -11,13 +11,13 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_scinotes.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
@@ -43,6 +43,13 @@ int gw_scinotes(void)
         loadOnUseClassPath("SciNotes");
         loadedDep = TRUE;
     }
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_DERIV">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_DERIV">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -91,7 +86,8 @@
       <listitem>
         <para>
           <link linkend="Continuous_pal">Continuous time systems
-        palette</link>
+            palette
+          </link>
         </para>
       </listitem>
     </itemizedlist>
@@ -99,9 +95,11 @@
   <refsection id="Description_DERIV">
     <title>Description</title>
     <para>The Derivative block approximates the instantaneous derivative of
-    its input with respect to time t.</para>
+      its input with respect to time t.
+    </para>
     <para>It is a measure of how a output changes as its input changes Δu. The
-    derivative is given by:</para>
+      derivative is given by:
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -110,22 +108,31 @@
       </inlinemediaobject>
     </para>
     <para>The derivative block has no setting and the initial output for the
-    block is zero.</para>
+      block is zero.
+    </para>
   </refsection>
   <refsection id="Defaultproperties_DERIV">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -133,7 +140,8 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [-1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
@@ -142,27 +150,42 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [-1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            inputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            outputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>
+          no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>
+          no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -175,9 +198,11 @@
   <refsection id="Example_DERIV">
     <title>Example</title>
     <para>In this example, we compute and display the derivative waveform of a
-    sinusoidal input signal, with amplitude 2 and frequency 1.25 Hz.</para>
+      sinusoidal input signal, with amplitude 2 and frequency 1.25 Hz.
+    </para>
     <para>The input and output waveforms of the DERIVATIVE block are shown
-    below:</para>
+      below:
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -201,11 +226,5 @@
         <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_DERIV">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Zhour MADINI-ZOUINE</emphasis> -
-    DIGITEO</para>
   </refsection>
 </refentry>

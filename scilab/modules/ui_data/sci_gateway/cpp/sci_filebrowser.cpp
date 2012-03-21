@@ -16,7 +16,7 @@ extern "C"
 {
 #include "gw_ui_data.h"
 #include "getScilabJavaVM.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "scicurdir.h"
 }
 

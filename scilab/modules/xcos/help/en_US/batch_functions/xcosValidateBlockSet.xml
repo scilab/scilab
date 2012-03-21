@@ -11,8 +11,10 @@
   <refsection id="Parameters_xcosValidateBlockSet">
     <title>Arguments</title>
     <variablelist>
-      <varlistentry><term>interfFunctionName</term>: A Xcos block interface function name.
-        <para/></varlistentry>
+      <varlistentry>
+        <term>interfFunctionName</term>: A Xcos block interface function name.
+        <para/>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection id="Module_xcosValidateBlockSet">
@@ -25,10 +27,11 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_xcosValidateBlockSet"><title>Description</title>
+  <refsection id="Description_xcosValidateBlockSet">
+    <title>Description</title>
     This function is used to test if a Block interface function will not
     fail while called by xcos simulation process.
-
+    
     <para>
       Function will try to perform a <literal>define</literal> then a <literal>set</literal> job
       on the given interface function name like the xcos simulation do.
@@ -65,15 +68,13 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>History</title>
-
- <revhistory>
-  <revision>
-   <revnumber>5.4.0</revnumber>
-   <revremark>Function xcosValidateBlockSet introduced.</revremark>
-  </revision>
- </revhistory>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function xcosValidateBlockSet introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

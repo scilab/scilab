@@ -18,24 +18,15 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="GENSIN_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="GENSIN_f" xml:lang="en_US">
   <refnamediv>
     <refname>GENSIN_f</refname>
     <refpurpose>Sine wave generator</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_GENSIN_f">
     <title>Contents</title>
     <itemizedlist>
@@ -102,16 +92,10 @@
               <xref linkend="Seealso_GENSIN_f">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_GENSIN_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_GENSIN_f">
     <title>Palette</title>
     <itemizedlist>
@@ -122,10 +106,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_GENSIN_f">
     <title>Description</title>
-
     <para>
       This block is a sine wave generator and its output is defined by the equation:
     </para>
@@ -138,24 +120,35 @@
     <itemizedlist>
       <listitem>
         <para>
-          The magnitude <emphasis><literal>M</literal></emphasis> with the <emphasis role="bold">Magnitude</emphasis> parameter.
+          The magnitude 
+          <emphasis>
+            <literal>M</literal>
+          </emphasis>
+          with the <emphasis role="bold">Magnitude</emphasis> parameter.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
-          The frequency <emphasis><literal>F</literal></emphasis> in radians/second with the <emphasis role="bold">Frequency</emphasis> parameter.
+          The frequency 
+          <emphasis>
+            <literal>F</literal>
+          </emphasis>
+          in radians/second with the <emphasis role="bold">Frequency</emphasis> parameter.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
-          The initial phase <emphasis><literal>P</literal></emphasis> in radians with the <emphasis role="bold">Phase</emphasis> parameter.
+          The initial phase 
+          <emphasis>
+            <literal>P</literal>
+          </emphasis>
+          in radians with the <emphasis role="bold">Phase</emphasis> parameter.
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Datatype_GENSIN_f">
     <title>Data types</title>
     <itemizedlist>
@@ -166,17 +159,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Dialogbox_GENSIN_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../gui/sources_pal/en_US/GENSIN_f_gui.png" align="center" />
+          <imagedata fileref="../../../gui/sources_pal/en_US/GENSIN_f_gui.png" align="center"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -201,21 +193,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_GENSIN_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -226,19 +225,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -248,7 +257,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_GENSIN_f">
     <title>Example</title>
     <para>
@@ -259,21 +267,23 @@
       </link>
     </para>
     <para>
-      <inlinemediaobject><imageobject>
-        <imagedata fileref="../../../examples/sources_pal/en_US/gensin_f_diagram_en_US.png" align="center" />
-      </imageobject></inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/sources_pal/en_US/gensin_f_diagram_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Interfacingfunction_GENSIN_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/GENSIN_f.sci">SCI/modules/scicos_blocks/macros/Sources/GENSIN_f.sci</link></para>         
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/GENSIN_f.sci">SCI/modules/scicos_blocks/macros/Sources/GENSIN_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_GENSIN_f">
     <title>Computational function</title>
     <itemizedlist>
@@ -282,24 +292,18 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Seealso_GENSIN_f">
     <title>See also</title>
     <itemizedlist>
       <listitem>
-          <link linkend="GENSQR_f">GENSQR_f</link>
+        <link linkend="GENSQR_f">GENSQR_f</link>
       </listitem>
       <listitem>
-          <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
+        <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
       </listitem>
       <listitem>
-          <link linkend="Sigbuilder">Sigbuilder</link>
+        <link linkend="Sigbuilder">Sigbuilder</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_GENSIN_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

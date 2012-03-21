@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "getdate.h"
 #include "Scierror.h"
@@ -79,7 +78,6 @@ int sci_getdate(char *fname,unsigned long fname_len)
         {
             if (isScalar(pvApiCtx, piAddressVarOne))
             {
-                int iErr = 0;
                 double dTime = 0.;
 
                 char *pStr = NULL;

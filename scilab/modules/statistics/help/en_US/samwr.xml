@@ -29,7 +29,8 @@
         <term>sizam</term>
         <listitem>
           <para>integer. Size of a sample. It must be less or equal than
-        size of X.</para>
+            size of X.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,9 +49,10 @@
         <term>s</term>
         <listitem>
           <para>matrix of type sizsam  x numsamp. It contains
-         numsamp  random samples  (the  columns) each  of
-         sizam  (size(X,'*'))  extractions,  without
-         replacement, from the column vector X.</para>
+            numsamp  random samples  (the  columns) each  of
+            sizam  (size(X,'*'))  extractions,  without
+            replacement, from the column vector X.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -67,7 +69,7 @@ s=samwr(4,12,a)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sample">sample</link>
@@ -76,11 +78,5 @@ s=samwr(4,12,a)
         <link linkend="samplef">samplef</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Carlos Klimann
-  </para>
   </refsection>
 </refentry>

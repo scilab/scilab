@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -57,7 +57,6 @@
           </para>
           <para>This parameter is useless since Scilab 5.0.</para>
           <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-          
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -118,10 +117,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      This tool is used to create shared libraries and to generate a 
-      loader file which can be used to dynamically load the shared library 
-      into Scilab with the <literal>link</literal> function. New entry points 
-      given by <literal>names</literal> are then accessible through the <literal>call</literal> 
+      This tool is used to create shared libraries and to generate a
+      loader file which can be used to dynamically load the shared library
+      into Scilab with the <literal>link</literal> function. New entry points
+      given by <literal>names</literal> are then accessible through the <literal>call</literal>
       function or with non linear tools <literal>ode</literal>, <literal>optim</literal>,...
     </para>
     <para>
@@ -140,19 +139,16 @@
     <para>
       <emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis>
     </para>
-    
     <para>
       On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink>
     </para>
-    
     <para>
       Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.
     </para>
-    
   </refsection>
   <refsection>
     <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 if haveacompiler() then
 
 chdir(TMPDIR)
@@ -164,14 +160,14 @@ f1=['int ext1c(int *n, double *a, double *b, double *c)'
 
 mputl(f1,'fun1.c')
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
-ilib_for_link('ext1c','fun1.c',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c")
 
-// load the shared library 
+// load the shared library
 
-exec loader.sce 
+exec loader.sce
 
 //using the new primitive
 a=[1,2,3];b=[4,5,6];n=3;
@@ -181,7 +177,6 @@ if norm(c-(a+b)) > %eps then pause,end
 end
  ]]></programlisting>
   </refsection>
-  
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -204,7 +199,7 @@ end
         <link linkend="ilib_gen_loader">ilib_gen_loader</link>
       </member>
       <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
+        <link linkend="ilib_build">ilib_build</link>
       </member>
       <member>
         <link linkend="api_scilab">api_scilab</link>
@@ -220,5 +215,4 @@ end
       </revision>
     </revhistory>
   </refsection>
-   
 </refentry>

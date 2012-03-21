@@ -14,8 +14,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie la chaîne de caractères <literal>'c*d'</literal>. Des simplifications triviales du type <literal>'1*c' = 'c'</literal> sont effectuées.
-  </para>
+      Renvoie la chaîne de caractères <literal>'c*d'</literal>. Des simplifications triviales du type <literal>'1*c' = 'c'</literal> sont effectuées.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -26,7 +26,7 @@ mulf('0','a')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rdivf">rdivf</link>

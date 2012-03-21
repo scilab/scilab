@@ -18,25 +18,16 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="RAMP" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="RAMP" xml:lang="en_US">
   <refnamediv>
     <refname>RAMP</refname>
     <refpurpose>Ramp</refpurpose>
   </refnamediv>
   <refsection>
-
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_RAMP">
     <title>Contents</title>
     <itemizedlist>
@@ -102,16 +92,10 @@
               <xref linkend="Seealso_RAMP">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_RAMP">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_RAMP">
     <title>Palette</title>
     <itemizedlist>
@@ -122,23 +106,35 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_RAMP">
     <title>Description</title>
     <para>
       The Ramp block generates a signal that starts at a specified <emphasis role="bold">Start Time</emphasis> and <emphasis role="bold">Initial Value</emphasis> and increases by a specified rate (<emphasis role="bold">Slope</emphasis> parameter).
       The output signal is defined by the following equation:
     </para>
-    <para />
+    <para/>
     <para>
       <latex><![CDATA[s\left(t\right)=\begin{cases}s_{0} & \textrm{ for }t<t_{0}\\s_{0}+k.t & \textrm{ for }t>t_{0}\end{cases}
       ]]></latex>
     </para>
     <para>
-      where <emphasis><literal>t<subscript>0</subscript></literal></emphasis> is the <emphasis role="bold">Start Time</emphasis>, <emphasis><literal>s<subscript>0</subscript></literal></emphasis> the <emphasis role="bold">Initial Value</emphasis> and <emphasis><literal>k</literal></emphasis> the <emphasis role="bold">Slope</emphasis>.
+      where 
+      <emphasis><literal>
+          t<subscript>0</subscript>
+        </literal>
+      </emphasis>
+      is the <emphasis role="bold">Start Time</emphasis>, 
+      <emphasis><literal>
+          s<subscript>0</subscript>
+        </literal>
+      </emphasis>
+      the <emphasis role="bold">Initial Value</emphasis> and 
+      <emphasis>
+        <literal>k</literal>
+      </emphasis>
+      the <emphasis role="bold">Slope</emphasis>.
     </para>
   </refsection>
-
   <refsection id="Datatype_RAMP">
     <title>Data types</title>
     <itemizedlist>
@@ -149,17 +145,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Dialogbox_RAMP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../gui/sources_pal/en_US/RAMP_gui.png" align="center" />
+          <imagedata fileref="../../../gui/sources_pal/en_US/RAMP_gui.png" align="center"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -184,21 +179,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_RAMP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -209,19 +211,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -231,31 +243,33 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_RAMP">
     <title>Example</title>
     <para>
       This diagram shows the use of RAMP block to obtain the response to a ramp signal of a first order's system defined by a transfer function.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/ramp_en_US.xcos">
         Open this example in Xcos
-      </link>.
+      </link>
+      .
     </para>
     <para>
-      <inlinemediaobject><imageobject>
-        <imagedata fileref="../../../examples/sources_pal/en_US/ramp_diagram_en_US.png" align="center" />
-      </imageobject></inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/sources_pal/en_US/ramp_diagram_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Interfacingfunction_RAMP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RAMP.sci">SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RAMP.sci">SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_RAMP">
     <title>Computational function</title>
     <itemizedlist>
@@ -264,10 +278,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Seealso_RAMP">
     <title>See also</title>
-
     <itemizedlist>
       <listitem>
         <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
@@ -279,10 +291,5 @@
         <link linkend="Sigbuilder">Sigbuilder</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_RAMP">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

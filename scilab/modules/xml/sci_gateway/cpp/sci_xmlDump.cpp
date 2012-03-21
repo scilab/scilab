@@ -23,7 +23,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -38,6 +37,7 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
     XMLObject *obj = 0;
     int id;
     int type;
+    int b;
     SciErr err;
     int *addr = 0;
 
@@ -81,13 +81,11 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 2, "boolean");
             return 0;
         }
-
-        int b;
 
         if (getScalarBoolean(pvApiCtx, addr, &b))
         {

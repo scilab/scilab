@@ -35,12 +35,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xdel</literal> は<literal>win-nums</literal>の
-	グラフィックウインドウまたは引数が指定されない場合に
-	カレントのグラフィックウインドウを削除します.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xdel</literal> は<literal>win-nums</literal>の
+      グラフィックウインドウまたは引数が指定されない場合に
+      カレントのグラフィックウインドウを削除します.
+    </para>
   </refsection>
 </refentry>

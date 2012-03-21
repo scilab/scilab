@@ -37,7 +37,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    dispfiles displays properties of currently opened files.</para>
+      dispfiles displays properties of currently opened files.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,7 +47,7 @@ dispfiles()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="file">file</link>
@@ -55,9 +56,5 @@ dispfiles()
         <link linkend="mopen">mopen</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer</para>
   </refsection>
 </refentry>

@@ -314,8 +314,4 @@ r.clip_state="off"
       </revision>
     </revhistory>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
-  </refsection>
 </refentry>

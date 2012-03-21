@@ -17,8 +17,10 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para> <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal>からのデータ,
-	列ベクトル</para>
+          <para>
+            <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal>からのデータ,
+            列ベクトル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -68,10 +70,7 @@
   <refsection>
     <title>説明</title>
     <para>
-    定常カルマンフィルタ</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      定常カルマンフィルタ
+    </para>
   </refsection>
 </refentry>

@@ -18,7 +18,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_build_blocks(toolbox_name, block_names [, macros_path])
+      tbx_build_blocks(toolbox_name, block_names [, macros_path])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -55,11 +55,5 @@ tbx_build_blocks("toolbox_example", ["EXAMPLE_BLOCK"])
 tbx_build_blocks("toolbox_example", ["INT_FUNCTION"], "integer");
 tbx_build_blocks("toolbox_example", ["DOUBLE_FUNCTION"], "double");
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Clément DAVID</member>
-    </simplelist>
   </refsection>
 </refentry>

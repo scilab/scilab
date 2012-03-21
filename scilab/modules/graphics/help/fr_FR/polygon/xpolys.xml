@@ -18,21 +18,22 @@
         <term>xpols,ypols  </term>
         <listitem>
           <para>matrices de même taille (p,n) (points des lignes brisées).
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>draw  </term>
         <listitem>
           <para>vecteur de taille n.
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpolys</literal> dessine un ensemble de lignes brisées ou de polygones.
+    <para>
+      <literal>xpolys</literal> dessine un ensemble de lignes brisées ou de polygones.
       Les coordonnées de chaque ligne brisée
       sont stockées dans une colonne de <literal>xpols</literal> et <literal>ypols</literal>.
     </para>
@@ -41,16 +42,20 @@
     </para>
     <itemizedlist>
       <listitem>
-        <para>Si <literal>draw(i)</literal> &lt; 0 , le marqueur numéro
-	  <literal>-draw(i)</literal> est utilisé (les marqueurs sont dessinés en
-	  utilisant la couleur courante). Utiliser <literal>xset()</literal> pour
-	  voir les codes des marqueurs.</para>
+        <para>
+          Si <literal>draw(i)</literal> &lt; 0 , le marqueur numéro
+          <literal>-draw(i)</literal> est utilisé (les marqueurs sont dessinés en
+          utilisant la couleur courante). Utiliser <literal>xset()</literal> pour
+          voir les codes des marqueurs.
+        </para>
       </listitem>
       <listitem>
-        <para>Si <literal>draw(i)</literal> &gt; 0, la couleur numéro
-	  <literal>draw(i)</literal> est utilisé pour dessiner la ligne brisée
-	  i. Utiliser <literal>xset()</literal> pour voir les codes des
-	  couleurs.</para>
+        <para>
+          Si <literal>draw(i)</literal> &gt; 0, la couleur numéro
+          <literal>draw(i)</literal> est utilisé pour dessiner la ligne brisée
+          i. Utiliser <literal>xset()</literal> pour voir les codes des
+          couleurs.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -65,7 +70,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>
@@ -77,9 +82,5 @@ xset("default")
         <link linkend="xpoly">xpoly</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

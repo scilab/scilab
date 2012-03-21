@@ -393,81 +393,78 @@ detect_java_vm() {
 # uname -m Darwin
 
 # If the user has the variable JAVA_HOME in the ENV
-    if test -n "$JAVA_HOME" ; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Using specified vm: $JAVA_HOME"
-            fi
-            if test ! -x "$JAVA_HOME/bin/java" ; then
-                echo "Cannot find $JAVA_HOME/bin/java"
-                exit 1
-            fi
+        if test -n "$JAVA_HOME" ; then
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using specified vm: $JAVA_HOME"
+                fi
+                if test ! -x "$JAVA_HOME/bin/java" ; then
+                    echo "Cannot find $JAVA_HOME/bin/java"
+                    exit 1
+                fi
         else
 
-        case $OS in
-            *darwin* | *Darwin*)
-                set_macosx_java_vm
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Using default Mac OS X vm: $JAVA_HOME"
-                    echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-                    echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
-                fi
-                ;;
-            *)
-                ;;
-        esac
+            case $OS in
+                *darwin* | *Darwin*)
+                    set_macosx_java_vm
+                    if test $SCIVERBOSE -ne 0; then
+                        echo "Using default Mac OS X vm: $JAVA_HOME"
+                        echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+                        echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+                    fi
+                    ;;
+                *)
+                    ;;
+            esac
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
-        if test -z "$JAVA_HOME"; then
-            JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
-            for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Trying to find Java in $JAVA_HOME "
-                fi
-                if test -x "${JAVA_HOME}/bin/java" ; then
-                    export JAVA_HOME
+            if test -z "$JAVA_HOME"; then
+                JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+                for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
-                        echo "found"
+                        echo "Trying to find Java in $DIR "
                     fi
-                    break
-                fi
-            done
-        fi
-
-# JAVA_HOME still haven't been found. Well, we can now try to find it in the path
-        if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Have not been able to find any Java VM on this computer. Some features may be broken."
-            fi
-        else
-
-            PATH_SEPARATOR=:
-            as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-            if test $SCIVERBOSE -ne 0; then
-                echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
-            fi
-            for DIR in $PATH; do
-                if test -f $DIR/java; then
-
-                    _cur=$DIR/java
-            # resolve symlink
-            # Will probably bug if a file contains -> in the name
-                    while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-                        _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
-                    done
-            # symlink resolved to the real file
-
-            # Now, create JAVA_HOME
-                    TMP=$(dirname $_cur)
-                    JAVA_HOME=$(dirname $TMP)
-                    if test ! -z "$JAVA_HOME"; then
-                        break;
+                    if test -x "${DIR}/bin/java" ; then
+                        JAVA_HOME=$DIR
+                        export JAVA_HOME
+                        if test $SCIVERBOSE -ne 0; then
+                            echo "found"
+                        fi
+                        break
                     fi
+                done
+            fi
+
+# if JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+            if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
+
+                PATH_SEPARATOR=:
+                as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Look for the java binary in the PATH. If it is a symlink, try to resolve it"
                 fi
-            done
-            IFS=$as_save_IFS
+                for DIR in $PATH; do
+                    if test -f $DIR/java; then
+
+                        _cur=$DIR/java
+                # resolve symlink
+                # Will probably bug if a file contains -> in the name
+                        while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+                            _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
+                        done
+                # symlink resolved to the real file
+
+                # Now, create JAVA_HOME
+                        TMP=$(dirname $_cur)
+                        JAVA_HOME=$(dirname $TMP)
+                        if test ! -z "$JAVA_HOME"; then
+                            break;
+                        fi
+                    fi
+                done
+                IFS=$as_save_IFS
+            fi
         fi
-    fi
         if test ! -z "$JAVA_HOME"; then
             if test $SCIVERBOSE -ne 0; then
                 echo "JAVA_HOME : $JAVA_HOME"
@@ -567,7 +564,7 @@ detect_java_vm() {
                     proc=$MODEL
                     ;;
             esac
-        fi # JAVA_HOME provided but wrong
+        fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
 # Check if the lib exists or not (we should manage system where .so is not the
@@ -762,6 +759,7 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
         BINPATH=$(dirname $0)
@@ -773,6 +771,14 @@ case $OS in
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
+
+        # When started as an Application, the default path was "/"
+        # It is not really useful. Changing to HOME.
+        # See bugs 8339 and 10575 for rational
+        if test "$(pwd)" == "/"; then
+            cd $HOME
+        fi
+
         ;;
     *)
 esac
@@ -830,23 +836,23 @@ do_help()
     echo     "      -h/--help       : display help about this command."
     echo     "      --texmacs       : reserved for TeXMacs."
     echo     " "
-    if test $IS_SCILAB_BINARY -eq 0; then
-        echo     "Developer arguments:"
-        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        valgrind (and override the existing valgrind arguments)."
-        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        callgrind (and override the existing callgrind arguments)."
-        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
-        echo     " "
-    fi
+
+    echo     "Developer arguments:"
+    echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+    echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+    echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+    echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                        valgrind (and override the existing valgrind arguments)."
+    echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                        callgrind (and override the existing callgrind arguments)."
+    echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+    echo     "      -disable-exception-catching : Disable Scilab exception catching system."
+    echo     " "
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
+
     echo     "      Several environment variables can be declared."
     echo     "      SCIVERBOSE               Provides debugging information of the startup"
     echo     "      JAVA_HOME                Declares which Java Virtual Machine to use"

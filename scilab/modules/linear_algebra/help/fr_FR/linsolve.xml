@@ -28,43 +28,48 @@
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>une matrice réelle <literal>na x ma</literal> (éventuellement creuse)
-</para>
+          <para>
+            une matrice réelle <literal>na x ma</literal> (éventuellement creuse)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b  </term>
         <listitem>
-          <para>un vecteur <literal>na x 1</literal> 
-</para>
+          <para>
+            un vecteur <literal>na x 1</literal> 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x0  </term>
         <listitem>
           <para>un vecteur réel
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>kerA  </term>
         <listitem>
-          <para>une matrice réelle <literal>ma x k </literal>
-</para>
+          <para>
+            une matrice réelle <literal>ma x k </literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>linsolve</literal> donne toutes les solutions de <literal> A*x+b=0</literal>.
-  </para>
-    <para><literal>x0</literal> est une solution particulière (s'il en existe une) et <literal>kerA</literal> est le noyau de <literal>A</literal>. Tout vecteur de la forme <literal>x=x0+kerA*w</literal> avec <literal>w</literal> quelconque vérifie
-    <literal> A*x+b=0</literal>.
-  </para>
     <para>
-    Si un <literal>x0</literal> compatible est donné en entrée, <literal>x0</literal> est renvoyé. Dans le cas contraire un <literal>x0</literal> compatible, s'il en existe un, est renvoyé.
-  </para>
+      <literal>linsolve</literal> donne toutes les solutions de <literal> A*x+b=0</literal>.
+    </para>
+    <para>
+      <literal>x0</literal> est une solution particulière (s'il en existe une) et <literal>kerA</literal> est le noyau de <literal>A</literal>. Tout vecteur de la forme <literal>x=x0+kerA*w</literal> avec <literal>w</literal> quelconque vérifie
+      <literal> A*x+b=0</literal>.
+    </para>
+    <para>
+      Si un <literal>x0</literal> compatible est donné en entrée, <literal>x0</literal> est renvoyé. Dans le cas contraire un <literal>x0</literal> compatible, s'il en existe un, est renvoyé.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -78,7 +83,7 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
 
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
@@ -94,7 +99,7 @@ mprintf('\ntemps nécessaire à la résolution du système avec l'opérateur bac
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="inv">inv</link>

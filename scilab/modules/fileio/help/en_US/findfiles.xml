@@ -18,13 +18,15 @@
   <refnamediv>
     <refname>findfiles</refname>
     <refpurpose>Finding all files with a given
-  filespec</refpurpose>
+      filespec
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>f = findfiles()
-f=findfiles(path)
-f=findfiles(path,filespec)</synopsis>
+      f=findfiles(path)
+      f=findfiles(path,filespec)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -62,17 +64,11 @@ f=findfiles(SCI+'/modules/core/macros','*.sci')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="listfiles">listfiles</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

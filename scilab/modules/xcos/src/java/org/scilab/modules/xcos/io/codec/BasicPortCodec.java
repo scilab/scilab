@@ -13,9 +13,8 @@
 package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -40,21 +39,20 @@ import com.mxgraph.util.mxConstants;
 
 /**
  * Codec for any Port.
- * 
+ *
  * This class doesn't pas the Data Abstraction Coupling (DAC) as we perform some
  * template initialization on the {@link #register()} method.
  */
 // CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final Log LOG = LogFactory.getLog(BasicPortCodec.class);
+    private static final Logger LOG = Logger.getLogger(BasicPortCodec.class.getName());
     private static final String DATA_TYPE = "dataType";
-    private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE,
-            "connectedLinkId" };
+    private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE, "connectedLinkId" };
 
     /**
      * The constructor used on for configuration
-     * 
+     *
      * @param template
      *            Prototypical instance of the object to be encoded/decoded.
      * @param exclude
@@ -65,8 +63,7 @@ public class BasicPortCodec extends XcosObjectCodec {
      * @param mapping
      *            Optional mapping from field- to attributenames.
      */
-    public BasicPortCodec(Object template, String[] exclude, String[] idrefs,
-            Map<String, String> mapping) {
+    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
     }
 
@@ -74,30 +71,24 @@ public class BasicPortCodec extends XcosObjectCodec {
      * Register all the know codecs on the {@link mxCodecRegistry}
      */
     public static void register() {
-        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(
-                new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitOutputPortCodec);
-        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(
-                new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitInputPortCodec);
-        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(
-                new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitOutputPortCodec);
-        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(
-                new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitInputPortCodec);
-        XcosObjectCodec commandPortCodec = new BasicPortCodec(
-                new CommandPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(commandPortCodec);
-        XcosObjectCodec controlPortCodec = new BasicPortCodec(
-                new ControlPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(controlPortCodec);
         mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
     }
 
     /**
      * Things to do before encoding
-     * 
+     *
      * @param enc
      *            Codec that controls the encoding process.
      * @param obj
@@ -110,8 +101,7 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        ((Element) node).setAttribute(DATA_TYPE,
-                String.valueOf(((BasicPort) obj).getDataType()));
+        ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
 
         /*
          * Log some informations
@@ -135,17 +125,17 @@ public class BasicPortCodec extends XcosObjectCodec {
         }
 
         switch (b.getEdgeCount()) {
-        case 0:
-            break;
-        case 1:
-            final mxCell link = (mxCell) b.getEdgeAt(0);
-            if (link.getSource() != b && link.getTarget() != b) {
-                trace(enc, node, "Inconsistent source or target at %s", link);
-            }
-            break;
-        default:
-            trace(enc, node, "Too much links");
-            break;
+            case 0:
+                break;
+            case 1:
+                final mxCell link = (mxCell) b.getEdgeAt(0);
+                if (link.getSource() != b && link.getTarget() != b) {
+                    trace(enc, node, "Inconsistent source or target at %s", link);
+                }
+                break;
+            default:
+                trace(enc, node, "Too much links");
+                break;
         }
 
         return super.beforeEncode(enc, obj, node);
@@ -153,7 +143,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 
     /**
      * Apply compatibility pattern to the decoded object
-     * 
+     *
      * @param dec
      *            Codec that controls the decoding process.
      * @param node
@@ -167,7 +157,7 @@ public class BasicPortCodec extends XcosObjectCodec {
     @Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
         if (!(obj instanceof BasicPort)) {
-            LOG.error("Unable to decode " + obj);
+            LOG.severe("Unable to decode " + obj);
             return obj;
         }
         final BasicPort port = (BasicPort) obj;
@@ -194,7 +184,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 
     /**
      * Format the style value
-     * 
+     *
      * @param map
      *            The style as a map
      * @param obj
@@ -219,7 +209,7 @@ public class BasicPortCodec extends XcosObjectCodec {
      * Update the rotation value when the block has been rotated on 5.2.0
      * format. Update it according to the Orientation field added 2010/01/08
      * between 5.2.0 and 5.2.1.
-     * 
+     *
      * @param map
      *            The previous style value
      * @param obj
@@ -245,22 +235,17 @@ public class BasicPortCodec extends XcosObjectCodec {
         }
 
         StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
-        flipped = Boolean.parseBoolean(parentBlockMap
-                .get(ScilabGraphConstants.STYLE_FLIP));
-        mirrored = Boolean.parseBoolean(parentBlockMap
-                .get(ScilabGraphConstants.STYLE_MIRROR));
+        flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
+        mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
 
-        final int baseAngle = orientation.getRelativeAngle(
-                ((BasicBlock) obj.getParent()).getAngle(), obj.getClass(),
-                flipped, mirrored);
+        final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
 
         if (rotation == baseAngle) {
             return;
         }
 
         // Calculate the rotation for this kind of port.
-        rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped,
-                mirrored);
+        rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
         map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
     }

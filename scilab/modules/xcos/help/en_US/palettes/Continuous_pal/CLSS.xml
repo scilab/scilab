@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -64,29 +64,27 @@
           <listitem>
             <para>
               <xref linkend="Defaultproperties_CLSS">Default
-            properties</xref>
+                properties
+              </xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_CLSS">Interfacing
-            function</xref>
+                function
+              </xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Computationalfunction_CLSS">Computational
-            function</xref>
+                function
+              </xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Example_CLSS">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_CLSS">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -99,7 +97,8 @@
       <listitem>
         <para>
           <link linkend="Continuous_pal">Continuous time systems
-        palette</link>
+            palette
+          </link>
         </para>
       </listitem>
     </itemizedlist>
@@ -107,7 +106,8 @@
   <refsection id="Description_CLSS">
     <title>Description</title>
     <para>This block realizes a continuous-time linear state-space
-    system.</para>
+      system.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,12 +115,16 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>where <emphasis role="bold">x</emphasis> is the vector of state
-    variables, <emphasis role="bold">u</emphasis> is the vector of input
-    functions and <emphasis role="bold">y</emphasis> is the vector of output
-    variables.</para>
-    <para>The system is defined by the <emphasis role="bold">(A, B, C, D)</emphasis> matrices and the initial state <emphasis role="bold">X0</emphasis>.
-	The dimensions must be compatible.</para>
+    <para>
+      where <emphasis role="bold">x</emphasis> is the vector of state
+      variables, <emphasis role="bold">u</emphasis> is the vector of input
+      functions and <emphasis role="bold">y</emphasis> is the vector of output
+      variables.
+    </para>
+    <para>
+      The system is defined by the <emphasis role="bold">(A, B, C, D)</emphasis> matrices and the initial state <emphasis role="bold">X0</emphasis>.
+      The dimensions must be compatible.
+    </para>
   </refsection>
   <refsection id="Dialogbox_CLSS">
     <title>Dialog box</title>
@@ -143,21 +147,27 @@
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para>The <emphasis role="bold">B</emphasis> matrix, [] if system has no input.</para>
+        <para>
+          The <emphasis role="bold">B</emphasis> matrix, [] if system has no input.
+        </para>
         <para>Properties : Type 'mat' of size ["size(%1,2)","-1"].</para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para>The <emphasis role="bold">C</emphasis> matrix , [] if system has no output.</para>
+        <para>
+          The <emphasis role="bold">C</emphasis> matrix , [] if system has no output.
+        </para>
         <para>Properties : Type 'mat' of size ["-1","size(%1,2)"].</para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para>The <emphasis role="bold">D</emphasis> matrix, [] if system has no D term.</para>
+        <para>
+          The <emphasis role="bold">D</emphasis> matrix, [] if system has no D term.
+        </para>
         <para>Properties : Type 'mat' of size [-1,-1].</para>
       </listitem>
       <listitem>
@@ -173,16 +183,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -190,7 +208,8 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
@@ -199,27 +218,42 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            inputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            outputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        yes</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>
+          yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>
+          no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -232,7 +266,8 @@
   <refsection id="Example_CLSS">
     <title>Example</title>
     <para>This sample example illustrates how to use CLSS block to simulate
-    and display the output waveform <emphasis role="bold">y(t)=Vc(t)</emphasis> of the RLC circuit shown below.</para>
+      and display the output waveform <emphasis role="bold">y(t)=Vc(t)</emphasis> of the RLC circuit shown below.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -241,7 +276,8 @@
       </inlinemediaobject>
     </para>
     <para>The equations for an RLC circuit are the following. They result from
-    Kirchhoff's voltage law and Newton's law.</para>
+      Kirchhoff's voltage law and Newton's law.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -250,10 +286,13 @@
       </inlinemediaobject>
     </para>
     <para>The R, L and C are the system's resistance, inductance and
-    capacitor.</para>
-    <para>We define the capacitor voltage <literal>Vc</literal> and the
-    inductance current <literal>iL</literal> as the state variables
-    <literal>X1</literal> and <literal>X2.</literal></para>
+      capacitor.
+    </para>
+    <para>
+      We define the capacitor voltage <literal>Vc</literal> and the
+      inductance current <literal>iL</literal> as the state variables
+      <literal>X1</literal> and <literal>X2.</literal>
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -294,9 +333,11 @@
       </inlinemediaobject>
     </para>
     <para>The following diagram shows these equations modeled in Xcos where
-    R=10Ω, L=5 mΗ and C=0.1µF; the initial states are x1=0 and x2=0.5.</para>
+      R=10Ω, L=5 mΗ and C=0.1µF; the initial states are x1=0 and x2=0.5.
+    </para>
     <para>To obtain the output Vc(t) we use CLSS block from Continuous time
-    systems Palette.</para>
+      systems Palette.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -327,15 +368,6 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CLSS">
-    <title>Authors</title>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Zhour Madini-Zouine</emphasis>
-        DIGITEO</para>
       </listitem>
     </itemizedlist>
   </refsection>

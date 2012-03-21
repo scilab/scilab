@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_hdf5.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/ 

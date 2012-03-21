@@ -36,7 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>This routine returns the handle of the last created (and still
-    existent) entity.</para>
+      existent) entity.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -55,7 +56,7 @@ delete(gcf()); // delete current figure
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcf">gcf</link>
@@ -70,9 +71,5 @@ delete(gcf()); // delete current figure
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

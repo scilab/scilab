@@ -70,11 +70,6 @@
               <xref linkend="Seealso_SUMMATION">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SUMMATION">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -117,20 +112,23 @@
       <tr>
         <td align="left" rawspan="2">Une</td>
         <td align="left">y = u</td>
-        <td align="left"><emphasis>u</emphasis> est une valeur scalaire et le bloc se comporte comme un gain unitaire.
+        <td align="left">
+          <emphasis>u</emphasis> est une valeur scalaire et le bloc se comporte comme un gain unitaire.
         </td>
       </tr>
       <tr>
         <td align="left" rawspan="2">Une</td>
         <td align="left">y = u[1]+u[2]+...+u[N]</td>
-        <td align="left"><emphasis>u</emphasis> est un vecteur ou une matrice et la sortie du bloc est la somme des éléments du
+        <td align="left">
+          <emphasis>u</emphasis> est un vecteur ou une matrice et la sortie du bloc est la somme des éléments du
           vecteur ou de la matrice d'entrée.
         </td>
       </tr>
       <tr>
         <td align="left">Deux ou plus</td>
         <td align="left">y = k[1]*u1+k[2]*u2+...+k[N]*uN</td>
-        <td align="left"><emphasis>k</emphasis> est une valeur scalaire ou vectorielle écrite dans le paramètre
+        <td align="left">
+          <emphasis>k</emphasis> est une valeur scalaire ou vectorielle écrite dans le paramètre
           <emphasis role="bold">Number of inputs or sign vector</emphasis>. Pour l'addition de toutes les entrées,
           mettre simplement ce paramètre au nombre d'entrées. Pour additionner/soustraire l'entrée
           <emphasis>ui</emphasis>, mettre dans ce paramètre un vecteur k avec <emphasis>k[i]</emphasis>
@@ -199,16 +197,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -230,19 +236,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -337,23 +353,6 @@
         <para>
           <link linkend="SUM_f">SUM_f - Addition de matrices (Xcos block)</link>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_SUMMATION">
-    <title>Auteurs</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

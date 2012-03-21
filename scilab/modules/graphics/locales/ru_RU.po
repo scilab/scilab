@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-01 04:00+0000\n"
+"PO-Revision-Date: 2012-03-10 02:52+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1347,6 +1347,10 @@ msgstr "%s: Неверный размер параметра %d: ожидалс�
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr "%s: Карта цветов (colormap) слишком мала"
 
 msgid "Delete all datatips"
 msgstr "Удалить все подсказки данных"

@@ -33,7 +33,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>a single input multiple output (SIMO) linear dynamical system (see <link linkend="syslin">syslin</link>).</para>
+          <para>
+            a single input multiple output (SIMO) linear dynamical system (see <link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -70,28 +72,31 @@
         <term>db</term>
         <listitem>
           <para>an n x m array: the magnitudes corresponding to
-          <literal>frq</literal>. This argument is not used, it only
-          appears to make <literal>phaseplot</literal> have the same
-          calling sequence as <literal>gainplot</literal> and
-          <literal>bode</literal>.</para>
+            <literal>frq</literal>. This argument is not used, it only
+            appears to make <literal>phaseplot</literal> have the same
+            calling sequence as <literal>gainplot</literal> and
+            <literal>bode</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>phi</term>
         <listitem>
           <para>an n x m array: the phases in degree corresponding to
-          <literal>frq</literal>. The <literal>phaseplot</literal>
-          function plots the curves <literal>frq(i,:)</literal> versus
-          <literal>phi(i,:)</literal> </para>
+            <literal>frq</literal>. The <literal>phaseplot</literal>
+            function plots the curves <literal>frq(i,:)</literal> versus
+            <literal>phi(i,:)</literal> 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>repf</term>
         <listitem>
           <para>an n x m complex array. The
-          <literal>phaseplot</literal> function plots the curves
-          <literal>frq(i,:)</literal> versus
-          <literal>phase(repf(i,:))</literal> </para>
+            <literal>phaseplot</literal> function plots the curves
+            <literal>frq(i,:)</literal> versus
+            <literal>phase(repf(i,:))</literal> 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -99,54 +104,75 @@
   <refsection>
     <title>Description</title>
     <para>This function draws the phase of the frequency response of a
-   system. The system can be given under different
-   representations:</para>
+      system. The system can be given under different
+      representations:
+    </para>
     <itemizedlist>
       <listitem>
-        <para><literal>phaseplot(sl,...)</literal> case </para>
-        <para><literal>sl</literal> can be a continuous-time or discrete-time SIMO
-       system (see <link linkend="syslin">syslin</link>). In case of multi-output the
-       outputs are plotted with different symbols.</para>
+        <para>
+          <literal>phaseplot(sl,...)</literal> case 
+        </para>
+        <para>
+          <literal>sl</literal> can be a continuous-time or discrete-time SIMO
+          system (see <link linkend="syslin">syslin</link>). In case of multi-output the
+          outputs are plotted with different symbols.
+        </para>
         <para>In this case the frequencies can be  given by:</para>
         <itemizedlist mark="point">
           <listitem>
             <para>the lower and upper bounds in Hz
-           <literal>fmin</literal>, <literal>fmax</literal> and an
-           optional frequency step <literal>step</literal>. The
-           default values for <literal>fmin</literal> and
-           <literal>fmax</literal>are <literal>1.e-3</literal>,
-           <literal>1.e3</literal> if <literal>sl</literal> is
-           continuous-time or <literal>1.e-3</literal>,
-           <literal>0.5/sl.dt</literal> (nyquist frequency) if
-           <literal>sl</literal> is discrete-time. If the
-           <literal>step</literal> argument is omitted the function
-           use an adaptative frequency step (see <link linkend="calfrq">calfrq</link>).</para>
+              <literal>fmin</literal>, <literal>fmax</literal> and an
+              optional frequency step <literal>step</literal>. The
+              default values for <literal>fmin</literal> and
+              <literal>fmax</literal>are <literal>1.e-3</literal>,
+              <literal>1.e3</literal> if <literal>sl</literal> is
+              continuous-time or <literal>1.e-3</literal>,
+              <literal>0.5/sl.dt</literal> (nyquist frequency) if
+              <literal>sl</literal> is discrete-time. If the
+              <literal>step</literal> argument is omitted the function
+              use an adaptative frequency step (see <link linkend="calfrq">calfrq</link>).
+            </para>
           </listitem>
           <listitem>
-            <para>a row vector or a 2D array <literal>frq</literal> which
-           gives the frequency values in Hz. 2D array can be used for
-           multi-output systems if one wants to have different frequency
-           discretization for each input/output couple. </para>
+            <para>
+              a row vector or a 2D array <literal>frq</literal> which
+              gives the frequency values in Hz. 2D array can be used for
+              multi-output systems if one wants to have different frequency
+              discretization for each input/output couple. 
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
-      <listitem><para><literal>phaseplot(frq,...)</literal> case </para><para>
-       This case allows to draw frequency phase plots for previously
-       computed frequency responses. The frequency response can be
-       given either by it's complex representation
-       <literal>repf</literal> or by it's magnitude phase
-       representation <literal>db</literal>,
-       <literal>phi</literal></para>.  
-
-       <para><literal>frq</literal> and <literal>repf</literal> must
-       be row vectors or n x m arrays (each row represent an
-       input/output couple)</para>.
-     </listitem>
+      <listitem>
+        <para>
+          <literal>phaseplot(frq,...)</literal> case 
+        </para>
+        <para>
+          This case allows to draw frequency phase plots for previously
+          computed frequency responses. The frequency response can be
+          given either by it's complex representation
+          <literal>repf</literal> or by it's magnitude phase
+          representation <literal>db</literal>,
+          <literal>phi</literal>
+        </para>
+        .
+        
+        <para>
+          <literal>frq</literal> and <literal>repf</literal> must
+          be row vectors or n x m arrays (each row represent an
+          input/output couple)
+        </para>
+        .
+      </listitem>
     </itemizedlist>
     <para>
-     The <member><link linkend="datatips">datatips</link></member> tool may be used
-     to display data along the phase curves.
-   </para>
+      The 
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
+      tool may be used
+      to display data along the phase curves.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -186,12 +212,6 @@
       <member>
         <link linkend="datatips">datatips</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
   <refsection>

@@ -12,7 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_xcos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
@@ -29,7 +30,7 @@ static gw_generic_table Tab[] =
     {sci_Xcos, "xcos"},
     {sci_warnBlockByUID, "warnBlockByUID"},
     {sci_closeXcosFromScilab, "closeXcos"},
-    {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
+    {sci_xcosDiagramToScilab, "xcosDiagramToScilab"},
     {sci_xcosPalLoad, "xcosPalLoad"},
     {sci_xcosPalCategoryAdd, "xcosPalCategoryAdd"},
     {sci_xcosPalDelete, "xcosPalDelete"},
@@ -59,6 +60,14 @@ int gw_xcos(void)
         loadOnUseClassPath("Xcos");
         loadedDep = TRUE;
     }
+
+
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
+
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

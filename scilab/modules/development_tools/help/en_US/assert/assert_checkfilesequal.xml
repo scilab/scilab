@@ -197,7 +197,6 @@ endfunction
 
    ]]></programlisting>
   </refsection>
-  
   <refsection>
     <title>History</title>
     <revhistory>
@@ -207,12 +206,5 @@ endfunction
         </revdescription>
       </revision>
     </revhistory>
-  </refsection>
-  
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
   </refsection>
 </refentry>

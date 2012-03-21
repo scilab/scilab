@@ -58,8 +58,13 @@ function nbChanges = atomsSetConfig(field,value)
         end
         element=field(i);   
 
+        if element == "offLine" then
+           // Prior to version 5.4.0, offline was called Offline
+           element = "offline"
+        end
+
         if element == "useProxy"..
-            | element == "offLine"..
+            | element == "offline"..
             | element == "autoload"..
             | element == "autoloadAddAfterInstall"..
             | element == "Verbose"..
@@ -109,7 +114,7 @@ function nbChanges = atomsSetConfig(field,value)
             continue;
         end
 
-        if field(i) == "offLine" then
+        if field(i) == "offline" then
             systemUpdateNeeded = %T;
         end
 

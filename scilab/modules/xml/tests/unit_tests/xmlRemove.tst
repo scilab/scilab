@@ -14,8 +14,10 @@ assert_checkequal(doc.root.children(3).name,"a");
 xp = xmlXPath(doc, "//a");
 xmlRemove(xp);
 assert_checkequal(doc.root.children(1).name,"b");
-assert_checkerror("doc.root.children(2).name","%XMLList_e: Wrong index in the XMLList.");
-assert_checkerror("doc.root.children(3).name","%XMLList_e: Wrong index in the XMLList.");
+
+msgerr = msprintf(gettext("%s: Wrong index in the XMLList.\n"), "%XMLList_e");
+assert_checkerror("doc.root.children(2).name", msgerr);
+assert_checkerror("doc.root.children(3).name", msgerr);
 
 xp = xmlXPath(doc, "//a");
 assert_checkequal(length(xp),0);

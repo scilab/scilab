@@ -5,25 +5,47 @@
   </info>
   <refnamediv>
     <refname>case</refname>
-    <refpurpose> mot-clé utilisé dans une structure select ... case  </refpurpose>
+    <refpurpose> mot-clé utilisé dans une structure "select" </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
-  </para>
+      Mot-clé utilisé dans une structure <literal>select ... case ... end</literal>
+    </para>
+    <para>
+      A utiliser de la façon suivante :
+    </para>
     <programlisting><![CDATA[ 
-select expr0,
-  case expr1 then instructions1,
-  case expr2 then instructions2,
-  ...
-  case exprn then instructions,
-  [else instructions],
+    select expr0,
+    case expr1 then
+        instructions 1
+    case expr2 then
+        instructions 2
+    ...
+    case exprn then
+        instructions n
+    [else instructions]
+    end
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting><![CDATA[
+OS=getos()
+select OS
+case "Windows" then
+  disp("Scilab sur Windows")
+case "Linux" then
+  disp("Scilab sur Linux")
+case "Darwin" then
+  disp("Scilab sur Mac OS")
+else
+  error("Scilab sur plateforme inconnue")
 end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="select">select</link>

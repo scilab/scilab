@@ -294,7 +294,6 @@
                 <para>
                   Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
                 </para>
-                
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -309,7 +308,6 @@
                 <para>
                   Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
                 </para>
-                
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -614,7 +612,6 @@
                   stand for solid, the other values stand for a selection of dashes
                   (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot).
                 </para>
-                
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -982,9 +979,5 @@ a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
         <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
       </revision>
     </revhistory>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

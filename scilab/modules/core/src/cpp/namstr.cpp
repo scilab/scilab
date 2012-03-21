@@ -9,9 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
+#include <algorithm>
 #include "machine.h" /* C2F */
 #include "stack-def.h" /* nsiz, nlgh */
-#include <algorithm>
+
 extern "C"
 {
     void C2F(namstr)(int* id, int* str, int* n, char* job);

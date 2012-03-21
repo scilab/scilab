@@ -18,7 +18,7 @@
   <refnamediv>
     <refname>filesep</refname>
     <refpurpose>カレントのプラットフォームにおけるディレクトのリセパレータを返す
-	</refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -38,19 +38,14 @@
   <refsection>
     <title>説明</title>
     <para>rディレクトのリセパレータを返します.
-	 ( Linuxでは'/', Windowsでは'\' )</para>
+      ( Linuxでは'/', Windowsでは'\' )
+    </para>
   </refsection>
   <refsection>
     <title>rei 
-</title>
+    </title>
     <programlisting role="example"><![CDATA[ 
 filesep()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

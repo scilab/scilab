@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>samplef</refname>
     <refpurpose>母集団からの置換を有する標本化および
-	その値の頻度.</refpurpose>
+      その値の頻度.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -42,8 +43,9 @@
         <term>f</term>
         <listitem>
           <para>
-	Xと同じ大きさの正の整数.
-	Xの対応する値の頻度を示します.</para>
+            Xと同じ大きさの正の整数.
+            Xの対応する値の頻度を示します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,36 +65,38 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は, 長さnのベクトルsを出力します.
-	その出力には,
-	ベクトル(または行列)Xから置換を指定して抽出された
-	n個の標本が含まれます.
-	その各要素は,ベクトルfの対応する値により指定された頻度から
-	計算されます.</para>
+      この関数は, 長さnのベクトルsを出力します.
+      その出力には,
+      ベクトル(または行列)Xから置換を指定して抽出された
+      n個の標本が含まれます.
+      その各要素は,ベクトルfの対応する値により指定された頻度から
+      計算されます.
+    </para>
     <para>
-   s=samplef(n,X,f)   (または  s=samplef(n,X,f,'*'))   は,
-	その値がXから抽出されたn個の標本となる
-	ベクトル s を返します.
-	各値は,fの対応する値に比例した標本化確率を有します.
-	fはXと同じ大きさを有します.</para>
+      s=samplef(n,X,f)   (または  s=samplef(n,X,f,'*'))   は,
+      その値がXから抽出されたn個の標本となる
+      ベクトル s を返します.
+      各値は,fの対応する値に比例した標本化確率を有します.
+      fはXと同じ大きさを有します.
+    </para>
     <para>
-   s=samplef(n,X,f,'r')           (または等価な,
-   s=samplef(n,X,f,1)) は,size(X,'r')xnの行列を返します.
-	その出力には,
-	Xから抽出されたn行のランダム標本が含まれます.
-	その各行は,Xの行から置換付きで展開された
-	fの対応する値に比例した標本化確率を有します.
-	fの長さは,Xの行の数に等しい必要があります.
-</para>
+      s=samplef(n,X,f,'r')           (または等価な,
+      s=samplef(n,X,f,1)) は,size(X,'r')xnの行列を返します.
+      その出力には,
+      Xから抽出されたn行のランダム標本が含まれます.
+      その各行は,Xの行から置換付きで展開された
+      fの対応する値に比例した標本化確率を有します.
+      fの長さは,Xの行の数に等しい必要があります.
+    </para>
     <para>
-   s=samplef(n,X,f,'c')           (または等価な,
-   s=samplef(n,X,f,2))    は,nxsize(X,'c')の行列を返します.
-	その出力には,
-	Xから抽出されたn列のランダム標本が含まれます.
-	その各列は,Xの列から置換付きで展開された
-	fの対応する値に比例した標本化確率を有します.
-	fの長さは,Xの列の数に等しい必要があります.
-</para>
+      s=samplef(n,X,f,'c')           (または等価な,
+      s=samplef(n,X,f,2))    は,nxsize(X,'c')の行列を返します.
+      その出力には,
+      Xから抽出されたn列のランダム標本が含まれます.
+      その各列は,Xの列から置換付きで展開された
+      fの対応する値に比例した標本化確率を有します.
+      fの長さは,Xの列の数に等しい必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -116,11 +120,5 @@ s=samplef(15,a,f3,'c')
         <link linkend="samwr">samwr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-   Carlos Klimann
-  </para>
   </refsection>
 </refentry>

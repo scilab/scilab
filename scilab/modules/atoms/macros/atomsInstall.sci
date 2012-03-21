@@ -161,6 +161,9 @@ function result = atomsInstall(packages,section)
                 error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible\n"),"atomsInstall",this_package));
             end
 
+            // expand filename - bug 10707
+            this_package = pathconvert(this_package, %f);
+
             tmp_dir = atomsExtract(this_package,atoms_tmp_directory);
             tmp_dir = pathconvert(atoms_tmp_directory+tmp_dir);
 

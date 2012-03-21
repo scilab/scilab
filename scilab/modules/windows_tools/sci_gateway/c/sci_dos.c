@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "gw_windows_tools.h"
 #include "PATH_MAX.h"
-#include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "spawncommand.h"
 #include "sciprint.h"
@@ -25,6 +24,7 @@
 #include "freeArrayOfString.h"
 #include "getshortpathname.h"
 #include "api_scilab.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/

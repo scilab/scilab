@@ -13,13 +13,15 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "Thread_Wrapper.h"
 #include "stack-c.h"
+
 #include "MALLOC.h"
 #include "storeCommand.h"
 #include "sciprint.h"
 #include "sciprint_full.h"
 #include "localization.h"
-#include "Thread_Wrapper.h"
+
 
 #ifdef _MSC_VER
 #include "mmapWindows.h"

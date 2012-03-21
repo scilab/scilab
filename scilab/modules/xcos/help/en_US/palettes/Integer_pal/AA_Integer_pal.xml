@@ -18,26 +18,17 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="Integer_pal"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Integer_pal">
   <refnamediv>
     <refname>Integer_pal</refname>
-
     <refpurpose>Integer palette</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -96,10 +87,8 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Module_Integer_pal">
     <title>Module</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -108,81 +97,67 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_Integer_pal">
     <title>Description</title>
-
     <para>
       That palette is dedicated to handle integer numbers. Various basic
       operators for the management of bit fields and for logic are implemented
       as well as common gates encountered in digital circuits.
     </para>
   </refsection>
-
   <refsection id="Blocks_Integer_pal">
     <title>Blocks</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="BITSET">BITSET - Set a Bit</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SHIFT">SHIFT - Shift/Rotates Bits</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>

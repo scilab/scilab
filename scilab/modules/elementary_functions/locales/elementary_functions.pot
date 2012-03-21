@@ -14,11 +14,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-07 10:31+0100\n"
+"Revision-Date: 2012-03-07 18:20+0100\n"
 
-# File: sci_gateway/c/sci_base2dec.c, line: 42
-# File: sci_gateway/c/sci_base2dec.c, line: 55
-# File: sci_gateway/c/sci_frexp.c, line: 36
+# File: sci_gateway/c/sci_base2dec.c, line: 41
+# File: sci_gateway/c/sci_base2dec.c, line: 54
+# File: sci_gateway/c/sci_dec2base.c, line: 49
+# File: sci_gateway/c/sci_dec2base.c, line: 86
+# File: sci_gateway/c/sci_dec2base.c, line: 125
+# File: sci_gateway/c/sci_dec2base.c, line: 154
+# File: sci_gateway/c/sci_frexp.c, line: 35
 # File: sci_gateway/c/sci_size.c, line: 54
 # File: sci_gateway/c/sci_size.c, line: 62
 # File: sci_gateway/c/sci_size.c, line: 70
@@ -27,28 +31,34 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 48
+# File: sci_gateway/c/sci_base2dec.c, line: 47
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 62
+# File: sci_gateway/c/sci_base2dec.c, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 68
+# File: sci_gateway/c/sci_base2dec.c, line: 67
+# File: sci_gateway/c/sci_dec2base.c, line: 98
 # File: sci_gateway/c/sci_size.c, line: 142
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 74
-# File: sci_gateway/c/sci_base2dec.c, line: 93
-# File: sci_gateway/c/sci_base2dec.c, line: 103
+# File: sci_gateway/c/sci_base2dec.c, line: 73
+# File: sci_gateway/c/sci_base2dec.c, line: 92
+# File: sci_gateway/c/sci_base2dec.c, line: 102
+# File: sci_gateway/c/sci_dec2base.c, line: 67
+# File: sci_gateway/c/sci_dec2base.c, line: 104
+# File: sci_gateway/c/sci_dec2base.c, line: 133
+# File: sci_gateway/c/sci_dec2base.c, line: 161
+# File: sci_gateway/c/sci_dec2base.c, line: 182
 # File: src/c/sci_tools.c, line: 122
 # File: src/c/sci_tools.c, line: 147
 # File: src/c/sci_tools.c, line: 177
@@ -58,19 +68,21 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 81
+# File: sci_gateway/c/sci_base2dec.c, line: 80
+# File: sci_gateway/c/sci_size.c, line: 96
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 87
+# File: sci_gateway/c/sci_base2dec.c, line: 86
+# File: sci_gateway/c/sci_dec2base.c, line: 117
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 119
+# File: sci_gateway/c/sci_base2dec.c, line: 118
 #, c-format
 msgid ""
 "%s: Wrong value for input argument(s): Valid base %d representations "
@@ -78,13 +90,68 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 136
+# File: sci_gateway/c/sci_base2dec.c, line: 135
+# File: sci_gateway/c/sci_dec2base.c, line: 198
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_frexp.c, line: 42
+# File: sci_gateway/c/sci_dec2base.c, line: 55
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 61
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 75
+# File: sci_gateway/c/sci_dec2base.c, line: 111
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 92
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 146
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 174
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 178
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dec2base.c, line: 186
+#, c-format
+msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_frexp.c, line: 41
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -129,15 +196,9 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_maxi.c, line: 28
+# File: sci_gateway/c/sci_maxi.c, line: 27
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_size.c, line: 96
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
 
 #
@@ -286,7 +347,7 @@ msgstr ""
 # File: macros/tanh.sci, line: 22
 # File: macros/tanhm.sci, line: 16
 # File: macros/tanm.sci, line: 16
-# File: macros/toeplitz.sci, line: 20
+# File: macros/toeplitz.sci, line: 21
 # File: macros/union.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -410,8 +471,6 @@ msgstr ""
 # File: macros/bitor.sci, line: 44
 # File: macros/bitxor.sci, line: 41
 # File: macros/cat.sci, line: 73
-# File: macros/intsplin.sci, line: 27
-# File: macros/inttrap.sci, line: 23
 # File: macros/modulo.sci, line: 34
 # File: macros/pmodulo.sci, line: 35
 #, c-format
@@ -536,26 +595,11 @@ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/dec2bin.sci, line: 39
 # File: macros/dec2oct.sci, line: 25
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
-msgstr ""
-
-#
-# File: macros/dec2bin.sci, line: 43
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected"
-msgstr ""
-
-#
-# File: macros/dec2hex.sci, line: 30
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer matrix "
-"expected.\n"
 msgstr ""
 
 #
@@ -610,13 +654,6 @@ msgstr ""
 # File: macros/logspace.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-
-#
-# File: macros/linspace.sci, line: 33
-# File: macros/logspace.sci, line: 33
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer >= %d expected.\n"
 msgstr ""
 
 #
@@ -748,7 +785,7 @@ msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
 
 #
-# File: macros/toeplitz.sci, line: 29
+# File: macros/toeplitz.sci, line: 39
 #, c-format
 msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"

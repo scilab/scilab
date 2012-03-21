@@ -1,6 +1,6 @@
     An example of calling scilab as a subroutine of a user's main program
     
-    Requirements Intel Fortran 9.1 and Visual Studio 2005 IDE
+    Requirements Intel Fortran 2011 and Visual Studio 2010 IDE
 
 
 Useful files
@@ -14,12 +14,13 @@ Usage
 =====
 	from this directory :
 	
-	set SCI=<your current scilab path ex: d:/scilab 
+	set SCI=<your current scilab path ex: d:/scilab> 
 	set TMPDIR=%TEMP%
 	set HOME=%SCI%
-	set TCL_LIBRARY=%SCI%\tcl\tcl8.4
-	set TK_LIBRARY=%SCI%\tcl\tk8.4
+	set TCL_LIBRARY=%SCI%\modules\tclsci\tcl\tcl8.5
+	set TK_LIBRARY=%SCI%\modules\tclsci\tcl\tk8.5
 	
 	../../../../bin/example.exe
 
 INRIA 2006 A.C
+DIGITEO 2012 - Allan CORNET

@@ -13,12 +13,10 @@
 // test_run  --
 //   Launch unit tests.
 
-function status = test_run(varargin)
- 
-
+function test_run_result = test_run(varargin)
   lhs     = argn(1);
   rhs     = argn(2);
-
+  test_run_result = %f;
 // =========================================================================
 // Print test_run help
 // =========================================================================
@@ -107,6 +105,7 @@ function status = test_run(varargin)
       for i=1:size(option_mat, "*")
         printf("  - ""%s""\n", option_mat(i));
       end
+
       return;
     end
   end
@@ -275,7 +274,7 @@ function status = test_run(varargin)
   
 //   Returns %t if no error has been detected
 //   Returns %f if any error has been detected
-  status = (status.test_failed_count == 0);
+  test_run_result = (status.test_failed_count == 0);
   
 endfunction
 
@@ -937,7 +936,7 @@ function msg = launchthecommand( filename )
 //   - exec("C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst")
 // Workaround for bug #4827
   msg(1) = "   Or launch the following command :"
-  msg(2) = "   - exec(""" + filename + """);"
+  msg(2) = "   - exec(""" + fullpath(filename) + """);"
 endfunction
 
 // => remove header from the diary txt

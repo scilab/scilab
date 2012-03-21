@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -86,11 +86,6 @@
               <xref linkend="Seealso_M_freq">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_M_freq">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -108,30 +103,30 @@
   <refsection id="Description_M_freq">
     <title>Description</title>
     <para>
-This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.  
-</para>
+      This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.  
+    </para>
     <para>- The first output is activated when the simulation time is equal to a multiple of the first sample time plus the first offset  
-</para>
+    </para>
     <para>- The second output is activated when the simulation time is equal to a multiple of the second sample time plus the second offset.  
-</para>
+    </para>
     <para>- The third output is activated when we have both cases, first case and second case.  
-</para>
+    </para>
     <para>- The fourth output is activated when the simulation time is equal to a multiple of the third sample time plus the third offset.  
-</para>
+    </para>
     <para>- The fifth output is activated when we have both cases, first case and forth case.  
-</para>
+    </para>
     <para>- The sixth output is activated when we have both cases, second case and fourth case.  
-</para>
+    </para>
     <para>- The seventh output is activated when we have both cases, third case and forth case.  
-</para>
+    </para>
     <para>
-etc... 
-</para>
+      etc... 
+    </para>
     <para>
-So the number of outputs is equal to 2**number of different time values. Each of these time values is represented by a binary number associated to the output's number in decimal.  
-</para>
+      So the number of outputs is equal to 2**number of different time values. Each of these time values is represented by a binary number associated to the output's number in decimal.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_M_freq">
     <title>Dialog box</title>
@@ -143,8 +138,8 @@ So the number of outputs is equal to 2**number of different time values. Each of
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -177,31 +172,49 @@ When t=2 we loop back to 0.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 3</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 3
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -236,9 +249,5 @@ When t=2 we loop back to 0.
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_M_freq">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

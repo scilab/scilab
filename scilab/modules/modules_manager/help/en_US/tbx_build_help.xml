@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_build_help(title)
-	  tbx_build_help(title, help_path)
+      tbx_build_help(title)
+      tbx_build_help(title, help_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -44,7 +44,9 @@
   </refsection>
   <refsection>
     <title>Remark:</title>
-    <para>If you call <literal>tbx_build_help</literal> in scilab CLI (=NWNI) mode, help files will not be generated.</para>
+    <para>
+      If you call <literal>tbx_build_help</literal> in scilab CLI (=NWNI) mode, help files will not be generated.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +56,7 @@ tbx_build_help("Toolbox Example", get_absolute_file_path('build_help.sce'))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>
@@ -65,13 +67,6 @@ tbx_build_help("Toolbox Example", get_absolute_file_path('build_help.sce'))
       <member>
         <link linkend="tbx_builder_help">tbx_builder_help</link>
       </member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
     </simplelist>
   </refsection>
 </refentry>

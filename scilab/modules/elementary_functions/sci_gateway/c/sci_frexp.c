@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

@@ -34,14 +34,18 @@
       <varlistentry>
         <term>cmap</term>
         <listitem>
-          <para>matrix with 3 columns <literal>[R,G,B]</literal>.</para>
+          <para>
+            matrix with 3 columns <literal>[R,G,B]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>bonecolormap</literal> computes a gray colormap with a light blue tone.</para>
+    <para>
+      <literal>bonecolormap</literal> computes a gray colormap with a light blue tone.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +56,7 @@ f.color_map = bonecolormap(32);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>
@@ -102,4 +106,3 @@ f.color_map = bonecolormap(32);
     </simplelist>
   </refsection>
 </refentry>
-

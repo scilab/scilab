@@ -5,26 +5,47 @@
   </info>
   <refnamediv>
     <refname>case</refname>
-    <refpurpose> keyword used in select</refpurpose>
+    <refpurpose> keyword used in statement "select"</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Keyword used in <literal>select ... case</literal></para>
+      Keyword used in statement <literal>select ... case ... end</literal>
+    </para>
     <para>
-    Use it in the following way:</para>
-    <programlisting><![CDATA[ 
-select expr0,
-  case expr1 then instructions1,
-  case expr2 then instructions2,
-  ...
-  case exprn then instructionsn,
-  [else instructions],
+      Use it in the following way:
+    </para>
+    <programlisting><![CDATA[
+        select expr0
+        case expr1 then
+            instructions 1
+        case expr2 then
+            instructions 2
+        ...
+        case exprn then
+            instructions n
+        [else instructions]
+        end
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting><![CDATA[
+OS=getos()
+select OS
+case "Windows" then
+  disp("Scilab on Windows")
+case "Linux" then
+  disp("Scilab on Linux")
+case "Darwin" then
+  disp("Scilab on Mac OS")
+else
+  error("Scilab on unknown platform")
 end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="select">select</link>

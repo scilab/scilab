@@ -18,29 +18,30 @@
         <term>A  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Y  </term>
         <listitem>
           <para>matrice carrée de polynômes (base unimodulaire à droite)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rk  </term>
         <listitem>
-          <para>rang normal de <literal>A</literal>
-</para>
+          <para>
+            rang normal de <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac  </term>
         <listitem>
           <para>
-    : <literal>Ac=A*Y</literal>, matrice de polynômes
-</para>
+            : <literal>Ac=A*Y</literal>, matrice de polynômes
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,8 +49,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Compression de colonnes de la matrice de polynômes <literal>A</literal> (compression à gauche)
-  </para>
+      Compression de colonnes de la matrice de polynômes <literal>A</literal> (compression à gauche)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -61,7 +62,7 @@ p*p'*Y
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcompr">rowcompr</link>

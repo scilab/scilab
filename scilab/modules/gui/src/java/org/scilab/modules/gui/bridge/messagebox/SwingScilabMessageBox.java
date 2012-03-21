@@ -36,7 +36,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -108,7 +107,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private int elementId;
 
     private Icon messageIcon; // = new
-                              // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
@@ -169,8 +168,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Default constructor
      */
     public SwingScilabMessageBox() {
-        super(new JFrame());
-        ((JFrame) getOwner()).setIconImage(imageForIcon); // Java 1.5 compatible
+        super();
+        setIconImage(imageForIcon);
     }
 
     /**
@@ -246,7 +245,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         HTMLEditorKit editorKit = (HTMLEditorKit) messageLabel.getEditorKit();
         StyleSheet styles = editorKit.getStyleSheet();
         String css = "body {font-family:\"" + labelFont.getName()
-                + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
+                     + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
         styles.addRule(css);
         editorKit.setStyleSheet(styles);
         messageLabel.setEditorKit(editorKit);

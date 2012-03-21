@@ -9,18 +9,20 @@
   </refnamediv>
   <refnamediv xml:id="great">
     <refname>great</refname>
-    <refpurpose> (&lt;) より大きいの比較</refpurpose>
+    <refpurpose> (&gt;) より大きいの比較</refpurpose>
   </refnamediv>
   <refsection>
     <title>説明</title>
     <para>
-    論理値比較記号
-  </para>
+      論理値比較記号
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;&gt;</term>
         <listitem>
-          <para>"異なる"を意味する (<literal>~=</literal>と同じ)</para>
+          <para>
+            "異なる"を意味する (<literal>~=</literal>と同じ)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>

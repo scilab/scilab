@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "core_math.h"
-#include "stack-c.h"
 #include "gw_signal.h"
 #include "MALLOC.h"
 #include "api_scilab.h"

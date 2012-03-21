@@ -37,10 +37,10 @@ TYPES_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
 
 GIWS_WRAPPERS = src/jni/ScilabVariables.giws.xml
 
+BUILT_SOURCES =
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
-
 
 #GATEWAY_C_SOURCES =
 
@@ -92,14 +92,8 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 SWIG_WRAPPERS = src/jni/sci_types.i \
 		src/jni/getScilabVariable.i
 
-
-
 if SWIG
-BUILT_SOURCES=swig
-endif
-
-if GIWS
-BUILT_SOURCES += giws-exception
+BUILT_SOURCES+=swig
 endif
 
 #### types : gateway declaration ####

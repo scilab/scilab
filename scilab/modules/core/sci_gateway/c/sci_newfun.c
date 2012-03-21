@@ -15,7 +15,6 @@
 #include <ctype.h>
 #include "gw_core.h"
 #include "BOOL.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Funtab.h"
 #include "IsAScalar.h"

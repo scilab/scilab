@@ -13,12 +13,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="help_skeleton" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
-    $</pubdate>
+      $
+    </pubdate>
   </info>
   <refnamediv>
     <refname>help_skeleton</refname>
     <refpurpose>build the skeleton of the xml help file associated to a Scilab
-    function</refpurpose>
+      function
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -37,15 +39,17 @@
         <term>path</term>
         <listitem>
           <para>character string : the path where the file will be create if
-          required. If this argument is not given the skeleton is returned as
-          a string.</para>
+            required. If this argument is not given the skeleton is returned as
+            a string.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>language</term>
         <listitem>
           <para>character string :with possible value "fr_FR" or "en_US" the
-          defaultis "en_US"</para>
+            defaultis "en_US"
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,14 +63,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>txt = help_skeleton(funname)</literal> generates a vector
-    of strings containing the skeleton of the XML code describing the help of
-    the function <literal>funname</literal>.</para>
-    <para><literal>fullpath = help_skeleton(funname,dirpath)</literal>
-    generates the XML code describing the help of the function
-    <literal>funname</literal> in a file named <literal>funname.xml</literal>
-    in the directory specified by the path <literal>dirpath</literal>. In this
-    case the function returns the file path.</para>
+    <para>
+      <literal>txt = help_skeleton(funname)</literal> generates a vector
+      of strings containing the skeleton of the XML code describing the help of
+      the function <literal>funname</literal>.
+    </para>
+    <para>
+      <literal>fullpath = help_skeleton(funname,dirpath)</literal>
+      generates the XML code describing the help of the function
+      <literal>funname</literal> in a file named <literal>funname.xml</literal>
+      in the directory specified by the path <literal>dirpath</literal>. In this
+      case the function returns the file path.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,9 +96,5 @@ end
         <link linkend="man">Scilab documentation format</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer, INRIA</para>
   </refsection>
 </refentry>

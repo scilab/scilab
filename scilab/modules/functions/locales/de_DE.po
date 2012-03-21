@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: de\n"
 
 #, c-format
@@ -104,12 +104,25 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Datei %s ist nicht vorhanden.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "--Erzeugung von [%s] (Makros) --\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Es wurden keine Dateien mit der Erweiterung %s in %s gefunden.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s file compilation forced\n"

@@ -48,15 +48,18 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>gr_menu</literal>により生成された<literal>sd</literal>データ構造体を指定すると,
-	<literal>sd2sci</literal>は,<literal>gr_menu</literal>により編集されたグラフィックに
-	対応するScilab命令のベクトルを作成します.</para>
+      <literal>gr_menu</literal>により生成された<literal>sd</literal>データ構造体を指定すると,
+      <literal>sd2sci</literal>は,<literal>gr_menu</literal>により編集されたグラフィックに
+      対応するScilab命令のベクトルを作成します.
+    </para>
     <para>
-	オプションの引数 <literal>sz</literal>および <literal>orig</literal> により,
-	最初のグラフィックをズームおよびシフトすることができます.</para>
+      オプションの引数 <literal>sz</literal>および <literal>orig</literal> により,
+      最初のグラフィックをズームおよびシフトすることができます.
+    </para>
     <para>
-    <literal>sz</literal> または <literal>orig</literal> が文字列で指定される場合,
-	生成される命令は通常の式として使用します.</para>
+      <literal>sz</literal> または <literal>orig</literal> が文字列で指定される場合,
+      生成される命令は通常の式として使用します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -65,9 +68,5 @@
         <link linkend="execstr">execstr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer INRIA 1988</para>
   </refsection>
 </refentry>

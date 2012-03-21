@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -610,6 +610,9 @@ msgstr "Es&vaziar a área de transferência"
 
 msgid "&Select all"
 msgstr "&Selecionar tudo"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Preferences"
 msgstr "&Preferências"
@@ -1293,26 +1296,14 @@ msgstr "Todos os arquivos RTF"
 msgid "All %s files"
 msgstr "Todos os arquivos %s"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "O Consórcio Scilab (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr "Direitos reservados (c) 1989-2012 (INRIA)"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Direitos autorais (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Licença CeCILL"
-
 msgid "About Scilab..."
 msgstr "Sobre o Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Agradecimentos"
-
 msgid "Close"
 msgstr "Fechar"
+
+msgid "Acknowledgements"
+msgstr "Agradecimentos"
 
 msgid "Could not open: "
 msgstr "Não foi possível abrir: "

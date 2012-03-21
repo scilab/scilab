@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -81,11 +81,6 @@
               <xref linkend="Seealso_MATSUM">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_MATSUM">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -105,20 +100,22 @@
     <para>
       The MATSUM block returns the sum of the element of an input matrix/vector.
     </para>
-    <para>When the <emphasis role="bold">Sum along</emphasis> is set to:</para>
+    <para>
+      When the <emphasis role="bold">Sum along</emphasis> is set to:
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">0</emphasis> (all) the block outputs the sum of all the elements of the matrix.
           The output is then a scalar.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">1</emphasis> (lines) the block is a row-wise sum. The output is a row vector.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -126,9 +123,10 @@
         </para>
       </listitem>
     </itemizedlist>
-    <para>The equivalent function of this block in Scilab is <link linkend="sum">sum</link>.</para>
-
-    <para />
+    <para>
+      The equivalent function of this block in Scilab is <link linkend="sum">sum</link>.
+    </para>
+    <para/>
   </refsection>
   <refsection id="Dialogbox_MATSUM">
     <title>Dialog box</title>
@@ -140,8 +138,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -166,16 +164,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -194,19 +200,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -266,9 +282,5 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_MATSUM">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

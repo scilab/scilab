@@ -21,18 +21,15 @@
 #include "scanf_functions.h"
 #include "StringConvert.h"
 #include "xscion.h"
-#include "../../../console/includes/zzledt.h"
 #include "../../../console/includes/GetCommandLine.h"   /* getConsoleInputLine */
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-#define MAXSTR 512
-/*--------------------------------------------------------------------------*/
 int sci_scanf(char *fname, unsigned long fname_len)
 {
     static char *String = NULL;
-    static int l1 = 0, m1 = 0, n1 = 0, len = MAXSTR - 1, iarg = 0, maxrow = 0, nrow = 0, rowcount = 0, ncol = 0;
+    static int l1 = 0, m1 = 0, n1 = 0, iarg = 0, maxrow = 0, nrow = 0, rowcount = 0, ncol = 0;
     int args = 0, retval = 0, retval_s = 0, lline = 0, iflag = 0, err = 0, n_count = 0;
     entry *data = NULL;
     rec_entry buf[MAXSCAN];
@@ -59,7 +56,7 @@ int sci_scanf(char *fname, unsigned long fname_len)
     }
 
     GetRhsVar(iarg, STRING_DATATYPE, &m1, &n1, &l1);
-                                                 /** format **/
+    /** format **/
     n_count = StringConvert(cstk(l1)) + 1;  /* conversion */
 
     if (n_count > 1)
@@ -78,8 +75,7 @@ int sci_scanf(char *fname, unsigned long fname_len)
 
         /* get a line */
         C2F(xscion) (&iflag);
-        //C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
-        //getLine(String,&len,&lline,&status);
+
         String = getConsoleInputLine();
         if (String == NULL)
         {
@@ -116,19 +112,19 @@ int sci_scanf(char *fname, unsigned long fname_len)
         {
             switch (err)
             {
-            case MISMATCH:
-                if (maxrow >= 0)
-                {
-                    Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: Data mismatch.\n"), fname);
-                    return 0;
-                }
-                break;
+                case MISMATCH:
+                    if (maxrow >= 0)
+                    {
+                        Free_Scan(rowcount, ncol, type_s, &data);
+                        Scierror(999, _("%s: Data mismatch.\n"), fname);
+                        return 0;
+                    }
+                    break;
 
-            case MEM_LACK:
-                Free_Scan(rowcount, ncol, type_s, &data);
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
+                case MEM_LACK:
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
             }
         }
     }                           /*  while (1) */

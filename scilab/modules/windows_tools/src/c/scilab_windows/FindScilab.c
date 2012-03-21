@@ -10,6 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/ 
+#include <windows.h>
 #include <string.h>
 #include "FindScilab.h"
 #include "version.h"

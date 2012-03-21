@@ -13,7 +13,6 @@
 #include "gw_xml.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /*  interface function */

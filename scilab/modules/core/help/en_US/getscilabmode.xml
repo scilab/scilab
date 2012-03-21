@@ -14,10 +14,18 @@
   <refsection>
     <title>Description</title>
     <para>returns scilab mode. 4 modes are possible: STD , API , NW , NWNI .</para>
-    <para><literal>API</literal> Scilab is launch as an API.</para>
-    <para><literal>STD</literal> The standard Scilab (gui, plot ...) </para>
-    <para><literal>NW</literal> Scilab in command line with the plots.</para>
-    <para><literal>NWNI</literal> Scilab in command line without any graphics.</para>
+    <para>
+      <literal>API</literal> Scilab is launch as an API.
+    </para>
+    <para>
+      <literal>STD</literal> The standard Scilab (gui, plot ...) 
+    </para>
+    <para>
+      <literal>NW</literal> Scilab in command line with the plots.
+    </para>
+    <para>
+      <literal>NWNI</literal> Scilab in command line without any graphics.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -26,7 +34,7 @@ getscilabmode()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="scilab">scilab</link>

@@ -63,7 +63,7 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-                                                ClosingOperation op) {
+            ClosingOperation op) {
         closingOps.put(tab, op);
     }
 
@@ -91,7 +91,7 @@ public class ClosingOperationsManager {
             if (win == null) {
                 return true;
             }
-            return startClosingOperation(win);
+            return startClosingOperation(win, true, true);
         } else if (deps.get(null).size() != 0) {
             // NW mode
             List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
@@ -101,6 +101,27 @@ public class ClosingOperationsManager {
             return close(list, null, true, true);
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Force a closing operation on root to dispose resources
+     */
+    public static void forceClosingOperationOnRoot() {
+        if (root != null) {
+            // STD mode
+            SwingScilabWindow win = getWindow(root);
+            if (win == null) {
+                return;
+            }
+            startClosingOperation(win, false, false);
+        } else if (deps.get(null).size() != 0) {
+            // NW mode
+            List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+            for (SwingScilabTab tab : deps.get(null)) {
+                collectTabsToClose(tab, list);
+            }
+            close(list, null, false, false);
         }
     }
 
@@ -191,11 +212,28 @@ public class ClosingOperationsManager {
     /**
      * Start a closing operation on a window
      *
+     * Configured to ask for close and store configuration.
+     *
      * @return true if the closing operation succeeded
      * @param window
      *            the window to close
      */
     public static boolean startClosingOperation(SwingScilabWindow window) {
+        return startClosingOperation(window, true, true);
+    }
+
+    /**
+     * Start a closing operation on a window
+     *
+     * @return true if the closing operation succeeded
+     * @param window
+     *            the window to close
+     * @param askToExit
+     *            ask to exit ?
+     * @param mustSave
+     *            store the configuration ?
+     */
+    public static boolean startClosingOperation(SwingScilabWindow window, boolean askToExit, boolean mustSave) {
         // Put the closing operation in a try/catch to avoid that an exception
         // blocks the shutting down. If it is not done, the Scilab process could stay alive.
         try {
@@ -206,7 +244,7 @@ public class ClosingOperationsManager {
                     for (int i = 0; i < dockArray.length; i++) {
                         collectTabsToClose((SwingScilabTab) dockArray[i], list);
                     }
-                    return close(list, window, true, true);
+                    return close(list, window, askToExit, mustSave);
                 } else {
                     return true;
                 }
@@ -223,10 +261,14 @@ public class ClosingOperationsManager {
      *
      * @param window
      *            the window to close
+     * @param askToExit
+     *            ask to exit ?
+     * @param mustSave
+     *            store the configuration ?
      * @return true if the closing operation succeeded
      */
-    public static boolean startClosingOperation(Window window) {
-        return startClosingOperation((SwingScilabWindow) window.getAsSimpleWindow());
+    public static boolean startClosingOperation(Window window, boolean askToExit, boolean mustSave) {
+        return startClosingOperation((SwingScilabWindow) window.getAsSimpleWindow(), askToExit, mustSave);
     }
 
     /**
@@ -514,10 +556,7 @@ public class ClosingOperationsManager {
                     for (SwingScilabWindow win : windowsToClose) {
                         WindowsConfigurationManager.removeWin(win.getUUID());
                         if (win.isDisplayable()) {
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException e) {
-                            }
+                            Thread.yield();
                         } else {
                             toRemove.add(win);
                         }
@@ -599,10 +638,10 @@ public class ClosingOperationsManager {
             }
         }
         switch (apps.size()) {
-        case 0:
-            return null;
-        case 1:
-            return String.format(EXIT_CONFIRM, apps.get(0));
+            case 0:
+                return null;
+            case 1:
+                return String.format(EXIT_CONFIRM, apps.get(0));
         }
 
         String str = apps.remove(0);
@@ -623,7 +662,7 @@ public class ClosingOperationsManager {
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-                                                 List<SwingScilabTab> list) {
+            List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {

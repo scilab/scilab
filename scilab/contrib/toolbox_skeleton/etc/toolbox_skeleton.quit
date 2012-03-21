@@ -1,3 +1,21 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 // Some specific hooks can be specify here when the module is unloaded.
+
+function quitModule()
+
+  etc_tlbx  = get_absolute_file_path("toolbox_skeleton.quit");	
+  etc_tlbx  = getshortpathname(etc_tlbx);
+  root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+  // Remove Preferences GUI
+  // =============================================================================
+  if getscilabmode() == "STD" then
+    removeModulePreferences(root_tlbx);
+  end
+
+endfunction
+
+
+quitModule();
+clear quitModule;

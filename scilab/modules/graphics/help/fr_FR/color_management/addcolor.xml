@@ -18,32 +18,33 @@
         <term>new  </term>
         <listitem>
           <para>indices des nouvelles couleurs dans la nouvelle table des couleurs
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c  </term>
         <listitem>
           <para>matrice à trois colonnes. Définition des composantes RVB des nouvelles couleurs 
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>addcolor</literal> ajoute de nouvelles couleurs données dans l'argument <literal>c</literal>. 
-    <literal>c</literal> est une matrice à trois colonnes.
-    <literal>[R V B]</literal> <literal>R</literal> est la composante rouge, <literal>V</literal> est la composante verte,
-    <literal>B</literal> est la composante bleue. Chaque terme de <literal>c</literal> est un nombre positif inférieur
-    ou égal à un.
-  </para>
     <para>
-    Les indices des nouvelles couleurs sont renvoyés dans <literal>new</literal>.
-  </para>
+      <literal>addcolor</literal> ajoute de nouvelles couleurs données dans l'argument <literal>c</literal>. 
+      <literal>c</literal> est une matrice à trois colonnes.
+      <literal>[R V B]</literal> <literal>R</literal> est la composante rouge, <literal>V</literal> est la composante verte,
+      <literal>B</literal> est la composante bleue. Chaque terme de <literal>c</literal> est un nombre positif inférieur
+      ou égal à un.
+    </para>
     <para>
-    Si une couleur dans <literal>c</literal> est déjà présente dans la table des couleurs courante, elle n'est pas ajoutée. 
-  </para>
+      Les indices des nouvelles couleurs sont renvoyés dans <literal>new</literal>.
+    </para>
+    <para>
+      Si une couleur dans <literal>c</literal> est déjà présente dans la table des couleurs courante, elle n'est pas ajoutée. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemple</title>
@@ -52,14 +53,17 @@ plot3d();
 h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
-  ]]>
- </programlisting>
- </refsection>
+  ]]></programlisting>
+  </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
-      <member><link linkend="colormap">colormap</link></member>
-      <member><link linkend="name2rgb">name2rgb</link></member>
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="name2rgb">name2rgb</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

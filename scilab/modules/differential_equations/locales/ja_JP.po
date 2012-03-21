@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:21+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-02-24 15:30+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -133,6 +133,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 指定された式に構文エラーがあります\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #
 # File: macros/odeoptions.sci, line: 50

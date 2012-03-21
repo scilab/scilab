@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int write_double(char *fname,unsigned long fname_len)
@@ -30,9 +29,11 @@ int write_double(char *fname,unsigned long fname_len)
 	int iCols2			= 6;
 	double* pdblReal2	= NULL;
 	double* pdblImg2	= NULL;
+
 	/************************
 	*    First variable    *
 	************************/
+
 	//alloc array of data in OS memory
 	pdblReal1 = (double*)malloc(sizeof(double) * iRows1 * iCols1);
 	//fill array with incremental values
@@ -46,13 +47,15 @@ int write_double(char *fname,unsigned long fname_len)
 			pdblReal1[i + iRows1 * j] = i * iCols1 + j;
 		}
 	}
+
 	//can be written in a single loop
 	//for(i = 0 ; i < iRows1 * iCols1; i++)
 	//{
 	//  pdblReal1[i] = i;
 	//}
 	//create a variable from a existing data array
-	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
+
+	sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows1, iCols1, pdblReal1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -60,16 +63,20 @@ int write_double(char *fname,unsigned long fname_len)
 	}
 	//after creation, we can free memory.
 	free(pdblReal1);
-	/*************************
+
+	
+    /*************************
 	*    Second variable    *
 	*************************/
+
 	//reserve space in scilab memory and fill it
-	sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, InputArgument + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	//fill array with incremental values for real part and decremental for imaginary part
 	//[ 23i     1+22i       2+21i       3+20i       4+19i       5+18i
 	//  6+17i   7+16i       8+15i       9+14i       10+13i      11+12i
@@ -83,6 +90,7 @@ int write_double(char *fname,unsigned long fname_len)
 			pdblImg2 [i + iRows2 * j]	= (iRows2 * iCols2 - 1) - (i * iCols2 + j);
 		}
 	}
+
 	//can be written in a single loop
 	//for(i = 0 ; i < iRows2 * iCols2; i++)
 	//{
@@ -91,7 +99,9 @@ int write_double(char *fname,unsigned long fname_len)
 	//}
 	// /!\ DO NOT FREE MEMORY, in this case, it's the Scilab memory
 	//assign allocated variables to Lhs position
-	LhsVar(1) = Rhs + 1;
-	LhsVar(2) = Rhs + 2;
-	return 0;
+
+    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(2) = InputArgument + 2;
+
+    return 0;
 }

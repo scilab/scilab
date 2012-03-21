@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>lusolve(hand,b)
-lusolve(A,b)</synopsis>
+      lusolve(A,b)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -30,33 +31,35 @@ lusolve(A,b)</synopsis>
         <term>b  </term>
         <listitem>
           <para>matrice réelle pleine
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A  </term>
         <listitem>
           <para>matrice réelle carrée creuse inversible
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>hand  </term>
         <listitem>
           <para>pointeur vers des facteurs L,U creux déjà calculés (sortie de lufact)
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>x=lusolve(hand,b)</literal> résout le système linéaire
+    <para>
+      <literal>x=lusolve(hand,b)</literal> résout le système linéaire
       <literal>A*x = b</literal>, où <literal>hand</literal> est obtenu par un appel
       préliminaire à <literal>lufact</literal> :<literal>[hand,rk]=lufact(A)</literal>.
     </para>
-    <para><literal>x=lusolve(A,b)</literal> résout le système linéaire creux
-    <literal>A*x = b</literal>
+    <para>
+      <literal>x=lusolve(A,b)</literal> résout le système linéaire creux
+      <literal>A*x = b</literal>
     </para>
   </refsection>
   <refsection>
@@ -74,7 +77,7 @@ sp*x
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

@@ -12,13 +12,17 @@
  */
 #include <stdlib.h>
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "do_error_number.h"
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "MALLOC.h"
+
+//#undef CheckRhs
+//#undef CheckLhs
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #define defaultErrorCode 10000
 #define defaultErrorPosition 0
@@ -47,6 +51,7 @@ static void setErrorMessage(const char *fname,
     int iErrorPosition,
     const char **pMessages,
     int nbElements);
+
 /*--------------------------------------------------------------------------*/
 int C2F(sci_error)(char *fname, unsigned long fname_len)
 {
@@ -143,7 +148,6 @@ static int error_one_rhs_string(void *_pvCtx,
         int m = 0;
         int n = 0;
         char **pStrs = NULL;
-        char *concatenatedString = NULL;
 
         if (getAllocatedMatrixOfString(_pvCtx, _piAddressOne, &m, &n, &pStrs) != 0)
         {
@@ -151,7 +155,7 @@ static int error_one_rhs_string(void *_pvCtx,
             return 0;
         }
 
-        setErrorMessage(fname, defaultErrorCode, defaultErrorPosition, pStrs, m * n);
+        setErrorMessage(fname, defaultErrorCode, defaultErrorPosition, (const char **)pStrs, m * n);
 
         freeAllocatedMatrixOfString(m, n, pStrs);
         pStrs = NULL;
@@ -302,7 +306,6 @@ static int error_two_rhs_number_string(void *_pvCtx,
         int m = 0;
         int n = 0;
         char **pStrs = NULL;
-        char *concatenatedString = NULL;
 
         if (getAllocatedMatrixOfString(_pvCtx, _piAddressString, &m, &n, &pStrs) != 0)
         {
@@ -310,7 +313,7 @@ static int error_two_rhs_number_string(void *_pvCtx,
             return 0;
         }
 
-        setErrorMessage(fname, iErrorCode, defaultErrorPosition, pStrs, m * n);
+        setErrorMessage(fname, iErrorCode, defaultErrorPosition, (const char**)pStrs, m * n);
 
         freeAllocatedMatrixOfString(m, n, pStrs);
         pStrs = NULL;

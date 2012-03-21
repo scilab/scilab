@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,32 +11,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-
-<refentry 
-          version="5.0-subset Scilab" 
-          xml:id="bitxor" 
-          xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitxor" xml:lang="ja">
   <refnamediv>
     <refname>bitxor</refname>
     <refpurpose>ビット単位の排他的論理和(XOR)</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>
       z = bitxor(x,y)
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>パラメータ</title>
     <variablelist>
@@ -45,9 +30,9 @@
         <term>x :</term>
         <listitem>
           <para>
-	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-	    または符合なし整数(uint8, uint16 または uint32)の
-	    m行n列行列.値は正の整数値である必要があります.
+            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+            または符合なし整数(uint8, uint16 または uint32)の
+            m行n列行列.値は正の整数値である必要があります.
           </para>
         </listitem>
       </varlistentry>
@@ -55,9 +40,9 @@
         <term>y :</term>
         <listitem>
           <para>
-	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-	    または符合なし整数(uint8, uint16 または uint32)の
-	    m行n列行列.値は正の整数値である必要があります.
+            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+            または符合なし整数(uint8, uint16 または uint32)の
+            m行n列行列.値は正の整数値である必要があります.
           </para>
         </listitem>
       </varlistentry>
@@ -65,14 +50,13 @@
         <term>z :</term>
         <listitem>
           <para>
-	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-	    または符合なし整数.
+            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+            または符合なし整数.
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>説明</title>
     <para>
@@ -82,11 +66,9 @@
     <para>
     </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // Compute the bitwise XOR of two matrices of doubles.
 x = [0 1 0 1];
 y = [0 0 1 1];
@@ -101,7 +83,7 @@ z = bitxor(x, y)
 // The types of x and y cannot be mixed (error).
 x = [0 1 0 1];
 y = uint8([0 0 1 1]);
-z = bitxor(x, y)
+// z = bitxor(x, y)
 
 //  13 is (01101)_2
 //  27 is (11011)_2
@@ -109,17 +91,6 @@ z = bitxor(x, y)
 bitxor(uint8(13), uint8(27))
 bitxor(13, 27)
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
-      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
-      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

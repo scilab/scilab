@@ -34,7 +34,9 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para><literal>p=prod(f)</literal>となるようなベクトル <literal>[f0 f1 ... fn]</literal></para>
+          <para>
+            <literal>p=prod(f)</literal>となるようなベクトル <literal>[f0 f1 ... fn]</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>f0</term>
@@ -55,9 +57,11 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>f=polfact(p)</literal> はpの最小因数,すなわち,
-	<literal>p=prod(f)</literal>となるような<literal>f=[f0 f1 ... fn]</literal>
-	を返します.</para>
+    <para>
+      <literal>f=polfact(p)</literal> はpの最小因数,すなわち,
+      <literal>p=prod(f)</literal>となるような<literal>f=[f0 f1 ... fn]</literal>
+      を返します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -72,9 +76,5 @@
         <link linkend="factors">factors</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

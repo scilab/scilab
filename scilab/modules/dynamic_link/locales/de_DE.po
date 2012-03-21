@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-23 10:34+0000\n"
-"Last-Translator: Andreas Fernandez <Unknown>\n"
+"PO-Revision-Date: 2012-03-08 13:33+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: de\n"
 
 #, c-format
@@ -190,10 +190,10 @@ msgid "Dynamic link"
 msgstr "dynamischer Zeiger"
 
 msgid "Call a C function"
-msgstr ""
+msgstr "Eine C-Funktion aufrufen"
 
 msgid "Call a Fortran subroutine"
-msgstr ""
+msgstr "Eine Fortran-Funktion aufrufen"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -226,6 +226,8 @@ msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
 msgstr ""
+"Die Funktion »haveacompiler« wird nur unter Windows unterstützt, weil es in "
+"der Unix-Welt von Natur aus viele verschiedene Anbieter gibt."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -444,6 +446,8 @@ msgstr "%s: diese Funktionalität benötigt MS Visual Studio C Kompiler.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: Ein boolscher Wert wird "
+"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

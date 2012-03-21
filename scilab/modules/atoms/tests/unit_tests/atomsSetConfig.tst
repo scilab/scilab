@@ -51,7 +51,7 @@ ref=struct(	"useProxy","False",..
 		"proxyPort","42",..
 		"proxyPassword","scilab",..
 		"proxyHost","myproxy",..
-		"offLine","False",..
+		"offline","False",..
 		"downloadTool",config_downloadTool,..
 		"autoloadAddAfterInstall","False",..
 		"autoload","True",..
@@ -63,7 +63,7 @@ assert_checkequal(string(atomsSetConfig("proxyPort","42")),"1");
 assert_checkequal(string(atomsSetConfig("proxyUser","scilab")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPassword","scilab")),"1");
 assert_checkequal(string(atomsSetConfig("downloadTool",config_downloadTool)),"0");
-assert_checkequal(string(atomsSetConfig("offLine","False")),"1");
+assert_checkequal(string(atomsSetConfig("offline","False")),"1");
 assert_checkequal(string(atomsSetConfig("autoload","True")),"1");
 assert_checkequal(atomsGetConfig(),ref);
 

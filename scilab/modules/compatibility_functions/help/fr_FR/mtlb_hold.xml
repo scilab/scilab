@@ -20,43 +20,41 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas de fonction Scilab equivalente à la fonction Matlab <literal>hold</literal> mais il existe des instructions équivalentes</para>
     <para>
-    La fonction <literal>mtlb_hold(flag)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>hold flag</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
-    Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_hold</literal> :
+      Il n'y a pas de fonction Scilab equivalente à la fonction Matlab <literal>hold</literal> mais il existe des instructions équivalentes
+    </para>
+    <para>
+      La fonction <literal>mtlb_hold(flag)</literal> est utilisée par
+      <literal>mfile2sci</literal> pour remplacer <literal>hold flag</literal> quand il n'était pas
+      possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+      Matlab vers Scilab. Cette fonction va
+      déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+      on peut remplacer les appels à <literal>mtlb_hold</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>flag</literal> est égal à "on"
-        <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","off")</literal>
+          Si <literal>flag</literal> est égal à "on"
+          <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","off")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>flag</literal> est égal à "off"
-        <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","on")</literal>
+          Si <literal>flag</literal> est égal à "off"
+          <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","on")</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_hold</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>
+      Attention : <literal>mtlb_hold</literal> ne doit pas être utilisée pour une programmation manuelle.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="axes_properties">axes_properties</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

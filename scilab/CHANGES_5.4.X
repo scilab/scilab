@@ -25,6 +25,8 @@ Scilab Desktop
 
 * Add a button in dockbar to get the help about the component.
 
+* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
+
 
 XML
 ===
@@ -36,6 +38,8 @@ XML
 * Bug #10594 fixed - size could not be used with two arguments on XMLList.
 
 * Bug #10630 fixed - Fix a typo in one of the error message.
+
+* Bug #10670 fixed - Avoid a crash when xmlRead had an arg with a bad size.
 
 
 Help
@@ -51,6 +55,12 @@ Help
 Xcos
 ====
 
+
+* Major performance improvements on the simulation startup. On big schemas,
+  the gain is very important (minutes to milliseconds).
+
+* Performance improvements on the diagram saving/loading.
+
 * New examples are provided in the documentation for the blocks:
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay
@@ -63,7 +73,11 @@ Xcos
 
 * Bug #6733 fixed - Each call to xcos created an empty diagram.
 
+* Bug #7539 fixed - Some blocks were slow to interact with.
+
 * Bug #7863 fixed - Default path for code generation was SCI.
+
+* Bug #8188 fixed - Xcos to Scilab export took too much time.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
@@ -90,20 +104,39 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
-* Bug #10423 fixed - The function browsehistory() to open history browser was missing.
-
 * Bug #10461 fixed - Canceling a Quit operation did not work.
 
 * Bug #10486 fixed - importXcosDiagram opened a tab.
 
 * Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
 
-* Bug #10499 fixed - lincos example in help file returned warning and error.
-
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
 
 * Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
+* Bug #10679 fixed - blocks_link.tst failed.
+
+* Bug #10697 fixed - post_xcos_simulate function did not work if a TOWS_c block
+                     were present.
+
+* Bug #10800 fixed - xcosPalAddBlock help example did not work.
+
+* Bug #10812 fixed - cos and cosf files loading did not used a direct handler.
+
+
+Unitary testing
+===============
+
+* external modules are now managed by out of the box by test_run
+Example: test_run('SCI/contrib/toolbox_skeleton')
+(See bug #9834)
+
+
+Graphical User Interface
+========================
+
+* Bug #4978 fixed - Icons did not follow the Tango norm.
 
 
 Elementary functions
@@ -117,23 +150,50 @@ Elementary functions
 
 * The toeplitz macro was not vectorized.
 
-
-Unitary testing
-===============
-
-* external modules are now managed by out of the box by test_run
-Example: test_run('SCI/contrib/toolbox_skeleton')
-(See bug #9834)
-
-* test_run and atomsTest now return a boolean value:
-  - %t if no error detected
-  - %f if any error detected)
+* Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
 
 
-Graphical User Interface
-========================
+CLI console:
+============
 
-* Bug #4978 fixed - Icons did not follow the Tango norm.
+* bug 3400 fixed - Long lines in the history breaks the display.
+
+* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
+
+* bug 3108 fixed - Some specific chars in the terminal are not correctly
+                   removed by the backspace.
+
+* Support wide characters.
+
+* Support multiline command.
+
+* Improve command line display.
+
+* List of shortcuts in NW/NWNI mode:
+  - CTRL+W: Remove the previous word.
+  - CTRL+U: Remove everything from the current position to the beginning of
+            the line.
+  - UP or Ctrl+P: recall previous line.
+  - DOWN or Ctrl+N: recall next line.
+  - TAB: completion : Scilab displays a list of all names that start with some
+characters.
+  - Ctrl + A or HOME: move to beginning of current line.
+  - Ctrl + B or LEFT: moves the cursor one character to the left.
+  - Ctrl + D or DELETE: deletes the current character.
+  - Ctrl + E or END: moves the cursor to the end of command line.
+  - Ctrl + F or RIGHT: moves the cursor one character to the right.
+  - Ctrl + H or BACKSPACE: deletes the previous character.
+  - Ctrl + K: kills command line from cursor to the end.
+  - Alt+B or Ctrl+LEFT: move left one word.
+  - Alt+F or Ctrl+RIGHT: move right one word.
+
+* bug 3108 fixed - Some specific chars in the terminal were not correctly
+                   removed by the backspace.
+
+* bug 3400 fixed - Long lines in the history broke the display.
+
+* bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
+
 
 
 Scinotes
@@ -141,23 +201,37 @@ Scinotes
 
 * Add shortcuts META+(UP|DOWN) to navigate between paragraphs
 
-* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+* Bug #10442 fixed - Sometimes a crash occured at startup when Scinotes was
                      restoring.
 
-* Bug #10647 fixed : An error message did not repect Scilab localization standard.
+* Bug #10647 fixed - An error message did not repect Scilab localization standard.
 
+
+api_scilab
+==========
+
+* Construction of any type of lists is now way faster (300x in some cases).
+
+
+Performances
+============
+
+* hank function performances improved.
 
 Javasci
 =======
 
-* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-  a sparse but not to send it to Scilab).
+* Javasci supports sparse and boolean sparse datatypes.
 
-* Javasci supports struct datatypes under the form of an MList (Javasci is
-  able to retrieve a struct but not to send it to Scilab).
+* Javasci supports tlists, mlists and lists datatypes.
+
+* Javasci supports polynomial datatypes.
 
 * If Scilab fails to start because of a memory issues (stacksize), triggers an
   InitializationException Java exception.
+
+* Bug #10784 fixed - Scilab built on an Ubuntu 11.10, javasci was failing to
+                     load with an undefined symbol
 
 
 CACSD & Signal Processing
@@ -177,15 +251,27 @@ Compatibility Functions
 
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
 
+ATOMS
+=======
 
-Compilation
-===========
+* 'atomsQuit' function added to allow to call .quit of modules loaded by ATOMS
+  when user closes Scilab session. see SEP #77.
 
-* Enforce a minimal version of JLaTeXMath (0.9.7).
+* tbx_build_loader generates also a unloader.sce to allow to call .quit file of
+   an ATOMS module.
 
-* Enforce a minimal version of Flexdock (1.1.1).
+* Rename ATOMS option offLine to offline.
 
-* "make check" will now launch the most important unitary tests (level 1).
+* Bug #9798 fixed - .quit script of atoms modules were not evaluated when
+                    leaving Scilab.
+
+* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
+                     in the documentation.
+
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
+* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
 
 Bug fixes
@@ -196,7 +282,17 @@ Bug fixes
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #7490 fixed - %inf had not always same display.
+
+* Bug #7779 fixed - genlib did not check input arguments and did not use current
+                    path as default.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8339 fixed - Default path for the Mac OS X version is now HOME instead
+                    of "/".
+
+* Bug #8592 fixed - Add a explicit error message if macros are not available.
 
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
                     simplified and optimized.
@@ -209,25 +305,36 @@ Bug fixes
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
 
+* Bug #9002 fixed - bsplin3val, cshep2d, eval_cshep2d,interp, interp2d, interp3d,
+                    linear_interp, splin, splin2d, splin3d functions ignored imaginary
+                    part of input arguments implicitly.
+
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
 * Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
 
+* Bug #9328 fixed - Scilab randomly crached at startup under Mac OS X when calling
+                    functions returning no value (lines, modes, banner, ...).
+
 * Bug #9424 fixed - gettext("") did not return "".
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
-* Bug #9523 fixed - clearglobal did not clear all global variables.
-
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
+* Bug #9643 fixed - genetic algorithms demo was not vectorized.
+
+* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
+
+* Bug #9700 fixed - optim help page had a mistake about bounds management.
+
+* Bug #9734 fixed - intsplin help pages moved from interpolation to
+                    elementary functions chapter.
+
+* Bug #9735 fixed - Remove some old stack api examples.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
-
-* Bug #9892 fixed - "-noatomsautoload" startup option added.
-
-* Bug #10202 fixed - Example in csv_write help page did not differenciate
-                     tab-separated and comma-separated files.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
@@ -241,7 +348,11 @@ Bug fixes
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
+* Bug #10250 fixed - Bug in the detection of the Java path under GNU/Linux fixed.
+
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
+
+* Bug #10281 fixed - In some cases, the function lyap was crashing.
 
 * Bug #10303 fixed - test_run ignored "enable_lt" option.
 
@@ -256,6 +367,9 @@ Bug fixes
                      was set to bold.
 
 * Bug #10342 fixed - assert_checkerror help file had a wrong format.
+
+* Bug #10372 fixed - remove dependencies of MALLOC.h on Windows.h and machine.h
+                     on Windows.
 
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
@@ -275,6 +389,8 @@ Bug fixes
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
+* Bug #10423 fixed - The function browsehistory() to open history browser was missing.
+
 * Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
 
 * Bug #10439 fixed - stacksize('max') crashed on Windows 64 bit.
@@ -282,7 +398,8 @@ Bug fixes
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
 
-* Bug #10444 fixed - fullfile did not manage string matrix as last input argument.
+* Bug #10444 fixed - fullfile did not manage string matrix as last input argumen
+t.
 
 * Bug #10449 fixed - On restoration, empty tabs could appear if the previous
                      session was not cleanly exited.
@@ -311,8 +428,7 @@ Bug fixes
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
-* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
-                     error message.
+* Bug #10499 fixed - lincos example in help file returned warning and error.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
@@ -340,6 +456,11 @@ Bug fixes
 
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
+* Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
+
+* Bug #10544 fixed - debug did not return the previous value when called with
+                     an argument.
+
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
 * Bug #10560 fixed - genetic algorithms demos failed.
@@ -349,6 +470,8 @@ Bug fixes
 
 * Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
                      trajectory failed.
+
+* Bug #10574 fixed - Runge-Kutta-Method failed for vector [x, 1] with x > 9.
 
 * Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
 
@@ -370,14 +493,95 @@ Bug fixes
 * Bug #10634 fixed - dsearch help page referenced an invalid input argument
                      name.
 
+* Bug #10641 fixed - string(:) gave wrong results.
+
 * Bug #10643 fixed - Bad result when using isreal function with a polynomial
                      input.
 
-* Bug #10643 fixed - getdebuginfo() did not display TMPDIR value.
+* Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
 
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
+* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+
+* Bug #10769 fixed - Remove some dead code from bsplin3val.
+
+* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
+* Bug #10710 fixed - Wrong error message fixed in xml module.
+
+* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
+
+* Bug #10717 fixed - Typos fixed in the help page of acosd.
+
+* Bug #10720 fixed - Typos fixed in the help page of acosh.
+
+* Bug #10724 fixed - Missing links in the help page of acot added.
+
+* Bug #10725 fixed - Typos fixed in the help page of acot.
+
+* Bug #10726 fixed - Missing links in the help page of acsc added.
+
+* Bug #10727 fixed - Missing links in the help page of asech added.
+
+* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+
+* Bug #10729 fixed - Missing links in the help page of asinh added.
+
+* Bug #10730 fixed - Missing links in the help page of asinhm added.
+
+* Bug #10731 fixed - Typos fixed in the help page of atan.
+
+* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+
+* Bug #10733 fixed - Missing link in the help page of atanm added.
+
+* Bug #10734 fixed - Missing link in the help page of cos added.
+
+* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
+
+* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+
+* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
+
+* Bug #10738 fixed - Typos fixed in the help page of cscd.
+
+* Bug #10739 fixed - Typos fixed in the help page of csgn.
+
+* Bug #10740 fixed - Typos fixed in the help page of sec.
+
+* Bug #10741 fixed - Typos fixed in the help page of secd.
+
+* Bug #10742 fixed - Missing link in the help page of sin added.
+
+* Bug #10743 fixed - Wrong link in the help page of sind fixed.
+
+* Bug #10744 fixed - Typos fixed in the help page of sinh.
+
+* Bug #10745 fixed - Typos fixed in the help page of tand.
+
+* Bug #10782 fixed - 'iconvert' did not check input arguments.
+
 * Bug #10797 fixed - contour, contour2d, contourf did not check input arguments.
+
+* Bug #10807 fixed - It was not possible to overload fft and fftw for list,
+                     tlist, mlist type.
+
+* Bug #10809, #10810 fixed - error_table help page was not up-to-date.
+
+* Bug #10828 fixed - Developer arguments were not displayed in the help of
+                     Scilab scripts.
+
+* Bug #10836 fixed - resize_matrix with boolean failed.
+
+* Bug #10839 fixed - dec2hex function was limited to 32 bits.
+
+* Bug #10847 fixed - dec2base returned a wrong error message with a complex
+                     number as input argument.
+
+* Bug #10861 fixed - debug([]) returned a wrong error message.
+
+* Bug #10879 fixed - typo in the dec2base help page.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -504,7 +708,6 @@ Call_Scilab
 
 * Bug #10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
                     removed.
-
 
 Xcos
 =====
@@ -1251,7 +1454,7 @@ Bug Fixes
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
 
-* Bug #9682 fixed - 3-D assignment into a 2-D array of integers issued an error.
+* Bug #9682 fixed \D0 3-D assignment into a 2-D array of integers issued an error.
 
 * Bug #9696 fixed - An error in an if expression inside a try make Scilab froze.
 
@@ -1327,6 +1530,7 @@ Bug Fixes
 * Bug #9963 fixed - The assert_computedigits function was not vectorized.
 
 * Bug #9966 fixed - The default value of comptype in assert_checkalmostequal
+                   was wrongly chosen.
 
 * Bug #9971 fixed - GLoad macro not used and not documented has been removed.
 

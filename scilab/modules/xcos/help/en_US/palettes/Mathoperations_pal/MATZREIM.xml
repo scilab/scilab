@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -81,11 +81,6 @@
               <xref linkend="Seealso_MATZREIM">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_MATZREIM">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -102,23 +97,32 @@
   </refsection>
   <refsection id="Description_MATZREIM">
     <title>Description</title>
-
     <para>
       This block decomposes a matrix of complex numbers by separating the real and imaginary parts or composes a
       matrix of complex numbers by joining the two parts with respect to the value of
       <emphasis role="bold">decomposition type</emphasis> parameter.
       The following table summarize the bloc behaviour :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left" width="18%"><emphasis role="bold">Decomposition type</emphasis></td>
-        <td align="left" width="20%"><emphasis role="bold">Inputs</emphasis></td>
-        <td align="left" width="20%"><emphasis role="bold">Outputs</emphasis></td>
-        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+        <td align="left" width="18%">
+          <emphasis role="bold">Decomposition type</emphasis>
+        </td>
+        <td align="left" width="20%">
+          <emphasis role="bold">Inputs</emphasis>
+        </td>
+        <td align="left" width="20%">
+          <emphasis role="bold">Outputs</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Operation</emphasis>
+        </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">1</emphasis>
+        </td>
         <td align="left">One (complex)</td>
         <td align="left">Two (double)</td>
         <td align="left">
@@ -127,7 +131,9 @@
         </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">2</emphasis>
+        </td>
         <td align="left">Two (double)</td>
         <td align="left">One (complex)</td>
         <td align="left">
@@ -136,7 +142,7 @@
         </td>
       </tr>
     </informaltable>
-    <para />
+    <para/>
   </refsection>
   <refsection id="Dialogbox_MATZREIM">
     <title>Dialog box</title>
@@ -148,8 +154,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -164,16 +170,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -195,19 +209,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -245,9 +269,5 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_MATZREIM">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

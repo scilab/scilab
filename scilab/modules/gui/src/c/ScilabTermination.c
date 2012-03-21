@@ -14,5 +14,5 @@
 /*--------------------------------------------------------------------------*/
 void ScilabExit(void)
 {
-    StoreCommand("exit");
+    StoreCommand("exit(0)");
 }

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Seealso_SampleCLK">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SampleCLK">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,31 +93,31 @@
   <refsection id="Description_SampleCLK">
     <title>Description</title>
     <para>
-The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two different methods of computation in the compilation phase.  
-</para>
+      The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two different methods of computation in the compilation phase.  
+    </para>
     <para>
-The first method consists of computing a clock that is faster than all the SampleCLK connected to a counter which activate the event select block.  
-</para>
+      The first method consists of computing a clock that is faster than all the SampleCLK connected to a counter which activate the event select block.  
+    </para>
     <para>
-The clock is calculated due to the following rule. 
-</para>
+      The clock is calculated due to the following rule. 
+    </para>
     <para>
-If all the blocks have the same offset then the frequency of the clock is the gcd of the sample time, and the offset of the clock is equal to the offset.  
-</para>
+      If all the blocks have the same offset then the frequency of the clock is the gcd of the sample time, and the offset of the clock is equal to the offset.  
+    </para>
     <para>
-If the offsets are different, then the frequency of the clock is the gcd of the sample time and the offset, and the offset of the clock is equal to 0.  
-</para>
+      If the offsets are different, then the frequency of the clock is the gcd of the sample time and the offset, and the offset of the clock is equal to 0.  
+    </para>
     <para>
-The Counter counts from one to the least common multiple of the sample time (lcm).  
-</para>
+      The Counter counts from one to the least common multiple of the sample time (lcm).  
+    </para>
     <para>
-The number of outputs of the ESELECT_f block is equal to the lcm.  
-</para>
+      The number of outputs of the ESELECT_f block is equal to the lcm.  
+    </para>
     <para>
-The second method uses the Multifrequency block it generates events only for specific time. Events in this method are not periodically generated as in the first one.  
-</para>
+      The second method uses the Multifrequency block it generates events only for specific time. Events in this method are not periodically generated as in the first one.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_SampleCLK">
     <title>Dialog box</title>
@@ -134,8 +129,8 @@ The second method uses the Multifrequency block it generates events only for spe
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -157,31 +152,49 @@ The second method uses the Multifrequency block it generates events only for spe
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -223,9 +236,5 @@ The second method uses the Multifrequency block it generates events only for spe
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_SampleCLK">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

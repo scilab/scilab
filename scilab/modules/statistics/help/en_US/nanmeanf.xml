@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>m=nanmean(val,fre)
-m=nanmean(val,fre,'r') (or m=nanmean(val,fre,1))
-m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))</synopsis>
+      m=nanmean(val,fre,'r') (or m=nanmean(val,fre,1))
+      m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -37,7 +38,8 @@ m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))</synopsis>
         <term>fre</term>
         <listitem>
           <para>integer vector  or matrix with same dimensions  than
-val</para>
+            val
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -45,32 +47,39 @@ val</para>
   <refsection>
     <title>Description</title>
     <para>
-    This function returns in scalar <literal> m</literal> the mean of the
-    values (ignoring  the NANs) of a vector  or matrix 
-    <literal>val</literal>,   each counted  with   a  frequency signaled  by  the
-    corresponding values of the  integer vector or matrix  <literal>fre</literal> 
-   with the same type of <literal>val</literal>.</para>
+      This function returns in scalar <literal> m</literal> the mean of the
+      values (ignoring  the NANs) of a vector  or matrix 
+      <literal>val</literal>,   each counted  with   a  frequency signaled  by  the
+      corresponding values of the  integer vector or matrix  <literal>fre</literal> 
+      with the same type of <literal>val</literal>.
+    </para>
     <para>
-    For      a  vector    or  matrix    <literal>    val</literal>, 
-    <literal> m=nanmeanf(val,fre)</literal>  or  <literal> m=nanmeanf(val,fre,'*')</literal>
-    returns in scalar  <literal> m</literal>  the mean of all  the entries
-    (ignoring  the NANs) of   <literal> val</literal>, each  value counted
-    with the multiplicity indicated by the corresponding value
-    of <literal> fre</literal>.</para>
-    <para><literal>m=nanmeanf(val,fre,'r')</literal>       (or,     equivalently,
-    <literal>m=nanmeanf(val,fre,1)</literal> ) returns in each entry of the
-    row vector <literal>  m</literal> of  type 1xsize(val,'c') the mean of
-    each column of val (ignoring the NANs), each value counted
-    with the multiplicity indicated by the corresponding value
-    of <literal> fre</literal>.</para>
-    <para><literal>m=nanmeanf(val,fre,'c')</literal>  (or,      equivalently,
-    <literal>m=nanmeanf(val,fre,2)</literal>) returns in  each entry of the
-    column  vector m of  type size(val,'c')x1 the mean of each
-    row  of val (ignoring  the NANs),  each value counted with
-    the multiplicity indicated  by the corresponding  value of
-    fre.</para>
+      For      a  vector    or  matrix    <literal>    val</literal>, 
+      <literal> m=nanmeanf(val,fre)</literal>  or  <literal> m=nanmeanf(val,fre,'*')</literal>
+      returns in scalar  <literal> m</literal>  the mean of all  the entries
+      (ignoring  the NANs) of   <literal> val</literal>, each  value counted
+      with the multiplicity indicated by the corresponding value
+      of <literal> fre</literal>.
+    </para>
     <para>
-    In Labostat, NAN values stand for missing values in tables.</para>
+      <literal>m=nanmeanf(val,fre,'r')</literal>       (or,     equivalently,
+      <literal>m=nanmeanf(val,fre,1)</literal> ) returns in each entry of the
+      row vector <literal>  m</literal> of  type 1xsize(val,'c') the mean of
+      each column of val (ignoring the NANs), each value counted
+      with the multiplicity indicated by the corresponding value
+      of <literal> fre</literal>.
+    </para>
+    <para>
+      <literal>m=nanmeanf(val,fre,'c')</literal>  (or,      equivalently,
+      <literal>m=nanmeanf(val,fre,2)</literal>) returns in  each entry of the
+      column  vector m of  type size(val,'c')x1 the mean of each
+      row  of val (ignoring  the NANs),  each value counted with
+      the multiplicity indicated  by the corresponding  value of
+      fre.
+    </para>
+    <para>
+      In Labostat, NAN values stand for missing values in tables.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -83,12 +92,9 @@ m=nanmeanf(x,fre,2)
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

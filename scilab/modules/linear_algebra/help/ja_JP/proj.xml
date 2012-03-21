@@ -34,15 +34,19 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>実数の投影行列 (<literal>P^2=P</literal>)</para>
+          <para>
+            実数の投影行列 (<literal>P^2=P</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>P</literal> は<literal>X1</literal>に平行な
-	<literal>X2</literal>への投影です.</para>
+    <para>
+      <literal>P</literal> は<literal>X1</literal>に平行な
+      <literal>X2</literal>への投影です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -68,9 +72,5 @@ svd([Q,X2])   // span(Q) = span(X2)
         <link linkend="fullrf">fullrf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

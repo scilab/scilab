@@ -54,29 +54,29 @@
   <refsection>
     <title>Description</title>
     <para>
-     This function gives a  vector (or matrix) nx1. It contains
-     a random  sample of n extractions,  with replacement, from
-     the matrix X.
-</para>
+      This function gives a  vector (or matrix) nx1. It contains
+      a random  sample of n extractions,  with replacement, from
+      the matrix X.
+    </para>
     <para>
-     s=sample(n,X)  (or s=sample(n,X,'*'))  returns a  vector s
-     whose  values are  a random  sample  of n  values from  X,
-     extracted with replacement, from X .
-</para>
+      s=sample(n,X)  (or s=sample(n,X,'*'))  returns a  vector s
+      whose  values are  a random  sample  of n  values from  X,
+      extracted with replacement, from X .
+    </para>
     <para>
-
-     s=sample(n,X,'r')   (or,   equivalently,  s=sample(n,X,1))
-     returns  a matrix  of type  size(X,'r')xn.  It  contains a
-     random sample of n  rows, extracted with replacement, from
-     the rows of X.
-</para>
+      
+      s=sample(n,X,'r')   (or,   equivalently,  s=sample(n,X,1))
+      returns  a matrix  of type  size(X,'r')xn.  It  contains a
+      random sample of n  rows, extracted with replacement, from
+      the rows of X.
+    </para>
     <para>
-
-     s=sample(n,X,'c')   (or,   equivalently,  s=sample(n,X,2))
-     returns  a matrix  of type  nxsize(X,'c').  It  contains a
-     random  sample of  n columns,  extracted  with replacement
-     from the columns of X.
-</para>
+      
+      s=sample(n,X,'c')   (or,   equivalently,  s=sample(n,X,2))
+      returns  a matrix  of type  nxsize(X,'c').  It  contains a
+      random  sample of  n columns,  extracted  with replacement
+      from the columns of X.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,7 +88,7 @@ s=sample(25,X,'c')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="samplef">samplef</link>
@@ -97,11 +97,5 @@ s=sample(25,X,'c')
         <link linkend="samwr">samwr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Carlos Klimann
-  </para>
   </refsection>
 </refentry>

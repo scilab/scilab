@@ -14,6 +14,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <ctype.h>
 #include "completeLine.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER

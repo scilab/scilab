@@ -5,14 +5,15 @@
   </info>
   <refnamediv>
     <refname>while</refname>
-    <refpurpose> mot-clé utilisé dans une structure while
-    ... end  </refpurpose>
+    <refpurpose> mot-clé utilisé dans une structure while ... end </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>while expr ,instructions,...[,else instructions], end
-while expr do instructions,...[,else instructions], end
-while expr then instructions,...[,else instructions], end</synopsis>
+    <synopsis>
+      while expr ,instructions,...[,else instructions], end
+      while expr do instructions,...[,else instructions], end
+      while expr then instructions,...[,else instructions], end
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -20,28 +21,65 @@ while expr then instructions,...[,else instructions], end</synopsis>
     <itemizedlist>
       <listitem>
         <para>
-	  La seule contrainte est que chaque mot-clé <literal>then</literal> ou
-	  <literal>do</literal> soit sur la même ligne que le <literal>while</literal>
-	  correspondant.
-	</para>
+          La seule contrainte est que chaque mot-clé <literal>then</literal> ou
+          <literal>do</literal> soit sur la même ligne que le <literal>while</literal>
+          correspondant.
+        </para>
       </listitem>
       <listitem>
         <para>
-	  Les mot-clés <literal>then</literal> et <literal>do</literal> peuvent
-	  être remplacés par un passage à la ligne ou une
-	  virgule.  Pour la compatibilité avec Matlab, il est aussi
-	  possible, mais non recommendé de mettre un espace à la
-	  place de ces séparateurs.
-	</para>
+          Les mot-clés <literal>then</literal> et <literal>do</literal> peuvent
+          être remplacés par un passage à la ligne ou une
+          virgule.  Pour la compatibilité avec Matlab, il est aussi
+          possible, mais non recommendé de mettre un espace à la
+          place de ces séparateurs.
+        </para>
       </listitem>
       <listitem>
         <para>
-	  La construction <literal>,else instructions</literal> permet de spécifier
-	  des instructions à exécuter si l'expression <literal>expr</literal>
-	  est fausse. 
-	</para>
+          La construction optionnelle <literal>,else instructions</literal> permet de spécifier
+          des <literal>instructions</literal> à exécuter si l'expression <literal>expr</literal>
+          est fausse. 
+        </para>
       </listitem>
     </itemizedlist>
+    <para>
+      En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Commencer chaque instruction sur une nouvelle ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Ne pas écrire plus d'une instruction simple par ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Séparer les instructions composées sur plusieurs lignes.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Par exemple, utiliser :
+    </para>
+    <programlisting role=""><![CDATA[
+      i = 0
+      while i<5 
+          disp("i");
+          i = i + 1; 
+      end
+]]></programlisting>
+    <para>
+      rather than
+    </para>
+     
+    <programlisting role=""><![CDATA[
+      i = 0; while i<5 disp("i"); i = i + 1; end
+]]></programlisting>
     <para>
       Attention : le nombre de caractères constituant le corps d'une
       instruction conditionnelle (if while for ou select/case) est limité à
@@ -61,7 +99,7 @@ e,k
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="for">for</link>

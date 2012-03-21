@@ -41,9 +41,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>res = isnum(str)</literal>は,
-	strが数値の場合に %Tを返します.
-		</para>
+    <para>
+      <literal>res = isnum(str)</literal>は,
+      strが数値の場合に %Tを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -67,12 +68,6 @@ isnum(['1'     , ..
       <member>
         <link linkend="isalphanum">isalphanum</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

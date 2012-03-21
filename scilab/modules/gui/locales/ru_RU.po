@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-08 14:09+0000\n"
+"PO-Revision-Date: 2012-03-10 02:51+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: ru\n"
 
 #, c-format
@@ -566,6 +566,9 @@ msgstr "&Очистить буфер обмена"
 
 msgid "&Select all"
 msgstr "Вы&делить всё"
+
+msgid "P&references"
+msgstr "Н&астройки"
 
 msgid "&Preferences"
 msgstr "&Настройки"
@@ -1232,26 +1235,14 @@ msgstr "Все файлы RTF (Rich Text Format)"
 msgid "All %s files"
 msgstr "Все файлы %s"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Консорциум Scilab (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr "Авторское право (c) 1989-2012 (INRIA)"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Авторское право (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Лицензия CeCILL"
-
 msgid "About Scilab..."
 msgstr "О Scilab"
 
-msgid "Acknowledgements"
-msgstr "Благодарности"
-
 msgid "Close"
 msgstr "Закрыть"
+
+msgid "Acknowledgements"
+msgstr "Благодарности"
 
 msgid "Could not open: "
 msgstr "Не удалось открыть: "

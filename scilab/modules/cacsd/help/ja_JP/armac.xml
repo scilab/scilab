@@ -66,14 +66,18 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,ARMAXプロセスのtlistとして記述を作成します.</para>
-    <para><literal>ar</literal> は以下のように作成されます:</para>
-    <programlisting role = ""><![CDATA[ 
+      この関数は,ARMAXプロセスのtlistとして記述を作成します.
+    </para>
+    <para>
+      <literal>ar</literal> は以下のように作成されます:
+    </para>
+    <programlisting role=""><![CDATA[ 
 ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
  ]]></programlisting>
     <para>
-	<literal>ar</literal> の係数は,例えば以下のように取得できます:
-    <literal> ar('a') </literal>.</para>
+      <literal>ar</literal> の係数は,例えば以下のように取得できます:
+      <literal> ar('a') </literal>.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

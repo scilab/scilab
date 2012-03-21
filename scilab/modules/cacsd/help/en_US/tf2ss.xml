@@ -34,7 +34,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>may be the constant rtol or the 2 vector <literal>[rtol atol]</literal></para>
+          <para>
+            may be the constant rtol or the 2 vector <literal>[rtol atol]</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>rtol</term>
@@ -54,7 +56,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)</para>
+          <para>
+            linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,7 +66,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    transfer to state-space conversion:</para>
+      transfer to state-space conversion:
+    </para>
     <para>
       <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
     </para>
@@ -77,7 +82,7 @@ clean(ss2tf(Sys))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2tf">ss2tf</link>

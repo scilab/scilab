@@ -20,7 +20,7 @@
   </refnamediv>
   <refsection>
     <title>内容</title>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 center: 変数を中心化
 centrered: 変数を中心化および縮減
 cmoment: 全ての次数の中心モーメント
@@ -62,8 +62,10 @@ varf: 頻度表の分散
   <refsection>
     <title>参考文献</title>
     <para>
-     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.
+    </para>
     <para>
-     Saporta,  Gilbert, Probabilites, Analyse  des Donnees  et Statistique, Editions Technip, Paris, 1990.</para>
+      Saporta,  Gilbert, Probabilites, Analyse  des Donnees  et Statistique, Editions Technip, Paris, 1990.
+    </para>
   </refsection>
 </refentry>

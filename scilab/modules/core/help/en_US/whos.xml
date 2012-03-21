@@ -10,8 +10,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>whos()
-whos -type typ
-whos -name nam</synopsis>
+      whos -type typ
+      whos -name nam
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,9 +33,15 @@ whos -name nam</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>whos()</literal> displays all current variable names sorted by name (case insensitive), types and memory used.</para>
-    <para><literal>whos -type typ</literal> displays all current variables with specified type.</para>
-    <para><literal>whos -name nam</literal> displays all current variables whose names begin with <literal>nam</literal>.</para>
+    <para>
+      <literal>whos()</literal> displays all current variable names sorted by name (case insensitive), types and memory used.
+    </para>
+    <para>
+      <literal>whos -type typ</literal> displays all current variables with specified type.
+    </para>
+    <para>
+      <literal>whos -name nam</literal> displays all current variables whose names begin with <literal>nam</literal>.
+    </para>
     <para>Note : If a variable is global, a * appears after his type name.</para>
   </refsection>
   <refsection>
@@ -47,7 +54,7 @@ whos -name %
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

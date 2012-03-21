@@ -190,7 +190,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\callxcos.cpp" />
     <ClCompile Include="DllmainXCOS.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c" />
     <ClCompile Include="..\jni\Modelica.cpp" />
@@ -199,7 +198,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_warnBlockByUID.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_Xcos.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalDelete.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalDisable.cpp" />
@@ -213,7 +212,6 @@
     <ClCompile Include="..\cpp\xcosUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callxcos.h" />
     <ClInclude Include="..\..\includes\dynlib_xcos.h" />
     <ClInclude Include="..\..\includes\gw_xcos.h" />
     <ClInclude Include="..\jni\Modelica.hxx" />

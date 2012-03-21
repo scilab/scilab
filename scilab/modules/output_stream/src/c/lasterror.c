@@ -45,15 +45,6 @@ static void allocLastErrorMessage(void)
     iLastErrorMessageNbLines = NO_ERROR_MESSAGE_NB_LINES;
 }
 /*--------------------------------------------------------------------------*/
-static void freeLastErrorMessage(void)
-{
-    if (strLastErrorMessage)
-    {
-        freeArrayOfString(strLastErrorMessage, iLastErrorMessageNbLines);
-    }
-    iLastErrorMessageNbLines = NO_ERROR_MESSAGE_NB_LINES;
-}
-/*--------------------------------------------------------------------------*/ 
 int setLastError(int iErr, char** strErrorMessage, int iNbLines, int iLinePos, char *strFunctionName)
 {
     setLastErrorValue(iErr);

@@ -29,7 +29,7 @@
         <term>x  </term>
         <listitem>
           <para>matrice réelle, complexe ou booléenne
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,15 +37,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Si <literal>x</literal> est une matrice booléenne,
-    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
-  </para>
+      Si <literal>x</literal> est une matrice booléenne,
+      <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
+    </para>
     <para>
-    Si <literal>x</literal> n'est pas une matrice booléenne,
-    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
-  </para>
+      Si <literal>x</literal> n'est pas une matrice booléenne,
+      <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
+    </para>
     <para>
-  </para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +55,7 @@ bool2s([2.3 0 10 -1])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="boolean">boolean</link>

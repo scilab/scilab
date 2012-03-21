@@ -13,8 +13,8 @@ package org.scilab.modules.xcos.block;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -50,7 +50,7 @@ public final class SplitBlock extends BasicBlock {
 
     /**
      * Add connection port depending on the type of the source.
-     * 
+     *
      * @param source
      *            the type of the split
      */
@@ -91,7 +91,7 @@ public final class SplitBlock extends BasicBlock {
 
     /**
      * Add a port on the block.
-     * 
+     *
      * @param child
      *            the port to add
      * @param index
@@ -108,8 +108,7 @@ public final class SplitBlock extends BasicBlock {
      */
     @SuppressWarnings("unchecked")
     public BasicPort getIn() {
-        return getChild(0, Arrays.asList(ExplicitInputPort.class,
-                ImplicitInputPort.class, ControlPort.class), 1);
+        return getChild(0, Arrays.asList(ExplicitInputPort.class, ImplicitInputPort.class, ControlPort.class), 1);
     }
 
     /**
@@ -117,8 +116,7 @@ public final class SplitBlock extends BasicBlock {
      */
     @SuppressWarnings("unchecked")
     public BasicPort getOut1() {
-        return getChild(1, Arrays.asList(ExplicitOutputPort.class,
-                ImplicitOutputPort.class, CommandPort.class), 1);
+        return getChild(1, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 1);
     }
 
     /**
@@ -126,13 +124,12 @@ public final class SplitBlock extends BasicBlock {
      */
     @SuppressWarnings("unchecked")
     public BasicPort getOut2() {
-        return getChild(2, Arrays.asList(ExplicitOutputPort.class,
-                ImplicitOutputPort.class, CommandPort.class), 2);
+        return getChild(2, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 2);
     }
 
     /**
      * Get the child of the kind class from the start to a count.
-     * 
+     *
      * @param startIndex
      *            the start index (default position)
      * @param kind
@@ -141,14 +138,13 @@ public final class SplitBlock extends BasicBlock {
      *            the ordering of the port
      * @return the found port or null.
      */
-    private BasicPort getChild(int startIndex,
-            List<Class<? extends BasicPort>> kind, int ordering) {
+    private BasicPort getChild(int startIndex, List < Class <? extends BasicPort >> kind, int ordering) {
         final int size = children.size();
 
         int loopCount = size;
         for (int i = startIndex; loopCount > 0; i = (i + 1) % size, loopCount--) {
             Object child = children.get(i);
-            for (Class<? extends BasicPort> klass : kind) {
+            for (Class <? extends BasicPort > klass : kind) {
                 if (klass.isInstance(child)) {
                     BasicPort port = klass.cast(child);
 
@@ -159,13 +155,13 @@ public final class SplitBlock extends BasicBlock {
                 }
             }
         }
-        LogFactory.getLog(SplitBlock.class).error("Unable to find a child.");
+        Logger.getLogger(SplitBlock.class.getName()).severe("Unable to find a child.");
         return null;
     }
 
     /**
      * Set the geometry of the block
-     * 
+     *
      * @param geometry
      *            change split block geometry
      */
@@ -178,12 +174,9 @@ public final class SplitBlock extends BasicBlock {
             /*
              * Align the geometry on the grid
              */
-            if (getParentDiagram() != null
-                    && getParentDiagram().isGridEnabled()) {
-                final double cx = getParentDiagram()
-                        .snap(geometry.getCenterX());
-                final double cy = getParentDiagram()
-                        .snap(geometry.getCenterY());
+            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
+                final double cx = getParentDiagram().snap(geometry.getCenterX());
+                final double cy = getParentDiagram().snap(geometry.getCenterY());
 
                 geometry.setX(cx - (DEFAULT_SIZE / 2));
                 geometry.setY(cy - (DEFAULT_SIZE / 2));
@@ -214,7 +207,7 @@ public final class SplitBlock extends BasicBlock {
 
     /**
      * Insert edges as children port edges
-     * 
+     *
      * @param edge
      *            the current edge
      * @param isOutgoing
@@ -244,8 +237,7 @@ public final class SplitBlock extends BasicBlock {
         }
 
         if (ret == null) {
-            LogFactory.getLog(SplitBlock.class).error(
-                    "Unable to connect : " + edge);
+            Logger.getLogger(SplitBlock.class.getName()).severe("Unable to connect : " + edge);
             return super.insertEdge(edge, isOutgoing);
         } else {
             return ret;

@@ -25,8 +25,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	一連のコマンド <literal>tic(); 処理; toc();</literal> により,
-	処理に要した秒数が出力されます.</para>
+      一連のコマンド <literal>tic(); 処理; toc();</literal> により,
+      処理に要した秒数が出力されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -50,13 +51,6 @@ toc();
       <member>
         <link linkend="etime">etime</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

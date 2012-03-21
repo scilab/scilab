@@ -28,8 +28,10 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>polynomial row vector <literal>p=[p1,..,pn]</literal> or integer row
-	    vector (type equal to 8)</para>
+          <para>
+            polynomial row vector <literal>p=[p1,..,pn]</literal> or integer row
+            vector (type equal to 8)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,8 +39,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes the gcd  of components of <literal>p</literal> and a unimodular
-    matrix (with polynomial inverse) <literal>U</literal>, with minimal degree such that</para>
+      computes the gcd  of components of <literal>p</literal> and a unimodular
+      matrix (with polynomial inverse) <literal>U</literal>, with minimal degree such that
+    </para>
     <para>
       <literal>p*U=[0 ... 0 pgcd]</literal>
     </para>
@@ -59,7 +62,7 @@ V*U
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bezout">bezout</link>

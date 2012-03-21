@@ -113,8 +113,4 @@ swap_handles( axes1, axes2 ) ;
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>

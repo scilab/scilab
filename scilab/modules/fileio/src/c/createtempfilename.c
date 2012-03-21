@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <unistd.h>
+#else
+#include <windows.h>
 #endif
 #include <stdlib.h>
 #include <string.h>

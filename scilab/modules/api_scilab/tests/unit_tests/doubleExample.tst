@@ -11,14 +11,14 @@ mkdir(pathconvert(TMPDIR+"/doubleExample"));
 cd(pathconvert(TMPDIR+"/doubleExample"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/doubleExample.c",pathconvert(TMPDIR+"/doubleExample/doubleExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("doubleExample",["doubleExample","doubleExample"],"doubleExample.c",[],"","",cflags);
+ilib_build("gw_doubleExample",["doubleExample","doubleExample"],"doubleExample.c",[],"","",cflags);
 exec("loader.sce");
 
 a = 1;
 b = %i;
 c = [1,2,3;4,5,6];
 d = c(1:$) + c($:-1:1) * %i;
-doubleExample(a) == a
-doubleExample(b) == b
-doubleExample(c) == c
-doubleExample(d) == d
+assert_checkequal(doubleExample(a), a);
+assert_checkequal(doubleExample(b), b);
+assert_checkequal(doubleExample(c), c);
+assert_checkequal(doubleExample(d), d);

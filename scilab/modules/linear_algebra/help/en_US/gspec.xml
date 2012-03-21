@@ -21,20 +21,22 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[al,be]=gspec(A,E)
-[al,be,Z]=gspec(A,E)</synopsis>
+      [al,be,Z]=gspec(A,E)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    This function is now included in the <literal>spec</literal> function.
-    the calling syntax must be replaced by</para>
-    <programlisting role = ""><![CDATA[ 
+      This function is now included in the <literal>spec</literal> function.
+      the calling syntax must be replaced by
+    </para>
+    <programlisting role=""><![CDATA[ 
 [al,be]=spec(A,E)
 [al,be,Z]=spec(A,E)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="spec">spec</link>

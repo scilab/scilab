@@ -12,7 +12,6 @@
 
 #include "business.h"
 
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 

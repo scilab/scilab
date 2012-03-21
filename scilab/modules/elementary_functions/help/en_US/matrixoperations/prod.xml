@@ -10,40 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="prod" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="prod" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-  
   <refnamediv>
     <refname>prod</refname>
-    
     <refpurpose>product of array elements</refpurpose>
   </refnamediv>
-  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    
     <synopsis>y=prod(x)
       y=prod(x,orientation)
       y=prod(x,outtype)
       y=prod(x,orientation,outtype)
     </synopsis>
   </refsynopsisdiv>
-  
   <refsection>
     <title>Arguments</title>
-    
     <variablelist>
       <varlistentry>
         <term>x</term>
-        
         <listitem>
           <para>
             an array of  reals, complex, booleans,  polynomials or
@@ -78,43 +65,37 @@
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>y</term>
-        
         <listitem>
           <para>scalar or array</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>Description</title>
-    
     <para>
       For an array <literal>x</literal>,
       <literal>y=prod(x)</literal> returns in the scalar <literal>y</literal> the
       product of all the elements of <literal>x</literal>.
     </para>
-    
     <para>
       <literal>y=prod(x,orientation)</literal> returns in
       <literal>y</literal> the product of <literal>x</literal> along the
       dimension given by <literal>orientation</literal>:
     </para>
-    
     <itemizedlist>
       <listitem>
         <para>
           if <literal>orientation</literal> is equal to 1 or "r" then
         </para>
         <para>
-          <latex><![CDATA[ y(1,j) = \prod_i x(i,j)]]> </latex> 
+          <latex><![CDATA[ y(1,j) = \prod_i x(i,j)]]></latex>
         </para>
         <para>or </para>
         <para>
-          <latex><![CDATA[ y(1,j,k,\ldots) = \prod_i x(i,j,k,\ldots)]]> </latex> 
+          <latex><![CDATA[ y(1,j,k,\ldots) = \prod_i x(i,j,k,\ldots)]]></latex>
         </para>
       </listitem>
       <listitem>
@@ -122,11 +103,11 @@
           if <literal>orientation</literal> is equal to 2 or "c" then:
         </para>
         <para>
-          <latex><![CDATA[ y(i,\mathbf{1}) = \prod_{\mathbf{j}} x(i,\mathbf{j})]]> </latex> 
+          <latex><![CDATA[ y(i,\mathbf{1}) = \prod_{\mathbf{j}} x(i,\mathbf{j})]]></latex>
         </para>
         <para>or </para>
         <para>
-          <latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \prod_{j} x(i,\mathbf{j},k,\ldots)]]> </latex> 
+          <latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \prod_{j} x(i,\mathbf{j},k,\ldots)]]></latex>
         </para>
       </listitem>
       <listitem>
@@ -134,10 +115,9 @@
           if <literal>orientation</literal> is equal to n  then
         </para>
         <para>
-          <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \prod_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]> </latex> 
+          <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \prod_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>y=prod(x,"*")</literal> is equivalent to <literal>y=prod(x)</literal> 
@@ -152,8 +132,7 @@
         </para>
       </listitem>
     </itemizedlist>
-    
-    <para></para>
+    <para/>
     <para>
       The <literal>outtype</literal> argument rules the way the product is done:
     </para>
@@ -193,22 +172,16 @@
           Matlab compatibility. 
         </para>
       </listitem>
-      
     </itemizedlist>
   </refsection>
-  
   <refsection>
     <title>Remark</title>
     <para>
-      This function applies, with identical rules to <link
-    linkend="sparse">sparse matrices</link> and <link
-    linkend="hypermat">hypermatrices</link>.
+      This function applies, with identical rules to <link linkend="sparse">sparse matrices</link> and <link linkend="hypermat">hypermatrices</link>.
     </para>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
-    
     <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 prod(A)
@@ -229,7 +202,6 @@ prod(B) //evaluation in float
 prod(B,"native") //similar to and(B)
  ]]></programlisting>
   </refsection>
-  
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">

@@ -14,6 +14,8 @@
 
 #include "gw_polynomials.h"
 #include "callFunctionFromGateway.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static int sci_notused(char *fname,unsigned long fname_len)
 {
@@ -45,6 +47,13 @@ static gw_generic_table Tab[] =
 int gw_polynomials(void)
 {
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

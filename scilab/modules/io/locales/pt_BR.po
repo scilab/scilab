@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -115,6 +115,10 @@ msgstr "Erro não gerenciado por v2cunit.\n"
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

@@ -15,11 +15,11 @@ package org.scilab.modules.xcos.io.scicos;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.write.H5Write;
@@ -36,16 +36,16 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement useful methods to easily import or export Scicos data.
  */
 // CSOFF: ClassDataAbstractionCoupling
-public class H5RWHandler {
+public class H5RWHandler implements Handler {
     private static final String CONTEXT = "context";
     private static final String SCS_M = "scs_m";
-    private static final Log LOG = LogFactory.getLog(H5RWHandler.class);
+    private static final Logger LOG = Logger.getLogger(H5RWHandler.class.getName());
 
     private final String h5File;
 
     /**
      * Constructor a new instance with a file.
-     * 
+     *
      * @param hdf5file
      *            the file path.
      */
@@ -55,7 +55,7 @@ public class H5RWHandler {
 
     /**
      * Construct a new instance with the file path.
-     * 
+     *
      * @param hdf5file
      *            the file path.
      */
@@ -67,33 +67,31 @@ public class H5RWHandler {
      * Read methods
      */
 
-    /**
-     * Decode an Xcos block
-     * 
-     * @return the decoded block
-     * @throws ScicosFormatException
-     *             on decoding error
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readBlock()
      */
+    @Override
     public BasicBlock readBlock() throws ScicosFormatException {
         return readBlock(null);
     }
 
-    /**
-     * Decode an Xcos block into an instance
-     * 
-     * @param into
-     *            the instance to update
-     * @return the updated instance.
-     * @throws ScicosFormatException
-     *             on decoding error
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.scilab.modules.xcos.io.scicos.RWHandler#readBlock(org.scilab.modules
+     * .xcos.block.BasicBlock)
      */
+    @Override
     public BasicBlock readBlock(BasicBlock into) throws ScicosFormatException {
         final ScilabMList data = new ScilabMList();
         final BlockElement element = new BlockElement();
         BasicBlock instance;
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Reading block from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Reading block from " + h5File);
         }
 
         try {
@@ -108,28 +106,29 @@ public class H5RWHandler {
             instance.setStyle(style.toString());
 
         } catch (HDF5Exception e) {
-            LOG.error(e);
+            LOG.severe(e.toString());
             instance = null;
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of reading block from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of reading block from " + h5File);
         }
 
         return instance;
     }
 
-    /**
-     * Decode an evaluated Xcos context
-     * 
-     * @return the decoded context
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readContext()
      */
+    @Override
     public Map<String, String> readContext() {
         final ScilabList list = new ScilabList();
         final Map<String, String> result = new LinkedHashMap<String, String>();
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Reading context from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Reading context from " + h5File);
         }
 
         try {
@@ -138,7 +137,7 @@ public class H5RWHandler {
                 H5Read.readDataFromFile(handle, list);
             }
         } catch (HDF5Exception e) {
-            LOG.error(e);
+            LOG.severe(e.toString());
             return result;
         }
 
@@ -153,31 +152,31 @@ public class H5RWHandler {
             result.put(key, value);
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of reading context from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of reading context from " + h5File);
         }
 
         return result;
     }
 
-    /**
-     * Decode an Xcos diagram from an H5 file
-     * 
-     * @return the decoded diagram
-     * @throws VersionMismatchException
-     *             when the diagram version mismatch
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readDiagram()
      */
+    @Override
     public XcosDiagram readDiagram() throws VersionMismatchException {
         return readDiagram(null);
     }
 
-    /**
-     * Decode an Xcos diagram from an H5 file in place.
-     * 
-     * @param instance
-     *            the previously allocated diagram where to decode.
-     * @return the decoded diagram
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.scilab.modules.xcos.io.scicos.RWHandler#readDiagram(org.scilab.modules
+     * .xcos.graph.XcosDiagram)
      */
+    @Override
     public XcosDiagram readDiagram(XcosDiagram instance) {
         final ScilabMList data = new ScilabMList();
         final DiagramElement element = new DiagramElement();
@@ -191,8 +190,8 @@ public class H5RWHandler {
 
         diagram.getModel().beginUpdate();
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Reading diagram from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Reading diagram from " + h5File);
         }
 
         try {
@@ -207,9 +206,7 @@ public class H5RWHandler {
                  * On version mismatch alert the user but the current instance
                  * contains the partially decoded data so continue.
                  */
-                diagram.error(XcosMessages.UNKNOW_VERSION
-                        + ((VersionMismatchException) e).getWrongVersion()
-                        + "\n" + XcosMessages.TRY_TO_CONTINUE);
+                diagram.error(XcosMessages.UNKNOW_VERSION + ((VersionMismatchException) e).getWrongVersion() + "\n" + XcosMessages.TRY_TO_CONTINUE);
             } else {
                 // rethrow
                 throw new RuntimeException(e);
@@ -217,13 +214,13 @@ public class H5RWHandler {
         } catch (HDF5Exception e) {
             throw new RuntimeException(e);
         } catch (Throwable t) {
-        	t.printStackTrace();
+            t.printStackTrace();
         } finally {
             diagram.getModel().endUpdate();
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of reading diagram from " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of reading diagram from " + h5File);
         }
 
         return diagram;
@@ -233,18 +230,21 @@ public class H5RWHandler {
      * Write methods
      */
 
-    /**
-     * Encode an Xcos block
-     * 
-     * @param block
-     *            the block
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.scilab.modules.xcos.io.scicos.RWHandler#writeBlock(org.scilab.modules
+     * .xcos.block.BasicBlock)
      */
+    @Override
+    @Deprecated
     public void writeBlock(BasicBlock block) {
         final BlockElement element = new BlockElement();
         final ScilabType data = element.encode(block, null);
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Writing block to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Writing block to " + h5File);
         }
 
         try {
@@ -254,31 +254,34 @@ public class H5RWHandler {
 
             H5Write.closeFile(fileId);
         } catch (HDF5Exception e) {
-            LOG.error(e);
+            LOG.severe(e.toString());
         } catch (java.lang.NullPointerException e) {
-            LOG.error(e);
-            LOG.debug(data);
+            LOG.severe(e.toString());
+            LOG.warning(data.toString());
         } catch (java.lang.IndexOutOfBoundsException e) {
-            LOG.error(e);
-            LOG.debug(data);
+            LOG.severe(e.toString());
+            LOG.warning(data.toString());
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of writing block to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of writing block to " + h5File);
         }
     }
 
-    /**
-     * Encode an Xcos context
-     * 
-     * @param context
-     *            the context
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.scilab.modules.xcos.io.scicos.RWHandler#writeContext(java.lang.String
+     * [])
      */
+    @Override
+    @Deprecated
     public void writeContext(String[] context) {
         final ScilabString string = new ScilabString(context);
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Writing context to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Writing context to " + h5File);
         }
 
         try {
@@ -288,26 +291,29 @@ public class H5RWHandler {
 
             H5Write.closeFile(fileId);
         } catch (HDF5Exception e) {
-            LOG.error(e);
+            LOG.severe(e.toString());
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of writing context to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of writing context to " + h5File);
         }
     }
 
-    /**
-     * Encode an Xcos diagram
-     * 
-     * @param diagram
-     *            the block
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.scilab.modules.xcos.io.scicos.RWHandler#writeDiagram(org.scilab.modules
+     * .xcos.graph.XcosDiagram)
      */
+    @Override
+    @Deprecated
     public void writeDiagram(XcosDiagram diagram) {
         final DiagramElement element = new DiagramElement();
         final ScilabType data = element.encode(diagram, null);
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Writing diagram to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("Writing diagram to " + h5File);
         }
 
         try {
@@ -318,18 +324,18 @@ public class H5RWHandler {
             H5Write.closeFile(fileId);
         } catch (HDF5Exception e) {
             // important error which need a backtrace.
-            LOG.error(e);
+            LOG.severe(e.toString());
             e.printStackTrace();
         } catch (java.lang.NullPointerException e) {
-            LOG.error(e);
-            LOG.debug(data);
+            LOG.severe(e.toString());
+            LOG.warning(data.toString());
         } catch (java.lang.IndexOutOfBoundsException e) {
-            LOG.error(e);
-            LOG.debug(data);
+            LOG.severe(e.toString());
+            LOG.warning(data.toString());
         }
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("End of writing diagram to " + h5File);
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest("End of writing diagram to " + h5File);
         }
     }
 }

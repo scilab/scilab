@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>sethistoryfile(filename)
-sethistoryfile()</synopsis>
+      sethistoryfile()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,7 +39,8 @@ sethistoryfile()</synopsis>
     <title>Description</title>
     <para>set filename for scilab history.</para>
     <para>sethistoryfile() without parameters will use the default filename
-    (SCIHOME/history.scilab)</para>
+      (SCIHOME/history.scilab)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,11 +48,5 @@ sethistoryfile()</synopsis>
 gethistoryfile()
 sethistoryfile(gethistoryfile())
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

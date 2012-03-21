@@ -72,3 +72,5 @@ SEP #072: Extend fullpath to manage matrix of string as input argument
 SEP #073: New convolution functions
 SEP #074: Atoms configuration files management
 SEP #075: New dec2base function
+SEP #076: atomsCheckModule function
+SEP #077: atomsQuit function

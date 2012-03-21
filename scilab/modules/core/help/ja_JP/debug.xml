@@ -9,14 +9,15 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>debug(level-int)
-level-int=debug()</synopsis>
+    <synopsis>debug(level_int)
+level_int = debug()
+previous_level_int = debug(level_int)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
     <variablelist>
       <varlistentry>
-        <term>level-int</term>
+        <term>level_int</term>
         <listitem>
           <para>integer (-1 to 4)</para>
         </listitem>
@@ -25,7 +26,7 @@ level-int=debug()</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>level-int</literal> の値(0,1,2,3,4)により, <literal>debug</literal>
+    <para><literal>level_int</literal> の値(0,1,2,3,4)により, <literal>debug</literal>
     はデバッグのレベルを定義します. この関数はパーサ用で,
 	Scilabスクリプト用ではなく, Scilabのエキスパート専用です.</para>
   </refsection>

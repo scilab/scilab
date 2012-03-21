@@ -18,25 +18,16 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry 
-  version="5.0-subset Scilab" xml:id="CLKOUTV_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg" 
-  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-  xmlns:db="http://docbook.org/ns/docbook" 
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CLKOUTV_f" xml:lang="en_US">
   <refnamediv>
     <refname>CLKOUTV_f</refname>
     <refpurpose>Output activation port</refpurpose>
   </refnamediv>
   <refsection>
-  
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  
   <refsection id="Contents_CLKOUTV_f">
     <title>Contents</title>
     <itemizedlist>
@@ -81,7 +71,7 @@
             <para>
               <xref linkend="Example_CLKOUTV_f">Example</xref>
             </para>
-          </listitem>           
+          </listitem>
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_CLKOUTV_f">Interfacing function</xref>
@@ -91,17 +81,11 @@
             <para>
               <xref linkend="Seealso_CLKOUTV_f">See also</xref>
             </para>
-          </listitem>          
-          <listitem>
-            <para>
-              <xref linkend="Authors_CLKOUTV_f">Authors</xref>
-            </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Palette_CLKOUTV_f">
     <title>Palette</title>
     <itemizedlist>
@@ -109,20 +93,19 @@
         <para>
           <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
         </para>
-      </listitem>    
+      </listitem>
       <listitem>
         <para>
           <link linkend="Sinks_pal">Sinks palette</link>
         </para>
-      </listitem>    
+      </listitem>
       <listitem>
         <para>
           <link linkend="Events_pal">Event handling palette</link>
-        </para>                
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-    
   <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
@@ -132,9 +115,8 @@
     <para>
       This block is an event link from outside of a system into a sub-system. In a Super Block, the activation's output
       ports must be numbered from 1 to the total number of activation's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
-    </para>    
+    </para>
   </refsection>
-  
   <refsection id="Dialogbox_CLKOUTV_f">
     <title>Dialog box</title>
     <para>
@@ -144,7 +126,7 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -155,36 +137,53 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Defaultproperties_CLKOUTV_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -194,32 +193,36 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Example_CLKOUTV_f">
     <title>Example</title>
     <para>
-      The Super bloc below is mainly a frequency divider by 4, associated to an one event generation at time <emphasis><literal>t = 3 s</literal></emphasis>.
+      The Super bloc below is mainly a frequency divider by 4, associated to an one event generation at time 
+      <emphasis>
+        <literal>t= 3 s</literal>
+      </emphasis>
+      .
       <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.xcos">
         Open this example in Xcos
-      </link>:
+      </link>
+      :
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/clkoutv_f_diagram_en_US.png" />
+        <imagedata fileref="../../../examples/portaction_pal/en_US/clkoutv_f_diagram_en_US.png"/>
       </imageobject>
     </mediaobject>
-  </refsection>  
-  
+  </refsection>
   <refsection id="Interfacingfunction_CLKOUTV_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/CLKOUTV_f.sci">SCI/modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci</link></para>        
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/CLKOUTV_f.sci">SCI/modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection role="see also" id="Seealso_CLKOUTV_f">
     <title>See also</title>
     <itemizedlist>
@@ -230,10 +233,5 @@
         <link linkend="SUPER_f">SUPER_f</link>
       </listitem>
     </itemizedlist>
-  </refsection>  
-  
-  <refsection id="Authors_CLKOUTV_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_builder_help(toolbox_path)
+      tbx_builder_help(toolbox_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -43,23 +43,17 @@ tbx_builder_help(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>
       </member>
-      <member> 
+      <member>
         <link linkend="tbx_build_help_loader">tbx_build_help_loader</link>
       </member>
-      <member> 
+      <member>
         <link linkend="tbx_build_help">tbx_build_help</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
     </simplelist>
   </refsection>
 </refentry>

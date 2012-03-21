@@ -58,8 +58,7 @@
     </para>
     <para>
       Attention: la fonction <literal>exists</literal> ne teste
-      pas si une variable existe dans l'espace de nom <link
-    linkend="global">global</link>.
+      pas si une variable existe dans l'espace de nom <link linkend="global">global</link>.
     </para>
   </refsection>
   <refsection>

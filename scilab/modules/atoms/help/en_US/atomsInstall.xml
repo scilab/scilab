@@ -24,9 +24,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    result = atomsInstall(modules[,section])
-    result = atomsInstall(file)
-  </synopsis>
+      result = atomsInstall(modules[,section])
+      result = atomsInstall(file)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -38,8 +38,8 @@
         <term>modules</term>
         <listitem>
           <para>
-						mx1, mx2 Matrix of strings:
-					</para>
+            mx1, mx2 Matrix of strings:
+          </para>
           <informaltable border="1">
             <!-- Technical name -->
             <tr>
@@ -50,10 +50,10 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-								Mandatory
-							</td>
+                Mandatory
+              </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -64,12 +64,12 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								the most recent	version is used
-							</td>
+                If this field is empty or is not present,
+                the most recent	version is used
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -78,8 +78,8 @@
         <term>file</term>
         <listitem>
           <para>
-						mx1 Matrix of strings:
-					</para>
+            mx1 Matrix of strings:
+          </para>
           <informaltable border="1">
             <!-- File-system path -->
             <tr>
@@ -90,10 +90,10 @@
                 <emphasis role="strong">File-system path</emphasis>
               </td>
               <td>
-								Mandatory
-							</td>
+                Mandatory
+              </td>
               <td>
-							</td>
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -102,28 +102,31 @@
         <term>section</term>
         <listitem>
           <para>
-						This argument controls where the external module is installed.
-					</para>
-          <para><literal>section</literal> is a single-string and its value should be :
-					</para>
+            This argument controls where the external module is installed.
+          </para>
+          <para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
-              <para><literal>"allusers"</literal>: the external module
-								is installed for all users of the computer and is located in
-								SCI/contrib ("allusers zone").
-							</para>
+              <para>
+                <literal>"allusers"</literal>: the external module
+                is installed for all users of the computer and is located in
+                SCI/contrib ("allusers zone").
+              </para>
             </listitem>
             <listitem>
-              <para><literal>"user"</literal>: the external module is only
-								installed for the current user and is located in SCIHOME/atoms
-								("user zone").
-							</para>
+              <para>
+                <literal>"user"</literal>: the external module is only
+                installed for the current user and is located in SCIHOME/atoms
+                ("user zone").
+              </para>
             </listitem>
           </itemizedlist>
           <para>
-						If SCI/contrib is write accessible, "allusers" is the default value.
-						Otherwise, the default value is "user".
-					</para>
+            If SCI/contrib is write accessible, "allusers" is the default value.
+            Otherwise, the default value is "user".
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -140,7 +143,7 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -151,7 +154,7 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Section -->
             <tr>
@@ -162,9 +165,9 @@
                 <emphasis role="strong">Installation section</emphasis>
               </td>
               <td>
-								this parameter determines whether the module has been installed
-								for all users or only for the	current user.
-							</td>
+                this parameter determines whether the module has been installed
+                for all users or only for the	current user.
+              </td>
             </tr>
             <!-- Installation path -->
             <tr>
@@ -175,7 +178,7 @@
                 <emphasis role="strong">Installation path</emphasis>
               </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Status -->
             <tr>
@@ -186,8 +189,8 @@
                 <emphasis role="strong">Status</emphasis>
               </td>
               <td>
-								"I" stands for "Intentionnaly", "A" stands for "Automatically"
-							</td>
+                "I" stands for "Intentionnaly", "A" stands for "Automatically"
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -199,16 +202,18 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsInstall</literal> install one or more external modules.
-	</para>
+    <para>
+      <literal>atomsInstall</literal> install one or more external modules.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <para><emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
-		</para>
+    <para>
+      <emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
+    </para>
     <programlisting role="example"><![CDATA[
 // Display some additionnal informations
 atomsSetConfig("Verbose","True");
@@ -245,10 +250,11 @@ atomsRemove(["toolbox_1"; ..
              "toolbox_6"]);
 
 ]]></programlisting>
-    <para><emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
-			installing modules from the central repository, you can also install
-			modules directly from your own machine.
-		</para>
+    <para>
+      <emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
+      installing modules from the central repository, you can also install
+      modules directly from your own machine.
+    </para>
     <programlisting role="example"><![CDATA[
 // Display some additionnal informations
 atomsSetConfig("Verbose","True");
@@ -283,10 +289,4 @@ atomsRemove("toolbox_7");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

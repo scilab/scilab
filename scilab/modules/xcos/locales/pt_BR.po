@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -76,6 +76,9 @@ msgid ""
 msgstr ""
 "Não é possível de carregar a biblioteca Batik.\n"
 "Esperava-se a versão %s; mas obteve-se a %s."
+
+msgid "parent diagram not found."
+msgstr ""
 
 msgid "Preview"
 msgstr "Pré-visualização"
@@ -1093,25 +1096,9 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import file %s ."
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import file %s from %s ."
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
 msgstr ""
 
 #, c-format
@@ -1246,10 +1233,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Block definition with function [%s] failed."

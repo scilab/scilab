@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -29,7 +29,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>scicos_debug(level)
-level = scicos_debug()</synopsis>
+      level = scicos_debug()
+    </synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos_debug">
     <title>Module</title>
@@ -44,13 +45,13 @@ level = scicos_debug()</synopsis>
   <refsection id="Description_scicos_debug">
     <title>Description</title>
     <para>
-This Scilab function is used to set the debug level of a Scicos simulation.  
-</para>
+      This Scilab function is used to set the debug level of a Scicos simulation.  
+    </para>
     <para>
-One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.  
-</para>
+      One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.  
+    </para>
     <para>
-</para>
+    </para>
     <programlisting role="example"><![CDATA[ 
 scicos_debug(level)
 level=scicos_debug()
@@ -60,43 +61,35 @@ level=scicos_debug()
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">level :</emphasis> set/get the current level of the Scicos simulation debugging.</para>
+        <para>
+          <emphasis role="bold">level :</emphasis> set/get the current level of the Scicos simulation debugging.
+        </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">0 :</emphasis>
-   no debugging.
-</para>
+            <para>
+              <emphasis role="bold">0:</emphasis>
+              no debugging.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">1 :</emphasis>
-   light debugging information printout.
-</para>
+            <para>
+              <emphasis role="bold">1:</emphasis>
+              light debugging information printout.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">2 :</emphasis>
-   more information printout and execution of Debug Block if any in diagram.
-</para>
+            <para>
+              <emphasis role="bold">2:</emphasis>
+              more information printout and execution of Debug Block if any in diagram.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">3 :</emphasis>
-   silent debugging mode (no information printout) and execution of Debug Block if any in diagram.
-</para>
+            <para>
+              <emphasis role="bold">3:</emphasis>
+              silent debugging mode (no information printout) and execution of Debug Block if any in diagram.
+            </para>
           </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_scicos_debug">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

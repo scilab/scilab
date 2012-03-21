@@ -25,11 +25,12 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>y=st_deviation(x)
-y=st_deviation(x,'r')
-y=st_deviation(x,'c')
-y=stdev(x)
-y=stdev(x,'r')
-y=stdev(x,'c')</synopsis>
+      y=st_deviation(x,'r')
+      y=st_deviation(x,'c')
+      y=stdev(x)
+      y=stdev(x,'r')
+      y=stdev(x,'c')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -38,14 +39,14 @@ y=stdev(x,'c')</synopsis>
         <term>x  </term>
         <listitem>
           <para>vecteur ou matrice réelle
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
           <para>scalaire ou vecteur
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -53,17 +54,19 @@ y=stdev(x,'c')</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    st_deviation calcule l'estimateur sans biais de l'écart-type (normalisé par N-1, ou N est le nombre d'échantillons).
-  </para>
+      st_deviation calcule l'estimateur sans biais de l'écart-type (normalisé par N-1, ou N est le nombre d'échantillons).
+    </para>
     <para>
-    Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=st_deviation(x)</literal> renvoie dans <literal>y</literal> l'écart-type des termes de <literal>x</literal>.
-  </para>
-    <para><literal>y=st_deviation(x,'r')</literal> (ou <literal>y=st_deviation(x,1)</literal>) est l'écart-type suivant l'indice de ligne. Chaque composante du vecteur ligne <literal>y</literal> contient l'écart-type de chaque colonne de <literal>x</literal>.
-  </para>
+      Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=st_deviation(x)</literal> renvoie dans <literal>y</literal> l'écart-type des termes de <literal>x</literal>.
+    </para>
     <para>
-  </para>
-    <para><literal>y=st_deviation(x,'c')</literal> (ou <literal>y=st_deviation(x,2)</literal>) est l'écart-type selon l'indice de colonne. Chaque composante du vecteur colonne <literal>y</literal> contient l'écart-type de chaque ligne de <literal>x</literal>.
-  </para>
+      <literal>y=st_deviation(x,'r')</literal> (ou <literal>y=st_deviation(x,1)</literal>) est l'écart-type suivant l'indice de ligne. Chaque composante du vecteur ligne <literal>y</literal> contient l'écart-type de chaque colonne de <literal>x</literal>.
+    </para>
+    <para>
+    </para>
+    <para>
+      <literal>y=st_deviation(x,'c')</literal> (ou <literal>y=st_deviation(x,2)</literal>) est l'écart-type selon l'indice de colonne. Chaque composante du vecteur colonne <literal>y</literal> contient l'écart-type de chaque ligne de <literal>x</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -75,7 +78,7 @@ st_deviation(A,'c')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="sum">sum</link>

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -81,11 +81,6 @@
               <xref linkend="Seealso_CSCOPXY3D">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_CSCOPXY3D">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -103,10 +98,10 @@
   <refsection id="Description_CSCOPXY3D">
     <title>Description</title>
     <para>
-This block realizes the visualization of the evolution of the three regular inputs signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.  
-</para>
+      This block realizes the visualization of the evolution of the three regular inputs signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_CSCOPXY3D">
     <title>Dialog box</title>
@@ -118,8 +113,8 @@ This block realizes the visualization of the evolution of the three regular inpu
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -132,7 +127,21 @@ This block realizes the visualization of the evolution of the three regular inpu
         <para>
           <emphasis role="bold">color </emphasis>
         </para>
-        <para> an integer. It is the color number (<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/CSCOPXY3D_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or marker type (<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/CSCOPXY3D_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.</para>
+        <para>
+          an integer. It is the color number (
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../../help/images/CSCOPXY3D_img3_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          ) or marker type (
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../../help/images/CSCOPXY3D_img4_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          ) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.
+        </para>
         <para> Properties : Type 'vec' of size -1 </para>
       </listitem>
       <listitem>
@@ -204,16 +213,24 @@ This block realizes the visualization of the evolution of the three regular inpu
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -230,19 +247,29 @@ This block realizes the visualization of the evolution of the three regular inpu
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -274,22 +301,6 @@ This block realizes the visualization of the evolution of the three regular inpu
       <listitem>
         <para>
           <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CSCOPXY3D">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Benoit Bayol</emphasis>
         </para>
       </listitem>
     </itemizedlist>

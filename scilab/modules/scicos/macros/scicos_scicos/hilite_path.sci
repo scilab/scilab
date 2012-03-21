@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -41,6 +41,16 @@ function hilite_path(path,mess,with_intermediates)
     for i = 1:length(path)
         index = path(i);
         if typeof(diagram.objs(index)) == "Block" then
+            o = diagram.objs(index);
+            
+            // masked superblock case
+            if isempty(o.doc) then
+                // we abort because blocks do not have uuid inside
+                // masked superblocks
+                break;
+            end
+            
+            // normal case
             uid($+1) = diagram.objs(index).doc(1) + "";
 
             if diagram.objs(index).model.sim == 'super' then

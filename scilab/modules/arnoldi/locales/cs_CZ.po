@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2010-08-31 18:09+0000\n"
-"Last-Translator: Jan Kříž <y115752@stud.fme.vutbr.cz>\n"
+"PO-Revision-Date: 2012-02-14 17:21+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
-msgstr "%s: výpočet je dokončen\n"
+msgstr "%s: výpočet byl již ukončen\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument %s: An array of size %d expected.\n"

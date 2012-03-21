@@ -11,12 +11,8 @@
  */
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javax.swing.Action;
@@ -27,9 +23,8 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
@@ -84,9 +79,6 @@ public class ExternalAction extends DefaultAction {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
         final BasicBlock block;
-        final String blk;
-        final String scs_m;
-        final String blk_updated;
         final ActionListener callback;
         try {
             /*
@@ -95,74 +87,41 @@ public class ExternalAction extends DefaultAction {
             Object cell = graph.getSelectionCell();
             if (cell instanceof BasicBlock) {
                 block = (BasicBlock) cell;
-                blk = FileUtils.createTempFile();
-                new H5RWHandler(new File(blk)).writeBlock(block);
+                new ScilabDirectHandler().writeBlock(block);
             } else {
                 block = null;
-                blk = "";
             }
 
             /*
              * Export the whole diagram
              */
-            scs_m = FileUtils.createTempFile();
-            new H5RWHandler(new File(scs_m)).writeDiagram(graph.getRootDiagram());
+            new ScilabDirectHandler().writeDiagram(graph.getRootDiagram());
 
             /*
              * Import the updated block
              */
             if (block != null) {
-                blk_updated = FileUtils.createTempFile();
                 callback = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            if (!exists(blk_updated)) {
-                                return;
-                            }
 
-                            final BasicBlock modifiedBlock = new H5RWHandler(blk_updated).readBlock();
+                            final BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
                             block.updateBlockSettings(modifiedBlock);
 
                             graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, block));
                         } catch (ScicosFormatException e1) {
+                            LOG.severe(e1.getMessage());
                         }
                     }
                 };
             } else {
-                blk_updated = "";
                 callback = null;
             }
 
-            ScilabInterpreterManagement.asynchronousScilabExec(callback, constructCommand(scs_m, blk, blk_updated));
-        } catch (IOException e1) {
-            LOG.warning(e1.toString());
+            ScilabInterpreterManagement.asynchronousScilabExec(callback, localCommand);
         } catch (InterpreterException e2) {
             LOG.warning(e2.toString());
         }
-    }
-
-    private String constructCommand(final String scs_m, final String blk, final String blk_updated) {
-        final StringBuilder cmd = new StringBuilder();
-
-        // import diagram
-        cmd.append("import_from_hdf5('" + scs_m + "'); ");
-        // rename due to bug 10454
-        cmd.append("d = scs_m; ");
-
-        // import block
-        cmd.append("import_from_hdf5('" + blk + "'); ");
-        // rename due to bug 10454
-        cmd.append("blk = scs_m; ");
-        cmd.append("scs_m = d; ");
-        cmd.append("clear d, ");
-
-        // call command
-        cmd.append(localCommand);
-
-        // export the result
-        cmd.append(" , export_to_hdf5('" + blk_updated + "', 'blk'); ");
-
-        return cmd.toString();
     }
 }

@@ -35,13 +35,11 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para> 引数を指定しない時,<literal>show_window</literal>は,アイコン化されている場合でも
-	カレントのグラフィックウインドウを前面に出します.
-	その他の場合,番号またはハンドルで指定したウインドウを前面に出します.
-	ウインドウが存在しない場合,作成されます.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
+    <para>
+       引数を指定しない時,<literal>show_window</literal>は,アイコン化されている場合でも
+      カレントのグラフィックウインドウを前面に出します.
+      その他の場合,番号またはハンドルで指定したウインドウを前面に出します.
+      ウインドウが存在しない場合,作成されます.
+    </para>
   </refsection>
 </refentry>

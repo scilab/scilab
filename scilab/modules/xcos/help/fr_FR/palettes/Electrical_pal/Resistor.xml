@@ -10,16 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
- <refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-	  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="Resistor"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Resistor" xml:lang="fr">
   <refnamediv>
     <refname>Resistor</refname>
     <refpurpose>Résistance électrique</refpurpose>
@@ -92,8 +83,16 @@
     <title>Description</title>
     <para>
       Une résistance est un composant électrique à deux ports qui s'oppose au passage du courant
-      (<emphasis role="bold"><emphasis>I</emphasis></emphasis>) en produisant une chute de tension
-      (<emphasis role="bold"><emphasis>V</emphasis></emphasis>) entre ses bornes en accord avec
+      (
+      <emphasis role="bold">
+        <emphasis>I</emphasis>
+      </emphasis>
+      )en produisant une chute de tension
+      (
+      <emphasis role="bold">
+        <emphasis>V</emphasis>
+      </emphasis>
+      )entre ses bornes en accord avec
       la loi d'Ohm.
     </para>
     <para>
@@ -104,10 +103,22 @@
       </inlinemediaobject>
     </para>
     <para>
-      La résistance électrique (<emphasis role="bold"><emphasis>V</emphasis></emphasis>) est égale
+      La résistance électrique (
+      <emphasis role="bold">
+        <emphasis>V</emphasis>
+      </emphasis>
+      )est égale
       à la différence de potentiel entre les bornes de la résistance divisée par le courant
-      (<emphasis role="bold"><emphasis>I</emphasis></emphasis>) traversant la résistance
-      (<emphasis role="bold"><emphasis>R</emphasis></emphasis>).
+      (
+      <emphasis role="bold">
+        <emphasis>I</emphasis>
+      </emphasis>
+      )traversant la résistance
+      (
+      <emphasis role="bold">
+        <emphasis>R</emphasis>
+      </emphasis>
+      ).
     </para>
   </refsection>
   <refsection id="Dialogbox_Resistor">
@@ -120,8 +131,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -141,8 +152,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -152,8 +167,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -163,14 +182,22 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'R'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.01</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'R'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.01
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Resistor</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Resistor
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

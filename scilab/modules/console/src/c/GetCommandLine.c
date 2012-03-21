@@ -17,9 +17,9 @@
 #define isatty  _isatty
 #define fileno  _fileno
 #else
-#include <unistd.h> /* isatty */
+#include <unistd.h>             /* isatty */
 #endif
-#include "Thread_Wrapper.h" /* Thread should be first for Windows */
+#include "Thread_Wrapper.h"     /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
@@ -27,8 +27,9 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "HistoryManager.h"
-#include "storeCommand.h" /* for ismenu() */
-#include "zzledt.h"
+#include "storeCommand.h"       /* for ismenu() */
+#include "getKey.h"
+#include "initConsoleMode.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "UpdateBrowseVar.h"
@@ -41,7 +42,7 @@
 #else
 #include <sys/mman.h>
 #ifndef MAP_ANONYMOUS
-# define MAP_ANONYMOUS MAP_ANON
+#define MAP_ANONYMOUS MAP_ANON
 #endif
 #endif
 
@@ -51,35 +52,38 @@
 #define IMPORT_SIGNAL extern
 #endif
 
-
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
-static char* tmpPrompt = NULL;
-static char * __CommandLine = NULL;
+
+static char *tmpPrompt = NULL;
+
+static char *__CommandLine = NULL;
+
 /*--------------------------------------------------------------------------*/
 
-IMPORT_SIGNAL __threadSignal        LaunchScilab;
-IMPORT_SIGNAL __threadSignalLock    *pLaunchScilabLock;
+IMPORT_SIGNAL __threadSignal LaunchScilab;
 
-static __threadSignal   TimeToWork;
+IMPORT_SIGNAL __threadSignalLock *pLaunchScilabLock;
 
+static __threadSignal TimeToWork;
 
-static __threadSignalLock *pReadyForLaunch= NULL;
-
+static __threadSignalLock *pReadyForLaunch = NULL;
 
 /* exit(0) must unlock */
 static void release(void)
 {
-    if(pReadyForLaunch)
+    if (pReadyForLaunch)
     {
         __UnLockSignal(pReadyForLaunch);
     }
 }
 
 static BOOL WatchStoreCmdThreadAlive = FALSE;
+
 static __threadId WatchStoreCmdThread;
 
 static BOOL WatchGetCmdLineThreadAlive = FALSE;
+
 static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
@@ -94,7 +98,11 @@ static void getCommandLine(void)
     tmpPrompt = GetTemporaryPrompt();
     GetCurrentPrompt(Sci_Prompt);
 
-    if (__CommandLine) {FREE(__CommandLine); __CommandLine = NULL;}
+    if (__CommandLine)
+    {
+        FREE(__CommandLine);
+        __CommandLine = NULL;
+    }
 
     if (getScilabMode() == SCILAB_STD)
     {
@@ -114,7 +122,7 @@ static void getCommandLine(void)
     else
     {
         /* Call Term Management for NW and NWNI to get a string */
-        __CommandLine = TermReadAndProcess();
+        __CommandLine = getCmdLine();
     }
 }
 
@@ -133,27 +141,35 @@ char *getConsoleInputLine(void)
 ** This function is threaded and watch for a signal.
 ** sent when StoreCommand is performed.
 */
-static void initAll(void) {
+static void initAll(void)
+{
+    /* Set console mode to raw */
+#ifndef _MSC_VER
+    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
+    {
+        initConsoleMode(RAW);
+    }
+#endif
     initialized = TRUE;
-    pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
+    pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     atexit(release);
     __InitSignal(&TimeToWork);
     __InitSignalLock(pReadyForLaunch);
 }
-
 
 /***********************************************************************/
 /*
 ** This function is threaded and watch for a signal.
 ** sent when StoreCommand is performed.
 */
-static void *watchStoreCommand(void *in) {
+static void *watchStoreCommand(void *in)
+{
     __LockSignal(pLaunchScilabLock);
     __Wait(&LaunchScilab, pLaunchScilabLock);
     __UnLockSignal(pLaunchScilabLock);
 
     __LockSignal(pReadyForLaunch);
-    WatchStoreCmdThreadAlive=FALSE;
+    WatchStoreCmdThreadAlive = FALSE;
     __Signal(&TimeToWork);
     __UnLockSignal(pReadyForLaunch);
 
@@ -166,7 +182,8 @@ static void *watchStoreCommand(void *in) {
 ** some command has been input by user using
 ** the shell.
 */
-static void *watchGetCommandLine(void *in) {
+static void *watchGetCommandLine(void *in)
+{
     getCommandLine();
 
     __LockSignal(pReadyForLaunch);
@@ -180,42 +197,51 @@ static void *watchGetCommandLine(void *in) {
 
 /***********************************************************************/
 /*
- * Old zzledt... Called by Fortran...
- * @TODO rename that function !!!
+ * Previously called zzledt... Called by Fortran...
+ * Now renamed to EventLoopPrompt
  * @TODO remove unused arg buf_size, menusflag, modex & dummy1
  */
-void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-                 int *menusflag,int * modex,long int dummy1)
+void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 {
+
+    if (getScilabMode() == SCILAB_API)
+    {
+        return;
+    }
+
     if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
     {
-	initialJavaHooks = TRUE;
+        initialJavaHooks = TRUE;
         // Execute the initial hooks registered in Scilab.java
-	ExecuteInitialHooks();	
+        ExecuteInitialHooks();
     }
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER
     /* if file descriptor returned is -2 stdin is not associated with an input stream */
     /* example : echo plot3d | scilex -nw -e */
-    if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
+    if (!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD)
 #else
-        if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
+    if (!isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD)
 #endif
+    {
+        /* remove newline character if there */
+        if (buffer[*len_line - 1] == '\n')
         {
             /* read a line into the buffer, but not too
              * big */
             *eof = (fgets(buffer, *buf_size, stdin) == NULL);
             *len_line = (int)strlen(buffer);
             /* remove newline character if there */
-            if(buffer[*len_line - 1] == '\n')
+            if (buffer[*len_line - 1] == '\n')
             {
                 (*len_line)--;
             }
             return;
         }
+    }
 
-    if(!initialized)
+    if (!initialized)
     {
         initAll();
     }
@@ -241,6 +267,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
             {
 
                 char *cwd = NULL;
+
                 int err = 0;
 
                 UpdateBrowseVar(TRUE);
@@ -279,7 +306,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
     else
     {
-        strcpy(buffer,"");
+        strcpy(buffer, "");
     }
     *len_line = (int)strlen(buffer);
 

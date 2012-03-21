@@ -28,7 +28,9 @@
       <varlistentry>
         <term>g,gm</term>
         <listitem>
-          <para> <literal>syslin</literal>リスト (状態空間表現の線形システム)</para>
+          <para>
+            <literal>syslin</literal>リスト (状態空間表現の線形システム)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,16 +38,19 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>gm</literal> 	および <literal>gm^-1</literal>が安定となる
-	次のような
-    <literal>gm</literal> を返します:</para>
+      <literal>gm</literal> 	および <literal>gm^-1</literal>が安定となる
+      次のような
+      <literal>gm</literal> を返します:
+    </para>
     <programlisting><![CDATA[ 
 gtild(g)*g = gtild(gm)*gm
  ]]></programlisting>
-    <para><literal>g</literal> および <literal>gm</literal> は,
-	状態空間形式の連続時間線形システムです.
-	</para>
     <para>
-   虚軸の極がある場合は使用できません.</para>
+      <literal>g</literal> および <literal>gm</literal> は,
+      状態空間形式の連続時間線形システムです.
+    </para>
+    <para>
+      虚軸の極がある場合は使用できません.
+    </para>
   </refsection>
 </refentry>

@@ -104,8 +104,12 @@ library.history_browser.name=org.scilab.modules.history_browser.jar
 library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
 library.output_stream.name=org.scilab.modules.output_stream.jar
 
+library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
+library.preferences.name=org.scilab.modules.preferences.jar
+
 build_hdf5=true
 
 build_javasci=true
 
 build_xcos=true
+

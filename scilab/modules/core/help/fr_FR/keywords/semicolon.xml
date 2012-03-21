@@ -4,17 +4,17 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>semicolon (;)</refname>
-    <refpurpose>séparateur de lignes ou d'instructions Scilab</refpurpose>
+    <refname>semicolon</refname>
+    <refpurpose> (;) séparateur de lignes ou d'instructions Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Les points-virgules sont utilisés pour séparer des lignes dans une définition de matrice.
-  </para>
+      Les points-virgules sont utilisés pour séparer des lignes dans une définition de matrice.
+    </para>
     <para>
-    Les points-virgules sont aussi utilisés pour marquer la fin d'une instruction. Dans ce cas le résultat n'est pas affiché. On peut utiliser à la place une virgule (,) qui permet de séparer les instructions sans supprimer l'affichage.
-  </para>
+      Les points-virgules sont aussi utilisés pour marquer la fin d'une instruction. Dans ce cas le résultat n'est pas affiché. On peut utiliser à la place une virgule (,) qui permet de séparer les instructions sans supprimer l'affichage.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -24,7 +24,7 @@ a=1;b=1,c=2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="comma">comma</link>

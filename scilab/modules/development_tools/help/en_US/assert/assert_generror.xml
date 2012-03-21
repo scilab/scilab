@@ -97,7 +97,6 @@ funcprot(back);
 
    ]]></programlisting>
   </refsection>
-  
   <refsection>
     <title>History</title>
     <revhistory>
@@ -107,11 +106,5 @@ funcprot(back);
         </revdescription>
       </revision>
     </revhistory>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
   </refsection>
 </refentry>

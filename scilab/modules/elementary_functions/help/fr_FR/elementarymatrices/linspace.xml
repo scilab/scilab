@@ -66,13 +66,13 @@ linspace(1+1*%i,2+2*%i,10)
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>          <itemizedlist>
+        <revremark>
+          <itemizedlist>
             <listitem>La fonction linspace accepte les vecteurs colonnes pour les deux premiers arguments d'entrée. Merci à Guillaume AZEMA pour l'implémentation.</listitem>
             <listitem>Le troisième argument d'entrée (n) doit être une valeur entière.
             </listitem>
           </itemizedlist>
         </revremark>
-        
       </revision>
     </revhistory>
   </refsection>

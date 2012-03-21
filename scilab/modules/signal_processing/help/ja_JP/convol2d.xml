@@ -21,7 +21,7 @@
         <term>A</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -29,7 +29,7 @@
         <term>B</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
         <term>C</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -45,11 +45,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>convol2d</literal> は
-    完全な二次元離散畳み込みを計算するためにfftを使用します.
-    結果 <literal>C</literal> の次元は
-    <literal>size(A)+size(B)+1</literal>で指定されます.
-    <literal>B</literal>の中心要素の添字は
+    <para>
+      <literal>convol2d</literal> は
+      完全な二次元離散畳み込みを計算するためにfftを使用します.
+      結果 <literal>C</literal> の次元は
+      <literal>size(A)+size(B)+1</literal>で指定されます.
+      <literal>B</literal>の中心要素の添字は
       <literal>floor((size(B)+1)/2)</literal>で定義されます.
     </para>
   </refsection>
@@ -73,16 +74,11 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>使用する関数</title>
-    <para><literal>convol2d</literal> 関数は組込み関数
+    <para>
+      <literal>convol2d</literal> 関数は組込み関数
       <link linkend="fft">fft</link> に基づいています.
-       </para>
+    </para>
   </refsection>
   <refsection>
     <title>履歴</title>

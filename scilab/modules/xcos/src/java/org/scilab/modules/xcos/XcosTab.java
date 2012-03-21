@@ -19,10 +19,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import javax.swing.JCheckBoxMenuItem;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
@@ -153,9 +153,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
     private PushButton xcosDemonstrationAction;
     private PushButton xcosDocumentationAction;
 
-    private static class ClosingOperation
-        implements
-        org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
+    private static class ClosingOperation implements org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
         private final XcosDiagram graph;
 
         public ClosingOperation(XcosDiagram graph) {
@@ -179,8 +177,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list,
-                                       ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
             final PaletteManagerView palette = PaletteManagerView.get();
 
             /*
@@ -197,9 +194,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
                 return;
             }
 
-
-            final boolean wasLastOpened = Xcos.getInstance()
-                                          .wasLastOpened(list);
+            final boolean wasLastOpened = Xcos.getInstance().wasLastOpened(list);
 
             /*
              * Append the palette if all the xcos files will be closed
@@ -211,8 +206,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
     }
 
-    private static class EndedRestoration implements
-        WindowsConfigurationManager.EndedRestoration {
+    private static class EndedRestoration implements WindowsConfigurationManager.EndedRestoration {
         private final XcosDiagram graph;
 
         public EndedRestoration(XcosDiagram graph) {
@@ -223,8 +217,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         public void finish() {
             graph.updateTabTitle();
 
-            ConfigurationManager.getInstance().removeFromRecentTabs(
-                graph.getDiagramTab());
+            ConfigurationManager.getInstance().removeFromRecentTabs(graph.getGraphTab());
         }
     }
 
@@ -240,7 +233,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         setAssociatedXMLIDForHelp("xcos");
 
         /** tab association */
-        graph.setDiagramTab(uuid);
+        graph.setGraphTab(uuid);
         setWindowIcon(Xcos.ICON.getImage());
 
         initComponents(graph);
@@ -260,7 +253,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
      * @return the tab (can be null)
      */
     public static XcosTab get(XcosDiagram graph) {
-        final String uuid = graph.getDiagramTab();
+        final String uuid = graph.getGraphTab();
         if (uuid == null) {
             return null;
         }
@@ -287,7 +280,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
      *            should the tab should be visible
      */
     public static void restore(final XcosDiagram graph, final boolean visible) {
-        String uuid = graph.getDiagramTab();
+        String uuid = graph.getGraphTab();
         if (uuid == null) {
             uuid = UUID.randomUUID().toString();
         }
@@ -306,10 +299,8 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
-                new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration(
-            (SwingScilabTab) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -410,8 +401,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         view.addSeparator();
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
-        final CheckBoxMenuItem menuItem = ViewViewportAction
-                                          .createCheckBoxMenu(diagram);
+        final CheckBoxMenuItem menuItem = ViewViewportAction.createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();
         view.add(menuItem);
         view.add(ViewDetailsAction.createMenu(diagram));
@@ -470,8 +460,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         format.addSeparator();
 
         format.add(DiagramBackgroundAction.createMenu(diagram));
-        final CheckBoxMenuItem gridMenu = ViewGridAction
-                                          .createCheckBoxMenu(diagram);
+        final CheckBoxMenuItem gridMenu = ViewGridAction.createCheckBoxMenu(diagram);
         format.add(gridMenu);
 
         /** Tools menu */
@@ -523,30 +512,26 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         recent.setText(XcosMessages.RECENT_FILES);
 
         final ConfigurationManager manager = ConfigurationManager.getInstance();
-        final List<DocumentType> recentFiles = manager.getSettings()
-                                               .getRecent();
+        final List<DocumentType> recentFiles = manager.getSettings().getRecent();
         for (int i = 0; i < recentFiles.size(); i++) {
             URL url;
             try {
                 url = new URL(recentFiles.get(i).getUrl());
             } catch (final MalformedURLException e) {
-                LogFactory.getLog(XcosTab.class).error(e);
+                Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
                 break;
             }
             recent.add(RecentFileAction.createMenu(url));
         }
 
-        ConfigurationManager.getInstance().addPropertyChangeListener(
-            ConfigurationConstants.RECENT_FILES_CHANGED,
-        new PropertyChangeListener() {
+        ConfigurationManager.getInstance().addPropertyChangeListener(ConfigurationConstants.RECENT_FILES_CHANGED, new PropertyChangeListener() {
             @Override
             public void propertyChange(final PropertyChangeEvent evt) {
-                assert evt.getPropertyName().equals(
-                    ConfigurationConstants.RECENT_FILES_CHANGED);
+                assert evt.getPropertyName().equals(ConfigurationConstants.RECENT_FILES_CHANGED);
 
                 /*
-                 * We only handle menu creation there. Return when this
-                 * is not the case.
+                 * We only handle menu creation there. Return when this is not
+                 * the case.
                  */
                 if (evt.getOldValue() != null) {
                     return;
@@ -554,16 +539,13 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
 
                 URL url;
                 try {
-                    url = new URL(((DocumentType) evt.getNewValue())
-                                  .getUrl());
+                    url = new URL(((DocumentType) evt.getNewValue()).getUrl());
                 } catch (final MalformedURLException e) {
-                    LogFactory.getLog(XcosTab.class).error(e);
+                    Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
                     return;
                 }
 
-                ((SwingScilabMenu) recent.getAsSimpleMenu()).add(
-                    (SwingScilabMenu) RecentFileAction.createMenu(
-                        url).getAsSimpleMenu(), 0);
+                ((SwingScilabMenu) recent.getAsSimpleMenu()).add((SwingScilabMenu) RecentFileAction.createMenu(url).getAsSimpleMenu(), 0);
             }
         });
 
@@ -637,8 +619,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
 
         toolBar.addSeparator();
 
-        xcosDemonstrationAction = XcosDemonstrationsAction
-                                  .createButton(diagram);
+        xcosDemonstrationAction = XcosDemonstrationsAction.createButton(diagram);
         toolBar.add(xcosDemonstrationAction);
         xcosDocumentationAction = XcosDocumentationAction.createButton(diagram);
         toolBar.add(xcosDocumentationAction);
@@ -669,8 +650,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
     private SwingScilabWindow createDefaultWindow() {
         final SwingScilabWindow win;
 
-        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(
-                DEFAULT_WIN_UUID, false);
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {

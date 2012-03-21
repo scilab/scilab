@@ -26,18 +26,17 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_action_binding.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_notify.cpp
 
-#### SWIG Declaration ####
+endif
+
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
-endif
-
-if SWIG
-BUILT_SOURCES=swig
-endif
-
 GIWS_WRAPPERS = src/jni/Signal.giws.xml
 
+BUILT_SOURCES=
+if SWIG
+BUILT_SOURCES+=swig
+endif
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
 
 libsciaction_binding_disable_la_SOURCES = src/noaction_binding/noaction_binding.c

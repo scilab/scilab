@@ -18,26 +18,16 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  *
  -->
-
-<refentry
-  version="5.0-subset Scilab" xml:id="LOGIC"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmln.mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="LOGIC" xmln.mml="http://www.w3.org/1998/Math/MathML">
   <refnamediv>
     <refname>LOGIC</refname>
     <refpurpose>Combinatorial Logic</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -48,7 +38,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_LOGIC">
     <title>Contents</title>
     <itemizedlist>
@@ -93,7 +82,7 @@
             <para>
               <link linkend="Example_2_LOGIC">Example 2</link>
             </para>
-          </listitem>          
+          </listitem>
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_LOGIC">Interfacing function</xref>
@@ -109,16 +98,10 @@
               <xref linkend="Seealso_LOGIC">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_LOGIC">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_LOGIC">
     <title>Palette</title>
     <itemizedlist>
@@ -129,7 +112,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_LOGIC">
     <title>Description</title>
     <para>
@@ -149,11 +131,11 @@
         <para>
           The number of inputs is defined by the equation:
         </para>
-        <para />
+        <para/>
         <para>
           <latex><![CDATA[Line\,number = {(Input\,number)}^2]]></latex>
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -165,13 +147,11 @@
       This block can be activated by an implicit input event or it can inherit the clock
       from the regular input (parameter <emphasis role="bold">Accepts Inherited Events</emphasis>).
     </para>
-    <para />
+    <para/>
   </refsection>
-
   <refsection id="Data_Type_LOGIC">
     <title>Data types</title>
-
-   <para>
+    <para>
       The block supports the following types :
     </para>
     <itemizedlist>
@@ -182,7 +162,7 @@
         <para>
           A positive input is considered as logical 1, a negative or a null input as logical 0.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -191,7 +171,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Dialogbox_LOGIC">
     <title>Dialog box</title>
     <para>
@@ -211,35 +190,39 @@
         <para>
           The matrix of outputs. The elements must be 0 or 1. For more information see the description part.
         </para>
-
         <para> Properties : Type 'mat' of size [-1,-2]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Accepts Inherited Events (0:No, 1:Yes)</emphasis>
         </para>
-
         <para> Specifies if the clock is inherit or not. 0 or 1</para>
-
         <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_LOGIC">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -261,19 +244,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -283,14 +276,13 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_1_LOGIC">
     <title>Example 1</title>
     <para>
       The easiest example to consider is the OR example.In this case we have two inputs and only one output. The truth table for 
       this example is : 
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="3">
       <tr>
         <td>
@@ -304,116 +296,163 @@
         </td>
       </tr>
       <tr>
-        <td>0</td><td>0</td><td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
       </tr>
       <tr>
-        <td>0</td><td>1</td><td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
       </tr>
       <tr>
-        <td>1</td><td>0</td><td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
       </tr>
       <tr>
-        <td>1</td><td>1</td><td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
       </tr>
     </informaltable>
     <para>
       and the <emphasis role="bold">Truth Table</emphasis> parameter is writing :
     </para>
-    <para />
-    
+    <para/>
     <programlisting role="example"><![CDATA[[0;1;1;1]]]></programlisting>
   </refsection>
-
-    <refsection id="Example_2_LOGIC">
-      <title>Example 2</title>
-      <para>
+  <refsection id="Example_2_LOGIC">
+    <title>Example 2</title>
+    <para>
         This example shows the use of LOGIC bloc as a demultiplexer. The goal is to send the true
         constant input on one of the four outputs according to the state of the two selection inputs:
         <emphasis><literal>a</literal></emphasis> and <emphasis><literal>b</literal></emphasis>.
         The truth table is the following:
       </para>
-      <para />
-      <informaltable border="1" cellpadding="3">
-        <tr>
-          <td>
-            <emphasis role="bold">Constant</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">a</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">b</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">Q0</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">Q1</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">Q2</emphasis>
-          </td>
-          <td>
-            <emphasis role="bold">Q3</emphasis>
-          </td>
-        </tr>
-        <tr>
-          <td>0</td><td>X</td><td>X</td><td>0</td><td>0</td><td>0</td><td>0</td>
-        </tr>
-        <tr>
-          <td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
-        </tr>
-        <tr>
-          <td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td>
-        </tr>
-        <tr>
-          <td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td>
-        </tr>
-        <tr>
-          <td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
-        </tr>
-      </informaltable>
-      <para>where <emphasis><literal>X</literal></emphasis> stands for "indifferent".</para>
-      <para>
+    <para/>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td>
+          <emphasis role="bold">Constant</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">a</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">b</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q0</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q1</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q2</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q3</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>X</td>
+        <td>X</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    </informaltable>
+    <para>where <emphasis><literal>X</literal></emphasis> stands for "indifferent".</para>
+    <para>
         To set this table in the <emphasis role="bold">Truth Table</emphasis> parameter, we can
         simply write:
       </para>
-      <para />
-      <programlisting role="example">
-        <![CDATA[
+    <para/>
+    <programlisting role="example"><![CDATA[
           [zeros(4,4) ; eye(4,4)]
-        ]]>
-      </programlisting>
-
-      <para />
-
-      <para>
-        The following figure shows the resulting outputs <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
-        à <emphasis><literal>Q<subscript>3</subscript></literal></emphasis> during the simulation when the selection
-        inputs <emphasis><literal>a</literal></emphasis> and <emphasis><literal>b</literal></emphasis> are
-        generated by a binary counter.
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/LOGIC_en_US.xcos">
-          Open this example in Xcos
-        </link>
-      </para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="../../../examples/integer_pal/en_US/logic_diagram_en_US.png" align="center" />
-        </imageobject>
-      </mediaobject>
-
-</refsection>
-
+        ]]></programlisting>
+    <para/>
+    <para>
+      The following figure shows the resulting outputs 
+      <emphasis><literal>
+          Q<subscript>0</subscript>
+        </literal>
+      </emphasis>
+      à 
+      <emphasis><literal>
+          Q<subscript>3</subscript>
+        </literal>
+      </emphasis>
+      during the simulation when the selection
+      inputs 
+      <emphasis>
+        <literal>a</literal>
+      </emphasis>
+      and 
+      <emphasis>
+        <literal>b</literal>
+      </emphasis>
+      are
+      generated by a binary counter.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/LOGIC_en_US.xcos">
+        Open this example in Xcos
+      </link>
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/integer_pal/en_US/logic_diagram_en_US.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
   <refsection id="Interfacingfunction_LOGIC">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/LOGIC.sci">SCI/modules/scicos_blocks/macros/IntegerOp/LOGIC.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/LOGIC.sci">SCI/modules/scicos_blocks/macros/IntegerOp/LOGIC.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_LOGIC">
     <title>Computational function</title>
     <itemizedlist>
@@ -422,7 +461,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_LOGIC">
     <title>See also</title>
     <itemizedlist>
@@ -434,15 +472,10 @@
       </listitem>
       <listitem>
         <link linkend="LOGICAL_OP">LOGICAL_OP</link>
-      </listitem>    
+      </listitem>
       <listitem>
         <link linkend="EXTRACTBITS">EXTRACTBITS</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_LOGIC">
-    <title>Authors</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

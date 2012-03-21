@@ -29,13 +29,17 @@
       <varlistentry>
         <term>paths</term>
         <listitem>
-          <para>a string matrix giving a set of pathnames (eventually  ended by a pattern built with <literal>*</literal>)</para>
+          <para>
+            a string matrix giving a set of pathnames (eventually  ended by a pattern built with <literal>*</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag,flagexpand</term>
         <listitem>
-          <para>boolean optional parameters. (default value <literal>%t</literal>).</para>
+          <para>
+            boolean optional parameters. (default value <literal>%t</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,20 +52,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>listfiles</literal> can be used to list the files which match 
-    the patterns given by one of the paths entries. 
-    Patterns are given to the unix <literal>ls</literal> or to the windows
-    <literal>dir</literal> commands in order to get information on files. 
-    Thus in order to write portable Scilab script valid wildcard patterns 
-    for both os are to be given. Note that Pathname conversion is
-    performed and for example <literal>SCI/core/macros/*.sci</literal> is a valid 
-    pattern for both unix and windows.</para>
     <para>
-    if <literal>flag</literal> is true the pathnames given by <literal>paths</literal> are 
-    converted according to the getos() == 'Windows' value (See <literal>pathconvert</literal>). 
-    Moreover, if <literal>flagexpand</literal> is true leading strings like
-    <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
-    variables.</para>
+      <literal>listfiles</literal> can be used to list the files which match 
+      the patterns given by one of the paths entries. 
+      Patterns are given to the unix <literal>ls</literal> or to the windows
+      <literal>dir</literal> commands in order to get information on files. 
+      Thus in order to write portable Scilab script valid wildcard patterns 
+      for both os are to be given. Note that Pathname conversion is
+      performed and for example <literal>SCI/core/macros/*.sci</literal> is a valid 
+      pattern for both unix and windows.
+    </para>
+    <para>
+      if <literal>flag</literal> is true the pathnames given by <literal>paths</literal> are 
+      converted according to the getos() == 'Windows' value (See <literal>pathconvert</literal>). 
+      Moreover, if <literal>flagexpand</literal> is true leading strings like
+      <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
+      variables.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +77,7 @@ files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin'
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findfiles">findfiles</link>

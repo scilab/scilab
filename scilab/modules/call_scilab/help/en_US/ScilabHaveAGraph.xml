@@ -70,8 +70,4 @@ if (ScilabHaveAGraph()){
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Sylvestre Ledru</para>
-  </refsection>
 </refentry>

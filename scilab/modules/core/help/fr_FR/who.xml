@@ -10,34 +10,39 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>who
-who()
-names=who('local')
-[names,mem]=who('local')
-names=who('global')
-[names,mem]=who('global')
-who('sorted')
-names=who('local','sorted')
-[names,mem]=who('local','sorted')
-names=who('global','sorted')
-[names,mem]=who('global','sorted')</synopsis>
+      who()
+      names=who('local')
+      [names,mem]=who('local')
+      names=who('global')
+      [names,mem]=who('global')
+      who('sorted')
+      names=who('local','sorted')
+      [names,mem]=who('local','sorted')
+      names=who('global','sorted')
+      [names,mem]=who('global','sorted')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>who</literal> affiche les noms des variables courantes.
-		</para>
-    <para><literal>who('local')</literal> ou <literal>who('get')</literal>
-			renvoie les noms des variables courantes et l'occupation mémoire en
-			nombre de flottants double précision.
-		</para>
-    <para><literal>who('global')</literal> renvoie les noms des variables
-			<literal>globales</literal> courantes et l'occupation mémoire en nombre
-			de flottants double précision.
-		</para>
-    <para><literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.
-		</para>
+    <para>
+      <literal>who</literal> affiche les noms des variables courantes.
+    </para>
+    <para>
+      <literal>who('local')</literal> ou <literal>who('get')</literal>
+      renvoie les noms des variables courantes et l'occupation mémoire en
+      nombre de flottants double précision.
+    </para>
+    <para>
+      <literal>who('global')</literal> renvoie les noms des variables
+      <literal>globales</literal> courantes et l'occupation mémoire en nombre
+      de flottants double précision.
+    </para>
+    <para>
+      <literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

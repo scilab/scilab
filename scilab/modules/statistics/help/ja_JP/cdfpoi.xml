@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
-[S]=cdfpoi("S",Xlam,P,Q)
-[Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis>
+      [S]=cdfpoi("S",Xlam,P,Q)
+      [Xlam]=cdfpoi("Xlam",P,Q,S);
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -56,22 +57,26 @@
   <refsection>
     <title>説明</title>
     <para>
-	ポアソン分布のパラメータの一つをそれ以外のパラメータの値を
-	指定して計算します.</para>
+      ポアソン分布のパラメータの一つをそれ以外のパラメータの値を
+      指定して計算します.
+    </para>
     <para>
-    AbramowitzおよびStegunによる,  Handbook   of
-    Mathematical Functions (1966) の 26.4.21式が,
-	累積分布関数の計算をカイ二乗を計算する関数,すなわち,
-	不完全ガンマ関数に縮減する際に使用されます.</para>
+      AbramowitzおよびStegunによる,  Handbook   of
+      Mathematical Functions (1966) の 26.4.21式が,
+      累積分布関数の計算をカイ二乗を計算する関数,すなわち,
+      不完全ガンマ関数に縮減する際に使用されます.
+    </para>
     <para>
-	累積分布関数 (P) は,直接計算されます.
-	その他のパラメータの計算は,指定したPの値を出力する
-	値の検索も含みます.
-	この検索は,Pの他のパラメータに間する単調性に依存しています.</para>
-     <para>
-    DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
-	ライブラリ(February, 1994)
-     Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.</para>
+      累積分布関数 (P) は,直接計算されます.
+      その他のパラメータの計算は,指定したPの値を出力する
+      値の検索も含みます.
+      この検索は,Pの他のパラメータに間する単調性に依存しています.
+    </para>
+    <para>
+      DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
+      ライブラリ(February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

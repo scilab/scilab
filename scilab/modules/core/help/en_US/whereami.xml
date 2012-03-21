@@ -14,8 +14,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Displays calling tree to instruction which contain whereami(). May be
-    used within pause levels.</para>
+      Displays calling tree to instruction which contain whereami(). May be
+      used within pause levels.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -28,7 +29,7 @@ test(1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="where">where</link>

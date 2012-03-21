@@ -102,11 +102,9 @@ UTF8 support if PCRE is built without it. */
 /*-------------------------------------------------------------------------------*/
 /* Static variables */
 
-static FILE *outfile = NULL;
 static int callout_count = 0;
 static int callout_fail_count = 0;
 static int callout_fail_id = 0;
-static size_t gotten_store = 0;
 
 /* The buffers grow automatically if very long input lines are encountered. */
 
@@ -117,58 +115,6 @@ static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 							 int start_offset, int options, int *use_offsets, int use_size_offsets,
 							 int flag, unsigned long int *limit, int errnumber);
 
-/*************************************************
-*              Callout function                  *
-*************************************************/
-
-/* Called from PCRE as a result of the (?C) item. We print out where we are in
-the match. Yield zero unless more callouts than the fail count, or the callout
-data is not zero. */
-
-static int callout(pcre_callout_block *cb)
-{
-	/* Always print appropriate indicators, with callout number if not already
-	shown. For automatic callouts, show the pattern offset. */
-
-	if (cb->callout_data != NULL)
-	{
-		int callout_data = *((int *)(cb->callout_data));
-		if (callout_data != 0)
-		{
-			return callout_data;
-		}
-	}
-
-	return (cb->callout_number != callout_fail_id)? 0 :
-		(++callout_count >= callout_fail_count)? 1 : 0;
-}
-
-
-/*************************************************
-*            Local malloc functions              *
-*************************************************/
-
-/* Alternative malloc function, to test functionality and show the size of the
-compiled re. */
-
-static void *new_malloc(size_t size)
-{
-	void *block = MALLOC(size);
-	gotten_store = size;
-	return block;
-}
-
-
-/*************************************************
-*          Call pcre_fullinfo()                  *
-*************************************************/
-
-/* Get one piece of information from the pcre_fullinfo() function */
-
-static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
-{
-	pcre_fullinfo(re, study, option, ptr);
-}
 
 /*************************************************
 *        Check match or recursion limit          *
@@ -213,31 +159,6 @@ static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 
 	extra->flags &= ~flag;
 	return count;
-}
-
-
-
-/*************************************************
-*         Case-independent strncmp() function    *
-*************************************************/
-
-/*
-Arguments:
-s         first string
-t         second string
-n         number of characters to compare
-
-Returns:    < 0, = 0, or > 0, according to the comparison
-*/
-
-static int strncmpic(char *s, char *t, int n)
-{
-	while (n--)
-	{
-		int c = tolower(*s++) - tolower(*t++);
-		if (c) return c;
-	}
-	return 0;
 }
 
 

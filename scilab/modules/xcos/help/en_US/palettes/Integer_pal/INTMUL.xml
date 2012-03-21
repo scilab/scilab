@@ -18,48 +18,34 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  *
  -->
-
-<refentry
-  version="5.0-subset Scilab" xml:id="INTMUL"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmln.mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="INTMUL" xmln.mml="http://www.w3.org/1998/Math/MathML">
   <refnamediv>
     <refname>INTMUL</refname>
-
     <refpurpose>Integer matrix multiplication</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/INTMUL.png"
-                     valign="middle"></imagedata>
+          <imagedata align="center" fileref="../../../../images/palettes/INTMUL.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Contents_INTMUL">
     <title>Contents</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="INTMUL">Integer matrix multiplication</link>
         </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
           <listitem>
@@ -67,68 +53,52 @@
               <xref linkend="Palette_INTMUL">Palette</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Description_INTMUL">Description</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Data_Type_INTMUL">Data types</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Dialogbox_INTMUL">Dialog box</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Defaultproperties_INTMUL">Default properties</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Example_INTMUL">Example</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_INTMUL">Interfacing function</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Computationalfunction_INTMUL">Computational function</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Seealso_INTMUL">See also</xref>
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>
-              <xref linkend="Authors_INTMUL">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_INTMUL">
     <title>Palette</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -137,10 +107,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_INTMUL">
     <title>Description</title>
-
     <para>
       That block computes the matrix multiplication of two integer input matrices. The number of rows
       of the second matrix must be equal to the number of columns of the first matrix.
@@ -152,9 +120,9 @@
     <para>On overflow, the result can take different forms:</para>
     <orderedlist>
       <listitem>
-      <para>
-         A normal non saturated result. By example, if type is int8 and the result is 128, the block output value will be -128.
-      </para>
+        <para>
+          A normal non saturated result. By example, if type is int8 and the result is 128, the block output value will be -128.
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -173,54 +141,45 @@
       field to 0,1 or 2.
     </para>
   </refsection>
-
   <refsection id="Data_Type_INTMUL">
     <title>Data types</title>
-
     <para>
       The block supports the following types :
     </para>
-      <itemizedlist>
+    <itemizedlist>
       <listitem>
         <para>
           Input : matrices, vectors or scalars. Scilab's integer data types (<emphasis role="bold">Data Type</emphasis> parameter).
         </para>
-	<para />
+        <para/>
       </listitem>
       <listitem>
         <para>
           Output : same type that the inputs.
         </para>
       </listitem>
-      </itemizedlist>
-   </refsection>
-
+    </itemizedlist>
+  </refsection>
   <refsection id="Dialogbox_INTMUL">
     <title>Dialog box</title>
-
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../gui/integer_pal/en_US/INTMUL_gui.png"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../gui/integer_pal/en_US/INTMUL_gui.png" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
-
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
         </para>
-
         <para>
           It indicates the type of the input/output data : between 3 and 8.
         </para>
-
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Do on Overflow (0:Nothing, 1:Saturate, 2:Error)</emphasis>
@@ -228,96 +187,102 @@
         <para>
           Between 0 and 2. When there are an overflowing, if parameter is equal to :
         </para>
-       <itemizedlist>
+        <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">0</emphasis> : the result is non saturated.</para>
+            <para>
+              <emphasis role="bold">0</emphasis> : the result is non saturated.
+            </para>
           </listitem>
           <listitem>
-              <para><emphasis role="bold">1</emphasis> : the result is saturated.</para>
+            <para>
+              <emphasis role="bold">1</emphasis> : the result is saturated.
+            </para>
           </listitem>
           <listitem>
-              <para><emphasis role="bold">2</emphasis> : the simulation displays en error message.</para>
+            <para>
+              <emphasis role="bold">2</emphasis> : the simulation displays en error message.
+            </para>
           </listitem>
         </itemizedlist>
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_INTMUL">
     <title>Default properties</title>
-
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular inputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 2 : size [-2,-3] / type 3</emphasis>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-3] / type 3</emphasis>
         </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-
           <emphasis role="italic">matmul_i32</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_INTMUL">
     <title>Example</title>
     <para>
@@ -327,105 +292,84 @@
         Open this example in Xcos
       </link>
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../../../examples/integer_pal/en_US/intmul_diagram_en_US.png" />
+        <imagedata align="center" fileref="../../../examples/integer_pal/en_US/intmul_diagram_en_US.png"/>
       </imageobject>
     </mediaobject>
   </refsection>
-
   <refsection id="Interfacingfunction_INTMUL">
     <title>Interfacing function</title>
-
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/INTMUL.sci">SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/INTMUL.sci">SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_INTMUL">
     <title>Computational function</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i32n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i16n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i8n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui32n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui16n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui8n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i32s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i16s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i8s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui32s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui16s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui8s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i32e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i16e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_i8e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui32e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui16e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/matmul_ui8e.c</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_INTMUL">
     <title>See also</title>
-
     <itemizedlist>
       <listitem>
         <link linkend="MATMUL">MATMUL</link>
@@ -434,11 +378,5 @@
         <link linkend="EXTRACTBITS">EXTRACTBITS</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_INTMUL">
-    <title>Authors</title>
-
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

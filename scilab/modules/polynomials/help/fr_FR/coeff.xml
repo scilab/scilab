@@ -18,40 +18,42 @@
         <term>Mp  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v  </term>
         <listitem>
           <para>vecteur (ligne ou colonne) d'entiers des degrés choisis
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>C  </term>
         <listitem>
           <para>grosse matrice de coefficients
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>C=coeff(Mp)</literal>
-    renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
-    matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
-    partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
-    où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
-    <literal>k = max(degree(Mp))</literal>
-  </para>
-    <para><literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
-    degrés dans <literal>v</literal>.
-  </para>
+    <para>
+      <literal>C=coeff(Mp)</literal>
+      renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
+      matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
+      partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
+      où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
+      <literal>k = max(degree(Mp))</literal>
+    </para>
+    <para>
+      <literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
+      degrés dans <literal>v</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

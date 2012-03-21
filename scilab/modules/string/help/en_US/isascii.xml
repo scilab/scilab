@@ -41,9 +41,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
-        US-ASCII character code between 0 and octal 0177 inclusive.
-        otherwise returns FALSE (%F)
+    <para>
+      <literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
+      US-ASCII character code between 0 and octal 0177 inclusive.
+      otherwise returns FALSE (%F)
     </para>
   </refsection>
   <refsection>
@@ -56,7 +57,7 @@ isascii('scilab')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="isalphanum">isalphanum</link>

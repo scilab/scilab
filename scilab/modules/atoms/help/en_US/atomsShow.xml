@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsShow(module)
-	</synopsis>
+      atomsShow(module)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -34,8 +34,8 @@
         <term>module</term>
         <listitem>
           <para>
-						1x1 or 1x2 Matrix of strings:
-					</para>
+            1x1 or 1x2 Matrix of strings:
+          </para>
           <informaltable border="1">
             <!-- Technical name -->
             <tr>
@@ -46,10 +46,10 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-								Mandatory
-							</td>
+                Mandatory
+              </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -60,12 +60,12 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								the most recent	version is used
-							</td>
+                If this field is empty or is not present,
+                the most recent	version is used
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -78,8 +78,8 @@
   <refsection>
     <title>Description</title>
     <para>
-			Show the caracteristics of a module
-	</para>
+      Show the caracteristics of a module
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -108,10 +108,4 @@ atomsShow("toolbox_5");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

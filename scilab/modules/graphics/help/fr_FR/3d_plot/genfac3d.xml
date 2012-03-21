@@ -17,45 +17,49 @@
       <varlistentry>
         <term>xx,yy,zz  </term>
         <listitem>
-          <para>matrices de taille (4,n-1xm-1). <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> et <literal>zz(:,i)</literal>  sont respectivement les coordonnées des 4 points de la facette numéro i.
-</para>
+          <para>
+            matrices de taille (4,n-1xm-1). <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> et <literal>zz(:,i)</literal>  sont respectivement les coordonnées des 4 points de la facette numéro i.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
           <para>vecteur de taille m.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
           <para>vecteur de taille n.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>z  </term>
         <listitem>
-          <para>matrice de taille (m,n). <literal>z(i,j)</literal> est la hauteur de la surface au point (x(i),y(j)).
-</para>
+          <para>
+            matrice de taille (m,n). <literal>z(i,j)</literal> est la hauteur de la surface au point (x(i),y(j)).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mask  </term>
         <listitem>
-          <para>matrice booléenne optionnelle de même taille que <literal>z</literal> utilisée pour sélectionner les  termes de <literal>z</literal> à représenter par des facettes.
-</para>
+          <para>
+            matrice booléenne optionnelle de même taille que <literal>z</literal> utilisée pour sélectionner les  termes de <literal>z</literal> à représenter par des facettes.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>genfac3d</literal>  calcule la représentation en facettes à 4 points d'une surface 3D non-paramétrique
-    <literal>z=f(x,y)</literal> définie par <literal>x</literal>, <literal>y</literal> et <literal>z</literal>.
-  </para>
+    <para>
+      <literal>genfac3d</literal>  calcule la représentation en facettes à 4 points d'une surface 3D non-paramétrique
+      <literal>z=f(x,y)</literal> définie par <literal>x</literal>, <literal>y</literal> et <literal>z</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -66,7 +70,7 @@ plot3d(xx,yy,zz)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="eval3dp">eval3dp</link>

@@ -15,7 +15,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "gw_core.h"
-#include "stack-c.h"
 #include "getversion.h"
 #include "MALLOC.h"
 #include "localization.h"

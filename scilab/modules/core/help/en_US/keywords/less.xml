@@ -9,18 +9,20 @@
   </refnamediv>
   <refnamediv xml:id="great">
     <refname>great</refname>
-    <refpurpose> (&lt;) greater than comparison</refpurpose>
+    <refpurpose> (&gt;) greater than comparison</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    logical comparison symbol
-  </para>
+      logical comparison symbol
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;&gt;</term>
         <listitem>
-          <para>means "different" (same as <literal>~=</literal>)</para>
+          <para>
+            means "different" (same as <literal>~=</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,7 +52,7 @@
     </variablelist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="if">if</link>

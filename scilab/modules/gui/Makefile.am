@@ -24,20 +24,25 @@ libscigui_la_root_DATA =  license.txt
 
 #### gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml \
-etc/windowsConfiguration.xml
+libscigui_la_etc_DATA = \
+	etc/gui.quit \
+	etc/gui.start \
+	etc/graphics_menubar.xml \
+	etc/graphics_toolbar.xml \
+	etc/helpbrowser_menubar.xml \
+	etc/main_menubar.xml \
+	etc/main_toolbar.xml \
+	etc/flexdock-themes.xml \
+	etc/windowsConfiguration.xml \
+	etc/XConfiguration-colors.xml \
+	etc/XConfiguration-colors.xsl \
+	etc/XConfiguration-font.xml \
+	etc/XConfiguration-font.xsl \
+	etc/XConfiguration-toolbars.xml \
+	etc/XConfiguration-toolbars.xsl
 
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree
-
-include $(top_srcdir)/Makefile.incl.am
 
 GUI_C_SOURCES = \
 src/c/buildMainWindowTitle.c \
@@ -162,19 +167,15 @@ src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
 src/jni/ScilabDisplayTree.giws.xml
 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
-
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabTermination.i
-
 if SWIG
-    BUILT_SOURCES=swig
+BUILT_SOURCES+=swig
 endif
-
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \
@@ -358,12 +359,13 @@ images/icons/16x16/actions/zoom-out.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
 images/icons/16x16/apps/help-browser.png \
+images/icons/16x16/apps/scilab.png \
 images/icons/16x16/apps/utilities-system-monitor.png \
 images/icons/16x16/categories/applications-system.png \
 images/icons/16x16/devices/media-floppy.png \
 images/icons/16x16/devices/printer.png \
-images/icons/16x16/emblems/emblem-readonly.png \
 images/icons/16x16/emblems/emblem-important.png \
+images/icons/16x16/emblems/emblem-readonly.png \
 images/icons/16x16/mimetypes/application-pdf.png \
 images/icons/16x16/mimetypes/binary.png \
 images/icons/16x16/mimetypes/image-x-generic.png \
@@ -376,17 +378,17 @@ images/icons/16x16/places/folder.png \
 images/icons/16x16/places/folder-saved-search.png \
 images/icons/16x16/places/scilab-folder.png \
 images/icons/16x16/places/user-home.png \
+images/icons/16x16/status/dialog-information.png \
+images/icons/16x16/status/dialog-warning.png \
 images/icons/16x16/status/error.png \
 images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
-images/icons/16x16/status/dialog-information.png \
-images/icons/16x16/status/dialog-warning.png \
 images/icons/256x256/apps/accessories-text-editor.png \
 images/icons/256x256/apps/rrze_table.png \
-images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/256x256/apps/system-search.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/datatips.png \
@@ -413,16 +415,17 @@ images/icons/aboutscilab.png \
 images/icons/check-icon.png \
 images/icons/close-tab-on.png \
 images/icons/close-tab.png \
+images/icons/dock_help_active.png \
+images/icons/dock_help_default.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png \
-images/icons/dock_help_active.png \
-images/icons/dock_help_default.png
+images/icons/undock_default.png
 
 if GUI
 USEANT=1
 endif
 
+include $(top_srcdir)/Makefile.incl.am

@@ -16,13 +16,6 @@
 #include <errno.h>
 #endif
 
-
-// UNAME 
-#ifdef HAVE_UNAME
-#include <sys/utsname.h>
-#endif
-
-
 #ifndef _MSC_VER
 #include <fcntl.h>
 #include <getopt.h>
@@ -37,6 +30,10 @@
 #include "getdynamicdebuginfo.h"
 #include "api_scilab.h"
 
+// UNAME 
+#ifdef HAVE_UNAME
+#include <sys/utsname.h>
+#endif
 
 /**
 * Set a debug element

@@ -372,7 +372,7 @@ AC_DEFUN([CHECK_ARPACK_OK], [
   AC_LANG_PUSH(C++)
   save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
   AC_CACHE_CHECK([whether the arpack library works],
-    [cv_lib_arpack_ok], [
+    [lib_cv_arpack_ok], [
       AC_RUN_IFELSE([AC_LANG_PROGRAM([[
 // External functions from ARPACK library
 extern "C" int

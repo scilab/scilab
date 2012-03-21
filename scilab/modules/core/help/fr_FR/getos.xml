@@ -6,16 +6,20 @@
   <refnamediv>
     <refname>getos</refname>
     <refpurpose>retourne le nom et la version de
-  O.S</refpurpose>
+      O.S
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>OS=getos()
-[OS,Version]=getos()</synopsis>
+      [OS,Version]=getos()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getos </literal>retourne le nom et la version de O.S</para>
+    <para>
+      <literal>getos </literal>retourne le nom et la version de O.S
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -28,9 +32,5 @@ if (getos() == "SunOS") then disp("Scilab on Solaris"); end
 if (getos() == "Darwin") then disp("Scilab on MacOs"); end
 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

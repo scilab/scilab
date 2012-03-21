@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>toc()
-t = toc()</synopsis>
+      t = toc()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,14 +30,18 @@ t = toc()</synopsis>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>number of seconds since last call to <literal>tic()</literal> (Precision in order of millisecond).</para>
+          <para>
+            number of seconds since last call to <literal>tic()</literal> (Precision in order of millisecond).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>The sequence of commands <literal>tic(); operation; toc();</literal> prints the number of seconds required for the operation.</para>
+    <para>
+      The sequence of commands <literal>tic(); operation; toc();</literal> prints the number of seconds required for the operation.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -49,7 +54,7 @@ toc();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tic">tic</link>
@@ -60,13 +65,6 @@ toc();
       <member>
         <link linkend="etime">etime</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>strchr</refname>
     <refpurpose>Find the first occurrence of a character in
-  a string</refpurpose>
+      a string
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -48,8 +49,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = strchr(haystack,char)</literal> Returns the first occurrence
-    of character in the string str.</para>
+    <para>
+      <literal>res = strchr(haystack,char)</literal> Returns the first occurrence
+      of character in the string str.
+    </para>
     <para>num must have same dimensions than haystack or only one char.</para>
   </refsection>
   <refsection>
@@ -61,7 +64,7 @@ strchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strrchr">strrchr</link>

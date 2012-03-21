@@ -29,8 +29,10 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-         <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
-	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+          <para>
+            スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+            パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,7 +46,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    mputstr 関数により文字列をバイナリファイルに書き込むことが可能です.</para>
+      mputstr 関数により文字列をバイナリファイルに書き込むことが可能です.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

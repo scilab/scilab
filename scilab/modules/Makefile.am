@@ -86,6 +86,7 @@ parallel \
 modules_manager \
 ui_data \
 history_browser \
+preferences \
 xml \
 types
 
@@ -189,7 +190,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
     $(top_builddir)/modules/statistics/libscistatistics.la \
     $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
+	$(top_builddir)/modules/xml/libscixml.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -207,8 +209,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
 
 # Core modules
@@ -235,3 +237,4 @@ libscilab_cli_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LI
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
+.NOTPARALLEL: libscilab-cli.la libscilab.la

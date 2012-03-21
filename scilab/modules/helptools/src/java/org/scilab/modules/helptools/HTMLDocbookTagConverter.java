@@ -776,6 +776,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                     code += appendForExecToProgramListing;
                 }
                 str = encloseContents("div", "programlisting", code);
+            } else if (role.equals("no-scilab-exec")) {
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
+                str = encloseContents("div", "programlisting", code);
             } else {
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,23 +11,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_cond2reltol" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  
-  
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_cond2reltol" xml:lang="en">
   <refnamediv>
     <refname>assert_cond2reltol</refname>
     <refpurpose>Suggests a relative error, computed from the condition number.</refpurpose>
   </refnamediv>
-  
-  
-  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
@@ -37,7 +24,6 @@
       
     </synopsis>
   </refsynopsisdiv>
-  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -61,7 +47,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>Description</title>
     <para>
@@ -100,11 +85,9 @@
     <para>
     </para>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 assert_cond2reltol ( 0 ) // 1.110D-16
 assert_cond2reltol ( 1 ) // 1.110D-16
 assert_cond2reltol ( 1.e1 ) // 1.110D-15
@@ -151,10 +134,8 @@ r = assert_cond2reltol ( condition , -3 );
 plot(condition,r,"g")
 legend(["Offset=0","Offset=+3","Offset=-3"]);
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-  
   <refsection>
     <title>History</title>
     <revhistory>
@@ -164,12 +145,5 @@ legend(["Offset=0","Offset=+3","Offset=-3"]);
         </revdescription>
       </revision>
     </revhistory>
-  </refsection>
-  
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
   </refsection>
 </refentry>

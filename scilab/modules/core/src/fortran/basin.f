@@ -31,12 +31,12 @@ c
          call xscion(iflag)
          if (iflag.eq.0) then 
             if (intexmacs().eq.0) then
-               call zzledt(string,len(string),lline,status,menusflag,0)
+               call eventloopprompt(string, len(string), lline, status)
             else
-               call texmacsin(string,len(string),lline,status)
+               call texmacsin(string, len(string), lline, status)
             endif
          else
-            call zzledt(string,len(string),lline,status,menusflag,1)
+            call eventloopprompt(string, len(string), lline, status)
          endif
          if(status.ne.0) then
 c     .     status>0 : eof, status<0 :read interrupted (callbacks),

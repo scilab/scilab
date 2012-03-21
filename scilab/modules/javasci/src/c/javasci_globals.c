@@ -17,6 +17,8 @@
 #include <tcl.h>
 #endif
 #include "isdir.h"
+#else
+#include <windows.h>
 #endif
 #include "javasci_globals.h"
 #include "inisci-c.h"

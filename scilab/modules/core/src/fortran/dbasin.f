@@ -24,7 +24,7 @@ c
 
          string=' '
          call xscion(iflag)
-         call zzledt(string,len(string),lline,status,0,iflag)
+         call eventloopprompt(string,len(string),lline,status,0,iflag)
          if(status.ne.0) goto 10
          if (lline.eq.0) then
             string(1:1)=' '

@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -72,7 +71,7 @@ int sci_xmlReadStr(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             delete code;
 

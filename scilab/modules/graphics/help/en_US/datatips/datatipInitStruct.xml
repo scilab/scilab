@@ -83,7 +83,7 @@
         <term>replace</term>
         <listitem>
           <para>
-             A boolean, indicating if adding a new tip erases the others or not
+            A boolean, indicating if adding a new tip erases the others or not
           </para>
         </listitem>
       </varlistentry>
@@ -91,12 +91,16 @@
         <term>style</term>
         <listitem>
           <para>
-             A two elements vector with integer values.
-             <literal>style(1)</literal> is a number in <literal>[1
-             2]</literal> that gives the the datatips style,
-             <literal>style(2)</literal> is a number in <literal>[0
-             1]</literal>. If set to 1 the datatip text is boxed (see
-             <link linkend="datatipSetStyle">datatipSetStyle</link>).
+            A two elements vector with integer values.
+            <literal>style(1)</literal> is a number in <literal>[1
+              2]
+            </literal>
+            that gives the the datatips style,
+            <literal>style(2)</literal> is a number in <literal>[0
+              1]
+            </literal>
+            .If set to 1 the datatip text is boxed (see
+            <link linkend="datatipSetStyle">datatipSetStyle</link>).
           </para>
         </listitem>
       </varlistentry>
@@ -104,15 +108,15 @@
         <term>formatfunction</term>
         <listitem>
           <para>
-             A Scilab function, the function which is called to format
-             the text that appears in the datatips. It as the
-             following calling sequence:
-             <literal>str=datatipDefaultDisplay(curve_handle,pt,index)</literal>
-             where <literal>curve_handle</literal> is handle on the
-             polyline or surface, <literal>pt</literal> is the
-             coordinates of the point and <literal>index</literal> is
-             the index of the point in the data or is empty in case of
-             interpolated mode.
+            A Scilab function, the function which is called to format
+            the text that appears in the datatips. It as the
+            following calling sequence:
+            <literal>str=datatipDefaultDisplay(curve_handle,pt,index)</literal>
+            where <literal>curve_handle</literal> is handle on the
+            polyline or surface, <literal>pt</literal> is the
+            coordinates of the point and <literal>index</literal> is
+            the index of the point in the data or is empty in case of
+            interpolated mode.
           </para>
         </listitem>
       </varlistentry>
@@ -120,7 +124,7 @@
         <term>selected</term>
         <listitem>
           <para>
-             A scalar with integer value: the index of the selected datatip if any or 0.
+            A scalar with integer value: the index of the selected datatip if any or 0.
           </para>
         </listitem>
       </varlistentry>
@@ -128,9 +132,9 @@
         <term>tips</term>
         <listitem>
           <para>
-             An array of handles. Each of these points to a given tip
-             on the curve. This field cannot be changed by the
-             <literal>datatipInitStruct</literal> function.
+            An array of handles. Each of these points to a given tip
+            on the curve. This field cannot be changed by the
+            <literal>datatipInitStruct</literal> function.
           </para>
         </listitem>
       </varlistentry>
@@ -189,11 +193,5 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
   </refsection>
 </refentry>

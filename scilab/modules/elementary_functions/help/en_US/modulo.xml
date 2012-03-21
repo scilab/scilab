@@ -40,14 +40,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>modulo</literal> computes <literal>i= n (modulo
-    m)</literal> i.e. remainder of <literal>n</literal> divided by
-    <literal>m</literal> (<literal>n</literal> and <literal>m</literal>
-    integers).</para>
-    <para>i = n - m .* int (n ./ m). Here the answer may be negative if
-    <literal>n</literal> or <literal>m</literal> are negative.</para>
-    <para><literal>pmodulo</literal> computes <literal>i = n - m .* floor (n
-    ./ m)</literal>, the answer is positive or zero.</para>
+    <para>
+      <literal>modulo</literal> computes <literal>i= n (modulo
+      m)</literal> i.e. remainder of <literal>n</literal> divided by
+      <literal>m</literal> (<literal>n</literal> and <literal>m</literal>
+      are integers).
+    </para>
+    <para>
+      <literal>i = n - m .* int (n ./ m)</literal>. Here the answer may be negative
+      if <literal>n</literal> or <literal>m</literal> are negative.
+    </para>
+    <para>
+      <literal>pmodulo</literal> computes <literal>i = n - m .* floor (n
+      ./ m)</literal>, the answer is positive or zero.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

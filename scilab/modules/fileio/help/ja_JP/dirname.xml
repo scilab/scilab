@@ -35,7 +35,9 @@
       <varlistentry>
         <term>flag,flagexpand</term>
         <listitem>
-          <para>オプションの論理値パラメータ. (デフォルト値 <literal>%t</literal>).</para>
+          <para>
+            オプションの論理値パラメータ. (デフォルト値 <literal>%t</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,22 +50,24 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>dirname</literal> は files で指定したファイルエントリの
-	ディレクトリ名を返します.</para>
     <para>
-    <literal>flag</literal> が真の場合, files は
-	<literal>getos() == 'Windows'</literal>変数で指定した目標型にまず
-	変換されます.
-	更に, <literal>flagexpand</literal> が真の場合,
-	<literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
-	のような接頭文字列は環境変数を用いて展開されます.
-	</para>
+      <literal>dirname</literal> は files で指定したファイルエントリの
+      ディレクトリ名を返します.
+    </para>
     <para>
-    <literal>dirname(files,%f)</literal> は,
-	files に指定したパス名が
-	<literal>getos() == 'Windows'</literal>変数により指定される変換に従わない
-	場合に間違った結果を出力することがあるため,注意を要します.
-	</para>
+      <literal>flag</literal> が真の場合, files は
+      <literal>getos() == 'Windows'</literal>変数で指定した目標型にまず
+      変換されます.
+      更に, <literal>flagexpand</literal> が真の場合,
+      <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
+      のような接頭文字列は環境変数を用いて展開されます.
+    </para>
+    <para>
+      <literal>dirname(files,%f)</literal> は,
+      files に指定したパス名が
+      <literal>getos() == 'Windows'</literal>変数により指定される変換に従わない
+      場合に間違った結果を出力することがあるため,注意を要します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

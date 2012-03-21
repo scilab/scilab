@@ -11,60 +11,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xml:id="rand"
-          xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="rand" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>rand</refname>
-
     <refpurpose>Random numbers</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       r = rand()
       r = rand(m1,m2,...)
       r = rand(m1,m2,...,key)
       r = rand(x)
       r = rand(x,key)
-
+      
       s = rand("seed")
       rand("seed",s)
-
+      
       rand(key)
       key = rand("info")
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>m1, m2, ...</term>
-
         <listitem>
           <para>
             integers, the size of the random matrix <literal>r</literal>.
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>key</term>
-
         <listitem>
           <para>
             a string, the distribution of random numbers (default  <literal>key="uniform" </literal>).
@@ -73,10 +56,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>
             a real or complex matrix.
@@ -84,7 +65,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r</term>
         <listitem>
@@ -93,7 +73,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>s</term>
         <listitem>
@@ -102,13 +81,10 @@
           </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>
       The purpose of this function is to return a matrix of doubles with real or complex
       random entries.
@@ -117,22 +93,17 @@
       generator.
     </para>
   </refsection>
-
   <refsection>
     <title>Generate random numbers</title>
     <variablelist>
-
       <varlistentry>
         <term>r=rand()</term>
-
         <listitem>
           <para>returns a 1-by-1 matrix of doubles, with one random value.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(m1,m2)</term>
-
         <listitem>
           <para>
             is a random matrix with dimension <literal>m1</literal>-by-
@@ -140,10 +111,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(m1,m2,...,mn)</term>
-
         <listitem>
           <para>
             returns a random matrix with dimension <literal>m1</literal>-by-
@@ -151,10 +120,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(a)</term>
-
         <listitem>
           <para>
             returns a random matrix with the same size as a.
@@ -164,22 +131,17 @@
           </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Change the distribution of the random numbers</title>
     <para>
       The <literal>key</literal> input argument sets the distribution of the
       generated random numbers.
     </para>
-
     <variablelist>
-
       <varlistentry>
         <term>rand("uniform")</term>
-
         <listitem>
           <para>
             sets the generator to a uniform random number
@@ -188,10 +150,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>rand("normal")</term>
-
         <listitem>
           <para>
             sets the generator to a normal (Gauss-Laplace) random number generator,
@@ -199,10 +159,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>key=rand("info")</term>
-
         <listitem>
           <para>
             return the current distribution of the random generator ("uniform" or
@@ -211,27 +169,21 @@
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
-
   <refsection>
     <title>Get or set the seed</title>
     <para>
       It is possible to get or set the seed of the random number generator.
     </para>
-
     <variablelist>
       <varlistentry>
         <term>s=rand("seed")</term>
-
         <listitem>
           <para>returns the current value of the seed.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>rand("seed",s)</term>
-
         <listitem>
           <para>
             sets the seed to <literal>s</literal> (by default
@@ -240,18 +192,14 @@
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <para>
       In the following example, we generate random doubles with
       various distributions.
     </para>
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
 // Get one random double (based on the current distribution)
 r=rand()
 // Get one 4-by-6 matrix of doubles (based on the current distribution)
@@ -263,17 +211,13 @@ x=rand(4,4);
 r=rand(x,"normal")
 // Produce a 2-by-2-by-2 array of random doubles
 r=rand(2,2,2)
- ]]>
-    </programlisting>
-
+ ]]></programlisting>
     <para>
       In the following example, we change the distribution of the 
       number generated by <literal>rand</literal>.
       We first produce normal numbers, then numbers uniform in [0,1).
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     // Set the rand generator to normal
     rand("normal")
     r=rand(4,6)
@@ -283,56 +227,41 @@ r=rand(2,2,2)
     rand("uniform")
     r=rand(4,6)
     key=rand("info")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       In the following example, we generate a 2-by-3 complex matrix 
       of doubles, with normal distribution.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     // Produce a 2-by-3 matrix of random complex doubles
     x=rand(2,3)+%i*rand(2,3)
     // Produce a matrix of random complex doubles with
     // normal entries and the same size as x
     r=rand(x,"normal")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       In the following example, we plot the distribution of uniform 
       numbers produced by <literal>rand</literal>.
-  </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    </para>
+    <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
     xtitle("Uniform numbers from rand","X","Frequency")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       In the following example, we plot the distribution of standard normal 
       numbers produced by <literal>rand</literal>.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
     xtitle("Normal numbers from rand","X","Frequency")
-    ]]>
-    </programlisting>
+    ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Get predictible or less predictible numbers</title>
-
     <para>
       The "uniform" pseudo random number generator is a deterministic sequence which aims at
       reproducing a independent identically distributed numbers uniform in the
@@ -348,28 +277,22 @@ r=rand(2,2,2)
       order to produce less predictible sequences. In this case, we may initialize the
       seed with the output of the <literal>getdate</literal> function:
     </para>
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
 n=getdate("s");
-rand("seed",s);
- ]]>
-    </programlisting>
+rand("seed",n);
+ ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>The generator</title>
-
     <para>
       The <literal>"uniform"</literal> random number generator is described in
       "Urand, A Universal Random Number Generator" by
       Michael A. Malcolm, Cleve B. Moler, Stan-Cs-73-334, January 1973, Computer
       Science Department, School Of Humanities And Sciences, Stanford University.
     </para>
-
     <para>
       It is a linear congruential generator of the form :
     </para>
-
     <para>
       <latex>
         $$
@@ -377,39 +300,30 @@ rand("seed",s);
         $$
       </latex>
     </para>
-
     <para>
       where the constants are
     </para>
-
     <para>
-      <latex>
-        <![CDATA[  
+      <latex><![CDATA[  
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\
       M &=& 2^{31}
 	  \end{eqnarray}
- ]]>
-      </latex>
+ ]]></latex>
     </para>
-
     <para>
       According to the authors, this generator is a full length generator, that is to say, its
       period is <latex>M=2^{31}=2147483648</latex>.
     </para>
-
     <para>
       The <literal>"normal"</literal> random number generator is based on
       the Box-Muller method, where source of the uniform random numbers is Urand.
     </para>
-
   </refsection>
-
   <refsection>
     <title>The statistical quality of the generator</title>
-
-      <para>
+    <para>
       Better random number generators are available from
       the <link linkend="grand">grand</link> function, in the
       sense that they have both a larger period and better statistical properties.
@@ -417,25 +331,19 @@ rand("seed",s);
       consider the <literal>grand</literal> function instead.
       Moreover, the <literal>grand</literal> function has more features.
     </para>
-
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
       <member>
         <link linkend="grand">grand</link>
       </member>
-
       <member>
         <link linkend="ssrand">ssrand</link>
       </member>
-
       <member>
         <link linkend="sprand">sprand</link>
       </member>
-
     </simplelist>
   </refsection>
 </refentry>

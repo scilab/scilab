@@ -41,9 +41,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = isdigit(str)</literal> returns an array the same size as str
-        containing logical %T (TRUE) where the elements of str are digits and
-        logical %F (FALSE) where they are not.
+    <para>
+      <literal>res = isdigit(str)</literal> returns an array the same size as str
+      containing logical %T (TRUE) where the elements of str are digits and
+      logical %F (FALSE) where they are not.
     </para>
   </refsection>
   <refsection>
@@ -54,7 +55,7 @@ isdigit(s)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="isalphanum">isalphanum</link>

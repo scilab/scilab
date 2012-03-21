@@ -196,6 +196,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_iconvert.c" />
     <ClCompile Include="db2int.c" />
     <ClCompile Include="DllmainInteger.c" />
     <ClCompile Include="genabs.c" />
@@ -310,6 +311,9 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>

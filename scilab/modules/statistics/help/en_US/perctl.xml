@@ -10,27 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" 
-	  xmlns:xlink="http://www.w3.org/1999/xlink" 
-	  xmlns:svg="http://www.w3.org/2000/svg" 
-	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-	  xmlns:db="http://docbook.org/ns/docbook" 
-	  version="5.0-subset Scilab" xml:lang="en" xml:id="perctl">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perctl">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>perctl</refname>
     <refpurpose> computation of percentils</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>p=perctl(x,y)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
     <variablelist>
@@ -53,13 +44,16 @@
     <para>
       Compute the matrix p of percentils (in increasing
       order, column  first) of the real vector or matrix
-      x.</para>
+      x.
+    </para>
     <para>The percentils are indicated by the entries of y, the values
       of entries of y must be positive integers between
-      0 and 100. </para>
+      0 and 100. 
+    </para>
     <para>p is a matrix whose type is
       length(y) x 2 and the content of its first column
-      are the percentils values.</para>
+      are the percentils values.
+    </para>
     <para>The contents of its second
       column are  the places of the computed percentiles in
       the input matrix x.
@@ -85,10 +79,6 @@ x=[6  7 0 7 10 4 2 2 7  1;
 y=[10 20 30]
 p=perctl(x,y)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
   <refsection>
     <title>Bibliography</title>

@@ -70,8 +70,4 @@ delete(gcf()); // カレントの図を削除
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Djalel ABDEMOUCHE</para>
-  </refsection>
 </refentry>

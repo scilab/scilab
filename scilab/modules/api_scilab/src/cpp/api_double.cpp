@@ -13,19 +13,23 @@
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
 #include "api_internal_double.h"
 #include "localization.h"
 
-
 #include "call_scilab.h"
-#include "stack-c.h"
 
 /*******************************/
 /*   double matrix functions   */
 /*******************************/
+
+static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg);
+static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg);
+static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg);
+static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
+
+
 
 SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {

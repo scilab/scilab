@@ -109,11 +109,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         // By default ctrl+w close the window
         ActionListener listener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+            }
+        };
         getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         // TODO : Only for testing : Must be removed
@@ -150,11 +150,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         setLocationByPlatform(true);
 
         addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
-                }
-            });
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
+            }
+        });
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
@@ -177,9 +177,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             // use as delegates for various com.apple.eawt.ApplicationListener methods
             OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
             OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
-            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")));
+            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("puffin", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
-            System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
+            System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
         }
     }
 
@@ -252,11 +252,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-                            raiseToFront();
-                        }
-                    });
+                    @Override
+                    public void run() {
+                        raiseToFront();
+                    }
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

@@ -161,7 +161,7 @@ static int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
         return ( 0 );
 }
 
-static void display_info_clcg4()
+static void display_info_clcg4(void)
 {
     /* display the seeds range (in case of error) */
     sciprint(_("\n bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n                                             s2 in [1, 2147483542]\n                                             s3 in [1, 2147483422]\n                                             s4 in [1, 2147483322]"));

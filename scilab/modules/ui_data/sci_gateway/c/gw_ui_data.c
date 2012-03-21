@@ -11,7 +11,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_ui_data.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
@@ -45,6 +46,13 @@ int gw_ui_data(void)
 		loadedDep = TRUE;
 	}
 */
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

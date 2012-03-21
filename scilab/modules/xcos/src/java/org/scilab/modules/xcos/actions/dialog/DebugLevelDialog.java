@@ -21,6 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -33,7 +34,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -44,7 +44,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog for the {@link DebugLevelAction}.
- * 
+ *
  * Note that this dialog break the Data Abstraction Coupling metric because of
  * the numbers of graphical components involved in the GUI creation. For the
  * same reason (GUI class), constants are not used on this code.
@@ -58,7 +58,7 @@ public class DebugLevelDialog extends JDialog {
 
     /**
      * Default contructor
-     * 
+     *
      * @param parent
      *            the parent component
      * @param parameters
@@ -132,17 +132,15 @@ public class DebugLevelDialog extends JDialog {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int value = ((DebugLevel) debugList.getSelectedValue())
-                        .getValue();
+                int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
                 try {
                     parameters.setDebugLevel(value);
-                    ScilabInterpreterManagement.synchronousScilabExec(
-                            "scicos_debug", value);
+                    ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
                     dispose();
                 } catch (InterpreterException e1) {
-                    LogFactory.getLog(DebugLevelAction.class).error(e1);
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e1.toString());
                 } catch (PropertyVetoException e2) {
-                    LogFactory.getLog(DebugLevelAction.class).error(e2);
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e2.toString());
                 }
             }
         });

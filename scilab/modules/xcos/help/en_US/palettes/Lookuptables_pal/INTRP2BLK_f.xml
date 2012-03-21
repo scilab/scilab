@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_INTRP2BLK_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,14 +93,14 @@
   <refsection id="Description_INTRP2BLK_f">
     <title>Description</title>
     <para>
-The output of this block is a function of the inputs obtained by
-bilinear interpolation. This block has two scalar inputs and a single
-scalar output. The  and  give respectively the  coordinate
-and the  coordinate of the -th data point to be interpolated and
-
- its value.   
-
-</para>
+      The output of this block is a function of the inputs obtained by
+      bilinear interpolation. This block has two scalar inputs and a single
+      scalar output. The  and  give respectively the  coordinate
+      and the  coordinate of the -th data point to be interpolated and
+      
+      its value.   
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_INTRP2BLK_f">
     <title>Dialog box</title>
@@ -117,8 +112,8 @@ and the  coordinate of the -th data point to be interpolated and
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -138,7 +133,15 @@ and the  coordinate of the -th data point to be interpolated and
         <para>
           <emphasis role="bold">Z values</emphasis>
         </para>
-        <para> an <inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix.</para>
+        <para>
+          an 
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/INTRP2BLK_f_img9_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          matrix.
+        </para>
         <para> Properties : Type 'mat' of size [-1,-1] </para>
       </listitem>
     </itemizedlist>
@@ -147,16 +150,24 @@ and the  coordinate of the -th data point to be interpolated and
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -178,19 +189,29 @@ and the  coordinate of the -th data point to be interpolated and
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -215,9 +236,5 @@ and the  coordinate of the -th data point to be interpolated and
         <para> SCI/modules/scicos_blocks/src/fortran/intrp2.f (Type 1)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_INTRP2BLK_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

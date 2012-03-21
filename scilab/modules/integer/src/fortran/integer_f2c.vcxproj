@@ -257,7 +257,6 @@ cd ..
     <ClCompile Include="i_abs.c" />
     <ClCompile Include="i_b_i.c" />
     <ClCompile Include="i_c_i.c" />
-    <ClCompile Include="i_convert.c" />
     <ClCompile Include="i_cumprod.c" />
     <ClCompile Include="i_cumsum.c" />
     <ClCompile Include="i_d_i.c" />
@@ -303,7 +302,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_i_sum.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_i_tril.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_i_triu.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_iconvert.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_int16.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_int32.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_int8.c" />
@@ -322,7 +320,6 @@ cd ..
     <f2c_rule Include="i_abs.f" />
     <f2c_rule Include="i_b_i.f" />
     <f2c_rule Include="i_c_i.f" />
-    <f2c_rule Include="i_convert.f" />
     <f2c_rule Include="i_cumprod.f" />
     <f2c_rule Include="i_cumsum.f" />
     <f2c_rule Include="i_d_i.f" />
@@ -368,7 +365,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_i_sum.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_i_tril.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_i_triu.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_iconvert.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_int16.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_int32.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_int8.f" />

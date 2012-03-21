@@ -43,6 +43,8 @@ import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -177,11 +179,12 @@ public class WindowsConfigurationManager {
         readDocument();
 
         Element root = doc.getDocumentElement();
-        Element win = createNode(root, "Window", new Object[]{"uuid", window.getUUID(),
-                "x", (int) window.getLocation().getX(),
-                "y", (int) window.getLocation().getY(),
-                "width", (int) window.getSize().getWidth(),
-                "height", (int) window.getSize().getHeight()});
+        Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
+                                 "x", (int) window.getLocation().getX(),
+                                 "y", (int) window.getLocation().getY(),
+                                 "width", (int) window.getSize().getWidth(),
+                                 "height", (int) window.getSize().getHeight()
+                                                              });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -325,25 +328,23 @@ public class WindowsConfigurationManager {
 
             // Return only when the window is displayable
             while (!window.isDisplayable()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    System.err.println(e);
-                }
+                Thread.yield();
             }
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-
                     @Override
                     public void run() {
                         final Thread t = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                while (currentlyRestored.size() != 0) {
-                                    try {
-                                        Thread.sleep(10);
-                                    } catch (InterruptedException e) {
+                                synchronized (currentlyRestored) {
+                                    while (currentlyRestored.size() > 0) {
+                                        try {
+                                            currentlyRestored.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
 
@@ -352,10 +353,8 @@ public class WindowsConfigurationManager {
                                 Component owner = null;
                                 while (owner == null && !mainTab.isAncestorOf(owner)) {
                                     mainTab.requestFocus();
-                                    try {
-                                        Thread.sleep(100);
-                                    } catch (InterruptedException e) {
-                                    }
+                                    Thread.yield();
+
                                     owner = window.getFocusOwner();
                                 }
                                 ActiveDockableTracker.requestDockableActivation(mainTab);
@@ -390,7 +389,12 @@ public class WindowsConfigurationManager {
      * @param tab the tab
      */
     public static final void restorationFinished(SwingScilabTab tab) {
-        currentlyRestored.remove(tab.getPersistentId());
+        synchronized (currentlyRestored) {
+            currentlyRestored.remove(tab.getPersistentId());
+
+            // notify after remove
+            currentlyRestored.notify();
+        }
     }
 
     /**
@@ -797,12 +801,13 @@ public class WindowsConfigurationManager {
 
         Dimension dim = tab.getSize();
 
-        createNode(root, app, new Object[]{"winuuid", winuuid,
-                "uuid", uuid,
-                "load", factory.getPackage(uuid),
-                "factory", factory.getClassName(uuid),
-                "width", (int) dim.getWidth(),
-                "height", (int) dim.getHeight()});
+        createNode(root, app, new Object[] {"winuuid", winuuid,
+                                            "uuid", uuid,
+                                            "load", factory.getPackage(uuid),
+                                            "factory", factory.getClassName(uuid),
+                                            "width", (int) dim.getWidth(),
+                                            "height", (int) dim.getHeight()
+                                           });
         writeDocument();
     }
 

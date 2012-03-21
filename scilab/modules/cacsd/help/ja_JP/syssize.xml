@@ -28,7 +28,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>状態空間形式の線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            状態空間形式の線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,16 +50,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	線形システム<literal>Sl</literal>の[出力の数, 入力の数]を
-	 <literal>r</literal> ベクトルとして返します.
-	<literal>nx</literal> は<literal>Sl</literal>の状態量の数です.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="size">size</link>
-      </member>
-    </simplelist>
+      線形システム<literal>Sl</literal>の[出力の数, 入力の数]を
+      <literal>r</literal> ベクトルとして返します.
+      <literal>nx</literal> は<literal>Sl</literal>の状態量の数です.
+    </para>
   </refsection>
 </refentry>

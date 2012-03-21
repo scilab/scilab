@@ -27,5 +27,6 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="callsci.f"/></Filter>
-		<File RelativePath="..\..\..\..\..\bin\LibScilab.lib"/></Files>
+		<File RelativePath="..\..\..\..\..\bin\LibScilab.lib"/>
+		<File RelativePath=".\readme.txt"/></Files>
 	<Globals/></VisualStudioProject>

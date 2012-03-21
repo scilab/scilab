@@ -43,8 +43,4 @@
 res=with_embedded_jre();
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
-  </refsection>
 </refentry>

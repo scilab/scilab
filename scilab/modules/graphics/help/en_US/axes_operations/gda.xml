@@ -17,12 +17,14 @@
   <refnamediv>
     <refname>gda</refname>
     <refpurpose>Return handle of default
-  axes.</refpurpose>
+      axes.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>a = gda()
-a = get("default_axes")</synopsis>
+      a = get("default_axes")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,13 +40,17 @@ a = get("default_axes")</synopsis>
   <refsection>
     <title>Description</title>
     <para>The default axes is a graphic entity which is never drawn. It is used
-    as a reference for the axes properties default values. These default
-    properties values are used to initialize new axes inside figures.</para>
-    <para>The <literal>gda</literal> function returns the handle on the default axes.
-    The user can use this handle to set or get the axes properties default
-    values.</para>
+      as a reference for the axes properties default values. These default
+      properties values are used to initialize new axes inside figures.
+    </para>
+    <para>
+      The <literal>gda</literal> function returns the handle on the default axes.
+      The user can use this handle to set or get the axes properties default
+      values.
+    </para>
     <para>Note that an equivalent default graphic entity exists for figure
-    entities too (see <literal>gdf</literal>).</para>
+      entities too (see <literal>gdf</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +82,7 @@ plot2d(sin(t),cos(t))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gdf">gdf</link>
@@ -100,9 +106,5 @@ plot2d(sin(t),cos(t))
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

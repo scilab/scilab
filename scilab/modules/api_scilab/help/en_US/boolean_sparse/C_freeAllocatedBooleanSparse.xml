@@ -10,44 +10,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="freeAllocatedBooleanSparse"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-	<refnamediv>
-		<refname>freeAllocatedBooleanSparse</refname>
-
-		<refpurpose>
-            Free memory allocated by getAllocatedBooleanSparseMatrix function.
-        </refpurpose>
-	</refnamediv>
-	<refsynopsisdiv>
-		<title>Calling Sequence</title>
-		<synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
-	</refsynopsisdiv>
-	<refsection>
-		<title>Arguments</title>
-		<variablelist>
-			<varlistentry>
-				<term>_piNbItemRow</term>
-				<listitem>
-					<para>
-                        Pointer "_piNbItemRow" allocated by getAllocatedBooleanSparseMatrix.
-                    </para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>_piColPos</term>
-				<listitem>
-					<para>
-                        Pointer "_piColPos" allocated by getAllocatedBooleanSparseMatrix.
-                    </para>
-				</listitem>
-			</varlistentry>
-		</variablelist>
-	</refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="freeAllocatedBooleanSparse" xml:lang="en">
+  <refnamediv>
+    <refname>freeAllocatedBooleanSparse</refname>
+    <refpurpose>
+      Free memory allocated by getAllocatedBooleanSparseMatrix function.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>_piNbItemRow</term>
+        <listitem>
+          <para>
+            Pointer "_piNbItemRow" allocated by getAllocatedBooleanSparseMatrix.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piColPos</term>
+        <listitem>
+          <para>
+            Pointer "_piColPos" allocated by getAllocatedBooleanSparseMatrix.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 </refentry>
