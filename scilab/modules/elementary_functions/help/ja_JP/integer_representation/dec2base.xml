@@ -23,7 +23,7 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>str = dec2base(d, base)</synopsis>
-    <synopsis>str = dec2basedec2base(d, base, n)</synopsis>
+    <synopsis>str = dec2base(d, base, n)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>引数</title>
