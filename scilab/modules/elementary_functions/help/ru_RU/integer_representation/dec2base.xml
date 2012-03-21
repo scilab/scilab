@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="ru">
   <info>
     <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006)
       $
@@ -18,53 +18,58 @@
   </info>
   <refnamediv>
     <refname>dec2base</refname>
-    <refpurpose>Convert decimal to base N number in string</refpurpose>
+    <refpurpose>
+      преобразование десятичного числа в число системы счисления по основанию N в строке
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
+    <title>Последовательность вызова</title>
     <synopsis>str = dec2base(d, base)</synopsis>
     <synopsis>str = dec2base(d, base, n)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Arguments</title>
+    <title>Аргументы</title>
     <variablelist>
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>matrix of strings corresponding to "base" representation</para>
+          <para>матрица строк, соответствующая представлению в системе счисления по основанию "base"</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>base</term>
         <listitem>
-          <para>1-by-1 matrix of doubles, positive integer value, the base</para>
+          <para>матрица размерами 1 на 1, положительное целое число, основание системы счисления</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d</term>
         <listitem>
-          <para>matrix of doubles, positive integer values</para>
+          <para>матрица чисел типа double, положительные целые числа</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Description</title>
+    <title>Описание</title>
     <para>
-      <literal>str = dec2base(d, base)</literal> converts the nonnegative integer values of <literal>d</literal> to the specified base <literal>base</literal>.
+      <literal>str = dec2base(d, base)</literal> преобразует неотрицательное целое число 
+      <literal>d</literal> в число в системе счисления по указанному основанию 
+      <literal>base</literal>.
     </para>
     <para>
-      <literal>d</literal> must have a nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
+      <literal>d</literal> должна иметь неотрицательные целые числа меньше, чем 2^52, а <literal>base</literal> должна быть целым числом между 2 и 36.
     </para>
     <para>
-      The returned argument <literal>str</literal> is a matrix of strings.
+       Возвращаемый аргумент <literal>str</literal> является матрицей строк.
     </para>
     <para>
-      <literal>str = dec2base(d, base, n)</literal> produces a representation with at least <literal>n</literal> digits.
+      <literal>str = dec2base(d, base, n)</literal> формирует представление в виде, по меньшей 
+      мере, <literal>n</literal> знаков.
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Примеры</title>
     <programlisting role="example"><![CDATA[ 
 for b = 2:36
  disp( dec2base(666, b) )
@@ -72,7 +77,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-    <title>See Also</title>
+    <title>Смотрите также</title>
     <simplelist type="inline">
       <member>
         <link linkend="base2dec">base2dec</link>
@@ -98,12 +103,13 @@ end
     </simplelist>
   </refsection>
   <refsection>
-    <title>History</title>
+    <title>История</title>
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>This function was added in Scilab 5.4.0</revremark>
+        <revremark>Эта функция была добавлена в Scilab 5.4.0</revremark>
       </revision>
     </revhistory>
   </refsection>
 </refentry>
+ 
