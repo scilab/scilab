@@ -19,7 +19,7 @@
       <varlistentry>
         <term>mod</term>
         <listitem>
-          <para>integer scalar whose possible values are 0,1,or 2</para>
+          <para>integer scalar whose possible values are 0, 1 or 2</para>
         </listitem>
       </varlistentry>
     </variablelist>
