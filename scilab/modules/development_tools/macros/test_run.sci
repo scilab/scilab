@@ -606,9 +606,12 @@ head = [
     "   quit;" ;
     "endfunction" ;
     "deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');";
-    "predef(''all'');" ;
-    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
-       ]
+    "predef(''all'');"];
+if getos() == "Darwin" then // TMPDIR is a symblic link => call fullpath
+    head($+1) = "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',fullpath(TMPDIR));";
+else
+    head($+1) = "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);";
+end
 
 if xcosNeeded then
   head = [ head ; "loadXcosLibs();"];
@@ -834,8 +837,13 @@ if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=
   dia(grep(dia, "TMPDIR1")) = [];
   dia(grep(dia, "diary(0)")) = [];
 
-  dia = strsubst(dia,TMPDIR ,"TMPDIR");
-  dia = strsubst(dia,TMPDIR1, "TMPDIR");
+  if getos() == "Darwin" then // TMPDIR is a symblic link => call fullpath
+    dia = strsubst(dia,fullpath(TMPDIR1), "TMPDIR");
+    dia = strsubst(dia,fullpath(TMPDIR), "TMPDIR");
+  else
+    dia = strsubst(dia,TMPDIR ,"TMPDIR");
+    dia = strsubst(dia,TMPDIR1, "TMPDIR");
+  end
 
   if getos() == 'Windows' then
     dia = strsubst(dia, strsubst(TMPDIR, "\","/"), "TMPDIR");
