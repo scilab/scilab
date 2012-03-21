@@ -151,6 +151,38 @@ void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize,
     }
 }
 
+double ColorComputer::getDirectIndex(double s, int colormapSize)
+{
+    double index;
+
+    if (s <= (double) WHITE_LOWER_INDEX)
+    {
+        /* Lowest index if the color is below the white range's lower index */
+        index = 0.0;
+    }
+    else if (s <= (double) BLACK_LOWER_INDEX)
+    {
+        /* White is output */
+        index = WHITE_INDEX;
+    }
+    else if ((((double) BLACK_LOWER_INDEX < s) && (s < (double) BLACK_UPPER_INDEX)) || !DecompositionUtils::isANumber(s))
+    {
+        /* Black is also output for Nan values */
+        index = BLACK_INDEX;
+    }
+    else
+    {
+        index = floor(s);
+
+        if (index > (double)(colormapSize - 1))
+        {
+            index = (double) (colormapSize - 1);
+        }
+    }
+
+    return index;
+}
+
 double ColorComputer::getClampedDirectIndex(double s, int colormapSize)
 {
     double index = s;

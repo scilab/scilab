@@ -395,13 +395,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 /* Interpolated color rendering is used only for basic polylines for now. */
+                Appearance appearance = new Appearance();
+
                 if (polyline.getInterpColorMode() && polyline.getPolylineStyle() == 1) {
-                    geometry.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
+                    geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
+                    appearance.setTexture(getColorMapTexture());
                 } else {
                     geometry.setColors(null);
                 }
 
-                Appearance appearance = new Appearance();
                 appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
                 appearance.setLineWidth(polyline.getLineThickness().floatValue());
                 appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());

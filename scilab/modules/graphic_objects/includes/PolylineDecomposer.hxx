@@ -389,6 +389,14 @@ public :
     static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
 
     /**
+     * Fills the given buffer with texture coordinate data from the given object.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     */
+    static void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
+
+    /**
      * Returns the number of indices for the given object.
      * @param[in] the given object id.
      * @return the object's number of indices.

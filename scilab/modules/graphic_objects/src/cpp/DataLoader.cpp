@@ -171,6 +171,10 @@ void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
     {
         TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
     }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
+    {
+        PolylineDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+    }
 }
 
 void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)

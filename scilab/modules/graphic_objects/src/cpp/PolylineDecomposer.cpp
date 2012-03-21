@@ -740,10 +740,19 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
-    /* The interpolated color vector is a 3- or 4-element vector. */
-    if (nPoints != 3 && nPoints != 4)
+    /*
+     * The interpolated color vector is a 3- or 4-element vector.
+     * However, if nPoints is greater than 4, we choose to output
+     * 4 colors (this behaviour is kept for compatibility, see fillTriangleIndices).
+     */
+    if (nPoints < 3)
     {
         return;
+    }
+
+    if (nPoints > 4)
+    {
+        nPoints = 4;
     }
 
     for (int i = 0; i < nPoints; i++)
@@ -756,6 +765,97 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
         }
 
         bufferOffset += elementsSize;
+    }
+}
+
+void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
+{
+    char* parent;
+    char* parentFigure;
+
+    int interpColorMode = 0;
+    int* piInterpColorMode = &interpColorMode;
+    int polylineStyle = 0;
+    int* piPolylineStyle = &polylineStyle;
+    int nPoints = 0;
+    int *piNPoints = &nPoints;
+    int colormapSize = 0;
+    int* piColormapSize = &colormapSize;
+    int bufferOffset = 0;
+    int* interpColorVector;
+
+    double* colormap;
+
+    getGraphicObjectProperty(id, __GO_INTERP_COLOR_MODE__, jni_bool, (void**) &piInterpColorMode);
+
+    if (interpColorMode == 0)
+    {
+        return;
+    }
+
+    getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
+
+    if (polylineStyle  != 1)
+    {
+        return;
+    }
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
+    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
+
+    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+
+    /* Temporary: to avoid getting a null parent_figure property when the object is built */
+    if (strcmp(parent, "") == 0)
+    {
+        return;
+    }
+
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+
+    /*
+     * In some cases, the polyline's parent figure may be unitialized, when this point is reached from the
+     * filled polygons build C functions (xfpolys, with several polygons and a color vector for each one).
+     * This check prevents from crashing when getting the colormap. However, it results in incorrectly
+     * black-filled polygons, as no colors are written.
+     * As the sequentially built polygons are inserted within a Compound object, the latter object may be
+     * still unattached to a Figure as its Polyline children are rendered. This occurs about once in 5 to 10,
+     * hence possibly caused by a race condition.
+     * To be fixed.
+     */
+    if (strcmp(parentFigure, "") == 0)
+    {
+        return;
+    }
+
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
+
+    /*
+     * The interpolated color vector is a 3- or 4-element vector.
+     * However, if nPoints is greater than 4, we choose to output
+     * 4 colors (this behaviour is kept for compatibility, see fillTriangleIndices).
+     */
+    if (nPoints < 3)
+    {
+        return;
+    }
+
+    if (nPoints > 4)
+    {
+        nPoints = 4;
+    }
+
+    for (int i = 0; i < nPoints; i++)
+    {
+        double index = (ColorComputer::getDirectIndex((double) interpColorVector[i] - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) / (double) (colormapSize + 2);
+
+        buffer[bufferOffset] = index;
+        buffer[bufferOffset+1] = 0.0;
+        buffer[bufferOffset+2] = 0.0;
+        buffer[bufferOffset+3] = 1.0;
+
+        bufferOffset += 4;
     }
 }
 
@@ -898,9 +998,11 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
 int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode)
 {
-    double coords0[3];
-    double coords1[3];
-    double coords2[3];
+    double coords[4][3];
+
+    int interpColorMode = 0;
+    int* piInterpColorMode = &interpColorMode;
+    int triangulate;
 
     int isValid = 0;
     int tmpValid = 0;
@@ -917,8 +1019,24 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
         return 0;
     }
 
-    /* Perform triangulation only if more than 3 points */
-    if (nPoints > 3)
+    getGraphicObjectProperty(id, __GO_INTERP_COLOR_MODE__, jni_bool, (void**) &piInterpColorMode);
+
+    /*
+     * Do not triangulate if the interpolated color mode is set to 'on',
+     * the quadrilateral facet decomposition function is used instead, if nPoints == 4,
+     * for compatibility reasons, although triangulation could be used.
+     */
+    if (interpColorMode)
+    {
+        triangulate = 0;
+    }
+    else if (nPoints > 3)
+    {
+        /* Perform triangulation only if more than 3 points */
+        triangulate = 1;
+    }
+
+    if (triangulate)
     {
         Triangulator triangulator;
         int numTriangles;
@@ -928,13 +1046,13 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
 
         for (int i = 0; i < nPoints; i++)
         {
-            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coords0[0], &coords0[1], &coords0[2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coords[0][0], &coords[0][1], &coords[0][2]);
 
-            tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
+            tmpValid = DecompositionUtils::isValid(coords[0][0], coords[0][1], coords[0][2]);
 
             if (logMask)
             {
-                tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[0][0], coords[0][1], coords[0][2], logMask);
             }
 
             isValid &= tmpValid;
@@ -944,7 +1062,7 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
                 break;
             }
 
-            triangulator.addPoint(coords0[0], coords0[1], coords0[2]);
+            triangulator.addPoint(coords[0][0], coords[0][1], coords[0][2]);
         }
 
         if (!isValid)
@@ -973,33 +1091,77 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     }
     else
     {
+         /* Do not triangulate: either the interpolation color mode is set to on or it is not and there are only 3 points. */
+
         /* 3 points: only one triangle output */
-        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords0[0], &coords0[1], &coords0[2]);
-        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords1[0], &coords1[1], &coords1[2]);
-        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords2[0], &coords2[1], &coords2[2]);
-
-        tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
-        tmpValid &= DecompositionUtils::isValid(coords2[0], coords2[1], coords2[2]);
-        tmpValid &= DecompositionUtils::isValid(coords1[0], coords1[1], coords1[2]);
-
-        isValid = tmpValid;
-
-        if (logMask)
+        if (nPoints == 3)
         {
-            tmpValid = DecompositionUtils::isLogValid(coords0[0], coords0[1], coords0[2], logMask);
-            tmpValid &= DecompositionUtils::isLogValid(coords2[0], coords2[1], coords2[2], logMask);
-            tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
-            isValid &= tmpValid;
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords[0][0], &coords[0][1], &coords[0][2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords[1][0], &coords[1][1], &coords[1][2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords[2][0], &coords[2][1], &coords[2][2]);
+
+            tmpValid = DecompositionUtils::isValid(coords[0][0], coords[0][1], coords[0][2]);
+            tmpValid &= DecompositionUtils::isValid(coords[1][0], coords[1][1], coords[1][2]);
+            tmpValid &= DecompositionUtils::isValid(coords[2][0], coords[2][1], coords[2][2]);
+
+            isValid = tmpValid;
+
+            if (logMask)
+            {
+                tmpValid = DecompositionUtils::isLogValid(coords[0][0], coords[0][1], coords[0][2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[1][0], coords[1][1], coords[1][2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[2][0], coords[2][1], coords[2][2], logMask);
+                isValid &= tmpValid;
+            }
+
+            if (isValid)
+            {
+                buffer[0] = 0;
+                buffer[1] = 1;
+                buffer[2] = 2;
+
+                nIndices += 3;
+            }
+        }
+        else if (nPoints >= 4)
+        {
+            /*
+             * 4 points: the quadrilateral facet decomposition algorithm is used.
+             * If the Polyline has more than 4 points, we still output two triangles
+             * corresponding to the first 4 points. This behaviour is kept for compatibility.
+             * Possible correction: do not output indices if there are more than 4 points and
+             * the interpolation color mode is set to on.
+             */
+            int facetVertexIndices[4] = {0, 1, 2, 3};
+
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords[0][0], &coords[0][1], &coords[0][2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords[1][0], &coords[1][1], &coords[1][2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords[2][0], &coords[2][1], &coords[2][2]);
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 3, &coords[3][0], &coords[3][1], &coords[3][2]);
+
+            tmpValid = DecompositionUtils::isValid(coords[0][0], coords[0][1], coords[0][2]);
+            tmpValid &= DecompositionUtils::isValid(coords[1][0], coords[1][1], coords[1][2]);
+            tmpValid &= DecompositionUtils::isValid(coords[2][0], coords[2][1], coords[2][2]);
+            tmpValid &= DecompositionUtils::isValid(coords[3][0], coords[3][1], coords[3][2]);
+
+            isValid = tmpValid;
+
+            if (logMask)
+            {
+                tmpValid = DecompositionUtils::isLogValid(coords[0][0], coords[0][1], coords[0][2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[1][0], coords[1][1], coords[1][2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[2][0], coords[2][1], coords[2][2], logMask);
+                tmpValid &= DecompositionUtils::isLogValid(coords[3][0], coords[3][1], coords[3][2], logMask);
+                isValid &= tmpValid;
+            }
+
+            if (isValid)
+            {
+                DecompositionUtils::getDecomposedQuadTriangleIndices(coords, facetVertexIndices, buffer);
+                nIndices += 6;
+            }
         }
 
-        if (isValid)
-        {
-            buffer[0] = 0;
-            buffer[1] = 1;
-            buffer[2] = 2;
-
-            nIndices += 3;
-        }
     }
 
     return nIndices;
