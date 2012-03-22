@@ -185,6 +185,15 @@ public class AxesRulerDrawer {
                 drawingTools.getTransformationManager().getModelViewStack().pop();
             }
 
+        } else {
+            /*
+             * x-axis not visible: the projected ticks direction must be computed, as well as
+             * the distance ratio using the default ticks length as numerator.
+             */
+            xAxisLabelPositioner.setTicksDirection(xTicksDirection);
+            Vector3d projTicksDir = canvasProjection.projectDirection(xTicksDirection);
+            xAxisLabelPositioner.setDistanceRatio((double) TICKS_LENGTH / projTicksDir.getNorm());
+            xAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
         }
 
         // Draw Y ruler
@@ -251,6 +260,12 @@ public class AxesRulerDrawer {
                 drawingTools.draw(gridGeometry, gridAppearance);
                 drawingTools.getTransformationManager().getModelViewStack().pop();
             }
+        } else {
+            /* y-axis not visible: compute the projected ticks direction and distance ratio (see the x-axis case). */
+            yAxisLabelPositioner.setTicksDirection(yTicksDirection);
+            Vector3d projTicksDir = canvasProjection.projectDirection(yTicksDirection);
+            yAxisLabelPositioner.setDistanceRatio((double) TICKS_LENGTH / projTicksDir.getNorm());
+            yAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
         }
 
         // Draw Z ruler
@@ -333,6 +348,14 @@ public class AxesRulerDrawer {
                     drawingTools.draw(gridGeometry, gridAppearance);
                     drawingTools.getTransformationManager().getModelViewStack().pop();
                 }
+            } else {
+                /* z-axis not visible: compute the projected ticks direction and distance ratio (see the x-axis case). */
+                Vector3d zTicksDirection = new Vector3d(txs, tys, 0);
+
+                zAxisLabelPositioner.setTicksDirection(zTicksDirection);
+                Vector3d projTicksDir = canvasProjection.projectDirection(zTicksDirection);
+                zAxisLabelPositioner.setDistanceRatio((double) TICKS_LENGTH / projTicksDir.getNorm());
+                zAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
             }
         }
 
