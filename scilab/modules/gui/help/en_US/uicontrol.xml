@@ -107,14 +107,14 @@
       </varlistentry>
       <varlistentry>
         <term>ColNames (UiTable style only)</term>
-
+        
         <listitem>
           <para>String</para>
-
+          
           <para>Column names in the table separated by a "|". E.g "1|2|3|4".</para>
         </listitem>
       </varlistentry>
-
+      
       <varlistentry>
         <term>Enable</term>
         <listitem>
@@ -302,45 +302,14 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Rotate (ImageRenderer style only)</term>
-
-        <listitem>
-          <para>Scalar</para>
-
-          <para>This property is used to set or get the image rotation angle.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>RowNames (UiTable style only)</term>
-
+        
         <listitem>
           <para>String</para>
-
+          
           <para>Row names in the table separated by a "|". E.g "1|2|3|4".</para>
         </listitem>
       </varlistentry>
-
-      <varlistentry>
-        <term>Scale (ImageRenderer style only)</term>
-
-        <listitem>
-          <para>[1,2] real vector</para>
-
-          <para>This property is used to set or get the image scale.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Shear (ImageRenderer style only)</term>
-
-        <listitem>
-          <para>[1,2] real vector</para>
-
-          <para>This property is used to set or get the image shear.</para>
-        </listitem>
-      </varlistentry>
-
       <varlistentry>
         <term>SliderStep</term>
         <listitem>
@@ -357,7 +326,7 @@
         <term>String</term>
         <listitem>
           <para>String.</para>
-
+          
           <para>
             This property represents the text appearing in a uicontrol
             (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
@@ -378,7 +347,8 @@
         <term>Style</term>
         <listitem>
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
-          frame | listbox | popupmenu | imagerenderer | uitable | uidisplaytree</para>
+            frame | listbox | popupmenu | imagerenderer | uitable | uidisplaytree
+          </para>
           <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
             one:
           </para>
@@ -425,15 +395,15 @@
                 clicked.
               </para>
             </listitem>
-
+            
             <listitem>
               <para>ImageRenderer: a sub-window where the image specified is displayed.</para>
             </listitem>
-
+            
             <listitem>
               <para>UiTable: an editable table.</para>
             </listitem>
-
+            
             <listitem>
               <para>UiDisplayTree: a tree with callbacks associated to leaves.</para>
             </listitem>
@@ -442,15 +412,16 @@
       </varlistentry>
       <varlistentry>
         <term>TableData (UiTable style only)</term>
-
+        
         <listitem>
           <para>String</para>
-
+          
           <para>Table data, each row is separated by a "|" and each table element is separated by a " ".
-          E.g. "1 2 3 4| a b c d| 1.2 3.2 40 32"</para>
+            E.g. "1 2 3 4| a b c d| 1.2 3.2 40 32"
+          </para>
         </listitem>
       </varlistentry>
-
+      
       <varlistentry>
         <term>Tag</term>
         <listitem>
@@ -498,6 +469,11 @@
             </listitem>
             <listitem>
               <para>Sliders: value indicated by the slider bar.</para>
+            </listitem>
+            <listitem>
+              <para>
+                Imagerenderers: value is used to set some image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>

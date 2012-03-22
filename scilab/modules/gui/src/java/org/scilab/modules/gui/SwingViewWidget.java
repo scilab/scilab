@@ -35,8 +35,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCALE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SHEAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
@@ -249,18 +247,6 @@ public final class SwingViewWidget {
             uiControl.setRelief((String) value);
         } else if (property.equals(__GO_UI_ROWNAMES__)) {
             ((SwingScilabUiTable) uiControl).setRowNames((String[]) value);
-        } else if (property.equals(__GO_UI_SCALE__)) {
-            Double[] scale = ((Double[]) value);
-            double[] convertedScale = new double[2];
-            convertedScale[0] = scale[0].doubleValue();
-            convertedScale[1] = scale[1].doubleValue();
-            ((SwingScilabImageRenderer) uiControl).setScale(convertedScale);
-        } else if (property.equals(__GO_UI_SHEAR__)) {
-            Double[] shear = ((Double[]) value);
-            double[] convertedShear = new double[2];
-            convertedShear[0] = shear[0].doubleValue();
-            convertedShear[1] = shear[1].doubleValue();
-            ((SwingScilabImageRenderer) uiControl).setShear(convertedShear);
         } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
             Double[] sliderStep = ((Double[]) value);
             if (uiControl instanceof SwingScilabSlider) {
@@ -314,6 +300,43 @@ public final class SwingViewWidget {
             } else if (uiControl instanceof SwingScilabSlider) {
                 // Update the slider value
                 ((SwingScilabSlider) uiControl).setUserValue(doubleValue[0]);
+            } else if (uiControl instanceof SwingScilabImageRenderer) {
+                // Update the image parameters
+                double[] imageParams = new double[5];
+                if (doubleValue.length < 1) {
+                    imageParams[0] = 1.0;
+                } else {
+                    imageParams[0] = doubleValue[0];
+                }
+                if (doubleValue.length < 2) {
+                    imageParams[1] = 1.0;
+                } else {
+                    imageParams[1] = doubleValue[1];
+                }
+                if (doubleValue.length < 3) {
+                    imageParams[2] = 0.0;
+                } else {
+                    imageParams[2] = doubleValue[2];
+                }
+                if (doubleValue.length < 4) {
+                    imageParams[3] = 0.0;
+                } else {
+                    imageParams[3] = doubleValue[3];
+                }
+                if (doubleValue.length < 5) {
+                    imageParams[4] = 0.0;
+                } else {
+                    imageParams[4] = doubleValue[4];
+                }
+                double[] scale = new double[2];
+                scale[0] = imageParams[0];
+                scale[1] = imageParams[1];
+                ((SwingScilabImageRenderer) uiControl).setScale(scale);
+                double[] shear = new double[2];
+                shear[0] = imageParams[2];
+                shear[1] = imageParams[3];
+                ((SwingScilabImageRenderer) uiControl).setShear(shear);
+                ((SwingScilabImageRenderer) uiControl).setRotate(imageParams[4]);
             }
         } else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {
             uiControl.setVerticalAlignment((String) value);

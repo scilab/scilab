@@ -328,8 +328,6 @@
 #define __GO_UI_ROWNAMES__                 "UIRowNames"
 #define __GO_UI_ROWNAMES_SIZE__            "UIRowNamesSize"
 #define __GO_UI_RELIEF__                   "UIRelief"
-#define __GO_UI_SCALE__                    "UIScale"
-#define __GO_UI_SHEAR__                    "UIShear"
 #define __GO_UI_STRING__                   "UIString"
 #define __GO_UI_STRING_SIZE__              "UIStringSize"
 #define __GO_UI_SLIDERSTEP__               "UISliderStep"

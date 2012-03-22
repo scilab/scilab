@@ -21,12 +21,14 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
  */
 public class ImageRenderer extends Uicontrol {
 
-	/**
-	 * Constructor
-	 */
-	public ImageRenderer() {
-		super();
-		setStyle(__GO_UI_IMAGERENDERER__);
-	}
+    /**
+     * Constructor
+     */
+    public ImageRenderer() {
+        super();
+        setStyle(__GO_UI_IMAGERENDERER__);
+        Double[] imageInfos = {1.0, 1.0, 0.0, 0.0, 0.0}; // {XScale, YScale, XShear, YShear, RotationAngle}
+        setUiValue(imageInfos);
+    }
 
 }

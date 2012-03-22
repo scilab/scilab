@@ -46,8 +46,6 @@
 #include "GetUiobjectColumnNames.h"
 #include "GetUiobjectRowNames.h"
 #include "GetUicontrolSliderStep.h"
-#include "GetUiobjectScale.h"
-#include "GetUiobjectShear.h"
 #include "GetUiobjectTableData.h"
 #include "GetUimenuChecked.h"
 #include "GetConsoleShowHiddenHandles.h"

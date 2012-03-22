@@ -110,11 +110,6 @@ src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
-src/cpp/SetUiobjectRotate.cpp \
-src/cpp/SetUiobjectShear.cpp \
-src/cpp/GetUiobjectShear.cpp \
-src/cpp/SetUiobjectScale.cpp \
-src/cpp/GetUiobjectScale.cpp \
 src/cpp/SetUiobjectColumnNames.cpp \
 src/cpp/GetUiobjectColumnNames.cpp \
 src/cpp/SetUiobjectRowNames.cpp \

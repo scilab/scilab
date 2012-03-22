@@ -47,7 +47,7 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 33
+#define NBPROPERTIES 31
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -75,9 +75,11 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     /* @TODO remove this crappy initialization */
     /* DO NOT CHANGE ORDER !! */
     char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] =
-        { "style", "parent", "backgroundcolor", "foregroundcolor", "string", "units", "fontweight", "min", "max", "tag", "position", "relief",
-"horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable",
-"callback_type", "treedata", "scale", "shear", "rownames", "columnnames", "tabledata" };
+    {
+        "style", "parent", "backgroundcolor", "foregroundcolor", "string", "units", "fontweight", "min", "max", "tag", "position", "relief",
+        "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable",
+        "callback_type", "treedata", "rownames", "columnnames", "tabledata"
+    };
     int *propertiesValuesIndices = NULL;
     int lw = 0;
     char *propertyPart = NULL;
@@ -117,13 +119,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return FALSE;
             }
-            pParentUID = getObjectFromHandle((long)*hstk(stkAdr));
+            pParentUID = getObjectFromHandle((long) * hstk(stkAdr));
             if (pParentUID != NULL)
             {
                 getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, &parentType);
                 if (strcmp(parentType, __GO_UICONTROL__) == 0)  /* Focus management */
                 {
-                    GraphicHandle = (long)*hstk(stkAdr);
+                    GraphicHandle = (long) * hstk(stkAdr);
                     requestFocus(pParentUID);
                 }
                 else if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0))  /* PushButton creation */
@@ -178,12 +180,12 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             propertiesValuesIndices[inputIndex] = NOT_FOUND;    /* Property initialized as not found */
         }
 
-      /**
-       * Odd number of input arguments
-       * First input is the parent ID
-       * All event inputs are property names
-       * All odd (except first) inputs are property values
-       */
+        /**
+         * Odd number of input arguments
+         * First input is the parent ID
+         * All event inputs are property names
+         * All odd (except first) inputs are property values
+         */
         if (Rhs % 2 == 1)
         {
             if (VarType(1) != sci_handles)
@@ -238,7 +240,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                              "Frame uicontrol");
                     return FALSE;
                 }
-                pParentUID = getObjectFromHandle((long)*hstk(stkAdr));
+                pParentUID = getObjectFromHandle((long) * hstk(stkAdr));
                 if (pParentUID == NULL)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
@@ -263,11 +265,11 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             // First input parameter which is a property name
             beginIndex = 2;
         }
-      /**
-       * Even number of input arguments
-       * All odd inputs are property names
-       * All even inputs are property values
-       */
+        /**
+         * Even number of input arguments
+         * All odd inputs are property names
+         * All even inputs are property values
+         */
         else
         {
             // First input parameter which is a property name
@@ -383,46 +385,46 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     /* Read property value */
                     switch (VarType(propertiesValuesIndices[inputIndex]))
                     {
-                    case sci_matrix:
-                        GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                        setStatus =
-                            callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol,
-                                            (char *)propertiesNames[inputIndex]);
-                        break;
-                    case sci_strings:
-                        /* Index for String/RowNames/ColumnNames/TableData properties: Can be mon than one character string */
-                        if (inputIndex == 4 || inputIndex == 30 || inputIndex == 31 || inputIndex == 32)
-                        {
-                            GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdrForStrings);
+                        case sci_matrix:
+                            GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                             setStatus =
-                                callSetProperty(getObjectFromHandle(GraphicHandle), (size_t) stkAdrForStrings, sci_strings, nbRow, nbCol,
+                                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol,
                                                 (char *)propertiesNames[inputIndex]);
-                            freeArrayOfString(stkAdrForStrings, nbRow * nbCol);
-                        }
-                        else
-                        {
-                            GetRhsVar(propertiesValuesIndices[inputIndex], STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                            break;
+                        case sci_strings:
+                            /* Index for String/RowNames/ColumnNames/TableData properties: Can be mon than one character string */
+                            if (inputIndex == 4 || inputIndex == 30 || inputIndex == 31 || inputIndex == 32)
+                            {
+                                GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdrForStrings);
+                                setStatus =
+                                    callSetProperty(getObjectFromHandle(GraphicHandle), (size_t) stkAdrForStrings, sci_strings, nbRow, nbCol,
+                                                    (char *)propertiesNames[inputIndex]);
+                                freeArrayOfString(stkAdrForStrings, nbRow * nbCol);
+                            }
+                            else
+                            {
+                                GetRhsVar(propertiesValuesIndices[inputIndex], STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                                setStatus =
+                                    callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol,
+                                                    (char *)propertiesNames[inputIndex]);
+                            }
+                            break;
+                        case sci_handles:
+                            GetRhsVar(propertiesValuesIndices[inputIndex], GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                             setStatus =
-                                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol,
+                                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
                                                 (char *)propertiesNames[inputIndex]);
-                        }
-                        break;
-                    case sci_handles:
-                        GetRhsVar(propertiesValuesIndices[inputIndex], GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                        setStatus =
-                            callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
-                                            (char *)propertiesNames[inputIndex]);
-                        break;
-                    case sci_tlist:
-                        // TODO
-                        //if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, propertiesValuesIndices[inputIndex]) != 0)
+                            break;
+                        case sci_tlist:
+                            // TODO
+                            //if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, propertiesValuesIndices[inputIndex]) != 0)
                         {
                             setStatus = SET_PROPERTY_ERROR;
                         }
                         break;
-                    default:
-                        setStatus = SET_PROPERTY_ERROR;
-                        break;
+                        default:
+                            setStatus = SET_PROPERTY_ERROR;
+                            break;
                     }
                 }
                 if (setStatus == SET_PROPERTY_ERROR)

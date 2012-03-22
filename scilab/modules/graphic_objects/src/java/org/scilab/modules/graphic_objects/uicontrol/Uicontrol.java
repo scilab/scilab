@@ -43,8 +43,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCALE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SHEAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -100,8 +98,6 @@ public class Uicontrol extends GraphicObject {
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = DEFAULTRELIEF;
     private String[] rownames = {""};
-    private Double[] scale = {1.0, 1.0};
-    private Double[] shear = {0.0, 0.0};
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private String[] tabledata = {""};
@@ -306,10 +302,6 @@ public class Uicontrol extends GraphicObject {
             return UicontrolProperty.ROWNAMES;
         } else if (propertyName.equals(__GO_UI_ROWNAMES_SIZE__)) {
             return UicontrolProperty.ROWNAMES_SIZE;
-        } else if (propertyName.equals(__GO_UI_SCALE__)) {
-            return UicontrolProperty.SCALE;
-        } else if (propertyName.equals(__GO_UI_SHEAR__)) {
-            return UicontrolProperty.SHEAR;
         } else if (propertyName.equals(__GO_UI_SLIDERSTEP__)) {
             return UicontrolProperty.SLIDERSTEP;
         } else if (propertyName.equals(__GO_UI_STRING__)) {
@@ -379,10 +371,6 @@ public class Uicontrol extends GraphicObject {
             return getRowNames();
         } else if (property == UicontrolProperty.ROWNAMES_SIZE) {
             return getRowNames().length;
-        } else if (property == UicontrolProperty.SCALE) {
-            return getScale();
-        } else if (property == UicontrolProperty.SHEAR) {
-            return getShear();
         } else if (property == UicontrolProperty.SLIDERSTEP) {
             return getSliderStep();
         } else if (property == UicontrolProperty.STRING) {
@@ -447,10 +435,6 @@ public class Uicontrol extends GraphicObject {
             setRelief((String) value);
         } else if (property == UicontrolProperty.ROWNAMES) {
             setRowNames((String[]) value);
-        } else if (property == UicontrolProperty.SCALE) {
-            setScale((Double[]) value);
-        } else if (property == UicontrolProperty.SHEAR) {
-            setShear((Double[]) value);
         } else if (property == UicontrolProperty.SLIDERSTEP) {
             setSliderStep((Double[]) value);
         } else if (property == UicontrolProperty.STRING) {
@@ -664,37 +648,6 @@ public class Uicontrol extends GraphicObject {
         this.string = string;
     }
 
-    /**
-     * Get the scale
-     * @return the scale
-     **/
-    public Double[] getScale() {
-        return this.scale;
-    }
-
-    /**
-     * Set the scale
-     * @param scale the scale
-     **/
-    public void setScale(Double[] scale) {
-        this.scale = scale;
-    }
-
-    /**
-     * Get the shear
-     * @return the shear
-     **/
-    public Double[] getShear() {
-        return this.shear;
-    }
-
-    /**
-     * Set the shear
-     * @param shear the shear
-     **/
-    public void setShear(Double[] shear) {
-        this.shear = shear;
-    }
 
     /* Slider Step */
     public Double[] getSliderStep() {

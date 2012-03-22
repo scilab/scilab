@@ -329,8 +329,6 @@ public class GraphicObjectProperties {
     public static final String __GO_UI_ROWNAMES__ =            "UIRowNames";
     public static final String __GO_UI_ROWNAMES_SIZE__ =       "UIRowNamesSize";
     public static final String __GO_UI_RELIEF__ =              "UIRelief";
-    public static final String __GO_UI_SCALE__ =               "UIScale";
-    public static final String __GO_UI_SHEAR__ =               "UIShear";
     public static final String __GO_UI_STRING__ =              "UIString";
     public static final String __GO_UI_STRING_SIZE__ =         "UIStringSize";
     public static final String __GO_UI_SLIDERSTEP__ =          "UISliderStep";
