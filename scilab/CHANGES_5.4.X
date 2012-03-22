@@ -567,7 +567,9 @@ t.
 
 * Bug #10861 fixed - debug([]) returned a wrong error message.
 
-* Bug #10879 fixed - typo in the dec2base help page.
+* Bug #10879 fixed - Typo in the dec2base help page.
+
+* Bug #10881 fixed - Typo in ftest and ftuneq fixed.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
