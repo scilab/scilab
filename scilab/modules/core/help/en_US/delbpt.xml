@@ -35,7 +35,7 @@
       function <literal>macroname</literal>.
     </para>
     <para>
-      <literal>linenumb</literal> can be a line or column vector of line
+      <literal>linenumb</literal> can be a row or column vector of line
       numbers, or a single scalar line number.
     </para>
     <para>
@@ -84,6 +84,9 @@ delbpt('foo',[1,2,5,6]),dispbpt()
       </member>
       <member>
         <link linkend="resume">resume</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
       </member>
     </simplelist>
   </refsection>

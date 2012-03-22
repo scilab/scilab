@@ -15,7 +15,7 @@
       with the usual syntax. Boolean matrices can be manipulated as ordinary
       matrices for elements extraction/insertion and concatenation. Note
       that  other usual operations  (<literal>+, *, -, ^,</literal> etc) are undefined
-      for booleans matrices, three special operators are defined for boolean
+      for booleans matrices. Тhree special operators are defined for boolean
       matrices:
     </para>
     <variablelist>
@@ -23,7 +23,7 @@
         <term>~b</term>
         <listitem>
           <para>
-            is the element wise negation of boolean <literal>b</literal> (matrix).
+            is the element-wise negation of boolean <literal>b</literal> (matrix).
           </para>
         </listitem>
       </varlistentry>
@@ -31,7 +31,7 @@
         <term>b1&amp;b2</term>
         <listitem>
           <para>
-            is the element wise logical <literal>and</literal> of <literal>b1</literal> and <literal>b2</literal> (matrices).
+            is the element-wise logical <literal>and</literal> of <literal>b1</literal> and <literal>b2</literal> (matrices).
           </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
         <term>b1|b2</term>
         <listitem>
           <para>
-            is the  element wise logical <literal>or</literal> of <literal>b1</literal> and <literal>b2</literal> (matrices).
+            is the  element-wise logical <literal>or</literal> of <literal>b1</literal> and <literal>b2</literal> (matrices).
           </para>
         </listitem>
       </varlistentry>

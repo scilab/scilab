@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>error</refname>
-    <refpurpose> error messages</refpurpose>
+    <refpurpose>error message</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,13 +28,13 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>an integer. The number associated with the error message</para>
+          <para>an integer. The number associated with the error message.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pos</term>
         <listitem>
-          <para>an integer. a parameter for the error message</para>
+          <para>an integer. A parameter for the error message.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +42,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>error</literal> function allow to issue an error message and to
-      handle the error. By default <literal>error</literal> stops the current
+      <literal>error</literal> function allows to issue an error message and to
+      handle the error. By defaut <literal>error</literal> stops the current
       execution and resume to the prompt level. This default can be changed
       using the <literal>errcatch</literal> or <literal>execstr(...,'errcatch')</literal> functions.
     </para>
@@ -67,7 +67,7 @@
       value. In the other cases the <literal>pos</literal>  argument is ignored.
     </para>
     <para>
-      see <link linkend="error_table">error_table</link> for a list of error messages and the
+      See <link linkend="error_table">error_table</link> for a list of error messages and the
       associated error numbers.
     </para>
   </refsection>
@@ -94,6 +94,9 @@ lasterror()]]></programlisting>
       <member>
         <link linkend="lasterror">lasterror</link>
       </member>
+      <member>
+        <link linkend="error_table">error_table</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>
@@ -101,7 +104,9 @@ lasterror()]]></programlisting>
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>The error function can take vector of strings as input argument.</revremark>
+        <revremark>
+          The <literal>error</literal> function can take vector of strings as input argument.
+        </revremark>
       </revision>
     </revhistory>
   </refsection>
