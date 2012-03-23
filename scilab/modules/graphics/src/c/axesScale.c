@@ -314,24 +314,28 @@ BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
 /**
  * Unzoom a single subwindow
  */
-void sciUnzoomSubwin(sciPointObj * pSubwin)
+void sciUnzoomSubwin(char * subwinUID)
 {
-  // We directly do a call to unzoomSubwin instead off path through the java code
-  // See bug 4979
-  // javaUnzoomSubwin(pSubwin);
+    // We directly do a call to unzoomSubwin instead off path through the java code
+    // See bug 4979
+    // javaUnzoomSubwin(pSubwin);
 
-  /* To be implemented using the MVC framework */
-  sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+    char* parentFigure = NULL;
+    int zoomEnabled = 0;
 
-  if( pSubwin == NULL || parentFigure == NULL )
-  {
-    return;
-  }
+    getGraphicObjectProperty(subwinUID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
 
-/*
- * Deactivated since it performs drawing operations.
- * To be implemented.
- */
+    if( subwinUID == NULL || parentFigure == NULL )
+    {
+        return;
+    }
+
+    setGraphicObjectProperty(subwinUID, __GO_ZOOM_ENABLED__, &zoomEnabled, jni_bool, 1);
+
+    /*
+     * Deactivated since it performs drawing operations.
+     * To be implemented.
+     */
 #if 0
   startFigureDataWriting(parentFigure);
     unzoomSubwin(pSubwin);
