@@ -831,6 +831,7 @@ do_help()
     echo     "      -nw             : start Scilab without dedicated Scilab Window."
     echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
     echo     "      -nogui          : See -nwni"
+    echo     "      -nocolor        : Remove the color in the cli and adv-cli modes"
     echo     "      -args           : accept all extra arguments and make them available through sciargs"
     echo     "      -version        : print product version and exit."
     echo     "      -h/--help       : display help about this command."
@@ -955,7 +956,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|-nocolor|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then

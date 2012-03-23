@@ -38,7 +38,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes -I$(top_srcdir)/modules/console/includes
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -52,7 +52,7 @@ scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI $(scilab_bin_CFLAGS)
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 
