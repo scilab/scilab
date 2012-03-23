@@ -83,7 +83,6 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             '#include ""mex.h"" ';
             '#include ""sci_gateway.h""';
             '#include ""api_scilab.h""';
-            '#include ""api_oldstack.h""';
             '#include ""MALLOC.h""';
             '#include ""addGatewayInContext.h""';
             '';
