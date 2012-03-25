@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+
+// <-- Non-regression test for bug 10506 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=10506
+//
+// <-- Short Description -->
+// disp function does work wrong with Cyrillic string
+//
+
+lines(0, 28); // to cut lines 
+
+disp("проверка работы команды дисп с длинной киррилической строкой");
+disp("test for disp function: how it cope with a long Latin string");
+
+"проверка работы команды дисп с длинной киррилической строкой"
+"test for disp function: how it cope with a long Latin string"
+
+lines(-1); // restore default

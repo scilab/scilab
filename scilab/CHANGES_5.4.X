@@ -416,6 +416,9 @@ t.
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
+* Bug #10493 fixed - Wrong display of some UTF-8 characters with the disp
+                     function called from the GUI.
+
 * Bug #10499 fixed - lincos example in help file returned warning and error.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
