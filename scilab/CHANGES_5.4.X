@@ -449,6 +449,8 @@ t.
 * Bug #10544 fixed - debug did not return the previous value when called with
                      an argument.
 
+* Bug #10551 fixed - Fix some issues in the Russian localization.
+
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
 * Bug #10560 fixed - genetic algorithms demos failed.
