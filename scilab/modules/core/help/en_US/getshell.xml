@@ -5,8 +5,8 @@
   </info>
   <refnamediv>
     <refname>getshell</refname>
-    <refpurpose>
-      returns current command interpreter
+    <refpurpose>returns current command
+      interpreter.
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>

@@ -20,7 +20,7 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>vector of character strings or an empty matrix. The last
+          <para>a vector of character strings or an empty matrix. The last
             recorded error message.
           </para>
         </listitem>
@@ -28,25 +28,25 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>integer, 0 or the last recorded error number.</para>
+          <para>an integer, 0 or the last recorded error number.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>line</term>
         <listitem>
-          <para>integer, 0 or the last recorded function line number.</para>
+          <para>an integer, 0 or the last recorded function line number.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>func</term>
         <listitem>
-          <para>string, the last recorded function name</para>
+          <para>a string, the last recorded function name.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>opt</term>
         <listitem>
-          <para>boolean, if %t recorded message is cleared. Default is
+          <para>a boolean, if %t recorded message is cleared. Default is
             %t.
           </para>
         </listitem>
@@ -81,7 +81,9 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 ierr=execstr('a=zzzzzzz','errcatch')
-if ierr>0 then disp(lasterror()),end
+if ierr>0 then 
+  disp(lasterror())
+end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

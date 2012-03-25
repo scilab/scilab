@@ -28,7 +28,7 @@
           <para>an optional character with possible values:
             <literal>'l'</literal> (local), <literal>'n'</literal>
             (nolocal) and <literal>'a'</literal> (all). The default
-            value is <literal>'a'.</literal>
+            value is <literal>'a'</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -46,17 +46,18 @@
       a result which depends on the environment!
     </para>
     <para>
-      <literal>exists(name,'local')</literal> returns <literal>1</literal>
+      <literal>exists(name,'l')</literal> returns <literal>1</literal>
       if the variable named <literal>name</literal> exists in the environment of
       the current function and <literal>0</literal> otherwise.
     </para>
     <para>
-      <literal>exists(name,'nolocal')</literal> returns
+      <literal>exists(name,'n')</literal> returns
       <literal>1</literal> if the variable named <literal>name</literal> exists
       in any level of the calling environment (including the Scilab shell main level) of the current function and
       <literal>0</literal> otherwise.
     </para>
-    <para>Warning: the exists function does not check if a variable exists in
+    <para>
+      Warning: the <literal>exists</literal> function does not check if a variable exists in
       the <link linkend="global">global</link> namespace.
     </para>
   </refsection>
@@ -64,16 +65,16 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","all"));
-    disp(exists("a","local"));
-    disp(exists("a","nolocal"));
+    disp(exists("a","a"));
+    disp(exists("a","l"));
+    disp(exists("a","n"));
   endfunction
   level2()
 endfunction

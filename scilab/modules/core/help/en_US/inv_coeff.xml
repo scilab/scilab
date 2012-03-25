@@ -17,14 +17,14 @@
       <varlistentry>
         <term>C</term>
         <listitem>
-          <para>big matrix of the coefficients</para>
+          <para>a big matrix of the coefficients</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d</term>
         <listitem>
           <para>
-            Polynomial matrix degree. optional parameter with default value  <literal>d=-1+size(C,'c')/size(C,'r')</literal>
+            a polynomial matrix degree. The optional parameter with default value  <literal>d=-1+size(C,'c')/size(C,'r')</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -32,7 +32,7 @@
         <term>name</term>
         <listitem>
           <para>
-            string giving the polynomial variable name (default value <literal>'x'</literal>).
+            a string giving the polynomial variable name (default value <literal>'x'</literal>).
           </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
     <title>Description</title>
     <para>
       <literal>P=inv_coeff(Mp,k)</literal>, when <literal>k</literal> is compatible with <literal>Mp</literal>  
-      size, returns a polynomial matrix of degree k. <literal>C=[C0,C1,...,Ck]</literal> and 
+      size, returns a polynomial matrix of degree <literal>k</literal>. <literal>C=[C0,C1,...,Ck]</literal> and 
       <literal>P= C0 + C1*x +... +Ck*x^k</literal>.
     </para>
   </refsection>

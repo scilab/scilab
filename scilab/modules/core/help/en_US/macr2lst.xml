@@ -9,22 +9,21 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[txt]=macr2lst(function-name)</synopsis>
+    <synopsis>[txt]=macr2lst(function_name)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-      This primitive converts a compiled Scilab function <literal>function-name</literal>
+      This primitive converts a compiled Scilab function <literal>function_name</literal>
       into a list which codes the internal representation of
-      the function (reverse polish notation).
+      the function (reverse Polish notation).
     </para>
     <para>The first entry of the list is the function name, the second
       and third are respectively the vectors of left hand side variables
       and right hand side variables names. The following entries are either basic operation records 
       
       either lists with contains the hierarchical control structures like
-      if , for, ... 
-    </para>
+     <literal>if</literal>, <literal>for</literal>, ... </para>
     <para>Basic operation records are described by a character string
       vector whose first element represents the opcode. 
     </para>
