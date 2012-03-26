@@ -11,11 +11,20 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>exists(name [,where])</synopsis>
+    <synopsis>ve = exists(name [,where])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
+      <varlistentry>
+        <term>ve</term>
+        <listitem>
+          <para>Output result with possible values:
+            <literal>1</literal> if true, 
+            <literal>0</literal> if false
+          </para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>name</term>
         <listitem>
@@ -63,6 +72,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+exists("myNotLikelyToExistVariable")
+myNotLikelyToExistVariable = 1;
+exists("myNotLikelyToExistVariable")
+ ]]></programlisting>
+    
     <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''l'')])'

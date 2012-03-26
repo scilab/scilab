@@ -269,6 +269,8 @@ Bug fixes
 * Bug #7779 fixed - genlib did not check input arguments and did not use current
                     path as default.
 
+* Bug #7859 fixed - Improvements of the "exists" help page.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
 * Bug #8339 fixed - Default path for the Mac OS X version is now HOME instead
