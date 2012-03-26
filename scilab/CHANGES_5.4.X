@@ -106,6 +106,8 @@ Xcos
 
 * Bug #10812 fixed - cos and cosf files loading did not used a direct handler.
 
+* Bug #10848 fixed - The first block Drag'n Drop produced an exception.
+
 
 Unitary testing
 ===============
