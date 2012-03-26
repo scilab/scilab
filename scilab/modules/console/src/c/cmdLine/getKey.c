@@ -209,6 +209,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     {
         resetCommandLine(commandLine, cursorLocation);
     }
+
     switch (key)
     {
         case CTRL_A:
@@ -276,6 +277,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
                 setCharDisplay(DISP_FAINT);
             }
             addChar(commandLine, key, cursorLocation);
+
             updateTokenInScilabHistory(commandLine);
             break;
     }
@@ -292,9 +294,14 @@ char *getCmdLine(void)
 
     static int nextLineLocationInWideString = 0;
 
-    printPrompt(WRITE_PROMPT);
-    setCharDisplay(DISP_BRIGHT);
+    if (isatty(fileno(stdin)))
+    {
+        /* We are in a pipe */
+        printPrompt(WRITE_PROMPT);
+        setCharDisplay(DISP_BRIGHT);
+    }
     setTokenInteruptExecution(RESET_TOKEN);
+
     if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')
     {
         if (wideString != NULL)
@@ -310,25 +317,35 @@ char *getCmdLine(void)
         setTokenInteruptExecution(SEND_MULTI_COMMAND);
     }
     setSearchedTokenInScilabHistory(NULL);
+
     while (getTokenInteruptExecution() == CONTINUE_COMMAND)
     {
         getKey(&wideString, &cursorLocation);
     }
+
     cursorLocation = nextLineLocationInWideString;
     while (wideString[cursorLocation] != L'\n' && wideString[cursorLocation] != L'\0')
     {
         cursorLocation++;
     }
+
     wideString[cursorLocation] = L'\0';
+
     if (getTokenInteruptExecution() == SEND_MULTI_COMMAND)
     {
         printf("%ls\n", &wideString[nextLineLocationInWideString]);
     }
+
     multiByteString = wide_string_to_UTF8(&wideString[nextLineLocationInWideString]);
+
     nextLineLocationInWideString = cursorLocation + 1;
+
     appendLineToScilabHistory(multiByteString);
+
     setSearchedTokenInScilabHistory(NULL);
+
     setCharDisplay(DISP_RESET);
+
     return multiByteString;
 }
 
