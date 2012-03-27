@@ -547,7 +547,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     {
         double zShift = 0.0;
         double* pdZShift = &zShift;
-        double* bounds = NULL;
+        //double* bounds = NULL;
         int type;
         int* itype = &type;
 
@@ -573,12 +573,12 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
             }
 
             /* Bounds must be updated. */
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, jni_double_vector, &bounds);
+            //getGraphicObjectProperty(pobjUID, __GO_MATPLOT_BOUNDS__, jni_double_vector, &bounds);
 
-            bounds[0] += x;
-            bounds[1] += x;
-            bounds[2] += y;
-            bounds[3] += y;
+            //bounds[0] += x;
+            //bounds[1] += x;
+            //bounds[2] += y;
+            //bounds[3] += y;
 
             if (displacementSize == 3)
             {

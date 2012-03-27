@@ -97,6 +97,8 @@ public class GraphicObjectProperties {
     public static final String __GO_DATA_MODEL_X_DIMENSIONS__ =            "DataModelXDimensions";
     public static final String __GO_DATA_MODEL_Y_DIMENSIONS__ =            "DataModelYDimensions";
 
+    public static final String __GO_MATPLOT_TRANSLATE__ =                  "MatplotTranslate";
+    public static final String __GO_MATPLOT_SCALE__ =                      "MatplotScale";
     public static final String __GO_DATA_MODEL_MATPLOT_BOUNDS__ =          "DataModelMatplotBounds";
     public static final String __GO_DATA_MODEL_MATPLOT_TYPE__ =            "DataModelMatplotType";
 

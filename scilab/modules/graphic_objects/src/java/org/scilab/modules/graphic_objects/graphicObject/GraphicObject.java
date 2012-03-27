@@ -269,6 +269,7 @@ public abstract class GraphicObject implements Cloneable {
         }  else if (propertyName.equals(__GO_CALLBACKTYPE__)) {
             return GraphicObjectPropertyType.CALLBACKTYPE;
         }  else {
+            //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
             return GraphicObjectPropertyType.UNKNOWNPROPERTY;
         }
     }

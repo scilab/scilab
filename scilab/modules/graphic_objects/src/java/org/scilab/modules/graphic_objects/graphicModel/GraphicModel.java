@@ -124,8 +124,10 @@ public final class GraphicModel {
     public UpdateStatus setProperty(String id, String property, Object value) {
         GraphicObject object = allObjects.get(id);
         if (object != null) {
-            Object propertyType = object.getPropertyFromName(property);
-            return object.setProperty(propertyType, value);
+            synchronized (object) {
+                Object propertyType = object.getPropertyFromName(property);
+                return object.setProperty(propertyType, value);
+            }
         }
         return UpdateStatus.Fail;
     }
@@ -308,7 +310,10 @@ public final class GraphicModel {
      * @param id object id
      */
     public void deleteObject(String id) {
-        allObjects.remove(id);
+        GraphicObject object = allObjects.get(id);
+        synchronized (object) {
+            allObjects.remove(id);
+        }
     }
 
 }

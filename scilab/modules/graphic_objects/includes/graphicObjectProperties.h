@@ -96,6 +96,8 @@
 #define __GO_DATA_MODEL_X_DIMENSIONS__                 "DataModelXDimensions"
 #define __GO_DATA_MODEL_Y_DIMENSIONS__                 "DataModelYDimensions"
 
+#define __GO_MATPLOT_TRANSLATE__                       "MatplotTranslate"
+#define __GO_MATPLOT_SCALE__                           "MatplotScale"
 #define __GO_DATA_MODEL_MATPLOT_BOUNDS__               "DataModelMatplotBounds"
 #define __GO_DATA_MODEL_MATPLOT_TYPE__                 "DataModelMatplotType"
 

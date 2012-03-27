@@ -1343,6 +1343,8 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
     int *piClipState = &clipState;
     int numElements;
 
+    double pdblScale[2];
+
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &typeParent);
 
     if (strcmp(typeParent, __GO_AXES__) != 0)
@@ -1398,17 +1400,13 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
         gridSize[3] = 1;
     }
 
-    /* Only for Matplot objects */
-    if (type != 0)
+    /* Only for Matplot1 objects */
+    if (type == 2)
     {
-        if (type == 1)
-        {
-            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, NULL, jni_double_vector, 4);
-        }
-        else if (type == 2)
-        {
-            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, pvecx, jni_double_vector, 4);
-        }
+        setGraphicObjectProperty(pobjUID, __GO_MATPLOT_TRANSLATE__, pvecx, jni_double_vector, 2);
+        pdblScale[0] = (pvecx[3] - pvecx[1]) / (n2 - 1);
+        pdblScale[1] = (pvecx[2] - pvecx[0]) / (n1 - 1);
+        setGraphicObjectProperty(pobjUID, __GO_MATPLOT_SCALE__, pdblScale, jni_double_vector, 2);
     }
 
     /* Allocates the coordinates arrays */

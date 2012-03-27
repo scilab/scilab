@@ -248,12 +248,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Axes axes) {
-        if (axes.getVisible()) {
-            try {
-                currentAxes = axes;
-                axesDrawer.draw(axes);
-            } catch (Exception e) {
-                System.err.println("A '" + axes.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+        synchronized (axes) {
+            if (axes.getVisible()) {
+                try {
+                    currentAxes = axes;
+                    axesDrawer.draw(axes);
+                } catch (Exception e) {
+                    System.err.println("A '" + axes.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                }
             }
         }
     }
@@ -296,18 +298,20 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Figure figure) {
-        if (figure.getVisible()) {
+        synchronized (figure) {
+            if (figure.getVisible()) {
 
-            /**
-             * Set the current {@see ColorMap}.
-             */
-            colorMap = figure.getColorMap();
+                /**
+                 * Set the current {@see ColorMap}.
+                 */
+                colorMap = figure.getColorMap();
 
-            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-            drawingTools.clearDepthBuffer();
-            
-            if (figure.getImmediateDrawing()) {
-            	askAcceptVisitor(figure.getChildren());
+                drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+                drawingTools.clearDepthBuffer();
+
+                if (figure.getImmediateDrawing()) {
+                    askAcceptVisitor(figure.getChildren());
+                }
             }
         }
     }
@@ -348,9 +352,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     drawingTools.draw(geometry, appearance);
                 } else {
                     TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
-                    Transformation t = TransformationFactory.getTranslateTransformation(.5, .5, 0);
+                    Double[] scale = matplot.getScale();
+                    Double[] translate = matplot.getTranslate();
+                    Transformation t = TransformationFactory.getTranslateTransformation(translate[0], translate[1], 0);
+                    Transformation t2 = TransformationFactory.getScaleTransformation(scale[0], scale[1], 1);
                     modelViewStack.pushRightMultiply(t);
+                    modelViewStack.pushRightMultiply(t2);
                     drawingTools.draw(textureManager.getTexture(matplot.getIdentifier()));
+                    modelViewStack.pop();
                     modelViewStack.pop();
                 }
                 axesDrawer.disableClipping(matplot.getClipProperty());
@@ -587,13 +596,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Text text) {
-        if (text.getVisible()) {
-            try {
-                axesDrawer.enableClipping(currentAxes, text.getClipProperty());
-                textManager.draw(drawingTools, colorMap, text, axesDrawer);
-                axesDrawer.disableClipping(text.getClipProperty());
-            } catch (Exception e) {
-                System.err.println("A '" + text.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+        synchronized (text) {
+            if (text.getVisible()) {
+                try {
+                    axesDrawer.enableClipping(currentAxes, text.getClipProperty());
+                    textManager.draw(drawingTools, colorMap, text, axesDrawer);
+                    axesDrawer.disableClipping(text.getClipProperty());
+                } catch (Exception e) {
+                    System.err.println("A '" + text.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                }
             }
         }
     }
@@ -804,14 +815,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             colorMapTexture.setDataProvider(colorMapTextureDataProvider);
         }
         return colorMapTexture;
-    }
-
-    /**
-     * Figure getter.
-     * @return the figure this visitor draw.
-     */
-    Figure getFigure() {
-        return figure;
     }
 
     private class ColorMapTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
