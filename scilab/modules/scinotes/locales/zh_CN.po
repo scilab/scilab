@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-08 03:02+0000\n"
+"PO-Revision-Date: 2012-03-16 11:29+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Generator: Launchpad (build 15011)\n"
 "Language: \n"
 
 #, c-format
@@ -208,7 +208,7 @@ msgid "Configure Tabulation"
 msgstr "配置制表符"
 
 msgid "Horizontal wrapping"
-msgstr ""
+msgstr "水平包绕"
 
 msgid "Correct Indentation"
 msgstr "纠正缩进"
@@ -620,7 +620,7 @@ msgid "Loading"
 msgstr "加载中"
 
 msgid "Colorization canceled"
-msgstr ""
+msgstr "着色已撤销"
 
 msgid "Binary file: read-only mode"
 msgstr "二进制文件：只读模式"
@@ -838,16 +838,16 @@ msgid "Recursive"
 msgstr "递归"
 
 msgid "File pattern"
-msgstr ""
+msgstr "文件模式"
 
 msgid "(* for any string and ? for any character)"
-msgstr ""
+msgstr "（*号通配任意字符串，?号通配任意字符）"
 
 msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr "~代表用户主目录，SCI代表Scilab基目录"
 
 msgid "Word pattern"
-msgstr ""
+msgstr "单词模式"
 
 msgid "Read file line by line"
 msgstr "逐行读取文件"

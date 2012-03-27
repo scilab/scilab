@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Generator: Launchpad (build 15011)\n"
 "Language: ru\n"
 
 #, c-format
@@ -880,7 +880,7 @@ msgstr "четвертый"
 
 #, c-format
 msgid "%s argument"
-msgstr "%s параметр"
+msgstr "параметр %s"
 
 #, c-format
 msgid "argument number %d"
@@ -888,11 +888,11 @@ msgstr "параметр номер %d"
 
 #, c-format
 msgid "%s and %s arguments"
-msgstr "%s и %s параметры"
+msgstr "параметры %s и %s"
 
 #, c-format
 msgid "%s argument and argument %d"
-msgstr "%s параметр и параметр номер %d"
+msgstr "параметр %s и параметр номер %d"
 
 #, c-format
 msgid "arguments %d and %d"
@@ -927,11 +927,11 @@ msgstr "%s: %s имеет неправильную длину %d, ожидала
 
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: %s имеют несовместимые размерности (%dx%d) # (%dx%d)\n"
+msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)\n"
 
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: %s имеют несовместимые размерности.\n"
+msgstr "%s: размерность %s несовместима.\n"
 
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"
