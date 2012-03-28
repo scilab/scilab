@@ -34,6 +34,12 @@
           <para>real or complex vector or matrix</para>
         </listitem>
       </varlistentry>
+	  <varlistentry>
+        <term>fre</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>

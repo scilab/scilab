@@ -324,6 +324,8 @@ Bug fixes
 
 * Bug #9954 fixed - Add an example in gmres documentation.
 
+* Bug #9953 fixed - Add documentation to the fre input argument of stdevf.
+
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
 
