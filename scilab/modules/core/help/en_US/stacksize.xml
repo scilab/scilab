@@ -57,18 +57,18 @@
       <literal>sz=stacksize()</literal> returns a 2-vector which contains  the current
       total and used stack size.
     </para>
-    <para>By default, the size of the stack is 100 MB.
-      <para>On 64 bit platforms, maximum size of the stack is limited to 268435454.</para>
-    </refsection>
-    <refsection role="see also">
-      <title>See Also</title>
-      <simplelist type="inline">
-        <member>
-          <link linkend="who">who</link>
-        </member>
-        <member>
-          <link linkend="gstacksize">gstacksize</link>
-        </member>
-      </simplelist>
-    </refsection>
-  </refentry>
+    <para>By default, the size of the stack is 100 000 000.</para>
+    <para>On 64 bit platforms, maximum size of the stack is limited to 268 435 454.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="gstacksize">gstacksize</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
