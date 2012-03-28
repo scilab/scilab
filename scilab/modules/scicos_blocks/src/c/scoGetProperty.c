@@ -90,7 +90,6 @@ double scoGetRealTime(void)
 #else
 //** -------------------- WINDOWS VERSION ------------------------------------------------------------------ 
 #include <windows.h>
-#include <winbase.h>
 
 double scoGetRealTime(void) 
 {
