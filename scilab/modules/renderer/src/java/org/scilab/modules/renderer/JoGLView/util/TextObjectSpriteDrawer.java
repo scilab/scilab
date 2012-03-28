@@ -79,6 +79,54 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject);
 
+        fillEntityMatrix(stringArray, fractionalFont, textColor, font);
+
+        this.width  = sum(columnWidth) + MARGIN * (columnNumber + 1) + 2 * thickness + spaceWidth * (columnNumber - 1);
+        this.height = sum(lineHeight)  + MARGIN * (lineNumber + 1) + 2 * thickness;
+    }
+
+    /**
+     * Constructor.
+     * Specifies a scale factor used to scale the text matrix.
+     * @param spriteManager the sprite manager to use.
+     * @param colorMap the color map to used.
+     * @param textObject the scilab {@see TextObject} to draw.
+     * @param scaleFactor the scale factor to apply.
+     */
+    public TextObjectSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final TextObject textObject, double scaleFactor) {
+        this.spriteManager = spriteManager;
+        this.spaceWidth = computeSpaceWidth();
+
+        String[][] stringArray = computeTextData(textObject);
+        int columnNumber = -1;
+        for (String[] stringLine : stringArray) {
+            columnNumber = Math.max(stringLine.length, columnNumber);
+        }
+        int lineNumber = stringArray.length;
+
+        this.lineHeight = new int[lineNumber];
+        this.columnWidth = new int[columnNumber];
+        this.entities = new Object[columnNumber][lineNumber];
+
+        boolean fractionalFont = textObject.getFontFractional();
+        Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
+        Font font = computeFont(textObject, scaleFactor);
+
+        /* Fill the entity matrix */
+        fillEntityMatrix(stringArray, fractionalFont, textColor, font);
+
+        this.width  = (int)((double)sum(columnWidth) + scaleFactor*(double)(MARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor*(double)(spaceWidth * (columnNumber - 1)));
+        this.height = (int)((double)sum(lineHeight)  + scaleFactor*(double)(MARGIN * (lineNumber + 1)) + 2 * thickness);
+    }
+
+    /**
+     * Fills the entity matrix
+     * @param stringArray the matrix of text strings used to fill the entity matrix.
+     * @param fractionalFont specifies whether a fractional font is used or not.
+     * @param textColor the text color.
+     * @param font the font to use.
+     */
+    protected void fillEntityMatrix(String[][] stringArray, boolean fractionalFont, Color textColor, Font font) {
         int line = 0;
         for (String[] textLine : stringArray) {
             int column = 0;
@@ -109,9 +157,6 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
             }
             line++;
         }
-
-        this.width  = sum(columnWidth) + MARGIN * (columnNumber + 1) + 2 * thickness + spaceWidth * (columnNumber - 1);
-        this.height = sum(lineHeight)  + MARGIN * (lineNumber + 1) + 2 * thickness;
     }
 
     /**
@@ -139,11 +184,14 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
             drawingTools.clear(appearance.getFillColor());
         }
 
+        int currentMargin = getMargin();
+        int currentSpaceWidth = getSpaceWidth();
+
         // Draw text.
-        int x = MARGIN + thickness;
+        int x = currentMargin + thickness;
         int column = 0;
         for (Object[] entitiesLine : entities) {
-            int y = MARGIN + thickness;
+            int y = currentMargin + thickness;
             int line = 0;
             for (Object entity : entitiesLine) {
                 if (entity != null) {
@@ -151,18 +199,18 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
                         TextEntity textEntity = (TextEntity) entity;
                         double deltaX = alignmentFactor * (columnWidth[column] - spriteManager.getSize(textEntity).getWidth());
                         drawingTools.draw(textEntity, (int) (x + deltaX), y);
-                        y += lineHeight[line] + MARGIN;
+                        y += lineHeight[line] + currentMargin;
                         line++;
                     } else if (entity instanceof Icon) {
                         Icon icon = (Icon) entity;
                         double deltaX = alignmentFactor * (columnWidth[column] - icon.getIconWidth());
                         drawingTools.draw(icon, (int) (x + deltaX), y);
-                        y += lineHeight[line] + MARGIN;
+                        y += lineHeight[line] + currentMargin;
                         line++;
                     }
                 }
             }
-            x += columnWidth[column] + MARGIN + spaceWidth;
+            x += columnWidth[column] + currentMargin + currentSpaceWidth;
             column++;
         }
 
@@ -213,6 +261,10 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
     public int getMargin() {
         return MARGIN;
     }
+
+    public int getSpaceWidth() {
+        return spaceWidth;
+    }
     
     /**
      * Compute and return the matrix of text string from the given {@see Text} object.
@@ -240,6 +292,18 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
      */
     private Font computeFont(final TextObject text) {
         return FontManager.getSciFontManager().getFontFromIndex(text.getFontStyle(), text.getFontSize());
+    }
+
+    /**
+     * Computes and returns the {@link Font} adapted to the given Scilab text, taking into account the scale factor.
+     * It takes the size 1 Font to derive a new Font whose size is increased according to the scale factor.
+     * @param text the given {@see Text} object.
+     * @param scaleFactor the scale factor to apply.
+     * @return the {@see Font} adapted to the given Scilab text.
+     */
+    private Font computeFont(final TextObject text, double scaleFactor) {
+        Font font  = FontManager.getSciFontManager().getFontFromIndex(text.getFontStyle(), 1.0);
+        return font.deriveFont(font.getSize2D()*(float)scaleFactor);
     }
 
     /**
