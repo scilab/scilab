@@ -19,7 +19,7 @@ clearglobal();
 
 // Set stack size   ===================================================
 function setStackSize()
-  defaultstacksize = 5000000;
+  defaultstacksize = 10000000;
   old = stacksize()
   params = sciargs();
   nparam = find(params == "-mem");

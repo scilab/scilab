@@ -2,6 +2,13 @@
             =================================================================
 
 
+Scilab
+======
+
+* Update the default size of the Scilab stack to 100MB (instead of 50MB).
+  See stacksize for more information.
+
+
 Scilab Desktop
 ==============
 
