@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>case</refname>
-    <refpurpose> keyword used in statement "select"</refpurpose>
+    <refpurpose>keyword used in statement "select"</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -13,20 +13,25 @@
       Keyword used in statement <literal>select ... case ... end</literal>
     </para>
     <para>
+      Keyword <literal>case</literal> points out one variant of a variable value (it is the
+      variable value which is selected from a range of values).
+    </para>
+    <para>
       Use it in the following way:
     </para>
-    <programlisting><![CDATA[
-        select expr0
-        case expr1 then
-            instructions 1
-        case expr2 then
-            instructions 2
+    
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+select expr0
+    case expr1 then
+        instructions 1
+    case expr2 then
+        instructions 2
         ...
-        case exprn then
-            instructions n
-        [else instructions]
-        end
- ]]></programlisting>
+    case exprn then
+        instructions n
+    [else instructions]
+end
+     ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
