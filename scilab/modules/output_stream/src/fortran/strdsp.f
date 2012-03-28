@@ -113,12 +113,6 @@ c
                ll1=0
                indent=0
  40            np1=min(np,ll-2-indent)
-c              Making sure we do not cut the string in the middle of an UTF-8 character
- 42            if((mat(lp+np1).ge.228).and.(mat(lp+np1).le.291)) then
-                  np1 = np1-1
-                  goto 42
-               endif
-c              Now the next chunk will start with either an ASCII or an UTF-8 character
                call cvstr(np1,mat(lp),cw(l1:l1+np1-1),1)
                l1=l1+np1
                if(np1.ne.np) then
