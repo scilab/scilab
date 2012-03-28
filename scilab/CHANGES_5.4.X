@@ -5,7 +5,7 @@
 Scilab
 ======
 
-* Update the default size of the Scilab stack to 100MB (instead of 50MB).
+* Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
 
 
