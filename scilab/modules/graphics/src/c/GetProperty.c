@@ -1802,14 +1802,9 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
 
-        if (iView)
-        {
-            *numcol = 3;
-        }
-        else
-        {
-            *numcol = 2;
-        }
+        // Force data to have at least 3 columns
+        // special behaviour for segs that do not depend on 2d or 3d view property.
+        *numcol = 3;
 
         if ((tab = CALLOC(2*(*numrow)*(*numcol),sizeof(double))) == NULL)
         {
@@ -1827,12 +1822,8 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
             tab[2*i+1] = arrowDirections[3*i];
             tab[2*(*numrow)+2*i] = arrowBases[3*i+1];
             tab[2*(*numrow)+2*i+1] = arrowDirections[3*i+1];
-
-            if (iView)
-            {
-                tab[4*(*numrow)+2*i] = arrowBases[3*i+2];
-                tab[4*(*numrow)+2*i+1] = arrowDirections[3*i+2];
-            }
+            tab[4*(*numrow)+2*i] = arrowBases[3*i+2];
+            tab[4*(*numrow)+2*i+1] = arrowDirections[3*i+2];
         }
 
         /* There are twice as many points as arrows (2 endpoints) */
