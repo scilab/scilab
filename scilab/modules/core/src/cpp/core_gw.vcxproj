@@ -170,6 +170,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_format.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_sciargs.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_type.c" />

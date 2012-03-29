@@ -33,7 +33,7 @@ namespace types
 
         void                    whoAmI();
 
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString();
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring    getTypeStr() {return L"listdelete";}

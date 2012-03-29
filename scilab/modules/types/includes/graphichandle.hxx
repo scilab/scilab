@@ -40,7 +40,7 @@ namespace types
 
         bool isSingleHandle();
 
-        std::wstring toString(int _iPrecision, int _iLineLen);
+        std::wstring toString();
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring getTypeStr() {return L"handle";}
@@ -79,7 +79,7 @@ namespace types
         RealType				getType(void);
 
     private :
-        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
         virtual SingleHandle*   getNullValue();
         virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

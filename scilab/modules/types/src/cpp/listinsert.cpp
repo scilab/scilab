@@ -53,7 +53,7 @@ namespace types
         return RealListInsertOperation;
     }
 
-    std::wstring ListInsert::toString(int _iPrecision, int _iLineLen)
+    std::wstring ListInsert::toString()
     {
         std::wostringstream ostr;
 

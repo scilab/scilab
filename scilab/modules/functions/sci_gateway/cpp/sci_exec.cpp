@@ -303,9 +303,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     if( (*j)->is_verbose() && bErrCatch == false)
                     {
                         std::wostringstream ostr;
-                        ostr << L"ans = " << std::endl;
+                        ostr << L" ans  =" << std::endl;
                         ostr << std::endl;
-                        ostr << pITAns->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                        ostr << pITAns->toString() << std::endl;
                         scilabWriteW(ostr.str().c_str());
                     }
                 }

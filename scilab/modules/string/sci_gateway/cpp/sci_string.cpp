@@ -35,6 +35,18 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     if !R && !C -> 0
     if(!R aa C	-> Ci
     */
+    DoubleFormat dfR, dfI;
+    getDoubleFormat(_dblR, &dfR);
+    getDoubleFormat(_dblI, &dfI);
+
+    dfR.bPrintPoint = false;
+    dfR.bPaddSign = false;
+    dfR.iSignLen = 0;
+
+    dfI.bPrintPoint = false;
+    dfI.bPaddSign = false;
+    dfI.iSignLen = 0;
+
 
     if(_dblR == 0)
     {//no real part
@@ -42,8 +54,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
         {//no imaginary part
 
             //0
-            *_postr << (_dblI < 0 ? L"-" : L"");
-            *_postr << std::left << 0;
+            addDoubleValue(_postr, 0, &dfR);
         }
         else
         {//imaginary part
@@ -54,7 +65,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             if(fabs(_dblI) != 1)
             {//specail case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
-                printDoubleVar(_postr, _dblI);
+                addDoubleValue(_postr, fabs(_dblI), &dfI);
             }
         }
     }
@@ -64,21 +75,19 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
         {//no imaginary part
 
             //R
-            *_postr << (_dblR < 0 ? L"-" : L"");
-            printDoubleVar(_postr, _dblR);
+            addDoubleValue(_postr, _dblR, &dfR);
         }
         else
         {//imaginary part
 
             //R
-            *_postr << (_dblR < 0 ? L"-" : L"");
-            printDoubleVar(_postr, _dblR);
+            addDoubleValue(_postr, _dblR, &dfR);
             //I
             *_postr << (_dblI < 0 ? L"-%i" : L"+%i");
             if(fabs(_dblI) != 1)
             {//special case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
-                printDoubleVar(_postr, _dblI);
+                addDoubleValue(_postr, fabs(_dblI), &dfI);
             }
         }
     }
@@ -107,7 +116,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             }
             else if(iRows == -1 && iCols == -1)
             {
-                out.push_back(new String(1,1));
+                out.push_back(new String(L""));
                 return Function::OK;
             }
 
@@ -135,7 +144,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         }
     default :
         {
-            out.push_back(new types::String((in[0]->toString(0,0)).c_str()));
+            out.push_back(new types::String((in[0]->toString()).c_str()));
             break;
         }
     }

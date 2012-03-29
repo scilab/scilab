@@ -176,40 +176,39 @@ CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
 endif
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_mtlb_mode.c \
-sci_gateway/c/sci_where.c \
-sci_gateway/c/sci_errcatch.c \
-sci_gateway/c/sci_format.c \
-sci_gateway/c/sci_getmemory.c \
-sci_gateway/c/sci_havewindow.c \
-sci_gateway/c/sci_delbpt.c \
-sci_gateway/c/sci_macr2lst.c \
-sci_gateway/c/sci_errclear.c \
-sci_gateway/c/sci_funcprot.c \
-sci_gateway/c/sci_newfun.c \
-sci_gateway/c/sci_dispbpt.c \
-sci_gateway/c/sci_intppty.c \
-sci_gateway/c/sci_ieee.c \
-sci_gateway/c/sci_gstacksize.c \
-sci_gateway/c/sci_funptr.c \
-sci_gateway/c/sci_return.c \
-sci_gateway/c/sci_clearfun.c \
-sci_gateway/c/sci_setbpt.c \
-sci_gateway/c/sci_what.c \
-sci_gateway/c/sci_predef.c \
-sci_gateway/c/sci_type.c \
-sci_gateway/c/sci_typename.c \
-sci_gateway/c/sci_mode.c \
-sci_gateway/c/sci_macr2tree.c \
-sci_gateway/c/sci_iserror.c \
-sci_gateway/c/sci_getdebuginfo.c \
-sci_gateway/c/sci_debug.c \
-sci_gateway/c/gw_core.c \
-sci_gateway/c/gw_user.c \
-sci_gateway/c/gw_user2.c \
-sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c \
-sci_gateway/c/sci_comp.c
+	sci_gateway/c/sci_mtlb_mode.c \
+	sci_gateway/c/sci_where.c \
+	sci_gateway/c/sci_errcatch.c \
+	sci_gateway/c/sci_getmemory.c \
+	sci_gateway/c/sci_havewindow.c \
+	sci_gateway/c/sci_delbpt.c \
+	sci_gateway/c/sci_macr2lst.c \
+	sci_gateway/c/sci_errclear.c \
+	sci_gateway/c/sci_funcprot.c \
+	sci_gateway/c/sci_newfun.c \
+	sci_gateway/c/sci_dispbpt.c \
+	sci_gateway/c/sci_intppty.c \
+	sci_gateway/c/sci_ieee.c \
+	sci_gateway/c/sci_gstacksize.c \
+	sci_gateway/c/sci_funptr.c \
+	sci_gateway/c/sci_return.c \
+	sci_gateway/c/sci_clearfun.c \
+	sci_gateway/c/sci_setbpt.c \
+	sci_gateway/c/sci_what.c \
+	sci_gateway/c/sci_predef.c \
+	sci_gateway/c/sci_type.c \
+	sci_gateway/c/sci_typename.c \
+	sci_gateway/c/sci_mode.c \
+	sci_gateway/c/sci_macr2tree.c \
+	sci_gateway/c/sci_iserror.c \
+	sci_gateway/c/sci_getdebuginfo.c \
+	sci_gateway/c/sci_debug.c \
+	sci_gateway/c/gw_core.c \
+	sci_gateway/c/gw_user.c \
+	sci_gateway/c/gw_user2.c \
+	sci_gateway/c/sci_getvariablesonstack.c \
+	sci_gateway/c/sci_readgateway.c \
+	sci_gateway/c/sci_comp.c
 
 GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
@@ -247,6 +246,7 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
 	sci_gateway/cpp/sci_stacksize.cpp \
+	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp
 
 

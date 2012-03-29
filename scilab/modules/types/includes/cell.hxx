@@ -73,7 +73,7 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring getShortTypeStr() {return L"ce";};
         virtual bool        isContainer(void) { return true; }
-        void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
     private :
         virtual InternalType*   getNullValue();

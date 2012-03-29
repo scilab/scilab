@@ -48,6 +48,9 @@
     <ClCompile Include="src\cpp\setenvvar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\formatmode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\configvariable.hxx">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\setenvvar.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\formatmode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

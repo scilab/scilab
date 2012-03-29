@@ -52,7 +52,7 @@ namespace types
         return RealMacroFile; 
     }
 
-    wstring MacroFile::toString(int _iPrecision, int _iLineLen)
+    wstring MacroFile::toString()
     {
         wostringstream ostr;
 

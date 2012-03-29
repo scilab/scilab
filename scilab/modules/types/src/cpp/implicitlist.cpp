@@ -22,6 +22,7 @@
 #include "uint16.hxx"
 #include "uint32.hxx"
 #include "uint64.hxx"
+#include "formatmode.h"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -35,8 +36,8 @@ extern "C"
     #include "elem_common.h"
 }
 
-std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar, int _iPrecision, int _iLineLen);
-std::wstring printDouble(types::Double* _pD, int _iPrecision, int _iLineLen);
+std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar);
+std::wstring printDouble(types::Double* _pD);
 long long convert_input(types::InternalType* _poIT);
 unsigned long long convert_unsigned_input(types::InternalType* _poIT);
 
@@ -353,11 +354,11 @@ namespace types
         return true;
     }
 
-    std::wstring ImplicitList::toString(int _iPrecision, int _iLineLen)
+    std::wstring ImplicitList::toString()
     {
         if(isComputable())
         {
-            return extractFullMatrix()->toString(_iPrecision, _iLineLen);
+            return extractFullMatrix()->toString();
         }
         else
         {
@@ -366,12 +367,12 @@ namespace types
             if(m_eStartType == RealDouble)
             {
                 Double *pD = m_poStart->getAs<Double>();
-                ostr << printDouble(pD, _iPrecision, _iLineLen);
+                ostr << printDouble(pD);
             }
             else //Polynom
             {
                 Polynom* pMP = m_poStart->getAs<types::Polynom>();
-                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName(), _iPrecision, _iLineLen);
+                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
             }
 
             ostr << L":";
@@ -379,12 +380,12 @@ namespace types
             if(m_eStepType == RealDouble)
             {
                 Double *pD = m_poStep->getAs<Double>();
-                ostr << printDouble(pD, _iPrecision, _iLineLen);
+                ostr << printDouble(pD);
             }
             else //Polynom
             {
                 Polynom* pMP = m_poStep->getAs<types::Polynom>();
-                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName(), _iPrecision, _iLineLen);
+                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
             }
 
             ostr << L":";
@@ -392,12 +393,12 @@ namespace types
             if(m_eEndType == RealDouble)
             {
                 Double *pD = m_poEnd->getAs<Double>();
-                ostr << printDouble(pD, _iPrecision, _iLineLen);
+                ostr << printDouble(pD);
             }
             else //Polynom
             {
                 Polynom* pMP = m_poEnd->getAs<types::Polynom>();
-                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName(), _iPrecision, _iLineLen);
+                ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
             }
             ostr << std::endl;
             return ostr.str();
@@ -560,7 +561,7 @@ namespace types
     }
 }
 
-std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar, int _iPrecision, int _iLineLen)
+std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
 {
     std::wostringstream ostr;
     for(int i = 0 ; i < _pPoly->getRank() ; i++)
@@ -568,10 +569,13 @@ std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar, int
         double dbl = _pPoly->getCoef()->getReal()[i];
         if(dbl != 0)
         {
-            int iWidth = 0, iPrec = 0;
-            bool bFP = false; // FloatingPoint
-            getDoubleFormat(dbl, _iPrecision, &iWidth, &iPrec, &bFP);
-            addDoubleValue(&ostr, dbl, iWidth, iPrec, ostr.str().size() != 0, i == 0, false);
+            DoubleFormat df;
+            getDoubleFormat(dbl, &df);
+            df.bPrintPoint = ostr.str().size() != 0;
+            df.bPrintPlusSign = true;
+            df.bPrintOne = i == 0;
+            df.bPaddSign = false;
+            addDoubleValue(&ostr, dbl, &df);
             if(i != 0)
             {
                 ostr <<_stVar;
@@ -585,13 +589,13 @@ std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar, int
     return ostr.str();
 }
 
-std::wstring printDouble(types::Double* _pD, int _iPrecision, int _iLineLen)
+std::wstring printDouble(types::Double* _pD)
 {
     std::wostringstream ostr;
-    int iWidth = 0, iPrec = 0;
-    bool bFP = false; // FloatingPoint
-    getDoubleFormat(_pD->getReal(0,0), _iPrecision, &iWidth, &iPrec, &bFP);
-    addDoubleValue(&ostr, _pD->getReal(0,0), iWidth, iPrec, false, true, false);
+    DoubleFormat df;
+    getDoubleFormat(_pD->get(0), &df);
+    df.bPaddSign = true;
+    addDoubleValue(&ostr, _pD->get(0), &df);
     return ostr.str();
 }
 

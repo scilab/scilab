@@ -21,6 +21,7 @@
 #include "tostring_common.hxx"
 #include "core_math.h"
 #include "list.hxx"
+#include "formatmode.h"
 
 namespace types
 {
@@ -225,8 +226,10 @@ namespace types
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    void Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iPrecision = getFormatSize();
+
         if(isEmpty())
         {
             ostr << L"   {}";
@@ -302,12 +305,12 @@ namespace types
                                 }
                                 ostemp << pGT->getDimsArray()[k];
                             }
-                            configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
+                            configureStream(&ostr, piSizeLen[j], iPrecision, ' ');
                             ostr << std::right << ostemp.str();
                         }
                         else
                         {//" i   "
-                            configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
+                            configureStream(&ostr, piSizeLen[j], iPrecision, ' ');
                             if(pIT->isList())
                             {
                                 ostr << std::right << pIT->getAs<List>()->getSize();
@@ -320,11 +323,11 @@ namespace types
                     }
                     else
                     {
-                        configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
+                        configureStream(&ostr, piSizeLen[j], iPrecision, ' ');
                         ostr << L"";//fill with space
                     }
                     ostr << L" ";
-                    configureStream(&ostr, piTypeLen[j], _iPrecision, ' ');
+                    configureStream(&ostr, piTypeLen[j], iPrecision, ' ');
                     ostr << std::left << pIT->getTypeStr();
                     ostr << L"]";
                 }

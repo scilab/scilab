@@ -37,7 +37,7 @@ namespace types
 		return RealListDeleteOperation;
 	}
 
-    std::wstring ListDelete::toString(int _iPrecision, int _iLineLen)
+    std::wstring ListDelete::toString()
 	{
         std::wostringstream ostr;
 

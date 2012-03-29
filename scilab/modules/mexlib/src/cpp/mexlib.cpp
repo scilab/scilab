@@ -1609,7 +1609,7 @@ int mexEvalString(const char *name)
                     std::wostringstream ostr;
                     ostr << L"ans = " << std::endl;
                     ostr << std::endl;
-                    ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                    ostr << execMe.result_get()->toString() << std::endl;
                     scilabWriteW(ostr.str().c_str());
                 }
             }

@@ -796,7 +796,8 @@ int InitializeEnvironnement(void)
     InitializeLocalization();
 
     ConfigVariable::setConsoleWidth(75);
-    ConfigVariable::setFormat(16);
+    ConfigVariable::setFormatSize(10);
+    ConfigVariable::setFormatMode(1);
     Add_All_Variables();
     FileManager::initialize();
     return 0;

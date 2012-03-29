@@ -37,7 +37,7 @@ namespace types
 		return RealListOperation;
 	}
 
-    std::wstring ListOperation::toString(int _iPrecision, int _iLineLen)
+    std::wstring ListOperation::toString()
 	{
         std::wostringstream ostr;
 

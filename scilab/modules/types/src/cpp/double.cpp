@@ -15,6 +15,7 @@
 #include "double.hxx"
 #include "tostring_common.hxx"
 #include "scilabexception.hxx"
+#include "formatmode.h"
 
 extern "C"
 {
@@ -229,34 +230,33 @@ namespace types
 		return true;
 	}
 
-    void Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iLineLen = getConsoleWidth();
+
         if(isIdentity())
         {
             ostr << L"eye *" << endl << endl;
             if(isComplex() == false)
             {
-                int iWidth = 0, iPrec = 0;
-                bool bFP = false; // FloatingPoint
-                getDoubleFormat((m_pRealData[0]), _iPrecision, &iWidth, &iPrec, &bFP);
-                addDoubleValue(&ostr, (m_pRealData[0]), iWidth, iPrec);
+                DoubleFormat df;
+                getDoubleFormat((m_pRealData[0]), &df);
+                addDoubleValue(&ostr, (m_pRealData[0]), &df);
                 ostr << endl;
             }
             else
             {//complex value
-                int iWidthR = 0, iWidthI = 0;
-                int iPrecR = 0, iPrecI = 0;
-                bool bFPR = false, bFPI = false; // FloatingPoint
-                getDoubleFormat(ZeroIsZero(m_pRealData[0]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
-                getDoubleFormat(ZeroIsZero(m_pImgData[0]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
-                addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[0]), ZeroIsZero(m_pImgData[0]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                DoubleFormat dfR, dfI;
+                getDoubleFormat(ZeroIsZero(m_pRealData[0]), &dfR);
+                getDoubleFormat(ZeroIsZero(m_pImgData[0]), &dfI);
+                addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[0]), ZeroIsZero(m_pImgData[0]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
                 ostr << endl;
             }
             ostr << endl;
         }
         else if(isEmpty())
         {
-            ostr << L"[]";
+            ostr << L"    []";
             ostr << endl;
         }
         else if(isScalar())
@@ -267,20 +267,20 @@ namespace types
 
             if(isComplex() == false)
             {
-                int iWidth = 0, iPrec = 0;
-                bool bFP = false; // FloatingPoint
-                getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                addDoubleValue(&ostr, (m_pRealData[iPos]), iWidth, iPrec);
+                DoubleFormat df;
+                getDoubleFormat((m_pRealData[iPos]), &df);
+                ostr << SPACE_BETWEEN_TWO_VALUES;
+                addDoubleValue(&ostr, (m_pRealData[iPos]), &df);
                 ostr << endl;
             }
             else
             {//complex value
-                int iWidthR = 0, iWidthI = 0;
-                int iPrecR = 0, iPrecI = 0;
-                bool bFPR = false, bFPI = false; // FloatingPoint
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
-                getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
-                addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                DoubleFormat dfR, dfI;
+                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &dfR);
+                getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), &dfI);
+                ostr << SPACE_BETWEEN_TWO_VALUES;
+                addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+                ostr << endl;
             }
         }
         else if(getCols() == 1)
@@ -290,14 +290,14 @@ namespace types
             {
                 for(int i = 0 ; i < getRows() ; i++)
                 {
-                    int iWidth = 0, iPrec = 0;
-                    bool bFP = false; // FloatingPoint
                     _piDims[1] = 0;
                     _piDims[0] = i;
                     int iPos = getIndex(_piDims);
 
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                    addDoubleValue(&ostr, ZeroIsZero(m_pRealData[iPos]), iWidth, iPrec);
+                    DoubleFormat df;
+                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    ostr << SPACE_BETWEEN_TWO_VALUES;
+                    addDoubleValue(&ostr, ZeroIsZero(m_pRealData[iPos]), &df);
                     ostr << endl;
                 }
             }
@@ -305,17 +305,16 @@ namespace types
             {
                 for(int i = 0 ; i < getRows() ; i++)
                 {//complex value
-                    int iWidthR = 0, iWidthI = 0;
-                    int iPrecR = 0, iPrecI = 0;
-                    bool bFPR = false, bFPI = false; // FloatingPoint
-
                     _piDims[1] = 0;
                     _piDims[0] = i;
                     int iPos = getIndex(_piDims);
 
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
-                    getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
-                    addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                    DoubleFormat dfR, dfI;
+                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &dfR);
+                    getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), &dfI);
+
+                    ostr << SPACE_BETWEEN_TWO_VALUES;
+                    addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
                     ostr << endl;
                 }
             }
@@ -329,17 +328,15 @@ namespace types
             {
                 for(int i = 0 ; i < getCols() ; i++)
                 {
-                    int iWidth = 0, iPrec = 0;
-                    bool bFP = false; // FloatingPoint
                     int iLen = 0;
-
                     _piDims[0] = 0;
                     _piDims[1] = i;
                     int iPos = getIndex(_piDims);
 
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                    iLen = iWidth + bFP + static_cast<int>(ostemp.str().size());
-                    if(iLen > _iLineLen)
+                    DoubleFormat df;
+                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    iLen = df.iWidth + static_cast<int>(ostemp.str().size());
+                    if(iLen > iLineLen)
                     {//Max length, new line
                         ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
                         ostr << ostemp.str() << endl;
@@ -347,12 +344,8 @@ namespace types
                         iLastVal = i;
                     }
 
-                    if(ostemp.str().size() != 0)
-                    {
-                        ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    }
-
-                    addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), iWidth, iPrec);
+                    ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                 }
 
                 if(iLastVal != 0)
@@ -364,17 +357,14 @@ namespace types
             {
                 for(int i = 0 ; i < getCols() ; i++)
                 {
-                    int iWidthR = 0, iWidthI = 0;
-                    int iPrecR = 0, iPrecI = 0;
-                    bool bFPR = false, bFPI = false; // FloatingPoint
                     int iLen = 0;
-
                     _piDims[0] = 0;
                     _piDims[1] = i;
+                    int iTotalLen = 0;
                     int iPos = getIndex(_piDims);
 
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
-                    getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
+                    DoubleFormat dfR, dfI;
+                    getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
 
                     iLen = static_cast<int>(ostemp.str().size());
                     if(isRealZero(m_pImgData[iPos]))
@@ -385,26 +375,26 @@ namespace types
                         }
                         else
                         {
-                            iLen		+= iWidthR + bFPR;
-                            iWidthI	= 0;
+                            iLen		+= dfR.iWidth;
+                            dfI.iWidth	= 0;
                         }
                     }
                     else
                     {
                         if(isRealZero(m_pRealData[iPos]))
                         {
-                            iLen		+= iWidthI + bFPI;
-                            iWidthR	= 0;
+                            iLen		+= dfI.iWidth;
+                            dfR.iWidth	= 0;
                         }
                         else
                         {
-                            iLen += iWidthR + bFPR;
+                            iLen += dfR.iWidth;
                             iLen += SIZE_BETWEEN_REAL_COMPLEX;
-                            iLen += iWidthI + bFPI;
+                            iLen += dfI.iWidth;
                         }
                     }
 
-                    if(iLen > _iLineLen)
+                    if(iLen > iLineLen)
                     {//Max length, new line
                         ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
                         ostr << ostemp.str() << endl;
@@ -412,12 +402,8 @@ namespace types
                         iLastVal = i;
                     }
 
-                    if(ostemp.str().size() != 0)
-                    {
-                        ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    }
-
-                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                    ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iLen, &dfR, &dfI);
                 }
 
                 if(iLastVal != 0)
@@ -445,16 +431,14 @@ namespace types
                 {
                     for(int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                     {
-                        int iWidth			= 0;
-                        int iPrec				= 0;
-                        bool bFP				= false; // FloatingPoint
                         int iCurrentLen = 0;
-
                         _piDims[0] = iRows1;
                         _piDims[1] = iCols1;
                         int iPos = getIndex(_piDims);
-                        getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                        iCurrentLen	= iWidth + bFP;
+
+                        DoubleFormat df;
+                        getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                        iCurrentLen	= df.iWidth;
 
                         if(iCurrentLen > piSize[iCols1])
                         {
@@ -462,23 +446,23 @@ namespace types
                         }
                     }
 
-                    if(iLen + piSize[iCols1] > _iLineLen)
+                    if(iLen + piSize[iCols1] > iLineLen)
                     {//find the limit, print this part
                         for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
                         {
                             for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                             {
-                                int iWidth			= 0;
-                                int iPrec				= 0;
-                                bool bFP				= false; // FloatingPoint
-
                                 _piDims[0] = iRows2;
                                 _piDims[1] = iCols2;
-
                                 int iPos = getIndex(_piDims);
-                                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                                addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), piSize[iCols2], iPrec);
+
+                                DoubleFormat df;
+                                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+
                                 ostemp << SPACE_BETWEEN_TWO_VALUES;
+
+                                df.iWidth = piSize[iCols2];
+                                addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                             }
                             ostemp << endl;
                         }
@@ -496,17 +480,16 @@ namespace types
                 {
                     for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
                     {
-                        int iWidth			= 0;
-                        int iPrec				= 0;
-                        bool bFP				= false; // FloatingPoint
-
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
-
                         int iPos = getIndex(_piDims);
-                        getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
-                        addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), piSize[iCols2], iPrec);
+
+                        DoubleFormat df;
+                        getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+
                         ostemp << SPACE_BETWEEN_TWO_VALUES;
+                        df.iWidth = piSize[iCols2];
+                        addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                     }
                     ostemp << endl;
                 }
@@ -523,44 +506,37 @@ namespace types
                 {
                     for(int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                     {
-                        int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
-                        int iPrecR = 0, iPrecI = 0;
-                        bool bFPR = false, bFPI = false; // FloatingPoint
-
+                        int iTotalWidth = 0;
                         _piDims[0] = iRows1;
                         _piDims[1] = iCols1;
-
                         int iPos = getIndex(_piDims);
-                        getComplexFormat(	ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), _iPrecision,
-                            &iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-                        iTotalWidth += (iWidthR == 0 ? 0 : SIGN_LENGTH) + (iWidthI == 0 ? 0 : SIGN_LENGTH + 1);
+                        DoubleFormat dfR, dfI;
+                        getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+
+                        iTotalWidth += (dfR.iWidth == 0 ? 0 : SIGN_LENGTH) + (dfI.iWidth == 0 ? 0 : SIGN_LENGTH + 1);
                         if(iTotalWidth > piSize[iCols1])
                         {
                             piSize[iCols1] = iTotalWidth;
                         }
                     }
 
-                    if(iLen + piSize[iCols1] > _iLineLen)
+                    if(iLen + piSize[iCols1] > iLineLen)
                     {//find the limit, print this part
                         for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
                         {
                             for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                             {
-                                int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
-                                int iPrecR = 0, iPrecI = 0;
-                                bool bFPR = false, bFPI = false; // FloatingPoint
-
+                                int iTotalWidth = 0;
                                 _piDims[0] = iRows2;
                                 _piDims[1] = iCols2;
-
                                 int iPos = getIndex(_piDims);
-                                getComplexFormat(	ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), _iPrecision,
-                                    &iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-                                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),
-                                    piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                                DoubleFormat dfR, dfI;
+                                getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+
                                 ostemp << SPACE_BETWEEN_TWO_VALUES;
+                                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                             }
                             ostemp << endl;
                         }
@@ -578,20 +554,16 @@ namespace types
                 {
                     for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
                     {
-                        int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
-                        int iPrecR = 0, iPrecI = 0;
-                        bool bFPR = false, bFPI = false; // FloatingPoint
-
+                        int iTotalWidth = 0;
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
-
                         int iPos = getIndex(_piDims);
-                        getComplexFormat(	ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), _iPrecision,
-                            &iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-                        addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),
-                            piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
+                        DoubleFormat dfR, dfI;
+                        getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+
                         ostemp << SPACE_BETWEEN_TWO_VALUES;
+                        addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                     }
                     ostemp << endl;
                 }

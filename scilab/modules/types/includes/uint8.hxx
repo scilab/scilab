@@ -57,7 +57,7 @@ namespace types
         RealType				    getType(void){return InternalType::RealUInt8;}
 
     private :
-        virtual void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        virtual void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
         virtual unsigned char       getNullValue();
         virtual UInt8*              createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

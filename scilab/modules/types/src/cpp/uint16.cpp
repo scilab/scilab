@@ -13,6 +13,7 @@
 #include <sstream>
 #include "uint16.hxx"
 #include "tostring_common.hxx"
+#include "formatmode.h"
 
 extern "C"
 {
@@ -83,8 +84,9 @@ namespace types
         std::cout << "types::UInt16";
     }
 
-    void UInt16::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void UInt16::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iLineLen = getConsoleWidth();
         ostr << std::endl;
         /*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
         if(isScalar())
@@ -128,7 +130,7 @@ namespace types
 
                 getUnsignedIntFormat(get(iPos), &iWidth);
                 iLen = iWidth + static_cast<int>(ostemp.str().size());
-                if(iLen > _iLineLen)
+                if(iLen > iLineLen)
                 {//Max length, new line
                     ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
                     ostr << ostemp.str() << std::endl;
@@ -175,7 +177,7 @@ namespace types
                     piSize[iCols1] = Max(piSize[iCols1], iWidth);
                 }
 
-                if(iLen + piSize[iCols1] > _iLineLen)
+                if(iLen + piSize[iCols1] > iLineLen)
                 {//find the limit, print this part
                     for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
                     {

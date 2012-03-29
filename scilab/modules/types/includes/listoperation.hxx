@@ -32,7 +32,7 @@ namespace types
 
         void                    whoAmI();
 
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString();
         virtual bool            isAssignable(void) { return false; }
 
         /* return type as string ( double, int, cell, list, ... )*/

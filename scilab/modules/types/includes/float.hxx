@@ -69,7 +69,7 @@ namespace types
 
         /*Internal "constructor*/
         void                createFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
-        std::wstring        toString(int _iPrecision, int _iLineLen);
+        std::wstring        toString();
 
         bool                operator==(const InternalType& it);
         bool                operator!=(const InternalType& it);

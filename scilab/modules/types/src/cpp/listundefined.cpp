@@ -37,7 +37,7 @@ namespace types
 		return RealListUndefinedOperation;
 	}
 
-    std::wstring ListUndefined::toString(int _iPrecision, int _iLineLen)
+    std::wstring ListUndefined::toString()
 	{
         std::wostringstream ostr;
 

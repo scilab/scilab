@@ -71,7 +71,7 @@ namespace types
 
         void                    whoAmI();
 
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString();
 
         virtual ReturnValue     call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 

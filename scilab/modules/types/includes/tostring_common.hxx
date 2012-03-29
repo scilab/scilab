@@ -24,9 +24,9 @@
 #define SIZE_BETWEEN_BOOL               1
 #define SPACE_BETWEEN_BOOL              L" "
 #define SIGN_LENGTH                     2
-#define NO_SIGN                         L"  "
-#define MINUS_STRING                    L"- "
-#define PLUS_STRING                     L"+ "
+#define NO_SIGN                         L" "
+#define MINUS_STRING                    L"-"
+#define PLUS_STRING                     L"+"
 #define MINUS_STRING_INT                L" -"
 #define SYMBOL_I                        L"i"
 
@@ -35,12 +35,28 @@
 #define _abs64(x) llabs(x)
 #endif
 
+typedef struct __DOUBLE_FORMAT__
+{
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(2) {}
+    int iWidth;
+    int iPrec;
+    bool bExp;
+    bool bPrintPoint;
+    bool bPrintPlusSign;
+    bool bPrintOne;
+    bool bPaddSign;
+    int iSignLen;
+}DoubleFormat;
+
 /*double*/
-TYPES_IMPEXP void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
-TYPES_IMPEXP void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-TYPES_IMPEXP void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-TYPES_IMPEXP void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-TYPES_IMPEXP void printDoubleVar(std::wostringstream *_postr,  double _dblVal);
+//TYPES_IMPEXP void getDoubleFormat(double _dblVal, int *_piWidth, int *_piPrec, bool* _pExp);
+TYPES_IMPEXP void getDoubleFormat(double _dblVal, DoubleFormat* _pDF);
+//TYPES_IMPEXP void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR, int *_piPrecI, bool* _pExpR, bool* _pExpI);
+TYPES_IMPEXP void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleFormat* _pDFR, DoubleFormat* _pDFI);
+
+//addDoubleValue(int _iWidth, int _iPrec, bool _bExp, bool _bPrintPoint = true, bool _bPrintPlusSign = false, bool _bPrintOne = true, bool _bPaddSign = true, int _iSignLen = 2);
+TYPES_IMPEXP void addDoubleValue(std::wostringstream *_postr, double _dblVal, DoubleFormat* _pDF);
+TYPES_IMPEXP void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalLen, DoubleFormat* _pDFR, DoubleFormat* _pDFI);
 
 /*Common*/
 TYPES_IMPEXP void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);

@@ -1119,7 +1119,7 @@ namespace ast
                             if((*itExp)->is_verbose() && ConfigVariable::isPromptShow())
                             {
                                 //TODO manage multiple returns
-                                scilabWriteW(L"ans = \n\n");
+                                scilabWriteW(L" ans  =\n\n");
                                 VariableToString(pITAns);
                             }
                         }
@@ -1153,7 +1153,7 @@ namespace ast
                     {//to print call expression only of it is a macro
                         pCall->name_get().accept(*this);
 
-                        if(result_get() != NULL && result_get()->isCallable())
+                        if(result_get() != NULL && (result_get()->isMacro() || result_get()->isMacroFile()))
                         {
                             wostringstream os;
                             PrintVisitor printMe(os);
@@ -1185,7 +1185,7 @@ namespace ast
                         try
                         {
                             pCall->name_get().accept(*this);
-                            if(result_get() != NULL && result_get()->isCallable())
+                            if(result_get() != NULL && (result_get()->isMacro() || result_get()->isMacroFile()))
                             {
                                 wostringstream os;
                                 PrintVisitor printMe(os);
@@ -1603,14 +1603,14 @@ namespace ast
                 }
                 catch(ScilabError /*&e*/)
                 {
-                    ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                    ostr << pIT->toString();
                 }
                 
                 pIT->DecreaseRef();
             }
             else
             {
-                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                ostr << pIT->toString();
             }
 
             scilabWriteW(ostr.str().c_str());

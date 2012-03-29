@@ -37,7 +37,7 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
         scilabForcedWriteW(L"\n");
-		scilabForcedWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
+		scilabForcedWriteW((*it)->toString().c_str());
 	}
 
 	scilabForcedWriteW(L"\n");

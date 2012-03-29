@@ -74,7 +74,7 @@ namespace types
         RealType                    getType(void);
 
     private :
-        virtual void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        virtual void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
         virtual double              getNullValue();
         virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

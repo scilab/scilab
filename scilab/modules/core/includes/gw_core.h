@@ -24,7 +24,6 @@ int C2F(sci_mode)(char *fname,unsigned long fname_len);
 //int C2F(sci_error)(char *fname,unsigned long fname_len); -> C++
 int C2F(sci_resume)(char *fname,unsigned long fname_len);
 int C2F(sci_return)(char *fname,unsigned long fname_len);
-C_GATEWAY_PROTOTYPE(C2F(sci_format));
 int C2F(sci_isdef)(char *fname,unsigned long fname_len);
 int C2F(sci_errcatch)(char *fname,unsigned long fname_len);
 int C2F(sci_errclear)(char *fname,unsigned long fname_len);

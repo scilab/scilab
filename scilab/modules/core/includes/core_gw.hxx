@@ -51,5 +51,6 @@ CPP_GATEWAY_PROTOTYPE(sci_abort);
 CPP_GATEWAY_PROTOTYPE(sci_who);
 CPP_GATEWAY_PROTOTYPE(sci_stacksize);
 CPP_GATEWAY_PROTOTYPE(sci_sciargs);
+CPP_GATEWAY_PROTOTYPE(sci_format);
 
 #endif /* __CORE_GW_HXX__ */

@@ -79,11 +79,19 @@ public :
 
     // Digit precision, ex format function
 private :
-    static int m_iFormat;
+    static int m_iFormatSize;
 
 public :
-    static void setFormat(int _iFormat);
-    static int getFormat(void);
+    static void setFormatSize(int _iFormatSize);
+    static int getFormatSize(void);
+
+    // printf format ( 0 -> "e", 1 -> "v")
+private :
+    static int m_iFormatMode;
+
+public :
+    static void setFormatMode(int _iFormatMode);
+    static int getFormatMode(void);
 
 
     // Screen console width

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -91,11 +91,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;system_env.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -119,11 +120,12 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;system_env.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -144,11 +146,12 @@
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;system_env.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -172,11 +175,12 @@
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;system_env.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -265,6 +269,7 @@
     <ClInclude Include="includes\uint32.hxx" />
     <ClInclude Include="includes\uint64.hxx" />
     <ClInclude Include="includes\uint8.hxx" />
+    <ClInclude Include="includes\user.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="locales\types.pot" />
@@ -295,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="localization_Import.def" />
+    <None Include="system_env_Import.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

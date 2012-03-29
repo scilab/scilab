@@ -20,7 +20,8 @@ SYSTEM_ENV_CPP_SOURCES 	= \
 	src/cpp/sci_mode.cpp \
 	src/cpp/configvariable.cpp \
 	src/cpp/lasterror.cpp \
-	src/cpp/promptmode.cpp
+	src/cpp/promptmode.cpp \
+    src/cpp/formatmode.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 

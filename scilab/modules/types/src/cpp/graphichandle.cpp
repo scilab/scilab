@@ -60,7 +60,7 @@ namespace types
         return true;
     }
 
-    std::wstring SingleHandle::toString(int /*_iPrecision*/, int /*_iLineLen*/)
+    std::wstring SingleHandle::toString()
     {
         return L"SingleHandle::toString";
     }
@@ -198,7 +198,7 @@ namespace types
         return !(*this == it);
     }
 
-    void GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
     }
 

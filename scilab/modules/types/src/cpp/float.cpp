@@ -354,7 +354,7 @@ namespace types
 		return true;
 	}
 
-    std::wstring Float::toString(int _iPrecision, int _iLineLen)
+    std::wstring Float::toString()
 	{
         std::wostringstream ostr;
 		// FIXME : Implement display method.

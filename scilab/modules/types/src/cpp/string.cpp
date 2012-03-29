@@ -14,6 +14,7 @@
 #include "core_math.h"
 #include "string.hxx"
 #include "tostring_common.hxx"
+#include "formatmode.h"
 
 extern "C"
 {
@@ -138,8 +139,11 @@ namespace types
 		return GenericType::RealString;
 	}
 
-    void String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 	{
+        int iPrecision = getFormatSize();
+        int iLineLen = getConsoleWidth();
+
 		if(isScalar())
 		{
             _piDims[0] = 0;
@@ -167,13 +171,13 @@ namespace types
                 int iPos = getIndex(_piDims);
 
                 ostr << L"!";
-				configureStream(&ostr, iMaxLen, _iPrecision, ' ');
+				configureStream(&ostr, iMaxLen, iPrecision, ' ');
 				ostr << left << get(iPos);
 				ostr << L"!" << endl;
 				if((i+1) < m_iSize)
 				{
 					ostr << L"!";
-					configureStream(&ostr, iMaxLen, _iPrecision, ' ');
+					configureStream(&ostr, iMaxLen, iPrecision, ' ');
 					ostr << left << L" ";
 					ostr << L"!" << endl;
 				}
@@ -192,7 +196,7 @@ namespace types
                 int iLen = 0;
 				int iCurLen = static_cast<int>(wcslen(get(iPos)));
 				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
-				if(iLen > _iLineLen)
+				if(iLen > iLineLen)
 				{//Max length, new line
 					if(iLastVal + 1 == i)
 					{
@@ -207,7 +211,7 @@ namespace types
 					iLastVal = i;
 				}
 
-				configureStream(&ostemp, iCurLen + 2, _iPrecision, ' ');
+				configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
 				ostemp << left << get(0,i);
 			}
 
@@ -244,7 +248,7 @@ namespace types
 					piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
 				}
 
-				if(iLen + piSize[iCols1] > _iLineLen)
+				if(iLen + piSize[iCols1] > iLineLen)
 				{//find the limit, print this part
 					for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
 					{
@@ -254,7 +258,7 @@ namespace types
                             _piDims[0] = iRows2;
                             _piDims[1] = iCols2;
                             int iPos = getIndex(_piDims);
-							configureStream(&ostemp, piSize[iCols2], _iPrecision, ' ');
+							configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
 							ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
 						}
 
@@ -262,7 +266,7 @@ namespace types
 						if((iRows2 + 1) != m_iRows)
 						{
 							ostemp << L"!";
-							configureStream(&ostemp, iLen, _iPrecision, ' ');
+							configureStream(&ostemp, iLen, iPrecision, ' ');
 							ostemp << left << L" ";
 							ostemp << L"!" << endl;
 						}
@@ -294,7 +298,7 @@ namespace types
                     _piDims[1] = iCols2;
                     int iPos = getIndex(_piDims);
 
-                    configureStream(&ostemp, piSize[iCols2], _iPrecision, ' ');
+                    configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
 					ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
 					iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
 				}
@@ -302,7 +306,7 @@ namespace types
 				if((iRows2 + 1) != m_iRows)
 				{
 					ostemp << L"!";
-					configureStream(&ostemp, iLen, _iPrecision, ' ');
+					configureStream(&ostemp, iLen, iPrecision, ' ');
 					ostemp << left << L" ";
 					ostemp << L"!" << endl;
 				}

@@ -70,7 +70,7 @@ namespace types
         return m_body;
     }
 
-    wstring Macro::toString(int _iPrecision, int _iLineLen)
+    wstring Macro::toString()
     {
         wostringstream ostr;
 

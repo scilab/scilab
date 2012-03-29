@@ -1402,16 +1402,16 @@ namespace types
 		    return pOut;
 	    }
 
-        virtual std::wstring toString(int _iPrecision, int _iLineLen)
+        virtual std::wstring toString()
         {
             std::wostringstream ostr;
             int* piDims = new int[m_iDims];
 
-            parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1, _iPrecision, _iLineLen);
+            parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
             return ostr.str();
         }
 
-        void parseSubMatrix(std::wostringstream& ostr, int* _piDims, int _iDims, int _iDim, int _iPrecision, int _iLineLen)
+        void parseSubMatrix(std::wostringstream& ostr, int* _piDims, int _iDims, int _iDim)
         {
             if(_iDim == 1)
             {//we have reach 2-dim matrix
@@ -1426,23 +1426,23 @@ namespace types
                     ostr << L")" << std::endl << std::endl;
                 }
 
-                subMatrixToString(ostr, _piDims, _iDims, _iPrecision, _iLineLen);
+                subMatrixToString(ostr, _piDims, _iDims);
             }
             else
             {//draw, continue to dig
                 for(int i = 0 ; i < m_piDims[_iDim] ; i++)
                 {
                     _piDims[_iDim] = i;
-                    parseSubMatrix(ostr, _piDims, _iDims, _iDim - 1, _iPrecision, _iLineLen);
+                    parseSubMatrix(ostr, _piDims, _iDims, _iDim - 1);
                 }
             }
         }
 
-        virtual void subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+        virtual void subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
         {
         }
 
-        virtual std::wstring toStringInLine(int _iPrecision, int _iLineLen)
+        virtual std::wstring toStringInLine()
         {
             std::wostringstream ostr;
             ostr << L"[";

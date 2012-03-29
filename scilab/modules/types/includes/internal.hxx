@@ -89,8 +89,8 @@ namespace types
         virtual RealType                getType(void) = 0 ; //{ return RealInternal; }
 
 
-        virtual std::wstring	        toString(int _iPrecison, int _iLineLen) = 0;
-        virtual std::wstring            toStringInLine(int _iPrecision, int _iLineLen)
+        virtual std::wstring	        toString() = 0;
+        virtual std::wstring            toStringInLine()
         {
             return getTypeStr();
         }

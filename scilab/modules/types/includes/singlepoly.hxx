@@ -54,10 +54,10 @@ namespace types
 
         GenericType*            getColumnValues(int _iPos);
         void                    createPoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-        void                    toStringReal(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
-        void                    toStringImg(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+        void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+        void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString();
 
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);
@@ -70,7 +70,7 @@ namespace types
         RealType                getType(void);
 
     private :
-        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+        void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
 
     private :

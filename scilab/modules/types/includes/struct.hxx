@@ -59,11 +59,11 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring        getShortTypeStr() {return L"st";};
         virtual bool                isContainer(void) { return true; }
-        void                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        void                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
         String*                     getFieldNames();
         bool                        exists(const std::wstring& _sKey);
         bool                        addField(const std::wstring& _sKey);
-        virtual std::wstring        toString(int _iPrecision, int _iLineLen);
+        virtual std::wstring        toString();
         std::vector<InternalType*>  extractFields(std::list<std::wstring> _wstFields);
 
 

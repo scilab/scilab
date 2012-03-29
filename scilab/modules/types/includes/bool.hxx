@@ -56,12 +56,11 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring     getShortTypeStr() {return L"b";}
 
-        //virtual std::wstring    toStringInLine(int _iPrecision, int _iLineLen);
     protected :
         RealType				getType(void);
 
     private :
-        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
         virtual int             getNullValue();
         virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

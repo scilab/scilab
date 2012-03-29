@@ -14,6 +14,7 @@
 #include "singlepoly.hxx"
 #include "double.hxx"
 #include "tostring_common.hxx"
+#include "formatmode.h"
 
 extern "C"
 {
@@ -339,7 +340,7 @@ namespace types
 		}
 	}
 
-	wstring SinglePoly::toString(int _iPrecision, int _iLineLen)
+	wstring SinglePoly::toString()
 	{
 	  wostringstream ostr;
 
@@ -349,12 +350,12 @@ namespace types
 	  return ostr.str();
 	}
 
-	void SinglePoly::toStringReal(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+	void SinglePoly::toStringReal(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
-		toStringInternal(m_pdblCoef->getReal(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
+		toStringInternal(m_pdblCoef->getReal(), _szVar, _pListExp, _pListCoef);
 	}
 
-	void SinglePoly::toStringImg(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+	void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
 		if(isComplex() == false)
 		{
@@ -363,11 +364,14 @@ namespace types
 			return;
 		}
 
-		toStringInternal(m_pdblCoef->getImg(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
+		toStringInternal(m_pdblCoef->getImg(), _szVar, _pListExp, _pListCoef);
 	}
 
-	void SinglePoly::toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+	void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
+        int iPrecision = getFormatSize();
+        int iLineLen = getConsoleWidth();
+
 		wostringstream ostemp;
 		wostringstream ostemp2;
 
@@ -383,11 +387,10 @@ namespace types
 			piIndexExp[i] = 0;
 			if(isRealZero(_pdblVal[i]) == false)
 			{
-				int iWidth = 0, iPrec = 0;
-				bool bFP = false; // FloatingPoint
-				getDoubleFormat(_pdblVal[i], _iPrecision, &iWidth, &iPrec, &bFP);
+                DoubleFormat df;
+				getDoubleFormat(_pdblVal[i], &df);
 
-				if(iLen + iWidth + 2 >= _iLineLen)
+				if(iLen + df.iWidth + 2 >= iLineLen)
 				{//flush
 					for(int j = iLastFlush ; j < i ; j++)
 					{
@@ -409,7 +412,13 @@ namespace types
 					ostemp.str(L""); //reset stream
 					addSpaces(&ostemp, 12); //take from scilab ... why not ...
 				}
-				addDoubleValue(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
+
+                bool bFirst = ostemp.str().size() == 2;
+
+                df.bPrintPoint = false;
+                df.bPrintPlusSign = ostemp.str().size() != 2;
+                df.bPrintOne = i == 0;
+				addDoubleValue(&ostemp, _pdblVal[i], &df);
 
 				if(i != 0)
 				{

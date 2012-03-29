@@ -74,7 +74,7 @@ namespace types
         bool                    compute();
         bool                    isComputable();
 
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString();
 
 
         InternalType::RealType  getStartType();

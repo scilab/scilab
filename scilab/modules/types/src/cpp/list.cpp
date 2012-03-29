@@ -124,7 +124,7 @@ namespace types
     ** toString to display Lists
     ** FIXME : Find a better indentation process
     */
-    std::wstring List::toString(int _iPrecision, int _iLineLen)
+    std::wstring List::toString()
     {
         std::wostringstream ostr;
 
@@ -139,7 +139,7 @@ namespace types
             for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
             {
                 ostr << L"     (" << iPosition << L")" << std::endl;
-                ostr << (*itValues)->toString(_iPrecision, _iLineLen) << std::endl;
+                ostr << (*itValues)->toString() << std::endl;
             }
         }
         return ostr.str();

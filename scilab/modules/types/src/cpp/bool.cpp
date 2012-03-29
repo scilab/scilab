@@ -13,6 +13,7 @@
 #include <sstream>
 #include "bool.hxx"
 #include "tostring_common.hxx"
+#include "formatmode.h"
 
 extern "C"
 {
@@ -106,8 +107,10 @@ namespace types
         return true;
     }
 
-    void Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iLineLen = getConsoleWidth();
+
         /*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
         if(isScalar())
         {//scalar
@@ -134,7 +137,7 @@ namespace types
             int iLineTag = 5000; //or not Oo
             std::wstring szTemp;
 
-            if(_iLineLen == -1)
+            if(iLineLen == -1)
             {
                 bWordWarp = true;
             }
@@ -145,7 +148,7 @@ namespace types
                 _piDims[0] = 0;
                 _piDims[1] = i;
                 int iPos = getIndex(_piDims);
-                if(bWordWarp == false && static_cast<int>(szTemp.size() + 1) >= _iLineLen)
+                if(bWordWarp == false && static_cast<int>(szTemp.size() + 1) >= iLineLen)
                 {
                     bWordWarp = true;
                     iLineTag	= i;
@@ -177,7 +180,7 @@ namespace types
             //compute the row size for padding for each printed bloc.
             for(int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
             {
-                if(iLen + SIZE_BOOL > _iLineLen)
+                if(iLen + SIZE_BOOL > iLineLen)
                 {//find the limit, print this part
                     for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
                     {
@@ -290,7 +293,7 @@ namespace types
         return new int[_iSize];
     }
 
-    //std::wstring Bool::toStringInLine(int _iPrecision, int _iLineLen)
+    //std::wstring Bool::toStringInLine(int _iPrecision, int iLineLen)
     //{
     //    std::wostringstream ostr;
 
@@ -301,7 +304,7 @@ namespace types
     //            ostr << L"  ";
     //            ostr << (get(i) == 0 ? L"F" : L"T");
 
-    //            if(ostr.str().length() > _iLineLen)
+    //            if(ostr.str().length() > iLineLen)
     //            {
     //                break;
     //            }

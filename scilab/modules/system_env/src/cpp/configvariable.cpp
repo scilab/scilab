@@ -153,16 +153,28 @@ int ConfigVariable::getExitStatus(void)
 ** \{
 */
 
-int ConfigVariable::m_iFormat = 0;
+int ConfigVariable::m_iFormatSize = 0;
 
-void ConfigVariable::setFormat(int _iFormat)
+void ConfigVariable::setFormatSize(int _iFormatSize)
 {
-    m_iFormat = _iFormat;
+    m_iFormatSize = _iFormatSize;
 }
 
-int ConfigVariable::getFormat(void)
+int ConfigVariable::getFormatSize(void)
 {
-    return m_iFormat;
+    return m_iFormatSize;
+}
+
+int ConfigVariable::m_iFormatMode = 0;
+
+void ConfigVariable::setFormatMode(int _iFormatMode)
+{
+    m_iFormatMode = _iFormatMode;
+}
+
+int ConfigVariable::getFormatMode(void)
+{
+    return m_iFormatMode;
 }
 
 /*

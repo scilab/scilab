@@ -46,7 +46,7 @@ public :
     std::wstring getShortTypeStr()       { return m_shortName; }
 
     /* This is Scilab standard display or in disp. */
-    std::wstring toString(int _iPrecision, int _iLineLen)
+    std::wstring toString()
     {
         return L"I'm a user dataType: " + m_longName + L" (" + m_shortName + L").";
     }

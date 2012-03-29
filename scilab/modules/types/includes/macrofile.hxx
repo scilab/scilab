@@ -34,7 +34,7 @@ namespace types
 
         void                    whoAmI();
 
-        wstring                 toString(int _iPrecision, int _iLineLen);
+        wstring                 toString();
 
         Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         bool                    parse(void);

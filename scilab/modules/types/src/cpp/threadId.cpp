@@ -141,7 +141,7 @@ namespace types
 #endif
     }
 
-    std::wstring ThreadId::toString(int _iPrecision, int _iLineLen)
+    std::wstring ThreadId::toString()
     {
         std::wostringstream ostr;
 

@@ -15,6 +15,7 @@
 #include "tostring_common.hxx"
 #include "singlepoly.hxx"
 #include "polynom.hxx"
+#include "formatmode.h"
 
 using namespace std;
 
@@ -363,8 +364,11 @@ namespace types
         }
     }
 
-    void Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iPrecision = getFormatSize();
+        int iLineLen = getConsoleWidth();
+
         wostringstream osExp;
         wostringstream osCoef;
 
@@ -377,14 +381,14 @@ namespace types
             if(isComplex())
             {
                 ostr << L"Real part" << endl << endl << endl;
-                get(0)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
                 for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
                 {
                     ostr << *it_Exp << endl << *it_Coef << endl;
                 }
 
                 ostr << L"Imaginary part" << endl << endl << endl ;
-                get(0)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpI, &listCoefI);
+                get(0)->toStringImg(getVariableName(), &listExpI, &listCoefI);
                 for(it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++,it_Exp++)
                 {
                     ostr << *it_Exp << endl << *it_Coef << endl;
@@ -392,7 +396,7 @@ namespace types
             }
             else
             {
-                get(0)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
 
                 for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
                 {
@@ -405,13 +409,13 @@ namespace types
             if(isComplex())
             {
                 ostr << L"Real part" << endl << endl;
-                ostr << getRowString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getRowString(_piDims, _iDims, false);
                 ostr << L"Imaginary part" << endl << endl;
-                ostr << getRowString(_piDims, _iDims, _iPrecision, _iLineLen, true);
+                ostr << getRowString(_piDims, _iDims, true);
             }
             else
             {
-                ostr << getRowString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getRowString(_piDims, _iDims, false);
             }
         }
         else if(getCols() == 1)
@@ -419,13 +423,13 @@ namespace types
             if(isComplex())
             {
                 ostr << L"Real part" << endl << endl;
-                ostr << getColString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getColString(_piDims, _iDims, false);
                 ostr << L"Imaginary part" << endl << endl;
-                ostr << getColString(_piDims, _iDims, _iPrecision, _iLineLen, true);
+                ostr << getColString(_piDims, _iDims, true);
             }
             else
             {
-                ostr << getColString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getColString(_piDims, _iDims, false);
             }
         }
         else
@@ -433,20 +437,22 @@ namespace types
             if(isComplex())
             {
                 ostr << L"Real part" << endl << endl;
-                ostr << getMatrixString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getMatrixString(_piDims, _iDims, false);
                 ostr << L"Imaginary part" << endl << endl;
-                ostr << getMatrixString(_piDims, _iDims, _iPrecision, _iLineLen, true);
+                ostr << getMatrixString(_piDims, _iDims, true);
             }
             else
             {
-                ostr << getMatrixString(_piDims, _iDims, _iPrecision, _iLineLen, false);
+                ostr << getMatrixString(_piDims, _iDims, false);
             }
         }
         ostr << endl;
     }
 
-    wstring Polynom::getMatrixString(int* _piDims, int _iDims, int _iPrecision, int _iLineLen, bool _bComplex)
+    wstring Polynom::getMatrixString(int* _piDims, int _iDims, bool _bComplex)
     {
+        int iLineLen = getConsoleWidth();
+
         wostringstream ostr;
         wostringstream osExp;
         wostringstream osCoef;
@@ -476,11 +482,11 @@ namespace types
                 int iPos = getIndex(_piDims);
                 if(_bComplex)
                 {
-                    get(iPos)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                    get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
                 }
                 else
                 {
-                    get(iPos)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                    get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
                 }
 
                 if(listExpR.size() > 1)
@@ -501,14 +507,14 @@ namespace types
                         iLen = static_cast<int>(listCoefR.front().size());
                     }
                 }
-                piMaxLen[iCols1] = Min(Max(piMaxLen[iCols1], iLen), _iLineLen);
+                piMaxLen[iCols1] = Min(Max(piMaxLen[iCols1], iLen), iLineLen);
                 listExpR.clear();
                 listCoefR.clear();
             }
 
             //We know the length of the column
 
-            if(static_cast<int>(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
+            if(static_cast<int>(iLen + piMaxLen[iCols1]) >= iLineLen && iLen != 0)
             {//if the max length exceeded
                 wostringstream ostemp;
                 bWordWarp = true;
@@ -523,11 +529,11 @@ namespace types
                         int iPos = getIndex(_piDims);
                         if(_bComplex)
                         {
-                            get(iPos)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                            get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
                         }
                         else
                         {
-                            get(iPos)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                            get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
                         }
 
                         if(listCoefR.size() > 1)
@@ -583,7 +589,7 @@ namespace types
 
                 iLastCol = iCols1;
             }
-            else //if((int)(iLen + piMaxLen[iCols1]) <= _iLineLen)
+            else //if((int)(iLen + piMaxLen[iCols1]) <= iLineLen)
             {
                 iLen += piMaxLen[iCols1];
             }
@@ -612,11 +618,11 @@ namespace types
                 int iPos = getIndex(_piDims);
                 if(_bComplex)
                 {
-                    get(iPos)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                    get(iPos)->toStringImg( getVariableName(), &listExpR, &listCoefR);
                 }
                 else
                 {
-                    get(iPos)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                    get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
                 }
 
                 if(listCoefR.size() > 1)
@@ -660,8 +666,10 @@ namespace types
         return ostr.str();
     }
 
-    wstring Polynom::getRowString(int* _piDims, int _iDims, int _iPrecision, int _iLineLen, bool _bComplex)
+    wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
     {
+        int iLineLen = getConsoleWidth();
+
         int iLen        = 0;
         int iLastFlush  = 0;
 
@@ -682,14 +690,14 @@ namespace types
             int iPos = getIndex(_piDims);
             if(_bComplex)
             {
-                get(iPos)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
             }
             else
             {
-                get(iPos)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
             }
 
-            if(iLen != 0 && static_cast<int>(iLen + listExpR.front().size()) > _iLineLen)
+            if(iLen != 0 && static_cast<int>(iLen + listExpR.front().size()) > iLineLen)
             {//flush strean
                 if(i == iLastFlush + 1)
                 {
@@ -750,7 +758,7 @@ namespace types
         return ostr.str();
     }
 
-    wstring Polynom::getColString(int* _piDims, int _iDims, int _iPrecision, int _iLineLen, bool _bComplex)
+    wstring Polynom::getColString(int* _piDims, int _iDims, bool _bComplex)
     {
         wostringstream ostr;
         wostringstream osExp;
@@ -769,11 +777,11 @@ namespace types
             int iPos = getIndex(_piDims);
             if(_bComplex)
             {
-                get(iPos)->toStringImg(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
             }
             else
             {
-                get(iPos)->toStringReal(_iPrecision, _iLineLen, getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
             }
 
             for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)

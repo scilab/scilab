@@ -1,0 +1,7 @@
+LIBRARY    system_env.dll
+
+
+EXPORTS
+getConsoleWidth
+getFormatSize
+getFormatMode

@@ -23,6 +23,7 @@
 #include "types_substraction.hxx"
 #include "types_addition.hxx"
 #include "types_multiplication.hxx"
+#include "formatmode.h"
 
 #include "sparseOp.hxx"
 extern "C"
@@ -81,11 +82,9 @@ namespace
     std::wstring Printer::operator()(double const& d) const
     {
         std::wostringstream ostr;
-        int iWidthR = 0;
-        int iPrecR = 0;
-        bool bFPR = false; // FloatingPoint
-        getDoubleFormat(d, p, &iWidthR, &iPrecR, &bFPR);
-        addDoubleValue(&ostr, d, iWidthR, iPrecR);
+        DoubleFormat df;
+        getDoubleFormat(d, &df);
+        addDoubleValue(&ostr, d, &df);
         return ostr.str();
     }
 
@@ -93,12 +92,10 @@ namespace
     std::wstring Printer::operator()(std::complex<double > const& c) const
     {
         std::wostringstream ostr;
-        int iWidthR = 0, iWidthI = 0;
-        int iPrecR = 0, iPrecI = 0;
-        bool bFPR = false, bFPI = false; // FloatingPoint
-        getDoubleFormat(c.real(), p, &iWidthR, &iPrecR, &bFPR);
-        getDoubleFormat(c.imag(), p, &iWidthI, &iPrecI, &bFPI);
-        addDoubleComplexValue(&ostr, c.real(), c.imag(), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+        int iLen = 0;
+        DoubleFormat dfR, dfI;
+        getComplexFormat(c.real(), c.imag(), &iLen, &dfR, &dfI);
+        addDoubleComplexValue(&ostr, c.real(), c.imag(), iLen, &dfR, &dfI);
         return ostr.str();
     }
 
@@ -549,16 +546,17 @@ namespace types
     }
 
     // TODO: handle precision and line length
-    std::wstring Sparse::toString(int precision, int /*lineLen*/)const
+    std::wstring Sparse::toString() const
     {
+        int iPrecision = getFormatSize();
         std::wstring res;
         if(matrixReal)
         {
-            res = ::toString(*matrixReal, precision);
+            res = ::toString(*matrixReal, iPrecision);
         }
         else
         {
-            res = ::toString(*matrixCplx, precision);
+            res = ::toString(*matrixCplx, iPrecision);
         }
         return res;
     }
@@ -1406,7 +1404,7 @@ namespace types
     }
 
 
-    std::wstring  SparseBool::toString(int /*precision*/, int/* lineLen*/) const
+    std::wstring  SparseBool::toString() const
     {
         return ::toString(*matrixBool, 0);
     }

@@ -31,7 +31,7 @@ namespace types
         ** in order Scilab engine to manage correctly this user type
         */
     public :
-        virtual std::wstring     toString(int _iPrecision, int _iLineLen) = 0;
+        virtual std::wstring     toString() = 0;
         virtual std::wstring     getTypeStr() = 0;
         virtual std::wstring     getShortTypeStr() = 0;
         virtual InternalType*    clone() = 0;

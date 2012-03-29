@@ -206,9 +206,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_format.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c">
       <Filter>Source Files</Filter>
     </ClCompile>

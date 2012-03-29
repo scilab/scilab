@@ -298,7 +298,7 @@ namespace types
         return pData;
    }
 
-    void Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    void Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
     }
 
@@ -324,7 +324,7 @@ namespace types
         return true;
     }
 
-    std::wstring Struct::toString(int _iPrecision, int _iLineLen)
+    std::wstring Struct::toString()
     {
         std::wostringstream ostr;
 
@@ -348,7 +348,7 @@ namespace types
 
 //                ostr << L"  " << wstField << ": ";
                 ostr << L"  " << wstField << L": ";
-                ostr << pIT->toStringInLine(_iPrecision, _iLineLen);
+                ostr << pIT->toStringInLine();
                 ostr << std::endl;
             }
             delete pwstFields;

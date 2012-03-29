@@ -186,7 +186,7 @@ namespace types
         return pOut;
     }
 
-    std::wstring SingleStruct::toString(int _iPrecision, int _iLineLen)
+    std::wstring SingleStruct::toString()
     {
         if(m_pData->size() == 0)
         {

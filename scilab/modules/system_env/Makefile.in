@@ -100,7 +100,8 @@ am__objects_1 = libscisystem_env_la-setenvvar.lo \
 	libscisystem_env_la-sci_mode.lo \
 	libscisystem_env_la-configvariable.lo \
 	libscisystem_env_la-lasterror.lo \
-	libscisystem_env_la-promptmode.lo
+	libscisystem_env_la-promptmode.lo \
+	libscisystem_env_la-formatmode.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -392,7 +393,8 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/sci_mode.cpp \
 	src/cpp/configvariable.cpp \
 	src/cpp/lasterror.cpp \
-	src/cpp/promptmode.cpp
+	src/cpp/promptmode.cpp \
+    src/cpp/formatmode.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
@@ -493,6 +495,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-configvariable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-formatmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-lasterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-promptmode.Plo@am__quote@
@@ -593,6 +596,13 @@ libscisystem_env_la-promptmode.lo: src/cpp/promptmode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/promptmode.cpp' object='libscisystem_env_la-promptmode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-promptmode.lo `test -f 'src/cpp/promptmode.cpp' || echo '$(srcdir)/'`src/cpp/promptmode.cpp
+
+libscisystem_env_la-formatmode.lo: src/cpp/formatmode.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-formatmode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-formatmode.Tpo -c -o libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisystem_env_la-formatmode.Tpo $(DEPDIR)/libscisystem_env_la-formatmode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/formatmode.cpp' object='libscisystem_env_la-formatmode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
