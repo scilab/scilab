@@ -115,6 +115,8 @@ Xcos
 
 * Bug #10848 fixed - The first block Drag'n Drop produced an exception.
 
+* Bug #10889 fixed - Exception about block highlighters was thrown by Scinotes.
+
 
 Unitary testing
 ===============
