@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- NO CHECK REF -->
 
 // Simple launcher for run level 2
 try
