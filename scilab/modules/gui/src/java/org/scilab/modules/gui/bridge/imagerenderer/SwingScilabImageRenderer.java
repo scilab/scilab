@@ -12,20 +12,16 @@
  */
 package org.scilab.modules.gui.bridge.imagerenderer;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 
-import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -43,76 +39,33 @@ import org.scilab.modules.gui.utils.Size;
  * @author Han DONG
  * @author Vincent COUVERT
  */
-public class SwingScilabImageRenderer extends JScrollPane implements SwingViewObject, SimpleImageRenderer {
+public class SwingScilabImageRenderer extends JLabel implements SwingViewObject, SimpleImageRenderer {
 
     private static final long serialVersionUID = -3394912554085956130L;
 
     private String uid;
 
-    private JLabel imageRenderer;
     private ImageIcon imi;
     private Image img;
-    private String directory;
+    private String imageFile;
+    private int imageWidth;
+    private int imageHeight;
+
+    private double[] scale;
+    private double[] shear;
+    private double angle;
 
     /**
      * Constructor
      */
     public SwingScilabImageRenderer() {
         super();
-        getViewport().add(getLabel());
-        setBorder(BorderFactory.createEmptyBorder());
-        setViewportBorder(BorderFactory.createEmptyBorder());
-        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        setOpaque(true);
+        setBackground(Color.WHITE);
+        scale = new double[2];
+        shear = new double[2];
     }
 
-    /**
-     * Apply a new font for the imageRendereri.
-     * @param font new font to use.
-     */
-    public void setFont(Font font) {
-        getLabel().setFont(font);
-    }
-
-    /**
-     * To get the Font of the element.
-     * @return font the Font
-     */
-    public Font getFont() {
-        return getLabel().getFont();
-    }
-
-    /**
-     * To get the Foreground color of the element.
-     * @return color the Color
-     */
-    public Color getForeground() {
-        return getLabel().getForeground();
-    }
-
-    /**
-     * To set the Foreground color of the element.
-     * @param color the Color
-     */
-    public void setForeground(Color color) {
-        getLabel().setForeground(color);
-    }
-
-    /**
-     * To set the Background color of the element.
-     * @param color the Color
-     */
-    public void setBackground(Color color) {
-        getLabel().setBackground(color);
-    }
-
-    /**
-     * To get the Background color of the element.
-     * @return color the Color
-     */
-    public Color getBackground() {
-        return getLabel().getBackground();
-    }
 
     /**
      * Draws a swing Scilab PushButton
@@ -121,16 +74,6 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
     public void draw() {
         this.setVisible(true);
         this.doLayout();
-    }
-
-    /**
-     * Sets the visibility status of an UIElement
-     * @param newVisibleState the visibility status we want to set for the UIElement
-     *                      (true if the UIElement is visible, false if not)
-     */
-    public void setVisible(boolean newVisibleState) {
-        super.setVisible(newVisibleState);
-        getLabel().setVisible(newVisibleState);
     }
 
     /**
@@ -219,7 +162,7 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
     public void setHorizontalAlignment(String alignment) {
-        getLabel().setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+        setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
     /**
@@ -227,7 +170,7 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
     public void setVerticalAlignment(String alignment) {
-        getLabel().setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+        setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
     /**
@@ -264,28 +207,12 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
     }
 
     /**
-     * Create/Return the imageRenderer Java object
-     * @return the imageRenderer
-     */
-    private JLabel getLabel() {
-        if (imageRenderer == null) {
-            imageRenderer = new JLabel();
-            directory = "";
-            imageRenderer.setOpaque(true);
-            imi = new ImageIcon();
-            img = imi.getImage();
-            imageRenderer.setIcon(imi);
-        }
-        return imageRenderer;
-    }
-
-    /**
      * gets directory of image in image render
      * @return the directory string
      * @see org.scilab.modules.gui.text.SimpleText#getText()
      */
     public String getText() {
-        return directory;
+        return "";
     }
 
     /**
@@ -293,27 +220,19 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
      * @param newText the new directory to image
      */
     public void setText(String newText) {
-        directory = newText;
-        imi = new ImageIcon(directory);
+        imageFile = newText;
+        imi = new ImageIcon(imageFile);
         img = imi.getImage();
-        imageRenderer.setIcon(imi);
-        setPreferredSize(new Dimension(imi.getIconWidth(), imi.getIconHeight()));
+        setIcon(imi);
     }
 
     /**
      * Rotates the image
-     * @param indices the double value of the angle to rotate
+     * @param angle the double value of the angle to rotate
      */
     public void setRotate(double angle) {
-        if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
-            int h = img.getHeight(this);
-            int w = img.getWidth(this);
-            BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2 = bim.createGraphics();
-            g2.rotate(Math.toRadians(angle), w / 2, h / 2);
-            g2.drawImage(img, 0, 0, this);
-            imageRenderer.setIcon(new ImageIcon(bim));
-        }
+        this.angle = angle;
+        updateImage();
     }
 
     /**
@@ -321,15 +240,8 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
      * @param indices the double array of x, y values to shear
      */
     public void setShear(double[] indices) {
-        if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
-            int h = img.getHeight(this);
-            int w = img.getWidth(this);
-            BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2 = bim.createGraphics();
-            g2.shear(indices[0], indices[1]);
-            g2.drawImage(img, 0, 0, this);
-            imageRenderer.setIcon(new ImageIcon(bim));
-        }
+        shear = indices;
+        updateImage();
     }
 
     /**
@@ -337,14 +249,21 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
      * @param indices the double array of x, y values to scale
      */
     public void setScale(double[] indices) {
+        scale = indices;
+        updateImage();
+    }
+
+    private void updateImage() {
         if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
-            int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
-            int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
-            BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
+            imageWidth = (int) Math.ceil(img.getWidth(this) * scale[0]);
+            imageHeight = (int) Math.ceil(img.getHeight(this) * scale[1]);
+            BufferedImage bim = new BufferedImage(imageWidth, imageHeight, BufferedImage.TRANSLUCENT);
             Graphics2D g2 = bim.createGraphics();
-            g2.scale(indices[0], indices[1]);
-            g2.drawImage(img, 0, 0, this);
-            imageRenderer.setIcon(new ImageIcon(bim));
+            g2.fillRect(0, 0, imageWidth, imageHeight);
+            g2.shear(shear[0], shear[1]);
+            g2.rotate(Math.toRadians(angle), imageWidth / 2, imageHeight / 2);
+            g2.drawImage(img, 0, 0, imageWidth, imageHeight, this);
+            setIcon(new ImageIcon(bim));
         }
     }
 

@@ -22,6 +22,9 @@ function subdemolist = demo_gateway()
   subdemolist = [ subdemolist ; 
                  _("Uicontrols with LaTeX/MathML") ,  "uicontrol_LaTeX.dem.sce" ];
 
+  subdemolist = [ subdemolist ; 
+                 _("Show images with uicontrols ") ,  "uicontrol_image.dem.sce" ];
+
   subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 

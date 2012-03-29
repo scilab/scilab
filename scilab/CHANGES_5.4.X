@@ -6,16 +6,23 @@ Graphic capabilities
 
 * Entire refactoring of Scilab graphic capabilities.
 
+TODO
+
 
 GUI:
 ====
 
 * TODO add full description of:
-  - New uicontrols added
   - Hidden handles management
   - Console & graphic figure menus are now uimenus (hidden by default)
   - 'ShwoHiddenHandles' property
   - get(0) returns a handle of type 'Console'
+
+* New uicontrols added
+  - Image Renderer uicontrol.
+    Display, transformation and various other operation can be performed on
+    images.
+
 
 * Bug #7380 fixed - 'Value' property for uicontrol was rounded.
 
