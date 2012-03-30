@@ -4,8 +4,8 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>backslash (\)</refname>
-    <refpurpose>左行列除算.</refpurpose>
+    <refname>backslash</refname>
+    <refpurpose>(\) 左行列除算.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>

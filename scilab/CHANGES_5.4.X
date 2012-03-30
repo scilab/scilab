@@ -292,6 +292,8 @@ Bug fixes
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
                     simplified and optimized.
 
+* Bug #8685 fixed - Lack of consistency in the keyword documentation.
+
 * Bug #8682 fixed - funcprot did not return the previous value when called with
                     an argument.
 
