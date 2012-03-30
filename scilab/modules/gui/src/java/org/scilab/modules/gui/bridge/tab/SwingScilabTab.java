@@ -108,6 +108,7 @@ import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -132,6 +133,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     private static final String UNDOCK = "undock";
     private static final String HELP = "help";
+
+    public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
     private String id;
 
@@ -1423,6 +1426,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             Integer figureId = ((Integer) value);
             String name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
             updateTitle(name, figureId);
+
+            /** Update tool bar */
+            setToolBar(ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId));
+            SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+            parentWindow.addToolBar(getToolBar());
 
             /* Update callback */
             String closingCommand =
