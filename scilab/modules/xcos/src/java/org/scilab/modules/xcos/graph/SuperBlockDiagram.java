@@ -16,7 +16,6 @@ package org.scilab.modules.xcos.graph;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
@@ -35,7 +34,6 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -386,8 +384,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                 }
 
                 container.sortChildren();
-                List<mxICell> tmp = IOBlocks.getPorts(container, block.getClass());
-                final BasicPort[] ports = new BasicPort[tmp.size()];
+                final List<mxICell> ports = IOBlocks.getPorts(container, block.getClass());
 
                 XcosDiagram graph = container.getParentDiagram();
                 if (graph == null) {
@@ -396,8 +393,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                     Logger.getLogger(SuperBlockDiagram.class.getName()).finest(PARENT_DIAGRAM_WAS_NULL);
                 }
 
-                if (index > 0 && index <= ports.length) {
-                    container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
+                if (index > 0 && index <= ports.size()) {
+                    container.getParentDiagram().cellLabelChanged(ports.get(index - 1), value, false);
                 }
             }
         }
