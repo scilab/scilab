@@ -314,34 +314,19 @@ BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
 /**
  * Unzoom a single subwindow
  */
-void sciUnzoomSubwin(char * subwinUID)
+void sciUnzoomSubwin(char* subwinUID)
 {
-    // We directly do a call to unzoomSubwin instead off path through the java code
-    // See bug 4979
-    // javaUnzoomSubwin(pSubwin);
-
     char* parentFigure = NULL;
     int zoomEnabled = 0;
 
-    getGraphicObjectProperty(subwinUID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+    getGraphicObjectProperty(subwinUID, __GO_PARENT_FIGURE__, jni_string, (void **) &parentFigure);
 
     if( subwinUID == NULL || parentFigure == NULL )
     {
         return;
     }
 
-    setGraphicObjectProperty(subwinUID, __GO_ZOOM_ENABLED__, &zoomEnabled, jni_bool, 1);
-
-    /*
-     * Deactivated since it performs drawing operations.
-     * To be implemented.
-     */
-#if 0
-  startFigureDataWriting(parentFigure);
-    unzoomSubwin(pSubwin);
-  endFigureDataWriting(parentFigure);
-#endif
-
+    setGraphicObjectProperty(subwinUID, __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
 }
 /*------------------------------------------------------------------------------*/
 void unzoomSubwin(sciPointObj * pSubwin)
@@ -358,78 +343,56 @@ void unzoomSubwin(sciPointObj * pSubwin)
 /**
  * Unzoom all the subwindows contained in a figure
  */
-void sciUnzoomFigure(sciPointObj * figure)
+void sciUnzoomFigure(char* figureUID)
 {
-  /* Copy subwins into the array */
-  sciSons * pSons = sciGetSons(figure);
-  while (pSons != NULL)
+  char* pstType;
+  char** pstChildrenUID;
+  
+  int i; 
+  int zoomEnabled = 0;
+  int childrenCount;
+  int* piChildrenCount = &childrenCount;
+  
+  getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
+  getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
+  
+  if (piChildrenCount != NULL)
   {
-    sciPointObj * curObj = pSons->pointobj;
-    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+
+    for (i = 0; i < childrenCount; i++)
     {
-      sciUnzoomSubwin(curObj);
-    }
-    pSons = pSons->pnext;
+      getGraphicObjectProperty(pstChildrenUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
+      if (strcmp(pstType, __GO_AXES__) == 0)
+        setGraphicObjectProperty(pstChildrenUID[i], __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
+      }
   }
-}
-/*------------------------------------------------------------------------------*/
-/**
- * Un zoom all the subwindow of a figure
- */
-void sciUnzoomAll(void)
-{
-  sciPointObj * pFigure = NULL;
-
-  //startGraphicDataWriting();
-  pFigure = sciGetCurrentFigure();
-  //endGraphicDataWriting();
-
-  /* unzoom current figure */
-  sciUnzoomFigure(pFigure);
-
-  //sciDrawObj(pFigure);
 }
 /*------------------------------------------------------------------------------*/
 /**
  * Unzoom a set of subwindows and figures
- * @param zoomedObjects array of figure and subwindow objects
+ * @param objectsUID array of figure and subwindow objects id.
+ * @param nbObjects number of objects.
  */
-void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
+void sciUnzoomArray(char* objectsUID[], int nbObjects)
 {
+  /* object type */
+  char* pstType;
   int i;
-  /* list of parent figure to redraw */
-  DoublyLinkedList * redrawnFigures = DoublyLinkedList_new();
   for (i = 0; i < nbObjects; i++)
   {
-    sciPointObj * parentFigure = sciGetParentFigure(zoomedObjects[i]);
-
-    if (sciGetEntityType(zoomedObjects[i]) == SCI_FIGURE)
+    getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
+    if (strcmp(pstType, __GO_FIGURE__) == 0)
     {
       /* Unzoom all subwindows of the figure */
-      sciUnzoomFigure(zoomedObjects[i]);
+      sciUnzoomFigure(objectsUID[i]);
     }
-    else if (sciGetEntityType(zoomedObjects[i]) == SCI_SUBWIN)
+    else if (strcmp(pstType, __GO_AXES__) == 0)
     {
-      /* Unzoom only figure */
-      sciUnzoomSubwin(zoomedObjects[i]);
+      /* Unzoom the axes */
+      sciUnzoomSubwin(objectsUID[i]);
     }
 
-    if (List_find(redrawnFigures, parentFigure) == NULL)
-    {
-      /* figure not already added for redraw */
-      redrawnFigures = List_push(redrawnFigures, parentFigure);
-    }
   }
-
-  /* redraw only needed figures */
-  while (!List_is_empty(redrawnFigures))
-  {
-    sciPointObj * curFigure = NULL;
-    redrawnFigures = List_pop(redrawnFigures, (void**)&curFigure);
-    //sciDrawObj(curFigure);
-  }
-
-  List_free(redrawnFigures);
 }
 /*--------------------------------------------------------------------------------*/
 void updateSubwinScale(char * pSubwinUID)

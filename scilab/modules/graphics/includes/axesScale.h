@@ -30,10 +30,9 @@ GRAPHICS_IMPEXP int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[
 GRAPHICS_IMPEXP void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6]);
 GRAPHICS_IMPEXP void sciDefaultInteractiveZoom(void);
 GRAPHICS_IMPEXP void sciInteractiveZoom(sciPointObj * pObj);
-GRAPHICS_IMPEXP void sciUnzoomSubwin(char * subwinUID);
-GRAPHICS_IMPEXP void sciUnzoomFigure(sciPointObj * figure);
-GRAPHICS_IMPEXP void sciUnzoomAll(void);
-GRAPHICS_IMPEXP void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbSubwin);
+GRAPHICS_IMPEXP void sciUnzoomSubwin(char* subwinUID);
+GRAPHICS_IMPEXP void sciUnzoomFigure(char* figureUID);
+GRAPHICS_IMPEXP void sciUnzoomArray(char* objectsUID[], int nbSubwin);
 
 /**
  * Update subwin size and scale if needed
