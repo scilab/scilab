@@ -60,9 +60,11 @@ public abstract class FigureInteraction {
         for (String childId : drawerVisitor.getFigure().getChildren()) {
             GraphicObject child = GraphicController.getController().getObjectFromId(childId);
             if (child instanceof Axes) {
-                Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
-                if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
-                    underlyingAxes = (Axes) child;
+                if (child.getVisible()) {
+                    Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
+                    if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
+                        underlyingAxes = (Axes) child;
+                    }
                 }
             }
         }
