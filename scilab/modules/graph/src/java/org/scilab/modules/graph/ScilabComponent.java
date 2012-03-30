@@ -20,6 +20,9 @@ import java.awt.Rectangle;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraphView;
@@ -37,7 +40,7 @@ public class ScilabComponent extends mxGraphComponent {
 
     /**
      * Construct the component with the associated graph
-     * 
+     *
      * @param graph
      *            The associated graph
      */
@@ -56,7 +59,7 @@ public class ScilabComponent extends mxGraphComponent {
 
     /**
      * Create the associated canvas
-     * 
+     *
      * @return the canvas
      */
     @Override
@@ -73,7 +76,7 @@ public class ScilabComponent extends mxGraphComponent {
 
     /**
      * Zoom the whole graph and center the view on it.
-     * 
+     *
      * @param cells
      *            the cells to center on
      */
@@ -98,8 +101,7 @@ public class ScilabComponent extends mxGraphComponent {
         if (heightScale > 1.0) {
             if (widthScale > 1.0) {
                 // We need to zoom in (the max applicable zoom is the lowest)
-                newScale = Math.min(heightScale, widthScale)
-                        * (1.0 - (SCALE_MULTIPLIER - 1.0));
+                newScale = Math.min(heightScale, widthScale) * (1.0 - (SCALE_MULTIPLIER - 1.0));
             } else {
                 // we need to zoom out (only widthScale is < 1.0)
                 newScale = widthScale * SCALE_MULTIPLIER;
@@ -117,14 +119,13 @@ public class ScilabComponent extends mxGraphComponent {
         zoom(newScale);
 
         view.revalidate();
-        Rectangle orig = getChildrenBounds(
-                graph.getChildCells(graph.getDefaultParent())).getRectangle();
+        Rectangle orig = getChildrenBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle();
         getGraphControl().scrollRectToVisible(orig);
     }
 
     /**
      * Get the children bound for the cells
-     * 
+     *
      * @param cells
      *            the root of the graph
      * @return the rectangle or null if not applicable
@@ -157,7 +158,7 @@ public class ScilabComponent extends mxGraphComponent {
 
     /**
      * Update the rectangle parameter with the cell status
-     * 
+     *
      * @param result
      *            the previous result
      * @param view
@@ -166,8 +167,7 @@ public class ScilabComponent extends mxGraphComponent {
      *            the child we have to work on
      * @return the updated rectangle
      */
-    private mxRectangle updateRectangle(mxRectangle result,
-            final mxGraphView view, final mxICell child) {
+    private mxRectangle updateRectangle(mxRectangle result, final mxGraphView view, final mxICell child) {
         final mxCellState state = view.getState(child);
         mxRectangle rect = result;
 
@@ -192,26 +192,21 @@ public class ScilabComponent extends mxGraphComponent {
          */
         public ScilabGraphControl() {
             super();
-        }
 
-        /**
-         * Paint the component and the foreground color
-         * 
-         * @param g
-         *            the current graphic context
-         * @see com.mxgraph.swing.mxGraphComponent.mxGraphControl#paintComponent(java.awt.Graphics)
-         */
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
+            // Paint the foreground color after the real paint
+            addListener(mxEvent.AFTER_PAINT, new mxEventSource.mxIEventListener() {
+                public void invoke(Object sender, mxEventObject evt) {
 
-            if (getGraph().isCellsLocked()) {
-                g.setColor(MASK_COLOR);
+                    Graphics g = (Graphics) evt.getProperty("g");
+                    if (getGraph().isCellsLocked()) {
+                        g.setColor(MASK_COLOR);
 
-                Rectangle b = getBounds();
+                        Rectangle b = getBounds();
 
-                g.fillRect(b.x, b.y, b.width, b.height);
-            }
+                        g.fillRect(b.x, b.y, b.width, b.height);
+                    }
+                }
+            });
         }
     }
 }
