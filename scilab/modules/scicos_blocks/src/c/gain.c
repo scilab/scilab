@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "core_math.h"
-#include "elementary_functions.h" /* C2F(dmmul) */
+#include "dmmul.h"
 #include "scicos.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
