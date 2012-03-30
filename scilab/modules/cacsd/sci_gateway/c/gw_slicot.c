@@ -11,6 +11,9 @@
  *
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable: 4113)
+#endif
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <string.h>

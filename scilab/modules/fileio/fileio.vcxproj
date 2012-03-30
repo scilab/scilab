@@ -142,6 +142,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4723</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -178,6 +179,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4723</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>

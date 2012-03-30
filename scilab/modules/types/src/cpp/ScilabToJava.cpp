@@ -11,6 +11,9 @@
  */
 
 #include "ScilabToJava.hxx"
+#ifdef _MSC_VER
+#pragma warning(disable: 4800)
+#endif
 
 namespace org_modules_types
 {
