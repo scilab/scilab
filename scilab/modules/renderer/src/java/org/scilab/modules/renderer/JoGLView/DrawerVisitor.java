@@ -83,32 +83,37 @@ import java.util.Set;
  */
 public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
-    /**
-     * Set of properties changed during a draw if auto-ticks is on for X axis.
-     */
+    /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
             GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
             GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
             GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
     ));
 
-    /**
-     * Set of properties changed during a draw if auto-ticks is on for Y axis.
-     */
+    /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
             GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
             GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
             GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
     ));
 
-    /**
-     * Set of properties changed during a draw if auto-ticks is on for Z axis.
-     */
+    /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
             GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
             GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
             GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
     ));
+
+    /** Set of figure properties for witch a change doesn't lead to a redraw */
+    private static final Set<String> SILENT_FIGURE_PROPERTIES = new HashSet<String>(Arrays.asList(new String[] {
+            GraphicObjectProperties.__GO_ROTATION_TYPE__,
+            GraphicObjectProperties.__GO_INFO_MESSAGE__,
+            GraphicObjectProperties.__GO_FIGURE_NAME__,
+            GraphicObjectProperties.__GO_AUTORESIZE__,
+            GraphicObjectProperties.__GO_POSITION__,
+            GraphicObjectProperties.__GO_SIZE__,
+            GraphicObjectProperties.__GO_ID__,
+    }));
 
     private final Component component;
     private final Canvas canvas;
@@ -785,7 +790,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             if (object instanceof Figure) {
-                if (GraphicObjectProperties.__GO_POSITION__.equals(property)) {
+                if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }
             }
