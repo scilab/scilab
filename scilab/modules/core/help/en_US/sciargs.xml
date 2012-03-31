@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>sciargs</refname>
-    <refpurpose> scilab command line arguments</refpurpose>
+    <refpurpose>scilab command line arguments</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -19,7 +19,7 @@
       the path of the launched executable file.
     </para>
     <para>
-      This function corresponds to the <literal>getarg</literal> function in C language
+      This function corresponds to the <literal>getarg</literal> function in C language.
     </para>
   </refsection>
   <refsection role="see also">

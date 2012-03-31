@@ -26,6 +26,9 @@
       <member>
         <link linkend="break">break</link>
       </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

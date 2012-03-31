@@ -17,13 +17,13 @@
       <varlistentry>
         <term>macroname</term>
         <listitem>
-          <para>string</para>
+          <para>a string</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>linenumb</term>
         <listitem>
-          <para>scalar integer or vector of integers</para>
+          <para>a scalar integer or a vector of integers</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -85,6 +85,12 @@ setbpt('foo',[1,2,5,6]),dispbpt()
       </member>
       <member>
         <link linkend="resume">resume</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="quit">quit</link>
       </member>
     </simplelist>
   </refsection>
