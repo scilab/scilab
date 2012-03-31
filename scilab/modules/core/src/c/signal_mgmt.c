@@ -474,7 +474,7 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     }
     Scierror(42,
              _
-             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with the following\ninformation:\n%s %s\n"),
+             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
              PACKAGE_BUGREPORT, print_buffer, backtrace_print(0));
 
     longjmp(&jmp_env, 1);

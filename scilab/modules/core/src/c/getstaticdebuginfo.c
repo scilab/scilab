@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,15 +35,17 @@ Commented for now
 */
 #include "MALLOC.h"
 #include "getstaticdebuginfo.h"
+#include "version.h"
 
 char **getStaticDebugInfo(int *sizeArray)
 {
     char **outputStaticList = NULL;
     int i;
 
-    static debug_message staticDebug[NB_DEBUG_ELEMENT] = {
-#ifdef SCI_VERSION
-        {"Scilab Version", SCI_VERSION},
+    static debug_message staticDebug[NB_DEBUG_ELEMENT] =
+    {
+#ifdef SCI_VERSION_STRING
+        {"Scilab Version", SCI_VERSION_STRING},
 #endif
 #ifdef __DATE__
         {"Compilation date", __DATE__},
@@ -118,7 +120,8 @@ char **getStaticDebugInfo(int *sizeArray)
             break;
 
         if (outputStaticList)
-        {                       /* Alloc the big list */
+        {
+            /* Alloc the big list */
             outputStaticList = (char **)REALLOC(outputStaticList, sizeof(char *) * (i + 1));
         }
         else
