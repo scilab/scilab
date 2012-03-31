@@ -126,6 +126,12 @@ Example: test_run('SCI/contrib/toolbox_skeleton')
 (See bug #9834)
 
 
+Compilation
+===========
+
+* Add an option --without-arpack-ng which will disable the Arnoldi features.
+
+
 Graphical User Interface
 ========================
 
