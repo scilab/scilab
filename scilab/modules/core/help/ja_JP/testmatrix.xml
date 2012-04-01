@@ -30,7 +30,7 @@
         <term>y</term>
         <listitem>
           <para>
-            <literal>n</literal> x <literal>m</literal> 行列
+            <literal>n</literal> x <literal>n</literal> 行列.
           </para>
         </listitem>
       </varlistentry>
@@ -53,14 +53,14 @@
       <varlistentry>
         <term>testmatrix('frk',n)</term>
         <listitem>
-          <para>フランク行列を返します :</para>
+          <para>フランク行列を返します.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('hilb',n)</term>
         <listitem>
           <para>
-            ヒルバート行列の逆です  <literal> (Hij= 1/(i+j-1))</literal>.
+            ヒルバート行列の逆です  <literal>(Hij= 1/(i+j-1))</literal>.
           </para>
         </listitem>
       </varlistentry>

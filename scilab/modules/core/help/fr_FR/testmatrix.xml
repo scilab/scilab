@@ -53,14 +53,14 @@
       <varlistentry>
         <term>testmatrix('frk',n)</term>
         <listitem>
-          <para>renvoie la matrice de Franck :
+          <para>renvoie la matrice de Franck.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('hilb',n)</term>
         <listitem>
-          <para>renvoie l'inverse de la matrice de Hilbert de taille n x n   <literal> (Hij= 1/(i+j-1))</literal>.
+          <para>renvoie l'inverse de la matrice de Hilbert de taille <literal>n</literal> x <literal>n</literal>   <literal>(Hij= 1/(i+j-1))</literal>.
 </para>
         </listitem>
       </varlistentry>

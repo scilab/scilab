@@ -23,14 +23,14 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>inteiros , tamanho da matriz</para>
+          <para>inteiros, tamanho da matriz</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y</term>
         <listitem>
           <para>
-            matriz <literal>n</literal> x <literal>m</literal>
+            matriz <literal>n</literal> x <literal>n</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -38,31 +38,27 @@
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para>Cria algumas matrizes particulares </para>
+    <para>Cria algumas matrizes particulares.</para>
     <variablelist>
       <varlistentry>
         <term>testmatrix('magi',n)</term>
         <listitem>
           <para>
-            retorna um quadrado mágico de tamanho <literal>n</literal>
-            .
+            retorna um quadrado mágico de tamanho <literal>n</literal>.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('frk',n)</term>
         <listitem>
-          <para>retorna a matriz de Franck :</para>
+          <para>retorna a matriz de Franck.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('hilb',n)</term>
         <listitem>
           <para>
-            é a matriz inversa da matriz n x n de Hilbert <literal> (Hij=
-              1/(i+j-1))
-            </literal>
-            .
+            é a matriz inversa da matriz <literal>n</literal> x <literal>n</literal> de Hilbert <literal>(Hij=1/(i+j-1))</literal>.
           </para>
         </listitem>
       </varlistentry>
