@@ -5,9 +5,9 @@
   </info>
   <refnamediv>
     <refname>less</refname>
-    <refpurpose> (&lt;) lower than comparison</refpurpose>
+    <refpurpose> (&lt;) less than comparison</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="great">
+  <refnamediv xml:id="greater">
     <refname>great</refname>
     <refpurpose> (&gt;) greater than comparison</refpurpose>
   </refnamediv>
@@ -28,25 +28,25 @@
       <varlistentry>
         <term>&lt;</term>
         <listitem>
-          <para>means "lower than"</para>
+          <para>means "less than"</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&gt;</term>
         <listitem>
-          <para>means "larger than"</para>
+          <para>means "greater than"</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;=</term>
         <listitem>
-          <para>means lower than or equal to.</para>
+          <para>means less than or equal to.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&gt;=</term>
         <listitem>
-          <para>means larger than or equal to</para>
+          <para>means greater than or equal to</para>
         </listitem>
       </varlistentry>
     </variablelist>

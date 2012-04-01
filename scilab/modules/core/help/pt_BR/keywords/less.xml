@@ -7,8 +7,8 @@
     <refname>less</refname>
     <refpurpose>(&lt;) comparação "menor do que"</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="great">
-    <refname>great</refname>
+  <refnamediv xml:id="greater">
+    <refname>greater</refname>
     <refpurpose>(&gt;) comparação "maior do que"</refpurpose>
   </refnamediv>
   <refsection>
