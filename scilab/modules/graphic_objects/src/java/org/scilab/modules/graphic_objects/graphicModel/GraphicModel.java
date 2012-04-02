@@ -40,13 +40,13 @@ import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
-import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
 import org.scilab.modules.graphic_objects.uicontrol.listbox.ListBox;
 import org.scilab.modules.graphic_objects.uicontrol.popupmenu.PopupMenu;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
+import org.scilab.modules.graphic_objects.uicontrol.uiimage.UiImage;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
 import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
@@ -175,132 +175,132 @@ public final class GraphicModel {
     private GraphicObject createTypedObject(Type type) {
         GraphicObject createdObject = null;
         switch (type) {
-        case ARC:
-            createdObject = new Arc();
-            break;
-        case AXES:
-            createdObject = new Axes();
-            break;
-        case AXESMODEL:
-            createdObject = new Axes();
-            createdObject.setValid(false);
-            break;
-        case AXIS:
-            createdObject = new Axis();
-            break;
-        case CHAMP:
-            createdObject = new Champ();
-            break;
-        case COMPOUND:
-            createdObject = new Compound();
-            break;
-        case FAC3D:
-            createdObject = new Fac3d();
-            break;
-        case FEC:
-            createdObject = new Fec();
-            break;
-        case FIGURE:
-            createdObject = new Figure();
-            break;
-        case FIGUREMODEL:
-            createdObject = new Figure();
-            createdObject.setValid(false);
-            break;
-        case GRAYPLOT:
-            createdObject = new Grayplot();
-            break;
-        case LABEL:
-            createdObject = new Label();
-            break;
-        case LEGEND:
-            createdObject = new Legend();
-            break;
-        case MATPLOT:
-            createdObject = new Matplot();
-            break;
-        case PLOT3D:
-            createdObject = new Plot3d();
-            break;
-        case POLYLINE:
-            createdObject = new Polyline();
-            break;
-        case RECTANGLE:
-            createdObject = new Rectangle();
-            break;
-        case SEGS:
-            createdObject = new Segs();
-            break;
-        case TEXT:
-            createdObject = new Text();
-            break;
-            /* UICONTROLS */
-        case CHECKBOX:
-            createdObject = new CheckBox();
-            break;
-        case EDIT:
-            createdObject = new Edit();
-            break;
-        case FRAME:
-            createdObject = new Frame();
-            break;
-        case IMAGERENDERER:
-            createdObject = new ImageRenderer();
-            break;
-        case LISTBOX:
-            createdObject = new ListBox();
-            break;
-        case POPUPMENU:
-            createdObject = new PopupMenu();
-            break;
-        case PUSHBUTTON:
-            createdObject = new PushButton();
-            break;
-        case RADIOBUTTON:
-            createdObject = new RadioButton();
-            break;
-        case SLIDER:
-            createdObject = new Slider();
-            break;
-        case TABLE:
-            createdObject = new Table();
-            break;
-        case UITEXT:
-            createdObject = new UiText();
-            break;
-            /* UIMENU */
-        case UIMENU:
-            createdObject = new Uimenu();
-            break;
-        case UIMENUMODEL:
-            createdObject = new Uimenu();
-            createdObject.setValid(false);
-            break;
-            /* UICONTEXTMENU */
-        case UICONTEXTMENU:
-            createdObject = new Uicontextmenu();
-            break;
-            /* Create Scilab console object */
-        case CONSOLE:
-            createdObject = Console.getConsole();
-            ((Console) createdObject).setScilabMode(Console.ScilabMode.NW);
-            break;
-        case JAVACONSOLE:
-            createdObject = Console.getConsole();
-            ((Console) createdObject).setScilabMode(Console.ScilabMode.STD);
-            break;
-            /* Uibar */
-        case PROGRESSIONBAR:
-            createdObject = new Progressionbar();
-            break;
-        case WAITBAR:
-            createdObject = new Waitbar();
-            break;
-        case UNKNOWNOBJECT:
-            createdObject = null;
-            break;
-        default:
-            createdObject = null;
+            case ARC:
+                createdObject = new Arc();
+                break;
+            case AXES:
+                createdObject = new Axes();
+                break;
+            case AXESMODEL:
+                createdObject = new Axes();
+                createdObject.setValid(false);
+                break;
+            case AXIS:
+                createdObject = new Axis();
+                break;
+            case CHAMP:
+                createdObject = new Champ();
+                break;
+            case COMPOUND:
+                createdObject = new Compound();
+                break;
+            case FAC3D:
+                createdObject = new Fac3d();
+                break;
+            case FEC:
+                createdObject = new Fec();
+                break;
+            case FIGURE:
+                createdObject = new Figure();
+                break;
+            case FIGUREMODEL:
+                createdObject = new Figure();
+                createdObject.setValid(false);
+                break;
+            case GRAYPLOT:
+                createdObject = new Grayplot();
+                break;
+            case LABEL:
+                createdObject = new Label();
+                break;
+            case LEGEND:
+                createdObject = new Legend();
+                break;
+            case MATPLOT:
+                createdObject = new Matplot();
+                break;
+            case PLOT3D:
+                createdObject = new Plot3d();
+                break;
+            case POLYLINE:
+                createdObject = new Polyline();
+                break;
+            case RECTANGLE:
+                createdObject = new Rectangle();
+                break;
+            case SEGS:
+                createdObject = new Segs();
+                break;
+            case TEXT:
+                createdObject = new Text();
+                break;
+                /* UICONTROLS */
+            case CHECKBOX:
+                createdObject = new CheckBox();
+                break;
+            case EDIT:
+                createdObject = new Edit();
+                break;
+            case FRAME:
+                createdObject = new Frame();
+                break;
+            case IMAGE:
+                createdObject = new UiImage();
+                break;
+            case LISTBOX:
+                createdObject = new ListBox();
+                break;
+            case POPUPMENU:
+                createdObject = new PopupMenu();
+                break;
+            case PUSHBUTTON:
+                createdObject = new PushButton();
+                break;
+            case RADIOBUTTON:
+                createdObject = new RadioButton();
+                break;
+            case SLIDER:
+                createdObject = new Slider();
+                break;
+            case TABLE:
+                createdObject = new Table();
+                break;
+            case UITEXT:
+                createdObject = new UiText();
+                break;
+                /* UIMENU */
+            case UIMENU:
+                createdObject = new Uimenu();
+                break;
+            case UIMENUMODEL:
+                createdObject = new Uimenu();
+                createdObject.setValid(false);
+                break;
+                /* UICONTEXTMENU */
+            case UICONTEXTMENU:
+                createdObject = new Uicontextmenu();
+                break;
+                /* Create Scilab console object */
+            case CONSOLE:
+                createdObject = Console.getConsole();
+                ((Console) createdObject).setScilabMode(Console.ScilabMode.NW);
+                break;
+            case JAVACONSOLE:
+                createdObject = Console.getConsole();
+                ((Console) createdObject).setScilabMode(Console.ScilabMode.STD);
+                break;
+                /* Uibar */
+            case PROGRESSIONBAR:
+                createdObject = new Progressionbar();
+                break;
+            case WAITBAR:
+                createdObject = new Waitbar();
+                break;
+            case UNKNOWNOBJECT:
+                createdObject = null;
+                break;
+            default:
+                createdObject = null;
         }
         return createdObject;
     }

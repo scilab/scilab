@@ -95,7 +95,6 @@ jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
-jmethodID jintnewImageRendererID; // cache method id
 jmethodID jintnewUiTableID; // cache method id
 jmethodID jintnewUiDisplayTreeID; // cache method id
 jmethodID jstringnewContextMenujobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
@@ -118,8 +117,6 @@ jmethodID voidsetCheckBoxParentjintintjintintID; // cache method id
 jmethodID voidremoveCheckBoxFromParentjintintjintintID; // cache method id
 jmethodID voidsetRadioButtonParentjintintjintintID; // cache method id
 jmethodID voidremoveRadioButtonFromParentjintintjintintID; // cache method id
-jmethodID voidsetImageRendererParentjintintjintintID; // cache method id
-jmethodID voidremoveImageRendererFromParentjintintjintintID; // cache method id
 jmethodID voidsetUiTableParentjintintjintintID; // cache method id
 jmethodID voidremoveUiTableFromParentjintintjintintID; // cache method id
 jmethodID voidsetUiDisplayTreeParentjintintjintintID; // cache method id
@@ -271,9 +268,6 @@ jmethodID voidraiseWindowjintintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 jmethodID voidscilabAboutBoxID; // cache method id
-jmethodID voidsetImageRendererRotatejintintjdoubleArray_doubledoubleID; // cache method id
-jmethodID voidsetImageRendererShearjintintjdoubleArray_doubledoubleID; // cache method id
-jmethodID voidsetImageRendererScalejintintjdoubleArray_doubledoubleID; // cache method id
 jmethodID voidsetUiTableColnamesjintintjstringjava_lang_StringID; // cache method id
 jmethodID voidsetUiTableRownamesjintintjstringjava_lang_StringID; // cache method id
 jmethodID voidsetUiTableDatajintintjstringjava_lang_StringID; // cache method id
@@ -363,8 +357,6 @@ static int newListBox(JavaVM * jvm_);
 
 static int newFrame(JavaVM * jvm_);
 
-static int newImageRenderer(JavaVM * jvm_);
-
 static int newUiTable(JavaVM * jvm_);
 
 static int newUiDisplayTree(JavaVM * jvm_);
@@ -406,10 +398,6 @@ static void removeCheckBoxFromParent(JavaVM * jvm_, int parentID, int objID);
 static void setRadioButtonParent(JavaVM * jvm_, int parentID, int objID);
 
 static void removeRadioButtonFromParent(JavaVM * jvm_, int parentID, int objID);
-
-static void setImageRendererParent(JavaVM * jvm_, int parentID, int objID);
-
-static void removeImageRendererFromParent(JavaVM * jvm_, int parentID, int objID);
 
 static void setUiTableParent(JavaVM * jvm_, int parentID, int objID);
 
@@ -712,12 +700,6 @@ static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 static bool useCanvasForDisplay(JavaVM * jvm_);
 
 static void scilabAboutBox(JavaVM * jvm_);
-
-static void setImageRendererRotate(JavaVM * jvm_, int objID, double const* indices, int indicesSize);
-
-static void setImageRendererShear(JavaVM * jvm_, int objID, double const* indices, int indicesSize);
-
-static void setImageRendererScale(JavaVM * jvm_, int objID, double const* indices, int indicesSize);
 
 static void setUiTableColnames(JavaVM * jvm_, int objID, char const* text);
 

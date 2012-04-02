@@ -3,7 +3,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
 <<<<<<< HEAD
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- * 
+ *
 =======
  *
 >>>>>>> origin/master
@@ -30,7 +30,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
@@ -158,19 +157,6 @@ public interface SimpleTab {
      * @param member the RadioButton to remove
      */
     void removeMember(RadioButton member);
-
-    /**
-     * We want to be able to add directly a ImageRenderer in a Tab.
-     * @param member the ImageRenderer to add
-     * @return the position of the ImageRenderer in the member list.
-     */
-    int addMember(ImageRenderer member);
-
-    /**
-     * Remove a ImageRenderer from a Tab.
-     * @param member the ImageRenderer to remove
-     */
-    void removeMember(ImageRenderer member);
 
     int addMember(UiDisplayTree member);
     void removeMember(UiDisplayTree member);

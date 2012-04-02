@@ -10,23 +10,23 @@
  *
  */
 
-package org.scilab.modules.graphic_objects.uicontrol.imagerenderer;
+package org.scilab.modules.graphic_objects.uicontrol.uiimage;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
  * @author Vincent COUVERT
  */
-public class ImageRenderer extends Uicontrol {
+public class UiImage extends Uicontrol {
 
     /**
      * Constructor
      */
-    public ImageRenderer() {
+    public UiImage() {
         super();
-        setStyle(__GO_UI_IMAGERENDERER__);
+        setStyle(__GO_UI_IMAGE__);
         Double[] imageInfos = {1.0, 1.0, 0.0, 0.0, 0.0}; // {XScale, YScale, XShear, YShear, RotationAngle}
         setUiValue(imageInfos);
     }

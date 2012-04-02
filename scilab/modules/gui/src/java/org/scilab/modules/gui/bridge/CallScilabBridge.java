@@ -77,8 +77,6 @@ import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
-import org.scilab.modules.gui.imagerenderer.ScilabImageRenderer;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -457,27 +455,6 @@ public class CallScilabBridge {
     }
 
     /**
-     * Create a new ImageRenderer in Scilab GUIs
-     * @return the ID of the ImageRenderer in the UIElementMapper
-     */
-    public static int newImageRenderer() {
-        ImageRenderer imageRenderer = ScilabImageRenderer.createImageRenderer();
-        int id = UIElementMapper.add(imageRenderer);
-
-        /* Default font */
-        setWidgetFontName(id, DEFAULTFONTNAME);
-        setWidgetFontWeight(id, NORMALFONT);
-        setWidgetFontSize(id, DEFAULTFONTSIZE);
-
-        setWidgetRelief(id, ScilabRelief.FLAT);
-
-        /* Default colors */
-        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
-        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
-        return id;
-    }
-
-    /**
      * Create a new UiTable in Scilab GUIs
      * @return the ID of the UiTable in the UIElementMapper
      */
@@ -672,12 +649,12 @@ public class CallScilabBridge {
         //   delete(get_figure_handle(fid));
         // end
         String closingCommand =
-                "if (get_figure_handle(" + figureIndex + ") <> []) then"
-                        +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
-                        +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
-                        +      "  end;"
-                        +      "  delete(get_figure_handle(" + figureIndex + "));"
-                        +      "end;";
+            "if (get_figure_handle(" + figureIndex + ") <> []) then"
+            +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
+            +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
+            +      "  end;"
+            +      "  delete(get_figure_handle(" + figureIndex + "));"
+            +      "end;";
         //graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
@@ -899,28 +876,6 @@ public class CallScilabBridge {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, radioButton);
-    }
-
-    /**
-     * Set a figure as parent for a ImageRenderer
-     * @param figureID the ID of the figure in the FigureMapper
-     * @param objID the ID of the PushButton in the UIElementMapper
-     */
-    public static void setImageRendererParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
-        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, imageRenderer);
-    }
-
-    /**
-     * Remove a ImageRenderer from its parent figure
-     * @param figureID the ID of the figure in the FigureMapper
-     * @param objID the ID of the PushButton in the UIElementMapper
-     */
-    public static void removeImageRendererFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
-        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, imageRenderer);
     }
 
     /**
@@ -2090,8 +2045,8 @@ public class CallScilabBridge {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) {
             parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
-            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(), 
-                    parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
+            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
+                                  parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
         }
     }
 
@@ -2216,10 +2171,10 @@ public class CallScilabBridge {
      * @param xmlID the xml id
      */
     public static void openHelp(String xmlID) {
-	HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
-	if (helpBrowser != null) {
-	    helpBrowser.searchKeywork(xmlID);
-	}
+        HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
+        if (helpBrowser != null) {
+            helpBrowser.searchKeywork(xmlID);
+        }
     }
 
     /**
@@ -2545,16 +2500,16 @@ public class CallScilabBridge {
                 String fileExtension = ".ps";
 
                 try {
-                    String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
+                    String tmpPrinterFile = File.createTempFile("scilabfigure", "").getAbsolutePath();
                     /** Export image to PostScript */
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
-                                tmpPrinterFile + fileExtension,
-                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
+                                                tmpPrinterFile + fileExtension,
+                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
                         FileExporter.fileExport(figureID,
-                                tmpPrinterFile + fileExtension,
-                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
+                                                tmpPrinterFile + fileExtension,
+                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */
@@ -2950,7 +2905,7 @@ public class CallScilabBridge {
          */
         @Override
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[]{DataFlavor.imageFlavor};
+            return new DataFlavor[] {DataFlavor.imageFlavor};
         }
 
         /**
@@ -3027,7 +2982,7 @@ public class CallScilabBridge {
         } else {
             ((Widget) uicontrol).requestFocus();
         }
-        
+
     }
 
     /**
@@ -3068,33 +3023,6 @@ public class CallScilabBridge {
      */
     public static void scilabAboutBox() {
         ScilabAboutBox.displayAndWait();
-    }
-
-    /**********************/
-    /*                    */
-    /* IMAGERENDERER BRIDGE */
-    /*                    */
-    /**********************/
-
-    /**
-     * Rotates an image by certain degrees
-     */
-    public static void setImageRendererRotate(int id, double[] indices) {
-        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
-    }
-
-    /**
-     * Shears an image by x, y values
-     */
-    public static void setImageRendererShear(int id, double[] indices) {
-        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
-    }
-
-    /**
-     * Scales an image by x, y values
-     */
-    public static void setImageRendererScale(int id, double[] indices) {
-        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
     }
 
     /******************/

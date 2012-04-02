@@ -46,11 +46,11 @@ import java.awt.Font;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
-import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
@@ -321,7 +321,7 @@ public final class SwingViewWidget {
             } else if (uiControl instanceof SwingScilabSlider) {
                 // Update the slider value
                 ((SwingScilabSlider) uiControl).setUserValue(doubleValue[0]);
-            } else if (uiControl instanceof SwingScilabImageRenderer) {
+            } else if (uiControl instanceof SwingScilabUiImage) {
                 // Update the image parameters
                 double[] imageParams = new double[5];
                 if (doubleValue.length < 1) {
@@ -352,12 +352,12 @@ public final class SwingViewWidget {
                 double[] scale = new double[2];
                 scale[0] = imageParams[0];
                 scale[1] = imageParams[1];
-                ((SwingScilabImageRenderer) uiControl).setScale(scale);
+                ((SwingScilabUiImage) uiControl).setScale(scale);
                 double[] shear = new double[2];
                 shear[0] = imageParams[2];
                 shear[1] = imageParams[3];
-                ((SwingScilabImageRenderer) uiControl).setShear(shear);
-                ((SwingScilabImageRenderer) uiControl).setRotate(imageParams[4]);
+                ((SwingScilabUiImage) uiControl).setShear(shear);
+                ((SwingScilabUiImage) uiControl).setRotate(imageParams[4]);
             }
         } else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {
             uiControl.setVerticalAlignment((String) value);

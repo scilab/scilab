@@ -428,9 +428,6 @@
     <ClCompile Include="..\cpp\UiTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\ImageRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\SetUiobjectRotate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -965,9 +962,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\GetUiobjectShear.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\ImageRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\SetUiobjectEnable.h">

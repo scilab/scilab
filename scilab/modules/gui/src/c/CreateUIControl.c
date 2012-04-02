@@ -25,7 +25,6 @@
 #include "PopupMenu.h"
 #include "ListBox.h"
 #include "Frame.h"
-#include "ImageRenderer.h"
 #include "UiTable.h"
 #include "UiDisplayTree.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
@@ -42,52 +41,52 @@
 char *CreateUIControl(char *style)
 {
     char *pobjUID = NULL;
-    if (style == NULL || strcmp(style, "pushbutton")==0)
+    if (style == NULL || strcmp(style, "pushbutton") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
     }
-    else if (strcmp(style,"checkbox")==0)
+    else if (strcmp(style, "checkbox") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_CHECKBOX__);
     }
-    else if (strcmp(style,"edit")==0)
+    else if (strcmp(style, "edit") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_EDIT__);
     }
-    else if (strcmp(style,"frame")==0)
+    else if (strcmp(style, "frame") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_FRAME__);
     }
-    else if (strcmp(style,"listbox")==0)
+    else if (strcmp(style, "listbox") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_LISTBOX__);
     }
-    else if (strcmp(style,"imagerenderer")==0)
+    else if (strcmp(style, "image") == 0)
     {
-        pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
+        pobjUID = createGraphicObject(__GO_UI_IMAGE__);
     }
-    else if (strcmp(style,"popupmenu")==0)
+    else if (strcmp(style, "popupmenu") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_POPUPMENU__);
     }
-    else if (strcmp(style,"radiobutton")==0)
+    else if (strcmp(style, "radiobutton") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_RADIOBUTTON__);
     }
-    else if (strcmp(style,"slider")==0)
+    else if (strcmp(style, "slider") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_SLIDER__);
     }
-    else if (strcmp(style,"table")==0)
+    else if (strcmp(style, "table") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_TABLE__);
     }
-    else if (strcmp(style,"text")==0)
+    else if (strcmp(style, "text") == 0)
     {
         pobjUID = createGraphicObject(__GO_UI_TEXT__);
     }
 
-  return pobjUID;
+    return pobjUID;
 }
 /*----------------------------------------------------------------------------*/
 

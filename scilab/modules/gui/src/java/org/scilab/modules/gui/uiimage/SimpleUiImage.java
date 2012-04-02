@@ -9,15 +9,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.imagerenderer;
+package org.scilab.modules.gui.uiimage;
 
 import org.scilab.modules.gui.text.SimpleText;
 
 /**
- * Interface for ScilabImageRendererBridge the associated object to Scilab GUIs ImageRender
+ * Interface for ScilabUiImageBridge the associated object to Scilab GUIs Image
  * @author Han DONG
  */
-public interface SimpleImageRenderer extends SimpleText {
+public interface SimpleUiImage extends SimpleText {
     /**
      * Rotates an image
      * @param angle the value for the angle to rotate

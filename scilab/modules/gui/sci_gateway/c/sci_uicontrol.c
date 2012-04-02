@@ -33,7 +33,6 @@
 #include "Slider.h"             /* setCurentFigureAsSliderParent */
 #include "PopupMenu.h"          /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h"            /* setCurentFigureAsListBoxParent */
-#include "ImageRenderer.h"      /* setCurentFigureAsImageRendererParent */
 #include "UiTable.h"            /* setCurentFigureAsUiTableParent */
 #include "UiDisplayTree.h"      /* setCurentFigureAsUiDisplayTreeParent */
 #include "Scierror.h"

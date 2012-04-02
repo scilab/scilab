@@ -301,7 +301,7 @@
 #define __GO_UI_CHECKBOX__                 "checkbox"
 #define __GO_UI_EDIT__                     "edit"
 #define __GO_UI_FRAME__                    "frame"
-#define __GO_UI_IMAGERENDERER__            "imagerenderer"
+#define __GO_UI_IMAGE__                    "image"
 #define __GO_UI_LISTBOX__                  "listbox"
 #define __GO_UI_POPUPMENU__                "popupmenu"
 #define __GO_UI_PUSHBUTTON__               "pushbutton"

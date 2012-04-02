@@ -43,15 +43,15 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Graphic objects types */
     public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, FIGUREMODEL, GRAYPLOT,
-        LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
-        IMAGERENDERER, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL, 
-        PROGRESSIONBAR, WAITBAR, UICONTEXTMENU, UNKNOWNOBJECT
-    };
+                       LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
+                       IMAGE, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL,
+                       PROGRESSIONBAR, WAITBAR, UICONTEXTMENU, UNKNOWNOBJECT
+                     };
 
     /** GraphicObject properties */
     public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-        PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY 
-    };
+                                            PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY
+                                          };
 
     /** Identifier */
     private String identifier;
@@ -142,7 +142,7 @@ public abstract class GraphicObject implements Cloneable {
     }
 
     abstract public void accept(Visitor visitor) throws ObjectRemovedException;
- 
+
     /**
      * Returns the enum associated to a type name
      * @param typeName the property name
@@ -193,8 +193,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.EDIT;
         } else if (typeName.equals(__GO_UI_FRAME__)) {
             return Type.FRAME;
-        } else if (typeName.equals(__GO_UI_IMAGERENDERER__)) {
-            return Type.IMAGERENDERER;
+        } else if (typeName.equals(__GO_UI_IMAGE__)) {
+            return Type.IMAGE;
         } else if (typeName.equals(__GO_UI_LISTBOX__)) {
             return Type.LISTBOX;
         } else if (typeName.equals(__GO_UI_POPUPMENU__)) {
@@ -680,7 +680,7 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * isReferenced method
-     * @return referenced 
+     * @return referenced
      */
     public Boolean isReferenced() {
         return referenced;

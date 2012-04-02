@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno Jofret
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -89,15 +89,6 @@ import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButtonBridge;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
-import org.scilab.modules.gui.imagerenderer.ScilabImageRendererBridge;
-import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
-import org.scilab.modules.gui.uitable.UiTable;
-import org.scilab.modules.gui.uitable.ScilabUiTableBridge;
-import org.scilab.modules.gui.uitable.SimpleUiTable;
-import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTreeBridge;
-import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.slider.ScilabSliderBridge;
@@ -115,6 +106,12 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.ScilabTreeBridge;
 import org.scilab.modules.gui.tree.SimpleTree;
 import org.scilab.modules.gui.tree.Tree;
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTreeBridge;
+import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uitable.ScilabUiTableBridge;
+import org.scilab.modules.gui.uitable.SimpleUiTable;
+import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.waitbar.ScilabWaitBarBridge;
@@ -303,7 +300,7 @@ public class ScilabBridge {
 
     /**
      * DeIconify Window
-     * @param window window to update	
+     * @param window window to update
      */
     public static void windowDeiconified(Window window) {
         ScilabWindowBridge.windowDeiconified(window);
@@ -311,7 +308,7 @@ public class ScilabBridge {
 
     /**
      * Iconify Window
-     * @param window window to update	
+     * @param window window to update
      */
     public static void windowIconified(Window window) {
         ScilabWindowBridge.windowIconified(window);
@@ -319,7 +316,7 @@ public class ScilabBridge {
 
     /**
      * Maximized Window
-     * @param window window to update	
+     * @param window window to update
      */
     public static void windowMaximized(Window window) {
         ScilabWindowBridge.windowMaximized(window);
@@ -327,7 +324,7 @@ public class ScilabBridge {
 
     /**
      * Window is in the "normal" state.
-     * @param window window to update		
+     * @param window window to update
      */
     public static void windowNormal(Window window) {
         ScilabWindowBridge.windowNormal(window);
@@ -867,25 +864,6 @@ public class ScilabBridge {
 
     /**
      * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the ImageRenderer to
-     * @param member the ImageRenderer to add
-     * @return the position of the ImageRenderer in the member list.
-     */
-    public static int addMember(Tab tab, ImageRenderer member) {
-        return ScilabTabBridge.addMember(tab, member);
-    }
-
-    /**
-     * Remove a ImageRenderer member from a tab
-     * @param tab the tab which we want to remove the ImageRenderer from
-     * @param member the ImageRenderer to remove
-     */
-    public static void removeMember(Tab tab, ImageRenderer member) {
-        ScilabTabBridge.removeMember(tab, member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
      * @param tab the tab which we want to add the UiTable to
      * @param member the UiTable to add
      * @return the position of the UiTable in the member list.
@@ -901,7 +879,7 @@ public class ScilabBridge {
      */
     public static void removeMember(Tab tab, UiTable member) {
         ScilabTabBridge.removeMember(tab, member);
-    }	
+    }
 
     public static int addMember(Tab tab, UiDisplayTree member) {
         return ScilabTabBridge.addMember(tab, member);
@@ -1285,7 +1263,7 @@ public class ScilabBridge {
 
     /**
      * Clear the commands history
-     * @param console the console we want to clear the history of 
+     * @param console the console we want to clear the history of
      */
     public static void clearHistory(Console console) {
         ScilabConsoleBridge.clearHistory(console);
@@ -1293,7 +1271,7 @@ public class ScilabBridge {
 
     /**
      * Select all the console contents
-     * @param console the console 
+     * @param console the console
      */
     public static void selectAll(Console console) {
         ScilabConsoleBridge.selectAll(console);
@@ -1301,7 +1279,7 @@ public class ScilabBridge {
 
     /**
      * Put the console selected text in the clipboard
-     * @param console the console 
+     * @param console the console
      */
     public static void copyToClipboard(Console console) {
         ScilabConsoleBridge.copyToClipboard(console);
@@ -1309,7 +1287,7 @@ public class ScilabBridge {
 
     /**
      * Paste clipboard contents in Console input line
-     * @param console the console 
+     * @param console the console
      */
     public static void pasteClipboard(Console console) {
         ScilabConsoleBridge.pasteClipboard(console);
@@ -1317,7 +1295,7 @@ public class ScilabBridge {
 
     /**
      * Cut selected text in the Console input line
-     * @param console the console 
+     * @param console the console
      */
     public static void cutSelection(Console console) {
         ScilabConsoleBridge.cutSelection(console);
@@ -1380,7 +1358,7 @@ public class ScilabBridge {
     /**
      * Set the maximum number of lines stored in the Output
      * @param console the console
-     * @param nbLines the number of lines 
+     * @param nbLines the number of lines
      */
     public static void setMaxOutputSize(Console console, int nbLines) {
         ScilabConsoleBridge.setMaxOutputSize(console, nbLines);
@@ -1522,7 +1500,7 @@ public class ScilabBridge {
      * Set the background of the Canvas.
      * @param canvas the canvas we want to modify
      * @param red red channel
-     * @param green green channel 
+     * @param green green channel
      * @param blue blue channel
      */
     public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
@@ -2203,7 +2181,7 @@ public class ScilabBridge {
 
     /**
      * Gets the enable status of a Menu
-     * @param menu the menu which we want to get the status of 
+     * @param menu the menu which we want to get the status of
      * @return the enable status of the Menu (true if the Menu is enabled, false if not)
      */
     public static boolean isEnabled(Menu menu) {
@@ -4149,7 +4127,7 @@ public class ScilabBridge {
      * @param space the increment value
      */
     public static void setMinorTickSpacing(Slider slider, int space) {
-        ScilabSliderBridge.setMinorTickSpacing(slider, space);	
+        ScilabSliderBridge.setMinorTickSpacing(slider, space);
     }
 
     /**
@@ -4158,7 +4136,7 @@ public class ScilabBridge {
      * @param space the increment value
      */
     public static void setMajorTickSpacing(Slider slider, int space) {
-        ScilabSliderBridge.setMajorTickSpacing(slider, space);	
+        ScilabSliderBridge.setMajorTickSpacing(slider, space);
     }
 
     /**
@@ -4167,7 +4145,7 @@ public class ScilabBridge {
      * @param value the minimum value
      */
     public static void setMinimumValue(Slider slider, int value) {
-        ScilabSliderBridge.setMinimumValue(slider, value);	
+        ScilabSliderBridge.setMinimumValue(slider, value);
     }
 
     /**
@@ -4176,7 +4154,7 @@ public class ScilabBridge {
      * @param value the maximum value
      */
     public static void setMaximumValue(Slider slider, int value) {
-        ScilabSliderBridge.setMaximumValue(slider, value);	
+        ScilabSliderBridge.setMaximumValue(slider, value);
     }
 
     /**
@@ -4185,7 +4163,7 @@ public class ScilabBridge {
      * @return the current value of the Slider
      */
     public static int getValue(Slider slider) {
-        return ScilabSliderBridge.getValue(slider);	
+        return ScilabSliderBridge.getValue(slider);
     }
 
     /**
@@ -4194,7 +4172,7 @@ public class ScilabBridge {
      * @param value the new value
      */
     public static void setUserValue(Slider slider, int value) {
-        ScilabSliderBridge.setUserValue(slider, value);	
+        ScilabSliderBridge.setUserValue(slider, value);
     }
 
     /**
@@ -4876,7 +4854,7 @@ public class ScilabBridge {
     }
 
     /**
-     * Display this chooser and wait for user selection 
+     * Display this chooser and wait for user selection
      * @param fileChooser the file chooser we want to display
      */
     public static void displayAndWait(FileChooser fileChooser) {
@@ -4894,7 +4872,7 @@ public class ScilabBridge {
 
     /**
      * Get the names of selected files
-     * @param fileChooser the file chooser we want to get the selection of 
+     * @param fileChooser the file chooser we want to get the selection of
      * @return the names of selected files
      */
     public static String[] getSelection(FileChooser fileChooser) {
@@ -4903,7 +4881,7 @@ public class ScilabBridge {
 
     /**
      * Get the names of selected files
-     * @param fileChooser the file chooser we want to get the selection of 
+     * @param fileChooser the file chooser we want to get the selection of
      * @return the names of selected files
      */
     public static String[] getSelectionFileNames(FileChooser fileChooser) {
@@ -4912,24 +4890,24 @@ public class ScilabBridge {
 
     /**
      * Set the flag indicating that we want only select directories
-     * @param fileChooser the file chooser we want to set the flag of 
+     * @param fileChooser the file chooser we want to set the flag of
      */
     public static void setDirectorySelectionOnly(FileChooser fileChooser) {
         ScilabFileChooserBridge.setDirectorySelectionOnly(fileChooser);
     }
 
     /**
-     * We customize the file chooser for the graphic export 
+     * We customize the file chooser for the graphic export
      * by adding format selection
      */
     public static void exportCustomFileChooser() {
         ScilabFileChooserBridge.createFileChooser();
-    }	
+    }
 
     /**
      * Enable the multiple selection
-     * @param fileChooser the file chooser we want to get the  muliple selection 
-     * @param multipleSelection boolean for the multiple selection 
+     * @param fileChooser the file chooser we want to get the  muliple selection
+     * @param multipleSelection boolean for the multiple selection
      */
     public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
         ScilabFileChooserBridge.setMultipleSelection(fileChooser, multipleSelection);
@@ -4937,7 +4915,7 @@ public class ScilabBridge {
 
     /**
      * Get the path name of selected files
-     * @param fileChooser the file chooser we want to get the path of selectd files 
+     * @param fileChooser the file chooser we want to get the path of selectd files
      * @return the path of selected files
      */
     public static String getSelectionPathName(FileChooser fileChooser) {
@@ -5002,7 +4980,7 @@ public class ScilabBridge {
     }
 
     /**
-     * Display this MessageBox and wait for user selection 
+     * Display this MessageBox and wait for user selection
      * @param messageBox the MessageBox we want to display
      */
     public static void displayAndWait(MessageBox messageBox) {
@@ -5261,8 +5239,8 @@ public class ScilabBridge {
         return ScilabFontChooserBridge.createFontChooser(font);
     }
 
-    /** 
-     * Retrieve the selected font, or null 
+    /**
+     * Retrieve the selected font, or null
      * @param fontChooser the FontChooser
      * @return the selected font
      */
@@ -5270,8 +5248,8 @@ public class ScilabBridge {
         return ScilabFontChooserBridge.getSelectedFont(fontChooser);
     }
 
-    /** 
-     * Set the default font name 
+    /**
+     * Set the default font name
      * @param fontChooser the FontChooser
      * @param fontName the default font name
      */
@@ -5279,8 +5257,8 @@ public class ScilabBridge {
         ScilabFontChooserBridge.setDefaultFontName(fontChooser, fontName);
     }
 
-    /** 
-     * Set the default font size 
+    /**
+     * Set the default font size
      * @param fontChooser the FontChooser
      * @param fontSize the default font size
      */
@@ -5288,8 +5266,8 @@ public class ScilabBridge {
         ScilabFontChooserBridge.setDefaultFontSize(fontChooser, fontSize);
     }
 
-    /** 
-     * Set the default font bold attribute 
+    /**
+     * Set the default font bold attribute
      * @param fontChooser the FontChooser
      * @param bold the default font bold attribute
      */
@@ -5297,8 +5275,8 @@ public class ScilabBridge {
         ScilabFontChooserBridge.setDefaultBold(fontChooser, bold);
     }
 
-    /** 
-     * Set the default font italic attribute 
+    /**
+     * Set the default font italic attribute
      * @param fontChooser the FontChooser
      * @param italic the default font italic attribute
      */
@@ -5327,8 +5305,8 @@ public class ScilabBridge {
         return ScilabColorChooserBridge.createColorChooser(color);
     }
 
-    /** 
-     * Set the title of the ColorChooser 
+    /**
+     * Set the title of the ColorChooser
      * @param colorChooser the ColorChooser
      * @param title the title to set
      */
@@ -5336,8 +5314,8 @@ public class ScilabBridge {
         ScilabColorChooserBridge.setTitle(colorChooser, title);
     }
 
-    /** 
-     * Retrieve the selected color, or null 
+    /**
+     * Retrieve the selected color, or null
      * @param colorChooser the ColorChooser
      * @return the selected color
      */
@@ -5345,8 +5323,8 @@ public class ScilabBridge {
         return ScilabColorChooserBridge.getSelectedColor(colorChooser);
     }
 
-    /** 
-     * Set the default color 
+    /**
+     * Set the default color
      * @param colorChooser the ColorChooser
      * @param color the default color
      */
@@ -5407,256 +5385,6 @@ public class ScilabBridge {
      */
     public static void evaluateSelectionWithNoEcho(ScilabConsole console) {
         ScilabConsoleBridge.evaluateSelectionWithNoEcho(console);
-    }
-
-    /************************/
-    /* ImageRenderer Bridge */
-    /************************/
-
-    /**
-     * Creates a new ImageRenderer
-     * @return the created ImageRenderer
-     */
-    public static SimpleImageRenderer createImageRenderer() {
-        return ScilabImageRendererBridge.createImageRenderer();
-    }
-
-    /**
-     * Sets the Text of a ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to set the Text of
-     * @param newText the Text to set for the ImageRenderer
-     */
-    public static void setText(ImageRenderer imageRenderer, String newText) {
-        ScilabImageRendererBridge.setText(imageRenderer, newText);
-    }
-
-    /**
-     * Gets the text of an ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to get the text of
-     * @return the text of the ImageRenderer
-     */
-    public static String getText(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getText(imageRenderer);
-    }
-
-    /**
-     * Draws a Scilab ImageRenderer
-     * @param imageRenderer the ImageRenderer to draw
-     * @see org.scilab.modules.ihm.UIElement#draw()
-     */
-    public static void draw(ImageRenderer imageRenderer) {
-        ScilabImageRendererBridge.draw(imageRenderer);
-    }
-
-    /**
-     * Gets the dimensions (width and height) of a Scilab ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to get the dimensions of
-     * @return the size of the imageRenderer
-     * @see org.scilab.modules.ihm.UIElement#getDims()
-     */
-    public static Size getDims(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getDims(imageRenderer);
-    }
-
-    /**
-     * Gets the position (X-coordinate and Y-coordinate) of a Scilab imageRenderer
-     * @param imageRenderer the imageRenderer we want to get the position of
-     * @return the position of the imageRenderer
-     * @see org.scilab.modules.ihm.UIElement#getPosition()
-     */
-    public static Position getPosition(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getPosition(imageRenderer);
-    }
-
-    /**
-     * Gets the visibility status of a Scilab ImageRenderer
-     * @param imageRenderer the imageRenderer we want to get the visiblity status of
-     * @return the visibility status of the imageRenderer (true if the imageRenderer is visible, false if not)
-     * @see org.scilab.modules.ihm.UIElement#isVisible()
-     */
-    public static boolean isVisible(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.isVisible(imageRenderer);
-    }
-
-    /**
-     * Sets the dimensions (width and height) of a Scilab ImageRenderer
-     * @param imageRenderer the imageRenderer we want to set the dimensions of
-     * @param newSize the size we want to set to the imageRenderer
-     * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
-     */
-    public static void setDims(ImageRenderer imageRenderer, Size newSize) {
-        ScilabImageRendererBridge.setDims(imageRenderer, newSize);
-    }
-
-    /**
-     * Sets the position (X-coordinate and Y-coordinate) of a Scilab imageRenderer
-     * @param imageRenderer the imageRenderer we want to set the position of
-     * @param newPosition the position we want to set to the imageRenderer
-     * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
-     */
-    public static void setPosition(ImageRenderer imageRenderer, Position newPosition) {
-        ScilabImageRendererBridge.setPosition(imageRenderer, newPosition);
-    }
-
-    /**
-     * Sets the visibility status of a Scilab ImageRenderer
-     * @param imageRenderer the imageRenderer we want to set the visiblity status of
-     * @param newVisibleState the visibility status we want to set to the imageRenderer (true to set the imageRenderer visible, false else)
-     * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
-     */
-    public static void setVisible(ImageRenderer imageRenderer, boolean newVisibleState) {
-        ScilabImageRendererBridge.setVisible(imageRenderer, newVisibleState);
-    }
-
-    /**
-     * Set the Background color of the ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to set the background of
-     * @param color the Color
-     */
-    public static void setBackground(ImageRenderer imageRenderer, Color color) {
-        ScilabImageRendererBridge.setBackground(imageRenderer, color);
-    }
-
-    /**
-     * Get the Background color of the ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to get the background of
-     * @return the Color
-     */
-    public static Color getBackground(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getBackground(imageRenderer);
-    }
-
-    /**
-     * Set the Foreground color of the ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to set the foreground of
-     * @param color the Color
-     */
-    public static void setForeground(ImageRenderer imageRenderer, Color color) {
-        ScilabImageRendererBridge.setForeground(imageRenderer, color);
-    }
-
-    /**
-     * Get the Foreground color of the ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to get the foreground of
-     * @return the Color
-     */
-    public static Color getForeground(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getForeground(imageRenderer);
-    }
-
-    /**
-     * Set the font of the ImageRenderer.
-     * @param imageRenderer the ImageRenderer we want to set the font of
-     * @param font the font
-     */
-    public static void setFont(ImageRenderer imageRenderer, Font font) {
-        ScilabImageRendererBridge.setFont(imageRenderer, font);
-    }
-
-    /**
-     * Get the font of the ImageRenderer.
-     * @param imageRenderer the ImageRenderer we want to get the font of
-     * @return the font
-     */
-    public static Font getFont(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.getFont(imageRenderer);
-    }
-
-    /**
-     * Set if the ImageRenderer is enabled or not
-     * @param imageRenderer the ImageRenderer we want to set the status of
-     * @param status true if the ImageRenderer is enabled
-     */
-    public static void setEnabled(ImageRenderer imageRenderer, boolean status) {
-        ScilabImageRendererBridge.setEnabled(imageRenderer, status);
-    }
-
-    /**
-     * Gets the enable status of a ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to get the status of
-     * @return the enable status of the ImageRenderer (true if the ImageRenderer is enabled, false if not)
-     */
-    public static boolean isEnabled(ImageRenderer imageRenderer) {
-        return ScilabImageRendererBridge.isEnabled(imageRenderer);
-    }
-
-    /**
-     * Add a callback to the ImageRenderer
-     * @param imageRenderer the ImageRenderer we want to set the callback of
-     * @param callback the Callback to set.
-     */
-    public static void setCallback(ImageRenderer imageRenderer, CommonCallBack callback) {
-        ScilabImageRendererBridge.setCallback(imageRenderer, callback);
-    }
-
-    /**
-     * Set the horizontal alignment for the ImageRenderer text
-     * @param imageRenderer the ImageRenderer we want to set the alignment of
-     * @param alignment the value for the alignment (See ScilabAlignment.java)
-     */
-    public static void setHorizontalAlignment(ImageRenderer imageRenderer, String alignment) {
-        ScilabImageRendererBridge.setHorizontalAlignment(imageRenderer, alignment);
-    }
-
-    /**
-     * Set the vertical alignment for the ImageRenderer text
-     * @param imageRenderer the ImageRenderer we want to set the alignment of
-     * @param alignment the value for the alignment (See ScilabAlignment.java)
-     */
-    public static void setVerticalAlignment(ImageRenderer imageRenderer, String alignment) {
-        ScilabImageRendererBridge.setVerticalAlignment(imageRenderer, alignment);
-    }
-
-    /**
-     * Set the Relief of the ImageRenderer
-     * @param imageRenderer the ImageRenderer which we want to set the Relief of
-     * @param reliefType the type of the relief to set (See ScilabRelief.java)
-     */
-    public static void setRelief(ImageRenderer imageRenderer, String reliefType) {
-        ScilabImageRendererBridge.setRelief(imageRenderer, reliefType);
-    }
-
-    /**
-     * Delete the ImageRenderer
-     * @param imageRenderer the ImageRenderer to be destroyed
-     */
-    public static void destroy(ImageRenderer imageRenderer) {
-        ScilabImageRendererBridge.destroy(imageRenderer);
-    }
-
-    /**
-     * Give the focus to the ImageRenderer
-     * @param imageRenderer the ImageRenderer
-     */
-    public static void requestFocus(ImageRenderer imageRenderer) {
-        ScilabImageRendererBridge.requestFocus(imageRenderer);
-    }
-
-    /**
-     * Rotates an image
-     * @param imageRenderer the ImageRenderer we want to rotate
-     * @param indices the double value that contains an angle to rotate
-     */
-    public static void setRotate(ImageRenderer imageRenderer, double[] indices) {
-        ScilabImageRendererBridge.setRotate(imageRenderer, indices);
-    }
-
-    /**
-     * Shears an image by x, y values
-     * @param imageRenderer the ImageRenderer we want to shear
-     * @param indices the double array that contains x, y values to shear
-     */
-    public static void setShear(ImageRenderer imageRenderer, double[] indices) {
-        ScilabImageRendererBridge.setShear(imageRenderer, indices);
-    }
-
-    /**
-     * Scaless an image by x, y values
-     * @param imageRenderer the ImageRenderer we want to scale
-     * @param indices the double array that contains x, y values to scale
-     */
-    public static void setScale(ImageRenderer imageRenderer, double[] indices) {
-        ScilabImageRendererBridge.setScale(imageRenderer, indices);
     }
 
     /**********************/

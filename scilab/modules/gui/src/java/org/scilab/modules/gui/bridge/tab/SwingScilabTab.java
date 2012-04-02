@@ -67,7 +67,6 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
-import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
@@ -76,6 +75,7 @@ import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
+import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -87,7 +87,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -833,32 +832,15 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    public int addMember(ImageRenderer member) {
-        return this.addMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabImageRenderer member) {
+    private int addMember(SwingScilabUiImage member) {
         return contentPane.addWidget(member);
     }
 
     /**
-     * Remove a ImageRenderer from its container
-     * @param member the ImageRenderer to remove
+     * Remove a Image from its container
+     * @param member the Image to remove
      */
-    public void removeMember(ImageRenderer member) {
-        this.removeMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
-    }
-
-    /**
-     * Remove a ImageRenderer from its container
-     * @param member the ImageRenderer to remove
-     */
-    private void removeMember(SwingScilabImageRenderer member) {
+    private void removeMember(SwingScilabUiImage member) {
         contentPane.removeWidget(member);
     }
 
@@ -1434,12 +1416,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
             /* Update callback */
             String closingCommand =
-                    "if (get_figure_handle(" + figureId + ") <> []) then"
-                            +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                            +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                            +      "  end;"
-                            +      "  delete(get_figure_handle(" + figureId + "));"
-                            +      "end;";
+                "if (get_figure_handle(" + figureId + ") <> []) then"
+                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                +      "  end;"
+                +      "  delete(get_figure_handle(" + figureId + "));"
+                +      "end;";
             setCallback(null);
             setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
             /* Update menus callbacks */
@@ -1462,7 +1444,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
                 Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
                 SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
-                        new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
+                    new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
             }
         } else if (property.equals(__GO_INFO_MESSAGE__)) {
             getInfoBar().setText((String) value);

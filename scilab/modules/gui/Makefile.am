@@ -76,7 +76,6 @@ src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
-src/cpp/ImageRenderer.cpp \
 src/cpp/UiTable.cpp \
 src/cpp/UiDisplayTree.cpp \
 src/cpp/Slider.cpp \

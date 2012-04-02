@@ -155,9 +155,7 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-CallHelpBrowser.lo \
 	libscigui_algo_la-PushButton.lo libscigui_algo_la-EditBox.lo \
 	libscigui_algo_la-Label.lo libscigui_algo_la-CheckBox.lo \
-	libscigui_algo_la-RadioButton.lo \
-	libscigui_algo_la-ImageRenderer.lo \
-	libscigui_algo_la-UiTable.lo \
+	libscigui_algo_la-RadioButton.lo libscigui_algo_la-UiTable.lo \
 	libscigui_algo_la-UiDisplayTree.lo libscigui_algo_la-Slider.lo \
 	libscigui_algo_la-PopupMenu.lo \
 	libscigui_algo_la-ContextMenu.lo libscigui_algo_la-ListBox.lo \
@@ -611,7 +609,6 @@ src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
-src/cpp/ImageRenderer.cpp \
 src/cpp/UiTable.cpp \
 src/cpp/UiDisplayTree.cpp \
 src/cpp/Slider.cpp \
@@ -1119,7 +1116,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectEnable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectVisible.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-ImageRenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Juigetfile.Plo@am__quote@
@@ -1633,13 +1629,6 @@ libscigui_algo_la-RadioButton.lo: src/cpp/RadioButton.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/RadioButton.cpp' object='libscigui_algo_la-RadioButton.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-RadioButton.lo `test -f 'src/cpp/RadioButton.cpp' || echo '$(srcdir)/'`src/cpp/RadioButton.cpp
-
-libscigui_algo_la-ImageRenderer.lo: src/cpp/ImageRenderer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-ImageRenderer.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-ImageRenderer.Tpo -c -o libscigui_algo_la-ImageRenderer.lo `test -f 'src/cpp/ImageRenderer.cpp' || echo '$(srcdir)/'`src/cpp/ImageRenderer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-ImageRenderer.Tpo $(DEPDIR)/libscigui_algo_la-ImageRenderer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ImageRenderer.cpp' object='libscigui_algo_la-ImageRenderer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-ImageRenderer.lo `test -f 'src/cpp/ImageRenderer.cpp' || echo '$(srcdir)/'`src/cpp/ImageRenderer.cpp
 
 libscigui_algo_la-UiTable.lo: src/cpp/UiTable.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-UiTable.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-UiTable.Tpo -c -o libscigui_algo_la-UiTable.lo `test -f 'src/cpp/UiTable.cpp' || echo '$(srcdir)/'`src/cpp/UiTable.cpp

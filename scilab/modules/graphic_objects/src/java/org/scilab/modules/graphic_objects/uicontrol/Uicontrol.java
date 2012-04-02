@@ -28,7 +28,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
@@ -137,7 +137,7 @@ public class Uicontrol extends GraphicObject {
         CHECKBOX,
         EDIT,
         FRAME,
-        IMAGERENDERER,
+        IMAGE,
         LISTBOX,
         POPUPMENU,
         PUSHBUTTON,
@@ -171,8 +171,8 @@ public class Uicontrol extends GraphicObject {
             case FRAME:
                 stringStyle = __GO_UI_FRAME__;
                 break;
-            case IMAGERENDERER:
-                stringStyle = __GO_UI_IMAGERENDERER__;
+            case IMAGE:
+                stringStyle = __GO_UI_IMAGE__;
                 break;
             case LISTBOX:
                 stringStyle = __GO_UI_LISTBOX__;
@@ -215,8 +215,8 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.EDIT;
         } else if (style.equals(__GO_UI_FRAME__)) {
             enumStyle = UicontrolStyle.FRAME;
-        } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
-            enumStyle = UicontrolStyle.IMAGERENDERER;
+        } else if (style.equals(__GO_UI_IMAGE__)) {
+            enumStyle = UicontrolStyle.IMAGE;
         } else if (style.equals(__GO_UI_LISTBOX__)) {
             enumStyle = UicontrolStyle.LISTBOX;
         } else if (style.equals(__GO_UI_POPUPMENU__)) {
