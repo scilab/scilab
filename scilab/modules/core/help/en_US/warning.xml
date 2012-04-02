@@ -18,17 +18,17 @@
   <refsection>
     <title>Description</title>
     <para>
-      prints the character string <literal>'string'</literal> in a warning
-      message
+      <literal>warning('string')</literal> prints the character string 
+      <literal>'string'</literal> in a warning message.
     </para>
     <para>
-      <literal>'on'</literal> enable warning messages.
+      <literal>'on'</literal> enables warning messages.
     </para>
     <para>
-      <literal>'off'</literal> disable warning messages.
+      <literal>'off'</literal> disables warning messages.
     </para>
     <para>
-      <literal>'query'</literal> get state 'on' or 'off'.
+      <literal>'query'</literal> gets state <literal>'on'</literal> or <literal>'off'</literal>.
     </para>
   </refsection>
   <refsection>
