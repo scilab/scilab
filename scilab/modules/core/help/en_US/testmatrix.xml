@@ -30,7 +30,7 @@
         <term>y</term>
         <listitem>
           <para>
-            <literal>n</literal> x <literal>m</literal> matrix
+            <literal>n</literal> x <literal>n</literal> matrix
           </para>
         </listitem>
       </varlistentry>
