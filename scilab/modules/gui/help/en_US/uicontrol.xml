@@ -331,7 +331,7 @@
         <term>Style</term>
         <listitem>
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
-            frame | listbox | popupmenu | imagerenderer | table | uidisplaytree
+            frame | listbox | popupmenu | imagerenderer | table
           </para>
           <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
             one:
@@ -384,9 +384,6 @@
             </listitem>
             <listitem>
               <para>Table: an editable table.</para>
-            </listitem>
-            <listitem>
-              <para>UiDisplayTree: a tree with callbacks associated to leaves.</para>
             </listitem>
           </itemizedlist>
         </listitem>

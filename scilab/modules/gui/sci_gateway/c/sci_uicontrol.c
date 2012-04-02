@@ -47,7 +47,7 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 28
+#define NBPROPERTIES 27
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -70,7 +70,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     unsigned long GraphicHandle = 0;
 
     int found = 0;              /* Does the property exists ? */
-    int treeFound = 0;          /* boolean to keep track of displaytree has been set in style */
 
     /* @TODO remove this crappy initialization */
     /* DO NOT CHANGE ORDER !! */
@@ -78,7 +77,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     {
         "style", "parent", "backgroundcolor", "foregroundcolor", "string", "units", "fontweight", "min", "max", "tag", "position", "relief",
         "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable",
-        "callback_type", "treedata"
+        "callback_type"
     };
     int *propertiesValuesIndices = NULL;
     int lw = 0;
@@ -415,13 +414,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                                 callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
                                                 (char *)propertiesNames[inputIndex]);
                             break;
-                        case sci_tlist:
-                            // TODO
-                            //if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, propertiesValuesIndices[inputIndex]) != 0)
-                        {
-                            setStatus = SET_PROPERTY_ERROR;
-                        }
-                        break;
                         default:
                             setStatus = SET_PROPERTY_ERROR;
                             break;
