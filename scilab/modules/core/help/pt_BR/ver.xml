@@ -43,7 +43,21 @@
   <refsection>
     <title>Exemplos</title>
     <programlisting role="example"><![CDATA[ 
-ver
+r = ver()
  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title> Ver Também </title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getversion">getversion</link>
+      </member>
+      <member>
+        <link linkend="getdebuginfo">getdebuginfo</link>
+      </member>
+      <member>
+        <link linkend="getos">getos</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>
