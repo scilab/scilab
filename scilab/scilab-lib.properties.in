@@ -21,15 +21,7 @@ jrosetta-engine.jar=@JROSETTA_ENGINE@
 
 checkstyle.jar=@CHECKSTYLE@
 
-testng.jar=@TESTNG@
-
-jcommander.jar=@JCOMMANDER@
-
-qdox.jar=@QDOX@
-
-bsh.jar=@BSH@
-
-junit.jar=@JUNIT@
+junit4.jar=@JUNIT4@
 
 commons-beanutils.jar=@COMMONS_BEANUTILS@
 

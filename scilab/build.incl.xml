@@ -21,6 +21,9 @@
   <property name="src.dir" location="src/java/"/>
   <!-- Where we can find the test sources -->
   <property name="src.test.dir" location="tests/java/"/>
+  <property name="report.test.dir" location="${base.dir}/junit-report/"/>
+  <property name="report.xml.test.dir" location="${report.test.dir}/xml/"/>
+  <property name="report.html.test.dir" location="${report.test.dir}/html/"/>
   <!-- Check style definitions -->
   <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
   <property name="checkstyle.stylesheet" value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl"/>
@@ -35,6 +38,7 @@
   <property file="${base.dir}/scilab.properties"/>
   <!-- Set ${SCIVERSION} -->
   <property file="${base.dir}/Version.incl"/>
+  
   <path id="checkstyle.classpath">
     <pathelement location="${checkstyle.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
@@ -42,7 +46,7 @@
     <pathelement location="${antlr.jar}"/>
   </path>
   <path id="unittest.classpath">
-    <pathelement location="${testng.jar}"/>
+    <pathelement location="${junit4.jar}"/>
     <pathelement location="${jcommander.jar}"/>
     <pathelement location="${bsh.jar}"/>
     <pathelement location="${junit.jar}"/>
@@ -110,20 +114,52 @@
   <target name="checkstyle-clean">
     <delete dir="${checkstyle.report.dir}"/>
   </target>
-  <target name="test" depends="existing-tests, compile-test, validate" if="test-present">
-    <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask"/>
-    <testng verbose="2" haltonfailure="true">
+  
+  
+  <!-- Allows the override of the forkMode by local build.xml -->
+  <condition property="forkModeAlreadySet">
+    <isset property="junit.forkMode" />
+  </condition>
+  
+  <target name="detectForkMode" unless="forkModeAlreadySet">
+    <property name="junit.forkMode" value="perBatch"/>
+  </target>
+  
+  
+  <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
+    <mkdir dir="${report.xml.test.dir}" />
+    <mkdir dir="${report.html.test.dir}" />
+    
+    <junit fork="yes" forkmode="${junit.forkMode}" failureproperty="junit.failure">
       <classpath>
         <path refid="unittest.classpath"/>
         <path refid="compile.classpath"/>
         <pathelement location="${classes.test.dir}"/>
       </classpath>
-      <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+      
       <!-- Where ${basedir} is the module base directory -->
       <env key="SCI" value="${basedir}/../.."/>
       <jvmarg value="-DtestngTests=1"/>
       <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
-    </testng>
+      
+      <formatter type="brief" useFile="no" />
+      <formatter type="xml" />
+      
+      
+      <batchtest fork="yes" todir="${report.xml.test.dir}" >
+        <fileset dir="tests/java">
+          <include name="**/*.java"/>
+        </fileset>
+      </batchtest>
+      
+    </junit>
+    <junitreport todir="${report.xml.test.dir}">
+      <fileset dir="${report.xml.test.dir}">
+        <include name="*.xml"/>
+      </fileset>
+      <report format="frames" todir="${report.html.test.dir}"/>
+    </junitreport>
+    <fail if="junit.failure" message="Unit test(s) failed. See the report"/>
   </target>
   <target name="validate">
     <!-- Empty target to be override by other build.xml -->

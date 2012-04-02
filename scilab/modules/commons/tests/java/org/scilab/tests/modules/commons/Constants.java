@@ -16,48 +16,48 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.commons.ScilabConstants;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.junit.*;
+import org.junit.*;
 
 /**
  * Check the access of the {@link ScilabConstants} public fields
  */
 public class Constants {
 
-    @BeforeTest
+    @Before
     public void loadLibrary() {
         System.loadLibrary("scilab");
     }
-	
-	@Test
-	public void checkTmp() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
-		assert ScilabConstants.TMPDIR != null;
-		assert ScilabConstants.TMPDIR.isDirectory();
-		
-		final File tmpFile = new File(ScilabConstants.TMPDIR, "tmpFile");
-		assert tmpFile.createNewFile();
-		assert tmpFile.exists();
-		assert tmpFile.delete();
-	}
-	
-	@Test
-	public void checkSci() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		assert ScilabConstants.SCI != null;
-		assert ScilabConstants.SCI.isDirectory();
-		
-		final File copying = new File(ScilabConstants.SCI, "COPYING");
-		assert copying.exists();
-	}
-	
-	@Test
-	public void checkSciHome() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
-		assert ScilabConstants.SCIHOME != null;
-		assert ScilabConstants.SCIHOME.exists();
-		assert ScilabConstants.SCIHOME.isDirectory();
-		
-		final File homeFile = new File(ScilabConstants.SCIHOME, "homeFile");
-		assert homeFile.createNewFile();
-		assert homeFile.exists();
-		assert homeFile.delete();
-	}
+
+    @Test
+    public void checkTmp() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
+        assert ScilabConstants.TMPDIR != null;
+        assert ScilabConstants.TMPDIR.isDirectory();
+
+        final File tmpFile = new File(ScilabConstants.TMPDIR, "tmpFile");
+        assert tmpFile.createNewFile();
+        assert tmpFile.exists();
+        assert tmpFile.delete();
+    }
+
+    @Test
+    public void checkSci() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        assert ScilabConstants.SCI != null;
+        assert ScilabConstants.SCI.isDirectory();
+
+        final File copying = new File(ScilabConstants.SCI, "COPYING");
+        assert copying.exists();
+    }
+
+    @Test
+    public void checkSciHome() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
+        assert ScilabConstants.SCIHOME != null;
+        assert ScilabConstants.SCIHOME.exists();
+        assert ScilabConstants.SCIHOME.isDirectory();
+
+        final File homeFile = new File(ScilabConstants.SCIHOME, "homeFile");
+        assert homeFile.createNewFile();
+        assert homeFile.exists();
+        assert homeFile.delete();
+    }
 }

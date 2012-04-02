@@ -16,8 +16,10 @@
   <property name="library-v1.name" value="${library.javasci-v1.name}"/>
   <property name="library.name" value="${library.javasci.name}"/>
   <property name="library.title" value="Scilab Java API"/>
+  <property name="junit.forkMode" value="perTest"/>
+  
   <description>
-	Build the Java/Scilab connecter (javasci) module
+    Build the Java/Scilab connecter (javasci) module
   </description>
   <!-- Compile sources -->
   <target name="compile-v1" description="Build sources of Javasci v1" depends="init">

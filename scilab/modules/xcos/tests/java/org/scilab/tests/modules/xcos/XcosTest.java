@@ -13,7 +13,7 @@
 package org.scilab.tests.modules.xcos;
 
 import org.scilab.modules.xcos.Xcos;
-import org.testng.annotations.Test;
+import org.junit.*;
 
 /**
  * Test of the {@link XcosTest} class.

@@ -737,11 +737,7 @@ JAVAC_DEBUG
 JAVA_HOME
 JAVA_JNI_LIBS
 JAVA_JNI_INCLUDE
-JUNIT
-BSH
-QDOX
-JCOMMANDER
-TESTNG
+JUNIT4
 ANTLR
 COMMONS_BEANUTILS
 CHECKSTYLE
@@ -10572,7 +10568,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 10575 "configure"
+// #line 10571 "configure"
 
 
 public class conftest {
@@ -10638,7 +10634,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10641 "configure"
+// #line 10637 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10701,7 +10697,7 @@ $as_echo_n "checking java API version... " >&6; }
     # The class java.nio.charset.Charset is new to 1.4
 
     cat << \EOF > conftest.java
-// #line 10704 "configure"
+// #line 10700 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10745,7 +10741,7 @@ EOF
     # The class java.lang.StringBuilder is new to 1.5
 
     cat << \EOF > conftest.java
-// #line 10748 "configure"
+// #line 10744 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -10789,7 +10785,7 @@ EOF
     # The class java.util.ArrayDeque is new to 1.6
 
     cat << \EOF > conftest.java
-// #line 10792 "configure"
+// #line 10788 "configure"
 import java.util.ArrayDeque;
 
 public class conftest {
@@ -10833,7 +10829,7 @@ EOF
     # The class java.nio.file.Path is new to 1.7
 
     cat << \EOF > conftest.java
-// #line 10836 "configure"
+// #line 10832 "configure"
 import java.nio.file.Path;
 
 public class conftest {
@@ -12199,7 +12195,7 @@ $as_echo_n "checking jgraphx... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12202 "configure"
+// #line 12198 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -12285,7 +12281,7 @@ $as_echo_n "checking minimal version (1.8.0.0) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12288 "configure"
+// #line 12284 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12336,7 +12332,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12339 "configure"
+// #line 12335 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12410,7 +12406,7 @@ $as_echo_n "checking jhdf5... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12413 "configure"
+// #line 12409 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12557,7 +12553,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12560 "configure"
+// #line 12556 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12612,7 +12608,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12615 "configure"
+// #line 12611 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12693,7 +12689,7 @@ $as_echo_n "checking flexdock... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12696 "configure"
+// #line 12692 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12779,7 +12775,7 @@ $as_echo_n "checking minimal version (1.1.1) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12782 "configure"
+// #line 12778 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12830,7 +12826,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12833 "configure"
+// #line 12829 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12900,7 +12896,7 @@ $as_echo_n "checking looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12903 "configure"
+// #line 12899 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -12996,7 +12992,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12999 "configure"
+// #line 12995 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13093,7 +13089,7 @@ $as_echo_n "checking skinlf... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13096 "configure"
+// #line 13092 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13189,7 +13185,7 @@ $as_echo_n "checking jogl... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13192 "configure"
+// #line 13188 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13393,7 +13389,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13396 "configure"
+// #line 13392 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13546,7 +13542,7 @@ $as_echo_n "checking jhall... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13549 "configure"
+// #line 13545 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13642,7 +13638,7 @@ $as_echo_n "checking javahelp2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13645 "configure"
+// #line 13641 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13739,7 +13735,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13742 "configure"
+// #line 13738 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13833,7 +13829,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13836 "configure"
+// #line 13832 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13930,7 +13926,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13933 "configure"
+// #line 13929 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -14015,7 +14011,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14018 "configure"
+// #line 14014 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14066,7 +14062,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14069 "configure"
+// #line 14065 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14138,7 +14134,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14141 "configure"
+// #line 14137 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -14236,7 +14232,7 @@ $as_echo_n "checking fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14239 "configure"
+// #line 14235 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -14332,7 +14328,7 @@ $as_echo_n "checking batik-all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14335 "configure"
+// #line 14331 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14428,7 +14424,7 @@ $as_echo_n "checking batik... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14431 "configure"
+// #line 14427 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14514,7 +14510,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14517 "configure"
+// #line 14513 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14565,7 +14561,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14568 "configure"
+// #line 14564 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14635,7 +14631,7 @@ $as_echo_n "checking commons-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14638 "configure"
+// #line 14634 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -14731,7 +14727,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14734 "configure"
+// #line 14730 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -14827,7 +14823,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14830 "configure"
+// #line 14826 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -14923,7 +14919,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14926 "configure"
+// #line 14922 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15019,7 +15015,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15022 "configure"
+// #line 15018 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15119,7 +15115,7 @@ $as_echo_n "checking commons-logging... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15122 "configure"
+// #line 15118 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15215,7 +15211,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15218 "configure"
+// #line 15214 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15301,7 +15297,7 @@ $as_echo_n "checking minimal version (0.9.7) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15304 "configure"
+// #line 15300 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15352,7 +15348,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15355 "configure"
+// #line 15351 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15428,7 +15424,7 @@ $as_echo_n "checking checkstyle... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15431 "configure"
+// #line 15427 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -15524,7 +15520,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15527 "configure"
+// #line 15523 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -15620,7 +15616,7 @@ $as_echo_n "checking antlr... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15623 "configure"
+// #line 15619 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -15698,16 +15694,16 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar antlr used
         ANTLR=$PACKAGE_JAR_FILE
 
 
-        # Test NG (java unitary test)
+        # Junit 4 (java unitary test)
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking testng" >&5
-$as_echo_n "checking testng... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking junit4" >&5
+$as_echo_n "checking junit4... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
+      for jar in "$jardir/junit4.jar" "$jardir/libjunit4.jar" "$jardir/libjunit4-java.jar" "$jardir/junit4*.jar"; do
 
 # TODO check the behaviour when spaces
         jars_resolved=`ls $jar 2>/dev/null`
@@ -15716,8 +15712,8 @@ $as_echo_n "checking testng... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15719 "configure"
-import org.testng.TestNG;
+// #line 15715 "configure"
+import org.junit.Assert;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -15784,495 +15780,14 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
       if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" >&2;}
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar junit4 used by Junit4 - Unit tests (looking for package org.junit.Assert)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar junit4 used by Junit4 - Unit tests (looking for package org.junit.Assert)" >&2;}
       else
-          as_fn_error $? "Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" "$LINENO" 5
+          as_fn_error $? "Could not find or use the Java package/jar junit4 used by Junit4 - Unit tests (looking for package org.junit.Assert)" "$LINENO" 5
       fi
     fi
 
-        TESTNG=$PACKAGE_JAR_FILE
-
-
-        # JCommander - dependency of TestNG >= 6
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking beust-jcommander" >&5
-$as_echo_n "checking beust-jcommander... " >&6; }
-    PACKAGE_JAR_FILE=
-    found_jar=no
-    saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/beust-jcommander.jar" "$jardir/libbeust-jcommander.jar" "$jardir/libbeust-jcommander-java.jar" "$jardir/beust-jcommander*.jar"; do
-
-# TODO check the behaviour when spaces
-        jars_resolved=`ls $jar 2>/dev/null`
-        for jar_resolved in $jars_resolved; do # If several jars matches
-          if test -e "$jar_resolved"; then
-            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 15815 "configure"
-import com.beust.jcommander.JCommander;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-       else
-              cmd="$JAVA conftest"
-              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-               echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-            else
-                echo "configure: failed program was:" >&5
-                cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-                echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-                            fi
-        fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-          fi
-        done
-      done
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-      if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar beust-jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar beust-jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" >&2;}
-      else
-          as_fn_error $? "Could not find or use the Java package/jar beust-jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" "$LINENO" 5
-      fi
-    fi
-
-        JCOMMANDER=$PACKAGE_JAR_FILE
-
-        if test -z "$JCOMMANDER"; then
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking jcommander" >&5
-$as_echo_n "checking jcommander... " >&6; }
-    PACKAGE_JAR_FILE=
-    found_jar=no
-    saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/jcommander.jar" "$jardir/libjcommander.jar" "$jardir/libjcommander-java.jar" "$jardir/jcommander*.jar"; do
-
-# TODO check the behaviour when spaces
-        jars_resolved=`ls $jar 2>/dev/null`
-        for jar_resolved in $jars_resolved; do # If several jars matches
-          if test -e "$jar_resolved"; then
-            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 15910 "configure"
-import com.beust.jcommander.JCommander;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-       else
-              cmd="$JAVA conftest"
-              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-               echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-            else
-                echo "configure: failed program was:" >&5
-                cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-                echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-                            fi
-        fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-          fi
-        done
-      done
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-      if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" >&2;}
-      else
-          as_fn_error $? "Could not find or use the Java package/jar jcommander used by JCommander - Parse java options (looking for package com.beust.jcommander.JCommander)" "$LINENO" 5
-      fi
-    fi
-
-                JCOMMANDER=$PACKAGE_JAR_FILE
-        fi
-
-
-        # Qdox (parses declarations and Javadoc) - dependency of TestNG
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking qdox" >&5
-$as_echo_n "checking qdox... " >&6; }
-    PACKAGE_JAR_FILE=
-    found_jar=no
-    saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
-
-# TODO check the behaviour when spaces
-        jars_resolved=`ls $jar 2>/dev/null`
-        for jar_resolved in $jars_resolved; do # If several jars matches
-          if test -e "$jar_resolved"; then
-            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 16007 "configure"
-import com.thoughtworks.qdox.tools.QDoxTester;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-       else
-              cmd="$JAVA conftest"
-              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-               echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-            else
-                echo "configure: failed program was:" >&5
-                cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-                echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-                            fi
-        fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-          fi
-        done
-      done
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-      if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" >&2;}
-      else
-          as_fn_error $? "Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" "$LINENO" 5
-      fi
-    fi
-
-        QDOX=$PACKAGE_JAR_FILE
-
-
-        # bsh (Java scripting environment) - dependency of TestNG
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking bsh" >&5
-$as_echo_n "checking bsh... " >&6; }
-    PACKAGE_JAR_FILE=
-    found_jar=no
-    saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
-
-# TODO check the behaviour when spaces
-        jars_resolved=`ls $jar 2>/dev/null`
-        for jar_resolved in $jars_resolved; do # If several jars matches
-          if test -e "$jar_resolved"; then
-            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 16103 "configure"
-import bsh.Console;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-       else
-              cmd="$JAVA conftest"
-              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-               echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-            else
-                echo "configure: failed program was:" >&5
-                cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-                echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-                            fi
-        fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-          fi
-        done
-      done
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-      if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" >&2;}
-      else
-          as_fn_error $? "Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" "$LINENO" 5
-      fi
-    fi
-
-        BSH=$PACKAGE_JAR_FILE
-
-
-        # Junit - dependency of TestNG
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking junit" >&5
-$as_echo_n "checking junit... " >&6; }
-    PACKAGE_JAR_FILE=
-    found_jar=no
-    saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
-      for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
-
-# TODO check the behaviour when spaces
-        jars_resolved=`ls $jar 2>/dev/null`
-        for jar_resolved in $jars_resolved; do # If several jars matches
-          if test -e "$jar_resolved"; then
-            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 16199 "configure"
-import junit.framework.Assert;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-       else
-              cmd="$JAVA conftest"
-              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-               echo "yes" >&5
-
-              { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-              found_jar=yes
-              PACKAGE_JAR_FILE=$jar_resolved
-              break 3
-
-            else
-                echo "configure: failed program was:" >&5
-                cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-                echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-                            fi
-        fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-          fi
-        done
-      done
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-      if test ""yes"" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" >&2;}
-      else
-          as_fn_error $? "Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" "$LINENO" 5
-      fi
-    fi
-
-        JUNIT=$PACKAGE_JAR_FILE
-
+        JUNIT4=$PACKAGE_JAR_FILE
 
 
     else
@@ -24077,7 +23592,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24080 "configure"
+#line 23595 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24387,7 +23902,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24390 "configure"
+#line 23905 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24965,7 +24480,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24968 "configure"
+// #line 24483 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -25061,7 +24576,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25064 "configure"
+// #line 24579 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -25204,9 +24719,9 @@ if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; 
    COMPILATION_TESTS=yes
 fi
 
-if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
-   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: --enable-compilation-tests deactivated: Could not find TestNG\"" >&5
-$as_echo "$as_me: WARNING: --enable-compilation-tests deactivated: Could not find TestNG\"" >&2;}
+if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: --enable-compilation-tests deactivated: Could not find Junit4\"" >&5
+$as_echo "$as_me: WARNING: --enable-compilation-tests deactivated: Could not find Junit4\"" >&2;}
    COMPILATION_TESTS=no
 fi
 
@@ -31360,7 +30875,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31363 "configure"
+#line 30878 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31466,7 +30981,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31469 "configure"
+#line 30984 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -41401,7 +40916,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
-echo "  TestNG .............. = $TESTNG"
+echo "  Junit4 .............. = $JUNIT4"
 echo "  splint .............. = $SPLINT"
 
 echo ""

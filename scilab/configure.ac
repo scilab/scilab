@@ -1047,36 +1047,10 @@ the the JNI libraries."])],
         ANTLR=$PACKAGE_JAR_FILE
         AC_SUBST(ANTLR)
 
-        # Test NG (java unitary test)
-        AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
-        TESTNG=$PACKAGE_JAR_FILE
-        AC_SUBST(TESTNG)
-
-        # JCommander - dependency of TestNG >= 6
-        AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
-        JCOMMANDER=$PACKAGE_JAR_FILE
-
-        if test -z "$JCOMMANDER"; then
-                AC_JAVA_CHECK_PACKAGE([jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
-                JCOMMANDER=$PACKAGE_JAR_FILE
-        fi
-        AC_SUBST(JCOMMANDER)
-
-        # Qdox (parses declarations and Javadoc) - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
-        QDOX=$PACKAGE_JAR_FILE
-        AC_SUBST(QDOX)
-
-        # bsh (Java scripting environment) - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
-        BSH=$PACKAGE_JAR_FILE
-        AC_SUBST(BSH)
-
-        # Junit - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
-        JUNIT=$PACKAGE_JAR_FILE
-        AC_SUBST(JUNIT)
-
+        # Junit 4 (java unitary test)
+        AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        JUNIT4=$PACKAGE_JAR_FILE
+        AC_SUBST(JUNIT4)
 
     else
         AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1653,8 +1627,8 @@ if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; 
    COMPILATION_TESTS=yes
 fi
 
-if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
-   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find TestNG"])
+if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
+   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find Junit4"])
    COMPILATION_TESTS=no
 fi
 
@@ -2147,7 +2121,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
-echo "  TestNG .............. = $TESTNG"
+echo "  Junit4 .............. = $JUNIT4"
 echo "  splint .............. = $SPLINT"
 
 echo ""
