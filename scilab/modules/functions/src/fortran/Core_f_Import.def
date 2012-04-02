@@ -1,0 +1,16 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+cvname_
+clunit_
+funs_
+getfun_
+putid_
+stackp_
+
+
+

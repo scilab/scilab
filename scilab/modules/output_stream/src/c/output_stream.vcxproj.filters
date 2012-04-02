@@ -222,6 +222,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
     <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="output_stream.rc">

@@ -13,17 +13,10 @@ stack_
 cha1_
 adre_
 intersci_
-itosci_
-dtosci_
 parse_
 isrecursioncalltofunction_
-allowptr_
-ref2val_
 callinterf_
-funs_ 
-isbyref_
 scistring_
-clunit_
 ;
 ; import required by F2C
 ierode_

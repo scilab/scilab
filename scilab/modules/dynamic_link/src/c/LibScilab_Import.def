@@ -6,7 +6,6 @@ EXPORTS
 ;
 ExceptionMessage
 funtab_
-cvname_
 getWarningMode
 iop_
 callFunctionFromGateway

@@ -160,6 +160,9 @@
     <None Include="..\..\console.iss" />
     <None Include="..\..\console.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="console.rc">

@@ -14,7 +14,6 @@ errgst_
 cha1_ 
 adre_
 intersci_
-cvname_
 mexerrmsgtxt_
 mxgetm_
 mxisnumeric_
@@ -31,5 +30,3 @@ checkrhs_
 getrhsvar_
 maxvol_
 errorinfo_
-putfunnam_
-folhp_
