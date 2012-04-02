@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -434,34 +434,16 @@
     <ClCompile Include="..\cpp\SetUiobjectRotate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\SetUiobjectRownames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\SetUiobjectScale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\SetUiobjectShear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\SetUiobjectTabledata.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\SetUiobjectColumnNames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\GetUiobjectScale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\GetUiobjectShear.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\GetUiobjectTableData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\GetUiobjectColumnNames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\GetUiobjectRowNames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp">
@@ -976,13 +958,7 @@
     <ClInclude Include="..\..\includes\CallJuigetfile.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\GetUiobjectColumnNames.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\GetUiobjectEnable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\GetUiobjectRowNames.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\GetUiobjectScale.h">
@@ -991,13 +967,7 @@
     <ClInclude Include="..\..\includes\GetUiobjectShear.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\GetUiobjectTableData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\ImageRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\SetUiobjectColumnNames.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\SetUiobjectEnable.h">
@@ -1006,16 +976,10 @@
     <ClInclude Include="..\..\includes\SetUiobjectRotate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\SetUiobjectRowNames.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\SetUiobjectScale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\SetUiobjectShear.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\SetUiobjectTableData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\UiDisplayTree.h">

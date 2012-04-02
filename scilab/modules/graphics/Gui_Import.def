@@ -71,9 +71,6 @@ SetUicontrolBackgroundColor
 SetUicontrolString
 SetUimenuLabel
 SetUiobjectEnable
-SetUiobjectTabledata
-SetUiobjectRownames
-SetUiobjectColnames
 SetUiobjectScale
 SetUiobjectShear
 SetUiobjectRotate
@@ -82,9 +79,6 @@ setFigureEventHandler
 setFigureEventHandlerEnabled
 deleteJxclickString
 destroyUiobjectTag
-GetUiobjectTableData
-GetUiobjectColumnNames
-GetUiobjectRowNames
 GetUiobjectShear
 GetUiobjectScale
 GetConsoleShowHiddenHandles

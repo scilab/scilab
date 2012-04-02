@@ -18,8 +18,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
@@ -41,15 +39,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RAISED_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
@@ -83,7 +78,6 @@ public class Uicontrol extends GraphicObject {
 
     private UicontrolStyle style;
     private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
-    private String[] columnnames = {""};
     private boolean enable = true;
     private String fontAngle = DEFAULTFONTANGLE;
     private String fontName = DEFAULTFONTNAME;
@@ -97,10 +91,9 @@ public class Uicontrol extends GraphicObject {
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = DEFAULTRELIEF;
-    private String[] rownames = {""};
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
-    private String[] tabledata = {""};
+    private int stringColNb = 1; // Used for tables
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
@@ -111,8 +104,6 @@ public class Uicontrol extends GraphicObject {
     private enum UicontrolProperty {
         STYLE,
         BACKGROUNDCOLOR,
-        COLUMNNAMES,
-        COLUMNNAMES_SIZE,
         ENABLE,
         FONTANGLE,
         FONTNAME,
@@ -131,11 +122,8 @@ public class Uicontrol extends GraphicObject {
         SLIDERSTEP,
         STRING,
         STRING_SIZE,
+        STRING_COLNB,
         RELIEF,
-        ROWNAMES,
-        ROWNAMES_SIZE,
-        TABLEDATA,
-        TABLEDATA_SIZE,
         UNITS,
         VALUE,
         VALUE_SIZE,
@@ -266,10 +254,6 @@ public class Uicontrol extends GraphicObject {
             return UicontrolProperty.STYLE;
         } else if (propertyName.equals(__GO_UI_BACKGROUNDCOLOR__)) {
             return UicontrolProperty.BACKGROUNDCOLOR;
-        } else if (propertyName.equals(__GO_UI_COLUMNNAMES__)) {
-            return UicontrolProperty.COLUMNNAMES;
-        } else if (propertyName.equals(__GO_UI_COLUMNNAMES_SIZE__)) {
-            return UicontrolProperty.COLUMNNAMES_SIZE;
         } else if (propertyName.equals(__GO_UI_ENABLE__)) {
             return UicontrolProperty.ENABLE;
         } else if (propertyName.equals(__GO_UI_FONTANGLE__)) {
@@ -298,20 +282,14 @@ public class Uicontrol extends GraphicObject {
             return UicontrolProperty.POSITION;
         } else if (propertyName.equals(__GO_UI_RELIEF__)) {
             return UicontrolProperty.RELIEF;
-        } else if (propertyName.equals(__GO_UI_ROWNAMES__)) {
-            return UicontrolProperty.ROWNAMES;
-        } else if (propertyName.equals(__GO_UI_ROWNAMES_SIZE__)) {
-            return UicontrolProperty.ROWNAMES_SIZE;
         } else if (propertyName.equals(__GO_UI_SLIDERSTEP__)) {
             return UicontrolProperty.SLIDERSTEP;
         } else if (propertyName.equals(__GO_UI_STRING__)) {
             return UicontrolProperty.STRING;
         } else if (propertyName.equals(__GO_UI_STRING_SIZE__)) {
             return UicontrolProperty.STRING_SIZE;
-        } else if (propertyName.equals(__GO_UI_TABLEDATA__)) {
-            return UicontrolProperty.TABLEDATA;
-        } else if (propertyName.equals(__GO_UI_TABLEDATA_SIZE__)) {
-            return UicontrolProperty.TABLEDATA_SIZE;
+        } else if (propertyName.equals(__GO_UI_STRING_COLNB__)) {
+            return UicontrolProperty.STRING_COLNB;
         } else if (propertyName.equals(__GO_UI_UNITS__)) {
             return UicontrolProperty.UNITS;
         } else if (propertyName.equals(__GO_UI_VALUE__)) {
@@ -335,10 +313,6 @@ public class Uicontrol extends GraphicObject {
             return getStyle();
         } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
             return getBackgroundColor();
-        } else if (property == UicontrolProperty.COLUMNNAMES) {
-            return getColumnNames();
-        } else if (property == UicontrolProperty.COLUMNNAMES_SIZE) {
-            return getColumnNames().length;
         } else if (property == UicontrolProperty.ENABLE) {
             return getEnable();
         } else if (property == UicontrolProperty.FONTANGLE) {
@@ -367,20 +341,14 @@ public class Uicontrol extends GraphicObject {
             return getUiPosition();
         } else if (property == UicontrolProperty.RELIEF) {
             return getRelief();
-        } else if (property == UicontrolProperty.ROWNAMES) {
-            return getRowNames();
-        } else if (property == UicontrolProperty.ROWNAMES_SIZE) {
-            return getRowNames().length;
         } else if (property == UicontrolProperty.SLIDERSTEP) {
             return getSliderStep();
         } else if (property == UicontrolProperty.STRING) {
             return getString();
         } else if (property == UicontrolProperty.STRING_SIZE) {
             return getString().length;
-        } else if (property == UicontrolProperty.TABLEDATA) {
-            return getTableData();
-        } else if (property == UicontrolProperty.TABLEDATA_SIZE) {
-            return getTableData().length;
+        } else if (property == UicontrolProperty.STRING_COLNB) {
+            return getStringColNb();
         } else if (property == UicontrolProperty.UNITS) {
             return getUnits();
         } else if (property == UicontrolProperty.VALUE) {
@@ -405,8 +373,6 @@ public class Uicontrol extends GraphicObject {
             setStyle((String) value);
         } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
             setBackgroundColor((Double[]) value);
-        } else if (property == UicontrolProperty.COLUMNNAMES) {
-            setColumnNames((String[]) value);
         } else if (property == UicontrolProperty.ENABLE) {
             setEnable((Boolean) value);
         } else if (property == UicontrolProperty.FONTANGLE) {
@@ -433,14 +399,12 @@ public class Uicontrol extends GraphicObject {
             setUiPosition((Double[]) value);
         } else if (property == UicontrolProperty.RELIEF) {
             setRelief((String) value);
-        } else if (property == UicontrolProperty.ROWNAMES) {
-            setRowNames((String[]) value);
         } else if (property == UicontrolProperty.SLIDERSTEP) {
             setSliderStep((Double[]) value);
         } else if (property == UicontrolProperty.STRING) {
             setString((String[]) value);
-        } else if (property == UicontrolProperty.TABLEDATA) {
-            setTableData((String[]) value);
+        } else if (property == UicontrolProperty.STRING_COLNB) {
+            setStringColNb((Integer) value);
         } else if (property == UicontrolProperty.UNITS) {
             setUnits((String) value);
         } else if (property == UicontrolProperty.VALUE) {
@@ -477,22 +441,6 @@ public class Uicontrol extends GraphicObject {
 
     public void setBackgroundColor(Double[] colors) {
         this.backgroundColor = colors;
-    }
-
-    /**
-     * Get the column names
-     * @return the column names
-     */
-    public String[] getColumnNames() {
-        return this.columnnames;
-    }
-
-    /**
-     * Set the column names
-     * @param columnnames the columnnames
-     */
-    public void setColumnNames(String[] columnnames) {
-        this.columnnames = columnnames;
     }
 
     /* Enable */
@@ -617,22 +565,6 @@ public class Uicontrol extends GraphicObject {
     }
 
     /**
-     * Get the row names
-     * @return the row names
-     */
-    public String[] getRowNames() {
-        return this.rownames;
-    }
-
-    /**
-     * Set the row names
-     * @param rownames the rownames
-     */
-    public void setRowNames(String[] rownames) {
-        this.rownames = rownames;
-    }
-
-    /**
      * Get the string
      * @return the string
      */
@@ -648,6 +580,22 @@ public class Uicontrol extends GraphicObject {
         this.string = string;
     }
 
+    /**
+     * Get the string column number
+     * @return the number of columns
+     */
+    public int getStringColNb() {
+        return stringColNb;
+    }
+
+    /**
+     * Set the string column number
+     * @param stringColNb the number of columns
+     */
+    public void setStringColNb(Integer stringColNb) {
+        this.stringColNb = stringColNb;
+    }
+
 
     /* Slider Step */
     public Double[] getSliderStep() {
@@ -656,22 +604,6 @@ public class Uicontrol extends GraphicObject {
 
     public void setSliderStep(Double[] sliderStep) {
         this.sliderStep = sliderStep;
-    }
-
-    /**
-     * Get the table data
-     * @return the table data
-     */
-    public String[] getTableData() {
-        return this.tabledata;
-    }
-
-    /**
-     * Set the table data
-     * @param tabledata the table data
-     */
-    public void setTableData(String[] tabledata) {
-        this.tabledata = tabledata;
     }
 
     /* Units */

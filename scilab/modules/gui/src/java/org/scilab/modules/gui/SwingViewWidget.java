@@ -21,7 +21,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -34,10 +33,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
@@ -102,8 +100,6 @@ public final class SwingViewWidget {
         } else if (property.equals(__GO_CALLBACKTYPE__)) {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
             uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
-        } else if (property.equals(__GO_UI_COLUMNNAMES__)) {
-            ((SwingScilabUiTable) uiControl).setColumnNames((String[]) value);
         } else if (property.equals(__GO_UI_ENABLE__)) {
             uiControl.setEnabled(((Boolean) value).booleanValue());
         } else if (property.equals(__GO_UI_FONTANGLE__)) {
@@ -245,8 +241,6 @@ public final class SwingViewWidget {
             }
         } else if (property.equals(__GO_UI_RELIEF__)) {
             uiControl.setRelief((String) value);
-        } else if (property.equals(__GO_UI_ROWNAMES__)) {
-            ((SwingScilabUiTable) uiControl).setRowNames((String[]) value);
         } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
             Double[] sliderStep = ((Double[]) value);
             if (uiControl instanceof SwingScilabSlider) {
@@ -259,18 +253,45 @@ public final class SwingViewWidget {
         } else if (property.equals(__GO_STYLE__)) {
             /* Nothing to do unless we want to change style interactively */
         } else if (property.equals(__GO_UI_STRING__)) {
-            // Listboxes & Popupmenus manage string vectors
-            if (uiControl instanceof SwingScilabListBox) {
+            if (uiControl instanceof SwingScilabUiTable) {
+                // Update column names
+                String[] stringValue = (String[]) value;
+                int colNb = ((Integer) GraphicController.getController().getProperty(uid, __GO_UI_STRING_COLNB__));
+                String[] colNames = new String[colNb - 1];
+                for (int k = 1; k < colNb; k++) {
+                    colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
+                }
+                ((SwingScilabUiTable) uiControl).setColumnNames(colNames);
+                // Update row names
+                String[] rowNames = new String[stringValue.length / colNb - 1];
+                for (int k = 1; k < stringValue.length / colNb; k++) {
+                    rowNames[k - 1] = stringValue[k];
+                }
+                ((SwingScilabUiTable) uiControl).setRowNames(rowNames);
+                // Update data
+                String[] tableData = new String[rowNames.length * colNames.length];
+                int kData = 0;
+                for (int kCol = 1; kCol <= colNames.length; kCol++) {
+                    for (int kRow = 1; kRow <= rowNames.length; kRow++) {
+                        tableData[kData++] = stringValue[kCol * (stringValue.length / colNb) + kRow];
+                    }
+                }
+                if (tableData.length != 0) {
+                    ((SwingScilabUiTable) uiControl).setData(tableData);
+                }
+            } else if (uiControl instanceof SwingScilabListBox) {
+                // Listboxes manage string vectors
                 ((SwingScilabListBox) uiControl).setText((String[]) value);
             } else if (uiControl instanceof SwingScilabPopupMenu) {
+                // Popupmenus manage string vectors
                 ((SwingScilabPopupMenu) uiControl).setText((String[]) value);
             } else {
                 uiControl.setText(((String[]) value)[0]);
             }
+        } else if (property.equals(__GO_UI_STRING_COLNB__)) {
+            /* Nothing to do */
         } else if (property.equals(__GO_TAG__)) {
             /* Nothing to do */
-        } else if (property.equals(__GO_UI_TABLEDATA__)) {
-            ((SwingScilabUiTable) uiControl).setData((String[]) value);
         } else if (property.equals(__GO_USER_DATA__)) {
             /* Nothing to do here */
         } else if (property.equals(__GO_UI_UNITS__)) {

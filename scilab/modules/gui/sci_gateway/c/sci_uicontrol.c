@@ -47,7 +47,7 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 31
+#define NBPROPERTIES 28
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -78,7 +78,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     {
         "style", "parent", "backgroundcolor", "foregroundcolor", "string", "units", "fontweight", "min", "max", "tag", "position", "relief",
         "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable",
-        "callback_type", "treedata", "rownames", "columnnames", "tabledata"
+        "callback_type", "treedata"
     };
     int *propertiesValuesIndices = NULL;
     int lw = 0;
@@ -392,8 +392,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                                                 (char *)propertiesNames[inputIndex]);
                             break;
                         case sci_strings:
-                            /* Index for String/RowNames/ColumnNames/TableData properties: Can be mon than one character string */
-                            if (inputIndex == 4 || inputIndex == 30 || inputIndex == 31 || inputIndex == 32)
+                            /* Index for String property: Can be more than one character string */
+                            if (inputIndex == 4)
                             {
                                 GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdrForStrings);
                                 setStatus =

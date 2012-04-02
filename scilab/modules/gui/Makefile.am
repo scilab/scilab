@@ -110,12 +110,6 @@ src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
-src/cpp/SetUiobjectColumnNames.cpp \
-src/cpp/GetUiobjectColumnNames.cpp \
-src/cpp/SetUiobjectRowNames.cpp \
-src/cpp/GetUiobjectRowNames.cpp \
-src/cpp/SetUiobjectTableData.cpp \
-src/cpp/GetUiobjectTableData.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUimenuChecked.cpp \

@@ -892,12 +892,8 @@ function %h_p(h)
             "Callback = "+h.callback
             "Callback_Type = "+sci2exp(h.callback_type,0)
             "Handle_Visible = "+sci2exp(h.handle_visible)
-            //"Userdata = "+fmtuser_data(u)
+            "Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
-            ""
-            "RowNames = "+sci2exp(h.rownames)
-            "ColumnNames = "+sci2exp(h.columnnames)
-            "TableData = "+fmtuser_data(h.columnnames)
             ]
 
         // Console

@@ -312,8 +312,6 @@ public class GraphicObjectProperties {
     public static final String __GO_UI_TEXT__ =                "text";
 
     public static final String __GO_UI_BACKGROUNDCOLOR__ =     "UIBackgroundColor";
-    public static final String __GO_UI_COLUMNNAMES__ =         "UIColumnNames";
-    public static final String __GO_UI_COLUMNNAMES_SIZE__ =    "UIColumnNamesSize";
     public static final String __GO_UI_ENABLE__ =              "UIEnable";
     public static final String __GO_UI_FONTANGLE__ =           "UIFontAngle";
     public static final String __GO_UI_FONTNAME__ =            "UIFontName";
@@ -326,14 +324,11 @@ public class GraphicObjectProperties {
     public static final String __GO_UI_LISTBOXTOP_SIZE__ =     "UIListboxTopSize";
     public static final String __GO_UI_MAX__ =                 "UIMax";
     public static final String __GO_UI_MIN__ =                 "UIMin";
-    public static final String __GO_UI_ROWNAMES__ =            "UIRowNames";
-    public static final String __GO_UI_ROWNAMES_SIZE__ =       "UIRowNamesSize";
     public static final String __GO_UI_RELIEF__ =              "UIRelief";
     public static final String __GO_UI_STRING__ =              "UIString";
     public static final String __GO_UI_STRING_SIZE__ =         "UIStringSize";
+    public static final String __GO_UI_STRING_COLNB__ =        "UIStringColNb";
     public static final String __GO_UI_SLIDERSTEP__ =          "UISliderStep";
-    public static final String __GO_UI_TABLEDATA__ =           "UITableData";
-    public static final String __GO_UI_TABLEDATA_SIZE__ =      "UITableDataSize";
     public static final String __GO_UI_UNITS__ =               "UIUnits";
     public static final String __GO_UI_VALUE__ =               "UIValue";
     public static final String __GO_UI_VALUE_SIZE__ =          "UIValueSize";
