@@ -73,26 +73,6 @@
       <test>rational</test>
     </module>
     
-    <module name="developpement_tools">
-      <test>test_run_interactive</test>
-      <test>test_run_level_1</test>
-      <test>test_run_level_2</test>
-      <test>test_run_linuxonly</test>
-      <test>test_run_longtime</test>
-      <test>test_run_nocheckerror</test>
-      <test>test_run_nocheckref</test>
-      <test>test_run_nojvm</test>
-      <test>test_run_notfixed</test>
-      <test>test_run_windowsonly</test>
-      <test>test_run_withgraphics</test>
-    </module>
-    
-    
-    <module name="dynamic_link">
-      <test>ilib_for_link</test>
-      <test>ilib_build</test>
-    </module>
-    
     <!-- 
 Randomly fail ...
 
