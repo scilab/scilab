@@ -125,7 +125,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
     {
         for (i = 0; i < numVertices; i++)
         {
-            buffer[bufferOffset++] = minValue;
+            buffer[bufferOffset++] = (float)minValue;
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 1;
@@ -135,7 +135,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
     {
         for (i = 0; i < numVertices; i++)
         {
-            buffer[bufferOffset++] = t + scale * (values[i] - minValue) / (maxValue - minValue);
+            buffer[bufferOffset++] = (float)(t + scale * (values[i] - minValue) / (maxValue - minValue));
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 1;

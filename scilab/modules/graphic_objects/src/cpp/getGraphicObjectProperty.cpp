@@ -85,6 +85,7 @@ void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnT
     }
     catch (std::exception &e)
     {
+        e.what();
         // If we have an exception, return null to scilab to manage error.
         *_pvData = NULL;
         return;

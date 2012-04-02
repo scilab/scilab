@@ -90,7 +90,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -127,7 +127,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -165,7 +165,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -208,7 +208,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996;4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>

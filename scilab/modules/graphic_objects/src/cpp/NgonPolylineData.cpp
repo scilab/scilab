@@ -217,6 +217,7 @@ int NgonPolylineData::setXCoordinatesShift(double const* data, int numElements)
         }
         catch (const std::exception& e)
         {
+            e.what();
             return 0;
         }
 
@@ -247,6 +248,7 @@ int NgonPolylineData::setYCoordinatesShift(double const* data, int numElements)
         }
         catch (const std::exception& e)
         {
+            e.what();
             return 0;
         }
 
@@ -325,6 +327,7 @@ int NgonPolylineData::setZCoordinatesShift(double const* data, int numElements)
         }
         catch (const std::exception& e)
         {
+            e.what();
             return 0;
         }
 
@@ -379,6 +382,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
         }
         catch (const std::exception& e)
         {
+            e.what();
             return 0;
         }
 
@@ -390,6 +394,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
             }
             catch (const std::exception& e)
             {
+                e.what();
                 result = 0;
             }
         }
@@ -402,6 +407,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
             }
             catch (const std::exception& e)
             {
+                e.what();
                 result = 0;
             }
         }
@@ -414,6 +420,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
             }
             catch (const std::exception& e)
             {
+                e.what();
                 result = 0;
             }
         }

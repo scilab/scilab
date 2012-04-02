@@ -262,6 +262,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
         }
         catch (const std::exception& e)
         {
+            e.what();
             return 0;
         }
 
@@ -278,6 +279,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
             }
             catch (const std::exception& e)
             {
+                e.what();
                 result = 0;
             }
         }

@@ -224,7 +224,7 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
     {
         /* Per-face average */
         zavg = computeAverageValue(&z[i*numVerticesPerGon], numVerticesPerGon);
-        index = (ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2);
+        index = (float)((ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2));
 
         for (j = 0; j < numVerticesPerGon; j++)
         {
@@ -247,7 +247,7 @@ void Fac3DDecomposer::fillConstantColorsTextureCoordinates(float* buffer, int bu
 
     for (i = 0; i < numGons*numVerticesPerGon; i++)
     {
-        buffer[bufferOffset++] = index;
+        buffer[bufferOffset++] = (float)index;
         buffer[bufferOffset++] = 0;
         buffer[bufferOffset++] = 0;
         buffer[bufferOffset++] = 1.0;

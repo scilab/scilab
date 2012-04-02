@@ -850,7 +850,7 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
     {
         double index = (ColorComputer::getDirectIndex((double) interpColorVector[i] - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) / (double) (colormapSize + 2);
 
-        buffer[bufferOffset] = index;
+        buffer[bufferOffset] = (float)index;
         buffer[bufferOffset+1] = 0.0;
         buffer[bufferOffset+2] = 0.0;
         buffer[bufferOffset+3] = 1.0;

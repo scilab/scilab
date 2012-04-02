@@ -205,6 +205,7 @@ int TriangleMeshData::setNumVertices(unsigned int numVertices)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
 
@@ -214,6 +215,7 @@ int TriangleMeshData::setNumVertices(unsigned int numVertices)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
 
@@ -272,6 +274,7 @@ int TriangleMeshData::setNumIndices(unsigned int numIndices)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
 

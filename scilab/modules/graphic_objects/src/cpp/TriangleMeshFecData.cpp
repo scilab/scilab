@@ -138,6 +138,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
 
@@ -147,6 +148,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
 

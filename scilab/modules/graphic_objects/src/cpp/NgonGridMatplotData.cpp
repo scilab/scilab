@@ -143,6 +143,7 @@ int NgonGridMatplotData::setGridSize(int const* gridSize)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
     }
@@ -157,6 +158,7 @@ int NgonGridMatplotData::setGridSize(int const* gridSize)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
     }
@@ -180,6 +182,7 @@ int NgonGridMatplotData::setGridSize(int const* gridSize)
         }
         catch (const std::exception& e)
         {
+            e.what();
             result = 0;
         }
     }
