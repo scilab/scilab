@@ -42,7 +42,7 @@
       <varlistentry>
         <term>pm</term>
         <listitem>
-          <para>行列または多項式行列</para>
+          <para>多項式 (または多項式行列)</para>
         </listitem>
       </varlistentry>
     </variablelist>

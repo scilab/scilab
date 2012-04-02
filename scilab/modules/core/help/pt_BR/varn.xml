@@ -43,7 +43,7 @@
       <varlistentry>
         <term>pm</term>
         <listitem>
-          <para>matriz ou matriz de polinômios</para>
+          <para>polinômio (matriz de polinômios)</para>
         </listitem>
       </varlistentry>
     </variablelist>
