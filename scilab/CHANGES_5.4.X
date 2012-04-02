@@ -277,7 +277,10 @@ ATOMS
 * Bug #10846 fixed - atomsSystemUpdate failed.
                      documentation about 'downloadTimeout' added.
 
+* Bug #10864 fixed - atomsRemove required a network connection to remove a package.
+
 * Bug #10933 fixed - atomsGetConfig did not check value of input argument.
+
 
 Documentation
 =============
