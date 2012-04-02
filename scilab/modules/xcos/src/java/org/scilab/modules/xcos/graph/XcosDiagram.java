@@ -2024,7 +2024,7 @@ public class XcosDiagram extends ScilabGraph {
                 /*
                  * Load has finished
                  */
-                if (f != null) {
+                if (f != null && filetype != null) {
                     postLoad(f);
                 }
                 XcosDiagram.this.info(XcosMessages.EMPTY_INFO);
