@@ -702,6 +702,10 @@
         <data variable="SCI" path="/modules/scicos_blocks/blocks/EXTRACTOR.h5"/>
         <icon variable="SCI" path="/modules/xcos/images/palettes/EXTRACTOR.png"/>
       </block>
+      <block name="SCALAR2VECTOR">
+        <data variable="SCI" path="/modules/scicos_blocks/blocks/SCALAR2VECTOR.h5"/>
+        <icon variable="SCI" path="/modules/xcos/images/palettes/SCALAR2VECTOR.png"/>
+      </block>
       <block name="FROM">
         <data variable="SCI" path="/modules/scicos_blocks/blocks/FROM.h5"/>
         <icon variable="SCI" path="/modules/xcos/images/palettes/FROM.png"/>
