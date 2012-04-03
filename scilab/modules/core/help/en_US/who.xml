@@ -28,7 +28,7 @@
       <literal>who</literal> displays current variable names.
     </para>
     <para>
-      <literal>who('local')</literal> or <literal>who('get')</literal> Returns current
+      <literal>who('local')</literal> or <literal>who('get')</literal> returns current
       variable names and memory used in double precision words.
     </para>
     <para>
