@@ -35,6 +35,7 @@ void banner(void)
 
     centerPrint(_("Scilab Enterprises\n"));
     centerPrint(_("Consortium Scilab (DIGITEO)\n"));
+    centerPrint(_("Copyright (c) 2011-2012 (Scilab Enterprises)\n"));
     centerPrint(_("Copyright (c) 1989-2012 (INRIA)\n"));
     centerPrint(_("Copyright (c) 1989-2007 (ENPC)\n"));
 
