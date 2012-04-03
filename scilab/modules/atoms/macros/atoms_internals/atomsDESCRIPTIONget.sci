@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-// Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2011-2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2012 - Samuel GOUGEON
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -30,16 +31,42 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
   // packages file path definition
   // =========================================================================
+  atoms_path_all_users = atomsPath("system", "allusers");
+  atoms_path_user = atomsPath("system", "user");
+  
+  filename_test_rw = "__ATOMS_RW__";
+  if isfile(atoms_path_all_users + filename_test_rw) then
+    mdelete(atoms_path_all_users + filename_test_rw);
+  end
 
-  packages_path    = atomsPath("system","user") + "packages";
-  categories_path  = atomsPath("system","user") + "categories";
+  // Have the user write access to the Scilab distribution ?
+  [id, err] = mopen(atoms_path_all_users + filename_test_rw, "wt");
+  if err == 0 then // The user has write access to the Scilab distribution
+    mclose(id);
+    mdelete(atoms_path_all_users + filename_test_rw);
+
+    packages_path = atoms_path_all_users + "packages";
+    packages_path_user = atoms_path_user + "packages";
+
+    // Then, we must test if there is also a user defined packages file
+    if isfile(packages_path_user) then  // We use it if it is newer
+      kdiff = newest([packages_path, packages_path_user])
+      if ~isfile(packages_path) | kdiff == 2 then
+        copyfile(packages_path_user, packages_path)
+      end
+    end
+  else  // The user is not a Scilab admin => default user profile used
+    packages_path = atoms_path_all_users + "packages";
+  end
+
+  categories_path  = atoms_path_user + "categories";
   packages_path_info = fileinfo(packages_path);
 
   // If necessary, rebuild the struct
   // =========================================================================
-
+  TIME_BEFORE_NEW_UPDATE = 86400;
   if (packages_path_info == []) ..
-    | (getdate("s") - packages_path_info(6) > 3600) ..
+    | (getdate("s") - packages_path_info(6) > TIME_BEFORE_NEW_UPDATE) ..
     | (rhs == 1 & update) then
 
     // Initialize
@@ -54,7 +81,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
     // Operating system detection + Architecture detection
     // =========================================================================
-    [OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
+    [OSNAME, ARCH, LINUX, MACOSX, SOLARIS, BSD] = atomsGetPlatform();
 
     description_files = [ ..
       atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
@@ -73,7 +100,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     if ~isdir(atoms_tmp_directory) then
       mkdir(atoms_tmp_directory);
     end
-    
+
     for i=1:size(repositories,"*")
       // Building url & file_out
       // ----------------------------------------
