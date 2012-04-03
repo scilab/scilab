@@ -151,6 +151,8 @@ Elementary functions
 
 * Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
 
+* nthroot function added (See SEP #78).
+
 
 CLI console:
 ============
@@ -441,6 +443,8 @@ Bug fixes
                     functions returning no value (lines, modes, banner, ...).
 
 * Bug #9424 fixed - gettext("") did not return "".
+
+* Bug #9549 fixed - Add nthroot function.
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
@@ -874,7 +878,7 @@ New Functions
 
 * The damp function in CACSD module computes the natural pulsation
   and damping factor of linear dynamical systems.
-
+  
 
 Optimization
 =============
