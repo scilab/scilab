@@ -261,7 +261,7 @@ ATOMS
 
 * Rename ATOMS option offLine to offline.
 
-* Bug #9098 fixed - atomsGui took time to start gui.
+* Bug #9078 fixed - atomsGui took time to start gui.
 
 * Bug #9798 fixed - .quit script of atoms modules were not evaluated when
                     leaving Scilab.
