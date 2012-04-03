@@ -5,20 +5,21 @@
   </info>
   <refnamediv>
     <refname>getos</refname>
-    <refpurpose>return Operating System name and
-      version
+    <refpurpose>
+      return Operating System name and version
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>OS=getos()
+    <synopsis>
+      OS=getos()
       [OS,Version]=getos()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-      <literal>[OS,Version]=getos()</literal>return Operating System name and version.
+      <literal>[OS,Version]=getos()</literal> returns Operating System name and version.
     </para>
   </refsection>
   <refsection>
@@ -26,10 +27,18 @@
     <programlisting role="example"><![CDATA[ 
 OS=getos()
 [OS,version] = getos()
-if (getos() == "Windows") then disp("Scilab on Windows"); end
-if (getos() == "Linux") then disp("Scilab on Linux"); end
-if (getos() == "SunOS") then disp("Scilab on Solaris"); end
-if (getos() == "Darwin") then disp("Scilab on MacOs"); end
+if (getos() == "Windows") then 
+   disp("Scilab on Windows"); 
+end
+if (getos() == "Linux") then 
+   disp("Scilab on Linux"); 
+end
+if (getos() == "SunOS") then 
+   disp("Scilab on Solaris"); 
+end
+if (getos() == "Darwin") then 
+   disp("Scilab on MacOs"); 
+end
 
  ]]></programlisting>
   </refsection>

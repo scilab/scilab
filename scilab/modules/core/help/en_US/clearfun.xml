@@ -29,6 +29,23 @@
     </variablelist>
   </refsection>
   <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>'name'</term>
+        <listitem>
+          <para>name of primitive</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ret</term>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
       <literal>clearfun('name')</literal> removes the primitive <literal>'name'</literal> from the 

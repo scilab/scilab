@@ -25,13 +25,13 @@ else
 end
 
 select val
-case %t then
-    disp("true");
-case %f then
-    disp("false");
-else
-    disp("a third variant");
-end
+   case %t then
+      disp("true");
+   case %f then
+      disp("false");
+   else
+      disp("a third variant");
+end 
      ]]></programlisting>
   </refsection>
   <refsection role="see also">

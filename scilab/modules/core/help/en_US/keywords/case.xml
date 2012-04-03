@@ -18,20 +18,19 @@
     </para>
     <para>
       Use it in the following way:
-    </para>
-    
-    <programlisting role="no-scilab-exec"><![CDATA[ 
+      <programlisting role="no-scilab-exec"><![CDATA[ 
 select expr0
     case expr1 then
         instructions 1
     case expr2 then
         instructions 2
-        ...
+	  ...  
     case exprn then
         instructions n
     [else instructions]
 end
      ]]></programlisting>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -43,9 +42,9 @@ case "Windows" then
 case "Linux" then
   disp("Scilab on Linux")
 case "Darwin" then
-  disp("Scilab on Mac OS")
+  disp("Scilab on MacOs")
 else
-  error("Scilab on unknown platform")
+  error("Scilab on Unknown platform")
 end
  ]]></programlisting>
   </refsection>
