@@ -599,6 +599,9 @@ t.
 
 * Bug #10904 fixed - error messages of and() and or() builtin were not standard.
 
+* Bug #10880 fixed - Default startup directory moved to "My Documents folder" 
+                     on Windows for icon shorcut.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
