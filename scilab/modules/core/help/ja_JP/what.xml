@@ -18,4 +18,15 @@
     <title>説明</title>
     <para>低レベルプリミティブおよびコマンドの一覧を得ます.</para>
   </refsection>
+  <refsection role="see also">
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>
