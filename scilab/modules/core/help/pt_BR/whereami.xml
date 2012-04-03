@@ -15,8 +15,8 @@
   </refsynopsisdiv>
   <refsection>
     <title>Descrição</title>
-    <para>Exibe a árvore de chamamento para a instrução que contém whereami().
-      Pode ser usado dentro de níveis de pause (pausa).
+    <para>Exibe a árvore de chamamento para a instrução que contém <literal>whereami()</literal>.
+      Pode ser usado dentro de níveis de <literal>pause</literal> (pausa).
     </para>
   </refsection>
   <refsection>

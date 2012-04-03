@@ -14,8 +14,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      Displays calling tree to instruction which contain whereami(). May be
-      used within pause levels.
+      Displays calling tree to instruction which contain <literal>whereami()</literal>. May be
+      used within <literal>pause</literal> levels.
     </para>
   </refsection>
   <refsection>
