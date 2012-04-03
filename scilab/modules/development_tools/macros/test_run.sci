@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-// Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
+// Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
@@ -45,9 +45,11 @@ function test_run_result = test_run(varargin)
   params.test_failed_percent    = 0;
   params.test_skipped_percent   = 0;
   params.full_summary           = %t;
+  params.show_diff              = %f;
+  params.show_error             = %f;
 
 // =======================================================
-// Gestion des types de tests Ã  lancer et des options
+// Gestion des types de tests à lancer et des options
 // =======================================================
   if rhs >= 3 then
 
@@ -100,6 +102,12 @@ function test_run_result = test_run(varargin)
     params.full_summary = assign_option(option_mat, "short_summary", %f, params.full_summary);
     option_mat          = clean_option(option_mat, "short_summary");
 
+    params.show_diff = assign_option(option_mat, "show_diff", %t, params.show_diff);
+    option_mat          = clean_option(option_mat, "show_diff");
+    
+    params.show_error = assign_option(option_mat, "show_error", %t, params.show_error);
+    option_mat          = clean_option(option_mat, "show_error");
+
     if option_mat <> [] then
       printf("\nUnrecognized option(s): \n\n");
       for i=1:size(option_mat, "*")
@@ -116,7 +124,7 @@ function test_run_result = test_run(varargin)
     printf("\n");
   end
 // =======================================================
-// Gestion des tests Ã  lancer
+// Gestion des tests à lancer
 // =======================================================
   if (rhs == 0) ..
            | ((rhs == 1) & (varargin(1)==[])) ..
@@ -800,6 +808,9 @@ if grep(dia_tmp,"error on test")<>[] then
   status.id = 2;
   status.message = "failed: one or several tests failed";
   status.details = details;
+  if params.show_error == %t then
+    mprintf("%s\n",dia($-10:$));
+  end
   return;
 end
 
@@ -964,7 +975,7 @@ function msg = createthefile ( filename )
 //   Add or create the following file :
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
 // Workaround for bug #4827
-  msg(1) = "   Add or create the following file : "
+  msg(1) = "   Add or create the following file: "
   msg(2) = "   - "+filename
 endfunction
 
@@ -975,9 +986,14 @@ function msg = comparethefiles ( filename1 , filename2 )
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
 // Workaround for bug #4827
-  msg(1) = "   Compare the following files :"
+  msg(1) = "   Compare the following files:"
   msg(2) = "   - "+filename1
   msg(3) = "   - "+filename2
+  if params.show_diff == %t then
+    if getos() <> "Windows" then
+      unix("diff -u " +filename1 + " " +filename2);
+    end
+  end
 endfunction
 
 function directories = getDirectories(directory)
