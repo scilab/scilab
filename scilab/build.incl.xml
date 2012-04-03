@@ -15,21 +15,12 @@
   <property name="classes.dir" location="${build.dir}/classes"/>
   <!-- Where builded test classes will be generated -->
   <property name="classes.test.dir" location="${build.test.dir}/classes"/>
+  <property name="instrumented.classes.test.dir" location="${build.test.dir}/instrumented-classes"/>
   <!-- Where we store cache files -->
   <property name="cache.dir" location="${build.dir}/cachefile"/>
   <!-- Where we can find the sources -->
   <property name="src.dir" location="src/java/"/>
-  <!-- Where we can find the test sources -->
-  <property name="src.test.dir" location="tests/java/"/>
-  <property name="report.test.dir" location="${base.dir}/junit-report/"/>
-  <property name="report.xml.test.dir" location="${report.test.dir}/xml/"/>
-  <property name="report.html.test.dir" location="${report.test.dir}/html/"/>
-  <!-- Check style definitions -->
-  <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
-  <property name="checkstyle.stylesheet" value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl"/>
-  <property name="checkstyle.report.dir" value="${build.dir}/checkstyle"/>
-  <property name="checkstyle.xml.report.file" value="${checkstyle.report.dir}/checkstyle_errors.xml"/>
-  <property name="checkstyle.html.report.file" value="${checkstyle.report.dir}/checkstyle_errors.htm"/>
+  
   <property name="modules.dir" value="${base.dir}/modules"/>
   <!-- JAR names -->
   <property file="${base.dir}/scilab-lib.properties"/>
@@ -45,13 +36,7 @@
     <pathelement location="${commons-beanutils.jar}"/>
     <pathelement location="${antlr.jar}"/>
   </path>
-  <path id="unittest.classpath">
-    <pathelement location="${junit4.jar}"/>
-    <pathelement location="${jcommander.jar}"/>
-    <pathelement location="${bsh.jar}"/>
-    <pathelement location="${junit.jar}"/>
-    <pathelement location="${qdox.jar}"/>
-  </path>
+  
   <path id="compile.classpath">
     <pathelement location="${library.types.dir}/${library.types.name}"/>
     <pathelement location="${library.graph.dir}/${library.graph.name}"/>
@@ -94,80 +79,10 @@
     <pathelement location="${jeuclid-core.jar}"/>
     <pathelement location="${jlatexmath.jar}"/>
   </path>
-  <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
-  <!-- Checkstyle process -->
-  <target name="checkstyle" depends="checkstyle-init" description="Generates a report of code convention violations.">
-    <checkstyle config="${checkstyle.config.file}" failOnViolation="false">
-      <fileset dir="${src.dir}" includes="**/*.java"/>
-      <!-- Location of cache-file. -->
-      <property key="checkstyle.cache.file" file="${cache.dir}"/>
-      <formatter type="plain"/>
-      <formatter type="xml" toFile="${checkstyle.xml.report.file}"/>
-    </checkstyle>
-    <xslt in="${checkstyle.xml.report.file}" out="${checkstyle.html.report.file}" style="${checkstyle.stylesheet}"/>
-  </target>
-  <!-- Create the build directory -->
-  <target name="checkstyle-init">
-    <mkdir dir="${checkstyle.report.dir}"/>
-  </target>
-  <!-- Delete the build directory -->
-  <target name="checkstyle-clean">
-    <delete dir="${checkstyle.report.dir}"/>
-  </target>
-  
-  
-  <!-- Allows the override of the forkMode by local build.xml -->
-  <condition property="forkModeAlreadySet">
-    <isset property="junit.forkMode" />
-  </condition>
-  
-  <target name="detectForkMode" unless="forkModeAlreadySet">
-    <property name="junit.forkMode" value="perBatch"/>
-  </target>
-  
-  
-  <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
-    <mkdir dir="${report.xml.test.dir}" />
-    <mkdir dir="${report.html.test.dir}" />
-    
-    <junit fork="yes" forkmode="${junit.forkMode}" failureproperty="junit.failure">
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
-        <pathelement location="${classes.test.dir}"/>
-      </classpath>
-      
-      <!-- Where ${basedir} is the module base directory -->
-      <env key="SCI" value="${basedir}/../.."/>
-      <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
-      
-      <formatter type="brief" useFile="no" />
-      <formatter type="xml" />
-      
-      
-      <batchtest fork="yes" todir="${report.xml.test.dir}" >
-        <fileset dir="tests/java">
-          <include name="**/*.java"/>
-        </fileset>
-      </batchtest>
-      
-    </junit>
-    <junitreport todir="${report.xml.test.dir}">
-      <fileset dir="${report.xml.test.dir}">
-        <include name="*.xml"/>
-      </fileset>
-      <report format="frames" todir="${report.html.test.dir}"/>
-    </junitreport>
-    <fail if="junit.failure" message="Unit test(s) failed. See the report"/>
-  </target>
-  <target name="validate">
-    <!-- Empty target to be override by other build.xml -->
-  </target>
   <target name="init">
     <!-- Check the version of Java. If it changes after the configure
          or if there is a mistake in the build system
-     -->
+    -->
     <fail message="JDK 1.6 or 1.7 required">
       <condition>
         <not>
@@ -190,29 +105,13 @@
     <delete dir="${build.jar.dir}"/>
     <delete file="${build.jar.dir}/${library.name}"/>
   </target>
-  <!-- Clean test -->
-  <target name="clean-test" description="Clean test files">
-    <delete dir="${build.test.dir}"/>
-  </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources" depends="init">
     <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6">
       <compilerarg value="-Xlint"/>
     </javac>
   </target>
-  <target name="existing-tests">
-    <available property="test-present" file="${src.test.dir}"/>
-  </target>
-  <!-- Compile test sources -->
-  <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
-    <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="UTF-8">
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
-      </classpath>
-    </javac>
-  </target>
+  
   <!-- Create the jar -->
   <target name="jar" description="Build the jar file" depends="compile">
     <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
@@ -230,4 +129,8 @@
       </manifest>
     </jar>
   </target>
+  
+  <import file="build.qa.incl.xml"/>
+  
+  
 </project>
