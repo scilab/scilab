@@ -274,6 +274,10 @@ ATOMS
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
+* Bug #10846 fixed - atomsSystemUpdate failed.
+                     documentation about 'downloadTimeout' added.
+
+* Bug #10933 fixed - atomsGetConfig did not check value of input argument.
 
 Documentation
 =============
