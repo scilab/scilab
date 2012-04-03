@@ -20,15 +20,13 @@
           <para>um booleano</para>
         </listitem>
       </varlistentry>
-    </variablelist>
-    <variablelist>
       <varlistentry>
         <term>module_name</term>
         <listitem>
           <para>um string. Exemplo : 'core'</para>
         </listitem>
       </varlistentry>
-    </variablelist>
+   </variablelist>
   </refsection>
   <refsection>
     <title>Descrição</title>

@@ -22,12 +22,10 @@
           <para>a boolean</para>
         </listitem>
       </varlistentry>
-    </variablelist>
-    <variablelist>
       <varlistentry>
         <term>module_name</term>
         <listitem>
-          <para>a string. example : 'core'</para>
+          <para>a string, for example : 'core'</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -35,7 +33,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      Returns <literal>%t</literal> Checks if a Scilab module is installed.
+      Returns <literal>%t</literal> if a Scilab module <literal>module_name</literal> is installed or <literal>%f</literal> if not.
     </para>
   </refsection>
   <refsection role="see also">

@@ -20,8 +20,6 @@
           <para>論理値</para>
         </listitem>
       </varlistentry>
-    </variablelist>
-    <variablelist>
       <varlistentry>
         <term>module_name</term>
         <listitem>

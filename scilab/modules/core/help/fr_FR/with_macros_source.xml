@@ -24,7 +24,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal> Teste si les sources des macros sont installées retourne alors
-    <literal>%f</literal> dans le cas contraire.</para>
+    <para>
+      Teste si les sources des macros sont installées. Retourne %t si c'est le cas, <literal>%f</literal> dans le cas contraire.
+    </para>
   </refsection>
 </refentry>
