@@ -20,7 +20,7 @@
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>name of selected variable type (see typeof)</para>
+          <para>a name of selected variable type (see typeof)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

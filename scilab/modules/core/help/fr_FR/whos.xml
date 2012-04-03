@@ -21,7 +21,7 @@
         <term>typ</term>
         <listitem>
           <para>
-            nom du type des variables sélectionnées (voir <literal>typeof</literal>)
+            nom du type des variables sélectionnées (voir <link linkend="typeof">typeof</link>)
           </para>
         </listitem>
       </varlistentry>
