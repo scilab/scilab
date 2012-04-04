@@ -26,6 +26,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DataManager;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -143,7 +144,7 @@ public class ArrowDrawer {
      * @throws ObjectRemovedException 
      */
     public void drawArrows(String parentAxesId, String identifier, double arrowSize, double lineThickness, boolean isSegs,
-        boolean isColored, int lineColor) throws SciRendererException, ObjectRemovedException {
+        boolean isColored, int lineColor) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
 
         DataManager dataManager = visitor.getDataManager();
         ColorMap colorMap = visitor.getColorMap();

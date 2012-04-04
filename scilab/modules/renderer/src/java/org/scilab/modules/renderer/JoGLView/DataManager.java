@@ -11,7 +11,6 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
-import com.sun.opengl.util.BufferUtil;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
@@ -19,6 +18,8 @@ import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -163,9 +164,9 @@ public class DataManager {
      * Return the vertex buffer of the given object.
      * @param id the given object Id.
      * @return the vertex buffer of the given object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException {
+    public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
         if (vertexBufferMap.containsKey(id)) {
             return vertexBufferMap.get(id);
         } else {
@@ -180,9 +181,9 @@ public class DataManager {
      * Texture coordinates getter.
      * @param identifier the graphic object id.
      * @return the texture coordinates corresponding to the given graphic object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) throws ObjectRemovedException {
+    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) throws ObjectRemovedException, OutOfMemoryException {
         if (texturesCoordinatesBufferMap.containsKey(identifier)) {
             return texturesCoordinatesBufferMap.get(identifier);
         } else {
@@ -197,9 +198,9 @@ public class DataManager {
      * Return the color buffer of the given object.
      * @param id the given object Id.
      * @return the color buffer of the given object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getColorBuffer(String id) throws ObjectRemovedException {
+    public ElementsBuffer getColorBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
         if (colorBufferMap.containsKey(id)) {
             return colorBufferMap.get(id);
         } else {
@@ -214,9 +215,9 @@ public class DataManager {
      * Return the index buffer of the given object.
      * @param id the given object Id.
      * @return the index buffer of the given object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getIndexBuffer(String id) throws ObjectRemovedException {
+    public IndicesBuffer getIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
         if (indexBufferMap.containsKey(id)) {
             return indexBufferMap.get(id);
         } else {
@@ -231,9 +232,9 @@ public class DataManager {
      * Return the wire index buffer of the given object.
      * @param id the given object Id.
      * @return the wire index buffer of the given object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getWireIndexBuffer(String id) throws ObjectRemovedException {
+    public IndicesBuffer getWireIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
         if (wireIndexBufferMap.containsKey(id)) {
             return wireIndexBufferMap.get(id);
         } else {
@@ -247,9 +248,9 @@ public class DataManager {
     /**
      * Update texture coordinate buffer for the given object.
      * @param id given object id.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    public void updateTextureCoordinatesBuffer(String id) throws ObjectRemovedException {
+    public void updateTextureCoordinatesBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
         ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
         if (textureCoordinatesBuffer != null) {
             fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
@@ -261,7 +262,7 @@ public class DataManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, String property) {
+    public void update(String id, String property) throws OutOfMemoryException {
         String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         try {
@@ -299,7 +300,7 @@ public class DataManager {
      * Update vertex buffer of the given object and is descendant.
      * @param id the id of the object.
      * @param coordinateMask the coordinateMask to use.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
     private void updateChildrenVertex(String id, int coordinateMask) throws ObjectRemovedException {
         ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
@@ -362,9 +363,9 @@ public class DataManager {
      * Fill the vertex, color, index and wire index buffers
      * of a given object.
      * @param id the object id.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException if the object is now longer present.
      */
-    private void fillBuffers(String id) throws ObjectRemovedException {
+    private void fillBuffers(String id) throws ObjectRemovedException, OutOfMemoryException {
         ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
         if (vertexBuffer != null) {
             fillVertexBuffer(vertexBuffer, id);
@@ -391,43 +392,42 @@ public class DataManager {
         }
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) throws ObjectRemovedException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
         fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08);
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
-        FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
         vertexBuffer.setData(data, 4);
     }
 
     private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
-        int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = vertexBuffer.getData();
         MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
         vertexBuffer.setData(data, 4);
     }
 
-    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException {
+    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
-        FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillTextureCoordinates(id, data, length);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException {
+    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
             int length = MainDataLoader.getDataSize(id);
-            FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+            FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
             MainDataLoader.fillColors(id, data, 4);
             colorBuffer.setData(data, 4);
     }
 
-    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException {
+    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getIndicesSize(id);
-        IntBuffer data = BufferUtil.newIntBuffer(length);
+        IntBuffer data = BufferAllocation.newIntBuffer(length);
 
         int actualLength = 0;
         if (length != 0) {
@@ -443,9 +443,9 @@ public class DataManager {
         indexBuffer.setData(data);
     }
 
-    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException {
+    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getWireIndicesSize(id);
-        IntBuffer data = BufferUtil.newIntBuffer(length);
+        IntBuffer data = BufferAllocation.newIntBuffer(length);
 
         int actualLength = 0;
         if (length != 0) {

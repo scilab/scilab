@@ -11,7 +11,6 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
-import com.sun.opengl.util.BufferUtil;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.data.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
@@ -19,6 +18,8 @@ import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
@@ -90,10 +91,10 @@ public class ScilabTextureManager {
             int bufferLength = dimension.width * dimension.height * 4;
             ByteBuffer buffer;
             try {
-                buffer = BufferUtil.newByteBuffer(bufferLength);
-            } catch (OutOfMemoryError error) {
+                buffer = BufferAllocation.newByteBuffer(bufferLength);
+            } catch (OutOfMemoryException error) {
                 // TODO: Scilab error.
-                System.out.println("Java heap space to small, can't get " + bufferLength / (1024*1024) + "MBytes");
+                System.err.println(error.getMessage());
                 return null;
             }
             MainDataLoader.fillTextureData(identifier, buffer, bufferLength);
@@ -106,10 +107,10 @@ public class ScilabTextureManager {
             int bufferLength = width * height * 4;
             ByteBuffer buffer;
             try {
-                buffer = BufferUtil.newByteBuffer(bufferLength);
-            } catch (OutOfMemoryError error) {
+                buffer = BufferAllocation.newByteBuffer(bufferLength);
+            } catch (OutOfMemoryException error) {
                 // TODO: Scilab error.
-                System.out.println("Java heap space to small, can't get " + bufferLength / (1024*1024) + "MBytes");
+                System.err.println(error.getMessage());
                 return null;
             }
             MainDataLoader.fillTextureData(identifier, buffer, bufferLength, x, y, width, height);

@@ -13,6 +13,7 @@ import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
@@ -55,7 +56,7 @@ class FecDrawer {
      * @param fec given fec object.
      * @throws ObjectRemovedException 
      */
-    public void draw(Fec fec) throws ObjectRemovedException {
+    public void draw(Fec fec) throws ObjectRemovedException, OutOfMemoryException {
         if (fec.getVisible()) {
 
             DrawingTools drawingTools = drawerVisitor.getDrawingTools();
@@ -136,7 +137,7 @@ class FecDrawer {
      * Reset all texture data provider.
      * @throws ObjectRemovedException 
      */
-    void updateAll() throws ObjectRemovedException {
+    void updateAll() throws ObjectRemovedException, OutOfMemoryException {
         for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
             drawerVisitor.getDataManager().updateTextureCoordinatesBuffer(entry.getKey());
             entry.getValue().setDataProvider(null);

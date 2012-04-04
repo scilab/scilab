@@ -26,6 +26,7 @@ import org.scilab.modules.renderer.JoGLView.DataManager;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 /**
  * ContouredObjectDrawer class.
@@ -61,7 +62,7 @@ public class ContouredObjectDrawer {
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      * @throws ObjectRemovedException 
      */
-    public void draw(ContouredObject contouredObject) throws SciRendererException, ObjectRemovedException {
+    public void draw(ContouredObject contouredObject) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
 

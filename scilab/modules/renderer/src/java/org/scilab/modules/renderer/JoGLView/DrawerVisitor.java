@@ -62,6 +62,7 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 import java.awt.Component;
@@ -327,9 +328,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Fec fec) throws ObjectRemovedException {
-        axesDrawer.enableClipping(currentAxes, fec.getClipProperty());
-        fecDrawer.draw(fec);
-        axesDrawer.disableClipping(fec.getClipProperty());
+        if (fec.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, fec.getClipProperty());
+            try {
+                fecDrawer.draw(fec);
+            } catch (OutOfMemoryException outOfMemoryException) {
+                outOfMemoryException.printStackTrace();
+            }
+            axesDrawer.disableClipping(fec.getClipProperty());
+        }
     }
 
     @Override
@@ -769,6 +776,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
         } catch (ObjectRemovedException e) {
             // Object has been removed before draw : do nothing.
+        } catch (OutOfMemoryException e) {
+            // TODO: mark object as not drawable.
         }
     }
 
