@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_fftw_wisdom">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - Allan Layec - INRIA
+ * Copyright (C) 2012 - Serge Steer - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="fr" xml:id="get_fftw_wisdom">
   <refnamediv>
     <refname>get_fftw_wisdom</refname>
     <refpurpose>retourne le wisdom fftw</refpurpose>
@@ -14,33 +31,62 @@
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
+          <para>Matrice de chaîne de caractères contenant le wisdom courant de fftw.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
+    <title>Attention</title>
+     <para> 
+       Cette fonction n'est pas implémentée lorsque Scilab utilise la
+       bibliuthèque MKL d'Intel (c'est en particulier le cas des
+       binaires Windows officiels).
+     </para>
+ </refsection>
+  <refsection>
     <title>Description</title>
     <para>
-      Cette fonction retourne le wisdom fftw sous la forme d'une chaîne de caractère.
+      Cette fonction retourne le wisdom fftw sous la forme d'une
+      chaîne de caractère. L'utilisation de
+      <literal>get_fftw_wisdom</literal> et de
+      <literal>set_fftw_wisdom</literal> permet d'optimiser
+      l'efficaité de la fft si de nombreux appels doivent être
+      effectués sur des tailles de données identiques et pour les
+      mêmes options de la fonction <link linkend="fft">fft</link>.
     </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-//return fftw wisdom
-txt=get_fftw_wisdom();
-//set fftw wisdom
-set_fftw_wisdom(txt);
-//reset fftw wisdom
-fftw_forget_wisdom();
+sample_rate=1000;
+t = 0:1/sample_rate:40;
+N=size(t,'*'); //number of samples
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+fftw_forget_wisdom();  
+timer();y=fft(s);t1=timer() //premier appel
+timer();y=fft(s);t2=timer()  //second appel similaire utilise le wisdom courant
+t1/t2
+wisdom1=get_fftw_wisdom(); //préserve le  wisdom courant
+//une fft différente
+A = zeros(256,256);
+A(5:24,13:17) = 1;
+X = fft(A);
+
+//un nouveau signal avec la même taille que s
+s1=sin(2*%pi*10*t)+sin(2*%pi*7*t+%pi/4)+5*grand(1,N,'nor',0,1);
+//reinstallation du wisdom 
+set_fftw_wisdom(wisdom1);
+timer();y=fft(s);t3=timer()
+t3/t2
+
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="fftw">fftw</link>
+        <link linkend="fft">fft</link>
       </member>
       <member>
         <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>

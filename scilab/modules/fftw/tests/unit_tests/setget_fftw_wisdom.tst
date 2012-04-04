@@ -9,12 +9,14 @@
 
 //=================================
 //return fftw wisdom
-txt=get_fftw_wisdom();
-if size(txt)<> [3 1] then pause,end
-//=================================
-//set fftw wisdom
-set_fftw_wisdom(txt);
-//=================================
-//reset fftw wisdom
-fftw_forget_wisdom()
-//=================================
+try
+  txt=get_fftw_wisdom();
+  assert_checkequal(size(txt),[3 1]);
+  //=================================
+  //set fftw wisdom
+  set_fftw_wisdom(txt);
+  //=================================
+  //reset fftw wisdom
+  fftw_forget_wisdom()
+  //=================================
+end

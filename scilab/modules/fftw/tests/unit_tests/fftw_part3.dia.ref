@@ -1,0 +1,53 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - INRIA - Serge STEER
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+//C2C case ------------------------------------------------------------------------------------
+Dims=[5 3 4];
+A=[10     %i  3-%i 5
+   2+%i   -1  -1   7-%i
+   3       4   4   -11
+   2-3*%i -1  -1   0.3+%i
+   -3      -2  -1  8];
+Sel=1;
+y=fft(A,-1,Sel);
+for j=1:Dims(2)
+  ind=list(:,j);
+  assert_checkalmostequal(y(ind(:)),fft(A(ind(:)),-1));
+end
+y=fft(y,1,Sel);
+for j=1:Dims(2)
+  ind=list(:,j);
+  assert_checkalmostequal(y(ind(:)),A(ind(:)),0,10*%eps);
+end
+Sel=2;
+y=fft(A,-1,Sel);
+for i=1:Dims(1)
+  ind=list(i,:);
+  assert_checkalmostequal(y(ind(:)),fft(A(ind(:)),-1));
+end
+y=fft(y,1,Sel);
+for i=1:Dims(1)
+  ind=list(i,:);
+  assert_checkalmostequal(y(ind(:)),A(ind(:)),0,10*%eps);
+end
+Dims=[5 3 4 7 5];
+A=matrix(rand(1,prod(Dims))+%i*rand(1,prod(Dims)),Dims);
+Sel= [2 3 5];
+y=fft(A,-1,Sel);
+for i=1:Dims(1)
+  for j=1:Dims(4)
+    ind=list(i,:,:,j,:);
+    assert_checkalmostequal(y(ind(:)),fft(A(ind(:)),-1));
+  end
+end
+y=fft(y,1,Sel);
+for i=1:Dims(1)
+  for j=1:Dims(4)
+    ind=list(i,:,:,j,:);
+    assert_checkalmostequal(y(ind(:)),A(ind(:)));
+  end
+end

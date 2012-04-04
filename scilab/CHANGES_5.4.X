@@ -42,6 +42,13 @@ Documentation
     - genetic algorithms. See bug #11514.
 
 
+Signal Processing
+=================
+
+* Updated and improved fft function based on fftw (See SEP#84):
+    - taking data symmetry into account,
+    - hard coded multivariate fft.
+
 
 Compilation
 ===========
@@ -644,6 +651,7 @@ CACSD & Signal Processing
 * Bug #10562 fixed - The "CACSD/Robust Control" demo failed.
 
 * Bug #11340 fixed - bode, gainplot, nyquist and plzr without arguments did not show an example.
+
 
 ATOMS
 =======
