@@ -26,6 +26,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -127,6 +128,7 @@ public class LabelManager {
      * @throws SciRendererException if the label is not drawable.
      */
     public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, Axes parentAxes, AxesDrawer axesDrawer, boolean drawnFlag) throws SciRendererException {
+        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         Texture labelSprite = getTexture(colorMap, label);
 
         labelPositioner.setLabelTexture(labelSprite);
@@ -137,6 +139,10 @@ public class LabelManager {
         labelPositioner.setUserRotationAngle(180.0*label.getFontAngle()/Math.PI);
 
         Vector3d labelUserPosition = new Vector3d(label.getPosition());
+
+        /* Logarithmic scaling must be applied to the label's user position to obtain object coordinates */
+        labelUserPosition = ScaleUtils.applyLogScale(labelUserPosition, logFlags);
+
         labelUserPosition = axesDrawer.getBoxCoordinates(labelUserPosition);
         labelPositioner.setLabelUserPosition(labelUserPosition);
 
@@ -150,6 +156,10 @@ public class LabelManager {
         if (label.getAutoPosition()) {
             Vector3d cornerPos = labelPositioner.getLowerLeftCornerPosition();
             Vector3d objectCornerPos = axesDrawer.getObjectCoordinates(cornerPos);
+
+            /* Apply inverse scaling to obtain user coordinates */
+            objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
+
             label.setPosition(new Double[]{objectCornerPos.getX(), objectCornerPos.getY(), objectCornerPos.getZ()});
 
             /*
@@ -164,7 +174,7 @@ public class LabelManager {
 
         Vector3d[] projCorners = labelPositioner.getProjCorners();
 
-        Vector3d[] corners = computeCorners(projection, projCorners);
+        Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
         Double[] coordinates = cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
@@ -210,18 +220,26 @@ public class LabelManager {
     }
 
     /**
-     * Computes and returns the corners (in object coordinates) of a label's bounding box.
+     * Computes and returns the corners (in user coordinates) of a label's bounding box.
      * @param projection the projection from object coordinates to window coordinates.
      * @param projCorners the corners of the label's bounding box in window coordinates (4-element array).
-     * @return the corners of the label's bounding box in object coordinates (4-element array).
+     * @param parentAxes the Axes for which the coordinates are computed.
+     * @return the corners of the label's bounding box in user coordinates (4-element array).
      */
-    private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners) {
+    private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners, Axes parentAxes) {
         Vector3d[] corners = new Vector3d[4];
+        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         corners[0] = projection.unproject(projCorners[0]);
         corners[1] = projection.unproject(projCorners[1]);
         corners[2] = projection.unproject(projCorners[2]);
         corners[3] = projection.unproject(projCorners[3]);
+
+        /* Apply inverse logarithmic scaling in order to obtain user coordinates */
+        corners[0] = ScaleUtils.applyInverseLogScale(corners[0], logFlags);
+        corners[1] = ScaleUtils.applyInverseLogScale(corners[1], logFlags);
+        corners[2] = ScaleUtils.applyInverseLogScale(corners[2], logFlags);
+        corners[3] = ScaleUtils.applyInverseLogScale(corners[3], logFlags);
 
         return corners;
     }

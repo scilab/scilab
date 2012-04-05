@@ -14,12 +14,12 @@ package org.scilab.modules.renderer.JoGLView.util;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 /**
- * Class Utils
- * A set of utility methods.
+ * Class ScaleUtils
+ * A set of utility methods for logarithmic scaling and unscaling.
  *
  * @author Manuel JULIACHS
  */
-public class Utils {
+public class ScaleUtils {
 
     /**
      * Applies logarithmic scaling to a point and returns the result.

@@ -26,7 +26,7 @@ import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-import org.scilab.modules.renderer.JoGLView.util.Utils;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.awt.Dimension;
 import java.util.Map;
@@ -148,7 +148,7 @@ public class TextManager {
         boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         /* Apply logarithmic scaling and then project */
-        Vector3d textPosition = Utils.applyLogScale(unscaledTextPosition, logFlags);
+        Vector3d textPosition = ScaleUtils.applyLogScale(unscaledTextPosition, logFlags);
         Vector3d projTextPosition = projection.project(textPosition);
 
         /* Compute the text label vectors in window coordinates */
@@ -166,8 +166,8 @@ public class TextManager {
         Vector3d textHeight = projection.unproject(projTextHeight);
 
         /* Applies inverse logarithmic scaling */
-        textWidth = Utils.applyInverseLogScale(textWidth, logFlags);
-        textHeight = Utils.applyInverseLogScale(textHeight, logFlags);
+        textWidth = ScaleUtils.applyInverseLogScale(textWidth, logFlags);
+        textHeight = ScaleUtils.applyInverseLogScale(textHeight, logFlags);
 
 
         textWidth = textWidth.minus(unscaledTextPosition);
@@ -201,8 +201,8 @@ public class TextManager {
         textHeight = textHeight.plus(unscaledTextPosition);
 
         /* Finally re-apply logarithmic scaling, compute the vectors and project */
-        textWidth = Utils.applyLogScale(textWidth, logFlags);
-        textHeight = Utils.applyLogScale(textHeight, logFlags);
+        textWidth = ScaleUtils.applyLogScale(textWidth, logFlags);
+        textHeight = ScaleUtils.applyLogScale(textHeight, logFlags);
 
         textWidth = textWidth.minus(textPosition);
         textHeight = textHeight.minus(textPosition);
@@ -279,7 +279,7 @@ public class TextManager {
 
         /* Apply logarithmic scaling */
         boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
-        textPosition = Utils.applyLogScale(textPosition, logFlags);
+        textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
 
 
         textPosition = projection.project(textPosition);
@@ -431,10 +431,10 @@ public class TextManager {
         corners[3] = projection.unproject(projCorners[3]);
 
         /* Apply inverse logarithmic scaling in order to obtain user coordinates */
-        corners[0] = Utils.applyInverseLogScale(corners[0], logFlags);
-        corners[1] = Utils.applyInverseLogScale(corners[1], logFlags);
-        corners[2] = Utils.applyInverseLogScale(corners[2], logFlags);
-        corners[3] = Utils.applyInverseLogScale(corners[3], logFlags);
+        corners[0] = ScaleUtils.applyInverseLogScale(corners[0], logFlags);
+        corners[1] = ScaleUtils.applyInverseLogScale(corners[1], logFlags);
+        corners[2] = ScaleUtils.applyInverseLogScale(corners[2], logFlags);
+        corners[3] = ScaleUtils.applyInverseLogScale(corners[3], logFlags);
 
         return corners;
     }
