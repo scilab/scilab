@@ -73,7 +73,10 @@
       <literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> (with <literal>x</literal> and <literal>y</literal> variables of your environment) saves only named variables <literal>x</literal> and <literal>y</literal>.
     </para>
     <para>
-      <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data in HDF5, format that will be readable by Scilab 6 family.
+      <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data using the SOD (Scilab Open Data) format (based on HDF5), format that will be readable by Scilab 6 family.
+    </para>
+    <para>
+      The change of format between the family 5 and 6 of Scilab has been decided because the 5 format is undocumented, not specified and hard to read. SOD (Scilab 6 default format) is fully documented and easy to read through HDF5 libraries or applications.
     </para>
     <para>
       Saved variables can be reloaded by the 
@@ -112,10 +115,10 @@ mclose(fd)
 
 // Binary format readable by Scilab 5.4.X and Scilab 6 family
 a=eye(2,2);b=ones(a);
-save("val.h5", "a", "b");
+save("val.sod", "a", "b");
 clear a
 clear b
-load("val.dat", "a", "b");
+load("val.sod", "a", "b");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -146,7 +149,12 @@ load("val.dat", "a", "b");
       </revision>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>When called with variables names (character string) as input, variables are saved in HDF5 format, format that will be readable by Scilab 6 family.</revremark>
+        <revdescription>
+          <itemizedlist>
+            <listitem>When called with variables names (character string) as input, variables are saved in SOD format, format that will be readable by Scilab 6 family.</listitem>
+            <listitem>The Scilab 5.X format is deprecated and will be removed with Scilab 6.</listitem>
+          </itemizedlist>
+        </revdescription>
       </revision>
     </revhistory>
   </refsection>

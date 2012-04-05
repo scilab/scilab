@@ -1,17 +1,23 @@
-            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =================================================================
+            Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
+            ================================================================
 
 
 Scilab
 ======
 
+* save/load functions can now export/import Scilab data to SOD format:
+ - Scilab data are now saved and loaded using a standard, HDF5-based, documented,
+   and fully tested: Scilab Open Data format (SOD).
+ - Graphic handles can be saved with the SOD format.
+ - 'save' writes data to HDF5 format when using new calling sequence
+   save(filename.sod, "a", "b", "c"). This format is Scilab 6 compatible.
+ - 'save' displays a message when using old calling sequence
+   save(filename, a, b, c) and writes data in old Scilab binary format.
+   The previous format will not be supported by Scilab 6.
+
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
 
-* save/load functions can now export/import Scilab data to HDF5 format:
- - Graphic handles can be saved as HDF5 data
- - 'save' displays a message when using old calling sequence save(filename, a, b, c) and writes data in old Scilab binary format. This format will not be readable by Scilab 6 family.
- - 'save' writes data to HDF5 format when using new calling sequence save(filename, "a", "b", "c"). This format is Scilab 6 compatible.
 
 
 Scilab Desktop

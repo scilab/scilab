@@ -132,8 +132,9 @@ int sci_save(char *fname, unsigned long fname_len)
     {
         if (getWarningMode())
         {
-            sciprint(_("WARNING: your data will be saved in a format that Scilab 6 family will not load.\n"));
-            sciprint(_("WARNING: please use new 'save' syntax using variables names to be able to import your data in Scilab 6 and more.\n"));
+            sciprint(_("WARNING: Scilab 6 will not support the file format used.\n"));
+            sciprint(_("WARNING: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"));
+            sciprint(_("WARNING: See help('save') for the rational.\n"));
         }
         C2F(intsave)();
     }

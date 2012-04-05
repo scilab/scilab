@@ -59,9 +59,6 @@
       variables, the corresponding <link linkend="graphics_entities">graphics_entities</link> are drawn.
     </para>
     <para>
-      Since Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also drawn.
-    </para>
-    <para>
       <literal>load(filename)</literal> loads the variables saved in file
       given by its path <literal>filename</literal>.
     </para>
@@ -74,9 +71,8 @@
       <literal>load(fd,'x','y')</literal> loads only variables
       <literal>x,y</literal>.
     </para>
-    <para>Even if the binary file format has changed with 2.5 version of
-      Scilab, <literal>load(filename,...)</literal> is able to read old format
-      files.
+    <para>
+      The change of format between the family 5 and 6 of Scilab has been decided because the 5 format is undocumented, not specified and hard to read. SOD (Scilab 6 default format) is fully documented and easy to read through HDF5 libraries or applications.
     </para>
     <para>Note that the written file is portable to other operating systems
       and architectures (little and big endian).
@@ -85,11 +81,20 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
+// Binary format readable up to Scilab 5 family
 a=eye(2,2);b=ones(a);
 save('vals.dat',a,b);
 clear a
 clear b
 load('vals.dat','a','b');
+
+// Binary format readable by Scilab 5.4.X and Scilab 6 family
+a=eye(2,2);b=ones(a);
+save("val.sod", "a", "b");
+clear a
+clear b
+load("val.sod", "a", "b");
+
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -114,5 +119,27 @@ load('vals.dat','a','b');
         <link linkend="mopen">mopen</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.0.0</revnumber>
+        <revremark>
+          All <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also loaded by this function.
+        </revremark>
+      </revision>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              The load function is able to handle both Scilab 5 and SOD (Scilab 6 format) by default.
+            </listitem>
+            <listitem>The Scilab 5.X format is deprecated and will be removed with Scilab 6.</listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>
