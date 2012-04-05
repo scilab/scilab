@@ -14,35 +14,6 @@
 
 package org.scilab.modules.graphic_export;
 
-import java.lang.reflect.Method;
-
-import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
-import org.scilab.modules.commons.ScilabCommonsUtils;
-import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-
-import java.awt.Graphics2D;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-
-import java.io.*;
-import org.apache.batik.svggen.SVGGeneratorContext;
-import org.apache.batik.svggen.SVGGraphics2D;
-import org.apache.batik.dom.GenericDOMImplementation;
-
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-
 /**
  * Static class used to create file export of graphic figures
  * @author Jean-Baptiste Silvy

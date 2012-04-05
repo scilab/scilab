@@ -64,18 +64,7 @@ public interface Canvas extends Dockable {
 	  * @param blue blue channel
 	  */
 	 void setBackgroundColor(double red, double green, double blue);
-	 
-	 /**
-	  * Create an interactive selection rectangle and return its pixel coordinates
-	  * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
-	  *                or a sequence of press-release
-	  * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
-	  * @param initialRect if not null specify the initial rectangle to draw
-	  * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
-	  * @return Scilab code of the pressed button
-	  */
-	 int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
-	 
+	 	 
 	 /**
 	  * Disable the canvas befor closing
 	  */

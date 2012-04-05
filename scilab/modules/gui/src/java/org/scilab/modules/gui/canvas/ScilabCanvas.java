@@ -191,19 +191,6 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
-	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
-	 *                or a sequence of press-release
-	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
-	 * @param initialRect if not null specify the initial rectangle to draw
-	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
-	 * @return Scilab code of the pressed button
-	 */
-	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-		return ScilabBridge.rubberBox(this, isClick, isZoom, initialRect, endRect);
-	}
-	
-	/**
 	  * Disable the canvas before closing
 	  */
 	public void close() {

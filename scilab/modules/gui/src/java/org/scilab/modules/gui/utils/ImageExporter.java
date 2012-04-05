@@ -14,9 +14,6 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.Image;
 
-import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-
 
 /**
  * Class specialized in exporting graphic rendering into an image.
@@ -38,17 +35,20 @@ public final class ImageExporter {
 	 * @return copy of the OpenGL canvas of the figure or null if an error occured
 	 */
 	public static Image imageExport(int figureIndex) {
+        /*
 		DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
-		
+
 		if (exportedFig == null) {
 			// figure no longer exists
 			return null;
-		}	
-	
+		}
+
 		ImageExportRenderer exporter = new ImageExportRenderer();
-		
+
 		// export canvas
 		return exporter.exportToImage(exportedFig.getRenderingTarget());
+		*/
+        return null;
 	}
 	
 }

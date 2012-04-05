@@ -25,9 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
@@ -282,8 +280,5 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         SimpleTab parentTab = (SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, c);
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
-        ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);
-        exportOptionWindow.displayOptionWindow(parentTab);
-        exportOptionWindow.landscapePortraitOption();
     }
 }

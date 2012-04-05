@@ -16,27 +16,6 @@
 
 package org.scilab.modules.gui.bridge.window;
 
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.rmi.server.UID;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
-
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
@@ -61,9 +40,27 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciDockingListener;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.SimpleWindow;
-import org.scilab.modules.renderer.utils.RenderingCapabilities;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.rmi.server.UID;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -220,7 +217,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     /**
      * Draws a swing Scilab window
-     * @see org.scilab.modules.gui.UIElement#draw()
+     * @see org.scilab.modules.gui.uielement.UIElement#draw()
      */
     @Override
     public void draw() {
@@ -270,7 +267,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Gets the dimensions (width and height) of a swing Scilab window
      * @return the dimensions of the window
-     * @see org.scilab.modules.gui.UIElement#getDims()
+     * @see org.scilab.modules.gui.uielement.UIElement#getDims()
      */
     @Override
     public Size getDims() {
@@ -280,18 +277,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets the dimensions (width and height) of a swing Scilab window
      * @param newWindowSize the dimensions to set to the window
-     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
     @Override
     public void setDims(Size newWindowSize) {
         //if (!SwingUtilities.isEventDispatchThread()) {
         if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
-            // get the greatest size we can use
-            int[] maxSize = RenderingCapabilities.getMaxWindowSize();
-
-            // make suze size is not greater than the max size
-            Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
-                                               Math.min(newWindowSize.getHeight(), maxSize[1]));
+            Dimension finalDim = new Dimension(newWindowSize.getWidth(), newWindowSize.getHeight());
 
             setSize(finalDim);
             // validate so the new values are taken into account immediately
@@ -303,7 +295,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab window
      * @return the position of the window
-     * @see org.scilab.modules.gui.UIElement#getPosition()
+     * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
     @Override
     public Position getPosition() {
@@ -313,7 +305,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab window
      * @param newWindowPosition the position to set to the window
-     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
     @Override
     public void setPosition(Position newWindowPosition) {
@@ -327,7 +319,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Gets the title of a swing Scilab window
      * @return the title of the window
-     * @see java.awt.Frame#getTitle(java.lang.String)
+     * @see javax.swing.JFrame#getTitle()
      */
     @Override
     public String getTitle() {
@@ -380,7 +372,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     /**
      * Remove a Scilab tab from a Scilab window
-     * @param tab the Scilab tab to remove from the Scilab window
+     * @param tabs the Scilab tabs to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
     public void removeTabs(SwingScilabTab[] tabs) {
@@ -428,7 +420,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets a Scilab MenuBar to a Scilab window
      * @param newMenuBar the Scilab MenuBar to add to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+     * @see org.scilab.modules.gui.window.Window#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
     @Override
     public void addMenuBar(MenuBar newMenuBar) {
@@ -452,7 +444,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets a Scilab ToolBar to a Scilab window
      * @param newToolBar the Scilab ToolBar to set to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+     * @see org.scilab.modules.gui.window.Window#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
     @Override
     public void addToolBar(ToolBar newToolBar) {
@@ -481,7 +473,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets a Scilab InfoBar to a Scilab window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+     * @see org.scilab.modules.gui.window.Window#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
      */
     @Override
     public void addInfoBar(TextBox newInfoBar) {

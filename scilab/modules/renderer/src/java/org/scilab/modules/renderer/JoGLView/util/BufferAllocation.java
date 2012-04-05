@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.util;
 import com.jogamp.opengl.util.GLBuffers;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -78,6 +79,7 @@ public final class BufferAllocation {
      * Check if the java heap space have enough memory.
      * @param length the memory needed (in bytes).
      * @throws OutOfMemoryException if there was not enough memory.
+     * @return a byte buffer of given length.
      */
     private static void haveFreeMemory(int length) throws OutOfMemoryException {
         final long max = Runtime.getRuntime().maxMemory();

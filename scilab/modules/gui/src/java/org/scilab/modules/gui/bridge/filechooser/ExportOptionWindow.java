@@ -30,7 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.graphic_export.ExportRenderer;
+import org.scilab.modules.graphic_export.ExportParams;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
@@ -144,11 +144,10 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
             String figId = exportData.getFigureId();
             String fileName = exportData.getExportName();
-            int fileType = ExportRenderer.types.get(exportData.getExportExtension());
-            int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportRenderer.LANDSCAPE : ExportRenderer.PORTRAIT;
+            int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String err = FileExporter.fileExport(figId, fileName, fileType, 1f, orientation);// 1f is the jpeg quality compression and it is useless here
+            String err = FileExporter.fileExport(figId, fileName, exportData.getExportExtension(), 1f, orientation);// 1f is the jpeg quality compression and it is useless here
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
             if (err.length() != 0) {
