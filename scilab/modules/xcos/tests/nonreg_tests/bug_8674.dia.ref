@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH XCOS -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 8674 -->
 //
@@ -28,4 +29,4 @@ endfunction
 funcprot(prot);
 %cpr = xcos_simulate(scs_m, 4);
  
- The 'V' variable does not exist.   
+ La variable 'V' n'existe pas.   
