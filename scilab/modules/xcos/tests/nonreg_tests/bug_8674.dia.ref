@@ -29,4 +29,4 @@ endfunction
 funcprot(prot);
 %cpr = xcos_simulate(scs_m, 4);
  
- La variable 'V' n'existe pas.   
+ The 'V' variable does not exist.   
