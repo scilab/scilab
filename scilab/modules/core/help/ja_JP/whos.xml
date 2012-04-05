@@ -19,7 +19,7 @@ whos -name nam</synopsis>
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>指定する変数型の名前 (typeof参照)</para>
+          <para>指定する変数型の名前 (<literal>typeof</literal>参照)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

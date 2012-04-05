@@ -154,7 +154,18 @@
   <refsection>
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
-// GMRES call x=gmres(A,b);
+A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+[x,flag,err,iter,res] = gmres(A,b);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

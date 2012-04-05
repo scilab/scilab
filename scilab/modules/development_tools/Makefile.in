@@ -111,9 +111,11 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" \
+am__installdirs = "$(DESTDIR)$(libdevelopment_tools_la_datadir)" \
+	"$(DESTDIR)$(libdevelopment_tools_la_etcdir)" \
 	"$(DESTDIR)$(libdevelopment_tools_la_rootdir)"
-DATA = $(libdevelopment_tools_la_etc_DATA) \
+DATA = $(libdevelopment_tools_la_data_DATA) \
+	$(libdevelopment_tools_la_etc_DATA) \
 	$(libdevelopment_tools_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -131,7 +133,6 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
-BSH = @BSH@
 CC = @CC@
 CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
@@ -198,7 +199,6 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
-JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -209,7 +209,7 @@ JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
-JUNIT = @JUNIT@
+JUNIT4 = @JUNIT4@
 LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
@@ -268,7 +268,6 @@ PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PYTHON = @PYTHON@
-QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -291,7 +290,6 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -378,6 +376,9 @@ libdevelopment_tools_la_root_DATA = license.txt
 #### development_tools : init scripts #### 
 libdevelopment_tools_la_etcdir = $(mydatadir)/etc
 libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_tools.start
+#### development_tools : test level data file #### 
+libdevelopment_tools_la_datadir = $(mydatadir)/data
+libdevelopment_tools_la_data_DATA = data/test_run_level.xml
 MACROSDIRSEXT = macros/assert
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -483,6 +484,24 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libdevelopment_tools_la_dataDATA: $(libdevelopment_tools_la_data_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdevelopment_tools_la_datadir)" || $(MKDIR_P) "$(DESTDIR)$(libdevelopment_tools_la_datadir)"
+	@list='$(libdevelopment_tools_la_data_DATA)'; test -n "$(libdevelopment_tools_la_datadir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libdevelopment_tools_la_datadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libdevelopment_tools_la_datadir)" || exit $$?; \
+	done
+
+uninstall-libdevelopment_tools_la_dataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdevelopment_tools_la_data_DATA)'; test -n "$(libdevelopment_tools_la_datadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libdevelopment_tools_la_datadir)'; $(am__uninstall_files_from_dir)
 install-libdevelopment_tools_la_etcDATA: $(libdevelopment_tools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libdevelopment_tools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libdevelopment_tools_la_etcdir)"
@@ -561,7 +580,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" "$(DESTDIR)$(libdevelopment_tools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdevelopment_tools_la_datadir)" "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" "$(DESTDIR)$(libdevelopment_tools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -615,6 +634,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
+	install-libdevelopment_tools_la_dataDATA \
 	install-libdevelopment_tools_la_etcDATA \
 	install-libdevelopment_tools_la_rootDATA
 
@@ -660,7 +680,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
+uninstall-am: uninstall-libdevelopment_tools_la_dataDATA \
+	uninstall-libdevelopment_tools_la_etcDATA \
 	uninstall-libdevelopment_tools_la_rootDATA
 
 .MAKE: check-am install-am install-strip
@@ -672,13 +693,15 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libdevelopment_tools_la_etcDATA \
+	install-info-am install-libdevelopment_tools_la_dataDATA \
+	install-libdevelopment_tools_la_etcDATA \
 	install-libdevelopment_tools_la_rootDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	uninstall uninstall-am \
+	uninstall-libdevelopment_tools_la_dataDATA \
 	uninstall-libdevelopment_tools_la_etcDATA \
 	uninstall-libdevelopment_tools_la_rootDATA
 

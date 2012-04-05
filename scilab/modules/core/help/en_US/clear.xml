@@ -5,12 +5,26 @@
   </info>
   <refnamediv>
     <refname>clear</refname>
-    <refpurpose> kills variables</refpurpose>
+    <refpurpose>kills variables</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>clear a</synopsis>
+    <synopsis>
+      clear a b c
+      clear('a','b','c')
+    </synopsis>
   </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>a,b,c...</term>
+        <listitem>
+          <para>variables of any type and size, but not protected</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection>
     <title>Description</title>
     <para>
@@ -25,8 +39,13 @@
       the percent prefix.
     </para>
     <para>
-      Note the particular syntax <literal>clear a</literal> and not <literal>clear(a)</literal>. Note also
-      that <literal>a=[]</literal> does not kill <literal>a</literal> but sets <literal>a</literal> to an empty matrix.
+      Note the particular syntax <literal>clear a</literal> and <literal>clear('a')</literal>  
+      and not <literal>clear(a)</literal>. Note also that <literal>a=[]</literal> does not kill 
+      <literal>a</literal> but sets <literal>a</literal> to an empty matrix.
+    </para>
+    <para>
+      The command <literal>clear</literal> can kill nonexistent variables, i. e. 
+      <literal>clear</literal> kills nonexistent variables as if they exist.
     </para>
   </refsection>
   <refsection role="see also">

@@ -3267,7 +3267,7 @@ char *ArgPosition(int i)
     }
     else
     {
-        sprintf(arg_position, _("argument number %d"), i);
+        sprintf(arg_position, _("argument #%d"), i);
     }
     return arg_position;
 }
@@ -3289,7 +3289,7 @@ char *ArgsPosition(int i, int j)
         else
         {
             tmp_buffer_1 = CharPosition(i - 1);
-            sprintf(arg_position, _("%s argument and argument %d"), tmp_buffer_1, j);
+            sprintf(arg_position, _("%s argument and argument #%d"), tmp_buffer_1, j);
             FREE(tmp_buffer_1);
         }
     }
@@ -3298,11 +3298,11 @@ char *ArgsPosition(int i, int j)
         if (j > 0 && j <= 4)
         {
             tmp_buffer_1 = CharPosition(j - 1);
-            sprintf(arg_position, _("%s argument and argument %d"), tmp_buffer_1, i);
+            sprintf(arg_position, _("%s argument and argument #%d"), tmp_buffer_1, i);
             FREE(tmp_buffer_1);
         }
         else
-            sprintf(arg_position, _("arguments %d and %d"), i, j);
+            sprintf(arg_position, _("arguments #%d and #%d"), i, j);
     }
     return arg_position;
 }

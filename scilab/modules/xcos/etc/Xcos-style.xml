@@ -711,6 +711,9 @@
     <add as="displayedLabel" value="DEMUX"/>
     <add as="spacing" value="2"/>
   </add>
+  <add as="SCALAR2VECTOR" extend="blockWithLabel">
+    <add as="displayedLabel" value="SCALAR2VECTOR"/>
+  </add>
   <!-- COMMONLY USED BLOCKS -->
   <add as="OUT_f" extend="blockWithLabel">
     <add as="shape" value="hexagon"/>

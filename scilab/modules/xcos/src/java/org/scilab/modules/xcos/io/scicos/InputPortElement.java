@@ -29,13 +29,12 @@ import org.scilab.modules.xcos.port.input.InputPort;
 
 /**
  * Perform an input port transformation between Scicos and Xcos.
- * 
+ *
  * On this element we doesn't validate the Scicos values has they have been
  * already checked on the {@link BlockElement}.
  */
 public class InputPortElement extends AbstractElement<InputPort> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block",
-            "graphics", "model", "gui", "doc");
+    private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
 
     private static final int GRAPHICS_INDEX = 1;
     private static final int MODEL_INDEX = 2;
@@ -61,7 +60,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Default constructor
-     * 
+     *
      * @param element
      *            the Scicos block parameters used by this element.
      */
@@ -80,7 +79,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Decode Scicos element into the block.
-     * 
+     *
      * @param element
      *            the scicos element
      * @param into
@@ -92,8 +91,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
      *      java.lang.Object)
      */
     @Override
-    public InputPort decode(ScilabType element, InputPort into)
-            throws ScicosFormatException {
+    public InputPort decode(ScilabType element, InputPort into) throws ScicosFormatException {
 
         InputPort port;
         data = (ScilabMList) element;
@@ -115,7 +113,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Allocate a port according to the explicit/implicit values.
-     * 
+     *
      * @return a new typed port
      */
     private InputPort allocatePort() {
@@ -145,14 +143,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
             return new ExplicitInputPort();
         }
 
-        final boolean isColumnDominant = inImplicit.getHeight() >= inImplicit
-                .getWidth();
+        final boolean isColumnDominant = inImplicit.getHeight() >= inImplicit.getWidth();
         final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
         final String[][] inimpl = inImplicit.getData();
 
         // can we safely access the indexed data ?
-        final boolean isSet = indexes[0] < inimpl.length
-                && indexes[1] < inimpl[indexes[0]].length;
+        final boolean isSet = indexes[0] < inimpl.length && indexes[1] < inimpl[indexes[0]].length;
 
         /*
          * when the type is set, create a new port instance; create an explicit
@@ -172,17 +168,14 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Fill the port with the parameters from the model structure.
-     * 
+     *
      * @param port
      *            the target instance
      */
     private void decodeModel(InputPort port) {
-        ScilabDouble dataLines = (ScilabDouble) model
-                .get(MODEL_IN_DATALINE_INDEX);
-        ScilabDouble dataColumns = (ScilabDouble) model
-                .get(MODEL_IN_DATACOL_INDEX);
-        ScilabDouble dataType = (ScilabDouble) model
-                .get(MODEL_IN_DATATYPE_INDEX);
+        ScilabDouble dataLines = (ScilabDouble) model.get(MODEL_IN_DATALINE_INDEX);
+        ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_IN_DATACOL_INDEX);
+        ScilabDouble dataType = (ScilabDouble) model.get(MODEL_IN_DATATYPE_INDEX);
 
         // The number of row of the port
         int nbLines;
@@ -223,32 +216,32 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Fill the port with the parameters from the graphics structure.
-     * 
+     *
      * @param port
      *            the target instance
      */
     private void decodeGraphics(InputPort port) {
         // protection against previously stored blocks
-        if (graphics.size() <= GRAPHICS_INSTYLE_INDEX
-                || graphics.get(GRAPHICS_INSTYLE_INDEX).isEmpty()) {
+        if (graphics.size() <= GRAPHICS_INSTYLE_INDEX || isEmptyField(graphics.get(GRAPHICS_INSTYLE_INDEX))) {
             return;
         }
 
-        final ScilabString styles = (ScilabString) graphics
-                .get(GRAPHICS_INSTYLE_INDEX);
-        if (styles.getData() != null && 0 < styles.getHeight()
-                && alreadyDecodedCount < styles.getWidth()) {
+        final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
+
+        final boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
+        final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+
+        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
             final String style;
 
-            style = styles.getData()[0][alreadyDecodedCount];
-            port.setStyle(new StyleMap(port.getStyle()).putAll(style)
-                    .toString());
+            style = styles.getData()[indexes[0]][indexes[1]];
+            port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
         }
     }
 
     /**
      * Test if the current instance can be used to decode the element
-     * 
+     *
      * @param element
      *            the current element
      * @return true, if the element can be decoded, false otherwise
@@ -259,13 +252,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
         data = (ScilabMList) element;
 
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
-        return type.equals(DATA_FIELD_NAMES.get(0))
-                && getNumberOfInputPort() > alreadyDecodedCount;
+        return type.equals(DATA_FIELD_NAMES.get(0)) && getNumberOfInputPort() > alreadyDecodedCount;
     }
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -297,14 +289,14 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Encode the data into the model fields.
-     * 
+     *
      * This method fills :
      * <ul>
      * <li>Block.model.in</li>
      * <li>Block.model.in2</li>
      * <li>Block.model.intyp</li>
      * </ul>
-     * 
+     *
      * @param from
      *            the source data
      */
@@ -337,13 +329,13 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
     /**
      * Encode the data into the graphic fields.
-     * 
+     *
      * This method fills :
      * <ul>
      * <li>Block.graphics.pin</li>
      * <li>Block.graphics.in_implicit</li>
      * </ul>
-     * 
+     *
      * @param from
      *            the source data
      */
@@ -358,8 +350,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
         values = sciValues.getRealPart();
         if (from.getEdgeCount() == 1) {
             // only set on valid connection
-            values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0))
-                    .getOrdering();
+            values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
         } else {
             values[alreadyDecodedCount][0] = 0.0;
         }

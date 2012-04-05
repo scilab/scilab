@@ -355,7 +355,6 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
-BSH = @BSH@
 CC = @CC@
 CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
@@ -422,7 +421,6 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
-JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -433,7 +431,7 @@ JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
-JUNIT = @JUNIT@
+JUNIT4 = @JUNIT4@
 LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
@@ -492,7 +490,6 @@ PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PYTHON = @PYTHON@
-QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -515,7 +512,6 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -604,7 +600,7 @@ bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	$(am__append_1)
 scilab_bin_LDFLAGS = $(am__append_2)
 scilab_cli_bin_LDFLAGS = 
-scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes
+scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes -I$(top_srcdir)/modules/console/includes
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -615,7 +611,7 @@ scilab_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/console/src/c/others/mainscic.c
-scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
+scilab_cli_bin_CFLAGS = -DWITHOUT_GUI $(scilab_bin_CFLAGS)
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
@@ -625,7 +621,7 @@ LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_4) $(am__append_5)
 
 # check is performed with scilab
-TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab -nwni -nb -noatomsautoload -f
+TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
@@ -1878,7 +1874,7 @@ distclean-generated:
 # For each module, build and call Java unitary tests
 # If fails, stops the call
 check-java:
-	@echo "-- Launch all TestNG (Java) unitary tests"; \
+	@echo "-- Launch all Junit (Java) unitary tests"; \
 	MASK="$(top_srcdir)/modules/*/tests/java/"; \
 	MODULES=`ls -d $$MASK`; \
 	for M in $$MODULES; do \

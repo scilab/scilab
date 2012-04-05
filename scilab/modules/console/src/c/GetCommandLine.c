@@ -123,6 +123,7 @@ static void getCommandLine(void)
     {
         /* Call Term Management for NW and NWNI to get a string */
         __CommandLine = getCmdLine();
+
     }
 }
 
@@ -226,14 +227,14 @@ void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 #endif
     {
         /* remove newline character if there */
-        if (buffer[*len_line - 1] == '\n')
+        if (__CommandLine != NULL)
         {
             /* read a line into the buffer, but not too
              * big */
-            *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-            *len_line = (int)strlen(buffer);
+            *eof = (fgets(__CommandLine, *buf_size, stdin) == NULL);
+            *len_line = (int)strlen(__CommandLine);
             /* remove newline character if there */
-            if (buffer[*len_line - 1] == '\n')
+            if (__CommandLine[*len_line - 1] == '\n')
             {
                 (*len_line)--;
             }

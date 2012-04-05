@@ -18,11 +18,11 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>getdebuginfo get information about Scilab to debug.</para>
-    <para>dynamic_info = getdebuginfo(); returns information about your
+    <para><literal>getdebuginfo</literal> gets information about Scilab to debug.</para>
+    <para><literal>dynamic_info = getdebuginfo();</literal> returns information about your
       system.
     </para>
-    <para>[dynamic_info,static_info] = getdebuginfo(); returns information
+    <para><literal>[dynamic_info,static_info] = getdebuginfo();</literal> returns information
       about your system and about Scilab.
     </para>
   </refsection>
@@ -31,6 +31,9 @@
     <simplelist type="inline">
       <member>
         <link linkend="getversion">getversion</link>
+      </member>
+      <member>
+        <link linkend="getos">getos</link>
       </member>
     </simplelist>
   </refsection>

@@ -23,7 +23,7 @@ function test_run_level(severity)
     tests = xmlAsText(xmlXPath(modules(i),"test"));
     
     // Run the test
-    status = test_run(modules(i).attributes.name,  tests, ["no_check_error_output","short_summary"]);
+    status = test_run(modules(i).attributes.name,  tests, ["no_check_error_output","short_summary","show_diff","show_error"]);
     
     if (status == %f) then
       error("At least one error has been detected. Failing all tests.");

@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>with_macros_source</refname>
-    <refpurpose>Checks if macros source are installed</refpurpose>
+    <refpurpose>Checks if macros sources are installed</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -24,7 +24,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal> if macros source are installed or
+    <para>Returns <literal>%t</literal> if macros sources are installed or
     <literal>%f</literal> if not.</para>
   </refsection>
 </refentry>

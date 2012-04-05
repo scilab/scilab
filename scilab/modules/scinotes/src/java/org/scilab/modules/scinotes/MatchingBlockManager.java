@@ -192,7 +192,7 @@ public class MatchingBlockManager {
     /**
      * Remove the highlights if they exist.
      */
-    private void update() {
+    private synchronized void update() {
         if (first != null) {
             highlighter.removeHighlight(first);
             first = null;
@@ -208,7 +208,7 @@ public class MatchingBlockManager {
      * @param tok the type of the token at the position pos in the document
      * @param pos the positon in the doc
      */
-    public void searchMatchingBlock(int tok, int pos) {
+    public synchronized void searchMatchingBlock(int tok, int pos) {
         MatchingBlockScanner.MatchingPositions mpos = null;
         if (ScilabLexerConstants.isMatchable(tok)) {
             mpos = scanner.getMatchingBlock(pos, lr);

@@ -379,7 +379,7 @@
     <programlisting role="example"> 
       # Lançons Scilab en mode profilage sans qu'un gdb soit lancé à chaque SIGSEGV.
       # On est sous Bash
-      export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
+      export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
       scilab -profiling
       
       # Lançons Scilab en mode debug sans s'arrêter à chaque SIGSEGV

@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>resume</refname>
-    <refpurpose> return or resume execution and copy some local variables</refpurpose>
+    <refpurpose>return or resume execution and copy some local variables</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -17,9 +17,15 @@
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>x</term>
+        <term>x1,..,xn</term>
         <listitem>
-          <para>...</para>
+          <para>variables in calling environnement</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a1,..,an</term>
+        <listitem>
+          <para>local variables</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -28,13 +34,13 @@
     <title>Description</title>
     <para>
       In a function <literal>resume</literal> stops the execution of the function,
-      <literal>[..]=resume(..)</literal> stops the execution of the function and put the
+      <literal>[x1,..,xn]=resume(a1,..,an)</literal> stops the execution of the function and put the
       local variables <literal>ai</literal> in calling environment under names
       <literal>xi</literal>.
     </para>
     <para>
       In <literal>pause</literal> mode, it allows to return to lower level
-      <literal>[..]=resume(..)</literal> returns to lower level and put the local variables
+      <literal>[x1,..,xn]=resume(a1,..,an)</literal> returns to lower level and put the local variables
       <literal>ai</literal> in calling environment under names <literal>xi</literal>.
     </para>
     <para>
@@ -54,6 +60,18 @@
       </member>
       <member>
         <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="quit">quit</link>
+      </member>
+      <member>
+        <link linkend="return">return</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
       </member>
     </simplelist>
   </refsection>

@@ -18,15 +18,17 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>perl('perlfile') calls the Perl script perlfile, using the appropriate
-      operating system Perl executable.
+    <para>
+      <literal>perl('perlfile')</literal> calls the Perl script <literal>perlfile</literal>, using 
+      the appropriate operating system Perl executable.
     </para>
-    <para>perl('perlfile',arg1,arg2,...) calls the Perl script perlfile, using
+    <para>
+      <literal>perl('perlfile',arg1,arg2,...)</literal> calls the Perl script perlfile, using
       the appropriate operating system Perl executable, and passes the arguments
-      arg1, arg2, and so on, to perlfile.
+      <literal>arg1</literal>, <literal>arg2</literal>, and so on, to <literal>perlfile</literal>.
     </para>
-    <para>result = perl(...) returns the results of attempted Perl call to
-      result.
+    <para><literal>result = perl(...)</literal> returns the results of attempted Perl call to
+      <literal>result</literal>.
     </para>
   </refsection>
   <refsection role="see also">

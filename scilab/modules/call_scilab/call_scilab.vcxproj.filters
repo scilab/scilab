@@ -87,5 +87,8 @@
     <None Include="call_scilab.iss" />
     <None Include="sci_gateway\call_scilab_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

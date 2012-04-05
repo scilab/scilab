@@ -34,9 +34,3 @@ vGetPointerFromDoubleComplex
 oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 vFreeDoubleComplexFromPointer
-;
-;core_f
-;
-folhp_
-find_
-;

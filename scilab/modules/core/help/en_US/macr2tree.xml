@@ -9,13 +9,13 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>t=macr2tree(function-name)</synopsis>
+    <synopsis>t=macr2tree(function_name)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>function-name</term>
+        <term>function_name</term>
         <listitem>
           <para>a Scilab macro</para>
         </listitem>
@@ -31,7 +31,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      This primitive converts a compiled Scilab function <literal>function-name</literal>
+      This primitive converts a compiled Scilab function <literal>function_name</literal>
       into a tree (nested tlists)  which codes the internal representation of
       the function. For use with <literal>tree2code</literal>.
     </para>

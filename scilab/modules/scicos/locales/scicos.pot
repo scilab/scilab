@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-03-07 18:20+0100\n"
+"Revision-Date: 2012-03-30 07:05+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1800,60 +1800,6 @@ msgid "%s: Error: A scifunc block has not been defined."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass1.sci, line: 61
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 66
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 77
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 101
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 107
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 128
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 141
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 199
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 255
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
-
-#
 # File: macros/scicos_scicos/c_pass2.sci, line: 2060
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1942,45 +1888,9 @@ msgid "Sorry file name not defined in "
 msgstr ""
 
 #
-# File: macros/scicos_scicos/scicos_flat.sci, line: 118
-#, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 163
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 170
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 264
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 317
+# File: macros/scicos_scicos/scicos_flat.sci, line: 315
 #, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 380
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 391
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #

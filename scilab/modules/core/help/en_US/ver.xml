@@ -36,12 +36,26 @@
   <refsection>
     <title>Description</title>
     <para>Version information for Scilab.</para>
-    <para>returns a matrix of string with information about Scilab.</para>
+    <para>Returns a matrix of string with information about Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-ver
+r = ver()
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getversion">getversion</link>
+      </member>
+      <member>
+        <link linkend="getdebuginfo">getdebuginfo</link>
+      </member>
+      <member>
+        <link linkend="getos">getos</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

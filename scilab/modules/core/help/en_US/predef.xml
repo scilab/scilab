@@ -25,7 +25,7 @@
       the <literal>who('get')</literal>.
     </para>
     <para>
-      <literal>predef()</literal> gets the number of protected variables
+      <literal>predef()</literal> gets the number of protected variables.
     </para>
     <para>
       <literal>predef('a[ll]')</literal> sets all the  variables protected, it also return
@@ -44,7 +44,7 @@
     </para>
   </refsection>
   <refsection>
-    <title>Remarks:</title>
+    <title>Remarks</title>
     <para>
       Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <literal>predef('all')</literal>.
     </para>

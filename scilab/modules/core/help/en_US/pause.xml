@@ -16,7 +16,7 @@
       the level of the <literal>pause</literal> (e.g. <literal>-1-&gt;</literal>). The user is
       then in a new workspace in which all the lower-level variables
       (and in particular all the variable of the function) are available.
-      To return to the calling workspace enter <literal>"return"</literal>
+      To return to the calling workspace enter <literal>"return"</literal>.
     </para>
     <para>
       In this mode, <literal>[...]=return(...) </literal>

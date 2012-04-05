@@ -11,7 +11,7 @@
  */
 package org.scilab.tests.modules.types;
 
-import org.testng.annotations.*;
+import org.junit.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,7 +34,7 @@ import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testSerialization {
 
-    @BeforeTest
+    @Before
     public void loadLibrary() {
         if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
             System.loadLibrary("scilab");
@@ -53,7 +53,7 @@ public class testSerialization {
 
         FileOutputStream fos = new FileOutputStream(getReferenceDataPath() + to);
 
-        ObjectOutputStream oos= new ObjectOutputStream(fos);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
         try {
             oos.writeObject(a);
             oos.flush();
@@ -72,7 +72,7 @@ public class testSerialization {
         try {
             FileInputStream fis = new FileInputStream(getReferenceDataPath() + filename);
 
-            ObjectInputStream ois= new ObjectInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(fis);
             try {
                 a = (ScilabType) ois.readObject();
             } finally {
@@ -82,41 +82,41 @@ public class testSerialization {
                     fis.close();
                 }
             }
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch(ClassNotFoundException cnfe) {
+        } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
         }
         return a;
 
     }
 
-    private String scilabDoubleFile="double.data";
+    private String scilabDoubleFile = "double.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeDoubleFileReference() throws IOException {
-        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aMatrix = new ScilabDouble(a);
         writeReference(aMatrix, scilabDoubleFile);
     }
 
-    private String scilabDoubleComplexFile="double.complex.data";
-// Uncomment to regenerate a new reference file
+    private String scilabDoubleComplexFile = "double.complex.data";
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeDoubleComplexFileReference() throws IOException {
-        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
-        double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
-        ScilabDouble aMatrix = new ScilabDouble(a,aImg);
+        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
+        double [][]aImg = {{210.2, 220.0, 420.0, 390.0}, {230.2, 240.0, 440.0, 400.0}};
+        ScilabDouble aMatrix = new ScilabDouble(a, aImg);
         writeReference(aMatrix, scilabDoubleComplexFile);
     }
 
-    private String scilabStringFile="string.data";
+    private String scilabStringFile = "string.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeStringFileReference() throws IOException {
-        String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};
+        String [][]a = {{"This", "is", "my", "string"}, {"and", "I want to", "compare", " them"}};
         ScilabString aMatrix = new ScilabString(a);
         writeReference(aMatrix, scilabStringFile);
     }
@@ -125,7 +125,7 @@ public class testSerialization {
     @Test
     public void readJavaSerializedDoubleTest() throws IOException {
 
-        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aMatrix = new ScilabDouble(a);
         assert aMatrix.equals(readFromFile(scilabDoubleFile)) == true;
     }
@@ -133,8 +133,8 @@ public class testSerialization {
     @Test
     public void readJavaSerializedComplexTest() throws IOException {
 
-        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
-        double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
+        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
+        double [][]aImg = {{210.2, 220.0, 420.0, 390.0}, {230.2, 240.0, 440.0, 400.0}};
 
         ScilabDouble aMatrix = new ScilabDouble(a, aImg);
         assert aMatrix.equals(readFromFile(scilabDoubleComplexFile)) == true;
@@ -144,18 +144,18 @@ public class testSerialization {
     @Test
     public void readJavaSerializedStringTest() throws IOException {
 
-        String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};
+        String [][]a = {{"This", "is", "my", "string"}, {"and", "I want to", "compare", " them"}};
         ScilabString aMatrix = new ScilabString(a);
         assert aMatrix.equals(readFromFile(scilabStringFile)) == true;
     }
 
-    private String scilabInt8File="Int8.data";
-    private String scilabInt8SignedFile="Int8.signed.data";
+    private String scilabInt8File = "Int8.data";
+    private String scilabInt8SignedFile = "Int8.signed.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt8FileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         writeReference(aMatrix, scilabInt8File);
     }
@@ -163,15 +163,15 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt8Test() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         assert aMatrix.equals(readFromFile(scilabInt8File)) == true;
     }
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt8SignedFileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         writeReference(aMatrix, scilabInt8SignedFile);
     }
@@ -179,18 +179,18 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt8SignedTest() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         assert aMatrix.equals(readFromFile(scilabInt8SignedFile)) == true;
     }
 
-    private String scilabInt16File="Int16.data";
-    private String scilabInt16SignedFile="Int16.signed.data";
+    private String scilabInt16File = "Int16.data";
+    private String scilabInt16SignedFile = "Int16.signed.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt16FileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         writeReference(aMatrix, scilabInt16File);
     }
@@ -198,15 +198,15 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt16Test() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         assert aMatrix.equals(readFromFile(scilabInt16File)) == true;
     }
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt16SignedFileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         writeReference(aMatrix, scilabInt16SignedFile);
     }
@@ -214,19 +214,19 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt16SignedTest() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         assert aMatrix.equals(readFromFile(scilabInt16SignedFile)) == true;
     }
 
 
-    private String scilabInt32File="Int32.data";
-    private String scilabInt32SignedFile="Int32.signed.data";
+    private String scilabInt32File = "Int32.data";
+    private String scilabInt32SignedFile = "Int32.signed.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt32FileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         writeReference(aMatrix, scilabInt32File);
     }
@@ -234,15 +234,15 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt32Test() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         assert aMatrix.equals(readFromFile(scilabInt32File)) == true;
     }
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt32SignedFileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         writeReference(aMatrix, scilabInt32SignedFile);
     }
@@ -250,18 +250,18 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt32SignedTest() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         assert aMatrix.equals(readFromFile(scilabInt32SignedFile)) == true;
     }
 
-    private String scilabInt64File="Int64.data";
-    private String scilabInt64SignedFile="Int64.signed.data";
+    private String scilabInt64File = "Int64.data";
+    private String scilabInt64SignedFile = "Int64.signed.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt64FileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         writeReference(aMatrix, scilabInt64File);
     }
@@ -269,15 +269,15 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt64Test() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         assert aMatrix.equals(readFromFile(scilabInt64File)) == true;
     }
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeInt64SignedFileReference() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         writeReference(aMatrix, scilabInt64SignedFile);
     }
@@ -285,16 +285,16 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedInt64SignedTest() throws IOException {
-        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]a = {{32, 42, 41}, {12, 13, 32}};
         ScilabInteger aMatrix = new ScilabInteger(a, false);
         assert aMatrix.equals(readFromFile(scilabInt64SignedFile)) == true;
     }
-    private String scilabBooleanFile="Boolean.data";
+    private String scilabBooleanFile = "Boolean.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeBooleanFileReference() throws IOException {
-        boolean [][]a={{true,false,true}, {true,true,true}};
+        boolean [][]a = {{true, false, true}, {true, true, true}};
         ScilabBoolean aMatrix = new ScilabBoolean(a);
         writeReference(aMatrix, scilabBooleanFile);
     }
@@ -302,14 +302,14 @@ public class testSerialization {
 
     @Test
     public void readJavaSerializedBooleanTest() throws IOException {
-        boolean [][]a={{true,false,true}, {true,true,true}};
+        boolean [][]a = {{true, false, true}, {true, true, true}};
         ScilabBoolean aMatrix = new ScilabBoolean(a);
         assert aMatrix.equals(readFromFile(scilabBooleanFile)) == true;
     }
 
-    private String scilabListFile="List.data";
+    private String scilabListFile = "List.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeListFileReference() throws IOException {
         ScilabList data = new ScilabList();
@@ -330,9 +330,9 @@ public class testSerialization {
         assert data.equals(readFromFile(scilabListFile)) == true;
     }
 
-    private String scilabTListFile="TList.data";
+    private String scilabTListFile = "TList.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeTListFileReference() throws IOException {
         ScilabTList data = new ScilabTList();
@@ -352,9 +352,9 @@ public class testSerialization {
 
         assert data.equals(readFromFile(scilabTListFile)) == true;
     }
-    private String scilabMListFile="MList.data";
+    private String scilabMListFile = "MList.data";
 
-// Uncomment to regenerate a new reference file
+    // Uncomment to regenerate a new reference file
     //@BeforeMethod
     public void writeMListFileReference() throws IOException {
         ScilabMList data = new ScilabMList();

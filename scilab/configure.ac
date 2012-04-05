@@ -1055,36 +1055,10 @@ the the JNI libraries."])],
         ANTLR=$PACKAGE_JAR_FILE
         AC_SUBST(ANTLR)
 
-        # Test NG (java unitary test)
-        AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
-        TESTNG=$PACKAGE_JAR_FILE
-        AC_SUBST(TESTNG)
-
-        # JCommander - dependency of TestNG >= 6
-        AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
-        JCOMMANDER=$PACKAGE_JAR_FILE
-
-        if test -z "$JCOMMANDER"; then
-                AC_JAVA_CHECK_PACKAGE([jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
-                JCOMMANDER=$PACKAGE_JAR_FILE
-        fi
-        AC_SUBST(JCOMMANDER)
-
-        # Qdox (parses declarations and Javadoc) - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
-        QDOX=$PACKAGE_JAR_FILE
-        AC_SUBST(QDOX)
-
-        # bsh (Java scripting environment) - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
-        BSH=$PACKAGE_JAR_FILE
-        AC_SUBST(BSH)
-
-        # Junit - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
-        JUNIT=$PACKAGE_JAR_FILE
-        AC_SUBST(JUNIT)
-
+        # Junit 4 (java unitary test)
+        AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        JUNIT4=$PACKAGE_JAR_FILE
+        AC_SUBST(JUNIT4)
 
     else
         AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1445,17 +1419,31 @@ ACX_LAPACK(
         AC_MSG_ERROR([Impossible to find the LAPACK library.])
         )
 
-AC_MSG_CHECKING([if ARPACK-ng is available])
+
+AC_ARG_WITH(arpack-ng,
+    AC_HELP_STRING([--without-arpack-ng],[Disable the interface to ARPACK-NG]))
+
+ARPACK_NG=no
+if test "$with_arpack_ng" != no; then
+   ARPACK_NG=yes
+   AC_MSG_CHECKING([if ARPACK-NG is available])
 echo ""
 ACX_ARPACK(
-        [AC_MSG_RESULT([arpack library found])],
+        [AC_MSG_RESULT([ARPACK-NG library found])],
         AC_MSG_ERROR([Impossible to find the ARPACK library. Please note that arpack was bundled with version prior to 5.4.0 and Scilab requires arpack-ng ( http://forge.scilab.org/index.php/p/arpack-ng/ ).])
         )
 
 CHECK_ARPACK_OK(
-[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)])],
+[AC_MSG_RESULT([Working ARPACK-NG library found (probably ARPACK-NG or a patched version of ARPACK)])],
 [AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
 ])
+else
+   AC_MSG_CHECKING([Skip ARPACK-NG detection])
+fi
+
+AM_CONDITIONAL(ARPACK_NG, test "$ARPACK_NG" != "no")
+
+
 #################
 ## UMFPACK
 #################
@@ -1647,8 +1635,8 @@ if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; 
    COMPILATION_TESTS=yes
 fi
 
-if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
-   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find TestNG"])
+if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
+   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find Junit4"])
    COMPILATION_TESTS=no
 fi
 
@@ -2143,7 +2131,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
-echo "  TestNG .............. = $TESTNG"
+echo "  Junit4 .............. = $JUNIT4"
 echo "  splint .............. = $SPLINT"
 
 echo ""

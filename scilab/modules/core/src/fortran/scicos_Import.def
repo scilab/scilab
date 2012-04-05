@@ -1,0 +1,7 @@
+	LIBRARY    scicos.dll
+
+
+EXPORTS
+; scicos
+cosdebug_
+

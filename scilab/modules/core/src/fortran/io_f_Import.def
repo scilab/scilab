@@ -1,0 +1,5 @@
+LIBRARY    io_f.dll
+
+
+EXPORTS
+intload_

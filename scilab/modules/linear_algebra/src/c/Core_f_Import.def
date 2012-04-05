@@ -1,0 +1,10 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+find_
+folhp_
+

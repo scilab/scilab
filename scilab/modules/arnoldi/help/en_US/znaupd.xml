@@ -15,7 +15,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,RWORKINFO] = znaupd(ID0,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,RWORK,INFO)</synopsis>
+    <synopsis>[IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,RWORK,INFO] = znaupd(ID0,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,RWORK,INFO)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>

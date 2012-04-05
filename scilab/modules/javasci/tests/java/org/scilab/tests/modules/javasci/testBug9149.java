@@ -7,12 +7,12 @@
  * you should have received as part of this distribution.  The terms
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- 
+
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.BufferedWriter;
@@ -40,7 +40,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.SwingUtilities; 
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,20 +49,20 @@ import javax.swing.JPanel;
 public class testBug9149 {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assertTrue(sci.open());
     }
 
-    @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
+    @Test( expected = ScilabErrorException.class)
     public void nonRegBug9149Working() throws NullPointerException, ScilabErrorException {
         assertEquals(sci.isGraphicOpened(), false);
         sci.execException("plot3d();");
@@ -71,10 +71,10 @@ public class testBug9149 {
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 
 }

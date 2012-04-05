@@ -1705,8 +1705,10 @@ public class XcosDiagram extends ScilabGraph {
                 final String title = getTitle();
                 if (title != null) {
                     /*
-                     * Escape file to handle not supported character in file name (may be Windows only)
-                     * see http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx
+                     * Escape file to handle not supported character in file
+                     * name (may be Windows only) see
+                     * http://msdn.microsoft.com/en
+                     * -us/library/windows/desktop/aa365247%28v=vs.85%29.aspx
                      */
                     final char[] regex = "<>:\"/\\|?*".toCharArray();
                     String escaped = title;
@@ -1738,9 +1740,10 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         /*
-         * If the file exists, ask for confirmation
+         * If the file exists, ask for confirmation if this is not the
+         * previously saved file
          */
-        if (writeFile.exists()) {
+        if (writeFile.exists() && !writeFile.equals(getSavedFile())) {
             final boolean overwrite = ScilabModalDialog.show(XcosTab.get(this), XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
                                       IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION;
 
@@ -2021,7 +2024,7 @@ public class XcosDiagram extends ScilabGraph {
                 /*
                  * Load has finished
                  */
-                if (f != null) {
+                if (f != null && filetype != null) {
                     postLoad(f);
                 }
                 XcosDiagram.this.info(XcosMessages.EMPTY_INFO);

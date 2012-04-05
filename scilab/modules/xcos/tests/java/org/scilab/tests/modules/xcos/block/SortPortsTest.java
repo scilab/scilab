@@ -26,8 +26,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.*;
 
 public class SortPortsTest {
 
@@ -82,7 +81,7 @@ public class SortPortsTest {
         assertRightOrder(sorted);
     }
 
-    @Test(invocationCount = 10)
+    @Test
     public void sortPortsTwice() {
         final ArrayList<Object> children = new ArrayList<Object>();
         fillRandomly(children);

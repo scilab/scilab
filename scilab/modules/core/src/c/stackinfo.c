@@ -12,7 +12,7 @@
  */
 #include <string.h>
 #ifdef _MSC_VER
-#include <windows.h>
+#include <windows.h> /* for MAXLONG32 on Win64 */
 #endif
 #ifdef HAVE_LIMITS_H
     #include <limits.h>

@@ -16,15 +16,9 @@ EXPORTS
  mtlbc_
  checkrhs_
  checklhs_
- funnam_
  getscalar_
  getsmat_
  checkval_
- cvname_
- indxgc_
- indxg_
  gettype_
- ref2val_
- setfunnam_ 
  crewimat_
  

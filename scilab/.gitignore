@@ -20,6 +20,7 @@ modules/*/build
 modules/jar
 modules/*/jar
 modules/*/test-output
+junit-report
 
 #
 # Documentation generation output files

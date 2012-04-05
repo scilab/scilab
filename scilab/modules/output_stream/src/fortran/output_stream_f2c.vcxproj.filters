@@ -158,6 +158,9 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\lapack.lib" />

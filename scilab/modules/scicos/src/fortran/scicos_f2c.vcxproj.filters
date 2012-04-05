@@ -177,6 +177,9 @@
     <None Include="elementary_functions_Import.def">
       <Filter>Imports</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

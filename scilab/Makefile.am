@@ -38,7 +38,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes -I$(top_srcdir)/modules/console/includes
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -52,7 +52,7 @@ scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI $(scilab_bin_CFLAGS)
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 
@@ -92,7 +92,7 @@ TARGETS_ALL+=check-java
 endif
 
 # check is performed with scilab
-TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab -nwni -nb -noatomsautoload -f
+TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
 all-local: $(TARGETS_ALL)
@@ -275,7 +275,7 @@ endif
 # For each module, build and call Java unitary tests
 # If fails, stops the call
 check-java:
-	@echo "-- Launch all TestNG (Java) unitary tests"; \
+	@echo "-- Launch all Junit (Java) unitary tests"; \
 	MASK="$(top_srcdir)/modules/*/tests/java/"; \
 	MODULES=`ls -d $$MASK`; \
 	for M in $$MODULES; do \

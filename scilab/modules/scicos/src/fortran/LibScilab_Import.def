@@ -20,8 +20,5 @@ createvar_
 putlhsvar_
 parse_
 isrecursioncalltofunction_
-allowptr_
-ref2val_
 callinterf_ 
-funs_
-isbyref_
+

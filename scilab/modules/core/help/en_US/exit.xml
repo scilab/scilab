@@ -20,23 +20,29 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>exit
+    <synopsis>
+      exit
       exit(n)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Description</title>
-    <para>Ends the current Scilab session</para>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>The exit status shall be n, if specified. Otherwise, the value
-            shall be zero.
-          </para>
+          <para>the exit status</para>
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Ends the current Scilab session.</para>
+    <para>
+      The exit status shall be <literal>n</literal>, if specified. Otherwise, the value 
+      shall be zero.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

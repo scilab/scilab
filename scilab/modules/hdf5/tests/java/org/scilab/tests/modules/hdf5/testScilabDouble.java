@@ -11,8 +11,7 @@ package org.scilab.tests.modules.hdf5;
  *
  */
 
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.junit.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -47,7 +46,7 @@ public class testScilabDouble {
 
     @Test
     public void testScalarHDF5() throws NullPointerException, HDF5Exception {
-        double a=42.;
+        double a = 42.;
         ScilabDouble scilabScalar = new ScilabDouble(a);
         String fileName = tempDir + "/scalarFromJava.h5";
         int fileId = H5Write.createFile(fileName);
@@ -86,7 +85,7 @@ public class testScilabDouble {
         Assert.assertEquals(data.isReal(), true);
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
-                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
+                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j], 1e-8);
             }
         }
         new File(fileName).delete();
@@ -117,8 +116,8 @@ public class testScilabDouble {
         H5Read.readDataFromFile(fileId, data);
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
-                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
-                Assert.assertEquals(imagPart[i][j], data.getImaginaryPart()[i][j]);
+                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j], 1e-8);
+                Assert.assertEquals(imagPart[i][j], data.getImaginaryPart()[i][j], 1e-8);
             }
         }
         new File(fileName).delete();

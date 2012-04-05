@@ -1,0 +1,16 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+intstr_
+isnum_
+iseye_
+factf_
+termf_
+atome_
+expsum_
+;
+

@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.scilab.modules.xcos.utils.XcosFileType;
-import org.testng.annotations.Test;
+import org.junit.*;
 
 /**
  * Test the {@link XcosFileType} class.
@@ -31,7 +31,7 @@ public class FileTypeTest {
         assert XcosFileType.getDefault() == XcosFileType.XCOS;
     }
 
-    @Test(dependsOnMethods = { "checkSupportedType" })
+    @Test
     public void checkNullField() {
         for (XcosFileType type : XcosFileType.values()) {
             assert type.getExtension() != null;
@@ -39,7 +39,7 @@ public class FileTypeTest {
         }
     }
 
-    @Test(dependsOnMethods = { "checkNullField" })
+    @Test
     public void checkExtension() {
         for (XcosFileType type : XcosFileType.values()) {
             assert type.getDottedExtension().compareTo("." + type.getExtension()) == 0;
@@ -47,7 +47,7 @@ public class FileTypeTest {
         }
     }
 
-    @Test(dependsOnMethods = { "checkExtension" })
+    @Test
     public void validateFindFileType() throws IOException {
         for (XcosFileType type : XcosFileType.values()) {
             File tmp = File.createTempFile("xcosTest", type.getDottedExtension());
@@ -62,7 +62,7 @@ public class FileTypeTest {
         }
     }
 
-    @Test(dependsOnMethods = { "validateFindFileType" })
+    @Test
     public void validateXcosFindFileType() throws IOException {
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
         FileOutputStream stream = new FileOutputStream(tmp);

@@ -10,17 +10,11 @@ getwsmat_
 com_
 vstk_
 errgst_
-showstack_
 get_sci_data_strings
 recu_
 getstackinfo_
 getIntermediateMemoryNeeded
-cvname_
 cha1_
-errmgr_
-errcontext_
-whatln_
-errloc_
 callFunctionFromGateway
 getRecursionFunctionToCall
 isRecursionCallToFunction

@@ -23,7 +23,7 @@ public class SelectionCellsHandler extends mxSelectionCellsHandler {
 
     /**
      * Default constructor
-     * 
+     *
      * @param graphComponent
      *            the component
      */
@@ -33,12 +33,13 @@ public class SelectionCellsHandler extends mxSelectionCellsHandler {
 
     /**
      * Clear the corresponding cell handler to force a cache miss
-     * 
+     *
      * @param cell
      *            the cell
      * @return the removed handler
      */
     public mxCellHandler clearCellHandler(Object cell) {
-        return handlers.remove(cell);
+        Object removed = handlers.remove(cell);
+        return (mxCellHandler) removed;
     }
 }

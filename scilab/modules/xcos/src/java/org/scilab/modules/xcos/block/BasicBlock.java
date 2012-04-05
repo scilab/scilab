@@ -259,6 +259,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 
         return base * (Integer.MAX_VALUE / 5);
     }
+
     /**
      * Manage events for block parameters.
      *
@@ -1746,6 +1747,19 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         }
 
         return super.insert(child, index);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder str = new StringBuilder();
+        str.append(getInterfaceFunctionName());
+        str.append("\n");
+        for (Object c : children) {
+            str.append(c);
+            str.append("\n");
+        }
+
+        return str.toString();
     }
 }
 // CSON: ClassDataAbstractionCoupling

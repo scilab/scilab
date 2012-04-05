@@ -7,8 +7,8 @@
     <refname>less</refname>
     <refpurpose> (&lt;) より小さいの比較</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="great">
-    <refname>great</refname>
+  <refnamediv xml:id="greater">
+    <refname>greater</refname>
     <refpurpose> (&gt;) より大きいの比較</refpurpose>
   </refnamediv>
   <refsection>

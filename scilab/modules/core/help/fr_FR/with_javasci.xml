@@ -6,7 +6,7 @@
   <refnamediv>
     <refname>with_javasci</refname>
     <refpurpose>Test si Scilab a ete construit avec
-  l'interface java</refpurpose>
+  l'interface Java</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -26,6 +26,6 @@
   <refsection>
     <title>Description</title>
     <para>Retourne <literal>%t</literal> si Scilab a ete construit avec l'interface
-    java ou <literal>%f</literal> si ce n'est pas le cas.</para>
+    Java ou <literal>%f</literal> si ce n'est pas le cas.</para>
   </refsection>
 </refentry>

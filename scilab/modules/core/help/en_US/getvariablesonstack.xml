@@ -9,7 +9,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>s=getvariablesonstack()
+    <synopsis>
+      s=getvariablesonstack()
       s=getvariablesonstack('local')
       s=getvariablesonstack('global')
     </synopsis>
@@ -28,10 +29,12 @@
   <refsection>
     <title>Description</title>
     <para>
-      return in <literal>s</literal>variable names on scilab stack. 
+      <literal>getvariablesonstack()</literal> returns in <literal>s</literal> variable names on scilab stack. 
     </para>
-    <para>getvariablesonstack('local') returns local variables on scilab stack. </para>
-    <para>getvariablesonstack('global') returns global variables on scilab stack. </para>
+    <para>
+      <literal>getvariablesonstack('local')</literal> returns local variables on scilab stack. </para>
+    <para>
+      <literal>getvariablesonstack('global')</literal> returns global variables on scilab stack. </para>
     <para>Variables are sorted by alphabetical order.</para>
   </refsection>
   <refsection>
@@ -47,6 +50,9 @@ getvariablesonstack('global')
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="whos">whos</link>
       </member>
     </simplelist>
   </refsection>

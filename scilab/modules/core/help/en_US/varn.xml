@@ -19,7 +19,7 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>polynomial (or matrix polynomial)</para>
+          <para>polynomial (or polynomial matrix)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,7 +43,7 @@
       <varlistentry>
         <term>pm</term>
         <listitem>
-          <para>matrix or polynomial matrix</para>
+          <para>polynomial (or polynomial matrix)</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -26,13 +26,7 @@ jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.7.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
-testng.jar=${thirdparty.dir}/testng.jar
-
-qdox.jar=${thirdparty.dir}/qdox.jar
-
-bsh.jar=${thirdparty.dir}/bsh.jar
-
-junit.jar=${thirdparty.dir}/junit.jar
+junit4.jar=${thirdparty.dir}/junit4.jar
 
 ; To build the export through the Java
 avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar

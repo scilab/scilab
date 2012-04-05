@@ -106,10 +106,11 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libifcoremdd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libmmdd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;../../bin/elementary_functions_f.lib;../../bin/linpack_f.lib;../../bin/output_stream_f.lib;../../bin/sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -118,6 +119,9 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
@@ -149,10 +153,11 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libifcoremdd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libmmdd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;../../bin/elementary_functions_f.lib;../../bin/linpack_f.lib;../../bin/output_stream_f.lib;../../bin/sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -161,6 +166,9 @@
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
@@ -196,7 +204,7 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libifcoremd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libmmd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)compiler\lib\ia32\svml_disp.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;../../bin/elementary_functions_f.lib;../../bin/linpack_f.lib;../../bin/output_stream_f.lib;../../bin/sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(Configuration)/LibScilab.pdb</ProgramDatabaseFile>
@@ -206,7 +214,13 @@
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
@@ -242,7 +256,7 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libifcoremd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libmmd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)compiler\lib\intel64\svml_disp.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;../../bin/elementary_functions_f.lib;../../bin/linpack_f.lib;../../bin/output_stream_f.lib;../../bin/sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(Configuration)/LibScilab.pdb</ProgramDatabaseFile>
@@ -252,7 +266,13 @@
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainLibscilab.c" />
@@ -393,18 +413,6 @@
       <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\boolean_f.lib" />
-    <Library Include="..\..\bin\data_structures_f.lib" />
-    <Library Include="..\..\bin\elementary_functions_f.lib" />
-    <Library Include="..\..\bin\integer_f.lib" />
-    <Library Include="..\..\bin\io_f.lib" />
-    <Library Include="..\..\bin\linpack_f.lib" />
-    <Library Include="..\..\bin\output_stream_f.lib" />
-    <Library Include="..\..\bin\polynomials_f.lib" />
-    <Library Include="..\..\bin\sparse_f.lib" />
-    <Library Include="..\..\bin\string_f.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

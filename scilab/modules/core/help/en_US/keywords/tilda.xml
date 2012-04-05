@@ -29,4 +29,12 @@
       elements of the boolean matrix <literal>m</literal>.
     </para>
   </refsection>
+  <refsection role="see also">
+   <title>See Also</title>
+   <simplelist type="inline">
+     <member>
+       <link linkend="not">not</link>
+     </member>
+   </simplelist>
+ </refsection>
 </refentry>

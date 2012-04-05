@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>case</refname>
-    <refpurpose> keyword used in statement "select"</refpurpose>
+    <refpurpose>keyword used in statement "select"</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -13,24 +13,28 @@
       Keyword used in statement <literal>select ... case ... end</literal>
     </para>
     <para>
-      Use it in the following way:
+      Keyword <literal>case</literal> points out one variant of a variable value (it is the
+      variable value which is selected from a range of values).
     </para>
-    <programlisting><![CDATA[
-        select expr0
-        case expr1 then
-            instructions 1
-        case expr2 then
-            instructions 2
-        ...
-        case exprn then
-            instructions n
-        [else instructions]
-        end
- ]]></programlisting>
+    <para>
+      Use it in the following way:
+      <programlisting role="no-scilab-exec"><![CDATA[ 
+select expr0
+    case expr1 then
+        instructions 1
+    case expr2 then
+        instructions 2
+	  ...  
+    case exprn then
+        instructions n
+    [else instructions]
+end
+     ]]></programlisting>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting><![CDATA[
+    <programlisting role="example"><![CDATA[
 OS=getos()
 select OS
 case "Windows" then
@@ -38,9 +42,9 @@ case "Windows" then
 case "Linux" then
   disp("Scilab on Linux")
 case "Darwin" then
-  disp("Scilab on Mac OS")
+  disp("Scilab on MacOs")
 else
-  error("Scilab on unknown platform")
+  error("Scilab on Unknown platform")
 end
  ]]></programlisting>
   </refsection>

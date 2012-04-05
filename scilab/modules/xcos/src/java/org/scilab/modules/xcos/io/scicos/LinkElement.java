@@ -195,7 +195,11 @@ public class LinkElement extends AbstractElement<BasicLink> {
      *            the link instance
      */
     // CSOFF: JavaNCSS
-    private void searchForPorts(BasicLink link) {
+    private void searchForPorts(final BasicLink link) {
+
+        /*
+         * Retrieve data from encoded instance
+         */
         final ScilabDouble from = (ScilabDouble) data.get(FROM_INDEX);
         final ScilabDouble to = (ScilabDouble) data.get(TO_INDEX);
 
@@ -219,7 +223,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
             LOG.severe(data.toString());
             return;
         }
-        int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
+        final int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
         if (endPortIndex == 0) {
             LOG.severe("Link has an invalid end port");
             LOG.severe(data.toString());
@@ -232,6 +236,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
         if (canGet(from, indexes)) {
             startPortIsStart = fromReal[indexes[0]][indexes[1]] == 0.0;
         } else {
+            // fallback start value
             startPortIsStart = true;
         }
 
@@ -239,45 +244,106 @@ public class LinkElement extends AbstractElement<BasicLink> {
         if (canGet(to, indexes)) {
             endPortIsStart = toReal[indexes[0]][indexes[1]] == 0.0;
         } else {
+            // fallback end value
             endPortIsStart = false;
         }
 
-        Class <? extends BasicPort > startKlass = LinkPortMap.getPortClass(link.getClass(), startPortIsStart);
-        Class <? extends BasicPort > endKlass = LinkPortMap.getPortClass(link.getClass(), endPortIsStart);
+        final List<BasicPort> startPorts = BasicBlockInfo.getAllPortsAtPosition(startBlock, startPortIndex);
+        final List<BasicPort> endPorts = BasicBlockInfo.getAllPortsAtPosition(endBlock, endPortIndex);
 
-        start = null;
-        end = null;
-        try {
-            start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass).get(startPortIndex - 1);
-            end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(endPortIndex - 1);
-        } catch (java.lang.IndexOutOfBoundsException e) {
+        /*
+         * Get the ordered ports, this is the normal case.
+         */
+        lookForOrderedPorts(link, startPorts, startPortIsStart, endPorts, endPortIsStart);
+
+        /*
+         * Fallback to handle an inverted link.
+         */
+        if (start == null || end == null) {
             // implicit links can be inverted but this is exceptional so trace
             // them
             if (LOG.isLoggable(Level.FINEST)) {
-                final Class <? extends BasicPort > current;
                 final BasicBlock block;
                 final int index;
                 if (start == null) {
-                    current = startKlass;
                     block = startBlock;
                     index = startPortIndex;
                 } else {
-                    current = endKlass;
                     block = endBlock;
                     index = endPortIndex;
                 }
 
                 if (block != null) {
-                    LOG.warning("Unable to get " + block.getSimulationFunctionName() + '.' + current.getSimpleName() + "[" + index + "]");
+                    LOG.warning("Unable to get " + block.getSimulationFunctionName() + "[" + index + "]" + block.toString());
                 } else {
                     return;
                 }
             }
 
-            startKlass = LinkPortMap.getPortClass(link.getClass(), !startPortIsStart);
-            start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass).get(startPortIndex - 1);
-            endKlass = LinkPortMap.getPortClass(link.getClass(), !endPortIsStart);
-            end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(endPortIndex - 1);
+            /*
+             * Look for inverted ports in all cases (check inverted first).
+             */
+            lookForOrderedPorts(link, startPorts, !startPortIsStart, endPorts, !endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+            lookForOrderedPorts(link, startPorts, startPortIsStart, endPorts, !endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+            lookForOrderedPorts(link, startPorts, !startPortIsStart, endPorts, endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+        }
+    }
+
+    /**
+     * Look for the ordered ports.
+     *
+     * This method assume that the startPorts and endPorts are sorted according
+     * to {@link BasicBlock#sortChildren()} and have the right ordering.
+     *
+     * @param link
+     *            the link to connect
+     * @param startPorts
+     *            the possible starts
+     * @param startIsStart
+     *            boolean to indicate the link direction (from start ? )
+     * @param endPorts
+     *            the possible ends
+     * @param endIsStart
+     *            boolean to indicate the link direction (from end ? )
+     */
+    private void lookForOrderedPorts(final BasicLink link, final List<BasicPort> startPorts, final boolean startIsStart, final List<BasicPort> endPorts,
+                                     final boolean endIsStart) {
+        Class <? extends BasicPort > startKlass = LinkPortMap.getPortClass(link.getClass(), startIsStart);
+        Class <? extends BasicPort > endKlass = LinkPortMap.getPortClass(link.getClass(), endIsStart);
+
+        /*
+         * Clear the state
+         */
+        start = null;
+        end = null;
+
+        /*
+         * Iterate over start
+         */
+        for (BasicPort p : startPorts) {
+            if (startKlass.isInstance(p)) {
+                start = p;
+                break;
+            }
+        }
+
+        /*
+         * Iterate over end
+         */
+        for (BasicPort p : endPorts) {
+            if (endKlass.isInstance(p)) {
+                end = p;
+                break;
+            }
         }
     }
 

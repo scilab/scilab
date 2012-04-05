@@ -22,7 +22,6 @@
 /* force linking fortran libraries */
 #pragma comment(lib, "../../bin/blasplus.lib")
 #pragma comment(lib, "../../bin/lapack.lib")
-#pragma comment(lib, "../../libs/core_f.lib")
 /*-----------------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

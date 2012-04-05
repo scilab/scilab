@@ -6,7 +6,7 @@
     </pubdate>
   </info>
   <refnamediv>
-    <refname>dsaupd</refname>
+    <refname>dseupd</refname>
     <refpurpose>Interface for the Implicitly Restarted Arnoldi Iteration, to
       compute approximations to the converged approximations to eigenvalues of
       A*z = lambda*B*z
@@ -425,6 +425,6 @@ printf('The convergence criterion is %d\n', tol);
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para>Based on ARPACK routine dsaupd</para>
+    <para>Based on ARPACK routine dseupd</para>
   </refsection>
 </refentry>

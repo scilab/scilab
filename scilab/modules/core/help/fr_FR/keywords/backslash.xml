@@ -4,8 +4,8 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>backslash (\)</refname>
-    <refpurpose> division matricielle à gauche  </refpurpose>
+    <refname>backslash</refname>
+    <refpurpose>(\) division matricielle à gauche</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>

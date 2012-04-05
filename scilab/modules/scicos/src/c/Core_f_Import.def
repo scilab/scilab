@@ -1,0 +1,14 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+dtosci_
+funs_
+itosci_
+mktlist_
+mkmlist_
+mklist_
+

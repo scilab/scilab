@@ -74,3 +74,4 @@ SEP #074: Atoms configuration files management
 SEP #075: New dec2base function
 SEP #076: atomsCheckModule function
 SEP #077: atomsQuit function
+SEP #078: nthroot function

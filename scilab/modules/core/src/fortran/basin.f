@@ -17,6 +17,9 @@ c     --- for myback
       integer lrecl,bkflag
       parameter (lrecl=512) 
       character bckbuf*(lrecl)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/
+cDEC$ ENDIF           
       common / keepme / bkflag,bckbuf
 c     --- end 
       character string*(*),fmt*(*)
@@ -82,6 +85,9 @@ C     is also set
       integer lrecl,bkflag
       parameter (lrecl=512) 
       character bckbuf*(lrecl)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/
+cDEC$ ENDIF       
       common / keepme / bkflag,bckbuf
       bckbuf = buf(1:lrecl)
       bkflag=1

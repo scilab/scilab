@@ -1,0 +1,6 @@
+	LIBRARY    string_f.dll
+
+
+EXPORTS
+; string_f
+strops_

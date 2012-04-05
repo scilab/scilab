@@ -16,7 +16,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>getshell</literal>returns current command interpreter.
+      <literal>getshell()</literal> returns current command interpreter.
     </para>
   </refsection>
   <refsection>

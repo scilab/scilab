@@ -20,10 +20,6 @@
 --------------------------------------------------------------------------*/
 #include <string.h>
 #include <math.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "MALLOC.h"
-#endif
 #include "localization.h"
 #include "stack-c.h"
 
