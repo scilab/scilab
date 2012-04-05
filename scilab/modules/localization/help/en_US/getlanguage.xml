@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>getlanguage</refname>
-    <refpurpose>getlanguage() returns current language used by Scilab.</refpurpose>
+    <refpurpose>returns current language used by Scilab.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
