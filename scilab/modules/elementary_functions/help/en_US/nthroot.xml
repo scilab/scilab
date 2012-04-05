@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,15 +28,15 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-	  <para>real scalar or vector/matrix</para>
+          <para>real scalar or vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
-	<variablelist>
+    <variablelist>
       <varlistentry>
         <term>n</term>
         <listitem>
-	  <para>real scalar</para>
+          <para>real scalar</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,7 +63,7 @@
       <member>
         <link linkend="hat">hat</link>
       </member>
-	  <member>
+      <member>
         <link linkend="sqrt">sqrt</link>
       </member>
       <member>
