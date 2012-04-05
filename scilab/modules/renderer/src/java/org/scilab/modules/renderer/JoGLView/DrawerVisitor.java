@@ -286,12 +286,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void visit(Axes axes) {
         synchronized (axes) {
-            if (axes.getVisible()) {
+            if (axes.isValid() && axes.getVisible()) {
                 try {
                     currentAxes = axes;
                     axesDrawer.draw(axes);
                 } catch (Exception e) {
-                    System.err.println("A '" + axes.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                    invalidate(axes, e);
                 }
             }
         }
@@ -299,14 +299,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Arc arc) {
-        if (arc.getVisible()) {
+        if (arc.isValid() && arc.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
                 contouredObjectDrawer.draw(arc);
-                axesDrawer.disableClipping(arc.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + arc.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(arc, e);
             }
+            axesDrawer.disableClipping(arc.getClipProperty());
         }
     }
 
@@ -328,12 +328,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Fec fec) throws ObjectRemovedException {
-        if (fec.getVisible()) {
+        if (fec.isValid() && fec.getVisible()) {
             axesDrawer.enableClipping(currentAxes, fec.getClipProperty());
             try {
                 fecDrawer.draw(fec);
-            } catch (OutOfMemoryException outOfMemoryException) {
-                outOfMemoryException.printStackTrace();
+            } catch (Exception e) {
+                invalidate(fec, e);
             }
             axesDrawer.disableClipping(fec.getClipProperty());
         }
@@ -344,9 +344,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         synchronized (figure) {
             if (figure.getVisible()) {
 
-                /**
-                 * Set the current {@see ColorMap}.
-                 */
+                /** Set the current {@see ColorMap}. */
                 colorMap = figure.getColorMap();
 
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
@@ -361,9 +359,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(final Grayplot grayplot) {
-        if (grayplot.getVisible()) {
+        if (grayplot.isValid() && grayplot.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, grayplot.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, grayplot.getClipProperty());
                 DefaultGeometry triangles = new DefaultGeometry();
                 triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(grayplot.getIdentifier()));
@@ -372,18 +370,18 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
-                axesDrawer.disableClipping(grayplot.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + grayplot.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(grayplot, e);
             }
+            axesDrawer.disableClipping(grayplot.getClipProperty());
         }
     }
 
     @Override
     public void visit(final Matplot matplot) {
-        if (matplot.getVisible()) {
+        if (matplot.isValid() && matplot.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, matplot.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, matplot.getClipProperty());
                 if ((currentAxes != null) && (currentAxes.getXAxisLogFlag() || currentAxes.getYAxisLogFlag())) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -405,41 +403,40 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     modelViewStack.pop();
                     modelViewStack.pop();
                 }
-                axesDrawer.disableClipping(matplot.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + matplot.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(matplot, e);
             }
+            axesDrawer.disableClipping(matplot.getClipProperty());
         }
     }
 
     @Override
     public void visit(Label label) {
-        if (label.getVisible()) {
+        if (label.isValid() && label.getVisible()) {
             try {
                 labelManager.draw(drawingTools, colorMap, label, axesDrawer);
             } catch (Exception e) {
-                System.err.println("A '" + label.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(label, e);
             }
         }
     }
 
     @Override
     public void visit(Legend legend) {
-        if (legend.getVisible()) {
+        if (legend.isValid() && legend.getVisible()) {
             try {
                 legendDrawer.draw(legend);
             } catch (Exception e) {
-                System.err.println("A '" + legend.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(legend, e);
             }
         }
     }
 
     @Override
     public void visit(final Polyline polyline) {
-        if (polyline.getVisible()) {
+        if (polyline.isValid() && polyline.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
-
                 DefaultGeometry geometry = new DefaultGeometry();
 
                 geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
@@ -480,24 +477,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                     drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
                 }
-
-                axesDrawer.disableClipping(polyline.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + polyline.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(polyline, e);
             }
+            axesDrawer.disableClipping(polyline.getClipProperty());
         }
     }
 
     @Override
     public void visit(Rectangle rectangle) {
-        if (rectangle.getVisible()) {
+        if (rectangle.isValid() && rectangle.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, rectangle.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, rectangle.getClipProperty());
                 contouredObjectDrawer.draw(rectangle);
-                axesDrawer.disableClipping(rectangle.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + rectangle.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(rectangle, e);
             }
+            axesDrawer.disableClipping(rectangle.getClipProperty());
         }
     }
 
@@ -508,10 +504,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     @Override
     public void visit(final Fac3d fac3d) {
-        if (fac3d.getVisible()) {
+        if (fac3d.isValid() && fac3d.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, fac3d.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, fac3d.getClipProperty());
-
                 if (fac3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
@@ -563,20 +558,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
-                axesDrawer.disableClipping(fac3d.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + fac3d.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(fac3d, e);
             }
+            axesDrawer.disableClipping(fac3d.getClipProperty());
         }
 
     }
 
     @Override
     public void visit(final Plot3d plot3d) {
-        if (plot3d.getVisible()) {
+        if (plot3d.isValid() && plot3d.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, plot3d.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, plot3d.getClipProperty());
-
                 if (plot3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     if (plot3d.getColorMode() != 0) {
@@ -631,26 +625,24 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
-
-                axesDrawer.disableClipping(plot3d.getClipProperty());
-
             } catch (Exception e) {
-                System.err.println("A '" + plot3d.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(plot3d, e);
             }
+            axesDrawer.disableClipping(plot3d.getClipProperty());
         }
 
     }
 
     @Override
     public void visit(Text text) {
-        if (text.getVisible()) {
+        if (text.isValid() && text.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, text.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, text.getClipProperty());
                 textManager.draw(drawingTools, colorMap, text);
-                axesDrawer.disableClipping(text.getClipProperty());
             } catch (SciRendererException e) {
-                System.err.println("A '" + text.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(text, e);
             }
+            axesDrawer.disableClipping(text.getClipProperty());
         }
     }
 
@@ -662,9 +654,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(final Champ champ) {
-        if (champ.getVisible()) {
+        if (champ.isValid() && champ.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, champ.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, champ.getClipProperty());
                 DefaultGeometry segments = new DefaultGeometry();
                 segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                 segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
@@ -697,19 +689,18 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
                         champ.getColored(), champ.getLineColor());
                 }
-
-                axesDrawer.disableClipping(champ.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + champ.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(champ, e);
             }
+            axesDrawer.disableClipping(champ.getClipProperty());
         }
     }
 
     @Override
     public void visit(final Segs segs) {
-        if (segs.getVisible()) {
+        if (segs.isValid() && segs.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, segs.getClipProperty());
             try {
-                axesDrawer.enableClipping(currentAxes, segs.getClipProperty());
                 DefaultGeometry segments = new DefaultGeometry();
                 segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                 segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
@@ -741,11 +732,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
                         true, segs.getLineColor());
                 }
-
-                axesDrawer.disableClipping(segs.getClipProperty());
             } catch (Exception e) {
-                System.err.println("A '" + segs.getType() + "' is not drawable because: '" + e.getMessage() + "'");
+                invalidate(segs, e);
             }
+            axesDrawer.disableClipping(segs.getClipProperty());
         }
     }
 
@@ -753,6 +743,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void updateObject(String id, String property) {
         try {
             if (needUpdate(id, property)) {
+                GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
                 if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
@@ -771,13 +762,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
                 }
-
                 canvas.redraw();
             }
+        } catch (OutOfMemoryException e) {
+            invalidate(GraphicController.getController().getObjectFromId(id), e);
         } catch (ObjectRemovedException e) {
             // Object has been removed before draw : do nothing.
-        } catch (OutOfMemoryException e) {
-            // TODO: mark object as not drawable.
         }
     }
 
@@ -790,6 +780,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private boolean needUpdate(String id, String property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         if ((property != null) && (object != null) && isFigureChild(id)) {
+
+            if (GraphicObjectProperties.__GO_VALID__.equals(property)) {
+                return false;
+            }
+
             if (object instanceof Axes) {
                 Axes axes = (Axes) object;
                 if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
@@ -847,6 +842,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private boolean isFigureChild(String id) {
         String parentFigureID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         return figure.getIdentifier().equals(parentFigureID);
+    }
+
+    /**
+     * Invalidate the given graphic object and inform the user.
+     * @param graphicObject the graphic object to invalidate
+     * @param exception the cause of invalidation.
+     */
+    public void invalidate(GraphicObject graphicObject, Exception exception) {
+        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());
+        GraphicController.getController().setProperty(graphicObject.getIdentifier(), GraphicObjectProperties.__GO_VALID__, false);
     }
 
     public LabelManager getLabelManager() {

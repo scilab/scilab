@@ -31,9 +31,12 @@ import java.util.HashMap;
 public class ScilabTextureManager {
 
     private final HashMap<String, Texture> hashMap = new HashMap<String, Texture>();
+    private final DrawerVisitor drawerVisitor;
     private final Canvas canvas;
 
+
     public ScilabTextureManager(DrawerVisitor drawerVisitor) {
+        this.drawerVisitor = drawerVisitor;
         this.canvas = drawerVisitor.getCanvas();
     }
 
@@ -92,9 +95,8 @@ public class ScilabTextureManager {
             ByteBuffer buffer;
             try {
                 buffer = BufferAllocation.newByteBuffer(bufferLength);
-            } catch (OutOfMemoryException error) {
-                // TODO: Scilab error.
-                System.err.println(error.getMessage());
+            } catch (OutOfMemoryException exception) {
+                drawerVisitor.invalidate(GraphicController.getController().getObjectFromId(identifier), exception);
                 return null;
             }
             MainDataLoader.fillTextureData(identifier, buffer, bufferLength);
@@ -108,9 +110,8 @@ public class ScilabTextureManager {
             ByteBuffer buffer;
             try {
                 buffer = BufferAllocation.newByteBuffer(bufferLength);
-            } catch (OutOfMemoryException error) {
-                // TODO: Scilab error.
-                System.err.println(error.getMessage());
+            } catch (OutOfMemoryException exception) {
+                drawerVisitor.invalidate(GraphicController.getController().getObjectFromId(identifier), exception);
                 return null;
             }
             MainDataLoader.fillTextureData(identifier, buffer, bufferLength, x, y, width, height);
@@ -127,7 +128,6 @@ public class ScilabTextureManager {
         public void updateObject(String id, String property) {
             if (isValid() && identifier.equals(id)) {
                 // TODO check Property.
-                // System.out.println("Prop: " + property);
                 updateData();
             }
         }
