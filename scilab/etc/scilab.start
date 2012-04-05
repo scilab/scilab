@@ -17,6 +17,8 @@ predef("clear"); //unprotect all variables
 clear  // erase all variables
 clearglobal();
 
+// Since Scilab 5.4.0 'load' is a macro loaded during Scilab startup
+// Map 'load' to 'old binary files load' called %_load to be able to load Scilab libraries
 load = %_load;
 
 // Set stack size   ===================================================
@@ -99,6 +101,7 @@ if with_module("atoms") then
   clear atomsSystemInit;
 end
 
+// Load is now the 'load' macro
 clear load
 
 // Protect variable previously defined  ================================
