@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: de\n"
 
 #, c-format
@@ -181,6 +181,10 @@ msgid ""
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: 1x1 oder 1x2 Zeichenkettenmatrix "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
@@ -537,6 +541,9 @@ msgstr "Datei"
 
 msgid "Installed modules"
 msgstr "installierte Module"
+
+msgid "Update List of Packages"
+msgstr ""
 
 msgid "Close"
 msgstr "Schließen"

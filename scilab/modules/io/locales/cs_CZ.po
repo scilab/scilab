@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -72,6 +72,17 @@ msgstr "%s: Není více paměti.\n"
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Nedefinovaná proměnná prostředí %s.\n"
 
+msgid "WARNING: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+msgid ""
+"WARNING: Please quote the variable declaration. Example, "
+"save('myData.sod',a) becomes save('myData.sod','a').\n"
+msgstr ""
+
+msgid "WARNING: See help('save') for the rational.\n"
+msgstr ""
+
 #, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Nedefinovaná proměnná prostředí %s.\n"
@@ -99,6 +110,10 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "nezvládnutá chyba od v2cunit.\n"
 
 #, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
 
@@ -110,6 +125,10 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

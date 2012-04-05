@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: uk\n"
 
 #, c-format
@@ -287,6 +287,32 @@ msgstr ""
 "динамічну систему або вектор-рядок дійсних чисел.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути додатне ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
@@ -306,10 +332,6 @@ msgid ""
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати значення "
 "елементів у інтервалі [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
@@ -348,11 +370,6 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
 "з %d елементами.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути додатне ціле число.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
