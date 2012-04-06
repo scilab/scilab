@@ -28,12 +28,12 @@ pal = xcosPalAddBlock(pal, "SUM_f");
 pal = xcosPalAddBlock(pal, "BIGSOM_f");
 if ~xcosPalAdd(pal) then bugmes();quit;end
  
- export to TMPDIR/palette.h5   
+ export to TMPDIR/palette.sod   
 if ~xcosPalAdd(pal, "my Summation blocks") then bugmes();quit;end
  
- export to TMPDIR/palette.h5   
+ export to TMPDIR/palette.sod   
 if ~xcosPalAdd(pal, ["Customs" "my Summation blocks"]) then bugmes();quit;end
  
- export to TMPDIR/palette.h5   
-export_to_hdf5(TMPDIR + "/palette.h5", "pal");
-if ~xcosPalAdd(TMPDIR + "/palette.h5") then bugmes();quit;end
+ export to TMPDIR/palette.sod   
+export_to_hdf5(TMPDIR + "/palette.sod", "pal");
+if ~xcosPalAdd(TMPDIR + "/palette.sod") then bugmes();quit;end

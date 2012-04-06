@@ -9,7 +9,7 @@
 // <-- Short Description -->
 // White-box test for the xcosPalExport macro.
 
-path = TMPDIR + "/palette.h5";
+path = TMPDIR + "/palette.sod";
 
 pal = xcosPal();
 

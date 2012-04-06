@@ -36,7 +36,7 @@ function xcos_skeletonlib = startModule()
   mprintf("\tLoad palette\n");
   pal = xcosPal("Xcos toolbox blocks");
 
-  h5Files = gsort(ls(root_tlbx + "/images/h5/*.h5"));
+  h5Files = gsort(ls(root_tlbx + "/images/h5/*.sod"));
   gifFiles = gsort(ls(root_tlbx + "/images/gif/*." + ["png" "jpg" "gif"]));
   svgFiles = gsort(ls(root_tlbx + "/images/svg/*." + ["svg" "png" "jpg" "gif"]));
 

@@ -129,7 +129,7 @@ public final class FileUtils {
      *             when an error occurs
      */
     public static String createTempFile() throws IOException {
-        return ScilabCommons.createtempfilename("xcos", 1) + XcosFileType.HDF5.getDottedExtension();
+        return ScilabCommons.createtempfilename("xcos", 1) + XcosFileType.SOD.getDottedExtension();
     }
 
     /**

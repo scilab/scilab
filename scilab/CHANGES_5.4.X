@@ -69,6 +69,9 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* External modules should be updated to use the new Scilab Open Data format
+  instead of the previous HDF5 format.
+
 * Bug #6201 fixed - Block help menu had no shortcut.
 
 * Bug #6733 fixed - Each call to xcos created an empty diagram.

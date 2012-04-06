@@ -46,7 +46,7 @@ Source: modules\{#SCICOS_BLOCKS}\macros\*.sci; DestDir: {app}\modules\{#SCICOS_B
 Source: modules\{#SCICOS_BLOCKS}\macros\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.mo; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#SCICOS_BLOCKS}\blocks\*.h5; DestDir: {app}\modules\{#SCICOS_BLOCKS}\blocks; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS_BLOCKS}\blocks\*.sod; DestDir: {app}\modules\{#SCICOS_BLOCKS}\blocks; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\src\scripts\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\src\scripts; Components: {#COMPN_XCOS}
 ;

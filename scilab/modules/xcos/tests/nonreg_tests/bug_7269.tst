@@ -23,7 +23,7 @@ loadScicosLibs;
 // Adding a user custom block
 pal = xcosPal("My pal");
 scs_m = SUM_f("define");
-blockPath = TMPDIR + "/SUM_f.h5";
+blockPath = TMPDIR + "/SUM_f.sod";
 export_to_hdf5(blockPath, "scs_m"),
 
 pal = xcosPalAddBlock(pal, blockPath);

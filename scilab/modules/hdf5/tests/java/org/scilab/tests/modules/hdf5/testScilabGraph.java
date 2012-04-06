@@ -156,7 +156,7 @@ public class testScilabGraph {
         /*
          * GRAPH
          */
-        String fileName = tempDir + "/fakeGraph.h5";
+        String fileName = tempDir + "/fakeGraph.sod";
         String[] graphTypes = {"graph", "version", "name", "directed", "nodes", "edges"};
         ScilabTList graph = new ScilabTList(graphTypes);
         graph.add(new ScilabString("5.2"));

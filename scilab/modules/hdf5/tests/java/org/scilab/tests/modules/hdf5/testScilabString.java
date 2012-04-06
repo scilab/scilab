@@ -38,7 +38,7 @@ public class testScilabString {
     @Test
     public void emptyStringTest() throws NullPointerException, HDF5Exception {
         ScilabString emptyString = new ScilabString("");
-        String fileName = tempDir + "/emptyStringFromJava.h5";
+        String fileName = tempDir + "/emptyStringFromJava.sod";
 
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "EmptyString", emptyString);
@@ -49,7 +49,7 @@ public class testScilabString {
     @Test
     public void testSingleString() throws NullPointerException, HDF5Exception {
         ScilabString scilabSingleString = new ScilabString(myString);
-        String fileName = tempDir + "/singleStringFromJava.h5";
+        String fileName = tempDir + "/singleStringFromJava.sod";
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "SingleString", scilabSingleString);
         H5Write.closeFile(fileId);
@@ -74,7 +74,7 @@ public class testScilabString {
 
         int ROWS = dataStringMatix.length;
         int COLS = dataStringMatix[0].length;
-        String fileName = tempDir + "/matrixStringFromJava.h5";
+        String fileName = tempDir + "/matrixStringFromJava.sod";
         ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
         int fileId = H5Write.createFile(fileName);
@@ -106,7 +106,7 @@ public class testScilabString {
 
         int ROWS = dataStringMatix.length;
         int COLS = dataStringMatix[0].length;
-        String fileName = tempDir + "/matrixMultiByteStringFromJava.h5";
+        String fileName = tempDir + "/matrixMultiByteStringFromJava.sod";
         ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
         int fileId = H5Write.createFile(fileName);

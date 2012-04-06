@@ -141,7 +141,7 @@ public final class XcosMessages {
     public static final String XCOS_DEMONSTRATIONS = Messages
             .gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos")
-            + DOTS;
+                                            + DOTS;
 
     /* PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -198,7 +198,7 @@ public final class XcosMessages {
 
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"
             + Messages
-                    .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK and every time the diagram is loaded).")
+            .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK and every time the diagram is loaded).")
             + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages
@@ -270,10 +270,10 @@ public final class XcosMessages {
 
     public static final String DEBUG_LEVEL_LABEL = "<html>"
             + Messages
-                    .gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)")
+            .gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)")
             + "</html>";
     public static final String SET_DEBUG = Messages
-            .gettext("Execution trace and Debug");
+                                           .gettext("Execution trace and Debug");
 
     /* Setup box */
     public static final String FINAL_INTEGRATION_TIME = Messages
@@ -325,7 +325,7 @@ public final class XcosMessages {
     public static final String GENERATE_SUPERBLOCK = Messages
             .gettext("Generate SuperBlock, please wait") + DOTS;
     public static final String DRAW_LINK = Messages
-            .gettext("Click on diagram to add link point or on a compatible target to finish");
+                                           .gettext("Click on diagram to add link point or on a compatible target to finish");
 
     /* Debug level messages */
     public static final String DEBUGLEVEL_0 = Messages
@@ -341,11 +341,11 @@ public final class XcosMessages {
     public static final String FILE_COSF = Messages.gettext("Scicos file");
     public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
-    public static final String FILE_HDF5 = Messages.gettext("Scilab file");
+    public static final String FILE_SOD = Messages.gettext("Scilab Open Data file");
 
     /* Superblock mask editor */
     public static final String MASK_TITLE = Messages
-            .gettext("Masked SuperBlock editor");
+                                            .gettext("Masked SuperBlock editor");
     public static final String MASK_INSERT = Messages.gettext("Insert");
     public static final String MASK_DELETE = Messages.gettext("Delete");
     public static final String MASK_MOVEUP = Messages.gettext("Move Up");
@@ -401,7 +401,7 @@ public final class XcosMessages {
     /**
      * This function checks for the popup menu activation under MacOS with Java
      * version 1.5 Related to Scilab bug #5190
-     * 
+     *
      * @param e
      *            Click event
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
@@ -410,6 +410,6 @@ public final class XcosMessages {
         return (SwingUtilities.isLeftMouseButton(e)
                 && e.isControlDown()
                 && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-                    .getProperty("java.specification.version").equals("1.5")));
+                        .getProperty("java.specification.version").equals("1.5")));
     }
 }

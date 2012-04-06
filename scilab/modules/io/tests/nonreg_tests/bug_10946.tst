@@ -18,7 +18,7 @@
 
 // Try to load ref file
 lst_reference  =  tlist(['random numbers';'Name';'Example'], 'Uniform',ones(1,2, 3));
-load(SCI+"/modules/hdf5/tests/sample_scilab_data/tlist.h5");
+load(SCI+"/modules/hdf5/tests/sample_scilab_data/tlist.sod");
 assert_checkequal(lst,lst_reference);
 
 // Try to save the tlist
