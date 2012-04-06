@@ -220,6 +220,7 @@ char *allocateText(char *pparentsubwinUID,
     int visible = 0;
     int *piVisible = &visible;
     int clipRegionSet;
+    int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
 
@@ -244,11 +245,11 @@ char *allocateText(char *pparentsubwinUID,
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* Clipping: to be checked for consistency */
-    clipRegionSet = 0;
-    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
