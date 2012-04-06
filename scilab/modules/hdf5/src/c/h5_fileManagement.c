@@ -97,9 +97,10 @@ int openHDF5File(char *name)
     char *currentpath = NULL;
     char *filename = getFilenameWithExtension(name);
     int ierr = 0;
-    /* Used to avoid stack trace to be displayed */
-    H5E_auto2_t oldfunc;;
     void *oldclientdata = NULL;
+    /* Used to avoid stack trace to be displayed */
+    H5E_auto2_t oldfunc;
+    
 
     /* TO DO : remove when HDF5 will be fixed ... */
     /* HDF5 does not manage no ANSI characters */
