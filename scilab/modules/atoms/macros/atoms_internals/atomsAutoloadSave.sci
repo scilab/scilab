@@ -84,6 +84,6 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     // =========================================================================
 
     mputl( autoloaded_str , autoloaded_txt);
-    save( autoloaded_bin  , autoloaded_mat);
+    save( autoloaded_bin  , "autoloaded_mat");
 
 endfunction

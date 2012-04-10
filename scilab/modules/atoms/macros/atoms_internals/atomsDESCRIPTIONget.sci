@@ -217,7 +217,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     categories     = description("categories");
     categories_flat  = description("categories_flat");
 
-    save(packages_path,packages,categories,categories_flat)
+    save(packages_path, "packages", "categories", "categories_flat")
 
   // Just load from file
   // =========================================================================

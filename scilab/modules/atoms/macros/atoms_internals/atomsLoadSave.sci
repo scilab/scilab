@@ -77,6 +77,6 @@ function  atomsLoadSave(loaded_mat)
     // =========================================================================
 
     mputl( loaded_str , loaded_txt);
-    save( loaded_bin  , loaded_mat);
+    save( loaded_bin  , "loaded_mat");
 
 endfunction

@@ -103,6 +103,6 @@ function  atomsSaveInstalled(installed_struct,section)
     // =========================================================================
 
     mputl( installed_str , installed_txt);
-    save( installed_bin , installed_struct , installed_mat );
+    save( installed_bin , "installed_struct" , "installed_mat" );
 
 endfunction
