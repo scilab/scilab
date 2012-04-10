@@ -26,16 +26,15 @@ global %__varargin__ %__filename__
 
 %__nbNamesBefore__ = size(who("get"), "*");
 
-%__ierr__ = execstr("import_from_hdf5(pathconvert(%__filename__, %F, %T))", "errcatch");
+%__isHdf5Format__ = %T;
+%__iErr__ = execstr("import_from_hdf5(pathconvert(%__filename__, %F, %T));", "errcatch");
 
-if %__ierr__<>0 then
+if %__iErr__ then
     %__isHdf5Format__ = %F;
     %_load(%__filename__, %__varargin__(:));
-else
-    %__isHdf5Format__ = %T;
-    import_from_hdf5(pathconvert(%__filename__, %F, %T));
 end
-clear %__ierr__ ans // ans is the output status of import_from_hdf5
+
+clear %__iErr__ ans // ans is the output status of import_from_hdf5
 %__namesAfter__ = who("get");
 
 %__createdNames__ = %__namesAfter__(1:(size(%__namesAfter__, "*") - %__nbNamesBefore__ - 2)); // -2 for %__nbNamesBefore__ & %__isHdf5Format__
@@ -49,10 +48,12 @@ if %__isHdf5Format__ then
     [%__createdNames__, %__createdValues__] = %__selectVariables__(%__createdNames__, %__createdValues__, %__varargin__);
 end
 
-execstr("[" + strcat(%__createdNames__, ",") + "] = resume(%__createdValues__(:))");
-
 // Clear temporary variables input arguments from global variables
 clearglobal %__varargin__ %__filename__
+
+if ~isempty(%__createdNames__) then
+    execstr("[" + strcat(%__createdNames__, ",") + "] = resume(%__createdValues__(:))");
+end
 
 endfunction
 
@@ -88,7 +89,7 @@ for i = 1:size(varValues)
         varValues(i) = createMatrixHandle(varValues(i));
     elseif isList(varValues(i)) then
         //list container
-        varValues(i) = inspectList(varValues(i));
+        varValues(i) = parseList(varValues(i));
     end
 end
 endfunction
@@ -104,13 +105,13 @@ function result = isList(var)
     end
 endfunction
 
-function varValue = inspectList(varValue)
+function varValue = parseList(varValue)
 if typeof(varValue)=="list" then
     for i = 1:size(varValue)
         if typeof(varValue(i)) == "ScilabMatrixHandle" then
             varValue(i) = createMatrixHandle(varValue(i));
         elseif isList(varValue(i)) then
-            varValue(i) = inspectList(varValue(i));
+            varValue(i) = parseList(varValue(i));
         else
             varValue(i) = varValue(i);
         end
@@ -122,7 +123,7 @@ else
         if typeof(fieldValue) == "ScilabMatrixHandle" then
             fieldValue = createMatrixHandle(fieldValue);
         elseif isList(fieldValue) then
-            fieldValue = inspectList(fieldValue);
+            fieldValue = parseList(fieldValue);
         end
         setfield(kField, fieldValue, varValue);
     end
@@ -139,7 +140,7 @@ for i = prod(matrixHandle.dims):-1:1
     h($+1) = createSingleHandle(matrixHandle.values(i));
     if or(fieldnames(matrixHandle.values(i))=="user_data") then // TODO Remove after graphic branch merge
         if isList(matrixHandle.values(i).user_data) then
-            h($).user_data = inspectList(matrixHandle.values(i).user_data)
+            h($).user_data = parseList(matrixHandle.values(i).user_data)
         elseif typeof(matrixHandle.values(i).user_data) == "ScilabMatrixHandle" then
             h($).user_data = createMatrixHandle(matrixHandle.values(i).user_data)
         end
