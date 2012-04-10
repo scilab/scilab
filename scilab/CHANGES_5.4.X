@@ -294,6 +294,9 @@ ATOMS
 
 * Bug #10933 fixed - atomsGetConfig did not check value of input argument.
 
+* Bug #10957 fixed - atomsInstall required a network connection to install 
+                     a local package.
+
 
 Documentation
 =============

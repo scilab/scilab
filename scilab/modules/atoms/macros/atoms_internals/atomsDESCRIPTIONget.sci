@@ -61,6 +61,22 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
   categories_path  = atoms_path_user + "categories";
   packages_path_info = fileinfo(packages_path);
+  
+  
+  // in offline mode we use only DESCRIPTION file of the module
+  if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
+    if isfile(atomsPath("system", "session") + "/DESCRIPTION_archives") then
+      this_description = atomsDESCRIPTIONread(atomsPath("system","session") + "/DESCRIPTION_archives");
+      packages = this_description('packages');
+      categories_flat = this_description('categories_flat');
+      categories = this_description('categories');
+      save(packages_path, packages, categories, categories_flat);
+    else
+      load(packages_path, "packages", "categories", "categories_flat");
+    end
+    return
+  end
+  
 
   // If necessary, rebuild the struct
   // =========================================================================

@@ -20,9 +20,7 @@ function atomsSystemUpdate()
     load("SCI/modules/atoms/macros/atoms_internals/lib");
   end
 
-  offline = atomsGetConfig("offline");
-
-  if offline=="True" then
+  if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
     warning(msprintf(gettext("Option offline of ATOMS configuration is set to True. atomsSystemUpdate did not check the latest modules availables.")));
     return
   end
