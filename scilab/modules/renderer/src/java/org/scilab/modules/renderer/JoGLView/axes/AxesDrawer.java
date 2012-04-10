@@ -52,6 +52,9 @@ public class AxesDrawer {
     private static final double DEFAULT_THETA = 270.0;
     private static final Line.LineType HIDDEN_BORDER_PATTERN = Line.LineType.DASH;
 
+    /** An epsilon value used to move the clipping planes in order to prevent strict clipping. */
+    private static final double CLIPPING_EPSILON = 1e-5;
+
     private final DrawerVisitor visitor;
     private final Geometries geometries;
 
@@ -863,6 +866,8 @@ public class AxesDrawer {
      * Depending on the object's clip state property, clipping can be either
      * disabled (OFF), performed against the parent Axes' box planes (CLIPGRF),
      * or performed against the planes defined by the object's clip box.
+     * To do: find a better way to compute the clipping planes' offsets as the current one
+     * may lead to problems when the interval between the min and max bounds is too small.
      * @param parentAxes the clipped object's parent Axes.
      * @param clipProperty the clipping property of a clippable object.
      */
@@ -873,6 +878,12 @@ public class AxesDrawer {
             int numPlanes = 0;
             Vector4d[] equations = null;
 
+            /* Stores the (xmin,xmax) ,(ymin,ymax) and (zmin,zmax) clipping bounds */
+            double[] clipBounds = new double[6];
+
+            /* The offsets used for the x, y and z planes in order to avoid strict clipping */
+            double[] offsets = new double[3];
+
             if (clipProperty.getClipState() == ClipStateType.CLIPGRF) {
                 /*
                  * All the clipping planes are set as clipping is performed
@@ -881,16 +892,13 @@ public class AxesDrawer {
                 numPlanes = 6;
                 Double[] bounds = parentAxes.getDisplayedBounds();
 
-                equations = new Vector4d[]{
-                    new Vector4d(+1, 0, 0, -bounds[0]),
-                    new Vector4d(-1, 0, 0, +bounds[1]),
+                for (int i = 0; i < numPlanes; i++) {
+                    clipBounds[i] = bounds[i];
+                }
 
-                    new Vector4d(0, +1, 0, -bounds[2]),
-                    new Vector4d(0, -1, 0, +bounds[3]),
-
-                    new Vector4d(0, 0, +1, -bounds[4]),
-                    new Vector4d(0, 0, -1, +bounds[5])
-                };
+                offsets[0] = CLIPPING_EPSILON*(bounds[1]-bounds[0]);
+                offsets[1] = CLIPPING_EPSILON*(bounds[3]-bounds[2]);
+                offsets[2] = CLIPPING_EPSILON*(bounds[5]-bounds[4]);
             } else if (clipProperty.getClipState() == ClipStateType.ON) {
                 /*
                  * The clip box property defines values only for the x and y axes,
@@ -898,9 +906,6 @@ public class AxesDrawer {
                  */
                 numPlanes = 4;
                 Double[] clipBox = clipProperty.getClipBox();
-
-                /* Stores the xmin, xmax and ymin, ymax clipping bounds */
-                double[] clipBounds = new double[4];
 
                 /* The clip box stores the upper-left point coordinates. */
                 clipBounds[0] = clipBox[0];
@@ -943,13 +948,21 @@ public class AxesDrawer {
                     }
                 }
 
-                equations = new Vector4d[]{
-                    new Vector4d(+1, 0, 0, -clipBounds[0]),
-                    new Vector4d(-1, 0, 0, clipBounds[1]),
+                offsets[0] = CLIPPING_EPSILON*(clipBounds[1]-clipBounds[0]);
+                offsets[1] = CLIPPING_EPSILON*(clipBounds[3]-clipBounds[2]);
+            }
 
-                    new Vector4d(0, +1, 0, -clipBounds[2]),
-                    new Vector4d(0, -1, 0, clipBounds[3])
-                };
+            equations = new Vector4d[numPlanes];
+
+            equations[0] = new Vector4d(+1, 0, 0, -clipBounds[0] + offsets[0]);
+            equations[1] = new Vector4d(-1, 0, 0, +clipBounds[1] + offsets[0]);
+            equations[2] = new Vector4d(0, +1, 0, -clipBounds[2] + offsets[1]);
+            equations[3] = new Vector4d(0, -1, 0, +clipBounds[3] + offsets[1]);
+
+            /* If clipping is performed against the Axes box, the z plane equations must be initialized. */
+            if (numPlanes == 6) {
+                equations[4] = new Vector4d(0, 0, +1, -clipBounds[4] + offsets[2]);
+                equations[5] = new Vector4d(0, 0, -1, +clipBounds[5] + offsets[2]);
             }
 
             Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
