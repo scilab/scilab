@@ -8,12 +8,18 @@ adre_
 errgst_
 intersci_
 com_
+ref2val_
+chkvar_
 putlhsvar_
 vstk_
 stack_
 recu_
 iop_
+funnam_
+putid_
 cha1_
+indxg_
+indxgc_
 csimp_
 
 

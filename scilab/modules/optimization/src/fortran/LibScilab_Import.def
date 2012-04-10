@@ -15,6 +15,8 @@ errgst_
 recu_
 checklhs_
 checkrhs_
+isbyref_
+ref2val_
 callinterf_
 cremat_
 gettype_
@@ -22,16 +24,20 @@ getexternal_
 getrmat_
 eqid_
 getscalar_
+btof_
+funs_
+allowptr_
 parse_
+ftob_
 getrecursiongatewaytocall_
 isrecursioncalltofunction_
-checkval_
-cretlist_
+;core_f
+clunit_
 getsmat_
+checkval_
 getvect_
+cretlist_
 listcresmat_
 listcremat_
 listcrestring_
-
-
 

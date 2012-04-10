@@ -4,6 +4,7 @@ LIBRARY    LibScilab.dll
 EXPORTS
 setScilabMode
 scirun_
+inisci_
 settmpdir_
 setSCIpath
 InitializeLaunchScilabSignal

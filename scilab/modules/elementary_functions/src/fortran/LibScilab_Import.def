@@ -9,10 +9,12 @@ vstk_
 intersci_
 adre_
 iop_
+funnam_
 recu_
 stack_
 com_
 errgst_
+ref2val_
 copyobj_
 cremat_
 getrmat_
@@ -21,6 +23,9 @@ cha1_
 getsmat_
 checklhs_
 checkrhs_
+allops_
+createref_
+setfunnam_
 checkval_
 getlistmat_
 getilist_

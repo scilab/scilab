@@ -147,9 +147,6 @@
     </None>
     <None Include="..\..\sci_gateway\data_structures_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

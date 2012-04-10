@@ -16,9 +16,6 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{c0aad241-eb42-4258-bad3-febf3b991256}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Librairies Dependencies">
-      <UniqueIdentifier>{225a8197-4b4e-4aec-970f-65f240dd9316}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allops.c">
@@ -345,10 +342,16 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lines.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_predef.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c">
@@ -691,10 +694,16 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lines.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_predef.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f">
@@ -708,69 +717,6 @@
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\sci_gateway\fundef" />
     <None Include="..\..\Makefile.am" />
-    <None Include="boolean_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="console_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="data_structures_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="data_structures_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="double_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="elementary_functions_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="elementary_functions_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="fftw_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="fileio_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="integer_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="integer_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="io_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="libscilab_import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="linpack_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="Output_stream_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="Output_stream_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="polynomials_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="scicos_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="sparse_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="string_f_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
-    <None Include="string_Import.def">
-      <Filter>Librairies Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libf2c.lib" />

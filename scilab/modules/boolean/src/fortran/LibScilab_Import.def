@@ -17,5 +17,10 @@ vstk_
 stack_
 iop_
 errgst_
+putfunnam_
 getrmat_
 gettype_
+indxg_
+isany_ 
+indxgc_
+setref_

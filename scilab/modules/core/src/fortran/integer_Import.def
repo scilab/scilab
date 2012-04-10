@@ -1,9 +1,0 @@
-	LIBRARY    integer.dll
-
-
-EXPORTS
-; integer
-tpconv_
-genisany_
-inextj_
-genset_

@@ -11,9 +11,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       include 'stack.h'
 
       logical checkrhs,checklhs,crebmat,getbmat,checkval
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
-cDEC$ ENDIF 
       common /mtlbc/ mmode
 c
       rhs=max(rhs,0)

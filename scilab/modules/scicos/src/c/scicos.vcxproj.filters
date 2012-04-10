@@ -273,9 +273,6 @@
     <None Include="Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">

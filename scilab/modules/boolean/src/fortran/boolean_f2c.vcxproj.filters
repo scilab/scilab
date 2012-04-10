@@ -63,9 +63,6 @@
     </None>
     <None Include="..\..\sci_gateway\boolean_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

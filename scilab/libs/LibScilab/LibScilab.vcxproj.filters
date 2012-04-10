@@ -13,9 +13,6 @@
       <UniqueIdentifier>{c49e1540-fc52-402a-a907-3ecb4a681b2a}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{efb26f61-2f0c-4f86-86f6-ec281610f24a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainLibscilab.c">
@@ -26,5 +23,17 @@
     <ResourceCompile Include="libscilab.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\string_f.lib" />
+    <Library Include="..\..\bin\sparse_f.lib" />
+    <Library Include="..\..\bin\polynomials_f.lib" />
+    <Library Include="..\..\bin\output_stream_f.lib" />
+    <Library Include="..\..\bin\linpack_f.lib" />
+    <Library Include="..\..\bin\io_f.lib" />
+    <Library Include="..\..\bin\integer_f.lib" />
+    <Library Include="..\..\bin\elementary_functions_f.lib" />
+    <Library Include="..\..\bin\data_structures_f.lib" />
+    <Library Include="..\..\bin\boolean_f.lib" />
   </ItemGroup>
 </Project>

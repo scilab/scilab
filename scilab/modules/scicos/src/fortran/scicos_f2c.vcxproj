@@ -82,7 +82,7 @@
 lib /DEF:"$(ProjectDir)scicos_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -104,7 +104,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,7 +123,7 @@ cd ..
 lib /DEF:"$(ProjectDir)scicos_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -148,7 +148,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -167,7 +167,7 @@ cd ..
 lib /DEF:"$(ProjectDir)scicos_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -190,7 +190,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -211,7 +211,7 @@ cd ..
 lib /DEF:"$(ProjectDir)scicos_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -237,7 +237,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;scicos.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -302,7 +302,6 @@ cd ..
     <f2c_rule Include="vvtosci.f" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core_f_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Output_stream_Import.def" />

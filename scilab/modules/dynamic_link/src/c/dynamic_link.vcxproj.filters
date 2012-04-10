@@ -111,9 +111,6 @@
     <None Include="..\..\dynamic_link.iss" />
     <None Include="..\..\sci_gateway\dynamic_link_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="dynamic_link.rc">

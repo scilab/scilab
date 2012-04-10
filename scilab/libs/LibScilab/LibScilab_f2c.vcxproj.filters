@@ -13,9 +13,6 @@
       <UniqueIdentifier>{08a32e9f-d8be-48fd-933e-32001b28c5b0}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
-    <Filter Include="Exports">
-      <UniqueIdentifier>{38499705-873f-4412-b8f5-061a4c29b725}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainLibscilab.c">
@@ -30,7 +27,10 @@
   <ItemGroup>
     <None Include="..\ExplicitExportsLibScilab.vcdef" />
     <None Include="..\LibScilab.def">
-      <Filter>Exports</Filter>
+      <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libf2c.lib" />
   </ItemGroup>
 </Project>

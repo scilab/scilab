@@ -92,10 +92,10 @@
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -125,10 +125,10 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -158,10 +158,10 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -196,10 +196,10 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

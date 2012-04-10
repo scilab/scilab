@@ -83,7 +83,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)Sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -105,7 +105,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>sparse_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -125,7 +125,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)Sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -150,7 +150,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>sparse_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)Sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -193,7 +193,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>sparse_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -215,7 +215,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)Sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -241,7 +241,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;sparse.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>sparse_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -493,7 +493,6 @@ cd ..
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
-    <None Include="Core_f_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />
     <None Include="LibScilab_Import.def" />

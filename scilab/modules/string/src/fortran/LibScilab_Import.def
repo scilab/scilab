@@ -16,6 +16,15 @@ com_
 cha1_
 mtlbc_
 cremat_
+;
+;core_f
+;
+funnam_
+ref2val_
+isany_
+indxgc_
+indxg_
+cvdm_
+cvwm_
 namstr_
 ;
-
