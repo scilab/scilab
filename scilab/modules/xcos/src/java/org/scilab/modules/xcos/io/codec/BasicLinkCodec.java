@@ -15,7 +15,6 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -30,18 +29,18 @@ public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
         BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-                new ExplicitLink(), null, null, null);
+            new ExplicitLink(), null, null, null);
         mxCodecRegistry.register(explicitlinkCodec);
         BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-                new ImplicitLink(), null, null, null);
+            new ImplicitLink(), null, null, null);
         mxCodecRegistry.register(implicitlinkCodec);
         BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-                new CommandControlLink(), null, null, null);
+            new CommandControlLink(), null, null, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 
     public BasicLinkCodec(Object template, String[] exclude, String[] idrefs,
-            Map<String, String> mapping) {
+                          Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
     }
 

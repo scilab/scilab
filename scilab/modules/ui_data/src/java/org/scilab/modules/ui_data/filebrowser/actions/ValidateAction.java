@@ -44,6 +44,7 @@ public class ValidateAction extends CommonCallBack {
         ext.put("sci", actions.get("scinotes"));
         ext.put("tst", actions.get("scinotes"));
         ext.put("dem", actions.get("scinotes"));
+        ext.put("zcos", actions.get("xcos"));
         ext.put("xcos", actions.get("xcos"));
         ext.put("cos", actions.get("xcos"));
         ext.put("cosf", actions.get("xcos"));

@@ -58,13 +58,13 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
-import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
@@ -1027,7 +1027,7 @@ public final class Xcos {
                     LOG.finest("xcosDiagramToScilab: entering");
                     final XcosDiagram diagram = new XcosDiagram();
 
-                    final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
+                    final XcosFileType filetype = XcosFileType.findFileType(file);
                     if (filetype != null) {
                         try {
                             LOG.finest("xcosDiagramToScilab: initialized");

@@ -10,14 +10,9 @@
  *
  */
 
-package org.scilab.modules.xcos.io;
+package org.scilab.modules.xcos.io.codec;
 
 import org.scilab.modules.graph.io.ScilabObjectCodec;
-import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
-import org.scilab.modules.xcos.io.codec.BasicLinkCodec;
-import org.scilab.modules.xcos.io.codec.BasicPortCodec;
-import org.scilab.modules.xcos.io.codec.OrientationCodec;
-import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
@@ -25,7 +20,7 @@ import com.mxgraph.io.mxCodecRegistry;
 
 /**
  * Root codec for Xcos diagram instance.
- * 
+ *
  * This class register all packages used by Xcos for
  * serialization/deserialization.
  */
@@ -40,10 +35,10 @@ public class XcosCodec extends mxCodec {
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
         mxCodecRegistry
-                .addPackage("org.scilab.modules.xcos.block.positionning");
+        .addPackage("org.scilab.modules.xcos.block.positionning");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
         mxCodecRegistry
-                .addPackage("org.scilab.modules.xcos.link.commandcontrol");
+        .addPackage("org.scilab.modules.xcos.link.commandcontrol");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.port");
@@ -88,7 +83,7 @@ public class XcosCodec extends mxCodec {
 
     /**
      * Construct a new codec associated with the document.
-     * 
+     *
      * @param document
      *            the document containing all the data.
      */

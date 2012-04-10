@@ -13,11 +13,11 @@
 package org.scilab.tests.modules.xcos.utils;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.scilab.modules.xcos.utils.XcosFileType;
-import org.junit.*;
+import org.junit.Test;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosFileType;
 
 /**
  * Test the {@link XcosFileType} class.
@@ -28,7 +28,8 @@ public class FileTypeTest {
     @Test
     public void checkSupportedType() {
         assert XcosFileType.values().length == 4;
-        assert XcosFileType.getDefault() == XcosFileType.XCOS;
+        assert XcosFileType.getAvailableSaveFormats().contains(XcosFileType.ZCOS);
+        assert XcosFileType.getAvailableSaveFormats().contains(XcosFileType.XCOS);
     }
 
     @Test
@@ -63,15 +64,22 @@ public class FileTypeTest {
     }
 
     @Test
-    public void validateXcosFindFileType() throws IOException {
+    public void validateXcosFindFileType() throws Exception {
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
-        FileOutputStream stream = new FileOutputStream(tmp);
-        stream.write(XcosFileHeader.getBytes());
-        stream.close();
+        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
 
-        assert XcosFileType.XCOS == XcosFileType.findFileType(tmp.getAbsolutePath());
+        assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
 
         tmp.delete();
     }
 
+    @Test
+    public void validateZcosFindFileType() throws Exception {
+        File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
+        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
+
+        assert XcosFileType.ZCOS == XcosFileType.findFileType(tmp);
+
+        tmp.delete();
+    }
 }

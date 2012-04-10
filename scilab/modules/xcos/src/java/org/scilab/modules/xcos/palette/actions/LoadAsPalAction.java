@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -26,17 +26,17 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.VariablePath;
-import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Load a diagram on the palette.
- * 
+ *
  * It will load each block as an independent block and produce a visible panel
  * similar to {@link org.scilab.modules.xcos.palette.model.Palette}.
  */
@@ -53,7 +53,7 @@ public final class LoadAsPalAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      */
@@ -63,7 +63,7 @@ public final class LoadAsPalAction extends DefaultAction {
 
     /**
      * Create a menu to add in Scilab Graph menu bar
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      * @return the menu
@@ -74,7 +74,7 @@ public final class LoadAsPalAction extends DefaultAction {
 
     /**
      * Create a button to add in Scilab Graph tool bar
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      * @return the button
@@ -91,7 +91,7 @@ public final class LoadAsPalAction extends DefaultAction {
     @Override
     public void actionPerformed(final ActionEvent e) {
         final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser
-                .createFileChooser().getAsSimpleFileChooser());
+                                           .createFileChooser().getAsSimpleFileChooser());
 
         /* Standard files */
         fc.setTitle(XcosMessages.OPEN);
@@ -99,9 +99,9 @@ public final class LoadAsPalAction extends DefaultAction {
         fc.setMultipleSelection(false);
 
         final SciFileFilter xcosFilter = new SciFileFilter(
-                XcosFileType.XCOS.getFileMask(), null, 0);
+            XcosFileType.XCOS.getFileMask(), null, 0);
         final SciFileFilter cosFilter = new SciFileFilter(
-                XcosFileType.COS.getFileMask() + "*", null, 1);
+            XcosFileType.COS.getFileMask() + "*", null, 1);
         final SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
         fc.addChoosableFileFilter(xcosFilter);
         fc.addChoosableFileFilter(cosFilter);

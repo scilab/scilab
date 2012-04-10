@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,35 +11,71 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.xcos.io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.codec.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
+import org.scilab.modules.xcos.io.spec.XcosPackage;
+import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
     /**
-     * Represent the Xcos XML format.
+     * Represent the Xcos (a la ODT) format.
+     */
+    ZCOS("zcos", XcosMessages.FILE_ZCOS) {
+        @Override
+        public void load(String file, XcosDiagram into) throws TransformerException, IOException, SAXException, ParserConfigurationException {
+            LOG.entering("XcosFileType.ZCOS", "load");
+
+            XcosPackage p = new XcosPackage(new File(file));
+            p.setContent(into);
+            p.load();
+
+            LOG.exiting("XcosFileType.ZCOS", "load");
+        }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            LOG.entering("XcosFileType.ZCOS", "save");
+
+            XcosPackage p = new XcosPackage(new File(file));
+            p.setContent(from);
+            p.store();
+
+            LOG.exiting("XcosFileType.ZCOS", "save");
+        }
+    },
+    /**
+     * Represent the Xcos XML flat format.
      */
     XCOS("xcos", XcosMessages.FILE_XCOS) {
         @Override
@@ -49,9 +86,32 @@ public enum XcosFileType {
 
             final StreamSource src = new StreamSource(file);
             final DOMResult result = new DOMResult();
-            aTransformer.transform(src, result);
 
+            LOG.entering("Transformer", "transform");
+            aTransformer.transform(src, result);
+            LOG.exiting("Transformer", "transform");
+
+            LOG.entering("XcosCodec", "decode");
             codec.decode(result.getNode().getFirstChild(), into);
+            LOG.exiting("XcosCodec", "decode");
+        }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            final XcosCodec codec = new XcosCodec();
+            final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
+            final Transformer aTransformer = tranFactory.newTransformer();
+
+            LOG.entering("XcosCodec", "encode");
+            final Node doc = codec.encode(from);
+            LOG.exiting("XcosCodec", "encode");
+
+            final DOMSource src = new DOMSource(doc);
+            final StreamResult result = new StreamResult(file);
+
+            LOG.entering("Transformer", "transform");
+            aTransformer.transform(src, result);
+            LOG.exiting("Transformer", "transform");
         }
     },
     /**
@@ -61,6 +121,11 @@ public enum XcosFileType {
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
             loadScicosDiagram(file, into);
+        }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            throw new UnsupportedOperationException();
         }
     },
     /**
@@ -72,6 +137,11 @@ public enum XcosFileType {
         public void load(String file, XcosDiagram into) throws Exception {
             loadScicosDiagram(file, into);
         }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            throw new UnsupportedOperationException();
+        }
     },
     /**
      * Represent the Scilab I/O format.
@@ -81,10 +151,16 @@ public enum XcosFileType {
         public void load(String file, XcosDiagram into) {
             new H5RWHandler(file).readDiagram(into);
         }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            throw new UnsupportedOperationException();
+        }
     };
 
     private static final String BEFORE_EXT = " (*.";
     private static final String AFTER_EXT = ")";
+    private static final Logger LOG = Logger.getLogger(XcosFileType.class.getName());
 
     private String extension;
     private String description;
@@ -153,27 +229,43 @@ public enum XcosFileType {
             }
         }
 
+        return retValue;
+    }
+
+    /**
+     * Find a filetype by the filename extension
+     *
+     * @param f
+     *            Current file
+     * @return The determined filetype
+     */
+    public static XcosFileType findFileType(File f) {
+        XcosFileType retValue = findFileType(f.getName());
+
         /* Validate xml header */
-        if (retValue == XCOS) {
-            retValue = checkXmlHeader(theFile);
+        if (f.exists() && (retValue == XCOS || retValue == ZCOS)) {
+            retValue = checkHeader(f);
         }
 
         return retValue;
     }
 
     /**
-     * Check the XML header
+     * Check the Xcos file header
      *
      * @param theFile
      *            the file to check
      * @return the found file type
      */
-    private static XcosFileType checkXmlHeader(String theFile) {
+    private static XcosFileType checkHeader(final File theFile) {
         XcosFileType retValue = null;
 
         final byte[] xmlMagic = "<?xml".getBytes();
         final byte[] readMagic = new byte[xmlMagic.length];
 
+        /*
+         * Check if the file is an xml one
+         */
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(theFile);
@@ -193,14 +285,31 @@ public enum XcosFileType {
                 }
             }
         }
+
+        /*
+         * Check if the file is a valid zip file
+         */
+        if (retValue == null) {
+            try {
+                new XcosPackage(theFile).checkHeader();
+                retValue = ZCOS;
+            } catch (IOException e) {
+            } catch (ParserConfigurationException e) {
+            } catch (TransformerException e) {
+            }
+        }
+
         return retValue;
     }
 
     /**
-     * @return the Xcos default filetype
+     * @return the possible file format
      */
-    public static XcosFileType getDefault() {
-        return XcosFileType.XCOS;
+    public static Set<XcosFileType> getAvailableSaveFormats() {
+        final Set<XcosFileType> values = EnumSet.noneOf(XcosFileType.class);
+        values.add(XcosFileType.XCOS);
+        values.add(XcosFileType.ZCOS);
+        return values;
     }
 
     /**
@@ -214,6 +323,18 @@ public enum XcosFileType {
      *             in case of problem
      */
     public abstract void load(final String file, final XcosDiagram into) throws Exception;
+
+    /**
+     * Save to a file the XcosDiagram instance
+     *
+     * @param file
+     *            the file to save to
+     * @param into
+     *            the diagram instance to save
+     * @throws Exception
+     *             in case of problem
+     */
+    public abstract void save(final String file, final XcosDiagram from) throws Exception;
 
     /**
      * @return the valid file filters

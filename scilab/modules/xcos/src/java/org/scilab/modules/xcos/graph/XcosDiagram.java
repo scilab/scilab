@@ -40,15 +40,9 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -72,7 +66,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
-import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -93,7 +87,6 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
-import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
@@ -1684,6 +1677,8 @@ public class XcosDiagram extends ScilabGraph {
     public boolean saveDiagramAs(final File fileName) {
         boolean isSuccess = false;
         File writeFile = fileName;
+        XcosFileType format = XcosFileType.ZCOS;
+
         info(XcosMessages.SAVING_DIAGRAM);
         if (fileName == null) {
             // Choose a filename
@@ -1692,11 +1687,13 @@ public class XcosDiagram extends ScilabGraph {
             fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 
             // Xcos files or anything are supported
-            final XcosFileType defaultFileType = XcosFileType.getDefault();
-            final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(defaultFileType.getDescription(), defaultFileType.getExtension());
-            fc.addChoosableFileFilter(xcosFilter);
+            final Set<XcosFileType> defaults = XcosFileType.getAvailableSaveFormats();
+            for (XcosFileType type : defaults) {
+                final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(type.getDescription(), type.getExtension());
+                fc.addChoosableFileFilter(xcosFilter);
+            }
             fc.setAcceptAllFileFilterUsed(true);
-            fc.setFileFilter(xcosFilter);
+            fc.setFileFilter(fc.getChoosableFileFilters()[0]);
 
             fc.setMultipleSelection(false);
             if (getSavedFile() != null) {
@@ -1716,7 +1713,7 @@ public class XcosDiagram extends ScilabGraph {
                         escaped = escaped.replace(c, '-');
                     }
 
-                    fc.setSelectedFile(new File(escaped + XcosFileType.XCOS.getDottedExtension()));
+                    fc.setSelectedFile(new File(escaped + XcosFileType.ZCOS.getDottedExtension()));
                 }
                 ConfigurationManager.configureCurrentDirectory(fc);
             }
@@ -1733,11 +1730,12 @@ public class XcosDiagram extends ScilabGraph {
         /* Extension checks */
         if (!writeFile.exists()) {
             final String filename = writeFile.getName();
-            if (!filename.endsWith(XcosFileType.XCOS.getDottedExtension())) {
-                /* No extension given --> .xcos added */
-                writeFile = new File(writeFile.getParent(), filename + XcosFileType.XCOS.getDottedExtension());
+            if (!filename.endsWith(XcosFileType.ZCOS.getDottedExtension())) {
+                /* No extension given --> .zcos added */
+                writeFile = new File(writeFile.getParent(), filename + XcosFileType.ZCOS.getDottedExtension());
             }
         }
+        format = XcosFileType.findFileType(writeFile);
 
         /*
          * If the file exists, ask for confirmation if this is not the
@@ -1757,14 +1755,14 @@ public class XcosDiagram extends ScilabGraph {
          * Really save the data
          */
         try {
-            save(writeFile);
+            format.save(writeFile.getCanonicalPath(), getRootDiagram());
             setSavedFile(writeFile);
 
             setTitle(writeFile.getName().substring(0, writeFile.getName().lastIndexOf('.')));
             ConfigurationManager.getInstance().addToRecentFiles(writeFile);
             setModified(false);
             isSuccess = true;
-        } catch (final TransformerException e) {
+        } catch (final Exception e) {
             LOG.severe(e.toString());
 
             XcosDialogs.couldNotSaveFile(this);
@@ -1772,24 +1770,6 @@ public class XcosDiagram extends ScilabGraph {
 
         info(XcosMessages.EMPTY_INFO);
         return isSuccess;
-    }
-
-    /**
-     * Save to a file
-     *
-     * @param file
-     *            the file
-     * @throws TransformerException
-     *             on error
-     */
-    private void save(final File file) throws TransformerException {
-        final XcosCodec codec = new XcosCodec();
-        final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
-        final Transformer aTransformer = tranFactory.newTransformer();
-
-        final DOMSource src = new DOMSource(codec.encode(this));
-        final StreamResult result = new StreamResult(file);
-        aTransformer.transform(src, result);
     }
 
     /**
@@ -1802,7 +1782,7 @@ public class XcosDiagram extends ScilabGraph {
         final String name = file.getName();
 
         setModified(false);
-        if (name.endsWith(XcosFileType.getDefault().getExtension())) {
+        if (XcosFileType.getAvailableSaveFormats().contains(XcosFileType.findFileType(file))) {
             setSavedFile(file);
             Xcos.getInstance().addDiagram(file, this);
         }
@@ -1955,18 +1935,14 @@ public class XcosDiagram extends ScilabGraph {
      *            the variable to decode (can be null)
      */
     public void transformAndLoadFile(final String file, final String variable) {
+        final File f;
         final XcosFileType filetype;
         if (file != null) {
-            filetype = XcosFileType.findFileType(file);
-        } else {
-            filetype = null;
-        }
-
-        final File f;
-        if (file != null) {
             f = new File(file);
+            filetype = XcosFileType.findFileType(f);
         } else {
             f = null;
+            filetype = null;
         }
         new SwingWorker<XcosDiagram, ActionEvent>() {
             int counter = 0;

@@ -222,6 +222,10 @@ Xcos
 
 * Performance improvements on the diagram saving/loading.
 
+* A compressed file format is now available (ZCOS) and can be used as the 
+  Xcos standard one. This new format will allow us more flexibility on data
+  format.
+
 * New examples are provided in the documentation for the blocks:
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay
@@ -242,6 +246,8 @@ Xcos
 * Bug #7863 fixed - Default path for code generation was SCI.
 
 * Bug #8188 fixed - Xcos to Scilab export took too much time.
+
+* Bug #8295 fixed - Save compressed Xcos file as default.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.

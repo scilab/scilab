@@ -21,7 +21,6 @@ import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -173,7 +172,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
      * @param obj
      *            Object decoded.
      * @return The Object transformed
-     * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
+     * @see org.scilab.modules.xcos.io.codec.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
      *      org.w3c.dom.Node, java.lang.Object)
      */
     @Override

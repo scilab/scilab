@@ -30,7 +30,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.utils.XcosFileType;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
