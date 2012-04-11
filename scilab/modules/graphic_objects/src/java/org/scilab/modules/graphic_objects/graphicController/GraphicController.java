@@ -41,19 +41,19 @@ public class GraphicController {
     private static boolean infoEnable = false;
 
     private static void INFO(String message)
-    {
-        if (infoEnable == true)
         {
-            System.err.println("[CONTROLLER - INFO] : "+message);
+            if (infoEnable == true)
+            {
+                System.err.println("[CONTROLLER - INFO] : "+message);
+            }
         }
-    }
-    
+
     private static void DEBUG(String message)
-    {
-        if (debugEnable == true) {
-            System.err.println("[CONTROLLER - DEBUG] : "+message);
+        {
+            if (debugEnable == true) {
+                System.err.println("[CONTROLLER - DEBUG] : "+message);
+            }
         }
-    }
 
     /**
      * Set of all views attached to this controller.
@@ -99,6 +99,15 @@ public class GraphicController {
     public void register(GraphicView view) {
         INFO("Register view : " + view.toString());
         allViews.add(view);
+    }
+
+    /**
+     * Unregister a view.
+     * @param view The view to unregister.
+     */
+    public void unregister(GraphicView view) {
+        INFO("Unregister view : " + view.toString());
+        allViews.remove(view);
     }
 
     /**
@@ -250,10 +259,10 @@ public class GraphicController {
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                    public void run() {
-                        view.createObject(id);
-                    }
-                });
+                        public void run() {
+                            view.createObject(id);
+                        }
+                    });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
@@ -277,17 +286,17 @@ public class GraphicController {
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                    public void run() {
-                        view.updateObject(id, prop);
-                    }
-                });
+                        public void run() {
+                            view.updateObject(id, prop);
+                        }
+                    });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
             }
         } catch (ConcurrentModificationException e) {
             e.printStackTrace();
-        } 
+        }
     }
 
     /**
@@ -302,10 +311,10 @@ public class GraphicController {
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                    public void run() {
-                        view.deleteObject(id);
-                    }
-                });
+                        public void run() {
+                            view.deleteObject(id);
+                        }
+                    });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
@@ -368,7 +377,7 @@ public class GraphicController {
         GraphicObject killMe = getObjectFromId(id);
         String parentUID = killMe.getParent();
 
-        
+
         /* Remove object from Parent's Children list */
         if (parentUID != null && !parentUID.equals("")) {
             getObjectFromId(parentUID).removeChild(id);
@@ -379,13 +388,13 @@ public class GraphicController {
         }
 
         recursiveDeleteChildren(killMe);
-        
+
         deleteObject(id);
     }
-    
+
     private void recursiveDeleteChildren(GraphicObject killMe) {
         String children[] = killMe.getChildren();
-        
+
         for (int i = 0 ; i < children.length ; ++i) {
             recursiveDeleteChildren(getObjectFromId(children[i]));
             deleteObject(children[i]);

@@ -175,8 +175,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
          */
         FontManager.getSciFontManager();
 
-        visitorMap.put(figure.getIdentifier(), this);
+	visitorMap.put(figure.getIdentifier(), this);
     }
+
+    public static void changeVisitor(Figure figure, DrawerVisitor visitor) {
+	visitorMap.put(figure.getIdentifier(), visitor);
+    } 
 
     public DrawingTools getDrawingTools() {
         return drawingTools;
@@ -850,7 +854,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param exception the cause of invalidation.
      */
     public void invalidate(GraphicObject graphicObject, Exception exception) {
-        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());
+        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());exception.printStackTrace();
         GraphicController.getController().setProperty(graphicObject.getIdentifier(), GraphicObjectProperties.__GO_VALID__, false);
     }
 

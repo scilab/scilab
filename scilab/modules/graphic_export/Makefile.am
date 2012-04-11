@@ -45,10 +45,11 @@ sci_gateway/c/sci_xs2ppm.c \
 sci_gateway/c/sci_xs2ps.c \
 sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
-sci_gateway/c/sci_xs2png.c \
 sci_gateway/c/sci_xs2eps.c \
-sci_gateway/c/sci_xs2pdf.c
+sci_gateway/c/sci_xs2pdf.c \
+sci_gateway/c/sci_xs2png.c
 
+GATEWAY_CPP_SOURCES = 
 
 # Includes need for the compilation
 libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
@@ -63,16 +64,17 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/commons/src/jni \
-				-I$(top_srcdir)/libs/doublylinkedlist/includes
+				-I$(top_srcdir)/libs/doublylinkedlist/includes \
+				-I$(top_srcdir)/modules/graphic_objects/includes
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
-libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscigraphic_export_algo_la_CFLAGS = $(libscigraphic_export_la_CFLAGS)
 libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary

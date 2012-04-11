@@ -64,13 +64,15 @@ public class DragZoomRotateInteraction extends FigureInteraction {
     @Override
     protected void changeEnable(boolean isEnable) {
         Component component = getDrawerVisitor().getComponent();
-        if (isEnable) {
-            component.addMouseListener(mouseListener);
-            component.addMouseWheelListener(mouseWheelListener);
-        } else {
-            component.removeMouseListener(mouseListener);
-            component.removeMouseMotionListener(mouseMotionListener);
-            component.removeMouseWheelListener(mouseWheelListener);
+        if (component != null) {
+            if (isEnable) {
+                component.addMouseListener(mouseListener);
+                component.addMouseWheelListener(mouseWheelListener);
+            } else {
+                component.removeMouseListener(mouseListener);
+                component.removeMouseMotionListener(mouseMotionListener);
+                component.removeMouseWheelListener(mouseWheelListener);
+            }
         }
     }
 
@@ -149,15 +151,15 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         @Override
         public void mouseDragged(MouseEvent e) {
             switch (e.getModifiers()) {
-                case XY_TRANSLATION_MODIFIER:
-                    doXYTranslation(e);
-                    break;
-                case Z_TRANSLATION_MODIFIER:
-                    doZTranslation(e);
-                    break;
-                case ROTATION_MODIFIER:
-                    doRotation(e);
-                    break;
+            case XY_TRANSLATION_MODIFIER:
+                doXYTranslation(e);
+                break;
+            case Z_TRANSLATION_MODIFIER:
+                doZTranslation(e);
+                break;
+            case ROTATION_MODIFIER:
+                doRotation(e);
+                break;
             }
 
             previousEvent = e;
