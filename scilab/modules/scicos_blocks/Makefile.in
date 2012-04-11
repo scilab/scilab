@@ -120,7 +120,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_etcdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_rootdir)" \
-	"$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciscicos_blocks_la_LIBADD =
@@ -635,8 +634,7 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libsciscicos_blocks_la_SOURCES)
 DIST_SOURCES = $(am__libsciscicos_blocks_la_SOURCES_DIST)
 DATA = $(libsciscicos_blocks_la_etc_DATA) \
-	$(libsciscicos_blocks_la_root_DATA) \
-	$(nobase_libsciscicos_blocks_la_hdf5blocks_DATA)
+	$(libsciscicos_blocks_la_root_DATA)
 am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scicos_block.h includes/scicos_block4.h \
 	includes/blocks.h
@@ -1435,223 +1433,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@*.moc
 
 @XCOS_TRUE@TESTS_DIREXT = tests/unit_tests/Linear
-
-#### xcos : hdf5 blocks files ####
-@XCOS_TRUE@libsciscicos_blocks_la_hdf5blocksdir = $(mydatadir)/
-@XCOS_TRUE@nobase_libsciscicos_blocks_la_hdf5blocks_DATA = blocks/ABS_VALUE.sod \
-@XCOS_TRUE@blocks/AFFICH_m.sod \
-@XCOS_TRUE@blocks/ANDBLK.sod \
-@XCOS_TRUE@blocks/ANDLOG_f.sod \
-@XCOS_TRUE@blocks/AUTOMAT.sod \
-@XCOS_TRUE@blocks/Bache.sod \
-@XCOS_TRUE@blocks/BACKLASH.sod \
-@XCOS_TRUE@blocks/BARXY.sod \
-@XCOS_TRUE@blocks/BIGSOM_f.sod \
-@XCOS_TRUE@blocks/BITCLEAR.sod \
-@XCOS_TRUE@blocks/BITSET.sod \
-@XCOS_TRUE@blocks/BOUNCE.sod \
-@XCOS_TRUE@blocks/BOUNCEXY.sod \
-@XCOS_TRUE@blocks/BPLATFORM.sod \
-@XCOS_TRUE@blocks/CANIMXY3D.sod \
-@XCOS_TRUE@blocks/CANIMXY.sod \
-@XCOS_TRUE@blocks/Capacitor.sod \
-@XCOS_TRUE@blocks/c_block.sod \
-@XCOS_TRUE@blocks/CBLOCK.sod \
-@XCOS_TRUE@blocks/CCS.sod \
-@XCOS_TRUE@blocks/CEVENTSCOPE.sod \
-@XCOS_TRUE@blocks/CFSCOPE.sod \
-@XCOS_TRUE@blocks/CLINDUMMY_f.sod \
-@XCOS_TRUE@blocks/CLKFROM.sod \
-@XCOS_TRUE@blocks/CLKGOTO.sod \
-@XCOS_TRUE@blocks/CLKGotoTagVisibility.sod \
-@XCOS_TRUE@blocks/CLKINV_f.sod \
-@XCOS_TRUE@blocks/CLKOUTV_f.sod \
-@XCOS_TRUE@blocks/CLKSOMV_f.sod \
-@XCOS_TRUE@blocks/CLOCK_c.sod \
-@XCOS_TRUE@blocks/CLR.sod \
-@XCOS_TRUE@blocks/CLSS.sod \
-@XCOS_TRUE@blocks/CMAT3D.sod \
-@XCOS_TRUE@blocks/CMATVIEW.sod \
-@XCOS_TRUE@blocks/CMSCOPE.sod \
-@XCOS_TRUE@blocks/ConstantVoltage.sod \
-@XCOS_TRUE@blocks/CONST_m.sod \
-@XCOS_TRUE@blocks/CONSTRAINT_c.sod \
-@XCOS_TRUE@blocks/CONVERT.sod \
-@XCOS_TRUE@blocks/COSBLK_f.sod \
-@XCOS_TRUE@blocks/Counter.sod \
-@XCOS_TRUE@blocks/CSCOPE.sod \
-@XCOS_TRUE@blocks/CSCOPXY3D.sod \
-@XCOS_TRUE@blocks/CSCOPXY.sod \
-@XCOS_TRUE@blocks/CUMSUM.sod \
-@XCOS_TRUE@blocks/CurrentSensor.sod \
-@XCOS_TRUE@blocks/CURV_f.sod \
-@XCOS_TRUE@blocks/CVS.sod \
-@XCOS_TRUE@blocks/DEADBAND.sod \
-@XCOS_TRUE@blocks/DEBUG_SCICOS.sod \
-@XCOS_TRUE@blocks/DELAY_f.sod \
-@XCOS_TRUE@blocks/DELAYV_f.sod \
-@XCOS_TRUE@blocks/DEMUX.sod \
-@XCOS_TRUE@blocks/DERIV.sod \
-@XCOS_TRUE@blocks/DFLIPFLOP.sod \
-@XCOS_TRUE@blocks/DIFF_f.sod \
-@XCOS_TRUE@blocks/Diode.sod \
-@XCOS_TRUE@blocks/DLATCH.sod \
-@XCOS_TRUE@blocks/DLRADAPT_f.sod \
-@XCOS_TRUE@blocks/DLR.sod \
-@XCOS_TRUE@blocks/DLSS.sod \
-@XCOS_TRUE@blocks/DOLLAR_f.sod \
-@XCOS_TRUE@blocks/EDGE_TRIGGER.sod \
-@XCOS_TRUE@blocks/ENDBLK.sod \
-@XCOS_TRUE@blocks/END_c.sod \
-@XCOS_TRUE@blocks/ESELECT_f.sod \
-@XCOS_TRUE@blocks/EVTDLY_c.sod \
-@XCOS_TRUE@blocks/EVTGEN_f.sod \
-@XCOS_TRUE@blocks/EVTVARDLY.sod \
-@XCOS_TRUE@blocks/EXPBLK_m.sod \
-@XCOS_TRUE@blocks/EXPRESSION.sod \
-@XCOS_TRUE@blocks/Extract_Activation.sod \
-@XCOS_TRUE@blocks/EXTRACTBITS.sod \
-@XCOS_TRUE@blocks/EXTRACT.sod \
-@XCOS_TRUE@blocks/EXTRACTOR.sod \
-@XCOS_TRUE@blocks/EXTTRI.sod \
-@XCOS_TRUE@blocks/fortran_block.sod \
-@XCOS_TRUE@blocks/freq_div.sod \
-@XCOS_TRUE@blocks/FROM.sod \
-@XCOS_TRUE@blocks/FROMMO.sod \
-@XCOS_TRUE@blocks/FROMWSB.sod \
-@XCOS_TRUE@blocks/GAINBLK_f.sod \
-@XCOS_TRUE@blocks/GENERAL_f.sod \
-@XCOS_TRUE@blocks/generic_block3.sod \
-@XCOS_TRUE@blocks/GENSIN_f.sod \
-@XCOS_TRUE@blocks/GENSQR_f.sod \
-@XCOS_TRUE@blocks/GOTO.sod \
-@XCOS_TRUE@blocks/GOTOMO.sod \
-@XCOS_TRUE@blocks/GotoTagVisibility.sod \
-@XCOS_TRUE@blocks/GotoTagVisibilityMO.sod \
-@XCOS_TRUE@blocks/Ground.sod \
-@XCOS_TRUE@blocks/Gyrator.sod \
-@XCOS_TRUE@blocks/HALT_f.sod \
-@XCOS_TRUE@blocks/HYSTHERESIS.sod \
-@XCOS_TRUE@blocks/IdealTransformer.sod \
-@XCOS_TRUE@blocks/IFTHEL_f.sod \
-@XCOS_TRUE@blocks/Inductor.sod \
-@XCOS_TRUE@blocks/IN_f.sod \
-@XCOS_TRUE@blocks/INIMPL_f.sod \
-@XCOS_TRUE@blocks/INTEGRAL_f.sod \
-@XCOS_TRUE@blocks/INTEGRAL_m.sod \
-@XCOS_TRUE@blocks/INTMUL.sod \
-@XCOS_TRUE@blocks/INTRP2BLK_f.sod \
-@XCOS_TRUE@blocks/INTRPLBLK_f.sod \
-@XCOS_TRUE@blocks/INVBLK.sod \
-@XCOS_TRUE@blocks/ISELECT_m.sod \
-@XCOS_TRUE@blocks/JKFLIPFLOP.sod \
-@XCOS_TRUE@blocks/LOGBLK_f.sod \
-@XCOS_TRUE@blocks/LOGICAL_OP.sod \
-@XCOS_TRUE@blocks/LOGIC.sod \
-@XCOS_TRUE@blocks/LOOKUP_f.sod \
-@XCOS_TRUE@blocks/MATBKSL.sod \
-@XCOS_TRUE@blocks/MATCATH.sod \
-@XCOS_TRUE@blocks/MATCATV.sod \
-@XCOS_TRUE@blocks/MATDET.sod \
-@XCOS_TRUE@blocks/MATDIAG.sod \
-@XCOS_TRUE@blocks/MATDIV.sod \
-@XCOS_TRUE@blocks/MATEIG.sod \
-@XCOS_TRUE@blocks/MATEXPM.sod \
-@XCOS_TRUE@blocks/MATINV.sod \
-@XCOS_TRUE@blocks/MATLU.sod \
-@XCOS_TRUE@blocks/MATMAGPHI.sod \
-@XCOS_TRUE@blocks/MATMUL.sod \
-@XCOS_TRUE@blocks/MATPINV.sod \
-@XCOS_TRUE@blocks/MATRESH.sod \
-@XCOS_TRUE@blocks/MATSING.sod \
-@XCOS_TRUE@blocks/MATSUM.sod \
-@XCOS_TRUE@blocks/MATTRAN.sod \
-@XCOS_TRUE@blocks/MATZCONJ.sod \
-@XCOS_TRUE@blocks/MATZREIM.sod \
-@XCOS_TRUE@blocks/MAX_f.sod \
-@XCOS_TRUE@blocks/MAXMIN.sod \
-@XCOS_TRUE@blocks/MBLOCK.sod \
-@XCOS_TRUE@blocks/MCLOCK_f.sod \
-@XCOS_TRUE@blocks/MFCLCK_f.sod \
-@XCOS_TRUE@blocks/M_freq.sod \
-@XCOS_TRUE@blocks/MIN_f.sod \
-@XCOS_TRUE@blocks/Modulo_Count.sod \
-@XCOS_TRUE@blocks/M_SWITCH.sod \
-@XCOS_TRUE@blocks/MUX.sod \
-@XCOS_TRUE@blocks/NEGTOPOS_f.sod \
-@XCOS_TRUE@blocks/NMOS.sod \
-@XCOS_TRUE@blocks/NPN.sod \
-@XCOS_TRUE@blocks/NRMSOM_f.sod \
-@XCOS_TRUE@blocks/OpAmp.sod \
-@XCOS_TRUE@blocks/OUT_f.sod \
-@XCOS_TRUE@blocks/OUTIMPL_f.sod \
-@XCOS_TRUE@blocks/PDE.sod \
-@XCOS_TRUE@blocks/PerteDP.sod \
-@XCOS_TRUE@blocks/PID.sod \
-@XCOS_TRUE@blocks/PMOS.sod \
-@XCOS_TRUE@blocks/PNP.sod \
-@XCOS_TRUE@blocks/POSTONEG_f.sod \
-@XCOS_TRUE@blocks/PotentialSensor.sod \
-@XCOS_TRUE@blocks/POWBLK_f.sod \
-@XCOS_TRUE@blocks/PROD_f.sod \
-@XCOS_TRUE@blocks/PRODUCT.sod \
-@XCOS_TRUE@blocks/PuitsP.sod \
-@XCOS_TRUE@blocks/QUANT_f.sod \
-@XCOS_TRUE@blocks/RAMP.sod \
-@XCOS_TRUE@blocks/RAND_m.sod \
-@XCOS_TRUE@blocks/RATELIMITER.sod \
-@XCOS_TRUE@blocks/READAU_f.sod \
-@XCOS_TRUE@blocks/READC_f.sod \
-@XCOS_TRUE@blocks/REGISTER.sod \
-@XCOS_TRUE@blocks/RELATIONALOP.sod \
-@XCOS_TRUE@blocks/RELAY_f.sod \
-@XCOS_TRUE@blocks/Resistor.sod \
-@XCOS_TRUE@blocks/RFILE_f.sod \
-@XCOS_TRUE@blocks/RICC.sod \
-@XCOS_TRUE@blocks/ROOTCOEF.sod \
-@XCOS_TRUE@blocks/SAMPHOLD_m.sod \
-@XCOS_TRUE@blocks/SampleCLK.sod \
-@XCOS_TRUE@blocks/SATURATION.sod \
-@XCOS_TRUE@blocks/SAWTOOTH_f.sod \
-@XCOS_TRUE@blocks/scifunc_block_m.sod \
-@XCOS_TRUE@blocks/SELECT_m.sod \
-@XCOS_TRUE@blocks/SHIFT.sod \
-@XCOS_TRUE@blocks/Sigbuilder.sod \
-@XCOS_TRUE@blocks/SIGNUM.sod \
-@XCOS_TRUE@blocks/SINBLK_f.sod \
-@XCOS_TRUE@blocks/SineVoltage.sod \
-@XCOS_TRUE@blocks/SourceP.sod \
-@XCOS_TRUE@blocks/SQRT.sod \
-@XCOS_TRUE@blocks/SRFLIPFLOP.sod \
-@XCOS_TRUE@blocks/STEP_FUNCTION.sod \
-@XCOS_TRUE@blocks/SUBMAT.sod \
-@XCOS_TRUE@blocks/SUM_f.sod \
-@XCOS_TRUE@blocks/SUMMATION.sod \
-@XCOS_TRUE@blocks/SUPER_f.sod \
-@XCOS_TRUE@blocks/SWITCH2_m.sod \
-@XCOS_TRUE@blocks/SWITCH_f.sod \
-@XCOS_TRUE@blocks/Switch.sod \
-@XCOS_TRUE@blocks/SELF_SWITCH.sod \
-@XCOS_TRUE@blocks/TANBLK_f.sod \
-@XCOS_TRUE@blocks/TCLSS.sod \
-@XCOS_TRUE@blocks/TEXT_f.sod \
-@XCOS_TRUE@blocks/TIME_DELAY.sod \
-@XCOS_TRUE@blocks/TIME_f.sod \
-@XCOS_TRUE@blocks/TKSCALE.sod \
-@XCOS_TRUE@blocks/TOWS_c.sod \
-@XCOS_TRUE@blocks/TRASH_f.sod \
-@XCOS_TRUE@blocks/TrigFun.sod \
-@XCOS_TRUE@blocks/VanneReglante.sod \
-@XCOS_TRUE@blocks/VARIABLE_DELAY.sod \
-@XCOS_TRUE@blocks/VariableResistor.sod \
-@XCOS_TRUE@blocks/VoltageSensor.sod \
-@XCOS_TRUE@blocks/VsourceAC.sod \
-@XCOS_TRUE@blocks/VVsourceAC.sod \
-@XCOS_TRUE@blocks/WFILE_f.sod \
-@XCOS_TRUE@blocks/WRITEAU_f.sod \
-@XCOS_TRUE@blocks/WRITEC_f.sod \
-@XCOS_TRUE@blocks/ZCROSS_f.sod
-
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -4552,27 +4333,6 @@ uninstall-libsciscicos_blocks_la_rootDATA:
 	@list='$(libsciscicos_blocks_la_root_DATA)'; test -n "$(libsciscicos_blocks_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciscicos_blocks_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-nobase_libsciscicos_blocks_la_hdf5blocksDATA: $(nobase_libsciscicos_blocks_la_hdf5blocks_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscicos_blocks_la_hdf5blocksdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)"
-	@list='$(nobase_libsciscicos_blocks_la_hdf5blocks_DATA)'; test -n "$(libsciscicos_blocks_la_hdf5blocksdir)" || list=; \
-	$(am__nobase_list) | while read dir files; do \
-	  xfiles=; for file in $$files; do \
-	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
-	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
-	  test -z "$$xfiles" || { \
-	    test "x$$dir" = x. || { \
-	      echo "$(MKDIR_P) '$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)/$$dir'"; \
-	      $(MKDIR_P) "$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)/$$dir"; }; \
-	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)/$$dir'"; \
-	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)/$$dir" || exit $$?; }; \
-	done
-
-uninstall-nobase_libsciscicos_blocks_la_hdf5blocksDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(nobase_libsciscicos_blocks_la_hdf5blocks_DATA)'; test -n "$(libsciscicos_blocks_la_hdf5blocksdir)" || list=; \
-	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
-	dir='$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)'; $(am__uninstall_files_from_dir)
 install-libsciscicos_blocks_la_includeHEADERS: $(libsciscicos_blocks_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscicos_blocks_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
@@ -4680,7 +4440,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscicos_blocks_la_etcdir)" "$(DESTDIR)$(libsciscicos_blocks_la_rootdir)" "$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)" "$(DESTDIR)$(libsciscicos_blocks_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscicos_blocks_la_etcdir)" "$(DESTDIR)$(libsciscicos_blocks_la_rootdir)" "$(DESTDIR)$(libsciscicos_blocks_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -4742,8 +4502,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libsciscicos_blocks_la_etcDATA \
 	install-libsciscicos_blocks_la_includeHEADERS \
-	install-libsciscicos_blocks_la_rootDATA \
-	install-nobase_libsciscicos_blocks_la_hdf5blocksDATA
+	install-libsciscicos_blocks_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -4792,7 +4551,6 @@ ps-am:
 uninstall-am: uninstall-libsciscicos_blocks_la_etcDATA \
 	uninstall-libsciscicos_blocks_la_includeHEADERS \
 	uninstall-libsciscicos_blocks_la_rootDATA \
-	uninstall-nobase_libsciscicos_blocks_la_hdf5blocksDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -4809,7 +4567,6 @@ uninstall-am: uninstall-libsciscicos_blocks_la_etcDATA \
 	install-libsciscicos_blocks_la_etcDATA \
 	install-libsciscicos_blocks_la_includeHEADERS \
 	install-libsciscicos_blocks_la_rootDATA install-man \
-	install-nobase_libsciscicos_blocks_la_hdf5blocksDATA \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -4819,7 +4576,6 @@ uninstall-am: uninstall-libsciscicos_blocks_la_etcDATA \
 	uninstall-libsciscicos_blocks_la_etcDATA \
 	uninstall-libsciscicos_blocks_la_includeHEADERS \
 	uninstall-libsciscicos_blocks_la_rootDATA \
-	uninstall-nobase_libsciscicos_blocks_la_hdf5blocksDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
