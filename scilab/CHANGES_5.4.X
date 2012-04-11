@@ -192,6 +192,19 @@ Elementary functions
 
 * nthroot function added (See SEP #78).
 
+Sparse
+======
+
+* qmr function modified.
+   Calling qmr(F, Fp, x) where F is a function returning A*x
+   and Fp a function returning A'*x is deprecated.
+   Use qmr(F, x) instead where F prototype is
+   function y = F(x, t)
+   [...]
+   endfunction
+   where t is used to make F return A*x or A'*x.
+   Same behaviour has been implemented for qmr( ..., M1, M1p, M2, M2p).
+   See qmr documentation for examples and details.
 
 CLI console:
 ============
@@ -322,7 +335,7 @@ ATOMS
 
 * Bug #10933 fixed - atomsGetConfig did not check value of input argument.
 
-* Bug #10957 fixed - atomsInstall required a network connection to install 
+* Bug #10957 fixed - atomsInstall required a network connection to install
                      a local package.
 
 
@@ -441,6 +454,8 @@ Documentation
 * Bug #10879 fixed - Typo in the dec2base help page.
 
 * Bug #10881 fixed - Typo in ftest and ftuneq fixed.
+
+* Bug #10938 fixed - Add an example in qmr documentation.
 
 
 Bug fixes
@@ -654,7 +669,7 @@ t.
 
 * Bug #10904 fixed - error messages of and() and or() builtin were not standard.
 
-* Bug #10880 fixed - Default startup directory moved to "My Documents folder" 
+* Bug #10880 fixed - Default startup directory moved to "My Documents folder"
                      on Windows for icon shorcut.
 
 * Bug #10966 fixed - linspace was producing some numerical errors on the last
@@ -925,7 +940,7 @@ New Functions
 
 * The damp function in CACSD module computes the natural pulsation
   and damping factor of linear dynamical systems.
-  
+
 
 Optimization
 =============
