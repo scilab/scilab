@@ -16,6 +16,8 @@
 #include <map>
 #include <string.h>
 
+#include "dynlib_graphic_objects.h"
+
 extern "C"
 {
     void ScilabNativeView__createObject(char* pstId);
@@ -23,7 +25,7 @@ extern "C"
     void ScilabNativeView__updateObject(char* pstId, char* pstProperty);
 }
 
-class ScilabView
+class GRAPHIC_OBJECTS_IMPEXP ScilabView
 {
 private :
     ScilabView() {}

@@ -121,6 +121,8 @@ public final class SwingView implements GraphicView {
 
     private static SwingView me;
 
+    private static boolean headless;
+
     private Map<String, TypedObject> allObjects;
 
     /**
@@ -136,6 +138,10 @@ public final class SwingView implements GraphicView {
         if (me == null) {
             me = new SwingView();
         }
+    }
+
+    public static void setHeadless(boolean headless) {
+        SwingView.headless = headless;
     }
 
     public static SwingViewObject getFromId(String id) {
@@ -209,7 +215,7 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void createObject(String id) {
-        if (!GraphicsEnvironment.isHeadless()) {
+        if (!headless && !GraphicsEnvironment.isHeadless()) {
             boolean isValid = (Boolean) GraphicController.getController().getProperty(id, __GO_VALID__);
             if (!isValid) {
                 return;

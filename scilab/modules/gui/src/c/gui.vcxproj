@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -200,6 +200,7 @@
     <ClCompile Include="..\cpp\UiDisplayTree.cpp" />
     <ClCompile Include="..\cpp\UiTable.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
+    <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
@@ -344,6 +345,7 @@
     <ClInclude Include="..\..\includes\SetUiobjectEnable.h" />
     <ClInclude Include="..\..\includes\UiDisplayTree.h" />
     <ClInclude Include="..\..\includes\UiTable.h" />
+    <ClInclude Include="..\jni\SwingView.hxx" />
     <ClInclude Include="buildMainWindowTitle.h" />
     <ClInclude Include="..\cpp\CallClipboard.hxx" />
     <ClInclude Include="..\..\includes\CallColorChooser.h" />

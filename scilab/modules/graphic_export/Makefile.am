@@ -26,6 +26,7 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
+src/jni/Driver.cpp \
 src/cpp/GL2PSConstant.cpp \
 src/cpp/GL2PSWrapping.cpp \
 src/cpp/JoGLInterface.cpp  \
@@ -49,7 +50,9 @@ sci_gateway/c/sci_xs2eps.c \
 sci_gateway/c/sci_xs2pdf.c \
 sci_gateway/c/sci_xs2png.c
 
-GATEWAY_CPP_SOURCES = 
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_driver.cpp \
+sci_gateway/cpp/sci_xinit.cpp \
+sci_gateway/cpp/sci_xend.cpp
 
 # Includes need for the compilation
 libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
@@ -65,7 +68,8 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
-				-I$(top_srcdir)/modules/graphic_objects/includes
+				-I$(top_srcdir)/modules/graphic_objects/includes \
+				-I$(top_srcdir)/modules/gui/src/jni
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)

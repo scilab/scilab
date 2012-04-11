@@ -30,6 +30,7 @@
 #include "FigureList.h"
 #include "freeArrayOfString.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/

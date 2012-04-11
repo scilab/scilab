@@ -80,6 +80,7 @@ public class Export {
         extToType.put("pdf", 7);
         extToType.put("svg", 8);
         extToType.put("ps", 9);
+        extToType.put("pos", 9);
     }
 
     private static boolean svgLoaded;
@@ -97,7 +98,12 @@ public class Export {
     }
 
     public static int getType(String ext) {
-        return extToType.get(ext);
+	Integer type = extToType.get(ext);
+	if (type == null) {
+	    return -1;
+	}
+
+        return type;
     }
 
     /**
