@@ -42,7 +42,11 @@ function scicos_workspace_init()
       if and(fn==["values";"time"] | fn==["time";"values"]) then
         if execstr('x=v.values','errcatch')==0 then
           if execstr('t=v.time','errcatch') ==0 then
-            execstr('save(""'+path+var+''",x,t)')
+// remove deprecation warning on save, this will be reimplemented on 6.x
+warnMode = warning("query");
+warning("off");
+            execstr('save(""'+path+var+'"",x,t)')
+warning(warnMode);
           end
         end
       end
