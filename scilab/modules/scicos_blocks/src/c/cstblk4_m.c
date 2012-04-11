@@ -18,15 +18,13 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
-#include <memory.h>
-#include<stdio.h>
+/*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block,int flag)
-{ 
+{
   /* Copyright INRIA
 
   Scicos block simulator
@@ -43,4 +41,4 @@ SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block,int flag)
   so=GetSizeOfOpar(block,1);
   memcpy(y,opar,mo*no*so);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
