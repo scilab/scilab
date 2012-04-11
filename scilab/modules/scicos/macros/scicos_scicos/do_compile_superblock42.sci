@@ -1189,39 +1189,39 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   ///**********************************
   for i=1:size(bllst)
-    // check for a scilab function block
-    if type(bllst(3).sim(1)) == 13 then
-      ok=%f;%cpr=list();
-      message(_('Superblock should not contains any Scilab function block.'))
-      return
-    end
-
-    for j=1:size(bllst)
-      if (bllst(i).sim(1)=='actionneur'+string(j)) then
-        if tt<>i then
-          act=[act;i];
-          tt=i;
-        end
-      elseif (bllst(i).sim(1)=='capteur'+string(j)) then
-        if tt<>i then
-          cap=[cap;i];
-          tt=i;
-        end
-      elseif (bllst(i).sim(1)=='bidon') then
-        if tt<>i then
-          allhowclk=[allhowclk;i];
-          tt=i;
-        end
-      elseif (bllst(i).sim(1)=='bidon2') then
-        if tt<>i then
-          allhowclk2=[allhowclk2;i];
-          tt=i;
-        end
+// check for a scilab function block
+      if type(bllst(i).sim(1)) == 13 then
+          ok=%f;
+          %cpr=list();
+          message(_('Superblock should not contains any Scilab function block.'))
+          return
       end
-    end
+
+      for j=1:size(bllst)
+          if (bllst(i).sim(1)=='actionneur'+string(j)) then
+              if tt<>i then
+                  act=[act;i];
+                  tt=i;
+              end
+          elseif (bllst(i).sim(1)=='capteur'+string(j)) then
+              if tt<>i then
+                  cap=[cap;i];
+                  tt=i;
+              end
+          elseif (bllst(i).sim(1)=='bidon') then
+              if tt<>i then
+                  allhowclk=[allhowclk;i];
+                  tt=i;
+              end
+          elseif (bllst(i).sim(1)=='bidon2') then
+              if tt<>i then
+                  allhowclk2=[allhowclk2;i];
+                  tt=i;
+              end
+          end
+      end
   end
   ///**********************************
-
   if szclkIN>1 then
     //replace the N Event inputs by a fictious block with 2^N as many event
     //outputs
@@ -1292,9 +1292,9 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   //
   // Generate block activation fo C code
   //
+  n=size(cap,1)
   if ~(szclkIN==[]) then
   // Activate sensors on each clock pulse.
-      n=size(cap,1)
       generatedConnection = [];
       for i=1:n
           if szclkIN>1 then
@@ -1817,7 +1817,7 @@ function Code=make_actuator(standalone)
         '*/'
         ''
         '/*'+part('-',ones(1,40))+' Actuators */';
-        'void '+rdnom+'_actuator(int *flag, int *nport, int *nevprt, double *t, void *u, int *nu1, int *nu2, int *ut, int *flag1)']
+        'void '+rdnom+'_actuator(int *flag, int *nport, int *nevprt, double *t, void *u, int *nu1, int *nu2, int *ut, int flag1)']
 
   comments=['     /*'
             '      * To be customized for standalone execution';
