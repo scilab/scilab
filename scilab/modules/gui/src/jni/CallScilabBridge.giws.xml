@@ -542,7 +542,7 @@
     </method>
     <!-- Export GUI-->
     <method name="newExportFileChooser" returnType="int" modifier="static">
-      <parameter type="int" name="figureId"/>
+      <parameter type="String" name="figureUID"/>
     </method>
     <!-- Font Chooser -->
     <method name="newFontChooser" returnType="int" modifier="static">
@@ -635,7 +635,7 @@
     <method name="getScreenDepth" returnType="int" modifier="static">
     </method>
     <method name="printFigure" returnType="boolean" modifier="static">
-      <parameter type="int" name="figID"/>
+      <parameter type="String" name="figID"/>
       <parameter type="boolean" name="postScript"/>
       <parameter type="boolean" name="displayDialog"/>
     </method>

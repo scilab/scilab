@@ -50,6 +50,10 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
@@ -1161,10 +1165,9 @@ public class CallScilabBridge {
      * @return the ID of the File Chooser in the UIElementMapper
      */
 
-    public static int newExportFileChooser(int figureId) {
+    public static int newExportFileChooser(String figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
-        //return UIElementMapper.add(fileChooser);
     }
 
 
@@ -2460,7 +2463,7 @@ public class CallScilabBridge {
      * @param figID the ID of the figure to print
      * @return execution status
      */
-    public static boolean printFigure(int figID) {
+    public static boolean printFigure(String figID) {
         return printFigure(figID, true, true);
     }
 
@@ -2471,8 +2474,7 @@ public class CallScilabBridge {
      * @param displayDialog true to display a print setup dialog
      * @return execution status
      */
-    public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
-        final int figureID = figID;
+    public static boolean printFigure(String figID, boolean postScript, boolean displayDialog) {
         // Get the PrinterJob object
         PrinterJob printerJob = PrinterJob.getPrinterJob();
 
@@ -2484,6 +2486,8 @@ public class CallScilabBridge {
         if (userOK) {
             //If the OS is Windows
             if (isWindowsPlateform()) {
+		Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
+		int figureID = figure.getId();
                 Canvas canvas;
                 canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
                 ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
@@ -2495,7 +2499,6 @@ public class CallScilabBridge {
 
                 //If the OS is Linux
             } else {
-                int exportRendererMode = ExportRenderer.PS_EXPORT;
                 DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
                 String fileExtension = ".ps";
 
@@ -2503,13 +2506,13 @@ public class CallScilabBridge {
                     String tmpPrinterFile = File.createTempFile("scilabfigure", "").getAbsolutePath();
                     /** Export image to PostScript */
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
-                        FileExporter.fileExport(figureID,
+                        FileExporter.fileExport(figID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
+                                                "PS", 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
-                        FileExporter.fileExport(figureID,
+                        FileExporter.fileExport(figID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
+                                                "PS", 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */

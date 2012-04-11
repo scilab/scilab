@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.batik.svggen.SVGGeneratorContext;
 import org.apache.batik.svggen.SVGGraphics2D;
@@ -66,6 +68,20 @@ public class Export {
     private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
     private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
 
+    private static final Map<String, Integer> extToType = new HashMap<String, Integer>();
+    static {
+        extToType.put("bmp", 1);
+        extToType.put("gif", 2);
+        extToType.put("jpeg", 3);
+        extToType.put("jpg", 3);
+        extToType.put("png", 4);
+        extToType.put("ppm", 5);
+        extToType.put("eps", 6);
+        extToType.put("pdf", 7);
+        extToType.put("svg", 8);
+        extToType.put("ps", 9);
+    }
+
     private static boolean svgLoaded;
     private static boolean pdfLoaded;
 
@@ -78,6 +94,10 @@ public class Export {
      */
     public static boolean isBitmapFormat(TYPE type) {
         return type == TYPE.PNG || type == TYPE.JPEG || type == TYPE.GIF || type == TYPE.BMP || type == TYPE.PPM;
+    }
+
+    public static int getType(String ext) {
+        return extToType.get(ext);
     }
 
     /**

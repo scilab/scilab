@@ -152,7 +152,7 @@ static int sci_toprint_one_rhs(const char *fname)
 
                 try
                 {
-                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex((int) num_win), FALSE, FALSE));
                 }
                 catch(const GiwsException::JniException & e)
                 {
@@ -417,11 +417,11 @@ static int sci_toprint_two_rhs(const char *fname)
                             {
                                 if (strcmp(outputType, "pos") == 0)
                                 {
-                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE));
+                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), TRUE, FALSE));
                                 }
                                 else
                                 {
-                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), FALSE, FALSE));
                                 }
                             }
                             catch(const GiwsException::JniException & e)
