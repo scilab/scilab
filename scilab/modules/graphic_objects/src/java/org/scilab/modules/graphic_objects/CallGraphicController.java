@@ -125,7 +125,7 @@ public final class CallGraphicController {
 
         double[] result = new double[tmp.length];
 
-        for(int i = 0; i < result.length; i++) {
+        for (int i = 0; i < result.length; i++) {
             result[i] = tmp[i];
         }
 
@@ -157,7 +157,7 @@ public final class CallGraphicController {
 
         Boolean tmpValue = (Boolean) getGraphicObjectProperty(id, propertyName);
 
-        result = tmpValue ? 1: 0;
+        result = tmpValue ? 1 : 0;
 
         return result;
     }
@@ -172,14 +172,18 @@ public final class CallGraphicController {
         int[] result = new int[tmp.length];
 
         for (int i = 0; i < result.length; i++) {
-            result[i] = tmp[i] ? 1: 0;
+            result[i] = tmp[i] ? 1 : 0;
         }
 
         return result;
     }
 
     public static void registerScilabView() {
-        GraphicController.getController().register(new ScilabView());
+        GraphicController.getController().register(ScilabView.getScilabView());
+    }
+
+    public static void unregisterScilabView() {
+        GraphicController.getController().unregister(ScilabView.getScilabView());
     }
 
     public static String getConsoleIdentifier() {

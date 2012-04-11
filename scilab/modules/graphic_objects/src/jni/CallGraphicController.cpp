@@ -132,6 +132,7 @@ jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_Stringjb
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanbooleanID=NULL;
 voidregisterScilabViewID=NULL;
+voidunregisterScilabViewID=NULL;
 jstringgetConsoleIdentifierID=NULL;
 voidbuildFigureMenuBarjstringjava_lang_StringID=NULL;
 
@@ -178,6 +179,7 @@ jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_Stringjb
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanbooleanID=NULL;
 voidregisterScilabViewID=NULL;
+voidunregisterScilabViewID=NULL;
 jstringgetConsoleIdentifierID=NULL;
 voidbuildFigureMenuBarjstringjava_lang_StringID=NULL;
 
@@ -1093,6 +1095,24 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "registerScilabView");
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidregisterScilabViewID );
+                        curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallGraphicController::unregisterScilabView (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidunregisterScilabViewID = curEnv->GetStaticMethodID(cls, "unregisterScilabView", "()V" ) ;
+if (voidunregisterScilabViewID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "unregisterScilabView");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidunregisterScilabViewID );
                         curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

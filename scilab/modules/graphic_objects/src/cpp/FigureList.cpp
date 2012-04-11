@@ -46,3 +46,7 @@ void registerToController()
 {
     ScilabView::registerToController();
 }
+void unregisterToController()
+{
+    ScilabView::unregisterToController();
+}

@@ -27,47 +27,56 @@ static BOOL isGraphicModuleLoaded = FALSE ;
 /*------------------------------------------------------------------------*/
 void loadGraphicModule( void )
 {
-  if ( isGraphicModuleLoaded ) { return ; }
+    if ( isGraphicModuleLoaded )
+    {
+        return ;
+    }
 
-  /* Create hastable for get and set functions */
-  createScilabGetHashTable() ;
-  createScilabSetHashTable() ;
+    /* Create hastable for get and set functions */
+    createScilabGetHashTable() ;
+    createScilabSetHashTable() ;
 
-	/* Create hastable for handle storing */
-	//getScilabHandleTab();
+    /* Create hastable for handle storing */
+    //getScilabHandleTab();
 
-  /* Create data for synchronization */
-  //createGraphicSynchronizer();
+    /* Create data for synchronization */
+    //createGraphicSynchronizer();
 
-  C2F(graphicsmodels)() ;
+    C2F(graphicsmodels)() ;
 
-  /* Register Scilab as a dedicated View */
-  registerToController();
+    /* Register Scilab as a dedicated View */
+    registerToController();
 
-  isGraphicModuleLoaded = TRUE ;
+    isGraphicModuleLoaded = TRUE ;
 }
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {
-  if ( !isGraphicModuleLoaded ) { return ; }
+    if ( !isGraphicModuleLoaded )
+    {
+        return ;
+    }
 
-  /* destroy all graphic windows */
-  AllGraphWinDelete() ;
+    /* destroy all graphic windows */
+    AllGraphWinDelete() ;
 
-  /* destroy default objects */
-  //destroyDefaultObjects() ;
+    /* destroy default objects */
+    //destroyDefaultObjects() ;
 
-	/* Destroy the handle tab */
-	//destroyScilabHandleTab();
+    /* Destroy the handle tab */
+    //destroyScilabHandleTab();
 
-	/* destroy hashtables */
-  //destroyScilabGetHashTable() ;
-  //destroyScilabSetHashTable() ;
+    /* destroy hashtables */
+    //destroyScilabGetHashTable() ;
+    //destroyScilabSetHashTable() ;
 
-  /* Delete synchronization data */
-  //destroyGraphicSynchronizer();
+    /* Delete synchronization data */
+    //destroyGraphicSynchronizer();
 
-  isGraphicModuleLoaded = FALSE ;
+    /* Unegister Scilab as a dedicated View */
+    unregisterToController();
+
+    isGraphicModuleLoaded = FALSE ;
 
 }
 /*------------------------------------------------------------------------*/

@@ -38,6 +38,11 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciIsExistingFigure(int figNum);
 GRAPHIC_OBJECTS_IMPEXP void registerToController(void);
 
 /**
+ * Unregister Scilab View to Graphic Controller
+ */
+GRAPHIC_OBJECTS_IMPEXP void unregisterToController(void);
+
+/**
  * to know if there are some opened graphic windows
  */
 GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);

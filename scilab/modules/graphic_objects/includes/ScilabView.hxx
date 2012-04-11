@@ -39,7 +39,7 @@ private :
     // Define type for easy manipulation.
     typedef std::map<char*, long, cmp_str>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
-    typedef std::map<char*,int, cmp_str>    __figureList;
+    typedef std::map<char*, int, cmp_str>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
 
     static __figureList                     m_figureList;
@@ -59,6 +59,7 @@ public :
     static int    getNbFigure(void);
     static void   getFiguresId(int ids[]);
     static void   registerToController(void);
+    static void   unregisterToController(void);
     static bool   existsFigureId(int id);
     static char*  getFigureFromIndex(int figureNumber);
     static bool   isEmptyFigureList(void);

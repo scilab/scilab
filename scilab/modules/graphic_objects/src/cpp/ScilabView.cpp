@@ -139,7 +139,7 @@ void ScilabView::deleteObject(char *pstId)
     ** if there is no more figure : NULL
     */
     if (pstCurrentFigure != NULL
-        && strcmp(pstId, getCurrentFigure()) == 0) // Deleting current figure
+            && strcmp(pstId, getCurrentFigure()) == 0) // Deleting current figure
     {
         if (getNbFigure() != 0)
         {
@@ -156,7 +156,7 @@ void ScilabView::deleteObject(char *pstId)
     ** If deleting current entity, set parent as new current.
     */
     if (pstCurrentObject != NULL
-        && strcmp(pstId, getCurrentObject()) == 0) // Deleting current object
+            && strcmp(pstId, getCurrentObject()) == 0) // Deleting current object
     {
         getGraphicObjectProperty(pstId, __GO_PARENT__, jni_string, (void **)&pstParentUID);
         setCurrentObject(pstParentUID);
@@ -192,6 +192,14 @@ void ScilabView::updateObject(char *pstId, char *pstProperty)
 void ScilabView::registerToController(void)
 {
     org_scilab_modules_graphic_objects::CallGraphicController::registerScilabView(getScilabJavaVM());
+}
+
+/*
+** Reove ScilabView from Controller.
+*/
+void ScilabView::unregisterToController(void)
+{
+    org_scilab_modules_graphic_objects::CallGraphicController::unregisterScilabView(getScilabJavaVM());
 }
 
 /*

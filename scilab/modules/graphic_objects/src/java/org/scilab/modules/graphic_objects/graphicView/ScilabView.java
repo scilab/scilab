@@ -17,9 +17,18 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
+    private static ScilabView me;
+
     public ScilabView() {
     }
-    
+
+    public static ScilabView getScilabView() {
+        if (me == null) {
+            me = new ScilabView();
+        }
+        return me;
+    }
+
     public void createObject(String id) {
         ScilabNativeView__createObject(id);
     }
