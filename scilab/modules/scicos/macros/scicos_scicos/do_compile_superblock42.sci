@@ -4474,6 +4474,23 @@ function t1=cformatline(t ,l)
   end
 endfunction
 
+//
+// Generate Matrix of all binary code from
+// 1 to 2^n-1
+//
+function vec = binaryTable(n)
+    n = int(n);
+    vec = [];
+    for i = 1:n
+        accu = [];
+        for j = 1:2^(n-i-1)
+            accu = [accu ; zeros(2^(i-1),1) ; ones(2^(i-1),1)]
+        end
+        vec = [accu, vec]
+    end
+    vec=vec(2:$, :); // Remove first line [ 0 --- 0 ]
+endfunction
+
 //used in do_compile_superblock
 function vec=codebinaire(v,szclkIN)
   vec=zeros(1,szclkIN)
