@@ -26,6 +26,194 @@ extern "C"
 
 NgonGridMatplotDataDecomposer* NgonGridMatplotDataDecomposer::decomposer = NULL;
 
+void NgonGridMatplotDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+{
+    double* matplotScale = NULL;
+    double* matplotTranslate = NULL;
+    double zShift;
+    double* pdZShift = &zShift;
+
+    double xTrans[2];
+    double yTrans[2];
+
+    int numX = 0;
+    int* piNumX = &numX;
+    int numY = 0;
+    int* piNumY = &numY;
+
+    NgonGridMatplotDataDecomposer* decomposer = get();
+
+    getGraphicObjectProperty(id, __GO_MATPLOT_SCALE__, jni_double_vector, (void**) &matplotScale);
+    getGraphicObjectProperty(id, __GO_MATPLOT_TRANSLATE__, jni_double_vector, (void**) &matplotTranslate);
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
+
+    /* The position of the lower-left corner and the distance between two adjacent vertices i and i+1 (respectively) along the x-axis */
+    xTrans[0] = matplotTranslate[0];
+    xTrans[1] = matplotScale[0];
+
+    /* The position of the lower-left corner and the distance between two adjacent vertices j and j+1 (respectively) along the y-axis */
+    yTrans[0] = matplotTranslate[1];
+    yTrans[1] = matplotScale[1];
+
+    /*
+     * We pass the scale and translate values (for both the x and y axes) as the x and y coordinate arrays,
+     * because Matplot vertex coordinates are directly computed from these values.
+     */
+    decomposer->fillGridVertices(buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, (double*) xTrans, (double*) yTrans, &zShift, numX, numY);
+}
+
+/* To do: refactor with its parent class' same method */
+void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
+    double* x, double* y, double* z, int numX, int numY)
+{
+    double xi;
+    double yj;
+    double zij;
+    double yjp1;
+    double xip1;
+
+    int i;
+    int j;
+
+    int bufferOffset;
+
+#if PER_VERTEX_VALUES
+    for (j = 0; j < numY; j++)
+    {
+        yj = (double) j * y[1] + y[0];
+
+        if (coordinateMask  & 0x2)
+        {
+            if (logMask & 0x2)
+            {
+                yj = DecompositionUtils::getLog10Value(yj);
+            }
+        }
+
+        for (i = 0; i < numX; i++)
+        {
+            xi = (double) i * x[1] + x[0];
+            bufferOffset = elementsSize*(numX*j + i);
+
+            if (coordinateMask & 0x1)
+            {
+                if (logMask & 0x1)
+                {
+                    xi = DecompositionUtils::getLog10Value(xi);
+                }
+
+                buffer[bufferOffset] = xi * scale[0] + translation[0];
+            }
+
+            if (coordinateMask  & 0x2)
+            {
+                buffer[bufferOffset +1] = yj * scale[1] + translation[1];
+            }
+
+            if (coordinateMask & 0x4)
+            {
+                zij = getZCoordinate(z, numX, numY, i, j, logMask & 0x4);
+
+                buffer[bufferOffset +2] = zij * scale[2] + translation[2];
+            }
+
+            if (elementsSize == 4 && (coordinateMask & 0x8))
+            {
+                buffer[bufferOffset +3] = 1.0;
+            }
+        }
+    }
+#else
+    bufferOffset = 0;
+
+    for (j = 0; j < numY-1; j++)
+    {
+        double ycoords[4];
+        int yindices[4];
+
+        yj = (double) j * y[1] + y[0];
+        yjp1 = (double) (j+1) * y[1] + y[0];
+
+        if (coordinateMask  & 0x2)
+        {
+            if (logMask & 0x2)
+            {
+                yj = DecompositionUtils::getLog10Value(yj);
+                yjp1 = DecompositionUtils::getLog10Value(yjp1);
+            }
+        }
+
+        ycoords[0] = yj;
+        ycoords[1] = yj;
+        ycoords[2] = yjp1;
+        ycoords[3] = yjp1;
+
+        yindices[0] = j;
+        yindices[1] = j;
+        yindices[2] = j+1;
+        yindices[3] = j+1;
+
+        for (i = 0; i < numX-1; i++)
+        {
+            double xcoords[4];
+            int xindices[4];
+            int k;
+
+            xi = (double) i * x[1] + x[0];
+            xip1 = (double) (i+1) * x[1] + x[0];
+
+            if (logMask & 0x1)
+            {
+                xi = DecompositionUtils::getLog10Value(xi);
+                xip1 = DecompositionUtils::getLog10Value(xip1);
+            }
+
+            xcoords[0] = xi;
+            xcoords[1] = xip1;
+            xcoords[2] = xi;
+            xcoords[3] = xip1;
+
+            xindices[0] = i;
+            xindices[1] = i+1;
+            xindices[2] = i;
+            xindices[3] = i+1;
+
+            for (k = 0; k < 4; k++)
+            {
+                if (coordinateMask & 0x1)
+                {
+                    buffer[bufferOffset] = (float)(xcoords[k] * scale[0] + translation[0]);
+                }
+
+                if (coordinateMask  & 0x2)
+                {
+                    buffer[bufferOffset +1] = (float)(ycoords[k] * scale[1] + translation[1]);
+                }
+
+                if (coordinateMask & 0x4)
+                {
+                    zij = getZCoordinate(z, numX, numY, xindices[k], yindices[k], logMask & 0x4);
+                    buffer[bufferOffset +2] = (float)(zij * scale[2] + translation[2]);
+                }
+
+                if (elementsSize == 4 && (coordinateMask & 0x8))
+                {
+                    buffer[bufferOffset +3] = 1.0;
+                }
+
+                bufferOffset += elementsSize;
+            }
+
+        }
+    }
+
+#endif
+}
+
 /*
  * To do:
  * -clean-up: replace explicitely computed z indices by getPointIndex calls

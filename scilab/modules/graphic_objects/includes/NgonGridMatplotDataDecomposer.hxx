@@ -33,6 +33,27 @@ private :
 protected :
 
     /**
+     * Fills a buffer with vertex data from a grid.
+     * In the case of Matplot objects, vertex coordinates are computed using the coordinates of the grid's lower-left corner
+     * and the distances between two adjacent vertices for both the x and y axes, which we label respectively (xmin, ymin) and
+     * (xd, yd). The relevant values are used as the x and y coordinate arrays (see the parameter descriptions).
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of coordinates taken by one element in the buffer.
+     * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param[in] the conversion scale factor to apply to data.
+     * @param[in] the conversion translation factor to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @param[in] the grid x-coordinate array (2 elements: xmin, xd).
+     * @param[in] the grid y-coordinate array (2 elements: ymin, yd).
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     */
+    virtual void fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
+        double* x, double* y, double* z, int numX, int numY);
+
+    /**
      * Determines whether a facet is valid.
      * The facet is identified by its lower left-corner (i,j).
      * For a Matplot object, facet (i,j)'s validity depends only on its z coordinate and its (i,j) value,
@@ -79,6 +100,19 @@ public :
 
         return decomposer;
     }
+
+    /**
+     * Fills the given buffer with vertex data from the given object.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of coordinates taken by one element in the buffer.
+     * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param[in] the conversion scale factor to apply to data.
+     * @param[in] the conversion translation factor to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     */
+    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills the given buffer with color data from the given object.
