@@ -19,7 +19,7 @@ plot3d();
 xend();
 assert_checktrue(isfile(TMPDIR+'/myjpgfile.jpg'));
 a=fileinfo(TMPDIR+'/myjpgfile.jpg');
-//assert_checktrue(a(1)>10);
+assert_checktrue(a(1)>10);
 
 
 driver('JPEG');
@@ -28,7 +28,7 @@ plot3d();
 xend();
 assert_checktrue(isfile(TMPDIR+'/myjpegfile.jpeg'));
 a=fileinfo(TMPDIR+'/myjpegfile.jpeg');
-//assert_checktrue(a(1)>10);
+assert_checktrue(a(1)>10);
 
 driver('PDF');
 xinit(TMPDIR+'/mypdffile.pdf');

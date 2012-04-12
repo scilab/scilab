@@ -65,6 +65,8 @@ public class Export {
     public static final int IOEXCEPTION_ERROR = 1;
     public static final int INVALID_FILE = 2;
 
+    private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
+
     private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
     private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
 
@@ -98,10 +100,10 @@ public class Export {
     }
 
     public static int getType(String ext) {
-	Integer type = extToType.get(ext);
-	if (type == null) {
-	    return -1;
-	}
+        Integer type = extToType.get(ext);
+        if (type == null) {
+            return -1;
+        }
 
         return type;
     }
@@ -376,7 +378,7 @@ public class Export {
         @Override
         public void write(ExportParams params) throws IOException {
             if (params.compressionQuality == -1) {
-                ExportBitmap.writeFile(image, "jpeg", file);
+                ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
             } else {
                 ExportBitmap.writeJPEG(image, params.compressionQuality, file);
             }
