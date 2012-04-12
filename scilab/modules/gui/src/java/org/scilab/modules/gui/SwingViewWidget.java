@@ -39,6 +39,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
@@ -296,6 +297,8 @@ public final class SwingViewWidget {
             /* Nothing to do here */
         } else if (property.equals(__GO_UI_UNITS__)) {
             /* Nothing to do here, this property is used when setting position */
+        } else if (property.equals(__GO_VALID__)) {
+            /* Nothing to do */
         } else if (property.equals(__GO_UI_VALUE__)) {
 
             Double[] doubleValue = ((Double[]) value);
