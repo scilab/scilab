@@ -39,12 +39,21 @@ public class testExportOffscreen {
     @Test()
     public void exportToPSTest() throws NullPointerException, JavasciException {
         File export = new File(tmpDir + "/foo.ps");
+        String exportToFile = generateExportCommand("ps", export);
+        sci.exec(exportToFile);
+        assertTrue(export.exists());
+        assertTrue(export.length() > 0);
+        assertTrue(export.delete());
+    }
+
+    @Test()
+    public void exportToPOSTest() throws NullPointerException, JavasciException {
+        File export = new File(tmpDir + "/foo.ps");
         String exportToFile = generateExportCommand("Pos", export);
         sci.exec(exportToFile);
         assertTrue(export.exists());
         assertTrue(export.length() > 0);
         assertTrue(export.delete());
-
     }
 
     @Test()
@@ -57,11 +66,50 @@ public class testExportOffscreen {
         assertTrue(export.delete());
     }
 
-    //    @Test()
+    @Test()
     public void exportToPPMTest() throws NullPointerException, JavasciException {
         File export = new File(tmpDir + "/foo.ppm");
         String exportToFile = generateExportCommand("PPM", export);
-        System.out.println(exportToFile);
+        sci.exec(exportToFile);
+        assertTrue(export.exists());
+        assertTrue(export.length() > 0);
+        assertTrue(export.delete());
+    }
+
+    @Test()
+    public void exportToJPGTest() throws NullPointerException, JavasciException {
+        File export = new File(tmpDir + "/foo.jpg");
+        String exportToFile = generateExportCommand("JPG", export);
+        sci.exec(exportToFile);
+        assertTrue(export.exists());
+        assertTrue(export.length() > 0);
+        assertTrue(export.delete());
+    }
+
+    @Test()
+    public void exportToPDFTest() throws NullPointerException, JavasciException {
+        File export = new File(tmpDir + "/foo.pdf");
+        String exportToFile = generateExportCommand("PDF", export);
+        sci.exec(exportToFile);
+        assertTrue(export.exists());
+        assertTrue(export.length() > 0);
+        assertTrue(export.delete());
+    }
+
+    @Test()
+    public void exportToSVGTest() throws NullPointerException, JavasciException {
+        File export = new File(tmpDir + "/foo.svg");
+        String exportToFile = generateExportCommand("SVG", export);
+        sci.exec(exportToFile);
+        assertTrue(export.exists());
+        assertTrue(export.length() > 0);
+        assertTrue(export.delete());
+    }
+
+    @Test()
+    public void exportToPNGTest() throws NullPointerException, JavasciException {
+        File export = new File(tmpDir + "/foo.svg");
+        String exportToFile = generateExportCommand("PNG", export);
         sci.exec(exportToFile);
         assertTrue(export.exists());
         assertTrue(export.length() > 0);
