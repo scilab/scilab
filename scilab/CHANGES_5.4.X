@@ -14,8 +14,14 @@ Graphic capabilities
   - 2-D zoom using the mouse wheel,
   - new 3-D zoom capabilities,
   - rotation available through the mouse right-click.
-  SciRenderer is a free and open-source library for 2D and 3D rendering of
-  scientific data.
+  SciRenderer is a free and open-source library developed by Scilab Enterprises
+  for 2-D and 3-D rendering of scientific data.
+
+* Improved graphic exports:
+  - Off-screen export (Scilab will not open a window to export with driver).
+  - Support of new bitmap formats: PNG, JPEG and BMP in the driver function.
+  - Support of new vectorial formats: PDF and SVG in the driver function.
+  - Fix many portability issues.
 
 GUI
 ===

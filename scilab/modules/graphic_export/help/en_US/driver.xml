@@ -16,12 +16,12 @@
   </info>
   <refnamediv>
     <refname>driver</refname>
-    <refpurpose> select a graphics driver</refpurpose>
+    <refpurpose>Select a graphics driver</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>driver(driver_name)
-      current_driver=driver()
+    <synopsis>current_driver=driver()
+      driver(driver_name)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -38,56 +38,102 @@
   <refsection>
     <title>Description</title>
     <para>
-      This function is used to select a graphics driver, or with no arguments 
-      to get the current graphics driver name.
-      The selected driver can be one of the followings:
+      This function provides a switch between the different drivers.
+      Direct rendering on the screen or off-screen export without any graphical user interface.
+      Use without any input argument, the driver function returns the current graphics driver name.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Screen output</title>
+    <para>
+      To display graphic into a new window instead of off-screen format. This is the default behavior of Scilab.
     </para>
     <variablelist>
       <varlistentry>
-        <term>"X11"</term>
+        <term>X11 or Rec</term>
         <listitem>
           <para>output to the screen of the computer.</para>
         </listitem>
       </varlistentry>
+    </variablelist>
+  </refsection>
+  
+  <refsection>
+    <title>Supported vectorial formats</title>
+    <para>
+      The selected driver can be one of the following vectorial format:
+    </para>
+    <variablelist>
+      
       <varlistentry>
-        <term>"Pos"</term>
+        <term>Pos or ps</term>
         <listitem>
           <para>output into Postscript format.</para>
         </listitem>
       </varlistentry>
+      
       <varlistentry>
-        <term>"Rec"</term>
+        <term>PDF</term>
         <listitem>
-          <para>
-            output to the screen of the computer. Same as <literal>X11</literal>.
-          </para>
+          <para>output into PDF format.</para>
         </listitem>
       </varlistentry>
+      
       <varlistentry>
-        <term>"Fig"</term>
+        <term>SVG</term>
         <listitem>
-          <para>output into XFig format.</para>
+          <para>output into SVG format.</para>
         </listitem>
       </varlistentry>
+    </variablelist>
+  </refsection>
+  
+  <refsection>
+    <title>Supported bitmap formats</title>
+    <para>
+      The selected driver can be one of the following vectorial bitmap:
+    </para>
+    <variablelist>
+      
       <varlistentry>
-        <term>"GIF"</term>
+        <term>GIF</term>
         <listitem>
-          <para>output into Gif format.</para>
+          <para>output into GIF format.</para>
         </listitem>
       </varlistentry>
+      
       <varlistentry>
-        <term>"PPM"</term>
+        <term>PNG</term>
         <listitem>
-          <para>output into PPM format.</para>
+          <para>output into PNG format.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>JPEG or JPG</term>
+        <listitem>
+          <para>output into JPEG format.</para>
+        </listitem>
+      </varlistentry>
+      
+      
+      <varlistentry>
+        <term>BMP</term>
+        <listitem>
+          <para>output into BMP format.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>PPM</term>
+        <listitem>
+          <para>output into portable pixmap format (PPM) format.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Remark</title>
-    <para>
-      To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)
-    </para>
     <para>
       To redirect the graphic output to a GIF file (which will be written in the current directory), you can use the following example:
     </para>
@@ -96,13 +142,31 @@ driver('GIF');
 xinit('mygiffile.gif');
 plot3d();
 xend();
-driver('X11');
+driver('X11'); // Bring back the normal behavior of Scilab
  ]]></programlisting>
     <para>
-      For example if one has generated a sequence of Gif files named <literal>img*.gif</literal> it is possible to build an animated Gif file (named anim.gif) by
+      For example if one has generated a sequence of GIF files named <literal>img*.gif</literal> it is possible to build an animated GIF file (named anim.gif) by
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 convert -delay 10  img*.gif anim.gif  
  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>          
+          <itemizedlist>
+            <listitem>Enable off-screen. Scilab exports graphics without opening a new window</listitem>
+            <listitem>Support of new bitmap formats: PNG, JPEG and BMP.</listitem>
+            <listitem>Support of new vectorial formats: PDF and SVG.</listitem>
+            <listitem>The function accepts lower and upper case argument.</listitem>
+            <listitem>Fig driver is no longer supported.</listitem>
+            
+          </itemizedlist>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

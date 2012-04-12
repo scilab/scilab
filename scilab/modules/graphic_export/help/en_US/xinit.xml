@@ -40,12 +40,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      For the Postscript, Xfig, Gif or PPM driver, <literal>FileName</literal> must be specified. It is the name of 
-      the file where all the graphics operations are recorded.
+      To export to a file, <literal>FileName</literal> must be specified. It is the name of the file where all the graphics operations are recorded.
     </para>
     <para>
-      For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and
-      opens an empty graphic window.
+      For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and it will open an empty graphic window.
     </para>
   </refsection>
   <refsection>

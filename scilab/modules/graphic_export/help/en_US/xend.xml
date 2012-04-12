@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>xend</refname>
-    <refpurpose> close a graphics session</refpurpose>
+    <refpurpose>Close a graphics export session</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,8 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>xend</literal> is used to close a graphics session. Under the Postscript,
-      Xfig or Gif drivers <literal>xend</literal> closes the
+      <literal>xend</literal> is used to close a graphics session. When working on the export of a graphic, <literal>xend</literal> closes the
       file which was opened by <literal>xinit</literal>.
     </para>
   </refsection>
