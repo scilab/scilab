@@ -20,7 +20,6 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
 
     double *position = NULL;
     int nbValues = 0;
-    float x, y, width, height;
     BOOL status = FALSE;
 
     if (valueType == sci_strings)
