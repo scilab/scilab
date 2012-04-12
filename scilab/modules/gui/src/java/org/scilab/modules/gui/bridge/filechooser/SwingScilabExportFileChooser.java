@@ -89,16 +89,16 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      */
     public void exportCustomFileChooser(String figureUID) {
         ArrayList<FileMask> v = new ArrayList<FileMask>(NB_FILE_MASKS);  /* The order does matter */
-        v.add(new FileMask(bmp, bmpDesc));
-        v.add(new FileMask(gif, gifDesc));
-        v.add(new FileMask(jpg, jpgDesc));
         v.add(new FileMask(png, pngDesc));
-        v.add(new FileMask(ppm, ppmDesc));
-        v.add(new FileMask(emf, emfDesc));
+        v.add(new FileMask(jpg, jpgDesc));
         v.add(new FileMask(eps, epsDesc));
-        v.add(new FileMask(fig, figDesc));
         v.add(new FileMask(pdf, pdfDesc));
         v.add(new FileMask(svg, svgDesc));
+        v.add(new FileMask(emf, emfDesc));
+        v.add(new FileMask(gif, gifDesc));
+        v.add(new FileMask(bmp, bmpDesc));
+        v.add(new FileMask(ppm, ppmDesc));
+        v.add(new FileMask(fig, figDesc));
         v.add(new FileMask(allFiles, allFilesDesc)); // should always be at the last position
 
         super.setDialogTitle(Messages.gettext("Export"));
@@ -136,7 +136,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         accessoryPanel.setVisible(true);
         super.setAccessory(accessoryPanel);
 
-	Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
+        Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         Window parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, c);
 
         int selection = super.showSaveDialog(parentWindow);
@@ -147,9 +147,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             //Test if there is a file with the same name
             if (new File(this.exportName).exists()) {
                 int actionDialog = JOptionPane.showConfirmDialog(
-                    this, Messages.gettext("Replace existing file?"),
-                    Messages.gettext("File already exists"),
-                    JOptionPane.YES_NO_OPTION);
+                                       this, Messages.gettext("Replace existing file?"),
+                                       Messages.gettext("File already exists"),
+                                       JOptionPane.YES_NO_OPTION);
 
                 if (actionDialog == JOptionPane.YES_OPTION) {
 
@@ -170,7 +170,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
                 FileMask ft = (FileMask) super.getFileFilter();
                 //get the extension from the Filter
                 extensionCombo = ft.getExtensionFromFilter();
-                if (extensionCombo == null) { extensionCombo = allFiles; }
+                if (extensionCombo == null) {
+                    extensionCombo = allFiles;
+                }
             } catch (java.lang.ClassCastException e) {
                 extensionCombo = allFiles;
             }
@@ -269,7 +271,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             actualFilename += "." + userExtension;
         }
 
-	FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
+        FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
     }
 
     /**
@@ -277,7 +279,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
-	Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
+        Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         SimpleTab parentTab = (SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, c);
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
         ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);

@@ -23,6 +23,9 @@ Graphic capabilities
   - Support of new vectorial formats: PDF and SVG in the driver function.
   - Fix many portability issues.
 
+* Bug #10360 fixed - Default format for export is now PNG instead of BMP.
+
+
 GUI
 ===
 
