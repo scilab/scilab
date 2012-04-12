@@ -1,6 +1,6 @@
 ;##############################################################################################################
 ; Scilab ( http://mwww.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2010 - DIGITEO - Allan CORNET
+; Copyright (C) 2012 - DIGITEO - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -14,6 +14,10 @@
 ;
 #define GRAPHIC_OBJECTS "graphic_objects"
 ;
-Source: bin\graphic_objects.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHIC_OBJECTS}
+Source: bin\sci{#GRAPHIC_OBJECTS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_OBJECTS}\jar\org.scilab.modules.{#GRAPHIC_OBJECTS}.jar;DestDir: {app}\modules\{#GRAPHIC_OBJECTS}\jar; Components: {#COMPN_GRAPHICS}
+;
+Source: modules\{#GRAPHIC_OBJECTS}\etc\{#GRAPHIC_OBJECTS}.quit; DestDir: {app}\modules\{#GRAPHIC_OBJECTS}\etc; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_OBJECTS}\etc\{#GRAPHIC_OBJECTS}.start; DestDir: {app}\modules\{#GRAPHIC_OBJECTS}\etc; Components: {#COMPN_GRAPHICS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
