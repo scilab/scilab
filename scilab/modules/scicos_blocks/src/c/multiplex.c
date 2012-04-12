@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
-#include <math.h>
+/*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void multiplex(scicos_block *block,int flag)
 {
 	int i = 0,j = 0,k = 0;
@@ -39,7 +38,7 @@ SCICOS_BLOCKS_IMPEXP void multiplex(scicos_block *block,int flag)
 			}
 		}
 	}
-	else 
+	else
 	{
 		k=0;
 		for (i=0;i<block->nin;++i)
@@ -52,4 +51,4 @@ SCICOS_BLOCKS_IMPEXP void multiplex(scicos_block *block,int flag)
 		}
 	}
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
