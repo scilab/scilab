@@ -46,11 +46,18 @@ assert_checktrue(isfile(TMPDIR+'/mypsfile.ps'));
 a=fileinfo(TMPDIR+'/mypsfile.ps');
 assert_checktrue(a(1)>10);
 
-
 driver('BMP');
 xinit(TMPDIR+'/mybmpfile.bmp');
 plot3d();
 xend();
 assert_checktrue(isfile(TMPDIR+'/mybmpfile.bmp'));
 a=fileinfo(TMPDIR+'/mybmpfile.bmp');
+assert_checktrue(a(1)>10);
+
+driver('PPM');
+xinit(TMPDIR+'/myppmfile.ppm');
+plot3d();
+xend();
+assert_checktrue(isfile(TMPDIR+'/myppmfile.ppm'));
+a=fileinfo(TMPDIR+'/myppmfile.ppm');
 assert_checktrue(a(1)>10);

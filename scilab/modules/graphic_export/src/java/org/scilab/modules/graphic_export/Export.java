@@ -410,7 +410,7 @@ public class Export {
     /**
      * PPM Exporter
      */
-    private static class PPMExporter extends PNGExporter {
+    private static class PPMExporter extends BMPExporter {
 
         public PPMExporter() { }
 
@@ -419,6 +419,7 @@ public class Export {
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             PPMEncoder encoder = new PPMEncoder(image, out);
             int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
+            encoder.encodeStart(image.getWidth(), image.getHeight());
             encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
             out.flush();
             out.close();
