@@ -9,8 +9,10 @@
   </refnamediv>
   <refsection>
     <title>説明</title>
-    <para><literal>while</literal> 構文. 
-<literal>"end"</literal>で終わる必要があります.</para>
+    <para>
+      <literal>while</literal> 構文. 
+      <literal>"end"</literal>で終わる必要があります.
+    </para>
     <para>
       <literal>while expr ,instructions,...[,else instructions], end</literal>
     </para>
@@ -23,26 +25,32 @@
     <para>注意:</para>
     <itemizedlist>
       <listitem>
-        <para> 唯一の制約は,  <literal>then</literal> または
-	<literal>do</literal>" キーワードを
-	<literal>while</literal> キーワードと同じ行に置く必要がある
-	ことです.</para>
-      </listitem>
-      <listitem>
-        <para>キーワード <literal>then</literal> または <literal>do</literal> は
-	キャレッジリターンまたはカンマで置換することができます.
-	Matlabとの互換性のため,推奨されませんが,
-	式の終わりと命令の始まりの間に空白を置く方法で代替することも可能です.</para>
+        <para>
+           唯一の制約は,  <literal>then</literal> または
+          <literal>do</literal>" キーワードを
+          <literal>while</literal> キーワードと同じ行に置く必要がある
+          ことです.
+        </para>
       </listitem>
       <listitem>
         <para>
-	オプションの <literal>,else instructions</literal> 構造により,
-	式の評価が偽となった場合に実行される命令を指定することが可能です.</para>
+          キーワード <literal>then</literal> または <literal>do</literal> は
+          キャレッジリターンまたはカンマで置換することができます.
+          Matlabとの互換性のため,推奨されませんが,
+          式の終わりと命令の始まりの間に空白を置く方法で代替することも可能です.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          オプションの <literal>,else instructions</literal> 構造により,
+          式の評価が偽となった場合に実行される命令を指定することが可能です.
+        </para>
       </listitem>
     </itemizedlist>
     <para>
       警告: 条件付き命令(if while for または select/case)の本文を定義するために使用可能な
-	文字数は 16 k以下とする必要があります.</para>
+      文字数は 16 k以下とする必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

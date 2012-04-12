@@ -9,9 +9,11 @@
   </refnamediv>
   <refsection>
     <title>説明</title>
-    <para><literal>abort</literal> は現在の評価を中断し,
-	プロンプトを表示します.<literal>pause</literal> 中の場合,
-  <literal>abort</literal>はレベル0プロンプトに戻します.</para>
+    <para>
+      <literal>abort</literal> は現在の評価を中断し,
+      プロンプトを表示します.<literal>pause</literal> 中の場合,
+      <literal>abort</literal>はレベル0プロンプトに戻します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

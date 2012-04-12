@@ -24,24 +24,28 @@
         <term>d</term>
         <listitem>
           <para>多項式行列の次数.
-		オプションのパラメータでデフォルト値は  <literal>d=-1+size(C,'c')/size(C,'r')</literal></para>
+            オプションのパラメータでデフォルト値は  <literal>d=-1+size(C,'c')/size(C,'r')</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>name</term>
         <listitem>
           <para>
-		多項式の変数名を指定する文字列  (デフォルト値: <literal>'x'</literal>).</para>
+            多項式の変数名を指定する文字列  (デフォルト値: <literal>'x'</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>P=inv_coeff(Mp,k)</literal>は, <literal>k</literal> が <literal>Mp</literal> の
-	大きさと互換性がある場合, k次の多項式行列を返します.
-	<literal>C=[C0,C1,...,Ck]</literal> の時,
-    <literal>P= C0 + C1*x +... +Ck*x^k</literal>となります.</para>
+    <para>
+      <literal>P=inv_coeff(Mp,k)</literal>は, <literal>k</literal> が <literal>Mp</literal> の
+      大きさと互換性がある場合, k次の多項式行列を返します.
+      <literal>C=[C0,C1,...,Ck]</literal> の時,
+      <literal>P= C0 + C1*x +... +Ck*x^k</literal>となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -59,7 +59,7 @@
     <para>
       plutôt que :
     </para>
-     
+    
     <programlisting role=""><![CDATA[
       for i = 1:5 disp(i); end
 ]]></programlisting>

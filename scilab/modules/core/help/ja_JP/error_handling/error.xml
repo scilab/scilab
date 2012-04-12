@@ -10,10 +10,11 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>error(message)
-error(message, n)
-error(n)
-error(n, message)
-error(n, pos)</synopsis>
+      error(message, n)
+      error(n)
+      error(n, message)
+      error(n, pos)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -40,31 +41,41 @@ error(n, pos)</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>error</literal> 関数によりエラーメッセージを発行でき,
-	エラーを処理できます.
-	デフォルトで <literal>error</literal> は実行を停止し,
-	プロンプトレベルに復帰します.
-	このデフォルト動作は,<literal>errcatch</literal> または 
-	<literal>execstr(...,'errcatch')</literal> 関数により変更できます.</para>
-    <para><literal>error(message)</literal> は<literal>message</literal>の文字列を
-	出力します.
-	エラーメッセージの番号は 10000 となります.</para>
-    <para><literal>error(message,n)</literal> は
+    <para>
+      <literal>error</literal> 関数によりエラーメッセージを発行でき,
+      エラーを処理できます.
+      デフォルトで <literal>error</literal> は実行を停止し,
+      プロンプトレベルに復帰します.
+      このデフォルト動作は,<literal>errcatch</literal> または 
+      <literal>execstr(...,'errcatch')</literal> 関数により変更できます.
+    </para>
+    <para>
+      <literal>error(message)</literal> は<literal>message</literal>の文字列を
+      出力します.
+      エラーメッセージの番号は 10000 となります.
+    </para>
+    <para>
+      <literal>error(message,n)</literal> は
       <literal>message</literal>の文字列を出力します.
-	エラーメッセージの番号は<literal>n</literal>で指定されます.
-	この番号は 10000 より大きい必要があります. </para>
-    <para><literal>error(n)</literal> は,
-	エラー番号 <literal>n</literal>の
-	定義済みエラーメッセージを出力します. </para>
+      エラーメッセージの番号は<literal>n</literal>で指定されます.
+      この番号は 10000 より大きい必要があります. 
+    </para>
+    <para>
+      <literal>error(n)</literal> は,
+      エラー番号 <literal>n</literal>の
+      定義済みエラーメッセージを出力します. 
+    </para>
     <para>いくつかの定義済みエラーメッセージが
-	パラメータを必要とします(
+      パラメータを必要とします(
       <link linkend="error_table">error_table</link>参照).
-	この場合,パラメータの値を指定するために
-	<literal>error(n,pos)</literal>のように
-	引数<literal>pos</literal>を使用する必要があります.
-	その他の場合, <literal>pos</literal>  引数は無視されます.</para>
+      この場合,パラメータの値を指定するために
+      <literal>error(n,pos)</literal>のように
+      引数<literal>pos</literal>を使用する必要があります.
+      その他の場合, <literal>pos</literal>  引数は無視されます.
+    </para>
     <para> エラーメッセージのリストおよび対応するエラー番号については
-	 <link linkend="error_table">error_table</link> を参照ください.</para>
+      <link linkend="error_table">error_table</link> を参照ください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
