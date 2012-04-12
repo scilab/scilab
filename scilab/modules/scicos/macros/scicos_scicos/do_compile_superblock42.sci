@@ -878,12 +878,12 @@ function ok=gen_ccode42();
       if writeGlobal <> []
           // Generate global C variables
           // #define global_XXX_Size
-          // static double *global_XXX[global_XXX_Size]
+          // static double **global_XXX
           // static int global_XXX_Index (to manage buffer like variables)
            for i = 1:size(writeGlobal, '*')
                mputl(['/*---------------------------------------- Global Variable '+writeGlobal(i)+' */'
                       '#define global_'+writeGlobal(i)+'_Size    '+string(writeGlobalSize(i))
-                      'static double *global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Size];'
+                      'static double **global_'+writeGlobal(i)+';'
                       'static int global_'+writeGlobal(i)+'_Index = 0;'
                      ], fd);
            end
@@ -918,12 +918,17 @@ function ok=gen_ccode42();
                      '    {'
                      '    case 4 : /* init */'
                      '    {'
+                     '        global_'+writeGlobal(i)+' = (double **) malloc(global_'+writeGlobal(i)+'_Size * sizeof(double *));'
                      '        for (i = 0 ; i < global_'+writeGlobal(i)+'_Size ; ++i)'
                      '        {'
                      '            global_'+writeGlobal(i)+'[i] = (double *) malloc(nu * nu2 * sizeof(double));'
-                     '            memset(global_'+writeGlobal(i)+'[i], 0x0, global_'+writeGlobal(i)+'_Size * sizeof(double));'
+                     '            memset(global_'+writeGlobal(i)+'[i], 0x0, nu * nu2 * sizeof(double));'
                      '        }'
                      '        global_'+writeGlobal(i)+'_Index = -1;'
+                     '#ifdef VERBOSE'
+                     '        printf(""C_'+writeGlobal(i)+'.values = zeros(%d, %d, %d)\n"", global_'+writeGlobal(i)+'_Size, nu, nu2);'
+                     '        printf(""C_'+writeGlobal(i)+'.time = zeros(%d, 1)\n"", global_'+writeGlobal(i)+'_Size);'
+                     '#endif'
                      '        break;'
                      '    }'
                      '    case 1 : /* output update */'
@@ -931,15 +936,13 @@ function ok=gen_ccode42();
                      '        global_'+writeGlobal(i)+'_Index = (global_'+writeGlobal(i)+'_Index + 1) % global_'+writeGlobal(i)+'_Size;'
                      '        memcpy(global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Index], block->inptr[i], nu * nu2 * sizeof(double));'
                      '#ifdef VERBOSE'
-                     '        printf(""{t = %f} global_'+writeGlobal(i)+'\n"", get_scicos_time());'
+                     '        printf(""C_'+writeGlobal(i)+'.time(%d) = %f;\n"", global_'+writeGlobal(i)+'_Index + 1, get_scicos_time());'
                      '        for (i = 0 ; i < global_'+writeGlobal(i)+'_Size ; ++i)'
                      '        {'
-                     '            printf(""global_'+writeGlobal(i)+'[%d] = { "", i);'
                      '            for (j = 0 ; j < nu * nu2 ; ++j)'
                      '            {'
-                     '                printf(""%f, "", global_'+writeGlobal(i)+'[i][j]);'
+                     '                printf(""C_'+writeGlobal(i)+'.values(%d, %d) = %f;\n"", i + 1, j + 1, global_'+writeGlobal(i)+'[i][j]);'
                      '            }'
-                     '            printf(""}\n"");'
                      '        }'
                      '#endif /* !VERBOSE */'
                      '        break;'
@@ -950,6 +953,7 @@ function ok=gen_ccode42();
                      '        {'
                      '            free(global_'+writeGlobal(i)+'[i]);'
                      '        }'
+                     '        free(global_'+writeGlobal(i)+');'
                      '        break;'
                      '    }'
                      '    }'
