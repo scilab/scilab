@@ -1,37 +1,50 @@
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================
 
+
 Graphic capabilities
 ====================
 
 * Entire refactoring of Scilab graphic capabilities.
 
-TODO
+* Based on SciRenderer (rendering library based on JoGL), Scilab graphics have
+  been rewritten hence providing new graphics with:
+  - better performances,
+  - better stability,
+  - 2-D zoom using the mouse wheel,
+  - new 3-D zoom capabilities,
+  - rotation available through the mouse right-click.
+  SciRenderer is a free and open-source library for 2D and 3D rendering of
+  scientific data.
 
+GUI
+===
 
-GUI:
-====
+* A 'Console' handle has been created and can be obtained by calling get(0):
+  - uimenus now appear as 'Children' of this handle when they are added to the
+    console
+  - its 'ShowHiddenHandles' property enables the user to make some hidden
+    graphic objects visible
 
-* TODO add full description of:
-  - Hidden handles management
-  - Console & graphic figure menus are now uimenus (hidden by default)
-  - 'ShwoHiddenHandles' property
-  - get(0) returns a handle of type 'Console'
+* Scilab Console and graphic figure menus are now uimenus. They are hidden by
+  default, use set(get(0), "ShowHiddenHandles", "on") to see them in the
+  children list.
 
-* New uicontrols added
-  - Image Renderer uicontrol.
-    Display, transformation and various other operation can be performed on
-    images.
+* New uicontrols added:
+  - 'image' style uicontrol: display, transformation and various other
+    operations on images.
+  - 'table' style uicontrol: display data in a table form (read-only in Scilab
+    5.4.0-BETA-1 version).
 
-
-* Bug #7380 fixed - 'Value' property for uicontrol was rounded.
+* The 'Value' property can now contain non integer values and allow to take full
+  advantage of 'slider' style uicontrols (See bug #7380).
 
 
 Scilab
 ======
 
-* save/load functions can now export/import Scilab data to SOD format:
- - Scilab data are now saved and loaded using a standard, HDF5-based, documented,
+* save/load functions can export/import Scilab data to SOD format:
+ - Scilab data are saved and loaded using a standard, HDF5-based, documented,
    and fully tested: Scilab Open Data format (SOD).
  - Graphic handles can be saved with the SOD format.
  - 'save' writes data to HDF5 format when using new calling sequence
@@ -43,14 +56,10 @@ Scilab
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
 
+* Scilab Desktop provide a button in dockbar to get the help about the component.
 
-
-Scilab Desktop
-==============
-
-* Add a button in dockbar to get the help about the component.
-
-* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
+* External modules are managed out of the box by test_run function. See bug #9834.
+Example: test_run('SCI/contrib/toolbox_skeleton')
 
 
 XML
@@ -67,8 +76,8 @@ XML
 * Bug #10670 fixed - Avoid a crash when xmlRead had an arg with a bad size.
 
 
-Help
-====
+Documentation
+=============
 
 * Management of Docbook tags <note>, <caution>, <warning>, <important> and
  <tip>. See bug #10505.
@@ -76,13 +85,134 @@ Help
 * Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
   <caution>, <warning>, <important> and <tip> tags in examples.
 
+* The Russian documentation is now available. Many thanks to Stanislav Kroter.
+
+* Many errors have been fixed in Scilab documentation:
+  - Wrong calling sequences
+  - Errors in examples
+  - Bad formating
+  - Typos
+
+* Bug #4813 fixed - Description of type 0 added in type help page.
+
+* Bug #7859 fixed - Improvements of the "exists" help page.
+
+* Bug #8685 fixed - Lack of consistency in the keyword documentation.
+
+* Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
+
+* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
+
+* Bug #9700 fixed - optim help page had a mistake about bounds management.
+
+* Bug #9734 fixed - intsplin help pages moved from interpolation to
+                    elementary functions chapter.
+
+* Bug #9954 fixed - Add an example in gmres documentation.
+
+* Bug #9953 fixed - Add documentation to the fre input argument of stdevf.
+
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
+* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
+                     not clearly stated in the documentation.
+
+* Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
+
+* Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
+
+* Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
+
+* Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
+
+* Bug #10475 fixed - Error in perms function help page fixed.
+
+* Bug #10518 fixed - odeoptions help page was inaccurate.
+
+* Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
+* Bug #10536 fixed - A string was in French in the English help page of cumsum.
+
+* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+
+* Bug #10579 fixed - Wrong reference to and function in the help page of prod
+                     and cumprod fixed.
+
+* Bug #10634 fixed - dsearch help page referenced an invalid input argument
+                     name.
+
+* Bug #10656 fixed - Exception when an empty help browser was closed.
+
+* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+
+* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
+* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
+
+* Bug #10717 fixed - Typos fixed in the help page of acosd.
+
+* Bug #10720 fixed - Typos fixed in the help page of acosh.
+
+* Bug #10724 fixed - Missing links in the help page of acot added.
+
+* Bug #10725 fixed - Typos fixed in the help page of acot.
+
+* Bug #10726 fixed - Missing links in the help page of acsc added.
+
+* Bug #10727 fixed - Missing links in the help page of asech added.
+
+* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+
+* Bug #10729 fixed - Missing links in the help page of asinh added.
+
+* Bug #10730 fixed - Missing links in the help page of asinhm added.
+
+* Bug #10731 fixed - Typos fixed in the help page of atan.
+
+* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+
+* Bug #10733 fixed - Missing link in the help page of atanm added.
+
+* Bug #10734 fixed - Missing link in the help page of cos added.
+
+* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
+
+* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+
+* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
+
+* Bug #10738 fixed - Typos fixed in the help page of cscd.
+
+* Bug #10739 fixed - Typos fixed in the help page of csgn.
+
+* Bug #10740 fixed - Typos fixed in the help page of sec.
+
+* Bug #10741 fixed - Typos fixed in the help page of secd.
+
+* Bug #10742 fixed - Missing link in the help page of sin added.
+
+* Bug #10743 fixed - Wrong link in the help page of sind fixed.
+
+* Bug #10744 fixed - Typos fixed in the help page of sinh.
+
+* Bug #10745 fixed - Typos fixed in the help page of tand.
+
+* Bug #10809, #10810 fixed - error_table help page was not up-to-date.
+
+* Bug #10828 fixed - Developer arguments were not displayed in the help of
+                     Scilab scripts.
+
+* Bug #10879 fixed - Typo in the dec2base help page.
+
+* Bug #10881 fixed - Typo in ftest and ftuneq fixed.
+
 
 Xcos
 ====
 
-
 * Major performance improvements on the simulation startup. On big schemas,
-  the gain is very important (minutes to milliseconds).
+  the gain is very important (minutes to milliseconds). See bug #8188.
 
 * Performance improvements on the diagram saving/loading.
 
@@ -157,45 +287,30 @@ Xcos
 * Bug #10889 fixed - Exception about block highlighters was thrown by Scinotes.
 
 
-Unitary testing
-===============
-
-* external modules are now managed by out of the box by test_run
-Example: test_run('SCI/contrib/toolbox_skeleton')
-(See bug #9834)
-
-
 Compilation
 ===========
 
-* Add an option --without-arpack-ng which will disable the Arnoldi features.
+* Scilab now uses the ARPACK-ng package maintained by Scilab Enterprises.
 
-
-Graphical User Interface
-========================
-
-* Bug #4978 fixed - Icons did not follow the Tango norm.
+* An option --without-arpack-ng has been added to disable the Arnoldi features.
 
 
 Elementary functions
 ====================
 
-* dec2base function added (See SEP #75).
+* New functions:
+  - dec2base function added (See SEP #75)
+  - nthroot function added (See SEP #78)
 
-* linspace deprecates the usage of non integer values as third input argument.
+* linspace and logspace deprecate the usage of non integer values as third input argument.
 
-* logspace deprecates the usage of non integer values as third input argument.
+* The toeplitz macro is now vectorized.
 
-* The toeplitz macro was not vectorized.
-
-* Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
-
-* nthroot function added (See SEP #78).
 
 Sparse
 ======
 
-* qmr function modified.
+* qmr function updated and modified.
    Calling qmr(F, Fp, x) where F is a function returning A*x
    and Fp a function returning A'*x is deprecated.
    Use qmr(F, x) instead where F prototype is
@@ -206,15 +321,9 @@ Sparse
    Same behaviour has been implemented for qmr( ..., M1, M1p, M2, M2p).
    See qmr documentation for examples and details.
 
-CLI console:
-============
 
-* bug 3400 fixed - Long lines in the history breaks the display.
-
-* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
-
-* bug 3108 fixed - Some specific chars in the terminal are not correctly
-                   removed by the backspace.
+CLI console (GNU/Linux and Mac OS X only)
+=========================================
 
 * Support wide characters.
 
@@ -240,13 +349,12 @@ characters.
   - Alt+B or Ctrl+LEFT: move left one word.
   - Alt+F or Ctrl+RIGHT: move right one word.
 
-* bug 3108 fixed - Some specific chars in the terminal were not correctly
-                   removed by the backspace.
+* Bug #3108 fixed - Some specific chars in the terminal were not correctly
+                    removed by the backspace.
 
-* bug 3400 fixed - Long lines in the history broke the display.
+* Bug #3400 fixed - Long lines in the history broke the display.
 
-* bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
-
+* Bug #6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
 
 
 Scinotes
@@ -260,25 +368,21 @@ Scinotes
 * Bug #10647 fixed - An error message did not repect Scilab localization standard.
 
 
-api_scilab
-==========
-
-* Construction of any type of lists is now way faster (300x in some cases).
-
-
 Performances
 ============
 
-* hank function performances improved.
+* 'hank' function performances improved.
+
+* Using api_scilab, construction of any type of lists is now way faster (300x in some cases).
+
 
 Javasci
 =======
 
-* Javasci supports sparse and boolean sparse datatypes.
-
-* Javasci supports tlists, mlists and lists datatypes.
-
-* Javasci supports polynomial datatypes.
+* New datatypes are now supported:
+  - sparse and boolean sparse
+  - tlists, mlists and lists
+  - polynomial
 
 * If Scilab fails to start because of a memory issues (stacksize), triggers an
   InitializationException Java exception.
@@ -296,24 +400,19 @@ CACSD & Signal Processing
   - convol2d - discrete 2-D convolution, using fft.
   - phaseplot - frequency phase plot.
 
-* Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
+* 'mtlb_conv' compatibility function is now obsolete. Please use 'conv' instead.
 
-
-Compatibility Functions
-=======================
-
-* 'mtlb_conv' obsolete. Please use 'conv' instead.
 
 ATOMS
 =======
 
 * 'atomsQuit' function added to allow to call .quit of modules loaded by ATOMS
-  when user closes Scilab session. see SEP #77.
+  when user closes Scilab session. See SEP #77.
 
 * tbx_build_loader generates also a unloader.sce to allow to call .quit file of
    an ATOMS module.
 
-* Rename ATOMS option offLine to offline.
+* ATOMS option 'offLine' has been renamed to 'offline'.
 
 * Bug #9078 fixed - atomsGui took time to start gui.
 
@@ -339,130 +438,17 @@ ATOMS
                      a local package.
 
 
-Documentation
-=============
-
-* Bug #4813 fixed - Description of type 0 added in type help page.
-
-* Bug #7859 fixed - Improvements of the "exists" help page.
-
-* Bug #8685 fixed - Lack of consistency in the keyword documentation.
-
-* Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
-
-* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
-
-* Bug #9700 fixed - optim help page had a mistake about bounds management.
-
-* Bug #9734 fixed - intsplin help pages moved from interpolation to
-                    elementary functions chapter.
-
-* Bug #9954 fixed - Add an example in gmres documentation.
-
-* Bug #9953 fixed - Add documentation to the fre input argument of stdevf.
-
-* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
-                     matrices was not clearly stated in the documentation.
-
-* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
-                     not clearly stated in the documentation.
-
-* Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
-
-* Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
-
-* Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
-
-* Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
-
-* Bug #10475 fixed - Error in perms function help page fixed.
-
-* Bug #10518 fixed - odeoptions help page was inaccurate.
-
-* Bug #10526 fixed - A string was in French in the English help page of cumprod.
-
-* Bug #10536 fixed - A string was in French in the English help page of cumsum.
-
-* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
-
-* Bug #10579 fixed - Wrong reference to and function in the help page of prod
-                     and cumprod fixed.
-
-* Bug #10634 fixed - dsearch help page referenced an invalid input argument
-                     name.
-
-* Bug #10656 fixed - Exception when an empty help browser was closed.
-
-* Bug #10673 fixed - Typos fixed in the help page of ssrand.
-
-* Bug #10685 fixed - inttrap help page moved to differential calculus module.
-
-* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
-* Bug #10717 fixed - Typos fixed in the help page of acosd.
-
-* Bug #10720 fixed - Typos fixed in the help page of acosh.
-
-* Bug #10724 fixed - Missing links in the help page of acot added.
-
-* Bug #10725 fixed - Typos fixed in the help page of acot.
-
-* Bug #10726 fixed - Missing links in the help page of acsc added.
-
-* Bug #10727 fixed - Missing links in the help page of asech added.
-
-* Bug #10728 fixed - Wrong link in the help page of asind fixed.
-
-* Bug #10729 fixed - Missing links in the help page of asinh added.
-
-* Bug #10730 fixed - Missing links in the help page of asinhm added.
-
-* Bug #10731 fixed - Typos fixed in the help page of atan.
-
-* Bug #10732 fixed - Wrong link in the help page of atand fixed.
-
-* Bug #10733 fixed - Missing link in the help page of atanm added.
-
-* Bug #10734 fixed - Missing link in the help page of cos added.
-
-* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
-
-* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
-
-* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
-
-* Bug #10738 fixed - Typos fixed in the help page of cscd.
-
-* Bug #10739 fixed - Typos fixed in the help page of csgn.
-
-* Bug #10740 fixed - Typos fixed in the help page of sec.
-
-* Bug #10741 fixed - Typos fixed in the help page of secd.
-
-* Bug #10742 fixed - Missing link in the help page of sin added.
-
-* Bug #10743 fixed - Wrong link in the help page of sind fixed.
-
-* Bug #10744 fixed - Typos fixed in the help page of sinh.
-
-* Bug #10745 fixed - Typos fixed in the help page of tand.
-
-* Bug #10809, #10810 fixed - error_table help page was not up-to-date.
-
-* Bug #10828 fixed - Developer arguments were not displayed in the help of
-                     Scilab scripts.
-
-* Bug #10879 fixed - Typo in the dec2base help page.
-
-* Bug #10881 fixed - Typo in ftest and ftuneq fixed.
-
-* Bug #10938 fixed - Add an example in qmr documentation.
-
-
 Bug fixes
 =========
 
 * Bug #4806 fixed - If A is a sparse matrix, A^0 returned A and not the identity
                     matrix as expected.
+
+* Bug #4978 fixed - Icons did not follow the Tango norm.
+
+* Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
+
+* Bug #7380 fixed - 'Value' property for uicontrol was rounded.
 
 * Bug #7490 fixed - %inf had not always same display.
 
@@ -647,9 +633,11 @@ t.
 
 * Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
 
+* Bug #10710 fixed - Wrong error message fixed in xml module.
+
 * Bug #10769 fixed - Remove some dead code from bsplin3val.
 
-* Bug #10710 fixed - Wrong error message fixed in xml module.
+* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
 
 * Bug #10782 fixed - 'iconvert' did not check input arguments.
 
@@ -657,6 +645,8 @@ t.
 
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
+
+* Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
 
 * Bug #10836 fixed - resize_matrix with boolean failed.
 
