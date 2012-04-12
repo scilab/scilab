@@ -28,6 +28,7 @@ global %__varargin__ %__filename__
 
 %__isHdf5Format__ = %T;
 %__iErr__ = execstr("import_from_hdf5(pathconvert(%__filename__, %F, %T));", "errcatch");
+errclear();
 
 if %__iErr__ then
     %__isHdf5Format__ = %F;
