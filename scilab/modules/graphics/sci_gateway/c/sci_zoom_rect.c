@@ -26,6 +26,8 @@
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "HandleManagement.h"
+#include "CurrentFigure.h"
+#include "CurrentSubwin.h"
 
 #include "JavaInteraction.h"
 
@@ -126,7 +128,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     if (Rhs == 0)
     {
         /* zoom_rect() */
-        sciDefaultInteractiveZoom();
+        startInteractiveZoom(getCurrentFigure());
     }
     else if (Rhs == 1)
     {
@@ -147,7 +149,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             if (getZoomRect(fname, 1, rect))
             {
                 /* rectangle found */
-                int status = sciDefaultZoom2D(rect);
+                int status = sciZoom2D(getCurrentSubWin(), rect);
                 if (status == SET_PROPERTY_ERROR)
                 {
                     /* error on rectangle bounds */

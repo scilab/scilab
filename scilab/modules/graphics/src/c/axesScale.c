@@ -36,9 +36,6 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------------*/
-static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
-static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height);
-/*------------------------------------------------------------------------------*/
 /**
  * Specify new zoom box for a subwin object.
  * @param subwinUID the subwin's identifier.
@@ -47,16 +44,22 @@ static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int
 int sciZoom2D(char * subwinUID, const double zoomRect[4])
 {
     double* zoomBox;
+    if (subwinUID != NULL)
+    {
+        // add Z scale to data bounds.
+        getGraphicObjectProperty(subwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **) &zoomBox);
 
-    // add Z scale to data bounds.
-    getGraphicObjectProperty(subwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &zoomBox);
+        zoomBox[0] = zoomRect[0];
+        zoomBox[1] = zoomRect[1];
+        zoomBox[2] = zoomRect[2];
+        zoomBox[3] = zoomRect[3];
 
-    zoomBox[0] = zoomRect[0];
-    zoomBox[1] = zoomRect[1];
-    zoomBox[2] = zoomRect[2];
-    zoomBox[3] = zoomRect[3];
-
-    return sciZoom3D(subwinUID, zoomBox);
+        return sciZoom3D(subwinUID, zoomBox);
+    }
+    else
+    {
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -105,162 +108,44 @@ int sciZoom3D(char * subwinUID, const double zoomBox[6])
 
 }
 /*------------------------------------------------------------------------------*/
-/**
- * get the zoom box to dispplay in Scilab for a sunwin object
- * @param[out] zoomBox [xMin, yMin, xMax, yMax, zMin, zMax];
- */
-void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6])
+int sciZoomRect(char* objUID, const double zoomRect[4])
 {
-  double temp;
-
-  // here we get [xMin, xMax, yMin, yMax, zMin, zMax]
-  // we need to switch xMax and yMin
-  sciGetZoomBox(pObj, zoomBox);
-  temp = zoomBox[1];
-  zoomBox[1] = zoomBox[2];
-  zoomBox[2] = temp;
-}
-/*------------------------------------------------------------------------------*/
-int sciZoomRect(sciPointObj * pObj, const double zoomRect[4])
-{
-  int status = SET_PROPERTY_ERROR;
-  if (sciGetEntityType(pObj) == SCI_FIGURE)
-  {
-    status = sciFigureZoom2D(pObj, zoomRect);
-  }
-  else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-  {
-    status = sciZoom2D(pObj, zoomRect);
-  }
-
-  /* redraw everything */
-  if (status == SET_PROPERTY_SUCCEED)
-  {
-    //sciDrawObj(pObj);
-  }
-
-  return status;
-}
-/*------------------------------------------------------------------------------*/
-int sciDefaultZoom2D(const double zoomRect[4])
-{
-  sciPointObj * curFigure = NULL;
-  //startGraphicDataWriting();
-  curFigure = sciGetCurrentFigure();
-  //endGraphicDataWriting();
-
-  return sciZoomRect(curFigure, zoomRect);
-}
-/*------------------------------------------------------------------------------*/
-int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4])
-{
-  /* try to zoom on all the subwindows */
-  sciSons * pSons = sciGetSons(figure);
-  while (pSons != NULL)
-  {
-    sciPointObj * curObj = pSons->pointobj;
-    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+    char *pstType;
+    getGraphicObjectProperty(objUID, __GO_TYPE__, jni_string, (void **) &pstType);
+    if (strcmp(pstType, __GO_FIGURE__) == 0)
     {
-      int status = sciZoom2D(curObj, zoomRect);
-      if (status == SET_PROPERTY_SUCCEED)
-      {
-        //forceRedraw(curObj);
-      }
-      else
-      {
+        return sciFigureZoom2D(objUID, zoomRect);
+    }
+    else if (strcmp(pstType, __GO_AXES__) == 0)
+    {
+        return sciZoom2D(objUID, zoomRect);
+    }
+    else
+    {
         return SET_PROPERTY_ERROR;
-      }
     }
-    pSons = pSons->pnext;
-  }
-
-  return SET_PROPERTY_SUCCEED;
-
 }
 /*------------------------------------------------------------------------------*/
-/**
- * Try to zoom on a single subwindow using a selection area
- */
-static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height)
+int sciFigureZoom2D(char* figureUID, const double zoomRect[4])
 {
-  if (sciJavaZoomRect(pSubwin, posX, posY, width, height))
-  {
-    /* subwindow has been zoomed */
-    /* force zooming */
-    sciSetZooming(pSubwin, TRUE);
+    int i;
+    int childrenCount;
+    int* pChildrenCount = &childrenCount;
 
-    // window has changed
-    //forceRedraw(pSubwin);
-  }
-}
-/*------------------------------------------------------------------------------*/
-/**
- * Zoom a figure using an already computed selection area
- */
-static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height)
-{
-  /* try to zoom on all the subwindows */
-  sciSons * pSons = sciGetSons(pFigure);
-  while (pSons != NULL)
-  {
-    sciPointObj * curObj = pSons->pointobj;
-    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+    char** children;
+
+    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount); 
+
+    if ((pChildrenCount != NULL) && (childrenCount > 0))
     {
-      zoomSubwin(curObj, posX, posY, width, height);
+        getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &children);
+        for (i = 0; i < childrenCount; i++)
+        {
+          sciZoomRect(children[i], zoomRect);
+        }
     }
-    pSons = pSons->pnext;
-  }
-}
-/*------------------------------------------------------------------------------*/
-void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
-{
-	/* convert found data to [x,y,w,h] */
-  int x = Min(x1, x2);
-  int y = Min(y1, y2);
-  int w = Abs(x1 - x2);
-  int h = Abs(y1 - y2);
 
-	if (w == 0 || h == 0)
-	{
-		/* Zoom is not possible */
-		return;
-	}
-
-	if (sciGetEntityType(pObj) == SCI_FIGURE)
-	{
-		zoomFigure(pObj, x, y, w, h);
-	}
-	else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-	{
-		zoomSubwin(pObj, x, y, w, h);
-	}
-}
-/*------------------------------------------------------------------------------*/
-/**
- * Perform an interactive zoom (rectangular selection +  zoom)
- * @param pObj object on which the zoom will be applied.
- *             Might be a Figure or a Subwindow. If it is a figure the zoom
- *             is applied to the axes children of the figure
- */
-void sciInteractiveZoom(sciPointObj * pObj)
-{
-	interactiveZoom(pObj);
-}
-/*------------------------------------------------------------------------------*/
-/**
- * Perform a zoom rect (rectangular selection + zoom) on the current figure
- */
-void sciDefaultInteractiveZoom(void)
-{
-  sciPointObj * curFigure;
-
- // startGraphicDataWriting();
-  curFigure = sciGetCurrentFigure();
-  //endGraphicDataWriting();
-
-
-  /* zoom current figure */
-  interactiveZoom(curFigure);
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -329,17 +214,6 @@ void sciUnzoomSubwin(char* subwinUID)
     setGraphicObjectProperty(subwinUID, __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
 }
 /*------------------------------------------------------------------------------*/
-void unzoomSubwin(sciPointObj * pSubwin)
-{
-	int currentStatus;
-  currentStatus = sciSetZooming(pSubwin, FALSE);
-  if (currentStatus == 0)
-  {
-    /* redraw only if needed */
-    //forceRedraw(pSubwin);
-  }
-}
-/*------------------------------------------------------------------------------*/
 /**
  * Unzoom all the subwindows contained in a figure
  */
@@ -347,15 +221,15 @@ void sciUnzoomFigure(char* figureUID)
 {
   char* pstType;
   char** pstChildrenUID;
-  
-  int i; 
+
+  int i;
   int zoomEnabled = 0;
   int childrenCount;
   int* piChildrenCount = &childrenCount;
-  
+
   getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
   getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
-  
+
   if (piChildrenCount != NULL)
   {
 
@@ -405,7 +279,7 @@ void updateTextBounds(char * pTextUID)
     char* parentAxes = NULL;
 
     /* Update coordinate transformation if needed */
-    getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+    getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, (void **) &parentAxes);
     updateSubwinScale(parentAxes);
 
     /* Compute the bounding box of the text */
