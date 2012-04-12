@@ -23,6 +23,20 @@ Graphic capabilities
   - Support of new vectorial formats: PDF and SVG in the driver function.
   - Fix many portability issues.
 
+
+* Bug #4289 fixed - Graphic exports were not working when the drawlater or the 
+                    pixmap modes were activated.
+
+* Bug #4818 fixed - Scilab could not export graphics with a lot of information.
+
+* Bug #8250, #10567, #10614 fixed - Drop artefacts on the 
+                                    vectorial (EPS/PDF/SVG) exports.
+
+* Bug #8705 fixed - Could not save some specific graphics.
+
+* Bug #10206 fixed - SVG with a french localization was, in some cases, using
+                     , instead of . for numerical separator.
+
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
 
