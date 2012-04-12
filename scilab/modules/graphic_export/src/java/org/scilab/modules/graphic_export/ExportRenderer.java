@@ -32,9 +32,6 @@ public abstract class ExportRenderer implements GLEventListener {
     public static final int UNKNOWN_GLEXCEPTION_ERROR = 1;
     public static final int IOEXCEPTION_ERROR = 2;
     public static final int INVALID_FILE = 3;
-    public static final int GL2PS_ERROR = 4;
-    public static final int GL2PS_OVERFLOW = 5;
-    public static final int GL2PS_UNINITIALIZED = 6;
 
     public static final Map<Integer, String> errors = new HashMap<Integer, String>();
     static {
@@ -42,9 +39,6 @@ public abstract class ExportRenderer implements GLEventListener {
         errors.put(ExportRenderer.UNKNOWN_GLEXCEPTION_ERROR, "OpenGL error during export.");
         errors.put(ExportRenderer.IOEXCEPTION_ERROR, "Unable to create export file, permission denied.");
         errors.put(ExportRenderer.INVALID_FILE, "Unable to create export file, invalid file.");
-        errors.put(ExportRenderer.GL2PS_ERROR, "GL2PS error during export.");
-        errors.put(ExportRenderer.GL2PS_OVERFLOW, "Unable to create export file, figure is too big.");
-        errors.put(ExportRenderer.GL2PS_UNINITIALIZED, "GL2PS error during export.");
     }
 
     /** Code-number for each bitmap format */
@@ -108,26 +102,19 @@ public abstract class ExportRenderer implements GLEventListener {
      * @param fileName name of the file
      * @param fileType type of the file
      * @param fileOrientation orientation of the file
-     * @return GL2PSRenderer export a postscript screen-shot
      */
     public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
 
-        GL2PS gl2ps = new GL2PS();
-
         /** Select in which type the file will be exported */
         switch (fileType) {
-        case BMP_EXPORT:
-        case GIF_EXPORT:
-        case JPG_EXPORT:
-        case PNG_EXPORT:
-        case PPM_EXPORT:
-            return new BitmapRenderer(fileName, fileType, jpegCompressionQuality, fileOrientation);
-        case EPS_EXPORT:
-        case PDF_EXPORT:
-        case SVG_EXPORT:
-        case PS_EXPORT:
-            return new GL2PSRenderer(figureIndex, fileName, fileType, fileOrientation);
-        default: System.err.println(ExportRenderer.INVALID_FILE);
+            case BMP_EXPORT:
+            case GIF_EXPORT:
+            case JPG_EXPORT:
+            case PNG_EXPORT:
+            case PPM_EXPORT:
+                //            return new BitmapRenderer(fileName, fileType, jpegCompressionQuality, fileOrientation);
+            default:
+                System.err.println(ExportRenderer.INVALID_FILE);
         }
         return null;
     }
@@ -209,7 +196,8 @@ public abstract class ExportRenderer implements GLEventListener {
                                          ExportRenderer.JPG_EXPORT, ExportRenderer.PNG_EXPORT,
                                          ExportRenderer.PPM_EXPORT, ExportRenderer.EPS_EXPORT,
                                          ExportRenderer.PDF_EXPORT, ExportRenderer.SVG_EXPORT,
-                                         ExportRenderer.PS_EXPORT};
+                                         ExportRenderer.PS_EXPORT
+                                        };
 
             suffix = suffix.toLowerCase();
 
@@ -218,7 +206,7 @@ public abstract class ExportRenderer implements GLEventListener {
             ArrayList<String> extensionsAllowedV = new ArrayList<String>(Arrays.asList(extensionsAllowed));
             ArrayList<Integer> fileTypeAllowedV = new ArrayList<Integer>(Arrays.asList(fileTypeAllowed));
 
-            if (extensionsAllowedV.contains(suffix) && fileTypeAllowedV.contains(this.fileType)){
+            if (extensionsAllowedV.contains(suffix) && fileTypeAllowedV.contains(this.fileType)) {
                 this.fileName = this.fileName.substring(0, pos); /* Physically removed the extension */
                 this.fileExtension = suffix; /* Store the extension... we want the same as used initially (ex: jpeg) */
             }

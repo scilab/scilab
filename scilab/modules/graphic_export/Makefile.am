@@ -27,16 +27,9 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
 src/jni/Driver.cpp \
-src/cpp/GL2PSConstant.cpp \
-src/cpp/GL2PSWrapping.cpp \
-src/cpp/JoGLInterface.cpp  \
-src/jni/GL2PSToJOGL.cpp \
 src/jni/JOGLConstant.cpp
 
-GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
-src/jni/GL2PSConstant_wrap.c \
-src/jni/GL2PSWrapping_wrap.c \
-src/c/gl2ps/gl2ps.c
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
@@ -86,18 +79,11 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
-src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
-
-SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
-src/jni/GL2PSWrapping.i
 
 BUILT_SOURCES=
 if GIWS
 BUILT_SOURCES+=giws
-endif
-if SWIG
-BUILT_SOURCES+=swig
 endif
 
 # All the sources needed by libscigraphic_export.la

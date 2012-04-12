@@ -64,11 +64,10 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GIWS_TRUE@am__append_1 = giws
-@SWIG_TRUE@am__append_2 = swig
-@GUI_TRUE@am__append_3 = libscigraphic_export.la 
+@GUI_TRUE@am__append_2 = libscigraphic_export.la 
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_4 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/graphic_export
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -126,17 +125,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigraphic_export_algo_la_LIBADD =
-am__objects_1 = libscigraphic_export_algo_la-xs2file.lo \
-	libscigraphic_export_algo_la-GL2PSConstant_wrap.lo \
-	libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo \
-	libscigraphic_export_algo_la-gl2ps.lo
+am__objects_1 = libscigraphic_export_algo_la-xs2file.lo
 am__objects_2 = libscigraphic_export_algo_la-exportToFile.lo \
 	libscigraphic_export_algo_la-FileExporter.lo \
 	libscigraphic_export_algo_la-Driver.lo \
-	libscigraphic_export_algo_la-GL2PSConstant.lo \
-	libscigraphic_export_algo_la-GL2PSWrapping.lo \
-	libscigraphic_export_algo_la-JoGLInterface.lo \
-	libscigraphic_export_algo_la-GL2PSToJOGL.lo \
 	libscigraphic_export_algo_la-JOGLConstant.lo
 am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
@@ -470,17 +462,9 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
 src/jni/Driver.cpp \
-src/cpp/GL2PSConstant.cpp \
-src/cpp/GL2PSWrapping.cpp \
-src/cpp/JoGLInterface.cpp  \
-src/jni/GL2PSToJOGL.cpp \
 src/jni/JOGLConstant.cpp
 
-GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
-src/jni/GL2PSConstant_wrap.c \
-src/jni/GL2PSWrapping_wrap.c \
-src/c/gl2ps/gl2ps.c
-
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
@@ -528,13 +512,9 @@ CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURC
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
-src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
 
-SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
-src/jni/GL2PSWrapping.i
-
-BUILT_SOURCES = $(am__append_1) $(am__append_2)
+BUILT_SOURCES = $(am__append_1)
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
@@ -545,7 +525,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_3)
+pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_2)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscigraphic_export-algo.la 
 libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
@@ -565,7 +545,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -707,15 +687,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-Driver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-FileExporter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSToJOGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JoGLInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-exportToFile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-gl2ps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
@@ -759,27 +732,6 @@ libscigraphic_export_algo_la-xs2file.lo: src/c/xs2file.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xs2file.c' object='libscigraphic_export_algo_la-xs2file.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_algo_la-xs2file.lo `test -f 'src/c/xs2file.c' || echo '$(srcdir)/'`src/c/xs2file.c
-
-libscigraphic_export_algo_la-GL2PSConstant_wrap.lo: src/jni/GL2PSConstant_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphic_export_algo_la-GL2PSConstant_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant_wrap.Tpo -c -o libscigraphic_export_algo_la-GL2PSConstant_wrap.lo `test -f 'src/jni/GL2PSConstant_wrap.c' || echo '$(srcdir)/'`src/jni/GL2PSConstant_wrap.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant_wrap.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GL2PSConstant_wrap.c' object='libscigraphic_export_algo_la-GL2PSConstant_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_algo_la-GL2PSConstant_wrap.lo `test -f 'src/jni/GL2PSConstant_wrap.c' || echo '$(srcdir)/'`src/jni/GL2PSConstant_wrap.c
-
-libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo: src/jni/GL2PSWrapping_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping_wrap.Tpo -c -o libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo `test -f 'src/jni/GL2PSWrapping_wrap.c' || echo '$(srcdir)/'`src/jni/GL2PSWrapping_wrap.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping_wrap.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GL2PSWrapping_wrap.c' object='libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_algo_la-GL2PSWrapping_wrap.lo `test -f 'src/jni/GL2PSWrapping_wrap.c' || echo '$(srcdir)/'`src/jni/GL2PSWrapping_wrap.c
-
-libscigraphic_export_algo_la-gl2ps.lo: src/c/gl2ps/gl2ps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphic_export_algo_la-gl2ps.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-gl2ps.Tpo -c -o libscigraphic_export_algo_la-gl2ps.lo `test -f 'src/c/gl2ps/gl2ps.c' || echo '$(srcdir)/'`src/c/gl2ps/gl2ps.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-gl2ps.Tpo $(DEPDIR)/libscigraphic_export_algo_la-gl2ps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gl2ps/gl2ps.c' object='libscigraphic_export_algo_la-gl2ps.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_export_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_algo_la-gl2ps.lo `test -f 'src/c/gl2ps/gl2ps.c' || echo '$(srcdir)/'`src/c/gl2ps/gl2ps.c
 
 libscigraphic_export_disable_la-nographic_export.lo: src/nographic_export/nographic_export.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_disable_la-nographic_export.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Tpo -c -o libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
@@ -899,34 +851,6 @@ libscigraphic_export_algo_la-Driver.lo: src/jni/Driver.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Driver.cpp' object='libscigraphic_export_algo_la-Driver.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-Driver.lo `test -f 'src/jni/Driver.cpp' || echo '$(srcdir)/'`src/jni/Driver.cpp
-
-libscigraphic_export_algo_la-GL2PSConstant.lo: src/cpp/GL2PSConstant.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-GL2PSConstant.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant.Tpo -c -o libscigraphic_export_algo_la-GL2PSConstant.lo `test -f 'src/cpp/GL2PSConstant.cpp' || echo '$(srcdir)/'`src/cpp/GL2PSConstant.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GL2PSConstant.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GL2PSConstant.cpp' object='libscigraphic_export_algo_la-GL2PSConstant.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-GL2PSConstant.lo `test -f 'src/cpp/GL2PSConstant.cpp' || echo '$(srcdir)/'`src/cpp/GL2PSConstant.cpp
-
-libscigraphic_export_algo_la-GL2PSWrapping.lo: src/cpp/GL2PSWrapping.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-GL2PSWrapping.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping.Tpo -c -o libscigraphic_export_algo_la-GL2PSWrapping.lo `test -f 'src/cpp/GL2PSWrapping.cpp' || echo '$(srcdir)/'`src/cpp/GL2PSWrapping.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GL2PSWrapping.cpp' object='libscigraphic_export_algo_la-GL2PSWrapping.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-GL2PSWrapping.lo `test -f 'src/cpp/GL2PSWrapping.cpp' || echo '$(srcdir)/'`src/cpp/GL2PSWrapping.cpp
-
-libscigraphic_export_algo_la-JoGLInterface.lo: src/cpp/JoGLInterface.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-JoGLInterface.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-JoGLInterface.Tpo -c -o libscigraphic_export_algo_la-JoGLInterface.lo `test -f 'src/cpp/JoGLInterface.cpp' || echo '$(srcdir)/'`src/cpp/JoGLInterface.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-JoGLInterface.Tpo $(DEPDIR)/libscigraphic_export_algo_la-JoGLInterface.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/JoGLInterface.cpp' object='libscigraphic_export_algo_la-JoGLInterface.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-JoGLInterface.lo `test -f 'src/cpp/JoGLInterface.cpp' || echo '$(srcdir)/'`src/cpp/JoGLInterface.cpp
-
-libscigraphic_export_algo_la-GL2PSToJOGL.lo: src/jni/GL2PSToJOGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-GL2PSToJOGL.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GL2PSToJOGL.Tpo -c -o libscigraphic_export_algo_la-GL2PSToJOGL.lo `test -f 'src/jni/GL2PSToJOGL.cpp' || echo '$(srcdir)/'`src/jni/GL2PSToJOGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GL2PSToJOGL.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GL2PSToJOGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GL2PSToJOGL.cpp' object='libscigraphic_export_algo_la-GL2PSToJOGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-GL2PSToJOGL.lo `test -f 'src/jni/GL2PSToJOGL.cpp' || echo '$(srcdir)/'`src/jni/GL2PSToJOGL.cpp
 
 libscigraphic_export_algo_la-JOGLConstant.lo: src/jni/JOGLConstant.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-JOGLConstant.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Tpo -c -o libscigraphic_export_algo_la-JOGLConstant.lo `test -f 'src/jni/JOGLConstant.cpp' || echo '$(srcdir)/'`src/jni/JOGLConstant.cpp
