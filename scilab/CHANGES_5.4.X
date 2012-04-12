@@ -657,6 +657,9 @@ t.
 * Bug #10880 fixed - Default startup directory moved to "My Documents folder" 
                      on Windows for icon shorcut.
 
+* Bug #10966 fixed - linspace was producing some numerical errors on the last
+                     element.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
