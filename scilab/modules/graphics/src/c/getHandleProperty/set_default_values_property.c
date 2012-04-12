@@ -33,34 +33,34 @@
 /*------------------------------------------------------------------------*/
 int set_default_values_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "default_values");
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "default_values");
+        return SET_PROPERTY_ERROR ;
+    }
+
+    if ( getDoubleFromStack( stackPointer ) != 1 )
+    {
+        Scierror(999, _("Wrong value for '%s' property: Must be '%s'.\n"), "default_values", "1");
+        return SET_PROPERTY_ERROR ;
+    }
+
+    if ( (pobjUID != NULL) && isFigureModel(pobjUID) )
+    {
+        InitFigureModel(pobjUID);
+        return SET_PROPERTY_SUCCEED;
+    }
+    else if ( (pobjUID != NULL) && isAxesModel(pobjUID) )
+    {
+        return InitAxesModel();
+    }
+    else if (pobjUID == NULL)
+    {
+        /* set default values for current figure */
+        return sciSetDefaultValues();
+    }
+
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_values");
     return SET_PROPERTY_ERROR ;
-  }
-
-  if ( getDoubleFromStack( stackPointer ) != 1 )
-  {
-    Scierror(999, _("Wrong value for '%s' property: Must be '%s'.\n"), "default_values", "1");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isFigureModel(pobjUID) )
-  {
-      InitFigureModel(pobjUID);
-      return SET_PROPERTY_SUCCEED;
-  }
-  else if (isAxesModel(pobjUID) )
-  {
-    return InitAxesModel();
-  }
-  else if (pobjUID == NULL)
-  {
-		/* set default values for current figure */
-    return sciSetDefaultValues();
-  }
-
-	Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_values");
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
