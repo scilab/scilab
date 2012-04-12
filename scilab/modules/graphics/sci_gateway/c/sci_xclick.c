@@ -26,6 +26,7 @@
 #include "axesScale.h"
 #include "HandleManagement.h"
 #include "BuildObjects.h"
+#include "CurrentSubwin.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -67,17 +68,16 @@ int sci_xclick(char *fname,unsigned long fname_len)
 
   // Convert pixel coordinates to user coordinates
   // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
-  //if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
-  //  {
-  //    sciPointObj * clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN);
-  //    updateSubwinScale(clickedSubwin);
-  //    sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
-  //  }
-  //else
-  //  {
-      userCoords2D[0] = pixelCoords[0];
-      userCoords2D[1] = pixelCoords[1];
-      //  }
+  if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
+  {
+    char* clickedSubwinUID = getCurrentSubWin();
+    sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+  }
+  else
+  {
+    userCoords2D[0] = pixelCoords[0];
+    userCoords2D[1] = pixelCoords[1];
+  }
 
   if (Lhs == 1)
   {
