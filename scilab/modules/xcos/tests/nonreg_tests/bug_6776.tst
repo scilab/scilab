@@ -25,7 +25,7 @@ obj = scs_m.objs(1);
 if size(obj.doc) <> 0 then pause, end
 
 // check that the export will not fail
-tempFile = TMPDIR + "/6776temp.h5";
+tempFile = TMPDIR + "/6776temp.sod";
 ierr = export_to_hdf5(tempFile, "scs_m");
 if ierr <> %t then pause, end
 

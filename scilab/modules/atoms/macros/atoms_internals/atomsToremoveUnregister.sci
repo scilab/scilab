@@ -81,7 +81,7 @@ function atomsToremoveUnregister(name,version,section)
     // Apply changes
     // =========================================================================
     if isempty(toremove_mat) then
-        save(toremove_bin,toremove_mat);
+        save(toremove_bin, "toremove_mat");
     else
         mdelete(toremove_bin);
     end

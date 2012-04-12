@@ -39,7 +39,7 @@ end
 
 
 // export the diagram to h5
-h5name = TMPDIR + "/diagram.h5";
+h5name = TMPDIR + "/diagram.sod";
 status = export_to_hdf5(h5name, "scs_m");
 if ~status then pause, end
 

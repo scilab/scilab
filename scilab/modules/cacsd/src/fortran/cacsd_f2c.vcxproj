@@ -88,7 +88,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -112,7 +111,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -137,7 +136,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -164,7 +162,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -189,7 +187,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -214,7 +211,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -241,7 +238,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -269,7 +265,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -419,7 +415,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="cacsd_Import.def" />
-    <None Include="Core_f_Import.def" />
     <None Include="Differential_equations_f_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />

@@ -100,7 +100,7 @@ function nbAdd = atomsToremoveRegister(name,version,section)
     // =========================================================================
 
     if nbAdd > 0 then
-        save(toremove_bin,toremove_mat);
+        save(toremove_bin, "toremove_mat");
     end
 
 endfunction

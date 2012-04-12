@@ -17,7 +17,7 @@ loadXcosLibs;
 iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
 stylePath = SCI + "/modules/xcos/images/blocks/NPN.svg";
 scs_m = SUM_f("define");
-blockPath = TMPDIR + "/block.h5";
+blockPath = TMPDIR + "/block.sod";
 
 //
 // Test block argument
@@ -27,7 +27,7 @@ blockPath = TMPDIR + "/block.h5";
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");
 
-expectedResult = ["SUM_f" msprintf("%s/SUM_f.h5", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -37,7 +37,7 @@ if or(expectedResult <> result) then pause, end
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, scs_m);
 
-expectedResult = ["SUM_f" msprintf("%s/SUM_f.h5", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');

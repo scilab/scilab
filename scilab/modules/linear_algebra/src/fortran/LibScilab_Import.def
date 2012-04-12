@@ -14,7 +14,6 @@ com_
 cha1_
 mtlbc_
 scigsch_
-errgst_
 scisch_
 scizgsch_
 intersci_
@@ -29,4 +28,14 @@ parse_
 callinterf_
 getrecursiongatewaytocall_
 isrecursioncalltofunction_
-
+;
+;core_f
+;
+ftob_
+allowptr_
+ref2val_
+funs_
+isbyref_
+btof_
+errgst_
+;

@@ -36,8 +36,8 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //  loadXcosLibs();
 //  pal = xcosPal();
 //
-//  sumPath = TMPDIR + "/sum.h5";
-//  bigSomPath = TMPDIR + "/sum.h5";
+//  sumPath = TMPDIR + "/sum.sod";
+//  bigSomPath = TMPDIR + "/sum.sod";
 //
 //  scs_m = SUM_f("define");
 //  export_to_hdf5(sumPath, "scs_m");
@@ -74,7 +74,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     // check and tranform block argument
 
     if typeof(block) == "Block" then
-        path = TMPDIR + "/" + block.gui + ".h5";
+        path = TMPDIR + "/" + block.gui + ".sod";
         scs_m = block;
         err = export_to_hdf5(path, "scs_m");
         if err <> %T then
@@ -87,7 +87,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     if typeof(block) == "string" then
         if exists(block) <> 0 & typeof(evstr(block)) == "function" then
             execstr("scs_m = " + block + "(""define"");");
-            path = TMPDIR + "/" + block + ".h5";
+            path = TMPDIR + "/" + block + ".sod";
             err = export_to_hdf5(path, "scs_m");
             if err <> %T then
                 error(msprintf(gettext("%s: Unable to export ""%s"" to ""%s"".\n"), "xcosPalAddBlock", "block", path));

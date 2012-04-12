@@ -83,8 +83,7 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -93,7 +92,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
-      <AdditionalDependencies>libscilab.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
@@ -110,8 +109,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -120,7 +118,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
-      <AdditionalDependencies>libscilab.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
@@ -137,8 +135,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -149,7 +146,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
-      <AdditionalDependencies>libscilab.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
@@ -169,8 +166,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)../c/LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -181,7 +177,7 @@ lib /DEF:"$(ProjectDir)../c/Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
-      <AdditionalDependencies>libscilab.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>

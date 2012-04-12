@@ -36,7 +36,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  xcos_workspace_init()
+  scicos_workspace_init()
 
 
 //** extract tolerances from scs_m.props.tol

@@ -30,7 +30,7 @@ public class testScilabList {
     @Test
     public void testEmptyList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
         ScilabList data = new ScilabList();
-        String fileName = tempDir + "/emptyListFromJava.h5";
+        String fileName = tempDir + "/emptyListFromJava.sod";
 
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "EmptyList", data);
@@ -49,7 +49,7 @@ public class testScilabList {
         ScilabList dataList = new ScilabList();
         dataList.add(new ScilabString("hello"));
         String[][] stringData = {{"i", "am", "a"}, {"string", "matrix", "!!!"}};
-        String fileName = tempDir + "/stringListFromJava.h5";
+        String fileName = tempDir + "/stringListFromJava.sod";
 
         dataList.add(new ScilabString(stringData));
 
@@ -72,7 +72,7 @@ public class testScilabList {
     @Test
     public void testDoubleList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
         ScilabList dataList = new ScilabList();
-        String fileName = tempDir + "/doubleListFromJava.h5";
+        String fileName = tempDir + "/doubleListFromJava.sod";
         dataList.add(new ScilabDouble(2));
         dataList.add(new ScilabDouble(51));
 
@@ -94,7 +94,7 @@ public class testScilabList {
 
     @Test
     public void testMixedList() throws HDF5Exception {
-        String fileName = tempDir + "/mixedListFromJava.h5";
+        String fileName = tempDir + "/mixedListFromJava.sod";
         ScilabList dataList = new ScilabList();
         dataList.add(new ScilabDouble(2));
         dataList.add(new ScilabDouble(51));

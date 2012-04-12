@@ -76,7 +76,7 @@ public enum XcosFileType {
     /**
      * Represent the Scilab I/O format.
      */
-    HDF5("h5", XcosMessages.FILE_HDF5) {
+    SOD("sod", XcosMessages.FILE_SOD) {
         @Override
         public void load(String file, XcosDiagram into) {
             new H5RWHandler(file).readDiagram(into);

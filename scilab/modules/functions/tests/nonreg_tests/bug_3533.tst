@@ -22,7 +22,8 @@ function z = yourplus(x, y), x = x - y,endfunction
 A=1:10;
 
 //create the *.bin files in libdir
-libdir=TMPDIR
+libdir=TMPDIR;
+warning("off");
 save(libdir + '/myplus.bin', myplus);
 save(libdir + '/yourplus.bin', yourplus);
 save(libdir + '/A.bin', A);

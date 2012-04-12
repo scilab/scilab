@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-03-10 11:35+0000\n"
+"PO-Revision-Date: 2012-03-29 13:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: ru\n"
 
 #, c-format
@@ -571,14 +571,14 @@ msgstr "Элементы первого параметра не являются
 
 #, c-format
 msgid "Last element of %dth argument <> first.\n"
-msgstr "Последний элемент %d-го параметра неравен первому.\n"
+msgstr "Последний элемент %d-го параметра не равен первому.\n"
 
 msgid "Last element of first argument does not match the first one.\n"
 msgstr "Последний элемент первого параметра неравен первому.\n"
 
 #, c-format
 msgid "Variable or function %s are not in file.\n"
-msgstr "Переменная или функция %s не в файле.\n"
+msgstr "Переменной или функции %s нет в файле.\n"
 
 #, c-format
 msgid "Variable %s is not a valid rational function.\n"

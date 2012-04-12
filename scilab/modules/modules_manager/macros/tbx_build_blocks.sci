@@ -76,7 +76,7 @@ function tbx_build_blocks(module, names, macros_path)
 
     names = names(:);
     sciFiles = pathconvert(macros_path + "/") + names + ".sci";
-    h5Files = pathconvert(module + "/images/h5/") + names + ".h5";
+    h5Files = pathconvert(module + "/images/h5/") + names + ".sod";
     gif_tlbx = pathconvert(module + "/images/gif");
     svg_tlbx = pathconvert(module + "/images/svg");
     handle = gcf();

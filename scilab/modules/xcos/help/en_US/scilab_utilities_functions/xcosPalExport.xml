@@ -70,7 +70,7 @@ o2 = BIGSOM_f("define");
 pal = xcosPalAddBlock(pal, o1);
 pal = xcosPalAddBlock(pal, o2);
 
-xcosPalExport(pal, TMPDIR + "/palette.h5");
+xcosPalExport(pal, TMPDIR + "/palette.sod");
 ]]></programlisting>
   </refsection>
   <refsection role="see also">

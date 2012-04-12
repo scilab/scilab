@@ -22,45 +22,21 @@ c====================================================================
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     
-c
-c     common for scicos debug mode
-
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /cosdebug/
-cDEC$ ENDIF 
-      common /cosdebug/ cosd
-      integer cosd
-
 c     common for Control-C interruptions
       logical iflag,interruptible
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /basbrk/
-cDEC$ ENDIF 
       common /basbrk/ iflag,interruptible
 c     scilab function protection mode
       integer macprt
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /mprot/
-cDEC$ ENDIF 
       common /mprot/ macprt
 c     mmode : matlab ops compatibilty mode
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
-cDEC$ ENDIF 
       common /mtlbc/ mmode
 c     
 c     simpmd : rational fraction simplification mode
       integer simpmd
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /csimp/
-cDEC$ ENDIF 
       common /csimp/  simpmd
 c     ippty: interfaces properties
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
-cDEC$ ENDIF 
       common /ippty/ byptr,nbyptr
 
       logical first
@@ -165,10 +141,6 @@ c     .  initial debug mode
 c     .  ------------------
       ddt = 0
 
-c
-c     .  scicos initial debug mode
-      cosd = 0
-c      
 c     .  initial type names
 c     .  ------------------
       call inittypenames()

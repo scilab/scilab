@@ -29,7 +29,7 @@ public class testScilabBoolean {
     @Test
     public void testSingleBoolean() throws NullPointerException, HDF5Exception {
         ScilabBoolean scilabSingleboolean = new ScilabBoolean(myBoolean);
-        String fileName = tempDir + "/singleBooleanFromJava.h5";
+        String fileName = tempDir + "/singleBooleanFromJava.sod";
 
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "SingleBoolean", scilabSingleboolean);
@@ -52,7 +52,7 @@ public class testScilabBoolean {
             {false, true},
             {false, false}
         };
-        String fileName = tempDir + "/matrixbooleanFromJava.h5";
+        String fileName = tempDir + "/matrixbooleanFromJava.sod";
         int ROWS = dataBooleanMatix.length;
         int COLS = dataBooleanMatix[0].length;
 

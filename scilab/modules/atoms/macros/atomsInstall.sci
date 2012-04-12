@@ -152,7 +152,6 @@ function result = atomsInstall(packages,section)
     from_localarchive = %F;
 
     for i=1:size(packages(:,1),"*")
-
         this_package = packages(i,1);
 
         if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
@@ -235,7 +234,11 @@ function result = atomsInstall(packages,section)
     // Force update the system informations
     // =========================================================================
     if from_localarchive then
-        atomsDESCRIPTIONget(%T);
+        if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
+          warning(msprintf(gettext("Option offline of ATOMS configuration is set to True. atomsSystemUpdate did not check the latest modules availables.")));
+        else
+          atomsDESCRIPTIONget(%T);
+        end
     end
 
     // Get the install list

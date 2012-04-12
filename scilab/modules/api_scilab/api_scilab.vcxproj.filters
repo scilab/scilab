@@ -158,9 +158,6 @@
     </None>
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

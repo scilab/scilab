@@ -7,7 +7,7 @@
 // <-- Short Description -->
 // Check the API of all xcos palette management methods, see SEP_45_xcos_palette.odt
 loadXcosLibs;
-exportedFile = TMPDIR + "/palette.h5";
+exportedFile = TMPDIR + "/palette.sod";
 palettePath = ["My special palettes" "My sum palettes" "My sum palette"];
 // Typical palette adding
 pal = xcosPal(palettePath($));

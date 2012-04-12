@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: pl\n"
 
 #, c-format
@@ -277,6 +277,31 @@ msgstr ""
 "dynamicznego lub wektora typu float.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
@@ -294,10 +319,6 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być w "
 "przedziale [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
@@ -335,10 +356,6 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwane elementy "
 "tablicy %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

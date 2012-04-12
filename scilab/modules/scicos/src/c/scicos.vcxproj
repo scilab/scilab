@@ -95,11 +95,10 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 lib /DEF:"$(ProjectDir)Intersci_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)intersci.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Action_binding_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciaction_binding.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>scicos_export.def</ModuleDefinitionFile>
@@ -138,11 +137,10 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 lib /DEF:"$(ProjectDir)Intersci_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)intersci.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Action_binding_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciaction_binding.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>scicos_export.def</ModuleDefinitionFile>
@@ -181,11 +179,10 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 lib /DEF:"$(ProjectDir)Intersci_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)intersci.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Action_binding_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciaction_binding.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>scicos_export.def</ModuleDefinitionFile>
@@ -229,11 +226,10 @@ lib /DEF:"$(ProjectDir)Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 lib /DEF:"$(ProjectDir)Intersci_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)intersci.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Action_binding_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciaction_binding.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;output_stream.lib;string.lib;dynamic_link.lib;intersci.lib;graphics.lib;scicos_blocks_f.lib;sciaction_binding.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>scicos_export.def</ModuleDefinitionFile>
@@ -324,7 +320,6 @@ lib /DEF:"$(ProjectDir)Core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <None Include="..\..\locales\en_US\scicos.pot" />
     <None Include="Action_binding_Import.def" />
-    <None Include="Core_f_Import.def" />
     <None Include="Dynamic_link_Import.def" />
     <None Include="Graphics_Import.def" />
     <None Include="Intersci_Import.def" />

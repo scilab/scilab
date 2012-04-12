@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-10 02:49+0000\n"
+"PO-Revision-Date: 2012-03-29 13:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: ru\n"
 
 #, c-format
@@ -880,7 +880,7 @@ msgstr "четвертый"
 
 #, c-format
 msgid "%s argument"
-msgstr "параметр %s"
+msgstr "%s параметр"
 
 #, c-format
 msgid "argument number %d"
@@ -888,11 +888,11 @@ msgstr "параметр номер %d"
 
 #, c-format
 msgid "%s and %s arguments"
-msgstr "параметры %s и %s"
+msgstr "%s и %s параметры"
 
 #, c-format
 msgid "%s argument and argument %d"
-msgstr "параметр %s и параметр номер %d"
+msgstr "%s параметр и параметр номер %d"
 
 #, c-format
 msgid "arguments %d and %d"
@@ -927,11 +927,11 @@ msgstr "%s: %s имеет неправильную длину %d, ожидала
 
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)\n"
+msgstr "%s: %s имеют несовместимые размерности (%dx%d) # (%dx%d)\n"
 
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: размерность %s несовместима.\n"
+msgstr "%s: %s имеют несовместимые размерности.\n"
 
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"

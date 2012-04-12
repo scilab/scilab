@@ -146,32 +146,32 @@ libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
 #### hdf5 : test file ####
 libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data
-libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.h5 \
-tests/sample_scilab_data/booleanscalar.h5 \
-tests/sample_scilab_data/booleansparse.h5 \
-tests/sample_scilab_data/emptysparse.h5 \
-tests/sample_scilab_data/hypermatrixcomplex.h5 \
-tests/sample_scilab_data/hypermatrix.h5 \
-tests/sample_scilab_data/int16.h5 \
-tests/sample_scilab_data/int32.h5 \
-tests/sample_scilab_data/int8.h5 \
-tests/sample_scilab_data/list.h5 \
-tests/sample_scilab_data/listnested.h5 \
-tests/sample_scilab_data/matricedoublecomplex.h5 \
-tests/sample_scilab_data/matricedoublecomplexscalar.h5 \
-tests/sample_scilab_data/matricedouble.h5 \
-tests/sample_scilab_data/matricedoublescalar.h5 \
-tests/sample_scilab_data/matricestring.h5 \
-tests/sample_scilab_data/matricestringscalar.h5 \
-tests/sample_scilab_data/mlist.h5 \
-tests/sample_scilab_data/polynomialscoef.h5 \
-tests/sample_scilab_data/polynomials.h5 \
-tests/sample_scilab_data/sparsematrix.h5 \
-tests/sample_scilab_data/tlist.h5 \
-tests/sample_scilab_data/uint16.h5 \
-tests/sample_scilab_data/uint32.h5 \
-tests/sample_scilab_data/uint8.h5 \
-tests/sample_scilab_data/undefinedelement.h5 \
-tests/sample_scilab_data/voidelement.h5
+libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.sod \
+tests/sample_scilab_data/booleanscalar.sod \
+tests/sample_scilab_data/booleansparse.sod \
+tests/sample_scilab_data/emptysparse.sod \
+tests/sample_scilab_data/hypermatrixcomplex.sod \
+tests/sample_scilab_data/hypermatrix.sod \
+tests/sample_scilab_data/int16.sod \
+tests/sample_scilab_data/int32.sod \
+tests/sample_scilab_data/int8.sod \
+tests/sample_scilab_data/list.sod \
+tests/sample_scilab_data/listnested.sod \
+tests/sample_scilab_data/matricedoublecomplex.sod \
+tests/sample_scilab_data/matricedoublecomplexscalar.sod \
+tests/sample_scilab_data/matricedouble.sod \
+tests/sample_scilab_data/matricedoublescalar.sod \
+tests/sample_scilab_data/matricestring.sod \
+tests/sample_scilab_data/matricestringscalar.sod \
+tests/sample_scilab_data/mlist.sod \
+tests/sample_scilab_data/polynomialscoef.sod \
+tests/sample_scilab_data/polynomials.sod \
+tests/sample_scilab_data/sparsematrix.sod \
+tests/sample_scilab_data/tlist.sod \
+tests/sample_scilab_data/uint16.sod \
+tests/sample_scilab_data/uint32.sod \
+tests/sample_scilab_data/uint8.sod \
+tests/sample_scilab_data/undefinedelement.sod \
+tests/sample_scilab_data/voidelement.sod
 
 include $(top_srcdir)/Makefile.incl.am

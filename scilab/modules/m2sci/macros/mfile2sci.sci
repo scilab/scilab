@@ -116,7 +116,7 @@ if exists("logfile")==0 then
     mdelete(pathconvert(TMPDIR)+"logfile.dat")
   end
   logfile=file('open',res_path+"m2sci_"+fnam+".log","unknown")
-  save(pathconvert(TMPDIR)+"logfile.dat",logfile)
+  save(pathconvert(TMPDIR)+"logfile.dat", "logfile")
 end
 
 // Output beginning message
@@ -245,7 +245,7 @@ if txt~=[] then
         mdelete(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
       end
       resume_logfile=file('open',res_path+gettext("resume")+"_m2sci_"+fnam+".log",'unknown')
-      save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"),resume_logfile)
+      save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"), "resume_logfile")
     end
        
     //number of matlab reference functions, matlab toolboxes functions, not matlab functions

@@ -7,6 +7,7 @@
 //
 // <-- TEST WITH XCOS -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 7770 -->
 //

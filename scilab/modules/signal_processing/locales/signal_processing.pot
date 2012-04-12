@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-03-07 18:20+0100\n"
+"Revision-Date: 2012-04-05 17:13+0100\n"
 
 # File: sci_gateway/c/sci_conv2.c, line: 38
 # File: sci_gateway/c/sci_conv2.c, line: 99
@@ -462,6 +462,51 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/hank.sci, line: 24
+# File: macros/lattn.sci, line: 47
+# File: macros/levin.sci, line: 48
+# File: macros/srfaur.sci, line: 36
+# File: macros/yulewalk.sci, line: 36
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 28
+# File: macros/hank.sci, line: 40
+# File: macros/wfir.sci, line: 53
+# File: macros/window.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 32
+# File: macros/hank.sci, line: 44
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 36
+# File: macros/hank.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 53
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 60
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
 # File: macros/iir.sci, line: 38
 # File: macros/trans.sci, line: 21
 #, c-format
@@ -484,15 +529,6 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in the interval "
 "[%s, %s].\n"
-msgstr ""
-
-#
-# File: macros/lattn.sci, line: 47
-# File: macros/levin.sci, line: 48
-# File: macros/srfaur.sci, line: 36
-# File: macros/yulewalk.sci, line: 36
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
@@ -535,13 +571,6 @@ msgstr ""
 # File: macros/trans.sci, line: 65
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-
-#
-# File: macros/wfir.sci, line: 53
-# File: macros/window.sci, line: 28
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #

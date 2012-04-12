@@ -15,6 +15,8 @@
 // <-- Short Description -->
 //
 
+warning("off");
+
 a    = list();
 a(2) = 10;
 save(TMPDIR+"/test.sav",a);

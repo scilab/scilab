@@ -19,9 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
-#include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+#include "matz_catv.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void matz_catv(scicos_block * block, int flag)
 {

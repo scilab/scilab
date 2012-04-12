@@ -7,6 +7,8 @@
 
 // <-- JVM NOT MANDATORY -->
 
+warning("off");
+
 cd(TMPDIR);
 mkdir('test_lib');
 cd('test_lib');

@@ -12,7 +12,7 @@
 
 loadXcosLibs;
 
-exportedFile = TMPDIR + "/palette.h5";
+exportedFile = TMPDIR + "/palette.sod";
 palettePath = ["My special palettes" "My sum palettes" "My sum palette"];
 
 // Typical palette adding

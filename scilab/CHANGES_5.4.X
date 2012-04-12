@@ -1,5 +1,5 @@
-            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =================================================================
+            Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
+            ================================================================
 
 Graphic capabilities
 ====================
@@ -30,8 +30,19 @@ GUI:
 Scilab
 ======
 
+* save/load functions can now export/import Scilab data to SOD format:
+ - Scilab data are now saved and loaded using a standard, HDF5-based, documented,
+   and fully tested: Scilab Open Data format (SOD).
+ - Graphic handles can be saved with the SOD format.
+ - 'save' writes data to HDF5 format when using new calling sequence
+   save(filename.sod, "a", "b", "c"). This format is Scilab 6 compatible.
+ - 'save' displays a message when using old calling sequence
+   save(filename, a, b, c) and writes data in old Scilab binary format.
+   The previous format will not be supported by Scilab 6.
+
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
+
 
 
 Scilab Desktop
@@ -82,6 +93,9 @@ Xcos
   - CLSS - Continuous state-space system
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
+
+* External modules should be updated to use the new Scilab Open Data format
+  instead of the previous HDF5 format.
 
 * Bug #6201 fixed - Block help menu had no shortcut.
 
@@ -307,6 +321,9 @@ ATOMS
 * Bug #10864 fixed - atomsRemove required a network connection to remove a package.
 
 * Bug #10933 fixed - atomsGetConfig did not check value of input argument.
+
+* Bug #10957 fixed - atomsInstall required a network connection to install 
+                     a local package.
 
 
 Documentation

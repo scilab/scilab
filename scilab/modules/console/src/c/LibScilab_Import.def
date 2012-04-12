@@ -21,6 +21,7 @@ createvar_
 createvarfromptr_
 vartype_
 recu_
+sigbas_
 StoreCommand
 freeArrayOfString
 iop_

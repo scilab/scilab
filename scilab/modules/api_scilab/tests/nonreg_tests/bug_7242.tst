@@ -21,6 +21,6 @@ function result = myExport(data, filepath)
 endfunction
 
 myData = "blam";
-myFile = TMPDIR + "/myFile.h5";
+myFile = TMPDIR + "/myFile.sod";
 
 if ~myExport(myData, myFile) then pause,end

@@ -82,7 +82,7 @@
 lib /DEF:"$(ProjectDir)boolean_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -105,7 +105,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>boolean_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,7 +123,7 @@ cd ..
 lib /DEF:"$(ProjectDir)boolean_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -149,7 +149,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>boolean_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -167,7 +167,7 @@ cd ..
 lib /DEF:"$(ProjectDir)boolean_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -191,7 +191,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>boolean_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -211,7 +211,7 @@ cd ..
 lib /DEF:"$(ProjectDir)boolean_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -238,7 +238,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Libscilab.lib;boolean.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>boolean_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -265,7 +265,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="boolean_Import.def" />
-    <None Include="core_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Output_stream_Import.def" />

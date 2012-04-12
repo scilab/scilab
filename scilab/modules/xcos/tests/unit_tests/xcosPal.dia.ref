@@ -87,13 +87,13 @@ pal = xcosPal(scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  
@@ -138,13 +138,13 @@ pal = xcosPal([], scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  
@@ -189,13 +189,13 @@ pal = xcosPal(name, scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15011)\n"
+"X-Generator: Launchpad (build 15060)\n"
 "Language: ru\n"
 
 #, c-format
@@ -279,6 +279,33 @@ msgstr ""
 "система или вектор-строка чисел с плавающей точкой.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось положительное целое "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
@@ -296,10 +323,6 @@ msgid ""
 msgstr ""
 "%s: Неверные значения входного параметра №%d: элементы должны быть в "
 "интервале [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
@@ -337,12 +360,6 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидался массив из %d "
 "элементов.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось положительное целое "
-"число.\n"
 
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"

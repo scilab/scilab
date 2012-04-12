@@ -18,7 +18,7 @@
 
 fh = scf();
 plot3d();
-save(TMPDIR + '/foo.scg',fh);
+save(TMPDIR + "/foo.scg", "fh");
 close(fh);
 
 // go to TMPDIR with your file explorer
