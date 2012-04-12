@@ -12,23 +12,12 @@
 
 package org.scilab.modules.ui_data.filebrowser;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
 
 /**

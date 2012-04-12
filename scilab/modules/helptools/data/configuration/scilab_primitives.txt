@@ -524,7 +524,6 @@ sfact
 sfinit
 show_pixmap
 show_window
-showalluimenushandles
 sident
 sig2data
 sign

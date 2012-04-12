@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -105,7 +105,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -131,7 +131,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -165,7 +165,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,9 +201,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\Champ.c" />
     <ClCompile Include="src\c\getHandleProperty\CheckTicksProperty.c" />
     <ClCompile Include="src\c\CloneObjects.c" />
-    <ClCompile Include="src\c\ColorMapManagement.c" />
     <ClCompile Include="src\c\Contour.c" />
-    <ClCompile Include="src\c\CurrentObjectsManagement.c" />
     <ClCompile Include="src\c\DefaultCommandArg.c" />
     <ClCompile Include="src\c\DestroyObjects.c" />
     <ClCompile Include="src\c\DllmainGraphics.c" />
@@ -232,7 +230,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_clip_box_property.c" />
@@ -252,7 +249,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_id_property.c" />
@@ -310,10 +306,12 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />
@@ -351,7 +349,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\graphicModuleLoad.c" />
     <ClCompile Include="src\c\Gray.c" />
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
-    <ClCompile Include="src\c\HandleManagement.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
@@ -395,7 +392,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_set.c" />
     <ClCompile Include="sci_gateway\c\sci_show_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_show_window.c" />
-    <ClCompile Include="sci_gateway\c\sci_showalluimenushandles.c" />
     <ClCompile Include="sci_gateway\c\sci_StringBox.c" />
     <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />
     <ClCompile Include="sci_gateway\c\sci_unglue.c" />
@@ -411,7 +407,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xfpoly.c" />
     <ClCompile Include="sci_gateway\c\sci_xfpolys.c" />
     <ClCompile Include="sci_gateway\c\sci_xget.c" />
-    <ClCompile Include="sci_gateway\c\sci_xgetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c" />
     <ClCompile Include="sci_gateway\c\sci_xgraduate.c" />
     <ClCompile Include="sci_gateway\c\sci_xgrid.c" />
@@ -423,13 +418,11 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xrects.c" />
     <ClCompile Include="sci_gateway\c\sci_xsegs.c" />
     <ClCompile Include="sci_gateway\c\sci_xset.c" />
-    <ClCompile Include="sci_gateway\c\sci_xsetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xstring.c" />
     <ClCompile Include="sci_gateway\c\sci_xstringb.c" />
     <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
     <ClCompile Include="sci_gateway\c\sci_zoom_rect.c" />
     <ClCompile Include="src\c\sciCall.c" />
-    <ClCompile Include="src\c\SciHandleTab.c" />
     <ClCompile Include="src\c\sciMatrix.c" />
     <ClCompile Include="src\c\scitokenize.c" />
     <ClCompile Include="src\c\getHandleProperty\set_alignment_property.c" />
@@ -454,7 +447,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_clip_box_property.c" />
@@ -473,7 +465,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_id_property.c" />
@@ -569,7 +560,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\StringBox.c" />
     <ClCompile Include="src\c\StringMatrix.c" />
     <ClCompile Include="src\c\TerminateGraphics.c" />
-    <ClCompile Include="src\c\WindowList.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h" />
@@ -579,7 +569,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\Champ.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
-    <ClInclude Include="src\c\ColorMapManagement.h" />
     <ClInclude Include="includes\Contour.h" />
     <ClInclude Include="includes\CurrentObjectsManagement.h" />
     <ClInclude Include="includes\DefaultCommandArg.h" />
@@ -600,7 +589,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\graphicModuleLoad.h" />
     <ClInclude Include="includes\GrayPlot.h" />
     <ClInclude Include="includes\gw_graphics.h" />
-    <ClInclude Include="includes\HandleManagement.h" />
     <ClInclude Include="includes\InitObjects.h" />
     <ClInclude Include="includes\Interaction.h" />
     <ClInclude Include="includes\math_graphics.h" />
@@ -610,7 +598,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\PloEch.h" />
     <ClInclude Include="includes\Plot2d.h" />
     <ClInclude Include="includes\sciCall.h" />
-    <ClInclude Include="src\c\SciHandleTab.h" />
     <ClInclude Include="includes\sciMatrix.h" />
     <ClInclude Include="src\c\scitokenize.h" />
     <ClInclude Include="src\c\getHandleProperty\set_data_property.h" />
@@ -622,7 +609,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="src\c\StringBox.h" />
     <ClInclude Include="includes\StringMatrix.h" />
     <ClInclude Include="includes\TerminateGraphics.h" />
-    <ClInclude Include="includes\WindowList.h" />
     <ClInclude Include="src\c\XsetXgetParameters.h" />
   </ItemGroup>
   <ItemGroup>
@@ -664,6 +650,9 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>

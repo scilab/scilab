@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Simple test hidden handles using the MVC implementation -->
+
+c = get(0); // Get console handle
+assert_checkequal(c.type, "Console");
+assert_checkequal(c.showhiddenhandles, "off"); // Hidden handles are not shown by default
+
+// Create a figure with two menus (one with hidden handle)
+f = gcf();
+notHiddenMenu = uimenu("Parent", f, "Label", "Not hidden", "Handle_Visible", "on");
+hiddenMenu = uimenu("Parent", f, "Label", "Hidden", "Handle_Visible", "off");
+
+// Check the figure has two children (axes + menu)
+assert_checkequal(size(f.children), [2 1]);
+assert_checkequal(f.children(1).label, "Not hidden");
+
+// Now we show hidden handles
+c.showhiddenhandles = "on";
+assert_checkequal(c.showhiddenhandles, "on");
+
+// Check the figure has seven children (axes + menu + menu + 4 default menus)
+assert_checkequal(size(f.children), [7 1]);
+assert_checkequal(f.children(1).label, "Hidden");
+assert_checkequal(f.children(2).label, "Not hidden");

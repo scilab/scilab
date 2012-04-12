@@ -26,6 +26,7 @@ public final class GlobalEventWatcher {
 	private static GlobalKeyEventWatcher keyWatcher;
 	private static GlobalMouseEventWatcher mouseWatcher;
 	private static boolean activated;
+    private static String axesUID = null;
 
 	/**
 	 * Private Constructor : SINGLETON.
@@ -86,4 +87,13 @@ public final class GlobalEventWatcher {
 	public static boolean isActivated() {
 		return activated;
 	}
+	
+    public static void setAxesUID(String axesUID) {
+        GlobalEventWatcher.axesUID = axesUID;
+    }
+
+    public static String getAxesUID() {
+        return axesUID ;
+    }
+
 }

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "Interaction.h"
-#include "CurrentObjectsManagement.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 static int getInitialRectangle(double initRect[4]);
@@ -45,7 +45,7 @@ static int getInitialRectangle(double initRect[4])
   {
     return -1;
   }
-    
+
 
   /* pointer on the stack */
   rect = getDoubleMatrixFromStack(rectStackPointer);
@@ -103,7 +103,7 @@ static int returnRectAndButton(const double selectedRect[4], int button)
     stk(rectStackPointer)[i] = selectedRect[i];
   }
   LhsVar(1) = Rhs + 1;
-  
+
   /* return button */
   if (Lhs >= 2)
   {
@@ -119,9 +119,9 @@ static int returnRectAndButton(const double selectedRect[4], int button)
 /*--------------------------------------------------------------------------*/
 int sci_rubberbox(char * fname, unsigned long fname_len)
 {
-  
+
   /* [final_rect, btn] = rubberbox([initial_rect],[edition_mode]) */
-  
+
   int button = 0;
   double selectedRect[4];
 
@@ -141,7 +141,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 			/* rubberbox(initial_rect) */
 			/* Default values, intial rect and edition mode to false */
 			double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
-			
+
 			if (getInitialRectangle(initialRect) == 1)
 			{
 				rubberBox(sciGetCurrentSubWin(), TRUE, initialRect, selectedRect, &button);
@@ -186,7 +186,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 		/* Default values, intial rect and edition mode to false */
 		double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
 		int editionModeStatus;
-		
+
 		if (GetType(1) != sci_matrix)
 		{
 			Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
@@ -224,12 +224,12 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 			Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 2);
 			return -1;
 		}
-		
+
 	}
 
 
   /* Put values into the stack and return */
   return returnRectAndButton(selectedRect, button);
-} 
+}
 
 /*--------------------------------------------------------------------------*/

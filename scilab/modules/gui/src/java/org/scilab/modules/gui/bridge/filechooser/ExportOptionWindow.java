@@ -34,7 +34,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
@@ -49,7 +49,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
     private final ExportData exportData;
     private Window parentWindow;
-    private Tab parentTab;
+    private SimpleTab parentTab;
     private JDialog optionDialog;
     private JRadioButton portrait;
     private JRadioButton landscape;
@@ -67,9 +67,9 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
     /**
      * Display the option window
      */
-    public void displayOptionWindow(Tab tab) {
+    public void displayOptionWindow(SimpleTab tab) {
         parentTab = tab;
-        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
+        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle("Option for " + exportData.getExportExtension().toUpperCase() + " format");
         optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
@@ -142,7 +142,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
             exportData.setExportProperties(properties);
             optionDialog.dispose();
 
-            int figId = exportData.getFigureId();
+            String figId = exportData.getFigureId();
             String fileName = exportData.getExportName();
             int fileType = ExportRenderer.types.get(exportData.getExportExtension());
             int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportRenderer.LANDSCAPE : ExportRenderer.PORTRAIT;

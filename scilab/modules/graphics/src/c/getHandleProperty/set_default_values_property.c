@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,8 +27,11 @@
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"
 
+#include "FigureModel.h"
+#include "AxesModel.h"
+
 /*------------------------------------------------------------------------*/
-int set_default_values_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_default_values_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -42,15 +45,16 @@ int set_default_values_property( sciPointObj * pobj, size_t stackPointer, int va
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( pobj == getFigureModel() )
+  if ( isFigureModel(pobjUID) )
   {
-    return InitFigureModel();
+      InitFigureModel(pobjUID);
+      return SET_PROPERTY_SUCCEED;
   }
-  else if ( pobj == getAxesModel() )
+  else if (isAxesModel(pobjUID) )
   {
     return InitAxesModel();
   }
-  else if (pobj == NULL)
+  else if (pobjUID == NULL)
   {
 		/* set default values for current figure */
     return sciSetDefaultValues();

@@ -74,8 +74,8 @@ public final class Jxgetmouse {
 		GlobalEventWatcher.enable(new GlobalMouseEventWatcher(eventMask)
 		{
 			public void mouseEventFilter(MouseEvent mouseEvent,
-					SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {
-				mouseActionFilter(mouseEvent, axes, scilabMouseAction, isControlDown);	
+					String axesUID, int scilabMouseAction, boolean isControlDown) {
+				mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);	
 			}
 		});
 		synchronized (ClickInfos.getInstance()) {
@@ -110,7 +110,7 @@ public final class Jxgetmouse {
 	/**
 	 * @return the WindowsID
 	 */
-	public static int getWindowsID() {
+	public static String getWindowsID() {
 		return ClickInfos.getInstance().getWindowID();
 	}
 	
@@ -145,12 +145,12 @@ public final class Jxgetmouse {
 			 * If a RELEASED is seen use -keyChar
 			 */
 			if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
-				GlobalEventFilter.filterKey(-keyChar, ((SwingScilabAxes) keyEvent.getSource()).getFigureId(), isControlDown);
+			    GlobalEventFilter.filterKey(-keyChar, GlobalEventWatcher.getAxesUID(), isControlDown);
 			} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
 				/*
 				 * Or If a TYPED is seen use keyChar
 				 */
-				GlobalEventFilter.filterKey(keyChar, ((SwingScilabAxes) keyEvent.getSource()).getFigureId(), isControlDown);
+			    GlobalEventFilter.filterKey(keyChar,GlobalEventWatcher.getAxesUID(), isControlDown);
 			}	
 		}
 	}
@@ -162,18 +162,18 @@ public final class Jxgetmouse {
 	 * @param axes : the axes where action occurs.
 	 * @param isControlDown true if the CTRL key has been pressed
 	 */
-	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {	
+	private static void mouseActionFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction != SciTranslator.MOVED
 				&& scilabMouseAction != SciTranslator.RELEASED) {
-			GlobalEventFilter.filterMouse(mouseEvent, axes, scilabMouseAction, isControlDown);
+			GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, isControlDown);
 		} else if (watchMotion && scilabMouseAction == SciTranslator.MOVED) {
 			// Force false value to isControlDown
 			// MOVED do not care about CTRL Key...
-			GlobalEventFilter.filterMouse(mouseEvent, axes, MOVED, false);
+			GlobalEventFilter.filterMouse(mouseEvent, axesUID, MOVED, false);
 		} else if (watchRelease && scilabMouseAction == SciTranslator.RELEASED) {
 			// Force false value to isControlDown
 			// RELEASED do not care about CTRL Key...
-			GlobalEventFilter.filterMouse(mouseEvent, axes, scilabMouseAction, false);
+			GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, false);
 		}
 	}
 

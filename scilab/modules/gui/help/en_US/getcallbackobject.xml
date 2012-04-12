@@ -7,7 +7,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      h = getcallbackobject(objectIndex)
+    h = getcallbackobject(objectUID)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -20,25 +20,19 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>objectIndex</term>
+        <term>objectUID</term>
         <listitem>
-          <para>Index of the object in the Java Map.</para>
+          <para>String: UID of the Java object.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-      <literal>getcallbackobject</literal> is used to automatically create Scilab variable called <link linkend="gcbo">gcbo</link>
-      each time a callback in executed.
-    </para>
-    <para>
-      <literal>getcallbackobject</literal> returns [] if no callback is currently executed.
-    </para>
-    <para>
-      <literal>getcallbackobject</literal> must not be used directly out of a Java callback.
-    </para>
+    <para><literal>getcallbackobject</literal> is used to automatically create Scilab variable called <link linkend="gcbo">gcbo</link>
+    each time a callback in executed.</para>
+    <para><literal>getcallbackobject</literal> returns [] if no callback is currently executed.</para>
+    <para><literal>getcallbackobject</literal> must not be used directly out of a Java callback.</para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

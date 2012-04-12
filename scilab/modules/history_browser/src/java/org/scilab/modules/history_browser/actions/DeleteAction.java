@@ -19,7 +19,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -33,7 +33,7 @@ import org.scilab.modules.history_manager.HistoryManagement;
  * Manage Delete Actions
  * @author Vincent COUVERT
  */
-public final class DeleteAction extends CallBack {
+public final class DeleteAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
@@ -87,8 +87,8 @@ public final class DeleteAction extends CallBack {
      * Create a new class instance
      * @return the instance
      */
-    private static CallBack getCallBack() {
-        CallBack callback = null;
+    private static CommonCallBack getCallBack() {
+        CommonCallBack callback = null;
         try {
             callback = DeleteAction.class.getConstructor().newInstance();
         } catch (IllegalArgumentException e) {

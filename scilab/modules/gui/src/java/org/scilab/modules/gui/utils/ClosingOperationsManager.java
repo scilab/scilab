@@ -724,12 +724,12 @@ public class ClosingOperationsManager {
      * @return the corresponding window
      */
     private static final SwingScilabWindow getWindow(SwingScilabTab tab) {
-        Window win = (Window) UIElementMapper.getCorrespondingUIElement(tab.getParentWindowId());
+        SwingScilabWindow win = SwingScilabWindow.allScilabWindows.get(tab.getParentWindowId());
         if (win == null) {
             return null;
         }
 
-        return (SwingScilabWindow) win.getAsSimpleWindow();
+        return win;
     }
 
     /**

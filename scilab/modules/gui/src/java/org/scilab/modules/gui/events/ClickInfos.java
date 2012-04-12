@@ -24,7 +24,7 @@ public final class ClickInfos {
 	private int mouseButtonNumber;
 	private double xCoordinate;
 	private double yCoordinate;
-	private int windowID;
+	private String windowID;
 	private String menuCallback;	
 
 	/**
@@ -41,7 +41,7 @@ public final class ClickInfos {
 		this.mouseButtonNumber = 0;
 		this.xCoordinate = 0;
 		this.yCoordinate = 0;
-		this.windowID = 0;
+		this.windowID = "";
 		this.menuCallback = "void";
 	}
 	
@@ -77,7 +77,7 @@ public final class ClickInfos {
 	/**
 	 * @return the windowID
 	 */
-	public int getWindowID() {
+	public String getWindowID() {
 		return windowID;
 	}
 	/**
@@ -111,7 +111,7 @@ public final class ClickInfos {
 	/**
 	 * @param windowID the windowID to set
 	 */
-	public void setWindowID(int windowID) {
+	public void setWindowID(String windowID) {
 		this.windowID = windowID;
 	}
 

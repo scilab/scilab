@@ -17,10 +17,9 @@ import java.io.File;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -28,7 +27,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to open a file with the default associated application
  * @author Calixte DENIZET
  */
-public class OpenFileWithDefaultAppAction extends CallBack {
+public class OpenFileWithDefaultAppAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
 
@@ -58,7 +57,7 @@ public class OpenFileWithDefaultAppAction extends CallBack {
             try {
                 dt.open(file);
             } catch (Exception e) {
-                ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, table), String.format(UiDataMessages.CANNOTOPEN, file.getName()));
+                ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), String.format(UiDataMessages.CANNOTOPEN, file.getName()));
             }
         }
     }

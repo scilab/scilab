@@ -30,7 +30,7 @@ int getJxgetmouseMouseButtonNumber()
   return Jxgetmouse::getMouseButtonNumber(getScilabJavaVM());
 }
 
-int getJxgetmouseWindowsID()
+char * getJxgetmouseWindowsID()
 {
   return Jxgetmouse::getWindowsID(getScilabJavaVM());
 }

@@ -49,7 +49,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 
 /**
  * Class for a tabbedpane with close-button
@@ -370,7 +370,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setRolloverEnabled(true);
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
-                addActionListener(new CallBack("") {
+                addActionListener(new CommonCallBack("") {
                         public void callBack() {
                             String name = CloseTabButton.this.getText().substring(SwingScilabVariableEditor.PREFIX.length());
                             removeTabAt(indexOfTabComponent(CloseTabButton.this));

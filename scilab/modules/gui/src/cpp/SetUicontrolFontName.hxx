@@ -18,14 +18,12 @@ extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolFontName.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
-#include "UicontrolStyleToString.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 }
 
 #endif /* __SET_UICONTROL_FONTNAME_HXX__ */

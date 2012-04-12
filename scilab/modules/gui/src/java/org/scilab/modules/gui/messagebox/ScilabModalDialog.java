@@ -15,7 +15,7 @@ package org.scilab.modules.gui.messagebox;
 import java.awt.Component;
 
 import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -30,7 +30,11 @@ public final class ScilabModalDialog {
      * Message box button type
      */
     public enum ButtonType {
-        OK, OK_CANCEL, YES_NO, YES_NO_CANCEL, CANCEL_OR_SAVE_AND_EXECUTE
+        OK,
+        OK_CANCEL,
+        YES_NO,
+        YES_NO_CANCEL,
+        CANCEL_OR_SAVE_AND_EXECUTE
     }
 
     /**
@@ -38,15 +42,24 @@ public final class ScilabModalDialog {
      */
 
     public enum IconType {
-        ERROR_ICON, INFORMATION_ICON, PASSWORD_ICON, QUESTION_ICON, WARNING_ICON, SCILAB_ICON
+        ERROR_ICON,
+        INFORMATION_ICON,
+        PASSWORD_ICON,
+        QUESTION_ICON,
+        WARNING_ICON,
+        SCILAB_ICON
     }
 
     public enum AnswerOption {
-        OK_OPTION, CANCEL_OPTION, YES_OPTION, NO_OPTION, SAVE_EXECUTE_OPTION
+        OK_OPTION,
+        CANCEL_OPTION,
+        YES_OPTION,
+        NO_OPTION,
+        SAVE_EXECUTE_OPTION
     }
 
     /**
-     * private constructor, only static functions
+     * private constructor, only static functions 
      */
     private ScilabModalDialog() {
     }
@@ -61,7 +74,7 @@ public final class ScilabModalDialog {
      *            button "OK"
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String[] messages) {
+    public static AnswerOption show(SimpleTab parent, String[] messages) {
         return show(parent, messages, Messages.gettext("Scilab Message"),
                 IconType.SCILAB_ICON, ButtonType.OK);
     }
@@ -76,7 +89,7 @@ public final class ScilabModalDialog {
      *            button "OK"
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String message) {
+    public static AnswerOption show(SimpleTab parent, String message) {
         return show(parent, new String[] { message },
                 Messages.gettext("Scilab Message"), IconType.SCILAB_ICON,
                 ButtonType.OK);
@@ -92,7 +105,7 @@ public final class ScilabModalDialog {
      *            button "OK"
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String[] messages, String title) {
+    public static AnswerOption show(SimpleTab parent, String[] messages, String title) {
         return show(parent, messages, title, IconType.SCILAB_ICON,
                 ButtonType.OK);
     }
@@ -107,7 +120,7 @@ public final class ScilabModalDialog {
      *            button "OK"
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String message, String title) {
+    public static AnswerOption show(SimpleTab parent, String message, String title) {
         return show(parent, new String[] { message }, title,
                 IconType.SCILAB_ICON, ButtonType.OK);
     }
@@ -123,7 +136,7 @@ public final class ScilabModalDialog {
      *            : message box icon ( see IconType )
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String[] messages,
+    public static AnswerOption show(SimpleTab parent, String[] messages,
             String title, ScilabModalDialog.IconType iconType) {
         return show(parent, messages, title, iconType, ButtonType.OK);
     }
@@ -139,7 +152,7 @@ public final class ScilabModalDialog {
      *            : message box icon ( see IconType )
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String message, String title,
+    public static AnswerOption show(SimpleTab parent, String message, String title,
             ScilabModalDialog.IconType iconType) {
         return show(parent, new String[] { message }, title, iconType,
                 ButtonType.OK);
@@ -158,7 +171,7 @@ public final class ScilabModalDialog {
      *            : message box type ( see ButtonType )
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String message, String title,
+    public static AnswerOption show(SimpleTab parent, String message, String title,
             ScilabModalDialog.IconType iconType,
             ScilabModalDialog.ButtonType buttonType) {
         return show(parent, new String[] { message }, title, iconType,
@@ -178,14 +191,14 @@ public final class ScilabModalDialog {
      *            : message box type ( see ButtonType )
      * @return index of the selected button
      */
-    public static AnswerOption show(Tab parent, String[] messages,
+    public static AnswerOption show(SimpleTab parent, String[] messages,
             String title, ScilabModalDialog.IconType iconType,
             ScilabModalDialog.ButtonType buttonType) {
         final Component c;
         if (parent == null) {
             c = null;
         } else {
-            c = (Component) parent.getAsSimpleTab();
+            c = (Component) parent;
         }
         return show(c, messages, title, iconType, buttonType);
     }
@@ -207,7 +220,7 @@ public final class ScilabModalDialog {
             String title, ScilabModalDialog.IconType iconType,
             ScilabModalDialog.ButtonType buttonType) {
 
-        MessageBox messageBox = ScilabMessageBox.createMessageBox();
+        SwingScilabMessageBox messageBox = new SwingScilabMessageBox();
         messageBox.setTitle(title);
         messageBox.setMessage(messages);
 
@@ -261,7 +274,7 @@ public final class ScilabModalDialog {
 
         messageBox.setIcon(iconName);
 
-        ((SwingScilabMessageBox) messageBox.getAsSimpleMessageBox()).setParentForLocation(parent);
+        messageBox.setParentForLocation(parent);
 
         messageBox.displayAndWait();
         int choice = (messageBox.getSelectedButton() - 1); // zero indexed

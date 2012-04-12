@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -64,13 +64,15 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
     handleArray[i] = (unsigned long) *hstk( handleStkIndex + i ) ;
   }
 
-  if ( sciRelocateHandles( handleArray          ,
-                           handleRow * handleCol,
-                           (unsigned long) *hstk( parentStkIndex ) ) != 0 )
-  {
-		PutLhsVar();
-		return 0 ;
-  }
+// FIXME : loop on each handle and call MVC to enable new relationship.
+
+//  if ( sciRelocateHandles( handleArray          ,
+//                           handleRow * handleCol,
+//                           (unsigned long) *hstk( parentStkIndex ) ) != 0 )
+//  {
+//		PutLhsVar();
+//		return 0 ;
+//  }
   FREE( handleArray ) ;
   CreateVar( Rhs + 1,GRAPHICAL_HANDLE_DATATYPE, &handleCol, &handleRow, &outIndex );
   *hstk(outIndex) = *hstk(handleStkIndex) ;

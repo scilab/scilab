@@ -18,9 +18,9 @@ import java.io.File;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -28,7 +28,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to edit a file with the default associated application
  * @author Calixte DENIZET
  */
-public class EditFileWithDefaultAppAction extends CallBack {
+public class EditFileWithDefaultAppAction extends CommonCallBack {
 
     private static final boolean isWindows = (OS.get() == OS.WINDOWS);
 
@@ -65,7 +65,7 @@ public class EditFileWithDefaultAppAction extends CallBack {
                     dt.edit(file);
                 }
             } catch (Exception e) {
-                ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
+                ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
             }
         }
     }

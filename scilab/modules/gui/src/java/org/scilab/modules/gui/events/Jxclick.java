@@ -12,11 +12,13 @@
 package org.scilab.modules.gui.events;
 
 import java.awt.AWTEvent;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
+
 
 /**
  * This class implements the xclick Scilab method
@@ -52,8 +54,8 @@ public final class Jxclick {
 		 */		
 		GlobalEventWatcher.enable(new GlobalMouseEventWatcher(AWTEvent.MOUSE_EVENT_MASK) {
 			public void mouseEventFilter(MouseEvent mouseEvent,
-					SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {
-				mouseActionFilter(mouseEvent, axes, scilabMouseAction, isControlDown);	
+					String axesUID, int scilabMouseAction, boolean isControlDown) {
+				mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);	
 			}
 		});
 		synchronized (ClickInfos.getInstance()) {
@@ -88,7 +90,7 @@ public final class Jxclick {
 	/**
 	 * @return the windowID
 	 */
-	public static int getWindowID() {
+	public static String getWindowID() {
 		return ClickInfos.getInstance().getWindowID();
 	}
 	/**
@@ -120,9 +122,9 @@ public final class Jxclick {
 			}
 		} 
 		else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
-			if (keyEvent.getSource() instanceof SwingScilabAxes) {
+			if (keyEvent.getSource().getClass().getCanonicalName().contains("javax.media.opengl")) {
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, ((SwingScilabAxes)keyEvent.getSource()).getFigureId(),((KeyEvent) keyEvent).isControlDown());
+				    GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(),((KeyEvent) keyEvent).isControlDown());
 				}
 			}
 		} 
@@ -135,11 +137,11 @@ public final class Jxclick {
 	 * @param axes : the axes where action occurs.
 	 * @param isControlDown true if the CTRL key has been pressed
 	 */
-	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {	
+	private static void mouseActionFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction == SciTranslator.PRESSED
 				|| scilabMouseAction == SciTranslator.CLICKED
 				|| scilabMouseAction == SciTranslator.DCLICKED) {
-			GlobalEventFilter.filterMouse(mouseEvent, axes, scilabMouseAction, isControlDown);
+			GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, isControlDown);
 		}
 	}	
 }

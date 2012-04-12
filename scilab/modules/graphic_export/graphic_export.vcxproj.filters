@@ -105,6 +105,18 @@
     <ClCompile Include="src\c\xs2file.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_graphic_export.h">
@@ -136,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="src\jni\JOGLConstant.hxx">
       <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\GL2PSToJOGL.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\Driver.hxx">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

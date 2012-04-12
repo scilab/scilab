@@ -54,9 +54,9 @@ public final class PositionConverter {
 //		int yCoord = canvas.getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
 //
 //		return new Position(xCoord, yCoord);
-		SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
+		//SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
 		int xCoord = scilabPosition.getX();
-		int yCoord = parentAxes.getHeight() - scilabPosition.getY() - objectSize.getHeight();
+		int yCoord = parent.getHeight() - scilabPosition.getY() - objectSize.getHeight();
 		
 		return new Position(xCoord, yCoord);
 	}

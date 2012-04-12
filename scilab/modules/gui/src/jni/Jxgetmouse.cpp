@@ -113,7 +113,7 @@ curEnv->DeleteLocalRef(localInstance);
 voidxgetmouseID=NULL;
 voidxgetmousejbooleanbooleanjbooleanbooleanID=NULL;
 jintgetMouseButtonNumberID=NULL;
-jintgetWindowsIDID=NULL;
+jstringgetWindowsIDID=NULL;
 jdoublegetXCoordinateID=NULL;
 jdoublegetYCoordinateID=NULL;
 
@@ -141,7 +141,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         voidxgetmouseID=NULL;
 voidxgetmousejbooleanbooleanjbooleanbooleanID=NULL;
 jintgetMouseButtonNumberID=NULL;
-jintgetWindowsIDID=NULL;
+jstringgetWindowsIDID=NULL;
 jdoublegetXCoordinateID=NULL;
 jdoublegetYCoordinateID=NULL;
 
@@ -223,23 +223,33 @@ return res;
 
 }
 
-int Jxgetmouse::getWindowsID (JavaVM * jvm_){
+char* Jxgetmouse::getWindowsID (JavaVM * jvm_){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintgetWindowsIDID = curEnv->GetStaticMethodID(cls, "getWindowsID", "()I" ) ;
-if (jintgetWindowsIDID == NULL) {
+jmethodID jstringgetWindowsIDID = curEnv->GetStaticMethodID(cls, "getWindowsID", "()Ljava/lang/String;" ) ;
+if (jstringgetWindowsIDID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowsID");
 }
 
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetWindowsIDID ));
-                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetWindowsIDID ));
+                        if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
-return res;
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
 
 }
 

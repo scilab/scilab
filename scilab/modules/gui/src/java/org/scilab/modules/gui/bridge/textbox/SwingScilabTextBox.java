@@ -14,7 +14,7 @@ package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -151,7 +151,7 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * Add a callback to the TextBox
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		throw new UnsupportedOperationException();
 	}
 

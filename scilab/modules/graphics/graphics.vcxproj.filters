@@ -44,13 +44,7 @@
     <ClCompile Include="src\c\CloneObjects.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\ColorMapManagement.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\Contour.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\CurrentObjectsManagement.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\DefaultCommandArg.c">
@@ -137,9 +131,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_callbackmevent_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_cdata_mapping_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -195,9 +186,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c">
@@ -494,9 +482,6 @@
     <ClCompile Include="sci_gateway\c\gw_graphics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\HandleManagement.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\InitObjects.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -620,9 +605,6 @@
     <ClCompile Include="sci_gateway\c\sci_show_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_showalluimenushandles.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_StringBox.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -668,9 +650,6 @@
     <ClCompile Include="sci_gateway\c\sci_xget.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xgetech.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -704,9 +683,6 @@
     <ClCompile Include="sci_gateway\c\sci_xset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xsetech.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xstring.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -720,9 +696,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\sciCall.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\SciHandleTab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\sciMatrix.c">
@@ -797,9 +770,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_callbackmevent_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_cdata_mapping_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -852,9 +822,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c">
@@ -1142,7 +1109,10 @@
     <ClCompile Include="src\c\TerminateGraphics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\WindowList.c">
+    <ClCompile Include="src\c\getHandleProperty\get_tag_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_tag_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1166,9 +1136,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\CloneObjects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ColorMapManagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\Contour.h">
@@ -1231,9 +1198,6 @@
     <ClInclude Include="includes\gw_graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\HandleManagement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\InitObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1259,9 +1223,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\sciCall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\SciHandleTab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\sciMatrix.h">
@@ -1295,9 +1256,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\TerminateGraphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\WindowList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\XsetXgetParameters.h">

@@ -62,7 +62,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -72,8 +71,6 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
@@ -106,7 +103,7 @@ import org.scilab.modules.scinotes.utils.SearchFile;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class SciNotes extends SwingScilabTab implements Tab {
+public class SciNotes extends SwingScilabTab {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
@@ -133,8 +130,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static List<SciNotes> scinotesList = new ArrayList<SciNotes>();
     private static SciNotes editor;
 
-    private Window parentWindow;
-    private final UUID uuid;
+    private SwingScilabWindow parentWindow;
+    private UUID uuid;
 
     private ScilabTabbedPane tabPane;
     private final SciNotesContents contentPane;
@@ -224,13 +221,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     public void setParentWindow() {
-        this.parentWindow = ScilabWindow.createWindow();
+        this.parentWindow = new SwingScilabWindow();
         setWindowIcon("accessories-text-editor");
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
-        window.setLocation(pos.getX(), pos.getY());
+        parentWindow.setLocation(pos.getX(), pos.getY());
         Size size = ConfigSciNotesManager.getMainWindowSize();
-        window.setSize(size.getWidth(), size.getHeight());
+        parentWindow.setSize(size.getWidth(), size.getHeight());
     }
 
     /**
@@ -1951,7 +1947,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return SciNotes instance
      * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()
      */
-    @Override
     public SimpleTab getAsSimpleTab() {
         return this;
     }
@@ -1962,8 +1957,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return parent Window
      * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
      */
-    @Override
-    public Window getParentWindow() {
+    public SwingScilabWindow getParentWindow() {
         return parentWindow;
     }
 
@@ -1983,7 +1977,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *            the status bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
      */
-    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
         setInfoBar(infoBarToAdd);
     }
@@ -1995,7 +1988,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *            the menu bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
-    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
     }
@@ -2007,7 +1999,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *            the tool bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
-    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
         setToolBar(toolBarToAdd);
     }

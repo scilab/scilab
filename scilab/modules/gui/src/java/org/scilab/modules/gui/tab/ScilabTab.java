@@ -20,7 +20,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -527,7 +527,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * Set the callback of the tab
      * @param callback the CallBack to set
      */
-    public void setCallback(CallBack callback) {
+    public void setCallback(CommonCallBack callback) {
         ScilabBridge.setCallback(this, callback);
     }
 

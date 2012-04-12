@@ -17,7 +17,7 @@ import java.awt.datatransfer.StringSelection;
 
 import javax.swing.JTable;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -25,7 +25,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopySelectionAction class
  * @author Calixte DENIZET
  */
-class CopySelectionAction extends CallBack {
+class CopySelectionAction extends CommonCallBack {
 
     protected SwingScilabVariableEditor editor;
     private String begin;

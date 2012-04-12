@@ -18,7 +18,7 @@ import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -29,7 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.renderers.ScilabComplexRenderer
  * Set Precision Action class
  * @author Calixte DENIZET
  */
-public final class SetPrecisionShorteAction extends CallBack {
+public final class SetPrecisionShorteAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY shift S";
     private static final String PRECISION = "Short E Precision";

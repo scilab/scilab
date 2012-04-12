@@ -3,112 +3,70 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Interface functions between between SetProperty functions and the C++/Java part of module
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetJavaProperty.h"
-#include "getHandleDrawer.h"
-#include "figureDrawing/DrawableFigure.h"
-#include "subwinDrawing/DrawableSubwin.h"
 #include "GiwsException.hxx"
+
 
 extern "C"
 {
 #include "Scierror.h"
 #include "sciprint.h"
+#include "getScilabJavaVM.h"
 }
 
-using namespace sciGraphics;
+#include "CallRenderer.hxx"
 
-/*---------------------------------------------------------------------------------*/
-void sciSetJavaColormap(sciPointObj * pFigure, const double rgbMat[], int nbColor)
-{
-    getFigureDrawer(pFigure)->setColorMap(rgbMat, nbColor);
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciSetJavaFigureSize(sciPointObj * pFigure, const int size[2])
-{
-    return getFigureDrawer(pFigure)->setSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowSize(sciPointObj * pFigure, const int size[2])
-{
-    getFigureDrawer(pFigure)->setWindowSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
-{
-    getFigureDrawer(pFigure)->setWindowPosition(pos);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciSetJavaInfoMessage(sciPointObj * pFigure, const char *infoMessage)
-{
-    getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciSetJavaAntialiasingQuality(sciPointObj * pFigure, int quality)
-{
-    getFigureDrawer(pFigure)->setAntialiasingQuality(quality);
-}
+using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
-    if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
+    abort();
+    return FALSE;
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-    getSubwinDrawer(parentSubwin)->addTextToDraw(pText);
+
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-    getSubwinDrawer(parentSubwin)->removeTextToDraw(pText);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode)
 {
-    getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);
+    //getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4])
 {
-    getFigureDrawer(pFigure)->setViewport(viewport);
+    //getFigureDrawer(pFigure)->setViewport(viewport);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaBackground(sciPointObj * pFigure, int backColor)
 {
-    getFigureDrawer(pFigure)->setBackgroundColor(backColor);
+    //getFigureDrawer(pFigure)->setBackgroundColor(backColor);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
 {
-    getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
+    //getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -116,7 +74,7 @@ void sciSetJavaTitle(sciPointObj * pFigure, const char *title)
 {
     try
     {
-        getFigureDrawer(pFigure)->setTitle(title);
+        //getFigureDrawer(pFigure)->setTitle(title);
     } catch(const GiwsException::JniException & e)
     {
         Scierror(999,
@@ -131,15 +89,15 @@ void sciSetJavaTitle(sciPointObj * pFigure, const char *title)
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)
+void sciJavaUpdateSubwinScale(char * pSubwinUID)
 {
-    getSubwinDrawer(pSubwin)->updateScale();
+    CallRenderer::updateSubwinScale(getScilabJavaVM(), pSubwinUID);
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateTextBoundingBox(sciPointObj * pText)
+void sciJavaUpdateTextBoundingBox(char * pTextUID)
 {
-    getTextDrawer(pText)->updateTextBox();
+    CallRenderer::updateTextBounds(getScilabJavaVM(), pTextUID);
 }
 
 /*---------------------------------------------------------------------------------*/

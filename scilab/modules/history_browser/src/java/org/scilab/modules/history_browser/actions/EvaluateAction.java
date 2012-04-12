@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.history_browser.CommandHistory;
@@ -27,7 +27,7 @@ import org.scilab.modules.history_browser.CommandHistoryMessages;
  * Manage Evaluate Actions
  * @author Vincent COUVERT
  */
-public final class EvaluateAction extends CallBack {
+public final class EvaluateAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
@@ -68,8 +68,8 @@ public final class EvaluateAction extends CallBack {
      * Create a new class instance
      * @return the instance
      */
-    private static CallBack getCallBack() {
-        CallBack callback = null;
+    private static CommonCallBack getCallBack() {
+        CommonCallBack callback = null;
         try {
             callback = EvaluateAction.class.getConstructor().newInstance();
         } catch (IllegalArgumentException e) {

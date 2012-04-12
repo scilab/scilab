@@ -24,7 +24,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -72,7 +72,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 addTo.setText(XcosMessages.ADDTO + " "
                         + XcosTab.get(allDiagrams.get(0)).getName());
                 final XcosDiagram theDiagram = allDiagrams.get(0);
-                addTo.setCallback(new CallBack(e.toString()) {
+                addTo.setCallback(new CommonCallBack(e.toString()) {
                     @Override
                     public void callBack() {
                         BasicBlock current = control.getBlock();
@@ -92,7 +92,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                     MenuItem diagram = ScilabMenuItem.createMenuItem();
                     final XcosDiagram theDiagram = allDiagrams.get(i);
                     diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
-                    diagram.setCallback(new CallBack(e.toString()) {
+                    diagram.setCallback(new CommonCallBack(e.toString()) {
                         @Override
                         public void callBack() {
                             BasicBlock current = control.getBlock();
@@ -109,7 +109,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
             MenuItem help = ScilabMenuItem.createMenuItem();
             help.setText("Block help");
-            help.setCallback(new CallBack(e.toString()) {
+            help.setCallback(new CommonCallBack(e.toString()) {
                 @Override
                 public void callBack() {
                     try {

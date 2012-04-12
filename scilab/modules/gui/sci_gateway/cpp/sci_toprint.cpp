@@ -29,8 +29,8 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "WindowList.h"
 #include "warningmode.h"
+#include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
@@ -144,7 +144,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     return 0;
                 }
 
-                if (!sciIsExistingFigure((int)num_win))
+                if (getFigureFromIndex((int) num_win) != NULL)
                 {
                     Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
                     return 0;
@@ -152,7 +152,7 @@ static int sci_toprint_one_rhs(const char *fname)
 
                 try
                 {
-                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex((int) num_win), FALSE, FALSE));
                 }
                 catch(const GiwsException::JniException & e)
                 {
@@ -417,11 +417,11 @@ static int sci_toprint_two_rhs(const char *fname)
                             {
                                 if (strcmp(outputType, "pos") == 0)
                                 {
-                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE));
+                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), TRUE, FALSE));
                                 }
                                 else
                                 {
-                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), FALSE, FALSE));
                                 }
                             }
                             catch(const GiwsException::JniException & e)

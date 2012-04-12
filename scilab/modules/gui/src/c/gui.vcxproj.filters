@@ -71,25 +71,10 @@
     <ClCompile Include="..\cpp\ContextMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CreateUIContextMenu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CreateUIControl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CreateUimenu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\DestroyJavaUiobject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\DestroyUicontrol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\DestroyUimenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\DestroyWaitBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\displaytree.cpp">
@@ -182,9 +167,6 @@
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\GetUiobjectTag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\GetUiobjectVisible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -197,13 +179,7 @@
     <ClCompile Include="InitializeGUI.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitProgressionBar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\InitUIMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InitWaitBar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\Juigetfile.cpp">
@@ -419,9 +395,6 @@
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\SetUiobjectTag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\SetUiobjectVisible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -446,10 +419,28 @@
     <ClCompile Include="..\cpp\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\displayUiTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\UiDisplayTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\UiTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\ScilabTermination_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScilabTermination.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\SwingView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -526,28 +517,10 @@
     <ClInclude Include="..\cpp\ContextMenu.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CreateUIContextMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CreateUIControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreateUimenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\DestroyJavaUiobject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\DestroyJavaUiobject.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\DestroyUimenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\DestroyWaitBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\DestroyWaitBar.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\displaytree.hxx">
@@ -715,12 +688,6 @@
     <ClInclude Include="..\cpp\GetUiobjectForegroundColor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\GetUiobjectTag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\GetUiobjectTag.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\GetUiobjectVisible.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -739,16 +706,10 @@
     <ClInclude Include="..\..\includes\InitializeGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InitProgressionBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\InitUIMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\InitUIMenu.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InitWaitBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\Jxclick.hxx">
@@ -934,12 +895,6 @@
     <ClInclude Include="..\cpp\SetUiobjectForegroundColor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\SetUiobjectTag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\SetUiobjectTag.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\SetUiobjectVisible.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -979,14 +934,41 @@
     <ClInclude Include="..\cpp\Widget.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\CallClipboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\CallJuigetfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\CallJuigetfile.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetUiobjectEnable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\SetUiobjectEnable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\UiDisplayTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\UiTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetConsoleShowHiddenHandles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\SetConsoleShowHiddenHandles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ScilabTermination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\SwingView.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\gui.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

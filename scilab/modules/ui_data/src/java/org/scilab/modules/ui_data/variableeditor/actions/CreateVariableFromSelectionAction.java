@@ -34,7 +34,7 @@ import javax.swing.JTextField;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -49,7 +49,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-public final class CreateVariableFromSelectionAction extends CallBack {
+public final class CreateVariableFromSelectionAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY K";
     private static final String CREATE = "Create";

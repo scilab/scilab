@@ -14,16 +14,13 @@ package org.scilab.modules.ui_data.variablebrowser;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.tabfactory.VariableBrowserTab;
 import org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory;
@@ -37,8 +34,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  */
 public final class ScilabVariableBrowser implements VariableBrowser {
 
-    private static VariableBrowser instance;
-    private static SimpleVariableBrowser browserTab;
+    private static ScilabVariableBrowser instance;
+    private static SwingScilabVariableBrowser browserTab;
 
     static {
         ScilabTabFactory.getInstance().addTabFactory(VariableBrowserTabFactory.getInstance());

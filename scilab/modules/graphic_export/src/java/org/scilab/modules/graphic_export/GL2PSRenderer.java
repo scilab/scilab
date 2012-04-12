@@ -18,7 +18,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
@@ -140,7 +139,6 @@ public class GL2PSRenderer extends ExportRenderer {
 
 			exportedFigure.setMarkDrawingStrategy(new GL2PSMarkDrawingStrategy());
 			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
-			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
 			exportedFigure.disableAntialiasing();
 			
@@ -153,7 +151,6 @@ public class GL2PSRenderer extends ExportRenderer {
 			
 			gLDrawable.setGL(gl);
 			exportedFigure.setDefaultMarkDrawingStrategy();
-			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
 			exportedFigure.setDefaultShadeFacetDrawer();
 			exportedFigure.enableAntialiasing();

@@ -2,21 +2,45 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Get the string of an uicontrol
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUicontrolString.hxx"
 
+extern "C"
+{
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
+}
+
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolString(sciPointObj* sciObj)
-{  
+int GetUicontrolString(char *sciObjUID)
+{
+    int iNbStrings = 0;
+    int *piNbStrings = &iNbStrings;
+    char **pstString;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING_SIZE__), jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING__), jni_string_vector, (void **) &pstString);
+
+    if (pstString != NULL)
+    {
+        return sciReturnStringMatrix(pstString, 1, iNbStrings);
+    }
+    else
+    {
+		Scierror(999,const_cast<char*>(_("No '%s' property for this object.\n")), "String");
+        return FALSE;
+    }
+
+#if 0
   int nbItems = 0;
 
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -38,7 +62,7 @@ int GetUicontrolString(sciPointObj* sciObj)
             {
               return sciReturnString("");
             }
-          else 
+          else
             {
 			  int l = 0;
 			  char **texts = CallScilabBridge::getListBoxAllItemsText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
@@ -82,7 +106,7 @@ int GetUicontrolString(sciPointObj* sciObj)
 		  int ret = 0;
 		  char *text = CallScilabBridge::getWidgetText(getScilabJavaVM(),pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           ret = sciReturnString(text);
-		  delete [] text;                                    
+		  delete [] text;
 		  return ret;
         }
     }
@@ -91,4 +115,5 @@ int GetUicontrolString(sciPointObj* sciObj)
 		Scierror(999,const_cast<char*>(_("No '%s' property for this object.\n")), "String");
       return FALSE;
     }
+#endif
 }

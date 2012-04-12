@@ -77,373 +77,217 @@ f = scf();
 h = uicontrol("parent", f, "style", uicontrol_style);
 
 // --- BackgroundColor ---
-// TODO test default value
+// Default value is tested in separate files because is different according the style
 // Vector of 'integer' values
 set(h, "backgroundcolor", [1 0 0]);
-if ~and(get(h, "backgroundcolor") == [1 0 0]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "backgroundcolor"), [1 0 0]);
 // Vector of 'real' values
 set(h, "backgroundcolor", [0.3 0.4 0.5]);
-if ~and(get(h, "backgroundcolor") == [0.3 0.4 0.5]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "backgroundcolor"), [0.3 0.4 0.5]);
 // String of 'integer' values
 set(h, "backgroundcolor", "1|1|0");
-if ~and(get(h, "backgroundcolor") == [1 1 0]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "backgroundcolor"), [1 1 0]);
 // String of 'real' values
 set(h, "backgroundcolor", "0.2|0.3|0.4");
-if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
-  ierr = 1;
-end
-// TODO Test with wrong format values: "aze", "", [], ...
+assert_checkequal(get(h, "backgroundcolor"), [0.2 0.3 0.4]);
+// TODO Test with wrong format values: 'aze', '', [], ...
 
 // --- Callback tests ---
 // Default values
-if get(h, "callback") <> "" then
-  ierr = 1;
-end
-if get(h, "callback_type") <> -1 then
-  ierr = 1;
-end
-// Set a callback and do not precise type
+assert_checkequal(get(h, "callback"), "");
+assert_checkequal(get(h, "callback_type"), -1);
+// Set a callback and do not set type
 set(h, "callback", "disp(0);");
-if get(h, "callback") <> "disp(0);" then
-  ierr = 1;
-end
-if get(h, "callback_type") <> 0 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "callback"), "disp(0);");
+assert_checkequal(get(h, "callback_type"), 0);
+// Set a callback and set type
 set(h, "callback", "disp(1);");
 set(h, "callback_type", 0);
-if get(h, "callback") <> "disp(1);" then
-  ierr = 1;
-end
-if get(h, "callback_type") <> 0 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "callback"), "disp(1);");
+assert_checkequal(get(h, "callback_type"), 0);
 // Remove callback --> callbackType must switch automatically to -1
 set(h, "callback", "");
-if get(h, "callback") <> "" then
-  ierr = 1;
-end
-if get(h, "callback_type") <> -1 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "callback"), "");
+assert_checkequal(get(h, "callback_type"), -1);
 // TODO tests with wrong callbackType ??
 
 // --- Enable ---
-// Default value
-if get(h, "enable") <> "on" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "enable"), "on"); // Default value
 set(h, "enable", "off");
-if get(h, "enable") <> "off" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "enable"), "off");
 set(h, "enable", "on");
-if get(h, "enable") <> "on" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "enable"), "on");
 // TODO test with wrong values
 
 // --- FontAngle ---
-// Default value
-if get(h, "fontangle") <> "normal" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontangle"), "normal"); // Default value
 set(h, "fontangle", "italic");
-if get(h, "fontangle") <> "italic" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontangle"), "italic");
 set(h, "fontangle", "oblique");
-if get(h, "fontangle") <> "oblique" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontangle"), "oblique");
 set(h, "fontangle", "normal");
-if get(h, "fontangle") <> "normal" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontangle"), "normal");
 // TODO test with wrong values
 
 // --- FontSize ---
-// Default value
-if get(h, "fontsize") <> 10 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontsize"), 10); // Default value
 set(h, "fontsize", 12);
-if get(h, "fontsize") <> 12 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontsize"), 12);
 // TODO test with wrong values
 
 // --- FontUnits ---
 // Default value
-if get(h, "fontunits") <> "points" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontunits"), "points"); // Default value
 set(h, "fontunits", "pixels");
-if get(h, "fontunits") <> "pixels" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontunits"), "pixels");
 set(h, "fontunits", "normalized");
-if get(h, "fontunits") <> "normalized" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontunits"), "normalized");
 set(h, "fontunits", "points");
-if get(h, "fontunits") <> "points" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontunits"), "points");
 // TODO test with wrong values
 
 // --- FontWeight ---
-// Default value
-if get(h, "fontweight") <> "normal" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontweight"), "normal"); // Default value
 set(h, "fontweight", "light");
-if get(h, "fontweight") <> "light" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontweight"), "light");
 set(h, "fontweight", "demi");
-if get(h, "fontweight") <> "demi" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontweight"), "demi");
 set(h, "fontweight", "bold");
-if get(h, "fontweight") <> "bold" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontweight"), "bold");
 set(h, "fontweight", "normal");
-if get(h, "fontweight") <> "normal" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontweight"), "normal");
 // TODO test with wrong values
 
 // --- Fontname tests ---
-if get(h, "fontname") <> "helvetica" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontname"), "helvetica"); // Default value
 // Try to set an existing font
 set(h, "fontname", "courier new");
-if get(h, "fontname") <> "courier new" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "fontname"), "courier new");
 // Try to set a not-existing font
-set(h, "fontname", "an invented font");
-if get(h, "fontname") <> "an invented font" then
-  ierr = 1;
-end
+set(h, "fontname", "a not-existing font");
+assert_checkequal(get(h, "fontname"), "a not-existing font");
 
-// --- ForegroundColor --- 
-// TODO test default value
+// --- ForegroundColor ---
+// Default value
+assert_checkequal(get(h, "foregroundcolor"), [0 0 0]);
 // Vector of 'integer' values
 set(h, "foregroundcolor", [1 0 1]);
-if ~and(get(h, "foregroundcolor") == [1 0 1]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "foregroundcolor"), [1 0 1]);
 // Vector of 'real' values
 set(h, "foregroundcolor", [0.6 0.5 0.4]);
-if ~and(get(h, "foregroundcolor") == [0.6 0.5 0.4]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "foregroundcolor"), [0.6 0.5 0.4]);
 // String of 'integer' values
 set(h, "foregroundcolor", "1|1|1");
-if ~and(get(h, "foregroundcolor") == [1 1 1]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "foregroundcolor"), [1 1 1]);
 // String of 'real' values
 set(h, "foregroundcolor", "0.5|0.6|0.7");
-if ~and(get(h, "foregroundcolor") == [0.5 0.6 0.7]) then
-  ierr = 1;
-end
-// TODO Test with wrong format values: "aze", "", [], ...
+assert_checkequal(get(h, "foregroundcolor"), [0.5 0.6 0.7]);
+// TODO Test with wrong format values: 'aze', '', [], ...
 
-// --- HorizontalAlignment --- 
-if get(h, "horizontalalignment") <> "center" then
-  ierr = 1;
-end
+// --- HorizontalAlignment ---
+assert_checkequal(get(h, "horizontalalignment"), "center"); // Default value
 set(h, "horizontalalignment", "left");
-if get(h, "horizontalalignment") <> "left" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "horizontalalignment"), "left");
 set(h, "horizontalalignment", "right");
-if get(h, "horizontalalignment") <> "right" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "horizontalalignment"), "right");
 set(h, "horizontalalignment", "center");
-if get(h, "horizontalalignment") <> "center" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "horizontalalignment"), "center");
 // TODO test with wrong values
 
 // TODO ListboxTop tests
 
 // --- Max ---
-// Default value
-if get(h, "max") <> 1 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "max"), 1); // Default value
 set(h, "max", 10);
-if get(h, "max") <> 10 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "max"), 10);
 set(h, "max", 1); // Back to default value needed by SliderStep test
-if get(h, "max") <> 1 then
-  ierr = 1;
-end
-
+assert_checkequal(get(h, "max"), 1);
 // TODO test with min > max
 // TODO test with wrong values
 
 // --- Min ---
-// Default value
-if get(h, "min") <> 0 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "min"), 0); // Default value
 set(h, "min", 1);
-if get(h, "min") <> 1 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "min"), 1);
 set(h, "min", 0); // Back to default value needed by SliderStep test
-if get(h, "min") <> 0 then
-  ierr = 1;
-end
+assert_checkequal(get(h, "min"), 0);
 // TODO test with min > max
 // TODO test with wrong values
 
 // TODO Parent tests
 
 // --- Position ---
-// Default value
-if ~and(get(h, "position") == [20 40 40 20]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "position"), [20 40 40 20]); // Default value
 // Vector of 'integer' values
 set(h, "position", [0 10 100 200])
-if ~and(get(h, "position") == [0 10 100 200]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "position"), [0 10 100 200]);
 // String of 'integer' values
 set(h, "position", "10|20|50|100");
-if ~and(get(h, "position") == [10 20 50 100]) then
-  ierr = 1;
-end
-// TODO Test with wrong format values: "aze", "", [], ...
+assert_checkequal(get(h, "position"), [10 20 50 100]);
+// TODO Test with wrong format values: 'aze', '', [], ...
 
 // --- Relief ---
 // Default value is tested in separate files because is different according the style
 set(h, "relief", "groove");
-if get(h, "relief") <> "groove" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "groove");
 set(h, "relief", "raised");
-if get(h, "relief") <> "raised" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "raised");
 set(h, "relief", "ridge");
-if get(h, "relief") <> "ridge" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "ridge");
 set(h, "relief", "solid");
-if get(h, "relief") <> "solid" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "solid");
 set(h, "relief", "sunken");
-if get(h, "relief") <> "sunken" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "sunken");
 set(h, "relief", "flat");
-if get(h, "relief") <> "flat" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "relief"), "flat");
 // TODO test with wrong values
 
 // --- SliderStep ---
-// Default value
-if ~and(get(h, "sliderstep") == [0.01 0.1]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "sliderstep"), [0.01 0.1]); // Default value
 set(h, "sliderstep", [0.2 0.5]);
-if ~and(get(h, "sliderstep") == [0.2 0.5]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "sliderstep"), [0.2 0.5]);
 set(h, "sliderstep", [0.01 0.1]);
-if ~and(get(h, "sliderstep") == [0.01 0.1]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "sliderstep"), [0.01 0.1]);
 // TODO test for value1 > value2
 // TODO test with wrong values
 
 // --- String ---
-if get(h, "string") <> "" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "string"), "");  // Default value
 set(h, "string", ["test for string"]);
-if get(h, "string") <> "test for string" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "string"), "test for string");
 set(h, "string", "");
-if get(h, "string") <> "" then
-  ierr = 1;
-end
-
+assert_checkequal(get(h, "string"), "");
 // TODO test with wrong values
 
 // --- Style ---
-// Default value
-if get(h, "style") <>  uicontrol_style then
-  ierr = 1;
-end
+assert_checkequal(get(h, "style"), uicontrol_style);
 // TODO style changes tests (when implemented)
 
 // --- Tag ---
-// Default value
-if get(h, "tag") <> "" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "tag"), ""); // Default value
 set(h, "tag", "test for tag");
-if get(h, "tag") <> "test for tag" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "tag"), "test for tag");
 set(h, "tag", "");
-if get(h, "tag") <> "" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "tag"), "");
 // TODO test with wrong values
 
 // --- Units ---
-// Default value
-if get(h, "units") <> "pixels" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "units"), "pixels"); // Default value
 set(h, "units", "points");
-if get(h, "units") <> "points" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "units"), "points");
 set(h, "units", "normalized");
-if get(h, "units") <> "normalized" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "units"), "normalized");
 set(h, "units", "pixels");
-if get(h, "units") <> "pixels" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "units"), "pixels");
 // TODO test with wrong values
 
+if 0 // TODO Activate this test
 // --- UserData ---
-// Default value
-if ~isempty(get(h, "user_data")) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "user_data"), []); // Default value
 set(h, "user_data", [1 2 3]);
-if ~and(get(h, "user_data") == [1 2 3]) then
-  ierr = 1;
-end
+assert_checkequal(get(h, "user_data"), [1 2 3]);
 set(h, "user_data", []);
-if ~isempty(get(h, "user_data")) then
-  ierr = 1;
+assert_checkequal(get(h, "user_data"),[]);
 end
 
 // --- Value tests ---
@@ -451,22 +295,13 @@ end
 // TODO tests for checkbox and radiobuttons should fail !
 
 // --- VerticalalAlignment --- 
-if get(h, "verticalalignment") <> "middle" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "verticalalignment"), "middle"); // Default value
 set(h, "verticalalignment", "top");
-if get(h, "verticalalignment") <> "top" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "verticalalignment"), "top");
 set(h, "verticalalignment", "bottom");
-if get(h, "verticalalignment") <> "bottom" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "verticalalignment"), "bottom");
 set(h, "verticalalignment", "middle");
-if get(h, "verticalalignment") <> "middle" then
-  ierr = 1;
-end
+assert_checkequal(get(h, "verticalalignment"), "middle");
 // TODO test with wrong values
-
 
 endfunction

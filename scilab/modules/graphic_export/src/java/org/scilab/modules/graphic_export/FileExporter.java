@@ -16,11 +16,32 @@ package org.scilab.modules.graphic_export;
 
 import java.lang.reflect.Method;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+
+import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+
+import java.io.*;
+import org.apache.batik.svggen.SVGGeneratorContext;
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.dom.GenericDOMImplementation;
+
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
 
 /**
  * Static class used to create file export of graphic figures
@@ -30,10 +51,6 @@ public class FileExporter {
 
     /** Export waiting message */
     private static final String exportingMessage = "Exporting figure, please wait...";
-
-    /** The id used on classpath.xml to load vectorial export JARs */
-    private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
-    private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
 
     /**
      * Default constructor
@@ -50,85 +67,35 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occured
      *         depending on the kind of error
      */
-    public static String fileExport(int figureIndex, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
-        int saveFileType = -1;
-        String saveFileName = "";
+    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
+        int ret = Export.export(figureUID, fileType, fileName, new ExportParams(jpegCompressionQuality, fileOrientation, false));
 
-        DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
+        //int ret = Export.exportBitmap(figureUID, fileType, fileName, false, new ExportParams(jpegCompressionQuality, fileOrientation, false));
 
-        if (exportedFig == null) {
-            // figure no longer exists
-            return ExportRenderer.errors.get(ExportRenderer.IOEXCEPTION_ERROR);
+        switch (ret) {
+        case Export.SUCCESS :
+            return "";
+        case Export.IOEXCEPTION_ERROR :
+            return "Unable to create export file, permission denied.";
+        case Export.INVALID_FILE :
+            return "Unable to create export file, invalid file.";
+        default :
+            return "";
         }
+    }
 
-        if (fileType == ExportRenderer.SVG_EXPORT) {
-            ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
-        }
-
-        //When the graphic-export is too long, we inform the user that the figure is exporting
-        String oldInfoMessage = exportedFig.getInfoMessage();
-        exportedFig.setInfoMessage(exportingMessage);
-        if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
-            ScilabCommonsUtils.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-
-            String ext = "";
-
-            switch (fileType) {
-            case ExportRenderer.PDF_EXPORT:
-                ext = ".pdf";
-                break;
-            case ExportRenderer.EPS_EXPORT:
-                ext = ".eps";
-                break;
-            case ExportRenderer.PS_EXPORT:
-                ext = ".ps";
-                break;
-            default: /* Do not the extension. Probably an error */
-                return ExportRenderer.errors.get(ExportRenderer.IOEXCEPTION_ERROR);
-            }
-
-            String name = new File(fileName).getName();
-            int dotPosition = name.lastIndexOf(".");
-            if (dotPosition > 0) {
-                name = name.substring(0, dotPosition);
-                saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
-            } else {
-                saveFileName = fileName + ext;
-            }
-
-            try {
-                /* Temporary SVG file which will be used to convert to PDF */
-                /* fileName prefix must be at least 3 characters */
-                while (name.length() < 3) {
-                    name = "_" + name;
-                }
-                fileName = File.createTempFile(name,".svg").getAbsolutePath();
-            } catch (IOException e) {
-                System.err.println("Could not create temporary file " + e.getLocalizedMessage());
-            }
-
-            saveFileType = fileType;
-            fileType = ExportRenderer.SVG_EXPORT;
-        }
-
-        ExportRenderer export;
-        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, jpegCompressionQuality, fileOrientation);
-
-        // To be sure that their is a GLContext active for export
-        exportedFig.openGraphicCanvas();
-
-        exportedFig.getRenderingTarget().addGLEventListener(export);
-        exportedFig.drawCanvas();
-        exportedFig.getRenderingTarget().removeGLEventListener(export);
-
-        //Put back the old infoMessage
-        exportedFig.setInfoMessage(oldInfoMessage);
-
-        if (saveFileType != -1 && ExportRenderer.getErrorNumber() == ExportRenderer.SUCCESS) {
-            ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
-            new File(fileName).delete();
-        }
-
-        return ExportRenderer.errors.get(ExportRenderer.getErrorNumber());
+    /**
+     * Export a figure into a file
+     * @param figureIndex index of the figure to export
+     * @param fileName name of the file to create
+     * @param fileType kind of the file
+     * @param jpegCompressionQuality the JPEG compression quality
+     * @param fileOrientation orientation of the file
+     * @return 0 if everything worked fine, a non null integer if an exception occured
+     *         depending on the kind of error
+     */
+    public static String fileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
+        String ext = fileType.toLowerCase();
+        return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation);
     }
 }

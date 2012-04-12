@@ -19,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,14 +34,12 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -75,7 +74,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, SimpleVariableEditor {
+public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleVariableEditor {
 
     /**
      * Prefix used in the tabs titles.
@@ -107,29 +106,29 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         enableRedoButton(false);
         tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    String name = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
-                    if (name.length() != 0) {
-                        name = name.substring(PREFIX.length());
-                        String tooltip = "";
-                        if (name != null && getCurrentModel() != null) {
-                            tooltip = UiDataMessages.REFRESH + APOS + name + APOS;
-                            String type = ((SwingEditvarTableModel) getCurrentModel()).getType();
-                            String title = UiDataMessages.VARIABLE_EDITOR + " - " + name + "  (" + type + ")";
-                            setName(title);
-                            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
-                            if (window != null) {
-                                window.setTitle(title);
-                            }
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                String name = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
+                if (name.length() != 0) {
+                    name = name.substring(PREFIX.length());
+                    String tooltip = "";
+                    if (name != null && getCurrentModel() != null) {
+                        tooltip = UiDataMessages.REFRESH + APOS + name + APOS;
+                        String type = ((SwingEditvarTableModel) getCurrentModel()).getType();
+                        String title = UiDataMessages.VARIABLE_EDITOR + " - " + name + "  (" + type + ")";
+                        setName(title);
+                        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
+                        if (window != null) {
+                            window.setTitle(title);
                         }
-                        CellsUndoManager undoManager = ((SwingEditvarTableModel) getCurrentModel()).getUndoManager();
-                        enableUndoButton(undoManager.canUndo());
-                        enableRedoButton(undoManager.canRedo());
-                        refreshButton.setToolTipText(tooltip);
                     }
+                    CellsUndoManager undoManager = ((SwingEditvarTableModel) getCurrentModel()).getUndoManager();
+                    enableUndoButton(undoManager.canUndo());
+                    enableRedoButton(undoManager.canRedo());
+                    refreshButton.setToolTipText(tooltip);
                 }
-            });
+            }
+        });
         setContentPane(tabPane);
         setData(name, type, data);
         WindowsConfigurationManager.restorationFinished(this);
@@ -141,7 +140,6 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
-    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
         setInfoBar(infoBarToAdd);
     }
@@ -149,7 +147,6 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
-    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
     }
@@ -157,7 +154,6 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
-    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
         setToolBar(toolBarToAdd);
     }
@@ -427,17 +423,8 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
-    @Override
     public SimpleTab getAsSimpleTab() {
         return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Window getParentWindow() {
-        return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
     }
 
     /**

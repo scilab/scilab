@@ -1,14 +1,14 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Interface functions between between SetProperty functions and
  * the C++/Java part of module
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,46 +23,6 @@ extern "C" {
 #include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
-
-/**
- * Change the colormap of a figure. The colormap is stored in java
- * so we need to access it.
- * @param pFigure the figure we wants to modify
- * @param rgbMat matrix of size nbColor x 3 conating the 3 channels
- *               RGB of each color.
- * @param nbColor number of color in the new colormap
- */
-RENDERER_IMPEXP void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
-
-/**
- * Set the size of a figure object
- * @return indicates if the size could be successfully modified
- */
-RENDERER_IMPEXP int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
-
-/**
- * Set the size of a window enclosing a figure.
- */
-RENDERER_IMPEXP void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;
-
-/**
- * Set the position in pixels of a window enclosing a figure.
- */
-RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
-
-/**
- * Set the message displayed by a figure.
- */
-RENDERER_IMPEXP void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
-
-/**
- * Modify the quality of antialiasing or disable it.
- * If quality if 0, the antialiasing is disables,
- * otherwise it might be either 1, 2, 4, 8 or 16 and then
- * specify the number of pass for antialiasing.
- * @param quality positive integer.
- */
-RENDERER_IMPEXP void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality ) ;
 
 /**
  * Zoom a subwin object with the specified rectangle in pixels
@@ -109,12 +69,12 @@ RENDERER_IMPEXP void sciSetJavaTitle( sciPointObj * pFigure, const char * title 
 /**
  * Update subwin size and scale
  */
-RENDERER_IMPEXP void sciJavaUpdateSubwinScale(sciPointObj * pSubwin);
+RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
 
 /**
- * Update bounding box of a text objectr if needed
+ * Update bounding box of a text object if needed
  */
-RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(sciPointObj * pText);
+RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
 
 #ifdef __cplusplus
 }

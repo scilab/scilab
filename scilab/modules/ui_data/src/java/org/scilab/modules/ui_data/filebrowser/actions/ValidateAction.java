@@ -19,15 +19,15 @@ import java.util.Map;
 import javax.swing.Action;
 import javax.swing.ActionMap;
 
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.filebrowser.FileUtils;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
-import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Action to validate a file
  * @author Calixte DENIZET
  */
-public class ValidateAction extends CallBack {
+public class ValidateAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
     private Map<String, Action> ext = new HashMap<String, Action>();
@@ -71,11 +71,11 @@ public class ValidateAction extends CallBack {
         }
 
         String extension = FileUtils.getFileExtension(files[0]).toLowerCase();
-        CallBack c = (CallBack) ext.get(extension);
+        CommonCallBack c = (CommonCallBack) ext.get(extension);
         if (c != null) {
             c.callBack();
         } else {
-            ((CallBack) ext.get("sce")).callBack();
+            ((CommonCallBack) ext.get("sce")).callBack();
         }
     }
 }

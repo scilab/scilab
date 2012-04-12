@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.EditVar;
 import org.scilab.modules.ui_data.UI_data;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
@@ -806,7 +806,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      */
     private void execCommand(final String com, final Object oldValue, final int row, final int col) {
         try {
-            CallBack callback = new CallBack("") {
+            CommonCallBack callback = new CommonCallBack("") {
                     public void callBack() {
                         editor.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         if (oldValue != null) {

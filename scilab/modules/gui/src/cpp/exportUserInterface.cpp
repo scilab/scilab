@@ -17,12 +17,13 @@
 
 extern "C"
 {
+#include "FigureList.h"
 #include "getScilabJavaVM.h"
 }
 
 /*---------------------------------------------------------------------------------*/
 int exportUserInterface(int figureId)
 {
-  return org_scilab_modules_gui_bridge::CallScilabBridge::newExportFileChooser(getScilabJavaVM(), figureId);
+    return org_scilab_modules_gui_bridge::CallScilabBridge::newExportFileChooser(getScilabJavaVM(), getFigureFromIndex(figureId));
 }
 /*---------------------------------------------------------------------------------*/

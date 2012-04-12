@@ -208,7 +208,7 @@ public class WindowsConfigurationManager {
      *            new uuid otherwise
      * @return the window
      */
-    public static Window createWindow(final String uuid, final boolean preserveUUID) {
+    public static SwingScilabWindow createWindow(final String uuid, final boolean preserveUUID) {
         readDocument();
 
         final Element root = doc.getDocumentElement();
@@ -237,8 +237,7 @@ public class WindowsConfigurationManager {
             attrs.putAll(defaultWinAttributes);
         }
 
-        Window w = ScilabWindow.createWindow();
-        final SwingScilabWindow window = (SwingScilabWindow) w.getAsSimpleWindow();
+        SwingScilabWindow window = new SwingScilabWindow();
 
         final String localUUID;
         if (preserveUUID) {
@@ -247,7 +246,6 @@ public class WindowsConfigurationManager {
             localUUID = UUID.randomUUID().toString();
         }
         window.setUUID(localUUID);
-        UIElementMapper.add(w);
 
         if (containsX) {
             window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
@@ -255,7 +253,7 @@ public class WindowsConfigurationManager {
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
 
-        return w;
+        return window;
     }
 
     /**
@@ -273,7 +271,7 @@ public class WindowsConfigurationManager {
         final boolean nullUUID = uuid.equals(NULLUUID);
 
         // create the window and preserve the uuid if not null
-        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID).getAsSimpleWindow();
+        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID);
         if (window == null) {
             return null;
         }
@@ -286,12 +284,12 @@ public class WindowsConfigurationManager {
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
                 SwingScilabTab defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
-                defaultTab.setParentWindowId(window.getElementId());
+                defaultTab.setParentWindowId(window.getId());
                 DockingManager.dock(defaultTab, window.getDockingPort());
             }
 
             for (SwingScilabTab tab : (Set<SwingScilabTab>) window.getDockingPort().getDockables()) {
-                tab.setParentWindowId(window.getElementId());
+                tab.setParentWindowId(window.getId());
             }
 
             SwingScilabTab[] tabs = new SwingScilabTab[window.getNbDockedObjects()];

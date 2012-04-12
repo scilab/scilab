@@ -29,7 +29,7 @@
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../output_stream/includes/lasterror.h"
-#include "../../../modules/graphics/includes/WindowList.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"

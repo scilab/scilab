@@ -31,11 +31,9 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.tabfactory.HelpBrowserTab;
 import org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -61,7 +59,6 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String MENUBARXMLFILE = SCI + "/modules/gui/etc/helpbrowser_menubar.xml";
-    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
 
     private static HelpBrowser instance;
     private static Tab helpTab;
@@ -112,28 +109,28 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new KeyEventDispatcher() {
-                // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
-                public boolean dispatchKeyEvent(KeyEvent e) {
-                    if (e.getID() == KeyEvent.KEY_PRESSED) {
-                        Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
-                        if (e.getSource() instanceof Component) {
-                            Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
-                            char chr = e.getKeyChar();
+            // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getID() == KeyEvent.KEY_PRESSED) {
+                    Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+                    if (e.getSource() instanceof Component) {
+                        Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
+                        char chr = e.getKeyChar();
 
-                            if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
-                                            && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
-                                if (chr == '-' || chr == '_') {
-                                    ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
-                                } else {
-                                    ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
-                                }
-                                return true;
+                        if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
+                                && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
+                            if (chr == '-' || chr == '_') {
+                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
+                            } else {
+                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
                             }
+                            return true;
                         }
                     }
-                    return false;
                 }
-            });
+                return false;
+            }
+        });
 
         SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.setCurrentID(lastID);

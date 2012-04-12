@@ -154,7 +154,7 @@
         <listitem>
           <para>
             The <literal>line_style</literal> property value should be an integer in
-            [0 8]. 0 and 1 stands for solid, the other value stands for a selection of
+            [1 8]. 1 stands for solid, the other value stands for a selection of
             dashes (see <link linkend="axes_properties">getlinestyle</link>).
           </para>
         </listitem>
@@ -304,5 +304,14 @@ r.clip_state="off"
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

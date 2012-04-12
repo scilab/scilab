@@ -162,7 +162,7 @@ public class ExportBitmap extends ExportToFile {
      * @param ext the extension
      * @param file the file
      */
-    private static final int writeFile(BufferedImage image, String ext, File file) {
+    public static final int writeFile(BufferedImage image, String ext, File file) {
         int ret = ExportRenderer.IOEXCEPTION_ERROR;
         if (file.isFile() && file.canWrite()) {
             FileOutputStream fos;
@@ -200,7 +200,7 @@ public class ExportBitmap extends ExportToFile {
      * @param compressionQuality the compression rate
      * @param file the output file
      */
-    private boolean writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
+    public static boolean writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
         Iterator iter = ImageIO.getImageWritersByFormatName("jpeg");
         ImageWriter writer;
         if (iter.hasNext()) {

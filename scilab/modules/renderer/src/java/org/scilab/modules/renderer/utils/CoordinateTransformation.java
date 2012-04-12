@@ -14,13 +14,13 @@
 
 package org.scilab.modules.renderer.utils;
 
-import javax.media.opengl.GL;
-
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
+
+import javax.media.opengl.GL;
 
 
 /**
@@ -242,7 +242,7 @@ public class CoordinateTransformation {
 		modelViewMatrix.setFromOpenGLRepresentation(oglModelViewMatrix);
 		completeProjectMatrix = projectionMatrix.mult(modelViewMatrix);
 		
-		// unproject is done by v = (P.M)^-1.v'
+		// unProject is done by v = (P.M)^-1.v'
 		unprojectMatrix = completeProjectMatrix.getInverse();
 	}
 	

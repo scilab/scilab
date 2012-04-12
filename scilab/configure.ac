@@ -860,7 +860,15 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                 fi
 
-                # Docking system
+
+				# scirenderer
+				AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+				SCIRENDERER=$PACKAGE_JAR_FILE
+				AC_SUBST(SCIRENDERER)
+
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.3.5],[PackageInfo.VERSION],[],[=])
+
+               # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
@@ -1803,6 +1811,7 @@ modules/string/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/graphic_export/Makefile
+modules/graphic_objects/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
@@ -2115,6 +2124,7 @@ echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
+echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
 

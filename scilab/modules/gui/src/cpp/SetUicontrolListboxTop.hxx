@@ -13,19 +13,18 @@
 #ifndef __SET_UICONTROL_LISTBOXTOP_HXX__
 #define __SET_UICONTROL_LISTBOXTOP_HXX__
 
-#include "CallScilabBridge.hxx"
+#include <stdio.h>
+
 extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolListboxTop.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
-#include "UicontrolStyleToString.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 }
 
 #endif /* __SET_UICONTROL_LISTBOXTOP_HXX__ */

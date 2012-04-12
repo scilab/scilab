@@ -16,8 +16,6 @@ package org.scilab.modules.scinotes.actions;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**

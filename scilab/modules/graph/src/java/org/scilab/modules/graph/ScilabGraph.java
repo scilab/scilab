@@ -50,7 +50,7 @@ import com.mxgraph.view.mxGraphView;
  * Represent the base diagram of Xcos.
  *
  * It performs generic operations like undo/redo management, action clean-up,
- * modification state management, Tab association, etc...
+ * modification state management, SwingScilabTab association, etc...
  */
 public class ScilabGraph extends mxGraph {
     /**

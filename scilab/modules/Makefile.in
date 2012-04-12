@@ -162,13 +162,13 @@ DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	localization polynomials special_functions time windows_tools \
 	sparse completion history_manager output_stream string hdf5 \
 	fftw statistics dynamic_link console arnoldi spreadsheet \
-	tclsci commons jvm action_binding renderer graphic_export gui \
-	graphics optimization symbolic randlib interpolation sound \
-	overloading m2sci development_tools compatibility_functions \
-	helptools umfpack demo_tools genetic_algorithms \
-	simulated_annealing matio atoms graph xcos scinotes parallel \
-	modules_manager ui_data history_browser preferences xml types \
-	scicos_blocks scicos . javasci
+	tclsci commons jvm action_binding graphic_objects renderer \
+	graphic_export gui graphics optimization symbolic randlib \
+	interpolation sound overloading m2sci development_tools \
+	compatibility_functions helptools umfpack demo_tools \
+	genetic_algorithms simulated_annealing matio atoms graph xcos \
+	scinotes parallel modules_manager ui_data history_browser \
+	preferences xml types scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -356,6 +356,7 @@ SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
+SCIRENDERER = @SCIRENDERER@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -451,13 +452,13 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	localization polynomials special_functions time windows_tools \
 	sparse completion history_manager output_stream string hdf5 \
 	fftw statistics dynamic_link console arnoldi spreadsheet \
-	tclsci commons jvm action_binding renderer graphic_export gui \
-	graphics optimization symbolic randlib interpolation sound \
-	overloading m2sci development_tools compatibility_functions \
-	helptools umfpack demo_tools genetic_algorithms \
-	simulated_annealing matio atoms hdf5 graph xcos scinotes \
-	parallel modules_manager ui_data history_browser preferences \
-	xml types $(am__append_1) scicos . $(am__append_2)
+	tclsci commons jvm action_binding graphic_objects renderer \
+	graphic_export gui graphics optimization symbolic randlib \
+	interpolation sound overloading m2sci development_tools \
+	compatibility_functions helptools umfpack demo_tools \
+	genetic_algorithms simulated_annealing matio atoms hdf5 graph \
+	xcos scinotes parallel modules_manager ui_data history_browser \
+	preferences xml types $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -481,6 +482,7 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/graphic_objects/libscigraphic_objects.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
@@ -494,6 +496,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \

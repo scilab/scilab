@@ -28,7 +28,7 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -40,7 +40,7 @@ import com.mxgraph.swing.mxGraphComponent;
 /**
  * Default action for a Scilab Graph
  */
-public abstract class DefaultAction extends CallBack {
+public abstract class DefaultAction extends CommonCallBack {
     private final ScilabGraph scilabGraph;
 
     /**

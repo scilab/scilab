@@ -18,15 +18,14 @@ extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolValue.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "UicontrolStyleToString.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 }
 
 #endif /* __SET_UICONTROL_VALUE_HXX__ */

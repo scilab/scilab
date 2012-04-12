@@ -24,7 +24,7 @@ assert_checkequal(e.mark_foreground, -1);
 assert_checkequal(e.mark_background, -2);
 assert_checkequal(e.line_mode, "on");
 assert_checkequal(e.fill_mode, "off");
-assert_checkequal(e.line_style, 0);
+assert_checkequal(e.line_style, 1);
 assert_checkequal(e.thickness, 1);
 assert_checkequal(e.foreground, -1);
 assert_checkequal(e.background, -2);

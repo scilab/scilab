@@ -19,7 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA =  license.txt 
+libscigui_la_root_DATA =  license.txt
 
 
 #### gui : init scripts ####
@@ -52,22 +52,17 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
-src/c/InitWaitBar.c \
-src/c/InitProgressionBar.c \
-src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
 src/jni/ScilabTermination_wrap.c
 
-GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
+GUI_CPP_SOURCES = \
+src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/DestroyUimenu.cpp \
-src/cpp/DestroyUicontrol.cpp \
-src/cpp/DestroyJavaUiobject.cpp \
-src/cpp/DestroyWaitBar.cpp \
+src/jni/SwingView.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
@@ -82,6 +77,8 @@ src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
+src/cpp/UiTable.cpp \
+src/cpp/UiDisplayTree.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
@@ -113,8 +110,6 @@ src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
-src/cpp/SetUiobjectTag.cpp \
-src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUimenuChecked.cpp \
@@ -139,6 +134,8 @@ src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
 src/cpp/SetUiobjectVisible.cpp \
 src/cpp/GetUiobjectVisible.cpp \
+src/cpp/SetConsoleShowHiddenHandles.cpp \
+src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
@@ -147,7 +144,8 @@ src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/cpp/displayUiTree.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -179,8 +177,8 @@ sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uicontextmenu.c \
+sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uimenu.c \
 sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c \
@@ -253,7 +251,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/string/includes/
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/graphic_objects/includes/
 
 
 # Without the GUI module

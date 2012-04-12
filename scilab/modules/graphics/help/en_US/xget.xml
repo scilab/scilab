@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -18,9 +18,7 @@
   </info>
   <refnamediv>
     <refname>xget</refname>
-    <refpurpose>
-      get current values of the graphics context. <emphasis role="bold">This function is obsolete</emphasis>.
-    </refpurpose>
+    <refpurpose>get current values of the graphics context. <emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -47,26 +45,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-      <emphasis role="bold">Warning this function is obsolete</emphasis>.
-      Use the Scilab graphic objetcs representation instead (see the <link linkend="set">set</link> and <link linkend="get">get</link> functions as
-      well as the <link linkend="graphics_entities">graphics_entities</link>
-      help page).
-    </para>
+    <para><emphasis role="bold">Warning this function is obsolete</emphasis>.
+    Use the Scilab graphic objetcs representation instead (see the <link linkend="set">set</link> and <link linkend="get">get</link> functions as
+    well as the <link linkend="graphics_entities">graphics_entities</link>
+    help page).</para>
     <para>This function is used to get values from the graphics context on the
-      topic specified by the string <literal>str</literal>. When called with no
-      argument, a choice menu is created showing the current values and changes
-      can be performed through toggle buttons.
-    </para>
+    topic specified by the string <literal>str</literal>. When called with no
+    argument, a choice menu is created showing the current values and changes
+    can be performed through toggle buttons.</para>
     <variablelist>
-      <varlistentry>
-        <term>number=xget("alufunction")</term>
-        <listitem>
-          <para>Get the logical function number used for drawing. See
-            <literal>xset</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
       <varlistentry>
         <term>str=xget("auto clear")</term>
         <listitem>
@@ -141,8 +128,7 @@
         <term>color=xget("foreground")</term>
         <listitem>
           <para>Get the foreground color of the current Axes object.
-            The result is a colormap index corresponding to the color.
-          </para>
+          The result is a colormap index corresponding to the color.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -284,5 +270,16 @@
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          The "alufunction" property is no more supported, this property was no more used for rendering since Scilab 5.0.1.
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

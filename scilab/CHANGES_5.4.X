@@ -1,6 +1,31 @@
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================
 
+Graphic capabilities
+====================
+
+* Entire refactoring of Scilab graphic capabilities.
+
+TODO
+
+
+GUI:
+====
+
+* TODO add full description of:
+  - Hidden handles management
+  - Console & graphic figure menus are now uimenus (hidden by default)
+  - 'ShwoHiddenHandles' property
+  - get(0) returns a handle of type 'Console'
+
+* New uicontrols added
+  - Image Renderer uicontrol.
+    Display, transformation and various other operation can be performed on
+    images.
+
+
+* Bug #7380 fixed - 'Value' property for uicontrol was rounded.
+
 
 Scilab
 ======
@@ -613,6 +638,8 @@ t.
 
 * Bug #10782 fixed - 'iconvert' did not check input arguments.
 
+* Bug #10797 fixed - contour, contour2d, contourf did not check input arguments.
+
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
 
@@ -1079,6 +1106,13 @@ Obsolete Functions
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed in Scilab 5.4.1.
 
+* 'showalluimenushandles' function (graphics) was undocumented. This function is
+  obsolete and will be removed on 5.4.
+  Use set(get(0), "ShowHiddenHandles", "on"); instead.
+
+* 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use
+  'ascii' instead.
+
 
 Removed Functions (previously declared as obsolete)
 ====================================================
@@ -1196,6 +1230,13 @@ History
 
 Graphics
 =========
+
+* Obsolete value for line_style property:
+  0 and 1 are equivalent values for SOLID rendering.
+  A warning message will be displayed if the user tries to set this property to 0.
+  Setting this property to 0 will no more be supported in Scilab 5.4.1.
+
+* getcallbackobject: Input argument must be an UID (String) and no more an index (Constant).
 
 * datatips tool improved on several aspects:
   - It is now possible to manage directional arrows as well as

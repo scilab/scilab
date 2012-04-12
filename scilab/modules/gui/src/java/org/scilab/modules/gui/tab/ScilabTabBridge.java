@@ -18,7 +18,7 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -27,6 +27,8 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
@@ -299,6 +301,32 @@ public class ScilabTabBridge {
 
     /**
      * Add a member (dockable element) to a tab and returns the index of this member
+     * @param tab the tab which we want to add the UiTable to
+     * @param member the UiTable to add
+     * @return the position of the UiTable in the member list.
+     */
+    public static int addMember(Tab tab, UiTable member) {
+        return (tab.getAsSimpleTab().addMember(member));
+    }
+
+    /**
+     * Remove a UiTable member from a tab
+     * @param tab the tab which we want to remove the UiTable from
+     * @param member the UiTable to add
+     */
+    public static void removeMember(Tab tab, UiTable member) {
+        tab.getAsSimpleTab().removeMember(member);
+    }
+
+    public static int addMember(Tab tab, UiDisplayTree member) {
+        return (tab.getAsSimpleTab().addMember(member));
+    }
+    public static void removeMember(Tab tab, UiDisplayTree member) {
+        tab.getAsSimpleTab().removeMember(member);
+    }
+
+    /**
+     * Add a member (dockable element) to a tab and returns the index of this member
      * @param tab the tab which we want to add the Slider to
      * @param member the Slider to add
      * @return the position of the Slider in the member list.
@@ -406,7 +434,7 @@ public class ScilabTabBridge {
      * @param id the id of the parent window
      */
     public static void setParentWindowId(Tab tab, int id) {
-        tab.getAsSimpleTab().setParentWindowId(id);
+        //tab.getAsSimpleTab().setParentWindowId(id);
     }
 
     /**
@@ -415,7 +443,7 @@ public class ScilabTabBridge {
      * @return the id of the parent window
      */
     public static int getParentWindowId(Tab tab) {
-        return tab.getAsSimpleTab().getParentWindowId();
+        return 0;//tab.getAsSimpleTab().getParentWindowId();
     }
 
     /**
@@ -423,7 +451,7 @@ public class ScilabTabBridge {
      * @param tab the tab which we want to set the callback of
      * @param callback the CallBack to set
      */
-    public static void setCallback(Tab tab, CallBack callback) {
+    public static void setCallback(Tab tab, CommonCallBack callback) {
         tab.getAsSimpleTab().setCallback(callback);
     }
 

@@ -4,6 +4,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU (Mac OS X port)
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,7 +23,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.rmi.server.UID;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -46,7 +51,7 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
@@ -76,6 +81,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private static final int DEFAULTWIDTH = 500;
     private static final int DEFAULTHEIGHT = 500;
 
+    public static Map<String, SwingScilabWindow> allScilabWindows = Collections.synchronizedMap(new HashMap<String, SwingScilabWindow>());
+
     static {
         DefaultDockingStrategy.setDefaultResizeWeight(0.5);
         DefaultDockingStrategy.keepConstantPercentage(true);
@@ -88,6 +95,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private SimpleTextBox infoBar;
     private String uuid;
     private int elementId; // the id of the Window which contains this SimpleWindow
+    private String windowUID;
     private final boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
 
     /**
@@ -151,6 +159,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         if (MAC_OS_X) {
             registerForMacOSXEvents();
         }
+
+        windowUID = new UID().toString();
+
+        sciDockingListener.setAssociatedWindowId(windowUID);
+
+        allScilabWindows.put(windowUID, this);
     }
 
     /**
@@ -270,16 +284,20 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     @Override
     public void setDims(Size newWindowSize) {
-        // get the greatest size we can use
-        int[] maxSize = RenderingCapabilities.getMaxWindowSize();
+        //if (!SwingUtilities.isEventDispatchThread()) {
+        if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
+            // get the greatest size we can use
+            int[] maxSize = RenderingCapabilities.getMaxWindowSize();
 
-        // make suze size is not greater than the max size
-        Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
-                                           Math.min(newWindowSize.getHeight(), maxSize[1]));
+            // make suze size is not greater than the max size
+            Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
+                                               Math.min(newWindowSize.getHeight(), maxSize[1]));
 
-        setSize(finalDim);
-        // validate so the new values are taken into account immediately
-        validate();
+            setSize(finalDim);
+            // validate so the new values are taken into account immediately
+            validate();
+        }
+        //}
     }
 
     /**
@@ -299,7 +317,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     @Override
     public void setPosition(Position newWindowPosition) {
-        this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+        //if (!SwingUtilities.isEventDispatchThread()) {
+        if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
+            this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+        }
+        //}
     }
 
     /**
@@ -349,12 +371,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
      */
     @Override
-    public void addTab(Tab newTab) {
-        final SwingScilabTab tabImpl = ((SwingScilabTab) newTab.getAsSimpleTab());
-
-        tabImpl.setParentWindowId(this.elementId);
-        DockingManager.dock(tabImpl, this.getDockingPort());
-        ActiveDockableTracker.requestDockableActivation(tabImpl);
+    public void addTab(SimpleTab newTab) {
+        SwingScilabTab tab = (SwingScilabTab) newTab;
+        tab.setParentWindowId(this.windowUID);
+        DockingManager.dock(tab, this.getDockingPort());
+        ActiveDockableTracker.requestDockableActivation(tab);
     }
 
     /**
@@ -374,13 +395,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 ((SwingScilabToolBar) toolBar).close();
             }
             if (menuBar != null) {
-                UIElementMapper.removeMapping(menuBar.getElementId());
+                ((SwingScilabMenuBar) menuBar).close();
             }
-            UIElementMapper.removeMapping(this.elementId);
 
             // clean all
             this.removeAll();
-            this.dispose();
+            close();
 
             // disable docking port
             ActiveDockableTracker.getTracker(this).setActive(null);
@@ -401,8 +421,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
     @Override
-    public void removeTab(Tab tab) {
-        removeTabs(new SwingScilabTab[] {(SwingScilabTab) tab.getAsSimpleTab()});
+    public void removeTab(SimpleTab tab) {
+        removeTabs(new SwingScilabTab[]{(SwingScilabTab) tab});
     }
 
     /**
@@ -503,7 +523,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void setElementId(int id) {
         this.elementId = id;
-        sciDockingListener.setAssociatedWindowId(id);
+        //sciDockingListener.setAssociatedWindowId(id);
     }
 
     /**
@@ -513,6 +533,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void close() {
         dispose();
+        allScilabWindows.remove(windowUID);
     }
 
     /**
@@ -562,5 +583,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void windowNormal() {
         super.setState(Frame.NORMAL);
+    }
+
+    /**
+     * Get the window UID
+     * @return the UID
+     */
+    public String getId() {
+        return windowUID;
     }
 }

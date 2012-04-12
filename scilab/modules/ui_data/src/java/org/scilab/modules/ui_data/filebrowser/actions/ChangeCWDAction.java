@@ -19,10 +19,9 @@ import javax.swing.JButton;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-
 import org.scilab.modules.ui_data.FileBrowser;
 import org.scilab.modules.ui_data.filebrowser.FileUtils;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
@@ -32,7 +31,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Change cwd action
  * @author Calixte DENIZET
  */
-public class ChangeCWDAction extends CallBack {
+public class ChangeCWDAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
 
@@ -57,7 +56,7 @@ public class ChangeCWDAction extends CallBack {
      */
     public JButton createButton() {
         PushButton button = ScilabPushButton.createPushButton();
-        button.setCallback(new CallBack(null) {
+        button.setCallback(new CommonCallBack(null) {
                 public void callBack() {
                     SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
                     filechooser.setCurrentDirectory(new File(table.getComboBox().getBaseDir()));
@@ -81,7 +80,7 @@ public class ChangeCWDAction extends CallBack {
      */
     public JButton createParentDirButton() {
         PushButton button = ScilabPushButton.createPushButton();
-        button.setCallback(new CallBack(null) {
+        button.setCallback(new CommonCallBack(null) {
                 public void callBack() {
                     File f = new File(table.getComboBox().getBaseDir());
                     if (f.exists()) {

@@ -28,7 +28,7 @@ BOOL setMainWindowTitle(char* newtitle)
 			jclass class_Mine = (*env)->GetObjectClass(env, ScilabObj);
 			if (class_Mine)
 			{
-				jfieldID id_Window =  (*env)->GetFieldID(env, class_Mine, "mainView","Lorg/scilab/modules/gui/window/Window;");
+				jfieldID id_Window =  (*env)->GetFieldID(env, class_Mine, "mainView","Lorg/scilab/modules/gui/bridge/window/SwingScilabWindow;");
 
 				if (id_Window)
 				{

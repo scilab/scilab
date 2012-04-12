@@ -26,7 +26,7 @@ import javax.swing.JTable;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -39,7 +39,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * PasteAction class
  * @author Calixte DENIZET
  */
-public final class PasteAction extends CallBack {
+public final class PasteAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY V";
     private static final String PASTE = "Paste";

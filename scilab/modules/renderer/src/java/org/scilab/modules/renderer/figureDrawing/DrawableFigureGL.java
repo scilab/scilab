@@ -23,8 +23,6 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
-import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
@@ -77,9 +75,6 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
 	private GLAutoDrawable renderingTarget;
 
-	/** Default ArcRenderer */
-	private ArcRendererFactory arcRendererFactory;
-    
         private MarkDrawingStrategy markDrawingStrategy;
 	
 	/** index of the background color */
@@ -123,7 +118,6 @@ public class DrawableFigureGL extends ObjectGL {
       	renderingTarget = null;
       	textRendererCreator = new TextRendererManager();
       	setDefaultTextRenderer();
-      	setDefaultArcRendererFactory();
       	setDefaultShadeFacetDrawer();
 	setDefaultMarkDrawingStrategy();
       	backGroundColorIndex = 0;
@@ -144,13 +138,6 @@ public class DrawableFigureGL extends ObjectGL {
 		this.setTextRendererFactory(new JOGLTextRendererFactory());
 	}
 	
-	/**
-	 * Set the default ArcRenderer Factory
-	 */
-	public void setDefaultArcRendererFactory() {
-		arcRendererFactory = new NurbsArcRendererFactory();
-	}
-
 	/**
 	 * Set the default MarkDrawing
 	 */
@@ -584,23 +571,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setTextRendererFactory(TextRendererFactory textRendererFactory) {
 		textRendererCreator.setTextRendererFactory(textRendererFactory);
-	}
-	
-	/**
-	 * setArcRendererFactory
-	 * @param arcRendererFactory ArcRendererFactory
-	 */
-	public void setArcRendererFactory(ArcRendererFactory arcRendererFactory) {
-		this.arcRendererFactory = arcRendererFactory;
-	}
-	
-	/**
-	 * getArcRendererFactory
-	 * @return ArcRendererFactory
-	 */
-	public ArcRendererFactory getArcRendererFactory() {
-		return arcRendererFactory;
-		
 	}
 	
 	/**

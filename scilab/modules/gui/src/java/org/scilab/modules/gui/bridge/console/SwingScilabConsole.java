@@ -30,7 +30,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
@@ -39,6 +38,7 @@ import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciHistoryManager;
 import org.scilab.modules.console.SciOutputView;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.console.SimpleConsole;
@@ -71,92 +71,92 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
         cutMenu.setText(Messages.gettext("Cut"));
         cutMenu.setCallback(ScilabCallBack.createCallback(
-                                "org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
-                                ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
+                CallBack.JAVA));
         cutMenu.setMnemonic('U');
 
         SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
         copyMenu.setText(Messages.gettext("Copy"));
         copyMenu.setCallback(ScilabCallBack.createCallback(
-                                 "org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
-                                 ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
+                CallBack.JAVA));
         copyMenu.setMnemonic('C');
 
         SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
         pasteMenu.setText(Messages.gettext("Paste"));
         pasteMenu.setCallback(ScilabCallBack.createCallback(
-                                  "org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
-                                  ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
+                CallBack.JAVA));
         pasteMenu.setMnemonic('P');
 
         SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
         clearHistoryMenu.setText(Messages.gettext("Clear History"));
         clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
-                                         "org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory",
-                                         ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory",
+                CallBack.JAVA));
         clearHistoryMenu.setMnemonic('H');
 
         SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
         clearMenu.setText(Messages.gettext("Clear Console"));
         clearMenu.setCallback(ScilabCallBack.createCallback(
-                                  "org.scilab.modules.gui.bridge.CallScilabBridge.clear",
-                                  ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.clear",
+                CallBack.JAVA));
         clearMenu.setMnemonic('O');
 
         SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
         selectMenu.setText(Messages.gettext("Select All"));
         selectMenu.setCallback(ScilabCallBack.createCallback(
-                                   "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents",
-                                   ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents",
+                CallBack.JAVA));
         selectMenu.setMnemonic('S');
 
 
         final SwingScilabMenuItem helpMenu = new SwingScilabMenuItem();
         helpMenu.setText(Messages.gettext("Help on a selected keyword"));
         helpMenu.setCallback(ScilabCallBack.createCallback(
-                                 "org.scilab.modules.gui.bridge.CallScilabBridge.helpOnTheKeyword",
-                                 ScilabCallBack.JAVA));
+                "org.scilab.modules.gui.bridge.CallScilabBridge.helpOnTheKeyword",
+                CallBack.JAVA));
         helpMenu.setMnemonic('M');
         PropertyChangeListener listener = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String keyword = getSelectedText();
-                    if (keyword == null || keyword.length() == 0) {
-                        helpMenu.setText(Messages.gettext("Help about a selected text"));
-                    } else {
-                        int nbOfDisplayedOnlyXChar=10;
-                        if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                            keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
-                        }
-                        helpMenu.setText(Messages.gettext("Help about '") +keyword+"'");
+            public void propertyChange(PropertyChangeEvent arg0) {
+                String keyword = getSelectedText();
+                if (keyword == null || keyword.length() == 0) {
+                    helpMenu.setText(Messages.gettext("Help about a selected text"));
+                } else {
+                    int nbOfDisplayedOnlyXChar = 10;
+                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
+                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
                     }
+                    helpMenu.setText(Messages.gettext("Help about '") + keyword + "'");
                 }
-            };
+            }
+        };
         helpMenu.addPropertyChangeListener(listener);
 
         final SwingScilabMenuItem evalWithEchoMenu = new SwingScilabMenuItem();
         evalWithEchoMenu.setText(Messages.gettext("Evaluate selection with echo"));
         evalWithEchoMenu.setCallback(ScilabCallBack.createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.evaluateSelectionWithEcho",
-                                                                   ScilabCallBack.JAVA));
+                CallBack.JAVA));
         evalWithEchoMenu.setMnemonic('E');
         listener = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String str = getSelectedText();
-                    evalWithEchoMenu.setEnabled(str != null && !str.isEmpty());
-                }
-            };
+            public void propertyChange(PropertyChangeEvent arg0) {
+                String str = getSelectedText();
+                evalWithEchoMenu.setEnabled(str != null && !str.isEmpty());
+            }
+        };
         evalWithEchoMenu.addPropertyChangeListener(listener);
 
         final SwingScilabMenuItem evalWithNoEchoMenu = new SwingScilabMenuItem();
         evalWithNoEchoMenu.setText(Messages.gettext("Evaluate selection with no echo"));
         evalWithNoEchoMenu.setCallback(ScilabCallBack.createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.evaluateSelectionWithNoEcho",
-                                                                     ScilabCallBack.JAVA));
+                CallBack.JAVA));
         evalWithNoEchoMenu.setMnemonic('N');
         listener = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String str = getSelectedText();
-                    evalWithNoEchoMenu.setEnabled(str != null && !str.isEmpty());
-                }
-            };
+            public void propertyChange(PropertyChangeEvent arg0) {
+                String str = getSelectedText();
+                evalWithNoEchoMenu.setEnabled(str != null && !str.isEmpty());
+            }
+        };
         evalWithEchoMenu.addPropertyChangeListener(listener);
 
         menu.add(cutMenu);
@@ -186,12 +186,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         ((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
 
         addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    ((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
-                }
+            public void focusGained(FocusEvent e) {
+                ((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
+            }
 
-                public void focusLost(FocusEvent e) { }
-            });
+            public void focusLost(FocusEvent e) { }
+        });
     }
 
     /**
@@ -208,19 +208,19 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      */
     public void displayPrompt() {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    InputCommandView inputCmdView = SwingScilabConsole.this.getConfiguration().getInputCommandView();
+            public void run() {
+                InputCommandView inputCmdView = SwingScilabConsole.this.getConfiguration().getInputCommandView();
 
-                    // Show the prompt
-                    SwingScilabConsole.this.getConfiguration().getPromptView().setVisible(true);
+                // Show the prompt
+                SwingScilabConsole.this.getConfiguration().getPromptView().setVisible(true);
 
-                    // Show the input command view and its hidden components
-                    inputCmdView.setEditable(true);
-                    ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-                    ((JTextPane) inputCmdView).getCaret().setVisible(true);
-                    setToHome();
-                }
-            });
+                // Show the input command view and its hidden components
+                inputCmdView.setEditable(true);
+                ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
+                ((JTextPane) inputCmdView).getCaret().setVisible(true);
+                setToHome();
+            }
+        });
 
         ((SciOutputView) this.getConfiguration().getOutputView()).resetLastEOL();
 
@@ -282,10 +282,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
         final JTextPane cmdView = (JTextPane) this.getConfiguration().getInputCommandView();
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    cmdView.getCaret().setVisible(true);
-                }
-            });
+            public void run() {
+                cmdView.getCaret().setVisible(true);
+            }
+        });
 
         return retChar;
     }
@@ -415,7 +415,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         // Insert clipboard contents
         try {
             doc.insertString(((JTextPane) this.getConfiguration().getInputCommandView()).getCaretPosition(),
-                             clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
+                    clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

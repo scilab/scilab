@@ -12,6 +12,7 @@
  */
 package org.scilab.modules.gui.bridge.filechooser;
 
+import java.awt.Component;
 import java.awt.Window;
 import java.io.File;
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * This is the son of the usual Scilab file chooser,
@@ -67,16 +70,16 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
     private String exportName;
     private String extensionSelected;
-    private int figureId;
+    private String figureUID;
 
     /**
      * Default constructor
      * @param figureId id of the exported figure
      */
-    public SwingScilabExportFileChooser(int figureId) {
+    public SwingScilabExportFileChooser(String figureUID) {
         super();
-        this.figureId = figureId;
-        exportCustomFileChooser(figureId);
+        this.figureUID = figureUID;
+        exportCustomFileChooser(figureUID);
     }
 
     /**
@@ -84,7 +87,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * by adding format selection
      * @param figureId exported figure number
      */
-    public void exportCustomFileChooser(int figureId) {
+    public void exportCustomFileChooser(String figureUID) {
         ArrayList<FileMask> v = new ArrayList<FileMask>(NB_FILE_MASKS);  /* The order does matter */
         v.add(new FileMask(bmp, bmpDesc));
         v.add(new FileMask(gif, gifDesc));
@@ -104,7 +107,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         super.setSelectedFile(exportFile);
         super.setAcceptAllFileFilterUsed(false);
 
-        this.figureId = figureId;
+        this.figureUID = figureUID;
 
         for (int i = 0; i < v.size(); i++) {
             FileMask fm = v.get(i);
@@ -133,8 +136,8 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         accessoryPanel.setVisible(true);
         super.setAccessory(accessoryPanel);
 
-        Tab tab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureId).getRendererProperties()).getParentTab();
-        Window parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
+	Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
+        Window parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, c);
 
         int selection = super.showSaveDialog(parentWindow);
         if (selection == JFileChooser.APPROVE_OPTION) {
@@ -257,7 +260,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void bitmapExport(String userExtension) {
-        ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
+        ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
 
         String actualFilename = exportData.getExportName();
         if (this.getExtension(actualFilename) == null) {
@@ -266,10 +269,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             actualFilename += "." + userExtension;
         }
 
-        //the export instruction for the selected format
-        String exportcmd = "xs2" + exportData.getExportExtension()
-            + "(" + figureId + ", '" + actualFilename + "');";
-        InterpreterManagement.putCommandInScilabQueue(exportcmd);
+	FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
     }
 
     /**
@@ -277,8 +277,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureId).getRendererProperties()).getParentTab();
-        ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
+	Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
+        SimpleTab parentTab = (SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, c);
+        ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
         ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);
         exportOptionWindow.displayOptionWindow(parentTab);
         exportOptionWindow.landscapePortraitOption();

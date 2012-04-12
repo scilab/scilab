@@ -13,14 +13,12 @@
 #ifndef __GET_UICONTROL_HORIZONTALALIGNMENT_HXX__
 #define __GET_UICONTROL_HORIZONTALALIGNMENT_HXX__
 
-#include "CallScilabBridge.hxx"
 extern "C"{
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
 #include "localization.h"
-#include "UicontrolStyleToString.h"
 #include "GetUicontrolHorizontalAlignment.h"
 #include "Scierror.h"
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 }
 
 #endif /* __GET_UICONTROL_HORIZONTALALIGNMENT_HXX__ */

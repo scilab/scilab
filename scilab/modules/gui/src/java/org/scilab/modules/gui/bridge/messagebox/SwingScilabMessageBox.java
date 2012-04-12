@@ -54,6 +54,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WebBrowser;
@@ -870,6 +871,18 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
     /**
      * Set the component used to set the location of the MessageBox (default is Scilab Console)
+     * @param parent the parent
+     */
+    public void setParentForLocation(SimpleTab parent) {
+        if (parent != null) {
+            parentWindow = (Component) parent;
+        } else {
+            parentWindow = null;
+        }
+    }
+
+    /**
+     * Set the component used to set the location of the MessageBox (default is Scilab Console)
      * @param parent
      */
     public void setParentForLocation(Component parent) {
@@ -880,7 +893,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the component used to set the location of the MessageBox (default is Scilab Console)
      * @param parent
      */
-    @Override
     public void setParentForLocation(Tab parent) {
         setParentForLocation((Component) parent.getAsSimpleTab());
     }

@@ -12,6 +12,7 @@
 
 package org.scilab.modules.ui_data.variableeditor;
 
+import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.gui.window.Window;
 
 /**
@@ -19,7 +20,7 @@ import org.scilab.modules.gui.window.Window;
  * Describes actions exposed to scilab.
  *
  */
-public interface VariableEditor extends Window {
+public interface VariableEditor extends SimpleWindow {
 
     /**
      * Close Variable Browser.

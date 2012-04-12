@@ -61,6 +61,7 @@ import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.WebBrowser;
@@ -301,7 +302,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         try {
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, false /* store in history */);
         } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
+            ScilabModalDialog.show((SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, x), Messages.gettext("Feature not available in this mode..."));
         }
     }
 

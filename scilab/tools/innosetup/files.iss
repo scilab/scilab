@@ -93,5 +93,6 @@
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"
 #include BinariesSourcePath + "\modules\xml\xml.iss"
 #include BinariesSourcePath + "\modules\preferences\preferences.iss"
+#include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
 ;-------------------------------------------------------------------------------
 ;

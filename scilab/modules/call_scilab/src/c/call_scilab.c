@@ -33,7 +33,7 @@
 #include "scilabmode.h"
 #include "sciquit.h"
 #include "storeCommand.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "../../core/src/c/TerminateCore.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"

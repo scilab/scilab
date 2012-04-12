@@ -13,14 +13,12 @@
 #ifndef __GET_UICONTROL_FONTWEIGHT_HXX__
 #define __GET_UICONTROL_FONTWEIGHT_HXX__
 
-#include "CallScilabBridge.hxx"
-extern "C"{
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
+extern "C" {
 #include "localization.h"
-#include "UicontrolStyleToString.h"
 #include "GetUicontrolFontWeight.h"
 #include "Scierror.h"
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 }
 
 #endif /* __GET_UICONTROL_FONTWEIGHT_HXX__ */

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,8 +27,6 @@ import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 
 /**
  * Action executed when the user clicks on the "Undock button"
@@ -57,12 +56,12 @@ public class SciUndockingAction extends AbstractAction {
      */
     public void actionPerformed(ActionEvent arg0) {
         /** Create a new Window to dock the tab into */
-        Window newWindow = ScilabWindow.createWindow();
+        SwingScilabWindow newWindow = new SwingScilabWindow();
 
         /** Save the tab dimensions to set them back after docking */
         Size oldtabSize = associatedTab.getDims();
         /** Save the old parent Window position to use it to set the new Window position */
-        Position oldWindowPosition = UIElementMapper.getCorrespondingUIElement(associatedTab.getParentWindowId()).getPosition();
+        Position oldWindowPosition = SwingScilabWindow.allScilabWindows.get(associatedTab.getParentWindowId()).getPosition();
         /* If we undock a tab contained in view with two elements, then
            the two elements will be alone, so we remove the actions. */
         DockingPort port = DockingManager.getMainDockingPort(associatedTab);
@@ -82,11 +81,11 @@ public class SciUndockingAction extends AbstractAction {
         DockingManager.undock((Dockable) associatedTab);
         iter = port.getDockables().iterator();
         if (iter.hasNext()) {
-	    SwingScilabTab tab = (SwingScilabTab) iter.next();
-	    BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
+            SwingScilabTab tab = (SwingScilabTab) iter.next();
+            BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
-        DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
-	BarUpdater.updateBars(associatedTab.getParentWindowId(), associatedTab.getMenuBar(), associatedTab.getToolBar(), associatedTab.getInfoBar(), associatedTab.getName(), associatedTab.getWindowIcon());
+        DockingManager.dock(associatedTab, newWindow.getDockingPort());
+        BarUpdater.updateBars(associatedTab.getParentWindowId(), associatedTab.getMenuBar(), associatedTab.getToolBar(), associatedTab.getInfoBar(), associatedTab.getName(), associatedTab.getWindowIcon());
         ActiveDockableTracker.requestDockableActivation(associatedTab);
 
         /** New Window properties */
@@ -98,9 +97,9 @@ public class SciUndockingAction extends AbstractAction {
         Size windowSize = newWindow.getDims();
         Size newTabSize = associatedTab.getDims();
         newWindow.setDims(new Size((windowSize.getWidth() - newTabSize.getWidth()) + oldtabSize.getWidth(),
-                                   (windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
+                (windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
 
-        associatedTab.setParentWindowId(newWindow.getAsSimpleWindow().getElementId());
+        associatedTab.setParentWindowId(newWindow.getId());
         associatedTab.requestFocus();
     }
 }

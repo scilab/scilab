@@ -16,7 +16,7 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA =  license.txt 
+libscigraphics_la_root_DATA =  license.txt
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
@@ -36,11 +36,11 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/graphic_objects/includes/
 
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-src/c/WindowList.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
@@ -118,7 +118,6 @@ src/c/getHandleProperty/get_clip_state_property.c \
 src/c/getHandleProperty/get_callback_property.c \
 src/c/getHandleProperty/get_auto_position_property.c \
 src/c/getHandleProperty/get_closed_property.c \
-src/c/getHandleProperty/get_callbackmevent_property.c \
 src/c/getHandleProperty/get_text_property.c \
 src/c/getHandleProperty/get_margins_property.c \
 src/c/getHandleProperty/get_view_property.c \
@@ -164,7 +163,6 @@ src/c/getHandleProperty/get_x_ticks_property.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
-src/c/getHandleProperty/get_dimension_property.c \
 src/c/getHandleProperty/get_event_handler_property.c \
 src/c/getHandleProperty/get_event_handler_enable_property.c \
 src/c/getHandleProperty/get_arc_drawing_method_property.c \
@@ -176,6 +174,7 @@ src/c/getHandleProperty/get_color_range_property.c \
 src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/get_grid_position_property.c \
 src/c/getHandleProperty/get_anti_aliasing_property.c \
+src/c/getHandleProperty/get_tag_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -199,7 +198,6 @@ src/c/getHandleProperty/set_current_entity_property.c \
 src/c/getHandleProperty/set_figure_id_property.c \
 src/c/getHandleProperty/set_pixmap_property.c \
 src/c/getHandleProperty/set_figure_style_property.c \
-src/c/ColorMapManagement.c \
 src/c/getHandleProperty/set_mark_size_property.c \
 src/c/getHandleProperty/set_y_shift_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \
@@ -250,7 +248,6 @@ src/c/getHandleProperty/set_z_label_property.c \
 src/c/getHandleProperty/set_auto_rotation_property.c \
 src/c/getHandleProperty/set_callback_property.c \
 src/c/getHandleProperty/set_closed_property.c \
-src/c/getHandleProperty/set_callbackmevent_property.c \
 src/c/getHandleProperty/set_cdata_mapping_property.c \
 src/c/getHandleProperty/set_y_ticks_property.c \
 src/c/getHandleProperty/set_z_bounds_property.c \
@@ -301,7 +298,6 @@ src/c/getHandleProperty/set_x_ticks_property.c \
 src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \
-src/c/getHandleProperty/set_dimension_property.c \
 src/c/getHandleProperty/set_event_handler_property.c \
 src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/getHandleProperty/set_arc_drawing_method_property.c \
@@ -313,6 +309,7 @@ src/c/getHandleProperty/set_color_range_property.c \
 src/c/getHandleProperty/set_outside_colors_property.c \
 src/c/getHandleProperty/set_grid_position_property.c \
 src/c/getHandleProperty/set_anti_aliasing_property.c \
+src/c/getHandleProperty/set_tag_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -336,16 +333,13 @@ src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
-src/c/HandleManagement.c \
 src/c/StringBox.c \
 src/c/axesScale.c \
 src/c/TerminateGraphics.c \
-src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c \
-src/c/SciHandleTab.c
+src/c/get_ticks_utils.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -359,7 +353,6 @@ sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_geom3d.c \
 sci_gateway/c/sci_xset.c \
-sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_clear_pixmap.c \
@@ -368,7 +361,6 @@ sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
 sci_gateway/c/sci_xstring.c \
 sci_gateway/c/sci_xstringb.c \
-sci_gateway/c/sci_xsetech.c \
 sci_gateway/c/sci_show_window.c \
 sci_gateway/c/sci_param3d1.c \
 sci_gateway/c/sci_xname.c \
@@ -391,7 +383,6 @@ sci_gateway/c/sci_xfpoly.c \
 sci_gateway/c/sci_drawlater.c \
 sci_gateway/c/sci_champ.c \
 sci_gateway/c/sci_set.c \
-sci_gateway/c/sci_showalluimenushandles.c \
 sci_gateway/c/sci_unglue.c \
 sci_gateway/c/gw_graphics.c \
 sci_gateway/c/sci_zoom_rect.c \
@@ -435,7 +426,7 @@ libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
 
 # For the code check (splint)
@@ -519,4 +510,4 @@ libscigraphics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LI
 
 
 include $(top_srcdir)/Makefile.incl.am
- 
+

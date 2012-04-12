@@ -14,7 +14,8 @@ package org.scilab.modules.history_browser.actions;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
@@ -24,7 +25,7 @@ import org.scilab.modules.history_manager.HistoryManagement;
  * Manage Clear Actions
  * @author Vincent COUVERT
  */
-public final class ClearAction extends CallBack {
+public final class ClearAction extends CommonCallBack {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -35,7 +36,7 @@ public final class ClearAction extends CallBack {
 	 * Constructor
 	 */
 	public ClearAction() {
-		super("");
+		super("", CallBack.UNTYPED);
 	}
 	
 	/**
@@ -54,8 +55,8 @@ public final class ClearAction extends CallBack {
 	 * Create a new class instance
 	 * @return the instance
 	 */
-	private static CallBack getCallBack() {
-		CallBack callback = null;
+	private static CommonCallBack getCallBack() {
+	    CommonCallBack callback = null;
 		try {
 			callback = ClearAction.class.getConstructor().newInstance();
 		} catch (IllegalArgumentException e) {

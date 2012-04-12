@@ -16,7 +16,7 @@ import java.util.Vector;
 
 import javax.swing.Icon;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.widget.Widget;
 
 
@@ -48,7 +48,7 @@ public interface Tree extends Widget {
 	 * Get the callback of a tree node
 	 * @return callback of a node
 	 */
-	CallBack getCallback();
+	CommonCallBack getCallback();
 	
 	/**
 	 * Add child to a tree

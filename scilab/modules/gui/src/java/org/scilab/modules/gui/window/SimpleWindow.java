@@ -13,7 +13,7 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -41,13 +41,13 @@ public interface SimpleWindow {
 	 * Add a tab to a window
 	 * @param newTab the tab to add to the window
 	 */
-	void addTab(Tab newTab);
+	void addTab(SimpleTab newTab);
 	
 	/**
 	 * Remove a tab from a window
-	 * @param tab tab to remove
+	 * @param oldTab tab to remove
 	 */
-	void removeTab(Tab tab);
+	void removeTab(SimpleTab oldTab);
 	
 	/**
 	 * Sets a InfoBar to a window

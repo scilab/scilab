@@ -38,7 +38,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -62,7 +62,7 @@ public class ScilabFileSelectorFilter extends JPanel {
      * Default constructor
      * @param stt the SwingScilabTree containing the cwd
      * @param comboPath the combobox where to set the path
-     */
+    */
     public ScilabFileSelectorFilter(SwingScilabTreeTable stt) {
         super();
         this.stt = stt;
@@ -79,7 +79,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         setFocusCycleRoot(true);
         setFocusTraversalPolicy(new ContainerOrderFocusTraversalPolicy());
 
-        validate = new JButton(new CallBack(null) {
+        validate = new JButton(new CommonCallBack(null) {
                 @Override
                 public void callBack() {
                     stt.setFilter(getPattern());
@@ -180,7 +180,7 @@ public class ScilabFileSelectorFilter extends JPanel {
             setComponentPopupMenu(createPopup());
             addFocusListener(this);
             getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
-            getActionMap().put("ENTER", new CallBack(null) {
+            getActionMap().put("ENTER", new CommonCallBack(null) {
                     @Override
                     public void callBack() {
                         stt.setFilter(getPattern());
@@ -277,11 +277,11 @@ public class ScilabFileSelectorFilter extends JPanel {
 
             item = new JMenuItem(UiDataMessages.CLEAR);
             item.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        MyJTextField.this.setText("");
-                    }
-                });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    MyJTextField.this.setText("");
+                }
+            });
             popup.add(item);
 
             return popup;

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,7 +24,8 @@
 #include "DefaultCommandArg.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "CurrentObjectsManagement.h"
+
+#include "BuildObjects.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
@@ -60,7 +61,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 		                        {-1,"strf","?",0,0,0},
 		                        {-1,"style","?",0,0,0},
                             {-1,NULL,NULL,0,0}};
-  if (Rhs == 0) 
+  if (Rhs == 0)
   {
     sci_demo(fname, fname_len);
     return 0;
@@ -69,10 +70,10 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   CheckRhs(1,9);
 
   iskip=0;
-  if ( get_optionals(fname,opts) == 0) 
-  { 
+  if ( get_optionals(fname,opts) == 0)
+  {
 	  PutLhsVar();
-	  return 0 ; 
+	  return 0 ;
   }
 
   if (GetType(1)==sci_strings)
@@ -90,7 +91,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     m1 = m2;  n1 = n2;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 
-    for (i = 0; i < m2 ; ++i) 
+    for (i = 0; i < m2 ; ++i)
     {
 	    for (j = 0 ; j < n2 ;  ++j)
       {
@@ -117,7 +118,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     { /* default x=1:n */
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m2, &n2, &lt);
       if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-      for (i = 0; i < m2 ; ++i) 
+      for (i = 0; i < m2 ; ++i)
       {
 	      for (j = 0 ; j < n2 ;  ++j)
         {
@@ -163,7 +164,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   else
   {
 	  Scierror(999, _("%s: Wrong number of mandatory input arguments. At least %d expected.\n"), fname, 1);
-	  return 0;    
+	  return 0;
   }
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
@@ -209,17 +210,17 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
   Rect case :
   - if the min bound is strictly posivite, we can use log. mode
-  - if not, send error message 
+  - if not, send error message
   x/y min/max case:
   - we find the first strictly positive min bound in Plo2dn.c ?? */
 
   switch (strf[1])
   {
-  case '0': 
+  case '0':
     /* no computation, the plot use the previous (or default) scale */
     break;
   case '1' : case '3' : case '5' : case '7':
-    /* based on Rect arg */ 
+    /* based on Rect arg */
     if( rect[0] > rect[2] || rect[1] > rect[3])
     {
       Scierror(999, _("%s: Impossible status min > max in x or y rect data.\n"),fname);
@@ -252,17 +253,17 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
     switch ( dataflag )
     {
-    case 'e' : 
+    case 'e' :
       xd[0] = 1.0; xd[1] = (double)m1;
       x1 = xd;size_x = (m1 != 0) ? 2 : 0 ;
-      break; 
-    case 'o' : 
+      break;
+    case 'o' :
       x1 = stk(l1);size_x = m1;
       break;
-    case 'g' : 
-    default  : 
+    case 'g' :
+    default  :
       x1 = stk(l1);size_x = (n1*m1) ;
-      break; 
+      break;
     }
 
     if (size_x != 0)
@@ -289,7 +290,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   }
 
   // open a figure if none already exists
-  sciGetCurrentFigure();
+  getOrCreateDefaultSubwin();
   Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
 
   LhsVar(1) = 0;

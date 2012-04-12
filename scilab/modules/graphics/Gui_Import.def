@@ -71,8 +71,15 @@ SetUicontrolBackgroundColor
 SetUicontrolString
 SetUimenuLabel
 SetUiobjectEnable
+SetUiobjectScale
+SetUiobjectShear
+SetUiobjectRotate
 SetUimenuChecked
 setFigureEventHandler
 setFigureEventHandlerEnabled
-deleteMenuCallBack
+deleteJxclickString
 destroyUiobjectTag
+GetUiobjectShear
+GetUiobjectScale
+GetConsoleShowHiddenHandles
+SetConsoleShowHiddenHandles

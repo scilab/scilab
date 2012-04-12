@@ -15,6 +15,8 @@ jhdf5.jar=@JHDF5@
 
 jgraphx.jar=@JGRAPHX@
 
+scirenderer.jar=@SCIRENDERER@
+
 jrosetta-API.jar=@JROSETTA_API@
 
 jrosetta-engine.jar=@JROSETTA_ENGINE@
@@ -106,6 +108,9 @@ library.scinotes.name=org.scilab.modules.scinotes.jar
 library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
 library.ui_data.src.dir=${modules.dir}/ui_data/${library.src.path}
 library.ui_data.name=org.scilab.modules.ui_data.jar
+
+library.graphic_objects.dir=${modules.dir}/graphic_objects/${build.jar.dir}/
+library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
 
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.src.dir=${modules.dir}/graph/${library.src.path}

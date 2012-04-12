@@ -14,13 +14,11 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -33,7 +31,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * UndoAction class
  * @author Calixte DENIZET
  */
-public final class UndoAction extends CallBack {
+public final class UndoAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY Z";
     private static final String UNDO = "Undo";

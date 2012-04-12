@@ -46,7 +46,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
@@ -91,7 +91,7 @@ public final class SciNotesGUI {
      * @param editorInstance SciNotes
      * @param title the title
      */
-    public static void init(Window mainWindow, final SciNotes editorInstance, String title) {
+    public static void init(SimpleWindow mainWindow, final SciNotes editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 

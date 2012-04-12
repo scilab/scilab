@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
@@ -177,7 +177,7 @@ public class ScilabContextMenuBridge {
 	 * @param contextMenu the contextMenu we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ContextMenu contextMenu, CallBack callback) {
+	public static void setCallback(ContextMenu contextMenu, CommonCallBack callback) {
 		contextMenu.getAsSimpleContextMenu().setCallback(callback);
 	}
 

@@ -67,6 +67,7 @@ function CreateModulesFile: Boolean;
             begin
                 ModulesXmlFileLines[i] := '<module name="graphics" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="renderer" activate="yes"/>'; i := i + 1;
+                ModulesXmlFileLines[i] := '<module name="graphic_objects" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="graphic_export" activate="yes"/>'; i := i + 1;
             end;
 

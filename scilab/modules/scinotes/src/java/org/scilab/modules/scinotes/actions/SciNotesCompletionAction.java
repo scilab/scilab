@@ -51,7 +51,6 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.ScilabKeywords;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;

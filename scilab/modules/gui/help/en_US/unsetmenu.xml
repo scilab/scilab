@@ -46,7 +46,7 @@ unsetmenu(gwin,button,[nsub])</synopsis>
     <programlisting role="example"><![CDATA[ 
 addmenu('foo')
 unsetmenu('foo')
-unsetmenu('File',2)
+unsetmenu(gettext("File"), 3)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -14,7 +14,7 @@
 package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -70,7 +70,7 @@ public interface SimpleMenu extends Widget {
          * Retrieve the CallBack associated to this Menu
          * @return the CallBack
          */
-        CallBack getCallback();
+        CommonCallBack getCallback();
 
         /**
          * Get the base text used for the Menu

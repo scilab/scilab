@@ -2,23 +2,30 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 package org.scilab.modules.gui.bridge.slider;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollBar;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -34,304 +41,310 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
+public class SwingScilabSlider extends JScrollBar implements SwingViewObject, SimpleSlider {
 
-	private static final long serialVersionUID = -4262320156090829309L;
-	
-	private static final int MIN_KNOB_SIZE = 40;
+    private static final long serialVersionUID = -4262320156090829309L;
 
-	private CallBack callback;
-	
-	private AdjustmentListener adjustmentListener;
-	
-	/**
-	 * Constructor
-	 */
-	public SwingScilabSlider() {
-		super();
-		// needed to have slider working with GLCanvas
-		setOpaque(true);
-	}
+    private static final int MIN_KNOB_SIZE = 40;
 
-	/**
-	 * Draws a swing Scilab Slider
-	 * @see org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		this.setVisible(true);
-		this.doLayout();
-	}
-	
-	/**
-	 * Gets the dimensions (width and height) of a swing Scilab Slider
-	 * @return the dimensions of the Slider
-	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
-	 */
-	public Size getDims() {
-		return new Size(super.getSize().width, super.getSize().height);
-	}
+    private static final int MINIMUM_VALUE = 0;
+    private static final int MAXIMUM_VALUE = 1000;
 
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
-	 * @return the position of the Slider
-	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
-	 */
-	public Position getPosition() {
-		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
-	}
-	
-	/**
-	 * Sets the dimensions (width and height) of a swing Scilab Slider
-	 * @param newSize the dimensions to set to the Slider
-	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		super.setSize(newSize.getWidth(), newSize.getHeight());
-		super.doLayout(); // Usefull in case of resize
-	}
+    private String uid;
 
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
-	 * @param newPosition the position to set to the Slider
-	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
-		setLocation(javaPosition.getX(), javaPosition.getY());
-	}
+    private CommonCallBack callback;
 
-	/**
-	 * Add a callback to the Slider
-	 * @param cb the callback to set.
-	 */
-	public void setCallback(CallBack cb) {
-		/* Create a callback */
-		this.callback = cb;
-		
-		/* Remove previous listener if exists */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
-		
-		/* Create a listener for Adjustment events */
-		adjustmentListener = new AdjustmentListener() {
-			public void adjustmentValueChanged(AdjustmentEvent arg0) {
-				callback.actionPerformed(null);
-			}
-		};
-		
-		/* Add this listener */
-		addAdjustmentListener(adjustmentListener);
-	}
+    private AdjustmentListener adjustmentListener;
 
-	/**
-	 * Setter for MenuBar
-	 * @param menuBarToAdd the MenuBar associated to the Tab.
-	 */
-	public void addMenuBar(MenuBar menuBarToAdd) {
-		/* Unimplemented for CheckBoxes */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Constructor
+     */
+    public SwingScilabSlider() {
+        super();
+        // needed to have slider working with GLCanvas
+        setOpaque(true);
+        setMinimum(MINIMUM_VALUE);
+        setMaximum(MAXIMUM_VALUE + getVisibleAmount());
+        adjustmentListener = new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent arg0) {
+                updateModel();
+                if (callback != null) {
+                    callback.actionPerformed(null);
+                }
+            }
+        };
+        addAdjustmentListener(adjustmentListener);
+    }
 
-	/**
-	 * Setter for ToolBar
-	 * @param toolBarToAdd the ToolBar associated to the Tab.
-	 */
-	public void addToolBar(ToolBar toolBarToAdd) {
-		/* Unimplemented for CheckBoxes */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Draws a swing Scilab Slider
+     * @see org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+        this.setVisible(true);
+        this.doLayout();
+    }
 
-	/**
-	 * Getter for MenuBar
-	 * @return MenuBar: the MenuBar associated to the Tab.
-	 */
-	public MenuBar getMenuBar() {
-		/* Unimplemented for CheckBoxes */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Gets the dimensions (width and height) of a swing Scilab Slider
+     * @return the dimensions of the Slider
+     * @see org.scilab.modules.gui.uielement.UIElement#getDims()
+     */
+    public Size getDims() {
+        return new Size(super.getSize().width, super.getSize().height);
+    }
 
-	/**
-	 * Getter for ToolBar
-	 * @return ToolBar: the ToolBar associated to the Tab.
-	 */
-	public ToolBar getToolBar() {
-		/* Unimplemented for CheckBoxes */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
+     * @return the position of the Slider
+     * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
+     */
+    public Position getPosition() {
+        return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
+    }
 
-	/**
-	 * Get the text of the Slider
-	 * @return the text
-	 * @see org.scilab.modules.gui.widget.Widget#getText()
-	 */
-	public String getText() {
-		return this.getName();
-	}
+    /**
+     * Sets the dimensions (width and height) of a swing Scilab Slider
+     * @param newSize the dimensions to set to the Slider
+     * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+        super.setSize(newSize.getWidth(), newSize.getHeight());
+        super.doLayout(); // Usefull in case of resize
+    }
 
-	/**
-	 * Set the text of the Slider
-	 * @param text the text to set to the Slider
-	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
-	 */
-	public void setText(String text) {
-		this.setName(text);
-	}
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
+     * @param newPosition the position to set to the Slider
+     * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+        Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+        setLocation(javaPosition.getX(), javaPosition.getY());
+    }
 
-	/**
-	 * Set the horizontal alignment for the Slider text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setHorizontalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Add a callback to the Slider
+     * @param cb the callback to set.
+     */
+    public void setCallback(CommonCallBack cb) {
+        /* Create a callback */
+        callback = cb;
+    }
 
-	/**
-	 * Set the vertical alignment for the Slider text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setVerticalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Set the minimum value of a Slider
-	 * @param value the minimum value
-	 */
-	public void setMinimumValue(int value) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
-		
-		setMinimum(value);	
-		
-		/* Put back the listener */
-		if (adjustmentListener != null) {
-			addAdjustmentListener(adjustmentListener);
-		}
-	}
+    /**
+     * Setter for MenuBar
+     * @param menuBarToAdd the MenuBar associated to the Tab.
+     */
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        /* Unimplemented for CheckBoxes */
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set the maximum value of a Slider
-	 * @param value the maximum value
-	 */
-	public void setMaximumValue(int value) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
+    /**
+     * Setter for ToolBar
+     * @param toolBarToAdd the ToolBar associated to the Tab.
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        /* Unimplemented for CheckBoxes */
+        throw new UnsupportedOperationException();
+    }
 
-		setMaximum(value + getVisibleAmount());
-		
-		/* Put back the listener */
-		if (adjustmentListener != null) {
-			addAdjustmentListener(adjustmentListener);
-		}
-	}
+    /**
+     * Getter for MenuBar
+     * @return MenuBar: the MenuBar associated to the Tab.
+     */
+    public MenuBar getMenuBar() {
+        /* Unimplemented for CheckBoxes */
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set the Relief of the Slider
-	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
-	 */
-	public void setRelief(String reliefType) {
-		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
-	}
+    /**
+     * Getter for ToolBar
+     * @return ToolBar: the ToolBar associated to the Tab.
+     */
+    public ToolBar getToolBar() {
+        /* Unimplemented for CheckBoxes */
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set the major tick spacing for a Slider
-	 * @param space the increment value
-	 */
-	public void setMajorTickSpacing(int space) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
+    /**
+     * Get the text of the Slider
+     * @return the text
+     * @see org.scilab.modules.gui.widget.Widget#getText()
+     */
+    public String getText() {
+        return this.getName();
+    }
 
-		setBlockIncrement(space);
-		int oldMax = getMaximum() - getVisibleAmount();
-		setVisibleAmount(Math.max(space, MIN_KNOB_SIZE));
-		setMaximum(oldMax + getVisibleAmount());
-		
-		/* Put back the listener */
-		if (adjustmentListener != null) {
-			addAdjustmentListener(adjustmentListener);
-		}
-	}
+    /**
+     * Set the text of the Slider
+     * @param text the text to set to the Slider
+     * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
+     */
+    public void setText(String text) {
+        this.setName(text);
+    }
 
-	/**
-	 * Set the minor tick spacing for a Slider
-	 * @param space the increment value
-	 */
-	public void setMinorTickSpacing(int space) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
+    /**
+     * Set the horizontal alignment for the Slider text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setHorizontalAlignment(String alignment) {
+        // Nothing to do here
+    }
 
-		setUnitIncrement(space);
+    /**
+     * Set the vertical alignment for the Slider text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setVerticalAlignment(String alignment) {
+        // Nothing to do here
+    }
 
-		/* Put back the listener */
-		if (adjustmentListener != null) {
-			addAdjustmentListener(adjustmentListener);
-		}
-	}
-	
-	/**
-	 * Set the slider orientation to vertical
-	 */
-	public void setVertical() {
-		setOrientation(JScrollBar.VERTICAL);
-	}
+    /**
+     * Set the minimum value of a Slider
+     * @param value the minimum value
+     */
+    public void setMinimumValue(double value) {
+        updateModel();
+    }
 
-	/**
-	 * Set the slider orientation to horizontal
-	 */
-	public void setHorizontal() {
-		setOrientation(JScrollBar.HORIZONTAL);
-	}
+    /**
+     * Set the maximum value of a Slider
+     * @param value the maximum value
+     */
+    public void setMaximumValue(double value) {
+        updateModel();
+    }
 
-	/**
-	 * Destroy the Slider
-	 */
-	public void destroy() {
-		ScilabSwingUtilities.removeFromParent(this);
-	}
-	
-	/**
-	 * Setter for InfoBar
-	 * @param infoBarToAdd the InfoBar associated to the Slider.
-	 */
-	public void addInfoBar(TextBox infoBarToAdd) {
-		/* Unimplemented for Sliders */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set the Relief of the Slider
+     * @param reliefType the type of the relief to set (See ScilabRelief.java)
+     */
+    public void setRelief(String reliefType) {
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    }
 
-	/**
-	 * Getter for InfoBar
-	 * @return the InfoBar associated to the Slider.
-	 */
-	public TextBox getInfoBar() {
-		/* Unimplemented for Sliders */
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Set the current value of the Slider
-	 * @param value the new value
-	 */
-	public void setUserValue(int value) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (adjustmentListener != null) {
-			removeAdjustmentListener(adjustmentListener);
-		}
+    /**
+     * Set the major tick spacing for a Slider
+     * @param space the increment value
+     */
+    public void setMajorTickSpacing(double space) {
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
 
-		super.setValue(value);
-		
-		/* Put back the listener */
-		if (adjustmentListener != null) {
-			addAdjustmentListener(adjustmentListener);
-		}
-	}
+        setBlockIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)));
+        int oldMax = getMaximum() - getVisibleAmount();
+        setVisibleAmount(Math.max((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)), MIN_KNOB_SIZE));
+        setMaximum(oldMax + getVisibleAmount());
 
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
+    }
+
+    /**
+     * Set the minor tick spacing for a Slider
+     * @param space the increment value
+     */
+    public void setMinorTickSpacing(double space) {
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
+
+        setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)));
+
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
+    }
+
+    /**
+     * Set the slider orientation to vertical
+     */
+    public void setVertical() {
+        setOrientation(JScrollBar.VERTICAL);
+    }
+
+    /**
+     * Set the slider orientation to horizontal
+     */
+    public void setHorizontal() {
+        setOrientation(JScrollBar.HORIZONTAL);
+    }
+
+    /**
+     * Destroy the Slider
+     */
+    public void destroy() {
+        ScilabSwingUtilities.removeFromParent(this);
+    }
+
+    /**
+     * Setter for InfoBar
+     * @param infoBarToAdd the InfoBar associated to the Slider.
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+        /* Unimplemented for Sliders */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Getter for InfoBar
+     * @return the InfoBar associated to the Slider.
+     */
+    public TextBox getInfoBar() {
+        /* Unimplemented for Sliders */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Set the current value of the Slider
+     * @param value the new value
+     */
+    public void setUserValue(double value) {
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
+
+        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        super.setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
+    }
+
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingViewWidget.update(this, property, value);
+    }
+
+    /**
+     * Update values in the model when needed
+     */
+    private void updateModel() {
+        Double[] value = new Double[1];
+        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        value[0] = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
+        GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+    }
 }

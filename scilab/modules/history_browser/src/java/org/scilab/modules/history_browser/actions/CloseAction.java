@@ -15,7 +15,7 @@ package org.scilab.modules.history_browser.actions;
 import java.lang.reflect.InvocationTargetException;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -28,7 +28,7 @@ import org.scilab.modules.history_browser.CommandHistoryMessages;
  * Manage Close Actions
  * @author Vincent COUVERT
  */
-public final class CloseAction extends CallBack {
+public final class CloseAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
@@ -82,8 +82,8 @@ public final class CloseAction extends CallBack {
      * Create a new class instance
      * @return the instance
      */
-    public static CallBack getCallBack() {
-        CallBack callback = null;
+    public static CommonCallBack getCallBack() {
+        CommonCallBack callback = null;
         try {
             callback = CloseAction.class.getConstructor().newInstance();
         } catch (IllegalArgumentException e) {

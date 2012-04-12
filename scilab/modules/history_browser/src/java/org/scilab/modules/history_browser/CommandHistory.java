@@ -24,19 +24,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.JViewport;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingManager;
-
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
@@ -45,22 +40,14 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
-import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.history_manager.HistoryManagement;
-import org.scilab.modules.history_browser.CommandHistoryMessages;
-import org.scilab.modules.history_browser.CommandHistoryMouseListener;
 import org.scilab.modules.history_browser.actions.ClearAction;
 import org.scilab.modules.history_browser.actions.CloseAction;
 import org.scilab.modules.history_browser.actions.CopyAction;
@@ -69,6 +56,7 @@ import org.scilab.modules.history_browser.actions.DeleteAction;
 import org.scilab.modules.history_browser.actions.EditInScinotesAction;
 import org.scilab.modules.history_browser.actions.EvaluateAction;
 import org.scilab.modules.history_browser.actions.HelpAction;
+import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -76,7 +64,7 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-public final class CommandHistory extends SwingScilabTab implements Tab {
+public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -185,8 +173,8 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
-    public Window getParentWindow() {
-        return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+    public SwingScilabWindow getParentWindow() {
+        return SwingScilabWindow.allScilabWindows.get(getParentWindowId());
     }
 
     /**
@@ -362,7 +350,7 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
             if (!success) {
                 CommandHistoryTabFactory.getInstance().getTab(COMMANDHISTORYUUID);
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
-                window.addTab((Tab) browserTab);
+                window.addTab(browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
                 window.setVisible(true);

@@ -37,10 +37,10 @@
       inversement.
     </para>
     <para>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-      existe des restrictions quant à   l'utilisation de la routine. Il est
+      existe des restrictions quant à l'utilisation de la routine. Il est
       par exemple impossible de permuter un handle polyline et un handle axes,
       ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
-      plus d'information à   ce sujet, on peut se reporter à   la page
+      plus d'information à ce sujet, on peut se reporter à la page
       <link linkend="graphics_entities">graphics_entities</link> .
     </para>
     <para>La routine peut-être utilisée pour modifier les indices des enfants
