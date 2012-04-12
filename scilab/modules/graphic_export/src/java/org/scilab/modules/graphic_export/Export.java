@@ -369,23 +369,6 @@ public class Export {
     }
 
     /**
-     * JPEG Exporter
-     */
-    private static class JPEGExporter extends PNGExporter {
-
-        public JPEGExporter() { }
-
-        @Override
-        public void write(ExportParams params) throws IOException {
-            if (params.compressionQuality == -1) {
-                ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
-            } else {
-                ExportBitmap.writeJPEG(image, params.compressionQuality, file);
-            }
-        }
-    }
-
-    /**
      * BMP Exporter
      */
     private static class BMPExporter extends PNGExporter {
@@ -404,6 +387,23 @@ public class Export {
         @Override
         public void write(ExportParams params) throws IOException {
             ExportBitmap.writeFile(image, "bmp", file);
+        }
+    }
+
+    /**
+     * JPEG Exporter
+     */
+    private static class JPEGExporter extends BMPExporter {
+
+        public JPEGExporter() { }
+
+        @Override
+        public void write(ExportParams params) throws IOException {
+            if (params.compressionQuality == -1) {
+                ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
+            } else {
+                ExportBitmap.writeJPEG(image, params.compressionQuality, file);
+            }
         }
     }
 
