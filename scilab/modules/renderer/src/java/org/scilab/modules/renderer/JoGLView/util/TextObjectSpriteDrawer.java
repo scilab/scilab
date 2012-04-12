@@ -24,6 +24,8 @@ import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.jvm.LoadClassPath;
 
 import javax.swing.Icon;
 import java.awt.Dimension;
@@ -126,10 +128,16 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
             int column = 0;
             for (String text : textLine) {
                 if (text != null) {
-                    Dimension dimension = null;
+                    Dimension dimension;
                     if (isLatex(text)) {
+                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
                         TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
                         TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, font.getSize());
+                        dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
+                        entities[column][line] = icon;
+                    } else if (isMathML(text)) {
+                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        Icon icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize());
                         dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
                         entities[column][line] = icon;
                     } else {
