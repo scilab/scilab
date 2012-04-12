@@ -137,6 +137,9 @@
     <ClInclude Include="src\jni\JOGLConstant.hxx">
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
+    <ClInclude Include="src\jni\GL2PSToJOGL.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic_export.rc">
