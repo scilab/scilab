@@ -20,11 +20,13 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import javax.swing.Icon;
+import java.awt.GraphicsEnvironment;
 
 import org.apache.batik.gvt.GraphicsNode;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.junit.*;
+import org.junit.Assume;
 
 /**
  * Test the {@link ScilabGraphUtils} class.
@@ -47,6 +49,8 @@ public class ScilabGraphUtilsTest {
      */
     @Test
     public void escapingUnformattedText() {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
+
         StringBuilder str = new StringBuilder(TEXT);
         ScilabGraphUtils.unescape(str, 0);
 
@@ -58,6 +62,8 @@ public class ScilabGraphUtilsTest {
      */
     @Test
     public void escapingUnescapingText() {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
+
         StringBuilder str = new StringBuilder(ScilabGraphUtils.getBodyMarkup(SOME_HTML_SYMBOLS, true));
         ScilabGraphUtils.unescape(str, 0);
 
@@ -85,6 +91,8 @@ public class ScilabGraphUtilsTest {
      */
     @Test
     public void removeBlanks() {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
+
         StringBuilder str = new StringBuilder(TEXT_WITH_BLANKS);
         ScilabGraphUtils.removeBlanks(str);
         assert str.toString().equals(TEXT);
@@ -93,7 +101,10 @@ public class ScilabGraphUtilsTest {
     /**
      * Check the the return status of a valid and invalid latex expressions.
      */
+    @Test
     public void checkSampleTEX() throws ParseException {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
+
         Icon valid = ScilabGraphUtils.getTexIcon(SAMPLE_LATEX);
 
         assert valid != null;
@@ -116,6 +127,8 @@ public class ScilabGraphUtilsTest {
      */
     @Test
     public void checkSampleSVG() throws IOException {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
+
         File validSvgFile;
         File invalidSvgFile;
 
