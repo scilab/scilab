@@ -570,7 +570,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
     <ClInclude Include="includes\Contour.h" />
-    <ClInclude Include="includes\CurrentObjectsManagement.h" />
     <ClInclude Include="includes\DefaultCommandArg.h" />
     <ClInclude Include="includes\DestroyObjects.h" />
     <ClInclude Include="includes\DrawObjects.h" />
@@ -612,9 +611,9 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="src\c\XsetXgetParameters.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\graphics.pot" />
     <None Include="Gui_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\graphics.pot" />
     <None Include="scilab_windows_Import.def" />
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />

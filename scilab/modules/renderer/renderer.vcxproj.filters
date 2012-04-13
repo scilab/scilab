@@ -102,9 +102,6 @@
     <None Include="graphics_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="gui_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -113,6 +110,5 @@
     </None>
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
-    <None Include="sci_gateway\renderer_gateway.xml" />
   </ItemGroup>
 </Project>

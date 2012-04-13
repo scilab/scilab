@@ -90,11 +90,10 @@
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;libscilab.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -121,11 +120,10 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;libscilab.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -152,11 +150,10 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;libscilab.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -187,11 +184,10 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;libscilab.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -237,7 +233,6 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   <ItemGroup>
     <None Include="graphics_Import.def" />
     <None Include="LibScilab_Import.def" />
-    <None Include="renderer_Import.def" />
     <None Include="graphic_export.iss" />
     <None Include="sci_gateway\graphic_export_gateway.xml" />
     <None Include="Makefile.am" />

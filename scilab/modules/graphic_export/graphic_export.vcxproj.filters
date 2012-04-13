@@ -126,9 +126,6 @@
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="renderer_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="graphic_export.iss" />
     <None Include="sci_gateway\graphic_export_gateway.xml" />
     <None Include="Makefile.am" />

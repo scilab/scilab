@@ -3,7 +3,4 @@ LIBRARY    graphics.dll
 
 EXPORTS
 ; from graphics
-sciGetNum
-sciGetEntityType
-sciGetPointerFromHandle
 getHandleFromStack
