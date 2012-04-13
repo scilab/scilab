@@ -28,6 +28,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -42,6 +44,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
@@ -85,6 +88,7 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
+import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -156,6 +160,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private Image icon;
 
     private Action closeAction;
+
+    /** The listener for event handling */
+    private ScilabEventListener eventHandler;
+
+    /** A reference to the canvas used for event handling management */
+    SwingScilabCanvas contentCanvas;
 
     /**
      * Constructor
@@ -251,6 +261,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         this(figureTitle, figureId);
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
+        contentCanvas = canvas;
         setContentPane(canvas);
         canvas.setVisible(true);
 
@@ -1305,19 +1316,22 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Set the event handler of the Canvas
      * @param funName the name of the Scilab function to call
      */
-    @Override
     public void setEventHandler(String funName) {
-        contentPane.setEventHandler(funName);
+        disableEventHandler();
+        Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
+        eventHandler = new ScilabEventListener(funName, figureId);
     }
-
 
     /**
      * Set the status of the event handler of the Canvas
      * @param status is true to set the event handler active
      */
-    @Override
     public void setEventHandlerEnabled(boolean status) {
-        contentPane.setEventHandlerEnabled(status);
+        if (status) {
+            enableEventHandler();
+        } else {
+            disableEventHandler();
+        }
     }
 
     /**
@@ -1448,6 +1462,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             }
         } else if (property.equals(__GO_INFO_MESSAGE__)) {
             getInfoBar().setText((String) value);
+        } else if (property.equals(__GO_EVENTHANDLER_ENABLE__)) {
+            Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
+            setEventHandlerEnabled(enabled);
+        } else if (property.equals(__GO_EVENTHANDLER_NAME__)) {
+            String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
+            setEventHandler(eventHandlerName);
         }
     }
 
@@ -1502,11 +1522,32 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         return id;
     }
 
-    /** Set the tab UID
+    /**
+     * Set the tab UID
      * @param id the UID
      * @see org.scilab.modules.gui.SwingViewObject#setId(java.lang.String)
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Turn on event handling.
+     */
+    private void enableEventHandler() {
+        contentCanvas.addEventHandlerKeyListener(eventHandler);
+        contentCanvas.addEventHandlerMouseListener(eventHandler);
+        contentCanvas.addEventHandlerMouseMotionListener(eventHandler);
+    }
+
+    /**
+     * Turn off event handling.
+     */
+    private void disableEventHandler() {
+        if (eventHandler != null) {
+            contentCanvas.removeEventHandlerKeyListener(eventHandler);
+            contentCanvas.removeEventHandlerMouseListener(eventHandler);
+            contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);
+        }
     }
 }

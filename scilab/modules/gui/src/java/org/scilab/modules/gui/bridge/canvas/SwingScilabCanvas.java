@@ -40,6 +40,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -362,6 +363,55 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	public void removeMouseMotionListener(MouseMotionListener listener) {
 		getParentAxes().removeMouseMotionListener(listener);
 	}
+
+    /**
+     * Adds the listener handling key events to the canvas.
+     * @param listener listener to add.
+     */
+    public void addEventHandlerKeyListener(KeyListener listener) {
+        drawableComponent.addKeyListener(listener);
+    }
+
+    /**
+     * Removes the listener handling key events from the canvas.
+     * @param listener listener to remove.
+     */
+    public void removeEventHandlerKeyListener(KeyListener listener) {
+        drawableComponent.removeKeyListener(listener);
+    }
+
+    /**
+     * Adds the listener handling mouse events to the canvas.
+     * @param listener listener to add.
+     */
+    public void addEventHandlerMouseListener(MouseListener listener) {
+        drawableComponent.addMouseListener(listener);
+    }
+
+    /**
+     * Removes the listener handling mouse events from the canvas.
+     * @param listener listener to remove.
+     */
+    public void removeEventHandlerMouseListener(MouseListener listener) {
+        drawableComponent.removeMouseListener(listener);
+    }
+
+    /**
+     * Adds the listener handling mouse motion events to the canvas.
+     * @param listener listener to add.
+     */
+    public void addEventHandlerMouseMotionListener(MouseMotionListener listener) {
+        drawableComponent.addMouseMotionListener(listener);
+    }
+
+    /**
+     * Removes the listener handling mouse motion events from the canvas.
+     * @param listener listener to remove.
+     */
+    public void removeEventHandlerMouseMotionListener(MouseMotionListener listener) {
+        drawableComponent.removeMouseMotionListener(listener);
+    }
+
     @Override
     public void display() {
         // TODO Auto-generated method stub
