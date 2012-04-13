@@ -586,13 +586,14 @@
   <add as="CLKFROM" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
-    <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="From %s"/>
   </add>
   <add as="CLKGOTO" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="To %s"/>
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
