@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 8241 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=8241
+//
+// <-- Short Description -->
+// Properties were not preserved
+
+da = gda();
+da.title.fractional_font="on";
+da.title.font_size = 1.5;
+assert_checkequal(da.title.fractional_font,"on");
+assert_checkequal(da.title.font_size,1.5);
+plot2d();
+ca = gca();
+assert_checkfalse(da.title.fractional_font=="off");
+assert_checkfalse(da.title.font_size==1);
