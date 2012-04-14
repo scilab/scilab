@@ -42,14 +42,19 @@ import java.util.StringTokenizer;
 
 import javax.accessibility.Accessible;
 import javax.accessibility.AccessibleContext;
+import javax.media.nativewindow.NativeSurface;
 import javax.media.opengl.GL;
+import javax.media.opengl.GLAnimatorControl;
 import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCanvas;
+import javax.media.opengl.GLDrawableFactory;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLContext;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
-import javax.media.opengl.GLJPanel;
+import javax.media.opengl.GLRunnable;
+import javax.media.opengl.awt.GLJPanel;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.utils.Debug;
@@ -110,7 +115,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
         if (!OS_NAME.contains("Windows")) {
 
 	    try {
-	        GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
+	        GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities(GLProfile.getDefault()));
 	        Frame tmpFrame = new Frame();
 	        tmpFrame.add(tmpCanvas);
 	        tmpFrame.setVisible(true);
@@ -269,6 +274,58 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	}
     }
 
+    public int getContextCreationFlags() {
+	return getAsGL().getContextCreationFlags();
+    }
+
+    public void setContextCreationFlags(int flag) {
+	getAsGL().setContextCreationFlags(flag);
+    }
+    
+    public void destroy() {
+	getAsGL().destroy();
+    }
+
+    public void invoke(boolean wait, GLRunnable glRunnable) {
+	getAsGL().invoke(wait, glRunnable);
+    }
+
+    public GLAnimatorControl getAnimator() {
+	return getAsGL().getAnimator();
+    }
+
+    public void setAnimator(GLAnimatorControl animator) {
+	getAsGL().setAnimator(animator);
+    }
+
+    public void addGLEventListener(int index, GLEventListener listener) {
+	getAsGL().addGLEventListener(index, listener);
+    }
+
+    public void setContext(GLContext context) {
+	getAsGL().setContext(context);
+    }
+
+    public GLDrawableFactory getFactory() {
+	return getAsGL().getFactory();
+    }
+
+    public long getHandle() {
+	return getAsGL().getHandle();
+    }
+
+    public NativeSurface getNativeSurface() {
+	return getAsGL().getNativeSurface();
+    }
+
+    public GLProfile getGLProfile() {
+	return getAsGL().getGLProfile();
+    }
+
+    public boolean isRealized() {
+	return getAsGL().isRealized();
+    }
+
     /**
      * @return BLOUNO
      */
@@ -320,8 +377,8 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsGL().setAutoSwapBufferMode(arg0);
     }
 
-    public void setGL(GL arg0) {
-	getAsGL().setGL(arg0);
+    public GL setGL(GL arg0) {
+	return getAsGL().setGL(arg0);
     }
 
     public GLContext createContext(GLContext arg0) {
@@ -329,7 +386,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GLCapabilities getChosenGLCapabilities() {
-	return getAsGL().getChosenGLCapabilities();
+	return (GLCapabilities) getAsGL().getChosenGLCapabilities();
     }
 
     public int getHeight() {
@@ -345,7 +402,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setSize(int arg0, int arg1) {
-	getAsGL().setSize(arg0, arg1);
+	getAsComponent().setSize(arg0, arg1);
     }
 
     public void swapBuffers() throws GLException {
@@ -353,93 +410,93 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void addComponentListener(ComponentListener arg0) {
-	getAsGL().addComponentListener(arg0);
+	getAsComponent().addComponentListener(arg0);
     }
 
     public void addFocusListener(FocusListener arg0) {
-	getAsGL().addFocusListener(arg0);
+	getAsComponent().addFocusListener(arg0);
     }
 
     public void addHierarchyBoundsListener(HierarchyBoundsListener arg0) {
-	getAsGL().addHierarchyBoundsListener(arg0);
+	getAsComponent().addHierarchyBoundsListener(arg0);
     }
 
     public void addHierarchyListener(HierarchyListener arg0) {
-	getAsGL().addHierarchyListener(arg0);
+	getAsComponent().addHierarchyListener(arg0);
     }
 
     public void addInputMethodListener(InputMethodListener arg0) {
-	getAsGL().addInputMethodListener(arg0);
+	getAsComponent().addInputMethodListener(arg0);
     }
 
     public void addKeyListener(KeyListener arg0) {
-	getAsGL().addKeyListener(arg0);
+	getAsComponent().addKeyListener(arg0);
     }
 
     public void addMouseListener(MouseListener arg0) {
-	getAsGL().addMouseListener(arg0);
+	getAsComponent().addMouseListener(arg0);
     }
 
     public void addMouseMotionListener(MouseMotionListener arg0) {
-	getAsGL().addMouseMotionListener(arg0);
+	getAsComponent().addMouseMotionListener(arg0);
     }
 
     public void addMouseWheelListener(MouseWheelListener arg0) {
-	getAsGL().addMouseWheelListener(arg0);
+	getAsComponent().addMouseWheelListener(arg0);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener arg0) {
-	getAsGL().addPropertyChangeListener(arg0);
+	getAsComponent().addPropertyChangeListener(arg0);
     }
 
     public void addPropertyChangeListener(String arg0,
 	    PropertyChangeListener arg1) {
-	getAsGL().addPropertyChangeListener(arg0, arg1);
+	getAsComponent().addPropertyChangeListener(arg0, arg1);
     }
 
     public void removeComponentListener(ComponentListener arg0) {
-	getAsGL().removeComponentListener(arg0);
+	getAsComponent().removeComponentListener(arg0);
     }
 
     public void removeFocusListener(FocusListener arg0) {
-	getAsGL().removeFocusListener(arg0);
+	getAsComponent().removeFocusListener(arg0);
     }
 
     public void removeHierarchyBoundsListener(HierarchyBoundsListener arg0) {
-	getAsGL().removeHierarchyBoundsListener(arg0);
+	getAsComponent().removeHierarchyBoundsListener(arg0);
     }
 
     public void removeHierarchyListener(HierarchyListener arg0) {
-	getAsGL().removeHierarchyListener(arg0);
+	getAsComponent().removeHierarchyListener(arg0);
     }
 
     public void removeInputMethodListener(InputMethodListener arg0) {
-	getAsGL().removeInputMethodListener(arg0);
+	getAsComponent().removeInputMethodListener(arg0);
     }
 
     public void removeKeyListener(KeyListener arg0) {
-	getAsGL().removeKeyListener(arg0);
+	getAsComponent().removeKeyListener(arg0);
     }
 
     public void removeMouseListener(MouseListener arg0) {
-	getAsGL().removeMouseListener(arg0);
+	getAsComponent().removeMouseListener(arg0);
     }
 
     public void removeMouseMotionListener(MouseMotionListener arg0) {
-	getAsGL().removeMouseMotionListener(arg0);
+	getAsComponent().removeMouseMotionListener(arg0);
     }
 
     public void removeMouseWheelListener(MouseWheelListener arg0) {
-	getAsGL().removeMouseWheelListener(arg0);
+	getAsComponent().removeMouseWheelListener(arg0);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener arg0) {
-	getAsGL().removePropertyChangeListener(arg0);
+	getAsComponent().removePropertyChangeListener(arg0);
     }
 
     public void removePropertyChangeListener(String arg0,
 	    PropertyChangeListener arg1) {
-	getAsGL().removePropertyChangeListener(arg0, arg1);
+	getAsComponent().removePropertyChangeListener(arg0, arg1);
     }
 
     public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3,
@@ -548,7 +605,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
     public void repaint() {
 	//Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
-	getAsGL().repaint();
+	getAsGL().display();
 	getAsComponent().repaint();
     }
 

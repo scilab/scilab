@@ -20,9 +20,9 @@ import javax.media.opengl.GLContext;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 
-import com.sun.opengl.impl.GLContextImpl;
-import com.sun.opengl.util.ImageUtil;
-import com.sun.opengl.util.Screenshot;
+import jogamp.opengl.GLContextImpl;
+import com.jogamp.opengl.util.awt.ImageUtil;
+import com.jogamp.opengl.util.awt.Screenshot;
 
 /**
  * GLEventListener whose display function export the content of a glDrawable into
@@ -112,6 +112,8 @@ public class ImageExportRenderer implements GLEventListener {
 		// nothing to do
 	}
 	
+    public void dispose(GLAutoDrawable canvas) { }
+
 	/**
 	 * flip the screen-shot if it's mirrored
 	 */

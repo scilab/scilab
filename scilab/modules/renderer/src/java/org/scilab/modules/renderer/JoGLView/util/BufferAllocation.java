@@ -11,7 +11,7 @@
 
 package org.scilab.modules.renderer.JoGLView.util;
 
-import com.sun.opengl.util.BufferUtil;
+import com.jogamp.opengl.util.GLBuffers;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -37,7 +37,7 @@ public final class BufferAllocation {
      */
     public static ByteBuffer newByteBuffer(int length) throws OutOfMemoryException {
         haveFreeMemory(length);
-        ByteBuffer buffer = BufferUtil.newByteBuffer(length);
+        ByteBuffer buffer = GLBuffers.newDirectByteBuffer(length);
         if (buffer.limit() != length) {
             throw new OutOfMemoryException();
         }
@@ -52,7 +52,7 @@ public final class BufferAllocation {
      */
     public static IntBuffer newIntBuffer(int length) throws OutOfMemoryException {
         haveFreeMemory(length * Integer.SIZE / Byte.SIZE);
-        IntBuffer buffer = BufferUtil.newIntBuffer(length);
+        IntBuffer buffer = GLBuffers.newDirectIntBuffer(length);
         if (buffer.limit() != length) {
             throw new OutOfMemoryException();
         }
@@ -67,7 +67,7 @@ public final class BufferAllocation {
      */
     public static FloatBuffer newFloatBuffer(int length) throws OutOfMemoryException {
         haveFreeMemory(length * Float.SIZE / Byte.SIZE);
-        FloatBuffer buffer = BufferUtil.newFloatBuffer(length);
+        FloatBuffer buffer = GLBuffers.newDirectFloatBuffer(length);
         if (buffer.limit() != length) {
             throw new OutOfMemoryException();
         }

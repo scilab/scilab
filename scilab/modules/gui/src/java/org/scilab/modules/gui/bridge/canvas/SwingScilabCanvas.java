@@ -98,14 +98,18 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         super(new PanelLayout());
         this.figure = figure;
 
-        /*
-         * Even with the good Java 1.6 version
-         * MacOSX does not manage mixing ligthweight and heavyweight components
-         * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
-         * lead to deadlock on deletion.
-         */
-        if (OS.get() == OS.MAC) {
-            GLJPanel glCanvas = new MacOSXGLJPanel();
+	try {
+	    System.loadLibrary("gluegen2-rt");
+	} catch (Exception e) { System.err.println(e); }
+
+	    /*
+	     * Even with the good Java 1.6 version
+	     * MacOSX does not manage mixing ligthweight and heavyweight components
+	     * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
+	     * lead to deadlock on deletion.
+	     */
+	    if (OS.get() == OS.MAC) {
+		    GLJPanel glCanvas = new MacOSXGLJPanel();
             drawableComponent = glCanvas;
             glCanvas.setEnabled(true);
             add(glCanvas, PanelLayout.GL_CANVAS);
