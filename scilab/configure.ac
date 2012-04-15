@@ -892,9 +892,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_SUBST(SKINLF)
 
                 # JOGL 2
-                AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
-                JOGL=$PACKAGE_JAR_FILE
-                AC_SUBST(JOGL)
+                AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
+                JOGL2=$PACKAGE_JAR_FILE
+                AC_SUBST(JOGL2)
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
@@ -905,12 +905,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
-                   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
+                   if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
                           AC_CHECK_LIB([jogl_desktop ], [glTexParameterf],
-                       [JOGL_LIBS="-ljogl_desktop -lGL"],
+                       [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
 interface for JOGL - or libGL are installed and if the version is correct. Note
@@ -924,8 +924,8 @@ the the JNI libraries."])],
 
                 # JoGL Native <=> Java connector
                 AC_JAVA_CHECK_PACKAGE([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
-                GLUEGEN_RT=$PACKAGE_JAR_FILE
-                AC_SUBST(GLUEGEN_RT)
+                GLUEGEN2_RT=$PACKAGE_JAR_FILE
+                AC_SUBST(GLUEGEN2_RT)
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
@@ -2114,10 +2114,10 @@ echo ""
 echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
-echo "  JOGL ................ = $JOGL"
-echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
-echo "  Gluegen ............. = $GLUEGEN_RT"
-echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  JOGL 2............... = $JOGL2"
+echo "  JOGL 2 LIBS (JNI) ... = $JOGL2_LIBS"
+echo "  Gluegen 2 ........... = $GLUEGEN2_RT"
+echo "  Gluegen 2 LIBS (JNI)  = $GLUEGEN2_RT_LIBS"
 echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"

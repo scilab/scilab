@@ -755,8 +755,8 @@ JEUCLID_CORE
 JROSETTA_ENGINE
 JROSETTA_API
 JHALL
-GLUEGEN_RT
-JOGL
+GLUEGEN2_RT
+JOGL2
 SKINLF
 LOOKS
 FLEXDOCK
@@ -13464,14 +13464,14 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
       if test "" = "yes"; then
-         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 2.0 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 2.0 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
       else
-          as_fn_error $? "Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" "$LINENO" 5
+          as_fn_error $? "Could not find or use the Java package/jar jogl2 used by Scilab 3D rendering - Version 2.0 (looking for package javax.media.opengl.glu.GLUnurbs)" "$LINENO" 5
       fi
     fi
 
-                JOGL=$PACKAGE_JAR_FILE
+                JOGL2=$PACKAGE_JAR_FILE
 
 
                 if test "$MACOSX" = 1; then
@@ -13520,13 +13520,13 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_jogl_desktop_glTexParameterf" >&5
 $as_echo "$ac_cv_lib_jogl_desktop_glTexParameterf" >&6; }
 if test "x$ac_cv_lib_jogl_desktop_glTexParameterf" = xyes; then :
-  JOGL_LIBS="-ljogl"
+  JOGL2_LIBS="-ljogl"
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL" >&5
 $as_echo "$as_me: WARNING: Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL" >&2;}
 fi
 
-                   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+                   if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
                           as_ac_Lib=`$as_echo "ac_cv_lib_jogl_desktop ''_glTexParameterf" | $as_tr_sh`
@@ -13568,7 +13568,7 @@ eval ac_res=\$$as_ac_Lib
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
-  JOGL_LIBS="-ljogl_desktop -lGL"
+  JOGL2_LIBS="-ljogl_desktop -lGL"
 else
   as_fn_error $? "\"libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
@@ -13675,7 +13675,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen2-r
       fi
     fi
 
-                GLUEGEN_RT=$PACKAGE_JAR_FILE
+                GLUEGEN2_RT=$PACKAGE_JAR_FILE
 
 
                 if test "$MACOSX" = 1; then
@@ -41385,10 +41385,10 @@ echo ""
 echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
-echo "  JOGL ................ = $JOGL"
-echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
-echo "  Gluegen ............. = $GLUEGEN_RT"
-echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  JOGL 2............... = $JOGL2"
+echo "  JOGL 2 LIBS (JNI) ... = $JOGL2_LIBS"
+echo "  Gluegen 2 ........... = $GLUEGEN2_RT"
+echo "  Gluegen 2 LIBS (JNI)  = $GLUEGEN2_RT_LIBS"
 echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"

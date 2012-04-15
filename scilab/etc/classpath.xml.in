@@ -55,13 +55,13 @@ The option is "disableUnderMode" and can be:
     <load on="Xcos"/>
 </path>
 
-<path value="@JOGL@" load="onUse">
+<path value="@JOGL2@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>
 </path>
 
-<path value="@GLUEGEN_RT@" load="onUse">
+<path value="@GLUEGEN2_RT@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>

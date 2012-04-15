@@ -61,14 +61,14 @@
     <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
     <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${flexdock.jar}"/>
-    <pathelement location="${gluegen.jar}"/>
+    <pathelement location="${gluegen2.jar}"/>
     <pathelement location="${jrosetta-API.jar}"/>
     <pathelement location="${jrosetta-engine.jar}"/>
-    <pathelement location="${jogl.jar}"/>
+    <pathelement location="${jogl2.jar}"/>
     <pathelement location="${jhdf5.jar}"/>
     <pathelement location="${jhall.jar}"/>
     <pathelement location="${jgraphx.jar}"/>
-	<pathelement location="${scirenderer.jar}"/>
+    <pathelement location="${scirenderer.jar}"/>
     <!-- Only usefull for the documentation -->
     <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
     <pathelement location="${batik.jar}"/>

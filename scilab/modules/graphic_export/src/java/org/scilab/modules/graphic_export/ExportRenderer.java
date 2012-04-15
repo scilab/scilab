@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.media.opengl.GLEventListener;
-import com.sun.opengl.util.FileUtil;
+import com.jogamp.common.util.IOUtil;
 
 /**
  * Main export class
@@ -185,7 +185,7 @@ public abstract class ExportRenderer implements GLEventListener {
      * Function allowing to format the extension of the screen-shot file
      */
     public void removeExtension() {
-        String suffix = FileUtil.getFileSuffix(this.fileName); //get the suffix(extension) of the file name
+        String suffix = IOUtil.getFileSuffix(this.fileName); //get the suffix(extension) of the file name
         int pos = this.fileName.lastIndexOf('.'); // position of the dot
 
         if (suffix != null) {

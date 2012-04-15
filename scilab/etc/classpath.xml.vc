@@ -49,13 +49,13 @@ The option is "disableUnderMode" and can be:
 	<load on="Xcos"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jogl2.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>
 </path>
 
-<path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
+<path value="$SCILAB/thirdparty/gluegen2-rt.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>

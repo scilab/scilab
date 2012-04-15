@@ -31,8 +31,8 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import javax.media.opengl.GL;
-import javax.media.opengl.GLCanvas;
-import javax.media.opengl.GLJPanel;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.awt.GLJPanel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
@@ -57,7 +57,7 @@ import java.awt.image.BufferedImage;
  */
 public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
-	private static final long serialVersionUID = 6101347094617535625L;
+    private static final long serialVersionUID = 6101347094617535625L;
 
     /** The renderer canvas */
     private final Canvas rendererCanvas;
@@ -76,42 +76,39 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
       * Wrap call to removeNotify to ensure we are not outside Swing Thread
       * and PBuffer is not locked.
       */
-	private final class MacOSXGLJPanel extends GLJPanel
-	{
+    private final class MacOSXGLJPanel extends GLJPanel {
         private static final long serialVersionUID = -6166986369022555750L;
 
-        private void superRemoveNotify()
-	    {
-	        super.removeNotify();
-	    }
+        private void superRemoveNotify() {
+            super.removeNotify();
+        }
 
-	    @Override
-	    public void removeNotify() {
-	        final MacOSXGLJPanel panel = this;
-	            SwingUtilities.invokeLater(new Runnable() {
-	                    public void run() {
-	                        panel.superRemoveNotify();
-	                }
-	            });
-	        }
-	}
+        @Override
+        public void removeNotify() {
+            final MacOSXGLJPanel panel = this;
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    panel.superRemoveNotify();
+                }
+            });
+        }
+    }
 
-    public SwingScilabCanvas(int figureId, final Figure figure)
-	{
-	    super(new PanelLayout());
+    public SwingScilabCanvas(int figureId, final Figure figure) {
+        super(new PanelLayout());
         this.figure = figure;
 
-	    /*
-	     * Even with the good Java 1.6 version
-	     * MacOSX does not manage mixing ligthweight and heavyweight components
-	     * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
-	     * lead to deadlock on deletion.
-	     */
-	    if (OS.get() == OS.MAC) {
-		    GLJPanel glCanvas = new MacOSXGLJPanel();
+        /*
+         * Even with the good Java 1.6 version
+         * MacOSX does not manage mixing ligthweight and heavyweight components
+         * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
+         * lead to deadlock on deletion.
+         */
+        if (OS.get() == OS.MAC) {
+            GLJPanel glCanvas = new MacOSXGLJPanel();
             drawableComponent = glCanvas;
-		    glCanvas.setEnabled(true);
-		    add(glCanvas, PanelLayout.GL_CANVAS);
+            glCanvas.setEnabled(true);
+            add(glCanvas, PanelLayout.GL_CANVAS);
 
             rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
             drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
@@ -123,12 +120,11 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
                     GlobalEventWatcher.setAxesUID(figure.getIdentifier());
                 }
             });
-	    }
-	    else {
-	    	GLCanvas glCanvas = new GLCanvas();
+        } else {
+            GLCanvas glCanvas = new GLCanvas();
             drawableComponent = glCanvas;
-	    	glCanvas.setEnabled(true);
-	    	add(glCanvas, PanelLayout.GL_CANVAS);
+            glCanvas.setEnabled(true);
+            add(glCanvas, PanelLayout.GL_CANVAS);
 
             rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
             drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
@@ -140,8 +136,8 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
                     GlobalEventWatcher.setAxesUID(figure.getIdentifier());
                 }
             });
-	    }
-	}
+        }
+    }
 
     /**
      * Rendering canvas getter.
@@ -160,16 +156,16 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     }
 
     /**
-	 * Create a Scilab Canvas
-	 *
-	 * @param figureIndex index of the displayed figure
-	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     * Create a Scilab Canvas
+     *
+     * @param figureIndex index of the displayed figure
+     * @param antialiasingQuality Specify the number of pass to use for antialiasing.
      *                            If its value is 0, then antialiasing is disable.
-	 * @return the created canvas
-	 */
-	public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
-	    return null;
-	}
+     * @return the created canvas
+     */
+    public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+        return null;
+    }
 
     /**
      * Drawable component getter.
@@ -179,190 +175,190 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         return drawableComponent;
     }
 
-	/**
-	 * Draws a Scilab canvas
-	 *
-	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#draw()
-	 */
-	public void draw() {
-		this.setVisible(true);
-		this.doLayout();
-	}
+    /**
+     * Draws a Scilab canvas
+     *
+     * @see org.scilab.modules.gui.canvas.SimpleCanvas#draw()
+     */
+    public void draw() {
+        this.setVisible(true);
+        this.doLayout();
+    }
 
-	/**
-	 * Gets the dimensions (width and height) of a Scilab Canvas
-	 *
-	 * @return the size of the canvas
-	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#getDims()
-	 */
-	public Size getDims() {
-		return new Size(this.getWidth(), this.getHeight());
-	}
+    /**
+     * Gets the dimensions (width and height) of a Scilab Canvas
+     *
+     * @return the size of the canvas
+     * @see org.scilab.modules.gui.canvas.SimpleCanvas#getDims()
+     */
+    public Size getDims() {
+        return new Size(this.getWidth(), this.getHeight());
+    }
 
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 *
-	 * @return the position of the canvas
-	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#getPosition()
-	 */
-	public Position getPosition() {
-		return new Position(this.getX(), this.getY());
-	}
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     *
+     * @return the position of the canvas
+     * @see org.scilab.modules.gui.canvas.SimpleCanvas#getPosition()
+     */
+    public Position getPosition() {
+        return new Position(this.getX(), this.getY());
+    }
 
-	/**
-	 * Sets the dimensions (width and height) of a Scilab Canvas
-	 *
-	 * @param newSize
-	 *            the size we want to set to the canvas
-	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		// get the greatest size we can use
-		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+    /**
+     * Sets the dimensions (width and height) of a Scilab Canvas
+     *
+     * @param newSize
+     *            the size we want to set to the canvas
+     * @see org.scilab.modules.gui.canvas.SimpleCanvas#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+        // get the greatest size we can use
+        int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
 
-		// make suze size is not greater than the max size
-		Dimension finalDim = new Dimension(Math.min(newSize.getWidth(), maxSize[0]),
-										   Math.min(newSize.getHeight(), maxSize[1]));
+        // make suze size is not greater than the max size
+        Dimension finalDim = new Dimension(Math.min(newSize.getWidth(), maxSize[0]),
+                                           Math.min(newSize.getHeight(), maxSize[1]));
 
-		setSize(finalDim);
+        setSize(finalDim);
 
-		// if the size is too large, throw an exception
-		if (newSize.getWidth() > maxSize[0] || newSize.getHeight() > maxSize[1]) {
-			throw new IllegalArgumentException();
-		}
+        // if the size is too large, throw an exception
+        if (newSize.getWidth() > maxSize[0] || newSize.getHeight() > maxSize[1]) {
+            throw new IllegalArgumentException();
+        }
 
-	}
-
-
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 *
-	 * @param newPosition
-	 *            the position we want to set to the canvas
-	 * @see org.scilab.modules.gui.canvas.SimpleCanvas#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		this.setLocation(newPosition.getX(), newPosition.getY());
-	}
-	/**
-	 * Get the Figure Index : the Scilab ID of the figure.
-	 *
-	 * @return the ID.
-	 */
-	public int getFigureIndex() {
-		// to avoid storing the data everywhere
-		return getParentAxes().getFigureId();
-	}
+    }
 
 
-	/**
-	 * Set the background of the Canvas.
-	 * @param red red channel
-	 * @param green green channel
-	 * @param blue blue channel
-	 */
-	public void setBackgroundColor(double red, double green, double blue) {
-		this.setBackground(new Color((float) red, (float) green, (float) blue));
-	}
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     *
+     * @param newPosition
+     *            the position we want to set to the canvas
+     * @see org.scilab.modules.gui.canvas.SimpleCanvas#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+        this.setLocation(newPosition.getX(), newPosition.getY());
+    }
+    /**
+     * Get the Figure Index : the Scilab ID of the figure.
+     *
+     * @return the ID.
+     */
+    public int getFigureIndex() {
+        // to avoid storing the data everywhere
+        return getParentAxes().getFigureId();
+    }
 
-	/**
-	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
-	 *                or a sequence of press-release
-	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
-	 * @param initialRect if not null specify the initial rectangle to draw
-	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
-	 * @return Scilab code of the pressed button
-	 */
-	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-		return ScilabRubberBox.getRectangle(this, isClick, isZoom, initialRect, endRect);
-	}
 
-	/**
-	 * Disable the canvas befor closing
-	 */
-	public void close() {
-	}
+    /**
+     * Set the background of the Canvas.
+     * @param red red channel
+     * @param green green channel
+     * @param blue blue channel
+     */
+    public void setBackgroundColor(double red, double green, double blue) {
+        this.setBackground(new Color((float) red, (float) green, (float) blue));
+    }
 
-	/**
-	 * Take a screenshot of the figure and put it into a BufferedImage
-	 * @return a BufferedImage
-	 */
-	public BufferedImage dumpAsBufferedImage() {
-		return null;
-	}
+    /**
+     * Create an interactive selection rectangle and return its pixel coordinates
+     * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
+     *                or a sequence of press-release
+     * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
+     * @param initialRect if not null specify the initial rectangle to draw
+     * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+     * @return Scilab code of the pressed button
+     */
+    public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+        return ScilabRubberBox.getRectangle(this, isClick, isZoom, initialRect, endRect);
+    }
 
-	/**
-	 * Set double buffer mode on or Off
-	 * @param useSingleBuffer if true use single buffer if false use double buffering
-	 */
-	public void setSingleBuffered(boolean useSingleBuffer) {
+    /**
+     * Disable the canvas befor closing
+     */
+    public void close() {
+    }
 
-	}
+    /**
+     * Take a screenshot of the figure and put it into a BufferedImage
+     * @return a BufferedImage
+     */
+    public BufferedImage dumpAsBufferedImage() {
+        return null;
+    }
 
-	/**
-	 * @return the axes object containing the canvas
-	 */
-	private SwingScilabAxes getParentAxes() {
-		return null;
-	}
+    /**
+     * Set double buffer mode on or Off
+     * @param useSingleBuffer if true use single buffer if false use double buffering
+     */
+    public void setSingleBuffered(boolean useSingleBuffer) {
 
-	/**
-	 * Override set cursor in order to be able to modify the cursor
-	 * on the axes and not on the canvas itself
-	 * @param newCursor cursor to apply on the canvas
-	 */
-	public void setCursor(Cursor newCursor) {
-		getParentAxes().setCursor(newCursor);
-	}
+    }
 
-	/**
-	 * The canvas is not focusable, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void addFocusListener(FocusListener listener) {
-		getParentAxes().addFocusListener(listener);
-	}
+    /**
+     * @return the axes object containing the canvas
+     */
+    private SwingScilabAxes getParentAxes() {
+        return null;
+    }
 
-	/**
-	 * The canvas is not focusable, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void removeFocusListener(FocusListener listener) {
-		getParentAxes().removeFocusListener(listener);
-	}
+    /**
+     * Override set cursor in order to be able to modify the cursor
+     * on the axes and not on the canvas itself
+     * @param newCursor cursor to apply on the canvas
+     */
+    public void setCursor(Cursor newCursor) {
+        getParentAxes().setCursor(newCursor);
+    }
 
-	/**
-	 * The canvas is not enabled, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void addMouseListener(MouseListener listener) {
-		getParentAxes().addMouseListener(listener);
-	}
+    /**
+     * The canvas is not focusable, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void addFocusListener(FocusListener listener) {
+        getParentAxes().addFocusListener(listener);
+    }
 
-	/**
-	 * The canvas is not enabled, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void removeMouseListener(MouseListener listener) {
-		getParentAxes().removeMouseListener(listener);
-	}
+    /**
+     * The canvas is not focusable, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void removeFocusListener(FocusListener listener) {
+        getParentAxes().removeFocusListener(listener);
+    }
 
-	/**
-	 * The canvas is not enabled, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void addMouseMotionListener(MouseMotionListener listener) {
-		getParentAxes().addMouseMotionListener(listener);
-	}
+    /**
+     * The canvas is not enabled, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void addMouseListener(MouseListener listener) {
+        getParentAxes().addMouseListener(listener);
+    }
 
-	/**
-	 * The canvas is not enabled, so add the listener to the parent instead
-	 * @param listener listener to add
-	 */
-	public void removeMouseMotionListener(MouseMotionListener listener) {
-		getParentAxes().removeMouseMotionListener(listener);
-	}
+    /**
+     * The canvas is not enabled, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void removeMouseListener(MouseListener listener) {
+        getParentAxes().removeMouseListener(listener);
+    }
+
+    /**
+     * The canvas is not enabled, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void addMouseMotionListener(MouseMotionListener listener) {
+        getParentAxes().addMouseMotionListener(listener);
+    }
+
+    /**
+     * The canvas is not enabled, so add the listener to the parent instead
+     * @param listener listener to add
+     */
+    public void removeMouseMotionListener(MouseMotionListener listener) {
+        getParentAxes().removeMouseMotionListener(listener);
+    }
 
     /**
      * Adds the listener handling key events to the canvas.

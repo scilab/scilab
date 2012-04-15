@@ -5,11 +5,11 @@ commons-logging.jar=@COMMONS_LOGGING@
 
 flexdock.jar=@FLEXDOCK@
 
-jogl.jar=@JOGL@
+jogl2.jar=@JOGL2@
 
 jhall.jar=@JHALL@
 
-gluegen.jar=@GLUEGEN_RT@
+gluegen2.jar=@GLUEGEN2_RT@
 
 jhdf5.jar=@JHDF5@
 
