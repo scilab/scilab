@@ -80,21 +80,20 @@ public final class BufferAllocation {
      * @throws OutOfMemoryException if there was not enough memory.
      */
     private static void haveFreeMemory(int length) throws OutOfMemoryException {
-      /*
-      System.out.println("FM : " + Runtime.getRuntime().freeMemory() / (1024 * 1024));
-      System.out.println("TM : " + Runtime.getRuntime().totalMemory() / (1024 * 1024));
-      System.out.println("MM : " + Runtime.getRuntime().maxMemory() / (1024 * 1024));
-      */
-      /*
+        final long max = Runtime.getRuntime().maxMemory();
+        long total = Runtime.getRuntime().totalMemory();
         long free = Runtime.getRuntime().freeMemory();
-        if (free < length + REMAINING_MEMORY) {
+
+        long realFree = max - total + free;
+        if (realFree < length + REMAINING_MEMORY) {
             Runtime.getRuntime().gc();
+            total = Runtime.getRuntime().totalMemory();
             free = Runtime.getRuntime().freeMemory();
         }
 
-        if (free < length + REMAINING_MEMORY) {
+        realFree = max - total + free;
+        if (realFree < length + REMAINING_MEMORY) {
             throw new OutOfMemoryException();
         }
-        */
     }
 }
