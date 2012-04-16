@@ -24,6 +24,9 @@ $SCILAB : scilab path (SCI in Scilab)
   <!-- Set Java Heap space to 256mb -->
   <option value="-Xmx256m"/>
   <option value="-Dapple.laf.useScreenMenuBar=true" os="macosx"/>
+  
+  <!-- workaround https://jogamp.org/bugzilla/show_bug.cgi?id=563 -->
+  <option value="-Djogamp.gluegen.UseTempJarCache=false"/>
   <!-- DISABLE Just In Time java compiler -->
   <!--
 <option value="-Djava.compiler=NONE"/>
