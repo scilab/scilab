@@ -232,6 +232,8 @@ Documentation
 
 * Bug #10881 fixed - Typo in ftest and ftuneq fixed.
 
+* Bug #11010 fixed - Examples of preconditioning added in gmres documentation.
+
 
 Xcos
 ====

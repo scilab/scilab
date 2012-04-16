@@ -127,9 +127,6 @@ if (rhs >= 6),
       error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",4,2));
     end
   end
-  if (precondType == 0),
-    M = varargin(3);
-  end
 else
   precondType = 2; // no preconditionning
 end
