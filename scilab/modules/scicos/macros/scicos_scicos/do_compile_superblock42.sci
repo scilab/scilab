@@ -889,14 +889,120 @@ function ok=gen_ccode42();
            end
       end
 
+      if readGlobal <> []
+          // Generate global C variables
+          // #define global_XXX_Size
+          // #define global_XXX_Time_Size
+          // static double **global_XXX
+          // static double global_XXX_Time (manage time <-> values association)
+           for i = 1:size(readGlobal, '*')
+               mputl(['/*---------------------------------------- Global Variable '+readGlobal(i)+' */'
+                      '#define global_'+readGlobal(i)+'_Size    '+string(readGlobalSize(i))
+                      '#define global_'+readGlobal(i)+'_Time_Size    '+string(readGlobalTimeSize(i))
+                      'static double **global_'+readGlobal(i)+';'
+                      'static double *global_'+readGlobal(i)+'_Time = 0;'
+                     ], fd);
+           end
+      end
+
+
 
       if (readGlobal <> [])
-          for i = readGlobal
-              mputl(['/*---------------------------------------- Read variable '+i+' */'
-                     'void readGlobal_'+i+'(scicos_block *block, int flag)'
+          for i = 1:size(readGlobal, '*')
+              mputl(['/*---------------------------------------- Read variable '+readGlobal(i)+' */'
+                     'void readGlobal_'+readGlobal(i)+'(scicos_block *block, int flag)'
                      '{'
-                     '    // Read a scilab Environment variable '+i
-                     '    fromws_c(block, flag);'
+                     '    int i = 0;'
+                     '    int j = 0;'
+                     '    double *y_d = NULL;'
+                     ''
+                     '    /* Read a scilab Environment variable '+readGlobal(i)+' */'
+                     '    switch(flag)'
+                     '    {'
+                    ], fd)
+              //
+              // Init case : allocate data / timetable
+              // Feal data/timetable with values from Scilab.
+              //
+              mputl(['    case 4 : /* init */'
+                     '    {'
+                     '        // Allocate time table'
+                     '        global_'+readGlobal(i)+'_Time = (double *) malloc(global_'+readGlobal(i)+'_Time_Size * sizeof(double));'
+                     '        memset(global_'+readGlobal(i)+'_Time, 0x0, global_'+readGlobal(i)+'_Time_Size * sizeof(double));'
+                     ''
+                     '        // Allocate data'
+                     '        global_'+readGlobal(i)+' = (double **) malloc(global_'+readGlobal(i)+'_Time_Size * sizeof(double *));'
+                     '        for (i = 0 ; i < global_'+readGlobal(i)+'_Time_Size ; ++i)'
+                     '        {'
+                     '            global_'+readGlobal(i)+'[i] = (double *) malloc( global_'+readGlobal(i)+'_Size * sizeof(double));'
+                     '            memset(global_'+readGlobal(i)+'[i], 0x0, global_'+readGlobal(i)+'_Size * sizeof(double));'
+                     '        }'
+                     ''
+                     ], fd);
+              // Save format
+              oldFormat = format();
+              format(25);
+
+              // Fead timetable
+              for (j = 1:readGlobalTimeSize(i))
+                  mputl(['    global_'+readGlobal(i)+'_Time['+string(j-1)+'] = ' + ...
+                         strsubst(string(evstr(readGlobal(i)+'.time('+string(j)+')')), "D", "E")+';'
+                        ], fd)
+              end
+              // Fead data
+              for (j = 1:readGlobalTimeSize(i))
+                  for (k = 1:readGlobalSize(i))
+                  mputl(['    global_'+readGlobal(i)+'['+string(j-1)+']['+string(k-1)+'] = ' + ...
+                         strsubst(string(evstr(readGlobal(i)+'.values('+string(j)+', '+string(k)+')')), "D", "E")+';'
+                      ], fd)
+
+                  end
+              end
+
+              // Restore format
+              format(oldFormat(2), oldFormat(1));
+
+              mputl([''
+                     '        break;'
+                     '    }'
+                     ],fd);
+              //
+              // Output update case :
+              //
+              mputl(['    case 1 : /* output update */'
+                     '    {'
+                     '        j = 0;'
+                     '        while(get_scicos_time() >  global_'+readGlobal(i)+'_Time[j] && j < global_'+readGlobal(i)+'_Time_Size)'
+                     '        {'
+                     '            j++;'
+                     '        }'
+                     '        y_d = GetRealOutPortPtrs(block,1);'
+                     '        if (j == global_'+readGlobal(i)+'_Time_Size)'
+                     '        {'
+                     '            memset(y_d, 0x0, global_'+readGlobal(i)+'_Size * sizeof(double));'
+                     '        }'
+                     '        else'
+                     '        {'
+                     '            memcpy(y_d, global_'+readGlobal(i)+'[j], global_'+readGlobal(i)+'_Size * sizeof(double));'
+                     '        }'
+                     '        break;'
+                     '    }'
+                     ],fd);
+              //
+              // End, free memory.
+              //
+              mputl(['    case 5 : /* END */'
+                     '    {'
+                     '        for (i = 0 ; i < global_'+readGlobal(i)+'_Time_Size ; ++i)'
+                     '        {'
+                     '            free(global_'+readGlobal(i)+'[i]);'
+                     '        }'
+                     '        free(global_'+readGlobal(i)+');'
+                     '        break;'
+                     '    }'
+                    ],fd);
+              // Close switch + function declaration
+              mputl(['    }'
                      '}'
                     ], fd);
           end
@@ -936,12 +1042,12 @@ function ok=gen_ccode42();
                      '        global_'+writeGlobal(i)+'_Index = (global_'+writeGlobal(i)+'_Index + 1) % global_'+writeGlobal(i)+'_Size;'
                      '        memcpy(global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Index], block->inptr[i], nu * nu2 * sizeof(double));'
                      '#ifdef VERBOSE'
-                     '        printf(""C_'+writeGlobal(i)+'.time(%d) = %f;\n"", global_'+writeGlobal(i)+'_Index + 1, get_scicos_time());'
+                     '        printf(""C_'+writeGlobal(i)+'.time(%d) = %.25E;\n"", global_'+writeGlobal(i)+'_Index + 1, get_scicos_time());'
                      '        for (i = 0 ; i < global_'+writeGlobal(i)+'_Size ; ++i)'
                      '        {'
                      '            for (j = 0 ; j < nu * nu2 ; ++j)'
                      '            {'
-                     '                printf(""C_'+writeGlobal(i)+'.values(%d, %d) = %f;\n"", i + 1, j + 1, global_'+writeGlobal(i)+'[i][j]);'
+                     '                printf(""C_'+writeGlobal(i)+'.values(%d, %d) = %.25E;\n"", i + 1, j + 1, global_'+writeGlobal(i)+'[i][j]);'
                      '            }'
                      '        }'
                      '#endif /* !VERBOSE */'
@@ -1101,6 +1207,9 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   writeGlobal = [];
   writeGlobalSize = [];
   readGlobal = [];
+  readGlobalTimeSize = [];
+  readGlobalSize = [];
+
   for i=1:size(scs_m.objs)
     if typeof(scs_m.objs(i))=='Block' then
       if scs_m.objs(i).gui=='CLKOUT_f' then
@@ -1185,9 +1294,15 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
           writeGlobal = [writeGlobal towsObj.graphics.exprs(2)];
           writeGlobalSize = [writeGlobalSize bllst(i).ipar(1)];
       elseif bllst(i).sim(1) == 'fromws_c' then
-          // FIXME: Do the same research as in tows_c case
-          bllst(i).sim(1) = 'readGlobal_Var' + string(bllst(i).ipar(2));
-          readGlobal = [readGlobal 'Var' + string(bllst(i).ipar(2))];
+          fromwsObjIndex = corinv(i);
+          fromwsObj = scs_m.objs(fromwsObjIndex(1));
+          for j = 2:size(fromwsObjIndex, '*')
+              fromwsObj = fromwsObj.model.rpar.objs(fromwsObjIndex(j));
+          end
+          bllst(i).sim(1) = 'readGlobal_' + fromwsObj.graphics.exprs(1);
+          readGlobal = [readGlobal + fromwsObj.graphics.exprs(1)];
+          readGlobalTimeSize = [readGlobalTimeSize evstr("size(" + fromwsObj.graphics.exprs(1) + ".time, ""*"")")]
+          readGlobalSize = [readGlobalSize evstr("size(" + fromwsObj.graphics.exprs(1) + ".values(1), ""*"")")]
       end
   end
 
@@ -1489,12 +1604,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   for i=1:length(funs)-1
     if funtyp(i)==3 then
       msg=[msg;'Type 3 block''s not allowed']
-//RN   elseif ztyp(i)<>0 then
-    //elseif (zcptr(i+1)-zcptr(i))<>0 then
-//
-      //msg=[msg;'Active zero crossing block''s not allowed']
-    elseif (clkptr(i+1)-clkptr(i))<>0 &funtyp(i)>-1 &funs(i)~='bidon' then
-      msg=[msg;'Regular block generating activation not allowed yet']
+      break;
     end
     if msg<>[] then message(msg),ok=%f,return,end
   end
@@ -3271,6 +3381,7 @@ endfunction
 //
 // rmq : La fonction zdoit n'est pas utilis?e pour le moment
 function make_standalone42(filename)
+
   x=cpr.state.x;
   modptr=cpr.sim.modptr;
   rpptr=cpr.sim.rpptr;
@@ -3396,7 +3507,9 @@ function make_standalone42(filename)
          '/* Main program */'
          'int main(int argc, char *argv[])'
          '{'
-         '  double tf=30,dt=0.1,h=0.001;'
+         '  double tf=30;'  // FIXME : Add current simulation tf.
+         '  double dt=0.1;' // FIXME : Try to figure out what is the given Simulation step.
+         '  double h=0.001;'
          '  int solver=3;'
          '  char * progname = argv[0];'
          '  int c;'
