@@ -141,14 +141,11 @@ namespace types
 #endif
     }
 
-    std::wstring ThreadId::toString()
+    bool ThreadId::toString(std::wostringstream& ostr)
     {
-        std::wostringstream ostr;
-
         ostr << L"ThreadId : " << this << std::endl;
         ostr << L"Status : " << StatusToString(this->getStatus());
-
-        return ostr.str();
+        return true;
     }
 }
 

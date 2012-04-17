@@ -37,13 +37,9 @@ namespace types
 		return RealListUndefinedOperation;
 	}
 
-    std::wstring ListUndefined::toString()
-	{
-        std::wostringstream ostr;
-
-	  //FIXME : Implement me.
-	  ostr << L"    Undefined" << std::endl;
-
-	  return ostr.str();
-	}
+    bool ListUndefined::toString(std::wostringstream& ostr)
+    {
+        ostr << L"    Undefined" << std::endl;
+        return true;
+    }
 }

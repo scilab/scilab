@@ -50,7 +50,7 @@ namespace types
 
         GenericType*                    getColumnValues(int _iPos);
 
-        std::wstring                    toString();
+        bool                            toString(std::wostringstream& ostr);
 
         bool                            isList() { return true; }
 

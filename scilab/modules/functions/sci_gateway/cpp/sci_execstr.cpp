@@ -252,7 +252,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 					std::wostringstream ostr;
 					ostr << L" ans  =" << std::endl;
 					ostr << std::endl;
-					ostr << pITAns->toString() << std::endl;
+                    pITAns->toString(ostr);
+					ostr << std::endl;
 					scilabWriteW(ostr.str().c_str());
 				}
 			}

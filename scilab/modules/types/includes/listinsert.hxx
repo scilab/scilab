@@ -32,7 +32,7 @@ namespace types
 
         void                    whoAmI();
 
-        std::wstring            toString();
+        bool                    toString(std::wostringstream& ostr);
         InternalType*           getInsert();
 
         /* return type as string ( double, int, cell, list, ... )*/

@@ -30,7 +30,7 @@ namespace types
         virtual                 ~ThreadId();
 
         bool                    isThreadId() { return true; }
-        std::wstring            toString();
+        bool                    toString(std::wostringstream& ostr);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring    getTypeStr() {return L"ThreadId";}

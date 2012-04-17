@@ -186,11 +186,12 @@ namespace types
         return pOut;
     }
 
-    std::wstring SingleStruct::toString()
+    bool SingleStruct::toString(std::wostringstream& ostr)
     {
         if(m_pData->size() == 0)
         {
-            return L"empty SingleStruct";
+            ostr << L"empty SingleStruct";
+            return true;
         }
         else
         {
@@ -201,9 +202,9 @@ namespace types
             {
                 str += (*itValues).first + L" : " + (*itValues).second->getTypeStr() + L"\n";
             }
-            return str;
+            ostr << str;
         }
-        return L"";
+        return true;
     }
 
     bool SingleStruct::addField(const std::wstring& _sKey)

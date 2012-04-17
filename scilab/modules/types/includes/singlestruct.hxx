@@ -37,7 +37,7 @@ namespace types
 
         RealType                                getType(void) {return RealSingleStruct;}
 
-        std::wstring                            toString();
+        bool                                    toString(std::wostringstream& ostr);
 
         bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
         InternalType*                           get(const std::wstring& _sKey);

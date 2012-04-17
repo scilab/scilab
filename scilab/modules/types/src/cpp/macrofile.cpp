@@ -52,14 +52,10 @@ namespace types
         return RealMacroFile; 
     }
 
-    wstring MacroFile::toString()
+    bool MacroFile::toString(std::wostringstream& ostr)
     {
-        wostringstream ostr;
-
-        // FIXME : Implement me.
         ostr << L"FIXME : Implement MacroFile::toString" << std::endl;
-
-        return ostr.str();
+        return true;
     }
 
     Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)

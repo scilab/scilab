@@ -15,6 +15,7 @@
 
 #include <sstream>
 #include "dynlib_types.h"
+#include "os_swprintf.h"
 
 #define SIZE_BETWEEN_TWO_VALUES         2
 #define SPACE_BETWEEN_TWO_VALUES        L"  "
@@ -30,6 +31,8 @@
 #define MINUS_STRING_INT                L" -"
 #define SYMBOL_I                        L"i"
 
+
+#define MAX_LINES                       100
 #ifndef _MSC_VER
 #include <inttypes.h>
 #define _abs64(x) llabs(x)
@@ -71,51 +74,59 @@ template <typename T>
 void getUnsignedIntFormat(T _TVal, int *_piWidth)
 {
     *_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
+    *_piWidth += 1;
 }
 
 template <typename T>
 void getSignedIntFormat(T _TVal, int *_piWidth)
 {
     *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+    *_piWidth += 1;
 }
 
 template <typename T>
 void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
+    wchar_t* pwstSign = NULL;
+    wchar_t pwstFormat[32];
+    wchar_t pwstOutput[32];
 	if(bPrintPlusSign == true)
 	{
-		*_postr << PLUS_STRING;
+		pwstSign = PLUS_STRING;
 	}
 	else
 	{
-		*_postr << NO_SIGN;
+		pwstSign = NO_SIGN;
 	}
-
-	configureStream(_postr, _iWidth, 0, ' ');
 
 	if(bPrintOne == true || _TVal != 1)
 	{
-        *_postr << std::right << static_cast<unsigned long long>(_TVal);
+        os_swprintf(pwstFormat, 32, L" %ls%ld", pwstSign, _abs64(_TVal));
+        os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
+        *_postr << pwstOutput;
 	}
 }
 
 template <typename T>
 void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
+    const wchar_t* pwstSign = NULL;
+    wchar_t pwstFormat[32];
+    wchar_t pwstOutput[32];
 	if(bPrintPlusSign == true)
 	{
-		*_postr << (_TVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
+		pwstSign = (_TVal < 0 ? L"-" : L"+");
 	}
 	else
 	{
-		*_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
+		pwstSign = (_TVal < 0 ? L"-" : L" ");
 	}
-
-	configureStream(_postr, _iWidth, 0, ' ');
 
 	if(bPrintOne == true || _TVal != 1)
 	{
-        *_postr << std::right << static_cast<long long>(_abs64(_TVal));
+        os_swprintf(pwstFormat, 32, L" %ls%ld", pwstSign, _abs64(_TVal));
+        os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
+        *_postr << pwstOutput;
 	}
 }
 

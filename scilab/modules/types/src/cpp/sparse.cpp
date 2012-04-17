@@ -546,7 +546,7 @@ namespace types
     }
 
     // TODO: handle precision and line length
-    std::wstring Sparse::toString() const
+    bool Sparse::toString(std::wostringstream& ostr) const
     {
         int iPrecision = getFormatSize();
         std::wstring res;
@@ -558,7 +558,9 @@ namespace types
         {
             res = ::toString(*matrixCplx, iPrecision);
         }
-        return res;
+
+        ostr << res;
+        return true;
     }
 
     bool Sparse::resize(int _iNewRows, int _iNewCols)
@@ -1404,9 +1406,10 @@ namespace types
     }
 
 
-    std::wstring  SparseBool::toString() const
+    bool SparseBool::toString(std::wostringstream& ostr) const
     {
-        return ::toString(*matrixBool, 0);
+        ostr << ::toString(*matrixBool, 0);
+        return true;
     }
 
     void SparseBool::whoAmI() CONST

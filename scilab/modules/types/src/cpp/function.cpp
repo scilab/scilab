@@ -95,14 +95,12 @@ namespace types
         std::cout << "types::Function";
     }
 
-    std::wstring Function::toString()
+    bool Function::toString(std::wostringstream& ostr)
     {
-        std::wostringstream ostr;
-
         // FIXME : Implement me.
         ostr << L"FIXME : Implement Function::toString" << std::endl;
 
-        return ostr.str();
+        return true;
     }
 
     InternalType* Function::clone()

@@ -354,13 +354,12 @@ namespace types
 		return true;
 	}
 
-    std::wstring Float::toString()
+    bool Float::toString(std::wostringstream& ostr)
 	{
-        std::wostringstream ostr;
 		// FIXME : Implement display method.
 		ostr << L"Float Values" << std::endl;
 
-		return ostr.str();
+		return true;
 	}
 
 }

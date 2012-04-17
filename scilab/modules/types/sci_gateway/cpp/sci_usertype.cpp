@@ -46,9 +46,10 @@ public :
     std::wstring getShortTypeStr()       { return m_shortName; }
 
     /* This is Scilab standard display or in disp. */
-    std::wstring toString()
+    bool toString(std::wostringstream& ostr)
     {
-        return L"I'm a user dataType: " + m_longName + L" (" + m_shortName + L").";
+        ostr << L"I'm a user dataType: " + m_longName + L" (" + m_shortName + L").";
+        return true;
     }
 
 private :

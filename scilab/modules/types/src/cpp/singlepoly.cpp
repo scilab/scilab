@@ -340,15 +340,11 @@ namespace types
 		}
 	}
 
-	wstring SinglePoly::toString()
-	{
-	  wostringstream ostr;
-
-	  // FIXME : implement this.
-	  ostr << L"FIXME : implement SinglePoly::toString" << std::endl;
-
-	  return ostr.str();
-	}
+    bool SinglePoly::toString(std::wostringstream& ostr)
+    {
+        ostr << L"FIXME : implement SinglePoly::toString" << std::endl;
+        return true;
+    }
 
 	void SinglePoly::toStringReal(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{

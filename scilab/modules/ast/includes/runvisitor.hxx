@@ -39,6 +39,7 @@ extern "C" {
 #include "doublecomplex.h"
 #include "matrix_transpose.h"
 #include "os_swprintf.h"
+#include "more.h"
 }
 
 #include "timer.hxx"
@@ -1588,9 +1589,9 @@ namespace ast
 
         void VariableToString(types::InternalType* pIT)
         {
-            std::wostringstream ostr;
             if(pIT->isMList() || pIT->isTList())
             {//call overload %type_p
+                std::wostringstream ostr;
                 types::typed_list in;
                 types::typed_list out;
 
@@ -1603,17 +1604,33 @@ namespace ast
                 }
                 catch(ScilabError /*&e*/)
                 {
-                    ostr << pIT->toString();
+                    pIT->toString(ostr);
+                    scilabWriteW(ostr.str().c_str());
                 }
                 
                 pIT->DecreaseRef();
             }
             else
             {
-                ostr << pIT->toString();
-            }
+                std::wostringstream ostr;
 
-            scilabWriteW(ostr.str().c_str());
+                //to manage lines information
+                int iLines = ConfigVariable::getConsoleLines();
+
+                bool bFinish = false;
+                do
+                {//block by block
+                    bFinish = pIT->toString(ostr);
+                    scilabWriteW(ostr.str().c_str());
+                    if(bFinish == false && iLines != 0)
+                    {//show message on prompt
+                        bFinish = linesmore() == 1;
+                    }
+                    ostr.str(L"");
+                }while(bFinish == false);
+
+                pIT->clearPrintState();
+            }
         }
 
         /** \} */

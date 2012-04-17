@@ -107,23 +107,31 @@ namespace types
         return true;
     }
 
-    void Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        int iCurrentLine = 0;
         int iLineLen = getConsoleWidth();
+        int iMaxLines = getConsoleLines();
 
-        /*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
         if(isScalar())
         {//scalar
             _piDims[0] = 0;
             _piDims[1] = 0;
             int iPos = getIndex(_piDims);
-            ostr << L"  ";
-            ostr << (get(iPos) == 1 ? L"T" : L"F");
+            ostr << (get(iPos) == 1 ? L"  T" : L"  F");
+            ostr << std::endl;
         }
         else if(getCols() == 1)
         {//column vector
-            for(int i = 0 ; i < getRows() ; i++)
+            for(int i = m_iRows1PrintState ; i < getRows() ; i++)
             {
+                iCurrentLine++;
+                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                {
+                    m_iRows1PrintState = i;
+                    return false;
+                }
+
                 _piDims[1] = 0;
                 _piDims[0] = i;
                 int iPos = getIndex(_piDims);
@@ -133,99 +141,130 @@ namespace types
         }
         else if(getRows() == 1)
         {//row vector
-            bool bWordWarp = false;
-            int iLineTag = 5000; //or not Oo
-            std::wstring szTemp;
+            std::wostringstream ostemp;
+            int iLastVal = m_iCols1PrintState;
+            int iLen = 0;
 
-            if(iLineLen == -1)
+            for(int i = m_iCols1PrintState ; i < getCols() ; i++)
             {
-                bWordWarp = true;
-            }
-
-            for(int i = 0 ; i < getCols() ; i++)
-            {
-
                 _piDims[0] = 0;
                 _piDims[1] = i;
                 int iPos = getIndex(_piDims);
-                if(bWordWarp == false && static_cast<int>(szTemp.size() + 1) >= iLineLen)
+
+                if(iLen + 2 >= iLineLen)
                 {
-                    bWordWarp = true;
-                    iLineTag	= i;
+                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
+                    if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                    {
+                        m_iCols1PrintState = iLastVal;
+                        return false;
+                    }
+
+                    ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
+                    ostr << L" " << ostemp.str() << std::endl;
+                    ostemp.str(L"");
+                    iLastVal = i;
+                    iLen = 0;
                 }
 
-                szTemp += L"  ";
-                if(bWordWarp == true && i%iLineTag == 0)
-                {
-                    ostr << std::endl << L"         column " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << i << std::endl << std::endl;
-                    ostr << szTemp << std::endl;
-                    szTemp	= L"  ";
-                }
-
-                szTemp += (get(iPos) ? L"T" : L"F");
+                ostemp << (get(iPos) ? L" T" : L" F");
+                iLen += 2;
             }
 
-            if(bWordWarp == true)
+            if(iLastVal != 0)
             {
-                ostr << std::endl << L"         column " << (getCols() - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << getCols() << std::endl << std::endl;
+                ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << getCols() << std::endl << std::endl;
             }
-            ostr << szTemp;
+            ostr << L" " << ostemp.str() << std::endl;
         }
         else
         {
             std::wostringstream ostemp;
             int iLen = 0;
-            int iLastCol = 0;
+            int iLastCol = m_iCols1PrintState;
 
             //compute the row size for padding for each printed bloc.
-            for(int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
+            for(int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
             {
-                if(iLen + SIZE_BOOL > iLineLen)
+                if(iLen + 2 > iLineLen)
                 {//find the limit, print this part
-                    for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+                    for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
                     {
-                        ostemp << L"  ";
+                        iCurrentLine++;
+                        if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
+                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) || 
+                            (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
+                        {
+                            if(m_iRows2PrintState == 0 && iRows2 != 0)
+                            {//add header
+                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                            }
+                            ostr << L" " << ostemp.str();
+                            m_iRows2PrintState = iRows2;
+                            m_iCols1PrintState = iLastCol;
+                            return false;
+                        }
+
                         for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                         {
                             _piDims[0] = iRows2;
                             _piDims[1] = iCols2;
-
                             int iPos = getIndex(_piDims);
-                            ostemp << (get(iPos) == 0 ? L"F" : L"T");
-                            ostemp << SPACE_BETWEEN_BOOL;
+                            ostemp << (get(iPos) == 0 ? L" F" : L" T");
                         }
-                        ostemp << std::endl;
+                        ostemp << std::endl << L" ";
                     }
                     iLen = 0;
-                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;;
-                    ostr << ostemp.str();
+                    iCurrentLine++;
+                    if(m_iRows2PrintState == 0)
+                    {
+                        iCurrentLine += 3;
+                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                    }
+
+                    ostr << L" " << ostemp.str();
                     ostemp.str(L"");
                     iLastCol = iCols1;
-
+                    m_iRows2PrintState = 0;
+                    m_iCols1PrintState = 0;
                 }
-                iLen += SIZE_BOOL + SIZE_BETWEEN_BOOL;
+                iLen += 2;
             }
 
-            for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+            for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
             {
-                ostemp << L"  ";
+                iCurrentLine++;
+                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                {
+                    if(m_iRows2PrintState == 0 && iLastCol != 0)
+                    {//add header
+                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                    }
+
+                    ostr << ostemp.str();
+                    m_iRows2PrintState = iRows2;
+                    m_iCols1PrintState = iLastCol;
+                    return false;
+                }
+
                 for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
                 {
                     _piDims[0] = iRows2;
                     _piDims[1] = iCols2;
-
                     int iPos = getIndex(_piDims);
-                    ostemp << (get(iPos) == 0 ? L"F" : L"T");
-                    ostemp << SPACE_BETWEEN_BOOL;
+
+                    ostemp << (get(iPos) == 0 ? L" F" : L" T");
                 }
-                ostemp << std::endl;
+                ostemp << std::endl << L" ";
             }
-            if(iLastCol != 0)
+            if(m_iRows2PrintState == 0 && iLastCol != 0)
             {
                 ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
             }
             ostr << ostemp.str();
         }
+
+        return true;
     }
 
     bool Bool::operator==(const InternalType& it)

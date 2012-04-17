@@ -364,7 +364,7 @@ namespace types
         }
     }
 
-    void Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
         int iPrecision = getFormatSize();
         int iLineLen = getConsoleWidth();
@@ -446,7 +446,7 @@ namespace types
                 ostr << getMatrixString(_piDims, _iDims, false);
             }
         }
-        ostr << endl;
+        return true;
     }
 
     wstring Polynom::getMatrixString(int* _piDims, int _iDims, bool _bComplex)

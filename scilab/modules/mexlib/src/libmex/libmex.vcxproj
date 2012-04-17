@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -74,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -115,7 +115,7 @@ cd ..
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -152,7 +152,7 @@ cd ..
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -192,7 +192,7 @@ cd ..
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -263,6 +263,8 @@ cd ..
     </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    <ProjectReference Include="..\..\..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>

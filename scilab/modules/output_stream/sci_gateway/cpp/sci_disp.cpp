@@ -36,8 +36,10 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
+        std::wostringstream ostr;
+        (*it)->toString(ostr);
         scilabForcedWriteW(L"\n");
-		scilabForcedWriteW((*it)->toString().c_str());
+		scilabForcedWriteW(ostr.str().c_str());
 	}
 
 	scilabForcedWriteW(L"\n");

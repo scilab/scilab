@@ -226,7 +226,7 @@ namespace types
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    void Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
         int iPrecision = getFormatSize();
 
@@ -338,6 +338,7 @@ namespace types
             delete[] piTypeLen;
         }
         ostr << std::endl;
+        return true;
     }
 
     //bool Cell::append(int _iRows, int _iCols, Cell *_poSource)

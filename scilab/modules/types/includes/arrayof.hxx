@@ -46,11 +46,14 @@ namespace types
         T*                      m_pRealData;
         T*                      m_pImgData;
 
+
                                 ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
+
         virtual                 ~ArrayOf()
         {
             //delete[] m_piDims;
         }
+
 
         /*internal constructor*/
         void create(int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
@@ -1402,21 +1405,21 @@ namespace types
 		    return pOut;
 	    }
 
-        virtual std::wstring toString()
+        virtual bool toString(std::wostringstream& ostr)
         {
-            std::wostringstream ostr;
             int* piDims = new int[m_iDims];
-
-            parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
-            return ostr.str();
+            bool bFinish = parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
+            delete[] piDims;
+            return bFinish;
         }
 
-        void parseSubMatrix(std::wostringstream& ostr, int* _piDims, int _iDims, int _iDim)
+        bool parseSubMatrix(std::wostringstream& ostr, int* _piDims, int _iDims, int _iDim)
         {
+            bool bFinish = false;
             if(_iDim == 1)
             {//we have reach 2-dim matrix
 
-                if(m_iDims > 2)
+                if(m_iDims > 2 && m_bPrintFromStart)
                 {//only print for dims > 2
                     ostr << L"(:,:";
                     for(int i = 2 ; i < _iDims ; i++)
@@ -1426,20 +1429,43 @@ namespace types
                     ostr << L")" << std::endl << std::endl;
                 }
 
-                subMatrixToString(ostr, _piDims, _iDims);
+                //reset flag to print dims on next call
+                m_bPrintFromStart = true;
+
+                bFinish = subMatrixToString(ostr, _piDims, _iDims);
+                if(bFinish == false)
+                {//save print status
+                    m_bPrintFromStart = false;
+                    return false;
+                }
             }
             else
             {//draw, continue to dig
-                for(int i = 0 ; i < m_piDims[_iDim] ; i++)
+                for(int i = m_iSavePrintState ; i < m_piDims[_iDim] ; i++)
                 {
                     _piDims[_iDim] = i;
-                    parseSubMatrix(ostr, _piDims, _iDims, _iDim - 1);
+                    bFinish = parseSubMatrix(ostr, _piDims, _iDims, _iDim - 1);
+                    if(bFinish == false)
+                    {//save print status
+                        m_iSavePrintState = i;
+                        return false;
+                    }
                 }
+
+                //reset state to print from state
+                m_iSavePrintState = 0;
+                m_iRows1PrintState = 0;
+                m_iCols1PrintState = 0;
+                m_iRows2PrintState = 0;
+                m_iCols2PrintState = 0;
             }
+
+            return true;
         }
 
-        virtual void subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+        virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
         {
+            return true;
         }
 
         virtual std::wstring toStringInLine()

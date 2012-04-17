@@ -60,9 +60,10 @@ namespace types
         return true;
     }
 
-    std::wstring SingleHandle::toString()
+    bool SingleHandle::toString(std::wostringstream& ostr)
     {
-        return L"SingleHandle::toString";
+        ostr << L"SingleHandle::toString";
+        return true;
     }
 
     char* SingleHandle::getHandleID()
@@ -198,8 +199,9 @@ namespace types
         return !(*this == it);
     }
 
-    void GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    bool GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        return true;
     }
 
     SingleHandle* GraphicHandle::getNullValue()

@@ -79,7 +79,7 @@ namespace types
         };
 
     protected :
-        InternalType() : m_iRef(0), m_bAllowDelete(true) {}
+        InternalType() : m_iRef(0), m_bAllowDelete(true),m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iRows2PrintState(0), m_iCols1PrintState(0), m_iCols2PrintState(0) {}
 
     public :
         virtual                         ~InternalType(){};
@@ -89,7 +89,8 @@ namespace types
         virtual RealType                getType(void) = 0 ; //{ return RealInternal; }
 
 
-        virtual std::wstring	        toString() = 0;
+        virtual bool                    toString(std::wostringstream& ostr) = 0;
+
         virtual std::wstring            toStringInLine()
         {
             return getTypeStr();
@@ -170,10 +171,30 @@ namespace types
         virtual bool                    isListInsert(void) { return false; }
         virtual bool                    isListUndefined(void) { return false; }
 
+        void clearPrintState()
+        {
+            m_bPrintFromStart = true;
+            m_iSavePrintState = 0;
+            m_iRows1PrintState = 0;
+            m_iCols1PrintState = 0;
+            m_iRows2PrintState = 0;
+            m_iCols2PrintState = 0;
+        }
+
+
     protected :
         int                             m_iRef;
         //use to know if we can delete this variables or if it's link to a scilab variable.
         bool                            m_bAllowDelete;
+
+        /*variables to manage print taking care of lines*/
+        bool                    m_bPrintFromStart;
+        int                     m_iSavePrintState;
+        int                     m_iRows1PrintState;
+        int                     m_iCols1PrintState;
+        int                     m_iRows2PrintState;
+        int                     m_iCols2PrintState;
+
     };
 
     /*

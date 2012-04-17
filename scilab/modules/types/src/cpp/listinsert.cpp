@@ -53,13 +53,10 @@ namespace types
         return RealListInsertOperation;
     }
 
-    std::wstring ListInsert::toString()
+    bool ListInsert::toString(std::wostringstream& ostr)
     {
-        std::wostringstream ostr;
-
-        //FIXME : Implement me.
         ostr << L"FIXME : Implement ListInsert::toString" << std::endl;
-        return ostr.str();
+        return true;
     }
 
     InternalType* ListInsert::getInsert()

@@ -70,14 +70,10 @@ namespace types
         return m_body;
     }
 
-    wstring Macro::toString()
+    bool Macro::toString(std::wostringstream& ostr)
     {
-        wostringstream ostr;
-
-        //FIXME : Implement me.
         ostr << L"FIXME : Implement Macro::toString" << std::endl;
-
-        return ostr.str();
+        return true;
     }
 
     Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)

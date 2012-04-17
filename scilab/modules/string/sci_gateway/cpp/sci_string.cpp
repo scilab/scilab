@@ -144,7 +144,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         }
     default :
         {
-            out.push_back(new types::String((in[0]->toString()).c_str()));
+            std::wostringstream ostr;
+            in[0]->toString(ostr);
+            out.push_back(new types::String(ostr.str().c_str()));
             break;
         }
     }

@@ -124,10 +124,8 @@ namespace types
     ** toString to display Lists
     ** FIXME : Find a better indentation process
     */
-    std::wstring List::toString()
+    bool List::toString(std::wostringstream& ostr)
     {
-        std::wostringstream ostr;
-
         if (getSize() == 0)
         {
             ostr << L"()" << std::endl;
@@ -139,10 +137,12 @@ namespace types
             for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
             {
                 ostr << L"     (" << iPosition << L")" << std::endl;
-                ostr << (*itValues)->toString() << std::endl;
+                //maange lines
+                bool bFinish = (*itValues)->toString(ostr);
+                ostr << std::endl;
             }
         }
-        return ostr.str();
+        return true;
     }
 
     std::vector<InternalType*>	List::extract(typed_list* _pArgs)

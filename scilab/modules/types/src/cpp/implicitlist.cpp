@@ -354,15 +354,14 @@ namespace types
         return true;
     }
 
-    std::wstring ImplicitList::toString()
+    bool ImplicitList::toString(std::wostringstream& ostr)
     {
         if(isComputable())
         {
-            return extractFullMatrix()->toString();
+            return extractFullMatrix()->toString(ostr);
         }
         else
         {
-            std::wostringstream ostr;
             ostr << L" ";
             if(m_eStartType == RealDouble)
             {
@@ -401,7 +400,7 @@ namespace types
                 ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
             }
             ostr << std::endl;
-            return ostr.str();
+            return true;
         }
     }
 

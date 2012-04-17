@@ -24,6 +24,7 @@ MEXLIB_FLAGS = \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 if MAINTAINER_MODE

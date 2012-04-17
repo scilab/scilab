@@ -77,7 +77,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -112,7 +112,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -148,7 +148,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -191,7 +191,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/dynamiclibrary/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -242,6 +242,9 @@
     <ClCompile Include="cpp\sci_odedc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>

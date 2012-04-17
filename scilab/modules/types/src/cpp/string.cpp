@@ -139,10 +139,12 @@ namespace types
 		return GenericType::RealString;
 	}
 
-    void String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+    bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 	{
         int iPrecision = getFormatSize();
         int iLineLen = getConsoleWidth();
+        int iMaxLines = getConsoleLines();
+        int iCurrentLine = 0;
 
 		if(isScalar())
 		{
@@ -164,8 +166,15 @@ namespace types
 
 			iMaxLen += 2;
 
-			for(int i = 0 ; i < getRows() ; i++)
+            for(int i = m_iRows1PrintState ; i < getRows() ; i++)
 			{
+                iCurrentLine += 2;
+                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                {
+                    m_iRows1PrintState = i;
+                    return false;
+                }
+
                 _piDims[1] = 0;
                 _piDims[0] = i;
                 int iPos = getIndex(_piDims);
@@ -175,7 +184,7 @@ namespace types
 				ostr << left << get(iPos);
 				ostr << L"!" << endl;
 				if((i+1) < m_iSize)
-				{
+				{//for all but last one
 					ostr << L"!";
 					configureStream(&ostr, iMaxLen, iPrecision, ' ');
 					ostr << left << L" ";
@@ -186,8 +195,9 @@ namespace types
 		else if(getRows() == 1)
 		{
 			wostringstream ostemp;
-			int iLastVal = 0;
-			for(int i = 0 ; i < getCols() ; i++)
+			int iLastVal = m_iCols1PrintState;
+
+			for(int i = m_iCols1PrintState ; i < getCols() ; i++)
 			{
                 _piDims[0] = 0;
                 _piDims[1] = i;
@@ -198,15 +208,15 @@ namespace types
 				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
 				if(iLen > iLineLen)
 				{//Max length, new line
-					if(iLastVal + 1 == i)
-					{
-						ostr << endl << L"       column " << iLastVal + 1 << endl << endl;
-					}
-					else
-					{
-						ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
-					}
-					ostr << ostemp.str() << L"!" << endl;
+                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
+                    if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                    {
+                        m_iCols1PrintState = iLastVal;
+                        return false;
+                    }
+					
+                    ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+					ostr << L"!" << ostemp.str() << L"!" << endl;
 					ostemp.str(L"");
 					iLastVal = i;
 				}
@@ -217,14 +227,7 @@ namespace types
 
 			if(iLastVal != 0)
 			{
-				if(iLastVal + 1 == m_iCols)
-				{
-					ostr << endl << L"       column " << iLastVal + 1 << endl << endl;
-				}
-				else
-				{
-					ostr << endl << L"       column " << iLastVal + 1 << L" to " << m_iCols << endl << endl;
-				}
+                ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
 			}
 			ostr << L"!" << ostemp.str() << L"!" << endl;
 		}
@@ -232,13 +235,13 @@ namespace types
 		{
 			wostringstream ostemp;
 			int iLen = 0;
-			int iLastCol = 0;
+			int iLastCol = m_iCols1PrintState;
 
 			//Array with the max printed size of each col
 			int *piSize = new int[getCols()];
 			memset(piSize, 0x00, getCols() * sizeof(int));
 
-			for(int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
+			for(int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
 			{
 				for(int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
 				{
@@ -250,9 +253,24 @@ namespace types
 
 				if(iLen + piSize[iCols1] > iLineLen)
 				{//find the limit, print this part
-					for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+					for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
 					{
-						ostemp << L"!";
+                        iCurrentLine += 2;
+                        if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
+                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) || 
+                            (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
+                        {
+                            if(m_iRows2PrintState == 0 && iRows2 != 0)
+                            {//add header
+                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                            }
+                            ostr << ostemp.str();
+                            m_iRows2PrintState = iRows2;
+                            m_iCols1PrintState = iLastCol;
+                            return false;
+                        }
+
+                        ostemp << L"!";
 						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 						{
                             _piDims[0] = iRows2;
@@ -273,26 +291,40 @@ namespace types
 					}
 
 					iLen = 0;
-					if(iCols1 + 1 == m_iCols)
-					{
-						ostr << endl << L"       column " << iCols1 << endl << endl;
-					}
-					else
-					{
-						ostr << endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;
-					}
+                    iCurrentLine += 2;
+                    if(m_iRows2PrintState == 0)
+                    {
+                        iCurrentLine += 3;
+                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                    }
 					ostr << ostemp.str();
 					ostemp.str(L"");
 					iLastCol = iCols1;
+                    m_iRows2PrintState = 0;
+                    m_iCols1PrintState = 0;
 				}
 				iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
 			}
 
-			for(int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+			for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
 			{
-				iLen = 0;
-				ostemp << L"!";
-				for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+                iCurrentLine += 2;
+                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                {
+                    if(m_iRows2PrintState == 0 && iLastCol != 0)
+                    {//add header
+                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                    }
+
+                    ostr << ostemp.str();
+                    m_iRows2PrintState = iRows2;
+                    m_iCols1PrintState = iLastCol;
+                    return false;
+                }
+
+                ostemp << L"!";
+                iLen = 0;
+                for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
 				{
                     _piDims[0] = iRows2;
                     _piDims[1] = iCols2;
@@ -312,19 +344,14 @@ namespace types
 				}
 			}
 
-			if(iLastCol != 0)
-			{
-				if(iLastCol + 1 == m_iCols)
-				{
-					ostr << endl << L"       column " << m_iCols << endl << endl;
-				}
-				else
-				{
-					ostr << endl << L"       column " << iLastCol + 1 << L" to " << m_iCols << endl << endl;
-				}
-			}
-			ostr << ostemp.str();
-		}
+            if(m_iRows2PrintState == 0 && iLastCol != 0)
+            {
+                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+            }
+            ostr << ostemp.str();
+        }
+
+        return true;
 	}
 
 	bool String::operator==(const InternalType& it)

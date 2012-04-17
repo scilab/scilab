@@ -51,7 +51,7 @@ namespace types
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);
 
-        void                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+        bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring    getTypeStr() {return L"string";}
         /* return type as short string ( s, i, ce, l, ... )*/

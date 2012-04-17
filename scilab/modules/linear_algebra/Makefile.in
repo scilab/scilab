@@ -573,6 +573,7 @@ libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/console/includes \
 -I$(top_srcdir)/modules/threads/includes \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/string/includes \

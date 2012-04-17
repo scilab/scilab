@@ -120,9 +120,9 @@ namespace types
         bool isExtract() const;
         Sparse* clone(void) const;
         Sparse* clone(void) { return const_cast<Sparse const*>(this)->clone();}
-        std::wstring toString() const;
-        std::wstring toString()
-        { return const_cast<Sparse const*>(this)->toString(); }
+        bool toString(std::wostringstream& ostr) const;
+        bool toString(std::wostringstream& ostr)
+        { return const_cast<Sparse const*>(this)->toString(ostr); }
 
         /* post condition: dimensions are at least _iNewRows, _iNewCols
            preserving existing data.
@@ -453,9 +453,9 @@ namespace types
         SparseBool(SparseBool const& o);
 
         bool isSparseBool(){return true;}
-        std::wstring toString() const;
-        std::wstring toString()
-        { return const_cast<SparseBool const*>(this)->toString(); }
+        bool toString(std::wostringstream& ostr) const;
+        bool toString(std::wostringstream& ostr)
+        { return const_cast<SparseBool const*>(this)->toString(ostr); }
 
         /* Config management and GenericType methods overrides */
         SparseBool* clone(void) const;

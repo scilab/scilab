@@ -298,8 +298,9 @@ namespace types
         return pData;
    }
 
-    void Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    bool Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        return true;
     }
 
     bool Struct::addField(const std::wstring& _sKey)
@@ -324,10 +325,8 @@ namespace types
         return true;
     }
 
-    std::wstring Struct::toString()
+    bool Struct::toString(std::wostringstream& ostr)
     {
-        std::wostringstream ostr;
-
         if(getSize() == 0)
         {
             ostr << L"0x0 struct array with no field.";
@@ -375,7 +374,7 @@ namespace types
             delete pwstFields;
         }
 
-        return ostr.str();
+        return true;
     }
 
     std::vector<InternalType*> Struct::extractFields(std::list<std::wstring> _wstFields)

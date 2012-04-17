@@ -80,7 +80,7 @@ namespace types
         std::wstring            m_szVarName;
 
     private :
-        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+        virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
         virtual SinglePoly*     getNullValue();
         virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

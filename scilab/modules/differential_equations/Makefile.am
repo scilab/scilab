@@ -102,6 +102,7 @@ libscidifferential_equations_la_CPPFLAGS= -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \

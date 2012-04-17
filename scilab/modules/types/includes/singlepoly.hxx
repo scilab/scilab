@@ -57,7 +57,7 @@ namespace types
         void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
         void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
-        std::wstring            toString();
+        bool                    toString(std::wostringstream& ostr);
 
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);

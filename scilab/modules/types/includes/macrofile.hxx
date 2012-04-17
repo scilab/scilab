@@ -34,7 +34,7 @@ namespace types
 
         void                    whoAmI();
 
-        wstring                 toString();
+        bool                    toString(std::wostringstream& ostr);
 
         Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         bool                    parse(void);

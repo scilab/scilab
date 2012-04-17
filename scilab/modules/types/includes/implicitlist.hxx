@@ -74,7 +74,7 @@ namespace types
         bool                    compute();
         bool                    isComputable();
 
-        std::wstring            toString();
+        bool                    toString(std::wostringstream& ostr);
 
 
         InternalType::RealType  getStartType();

@@ -206,7 +206,7 @@ int ConfigVariable::getConsoleWidth(void)
 ** \{
 */
 
-int ConfigVariable::m_iConsoleLines = 28; //console lines default value
+int ConfigVariable::m_iConsoleLines = 0; //console lines default value
 
 void ConfigVariable::setConsoleLines(int _iConsoleLines)
 {

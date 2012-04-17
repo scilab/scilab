@@ -37,13 +37,9 @@ namespace types
 		return RealListOperation;
 	}
 
-    std::wstring ListOperation::toString()
-	{
-        std::wostringstream ostr;
-
-	  //FIXME : Implement me.
-	  ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
-
-	  return ostr.str();
-	}
+    bool ListOperation::toString(std::wostringstream& ostr)
+    {
+        ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
+        return true;
+    }
 }
