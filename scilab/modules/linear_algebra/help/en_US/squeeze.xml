@@ -41,9 +41,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> Remove sigleton dimensions of a hypermatrix, that is any dimension for
+    <para> Remove singleton dimensions of a hypermatrix, that is any dimension for
       which the size is 1. If the input is a matrix, it is unaffected.
     </para>
+  </refsection>
+   <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+	M1 = zeros(2,1,5)
+	squeeze(M1)
+	squeeze(M1(:,:,1))
+	
+	M2 = hypermat([2 1 2 1],1:4)
+	squeeze(M2)
+	]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

@@ -137,6 +137,8 @@ Documentation
 
 * Bug #9953 fixed - Add documentation to the fre input argument of stdevf.
 
+* Bug #10272 fixed - Add examples in squeeze documentation.
+
 * Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
                      matrices was not clearly stated in the documentation.
 
