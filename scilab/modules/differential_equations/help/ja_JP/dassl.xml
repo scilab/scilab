@@ -108,14 +108,14 @@
                 関数にパラメータを指定する際に使用されます.
                 以下のような形式とします:
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
               <para>
                 ただし,ここで関数<literal>res</literal>の呼び出し手順は
                 以下のようになります
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -130,12 +130,12 @@ r=res(t,y,ydot,x1,x2,...)
                 ScilabにリンクされるCまたはFortranサブルーチンの名前を指します.
               </para>
               <para>Cの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Fortranの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)  
@@ -168,14 +168,14 @@ integer ires,ipar(*)
             <listitem>
               <para>リスト.</para>
               <para>以下のようにする必要があります</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(jac,x1,x2,...)
  ]]></programlisting>
               <para>
                 ただしこの場合の関数<literal>jac</literal>の呼び出し手順は
                 以下のようになります
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -191,12 +191,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                 必要があります
               </para>
               <para>Cの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Fortranの場合, 呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -318,7 +318,7 @@ integer ipar(*)
       指定した時間における <literal>y</literal> の
       値を返します.
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
   ]]></programlisting>
@@ -347,8 +347,8 @@ y=dassl([y0,yd0],0,t,chemres);
 
 info=list([],0,[],[],[],0,0);
 info(2)=1;
-y=dassl([y0,yd0],0,4d10,chemres,info);
-y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+y1=dassl([y0,yd0],0,4d10,chemres,info);
+y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
  
 //パラメータとしてオプション引数を使用
 //-----------------------------------
@@ -365,7 +365,7 @@ function pd=chemjac(x,y,yd,cj, a,b,c)
          1    , 1                  , 1       ]
 endfunction
 
-y=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
+y3=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
 
 // Cコードを使用
 //------------
@@ -393,16 +393,16 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[7] = -1.0e4*y[1];'
          '   pd[8] =  1.0;'
          ' }'];
-mputl([rescode;jaccode],TMPDIR+'/mycode.c') //Cファイルを作成
+mputl([rescode;jaccode],fullfile(TMPDIR,'mycode.c')) //Cファイルを作成
 
 // - コンパイル
-ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+ilib_for_link(['chemres','chemjac'],fullfile(TMPDIR,'mycode.c'),[],'c','',fullfile(TMPDIR,'loader.sce'));//compile
 
 // - Scilabにリンク
-exec(TMPDIR+'/loader.sce') //incremental linking
+exec(fullfile(TMPDIR,'loader.sce')) //incremental linking
 
 // - dasslをコール
-y=dassl([y0,yd0],0,t,'chemres','chemjac');
+y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
