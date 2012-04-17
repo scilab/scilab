@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-05 17:13+0100\n"
+"Revision-Date: 2012-04-17 11:10+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -574,19 +574,27 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 161
+# File: macros/atomsInstall.sci, line: 160
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 171
+# File: macros/atomsInstall.sci, line: 170
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 283
+# File: macros/atomsInstall.sci, line: 238
+# File: macros/atomsSystemUpdate.sci, line: 24
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+
+#
+# File: macros/atomsInstall.sci, line: 286
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 42
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 48
 #, c-format
@@ -596,15 +604,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 314
-# File: macros/atomsInstall.sci, line: 431
+# File: macros/atomsInstall.sci, line: 317
+# File: macros/atomsInstall.sci, line: 434
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 354
-# File: macros/atomsInstall.sci, line: 383
+# File: macros/atomsInstall.sci, line: 357
+# File: macros/atomsInstall.sci, line: 386
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr ""
@@ -951,13 +959,6 @@ msgid "Description"
 msgstr ""
 
 #
-# File: macros/atomsSystemUpdate.sci, line: 26
-msgid ""
-"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
-#
 # File: macros/atomsTest.sci, line: 76
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
@@ -1266,19 +1267,19 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 123
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 139
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 133
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 149
 #, c-format
 msgid "%s: gzip not found.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 142
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 158
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""

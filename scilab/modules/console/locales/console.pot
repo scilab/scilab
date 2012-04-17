@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-05 17:13+0100\n"
+"Revision-Date: 2012-04-17 11:10+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 205
@@ -112,6 +112,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 225
+# File: src/c/others/zzledt.c, line: 841
 # File: src/c/windows/TermCompletion.c, line: 60
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
@@ -119,12 +120,14 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 462
+# File: src/c/others/zzledt.c, line: 979
 # File: src/c/windows/TermCompletion.c, line: 175
 msgid "Scilab Fields"
 msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 496
+# File: src/c/others/zzledt.c, line: 1007
 # File: src/c/windows/TermCompletion.c, line: 203
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
@@ -132,6 +135,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 497
+# File: src/c/others/zzledt.c, line: 1008
 # File: src/c/windows/TermCompletion.c, line: 204
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
@@ -139,6 +143,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 498
+# File: src/c/others/zzledt.c, line: 1009
 # File: src/c/windows/TermCompletion.c, line: 205
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
@@ -146,6 +151,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 499
+# File: src/c/others/zzledt.c, line: 1010
 # File: src/c/windows/TermCompletion.c, line: 206
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
@@ -153,6 +159,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/autoCompletionCli.c, line: 501
+# File: src/c/others/zzledt.c, line: 1011
 # File: src/c/windows/TermCompletion.c, line: 207
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
