@@ -747,6 +747,20 @@ if (error_output == "check") & (_module.error_output == "check") then
     end
   end
 
+  // Ignore JOGL2 debug message
+  if getos() == "Linux" then
+    tmp_errfile_info = fileinfo(tmp_err);
+    msg = "Info: XInitThreads() called for concurrent Thread support"
+
+    if ~isempty(tmp_errfile_info) then
+      txt = mgetl(tmp_err);
+      txt(txt==msg) = [];
+      if isempty(txt) then
+        deletefile(tmp_err);
+      end
+    end
+  end
+
   tmp_errfile_info = fileinfo(tmp_err);
 
   if isfile(tmp_err) & tmp_errfile_info(1) <> 0 then
