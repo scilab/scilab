@@ -153,6 +153,32 @@ int openHDF5File(char *name)
     return file;
 }
 /*--------------------------------------------------------------------------*/
+int isHDF5File(char* _pstFilename)
+{
+    int iRet = 0;
+    char *pathdest = getPathFilename(_pstFilename);
+    char *currentpath = NULL;
+    char *filename = getFilenameWithExtension(_pstFilename);
+    int ierr = 0;
+
+    /* TO DO : remove when HDF5 will be fixed ... */
+    /* HDF5 does not manage no ANSI characters */
+    /* UGLY workaround :( */
+    /* We split path, move in this path, open file */
+    /* and return in previous place */
+    /* see BUG 6440 */
+    currentpath = scigetcwd(&ierr);
+
+    //prevent error msg to change directory to ""
+    if (strcmp(pathdest, "") != 0)
+    {
+        scichdir(pathdest);
+    }
+
+    iRet = H5Fis_hdf5(filename);
+    return iRet > 0 ? 1 : 0;
+}
+
 void closeHDF5File(int file)
 {
     herr_t status					= 0;

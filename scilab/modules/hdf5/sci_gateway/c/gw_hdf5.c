@@ -20,8 +20,10 @@
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[] = 
 {
-	{sci_export_to_hdf5,"export_to_hdf5"},
-	{sci_import_from_hdf5,"import_from_hdf5"}
+	{sci_export_to_hdf5, "export_to_hdf5"},
+	{sci_import_from_hdf5, "import_from_hdf5"},
+	{sci_listvar_in_hdf5, "listvar_in_hdf5"},
+	{sci_is_hdf5_file, "is_hdf5_file"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_hdf5(void)

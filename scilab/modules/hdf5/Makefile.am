@@ -36,7 +36,9 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp
+sci_gateway/cpp/sci_import_from_hdf5.cpp \
+sci_gateway/cpp/sci_is_hdf5_file.cpp \
+sci_gateway/cpp/sci_listvar_in_hdf5.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 

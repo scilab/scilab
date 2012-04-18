@@ -24,6 +24,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
+#include "expandPathVariable.h"
 }
 #include "forceJHDF5load.hxx"
 
@@ -35,6 +36,7 @@ static int iCloseList = 0;
 
 void print_tree(char *_pstMsg);
 
+static bool import_variable(int _iFile, char* _pstVarName);
 static bool import_data(int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
@@ -49,98 +51,107 @@ static bool import_undefined(int _iDatasetId, int _iItemPos, int *_piAddress, ch
 
 int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 {
-    CheckRhs(1, 2);
-    CheckLhs(1, 1);
+    SciErr sciErr;
 
     int iRows = 0;
     int iCols = 0;
     int iLen = 0;
 
-    int *piAddr = NULL;
-    char *pstVarName = NULL;
+    int* piAddr = NULL;
+    char* pstFilename = NULL;
+    char* pstExpandedFilename = NULL;
     bool bImport = false;
-    SciErr sciErr;
+
+    int iSelectedVar = Rhs - 1;
+    bool bSelectedVar = false;
+
+    checkInputArgumentAtLeast(pvApiCtx, 1);
+    CheckLhs(1, 1);
 
 #ifndef _MSC_VER
     forceJHDF5load();
 #endif
 
     iCloseList = 0;
+
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if (sciErr.iErr)
+    if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
-    sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    if (iRows != 1 || iCols != 1)
+    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstFilename))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
-    }
-
-    sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    pstVarName = (char *)MALLOC((iLen + 1) * sizeof(char));
-    sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstVarName);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     //open hdf5 file
-    int iFile = openHDF5File(pstVarName);
-
+    pstExpandedFilename = expandPathVariable(pstFilename);
+    int iFile = openHDF5File(pstExpandedFilename);
     if (iFile < 0)
     {
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstVarName);
-        return 0;
+        FREE(pstExpandedFilename);
+        FREE(pstFilename);
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
+        return 1;
     }
 
-    int iNbItem = 0;
+    FREE(pstExpandedFilename);
+    FREE(pstFilename);
 
-    iNbItem = getVariableNames(iFile, NULL);
-    if (iNbItem != 0)
-    {
-        char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
-
-        iNbItem = getVariableNames(iFile, pstVarNameList);
-
-        //import all data
-        for (int i = 0; i < iNbItem; i++)
+    if(iSelectedVar)
+    {//selected variable
+        bSelectedVar = true;
+        char* pstVarName = NULL;
+        for(int i = 0 ; i < iSelectedVar ; i++)
         {
-            int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
-
-            if (iDataSetId == 0)
+            sciErr = getVarAddressFromPosition(pvApiCtx, i + 2, &piAddr);
+            if(sciErr.iErr)
             {
-                return 0;
+                printError(&sciErr, 0);
+                return 1;
             }
 
-            bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
-            if (bImport == false)
+            if(getAllocatedSingleString(pvApiCtx, piAddr, &pstVarName))
             {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, i + 1);
+                return 1;
+            }
+
+            if(import_variable(iFile, pstVarName) == false)
+            {
+                bImport = false;
                 break;
             }
 
+            FREE(pstVarName);
+        }
+    }
+    else
+    {//all variables
+        int iNbItem = 0;
+        iNbItem = getVariableNames(iFile, NULL);
+        if (iNbItem != 0)
+        {
+            char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
+
+            iNbItem = getVariableNames(iFile, pstVarNameList);
+
+            //import all data
+            for (int i = 0; i < iNbItem; i++)
+            {
+                if(import_variable(iFile, pstVarNameList[i]) == false)
+                {
+                    bImport = false;
+                    break;
+                }
+            }
         }
     }
     //close the file
     closeHDF5File(iFile);
-
-    FREE(pstVarName);
 
     int *piReturn = NULL;
 
@@ -148,7 +159,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (bImport == true)
@@ -165,6 +176,17 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     //  printf("End gateway !!!\n");
     return 0;
+}
+
+static bool import_variable(int _iFile, char* _pstVarName)
+{
+    int iDataSetId = getDataSetIdFromName(_iFile, _pstVarName);
+    if (iDataSetId == 0)
+    {
+        return false;
+    }
+
+    return import_data(iDataSetId, 0, NULL, _pstVarName);
 }
 
 static bool import_data(int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)

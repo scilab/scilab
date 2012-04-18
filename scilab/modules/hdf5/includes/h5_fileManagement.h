@@ -15,24 +15,9 @@
 
 #include "dynlib_hdf5_scilab.h"
 
-/**
-*
-* @param[in]
-* @return
-*/
 HDF5_SCILAB_IMPEXP int createHDF5File(char *name);
-
-/**
-*
-* @param[in]
-* @return
-*/
 HDF5_SCILAB_IMPEXP int openHDF5File(char *name);
-
-/**
-*
-* @param[in]
-*/
 HDF5_SCILAB_IMPEXP void closeHDF5File(int file);
+HDF5_SCILAB_IMPEXP int isHDF5File(char* _pstFilename);
 
 #endif /* !__H5_FILEMANAGEMENT_H__ */

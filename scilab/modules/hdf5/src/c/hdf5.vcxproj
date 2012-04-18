@@ -198,6 +198,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_is_hdf5_file.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5.cpp" />
     <ClCompile Include="DllmainHdf5.c" />
     <ClCompile Include="..\cpp\forceJHDF5load.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_hdf5.c" />

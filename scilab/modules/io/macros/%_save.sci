@@ -46,7 +46,7 @@ endfunction
 function result = inspectList(l)
 if typeof(l)=="list" then
     result = list();
-    for i = 1:size(l)
+    for i = definedfields(l)
         if typeof(l(i)) == "handle" then
             result(i) = extractMatrixHandle(l(i));
         elseif isList(l(i)) then
