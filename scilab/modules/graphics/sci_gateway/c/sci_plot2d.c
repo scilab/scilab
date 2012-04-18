@@ -26,6 +26,7 @@
 #include "localization.h"
 
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
@@ -291,7 +292,9 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
   // open a figure if none already exists
   getOrCreateDefaultSubwin();
+  startCurrentFigureDataWriting();
   Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
+  endCurrentFigureDataWriting();
 
   LhsVar(1) = 0;
   PutLhsVar();

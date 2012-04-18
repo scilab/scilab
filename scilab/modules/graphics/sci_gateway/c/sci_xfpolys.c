@@ -26,6 +26,7 @@
 #include "localization.h"
 
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -96,6 +97,7 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
 
     pstSubWinUID = getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     for (i = 0; i < n1; ++i)
     {
         if (m3 == 1 || n3 == 1) /* color vector specified */
@@ -118,6 +120,7 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object**/
     setCurrentObject(ConstructCompoundSeq(n1));
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

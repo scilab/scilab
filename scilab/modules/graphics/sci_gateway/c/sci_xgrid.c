@@ -24,6 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -46,9 +47,11 @@ int sci_xgrid(char *fname, unsigned long fname_len)
 
     pstObjUID = getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     setGraphicObjectProperty(pstObjUID, __GO_X_AXIS_GRID_COLOR__, &style, jni_int, 1);
     setGraphicObjectProperty(pstObjUID, __GO_Y_AXIS_GRID_COLOR__, &style, jni_int, 1);
     setGraphicObjectProperty(pstObjUID, __GO_Z_AXIS_GRID_COLOR__, &style, jni_int, 1);
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

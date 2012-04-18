@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -116,6 +117,23 @@ public class GraphicController {
      */
     public UID createUID() {
         return new UID();
+    }
+
+    public void enableDrawing(String id) {
+	GraphicObject go = GraphicModel.getModel().getObjectFromId(id);
+	if (go instanceof Figure) {
+	    Figure figure = (Figure) go;
+	    figure.enableDrawing(); 
+	    objectUpdate(id, "");
+	}
+    }
+
+    public void disableDrawing(String id) {
+	GraphicObject go = GraphicModel.getModel().getObjectFromId(id);
+	if (go instanceof Figure) {
+	    Figure figure = (Figure) go;
+	    figure.disableDrawing(); 
+	}
     }
 
     /**

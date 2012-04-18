@@ -33,6 +33,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
 {
@@ -73,6 +74,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
 
     psubwinUID = getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     // Create compound.
     pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
     /* Sets the parent-child relationship for the Compound */
@@ -88,7 +90,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
             getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
 
             Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                     &foreground,NULL,FALSE,TRUE,&hdl);
+                    &foreground,NULL,FALSE,TRUE,&hdl);
         }
         else
         {
@@ -97,13 +99,13 @@ int sci_xrects( char *fname, unsigned long fname_len )
                 /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
                 int tmp = - (*istk(l2+i));
                 Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                         &tmp,NULL,FALSE,TRUE,&hdl);
+                        &tmp,NULL,FALSE,TRUE,&hdl);
             }
             else
             {
                 /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
                 Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                         NULL,istk(l2+i),TRUE,FALSE,&hdl);
+                        NULL,istk(l2+i),TRUE,FALSE,&hdl);
             }
         }
         // Add newly created object to Compound
@@ -112,6 +114,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
 
     /** make Compound current object **/
     setCurrentObject(pstCompoundUID);
+    endCurrentFigureDataWriting();
 
     LhsVar(1)=0;
     PutLhsVar();

@@ -345,6 +345,8 @@ public class Figure extends GraphicObject {
     /** Rotation type */
     private RotationType rotation;
 
+    private boolean drawingEnabled;
+
     /** Constructor */
     public Figure() {
         super();
@@ -359,6 +361,7 @@ public class Figure extends GraphicObject {
         eventHandler = new EventHandler();
         tag = "";
         rotation = RotationType.UNARY;
+	drawingEnabled = false;//true;
     }
 
     @Override
@@ -381,6 +384,18 @@ public class Figure extends GraphicObject {
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    public void enableDrawing() {
+	drawingEnabled = true;
+    }
+
+    public void disableDrawing() {
+	drawingEnabled = false;
+    }
+
+    public boolean canDraw() {
+	return drawingEnabled && getImmediateDrawing() && !getPixmap();
     }
 
     /**
@@ -853,7 +868,7 @@ public class Figure extends GraphicObject {
      * @param immediateDrawing the immediateDrawing to set
      */
     public void setImmediateDrawing(Boolean immediateDrawing) {
-        renderingMode.immediateDrawing = immediateDrawing;
+	renderingMode.immediateDrawing = immediateDrawing;
     }
 
     /**

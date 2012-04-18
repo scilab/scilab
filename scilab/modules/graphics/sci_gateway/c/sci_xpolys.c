@@ -23,6 +23,7 @@
 #include "BuildObjects.h"
 
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -53,6 +54,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
 
     getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     if (Rhs == 3)
     {
         GetRhsVar(3, MATRIX_OF_INTEGER_DATATYPE, &m3, &n3, &l3);
@@ -74,6 +76,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object**/
     setCurrentObject(ConstructCompoundSeq(n1));
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

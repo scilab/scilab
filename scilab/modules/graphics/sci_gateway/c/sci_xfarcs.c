@@ -24,6 +24,7 @@
 #include "BuildObjects.h"
 
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -73,6 +74,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
 
     getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     for (i = 0; i < n1; ++i)
     {
         angle1 = DEG2RAD(*stk(l1 + (6 * i) + 4) / 64.0);
@@ -83,6 +85,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object **/
     setCurrentObject(ConstructCompoundSeq(n1));
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

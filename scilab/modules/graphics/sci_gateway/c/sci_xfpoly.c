@@ -21,6 +21,7 @@
 #include "stack-c.h"
 #include "sciCall.h"
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -60,7 +61,9 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
         getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
     }
 
+    startCurrentFigureDataWriting();
     Objfpoly(stk(l1), stk(l2), mn1, &iForeground, &hdl, 0);
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

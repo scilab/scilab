@@ -28,6 +28,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {
@@ -106,7 +107,9 @@ int sci_xsegs(char *fname,unsigned long fname_len)
         colorFlag = (mc*nc == 1) ? 0 : 1;
     }
 
+    startCurrentFigureDataWriting();
     Objsegs (style,colorFlag,mx*nx,stk(lx),stk(ly),zptr,arsize);
+    endCurrentFigureDataWriting();
 
     LhsVar(1)=0;
     PutLhsVar();

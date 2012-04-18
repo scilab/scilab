@@ -37,6 +37,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -56,7 +57,7 @@
  -------------------------------------------------------------------*/
 
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1,
-	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
+            int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     char* psubwinUID = NULL;
     char* newSegsUID = NULL;
@@ -106,6 +107,8 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     /* then modify subwindow if needed */
     checkRedrawing();
 
+    startCurrentFigureDataWriting();
+
     /* Force clipping to CLIPGRF (1) */
     clipState = 1;
     setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
@@ -116,7 +119,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     }
 
     newSegsUID = ConstructSegs(psubwinUID,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
-                            style,arsize1,colored,typeofchamp);
+                               style,arsize1,colored,typeofchamp);
 
     if (newSegsUID == NULL)
     {
@@ -125,7 +128,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         {
             FREE(style);
         }
-
+        endCurrentFigureDataWriting();
         return;
     }
 
@@ -141,9 +144,9 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     clipState = 1;
     setGraphicObjectProperty(newSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-  /* Deactivated since it tells the renderer module that the object has changed */
+    /* Deactivated since it tells the renderer module that the object has changed */
 #if 0
-  forceRedraw(newSegs); /* update drawer */
+    forceRedraw(newSegs); /* update drawer */
 #endif
 
     /* Get segs bounding box */
@@ -184,34 +187,34 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         switch (strflag[1])
         {
         case '0':
-          /* do not change data bounds */
-          break;
+            /* do not change data bounds */
+            break;
         case '1' : case '3' : case '5' : case '7':
-          /* Force data bounds=brect */
-          re_index_brect(brect,drect);
-          break;
+            /* Force data bounds=brect */
+            re_index_brect(brect,drect);
+            break;
         case '2' : case '4' : case '6' : case '8': case '9':
 
-          getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[0] = iTmp;
-          getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[1] = iTmp;
-          getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[2] = iTmp;
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[0] = iTmp;
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[1] = iTmp;
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[2] = iTmp;
 
-          /* Conversion required by compute_data_bounds2 */
-          textLogFlags[0] = getTextLogFlag(logFlags[0]);
-          textLogFlags[1] = getTextLogFlag(logFlags[1]);
-          textLogFlags[2] = getTextLogFlag(logFlags[2]);
+            /* Conversion required by compute_data_bounds2 */
+            textLogFlags[0] = getTextLogFlag(logFlags[0]);
+            textLogFlags[1] = getTextLogFlag(logFlags[1]);
+            textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-          /* Force data bounds to the x and y bounds */
-          compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
-          break;
+            /* Force data bounds to the x and y bounds */
+            compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
+            break;
         }
 
         /* merge data bounds and drect */
         if (!firstPlot &&
-          (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9'))
+            (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9'))
         {
             double* dataBounds;
 
@@ -241,10 +244,10 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     firstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  /*
-   * Deactivated since it tells the renderer module that the object has changed
-   * To be implemented
-   */
+    /*
+     * Deactivated since it tells the renderer module that the object has changed
+     * To be implemented
+     */
 #if 0
     if( bounds_changed || axes_properties_changed )
     {
@@ -252,25 +255,26 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     }
 #endif
 
-  /*
-   * Deactivated since it involves drawing via the renderer module
-   */
+    /*
+     * Deactivated since it involves drawing via the renderer module
+     */
 #if 0
     sciDrawObj(sciGetCurrentFigure());
 #endif
 
+    endCurrentFigureDataWriting();
 }
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
-  return(0);
+    champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
+    return(0);
 }
 
 int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
-  return(0);
+    champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
+    return(0);
 }
 /*----------------------------------------------------------------------------------*/
 

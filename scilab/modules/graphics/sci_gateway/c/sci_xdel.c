@@ -36,31 +36,35 @@ int sci_xdel(char *fname,unsigned long fname_len)
     CheckRhs(-1,1);
     if (Rhs >= 1) {
         int i;
-		double * windowNumbers;
+        double * windowNumbers;
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
-		/* First check that all the window numbers are valid */
-		windowNumbers = getDoubleMatrixFromStack(l1);
-		for (i = 0; i < m1 * n1; i++)
-		{
-			if (!sciIsExistingFigure((int) windowNumbers[i]))
-			{
-				Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
-				return -1;
-			}
-		}
+        /* First check that all the window numbers are valid */
+        windowNumbers = getDoubleMatrixFromStack(l1);
+        for (i = 0; i < m1 * n1; i++)
+        {
+            if (!sciIsExistingFigure((int) windowNumbers[i]))
+            {
+                Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
+                return -1;
+            }
+        }
 
+        startCurrentFigureDataWriting();
         for (i = 0; i < m1*n1 ; i++)
         {
             sciDeleteWindow( (int) windowNumbers[i] ) ;
         }
+        endCurrentFigureDataWriting();
     }
     else
     {
         pstCurrentFigure = getCurrentFigure();
         if (pstCurrentFigure != NULL)
         {
+            startCurrentFigureDataWriting();
             deleteGraphicObject(pstCurrentFigure);
+            endCurrentFigureDataWriting();
         }
     }
     LhsVar(1)=0;

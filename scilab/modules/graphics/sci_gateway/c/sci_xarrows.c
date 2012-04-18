@@ -23,6 +23,7 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {
@@ -41,7 +42,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     {
         LhsVar(1)=0;
         PutLhsVar();
-       return 0;
+        return 0;
     }
 
     if (Rhs >= 3)
@@ -78,7 +79,9 @@ int sci_xarrows(char *fname,unsigned long fname_len)
 
     getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     Objsegs(style,flag,mn2,stk(l1),stk(l2),NULL,arsize);
+    endCurrentFigureDataWriting();
 
     LhsVar(1)=0;
     PutLhsVar();

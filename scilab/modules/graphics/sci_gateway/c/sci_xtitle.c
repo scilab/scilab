@@ -44,7 +44,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     BOOL isBoxSpecified = FALSE;
     char * psubwinUID = NULL;
     static rhs_opts opts[] = { {-1,"boxed","i" ,0,0,0},
-    {-1,NULL   ,NULL,0,0,0} };
+                               {-1,NULL   ,NULL,0,0,0} };
 
     if (Rhs <= 0)
     {
@@ -111,29 +111,31 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
         switch(narg)
         {
-            case 1:
-                getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, &modifiedLabel);
-                break;
-            case 2:
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &modifiedLabel);
+        case 1:
+            getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, &modifiedLabel);
             break;
-            case 3:
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &modifiedLabel);
-                break;
-            case 4:
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &modifiedLabel);
-                break;
-            default:
-                break;
+        case 2:
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &modifiedLabel);
+            break;
+        case 3:
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &modifiedLabel);
+            break;
+        case 4:
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &modifiedLabel);
+            break;
+        default:
+            break;
         }
 
 #if 0
         startFigureDataWriting(pFigure);
 #endif
 
+        startCurrentFigureDataWriting();
         sciSetText(modifiedLabel, Str, m, n);
 
         setGraphicObjectProperty(modifiedLabel, __GO_FILL_MODE__, &box, jni_bool, 1);
+        endCurrentFigureDataWriting();
 
 #if 0
         endFigureDataWriting(pFigure);

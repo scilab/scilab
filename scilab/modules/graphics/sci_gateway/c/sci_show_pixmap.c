@@ -23,16 +23,16 @@
 /*--------------------------------------------------------------------------*/
 int sci_show_pixmap(char *fname, unsigned long fname_len )
 {
-  /* call show_pixmap */
+    /* call show_pixmap */
 
-  CheckRhs(0,0);
-  CheckLhs(0,1);
+    CheckRhs(0,0);
+    CheckLhs(0,1);
 
-  /* call show_pixmap function */
-  showPixmap(getCurrentFigure());
+    /* call show_pixmap function */
+    showPixmap(getCurrentFigure());
 
-  LhsVar(1) = 0;
-  PutLhsVar();
-  return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

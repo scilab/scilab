@@ -29,6 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
+#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
@@ -205,7 +206,9 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
         nb_tics_labels = opts[8].m * opts[8].n;
     }
 
+    startCurrentFigureDataWriting();
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
+    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

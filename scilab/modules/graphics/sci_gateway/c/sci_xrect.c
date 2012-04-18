@@ -29,6 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )
@@ -51,7 +52,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
         CheckLength(1,m1*n1,4);
 
         getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
-
+        startCurrentFigureDataWriting();
         if (strcmp(fname,"xrect")==0)
         {
             Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
@@ -62,6 +63,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
             Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
                      NULL,&foreground,TRUE,FALSE,&hdl);
         }
+        endCurrentFigureDataWriting();
 
         if ( hdl < 0 )
         {
@@ -77,6 +79,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
         GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
         GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);
 
+        startCurrentFigureDataWriting();
         if (strcmp(fname,"xrect")==0)
         {
             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
@@ -87,6 +90,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
                      NULL,&foreground,TRUE,FALSE,&hdl);
         }
+        endCurrentFigureDataWriting();
 
         if ( hdl < 0 )
         {

@@ -27,6 +27,7 @@
 #include "BuildObjects.h"
 
 #include "CurrentSubwin.h"
+#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, unsigned long fname_len)
@@ -114,6 +115,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
 
     getOrCreateDefaultSubwin();
 
+    startCurrentFigureDataWriting();
     if (nbElement == 1)
     {
         Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, FALSE, NULL, NULL, isboxed
@@ -148,6 +150,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
          */
         ConstructCompoundSeq(nbElement);
     }
+    endCurrentFigureDataWriting();
 
     /* we must free Str memory */
 

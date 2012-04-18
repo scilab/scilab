@@ -32,6 +32,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 #include "BuildObjects.h"
+#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
@@ -89,6 +90,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     /* NG beg */
 
     psubwinUID = getOrCreateDefaultSubwin();
+    startCurrentFigureDataWriting();
 
     Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
@@ -125,6 +127,8 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
     setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+
+    endCurrentFigureDataWriting();
 
     /* NG end */
     LhsVar(1)=0;
