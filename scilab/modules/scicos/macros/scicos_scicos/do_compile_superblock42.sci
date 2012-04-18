@@ -1033,7 +1033,7 @@ function ok=gen_ccode42();
                      '        global_'+writeGlobal(i)+'_Index = -1;'
                      '#ifdef VERBOSE'
                      '        printf(""C_'+writeGlobal(i)+'.values = zeros(%d, %d, %d)\n"", global_'+writeGlobal(i)+'_Size, nu, nu2);'
-                     '        printf(""C_'+writeGlobal(i)+'.time = zeros(%d, 1)\n"", global_'+writeGlobal(i)+'_Size);'
+                     '        printf(""C_'+writeGlobal(i)+'.time = -%%inf * ones(%d, 1)\n"", global_'+writeGlobal(i)+'_Size);'
                      '#endif'
                      '        break;'
                      '    }'
@@ -1052,6 +1052,11 @@ function ok=gen_ccode42();
                      '    }'
                      '    case 5 : /* end */'
                      '    {'
+                     '#ifdef VERBOSE'
+                     '        //reshape to fit scilab behaviour'
+                     '        printf(""C_'+writeGlobal(i)+'.time = C_'+writeGlobal(i)+'.time(C_'+writeGlobal(i)+'.time <> -%%inf);\n"");'
+                     '        printf(""C_'+writeGlobal(i)+'.values = C_'+writeGlobal(i)+'.values(1:size(C_'+writeGlobal(i)+'.time, ''*''), :);\n"");'
+                     '#endif'
                      '        for (i = 0 ; i < global_'+writeGlobal(i)+'_Size ; ++i)'
                      '        {'
                      '            free(global_'+writeGlobal(i)+'[i]);'
@@ -3951,7 +3956,7 @@ function make_standalone42(filename)
 
   //** begin input main loop on time
   mputl([''
-         '  while (t<=tf) {';
+         '  while (t < tf) {';
          '    /* */'
          '    sci_time=t;'
          ''], fd);
@@ -4090,6 +4095,8 @@ function make_standalone42(filename)
          '    t=t+dt;'
          '  }'
   //** flag 5
+         ''
+         ' sci_time = tf;'
          ''
          '  '+get_comment('flag',list(5))], fd);
 
