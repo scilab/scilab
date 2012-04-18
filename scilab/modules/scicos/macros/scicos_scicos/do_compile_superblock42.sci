@@ -1043,12 +1043,9 @@ function ok=gen_ccode42();
                      '        memcpy(global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Index], block->inptr[i], nu * nu2 * sizeof(double));'
                      '#ifdef VERBOSE'
                      '        printf(""C_'+writeGlobal(i)+'.time(%d) = %.25E;\n"", global_'+writeGlobal(i)+'_Index + 1, get_scicos_time());'
-                     '        for (i = 0 ; i < global_'+writeGlobal(i)+'_Size ; ++i)'
+                     '        for (j = 0 ; j < nu * nu2 ; ++j)'
                      '        {'
-                     '            for (j = 0 ; j < nu * nu2 ; ++j)'
-                     '            {'
-                     '                printf(""C_'+writeGlobal(i)+'.values(%d, %d) = %.25E;\n"", i + 1, j + 1, global_'+writeGlobal(i)+'[i][j]);'
-                     '            }'
+                     '            printf(""C_'+writeGlobal(i)+'.values(%d, %d) = %.25E;\n"", global_'+writeGlobal(i)+'_Index + 1, j + 1, global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Index][j]);'
                      '        }'
                      '#endif /* !VERBOSE */'
                      '        break;'
@@ -1300,7 +1297,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
               fromwsObj = fromwsObj.model.rpar.objs(fromwsObjIndex(j));
           end
           bllst(i).sim(1) = 'readGlobal_' + fromwsObj.graphics.exprs(1);
-          readGlobal = [readGlobal + fromwsObj.graphics.exprs(1)];
+          readGlobal = [readGlobal fromwsObj.graphics.exprs(1)];
           readGlobalTimeSize = [readGlobalTimeSize evstr("size(" + fromwsObj.graphics.exprs(1) + ".time, ""*"")")]
           readGlobalSize = [readGlobalSize evstr("size(" + fromwsObj.graphics.exprs(1) + ".values(1), ""*"")")]
       end
