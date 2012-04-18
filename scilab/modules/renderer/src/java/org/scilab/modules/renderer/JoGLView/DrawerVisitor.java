@@ -83,35 +83,35 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-            GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-            GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-            GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
-    ));
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-            GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-            GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-            GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
-    ));
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-            GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-            GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-            GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
-    ));
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+            ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
     private static final Set<String> SILENT_FIGURE_PROPERTIES = new HashSet<String>(Arrays.asList(new String[] {
-            GraphicObjectProperties.__GO_ROTATION_TYPE__,
-            GraphicObjectProperties.__GO_INFO_MESSAGE__,
-            GraphicObjectProperties.__GO_FIGURE_NAME__,
-            GraphicObjectProperties.__GO_AUTORESIZE__,
-            GraphicObjectProperties.__GO_POSITION__,
-            GraphicObjectProperties.__GO_SIZE__,
-            GraphicObjectProperties.__GO_ID__,
-    }));
+                GraphicObjectProperties.__GO_ROTATION_TYPE__,
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                GraphicObjectProperties.__GO_FIGURE_NAME__,
+                GraphicObjectProperties.__GO_AUTORESIZE__,
+                GraphicObjectProperties.__GO_POSITION__,
+                GraphicObjectProperties.__GO_SIZE__,
+                GraphicObjectProperties.__GO_ID__,
+            }));
 
     private final Component component;
     private final Canvas canvas;
@@ -175,12 +175,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
          */
         FontManager.getSciFontManager();
 
-	visitorMap.put(figure.getIdentifier(), this);
+        visitorMap.put(figure.getIdentifier(), this);
     }
 
     public static void changeVisitor(Figure figure, DrawerVisitor visitor) {
-	visitorMap.put(figure.getIdentifier(), visitor);
-    } 
+        visitorMap.put(figure.getIdentifier(), visitor);
+    }
 
     public DrawingTools getDrawingTools() {
         return drawingTools;
@@ -239,7 +239,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public static DrawerVisitor getVisitor(String figureId) {
         return visitorMap.get(figureId);
     }
-    
+
     public void addPostRendering(PostRendered postRendered) {
         if (postRendered != null) {
             postRenderedList.add(postRendered);
@@ -255,7 +255,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.drawingTools = drawingTools;
         figure.accept(this);
 
-        for(PostRendered postRendered : postRenderedList) {
+        for (PostRendered postRendered : postRenderedList) {
             try {
                 postRendered.draw(drawingTools);
             } catch (SciRendererException e) {
@@ -473,7 +473,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 if (polyline.getPolylineStyle() == 4) {
                     arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                        polyline.getLineThickness(), false, false, polyline.getLineColor());
+                                           polyline.getLineThickness(), false, false, polyline.getLineColor());
                 }
 
                 if (polyline.getMarkMode()) {
@@ -691,7 +691,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Draw the arrows */
                 if (champ.getArrowSize() != 0.0) {
                     arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
-                        champ.getColored(), champ.getLineColor());
+                                           champ.getColored(), champ.getLineColor());
                 }
             } catch (Exception e) {
                 invalidate(champ, e);
@@ -702,7 +702,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(final Segs segs) {
-        if (segs.isValid() && segs.getVisible()) {
+        if (segs.isValid() && segs.getVisible() && segs.getArrows().size() != 0) {
             axesDrawer.enableClipping(currentAxes, segs.getClipProperty());
             try {
                 DefaultGeometry segments = new DefaultGeometry();
@@ -734,7 +734,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Draw the arrows */
                 if (segs.getArrowSize() != 0.0) {
                     arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
-                        true, segs.getLineColor());
+                                           true, segs.getLineColor());
                 }
             } catch (Exception e) {
                 invalidate(segs, e);
@@ -854,7 +854,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param exception the cause of invalidation.
      */
     public void invalidate(GraphicObject graphicObject, Exception exception) {
-        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());exception.printStackTrace();
+        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());
+        exception.printStackTrace();
         GraphicController.getController().setProperty(graphicObject.getIdentifier(), GraphicObjectProperties.__GO_VALID__, false);
     }
 
