@@ -414,7 +414,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     set(a,"hiddencolor"          , mget(1,'il',fd)), // hidden_color
     set(a,"line_mode"            , toggle(mget(1,characterFormat,fd))), // line_mode
-    set(a,"line_style"           , mget(1,characterFormat,fd)) // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(a,"line_style"           , line_style) // line_style
     set(a,"thickness"            , mget(1,'sl',fd)), // thickness
     set(a,"mark_mode"            , toggle(mget(1,characterFormat,fd))), //mark_mode
     set(a,"mark_style"           , mget(1,characterFormat,fd)) // mark_style
@@ -502,6 +506,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       fill_mode      = toggle(mget(1,characterFormat,fd)) // fill_mode
     end
     line_style     = mget(1,characterFormat,fd); // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
     thickness      = mget(1,'sl',fd); // thickness
     if is_higher_than([3 1 0 1]) then
       arrow_size_factor = mget(1,'sl',fd); // arrow_size_factor
@@ -886,6 +893,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     line_mode      = toggle(mget(1,characterFormat,fd)) ; // line_mode
     line_style     = mget(1,characterFormat,fd); // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
     fill_mode      = toggle(mget(1,characterFormat,fd)) ; // fill_mode
     foreground     = mget(1,'il',fd); // foreground
 
@@ -940,6 +950,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     thickness      = mget(1,'sl',fd); // thickness
     line_style     = mget(1,characterFormat,fd);  // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
 
     if is_higher_than([3 1 0 1])
       line_mode = toggle(mget(1,characterFormat,fd)) ; // line_mode
@@ -1013,7 +1026,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     h=gce();
 
     set(h,"visible",visible);
-    set(h,"line_style",mget(1,characterFormat,fd)); // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(h,"line_style",line_style); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"colored",toggle(mget(1,characterFormat,fd))) // colored
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
@@ -1038,7 +1055,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(h,"visible",visible);
     set(h,"line_mode" ,toggle(mget(1,characterFormat,fd))) // line_mode
-    set(h,"line_style",mget(1,characterFormat,fd)); // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(h,"line_style",line_style); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
 

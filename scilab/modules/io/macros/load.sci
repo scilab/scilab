@@ -33,6 +33,7 @@ errclear();
 if %__iErr__ then
     %__isHdf5Format__ = %F;
     %_load(%__filename__, %__varargin__(:));
+    clear %h_load
 end
 
 clear %__iErr__ ans // ans is the output status of import_from_hdf5
@@ -278,7 +279,7 @@ end
 global %LEG
 if ~isempty(%LEG) then
     // Get handles from paths
-    links=get_links_from_path(h, %LEG.paths)
+    links=getlinksfrompath(h, %LEG.paths)
     if ~isempty(links) then
         L = captions(links, %LEG.text)
         L.visible         = %LEG.visible
@@ -738,7 +739,7 @@ end
 endfunction
 
 // Utility function for legends, copy/paste from %h_load
-function links=get_links_from_path(ax,paths)
+function links=getlinksfrompath(ax,paths)
 //  ax is a  handle on an axes entity
 //  paths a list or row vector which gives the set of paths relative to
 //  the axes
