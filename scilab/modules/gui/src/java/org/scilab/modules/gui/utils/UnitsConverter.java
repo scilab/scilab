@@ -73,7 +73,7 @@ public final class UnitsConverter {
         String widgetType = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
         /* Get the component height from java */
-        if(widgetType.equals(__GO_FIGURE__)) { /* Figure */
+        if (widgetType.equals(__GO_FIGURE__)) { /* Figure */
             if (widthAsRef) {
                 refSize = (int) CallScilabBridge.getScreenWidth();
             } else {
@@ -88,35 +88,35 @@ public final class UnitsConverter {
             parentType = (String) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
-        switch(newUnit) {
-        case POINTS:
-            return (double) value;
-        case NORMALIZED:
-            if(parentType.equals(__GO_FIGURE__)) { /* Figure */
-                parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_SIZE__);
-                if (widthAsRef) {
-                    refSize = (int) parentSize[0];
-                } else {
-                    refSize = (int) parentSize[1];
-                }
-            } else { /* Frame */
-                parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_POSITION__);
+        switch (newUnit) {
+            case POINTS:
+                return (double) value;
+            case NORMALIZED:
+                if (parentType.equals(__GO_FIGURE__)) { /* Figure */
+                    parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_SIZE__);
+                    if (widthAsRef) {
+                        refSize = (int) parentSize[0];
+                    } else {
+                        refSize = (int) parentSize[1];
+                    }
+                } else { /* Frame */
+                    parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_POSITION__);
 
-                if (widthAsRef) {
-                    refSize = (int) parentSize[2];
-                } else {
-                    refSize = (int) parentSize[3];
+                    if (widthAsRef) {
+                        refSize = (int) parentSize[2];
+                    } else {
+                        refSize = (int) parentSize[3];
+                    }
                 }
-            }
-            return ((double) value) / (refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
-        case INCHES:
-            return ((double) value) / POINT_PER_INCH;
-        case CENTIMETERS:
-            return ((double) value) * CM_PER_INCH / POINT_PER_INCH;
-        case PIXELS:
-            return ((double) value) * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
-        default:
-            return 0.0;
+                return ((double) value) / (refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+            case INCHES:
+                return ((double) value) / POINT_PER_INCH;
+            case CENTIMETERS:
+                return ((double) value) * CM_PER_INCH / POINT_PER_INCH;
+            case PIXELS:
+                return ((double) value) * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
+            default:
+                return 0.0;
         }
     }
 
@@ -141,42 +141,42 @@ public final class UnitsConverter {
             oldUnit = UicontrolUnits.PIXELS;
         } else { /* Uicontrol */
             parentId = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
-            if (parentId == null || parentId.equals("") || oldUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
+            if ((parentId == null || parentId.equals("")) && oldUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
                 return 0;
             }
             parentType = (String) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
-        switch(oldUnit) {
-        case POINTS:
-            return (int) value;
-        case NORMALIZED:
-            if (parentType.equals(__GO_FIGURE__)) { /* Figure */
-                parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_SIZE__);
+        switch (oldUnit) {
+            case POINTS:
+                return (int) value;
+            case NORMALIZED:
+                if (parentType.equals(__GO_FIGURE__)) { /* Figure */
+                    parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_SIZE__);
 
-                if (widthAsRef) {
-                    refSize = (int) parentSize[0];
-                } else {
-                    refSize = (int) parentSize[1];
-                }
-            } else { /* Frame */
-                parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_POSITION__);
+                    if (widthAsRef) {
+                        refSize = (int) parentSize[0];
+                    } else {
+                        refSize = (int) parentSize[1];
+                    }
+                } else { /* Frame */
+                    parentSize = (double[]) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_POSITION__);
 
-                if (widthAsRef) {
-                    refSize = (int) parentSize[2];
-                } else {
-                    refSize = (int) parentSize[3];
+                    if (widthAsRef) {
+                        refSize = (int) parentSize[2];
+                    } else {
+                        refSize = (int) parentSize[3];
+                    }
                 }
-            }
-            return (int) (value * refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
-        case INCHES:
-            return (int) (value * POINT_PER_INCH);
-        case CENTIMETERS:
-            return (int) (value * POINT_PER_INCH / CM_PER_INCH);
-        case PIXELS:
-            return (int) (value * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
-        default:
-            return 0;
+                return (int) (value * refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+            case INCHES:
+                return (int) (value * POINT_PER_INCH);
+            case CENTIMETERS:
+                return (int) (value * POINT_PER_INCH / CM_PER_INCH);
+            case PIXELS:
+                return (int) (value * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+            default:
+                return 0;
         }
     }
 
@@ -213,7 +213,7 @@ public final class UnitsConverter {
     }
 
     public static Double[] convertPositionToPixels(Double[] position, UicontrolUnits oldUnit, Widget uicontrol, boolean widthAsRef) {
-        for (int i = 0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             position[i] = new Double(convertToPixel(position[i].doubleValue(), oldUnit, uicontrol, widthAsRef));
         }
         return position;

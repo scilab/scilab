@@ -37,6 +37,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
@@ -486,6 +487,8 @@ public final class SwingView implements GraphicView {
                                (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTNAME__,
                                (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTUNITS__,
+                               (String) GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTSIZE__,
                                (Double) GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTWEIGHT__,
