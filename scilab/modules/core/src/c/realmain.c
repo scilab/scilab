@@ -94,19 +94,23 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
                 case SCILAB_SCRIPT :
                     {
                         char *ext = FindFileExtension(initial_script);
-                        if ((ext) && (strcmp(ext, ".xcos") == 0))
+                        if (ext)
                         {
-                            snprintf(startup,PATH_MAX,"%s;xcos('%s')",get_sci_data_strings(STARTUP_ID), initial_script);
+                            if ((strcmp(ext, ".xcos") == 0) || (strcmp(ext, ".zcos") == 0))
+                            {
+                                snprintf(startup,PATH_MAX,"%s;xcos('%s')",get_sci_data_strings(STARTUP_ID), initial_script);
+                            }
+                            else
+                            {
+                                snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID), initial_script);
+                            }
+
+                            FREE(ext);
+                            ext = NULL;
                         }
                         else
                         {
                             snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID), initial_script);
-                        }
-
-                        if (ext) 
-                        {
-                            FREE(ext);
-                            ext = NULL;
                         }
                     }
                     
