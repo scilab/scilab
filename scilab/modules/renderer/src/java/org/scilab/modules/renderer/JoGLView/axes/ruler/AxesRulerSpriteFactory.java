@@ -111,7 +111,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     /**
-     * Create and return a texture representing the given value.
+     * Create and return a texture representing the given value.|| index >= axisProperty.getTicksLabels().size()
      * The returned sprites will look like "5x10^2"
      * @param value, the given value.
      * @param textureManager used texture manager.
@@ -162,9 +162,9 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             @Override
             public Dimension getTextureSize() {
                 return new Dimension(
-                        exponentSize.width + mantissaSize.width,
-                        exponentSize.height + mantissaSize.height
-                );
+                           exponentSize.width + mantissaSize.width,
+                           exponentSize.height + mantissaSize.height
+                       );
             }
 
             @Override
@@ -226,7 +226,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
                 break;
             }
         }
-        if (index == -1) {
+        if (index == -1 || index >= axisProperty.getTicksLabels().size()) {
             return null;
         } else {
             return axisProperty.getTicksLabels().get(index);
