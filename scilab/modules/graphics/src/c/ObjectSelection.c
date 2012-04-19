@@ -75,6 +75,7 @@ sciPointObj * sciGetFirstSelectedSon( sciPointObj * pObj )
 {
     abort();
 //  return (sciPointObj *) List_data(((TypedSonsList*)List_data(sciGetRelationship(pObj)->pSelectedSon))->typedSons ) ;
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 sciPointObj * sciGetFirstTypedSelectedSon( sciPointObj * pObj, sciEntityType objType )

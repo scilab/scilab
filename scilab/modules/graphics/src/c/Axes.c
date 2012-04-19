@@ -177,7 +177,7 @@ static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
   int width;
   int height;
   /* get area used by the subwindow */
-  sciGetViewingArea(pSubwin, &xPos, &yPos, &width, &height);
+  sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
 
   /* get coordinate sof middle */
   xPos = xPos + width / 2;
@@ -197,7 +197,7 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
   int width;
   int height;
   /* get area used by the subwindow */
-  sciGetViewingArea(pSubwin, &xPos, &yPos, &width, &height);
+  sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
 
   return (   xCoord > xPos && xCoord < xPos + width
           && yCoord > yPos && yCoord < yPos + height);
@@ -217,7 +217,7 @@ sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
     sciPointObj * curObj = pSons->pointobj;
     if (sciGetEntityType(curObj) == SCI_SUBWIN)
     {
-      updateSubwinScale(curObj);
+      updateSubwinScale((char*)curObj);
       if (isSubwinUnderPixel(curObj, xCoord, yCoord))
       {
         foundSubwins = List_push(foundSubwins, curObj);

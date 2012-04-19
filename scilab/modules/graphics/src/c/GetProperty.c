@@ -142,7 +142,7 @@ sciGetNumColors (char *pobjUID)
 /* This function */
 int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
 {
-    int m = sciGetNumColors (pobj);	/* the number of the color*/
+    int m = sciGetNumColors ((char*)pobj);	/* the number of the color*/
 
     if (colorindex == -1) /* Black */
         return m + 1;
@@ -187,7 +187,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
 {
 
     int colorindex = -999;
-    int m = sciGetNumColors(pobj);
+    int m = sciGetNumColors((char*)pobj);
 
     colorindex = sciGetBackground(pobj);
 
@@ -227,7 +227,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
 {
 
     int colorindex = -999;
-    int m = sciGetNumColors(pobj);
+    int m = sciGetNumColors((char*)pobj);
 
     colorindex = sciGetMarkForeground(pobj);
 
@@ -271,7 +271,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 {
 
     int colorindex = -999;
-    int m = sciGetNumColors(pobj);
+    int m = sciGetNumColors((char*)pobj);
 
     colorindex = sciGetMarkBackground(pobj);
 
@@ -492,6 +492,7 @@ double sciGetFontSize(char * pobjUID)
         return -1.0;
     }
 #endif
+    return -1.0;
 }
 
 
@@ -668,7 +669,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
 {
 
     int colorindex = -999;
-    int m = sciGetNumColors(pobj);
+    int m = sciGetNumColors((char*)pobj);
 
     switch (sciGetEntityType (pobj))
     {
@@ -752,7 +753,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
 {
 
     int colorindex = -999;
-    int m = sciGetNumColors(pobj);
+    int m = sciGetNumColors((char*)pobj);
 
     switch (sciGetEntityType (pobj))
     {
@@ -1385,7 +1386,7 @@ int sciGetWindowWidth(sciPointObj * pObj)
     switch (sciGetEntityType(pObj))
     {
         case SCI_FIGURE:
-            if ( pObj == getFigureModel() )
+            if ( pObj == (sciPointObj *)getFigureModel() )
             {
                 return pFIGURE_FEATURE(pObj)->pModelData->windowWidth ;
             }
@@ -1409,7 +1410,7 @@ int sciGetWindowHeight(sciPointObj * pObj)
     switch (sciGetEntityType(pObj))
     {
         case SCI_FIGURE:
-            if ( pObj == getFigureModel() )
+            if ( pObj == (sciPointObj *)getFigureModel() )
             {
                 return pFIGURE_FEATURE(pObj)->pModelData->windowHeight ;
             }
@@ -2491,7 +2492,7 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
     switch ( sciGetEntityType(pObj) )
     {
         case SCI_FIGURE:
-            if ( pObj == getFigureModel() )
+            if ( pObj == (sciPointObj *)getFigureModel() )
             {
                 *posX = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[0] ;
                 *posY = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[1] ;
@@ -3096,10 +3097,10 @@ void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corne
     sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
 
     /* convert it to 2d view coordinates */
-    sciGetJava2dViewCoordinates(parentSubwin, corners3d[0], corner1);
-    sciGetJava2dViewCoordinates(parentSubwin, corners3d[1], corner2);
-    sciGetJava2dViewCoordinates(parentSubwin, corners3d[2], corner3);
-    sciGetJava2dViewCoordinates(parentSubwin, corners3d[3], corner4);
+    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[0], corner1);
+    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[1], corner2);
+    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[2], corner3);
+    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[3], corner4);
 
 }
 /*----------------------------------------------------------------------------------*/

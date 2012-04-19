@@ -298,7 +298,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1),"wshow") == 0)
     {
         /* a supprimer ce n'est pas une propriete mais une action */
-        showPixmap(sciGetParentFigure(subwin));
+        showPixmap((char*)sciGetParentFigure(subwin));
     }
     else if (strcmp(cstk(l1),"viewport") == 0)
     {

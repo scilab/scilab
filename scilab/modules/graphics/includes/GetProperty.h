@@ -230,6 +230,6 @@ GRAPHICS_IMPEXP BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
 
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
-GRAPHICS_IMPEXP void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3]);
+GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]);
 
 #endif /* __SCI_GET_PROPERTY__ */

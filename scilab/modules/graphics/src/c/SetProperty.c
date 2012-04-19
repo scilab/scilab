@@ -180,16 +180,16 @@ int sciInitBackground( char * pobjUID, int colorindex )
 
     colorindex = sciSetGoodIndex(pobjUID,colorindex);
 
-    if (sciGetGraphicContext(pobjUID) != NULL)
+    if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
     {
         int newIndex = Max (0, Min (colorindex - 1, m + 1));
-        sciGetGraphicContext(pobjUID)->backgroundcolor = newIndex;
+        sciGetGraphicContext((sciPointObj*) pobjUID)->backgroundcolor = newIndex;
 
-        if (sciGetEntityType(pobjUID) == SCI_FIGURE && !isFigureModel(pobjUID))
+        if (sciGetEntityType((sciPointObj*)pobjUID) == SCI_FIGURE && !isFigureModel(pobjUID))
         {
 			/* disable protection since this function will call Java */
             //disableFigureSynchronization(pobjUID);
-            sciSetJavaBackground(pobjUID, newIndex);
+            sciSetJavaBackground((sciPointObj*)pobjUID, newIndex);
 			//enableFigureSynchronization(pobjUID);
         }
 
@@ -206,7 +206,7 @@ int sciInitBackground( char * pobjUID, int colorindex )
 int
 sciSetBackground (char * pobjUID, int colorindex)
 {
-    if ( sciGetBackground( pobjUID ) == colorindex )
+    if ( sciGetBackground((sciPointObj*) pobjUID ) == colorindex )
     {
         /* nothing to do */
         return 1 ;
@@ -341,9 +341,9 @@ sciInitLineStyle (char * pobjUID, int linestyle)
 int sciInitIsMark( char * pobjUID, BOOL ismark )
 {
 
-    if (sciGetGraphicContext(pobjUID) != NULL)
+    if (sciGetGraphicContext((sciPointObj*)pobjUID) != NULL)
     {
-        sciGetGraphicContext(pobjUID)->ismark = ismark;
+        sciGetGraphicContext((sciPointObj*)pobjUID)->ismark = ismark;
         return 0;
     }
 
@@ -359,7 +359,7 @@ int
 sciSetIsMark (char * pobjUID, BOOL ismark)
 {
 
-    if ( sciGetIsMark(pobjUID) == ismark )
+    if ( sciGetIsMark((sciPointObj *)pobjUID) == ismark )
     {
         /* nothing to do */
         return 1 ;
@@ -374,9 +374,9 @@ int sciInitMarkForeground( char * pobjUID, int colorindex )
     if(!sciCheckColorIndex(pobjUID, colorindex)) return 0;
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
 
-    if (sciGetGraphicContext(pobjUID) != NULL)
+    if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
     {
-        sciGetGraphicContext(pobjUID)->markforeground =
+        sciGetGraphicContext((sciPointObj *)pobjUID)->markforeground =
             Max (-1, Min (colorindex - 1, sciGetNumColors (pobjUID) + 1));
         return 0;
     }
@@ -394,7 +394,7 @@ sciSetMarkForeground (char * pobjUID, int colorindex)
 {
 
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
-    if ( sciGetMarkForeground( pobjUID ) == colorindex )
+    if ( sciGetMarkForeground((sciPointObj *)pobjUID ) == colorindex )
     {
         /* nothing to do */
         return 1 ;
@@ -408,9 +408,9 @@ int sciInitMarkBackground( char * pobjUID, int colorindex )
     if(!sciCheckColorIndex(pobjUID, colorindex)) return 0;
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
 
-    if (sciGetGraphicContext(pobjUID) != NULL)
+    if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
     {
-        sciGetGraphicContext(pobjUID)->markbackground =
+        sciGetGraphicContext((sciPointObj *)pobjUID)->markbackground =
             Max (-1, Min (colorindex - 1, sciGetNumColors (pobjUID) + 1));
         return 0;
     }
@@ -428,7 +428,7 @@ sciSetMarkBackground (char * pobjUID, int colorindex)
 
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
 
-    if ( sciGetMarkBackground( pobjUID ) == colorindex )
+    if ( sciGetMarkBackground((sciPointObj *) pobjUID ) == colorindex )
     {
         /* nothing to do */
         return 1 ;
@@ -537,9 +537,9 @@ int sciInitMarkSizeUnit( char * pobjUID, int marksizeunit )
     }
     else
     {
-        if (sciGetGraphicContext(pobjUID) != NULL)
+        if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
         {
-            (sciGetGraphicContext(pobjUID))->marksizeunit = marksizeunit;
+            (sciGetGraphicContext((sciPointObj *)pobjUID))->marksizeunit = marksizeunit;
             return 0;
         }
     }
@@ -619,9 +619,9 @@ int sciInitFontSize( char * pobjUID, double fontSize )
     }
     else
     {
-        if (sciGetFontContext(pobjUID) != NULL)
+        if (sciGetFontContext((sciPointObj *)pobjUID) != NULL)
         {
-            (sciGetFontContext(pobjUID))->fontSize = fontSize;
+            (sciGetFontContext((sciPointObj *)pobjUID))->fontSize = fontSize;
             return 0;
         }
         else
@@ -649,9 +649,9 @@ int sciSetFontSize(char * pobjUID, double fontSize)
 
 int sciInitFontOrientation( char * pobjUID, double textorientation )
 {
-    if (sciGetFontContext(pobjUID) != NULL)
+    if (sciGetFontContext((sciPointObj *)pobjUID) != NULL)
     {
-        (sciGetFontContext(pobjUID))->textorientation = textorientation;
+        (sciGetFontContext((sciPointObj *)pobjUID))->textorientation = textorientation;
         return 0;
     }
     printSetGetErrorMessage("font_angle");
@@ -667,7 +667,7 @@ int
 sciSetFontOrientation (char * pobjUID, double textorientation)
 {
 
-    if ( sciGetFontOrientation( pobjUID ) == textorientation )
+    if ( sciGetFontOrientation((sciPointObj *)pobjUID ) == textorientation )
     {
         /* nothing to do */
         return 1 ;
@@ -824,7 +824,7 @@ sciSetFontBackground (char * pobjUID, int colorindex)
 {
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
 
-    if ( sciGetFontBackground( pobjUID ) == colorindex )
+    if ( sciGetFontBackground((sciPointObj *)pobjUID ) == colorindex )
     {
         /* nothing to do */
         return 1 ;
@@ -894,7 +894,7 @@ sciSetFontForeground (char * pobjUID, int colorindex)
 {
     colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
 
-    if ( sciGetFontForeground( pobjUID ) == colorindex )
+    if ( sciGetFontForeground((sciPointObj *)pobjUID ) == colorindex )
     {
         /* nothing to do */
         return 1 ;
@@ -946,7 +946,7 @@ int sciInitFontStyle( char * pobjUID, int iAttributes )
 int
 sciSetFontStyle (char * pobjUID, int iAttributes )
 {
-    if ( sciGetFontStyle( pobjUID ) == iAttributes )
+    if ( sciGetFontStyle((sciPointObj *)pobjUID ) == iAttributes )
     {
         /* nothing to do */
         return 1 ;
@@ -988,7 +988,7 @@ sciSetLegendPlace (char * pobjUID, sciLegendPlace place)
 {
 
 
-    if ( sciGetLegendPlace( pobjUID ) == place )
+    if ( sciGetLegendPlace((sciPointObj *)pobjUID ) == place )
     {
         /* nothing to do */
         return 1 ;
@@ -1040,7 +1040,7 @@ int
 sciSetLegendPos (char * pobjUID, double position[])
 {
     double position_old[2] ;
-    sciGetLegendPos( pobjUID ,position_old) ;
+    sciGetLegendPos((sciPointObj *) pobjUID ,position_old) ;
     if ( position[0] ==  position_old[0] && position[1] == position_old[1] )
     {
         /* nothing to do */
@@ -1118,7 +1118,7 @@ int
 sciSetIsClipping( char * pobjUID, int value )
 {
 
-    if ( sciGetIsClipping( pobjUID ) == value )
+    if ( sciGetIsClipping((sciPointObj *) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -1235,7 +1235,7 @@ int sciInitZooming( char * pobjUID, BOOL value )
 int
 sciSetZooming (char * pobjUID, BOOL value)
 {
-    if ( sciGetZooming( pobjUID ) == value )
+    if ( sciGetZooming((sciPointObj *) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -1330,7 +1330,7 @@ int sciInitVisibility( char * pobjUID, BOOL value )
 int
 sciSetVisibility (char * pobjUID, BOOL value)
 {
-    if ( sciGetVisibility( pobjUID ) == value )
+    if ( sciGetVisibility((sciPointObj *) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -1392,7 +1392,7 @@ int
 sciSetResize (char * pobjUID, BOOL value)
 {
 
-    if ( sciGetResize( pobjUID ) == value )
+    if ( sciGetResize((sciPointObj *) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -1543,7 +1543,7 @@ int
 sciSetNum (char * pobjUID, int value )
 {
 
-    if ( sciGetNum(pobjUID) == value )
+    if ( sciGetNum((sciPointObj *)pobjUID) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -1629,7 +1629,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
 /*-------------------------------------------------------------------------------*/
 int sciInitSelectedObject( char * pobjUID )
 {
-    sciAddUniqueSelectedSon(sciGetParent(pobjUID), pobjUID ) ;
+    sciAddUniqueSelectedSon((sciPointObj *)sciGetParent(pobjUID), (sciPointObj *)pobjUID ) ;
     return 0 ;
 }
 /*-------------------------------------------------------------------------------*/
@@ -2139,7 +2139,7 @@ int
 sciSetIsFilled (char * pobjUID, BOOL isfilled)
 {
 
-    if ( sciGetIsFilled( pobjUID ) == isfilled )
+    if ( sciGetIsFilled((sciPointObj *) pobjUID ) == isfilled )
     {
         return 1 ;
     }
@@ -2188,7 +2188,7 @@ int sciInitBoxType( char * pobjUID, EAxesBoxType type )
 int sciSetBoxType( char * pobjUID, EAxesBoxType type )
 {
 
-    if ( sciGetBoxType( pobjUID ) == type )
+    if ( sciGetBoxType((sciPointObj *) pobjUID ) == type )
     {
         return 1 ;
     }
@@ -2249,7 +2249,7 @@ int
 sciSetIsBoxed (char * pobjUID, BOOL isboxed)
 {
 
-    if ( sciGetIsBoxed( pobjUID ) == isboxed )
+    if ( sciGetIsBoxed((sciPointObj *) pobjUID ) == isboxed )
     {
         return 1 ;
     }
@@ -2286,7 +2286,7 @@ sciSetNbXSubTics(char * pobjUID, int nbsubtics)
 {
     int curr_nbsubtics[3];
 
-    sciGetNbSubTics( pobjUID,  curr_nbsubtics);
+    sciGetNbSubTics((sciPointObj*) pobjUID,  curr_nbsubtics);
 
     if ( curr_nbsubtics[0] == nbsubtics )
     {
@@ -2323,7 +2323,7 @@ sciSetNbYSubTics(char * pobjUID, int nbsubtics)
 {
     int curr_nbsubtics[3];
 
-    sciGetNbSubTics( pobjUID,  curr_nbsubtics);
+    sciGetNbSubTics((sciPointObj*) pobjUID,  curr_nbsubtics);
 
     if ( curr_nbsubtics[1] == nbsubtics )
     {
@@ -2360,7 +2360,7 @@ sciSetNbZSubTics(char * pobjUID, int nbsubtics)
 {
     int curr_nbsubtics[3];
 
-    sciGetNbSubTics( pobjUID,  curr_nbsubtics);
+    sciGetNbSubTics((sciPointObj*) pobjUID,  curr_nbsubtics);
 
     if ( curr_nbsubtics[2] == nbsubtics )
     {
@@ -2429,7 +2429,7 @@ int sciInitAutoRotation( char * pobjUID, BOOL value )
 int sciSetAutoRotation ( char * pobjUID, BOOL value )
 {
 
-    if ( sciGetAutoRotation( pobjUID ) == value )
+    if ( sciGetAutoRotation((sciPointObj*) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -2469,14 +2469,14 @@ int sciInitAutoPosition( char * pobjUID, BOOL value )
         break;
     }
 #endif
-
+    return -1 ;
 }
 
 /* set the auto_position property of an object */
 int sciSetAutoPosition ( char * pobjUID, BOOL value )
 {
 
-    if ( sciGetAutoPosition( pobjUID ) == value )
+    if ( sciGetAutoPosition((sciPointObj*) pobjUID ) == value )
     {
         /* nothing to do */
         return 1 ;
@@ -2539,7 +2539,7 @@ int sciInitAutoSize( char * pobjUID, BOOL autoSize )
 /*---------------------------------------------------------------------------*/
 int sciSetAutoSize( char * pobjUID, BOOL autoSize )
 {
-    if ( sciGetAutoSize( pobjUID ) == autoSize )
+    if ( sciGetAutoSize((sciPointObj*) pobjUID ) == autoSize )
     {
         /* nothing to do */
         return 1 ;
@@ -2562,12 +2562,12 @@ int sciInitAlignment( char * pobjUID, sciTextAlignment align )
         return -1 ;
     }
 #endif
-
+    return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetAlignment( char * pobjUID, sciTextAlignment align )
 {
-    if ( sciGetAlignment( pobjUID ) == align )
+    if ( sciGetAlignment((sciPointObj*) pobjUID ) == align )
     {
         /* nothing to do */
         return 1 ;
@@ -2598,7 +2598,7 @@ int sciSetUserSize( char * pobjUID, double width, double height )
 {
     double curWidth  ;
     double curHeight ;
-    sciGetUserSize( pobjUID, &curWidth, &curHeight ) ;
+    sciGetUserSize((sciPointObj*) pobjUID, &curWidth, &curHeight ) ;
     if ( curWidth == width && curHeight == height )
     {
         /* nothing to do */
@@ -2628,7 +2628,7 @@ int sciInitCenterPos( char * pobjUID, BOOL newCP )
 /*-----------------------------------------------------------------------------------*/
 int sciSetCenterPos( char * pobjUID, BOOL newCP )
 {
-    if ( sciGetCenterPos( pobjUID ) == newCP )
+    if ( sciGetCenterPos((sciPointObj*) pobjUID ) == newCP )
     {
         /* nothing to do */
         return 1 ;
@@ -2661,7 +2661,7 @@ int sciInitHiddenColor( char * pobjUID, int newColor )
 /*-----------------------------------------------------------------------------------*/
 int sciSetHiddenColor( char * pobjUID, int newColor )
 {
-    if ( sciGetHiddenColor( pobjUID ) == newColor )
+    if ( sciGetHiddenColor((sciPointObj*) pobjUID ) == newColor )
     {
         /* nothing to do */
         return 1 ;
@@ -2694,7 +2694,7 @@ int sciInitHiddenAxisColor( char * pobjUID, int newColor )
 /*-----------------------------------------------------------------------------------*/
 int sciSetHiddenAxisColor( char * pobjUID, int newColor )
 {
-    if ( sciGetHiddenAxisColor( pobjUID ) == newColor )
+    if ( sciGetHiddenAxisColor((sciPointObj*) pobjUID ) == newColor )
     {
         /* nothing to do */
         return 1 ;
@@ -2737,7 +2737,7 @@ int sciSetGridStyle( char * pobjUID, int xStyle, int yStyle, int zStyle )
     int curX ;
     int curY ;
     int curZ ;
-    sciGetGridStyle( pobjUID, &curX, &curY, &curZ ) ;
+    sciGetGridStyle((sciPointObj*) pobjUID, &curX, &curY, &curZ ) ;
     if ( curX == xStyle && curY == yStyle && curZ == zStyle )
     {
         /* nothing to do */
@@ -2825,7 +2825,7 @@ int sciInitEventHandler( char * pobjUID, char * name )
 /*-----------------------------------------------------------------------------------*/
 int sciSetEventHandler( char * pobjUID, char * name )
 {
-    if ( strcmp( sciGetEventHandler(pobjUID), name ) == 0 )
+    if ( strcmp( sciGetEventHandler((sciPointObj*)pobjUID), name ) == 0 )
     {
         /* nothing to do */
         return 1 ;
@@ -2875,7 +2875,7 @@ int sciInitIsEventHandlerEnable( char * pobjUID, BOOL enable )
 /*-----------------------------------------------------------------------------------*/
 int sciSetIsEventHandlerEnable( char * pobjUID, BOOL enable )
 {
-    if ( sciGetIsEventHandlerEnable(pobjUID) == enable )
+    if ( sciGetIsEventHandlerEnable((sciPointObj*)pobjUID) == enable )
     {
         /* nothing to do */
         return 1 ;
@@ -2969,7 +2969,7 @@ int sciInitPixmapMode(char * pobjUID, BOOL onOrOff)
  */
 int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
 {
-    if (sciGetPixmapMode(pobjUID) == onOrOff)
+    if (sciGetPixmapMode((sciPointObj*)pobjUID) == onOrOff)
     {
         /* Nothing to do */
         return 1;
@@ -3005,7 +3005,7 @@ int sciInitTextPos( char * pobjUID, double posX, double posY, double posZ)
 int sciSetTextPos( char * pobjUID, double posX, double posY, double posZ)
 {
     double curPos[3];
-    sciGetTextPos(pobjUID, curPos);
+    sciGetTextPos((sciPointObj*)pobjUID, curPos);
     if ( curPos[0] == posX && curPos[1] == posY && curPos[2] == posZ )
     {
         /* nothing to do */
@@ -3037,7 +3037,7 @@ int sciInitAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL auto
 int sciSetAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
 {
     BOOL curAutoTicks[3];
-    sciGetAutoTicks(pobjUID, curAutoTicks);
+    sciGetAutoTicks((sciPointObj*)pobjUID, curAutoTicks);
 
     if (curAutoTicks[0] == autoTicksX && curAutoTicks[1] == autoTicksY && curAutoTicks[2] == autoTicksZ)
     {

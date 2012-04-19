@@ -71,7 +71,7 @@ extern void unzoom()
       psousfen= (sciPointObj *)psonstmp->pointobj;
       if (sciGetZooming(psousfen))
       {
-        sciSetZooming(psousfen, 0);
+        sciSetZooming((char*)psousfen, 0);
 
         pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
         pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];

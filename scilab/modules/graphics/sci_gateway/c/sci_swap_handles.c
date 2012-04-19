@@ -42,6 +42,7 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   int *piChildrenCount = &iChildrenCount;
   char **pstChildrenUID;
   int i = 0;
+  long h = 0;
 
   CheckRhs( 2, 2 ) ;
   CheckLhs( 0, 1 ) ;
@@ -56,8 +57,12 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   }
 
   /* get the two handles and swap them */
-  pstHandle_1 = getObjectFromHandle(*hstk(firstHdlStkIndex));
-  pstHandle_2 = getObjectFromHandle(*hstk(secondHdlStkIndex));
+  h = (long)*hstk(firstHdlStkIndex);
+  pstHandle_1 = getObjectFromHandle(h);
+
+  h = (long)*hstk(secondHdlStkIndex);
+  pstHandle_2 = getObjectFromHandle(h);
+
   getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, &pstParent_1);
   getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, &pstParent_2);
 

@@ -483,7 +483,7 @@ char *ConstructLegend(char *pparentsubwinUID, char **text, long long tabofhandle
     {
         char *tmpObjUID;
 
-        tmpObjUID = getObjectFromHandle(tabofhandles[i]);
+        tmpObjUID = getObjectFromHandle((long)tabofhandles[i]);
 
         /*
          * Links are ordered from most recent to least recent,

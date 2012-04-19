@@ -1040,7 +1040,7 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick,
   double endSecondCorner[2];
 
   /* get up to date coordinates */
-  updateSubwinScale(pSubwin);
+  updateSubwinScale((char*)pSubwin);
 
   /* convert initial rect in  */
 
@@ -1055,8 +1055,8 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick,
     firstCorner[1] = initialRect[1]; /* upper left point */
     secondCorner[0] = initialRect[0] + initialRect[2];
     secondCorner[1] = initialRect[1] - initialRect[3];
-    sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
-    sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
+    sciGet2dViewPixelCoordinates((char*)pSubwin, firstCorner, initialPixelRect);
+    sciGet2dViewPixelCoordinates((char*)pSubwin, secondCorner, initialPixelRect + 2);
 
     pixelRubberBox(sciGetParentFigure(pSubwin), isClick, initialPixelRect, endPixelRect, usedButton);
   }
@@ -1067,8 +1067,8 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick,
 
   /* here we get the two opposite points of the rectangle in pixels */
   /* convert them in user coordinates */
-  sciGet2dViewCoordFromPixel(pSubwin, endPixelRect, endFirstCorner);
-  sciGet2dViewCoordFromPixel(pSubwin, endPixelRect + 2, endSecondCorner);
+  sciGet2dViewCoordFromPixel((char*)pSubwin, endPixelRect, endFirstCorner);
+  sciGet2dViewCoordFromPixel((char*)pSubwin, endPixelRect + 2, endSecondCorner);
 
   /* [x,y,w,h] array where (x,y) is the upper left point of the rectangle */
   endRect[0] = Min(endFirstCorner[0], endSecondCorner[0]);

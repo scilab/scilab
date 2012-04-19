@@ -182,13 +182,13 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        zoomedObject = getZoomedObject(fname);
+        zoomedObject = (sciPointObj *)getZoomedObject(fname);
         if (zoomedObject == NULL || !getZoomRect(fname, 2, rect))
         {
             return -1;
         }
 
-        if (sciZoomRect(zoomedObject, rect) == SET_PROPERTY_ERROR)
+        if (sciZoomRect((char*)zoomedObject, rect) == SET_PROPERTY_ERROR)
         {
             /* error on rectangle bounds */
             Scierror(999, _("%s: Error on input argument #%d: Specified bounds are not correct.\n"), fname, 1);

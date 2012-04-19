@@ -63,7 +63,7 @@ int destroyGraphicsSons(sciPointObj * pthis)
   toto = sciGetSons (pthis);
   while ((toto != NULL) && (toto->pointobj != NULL))
   {
-    destroyGraphicHierarchy(toto->pointobj);
+    destroyGraphicHierarchy((char*)(toto->pointobj));
     toto = sciGetSons(pthis);
   }
   return 0;
