@@ -79,7 +79,8 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
-src/jni/JOGLConstant.giws.xml
+src/jni/JOGLConstant.giws.xml \
+src/jni/Driver.giws.xml
 
 BUILT_SOURCES=
 if GIWS

@@ -19,7 +19,7 @@ package org.scilab.modules.graphic_export;
  */
 public class Driver {
 
-    private static String driver;
+    private static String driver = "Rec";
     private static String filename;
 
     /**
@@ -34,6 +34,14 @@ public class Driver {
         Driver.driver = driver;
 
         return true;
+    }
+
+    /**
+     * Get the driver
+     * @return the driver used
+     */
+    public static String getDriver() {
+        return driver;
     }
 
     /**

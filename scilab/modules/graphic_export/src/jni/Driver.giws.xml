@@ -9,12 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
+
 <package name="org.scilab.modules.graphic_export">
   <object name="Driver">
     <method name="setDriver" returnType="boolean" modifier="static">
       <parameter name="driver" type="String"/>
     </method>
+    <method name="getDriver" returnType="String" modifier="static"/>
     <method name="setPath" returnType="void" modifier="static">
       <parameter name="path" type="String"/>
     </method>

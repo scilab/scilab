@@ -37,41 +37,53 @@ int sci_driver(char * fname, unsigned long fname_len )
     char * driver = 0;
     bool ok = true;
 
-    CheckRhs(1, 1);
+    CheckRhs(0, 1);
 
-    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
-    if (err.iErr)
+    if (Rhs == 1) // Change driver
     {
-        printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
+        err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
 
-    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
-    {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
 
-    if (getAllocatedSingleString(pvApiCtx, addr, &driver) != 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
+        if (getAllocatedSingleString(pvApiCtx, addr, &driver) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
 
-    ok = org_scilab_modules_graphic_export::Driver::setDriver(getScilabJavaVM(), driver);
-    if (!ok)
-    {
-        Scierror(999, _("%s: Invalid driver: %s.\n"), fname, driver);
+        ok = org_scilab_modules_graphic_export::Driver::setDriver(getScilabJavaVM(), driver);
+        if (!ok)
+        {
+            Scierror(999, _("%s: Invalid driver: %s.\n"), fname, driver);
+            freeAllocatedSingleString(driver);
+            return 0;
+        }
+
+        org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), strcasecmp(driver, "X11") && strcasecmp(driver, "Rec"));
+
+        createSingleString(pvApiCtx, Rhs + 1, driver);
+
         freeAllocatedSingleString(driver);
-        return 0;
     }
 
-    org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), strcasecmp(driver, "X11") && strcasecmp(driver, "Rec"));
+    if (Rhs == 0) // Get current driver
+    {
+        driver = org_scilab_modules_graphic_export::Driver::getDriver(getScilabJavaVM());
 
-    freeAllocatedSingleString(driver);
+        createSingleString(pvApiCtx, Rhs + 1, driver);
+    }
 
-    LhsVar(1) = 0;
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }
