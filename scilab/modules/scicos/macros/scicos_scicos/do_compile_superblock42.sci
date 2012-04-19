@@ -4408,6 +4408,8 @@ endfunction
 //
 //Author : Rachid Djenidi, Alan Layec
 function txt=make_static_standalone42()
+    oldFormat = format();
+    format(25);
   txt=[];
 
   //*** Continuous state ***//
@@ -4475,7 +4477,7 @@ function txt=make_static_standalone42()
         //******************//
 
         txt=[txt;
-             cformatline(strcat(msprintf('%.16g,\n',rpar(rpptr(i):rpptr(i+1)-1))),70);
+             cformatline(strcat(msprintf('%.25E,\n',rpar(rpptr(i):rpptr(i+1)-1))),70);
              '']
 
       end
@@ -4581,6 +4583,7 @@ function txt=make_static_standalone42()
         txt($+1)=' */';
         //******************//
 
+
         for j=1:opptr(i+1)-opptr(i)
           txt =[txt;
                 cformatline('static '+mat2c_typ(opar(opptr(i)+j-1)) +...
@@ -4594,6 +4597,7 @@ function txt=make_static_standalone42()
 
   txt=[txt;
        '']
+  format(oldFormat(2), oldFormat(1));
 endfunction
 
 //utilitary fonction used to format long C instruction
@@ -4602,6 +4606,9 @@ endfunction
 
 //Author : Rachid Djenidi
 function t1=cformatline(t ,l)
+    // Force format to avoid precision loss
+    oldFormat = format();
+    format(25);
 
   sep=[',','+']
   l1=l-2
@@ -4622,16 +4629,29 @@ function t1=cformatline(t ,l)
   bl=part(' ',ones(1,nw))
   l1=l-nw;first=%t
   while %t
-    if length(t)<=l then t1=[t1;bl+t],return,end
+    if length(t)<=l then
+        t1=[t1;bl+t]
+        break
+    end
     k=strindex(t,sep);
-    if k==[] then t1=[t1;bl+t],return,end
+    if k==[] then
+        t1=[t1;bl+t]
+        break
+    end
     k($+1)=length(t)+1 // positions of the commas
     i=find(k(1:$-1)<=l&k(2:$)>l) //nearest left comma (reltively to l)
-    if i==[] then i=1,end
+    if i==[] then
+        i=1
+    end
     t1=[t1;bl+part(t,1:k(i))]
     t=part(t,k(i)+1:length(t))
-    if first then l1=l1-2;bl=bl+'  ';first=%f;end
-  end
+    if first then
+        l1=l1-2;bl=bl+'  ';
+        first=%f;
+    end
+    end
+
+    format(oldFormat(2), oldFormat(1));
 endfunction
 
 //
