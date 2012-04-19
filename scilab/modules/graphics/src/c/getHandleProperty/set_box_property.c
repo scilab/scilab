@@ -92,7 +92,7 @@ int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRo
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
             return SET_PROPERTY_ERROR;
         }
 
@@ -111,7 +111,7 @@ int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRo
         }
         else
         {
-            Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "box", "on", "off");
+            Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "box", "on", "off");
             return SET_PROPERTY_ERROR;
         }
 
@@ -123,14 +123,14 @@ int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRo
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
             return SET_PROPERTY_ERROR;
         }
 
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
         return SET_PROPERTY_ERROR;
     }
 

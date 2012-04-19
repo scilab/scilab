@@ -40,7 +40,7 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
     BOOL status[3];
     BOOL autoTicks;
     char ** values;
-    int mSize = nbRow*nbCol;
+    int mSize = nbRow * nbCol;
 
     char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
@@ -55,12 +55,12 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
 #if 0
     if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks") ;
         return SET_PROPERTY_ERROR ;
     }
 #endif
 
-    if( mSize == 1 )
+    if ( mSize == 1 )
     {
         /* only one parameter to set the value for every axes.*/
         if ( strcmp( values[0], "off" ) == 0 )
@@ -73,7 +73,7 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
         }
         else
         {
-            Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_ticks", "on", "off");
+            Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "auto_ticks", "on", "off");
             return SET_PROPERTY_ERROR ; ;
         }
 
@@ -81,13 +81,13 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
         status[1] = setGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[1], &autoTicks, jni_bool, 1);
         status[2] = setGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[2], &autoTicks, jni_bool, 1);
 
-        if(status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
+        if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
         {
             return SET_PROPERTY_SUCCEED;
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -102,7 +102,7 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
 
         if (piAutoTicks == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
             return SET_PROPERTY_ERROR;
         }
 
@@ -116,17 +116,17 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
 
         for ( i = 0; i < mSize; i++ )
         {
-            if ( strcmp(values[i],"off") == 0 )
+            if ( strcmp(values[i], "off") == 0 )
             {
                 autoTicks[i] = FALSE;
             }
-            else if ( strcmp(values[i],"on") == 0 )
+            else if ( strcmp(values[i], "on") == 0 )
             {
                 autoTicks[i] = TRUE;
             }
             else
             {
-                Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_ticks", "on", "off");
+                Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "auto_ticks", "on", "off");
                 return SET_PROPERTY_ERROR ;
             }
         }
@@ -141,7 +141,7 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
             return SET_PROPERTY_ERROR;
         }
     }
