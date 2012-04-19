@@ -26,6 +26,9 @@
   <ItemGroup>
     <None Include="Makefile.am" />
     <None Include="types.iss" />
+    <None Include="locales\types.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\GetScilabVariable.h">

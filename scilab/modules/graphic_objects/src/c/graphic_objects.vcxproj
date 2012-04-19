@@ -313,7 +313,6 @@
     <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\messages.pot" />
     <None Include="..\jni\ScilabNativeView.i" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\jni\DataLoader.i" />

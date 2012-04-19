@@ -444,7 +444,7 @@ cd.. &gt;nul
     <ClInclude Include="..\..\includes\xscion.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\core.pot" />
+    <None Include="..\..\locales\core.pot" />
     <None Include="..\..\core.iss" />
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <CustomBuildStep Include="..\..\includes\machine.h.vc">

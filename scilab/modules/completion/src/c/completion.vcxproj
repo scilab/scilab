@@ -233,7 +233,7 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="toolsdictionary.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\completion.pot" />
+    <None Include="..\..\locales\completion.pot" />
     <None Include="..\jni\Completion.i" />
     <None Include="LibScilab_Import.def" />
     <None Include="Scilab_windows_Import.def" />

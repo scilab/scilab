@@ -2,8 +2,7 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- callFunctionFromGateway
- com_
- scistring_
- overload_
- intersci_
+scistring_
+intersci_
+callFunctionFromGateway
+com_

@@ -261,7 +261,7 @@ lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="vect_or.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\boolean.pot" />
+    <None Include="..\..\locales\boolean.pot" />
     <None Include="boolean_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\boolean.iss" />

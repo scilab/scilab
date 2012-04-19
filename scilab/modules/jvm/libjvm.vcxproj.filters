@@ -177,9 +177,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\jvm.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="Call_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -197,6 +194,9 @@
     <None Include="Makefile.am" />
     <None Include="Scilab_Windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\jvm.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
 </Project>

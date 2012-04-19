@@ -23,6 +23,16 @@
 #pragma comment(lib, "../../bin/blasplus.lib")
 #pragma comment(lib, "../../bin/lapack.lib")
 #pragma comment(lib, "../../libs/core_f.lib")
+#pragma comment(lib, "../../bin/boolean_f.lib")
+#pragma comment(lib, "../../bin/data_structures_f.lib")
+#pragma comment(lib, "../../bin/elementary_functions_f.lib")
+#pragma comment(lib, "../../bin/integer_f.lib")
+#pragma comment(lib, "../../bin/io_f.lib")
+#pragma comment(lib, "../../bin/linpack_f.lib")
+#pragma comment(lib, "../../bin/output_stream_f.lib")
+#pragma comment(lib, "../../bin/polynomials_f.lib")
+#pragma comment(lib, "../../bin/sparse_f.lib")
+#pragma comment(lib, "../../bin/string_f.lib")
 /*-----------------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

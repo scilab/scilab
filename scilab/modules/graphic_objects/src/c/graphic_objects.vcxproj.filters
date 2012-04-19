@@ -246,9 +246,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\messages.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

@@ -225,8 +225,8 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemGroup>
   <ItemGroup>
     <None Include="Elementary_functions_f_Import.def" />
-    <None Include="locales\en_US\fftw.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\fftw.pot" />
     <None Include="scilab_windows_Import.def" />
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />

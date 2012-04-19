@@ -975,6 +975,9 @@
     <None Include="..\..\gui.iss" />
     <None Include="..\..\sci_gateway\gui_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\gui.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gui.rc">

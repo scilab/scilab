@@ -235,7 +235,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="winopen.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\windows_tools.pot" />
+    <None Include="..\..\locales\windows_tools.pot" />
     <None Include="Call_scilab_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="localization_Import.def" />

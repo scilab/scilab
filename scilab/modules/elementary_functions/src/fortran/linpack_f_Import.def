@@ -1,0 +1,7 @@
+LIBRARY    linpack_f.dll
+
+
+EXPORTS
+icopy_
+pade_
+wpade_

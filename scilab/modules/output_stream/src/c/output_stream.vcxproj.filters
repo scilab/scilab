@@ -189,16 +189,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\output_stream.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="api_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Console_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="fileio_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="LibScilab_Import.def">
@@ -222,6 +216,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
     <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
+    <None Include="..\..\locales\output_stream.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="output_stream.rc">

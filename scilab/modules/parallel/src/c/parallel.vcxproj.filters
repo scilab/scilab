@@ -69,6 +69,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\parallel.iss" />
     <None Include="..\..\sci_gateway\parallel_gateway.xml" />
+    <None Include="..\..\locales\parallel.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="parallel.rc">

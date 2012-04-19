@@ -1,0 +1,6 @@
+LIBRARY    cacsd_f.dll
+
+
+EXPORTS
+giv_
+shrslv_

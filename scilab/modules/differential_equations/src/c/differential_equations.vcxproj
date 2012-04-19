@@ -229,7 +229,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="rk4.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\differential_equations.pot" />
+    <None Include="..\..\locales\differential_equations.pot" />
     <None Include="differential_equations_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\differential_equations.iss" />
@@ -238,10 +238,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="differential_equations.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">

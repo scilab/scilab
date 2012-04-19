@@ -234,6 +234,7 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="graphics_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="graphic_export.iss" />
+    <None Include="locales\graphic_export.pot" />
     <None Include="sci_gateway\graphic_export_gateway.xml" />
     <None Include="Makefile.am" />
   </ItemGroup>

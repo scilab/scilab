@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -203,7 +203,7 @@
     <ClInclude Include="..\jni\SciDocMain.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\helptools.pot" />
+    <None Include="..\..\locales\helptools.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\helptools.iss" />
     <None Include="..\..\sci_gateway\helptools_gateway.xml" />

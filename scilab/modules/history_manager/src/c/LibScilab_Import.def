@@ -14,8 +14,6 @@ gettype_
 vstk_
 checklhs_
 checkrhs_
-createvarfromptr_ 
+createvarfromptr_
 stack_
 createvar_
-getWarningMode
-;

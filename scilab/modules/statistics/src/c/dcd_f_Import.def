@@ -1,0 +1,17 @@
+LIBRARY   dcd_f.dll
+
+
+EXPORTS
+;
+
+cdfbet_
+cdfbin_
+cdfchi_
+cdfchn_
+cdff_
+cdffnc_
+cdfgam_
+cdfnbn_
+cdfnor_
+cdfpoi_
+cdft_ 

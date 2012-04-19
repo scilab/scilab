@@ -262,7 +262,6 @@ lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\..\sci_gateway\c\gw_double.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\double.pot" />
     <None Include="double_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\double.iss" />

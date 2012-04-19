@@ -226,7 +226,7 @@ lib /DEF:"$(ProjectDir)slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="..\..\sci_gateway\c\sci_rankqr.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\cacsd.pot" />
+    <None Include="..\..\locales\cacsd.pot" />
     <None Include="cacsd_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Linpack_f_Import.def" />
@@ -237,10 +237,6 @@ lib /DEF:"$(ProjectDir)slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="cacsd.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">

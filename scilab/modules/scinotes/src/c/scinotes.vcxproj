@@ -211,7 +211,7 @@
     <ClInclude Include="..\jni\SciNotes.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\scinotes.pot" />
+    <None Include="..\..\locales\scinotes.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\jni\ScilabKeywords.i" />
     <None Include="..\..\Makefile.am" />

@@ -295,7 +295,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="tokens.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\string.pot" />
+    <None Include="..\..\locales\string.pot" />
     <None Include="functions_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="linpack_f_Import.def" />

@@ -51,16 +51,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="commons_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\commons.iss" />
-    <None Include="..\..\sci_gateway\commons_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\commons.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="commons.rc">

@@ -100,18 +100,16 @@
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="special_functions_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="slatec_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -35,7 +35,7 @@
     <None Include="Makefile.am" />
     <None Include="xml.iss" />
     <None Include="sci_gateway\xml_gateway.xml" />
-    <None Include="locales\en_US\xml.pot">
+    <None Include="locales\xml.pot">
       <Filter>localization</Filter>
     </None>
   </ItemGroup>

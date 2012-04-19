@@ -168,15 +168,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\tclsci.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="graphics_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Gui_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -186,5 +177,8 @@
     <None Include="Makefile.am" />
     <None Include="tclsci.iss" />
     <None Include="sci_gateway\tclsci_gateway.xml" />
+    <None Include="locales\tclsci.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

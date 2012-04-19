@@ -993,12 +993,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="fileio_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="graphics_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
@@ -1006,12 +1000,6 @@
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="Render_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="scicos_blocks_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Scicos_Import.def">
@@ -1036,9 +1024,5 @@
     <ResourceCompile Include="scicos_blocks.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

@@ -2,19 +2,17 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
-callFunctionFromGateway
-com_
-putlhsvar_
-intersci_
-createvarfromptr_
 transposeMatrixDouble
 transposeMatrixInt
+callFunctionFromGateway
+com_
 stack_
+putlhsvar_
 getrhsvar_
+intersci_
+createvarfromptr_
 IsAScalar
 checklhs_
-checkrhs_ 
-gettype_
-vstk_
+checkrhs_
 check_scalar
-createvar_ 
+createvar_

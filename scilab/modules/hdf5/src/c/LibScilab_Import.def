@@ -5,11 +5,7 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-getScilabMode 
+getScilabMode
 callFunctionFromGateway
 com_
-putlhsvar_
-intersci_
-checklhs_
 freeArrayOfString
-checkrhs_

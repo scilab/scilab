@@ -217,8 +217,8 @@
     <ResourceCompile Include="src\c\spreadsheet.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\spreadsheet.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\spreadsheet.pot" />
     <None Include="Makefile.am" />
     <None Include="spreadsheet.iss" />
     <None Include="sci_gateway\spreadsheet_gateway.xml" />

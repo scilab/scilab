@@ -379,9 +379,6 @@
     <None Include="Output_stream_Import.def">
       <Filter>Imports</Filter>
     </None>
-    <None Include="Scicos_blocks_Import.def">
-      <Filter>Imports</Filter>
-    </None>
     <None Include="Scicos_f_Import.def">
       <Filter>Imports</Filter>
     </None>
@@ -392,9 +389,11 @@
       <Filter>Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

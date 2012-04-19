@@ -1275,13 +1275,13 @@
     <None Include="locales\graphics.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

@@ -215,7 +215,7 @@ lib /DEF:"$(ProjectDir)functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="searchmacroinlibraries.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\functions.pot" />
+    <None Include="..\..\locales\functions.pot" />
     <None Include="functions_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\functions.iss" />

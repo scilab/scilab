@@ -225,7 +225,7 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="..\..\includes\ilib_verbose.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\dynamic_link.pot" />
+    <None Include="..\..\locales\dynamic_link.pot" />
     <None Include="dynamic_link_f_Import.def" />
     <None Include="Io_Import.def" />
     <None Include="LibScilab_Import.def" />

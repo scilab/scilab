@@ -205,8 +205,8 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ResourceCompile Include="src\c\sound.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\sound.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\sound.pot" />
     <None Include="scilab_windows_Import.def" />
     <None Include="Makefile.am" />
     <None Include="sound.iss" />

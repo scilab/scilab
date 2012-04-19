@@ -203,6 +203,7 @@
     <ClInclude Include="..\..\includes\dynlib_history_browser.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\history_browser.pot" />
     <None Include="..\..\sci_gateway\history_browser_gateway.xml" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\history_browser.iss" />

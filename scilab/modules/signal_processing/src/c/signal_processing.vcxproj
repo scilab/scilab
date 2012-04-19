@@ -88,7 +88,7 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -116,7 +116,7 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -144,7 +144,7 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -177,7 +177,7 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;LibScilab.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     <ClInclude Include="conv2.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\signal_processing.pot" />
+    <None Include="..\..\locales\signal_processing.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="signal_processing_f_Import.def" />
     <None Include="..\..\Makefile.am" />
@@ -240,9 +240,6 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,13 +5,5 @@ EXPORTS
 ;
 ;core
 ;
-iop_
-recu_
-stack_
-vstk_
-com_
-cha1_
-mtlbc_
 callFunctionFromGateway
-
-
+com_

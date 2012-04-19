@@ -14,6 +14,8 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "sciprint.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsave)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/

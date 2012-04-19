@@ -158,8 +158,8 @@
     </None>
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
+    <None Include="locales\api_scilab.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

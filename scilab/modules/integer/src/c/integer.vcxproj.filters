@@ -303,9 +303,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\integer.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="integer_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -318,6 +315,9 @@
     <None Include="..\..\integer.iss" />
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\integer.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="integer.rc">

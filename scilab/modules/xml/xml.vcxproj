@@ -191,8 +191,8 @@
     <ResourceCompile Include="src\c\xml.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\xml.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\xml.pot" />
     <None Include="Makefile.am" />
     <None Include="xml.iss" />
     <None Include="sci_gateway\xml_gateway.xml" />

@@ -490,11 +490,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
     <None Include="Elementary_functions_f_Import.def">
@@ -513,6 +508,12 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="polynomials_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="cacsd_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -220,6 +220,7 @@
     <ClInclude Include="..\..\includes\gw_ui_data.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\ui_data.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\ui_data.iss" />

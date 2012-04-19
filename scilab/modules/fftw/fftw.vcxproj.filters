@@ -96,9 +96,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\fftw.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -110,6 +107,9 @@
     <None Include="Makefile.am" />
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\fftw.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
 </Project>

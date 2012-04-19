@@ -84,6 +84,9 @@
     <None Include="..\..\hdf5.iss" />
     <None Include="..\..\sci_gateway\hdf5_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\hdf5.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="hdf5.rc">

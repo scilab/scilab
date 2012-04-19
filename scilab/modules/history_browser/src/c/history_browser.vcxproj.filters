@@ -63,6 +63,9 @@
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\history_browser_gateway.xml" />
+    <None Include="..\..\locales\history_browser.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_browser.rc">

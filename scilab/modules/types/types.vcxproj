@@ -196,6 +196,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="locales\types.pot" />
     <None Include="Makefile.am" />
     <None Include="types.iss" />
   </ItemGroup>

@@ -477,7 +477,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\sendtorecyclebin.h">
-      <Filter>Header Files</Filter>    
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\createtempfilename.h">
       <Filter>Header Files</Filter>
@@ -489,12 +489,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\fileio.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="io_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -509,6 +503,9 @@
     <None Include="Makefile.am" />
     <None Include="Console_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\fileio.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
 </Project>

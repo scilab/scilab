@@ -1,0 +1,10 @@
+LIBRARY    slatec_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; slatec_f
+; --------------------------------------- 
+dgammacody_
+dxlegf_
+zbesh_

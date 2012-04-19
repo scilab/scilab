@@ -186,6 +186,5 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
 		<File RelativePath="xerbla.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\core_gateway.xml"/>
-		<File RelativePath="..\..\sci_gateway\fundef"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

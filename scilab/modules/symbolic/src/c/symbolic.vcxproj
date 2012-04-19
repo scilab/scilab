@@ -202,7 +202,7 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\gw_symbolic.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\symbolic.pot" />
+    <None Include="..\..\locales\symbolic.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\symbolic.iss" />

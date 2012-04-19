@@ -226,7 +226,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClInclude Include="..\includes\setgetlanguage.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\locales\en_US\localization.pot" />
+    <None Include="..\locales\localization.pot" />
     <None Include="io_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="localization_export.def" />

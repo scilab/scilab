@@ -282,6 +282,7 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemGroup>
   <ItemGroup>
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\api_scilab.pot" />
     <None Include="Localization_Import.def" />
     <None Include="Scilab_windows_Import.def" />
     <None Include="String_Import.def" />
@@ -289,9 +290,6 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="api_scilab_header.def" />
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

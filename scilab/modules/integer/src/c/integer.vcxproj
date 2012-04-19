@@ -295,7 +295,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClInclude Include="..\..\includes\tpconv.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\integer.pot" />
+    <None Include="..\..\locales\integer.pot" />
     <None Include="integer_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Polynomials_f_Import.def" />

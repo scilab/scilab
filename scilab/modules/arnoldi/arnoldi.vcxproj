@@ -203,7 +203,7 @@
     <ResourceCompile Include="src\c\arnoldi.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\arnoldi.pot" />
+    <None Include="locales\arnoldi.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="arnoldi.iss" />
     <None Include="sci_gateway\arnoldi_gateway.xml" />

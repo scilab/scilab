@@ -1,0 +1,6 @@
+LIBRARY    slatec_f.dll
+
+
+EXPORTS
+;
+xermsg_

@@ -99,7 +99,4 @@
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\LibScilab.lib" />
-  </ItemGroup>
 </Project>

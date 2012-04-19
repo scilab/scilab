@@ -177,10 +177,8 @@
     <None Include="elementary_functions_Import.def">
       <Filter>Imports</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

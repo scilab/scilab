@@ -295,7 +295,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="convertbase.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\elementary_functions.pot" />
+    <None Include="..\..\locales\elementary_functions.pot" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\elementary_functions.iss" />
@@ -304,10 +304,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">

@@ -229,7 +229,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="v2cuniterror.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\io.pot" />
+    <None Include="..\..\locales\io.pot" />
     <None Include="io_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Scilab_Windows_Import.def" />

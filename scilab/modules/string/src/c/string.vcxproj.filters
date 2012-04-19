@@ -267,9 +267,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\string.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -290,6 +287,9 @@
     </None>
     <None Include="functions_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\string.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

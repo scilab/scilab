@@ -1,0 +1,11 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+;
+dset_
+dsort_
+imcopy_
+iset_

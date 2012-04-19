@@ -4,7 +4,6 @@
 EXPORTS
 ;
 ;elementary_functions_f
-rat_
-mtran_
 entier_
 lnblnk_
+mtran_

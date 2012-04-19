@@ -63,14 +63,14 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\arnoldi.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="arnoldi.iss" />
     <None Include="sci_gateway\arnoldi_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="locales\arnoldi.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

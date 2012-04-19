@@ -226,6 +226,7 @@
     <ClInclude Include="semWindows.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\parallel.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\parallel.iss" />

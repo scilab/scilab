@@ -512,6 +512,7 @@
     <ClInclude Include="..\cpp\Widget.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\gui.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\gui.iss" />
     <None Include="..\..\sci_gateway\gui_gateway.xml" />

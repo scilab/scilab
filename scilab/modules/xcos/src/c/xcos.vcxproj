@@ -219,7 +219,7 @@
     <ClInclude Include="..\jni\Xcos.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\xcos.pot" />
+    <None Include="..\..\locales\xcos.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\xcos.iss" />

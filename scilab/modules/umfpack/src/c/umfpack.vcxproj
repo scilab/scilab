@@ -224,7 +224,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="..\..\includes\with_umfpack.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\umfpack.pot" />
+    <None Include="..\..\locales\umfpack.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="Sparse_f_Import.def" />
     <None Include="..\..\Makefile.am" />

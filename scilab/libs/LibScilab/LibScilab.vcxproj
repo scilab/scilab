@@ -394,18 +394,6 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\boolean_f.lib" />
-    <Library Include="..\..\bin\data_structures_f.lib" />
-    <Library Include="..\..\bin\elementary_functions_f.lib" />
-    <Library Include="..\..\bin\integer_f.lib" />
-    <Library Include="..\..\bin\io_f.lib" />
-    <Library Include="..\..\bin\linpack_f.lib" />
-    <Library Include="..\..\bin\output_stream_f.lib" />
-    <Library Include="..\..\bin\polynomials_f.lib" />
-    <Library Include="..\..\bin\sparse_f.lib" />
-    <Library Include="..\..\bin\string_f.lib" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

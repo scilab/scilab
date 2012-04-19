@@ -214,8 +214,8 @@
     <ResourceCompile Include="src\c\time.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\time.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="locales\time.pot" />
     <None Include="time_export.def" />
     <None Include="Makefile.am" />
     <None Include="time.iss" />

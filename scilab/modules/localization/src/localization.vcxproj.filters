@@ -61,9 +61,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\locales\en_US\localization.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="io_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -76,6 +73,9 @@
     <None Include="..\localization.iss" />
     <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
+    <None Include="..\locales\localization.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\charEncoding.c">

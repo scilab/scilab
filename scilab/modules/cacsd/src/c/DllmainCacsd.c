@@ -14,6 +14,8 @@
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/libintl.lib")
+#pragma comment(lib,"../../../../bin/blasplus.lib")
+#pragma comment(lib,"../../../../bin/lapack.lib")
 /*--------------------------------------------------------------------------*/ 
 /* We force fortran COMMON definitions */
 

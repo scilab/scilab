@@ -219,6 +219,7 @@
     <ClInclude Include="..\jni\jhdf5load.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\hdf5.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\hdf5.iss" />
     <None Include="..\..\sci_gateway\hdf5_gateway.xml" />

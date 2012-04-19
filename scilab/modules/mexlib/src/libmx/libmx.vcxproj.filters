@@ -48,6 +48,5 @@
     <Library Include="..\..\..\..\bin\LibScilab.lib">
       <Filter>Libraries Dependencies</Filter>
     </Library>
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

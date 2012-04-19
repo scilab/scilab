@@ -93,9 +93,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\dynamic_link.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="dynamic_link_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
@@ -111,6 +108,9 @@
     <None Include="..\..\dynamic_link.iss" />
     <None Include="..\..\sci_gateway\dynamic_link_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\dynamic_link.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="dynamic_link.rc">
