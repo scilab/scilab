@@ -31,7 +31,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -59,10 +59,10 @@ public final class SwingViewMenu {
         String uid = ((SwingViewObject) uimenu).getId();
         if (property.equals(__GO_CALLBACK__)) {
             int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
-            uimenu.setCallback(ScilabCallBack.createCallback((String) value, cbType));
+            uimenu.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
         } else if (property.equals(__GO_CALLBACKTYPE__)) {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
-            uimenu.setCallback(ScilabCallBack.createCallback(cbString, (Integer) value));
+            uimenu.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
         } else if (property.equals(__GO_UI_CHECKED__)) {
             if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
                 ((SwingScilabCheckBoxMenuItem) uimenu).setChecked((Boolean) value);
