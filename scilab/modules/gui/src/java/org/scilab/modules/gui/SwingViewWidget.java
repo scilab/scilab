@@ -15,6 +15,7 @@ package org.scilab.modules.gui;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
@@ -101,6 +102,8 @@ public final class SwingViewWidget {
         } else if (property.equals(__GO_CALLBACKTYPE__)) {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
             uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
+        } else if (property.equals(__GO_CHILDREN__)) {
+            /* Nothing to do */
         } else if (property.equals(__GO_UI_ENABLE__)) {
             uiControl.setEnabled(((Boolean) value).booleanValue());
         } else if (property.equals(__GO_UI_FONTANGLE__)) {

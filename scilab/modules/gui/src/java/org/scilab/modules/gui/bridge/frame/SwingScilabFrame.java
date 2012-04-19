@@ -2,16 +2,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 package org.scilab.modules.gui.bridge.frame;
+
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
@@ -115,6 +117,14 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     public void setPosition(Position newPosition) {
         Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
         setLocation(javaPosition.getX(), javaPosition.getY());
+    }
+
+    /**
+     * Add a SwingViewObject (from SwingView.java) to container and returns its index
+     * @param member the member to add
+     */
+    public void addMember(SwingViewObject member) {
+        this.add((Component) member);
     }
 
     /**
@@ -485,7 +495,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         throw new UnsupportedOperationException();
     }
 
-    /** 
+    /**
      * Get the text of the Frame
      * @return the text of the frame
      * @see org.scilab.modules.gui.frame.SimpleFrame#getText()
@@ -494,7 +504,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         return this.getName();
     }
 
-    /** 
+    /**
      * Set the text of the Frame
      * @param text the text to set to the frame
      * @see org.scilab.modules.gui.frame.SimpleFrame#setText()
