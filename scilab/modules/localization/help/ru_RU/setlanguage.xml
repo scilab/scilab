@@ -62,7 +62,7 @@ getlanguage()
         <link linkend="getlanguage">getlanguage</link>
       </member>
       <member>
-        <link linkend="getlanguage">setdefaultlanguage</link>
+        <link linkend="setdefaultlanguage">setdefaultlanguage</link>
       </member>
     </simplelist>
   </refsection>
