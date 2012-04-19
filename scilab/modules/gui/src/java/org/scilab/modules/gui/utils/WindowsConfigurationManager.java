@@ -271,7 +271,7 @@ public class WindowsConfigurationManager {
         final boolean nullUUID = uuid.equals(NULLUUID);
 
         // create the window and preserve the uuid if not null
-        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID);
+        final SwingScilabWindow window = createWindow(uuid, !nullUUID);
         if (window == null) {
             return null;
         }

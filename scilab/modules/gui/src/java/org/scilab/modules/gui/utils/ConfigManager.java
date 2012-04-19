@@ -115,12 +115,12 @@ public final class ConfigManager {
         if (fileConfig.exists()) {
             Document doc = ScilabXMLUtilities.readDocument(USER_CONFIG_FILE);
             Element setting = doc.getDocumentElement();
-            String str = ((Element) setting).getAttribute(VERSION);
+            String str = setting.getAttribute(VERSION);
             if (str != null && str.length() != 0) {
                 float userVersion = Float.parseFloat(str);
                 doc = ScilabXMLUtilities.readDocument(SCILAB_CONFIG_FILE);
                 setting = doc.getDocumentElement();
-                str = ((Element) setting).getAttribute(VERSION);
+                str = setting.getAttribute(VERSION);
 
                 if (str != null && str.length() != 0) {
                     float scilabVersion = Float.parseFloat(str);
@@ -148,8 +148,8 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontSize", new Object[]{VALUE, font.getSize()});
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontName", new Object[]{VALUE, font.getFontName()});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontSize", new Object[] {VALUE, font.getSize()});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontName", new Object[] {VALUE, font.getFontName()});
 
             String style;
             if (!font.isBold() && !font.isItalic()) {
@@ -161,7 +161,7 @@ public final class ConfigManager {
             } else {
                 style = "2";
             }
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontStyle", new Object[]{VALUE, style});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontStyle", new Object[] {VALUE, style});
 
             writeDocument();
         }
@@ -175,7 +175,7 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            Object[] attr = new Object[]{VALUE, int.class};
+            Object[] attr = new Object[] {VALUE, int.class};
             Element elem = ScilabXMLUtilities.readNodeAttributes(document, MAXOUTPUTSIZE, attr);
 
             if (elem != null) {
@@ -194,7 +194,7 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            Object[] attr = new Object[]{VALUE, int.class};
+            Object[] attr = new Object[] {VALUE, int.class};
             Element elem = ScilabXMLUtilities.readNodeAttributes(document, HELPFONTSIZE, attr);
 
             if (elem != null) {
@@ -213,7 +213,7 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPFONTSIZE, new Object[]{VALUE, size});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPFONTSIZE, new Object[] {VALUE, size});
             writeDocument();
         }
     }
@@ -226,7 +226,7 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPBROWSER, new Object[]{INDEX, index});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPBROWSER, new Object[] {INDEX, index});
             writeDocument();
         }
     }
@@ -239,7 +239,7 @@ public final class ConfigManager {
         readDocument();
 
         if (document != null) {
-            Object[] attr = new Object[]{INDEX, String.class};
+            Object[] attr = new Object[] {INDEX, String.class};
             Element elem = ScilabXMLUtilities.readNodeAttributes(document, HELPBROWSER, attr);
 
             if (elem != null) {
@@ -254,11 +254,11 @@ public final class ConfigManager {
      * Save the Last Opened Directory in Scilab
      * @param the directory's path
      */
-    public static void saveLastOpenedDirectory(String path ){
+    public static void saveLastOpenedDirectory(String path ) {
         readDocument();
 
         if (document != null) {
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[]{VALUE, path});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[] {VALUE, path});
             writeDocument();
         }
     }
@@ -268,13 +268,13 @@ public final class ConfigManager {
      * @return the directory's path
      */
 
-    public static String getLastOpenedDirectory(){
+    public static String getLastOpenedDirectory() {
         /*System.getProperty("user.dir") if no path*/
         readDocument();
         String path = new String() ;
 
         if (document != null) {
-            Object[] attr = new Object[]{VALUE, String.class};
+            Object[] attr = new Object[] {VALUE, String.class};
             Element elem = ScilabXMLUtilities.readNodeAttributes(document, LASTOPENEDDIR, attr);
 
             if (elem != null) {
@@ -283,7 +283,7 @@ public final class ConfigManager {
 
             if (elem == null || path.isEmpty()) {
                 path = System.getProperty("user.dir") ;
-                ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[]{VALUE, path, "useCache", "true"});
+                ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[] {VALUE, path, "useCache", "true"});
                 writeDocument();
             }
         }
@@ -300,7 +300,7 @@ public final class ConfigManager {
 
         if (document != null) {
             String rgb = Integer.toHexString(color.getRGB());
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, FOREGROUNDCOLOR, new Object[]{VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, FOREGROUNDCOLOR, new Object[] {VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
             writeDocument();
         }
     }
@@ -314,7 +314,7 @@ public final class ConfigManager {
 
         if (document != null) {
             String rgb = Integer.toHexString(color.getRGB());
-            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, BACKGROUNDCOLOR, new Object[]{VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, BACKGROUNDCOLOR, new Object[] {VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
             writeDocument();
         }
     }

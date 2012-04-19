@@ -707,7 +707,7 @@ public final class SwingView implements GraphicView {
         // Remove children which have been deleted
         Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
         // Clone the children set to avoid concurrent accesses
-        String[] oldChildrenSet = (String[]) updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
+        String[] oldChildrenSet = updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
         for (String childId : oldChildrenSet) {
             if (!newChildrenSet.contains(childId)) {
 
@@ -772,7 +772,7 @@ public final class SwingView implements GraphicView {
         // Remove children which have been deleted
         Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
         // Clone the children set to avoid concurrent accesses
-        String[] oldChildrenSet = (String[]) updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
+        String[] oldChildrenSet = updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
         for (String childId : oldChildrenSet) {
             if (!newChildrenSet.contains(childId)) {
 

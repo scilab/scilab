@@ -100,7 +100,7 @@ public final class MenuBarBuilder {
 
         try {
             MenuBarConfiguration menuBarConfig =
-                    (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
+                (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
             menuBarConfig.addMenus(menubar);
         } catch (IllegalArgumentException e) {
             System.err.println(CANNOT_CREATE_MENUBAR);
@@ -175,7 +175,7 @@ public final class MenuBarBuilder {
          * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
          */
         public Object invoke(Object proxy, Method method, Object[] args)
-                throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
             if (internalMethodNames.contains(method.getName())) {
                 return getClass().getMethod(method.getName(), method.getParameterTypes()).invoke(this, args);
             } else {
@@ -238,7 +238,7 @@ public final class MenuBarBuilder {
                             menuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
                         } else if (attributes.item(i).getNodeName() == ACCELERATOR) {
                             SwingScilabMenuItem smenuitem = (SwingScilabMenuItem) menuItem.getAsSimpleMenuItem();
-                            smenuitem.setAccelerator(ScilabKeyStroke.getKeyStroke((String) attributes.item(i).getNodeValue()));
+                            smenuitem.setAccelerator(ScilabKeyStroke.getKeyStroke(attributes.item(i).getNodeValue()));
                         }
                     }
 
