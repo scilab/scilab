@@ -360,6 +360,9 @@ endfunction
 // SURFACE
 //
 function h = createSurface(surfaceProperties)
+fields = fieldnames(surfaceProperties);
+fields(1) = [];
+
 // plot3d modify the axes properties
 //  - Save it
 // - Draw plot3d
