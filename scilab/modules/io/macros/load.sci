@@ -264,6 +264,11 @@ end;
 h = gca();
 fields = fieldnames(axesProperties);
 fields(1) = [];
+
+// Get log_flags to be sure to set them after data_bounds
+log_flags = axesProperties.log_flags;
+fields(fields=="log_flags") = [];
+
 for i = 1:size(fields, "*")
     if or(fields(i) == ["title","x_label","y_label","z_label"]) then
         createLabel(axesProperties(fields(i)), h(fields(i)));
@@ -278,6 +283,9 @@ for i = 1:size(fields, "*")
         set(h,"clip_state", axesProperties.clip_state);
     elseif fields(i) == "clip_box" then
         // managed with 'clip_state'
+    elseif fields(i) == "data_bounds" then
+        set(h, "data_bounds", axesProperties.data_bounds);
+        set(h, "log_flags", log_flags);
     else
         h(fields(i)) = axesProperties(fields(i));
     end
