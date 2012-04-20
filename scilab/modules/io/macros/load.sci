@@ -661,13 +661,13 @@ fields(1) = [];
 
 if axisProperties.tics_direction == "bottom" then
     axisdir='d';
-elseif tics_direction == "top" then
+elseif axisProperties.tics_direction == "top" then
     axisdir='u';
-elseif tics_direction == "left" then
+elseif axisProperties.tics_direction == "left" then
     axisdir='l';
-elseif tics_direction == "right" then
+elseif axisProperties.tics_direction == "right" then
     axisdir='r';
-elseif nx>1 then
+elseif size(axisProperties.xtics_coord, "*")>1 then
     axisdir='u';
 else
     axisdir='l';
