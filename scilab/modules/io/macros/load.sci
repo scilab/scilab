@@ -253,6 +253,14 @@ endfunction
 // AXES
 //
 function h = createAxes(axesProperties)
+// Hack to determine whether %h_load has been called by the %h_copy macro
+// in which case a new Axes object is created
+[lnums, fnames] = where();
+ind = grep(fnames, '%h_copy');
+if ~isempty(ind) then
+  newaxes();
+end;
+
 h = gca();
 fields = fieldnames(axesProperties);
 fields(1) = [];
