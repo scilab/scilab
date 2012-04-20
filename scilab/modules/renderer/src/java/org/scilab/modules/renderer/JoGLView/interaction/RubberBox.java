@@ -56,18 +56,18 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     /** The cube indices */
     private static final int[] CUBE_INDICES = {
-            0, 1, 3, 2, 4, 5, 7, 6,
-            0, 3, 1, 2, 4, 7, 5, 6,
-            0, 4, 1, 5, 3, 7, 2, 6
+        0, 1, 3, 2, 4, 5, 7, 6,
+        0, 3, 1, 2, 4, 7, 5, 6,
+        0, 4, 1, 5, 3, 7, 2, 6
     };
 
     /** Rubber box status */
     public static enum Status {
         WAIT_POINT_A,
-        WAIT_POINT_B,
-        WAIT_POINT_C,
-        WAIT_POINT_D,
-    }
+            WAIT_POINT_B,
+            WAIT_POINT_C,
+            WAIT_POINT_D,
+            }
 
     /** Rubber box color */
     private static final Color RUBBER_BOX_COLOR = new Color(.2f, .3f, .4f);
@@ -98,7 +98,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     /** Rubber box cube geometry */
     private DefaultGeometry cubeGeometry;
-    
+
     /** Current status */
     private Status status;
 
@@ -153,8 +153,8 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         if (isEnable() && (axes != null)) {
             drawingTools.getTransformationManager().useSceneCoordinate();
             drawingTools.getTransformationManager().getModelViewStack().push(
-                    getDrawerVisitor().getAxesDrawer().getSceneProjection(axes.getIdentifier())
-            );
+                getDrawerVisitor().getAxesDrawer().getSceneProjection(axes.getIdentifier())
+                );
 
             if (status != Status.WAIT_POINT_A) {
                 drawingTools.draw(getCubeGeometry(drawingTools), getCubeAppearance());
@@ -201,35 +201,35 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     public final void mouseClicked(MouseEvent e) {
         if (e.getModifiers() == MOUSE_MODIFIER) {
             switch (status) {
-                case WAIT_POINT_A:
-                    if (setPointA(e.getPoint())) {
-                        status = Status.WAIT_POINT_B;
-                    } else {
-                        setEnable(false);
-                        fireRubberBoxEnd();
-                    }
-                    break;
-                case WAIT_POINT_B:
-                    setPointB(e.getPoint());
-                    if (pointBComputer.is2D()) {
-                        setZoomBox();
-                        setEnable(false);
-                        fireRubberBoxEnd();
-                    } else {
-                        status = Status.WAIT_POINT_C;
-                    }
-                    break;
-                case WAIT_POINT_C:
-                    setPointC(e.getPoint());
-                    status = Status.WAIT_POINT_D;
-                    break;
-                case WAIT_POINT_D:
-                    setPointD(e.getPoint());
+            case WAIT_POINT_A:
+                if (setPointA(e.getPoint())) {
+                    status = Status.WAIT_POINT_B;
+                } else {
+                    setEnable(false);
+                    fireRubberBoxEnd();
+                }
+                break;
+            case WAIT_POINT_B:
+                setPointB(e.getPoint());
+                if (pointBComputer.is2D()) {
                     setZoomBox();
                     setEnable(false);
                     fireRubberBoxEnd();
-                    break;
-                default:
+                } else {
+                    status = Status.WAIT_POINT_C;
+                }
+                break;
+            case WAIT_POINT_C:
+                setPointC(e.getPoint());
+                status = Status.WAIT_POINT_D;
+                break;
+            case WAIT_POINT_D:
+                setPointD(e.getPoint());
+                setZoomBox();
+                setEnable(false);
+                fireRubberBoxEnd();
+                break;
+            default:
             }
             updateInfoMessage();
         }
@@ -238,23 +238,23 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     @Override
     public final void mouseMoved(MouseEvent e) {
         switch (status) {
-            case WAIT_POINT_A:
-                setPointA(e.getPoint());
-                getDrawerVisitor().getCanvas().redraw();
-                break;
-            case WAIT_POINT_B:
-                setPointB(e.getPoint());
-                getDrawerVisitor().getCanvas().redraw();
-                break;
-            case WAIT_POINT_C:
-                setPointC(e.getPoint());
-                getDrawerVisitor().getCanvas().redraw();
-                break;
-            case WAIT_POINT_D:
-                setPointD(e.getPoint());
-                getDrawerVisitor().getCanvas().redraw();
-                break;
-            default:
+        case WAIT_POINT_A:
+            setPointA(e.getPoint());
+            getDrawerVisitor().getCanvas().redraw();
+            break;
+        case WAIT_POINT_B:
+            setPointB(e.getPoint());
+            getDrawerVisitor().getCanvas().redraw();
+            break;
+        case WAIT_POINT_C:
+            setPointC(e.getPoint());
+            getDrawerVisitor().getCanvas().redraw();
+            break;
+        case WAIT_POINT_D:
+            setPointD(e.getPoint());
+            getDrawerVisitor().getCanvas().redraw();
+            break;
+        default:
         }
         updateInfoMessage();
     }
@@ -265,26 +265,26 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     private void updateInfoMessage() {
         if (isEnable()) {
             switch (status) {
-                case WAIT_POINT_A:
-                    setInfoMessage("Click to set first bounds", pointAComputer, false);
-                    break;
-                case WAIT_POINT_B:
-                    setInfoMessage("Click to set second bounds", pointBComputer, false);
-                    break;
-                case WAIT_POINT_C:
-                    setInfoMessage("Click to set first", pointCComputer, true);
-                    break;
-                case WAIT_POINT_D:
-                    setInfoMessage("Click to set second ", pointDComputer, true);
-                    break;
-                default:
+            case WAIT_POINT_A:
+                setInfoMessage("Click to set first bounds", pointAComputer, false);
+                break;
+            case WAIT_POINT_B:
+                setInfoMessage("Click to set second bounds", pointBComputer, false);
+                break;
+            case WAIT_POINT_C:
+                setInfoMessage("Click to set first", pointCComputer, true);
+                break;
+            case WAIT_POINT_D:
+                setInfoMessage("Click to set second ", pointDComputer, true);
+                break;
+            default:
             }
         } else {
             GraphicController.getController().setProperty(
-                    getDrawerVisitor().getFigure().getIdentifier(),
-                    GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                    null
-            );
+                getDrawerVisitor().getFigure().getIdentifier(),
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                null
+                );
         }
     }
 
@@ -312,17 +312,17 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                 }
             }
             GraphicController.getController().setProperty(
-                    getDrawerVisitor().getFigure().getIdentifier(),
-                    GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                    message
-            );
+                getDrawerVisitor().getFigure().getIdentifier(),
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                message
+                );
         } else {
             String message = "Move your mouse on an axes box.";
             GraphicController.getController().setProperty(
-                    getDrawerVisitor().getFigure().getIdentifier(),
-                    GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                    message
-            );
+                getDrawerVisitor().getFigure().getIdentifier(),
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                message
+                );
         }
     }
 
@@ -331,14 +331,17 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      */
     private void setZoomBox() {
         Double[] bounds = {
-                Math.min(firstPoint.getX(), secondPoint.getX()), Math.max(firstPoint.getX(), secondPoint.getX()),
-                Math.min(firstPoint.getY(), secondPoint.getY()), Math.max(firstPoint.getY(), secondPoint.getY()),
-                Math.min(firstPoint.getZ(), secondPoint.getZ()), Math.max(firstPoint.getZ(), secondPoint.getZ()),
+            Math.min(firstPoint.getX(), secondPoint.getX()), Math.max(firstPoint.getX(), secondPoint.getX()),
+            Math.min(firstPoint.getY(), secondPoint.getY()), Math.max(firstPoint.getY(), secondPoint.getY()),
+            Math.min(firstPoint.getZ(), secondPoint.getZ()), Math.max(firstPoint.getZ(), secondPoint.getZ()),
         };
-        Boolean zoomed = tightZoomBounds(axes, bounds);
-        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-        getDrawerVisitor().getCanvas().redraw();
+
+        if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {
+            Boolean zoomed = tightZoomBounds(axes, bounds);
+            GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+            GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+            getDrawerVisitor().getCanvas().redraw();
+        }
     }
 
     /**
@@ -470,7 +473,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                 (float) secondPoint.getX(), (float) firstPoint.getY(), (float) secondPoint.getZ(), 1,
                 (float) secondPoint.getX(), (float) secondPoint.getY(), (float) secondPoint.getZ(), 1,
                 (float) secondPoint.getX(), (float) secondPoint.getY(), (float) firstPoint.getZ(), 1
-        }, 4);
+            }, 4);
 
         return cubeGeometry;
     }
