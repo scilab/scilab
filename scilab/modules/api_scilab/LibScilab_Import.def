@@ -8,14 +8,10 @@ str2name_
 vstk_
 com_
 putlhsvar_
-cvname_
 recu_
 overload_
 stack_
-cvnamel_
-stackg_
 iop_
-stackp_
 vGetPointerFromDoubleComplex
 oGetDoubleComplexFromPointer
 getExecMode

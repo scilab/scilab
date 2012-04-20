@@ -30,7 +30,4 @@
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\libf2c.lib" />
-  </ItemGroup>
 </Project>

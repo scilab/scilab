@@ -11,15 +11,9 @@ errgst_
 com_
 recu_
 cha1_
-ftob_
 parse_
 isrecursioncalltofunction_
-allowptr_
-ref2val_
 callinterf_
-funs_
-isbyref_
-btof_
 eqid_
 getscalar_
 checkrhs_
@@ -31,7 +25,6 @@ cremat_
 getsmat_
 checkval_
 getvect_
-clunit_
 cretlist_
 listcresmat_
 listcremat_

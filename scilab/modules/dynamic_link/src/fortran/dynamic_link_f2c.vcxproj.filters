@@ -57,6 +57,9 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Librairies Dependencies\Import</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Librairies Dependencies\Import</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libf2c.lib" />

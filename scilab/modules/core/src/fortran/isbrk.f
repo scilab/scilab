@@ -14,6 +14,9 @@ c
 c       retourne la valeur de l'indicateur d'interruption
 c
       logical iflag,interruptible
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /basbrk/
+cDEC$ ENDIF            
       common /basbrk/ iflag,interruptible
       l=0
       if(iflag) l=1

@@ -5,6 +5,9 @@ EXPORTS
 ;
 ;core
 ;
+adre_
+intersci_
+;
 vstk_ 
 com_
 stack_
@@ -14,17 +17,12 @@ errgst_
 cha1_
 checkrhs_
 checklhs_
-setfunnam_
-createref_
-allops_
-funnam_
 cremat_
 gettype_
 getsmat_
 getscalar_
 objvide_
 cresmat2_
-ref2val_
 isanan_
 returnananfortran_
 crebmat_

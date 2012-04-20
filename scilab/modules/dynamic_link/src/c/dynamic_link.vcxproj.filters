@@ -111,6 +111,9 @@
     <None Include="..\..\locales\dynamic_link.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="dynamic_link.rc">

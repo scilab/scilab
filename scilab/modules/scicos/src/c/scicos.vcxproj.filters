@@ -270,6 +270,9 @@
     <None Include="..\..\locales\scicos.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">

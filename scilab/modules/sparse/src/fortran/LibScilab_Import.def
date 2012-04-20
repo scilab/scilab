@@ -13,15 +13,9 @@ cha1_
 intersci_
 mtlbc_
 errgst_
-ref2val_
-funnam_
 getrhsvar_
 createvar_
 putlhsvar_
-indxg_
-indxgc_
-isany_
-setref_
 checkrhs_
 checklhs_
 getvectrow_

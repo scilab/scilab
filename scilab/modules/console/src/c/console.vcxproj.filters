@@ -156,6 +156,9 @@
     <None Include="..\..\locales\console.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="console.rc">

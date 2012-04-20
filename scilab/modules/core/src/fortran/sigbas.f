@@ -17,6 +17,9 @@ c
       integer  n
       include 'stack.h'
       logical iflag,interruptible
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /basbrk/
+cDEC$ ENDIF            
       common /basbrk/ iflag,interruptible
       integer  ilk,k,l,lunit,nc,mode(2)
       character tmpbuf * (bsiz)

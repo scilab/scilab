@@ -12,6 +12,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       logical checkrhs,checklhs,cremat,getscalar
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
+cDEC$ ENDIF            
       common /ippty/ byptr,nbyptr
       integer iadr
 c
@@ -42,6 +45,9 @@ c     set
       integer function isbyref(ifun)
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
+cDEC$ ENDIF            
       common /ippty/ byptr,nbyptr
       do 10 i=1,nbyptr
          if(byptr(i).eq.ifun) then

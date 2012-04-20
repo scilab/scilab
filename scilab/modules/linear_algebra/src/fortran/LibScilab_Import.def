@@ -12,6 +12,7 @@ stack_
 vstk_
 com_
 cha1_
+errgst_
 mtlbc_
 scigsch_
 scisch_
@@ -31,11 +32,4 @@ isrecursioncalltofunction_
 ;
 ;core_f
 ;
-ftob_
-allowptr_
-ref2val_
-funs_
-isbyref_
-btof_
-errgst_
-;
+

@@ -12,6 +12,8 @@
 
 #ifdef _MSC_VER
 #include "stack-def.h"
+#include "typename.h"
+#include "funcprot.h"
 
 /* Force some definitions "globals" (linear_algebra)*/
 
@@ -29,6 +31,38 @@ BASBRK_struct C2F(basbrk);
 * used in polynomials and inisci.f (core)
 */
 CSIMP_struct C2F(csimp);
+
+/* Previously on Windows commons were defined at first use
+*  it was a hazardous way ...
+*  We force definitions in core
+*/
+
+ADRE_struct C2F(adre);
+CHA1_struct C2F(cha1);
+COM_struct C2F(com);
+ERRGST_struct C2F(errgst);
+INTERSCI_struct C2F(intersci);
+IOP_struct C2F(iop);
+MTLBC_struct C2F(mtlbc);
+RECU_struct C2F(recu);
+STACK_struct C2F(stack);
+VSTK_struct C2F(vstk);
+DBG_struct C2F(dbg);
+TYPE_struct C2F(typnams);
+MPROT_struct C2F(mprot);
+
+struct {
+    int byptr[40], nbyptr;
+} C2F(ippty);
+
+struct {
+    int bkflag;
+    char bckbuf[512];
+} C2F(keepme);
+
+struct {
+    int lwk;
+} C2F(ptkeep);
 
 #else
 /***********************************************************

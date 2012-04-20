@@ -1,0 +1,5 @@
+LIBRARY    fftw.dll
+
+
+EXPORTS
+withfftw_

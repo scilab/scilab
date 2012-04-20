@@ -60,5 +60,8 @@
     <None Include="polynomials_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

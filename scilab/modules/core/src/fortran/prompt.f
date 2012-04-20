@@ -15,6 +15,9 @@ c     issue prompt with optional pause
       integer pause,escape,menusflag
 
       logical iflag,interruptible
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /basbrk/
+cDEC$ ENDIF            
       common /basbrk/ iflag,interruptible
 
       escape=0

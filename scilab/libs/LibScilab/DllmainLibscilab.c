@@ -22,7 +22,7 @@
 /* force linking fortran libraries */
 #pragma comment(lib, "../../bin/blasplus.lib")
 #pragma comment(lib, "../../bin/lapack.lib")
-#pragma comment(lib, "../../libs/core_f.lib")
+#pragma comment(lib, "../../bin/core_f.lib")
 #pragma comment(lib, "../../bin/boolean_f.lib")
 #pragma comment(lib, "../../bin/data_structures_f.lib")
 #pragma comment(lib, "../../bin/elementary_functions_f.lib")

@@ -1,0 +1,7 @@
+	LIBRARY    double.dll
+
+
+EXPORTS
+; double
+matops_
+

@@ -7,5 +7,4 @@ callFunctionFromGateway
 com_
 StoreCommand
 StoreCommandWithFlag
-sigbas_
 freeArrayOfString

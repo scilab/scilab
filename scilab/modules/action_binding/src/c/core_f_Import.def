@@ -1,0 +1,6 @@
+LIBRARY    core_f.dll
+
+
+EXPORTS
+;core
+sigbas_

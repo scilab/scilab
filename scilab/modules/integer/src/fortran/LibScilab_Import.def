@@ -3,28 +3,21 @@
 
 EXPORTS
 
-
- vstk_
- stack_
- iop_
- com_
- recu_
- errgst_
- cha1_
- adre_
- intersci_
- mtlbc_
- checkrhs_
- checklhs_
- funnam_
- getscalar_
- getsmat_
- checkval_
- cvname_
- indxgc_
- indxg_
- gettype_
- ref2val_
- setfunnam_ 
- crewimat_
+vstk_
+stack_
+iop_
+com_
+recu_
+errgst_
+cha1_
+adre_
+intersci_
+mtlbc_
+checkrhs_
+checklhs_
+getscalar_
+getsmat_
+checkval_
+gettype_
+crewimat_
  
