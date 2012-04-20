@@ -39,8 +39,8 @@ hs10.data (2,3) =-0.40;  // z2
 hs10.data,	
  ans  =
  
-    1.     0.6   - 0.3  
-    0.7    0.45  - 0.4  
+    1.     0.6   
+    0.7    0.45  
 ha.rotation_angles = [0,0];
 reference = [ 1, 0.6, -0.3 ; 0.7, 0.45, -0.4 ] ;
 // check that the segment z coordinates are modified
