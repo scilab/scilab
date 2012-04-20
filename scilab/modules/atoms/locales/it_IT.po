@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: it\n"
 
 #, c-format
@@ -233,6 +233,13 @@ msgstr "%s: Il file '%s' non esiste o non è accessibile in lettura\n"
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: Il file DESCRIPTION non può essere trovato nel pacchetto '%s'\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"L'opzione offline della configurazione di ATOMS è impostata come vera. "
+"atomsSystemUpdate non ha controllato gli ultimi moduli disponibili."
 
 #, c-format
 msgid ""
@@ -485,13 +492,6 @@ msgstr "Directory di installazione"
 
 msgid "Description"
 msgstr "Descrizione"
-
-msgid ""
-"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-"L'opzione offline della configurazione di ATOMS è impostata come vera. "
-"atomsSystemUpdate non ha controllato gli ultimi moduli disponibili."
 
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-10 13:46+0000\n"
+"PO-Revision-Date: 2012-04-05 23:54+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -49,10 +49,26 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um valor "
 "inteiro.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -69,10 +85,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Tipo incorreto para o argumento de entrada.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memória esgotada.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Tamanho incorreto para o argumento de entrada #%d.\n"
 
@@ -87,10 +99,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um escalar.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -358,6 +366,39 @@ msgstr "Suas variáveis são:"
 msgid "Your global variables are:"
 msgstr "Suas variáveis globais são:"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de saída: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr ""
+
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Erro fatal: Não se consegue criar a tabela para funções do Scilab.\n"
 
@@ -370,6 +411,9 @@ msgstr ""
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Consórcio Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Direitos reservados (c) 1989-2012 (INRIA)\n"
@@ -569,15 +613,12 @@ msgstr ""
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Ops! Foi detectado um erro fatal pelo Scilab.\n"
-"Seu processo provavelmente irá quebrar em breve.\n"
-"Por favor, relate o erro em %s com as seguintes\n"
-"informações:\n"
-"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -812,10 +853,6 @@ msgstr ""
 "manipuladores.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
@@ -823,11 +860,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de saída: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
@@ -939,20 +971,20 @@ msgid "%s argument"
 msgstr "Argumento %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "argumento número %d"
+msgid "argument #%d"
+msgstr ""
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "Argumentos %s e %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "Argumento %s e argumento %d"
+msgid "%s argument and argument #%d"
+msgstr ""
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "argumentos %d e %d"
+msgid "arguments #%d and #%d"
+msgstr ""
 
 msgid "should be square"
 msgstr "deveria ser quadrada"

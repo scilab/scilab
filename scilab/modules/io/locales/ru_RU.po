@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: io-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-10 02:56+0000\n"
+"PO-Revision-Date: 2012-04-05 16:50+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: ru\n"
 
 #, c-format
@@ -78,15 +78,18 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Переменная окружения %s не определена.\n"
 
 msgid "WARNING: Scilab 6 will not support the file format used.\n"
-msgstr ""
+msgstr "ВНИМАНИЕ: Scilab 6 не будет используемый формат файлов.\n"
 
 msgid ""
 "WARNING: Please quote the variable declaration. Example, "
 "save('myData.sod',a) becomes save('myData.sod','a').\n"
 msgstr ""
+"ВНИМАНИЕ: Пожалуйста, обособляйте кавычками декларацию переменных. Например, "
+"save('myData.sod',a) станет save('myData.sod','a').\n"
 
 msgid "WARNING: See help('save') for the rational.\n"
 msgstr ""
+"ВНИМАНИЕ: Смотрите help('save') для рациональных значений (rational).\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -116,7 +119,7 @@ msgstr "неуправляемая ошибка при v2cunit.\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
-msgstr ""
+msgstr "%s: Неверный объект %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -132,7 +135,7 @@ msgstr "%s: Неверное значение входного параметр�
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
+msgstr "%s: Легенда не соответствует текущему контексту. Пропущена\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

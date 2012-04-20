@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: pl\n"
 
 #, c-format
@@ -782,8 +782,11 @@ msgstr "Pliki Scicos"
 msgid "Xcos file"
 msgstr "Plik Xcos"
 
-msgid "Scilab file"
-msgstr "Pliki Scilab"
+msgid "Xcos (zip) file"
+msgstr ""
+
+msgid "Scilab Open Data file"
+msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Edytor maskowania SuperBloku"

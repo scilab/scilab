@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: \n"
 
 #, c-format
@@ -199,6 +199,11 @@ msgstr "%s:  檔案 '%s' 不存在或無法讀取.\n"
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: 套件  '%s' 內未發現 DESCRIPTION 描述檔\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr "ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
 
 #, c-format
 msgid ""
@@ -421,11 +426,6 @@ msgstr "安裝目錄"
 
 msgid "Description"
 msgstr "描述"
-
-msgid ""
-"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr "ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
 
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"

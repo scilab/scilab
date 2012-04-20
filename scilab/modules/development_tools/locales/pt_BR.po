@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -217,3 +217,11 @@ msgstr "O arquivo ref (%s) não existe"
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Nenhuma variável %s_ref no arquivo de referência"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The test '%s' doesn't exist or is not read available.\n"
+msgstr ""

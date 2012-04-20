@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-08 14:32+0000\n"
+"PO-Revision-Date: 2012-04-06 15:00+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -140,15 +140,17 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: 環境変数 %s は定義されていません。\n"
 
 msgid "WARNING: Scilab 6 will not support the file format used.\n"
-msgstr ""
+msgstr "警告: Scilab 6 はこのファイル形式をサポートしない予定です.\n"
 
 msgid ""
 "WARNING: Please quote the variable declaration. Example, "
 "save('myData.sod',a) becomes save('myData.sod','a').\n"
 msgstr ""
+"警告: 変数の宣言を引用符で括ってください. 例えば, save('myData.sod',a) は save('myData.sod','a') "
+"とします.\n"
 
 msgid "WARNING: See help('save') for the rational.\n"
-msgstr ""
+msgstr "警告: 分数については, help('save') を参照ください.\n"
 
 #
 # File: src/c/getenvc.c, line: 37
@@ -181,7 +183,7 @@ msgstr "v2cunitによる管理外のエラー.\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
-msgstr ""
+msgstr "%s 無効なエンティティ %s\n"
 
 #
 # File: macros/halt.sci, line: 22
@@ -199,7 +201,7 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' 値を想定します。\n"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
+msgstr "%s: 凡例はカレントのコンテキストに適合しません.　スキップしました.\n"
 
 #
 # File: macros/unix_g.sci, line: 32

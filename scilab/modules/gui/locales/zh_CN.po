@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: \n"
 
 #, c-format
@@ -411,8 +411,8 @@ msgstr "显示/隐藏工具栏(&T)"
 msgid "&Zoom"
 msgstr "缩放(&Z)"
 
-msgid "&UnZoom"
-msgstr "取消缩放(l &U)"
+msgid "&Original View"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
@@ -445,6 +445,18 @@ msgid "&Start datatip manager"
 msgstr ""
 
 msgid "Stop datatip manager"
+msgstr ""
+
+msgid "&MVC"
+msgstr ""
+
+msgid "&Log View (Trace all View notifications)"
+msgstr ""
+
+msgid "&All Objects View (All objects with properties)"
+msgstr ""
+
+msgid "&Ged-like View (Future ged)"
 msgstr ""
 
 msgid "&?"
@@ -649,45 +661,28 @@ msgid "Scilab Demonstrations"
 msgstr ""
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s：无法创建类型为%s的uicontrol。"
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: 无法析构此对象。\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr ""
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "该对象无'%s'属性。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr "属性'%s'的值错误：应该为'light'、'normal'、'demi'或'bold'。\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s：父对象类型错误：应该为Figure或者Unimenu类型。\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -702,22 +697,14 @@ msgid ""
 msgstr "属性'%s'的值错误：应该为 1x3 的实数行向量或一个 'R|G|B' 字符串。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr "属性'%s'的类型错误：应该为 1x3 的实数行向量或一个 'R|G|B' 字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -728,34 +715,33 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个实数。\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数。\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "属性'%s'的大小错误：应该为一个实数。\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -799,28 +785,44 @@ msgstr "属性'%s'的类型错误：应该为一个字符串或者 1x%d 的实�
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个 1x%d 的实数行向量。\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个 1x%d 的实数行向量。\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "属性'%s'的大小错误：应该为一个 1x%d 的实数行向量。\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个字符串或者一个字符串向量。\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -838,30 +840,30 @@ msgid ""
 msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'或'%s'。\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个具有两个元素的列表（list）。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "属性'%s'的值错误：应该为一个实数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr "%s：属性'%s'的值错误：应该为points、normalized、inches、centimeters或pixels。\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'或'%s'。\n"
 
 msgid "Console Font..."
 msgstr "控制台字体..."
@@ -869,15 +871,14 @@ msgstr "控制台字体..."
 msgid "Console Background..."
 msgstr "控制台背景..."
 
-msgid "No print service found."
-msgstr "没有发现打印服务"
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1030,13 +1031,6 @@ msgstr ""
 msgid "Tree Overview"
 msgstr ""
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr "左击开始缩放区域的选择。右击取消选择。"
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "点击鼠标左键终止选择，点击右键取消。"
-
 msgid "OK"
 msgstr "确认"
 
@@ -1052,14 +1046,17 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr ""
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1114,6 +1111,7 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
+#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
@@ -1174,6 +1172,9 @@ msgid "Uicontrols 2"
 msgstr ""
 
 msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+msgid "Show images with uicontrols "
 msgstr ""
 
 msgid "<Enter color name here>"

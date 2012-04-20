@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: es\n"
 
 #, c-format
@@ -457,6 +457,18 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: If x is negative, n must be an odd integer\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr "%s: Argumento #%d incorrecto: Se esperaba un entero positivo.\n"
 
@@ -516,6 +528,10 @@ msgid ""
 msgstr ""
 "%s: Número incorrecto de dimensiones para las matrices de salida: Se "
 "esperaba %d para matrices dispersas.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"

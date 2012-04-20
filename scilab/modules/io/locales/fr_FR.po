@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-08 10:32+0000\n"
+"PO-Revision-Date: 2012-04-10 11:42+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: fr\n"
 
 #, c-format
@@ -84,14 +84,18 @@ msgstr "% s: Variable d'environnement %s non définie.\n"
 
 msgid "WARNING: Scilab 6 will not support the file format used.\n"
 msgstr ""
+"Attention : Scilab 6 ne prendra plus en charge le format de fichier "
+"utilisé.\n"
 
 msgid ""
 "WARNING: Please quote the variable declaration. Example, "
 "save('myData.sod',a) becomes save('myData.sod','a').\n"
 msgstr ""
+"Attention : Veuillez mettre la déclaration de variables entre simples "
+"guillemets. Exemple, save('myData.sod',a) devient save('myData.sod','a').\n"
 
 msgid "WARNING: See help('save') for the rational.\n"
-msgstr ""
+msgstr "Attention : Consultez help('save') pour les raisons de ce choix.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -121,7 +125,7 @@ msgstr "Erreur non gérée par v2cunit.\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
-msgstr ""
+msgstr "%s : Entité %s invalide\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -138,7 +142,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
+msgstr "%s : La légende ne correspond pas au contexte actuel. Ignoré\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

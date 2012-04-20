@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-08 10:28+0000\n"
+"PO-Revision-Date: 2012-04-20 09:15+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15060)\n"
+"X-Generator: Launchpad (build 15120)\n"
 "Language: \n"
 
 #, c-format
@@ -51,10 +51,27 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
 "attendue.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -67,10 +84,6 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s : Type erroné de l'argument d'entrée.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -87,10 +100,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -350,6 +359,43 @@ msgstr "Vos variables sont :"
 msgid "Your global variables are:"
 msgstr "Vos variables globales sont :"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %d.\n"
+msgstr "%s : Argument d'entrée erroné %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments en sortie : Au moins %d attendus.\n"
+
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab.\n"
 
@@ -362,6 +408,9 @@ msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Consortium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Copyright (c) 1989-2012 (INRIA)\n"
@@ -569,14 +618,18 @@ msgstr ""
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
 "Oups. Une erreur fatale a été détectée par Scilab.\n"
-"Cette instance va s'arrêter très prochainement.\n"
-"Merci d'envoyer un rapport de bug pour %s avec\n"
-"l'information suivante :\n"
+"Votre session va probablement se fermer.\n"
+"Veuillez signaler un bug sur %s avec :\n"
+"* Un exemple de code qui reproduit le problème\n"
+"* Le résultat de [a, b] = getdebuginfo()\n"
+"* Les informations suivantes :\n"
 "%s %s\n"
 
 #, c-format
@@ -802,20 +855,12 @@ msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
@@ -927,20 +972,20 @@ msgid "%s argument"
 msgstr "Paramètre %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "Argument numéro %d"
+msgid "argument #%d"
+msgstr "argument n°%d"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "Les %s et %s paramètres"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "Le paramètre %s et le paramètre %d"
+msgid "%s argument and argument #%d"
+msgstr "%s argument et argument n°%d"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "Les paramètres %d et %d"
+msgid "arguments #%d and #%d"
+msgstr "arguments n°%d et n°%d"
 
 msgid "should be square"
 msgstr "devrait être carré"
