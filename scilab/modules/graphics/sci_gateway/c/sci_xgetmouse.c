@@ -31,6 +31,7 @@
 #include "HandleManagement.h"
 
 #include "BuildObjects.h"
+#include "CurrentSubwin.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
@@ -43,6 +44,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
     int pixelCoords[2];
     double userCoords2D[2] = {0.0, 0.0};
+    char * clickedSubwinUID = NULL;
 
     int selPosition = 0;
 
@@ -108,9 +110,10 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     else
     {
         // Convert pixel coordinates to user coordinates
-        //clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowsID), SCI_SUBWIN);
-        //updateSubwinScale(clickedSubwin);
-        //sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
+        clickedSubwinUID = getCurrentSubWin();
+        updateSubwinScale(clickedSubwinUID);
+        sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+
         *stk(l1) = userCoords2D[0];
         *stk(l1+1) = userCoords2D[1];
         *stk(l1+2) = (double) mouseButtonNumber;
