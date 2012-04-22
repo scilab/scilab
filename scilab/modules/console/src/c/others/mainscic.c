@@ -138,6 +138,9 @@ int main(int argc, char **argv)
                     setenvc("LANG", argLang);
                 }
             }
+
+	    free(argLang);
+
         }
         else if (strcmp(argv[i], "-ns") == 0)
         {
