@@ -40,7 +40,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
     SciErr err;
     int *addr = 0;
     char *path = 0;
-    char *expandedPath = NULL;
+    char *expandedPath = 0;
     int indent = 1;
     int ret = 0;
 
@@ -51,7 +51,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -61,7 +61,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -75,7 +75,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -101,7 +101,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
 
             if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(999, gettext("%s: No more memory.\n"), fname);
                 return 0;
             }
 
@@ -123,7 +123,6 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
                 Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
                 return 0;
             }
-            expandedPath = strdup((const char *)document->URL);
 
             if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
@@ -131,6 +130,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
                 return 0;
             }
 
+            expandedPath = strdup((const char *)document->URL);
             getScalarBoolean(pvApiCtx, addr, &indent);
         }
 
@@ -140,12 +140,14 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                FREE(expandedPath);
+                Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 3);
                 return 0;
             }
 
             if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
+                FREE(expandedPath);
                 Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                 return 0;
             }
