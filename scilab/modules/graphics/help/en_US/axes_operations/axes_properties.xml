@@ -462,11 +462,9 @@
               <term>tight_limits: </term>
               <listitem>
                 <para>
-                  If this property value is <literal>"on"</literal> axes adapt to fit
-                  exactly with the minima and maxima values of the
-                  <literal>data_bounds</literal>. If this field value is
-                  <literal>"off"</literal>, axes may enlarge boundaries such as to produce
-                  pretty tics labels.
+                  If this property value is <literal>"on"</literal> axes adapt to fit exactly with the minima and
+                  maxima values of the data bounds. If this field value is <literal>"off"</literal>, axes may
+                  enlarge boundaries such as to produce pretty tics labels.
                 </para>
               </listitem>
             </varlistentry>
@@ -479,6 +477,7 @@
                   <literal>[xmin,ymin;xmax,ymax]</literal>. Note that, to stricly have the
                   specified data bounds, <literal>tight_limits</literal> must be set to
                   <literal>"on"</literal> value (see above).
+                  To manually set data_bounds set <literal>auto_scale="off"</literal>
                 </para>
               </listitem>
             </varlistentry>

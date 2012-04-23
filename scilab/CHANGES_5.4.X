@@ -36,6 +36,9 @@ Graphic capabilities
 
 * Bug #8705 fixed - Could not save some specific graphics.
 
+* Bug #9721 fixed - Improve the documentation on tight_limits. Thanks to Samuel
+                    Gougeon.
+
 * Bug #10206 fixed - SVG with a french localization was, in some cases, using
                      , instead of . for numerical separator.
 
