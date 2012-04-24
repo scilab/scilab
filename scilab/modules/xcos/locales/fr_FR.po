@@ -303,10 +303,10 @@ msgid "Block Parameters"
 msgstr "Paramètres du bloc"
 
 msgid "Region to superblock"
-msgstr "Zone vers superbloc"
+msgstr "Zone vers super bloc"
 
 msgid "Superblock mask"
-msgstr "Masque du superbloc"
+msgstr "Masque du super bloc"
 
 msgid "Create"
 msgstr "Créer"
@@ -743,10 +743,10 @@ msgid "Loading user defined palettes"
 msgstr "Chargement de la palette personnalisée"
 
 msgid "Generating C Code for SuperBlock"
-msgstr "Génération du code C du superbloc"
+msgstr "Génération du code C du super bloc"
 
 msgid "A SuperBlock must be selected to generate code"
-msgstr "Un superbloc doit être sélectionné pour pouvoir générer du code"
+msgstr "Un super bloc doit être sélectionné pour pouvoir générer du code"
 
 msgid "Simulation in progress"
 msgstr "Simulation en cours"
@@ -758,7 +758,7 @@ msgstr ""
 "'scicos_cpr'"
 
 msgid "Generate SuperBlock, please wait"
-msgstr "Génération du superbloc en cours"
+msgstr "Génération du super bloc en cours"
 
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
@@ -792,7 +792,7 @@ msgid "Scilab Open Data file"
 msgstr "Fichier Scilab Open Data"
 
 msgid "Masked SuperBlock editor"
-msgstr "Éditeur de masque de superbloc"
+msgstr "Éditeur de masque de super bloc"
 
 msgid "Insert"
 msgstr "Insérer"
@@ -857,7 +857,7 @@ msgid "Modelica initialize"
 msgstr "Initialisation de Modelica"
 
 msgid "Error: unable to compile this SuperBlock"
-msgstr "Erreur : Impossible de compiler ce superbloc"
+msgstr "Erreur : Impossible de compiler ce super bloc"
 
 msgid "Evaluation problem: wrong port number."
 msgstr "Problème d'évaluation : Nombre de ports erroné."
