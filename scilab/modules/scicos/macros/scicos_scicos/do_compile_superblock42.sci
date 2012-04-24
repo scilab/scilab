@@ -868,7 +868,7 @@ function ok=gen_ccode42();
              '#ifdef VERBOSE'
              '#include <stdio.h>'
              '#endif'
-             '#include <malloc.h>'
+             '#include <stdlib.h>'
              '#include <string.h>'
              '#include ""scicos_block4.h""'
              ''
@@ -1037,7 +1037,7 @@ function ok=gen_ccode42();
                      '#endif'
                      '        break;'
                      '    }'
-                     '    case 1 : /* output update */'
+                     '    case 2 : /* state update */'
                      '    {'
                      '        global_'+writeGlobal(i)+'_Index = (global_'+writeGlobal(i)+'_Index + 1) % global_'+writeGlobal(i)+'_Size;'
                      '        memcpy(global_'+writeGlobal(i)+'[global_'+writeGlobal(i)+'_Index], block->inptr[i], nu * nu2 * sizeof(double));'
@@ -1292,7 +1292,11 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
           for j = 2:size(towsObjIndex, '*')
               towsObj = towsObj.model.rpar.objs(towsObjIndex(j));
           end
-          bllst(i).sim(1) = 'writeGlobal_' + towsObj.graphics.exprs(2);
+          bllst(i).sim(1) = 'writeGlobal_' + ...
+              towsObj.graphics.exprs(2);
+          // Force state to enable case 2 call
+          // on generated code
+          bllst(i).dstate = 0;
           writeGlobal = [writeGlobal towsObj.graphics.exprs(2)];
           writeGlobalSize = [writeGlobalSize bllst(i).ipar(1)];
       elseif bllst(i).sim(1) == 'fromws_c' then
@@ -3436,6 +3440,7 @@ function make_standalone42(filename)
          '/* ---- Headers ---- */'
          '#include <stdio.h>'
          '#include <stdlib.h>'
+         '#include <unistd.h>'
          '#include <math.h>'
          '#include <string.h>'
          '#include <memory.h>'
