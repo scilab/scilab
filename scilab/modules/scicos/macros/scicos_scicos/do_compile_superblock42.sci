@@ -3440,7 +3440,6 @@ function make_standalone42(filename)
          '/* ---- Headers ---- */'
          '#include <stdio.h>'
          '#include <stdlib.h>'
-         '#include <unistd.h>'
          '#include <math.h>'
          '#include <string.h>'
          '#include <memory.h>'
