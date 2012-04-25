@@ -114,7 +114,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
         }
 
         public static DataType convertScilabValue(double val) {
-            return convertScilabValue(val);
+            return convertScilabValue((int) val);
         }
     }
 
