@@ -437,6 +437,9 @@ CACSD & Signal Processing
   - conv2 - discrete 2-D convolution.
   - convol2d - discrete 2-D convolution, using fft.
   - phaseplot - frequency phase plot.
+  - xcorr - auto and cross correlation of signals (superseeds corr).
+  - xcov - auto and cross correlationvariance of signals (superseeds corr).
+  - arma2ss - conversion of an arma data structure into a state space one.
 
 * 'mtlb_conv' compatibility function is now obsolete. Please use 'conv' instead.
 
