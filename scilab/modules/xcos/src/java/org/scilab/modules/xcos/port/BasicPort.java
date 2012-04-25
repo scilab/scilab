@@ -56,12 +56,12 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
          */
         public String getAsString() {
             switch (this) {
-            case IMPLICIT:
-                return "I";
-            case EXPLICIT:
-                return "E";
-            default:
-                return "";
+                case IMPLICIT:
+                    return "I";
+                case EXPLICIT:
+                    return "E";
+                default:
+                    return "";
             }
         }
     };
@@ -91,16 +91,12 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
          * @return A scicos compatible representation
          */
         public double getAsDouble() {
-            switch (this) {
-            case UNKNOW_TYPE:
+            if (this.equals(UNKNOW_TYPE)) {
                 return -1;
-            case REAL_MATRIX:
-                return 1;
-            case COMPLEX_MATRIX:
-                return 2;
-            default:
-                return 0;
             }
+
+            // We assume that the types are sorted well on the enum definition
+            return (double) this.ordinal();
         }
 
         /**
@@ -108,22 +104,23 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
          *            A scicos representation
          * @return The java compatible representation
          */
-        public static DataType convertScilabValue(double val) {
-            if (val == -1) {
-                return DataType.UNKNOW_TYPE;
-            } else if (val == 1) {
-                return DataType.REAL_MATRIX;
-            } else if (val == 2) {
-                return DataType.COMPLEX_MATRIX;
-            } else {
+        public static DataType convertScilabValue(int val) {
+            if (val <= 0 || val > DataType.values().length - 1) {
                 return DataType.UNKNOW_TYPE;
             }
+
+            // We assume that the types are sorted well on the enum definition
+            return DataType.values()[val];
+        }
+
+        public static DataType convertScilabValue(double val) {
+            return convertScilabValue(val);
         }
     }
 
     /**
      * Instantiate a port with a style (or typename).
-     * 
+     *
      * @param style
      *            Value to be set as a Style and as TypeName
      */
@@ -221,13 +218,13 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
         StringBuilder result = new StringBuilder();
         result.append(ScilabGraphConstants.HTML_BEGIN);
         result.append("Port number : " + getOrdering()
-                + ScilabGraphConstants.HTML_NEWLINE);
+                      + ScilabGraphConstants.HTML_NEWLINE);
 
         final int length = getStyle().length();
         result.append("Style : ");
         if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
             result.append(getStyle().substring(0,
-                    XcosConstants.MAX_CHAR_IN_STYLE));
+                                               XcosConstants.MAX_CHAR_IN_STYLE));
             result.append(XcosMessages.DOTS);
         } else {
             result.append(getStyle());
@@ -266,7 +263,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 
     /**
      * Set the label position of the current port according to the orientation.
-     * 
+     *
      * @param current
      *            the port orientation, if null, does nothing.
      */
@@ -285,9 +282,9 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
             // set up the port position
             style.put(mxConstants.STYLE_ALIGN, current.getLabelPosition());
             style.put(mxConstants.STYLE_VERTICAL_ALIGN,
-                    current.getVerticalLabelPosition());
+                      current.getVerticalLabelPosition());
             style.put(mxConstants.STYLE_SPACING,
-                    Integer.toString(BasicPort.DEFAULT_PORTSIZE + 2));
+                      Integer.toString(BasicPort.DEFAULT_PORTSIZE + 2));
 
             setStyle(style.toString());
         }
@@ -295,9 +292,9 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 
     /**
      * Hook to update the port label from the associated block expression.
-     * 
+     *
      * The current port index may be found in the ordering data.
-     * 
+     *
      * @param exprs
      *            the associated block expression.
      */
