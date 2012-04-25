@@ -106,10 +106,11 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\ia32\libifcoremdd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libmmdd.lib;$(IFORT_COMPILER12)compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -149,10 +150,11 @@
     <PreLinkEvent>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)compiler\lib\intel64\libifcoremdd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libmmdd.lib;$(IFORT_COMPILER12)compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/LibScilab.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -206,6 +208,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -252,6 +255,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
