@@ -728,7 +728,8 @@ function load(filename, varargin)
         loadFunction = %_load;
     end
 
-    variableList = listvarinfile(filename);
+    //multiple output variables to prevent listinfile prints
+    [variableList, __varB__, __varC__, __varD__] = listvarinfile(filename);
 
     //
     if size(varargin) <> 0 then

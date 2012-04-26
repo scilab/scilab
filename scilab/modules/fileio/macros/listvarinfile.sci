@@ -19,12 +19,24 @@ function varargout = listvarinfile(filename)
         error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "listvarinfile", 1));
     end
 
-    //check file format
     if is_hdf5_file(filename) then
-        [a,b,c,d] = listvar_in_hdf5(filename);
+        listvarFunction = listvar_in_hdf5;
     else
-        [a,b,c,d] = %_listvarinfile(filename);
+        listvarFunction = %_listvarinfile;
     end
 
-    varargout = list(a,b,c,d);
+    //check output argument count
+    if lhs == 1 then
+        a = listvarFunction(filename);
+        varargout = list(a);
+    elseif lhs == 2 then
+        [a,b] = listvarFunction(filename);
+        varargout = list(a,b);
+    elseif lhs == 3 then
+        [a,b,c] = listvarFunction(filename);
+        varargout = list(a,b,c);
+    elseif lhs == 4 then
+        [a,b,c,d] = listvarFunction(filename);
+        varargout = list(a,b,c,d);
+    end
 endfunction

@@ -24,6 +24,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
+#include "h5_readDataFromFile.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -66,47 +67,63 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     char** pstNameList  = NULL;
     char *pstFileName   = NULL;
     bool bExport        = false;
+    int iStartVarName   = 1;
+    bool bAppendMode    = false;
 
     SciErr sciErr;
 
-    CheckRhs(1, 100000);//output parameter
+    CheckInputArgumentAtLeast(pvApiCtx, 2);
+    CheckLhs(0, 1);
 
 #ifndef _MSC_VER
     forceJHDF5load();
 #endif
-
-    /*get input data*/
-    if (Rhs < 2)
-    {
-        Scierror(999, _("%s: Wrong number of input argument(s): At most %d expected.\n"), fname, 2);
-        return 0;
-    }
 
     pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
     iNbVar = extractVarNameList(1, Rhs, pstNameList);
     if (iNbVar == 0)
     {
         FREE(pstNameList);
-        return 0;
+        return 1;
     }
 
-    piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - 1));
-    for (int i = 0 ; i < Rhs - 1 ; i++)
+    if(strcmp(pstNameList[1], "-append") == 0)
     {
-        sciErr = getVarAddressFromName(pvApiCtx, pstNameList[i + 1], &piAddrList[i]);
+        bAppendMode = true;
+        iStartVarName = 2;
+    }
+
+    piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - iStartVarName));
+    for (int i = iStartVarName ; i < Rhs ; i++)
+    {
+        sciErr = getVarAddressFromName(pvApiCtx, pstNameList[i], &piAddrList[i - iStartVarName]);
         if (sciErr.iErr)
         {
-            // i+1 = i for filename + 1 because starting arg number is 1 for human being
-            Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
             printError(&sciErr, 0);
-            return 0;
+            return 1;
         }
     }
+
+    //check append option
 
     iLevel = 0;
     // open hdf5 file
     pstFileName = expandPathVariable(pstNameList[0]);
-    int iH5File = createHDF5File(pstFileName);
+    int iH5File = 0;
+    if(bAppendMode)
+    {
+        iH5File = openHDF5File(pstFileName);
+        if(iH5File < 0)
+        {
+            iH5File = createHDF5File(pstFileName);
+        }
+    }
+    else
+    {
+        iH5File = createHDF5File(pstFileName);
+    }
+
 
     if (iH5File < 0)
     {
@@ -120,13 +137,42 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Cannot open file %s.\n"), fname, pstNameList[0]);
         }
 
-        return 0;
+        return 1;
+    }
+
+
+    if(bAppendMode)
+    {
+        //check if variable already exists
+        int iNbItem = getVariableNames(iH5File, NULL);
+        if(iNbItem)
+        {
+            char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
+
+            iNbItem = getVariableNames(iH5File, pstVarNameList);
+
+            //import all data
+            for(int i = 0 ; i < iNbItem ; i++)
+            {
+                for(int j = 0 ; j < Rhs - iStartVarName; j++)
+                {
+                    if(strcmp(pstVarNameList[i], pstNameList[j + iStartVarName]) == 0)
+                    {
+
+                        Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
+                        return 1;
+                    }
+                }
+                FREE(pstVarNameList[i]);
+            }
+            FREE(pstVarNameList);
+        }
     }
 
     // export data
-    for (int i = 0 ; i < Rhs - 1; i++)
+    for (int i = 0 ; i < Rhs - iStartVarName; i++)
     {
-        bExport = export_data(iH5File, piAddrList[i], pstNameList[i + 1]);
+        bExport = export_data(iH5File, piAddrList[i], pstNameList[i + iStartVarName]);
         if (bExport == false)
         {
             break;
@@ -148,7 +194,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (bExport == true)
@@ -159,6 +205,16 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     {
         piReturn[0] = 0;
     }
+
+
+    //free memory
+    for(int i = 0 ; i < Rhs ; i++)
+    {
+        FREE(pstNameList[i]);
+    }
+    FREE(pstNameList);
+
+    FREE(piAddrList);
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
@@ -254,6 +310,12 @@ static bool export_data(int _iH5File, int* _piVar, char* _pstName)
         case 0 : //void case to "null" items in list
         {
             bReturn = export_void(_iH5File, _piVar, _pstName);
+            break;
+        }
+
+        default : 
+        {
+            bReturn = false;
             break;
         }
     }
@@ -639,7 +701,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeInterger8Matrix(_iH5File, _pstName, iRows, iCols, (char*)piData);
+            iRet = writeInteger8Matrix(_iH5File, _pstName, iRows, iCols, (char*)piData);
             break;
         case SCI_UINT8 :
             sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piVar, &iRows, &iCols, (unsigned char**)&piData);
@@ -657,7 +719,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeInterger16Matrix(_iH5File, _pstName, iRows, iCols, (short*)piData);
+            iRet = writeInteger16Matrix(_iH5File, _pstName, iRows, iCols, (short*)piData);
             break;
         case SCI_UINT16 :
             sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piVar, &iRows, &iCols, (unsigned short**)&piData);
@@ -675,7 +737,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeInterger32Matrix(_iH5File, _pstName, iRows, iCols, (int*)piData);
+            iRet = writeInteger32Matrix(_iH5File, _pstName, iRows, iCols, (int*)piData);
             break;
         case SCI_UINT32 :
             sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piVar, &iRows, &iCols, (unsigned int**)&piData);
@@ -693,7 +755,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
             //	printError(&sciErr, 0);
             //	return false;
             //}
-            //iRet = writeInterger64Matrix(_iH5File, _pstName, iRows, iCols, (long long*)piData);
+            //iRet = writeInteger64Matrix(_iH5File, _pstName, iRows, iCols, (long long*)piData);
             //break;
         case SCI_UINT64 :
             //sciErr = getMatrixOfUnsignedInteger64(_piVar, &iRows, &iCols, (unsigned long long**)&piData);
@@ -818,11 +880,11 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 
     for (int i = _iStart ; i <= _iEnd ; i++)
     {
-        int iRows					= 0;
-        int iCols					= 0;
-        int iLen					= 0;
-        int* piAddr				= NULL;
-        int iType					= 0;
+        int iRows   = 0;
+        int iCols   = 0;
+        int iLen    = 0;
+        int* piAddr = NULL;
+        int iType   = 0;
 
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddr);
         if (sciErr.iErr)
@@ -831,46 +893,9 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
             return 0;
         }
 
-        //get filename
-        sciErr = getVarType(pvApiCtx, piAddr, &iType);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        if (iType != sci_strings)
+        if(getAllocatedSingleString(pvApiCtx, piAddr, &_pstNameList[iCount]))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "export_to_hdf5", i);
-            return 0;
-        }
-
-        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        if (iRows != 1 || iCols != 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "export_to_hdf5", i);
-            Scierror(999, _("%s: Type: %dx%d\n"), "export_to_hdf5", iRows, iCols);
-            return 0;
-        }
-
-        sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        _pstNameList[iCount] = (char*)MALLOC((iLen + 1) * sizeof(char));//+1 for null termination
-        sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &_pstNameList[iCount]);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
             return 0;
         }
 

@@ -414,19 +414,18 @@ int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
     if (_iRows != 0 && _iCols != 0)
     {
         hid_t obj;
-        hobj_ref_t *pRef = (hobj_ref_t *) MALLOC(1 * sizeof(hobj_ref_t));
+        hobj_ref_t Ref;
 
         //Read the data.
-        status = H5Dread(_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+        status = H5Dread(_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, &Ref);
         if (status < 0)
         {
             return -1;
         }
 
         //Open the referenced object, get its name and type.
-        obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[0]);
+        obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &Ref);
         readDouble(obj, _iRows, _iCols, _pdblData);
-        FREE(pRef);
     }
 
     status = H5Dclose(_iDatasetId);
@@ -442,7 +441,7 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 {
     hid_t obj;
     herr_t status;
-    hobj_ref_t *pRef = (hobj_ref_t *) MALLOC(2 * sizeof(hobj_ref_t));
+    hobj_ref_t pRef[2] = {0};
 
     //Read the data.
     status = H5Dread(_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
@@ -775,6 +774,7 @@ int readCommonPolyMatrix(int _iDatasetId, char *_pstVarname, int _iComplex, int 
     status = H5Dread(_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
     if (status < 0)
     {
+        FREE(pData);
         return -1;
     }
 
@@ -795,20 +795,22 @@ int readCommonPolyMatrix(int _iDatasetId, char *_pstVarname, int _iComplex, int 
 
         if (status < 0)
         {
+            FREE(pData);
             return -1;
         }
     }
 
     pstVarName = readAttribute(_iDatasetId, g_SCILAB_CLASS_VARNAME);
     strcpy(_pstVarname, pstVarName);
+    FREE(pstVarName);
     status = H5Dclose(_iDatasetId);
     if (status < 0)
     {
+        FREE(pData);
         return -1;
     }
 
     FREE(pData);
-    FREE(pstVarName);
 
     return 0;
 }
@@ -1003,7 +1005,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
                                   double *_pdblReal, double *_pdblImg)
 {
     hid_t obj = 0;
-    hobj_ref_t *pRef = (hobj_ref_t *) MALLOC(3 * sizeof(hobj_ref_t));
+    hobj_ref_t pRef[3] = {0};
     herr_t status;
 
     /*
@@ -1048,8 +1050,6 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
         return -1;
     }
 
-    FREE(pRef);
-
     return 0;
 }
 
@@ -1067,7 +1067,7 @@ int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos)
 {
     hid_t obj = 0;
-    hobj_ref_t *pRef = (hobj_ref_t *) MALLOC(2 * sizeof(hobj_ref_t));
+    hobj_ref_t pRef[2] = {0};
     herr_t status;
 
     /*
@@ -1094,8 +1094,6 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
     {
         return -1;
     }
-
-    FREE(pRef);
 
     return 0;
 }
@@ -1163,10 +1161,6 @@ int getScilabTypeFromDataSet(int _iDatasetId)
         iVarType = sci_undefined;
     }
 
-    if (iVarType == 0)
-    {
-        return 0;
-    }
     FREE(pstScilabClass);
     return iVarType;
 }

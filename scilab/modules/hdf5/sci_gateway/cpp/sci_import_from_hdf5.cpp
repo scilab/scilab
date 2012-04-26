@@ -60,7 +60,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     int* piAddr = NULL;
     char* pstFilename = NULL;
     char* pstExpandedFilename = NULL;
-    bool bImport = false;
+    bool bImport = true;
 
     int iSelectedVar = Rhs - 1;
     bool bSelectedVar = false;

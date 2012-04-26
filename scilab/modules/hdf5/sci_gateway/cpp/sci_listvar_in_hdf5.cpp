@@ -64,7 +64,6 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     VarInfo* pInfo  = NULL;
     bool bRet       = true;
 
-
     CheckRhs(1, 1);
     CheckLhs(1, 4);
 
@@ -98,7 +97,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
         pInfo = (VarInfo*)MALLOC(iNbItem * sizeof(VarInfo));
 
-        if(Lhs != 4)
+        if(Lhs == 1)
         {
             sciprint("Name                     Type           Size            Bytes\n");
             sciprint("---------------------------------------------------------------\n");
@@ -122,11 +121,22 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
                 break;
             }
 
-            if(Lhs != 4)
+            if(Lhs == 1)
             {
                 sciprint("%s\n", pInfo[i].pstInfo);
             }
         }
+    }
+    else
+    {//no variable returms [] for each Lhs
+        for(int i = 0 ; i < Lhs ; i++)
+        {
+            createEmptyMatrix(pvApiCtx, Rhs + i + 1);
+            LhsVar(i+1) = Rhs + i + 1;
+        }
+
+        PutLhsVar();
+        return 0;
     }
 
     //1st Lhs

@@ -53,9 +53,12 @@ int createHDF5File(char *name)
         scichdir(pathdest);
     }
 
+    FREE(pathdest);
     /*bug 5629 : to prevent replace directory by file*/
     if (isdir(filename))
     {
+        FREE(filename);
+        FREE(currentpath);
         return -2;
     }
 
@@ -71,21 +74,8 @@ int createHDF5File(char *name)
 
     scichdir(currentpath);
 
-    if (currentpath)
-    {
-        FREE(currentpath);
-        currentpath = NULL;
-    }
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-    if (pathdest)
-    {
-        FREE(pathdest);
-        pathdest = NULL;
-    }
+    FREE(currentpath);
+    FREE(filename);
 
     return file;
 }
@@ -101,7 +91,6 @@ int openHDF5File(char *name)
     /* Used to avoid stack trace to be displayed */
     H5E_auto2_t oldfunc;
     
-
     /* TO DO : remove when HDF5 will be fixed ... */
     /* HDF5 does not manage no ANSI characters */
     /* UGLY workaround :( */
@@ -122,7 +111,7 @@ int openHDF5File(char *name)
     /* Turn off error handling */
     H5Eset_auto2(H5E_DEFAULT, NULL, NULL);
 
-    file = H5Fopen (filename, H5F_ACC_RDONLY, H5P_DEFAULT);
+    file = H5Fopen(filename, H5F_ACC_RDWR, H5P_DEFAULT);
     /* The following test will display the backtrace in case of error */
     /* Deactivated because displayed each time we call 'load' to open a non-HDF5 file */
     /*if (file < 0)
