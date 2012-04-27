@@ -22,6 +22,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -42,6 +43,13 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
     protected static final String LINE = "line";
     /** Data field */
     protected static final String DATA = "data";
+
+    protected static final String POSITION = "position";
+    protected static final String BINARY = "binary";
+
+    protected static boolean binary;
+    protected static ScilabList binaryObjects;
+    protected static final Object LOCK = new Object();;
 
     /**
      * Throw when we cannot load the XML.
@@ -85,6 +93,33 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
         newExclude.add("type");
         this.exclude = newExclude;
 
+    }
+
+    public static Object enableBinarySerialization(ScilabList list) {
+        synchronized (LOCK) {
+            binary = true;
+            if (list == null) {
+                binaryObjects = new ScilabList();
+            } else {
+                binaryObjects = list;
+            }
+
+            return LOCK;
+        }
+    }
+
+    public static ScilabList disableBinarySerialization() {
+        synchronized (LOCK) {
+            binary = false;
+            ScilabList ret = binaryObjects;
+            binaryObjects = null;
+
+            return ret;
+        }
+    }
+
+    public static ScilabList getBinaryObjects() {
+        return binaryObjects;
     }
 
     /**
@@ -141,7 +176,7 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
      * @throws UnrecognizeFormatException
      *             when the key is not valid.
      */
-    private int getIntegerAttribute(final NamedNodeMap dataAttrs, final String attribute) throws UnrecognizeFormatException {
+    protected int getIntegerAttribute(final NamedNodeMap dataAttrs, final String attribute) throws UnrecognizeFormatException {
         final Node node = dataAttrs.getNamedItem(attribute);
         if (node == null) {
             throw new UnrecognizeFormatException();
@@ -154,6 +189,26 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
             throw new UnrecognizeFormatException(e);
         }
         return value;
+    }
+
+    /**
+     * get an integer value from a attributes.
+     *
+     * @param dataAttrs
+     *            the attributes
+     * @param attribute
+     *            the key to search
+     * @return the value
+     * @throws UnrecognizeFormatException
+     *             when the key is not valid.
+     */
+    protected boolean getBooleanAttribute(final NamedNodeMap dataAttrs, final String attribute) {
+        final Node node = dataAttrs.getNamedItem(attribute);
+        if (node == null) {
+            return false;
+        }
+
+        return Boolean.parseBoolean(node.getNodeValue());
     }
 
     /**

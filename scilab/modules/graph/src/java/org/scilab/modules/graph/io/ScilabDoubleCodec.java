@@ -65,6 +65,16 @@ public class ScilabDoubleCodec extends ScilabObjectCodec {
         Node node = enc.getDocument().createElement(name);
 
         ScilabDouble scilabDouble = (ScilabDouble) obj;
+
+        if (binary) {
+            int pos = binaryObjects.size();
+            binaryObjects.add(scilabDouble);
+            mxCodec.setAttribute(node, BINARY, "true");
+            mxCodec.setAttribute(node, POSITION, pos);
+
+            return node;
+        }
+
         mxCodec.setAttribute(node, WIDTH, scilabDouble.getWidth());
         mxCodec.setAttribute(node, HEIGHT, scilabDouble.getHeight());
 
@@ -109,13 +119,18 @@ public class ScilabDoubleCodec extends ScilabObjectCodec {
             if (node.getNodeType() != Node.ELEMENT_NODE) {
                 throw new UnrecognizeFormatException();
             }
-            obj = (ScilabDouble) cloneTemplate(node);
 
-            // attrs = {"as", "height", "width"}
+            // attrs = {"as", "height", "width", "binary", "position"}
             final NamedNodeMap attrs = node.getAttributes();
             if (attrs == null) {
                 throw new UnrecognizeFormatException();
             }
+
+            if (getBooleanAttribute(attrs, BINARY)) {
+                return binaryObjects.get(getIntegerAttribute(attrs, POSITION));
+            }
+
+            obj = (ScilabDouble) cloneTemplate(node);
 
             final int height = getHeight(attrs);
             final int width = getWidth(attrs);

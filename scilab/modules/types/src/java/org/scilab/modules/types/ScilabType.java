@@ -12,19 +12,21 @@
 
 package org.scilab.modules.types;
 
+import java.io.Externalizable;
 import java.io.Serializable;
 
 /**
  * This interface specifies what is a Scilab types<br>
  * <br>
- * This class is {@link java.io.Serializable} and any modification could
- * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * This class is {@link java.io.Serializable} and any modification could impact
+ * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  */
-public interface ScilabType extends Serializable, Cloneable {
+public interface ScilabType extends Externalizable, Serializable, Cloneable {
 
     /**
      * Return the type of Scilab
+     *
      * @return the type of Scilab
      * @since 5.4.0
      */
@@ -67,13 +69,17 @@ public interface ScilabType extends Serializable, Cloneable {
 
     /**
      * Compare if obj is the same object or not
-     * @param obj the object we want to compare
+     *
+     * @param obj
+     *            the object we want to compare
      * @return true if the two objects are equals, false otherwise
      */
     public boolean equals(Object obj);
 
     /**
-     * Get a single object used to easily rebuild a Scilab variable from the Java ScilabType
+     * Get a single object used to easily rebuild a Scilab variable from the
+     * Java ScilabType
+     *
      * @return an very simple object reflecting this ScilabType.
      */
     public Object getSerializedObject();

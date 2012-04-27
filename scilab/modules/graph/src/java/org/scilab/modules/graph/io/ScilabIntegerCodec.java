@@ -71,6 +71,16 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
         Node node = enc.getDocument().createElement(name);
 
         ScilabInteger scilabInteger = (ScilabInteger) obj;
+
+        if (binary) {
+            int pos = binaryObjects.size();
+            binaryObjects.add(scilabInteger);
+            mxCodec.setAttribute(node, BINARY, "true");
+            mxCodec.setAttribute(node, POSITION, pos);
+
+            return node;
+        }
+
         mxCodec.setAttribute(node, WIDTH, scilabInteger.getWidth());
         mxCodec.setAttribute(node, HEIGHT, scilabInteger.getHeight());
         mxCodec.setAttribute(node, PRECISION, scilabInteger.getPrec().name());
@@ -108,13 +118,18 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
             if (node.getNodeType() != Node.ELEMENT_NODE) {
                 throw new UnrecognizeFormatException();
             }
-            obj = (ScilabInteger) cloneTemplate(node);
 
-            // attrs = {"as", "height", "width"}
+            // attrs = {"as", "height", "width", "binary", "position"}
             final NamedNodeMap attrs = node.getAttributes();
             if (attrs == null) {
                 throw new UnrecognizeFormatException();
             }
+
+            if (getBooleanAttribute(attrs, BINARY)) {
+                return binaryObjects.get(getIntegerAttribute(attrs, POSITION));
+            }
+
+            obj = (ScilabInteger) cloneTemplate(node);
 
             final int height = getHeight(attrs);
             final int width = getWidth(attrs);

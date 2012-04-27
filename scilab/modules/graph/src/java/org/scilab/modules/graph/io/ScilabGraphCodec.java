@@ -30,7 +30,9 @@ public class ScilabGraphCodec extends mxObjectCodec {
 
     /**
      * Default constructor
-     * @param template the object template
+     *
+     * @param template
+     *            the object template
      */
     public ScilabGraphCodec(Object template) {
         super(template);
@@ -38,28 +40,33 @@ public class ScilabGraphCodec extends mxObjectCodec {
 
     /**
      * The constructor used on for configuration
-     * @param template Prototypical instance of the object to be encoded/decoded.
-     * @param exclude Optional array of fieldnames to be ignored.
-     * @param idrefs Optional array of fieldnames to be converted to/from references.
-     * @param mapping Optional mapping from field- to attributenames.
+     *
+     * @param template
+     *            Prototypical instance of the object to be encoded/decoded.
+     * @param exclude
+     *            Optional array of fieldnames to be ignored.
+     * @param idrefs
+     *            Optional array of fieldnames to be converted to/from
+     *            references.
+     * @param mapping
+     *            Optional mapping from field- to attributenames.
      */
-    public ScilabGraphCodec(Object template, String[] exclude, String[] idrefs,
-                            Map<String, String> mapping) {
+    public ScilabGraphCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
     }
 
     /**
-    * Trace any msg to the xml document.
-    *
-    * @param enc
-    *            the current encoder
-    * @param node
-    *            the current node
-    * @param msg
-    *            the message
-    * @param format
-    *            the format
-    */
+     * Trace any msg to the xml document.
+     *
+     * @param enc
+     *            the current encoder
+     * @param node
+     *            the current node
+     * @param msg
+     *            the message
+     * @param format
+     *            the format
+     */
     protected void trace(mxCodec enc, Node node, String msg, Object... format) {
         node.appendChild(enc.getDocument().createComment(String.format(msg, format)));
     }
@@ -81,33 +88,33 @@ public class ScilabGraphCodec extends mxObjectCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         final ScilabGraph graph = (ScilabGraph) obj;
         if (graph.getAsComponent() != null) {
-            ((Element) node).setAttribute(BACKGROUND, String.valueOf(graph
-                                          .getAsComponent().getBackground().getRGB()));
+            ((Element) node).setAttribute(BACKGROUND, String.valueOf(graph.getAsComponent().getBackground().getRGB()));
         }
         return super.beforeEncode(enc, obj, node);
     }
 
     /**
      * Apply compatibility pattern to the decoded object
-     * @param dec Codec that controls the decoding process.
-     * @param node XML node to decode the object from.
-     * @param obj Object decoded.
+     *
+     * @param dec
+     *            Codec that controls the decoding process.
+     * @param node
+     *            XML node to decode the object from.
+     * @param obj
+     *            Object decoded.
      * @return The Object transformed
-     * @see org.scilab.modules.xcos.io.codec.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+     * @see org.scilab.modules.xcos.io.codec.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
+     *      org.w3c.dom.Node, java.lang.Object)
      */
     @Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
         final ScilabGraph graph = (ScilabGraph) obj;
         final Element elem = (Element) node;
-        if (graph.getAsComponent() != null
-                && !elem.getAttribute(BACKGROUND).isEmpty()) {
-            graph.getAsComponent().setBackground(
-                (new Color(Integer.parseInt((((Element) node)
-                                             .getAttribute(BACKGROUND))))));
+        if (graph.getAsComponent() != null && !elem.getAttribute(BACKGROUND).isEmpty()) {
+            graph.getAsComponent().setBackground((new Color(Integer.parseInt((((Element) node).getAttribute(BACKGROUND))))));
         }
 
         return super.afterDecode(dec, node, obj);
     }
-
 
 }
