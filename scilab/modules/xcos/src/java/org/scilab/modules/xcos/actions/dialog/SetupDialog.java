@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.actions.dialog;
 
-import java.awt.Choice;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,12 +25,16 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.logging.Logger;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -100,7 +103,7 @@ public class SetupDialog extends JDialog {
     private JFormattedTextField integratorRel;
     private JFormattedTextField toleranceOnTime;
     private JFormattedTextField maxIntegrationTime;
-    private Choice solverChoice;
+    private JComboBox solver;
     private JSpinner maxStepSize;
 
     /**
@@ -166,14 +169,34 @@ public class SetupDialog extends JDialog {
         maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeInterval()));
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
-        solverChoice = new Choice();
-        solverChoice.addItem(XcosMessages.CVODE);
-        solverChoice.addItem(XcosMessages.IDA);
-        if (parameters.getSolver() == 0.0) {
-            solverChoice.select(0);
+        final String[] solvers = new String[] { "lsodar - BDF - NEWTON ", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
+                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Runge-Kutta 4(5)", "Sundials/IDA"
+                                              };
+        final String[] solversTooltips = new String[] { "Not available yet", "Method: BDF, Nonlinear solver= NEWTON",
+                "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
+                "Not available yet", "Sundials/IDA"
+                                                      };
+
+        solver = new JComboBox(solvers);
+        double solverValue = parameters.getSolver();
+        if (solverValue >= 0.0 && solverValue <= solvers.length - 2) {
+            solver.setSelectedIndex((int) solverValue);
         } else {
-            solverChoice.select(1);
+            solver.setSelectedIndex(solvers.length - 1);
         }
+
+        final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JComponent comp = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                if (-1 < index && null != value && null != solversTooltips) {
+                    list.setToolTipText(solversTooltips[index]);
+                }
+                return comp;
+            }
+        }
+        solver.setRenderer(new ComboboxToolTipRenderer());
 
         JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
         SpinnerNumberModel spinnerModel = new SpinnerNumberModel((int) parameters.getMaximumStepSize(), 0, null, 1);
@@ -251,7 +274,7 @@ public class SetupDialog extends JDialog {
         add(maxIntegrationTime, gbc);
 
         gbc.gridy = 10;
-        add(solverChoice, gbc);
+        add(solver, gbc);
 
         gbc.gridy = 11;
         add(maxStepSize, gbc);
@@ -309,7 +332,7 @@ public class SetupDialog extends JDialog {
                 integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
                 toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
                 maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
-                solverChoice.select((int) (ScicosParameters.SOLVER / 100.0));
+                solver.setSelectedIndex((int) ScicosParameters.SOLVER);
                 maxStepSize.setValue((int) ScicosParameters.MAXIMUM_STEP_SIZE);
             }
         });
@@ -323,10 +346,11 @@ public class SetupDialog extends JDialog {
                          * FIXME This logic must be deported to a vetoable
                          * handler
                          */
-                        if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
-                            parameters.setSolver(0);
+                        int solverSelectedIndex = solver.getSelectedIndex();
+                        if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 2) {
+                            parameters.setSolver(solverSelectedIndex);
                         } else {
-                            parameters.setSolver(100);
+                            parameters.setSolver(100.0);
                         }
 
                         parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());

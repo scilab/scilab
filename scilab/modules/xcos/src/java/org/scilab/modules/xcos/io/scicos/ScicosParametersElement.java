@@ -369,7 +369,13 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         tolField[field++][0] = from.getToleranceOnTime();
         tolField[field++][0] = from.getMaxIntegrationTimeInterval();
         tolField[field++][0] = from.getRealTimeScaling();
-        tolField[field++][0] = from.getSolver();
+        int solver = (int) from.getSolver();
+        // FIXME: implement compat. with future values
+        solver--;
+        if (solver == -1 || solver == 4) {
+            solver = 0;
+        }
+        tolField[field++][0] = solver;
         tolField[field++][0] = from.getMaximumStepSize();
 
         assert field == TOL_SIZE;
