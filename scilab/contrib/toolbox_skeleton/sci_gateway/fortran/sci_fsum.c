@@ -106,13 +106,13 @@ int sci_fsum(char *fname)
     /* create result on stack */
     m_out = 1;
     n_out = 1;
-    sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, m_out, n_out, &dOut);
+    sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, m_out, n_out, &dOut);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
 
     return 0;
 }

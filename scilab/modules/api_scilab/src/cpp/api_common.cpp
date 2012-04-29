@@ -35,9 +35,9 @@ extern "C"
 extern "C"
 {
     extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
-    extern  int C2F(cvname)(int *,char *,int *, unsigned long int);
-/* *jobptr==0: Get Scilab codes from C-string */
-/* *jobptr==1: Get C-string from Scilab codes */
+    extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
+    /* *jobptr==0: Get Scilab codes from C-string */
+    /* *jobptr==1: Get C-string from Scilab codes */
 
     extern int C2F(stackp) (int *, int *);
 };
@@ -46,22 +46,24 @@ extern "C"
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
-int* getInputArgument(void* _pvCtx)
+/* Replaces Rhs */
+int* getNbInputArgument(void* _pvCtx)
 {
     return &C2F(com).rhs;
 }
 
-int* getOutputArgument(void* _pvCtx)
+/* Replaces Lhs */
+int* getNbOutputArgument(void* _pvCtx)
 {
     return &C2F(com).lhs;
 }
 
 int* assignOutputVariable(void* _pvCtx, int _iVal)
 {
-    return &(C2F(intersci).lhsvar[_iVal-1]);
+    return &(C2F(intersci).lhsvar[_iVal - 1]);
 }
 
-int updateStack(void* _pvCtx)
+int returnArguments(void* _pvCtx)
 {
     return C2F(putlhsvar)();
 }
@@ -79,12 +81,12 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     int cx0 = 0;
     C2F(cvname) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz],  ((StrCtx *) _pvCtx)->pstName, &cx0, (unsigned long int)strlen(((StrCtx *)_pvCtx)->pstName));
 
-    if(_iMin <= InputArgument && _iMax >= InputArgument)
+    if (_iMin <= nbInputArgument && _iMax >= nbInputArgument)
     {
         return 1;
     }
 
-    if(_iMax == _iMin)
+    if (_iMax == _iMin)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     }
@@ -103,7 +105,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMin <= InputArgument)
+    if (_iMin <= nbInputArgument)
     {
         return 1;
     }
@@ -119,7 +121,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMax >= InputArgument)
+    if (_iMax >= nbInputArgument)
     {
         return 1;
     }
@@ -136,12 +138,12 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iMsgCount = 0;
 
 
-    if(_iMin <= OutputArgument && _iMax >= OutputArgument)
+    if (_iMin <= nbOutputArgument && _iMax >= nbOutputArgument)
     {
         return 1;
     }
 
-    if(_iMax == _iMin)
+    if (_iMax == _iMin)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     }
@@ -160,7 +162,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMin <= OutputArgument)
+    if (_iMin <= nbOutputArgument)
     {
         return 1;
     }
@@ -176,7 +178,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMax >= OutputArgument)
+    if (_iMax >= nbOutputArgument)
     {
         return 1;
     }
@@ -340,7 +342,8 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
     //get variable address
     getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
     if (piAddr[0] < 0)
-    {                           //get address from reference
+    {
+        //get address from reference
         int iStackRef = *Lstk(Fin);
         int iStackAddr = iadr(iStackRef);
         int iNewStackRef = iStackAddr + 1;
@@ -409,13 +412,13 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
     getVarType(_pvCtx, _piAddress, &iType);
     switch (iType)
     {
-    case sci_matrix:
-    case sci_poly:
-    case sci_sparse:
-        iComplex = _piAddress[3];
-        break;
-    default:
-        iComplex = 0;
+        case sci_matrix:
+        case sci_poly:
+        case sci_sparse:
+            iComplex = _piAddress[3];
+            break;
+        default:
+            iComplex = 0;
     }
     return iComplex;
 }
@@ -472,18 +475,18 @@ int isVarMatrixType(void *_pvCtx, int *_piAddress)
 
         switch (iType)
         {
-        case sci_matrix:
-        case sci_poly:
-        case sci_boolean:
-        case sci_sparse:
-        case sci_boolean_sparse:
-        case sci_matlab_sparse:
-        case sci_ints:
-        case sci_handles:
-        case sci_strings:
-            return 1;
-        default:
-            return 0;
+            case sci_matrix:
+            case sci_poly:
+            case sci_boolean:
+            case sci_sparse:
+            case sci_boolean_sparse:
+            case sci_matlab_sparse:
+            case sci_ints:
+            case sci_handles:
+            case sci_strings:
+                return 1;
+            default:
+                return 0;
         }
     }
     else
@@ -697,7 +700,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 
         switch (iPrec)
         {
-        case SCI_INT8:
+            case SCI_INT8:
             {
                 char *pcData = NULL;
 
@@ -710,7 +713,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pcData[0];
             }
             break;
-        case SCI_UINT8:
+            case SCI_UINT8:
             {
                 unsigned char *pucData = NULL;
 
@@ -723,7 +726,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pucData[0];
             }
             break;
-        case SCI_INT16:
+            case SCI_INT16:
             {
                 short *psData = NULL;
 
@@ -736,7 +739,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = psData[0];
             }
             break;
-        case SCI_UINT16:
+            case SCI_UINT16:
             {
                 unsigned short *pusData = NULL;
 
@@ -749,7 +752,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pusData[0];
             }
             break;
-        case SCI_INT32:
+            case SCI_INT32:
             {
                 int *piData = NULL;
 
@@ -762,7 +765,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = piData[0];
             }
             break;
-        case SCI_UINT32:
+            case SCI_UINT32:
             {
                 unsigned int *puiData = NULL;
 
@@ -1267,7 +1270,7 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
 {
-    #define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
+#define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
     int iRet = 1;
 
     // check pointer

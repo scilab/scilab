@@ -13,7 +13,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-int booleanExample(char *fname,unsigned long fname_len)
+int booleanExample(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -26,24 +26,24 @@ int booleanExample(char *fname,unsigned long fname_len)
     CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
-    if(isBooleanType(pvApiCtx, piAddr))
+    if (isBooleanType(pvApiCtx, piAddr))
     {
-        if(isScalar(pvApiCtx, piAddr))
+        if (isScalar(pvApiCtx, piAddr))
         {
             int iBool = 0;
             iRet = getScalarBoolean(pvApiCtx, piAddr, &iBool);
-            if(iRet)
+            if (iRet)
             {
                 return 0;
             }
             iRet = createScalarBoolean(pvApiCtx, Rhs + 1, iBool);
-            //iRet = createScalarBoolean(pvApiCtx, InputArgument + 1, iBool);
-            if(iRet)
+            //iRet = createScalarBoolean(pvApiCtx, nbInputArgument + 1, iBool);
+            if (iRet)
             {
                 return 0;
             }
@@ -55,22 +55,22 @@ int booleanExample(char *fname,unsigned long fname_len)
             int *piBool	= NULL;
 
             sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
 
             sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, iRows, iCols, piBool);
-            //sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, iRows, iCols, piBool);
-            if(sciErr.iErr)
+            //sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, iRows, iCols, piBool);
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
         }
         LhsVar(1) = Rhs + 1;
-        //AssignOutputVariable(1) = InputArgument + 1;
+        //AssignOutputVariable(1) = nbInputArgument + 1;
     }
     else
     {

@@ -1,8 +1,7 @@
 //
 // This file is part of the Xcos skeleton toolbox
 //
-// Copyright (C) 2011 - DIGITEO - Clément DAVID <clement.david@scilab.org>
-// see license.txt for more licensing informations
+// see license.txt for more licensing information
 
 function [x,y,typ]=TBX_SUM_c(job,arg1,arg2)
   x=[];y=[];typ=[]

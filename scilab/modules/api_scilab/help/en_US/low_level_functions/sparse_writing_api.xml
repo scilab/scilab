@@ -245,14 +245,14 @@ int write_sparse(char *fname,unsigned long fname_len)
 	double pdblSImg[]	= {4,3,2,1};
 	int iNbItem			= 4;
 
-	sciErr = createComplexSparseMatrix(pvApiCtx, InputArgument + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	AssignOutputVariable(1) = InputArgument + 1;
+	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
  ]]>

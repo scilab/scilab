@@ -16,74 +16,74 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int stringExample(char *fname,unsigned long fname_len)
+int stringExample(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
-	int* piAddr = NULL;
-	int iType   = 0;
-	int iRet    = 0;
+    SciErr sciErr;
+    int* piAddr = NULL;
+    int iType   = 0;
+    int iRet    = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if(isStringType(pvApiCtx, piAddr))
-	{
-		if(isScalar(pvApiCtx, piAddr))
-		{
-			char* pstData = NULL;
+    if (isStringType(pvApiCtx, piAddr))
+    {
+        if (isScalar(pvApiCtx, piAddr))
+        {
+            char* pstData = NULL;
 
-			iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
-			if(iRet)
-			{
-				freeAllocatedSingleString(pstData);
-				return iRet;
-			}
+            iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
+            if (iRet)
+            {
+                freeAllocatedSingleString(pstData);
+                return iRet;
+            }
 
-			iRet = createSingleString(pvApiCtx, InputArgument + 1, pstData);
-			if(iRet)
-			{
-				freeAllocatedSingleString(pstData);
-				return iRet;
-			}
+            iRet = createSingleString(pvApiCtx, nbInputArgument + 1, pstData);
+            if (iRet)
+            {
+                freeAllocatedSingleString(pstData);
+                return iRet;
+            }
 
-			freeAllocatedSingleString(pstData);
-		}
-		else
-		{
-			int iRows       = 0;
-			int iCols       = 0;
-			char** pstData  = NULL;
+            freeAllocatedSingleString(pstData);
+        }
+        else
+        {
+            int iRows       = 0;
+            int iCols       = 0;
+            char** pstData  = NULL;
 
-			iRet = getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData);
-			if(iRet)
-			{
-				freeAllocatedMatrixOfString(iRows, iCols, pstData);
-				return iRet;
-			}
+            iRet = getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData);
+            if (iRet)
+            {
+                freeAllocatedMatrixOfString(iRows, iCols, pstData);
+                return iRet;
+            }
 
-			sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRows, iCols, pstData);
-			if(sciErr.iErr)
-			{
-				freeAllocatedMatrixOfString(iRows, iCols, pstData);
-				printError(&sciErr, 0);
-				return sciErr.iErr;
-			}
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 1, iRows, iCols, pstData);
+            if (sciErr.iErr)
+            {
+                freeAllocatedMatrixOfString(iRows, iCols, pstData);
+                printError(&sciErr, 0);
+                return sciErr.iErr;
+            }
 
-			freeAllocatedMatrixOfString(iRows, iCols, pstData);
-		}
-		
-        AssignOutputVariable(1) = InputArgument + 1;
-	}
-	else
-	{
+            freeAllocatedMatrixOfString(iRows, iCols, pstData);
+        }
+
+        AssignOutputVariable(1) = nbInputArgument + 1;
+    }
+    else
+    {
         AssignOutputVariable(1) = 0;
-	}
-	return 0;
+    }
+    return 0;
 }

@@ -105,17 +105,11 @@ int sci_csub(char *fname)
     /* create result on stack */
     m_out = 1;
     n_out = 1;
-    createMatrixOfDouble(pvApiCtx, InputArgument + 1, m_out, n_out, &dOut);
+    createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, m_out, n_out, &dOut);
 
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
 
-
-    /* This function put on scilab stack, the lhs variable
-    which are at the position lhs(i) on calling stack */
-    /* You need to add UpdateStack here because WITHOUT_ADD_PUTLHSVAR
-    was defined and equal to %t */
-    /* without this, you do not need to add UpdateStack here */
-    UpdateStack();
+    ReturnArguments();
 
     return 0;
 }

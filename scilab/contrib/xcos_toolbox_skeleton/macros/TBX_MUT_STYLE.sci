@@ -1,8 +1,7 @@
 //
 // This file is part of the Xcos skeleton toolbox
 //
-// Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
-// see license.txt for more licensing informations
+// see license.txt for more licensing information
 
 function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
   x=[];y=[];typ=[]

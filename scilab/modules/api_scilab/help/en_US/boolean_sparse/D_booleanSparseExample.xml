@@ -63,7 +63,7 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 			return iRet;
 		}
 
-		sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+		sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
 		if(sciErr.iErr)
 		{
 			freeAllocatedBooleanSparse(piNbItemRow, piColPos);
@@ -72,7 +72,7 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 		}
 
 		freeAllocatedBooleanSparse(piNbItemRow, piColPos);
-		AssignOutputVariable(1) = InputArgument + 1;
+		AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 	return 0;
 }

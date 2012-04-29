@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_write_boolean(char *fname,unsigned long fname_len)
+int read_write_boolean(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i;
@@ -27,12 +27,12 @@ int read_write_boolean(char *fname,unsigned long fname_len)
     int* piBool     = NULL;
 
     //check input and output arguments
-    CheckInputArgument(pvApiCtx, 1,1);
-    CheckOutputArgument(pvApiCtx, 1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     //get variable address of the first input argument
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -40,25 +40,25 @@ int read_write_boolean(char *fname,unsigned long fname_len)
 
     //get size and data from Scilab memory
     sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
     //Do something with data
-    for(i = 0 ; i < iRows * iCols ; i++)
+    for (i = 0 ; i < iRows * iCols ; i++)
     {
         piBool[i] = piBool[i] == 0 ? 1 : 0;
     }
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, iRows, iCols, piBool);
-    if(sciErr.iErr)
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, iRows, iCols, piBool);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }

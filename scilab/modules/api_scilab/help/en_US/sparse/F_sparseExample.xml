@@ -66,7 +66,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createComplexSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+			sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
 			if(sciErr.iErr)
 			{
 				freeAllocatedComplexSparseMatrix(piNbItemRow, piColPos, pdblReal, pdblImg);
@@ -85,7 +85,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+			sciErr = createSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
 			if(sciErr.iErr)
 			{
 				freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
@@ -95,7 +95,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 
 			freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
 		}
-		AssignOutputVariable(1) = InputArgument + 1;
+		AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 	else
 	{

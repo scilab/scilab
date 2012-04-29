@@ -69,16 +69,11 @@ int sci_csum(char *fname)
     csum(&dVarOne, &dVarTwo, &dOut);
 
     /* create result on stack */
-    createScalarDouble(pvApiCtx, InputArgument + 1, dOut);
+    createScalarDouble(pvApiCtx, nbInputArgument + 1, dOut);
 
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
 
-    /* This function put on scilab stack, the lhs variable
-    which are at the position lhs(i) on calling stack */
-    /* You need to add UpdateStack here because WITHOUT_ADD_PUTLHSVAR
-    was defined and equal to %t */
-    /* without this, you do not need to add UpdateStack here */
-    UpdateStack();
+    ReturnArguments();
 
     return 0;
 }
