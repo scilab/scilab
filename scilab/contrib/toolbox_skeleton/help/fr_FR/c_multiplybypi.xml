@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
  * 
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
@@ -41,6 +39,9 @@
     <title>Description</title>
     <para>Fait une multiplication particulière.</para>
     <para>Ajoutez ici plus d'informations sur cette fonction </para>
+    <para>
+      LaTeX peut etre utilisé pour afficher l'équation: Dans ce cas, le rendu pourrait être <latex>$x*\pi$</latex>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

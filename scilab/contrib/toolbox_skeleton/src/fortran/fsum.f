@@ -1,6 +1,4 @@
 c =================================
-c Allan CORNET
-c COPYRIGHT INRIA 2008
 c Template toolbox_skeleton
 c This file is released under the 3-clause BSD license. See COPYING-BSD.
 

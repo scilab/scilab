@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
  * 
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
@@ -47,6 +45,9 @@
     <title>Description</title>
     <para>calcule la soustraction.</para>
     <para>Ajoutez ici plus d'informations sur cette fonction </para>
+    <para>
+      LaTeX peut etre utilisé pour afficher l'équation: Dans ce cas, le rendu pourrait être <latex>$x-y$</latex>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
