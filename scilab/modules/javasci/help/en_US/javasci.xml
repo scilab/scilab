@@ -66,18 +66,6 @@ class Example1 {
 
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Example of Javasci v1 (deprecated)</title>
-    <programlisting role="java"><![CDATA[
-// A simple Java example with javasci v1
-// Filename: DisplayPI.java
-import javasci.Scilab;
-public class DisplayPI {
-        public static void main(String []args) {
-               Scilab.Exec("disp(%pi);");
-        }
-} ]]></programlisting>
-  </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">

@@ -134,12 +134,6 @@ for(j = 0 ; j < rowB_ ; j++)
         <link linkend="api_scilab">api Scilab</link>
       </member>
       <member>
-        <link linkend="cwritecmat">cwritecmat</link>
-      </member>
-      <member>
-        <link linkend="creadcmat">creadcmat</link>
-      </member>
-      <member>
         <link linkend="SendScilabJob">SendScilabJob</link>
       </member>
       <member>

@@ -135,12 +135,6 @@ free(pstData);
         <link linkend="api_scilab">api Scilab</link>
       </member>
       <member>
-        <link linkend="cwritechain">cwritechain</link>
-      </member>
-      <member>
-        <link linkend="creadchain">creadchain</link>
-      </member>
-      <member>
         <link linkend="SendScilabJob">SendScilabJob</link>
       </member>
       <member>
