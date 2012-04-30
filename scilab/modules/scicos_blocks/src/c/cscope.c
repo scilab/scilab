@@ -172,17 +172,25 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
             if (sco == NULL)
             {
                 set_block_error(-5);
+                break;
             }
             pFigureUID = getFigure(block);
             if (pFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
+                break;
             }
             break;
 
         case StateUpdate:
             pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
             t = get_scicos_time();
             u = GetRealInPortPtrs(block, 1);
@@ -543,6 +551,7 @@ static char *getFigure(scicos_block * block)
 
         // set configured parameters
         setFigureSettings(pFigureUID, block);
+        sco->scope.cachedFigureUID = pFigureUID;
 
         // allocate the axes through the getter
         for (i = 0; i < GetNin(block); i++)
@@ -560,8 +569,6 @@ static char *getFigure(scicos_block * block)
 
             setPolylinesBounds(block, i, 0);
         }
-
-        sco->scope.cachedFigureUID = pFigureUID;
     }
 
     if (sco->scope.cachedFigureUID == NULL)
@@ -642,7 +649,6 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
         {
             createDataObject(pPolyline, __GO_POLYLINE__);
             setGraphicObjectRelationship(pAxeUID, pPolyline);
-
         }
     }
 

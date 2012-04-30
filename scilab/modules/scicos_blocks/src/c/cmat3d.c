@@ -153,17 +153,25 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
             if (sco == NULL)
             {
                 set_block_error(-5);
+                break;
             }
             pFigureUID = getFigure(block);
             if (pFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
+                break;
             }
             break;
 
         case StateUpdate:
             pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
             u = GetRealInPortPtrs(block, 1);
 

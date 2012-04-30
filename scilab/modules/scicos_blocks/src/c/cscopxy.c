@@ -169,6 +169,12 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
             appendData(block, (double *)block->inptr[0], (double *)block->inptr[1]);
             for (j = 0; j < block->insz[0]; j++)

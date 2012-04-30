@@ -52,9 +52,9 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
         {
             typeCount++;
         }
-//      Commented due to the C++ allocation
-//      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//      FREE(childType);
+        //      Commented due to the C++ allocation
+        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+        //      FREE(childType);
 
         if (typeCount == (position + 1))
         {
@@ -63,12 +63,12 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
         }
     }
 
-//  Commented due to the C++ allocation
-//  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//  for (; i>=0; i--) {
-//      FREE(children[i]);
-//  }
-//  FREE(children);
+    //  Commented due to the C++ allocation
+    //  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+    //  for (; i>=0; i--) {
+    //      FREE(children[i]);
+    //  }
+    //  FREE(children);
 
     return child;
 };
@@ -79,7 +79,7 @@ BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label)
     char *rwLabel = strdup(label);
     int dimensions[2];
 
-    BOOL result;
+    BOOL result = TRUE;
 
     getGraphicObjectProperty(pAxeUID, _pstName, jni_string, (void **)&pLabelUID);
 
@@ -97,9 +97,9 @@ BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label)
     }
 
     FREE(rwLabel);
-//  Commented due to the C++ allocation
-//  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//  FREE(pLabelUID);
+    //  Commented due to the C++ allocation
+    //  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+    //  FREE(pLabelUID);
 
     return result && pLabelUID != NULL;
 }

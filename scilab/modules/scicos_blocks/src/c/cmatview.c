@@ -148,17 +148,25 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
             if (sco == NULL)
             {
                 set_block_error(-5);
+                break;
             }
             pFigureUID = getFigure(block);
             if (pFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
+                break;
             }
             break;
 
         case StateUpdate:
             pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
             u = GetRealInPortPtrs(block, 1);
 
@@ -249,6 +257,11 @@ static BOOL pushData(scicos_block * block, double *data)
 
     m = GetInPortSize(block, 1, 1);
     n = GetInPortSize(block, 1, 2);
+    if (m * n <= 0)
+    {
+        set_block_error(-5);
+        return FALSE;
+    }
 
     /*
      * Scale the data

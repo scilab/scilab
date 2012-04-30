@@ -155,17 +155,25 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, scicos_flag flag)
             if (sco == NULL)
             {
                 set_block_error(-5);
+                break;
             }
             pFigureUID = getFigure(block);
             if (pFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
+                break;
             }
             break;
 
         case StateUpdate:
             pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
             appendData(block, (double *)block->inptr[0], (double *)block->inptr[1], (double *)block->inptr[2]);
             for (j = 0; j < block->insz[0]; j++)
