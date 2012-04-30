@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosValidateBlockSet" xml:lang="ja">
+  <refnamediv>
+    <refname>xcosValidateBlockSet</refname>
+    <refpurpose>Xcosブロックインターフェイス関数を検証する関数.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[status, message] = xcosValidateBlockSet(interfFunctionName)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Parameters_xcosValidateBlockSet">
+    <title>引数</title>
+    <variablelist>
+      <varlistentry>
+        <term>interfFunctionName</term>: Xcos ブロックインターフェイス関数名.
+        <para/>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection id="Module_xcosValidateBlockSet">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_xcosValidateBlockSet">
+    <title>説明</title>
+    この関数は,ブロックインターフェイス関数がxcosシミュレーションプロセスにコールされた
+    際にエラーを発生しないことを確認する際に使用されます.
+    
+    <para>
+      この関数は,<literal>define</literal>に続いて xcosシミュレーションで行われるものと同様に
+      指定したインターフェイス関数名に<literal>set</literal> ジョブを実行します.
+      この関数は,次の設定関数をオーバーライドします: <literal>getvalue</literal>, <literal>x_mdialog</literal>, ...
+    </para>
+  </refsection>
+  <refsection id="Filecontent_xcosValidateBlockSet">
+    <title>ファイルの内容</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/xcos/macros/xcosValidateBlockSet.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Examples_xcosValidateBlockSet">
+    <title>例</title>
+    <para>
+      <programlisting role="example"><![CDATA[
+      loadXcosLibs();
+      [status, message] = xcosValidateBlockSet("SPLIT_f")
+      [status, message] = xcosValidateBlockSet("CONST_m")
+      [status, message] = xcosValidateBlockSet("foo")
+      ]]></programlisting>
+    </para>
+  </refsection>
+  <refsection id="SeeAlso_xcosValidateBlockSet">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scicos_diagram">scs_m 構造体</link>
+      </member>
+      <member>
+        <link linkend="xcos">xcos: ハイブリッドシミュレータ用のブロック図ダイアグラムエディタ
+          およびGUI
+        </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>履歴</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>関数 xcosValidateBlockSet を導入.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+</refentry>

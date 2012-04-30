@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcos_simulate" xml:lang="ja">
+  <refnamediv>
+    <refname>xcos_simulate</refname>
+    <refpurpose>xcosシミュレーションをバッチモードで実行する関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>Info=xcos_simulate(scs_m, needcompile)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Parameters_xcos_simulate">
+    <title>引数</title>
+    <variablelist>
+      <varlistentry>
+        <term>scs_m</term>: ダイアグラムデータ構造体 (<link linkend="scicos_diagram">scs_m 構造体</link>参照).
+        <para/>
+      </varlistentry>
+      <varlistentry>
+        <term>needcompile</term>: 整数. 4の場合,
+        シミュレータはダイアグラムの完全なコンパイルを実行します.
+        それ以外は, %cpr にキャッシュされた値を使用します. (古い仕様)
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection id="Module_xcos_simulate">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_xcos_simulate">
+    <title>説明</title>
+    この関数は,xcosダイアグラムをバッチモードでシミュレートする際に
+    使用されます.
+    この関数は,<literal>.xcos</literal>ファイルをScilabに読み込むことにより
+    得られる<link linkend="scicos_diagram">scs_m 構造体</link>を必要とします
+    (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
+    
+    <para>
+      ユーザはシミュレーションの前に実行される
+      <literal>pre_xcos_simulate</literal>を定義することも可能です.
+      <programlisting role="example"><![CDATA[
+      function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
+      // 何もしない
+      continueSimulation = %t;
+      endfunction
+      ]]></programlisting>
+      この関数がエラーを発生した場合,エラーはトラップされ,
+      シミュレーションは破棄されます.
+      <literal>continueSimulation</literal> を false に設定した場合,
+      シミュレーションは停止します.
+    </para>
+    <para>
+      ユーザはシミュレーションの後に実行される
+      <literal>post_xcos_simulate</literal>関数を定義することも可能です.
+      <programlisting role="example"><![CDATA[
+      function post_xcos_simulate(%cpr, scs_m, needcompile)
+      // 何もしない
+      endfunction
+      ]]></programlisting>
+      この関数がエラーを発生した場合,そのエラーはトラップされます.
+    </para>
+  </refsection>
+  <refsection id="Filecontent_xcos_simulate">
+    <title>ファイルの内容</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/xcos/macros/xcos_simulate.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Examples_xcos_simulate">
+    <title>例</title>
+    <para>
+      <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>にある
+      xcosダイアグラム.
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+        </imageobject>
+      </mediaobject>
+      このダイアグラムをバッチモードで実行し,
+      いくつかのコンテキスト値を変更します.
+      <programlisting role="example"><![CDATA[
+      importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+
+      typeof(scs_m) // ダイアグラムのデータ構造体
+
+      //このダイアグラムは3つのコンテキスト変数を使用します :
+      //  Amplitude : sin関数の大きさ
+      //  Pulsation : sin関数のpulsation
+      //  Tf        : シミュレーション終了時間
+      scs_m.props.context //組込み定義
+
+      //ダイアグラムに埋め込まれたパラメータを使用した最初のバッチシミュレーション
+      xcos_simulate(scs_m, 4);
+
+      // 終了時間の値を変更
+      scs_m.props.context = ["Amplitude=2" "Pulsation=3" "Tf=10"];
+      xcos_simulate(scs_m, 4);
+
+      // ここでpulsationを変更
+      scs_m.props.context = ["Amplitude=2" "Pulsation=9" "Tf=10"];
+      xcos_simulate(scs_m, 4);
+      //get the variable created by the "from workspace block"
+      counter
+
+      ]]></programlisting>
+    </para>
+    <para>
+      pre_xcos_simulate関数を用いた
+      このダイアグラムの統計的な解析
+      <programlisting role="example"><![CDATA[
+importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+
+typeof(scs_m) //The diagram data structure
+
+// ダイアグラムを解析するためにpre_xcos_simulationを宣言
+
+function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
+    // 全てのオブジェクトを取得
+    objs = scs_m.objs;
+
+    links = 0;
+    blocks = 0;
+    other = 0;
+    // リンクとブロックを数える
+    for i = 1:size(objs)
+        currentType = typeof(objs(i));
+        select (currentType)
+        case "Link"
+            links = links + 1;
+        case "Block"
+            blocks = blocks + 1;
+        else
+            other = other + 1;
+        end
+    end
+
+        // ダイアグラムの解析結果を表示
+        disp("Diagram Analysis:")
+        disp("Found "+string(blocks)+" Blocks.")
+        disp("Found "+string(links)+" Links.")
+        disp("Found "+string(other)+" Other component.")
+
+        // シミュレーションは行わず,ダイアグラムの解析のみを実行
+        continueSimulation = %f;
+    endfunction
+
+    //ダイアグラムに埋め込まれたパラメータで最初のバッチシミュレーションを実行
+    xcos_simulate(scs_m, 4);
+      ]]></programlisting>
+    </para>
+    <para>
+      xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/Command.png"/>
+        </imageobject>
+      </mediaobject>
+      このダイアグラムをバッチモードでシミュレートし,
+      post_xcos_simulateにより伝達関数のボード線図をプロットします,
+      <programlisting role="example"><![CDATA[
+importXcosDiagram("SCI/modules/xcos/demos/Command.xcos")
+
+// 全てのpre_xcos_simulationを消去;
+clear pre_xcos_simulate;
+
+function post_xcos_simulate(%cpr, scs_m, needcompile)
+    // 全オブジェクトを取得
+    objs = scs_m.objs;
+
+    clrBlock = [];
+    // CLRブロックを探す
+    for i=1:size(objs)
+        if objs(i).gui == "CLR" then
+            clrBlock = objs(i);
+            break;
+        end
+    end
+
+    // CLRが見つかったかどうかを確認
+    if isempty(clrBlock) then
+        disp("No CLR block found.")
+        return
+    end
+
+    // exprsを取得
+    exprs = clrBlock.graphics.exprs;
+    s = poly(0,'s');
+    num = eval(exprs(1));
+    den = eval(exprs(2));
+    h = syslin('c', num/den);
+    // 新たに図をオープンし,ボード線図をプロット
+    scf(max(winsid())+1);
+    bode(h, 0.01, 100);
+endfunction
+
+xcos_simulate(scs_m, 4);
+
+      ]]></programlisting>
+    </para>
+    <para>
+      xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/Command_bode.png"/>
+        </imageobject>
+      </mediaobject>
+      このダイアグラムをバッチモードでシミュレートし,
+      post_xcos_simulateにより伝達関数のボード線図をプロットします,
+      <programlisting role="example"><![CDATA[
+importXcosDiagram("SCI/modules/xcos/demos/Command_bode.xcos")
+
+// post_xcos_simulationを全て消去;
+clear post_xcos_simulate;
+
+function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
+    // 全オブジェクトを取得
+    objs = scs_m.objs;
+
+    clrBlock = [];
+    //CLRブロックを探す
+    for i=1:size(objs)
+        if objs(i).gui == "CLR" then
+            clrBlock = objs(i);
+            break;
+        end
+    end
+
+    // CLRが見つかったかどうかを確認
+    if isempty(clrBlock) then
+        disp("No CLR block found.")
+        return
+    end
+
+    // exprsを取得
+    exprs = clrBlock.graphics.exprs;
+    s = poly(0,'s');
+    num = eval(exprs(1));
+    den = eval(exprs(2));
+    h = syslin('c', num/den);
+    // 新しい図を開き,ボード線図をプロット
+    scf(max(winsid())+1);
+    bode(h, 0.01, 100);
+
+    // ボード線図のプロットの後で停止します. シミュレーションは行いません.
+    continueSimulation = %f;
+endfunction
+
+xcos_simulate(scs_m, 4);
+
+      ]]></programlisting>
+    </para>
+  </refsection>
+  <refsection id="SeeAlso_xcos_simulate">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scicos_diagram">scs_m 構造体</link>
+      </member>
+      <member>
+        <link linkend="importXcosDiagram"> importXcosDiagram</link>
+      </member>
+      <member>
+        <link linkend="scicosim">scicosim: xcos バッチシミュレーション関数</link>
+      </member>
+      <member>
+        <link linkend="xcos">xcos: ハイブリッドシミュレータ用のブロックダイアグラムエディタ及びGUI</link>
+      </member>
+      <member>
+        <link linkend="steadycos">steadycos: xcosダイアグラムの定常状態を見つける</link>
+      </member>
+      <member>
+        <link linkend="lincos">lincos: xcosダイアグラムから線形化により線形状態空間モデルを構築する</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
