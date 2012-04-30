@@ -644,6 +644,11 @@ public final class Xcos {
         if (!onDiagramIteration && wasLastOpenedForFile) {
             diagrams.remove(f);
         }
+
+        if (openedDiagrams().size() <= 1) {
+            /* halt scicos (stop the simulation) */
+            InterpreterManagement.requestScilabExec("haltscicos()");
+        }
     }
 
     /**
@@ -739,7 +744,7 @@ public final class Xcos {
             instance.addDiagram(null, null);
 
             /* terminate any remaining simulation */
-            InterpreterManagement.requestScilabExec("haltscicos");
+            InterpreterManagement.putCommandInScilabQueue("haltscicos");
 
             /* Saving modified data */
             instance.palette.saveConfig();
@@ -1228,7 +1233,7 @@ public final class Xcos {
                     ViewPortTab.restore(graph, false);
                     tab = ViewPortTab.get(graph);
 
-                    ClosingOperationsManager.addDependency((SwingScilabTab) XcosTab.get(graph), tab);
+                    ClosingOperationsManager.addDependency(XcosTab.get(graph), tab);
                     WindowsConfigurationManager.makeDependency(graph.getGraphTab(), tab.getPersistentId());
                 } else {
                     return null;

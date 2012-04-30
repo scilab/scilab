@@ -275,6 +275,8 @@ Xcos
 
 * Bug #8295 fixed - Save compressed Xcos file as default.
 
+* Bug #8600 fixed - Closing Xcos did not end the simulation.
+
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
 
