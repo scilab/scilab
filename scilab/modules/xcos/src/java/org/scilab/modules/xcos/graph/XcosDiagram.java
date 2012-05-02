@@ -1724,18 +1724,25 @@ public class XcosDiagram extends ScilabGraph {
                 return isSuccess;
             }
 
+            // change the format if the user choose a save-able file format
+            final XcosFileType selectedFilter = XcosFileType.findFileType(fc.getFileFilter());
+            if (XcosFileType.getAvailableSaveFormats().contains(selectedFilter)) {
+                format = selectedFilter;
+            }
             writeFile = fc.getSelectedFile();
         }
 
-        /* Extension checks */
-        if (!writeFile.exists()) {
-            final String filename = writeFile.getName();
-            if (!filename.endsWith(XcosFileType.ZCOS.getDottedExtension())) {
-                /* No extension given --> .zcos added */
-                writeFile = new File(writeFile.getParent(), filename + XcosFileType.ZCOS.getDottedExtension());
-            }
+        /* Extension/format update */
+
+        // using a String filename also works on a non-existing file
+        final String filename = writeFile.getName();
+
+        // if the user specify an extension, select it if supported ; append the
+        // extension otherwise
+        final XcosFileType userExtension = XcosFileType.findFileType(filename);
+        if (userExtension == null || !XcosFileType.getAvailableSaveFormats().contains(userExtension)) {
+            writeFile = new File(writeFile.getParent(), filename + format.getDottedExtension());
         }
-        format = XcosFileType.findFileType(writeFile);
 
         /*
          * If the file exists, ask for confirmation if this is not the

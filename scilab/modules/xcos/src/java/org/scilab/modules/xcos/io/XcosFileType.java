@@ -251,6 +251,28 @@ public enum XcosFileType {
     }
 
     /**
+     * Find a filetype by a file filter
+     *
+     * @param filter
+     *            Current filter
+     * @return The determined filetype
+     */
+    public static XcosFileType findFileType(FileFilter filter) {
+        XcosFileType retValue = null;
+
+        for (XcosFileType currentFileType : XcosFileType.values()) {
+            final File sample = new File("sample." + currentFileType.getExtension());
+
+            if (filter.accept(sample)) {
+                retValue = currentFileType;
+                break;
+            }
+        }
+
+        return retValue;
+    }
+
+    /**
      * Check the Xcos file header
      *
      * @param theFile
