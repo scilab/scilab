@@ -480,5 +480,8 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>
