@@ -14,13 +14,8 @@ com_
 vstk_
 errgst_
 cha1_
-itosci_
-dtosci_
 parse_
 isrecursioncalltofunction_
-allowptr_
-ref2val_
 callinterf_
-funs_
-isbyref_
-clunit_
+
+
