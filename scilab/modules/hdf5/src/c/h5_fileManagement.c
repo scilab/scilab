@@ -90,7 +90,7 @@ int openHDF5File(char *name)
     void *oldclientdata = NULL;
     /* Used to avoid stack trace to be displayed */
     H5E_auto2_t oldfunc;
-    
+
     /* TO DO : remove when HDF5 will be fixed ... */
     /* HDF5 does not manage no ANSI characters */
     /* UGLY workaround :( */
@@ -157,14 +157,21 @@ int isHDF5File(char* _pstFilename)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
-
-    //prevent error msg to change directory to ""
-    if (strcmp(pathdest, "") != 0)
     {
-        scichdir(pathdest);
-    }
 
-    iRet = H5Fis_hdf5(filename);
+        //prevent error msg to change directory to ""
+        if (strcmp(pathdest, "") != 0)
+        {
+            scichdir(pathdest);
+        }
+        FREE(pathdest);
+
+        iRet = H5Fis_hdf5(filename);
+        FREE(filename);
+    }
+    scichdir(currentpath);
+    FREE(currentpath);
+
     return iRet > 0 ? 1 : 0;
 }
 
