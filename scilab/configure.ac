@@ -332,9 +332,9 @@ else
 fi
 
 if test "$enable_debug_java" = yes; then
-   LOGGING_LEVEL="ALL"
-else
    LOGGING_LEVEL="INFO"
+else
+   LOGGING_LEVEL="SEVERE"
 fi
 AC_SUBST(LOGGING_LEVEL)
 

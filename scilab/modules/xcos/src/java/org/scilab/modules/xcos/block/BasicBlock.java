@@ -472,7 +472,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
          */
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
-            LOG.finest(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+            if (LOG.isLoggable(Level.FINEST)) {
+                LOG.finest(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+            }
         }
     }
 

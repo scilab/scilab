@@ -1,7 +1,13 @@
 # FOP logging level
-org.apache.fop.level = @LOGGING_LEVEL@
-org.apache.fop.render.level = @LOGGING_LEVEL@
+org.apache.fop.level = SEVERE
+org.apache.fop.render.level = SEVERE
 
-#Scilab logging level
 org.scilab.level = @LOGGING_LEVEL@
+# Release level
+# org.scilab.level = SEVERE
+
+# Xcos logging level
+org.scilab.modules.xcos.level = @LOGGING_LEVEL@
+# Release level
+# org.scilab.level = SEVERE
 
