@@ -81,7 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libscilab.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/core.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../../bin/readwritecomplexmatrix.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)readwritecomplexmatrix.pdb</ProgramDatabaseFile>
@@ -103,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libscilab.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/core.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../../bin/readwritecomplexmatrix.exe</OutputFile>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -125,7 +125,7 @@
       </DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libscilab.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/core.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../../bin/readwritecomplexmatrix.exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -150,7 +150,7 @@
       </DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libscilab.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/core.lib;../../../../../bin/call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../../bin/readwritecomplexmatrix.exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>

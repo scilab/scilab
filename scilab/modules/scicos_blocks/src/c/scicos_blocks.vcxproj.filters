@@ -993,7 +993,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Linear_algebra_f_Import.def">

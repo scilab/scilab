@@ -1,0 +1,5 @@
+LIBRARY    libscilab.dll
+
+
+EXPORTS
+BuildWithVS8ExpressF2C

@@ -233,6 +233,9 @@
       <Project>{6a6a6f76-ccc0-40c4-8aee-8a010f49a604}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\graphics\graphics.vcxproj">
       <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

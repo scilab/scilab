@@ -1,8 +1,0 @@
-LIBRARY    LibScilab.dll
-
-
-EXPORTS
-;
-com_
-getScilabMode
-callFunctionFromGateway 

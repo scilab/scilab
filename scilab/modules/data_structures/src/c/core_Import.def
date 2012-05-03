@@ -1,0 +1,22 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+iop_
+callFunctionFromGateway
+stack_
+vstk_
+createcvar_
+putlhsvar_
+intersci_
+createvar_
+com_
+getrhsvar_
+gettype_
+createlistcvarfrom_
+createlistvarfrom_
+createlistvarfromptr_
+creimati_

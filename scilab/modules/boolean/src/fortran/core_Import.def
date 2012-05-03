@@ -1,0 +1,22 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+
+; fix warnings locally defined symbol __imp__XXX_ imported
+recu_
+cha1_
+adre_
+intersci_
+;
+com_
+vstk_
+stack_
+iop_
+errgst_
+getrmat_
+gettype_
+

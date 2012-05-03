@@ -12,6 +12,7 @@ function scilablibrarieslist = dlwGetScilabLibraries()
   scilablibrarieslist = ["MALLOC.lib"; ..
                         "blasplus.lib"; ..
                         "libf2c.lib"; ..
+                        "core.lib"; ..
                         "core_f.lib"; ..
                         "lapack.lib"; ..
                         "libintl.lib"; ..

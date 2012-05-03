@@ -97,7 +97,7 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\Makefile.am" />

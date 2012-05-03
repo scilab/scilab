@@ -1,0 +1,19 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;core
+intersci_
+str2name_
+vstk_
+com_
+putlhsvar_
+recu_
+overload_
+stack_
+iop_
+vGetPointerFromDoubleComplex
+oGetDoubleComplexFromPointer
+getExecMode
+getstackinfo_
+freeArrayOfString

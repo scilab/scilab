@@ -1,0 +1,35 @@
+;
+; forced exports (Commons fortran) in core
+;
+;used by core
+    stack_
+    vstk_
+    recu_
+    iop_
+    errgst_
+    com_
+    adre_
+    cha1_
+    mtlbc_
+    csimp_
+    ippty_
+    keepme_
+    typnams_
+    mprot_
+    ptkeep_
+    dbg_
+;
+;used by intersci
+    intersci_
+;
+;used by linear_algebra
+scigsch_
+scisch_
+scizgsch_
+;
+ierode_
+;
+; Interruption CTRL-C
+;
+basbrk_
+;

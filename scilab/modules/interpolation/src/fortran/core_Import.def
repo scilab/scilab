@@ -1,0 +1,9 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+com_
+isanan_
+returnananfortran_
+;

@@ -1,0 +1,14 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core_f
+vstk_
+com_
+stack_
+recu_
+iop_
+csimp_
+cha1_
+putlhsvar_

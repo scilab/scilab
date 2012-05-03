@@ -1,0 +1,27 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+freeArrayOfString
+isanan_
+callFunctionFromGateway
+com_
+recu_
+overload_
+Ptover
+vstk_
+stack_
+crebmat_
+checklhs_
+checkrhs_
+createvarfromptr_
+putlhsvar_
+intersci_
+createvar_
+GetData
+check_length
+getrhsvar_
+vartype_

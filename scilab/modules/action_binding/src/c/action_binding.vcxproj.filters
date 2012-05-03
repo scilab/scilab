@@ -60,7 +60,7 @@
     <None Include="..\jni\InterpreterManagement.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\action_binding.iss" />

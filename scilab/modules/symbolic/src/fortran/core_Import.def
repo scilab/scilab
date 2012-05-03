@@ -1,0 +1,24 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+; core
+recu_
+errgst_
+cha1_
+com_
+adre_
+iop_
+stack_
+vstk_  
+intersci_
+;
+;core_f
+intstr_
+isnum_
+iseye_
+factf_
+termf_
+atome_
+expsum_
+;

@@ -1,0 +1,26 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+vstk_
+putlhsvar_
+checklhs_
+checkrhs_
+getrhsvar_
+stack_
+getrhscvar_
+intersci_
+createvar_
+errgst_
+check_dim_prop
+createcvar_
+check_scalar
+check_same_dims
+getWarningMode
+returnanan_
+overload_

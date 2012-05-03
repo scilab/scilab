@@ -306,9 +306,6 @@
     <None Include="integer_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Polynomials_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -317,6 +314,12 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\integer.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="libscilab_import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

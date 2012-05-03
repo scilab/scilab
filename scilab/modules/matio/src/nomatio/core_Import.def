@@ -1,0 +1,5 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+ Scierror

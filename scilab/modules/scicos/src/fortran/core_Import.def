@@ -1,0 +1,24 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+stack_
+intersci_
+vstk_
+iop_
+errgst_
+com_ 
+cha1_
+recu_
+checklhs_ 
+checkrhs_
+getrhsvar_
+createvar_
+putlhsvar_
+parse_
+isrecursioncalltofunction_
+callinterf_
+
+

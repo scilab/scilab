@@ -25,7 +25,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\ExplicitExportsLibScilab.vcdef" />
     <None Include="..\LibScilab.def">
       <Filter>Source Files</Filter>
     </None>

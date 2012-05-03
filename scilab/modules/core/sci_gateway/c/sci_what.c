@@ -10,7 +10,7 @@
 *
 */
 #include <string.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include <stdio.h> /* sprintf */
 #include "gw_core.h"
 #include "stack-c.h"

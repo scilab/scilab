@@ -1,0 +1,19 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+freeArrayOfString
+callFunctionFromGateway
+com_
+getSCIHOME
+putlhsvar_
+intersci_
+getrhsvar_
+gettype_
+vstk_
+checklhs_
+checkrhs_
+createvarfromptr_
+stack_
+createvar_

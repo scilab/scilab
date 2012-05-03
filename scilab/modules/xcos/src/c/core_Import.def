@@ -1,0 +1,10 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+getScilabMode
+com_
+freeArrayOfString
+overload_

@@ -1,0 +1,19 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+putlhsvar_
+intersci_
+GetData
+createdata_
+stack_
+getrhsvar_
+iop_
+vstk_
+
+

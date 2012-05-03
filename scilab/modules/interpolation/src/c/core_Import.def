@@ -1,0 +1,22 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+callFunctionFromGateway
+com_
+intersci_
+stack_
+vstk_
+putlhsvar_
+createvar_
+getlistrhsvar_
+getrhsvar_
+checklhs_
+checkrhs_
+createlistvarfrom_
+createlistvarfromptr_
+check_vector
+returnanan_
+isanan_
+;

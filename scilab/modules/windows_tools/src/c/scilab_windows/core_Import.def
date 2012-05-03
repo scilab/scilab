@@ -1,0 +1,18 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;core
+getScilabMode
+disp_scilab_version
+settexmacs
+setCommandLineArgs
+setScilabMode
+with_module
+setSCIpath
+realmain
+InitializeLaunchScilabSignal
+sciquit
+getTMPDIR
+getTMPDIRW
+StoreCommand

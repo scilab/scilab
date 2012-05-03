@@ -449,6 +449,9 @@
     <ClCompile Include="xscion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DllmainCore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">
@@ -749,6 +752,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\core.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="libscilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

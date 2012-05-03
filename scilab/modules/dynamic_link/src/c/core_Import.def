@@ -1,0 +1,24 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+;
+ExceptionMessage
+funtab_
+getWarningMode
+iop_
+callFunctionFromGateway
+com_
+putlhsvar_ 
+intersci_
+freeArrayOfString
+getrhsvar_
+vartype_
+checklhs_
+checkrhs_
+createvar_
+createvarfromptr_
+stack_
+gettype_
+vstk_

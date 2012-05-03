@@ -10,3 +10,5 @@ includes/version.h
 
 #generated on windows
 src/fortran/core_f.def
+src/c/core.def
+src/core.def

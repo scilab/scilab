@@ -1,0 +1,22 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+
+callFunctionFromGateway
+com_
+putlhsvar_
+intersci_
+createvarfromptr_
+getScilabMode
+stack_
+getrhsvar_
+gettype_
+vstk_
+checklhs_
+checkrhs_
+freeArrayOfString
+getTMPDIR
+createvar_
+getWarningMode

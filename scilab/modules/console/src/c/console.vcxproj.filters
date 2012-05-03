@@ -148,7 +148,7 @@
     <None Include="..\jni\GuiManagement.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\console.iss" />
