@@ -366,7 +366,6 @@ public final class SwingView implements GraphicView {
                 }
                 tab.update(__GO_SIZE__, (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__));
                 tab.update(__GO_POSITION__, (Integer[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
-                tab.update(__GO_AXES_SIZE__, (Integer[]) GraphicController.getController().getProperty(id, __GO_AXES_SIZE__));
                 // TODO set other default properties
                 return tab;
             case Frame:
