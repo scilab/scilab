@@ -450,7 +450,7 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* 
      */
     double coords[5];
 
-    double shift;
+    double shift = 0.;
 
 
     getGraphicObjectProperty(id, __GO_BAR_WIDTH__, jni_double, (void**) &pdBarWidth);
@@ -574,7 +574,7 @@ void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(char* id, float
      */
     double coords[5];
 
-    double shift;
+    double shift = 0.;
 
 
     getGraphicObjectProperty(id, __GO_BAR_WIDTH__, jni_double, (void**) &pdBarWidth);
@@ -1002,7 +1002,7 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
 
     int interpColorMode = 0;
     int* piInterpColorMode = &interpColorMode;
-    int triangulate;
+    int triangulate = 0;
 
     int isValid = 0;
     int tmpValid = 0;

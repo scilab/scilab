@@ -35,7 +35,6 @@ int intbsplin3val(char *fname, unsigned long fname_len)
     int one = 1, kx = 0, ky = 0, kz = 0;
     int nx = 0, ny = 0, nz = 0, nxyz = 0, mtx = 0, mty = 0, mtz = 0, m = 0, n = 0, ltx;
     int lty = 0, ltz = 0, lbcoef = 0, mwork = 0, lwork = 0, lfp = 0;
-    int lxyzminmax = 0, nsix = 0;
     int i = 0, mder = 0, nder = 0, lder = 0, ox = 0, oy = 0, oz = 0;
     double *fp = NULL, *xp = NULL, *yp = NULL, *zp = NULL, *der = NULL;
     SciIntMat Order;

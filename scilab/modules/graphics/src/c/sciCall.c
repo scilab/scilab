@@ -185,7 +185,6 @@ void Objfpoly ( double  * x    ,
     char* pobjUID = NULL;
 
     int fillcolor = 0;
-    int *piFillColor = &fillcolor;
     int contourcolor = 0;
     int *piContourColor = &contourcolor;
 
@@ -486,7 +485,6 @@ void Objplot3d ( char    * fname ,
     int clipState;
 
     char *pNewSurfaceUID = NULL;
-    BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraw) */
 
 
     /* Initialisation drect A.C pour debuggueur */

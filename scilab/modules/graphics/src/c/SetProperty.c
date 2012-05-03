@@ -1658,15 +1658,8 @@ sciSetOriginalSubWin (char * pfigure, char * psubwin)
 int
 sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 {
-    char* type;
-    int i,n1;
-    double * pvx  = NULL ;
-    double * pvy  = NULL ;
-    double * pvz  = NULL ;
-    double * pvfx = NULL ;
-    double * pvfy = NULL ;
-    double * pvfz = NULL ;
-    int * pstyle = NULL;
+    char* type = NULL;
+    int i = 0, n1 = 0;
 
     getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
 

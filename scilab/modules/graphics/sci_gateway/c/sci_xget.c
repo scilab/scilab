@@ -43,11 +43,10 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1);
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
 {
-    int flagx=0,x2=0, m1,n1,l1,m2,n2,l2,l3,i ;
+    int flagx = 0, x2 = 0, m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, l3 = 0, i = 0;
     int one = 1;
-    int two = 2;
-    BOOL keyFound = FALSE ;
-    void *psubwin = NULL;
+
+    BOOL keyFound = FALSE;
 
     if ( Rhs <= 0 )
     {

@@ -32,16 +32,14 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, unsigned long fname_len)
 {
-    char *psubwinUID = NULL;
-    char *pfigureUID = NULL;
     double rect[4];
-    double x, y, angle = 0.0;
-    int m1, n1, l1, m2, n2, l2, m3, n3, m4, n4, l4, m5, n5, l5;
+    double x = 0., y = 0., angle = 0.0;
+    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, l4 = 0, m5 = 0, n5 = 0, l5 = 0;
     char **Str = NULL;
     char **sendStr = NULL;
-    int sendm3, sendn3;
+    int sendm3 = 0, sendn3 = 0;
     long hdlstr;
-    int nbElement = 0, i;
+    int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
 
     CheckRhs(3, 5);

@@ -115,7 +115,7 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
     int* piDataMapping = &dataMapping;
 
     int perVertex = 0;
-    int bufferOffset = 0;
+
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &piNumGons);
@@ -258,17 +258,17 @@ void Fac3DDecomposer::fillConstantColorsTextureCoordinates(float* buffer, int bu
 void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
     double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon)
 {
-    double colMin;
-    double colRange;
-    double color;
-    double colorTextureOffset;
-    double index;
+    double colMin = 0.;
+    double colRange = 0.;
+    double color = 0.;
+    double colorTextureOffset = 0.;
+    double index = 0.;
 
-    int i;
-    int j;
+    int i = 0;
+    int j = 0;
     int bufferOffset = 0;
 
-    int numColors;
+    int numColors = 0;
 
     Fac3DColorComputer colorComputer;
 

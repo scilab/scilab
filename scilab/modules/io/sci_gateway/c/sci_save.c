@@ -27,8 +27,6 @@ int sci_save(char *fname, unsigned long fname_len)
 
     int* piAddr1    = NULL;
     int iType1      = 0;
-    int iRows1      = 0;
-    int iCols1      = 0;
 
     CheckRhs(1, 100000);
     CheckLhs(0, 1);

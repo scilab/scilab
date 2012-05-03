@@ -39,9 +39,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
   //int iflag = 0;
 
   int mouseButtonNumber = 0;
-  int windowID = 0;
-  char * menuCallback;
-  char *pstWindowUID;
+  char * menuCallback = NULL;
+  char *pstWindowUID = NULL;
   int pixelCoords[2];
   double userCoords2D[2];
 

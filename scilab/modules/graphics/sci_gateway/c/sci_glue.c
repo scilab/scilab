@@ -37,7 +37,6 @@
 int sci_glue( char * fname, unsigned long fname_len )
 {
     int numrow,numcol,l1,l2,lind,n,cx1=1;
-    unsigned long hdl = 0, parenthdl = 0 ;
     long *handelsvalue = NULL ;
     int outindex,i;
 

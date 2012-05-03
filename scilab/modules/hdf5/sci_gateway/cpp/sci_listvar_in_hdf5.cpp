@@ -305,7 +305,6 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     int iRet = 0;
     int iRows = 0;
     int iCols = 0;
-    int iComplex = 0;
     char** pstData = NULL;
 
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
@@ -423,7 +422,6 @@ static bool read_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddress,
 static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
     int iRet = 0;
-    int i = 0;
     int iRows = 0;
     int iCols = 0;
     int iComplex = 0;

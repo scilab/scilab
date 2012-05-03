@@ -168,8 +168,8 @@ double Fac3DColorComputer::getFacetColor(int facetIndex, int vertexIndex)
  */
 int Fac3DColorComputer::isFacetColorValid(int facetIndex)
 {
-    double color;
-    int valid;
+    double color = 0.;
+    int valid = 0;
 
     /* Special case, no colors therefore facets are always valid */
     if (colorFlag == 0 || colorFlag == 1 || numColors == 0)

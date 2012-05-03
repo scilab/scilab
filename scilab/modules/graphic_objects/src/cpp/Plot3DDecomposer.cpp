@@ -102,9 +102,6 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
 
-
-    int bufferOffset = 0;
-
     Plot3DDecomposer* decomposer = get();
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);

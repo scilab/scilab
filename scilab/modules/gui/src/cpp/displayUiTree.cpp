@@ -119,12 +119,8 @@ extern "C" int displayUiTree(int hashMapIndex, int index)
 		return false;
 	}
 
-	bool nRet = bParseListItem(index, piCurrentItem, &StructList, szCurLevel);
-
-
 	// Conversion Vector<string> to char **	
 	char **tab = NULL;
-	char *tmp = NULL;
 	size_t i = 0;
 
 	size_t struct_size = StructList.size();
@@ -132,7 +128,6 @@ extern "C" int displayUiTree(int hashMapIndex, int index)
 
 	for(i = 0; i < struct_size; ++i)
 	{
-		size_t element_size = StructList.at(i).size();	
 		tab[i] = strdup(StructList.at(i).c_str());
 	}
 

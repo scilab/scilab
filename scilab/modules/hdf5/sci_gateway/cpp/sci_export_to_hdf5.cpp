@@ -880,9 +880,6 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 
     for (int i = _iStart ; i <= _iEnd ; i++)
     {
-        int iRows   = 0;
-        int iCols   = 0;
-        int iLen    = 0;
         int* piAddr = NULL;
         int iType   = 0;
 

@@ -53,10 +53,6 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
-    int iRows = 0;
-    int iCols = 0;
-    int iLen = 0;
-
     int* piAddr = NULL;
     char* pstFilename = NULL;
     char* pstExpandedFilename = NULL;

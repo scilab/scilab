@@ -70,7 +70,6 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
 {
     int iID = 0;
     char *pFigureUID = NULL;
-    char *pAxesUID = NULL;
 
     pFigureUID = cloneGraphicObject(getFigureModel());
 
@@ -1095,21 +1094,20 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     char *surfaceID;
     char *surfaceTypes[2] = { __GO_PLOT3D__, __GO_FAC3D__ };
 
-    double *clipRegion;
+    double *clipRegion = NULL;
 
-    int i = 0, j = 0;
-    int nx, ny, nz, nc, izc = izcol;
-    int result;
+    int nx = 0, ny = 0, nz = 0, nc = 0;
+    int result = 0;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
     int visible = 0;
     int *piVisible = &visible;
-    int cdataMapping;
+    int cdataMapping = 0;
     int hiddenColor = 0;
     int *piHiddenColor = &hiddenColor;
-    int surfaceMode;
+    int surfaceMode = 0;
 
     /* To be modified: the MVC does not allow Plot3d objects with color data yet */
     if (typeof3d == SCI_PLOT3D)
@@ -2162,7 +2160,6 @@ char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
     char *labelType = NULL;
     char *modelLabelUID = NULL;
     char *pobjUID = NULL;
-    int defaultColor = 0;
     int autoPosition = 0;
     int *piAutoPosition = &autoPosition;
     double position[3] = { 1.0, 1.0, 1.0 };

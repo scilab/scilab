@@ -82,7 +82,6 @@ int sci_set(char *fname, unsigned long fname_len)
         int numcol3 = 0;
         size_t l3 = 0;
         unsigned long hdl;
-        BOOL vis_save = FALSE;
         char *pobjUID = NULL;
 
         int valueType = 0;      /* type of the rhs */

@@ -147,19 +147,6 @@ BOOL sciGetIsSelected( sciPointObj * pObj )
 //  return ( curList != NULL && List_find( curList, pObj ) != NULL ) ;
 }
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
-/**
-* Just check if the two typedSonsList has same type.
-* To be used with List_find_full.
-*/
-static BOOL hasSameType( void * typedSonsList1, void * typedSonsList2 )
-{
-    abort();
-    return FALSE;
-// ???
-//  return ( ((TypedSonsList*)typedSonsList1)->sonType == ((TypedSonsList*)typedSonsList2)->sonType ) ;
-}
-/*--------------------------------------------------------------------------*/
 TypedSonsList * sciGetTypedList( sciPointObj * pObj, sciEntityType objType )
 {
     abort();

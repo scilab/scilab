@@ -18,9 +18,6 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "loadOnUseClassPath.h"
-/*--------------------------------------------------------------------------*/
-static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -37,12 +34,6 @@ int gw_graphic_objects(void)
 		return 0;
 	}
 
-/*	if (!loadedDep) 
-	{
-		loadOnUseClassPath("ui_data");
-		loadedDep = TRUE;
-	}
-*/	
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

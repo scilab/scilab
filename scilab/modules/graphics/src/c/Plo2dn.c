@@ -572,8 +572,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
 
 BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag)
 {
-    BOOL haschanged = FALSE;
-    double *dataBounds;
+    double *dataBounds = NULL;
 
     /*
      * 2D: keep the existing zmin and zmax

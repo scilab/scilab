@@ -35,10 +35,8 @@
 /*------------------------------------------------------------------------*/
 int set_tics_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int ticksStyle;
-    double * vector = NULL;
-    int N = 0;
+    BOOL status = FALSE;
+    int ticksStyle = 0;
 
     char xy_type;
 

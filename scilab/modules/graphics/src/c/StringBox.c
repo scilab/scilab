@@ -40,7 +40,6 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double corners[4][2])
 {
     /* first step, create a text object */
-    char * parentFigureUID = getCurrentFigure();
     char * parentSubwinUID = getCurrentSubWin();
     char * pTextUID = NULL;
     double * textCorners = NULL;

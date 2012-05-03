@@ -42,8 +42,6 @@ int sci_fec(char *fname,unsigned long fname_len)
                               {-1,"zminmax","?",0,0,0},
                               {-1,NULL,NULL,0,0}        } ;
 
-    char* pfigureUID = NULL;
-    char* psubwinUID = NULL;
     char * strf = NULL ;
     char * legend = NULL ;
     double * rect = NULL ;

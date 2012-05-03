@@ -35,7 +35,6 @@ int set_auto_resize_property(char* pobjUID, size_t stackPointer, int valueType, 
 {
     BOOL result = FALSE;
     int b =  (int)FALSE;
-    int status = 0;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_FIGURE )

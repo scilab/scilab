@@ -29,8 +29,6 @@ void createPushButton(sciPointObj* sciObj)
 
 int setCurentFigureAsPushButtonParent(char *sciObjUID)
 {
-  int parentFigureIndex = 0;
-
   // Scilab list of parent
   //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
 

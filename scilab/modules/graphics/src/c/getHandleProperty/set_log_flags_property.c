@@ -123,14 +123,13 @@ char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads,
 int set_log_flags_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
-    char * flags;
-    sciSubWindow * ppSubWin = NULL ;
+    char * flags = NULL;
     char curLogFlags[4] = "nnn";
     int iLogFlag = 0;
     int* piLogFlag = &iLogFlag;
     int logFlags[3];
-    int i;
-    double* dataBounds;
+    int i = 0;
+    double* dataBounds = NULL;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

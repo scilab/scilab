@@ -1462,7 +1462,6 @@ char *initLabel(char *parentObjUID)
     char *newLabel = NULL;
     int iHidden = 1;
     int autoPosition = 1;
-    int autoRotation = 1;
 
     newLabel = createGraphicObject(__GO_LABEL__);
 

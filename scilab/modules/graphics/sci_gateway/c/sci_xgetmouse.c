@@ -36,21 +36,19 @@
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
-    int  m1=1,n1=3,l1,l2;
+    int  m1 = 1, n1 = 3, l1 = 0,l2 = 0;
     int mouseButtonNumber = 0;
     int windowsID = 0;
-    int sel[2],m,n;
+    int sel[2], m = 0, n = 0;
 
     int pixelCoords[2];
     double userCoords2D[2] = {0.0, 0.0};
-    sciPointObj * clickedSubwin = NULL;
 
     int selPosition = 0;
 
     char *pstWindowUID;
 
     int iFigureId = 0;
-    int *piFigureId = &iFigureId;
 
     CheckRhs(0,1);
     CheckLhs(1,2);

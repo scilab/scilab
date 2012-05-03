@@ -51,9 +51,6 @@ int sci_champ_G(char *fname,
     char   * strf = NULL ;
     double * rect = NULL ;
 
-    char * pfigureUID = NULL;
-    char * psubwinUID = NULL;
-
     CheckRhs(-1,7) ;
     CheckLhs(0,1) ;
 

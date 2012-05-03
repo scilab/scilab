@@ -29,8 +29,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )
 {
-    char* pfigureUID = NULL;
-    char* psubwinUID = NULL;
     int frame_def=8;
     int *frame=&frame_def;
     int axes_def=1;
