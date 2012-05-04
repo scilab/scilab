@@ -103,9 +103,9 @@ public class ColorMap {
         } else {
             index = index - 1;
             return new float[]{
-                data[index].floatValue(),
-                data[index + getSize()].floatValue(),
-                data[index + getSize() * 2].floatValue()
+                Math.min(1.f, data[index].floatValue()),
+                Math.min(1.f, data[index + getSize()].floatValue()),
+                Math.min(1.f, data[index + getSize() * 2].floatValue())
             };
         }
     }
