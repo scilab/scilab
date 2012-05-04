@@ -117,7 +117,7 @@
       </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>../../bin/core.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -164,7 +164,7 @@
       </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>../../bin/core.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -213,7 +213,7 @@
       <ProgramDatabaseFile>$(Configuration)/LibScilab.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
-      <ImportLibrary>../../bin/core.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -263,7 +263,7 @@
       <ProgramDatabaseFile>$(Configuration)/LibScilab.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
-      <ImportLibrary>../../bin/core.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
