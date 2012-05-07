@@ -194,6 +194,14 @@ extern "C" {
                     jobjectArray infos = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                     int nbRow = (*jenv)->GetArrayLength(jenv, data);
+                    int isReal = 0;
+                    jstring js;
+                    char * polyVarName = NULL;
+                    int nbCol = 0;
+                    int j = 0, k = 0;
+                    double ** real = NULL;
+                    double ** imag = NULL;
+                    int * nbCoef = NULL;
 
                     if (!data || nbRow == 0)
                     {
@@ -206,15 +214,10 @@ extern "C" {
                         break;
                     }
 
-                    int isReal = (*jenv)->GetArrayLength(jenv, infos) == 2;
-                    jstring js = (jstring)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
-                    char * polyVarName = (char*)(*jenv)->GetStringUTFChars(jenv, js, 0);
-                    int nbCol = 0;
-                    int j = 0, k;
-                    double ** real = 0;
-                    double ** imag = 0;
-                    int * nbCoef = 0;
-
+                    isReal = (*jenv)->GetArrayLength(jenv, infos) == 2;
+                    js = (jstring)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
+                    polyVarName = (char*)(*jenv)->GetStringUTFChars(jenv, js, 0);
+                 
                     if (isReal)
                     {
                         // Get the matrix rows
