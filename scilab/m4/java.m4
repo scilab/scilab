@@ -143,11 +143,32 @@ AC_DEFUN([AC_PROG_JAVAC], [
 AC_DEFUN([AC_JAVA_TRY_COMPILE], [
     cat << \EOF > conftest.java
 // [#]line __oline__ "configure"
+import java.util.regex.Pattern;
+
 [$1]
 
 public class conftest {
     public static void main(String[[]] argv) {
         [$2]
+    }
+    
+    private static int compare(String v1, String v2) {
+        String s1 = normalisedVersion(v1);
+        String s2 = normalisedVersion(v2);
+        return s1.compareTo(s2);
+    }
+
+    private static String normalisedVersion(String version) {
+        return normalisedVersion(version, ".", 4);
+    }
+
+    private static String normalisedVersion(String version, String sep, int maxWidth) {
+        String[[]] split = Pattern.compile(sep, Pattern.LITERAL).split(version);
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            sb.append(String.format("%" + maxWidth + 's', s));
+        }
+        return sb.toString();
     }
 }
 EOF

@@ -38,7 +38,7 @@ AC_DEFUN([AC_JAVA_CHECK_VERSION_PACKAGE], [
    AC_JAVA_TRY_COMPILE($2, [String minVersion="$4";
                             $6
                             System.out.println($5);
-                                  if (minVersion.compareTo($5) > 0) {
+                                  if (compare(minVersion, $5) > 0) {
                                    System.exit(-1);
                                 } ]
                             , "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $4. Found $STDOUT]))
@@ -46,7 +46,7 @@ AC_DEFUN([AC_JAVA_CHECK_VERSION_PACKAGE], [
    AC_JAVA_TRY_COMPILE($2, [String minVersion="$4";
                             $6
                             System.out.println($5);
-                                  if (minVersion.compareTo($5) != 0) {
+                                  if (compare(minVersion, $5) != 0) {
                                    System.exit(-1);
                                 } ]
                             , "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected exact version $4. Found $STDOUT]))
