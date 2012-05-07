@@ -27,6 +27,8 @@
 #pragma comment(lib, "../../../../bin/linpack_f.lib")
 #pragma comment(lib, "../../../../bin/output_stream_f.lib")
 /*-----------------------------------------------------------------------------------*/
+extern int C2F(withf2c)(int *bOK);
+/*-----------------------------------------------------------------------------------*/
 /* Force some definitions "globals" (commons fortran) */
 
 /* used by linear_algebra */
@@ -92,5 +94,12 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
         break;
     }
     return 1;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL BuildWithVS8ExpressF2C(void)
+{
+    BOOL bOK = FALSE;
+    C2F(withf2c)(&bOK);
+    return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

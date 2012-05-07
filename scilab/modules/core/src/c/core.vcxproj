@@ -83,12 +83,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)libscilab_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
-setlocal EnableDelayedExpansion
+      <Command>setlocal EnableDelayedExpansion
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def+..\core_export.def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -96,7 +95,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -120,12 +119,11 @@ cd ..
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)libscilab_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
-setlocal EnableDelayedExpansion
+      <Command>setlocal EnableDelayedExpansion
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def+..\core_export.def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -133,7 +131,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -157,12 +155,11 @@ cd ..
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)libscilab_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
-setlocal EnableDelayedExpansion
+      <Command>setlocal EnableDelayedExpansion
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def+..\core_export.def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -170,7 +167,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -199,12 +196,11 @@ cd ..
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)libscilab_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
-setlocal EnableDelayedExpansion
+      <Command>setlocal EnableDelayedExpansion
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def+..\core_export.def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -212,7 +208,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -482,7 +478,6 @@ cd ..
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuildStep>
     <None Include="..\..\Makefile.am" />
-    <None Include="libscilab_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">

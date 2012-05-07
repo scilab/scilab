@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2011-2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -16,8 +16,6 @@ function generatef2csln(defaultSLNpath)
   FORTRAN_GUID = "{6989167D-11E4-40FE-8C1A-2192A86A7E90}";
   VFPROJ = "_f.vfproj";
   VCPROJ = "_f2c.vcxproj";
-  LIBSCILAB_VCXPROJ = "libs\LibScilab\LibScilab.vcxproj";
-  LIBSCILAB_F2C_VCXPROJ = "libs\LibScilab\LibScilab_f2c.vcxproj";
   SLN_NAME_F2C = "Scilab_f2c.sln";
   SLN_NAME = "Scilab.sln";
 
@@ -41,7 +39,6 @@ function generatef2csln(defaultSLNpath)
   SLN = mgetl(fullFilenameSLN);
   F2CSLN = strsubst(SLN, FORTRAN_GUID, C_GUID);
   F2CSLN = strsubst(F2CSLN, VFPROJ, VCPROJ);
-  F2CSLN = strsubst(F2CSLN, LIBSCILAB_VCXPROJ, LIBSCILAB_F2C_VCXPROJ);
   mputl(F2CSLN, fullfile(defaultSLNpath, SLN_NAME_F2C));
 endfunction
 // =============================================================================

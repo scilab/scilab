@@ -753,9 +753,6 @@
     <None Include="..\..\locales\core.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="libscilab_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\includes\machine.h.vc" />

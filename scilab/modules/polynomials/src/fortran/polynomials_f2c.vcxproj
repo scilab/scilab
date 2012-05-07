@@ -105,7 +105,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -153,7 +153,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -199,7 +199,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -250,7 +250,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..

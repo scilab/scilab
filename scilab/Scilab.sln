@@ -3,7 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9A2020D-5541-44F2-B080-DF3C9426C409} = {A9A2020D-5541-44F2-B080-DF3C9426C409}
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "modules\functions\scripts\buildmacros\BuildMacros.vcxproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
@@ -23,8 +22,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\stati
 	ProjectSection(ProjectDependencies) = postProject
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0} = {18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab\LibScilab.vcxproj", "{64BC155E-292F-484F-9404-76EE6AE67A43}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\src\c\core.vcxproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -186,7 +183,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scilex", "modules\windows_tools\src\c\CScilex\CScilex.vcxproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9A2020D-5541-44F2-B080-DF3C9426C409} = {A9A2020D-5541-44F2-B080-DF3C9426C409}
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "modules\helptools\src\BuildHelp.vcxproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
@@ -195,19 +191,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "modules\helpto
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmex", "modules\mexlib\src\libmex\libmex.vcxproj", "{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmx", "modules\mexlib\src\libmx\libmx.vcxproj", "{CEF88C5F-6820-46D4-BCCD-44D5581481C5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmat", "modules\mexlib\src\libmat\libmat.vcxproj", "{8A508625-C2AA-4295-AA76-16E4E456D13D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "tools\SetupAtlas\SetupAtlas.vcxproj", "{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}"
 EndProject
@@ -216,9 +203,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tclsci", "modules\tclsci\tclsci.vcxproj", "{C456D5B8-8A32-496A-A2EE-164B0D734126}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "modules\javasci\Javasci.vcxproj", "{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildChm", "modules\helptools\src\BuildChm\BuildChm.vcxproj", "{D319F719-F429-4842-A6F9-B1227FE2A54D}"
 EndProject
@@ -363,9 +347,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcxproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographics", "modules\graphics\src\nographics\nographics.vcxproj", "{0AC1142C-0EFF-4406-9E5D-6111A7A8F614}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\renderer\renderer.vcxproj", "{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 EndProject
@@ -380,9 +361,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager", "modules\history_manager\src\c\history_manager.vcxproj", "{1B98DC87-44F5-48AE-B5D0-29DD8AD86F5E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noconsole", "modules\console\src\noconsole\noconsole.vcxproj", "{A1E6DC43-B0B9-4871-9DE5-7940B80A703E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows_tools", "modules\windows_tools\src\c\windows_tools.vcxproj", "{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}"
 EndProject
@@ -578,14 +556,6 @@ Global
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release|Win32.Build.0 = Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release|x64.ActiveCfg = Release|x64
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release|x64.Build.0 = Release|x64
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug|Win32.ActiveCfg = Debug|Win32
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug|Win32.Build.0 = Debug|Win32
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug|x64.ActiveCfg = Debug|x64
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug|x64.Build.0 = Debug|x64
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release|Win32.ActiveCfg = Release|Win32
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release|Win32.Build.0 = Release|Win32
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release|x64.ActiveCfg = Release|x64
-		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release|x64.Build.0 = Release|x64
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug|Win32.ActiveCfg = Debug|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug|Win32.Build.0 = Debug|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug|x64.ActiveCfg = Debug|x64

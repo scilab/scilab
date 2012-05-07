@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010-2012 - DIGITEO - Allan CORNET
+* Copyright (C) 2012 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,30 +10,16 @@
 *
 */
 /*-----------------------------------------------------------------------------------*/
-#include <windows.h>
+#include "machine.h"
+#include "BOOL.h"
 /*-----------------------------------------------------------------------------------*/
-int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
-{
-    switch (reason)
-    {
-    case DLL_PROCESS_ATTACH:
-        break;
-    case DLL_PROCESS_DETACH:
-        break;
-    case DLL_THREAD_ATTACH:
-        break;
-    case DLL_THREAD_DETACH:
-        break;
-    }
-    return 1;
-}
+/* This is only by f2c windows visual studio solution */
 /*-----------------------------------------------------------------------------------*/
-__declspec(dllexport) BOOL BuildWithVS8ExpressF2C(void)
+int C2F(withf2c)(int *bOK);
+/*-----------------------------------------------------------------------------------*/
+int C2F(withf2c)(int *bOK)
 {
-#ifdef USE_F2C
+    *bOK = TRUE;
     return TRUE;
-#else
-    return FALSE;
-#endif
 }
 /*-----------------------------------------------------------------------------------*/

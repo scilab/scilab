@@ -14,7 +14,7 @@
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd .." Description="Build $(ProjectName).def"/>
@@ -50,7 +50,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd .." Description="Build $(ProjectName).def"/>
@@ -86,7 +86,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd .." Description="Build $(ProjectName).def"/>
@@ -122,7 +122,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd .." Description="Build $(ProjectName).def"/>
@@ -286,6 +286,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="varfunptr.f"/>
 		<File RelativePath="whatln.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
+		<File RelativePath=".\withf2c.f"/>
 		<File RelativePath="xerbla.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\core_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

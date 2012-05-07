@@ -315,9 +315,6 @@
     <None Include="..\..\locales\integer.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="libscilab_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

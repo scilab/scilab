@@ -357,6 +357,9 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\c\withf2c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\callinter.h">
