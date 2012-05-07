@@ -16447,7 +16447,7 @@ test -n "$PYTHON" || PYTHON="no"
 		as_fn_error $? "Giws needs Python" "$LINENO" 5
    fi
 
-## If the user is providing a path to the option
+## If the user is providing a path to the option
 if test "$enable_build_giws" != 'yes' -a "$enable_build_giws" != 'no'; then
 
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking giws" >&5
