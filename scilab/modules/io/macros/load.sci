@@ -722,7 +722,7 @@ function load(filename, varargin)
         end
     end
 
-    if is_hdf5_file(filename) then
+    if isfile(filename) & is_hdf5_file(filename) then
         loadFunction = import_from_hdf5;
     else
         loadFunction = %_load;

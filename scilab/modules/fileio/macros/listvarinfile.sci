@@ -19,7 +19,7 @@ function varargout = listvarinfile(filename)
         error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "listvarinfile", 1));
     end
 
-    if is_hdf5_file(filename) then
+    if isfile(filename) & is_hdf5_file(filename) then
         listvarFunction = listvar_in_hdf5;
     else
         listvarFunction = %_listvarinfile;
