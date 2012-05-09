@@ -1723,11 +1723,13 @@ AC_PATH_PROG(SPLINT, splint, no)
 ##### Detect ccache and use it by default if available
 ##########
 
+AC_ARG_ENABLE(ccache,
+        AC_HELP_STRING([--disable-ccache],[Disable the use of ccache])
+        )
 AC_PATH_PROG(CCACHE, ccache)
-
-if test x"$CCACHE" != x; then
-  CC="ccache $CC"
-  CXX="ccache $CXX"
+if test x"$CCACHE" != x -a "$enable_ccache" != no; then
+  CC="$CCACHE $CC"
+  CXX="$CCACHE $CXX"
 fi
 
 #######################

@@ -334,6 +334,8 @@ Compilation
 
 * An option --without-arpack-ng has been added to disable the Arnoldi features.
 
+* Bug #11060 fixed - ccache use can be disabled with --disable-ccache .
+
 
 Elementary functions
 ====================
