@@ -86,7 +86,7 @@
     </para>
     <para>
       Une matrice rationnelle <literal>H</literal> est représentée par la tlist
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> où <literal>Num</literal> et <literal>Den</literal> sont deux
+      <literal>H=rlist(Num,Den,[])</literal> où <literal>Num</literal> et <literal>Den</literal> sont deux
       matrices polynomiales et un système dynamique linéaire (en temps continu) peut être créé sous la forme d'une
       matrice de transfert <literal>H</literal> par <literal>syslin('c',H)</literal>.
     </para>

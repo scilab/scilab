@@ -21,7 +21,7 @@ if ms==1&ns==1 then
       if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
 	error(27)
       end
-      f=tlist(['r','num','den','dt'],ones(p),p.^(-s),[])
+      f = rlist(ones(p),p.^(-s),[])
     else // this case is in fact hard coded
       f=p.^s
     end
@@ -49,7 +49,7 @@ elseif ms==1|ns==1 then // Element wise exponentiation f.^s with f "scalar"
     error(27)
   end
   den(kn)=p.^(-s(kn))
-  f=tlist(['r','num','den','dt'],num,den,[])
+  f = rlist(num,den,[])
 else
   error(43)
 end

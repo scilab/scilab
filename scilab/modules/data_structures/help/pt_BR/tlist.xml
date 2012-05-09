@@ -100,7 +100,7 @@
     <para>
       Uma matriz de razões de polinômios <literal>H</literal> é
       representada por um <literal>typed-list</literal>
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> onde
+      <literal>H=rlist(Num,Den,[])</literal> onde
       <literal>Num</literal> e <literal>Den</literal> são duas matrizes de
       polinômios e um sistema linear (ex.: de tempo contínuo) com matriz de
       transferência <literal>H</literal> possivelmente criada por

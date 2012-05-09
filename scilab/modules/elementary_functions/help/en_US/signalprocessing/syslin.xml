@@ -105,8 +105,8 @@ sl=syslin(dom,N,D)
 sl=syslin(dom,H)
  ]]></programlisting>
     <para>The output of <literal>syslin</literal> is a list of the following
-    form : <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> or
-    <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.</para>
+    form : <literal>sl = rlist(N,D,dom)</literal> or
+    <literal>sl=rlist(H(2),H(3),dom)</literal>.</para>
     <para>Linear systems defined as <literal>syslin</literal> can be
     manipulated as usual matrices (concatenation, extraction, transpose,
     multiplication, etc) both in state-space or transfer

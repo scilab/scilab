@@ -115,8 +115,8 @@ sl=syslin(dom,N,D)
 sl=syslin(dom,H)
  ]]></programlisting>
     <para>
-      Выход <literal>syslin</literal> является списком следующей формы: <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> или
-      <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.
+      Выход <literal>syslin</literal> является списком следующей формы: <literal>sl=rlist(,N,D,dom)</literal> или
+      <literal>sl=rlist(H(2),H(3),dom)</literal>.
     </para>
     <para>
       Линейные системы, определённые как <literal>syslin</literal>, могут управляться как обычные матрицы (конкатенация, извлечение, перестановка, умножение и т. д.) как в виде пространства состояний, так и в передаточном виде.

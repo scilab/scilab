@@ -100,7 +100,7 @@
     </para>
     <para>
       有理行列 <literal>H</literal> は<literal>型付リスト</literal>
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal>
+      <literal>H=rlist(Num,Den,[])</literal>
       により表されます.
       ただし,<literal>Num</literal> および <literal>Den</literal>
       は多項式行列です.

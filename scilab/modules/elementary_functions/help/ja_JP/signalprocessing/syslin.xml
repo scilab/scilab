@@ -125,8 +125,8 @@ sl=syslin(dom,H)
  ]]></programlisting>
     <para>
       <literal>syslin</literal> の出力は以下の形式のリストとなります :
-      <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> または
-      <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.
+      <literal>sl=rlist(N,D,dom)</literal> または
+      <literal>sl=rlist(H(2),H(3),dom)</literal>.
     </para>
     <para>
       <literal>syslin</literal> で定義された線形システムは

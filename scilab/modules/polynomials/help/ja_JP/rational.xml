@@ -19,7 +19,7 @@
       ただし, <literal>rij</literal> は 1x1 有理数です.
       有理行列は,
       <literal>num</literal> および <literal>den</literal>を多項式行列として
-      リスト<literal>tlist(['r','num','den','dt'],num,den,[])</literal>により
+      リスト<literal>rlist(num,den,[])</literal>により
       定義することも可能です.
     </para>
   </refsection>
@@ -30,7 +30,7 @@ s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W
 Num=[s,s+2;1,s];Den=[s*s,s;s,s*s];
-tlist(['r','num','den','dt'],Num,Den,[])
+rlist(Num,Den,[])
 H=Num./Den
 syslin('c',Num,Den)
 syslin('c',H)
