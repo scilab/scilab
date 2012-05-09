@@ -132,6 +132,18 @@ int sci_string(char *fname, unsigned long fname_len)
         }
         break;
 
+    case sci_implicit_poly:
+        {
+            if (Lhs == 1)
+            {
+                OverLoad(1);
+            }
+            else 
+            {
+                SciError(41);
+            }
+        }
+        break;
     default:
         {
             Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 1);

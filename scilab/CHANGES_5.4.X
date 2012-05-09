@@ -24,14 +24,14 @@ Graphic capabilities
   - Fix many portability issues.
 
 
-* Bug #4289 fixed - Graphic exports were not working when the drawlater or the 
+* Bug #4289 fixed - Graphic exports were not working when the drawlater or the
                     pixmap modes were activated.
 
 * Bug #4818 fixed - Scilab could not export graphics with a lot of information.
 
 * Bug #8241 fixed - Graphical properties were not always inherit.
 
-* Bug #8250, #10567, #10614 fixed - Drop artefacts on the 
+* Bug #8250, #10567, #10614 fixed - Drop artefacts on the
                                     vectorial (EPS/PDF/SVG) exports.
 
 * Bug #8705 fixed - Could not save some specific graphics.
@@ -248,7 +248,7 @@ Xcos
 
 * Performance improvements on the diagram saving/loading.
 
-* A compressed file format is now available (ZCOS) and can be used as the 
+* A compressed file format is now available (ZCOS) and can be used as the
   Xcos standard one. This new format will allow us more flexibility on data
   format.
 
@@ -709,6 +709,9 @@ t.
 
 * Bug #10966 fixed - linspace was producing some numerical errors on the last
                      element.
+
+* Bug #11055 fixed - 'string' function did not manage implicit size type as
+                     input argument.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
