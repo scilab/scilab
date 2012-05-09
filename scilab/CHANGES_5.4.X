@@ -713,6 +713,8 @@ t.
 * Bug #11055 fixed - 'string' function did not manage implicit size type as
                      input argument.
 
+* Bug #11076 fixed -  mlist('r'), tlist('r') returned a wrong error message.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
