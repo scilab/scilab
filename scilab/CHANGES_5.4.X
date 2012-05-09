@@ -715,6 +715,8 @@ t.
 
 * Bug #11076 fixed -  mlist('r'), tlist('r') returned a wrong error message.
 
+* Bug #11077 fixed - rlist() returned an error.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
