@@ -1,16 +1,16 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Fabrice Leray
+* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*------------------------------------------------------------------------*/
 /* file: sci_xset.c                                                       */
@@ -129,10 +129,8 @@ int sci_xset( char *fname, unsigned long fname_len )
             return -1;
         }
         subwinUID = getOrCreateDefaultSubwin();
-        startCurrentFigureDataWriting();
         setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
         setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-        endCurrentFigureDataWriting();
     }
     else if ( strcmp(cstk(l1), "colormap") == 0)
     {
@@ -147,10 +145,8 @@ int sci_xset( char *fname, unsigned long fname_len )
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
         char *subwinUID = getOrCreateDefaultSubwin();
 
-        startCurrentFigureDataWriting();
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-        endCurrentFigureDataWriting();
     }
     else if ( strcmp(cstk(l1), "mark") == 0)
     {
@@ -165,11 +161,9 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
 
         subwinUID = getOrCreateDefaultSubwin();
-        startCurrentFigureDataWriting();
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-        endCurrentFigureDataWriting();
     }
     else if ( strcmp(cstk(l1), "font size") == 0)
     {
@@ -210,10 +204,8 @@ int sci_xset( char *fname, unsigned long fname_len )
             return -1;
         }
 
-        startCurrentFigureDataWriting();
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
-        endCurrentFigureDataWriting();
     }
     else if ( strcmp(cstk(l1), "window") == 0 || strcmp(cstk(l1), "figure") == 0 )
     {
@@ -250,11 +242,10 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1), "mark") == 0)
     {
         int markMode = 1;
-        subwinUID = getOrCreateDefaultSubwin();
-        startCurrentFigureDataWriting();
-        setGraphicObjectProperty(subwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-        sciSetMarkStyle(subwinUID, x[0]);
-        endCurrentFigureDataWriting();
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
+
+        sciSetMarkStyle(getOrCreateDefaultSubwin(), x[0]);
     }
     else if ( strcmp(cstk(l1), "colormap") == 0)
     {
@@ -274,7 +265,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "wpos") == 0)
     {
-        int figurePosition[2];
+       int figurePosition[2];
         if (Rhs != 2)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
@@ -282,9 +273,9 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         getOrCreateDefaultSubwin();
 
-        figurePosition[0] = x[0];
-        figurePosition[1] = x[1];
-        setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
+       figurePosition[0] = x[0];
+       figurePosition[1] = x[1];
+       setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
     }
     else if ( strcmp(cstk(l1), "wpdim") == 0 || strcmp(cstk(l1), "wdim") == 0)
     {
@@ -296,9 +287,9 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         getOrCreateDefaultSubwin();
 
-        figureSize[0] = x[0];
-        figureSize[1] = x[1];
-        setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
+       figureSize[0] = x[0];
+       figureSize[1] = x[1];
+       setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
     } /*Ajout A.Djalel le 10/11/03 */
     else if ( strcmp(cstk(l1), "pixmap") == 0)
     {

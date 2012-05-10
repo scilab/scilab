@@ -24,7 +24,6 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )
@@ -110,9 +109,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
         }
     }
 
-    startCurrentFigureDataWriting();
     Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
-    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

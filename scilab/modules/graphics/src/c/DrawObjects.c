@@ -167,17 +167,6 @@ void showPixmap(char *pFigureUID)
     sciDrawObj(pFigure);
   }
 #endif
-  static int iTrue = (int)TRUE;
-  static int iFalse = (int)FALSE;
-  int iPixmapFlag = 0;
-  int *piPixmapFlag = &iPixmapFlag;
-
-  getGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, jni_bool, &piPixmapFlag);
-  if (iPixmapFlag)
-  {
-      setGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, &iFalse, jni_bool, 1);
-      setGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, &iTrue, jni_bool, 1);
-  }
 }
 /*---------------------------------------------------------------------------------*/
 void clearPixmap(sciPointObj * pFigure)

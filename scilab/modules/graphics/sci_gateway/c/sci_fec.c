@@ -25,7 +25,6 @@
 #include "DefaultCommandArg.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_fec(char *fname,unsigned long fname_len)
@@ -55,8 +54,8 @@ int sci_fec(char *fname,unsigned long fname_len)
 
     if (Rhs <= 0)
     {
-        sci_demo(fname, fname_len);
-        return 0;
+		sci_demo(fname, fname_len);
+		return 0;
     }
 
     CheckRhs(4,12);
@@ -121,9 +120,7 @@ int sci_fec(char *fname,unsigned long fname_len)
     }
     mn1 = m1 * n1;
 
-    startCurrentFigureDataWriting();
     Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
-    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2012 - DIGITEO - Manuel Juliachs
- *
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at
+ * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,6 @@
 #include "gw_graphics.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
-#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_matplot1( char * fname, unsigned long fname_len )
@@ -46,12 +45,10 @@ int sci_matplot1( char * fname, unsigned long fname_len )
     getOrCreateDefaultSubwin();
 
     /* NG beg */
-    startCurrentFigureDataWriting();
     Objmatplot1 (stk(l1), &m1, &n1,stk(l2));
-    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();
     return 0;
-}
+} 
 /*--------------------------------------------------------------------------*/

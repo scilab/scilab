@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.graphic_objects">
   <object name="CallGraphicController">
-    <method name="disableDrawing" returnType="void" modifier="static">
-      <parameter name="id" type="String"/>
-    </method>
-    <method name="enableDrawing" returnType="void" modifier="static">
-      <parameter name="id" type="String"/>
-    </method>
     <method name="deleteGraphicObject" returnType="void" modifier="static">
       <parameter name="id" type="String"/>
     </method>

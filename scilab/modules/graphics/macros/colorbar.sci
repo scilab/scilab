@@ -68,7 +68,7 @@ function colorbar(varargin)
   
   //defer the drawing to avoid binking
   id=f.immediate_drawing=='on';
-  if id then f.immediate_drawing='off',end
+  if id then f.immediate_drawing=='off',end
    // get current axes and properties
   a=gca(); 
   fg_color=a.foreground

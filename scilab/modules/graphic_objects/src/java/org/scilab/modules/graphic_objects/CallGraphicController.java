@@ -25,14 +25,6 @@ import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
  **/
 public final class CallGraphicController {
 
-    public static void disableDrawing(String id) {
-        GraphicController.getController().disableDrawing(id);
-    }
-
-    public static void enableDrawing(String id) {
-        GraphicController.getController().enableDrawing(id);
-    }
-
     public static void setGraphicObjectRelationship(String parentId, String childId) {
         GraphicController.getController().setGraphicObjectRelationship(parentId, childId);
     }

@@ -26,7 +26,6 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "getPropertyAssignedValue.h"
-#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
@@ -75,9 +74,7 @@ int sci_move( char * fname, unsigned long fname_len )
     }
     moveVector = getDoubleMatrixFromStack(l2);
 
-    startCurrentFigureDataWriting();
     Objmove(pobjUID, moveVector, nbDim, alone);
-    endCurrentFigureDataWriting();
 
     LhsVar(1) = 0;
     PutLhsVar();

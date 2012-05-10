@@ -29,12 +29,4 @@ GRAPHIC_OBJECTS_IMPEXP void setCurrentFigure(char* UID);
  */
 GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentFigure(char* UID);
 
-GRAPHIC_OBJECTS_IMPEXP void startFigureDataWriting(char * UID);
-
-GRAPHIC_OBJECTS_IMPEXP void endFigureDataWriting(char * UID);
-
-GRAPHIC_OBJECTS_IMPEXP void startCurrentFigureDataWriting();
-
-GRAPHIC_OBJECTS_IMPEXP void endCurrentFigureDataWriting();
-
 #endif /* !__CURRENT_FIGURE_H__ */

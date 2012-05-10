@@ -42,6 +42,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
 
@@ -94,6 +95,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             BOOL flagNax, int lstr1, int lstr2)
 {
     char *psubwinUID = NULL;
+    char *curFigureUID = NULL;
     int closeflag = 0;
     int jj = 0;
     long long *tabofhandles = NULL;
@@ -135,8 +137,8 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 
 #if 0
     endGraphicDataWriting();
+    startFigureDataWriting(curFigure);
 #endif
-
     /*
      * Check if the auto_clear property is on and then erase everything
      * To be implemented
@@ -467,7 +469,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 #if 0
     sciDrawObj(curFigure);
 #endif
-
     return (0);
 }
 

@@ -16,12 +16,7 @@ extern "C"
 {
 #include "BOOL.h"
 #include "CurrentFigure.h"
-#include "setGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
-#include "getScilabJavaVM.h"
 }
-
-#include "CallGraphicController.hxx"
 
 char* getCurrentFigure(void)
 {
@@ -40,25 +35,4 @@ BOOL isCurrentFigure(char* UID)
         return TRUE;
     }
     return FALSE;
-}
-
-
-void startCurrentFigureDataWriting()
-{
-    startFigureDataWriting(getCurrentFigure());
-}
-
-void endCurrentFigureDataWriting()
-{
-    endFigureDataWriting(getCurrentFigure());
-}
-
-void startFigureDataWriting(char * UID)
-{
-    org_scilab_modules_graphic_objects::CallGraphicController::disableDrawing(getScilabJavaVM(), UID);
-}
-
-void endFigureDataWriting(char * UID)
-{
-    org_scilab_modules_graphic_objects::CallGraphicController::enableDrawing(getScilabJavaVM(), UID);
 }

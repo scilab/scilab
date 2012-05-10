@@ -746,12 +746,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void updateObject(String id, String property) {
         try {
-            if (property.isEmpty()) {
-                // just a redraw
-                redraw();
-                return;
-            }
-
             if (needUpdate(id, property)) {
                 GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
                 if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
@@ -772,22 +766,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
                 }
-                redraw();
+                canvas.redraw();
             }
         } catch (OutOfMemoryException e) {
             invalidate(GraphicController.getController().getObjectFromId(id), e);
         } catch (ObjectRemovedException e) {
             // Object has been removed before draw : do nothing.
-        }
-    }
-
-
-    /**
-     * Redraw the canvas if necessary
-     */
-    private void redraw() {
-        if (figure.canDraw()) {
-            canvas.redraw();
         }
     }
 
@@ -851,7 +835,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             visitorMap.remove(id);
         }
 
-        redraw();
+        canvas.redraw();
     }
 
     /**
@@ -928,12 +912,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         byte[] blackColor = {0x00, 0x00, 0x00, (byte) 0xFF};
 
         @Override
-            public Dimension getTextureSize() {
+        public Dimension getTextureSize() {
             return new Dimension(colorMap.getSize() + 2, 1);
         }
 
         @Override
-            public ByteBuffer getData() {
+        public ByteBuffer getData() {
             Double[] data = colorMap.getData();
             ByteBuffer buffer = ByteBuffer.allocate(4 * ((data.length / 3) + 2));
 
@@ -952,7 +936,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
 
         @Override
-            public ByteBuffer getSubData(int x, int y, int width, int height) {
+        public ByteBuffer getSubData(int x, int y, int width, int height) {
             /*
              * For the moment, we presuppose that x and y are 0 and that
              * width is equal to the colormap's total size (with height == 1).
@@ -962,7 +946,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
 
         @Override
-            public boolean isValid() {
+        public boolean isValid() {
             return true;
         }
 

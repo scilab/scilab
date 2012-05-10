@@ -40,7 +40,6 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/graphic_objects/includes/
 
 
-
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \

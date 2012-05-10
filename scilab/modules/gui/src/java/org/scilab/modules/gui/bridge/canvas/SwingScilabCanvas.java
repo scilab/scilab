@@ -29,8 +29,6 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 import javax.media.opengl.GL;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.awt.GLJPanel;
 import javax.swing.JPanel;
@@ -125,10 +123,8 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
                     }
                 });
         } else {
-	    GLCapabilities caps = new GLCapabilities(GLProfile.getDefault());
-	    caps.setDoubleBuffered(true);
-            GLCanvas glCanvas = new GLCanvas(caps);
-	    drawableComponent = glCanvas;
+            GLCanvas glCanvas = new GLCanvas();
+            drawableComponent = glCanvas;
             glCanvas.setEnabled(true);
             add(glCanvas, PanelLayout.GL_CANVAS);
 

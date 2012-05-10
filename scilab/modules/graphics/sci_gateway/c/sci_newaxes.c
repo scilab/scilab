@@ -41,7 +41,6 @@ int sci_newaxes( char * fname,unsigned long fname_len )
 
     psubwinUID = getOrCreateDefaultSubwin();
 
-    startCurrentFigureDataWriting();
     if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
     {
         setCurrentObject(psubwinUID);
@@ -59,8 +58,6 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     {
         Scierror(999,_("%s: No more memory.\n"),fname);
     }
-    endCurrentFigureDataWriting();
-
     return 0;
 }
 /*--------------------------------------------------------------------------*/

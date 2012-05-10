@@ -93,10 +93,7 @@ int sci_delete(char *fname, unsigned long fname_len)
 
                 for (i = 0; i < iFigureNumber; ++i)
                 {
-                    char * UID = getFigureFromIndex(piFigureIds[i]);
-                    startFigureDataWriting(UID);
-                    deleteGraphicObject(UID);
-                    endFigureDataWriting(UID);
+                    deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
                 }
                 FREE(piFigureIds);
                 LhsVar(1) = 0;
@@ -154,14 +151,12 @@ int sci_delete(char *fname, unsigned long fname_len)
             Scierror(999, _("A Label object cannot be deleted.\n"));
             return 0;
         }
-        startFigureDataWriting(pobjUID);
         deleteGraphicObject(pobjUID);
-        endFigureDataWriting(pobjUID);
 
         /*
-        ** All figure must have at least one axe child.
-        ** If the last one is removed, add a new default one.
-        */
+         ** All figure must have at least one axe child.
+         ** If the last one is removed, add a new default one.
+         */
         if ((strcmp(pstObjType, __GO_AXES__) == 0) && (strcmp(pstParentType, __GO_FIGURE__) == 0))
         {
             int iChild = 0;

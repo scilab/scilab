@@ -26,7 +26,6 @@
 #include "getGraphicObjectProperty.h"
 #include "CurrentSubwin.h"
 #include "BuildObjects.h"
-#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xarc(char *fname,unsigned long fname_len)
@@ -52,7 +51,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
     angle2 = DEG2RAD(*istk(l6) / 64.0);
 
     psubwinUID = getOrCreateDefaultSubwin();
-    startCurrentFigureDataWriting();
 
     getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
 
@@ -64,8 +62,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
     {
         Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),NULL,&curcolor,TRUE,FALSE,&hdl);
     }
-
-    endCurrentFigureDataWriting();
 
     LhsVar(1)=0;
     PutLhsVar();
