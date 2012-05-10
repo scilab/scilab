@@ -388,10 +388,6 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' musí být nastaveno\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
-
-#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Nerozpoznaný vstupní argument '%s'.\n"
 

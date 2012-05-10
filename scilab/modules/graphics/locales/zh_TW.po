@@ -345,10 +345,6 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' 必須設定\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: 無法辨識之輸入參數: '%s'.\n"
 

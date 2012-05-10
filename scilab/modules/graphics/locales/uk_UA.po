@@ -428,10 +428,6 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: слід встановити «%s»\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів, мало бути %d.\n"
-
-#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: невідомий вхідний параметр «%s».\n"
 

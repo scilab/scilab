@@ -602,16 +602,6 @@ msgid "%s : '%s' must be set\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xset.c, line: 126
-# File: sci_gateway/c/sci_xset.c, line: 157
-# File: sci_gateway/c/sci_xset.c, line: 200
-# File: sci_gateway/c/sci_xset.c, line: 268
-# File: sci_gateway/c/sci_xset.c, line: 282
-#, c-format
-msgid "%s: Wrong number of input argument %d expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_xset.c, line: 362
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"

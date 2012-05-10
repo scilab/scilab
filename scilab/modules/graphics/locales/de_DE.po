@@ -407,10 +407,6 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: '%s' muß gesetzt sein\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: nicht erkanntes Eingangsargument '%s'.\n"
 
