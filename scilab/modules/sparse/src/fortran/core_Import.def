@@ -23,5 +23,10 @@ getscalar_
 checkval_
 cremat_
 copyobj_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+;
 
 

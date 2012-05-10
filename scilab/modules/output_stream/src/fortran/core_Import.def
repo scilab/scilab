@@ -26,6 +26,13 @@ getwimat_
 getilist_
 namstr_
 getsmat_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+intersci_
+errgst_
+;
 
 
 

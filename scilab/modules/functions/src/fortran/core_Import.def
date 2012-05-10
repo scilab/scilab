@@ -25,3 +25,9 @@ checkrhs_
 getsmat_
 checkval_
 objvide_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+intersci_
+;

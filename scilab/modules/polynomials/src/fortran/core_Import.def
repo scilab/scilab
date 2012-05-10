@@ -12,3 +12,10 @@ iop_
 csimp_
 cha1_
 putlhsvar_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+errgst_
+adre_
+intersci_
+;

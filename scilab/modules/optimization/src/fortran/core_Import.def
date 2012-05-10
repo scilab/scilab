@@ -29,3 +29,10 @@ cretlist_
 listcresmat_
 listcremat_
 listcrestring_ 
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+intersci_
+errgst_
+;

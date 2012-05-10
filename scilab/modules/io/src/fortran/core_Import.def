@@ -17,6 +17,12 @@ eqid_
 cremat_
 getendian_
 namstr_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+intersci_
+;
 
 
 
