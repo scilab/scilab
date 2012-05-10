@@ -74,12 +74,12 @@ int isEmptyDirectory(char *dirName)
 {
     DIR *dir = NULL;
 
-#ifdef __APPLE__
-    struct dirent *ptr;
-    struct dirent *result;
-#else
+#ifdef __USE_LARGEFILE64
     struct dirent64 *ptr;
     struct dirent64 *result;
+#else
+    struct dirent *ptr;
+    struct dirent *result;
 #endif
     int ret = 1;
 
@@ -89,10 +89,10 @@ int isEmptyDirectory(char *dirName)
         return 0;
     }
 
-#ifdef __APPLE__
-    ptr = MALLOC(sizeof(struct dirent) + (PATH_MAX + 1));
-#else
+#ifdef __USE_LARGEFILE64
     ptr = MALLOC(sizeof(struct dirent64) + (PATH_MAX + 1));
+#else
+    ptr = MALLOC(sizeof(struct dirent) + (PATH_MAX + 1));
 #endif
     if (ptr == NULL)
     {
@@ -100,10 +100,10 @@ int isEmptyDirectory(char *dirName)
         return 0;
     }
 
-#ifdef __APPLE__
-    while ((readdir_r(dir, ptr, &result) == 0) && (result != NULL))
-#else
+#ifdef __USE_LARGEFILE64
     while ((readdir64_r(dir, ptr, &result) == 0) && (result != NULL))
+#else
+    while ((readdir_r(dir, ptr, &result) == 0) && (result != NULL))
 #endif
     {
         if (!strcmp(ptr->d_name, ".") || !strcmp(ptr->d_name, ".."))

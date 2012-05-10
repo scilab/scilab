@@ -30,7 +30,7 @@ TYPES_JNI_SOURCES =
 
 TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c
 
-TYPES_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
+TYPES_CXX_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \
 	            src/jni/ScilabVariablesRefresh.cpp \
 		    src/jni/ScilabPolynomialToJava.cpp
@@ -44,28 +44,22 @@ endif
 
 #GATEWAY_C_SOURCES =
 
-#GATEWAY_CPP_SOURCES =
-
-libscitypes_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes
+#GATEWAY_CXX_SOURCES =
 
 libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			   -I$(srcdir)/src/jni \
-			   -I$(srcdir)/src/cpp \
-			   -I$(srcdir)/includes \
+			   -I$(srcdir)/includes/ \
+			   -I$(srcdir)/src/jni/ \
+			   -I$(srcdir)/src/cpp/ \
+			   -I$(srcdir)/includes/ \
 			   -I$(top_srcdir)/modules/commons/src/jni/ \
 			   -I$(top_srcdir)/modules/jvm/includes/ \
-			   -I$(top_srcdir)/modules/output_stream/includes \
-			   -I$(top_srcdir)/modules/api_scilab/includes
-
-# Without the types module
-libscitypes_disable_la_CFLAGS =
+			   -I$(top_srcdir)/modules/output_stream/includes/ \
+			   -I$(top_srcdir)/modules/api_scilab/includes/ \
+			   $(AM_CPPFLAGS)
 
 TYPES_DISABLE_C_SOURCES =
-libscitypes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
-libscitypes_algo_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
-libscitypes_algo_la_CFLAGS = $(libscitypes_la_CFLAGS)
+libscitypes_algo_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CXX_SOURCES)
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
 
 libscitypes_la_LIBADD = $(top_builddir)/modules/commons/libscicommons.la \
@@ -78,14 +72,13 @@ pkglib_LTLIBRARIES += libscitypes.la
 noinst_LTLIBRARIES = libscitypes-algo.la
 endif
 
-libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
-#libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CXX_SOURCES)
+#libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
+INCLUDE_FLAGS = $(libscitypes_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####

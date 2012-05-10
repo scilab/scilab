@@ -124,10 +124,6 @@ libsciparameters_la_LIBADD =
 am__objects_1 = libsciparameters_la-parameters.lo
 am_libsciparameters_la_OBJECTS = $(am__objects_1)
 libsciparameters_la_OBJECTS = $(am_libsciparameters_la_OBJECTS)
-libsciparameters_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciparameters_la_CFLAGS) $(CFLAGS) \
-	$(libsciparameters_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libsciparameters_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciparameters_la_rpath = -rpath \
 @MAINTAINER_MODE_TRUE@	$(pkglibdir)
@@ -312,6 +308,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -401,22 +401,22 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 PARAMETERS_C_SOURCES = src/c/parameters.c
-libsciparameters_la_CFLAGS = -I$(srcdir)/includes/ \
+libsciparameters_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/core/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes 
+-I$(top_srcdir)/modules/localization/includes/ \
+$(AM_CPPFLAGS) 
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciparameters.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciparameters.la
-libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libsciparameters_la_SOURCES)
-INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciparameters_la_CPPFLAGS) 
 
 #### Target ######
 modulename = parameters
@@ -431,6 +431,16 @@ libparameters_la_etc_DATA = etc/parameters.quit etc/parameters.start
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -567,7 +577,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciparameters.la: $(libsciparameters_la_OBJECTS) $(libsciparameters_la_DEPENDENCIES) $(EXTRA_libsciparameters_la_DEPENDENCIES) 
-	$(libsciparameters_la_LINK) $(am_libsciparameters_la_rpath) $(libsciparameters_la_OBJECTS) $(libsciparameters_la_LIBADD) $(LIBS)
+	$(LINK) $(am_libsciparameters_la_rpath) $(libsciparameters_la_OBJECTS) $(libsciparameters_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -599,11 +609,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libsciparameters_la-parameters.lo: src/c/parameters.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparameters_la_CFLAGS) $(CFLAGS) -MT libsciparameters_la-parameters.lo -MD -MP -MF $(DEPDIR)/libsciparameters_la-parameters.Tpo -c -o libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparameters_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciparameters_la-parameters.lo -MD -MP -MF $(DEPDIR)/libsciparameters_la-parameters.Tpo -c -o libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciparameters_la-parameters.Tpo $(DEPDIR)/libsciparameters_la-parameters.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/parameters.c' object='libsciparameters_la-parameters.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparameters_la_CFLAGS) $(CFLAGS) -c -o libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparameters_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

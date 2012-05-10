@@ -34,7 +34,7 @@ GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c
 
-GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
+GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/getConsoleIdentifier.cpp \
 								src/cpp/setGraphicObjectProperty.cpp \
@@ -79,34 +79,30 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
-
-libscigraphic_objects_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/core/includes
-
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
 
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/core/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/commons/src/jni
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
 # Without the graphic_objects module
-libscigraphic_objects_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
-libscigraphic_objects_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscigraphic_objects-disable.la
@@ -115,13 +111,13 @@ if GUI
 pkglib_LTLIBRARIES += libscigraphic_objects.la
 endif
 
-libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
+libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) $(GRAPHIC_OBJECTS_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
+INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####

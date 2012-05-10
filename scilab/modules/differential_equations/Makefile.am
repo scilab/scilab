@@ -127,11 +127,14 @@ sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
 
 
-libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+libscidifferential_equations_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidifferential_equations.la
@@ -141,15 +144,14 @@ noinst_LTLIBRARIES = libscidifferential_equations-algo.la libscidifferential_equ
 endif
 
 
-libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES)
 libscidifferential_equations_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_CFLAGS)
+libscidifferential_equations_algo_la_CPPFLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la
 

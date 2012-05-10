@@ -29,20 +29,21 @@ COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \
 		     src/c/fileutils.c
 
-COMMONS_CPP_SOURCES = 
+COMMONS_CXX_SOURCES = 
 if NEED_JAVA
-COMMONS_CPP_SOURCES +=  src/jni/GiwsException.cpp
+COMMONS_CXX_SOURCES +=  src/jni/GiwsException.cpp
 endif
 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
-libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
+libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/
+			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			$(AM_CPPFLAGS)
 
-libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) -Isrc/jni/
-
-libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
 
@@ -52,13 +53,12 @@ if GUI
 pkglib_LTLIBRARIES += libscicommons.la 
 endif
 
-libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
+libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(COMMONS_C_SOURCES)
-INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicommons_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####

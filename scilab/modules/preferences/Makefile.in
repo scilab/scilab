@@ -139,10 +139,6 @@ am__objects_3 = libscipreferences_disable_la-nopreferences.lo
 am_libscipreferences_disable_la_OBJECTS = $(am__objects_3)
 libscipreferences_disable_la_OBJECTS =  \
 	$(am_libscipreferences_disable_la_OBJECTS)
-libscipreferences_disable_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscipreferences_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscipreferences_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
@@ -152,9 +148,6 @@ am__objects_5 = libscipreferences_la-sci_addModulePreferences.lo \
 	libscipreferences_la-sci_removeModulePreferences.lo
 am_libscipreferences_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscipreferences_la_OBJECTS = $(am_libscipreferences_la_OBJECTS)
-libscipreferences_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(libscipreferences_la_LDFLAGS) $(LDFLAGS) -o $@
 @GUI_TRUE@am_libscipreferences_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -354,6 +347,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -480,52 +477,46 @@ libscipreferences_la_src_xslt_xwizard_DATA = \
 
 PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 PREFERENCES_C_SOURCES = 
-PREFERENCES_CPP_SOURCES = 
+PREFERENCES_CXX_SOURCES = 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
                       sci_gateway/cpp/sci_removeModulePreferences.cpp
-
-libscipreferences_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/functions/includes
 
 libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni \
     -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/functions/includes/ \
+    $(AM_CPPFLAGS)
 
 
 # Without the preferences module 
-libscipreferences_disable_la_CFLAGS = -Iincludes/ \
-    -I$(top_srcdir)/modules/output_stream/includes
+libscipreferences_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	$(AM_CPPFLAGS)
 
 PREFERENCES_DISABLE_C_SOURCES = src/nopreferences/nopreferences.c
-libscipreferences_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscipreferences_disable_la_SOURCES = $(PREFERENCES_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscipreferences-disable.la $(am__append_1)
 @GUI_TRUE@noinst_LTLIBRARIES = libscipreferences-algo.la 
-libscipreferences_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES) $(PREFERENCES_JNI_SOURCES) $(PREFERENCES_CPP_SOURCES)
-libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES) $(PREFERENCES_JNI_SOURCES) $(PREFERENCES_CXX_SOURCES)
+libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
 libscipreferences_algo_la_CFLAGS = $(libscipreferences_la_CFLAGS)
 libscipreferences_algo_la_CPPFLAGS = $(libscipreferences_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(PREFERENCES_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscipreferences_la_CFLAGS)
+INCLUDE_FLAGS = $(libscipreferences_la_CPPFLAGS)
 GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
 SWIG_WRAPPERS = 
 BUILT_SOURCES = $(am__append_2) $(am__append_3)
@@ -542,6 +533,16 @@ libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -681,9 +682,9 @@ clean-pkglibLTLIBRARIES:
 libscipreferences-algo.la: $(libscipreferences_algo_la_OBJECTS) $(libscipreferences_algo_la_DEPENDENCIES) $(EXTRA_libscipreferences_algo_la_DEPENDENCIES) 
 	$(CXXLINK) $(am_libscipreferences_algo_la_rpath) $(libscipreferences_algo_la_OBJECTS) $(libscipreferences_algo_la_LIBADD) $(LIBS)
 libscipreferences-disable.la: $(libscipreferences_disable_la_OBJECTS) $(libscipreferences_disable_la_DEPENDENCIES) $(EXTRA_libscipreferences_disable_la_DEPENDENCIES) 
-	$(libscipreferences_disable_la_LINK) -rpath $(pkglibdir) $(libscipreferences_disable_la_OBJECTS) $(libscipreferences_disable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscipreferences_disable_la_OBJECTS) $(libscipreferences_disable_la_LIBADD) $(LIBS)
 libscipreferences.la: $(libscipreferences_la_OBJECTS) $(libscipreferences_la_DEPENDENCIES) $(EXTRA_libscipreferences_la_DEPENDENCIES) 
-	$(libscipreferences_la_LINK) $(am_libscipreferences_la_rpath) $(libscipreferences_la_OBJECTS) $(libscipreferences_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscipreferences_la_rpath) $(libscipreferences_la_OBJECTS) $(libscipreferences_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -719,18 +720,18 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscipreferences_disable_la-nopreferences.lo: src/nopreferences/nopreferences.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipreferences_disable_la_CFLAGS) $(CFLAGS) -MT libscipreferences_disable_la-nopreferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_disable_la-nopreferences.Tpo -c -o libscipreferences_disable_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipreferences_disable_la-nopreferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_disable_la-nopreferences.Tpo -c -o libscipreferences_disable_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_disable_la-nopreferences.Tpo $(DEPDIR)/libscipreferences_disable_la-nopreferences.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nopreferences/nopreferences.c' object='libscipreferences_disable_la-nopreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipreferences_disable_la_CFLAGS) $(CFLAGS) -c -o libscipreferences_disable_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipreferences_disable_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
 
 libscipreferences_la-gw_preferences.lo: sci_gateway/c/gw_preferences.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(libscipreferences_la_CFLAGS) $(CFLAGS) -MT libscipreferences_la-gw_preferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-gw_preferences.Tpo -c -o libscipreferences_la-gw_preferences.lo `test -f 'sci_gateway/c/gw_preferences.c' || echo '$(srcdir)/'`sci_gateway/c/gw_preferences.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipreferences_la-gw_preferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-gw_preferences.Tpo -c -o libscipreferences_la-gw_preferences.lo `test -f 'sci_gateway/c/gw_preferences.c' || echo '$(srcdir)/'`sci_gateway/c/gw_preferences.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-gw_preferences.Tpo $(DEPDIR)/libscipreferences_la-gw_preferences.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_preferences.c' object='libscipreferences_la-gw_preferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(libscipreferences_la_CFLAGS) $(CFLAGS) -c -o libscipreferences_la-gw_preferences.lo `test -f 'sci_gateway/c/gw_preferences.c' || echo '$(srcdir)/'`sci_gateway/c/gw_preferences.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipreferences_la-gw_preferences.lo `test -f 'sci_gateway/c/gw_preferences.c' || echo '$(srcdir)/'`sci_gateway/c/gw_preferences.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

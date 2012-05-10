@@ -35,7 +35,7 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
                     src/c/PutScilabVariable.c
 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+UI_DATA_CXX_SOURCES = src/cpp/UpdateBrowseVar.cpp \
 		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
@@ -58,18 +58,10 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
 		      sci_gateway/cpp/sci_browsevar.cpp \
 		      sci_gateway/cpp/sci_filebrowser.cpp \
 			sci_gateway/cpp/sci_updatebrowsevar.cpp
-
-libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/core/includes
 
 
 libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -77,19 +69,23 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/core/includes \
+			$(AM_CPPFLAGS)
 
 # Without the ui_data module 
-libsciui_data_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libsciui_data_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
@@ -99,16 +95,15 @@ pkglib_LTLIBRARIES += libsciui_data.la
 noinst_LTLIBRARIES = libsciui_data-algo.la 
 endif
 
-libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciui_data_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
-libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CXX_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciui_data_la_CPPFLAGS)
 
 libsciui_data_la_LIBADD = libsciui_data-algo.la
 

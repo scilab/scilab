@@ -120,20 +120,21 @@ sci_gateway/fortran/Ex-optim.f \
 sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
-libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+libscioptimization_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscioptimization.la
 noinst_LTLIBRARIES = libscioptimization-algo.la
 
-libscioptimization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
-libscioptimization_algo_la_CFLAGS = $(libscioptimization_la_CFLAGS)
+libscioptimization_algo_la_CPPFLAGS = $(libscioptimization_la_CPPFLAGS)
 
 libscioptimization_la_LIBADD = libscioptimization-algo.la 
 

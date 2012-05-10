@@ -145,9 +145,6 @@ am__libjavasci_la_SOURCES_DIST = src/c/javasci_Scilab2.c \
 @JAVASCI_TRUE@	libjavasci_la-javasci_SciIntegerArray.lo
 @JAVASCI_TRUE@am_libjavasci_la_OBJECTS = $(am__objects_1)
 libjavasci_la_OBJECTS = $(am_libjavasci_la_OBJECTS)
-libjavasci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci_la_CFLAGS) \
-	$(CFLAGS) $(libjavasci_la_LDFLAGS) $(LDFLAGS) -o $@
 @JAVASCI_TRUE@am_libjavasci_la_rpath = -rpath $(pkglibdir)
 @JAVASCI_TRUE@libjavasci2_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -160,9 +157,6 @@ am__libjavasci2_la_SOURCES_DIST = src/jni/call_scilab_wrap.c \
 @JAVASCI_TRUE@	libjavasci2_la-javasci2_helper.lo
 @JAVASCI_TRUE@am_libjavasci2_la_OBJECTS = $(am__objects_2)
 libjavasci2_la_OBJECTS = $(am_libjavasci2_la_OBJECTS)
-libjavasci2_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci2_la_CFLAGS) \
-	$(CFLAGS) $(libjavasci2_la_LDFLAGS) $(LDFLAGS) -o $@
 @JAVASCI_TRUE@am_libjavasci2_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -347,6 +341,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -467,41 +465,45 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@src/c/javasci2_helper.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
-@JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
-@JAVASCI_TRUE@libjavasci2_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 
 # For the code check (splint)
 @JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
-@JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci_la_CFLAGS)
-@JAVASCI_TRUE@libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci_la_CPPFLAGS)
+@JAVASCI_TRUE@libjavasci_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
 @JAVASCI_TRUE@			$(TCL_INC_PATH) \
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
-@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+@JAVASCI_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
+@JAVASCI_TRUE@			$(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
-@JAVASCI_TRUE@libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
 @JAVASCI_TRUE@			$(TCL_INC_PATH) \
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
-@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+@JAVASCI_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
+@JAVASCI_TRUE@			$(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -531,6 +533,18 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @JAVASCI_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+@JAVASCI_TRUE@AM_CPPFLAGS = $(SCI_CPPFLAGS)
+@JAVASCI_TRUE@AM_CFLAGS = $(SCI_CFLAGS)
+@JAVASCI_TRUE@AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+@JAVASCI_TRUE@AM_FFLAGS = $(SCI_FFLAGS) \
+@JAVASCI_TRUE@	-I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+@JAVASCI_TRUE@AM_LDFLAGS = $(SCI_LDFLAGS) -version-number \
+@JAVASCI_TRUE@	$(SCILAB_LIBRARY_VERSION)
 
 # splint options
 @JAVASCI_TRUE@SPLINT_OPTIONS = -weak -booltype BOOL
@@ -659,9 +673,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libjavasci.la: $(libjavasci_la_OBJECTS) $(libjavasci_la_DEPENDENCIES) $(EXTRA_libjavasci_la_DEPENDENCIES) 
-	$(libjavasci_la_LINK) $(am_libjavasci_la_rpath) $(libjavasci_la_OBJECTS) $(libjavasci_la_LIBADD) $(LIBS)
+	$(LINK) $(am_libjavasci_la_rpath) $(libjavasci_la_OBJECTS) $(libjavasci_la_LIBADD) $(LIBS)
 libjavasci2.la: $(libjavasci2_la_OBJECTS) $(libjavasci2_la_DEPENDENCIES) $(EXTRA_libjavasci2_la_DEPENDENCIES) 
-	$(libjavasci2_la_LINK) $(am_libjavasci2_la_rpath) $(libjavasci2_la_OBJECTS) $(libjavasci2_la_LIBADD) $(LIBS)
+	$(LINK) $(am_libjavasci2_la_rpath) $(libjavasci2_la_OBJECTS) $(libjavasci2_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -705,95 +719,95 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libjavasci_la-javasci_Scilab2.lo: src/c/javasci_Scilab2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab2.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab2.Tpo -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab2.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab2.Tpo -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_Scilab2.Tpo $(DEPDIR)/libjavasci_la-javasci_Scilab2.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_Scilab2.c' object='libjavasci_la-javasci_Scilab2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
 
 libjavasci_la-javasci_globals.lo: src/c/javasci_globals.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_globals.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_globals.Tpo -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_globals.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_globals.Tpo -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_globals.Tpo $(DEPDIR)/libjavasci_la-javasci_globals.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_globals.c' object='libjavasci_la-javasci_globals.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
 
 libjavasci_la-javasci_SciAbstractArray.lo: src/c/javasci_SciAbstractArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciAbstractArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciAbstractArray.Tpo -c -o libjavasci_la-javasci_SciAbstractArray.lo `test -f 'src/c/javasci_SciAbstractArray.c' || echo '$(srcdir)/'`src/c/javasci_SciAbstractArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciAbstractArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciAbstractArray.Tpo -c -o libjavasci_la-javasci_SciAbstractArray.lo `test -f 'src/c/javasci_SciAbstractArray.c' || echo '$(srcdir)/'`src/c/javasci_SciAbstractArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciAbstractArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciAbstractArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciAbstractArray.c' object='libjavasci_la-javasci_SciAbstractArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciAbstractArray.lo `test -f 'src/c/javasci_SciAbstractArray.c' || echo '$(srcdir)/'`src/c/javasci_SciAbstractArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciAbstractArray.lo `test -f 'src/c/javasci_SciAbstractArray.c' || echo '$(srcdir)/'`src/c/javasci_SciAbstractArray.c
 
 libjavasci_la-javasci_SciStringArray.lo: src/c/javasci_SciStringArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciStringArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Tpo -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciStringArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Tpo -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciStringArray.c' object='libjavasci_la-javasci_SciStringArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
 
 libjavasci_la-javasci_SciComplexArray.lo: src/c/javasci_SciComplexArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciComplexArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Tpo -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciComplexArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Tpo -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciComplexArray.c' object='libjavasci_la-javasci_SciComplexArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
 
 libjavasci_la-fix.lo: src/c/fix.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-fix.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-fix.Tpo -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-fix.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-fix.Tpo -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-fix.Tpo $(DEPDIR)/libjavasci_la-fix.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fix.c' object='libjavasci_la-fix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
 
 libjavasci_la-javasci_SciDoubleArray.lo: src/c/javasci_SciDoubleArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciDoubleArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Tpo -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciDoubleArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Tpo -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciDoubleArray.c' object='libjavasci_la-javasci_SciDoubleArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
 
 libjavasci_la-javasci_Scilab.lo: src/c/javasci_Scilab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab.Tpo -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab.Tpo -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_Scilab.Tpo $(DEPDIR)/libjavasci_la-javasci_Scilab.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_Scilab.c' object='libjavasci_la-javasci_Scilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
 
 libjavasci_la-javasci_SciBooleanArray.lo: src/c/javasci_SciBooleanArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciBooleanArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Tpo -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciBooleanArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Tpo -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciBooleanArray.c' object='libjavasci_la-javasci_SciBooleanArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
 
 libjavasci_la-javasci_SciIntegerArray.lo: src/c/javasci_SciIntegerArray.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciIntegerArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Tpo -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciIntegerArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Tpo -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciIntegerArray.c' object='libjavasci_la-javasci_SciIntegerArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
 
 libjavasci2_la-call_scilab_wrap.lo: src/jni/call_scilab_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -MT libjavasci2_la-call_scilab_wrap.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Tpo -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci2_la-call_scilab_wrap.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Tpo -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Tpo $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/call_scilab_wrap.c' object='libjavasci2_la-call_scilab_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
 
 libjavasci2_la-putLists.lo: src/jni/putLists.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -MT libjavasci2_la-putLists.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-putLists.Tpo -c -o libjavasci2_la-putLists.lo `test -f 'src/jni/putLists.c' || echo '$(srcdir)/'`src/jni/putLists.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci2_la-putLists.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-putLists.Tpo -c -o libjavasci2_la-putLists.lo `test -f 'src/jni/putLists.c' || echo '$(srcdir)/'`src/jni/putLists.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci2_la-putLists.Tpo $(DEPDIR)/libjavasci2_la-putLists.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/putLists.c' object='libjavasci2_la-putLists.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-putLists.lo `test -f 'src/jni/putLists.c' || echo '$(srcdir)/'`src/jni/putLists.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-putLists.lo `test -f 'src/jni/putLists.c' || echo '$(srcdir)/'`src/jni/putLists.c
 
 libjavasci2_la-javasci2_helper.lo: src/c/javasci2_helper.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -MT libjavasci2_la-javasci2_helper.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-javasci2_helper.Tpo -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libjavasci2_la-javasci2_helper.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-javasci2_helper.Tpo -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci2_la-javasci2_helper.Tpo $(DEPDIR)/libjavasci2_la-javasci2_helper.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci2_helper.c' object='libjavasci2_la-javasci2_helper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libjavasci2_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

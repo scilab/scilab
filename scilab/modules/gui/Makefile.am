@@ -58,7 +58,7 @@ src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
 src/jni/ScilabTermination_wrap.c
 
-GUI_CPP_SOURCES = \
+GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
@@ -191,7 +191,7 @@ sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
 sci_gateway/c/sci_exportUI.c
 
-GATEWAY_CPP_SOURCES = \
+GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \
 sci_gateway/cpp/sci_toprint.cpp \
 sci_gateway/cpp/sci_printfigure.cpp \
@@ -206,63 +206,47 @@ sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp
 
-libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/c/xsci/ \
-			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/core/src/c/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/tclsci/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/console/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			$(TCL_INC_PATH) \
-			$(Tk_INC_PATH) \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/libs/hashtable \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(srcdir)/src/cpp/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
-
-libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/string/includes/
-
-libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/renderer/src/jni/ \
-			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/renderer/src/cpp/ \
-			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
-			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/libs/hashtable/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/console/includes/ \
+			-I$(top_srcdir)/modules/core/src/c/ \
+			-I$(top_srcdir)/modules/dynamic_link/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
+			-I$(top_srcdir)/modules/graphic_objects/includes/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/graphic_objects/includes/
-
+			-I$(top_srcdir)/modules/tclsci/includes/ \
+			-I$(top_srcdir)/modules/renderer/includes/ \
+			-I$(top_srcdir)/modules/renderer/src/jni/ \
+			-I$(top_srcdir)/modules/renderer/src/cpp/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(TCL_INC_PATH) \
+			$(Tk_INC_PATH) \
+			$(AM_CPPFLAGS)
 
 # Without the GUI module
-libscigui_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscigui_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
+
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-libscigui_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
@@ -273,16 +257,14 @@ pkglib_LTLIBRARIES += libscigui.la
 noinst_LTLIBRARIES = libscigui-algo.la
 endif
 
-libscigui_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CPP_SOURCES)
-libscigui_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscigui_algo_la_CFLAGS = $(libscigui_la_CFLAGS)
+libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CXX_SOURCES)
+libscigui_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigui_algo_la_CPPFLAGS = $(libscigui_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
+INCLUDE_FLAGS = $(libscigui_la_CPPFLAGS)
 
 libscigui_la_LIBADD = libscigui-algo.la
 

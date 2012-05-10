@@ -119,10 +119,6 @@ am__objects_1 = libscidoublylinkedlist_la-DoublyLinkedList.lo
 am_libscidoublylinkedlist_la_OBJECTS = $(am__objects_1)
 libscidoublylinkedlist_la_OBJECTS =  \
 	$(am_libscidoublylinkedlist_la_OBJECTS)
-libscidoublylinkedlist_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscidoublylinkedlist_la_CFLAGS) $(CFLAGS) \
-	$(libscidoublylinkedlist_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -304,6 +300,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -395,14 +395,17 @@ top_srcdir = @top_srcdir@
 DOUBLYLINKEDLIST_C_SOURCES = src/DoublyLinkedList.c
 libscidoublylinkedlist_la_includedir = $(pkgincludedir)
 libscidoublylinkedlist_la_include_HEADERS = includes/DoublyLinkedList.h
-libscidoublylinkedlist_la_CFLAGS = -I$(srcdir)/src/ -I$(srcdir)/includes/
+libscidoublylinkedlist_la_CPPFLAGS = -I$(srcdir)/src/ \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    $(AM_CPPFLAGS)
+
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
-libscidoublylinkedlist_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscidoublylinkedlist_la_SOURCES = $(DOUBLYLINKEDLIST_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(DOUBLYLINKEDLIST_C_SOURCES)
-INCLUDE_FLAGS = $(libscidoublylinkedlist_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidoublylinkedlist_la_CPPFLAGS)
 libscidoublylinkedlist_la_LIBADD = 
 
 #### Target ######
@@ -410,6 +413,16 @@ modulename = doublylinkedlist
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -537,7 +550,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscidoublylinkedlist.la: $(libscidoublylinkedlist_la_OBJECTS) $(libscidoublylinkedlist_la_DEPENDENCIES) $(EXTRA_libscidoublylinkedlist_la_DEPENDENCIES) 
-	$(libscidoublylinkedlist_la_LINK) -rpath $(pkglibdir) $(libscidoublylinkedlist_la_OBJECTS) $(libscidoublylinkedlist_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscidoublylinkedlist_la_OBJECTS) $(libscidoublylinkedlist_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -569,11 +582,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscidoublylinkedlist_la-DoublyLinkedList.lo: src/DoublyLinkedList.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidoublylinkedlist_la_CFLAGS) $(CFLAGS) -MT libscidoublylinkedlist_la-DoublyLinkedList.lo -MD -MP -MF $(DEPDIR)/libscidoublylinkedlist_la-DoublyLinkedList.Tpo -c -o libscidoublylinkedlist_la-DoublyLinkedList.lo `test -f 'src/DoublyLinkedList.c' || echo '$(srcdir)/'`src/DoublyLinkedList.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidoublylinkedlist_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidoublylinkedlist_la-DoublyLinkedList.lo -MD -MP -MF $(DEPDIR)/libscidoublylinkedlist_la-DoublyLinkedList.Tpo -c -o libscidoublylinkedlist_la-DoublyLinkedList.lo `test -f 'src/DoublyLinkedList.c' || echo '$(srcdir)/'`src/DoublyLinkedList.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidoublylinkedlist_la-DoublyLinkedList.Tpo $(DEPDIR)/libscidoublylinkedlist_la-DoublyLinkedList.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/DoublyLinkedList.c' object='libscidoublylinkedlist_la-DoublyLinkedList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidoublylinkedlist_la_CFLAGS) $(CFLAGS) -c -o libscidoublylinkedlist_la-DoublyLinkedList.lo `test -f 'src/DoublyLinkedList.c' || echo '$(srcdir)/'`src/DoublyLinkedList.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidoublylinkedlist_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidoublylinkedlist_la-DoublyLinkedList.lo `test -f 'src/DoublyLinkedList.c' || echo '$(srcdir)/'`src/DoublyLinkedList.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

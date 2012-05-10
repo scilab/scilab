@@ -27,26 +27,26 @@ sci_gateway/c/sci_splin3d.c \
 sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
-libsciinterpolation_la_FFLAGS=  -I$(srcdir)/includes/
-libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
+libsciinterpolation_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-                -I$(top_srcdir)/modules/string/includes
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+                -I$(top_srcdir)/modules/string/includes/ \
+                $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 noinst_LTLIBRARIES = libsciinterpolation-algo.la
 
-libsciinterpolation_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinterpolation_algo_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES)
 libsciinterpolation_la_SOURCES = $(GATEWAY_C_SOURCES)
-libsciinterpolation_algo_la_CFLAGS = $(libsciinterpolation_la_CFLAGS)
+libsciinterpolation_algo_la_CPPFLAGS = $(libsciinterpolation_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciinterpolation_la_CPPFLAGS)
 
 libsciinterpolation_la_LIBADD = \
 	libsciinterpolation-algo.la

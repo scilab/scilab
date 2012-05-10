@@ -7,41 +7,35 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#PARALLEL_CPP_SOURCES =
+#PARALLEL_CXX_SOURCES =
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
 
 #PARALLEL_C_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c \
 sci_gateway/c/sci_parallel_concurrency.c
 
-libsciparallel_la_CFLAGS= $(OPENMP_CFLAGS) \
+libsciparallel_la_CPPFLAGS= $(OPENMP_CPPFLAGS) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/string/includes
-
-libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/parameters/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/parameters/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 
 pkglib_LTLIBRARIES = libsciparallel.la
 
-libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 
 if OPENMP
-libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 
 else
 libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
@@ -50,7 +44,7 @@ endif
 
 # For the code check (splint)
 CHECK_SRC= $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciparallel_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciparallel_la_CPPFLAGS)
 
 #### Target ######
 modulename=parallel

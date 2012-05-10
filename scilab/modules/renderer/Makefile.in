@@ -137,9 +137,6 @@ am__objects_1 = libscirenderer_la-GetJavaProperty.lo \
 	libscirenderer_la-CallRenderer.lo
 am_libscirenderer_la_OBJECTS = $(am__objects_1)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
-libscirenderer_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(libscirenderer_la_LDFLAGS) $(LDFLAGS) -o $@
 @GUI_TRUE@am_libscirenderer_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -322,6 +319,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -423,7 +424,7 @@ libscirenderer_la_etcdir = $(mydatadir)/etc
 libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 # List of the c files
-RENDERER_CPP_SOURCES = \
+RENDERER_CXX_SOURCES = \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
@@ -439,26 +440,28 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
-				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
-				-I$(top_srcdir)/libs/doublylinkedlist/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/gui/includes/
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/gui/includes/ \
+				$(AM_CPPFLAGS)
 
-libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CXX_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # For the code check (splint)
-INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
+INCLUDE_FLAGS = $(libscirenderer_la_CPPFLAGS)
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = \
@@ -467,10 +470,19 @@ src/jni/renderer.giws.xml
 
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
-libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -599,7 +611,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscirenderer.la: $(libscirenderer_la_OBJECTS) $(libscirenderer_la_DEPENDENCIES) $(EXTRA_libscirenderer_la_DEPENDENCIES) 
-	$(libscirenderer_la_LINK) $(am_libscirenderer_la_rpath) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscirenderer_la_rpath) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

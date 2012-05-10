@@ -125,24 +125,19 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixcos_la_imagesdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixcos_algo_la_LIBADD =
-am__objects_1 =
-am__objects_2 = libscixcos_algo_la-Xcos.lo \
+am__objects_1 = libscixcos_algo_la-Xcos.lo \
 	libscixcos_algo_la-Palette.lo libscixcos_algo_la-Modelica.lo \
 	libscixcos_algo_la-xcosUtilities.lo
-am_libscixcos_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscixcos_algo_la_OBJECTS = $(am__objects_1)
 libscixcos_algo_la_OBJECTS = $(am_libscixcos_algo_la_OBJECTS)
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_algo_la_rpath =
 libscixcos_disable_la_LIBADD =
-am__objects_3 = libscixcos_disable_la-noxcos.lo
-am_libscixcos_disable_la_OBJECTS = $(am__objects_3)
+am__objects_2 = libscixcos_disable_la-noxcos.lo
+am_libscixcos_disable_la_OBJECTS = $(am__objects_2)
 libscixcos_disable_la_OBJECTS = $(am_libscixcos_disable_la_OBJECTS)
-libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscixcos_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES = libscixcos-algo.la
-am__objects_4 = libscixcos_la-gw_xcos.lo
-am__objects_5 = libscixcos_la-sci_Xcos.lo \
+am__objects_3 = libscixcos_la-gw_xcos.lo
+am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_warnBlockByUID.lo \
 	libscixcos_la-sci_closeXcosFromScilab.lo \
 	libscixcos_la-sci_xcosDiagramToScilab.lo \
@@ -156,11 +151,8 @@ am__objects_5 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosConfigureXmlFile.lo \
 	libscixcos_la-sci_xcosAddToolsMenu.lo \
 	libscixcos_la-sci_xcosUpdateBlock.lo
-am_libscixcos_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+am_libscixcos_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
-libscixcos_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(libscixcos_la_LDFLAGS) $(LDFLAGS) -o $@
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -356,6 +348,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -467,8 +463,7 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xsl \
 	etc/XConfiguration-xcos.xml
 
-XCOS_C_SOURCES = 
-XCOS_CPP_SOURCES = src/jni/Xcos.cpp \
+XCOS_CXX_SOURCES = src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
@@ -482,7 +477,7 @@ GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
-GATEWAY_CPP_SOURCES = \
+GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
@@ -498,46 +493,40 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 
-libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
-
-libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(AM_CPPFLAGS)
 
 
 # Without the xcos module
-libscixcos_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscixcos-disable.la $(am__append_1)
 @GUI_TRUE@@XCOS_TRUE@noinst_LTLIBRARIES = libscixcos-algo.la
-libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CPP_SOURCES)
-libscixcos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscixcos_algo_la_CFLAGS = $(libscixcos_la_CFLAGS)
+libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CXX_SOURCES)
+libscixcos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
+INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la
 
 #### xcos : gateway declaration ####
@@ -831,6 +820,16 @@ images/palettes/ZCROSS_f.png
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
+
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
 
@@ -969,9 +968,9 @@ clean-pkglibLTLIBRARIES:
 libscixcos-algo.la: $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_DEPENDENCIES) $(EXTRA_libscixcos_algo_la_DEPENDENCIES) 
 	$(CXXLINK) $(am_libscixcos_algo_la_rpath) $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_LIBADD) $(LIBS)
 libscixcos-disable.la: $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_DEPENDENCIES) $(EXTRA_libscixcos_disable_la_DEPENDENCIES) 
-	$(libscixcos_disable_la_LINK) -rpath $(pkglibdir) $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_LIBADD) $(LIBS)
 libscixcos.la: $(libscixcos_la_OBJECTS) $(libscixcos_la_DEPENDENCIES) $(EXTRA_libscixcos_la_DEPENDENCIES) 
-	$(libscixcos_la_LINK) $(am_libscixcos_la_rpath) $(libscixcos_la_OBJECTS) $(libscixcos_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscixcos_la_rpath) $(libscixcos_la_OBJECTS) $(libscixcos_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1022,18 +1021,18 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscixcos_disable_la-noxcos.lo: src/noxcos/noxcos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscixcos_disable_la_CFLAGS) $(CFLAGS) -MT libscixcos_disable_la-noxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_disable_la-noxcos.Tpo -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixcos_disable_la-noxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_disable_la-noxcos.Tpo -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_disable_la-noxcos.Tpo $(DEPDIR)/libscixcos_disable_la-noxcos.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noxcos/noxcos.c' object='libscixcos_disable_la-noxcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscixcos_disable_la_CFLAGS) $(CFLAGS) -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
 
 libscixcos_la-gw_xcos.lo: sci_gateway/c/gw_xcos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(libscixcos_la_CFLAGS) $(CFLAGS) -MT libscixcos_la-gw_xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-gw_xcos.Tpo -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixcos_la-gw_xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-gw_xcos.Tpo -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-gw_xcos.Tpo $(DEPDIR)/libscixcos_la-gw_xcos.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_xcos.c' object='libscixcos_la-gw_xcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(libscixcos_la_CFLAGS) $(CFLAGS) -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -268,6 +268,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -358,7 +362,13 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
-SUBDIRS = MALLOC hashtable libst dynamiclibrary doublylinkedlist .
+SUBDIRS = \
+	MALLOC \
+	hashtable \
+	libst \
+	dynamiclibrary \
+	doublylinkedlist
+
 all: all-recursive
 
 .SUFFIXES:

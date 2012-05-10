@@ -157,9 +157,6 @@ am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_degree.lo
 am_libscipolynomials_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
-libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(libscipolynomials_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscipolynomials_la_rpath = -rpath \
 @MAINTAINER_MODE_TRUE@	$(pkglibdir)
@@ -355,6 +352,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -540,21 +541,23 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libscipolynomials_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscipolynomials.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscipolynomials-algo.la
-libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
+libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
+INCLUDE_FLAGS = $(libscipolynomials_la_CPPFLAGS)
 libscipolynomials_la_LIBADD = libscipolynomials-algo.la
 
 #### Target ######
@@ -574,6 +577,16 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -712,7 +725,7 @@ clean-pkglibLTLIBRARIES:
 libscipolynomials-algo.la: $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_DEPENDENCIES) $(EXTRA_libscipolynomials_algo_la_DEPENDENCIES) 
 	$(F77LINK) $(am_libscipolynomials_algo_la_rpath) $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
 libscipolynomials.la: $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_DEPENDENCIES) $(EXTRA_libscipolynomials_la_DEPENDENCIES) 
-	$(libscipolynomials_la_LINK) $(am_libscipolynomials_la_rpath) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscipolynomials_la_rpath) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -760,123 +773,123 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscipolynomials_la-gw_polynomials.lo: sci_gateway/c/gw_polynomials.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-gw_polynomials.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-gw_polynomials.Tpo -c -o libscipolynomials_la-gw_polynomials.lo `test -f 'sci_gateway/c/gw_polynomials.c' || echo '$(srcdir)/'`sci_gateway/c/gw_polynomials.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-gw_polynomials.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-gw_polynomials.Tpo -c -o libscipolynomials_la-gw_polynomials.lo `test -f 'sci_gateway/c/gw_polynomials.c' || echo '$(srcdir)/'`sci_gateway/c/gw_polynomials.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-gw_polynomials.Tpo $(DEPDIR)/libscipolynomials_la-gw_polynomials.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_polynomials.c' object='libscipolynomials_la-gw_polynomials.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-gw_polynomials.lo `test -f 'sci_gateway/c/gw_polynomials.c' || echo '$(srcdir)/'`sci_gateway/c/gw_polynomials.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-gw_polynomials.lo `test -f 'sci_gateway/c/gw_polynomials.c' || echo '$(srcdir)/'`sci_gateway/c/gw_polynomials.c
 
 libscipolynomials_la-sci_sfact.lo: sci_gateway/c/sci_sfact.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_sfact.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/c/sci_sfact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfact.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_sfact.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/c/sci_sfact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfact.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo $(DEPDIR)/libscipolynomials_la-sci_sfact.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sfact.c' object='libscipolynomials_la-sci_sfact.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/c/sci_sfact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfact.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/c/sci_sfact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfact.c
 
 libscipolynomials_la-sci_cleanp.lo: sci_gateway/c/sci_cleanp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_cleanp.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_cleanp.Tpo -c -o libscipolynomials_la-sci_cleanp.lo `test -f 'sci_gateway/c/sci_cleanp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cleanp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_cleanp.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_cleanp.Tpo -c -o libscipolynomials_la-sci_cleanp.lo `test -f 'sci_gateway/c/sci_cleanp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cleanp.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_cleanp.Tpo $(DEPDIR)/libscipolynomials_la-sci_cleanp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cleanp.c' object='libscipolynomials_la-sci_cleanp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_cleanp.lo `test -f 'sci_gateway/c/sci_cleanp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cleanp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_cleanp.lo `test -f 'sci_gateway/c/sci_cleanp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cleanp.c
 
 libscipolynomials_la-sci_sum.lo: sci_gateway/c/sci_sum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_sum.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_sum.Tpo -c -o libscipolynomials_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_sum.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_sum.Tpo -c -o libscipolynomials_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_sum.Tpo $(DEPDIR)/libscipolynomials_la-sci_sum.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sum.c' object='libscipolynomials_la-sci_sum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
 
 libscipolynomials_la-sci_prod.lo: sci_gateway/c/sci_prod.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_prod.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_prod.Tpo -c -o libscipolynomials_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_prod.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_prod.Tpo -c -o libscipolynomials_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_prod.Tpo $(DEPDIR)/libscipolynomials_la-sci_prod.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_prod.c' object='libscipolynomials_la-sci_prod.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
 
 libscipolynomials_la-sci_diag.lo: sci_gateway/c/sci_diag.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_diag.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_diag.Tpo -c -o libscipolynomials_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_diag.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_diag.Tpo -c -o libscipolynomials_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_diag.Tpo $(DEPDIR)/libscipolynomials_la-sci_diag.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_diag.c' object='libscipolynomials_la-sci_diag.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
 
 libscipolynomials_la-sci_simp_mode.lo: sci_gateway/c/sci_simp_mode.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_simp_mode.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simp_mode.Tpo -c -o libscipolynomials_la-sci_simp_mode.lo `test -f 'sci_gateway/c/sci_simp_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp_mode.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_simp_mode.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simp_mode.Tpo -c -o libscipolynomials_la-sci_simp_mode.lo `test -f 'sci_gateway/c/sci_simp_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp_mode.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_simp_mode.Tpo $(DEPDIR)/libscipolynomials_la-sci_simp_mode.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_simp_mode.c' object='libscipolynomials_la-sci_simp_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_simp_mode.lo `test -f 'sci_gateway/c/sci_simp_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp_mode.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_simp_mode.lo `test -f 'sci_gateway/c/sci_simp_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp_mode.c
 
 libscipolynomials_la-sci_roots.lo: sci_gateway/c/sci_roots.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_roots.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_roots.Tpo -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/c/sci_roots.c' || echo '$(srcdir)/'`sci_gateway/c/sci_roots.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_roots.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_roots.Tpo -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/c/sci_roots.c' || echo '$(srcdir)/'`sci_gateway/c/sci_roots.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_roots.Tpo $(DEPDIR)/libscipolynomials_la-sci_roots.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_roots.c' object='libscipolynomials_la-sci_roots.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/c/sci_roots.c' || echo '$(srcdir)/'`sci_gateway/c/sci_roots.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/c/sci_roots.c' || echo '$(srcdir)/'`sci_gateway/c/sci_roots.c
 
 libscipolynomials_la-sci_varn.lo: sci_gateway/c/sci_varn.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_varn.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_varn.Tpo -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/c/sci_varn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_varn.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_varn.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_varn.Tpo -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/c/sci_varn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_varn.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_varn.Tpo $(DEPDIR)/libscipolynomials_la-sci_varn.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_varn.c' object='libscipolynomials_la-sci_varn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/c/sci_varn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_varn.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/c/sci_varn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_varn.c
 
 libscipolynomials_la-sci_simp.lo: sci_gateway/c/sci_simp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_simp.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simp.Tpo -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/c/sci_simp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_simp.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simp.Tpo -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/c/sci_simp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_simp.Tpo $(DEPDIR)/libscipolynomials_la-sci_simp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_simp.c' object='libscipolynomials_la-sci_simp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/c/sci_simp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/c/sci_simp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_simp.c
 
 libscipolynomials_la-sci_bezout.lo: sci_gateway/c/sci_bezout.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_bezout.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/c/sci_bezout.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bezout.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_bezout.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/c/sci_bezout.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bezout.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo $(DEPDIR)/libscipolynomials_la-sci_bezout.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bezout.c' object='libscipolynomials_la-sci_bezout.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/c/sci_bezout.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bezout.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/c/sci_bezout.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bezout.c
 
 libscipolynomials_la-sci_tril.lo: sci_gateway/c/sci_tril.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_tril.Tpo -c -o libscipolynomials_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_tril.Tpo -c -o libscipolynomials_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_tril.Tpo $(DEPDIR)/libscipolynomials_la-sci_tril.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tril.c' object='libscipolynomials_la-sci_tril.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
 
 libscipolynomials_la-sci_div.lo: sci_gateway/c/sci_div.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_div.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_div.Tpo -c -o libscipolynomials_la-sci_div.lo `test -f 'sci_gateway/c/sci_div.c' || echo '$(srcdir)/'`sci_gateway/c/sci_div.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_div.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_div.Tpo -c -o libscipolynomials_la-sci_div.lo `test -f 'sci_gateway/c/sci_div.c' || echo '$(srcdir)/'`sci_gateway/c/sci_div.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_div.Tpo $(DEPDIR)/libscipolynomials_la-sci_div.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_div.c' object='libscipolynomials_la-sci_div.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_div.lo `test -f 'sci_gateway/c/sci_div.c' || echo '$(srcdir)/'`sci_gateway/c/sci_div.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_div.lo `test -f 'sci_gateway/c/sci_div.c' || echo '$(srcdir)/'`sci_gateway/c/sci_div.c
 
 libscipolynomials_la-sci_coeff.lo: sci_gateway/c/sci_coeff.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_coeff.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/c/sci_coeff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_coeff.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_coeff.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/c/sci_coeff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_coeff.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo $(DEPDIR)/libscipolynomials_la-sci_coeff.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_coeff.c' object='libscipolynomials_la-sci_coeff.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/c/sci_coeff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_coeff.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/c/sci_coeff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_coeff.c
 
 libscipolynomials_la-sci_poly.lo: sci_gateway/c/sci_poly.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_poly.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_poly.Tpo -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/c/sci_poly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_poly.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_poly.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_poly.Tpo -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/c/sci_poly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_poly.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_poly.Tpo $(DEPDIR)/libscipolynomials_la-sci_poly.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_poly.c' object='libscipolynomials_la-sci_poly.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/c/sci_poly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_poly.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/c/sci_poly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_poly.c
 
 libscipolynomials_la-sci_triu.lo: sci_gateway/c/sci_triu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_triu.Tpo -c -o libscipolynomials_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_triu.Tpo -c -o libscipolynomials_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_triu.Tpo $(DEPDIR)/libscipolynomials_la-sci_triu.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_triu.c' object='libscipolynomials_la-sci_triu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
 
 libscipolynomials_la-sci_degree.lo: sci_gateway/c/sci_degree.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_degree.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_degree.Tpo -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/c/sci_degree.c' || echo '$(srcdir)/'`sci_gateway/c/sci_degree.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscipolynomials_la-sci_degree.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_degree.Tpo -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/c/sci_degree.c' || echo '$(srcdir)/'`sci_gateway/c/sci_degree.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_degree.Tpo $(DEPDIR)/libscipolynomials_la-sci_degree.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_degree.c' object='libscipolynomials_la-sci_degree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipolynomials_la_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/c/sci_degree.c' || echo '$(srcdir)/'`sci_gateway/c/sci_degree.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/c/sci_degree.c' || echo '$(srcdir)/'`sci_gateway/c/sci_degree.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

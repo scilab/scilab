@@ -31,21 +31,21 @@ noinst_LTLIBRARIES = libsciintersci.la
 endif
 
 
-libsciintersci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
-libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(srcdir)/includes \
-                -I$(top_srcdir)/modules/string/includes	
+libsciintersci_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(srcdir)/includes/ \
+                -I$(top_srcdir)/modules/string/includes/ \
+                $(AM_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciintersci_la_SOURCES)
-INCLUDE_FLAGS = $(libsciintersci_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciintersci_la_CPPFLAGS)
 
 #### Target ######
 modulename=intersci

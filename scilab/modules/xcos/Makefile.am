@@ -34,9 +34,7 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xsl \
 	etc/XConfiguration-xcos.xml
 
-XCOS_C_SOURCES =
-
-XCOS_CPP_SOURCES = 	src/jni/Xcos.cpp \
+XCOS_CXX_SOURCES = 	src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
@@ -55,7 +53,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
-GATEWAY_CPP_SOURCES = \
+GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
@@ -71,33 +69,29 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 
-libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
-
-libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(AM_CPPFLAGS)
 
 # Without the xcos module
-libscixcos_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscixcos-disable.la
@@ -109,16 +103,14 @@ pkglib_LTLIBRARIES += libscixcos.la
 endif
 endif
 
-libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CPP_SOURCES)
-libscixcos_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscixcos_algo_la_CFLAGS = $(libscixcos_la_CFLAGS)
+libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CXX_SOURCES)
+libscixcos_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
+INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 
 
 

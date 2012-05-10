@@ -25,21 +25,6 @@ libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 #### graphics : datatips sub-module ####
 MACROSDIRSEXT = macros/datatips
 
-# the module Doublylinkedlist  is included here... of course, it is not
-# used in the mode without gui but It causes some silly problems with includes
-libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/c/getHandleProperty/ \
-	-I$(top_srcdir)/modules/gui/includes/ \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/elementary_functions/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/graphic_objects/includes/
-
-
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
@@ -406,32 +391,37 @@ sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_show_pixmap.c \
 sci_gateway/c/sci_Legend.c
 
-libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
-				-Isrc/cpp \
-				$(TCL_INC_PATH) \
-				$(TK_INC_PATH) \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/libs/hashtable/ \
-				-I$(top_srcdir)/modules/jvm/includes/ \
-				-I$(top_srcdir)/modules/renderer/includes/ \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/graphic_export/includes/
+libscigraphics_la_CPPFLAGS = \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/c/getHandleProperty/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(top_srcdir)/libs/hashtable/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/graphic_export/includes/ \
+	-I$(top_srcdir)/modules/graphic_objects/includes/ \
+	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/renderer/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	$(TCL_INC_PATH) \
+	$(TK_INC_PATH) \
+	$(AM_CPPFLAGS)
 
-libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
-				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
-				-I$(top_srcdir)/modules/jvm/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-			 	-I$(top_srcdir)/modules/graphic_export/includes/
-
-libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)
 libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
+libscigraphics_algo_la_CPPFLAGS = $(libscigraphics_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
+INCLUDE_FLAGS = $(libscigraphics_la_CPPFLAGS)
 
 libscigraphics_la_LIBADD = libscigraphics-algo.la
 
@@ -481,20 +471,19 @@ tcl/ged/images/text.gif
 
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
-libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/graphics/includes/ \
--I$(top_srcdir)/modules/renderer/includes/ \
--I$(top_srcdir)/modules/graphics/src/cpp \
--I$(top_srcdir)/modules/graphics/src/c/getHandleProperty \
--I$(top_srcdir)/libs/hashtable/ \
--I$(top_srcdir)/libs/doublylinkedlist/includes \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--Iincludes/ \
--I$(top_srcdir)/libs/doublylinkedlist/includes/
-
-libscigraphics_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-
-libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
+libscigraphics_disable_la_CPPFLAGS = \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/c/getHandleProperty/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(top_srcdir)/libs/hashtable/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	$(AM_CPPFLAGS)
 
 # endif
 
@@ -506,7 +495,6 @@ pkglib_LTLIBRARIES += libscigraphics.la
 noinst_LTLIBRARIES = libscigraphics-algo.la
 endif
 
-libscigraphics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
 
 include $(top_srcdir)/Makefile.incl.am

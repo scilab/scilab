@@ -122,9 +122,6 @@ am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matext1.lo matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
 am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
-libscidouble_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(libscidouble_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libscidouble_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidouble_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -315,6 +312,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -428,15 +429,15 @@ sci_gateway/fortran/matadd.f
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidouble.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidouble.la
-libscidouble_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+libscidouble_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+$(AM_CPPFLAGS)
 
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscidouble_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidouble_la_CPPFLAGS)
 
 #### Target ######
 modulename = double
@@ -451,6 +452,16 @@ libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -587,7 +598,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscidouble.la: $(libscidouble_la_OBJECTS) $(libscidouble_la_DEPENDENCIES) $(EXTRA_libscidouble_la_DEPENDENCIES) 
-	$(libscidouble_la_LINK) $(am_libscidouble_la_rpath) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscidouble_la_rpath) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -619,11 +630,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-gw_double.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidouble_la-gw_double.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidouble_la-gw_double.Tpo $(DEPDIR)/libscidouble_la-gw_double.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_double.c' object='libscidouble_la-gw_double.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

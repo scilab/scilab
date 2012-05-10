@@ -28,7 +28,7 @@ if GUI
 # List of the JNI files
 HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp
 
-HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
+HISTORY_BROWSER_CXX_SOURCES = src/cpp/CommandHistory_Wrap.cpp
 
 HISTORY_BROWSER_C_SOURCES = 
 
@@ -40,21 +40,19 @@ else
 HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
 endif
 
-libscihistory_browser_la_CFLAGS= -I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes
-
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
+-I$(srcdir)/src/c/ \
 -I$(srcdir)/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/commons/src/jni/
+-I$(top_srcdir)/modules/commons/src/jni/ \
+$(AM_CPPFLAGS)
 
 # Without the history_browser module 
-libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
+libscihistory_browser_disable_la_CPPFLAGS = -I$(srcdir)/includes/ $(AM_CPPFLAGS)
 HISTORY_BROWSER_DISABLE_C_SOURCES =  src/nohistory_browser/CommandHistory_Wrap_Fake.c
-libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscihistory_browser-disable.la
@@ -63,13 +61,13 @@ if GUI
 pkglib_LTLIBRARIES += libscihistory_browser.la 
 endif
 
-libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscihistory_browser_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(HISTORY_BROWSER_C_SOURCES)
-INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
+INCLUDE_FLAGS = $(libscihistory_browser_la_CPPFLAGS)
 
 GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
 SWIG_WRAPPERS = 

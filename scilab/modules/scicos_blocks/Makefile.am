@@ -9,7 +9,7 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
-libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
+libsciscicos_blocks_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
 
 #### Target ######
 modulename=scicos_blocks
@@ -333,14 +333,14 @@ src/c/writeau.c \
 src/c/writec.c \
 src/c/zcross2.c
 
-SCICOS_BLOCKS_CPP_SOURCES = \
+SCICOS_BLOCKS_CXX_SOURCES = \
 src/cpp/affich2.cpp
 
 NON_BLOCK_C_SOURCES =  src/c/scoUtils.c \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
-NON_BLOCK_CPP_SOURCES = \
+NON_BLOCK_CXX_SOURCES = \
 src/jni/AfficheBlock.cpp
 
 GIWS_WRAPPERS = \
@@ -406,42 +406,37 @@ src/fortran/writef.f \
 src/fortran/zcross.f
 
 
-libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
+libsciscicos_blocks_la_CPPFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/jni/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
-			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/scicos/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes \
-			-I$(top_srcdir)/modules/graphic_objects/includes
-
-libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
 	 		-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/elementary_functions/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/graphics/includes/ \
+			-I$(top_srcdir)/modules/graphic_objects/includes/ \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/renderer/includes/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
-
+			-I$(top_srcdir)/modules/string/includes/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(AM_CPPFLAGS)
 
 libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
 $(SCICOS_BLOCKS_FORTRAN_SOURCES) \
 $(NON_BLOCK_C_SOURCES) \
-$(NON_BLOCK_CPP_SOURCES) \
-$(SCICOS_BLOCKS_CPP_SOURCES)
+$(NON_BLOCK_CXX_SOURCES) \
+$(SCICOS_BLOCKS_CXX_SOURCES)
 
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciscicos_blocks_la_CPPFLAGS)
 
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
@@ -457,11 +452,11 @@ $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLO
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
-$(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CPP_SOURCES)
+$(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CXX_SOURCES)
 	@echo "-- Generates build/CPPblocknames --"
 	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
+	@for file in $(SCICOS_BLOCKS_CXX_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 	@echo "-- Generates build/Fblocknames --"

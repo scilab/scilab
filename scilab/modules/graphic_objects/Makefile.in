@@ -129,10 +129,6 @@ am__objects_1 = libscigraphic_objects_disable_la-nographic_objects.lo
 am_libscigraphic_objects_disable_la_OBJECTS = $(am__objects_1)
 libscigraphic_objects_disable_la_OBJECTS =  \
 	$(am_libscigraphic_objects_disable_la_OBJECTS)
-libscigraphic_objects_disable_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscigraphic_objects_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscigraphic_objects_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscigraphic_objects_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -380,6 +376,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -485,6 +485,16 @@ libscigraphic_objects_la_etc_DATA = etc/graphic_objects.quit \
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
+
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
 
@@ -552,7 +562,7 @@ GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c
 
-GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
+GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/getConsoleIdentifier.cpp \
 								src/cpp/setGraphicObjectProperty.cpp \
@@ -590,41 +600,38 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
-libscigraphic_objects_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/core/includes
-
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/core/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/commons/src/jni
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
 
 # Without the graphic_objects module
-libscigraphic_objects_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
-libscigraphic_objects_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscigraphic_objects-disable.la $(am__append_3)
-libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
-libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
+libscigraphic_objects_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) $(GRAPHIC_OBJECTS_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
+INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/DataLoader.i \
@@ -706,7 +713,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscigraphic_objects-disable.la: $(libscigraphic_objects_disable_la_OBJECTS) $(libscigraphic_objects_disable_la_DEPENDENCIES) $(EXTRA_libscigraphic_objects_disable_la_DEPENDENCIES) 
-	$(libscigraphic_objects_disable_la_LINK) -rpath $(pkglibdir) $(libscigraphic_objects_disable_la_OBJECTS) $(libscigraphic_objects_disable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscigraphic_objects_disable_la_OBJECTS) $(libscigraphic_objects_disable_la_LIBADD) $(LIBS)
 libscigraphic_objects.la: $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_DEPENDENCIES) $(EXTRA_libscigraphic_objects_la_DEPENDENCIES) 
 	$(libscigraphic_objects_la_LINK) $(am_libscigraphic_objects_la_rpath) $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_LIBADD) $(LIBS)
 
@@ -780,32 +787,32 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscigraphic_objects_disable_la-nographic_objects.lo: src/nographic_objects/nographic_objects.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_disable_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_disable_la-nographic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Tpo -c -o libscigraphic_objects_disable_la-nographic_objects.lo `test -f 'src/nographic_objects/nographic_objects.c' || echo '$(srcdir)/'`src/nographic_objects/nographic_objects.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_disable_la-nographic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Tpo -c -o libscigraphic_objects_disable_la-nographic_objects.lo `test -f 'src/nographic_objects/nographic_objects.c' || echo '$(srcdir)/'`src/nographic_objects/nographic_objects.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Tpo $(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nographic_objects/nographic_objects.c' object='libscigraphic_objects_disable_la-nographic_objects.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_disable_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_disable_la-nographic_objects.lo `test -f 'src/nographic_objects/nographic_objects.c' || echo '$(srcdir)/'`src/nographic_objects/nographic_objects.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_disable_la-nographic_objects.lo `test -f 'src/nographic_objects/nographic_objects.c' || echo '$(srcdir)/'`src/nographic_objects/nographic_objects.c
 
 libscigraphic_objects_la-DataLoader_wrap.lo: src/jni/DataLoader_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-DataLoader_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Tpo -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-DataLoader_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Tpo -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Tpo $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/DataLoader_wrap.c' object='libscigraphic_objects_la-DataLoader_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
 
 libscigraphic_objects_la-ScilabNativeView_wrap.lo: src/jni/ScilabNativeView_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-ScilabNativeView_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Tpo -c -o libscigraphic_objects_la-ScilabNativeView_wrap.lo `test -f 'src/jni/ScilabNativeView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeView_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-ScilabNativeView_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Tpo -c -o libscigraphic_objects_la-ScilabNativeView_wrap.lo `test -f 'src/jni/ScilabNativeView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeView_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Tpo $(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/ScilabNativeView_wrap.c' object='libscigraphic_objects_la-ScilabNativeView_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-ScilabNativeView_wrap.lo `test -f 'src/jni/ScilabNativeView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeView_wrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-ScilabNativeView_wrap.lo `test -f 'src/jni/ScilabNativeView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeView_wrap.c
 
 libscigraphic_objects_la-gw_graphic_objects.lo: sci_gateway/c/gw_graphic_objects.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-gw_graphic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Tpo -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-gw_graphic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Tpo -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Tpo $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_graphic_objects.c' object='libscigraphic_objects_la-gw_graphic_objects.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

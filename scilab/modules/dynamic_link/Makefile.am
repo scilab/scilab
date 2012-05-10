@@ -21,17 +21,18 @@ sci_gateway/c/sci_ilib_verbose.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f 
 
-libscidynamic_link_la_CFLAGS = \
--I$(top_srcdir)/modules/output_stream/includes \
+libscidynamic_link_la_CPPFLAGS = \
+-I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/io/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/io/includes/ \
+-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(srcdir)/includes/
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(srcdir)/includes/ \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidynamic_link.la
@@ -42,15 +43,14 @@ endif
 
 
 
-libscidynamic_link_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidynamic_link_algo_la_CFLAGS = $(libscidynamic_link_la_CFLAGS)
+libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
 
 # For the code check (splint)
 CHECK_SRC=  $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
 # cyclic  
 libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la

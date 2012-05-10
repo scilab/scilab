@@ -66,3 +66,4 @@ call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
 call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
 call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+

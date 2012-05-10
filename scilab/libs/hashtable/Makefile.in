@@ -118,9 +118,6 @@ libscihashtable_la_DEPENDENCIES =
 am__objects_1 = hashtable_utility.lo hashtable_itr.lo hashtable.lo
 am_libscihashtable_la_OBJECTS = $(am__objects_1)
 libscihashtable_la_OBJECTS = $(am_libscihashtable_la_OBJECTS)
-libscihashtable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(libscihashtable_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -302,6 +299,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -400,7 +401,6 @@ libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable_utility.h
 
 pkglib_LTLIBRARIES = libscihashtable.la
-libscihashtable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 
 # For the code check (splint)
@@ -412,6 +412,16 @@ modulename = hashtable
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -539,7 +549,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihashtable.la: $(libscihashtable_la_OBJECTS) $(libscihashtable_la_DEPENDENCIES) $(EXTRA_libscihashtable_la_DEPENDENCIES) 
-	$(libscihashtable_la_LINK) -rpath $(pkglibdir) $(libscihashtable_la_OBJECTS) $(libscihashtable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscihashtable_la_OBJECTS) $(libscihashtable_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

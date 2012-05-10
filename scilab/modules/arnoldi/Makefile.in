@@ -123,8 +123,8 @@ am__objects_1 = libsciarnoldi_la-sci_dseupd.lo \
 am_libsciarnoldi_la_OBJECTS = $(am__objects_1)
 libsciarnoldi_la_OBJECTS = $(am_libsciarnoldi_la_OBJECTS)
 libsciarnoldi_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsciarnoldi_la_CFLAGS) \
-	$(CFLAGS) $(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -307,6 +307,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -404,19 +408,20 @@ sci_gateway/c/sci_dneupd.c \
 sci_gateway/c/sci_dsaupd.c \
 sci_gateway/c/sci_znaupd.c
 
-libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciarnoldi_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes/
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 
-libsciarnoldi_la_FFLAGS = -I$(srcdir)/src/arpack/
 pkglib_LTLIBRARIES = libsciarnoldi.la
-libsciarnoldi_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(ARPACK_LIBS)
+libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
 libsciarnoldi_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciarnoldi_la_CPPFLAGS)
 
 #### Target ######
 modulename = arnoldi
@@ -435,6 +440,16 @@ libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -600,53 +615,53 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libsciarnoldi_la-sci_dseupd.lo: sci_gateway/c/sci_dseupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dseupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Tpo -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dseupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Tpo -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dseupd.c' object='libsciarnoldi_la-sci_dseupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
 
 libsciarnoldi_la-sci_zneupd.lo: sci_gateway/c/sci_zneupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_zneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Tpo -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_zneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Tpo -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_zneupd.c' object='libsciarnoldi_la-sci_zneupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
 
 libsciarnoldi_la-gw_arnoldi.lo: sci_gateway/c/gw_arnoldi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-gw_arnoldi.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-gw_arnoldi.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_arnoldi.c' object='libsciarnoldi_la-gw_arnoldi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
 
 libsciarnoldi_la-sci_dnaupd.lo: sci_gateway/c/sci_dnaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dnaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dnaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dnaupd.c' object='libsciarnoldi_la-sci_dnaupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
 
 libsciarnoldi_la-sci_dneupd.lo: sci_gateway/c/sci_dneupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Tpo -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Tpo -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dneupd.c' object='libsciarnoldi_la-sci_dneupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
 
 libsciarnoldi_la-sci_dsaupd.lo: sci_gateway/c/sci_dsaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dsaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Tpo -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dsaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Tpo -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dsaupd.c' object='libsciarnoldi_la-sci_dsaupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
 
 libsciarnoldi_la-sci_znaupd.lo: sci_gateway/c/sci_znaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_znaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Tpo -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_znaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Tpo -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_znaupd.c' object='libsciarnoldi_la-sci_znaupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -21,6 +21,13 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS   = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS   = $(SCI_FFLAGS)
+AM_LDFLAGS  = $(SCI_LDFLAGS)
+
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
@@ -31,14 +38,17 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    =
-scilab_cli_bin_LDFLAGS  =
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes -I$(top_srcdir)/modules/console/includes
+scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
+                    -I$(top_srcdir)/modules/console/includes/ \
+                    -I$(top_srcdir)/modules/localization/includes/ \
+                    $(AM_CPPFLAGS)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -52,8 +62,8 @@ scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI $(scilab_bin_CFLAGS)
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
+scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 
 if NEED_JAVA
@@ -68,8 +78,8 @@ if IS_SOLARIS
 endif
 
 if ENABLE_STATIC
-scilab_static_bin_LDFLAGS 		= -static -static-libgcc --start-group
-scilab_static_bin_CFLAGS =  -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
+scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
+scilab_static_bin_CFLAGS  = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
 
 #-static
 bin_PROGRAMS	   		+= scilab-static-bin

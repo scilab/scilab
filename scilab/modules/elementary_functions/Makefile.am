@@ -28,7 +28,7 @@ src/c/IsEqualVar.c \
 src/c/convertbase.c
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES =
+ELEMENTARIES_FUNCTIONS_CXX_SOURCES =
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -359,6 +359,7 @@ sci_gateway/fortran/sci_f_exp.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
+# FIXME: why disabling optimisation ? Any bug reference ?
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
@@ -368,32 +369,21 @@ libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/c/unsfdcopy.c \
 	src/fortran/linpack/icopy.f
 
-libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
-
-
-
-libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
-	-I$(top_srcdir)/modules/core/includes/ \
-	-I$(srcdir)/includes/
+libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    $(AM_CPPFLAGS)
+	
 
 # Includes need for the compilation
-libscielementary_functions_la_FFLAGS= -I$(srcdir)/includes/
-
-# Includes need for the compilation
-libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
+libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/output_stream/includes
-
-# Includes need for the compilation
-libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/core/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/core/src/c/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscielementary_functions.la
@@ -404,34 +394,35 @@ endif
 
 
 
-libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
 libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
+libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
+INCLUDE_FLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la
 
+# Following lines are extracted from a processed Makefile.in
+# Take care while modifying : append -O0 after all commons options
+
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
 
 libdummy_elementary_functions_la-comqr3.lo: src/fortran/comqr3.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
-
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
 libdummy_elementary_functions_la-pade.lo: src/fortran/linpack/pade.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/linpack/pade.f' || echo '$(srcdir)/'`src/fortran/linpack/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/linpack/pade.f' || echo '$(srcdir)/'`src/fortran/linpack/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
-	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -O0 -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
 
 libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
 
 
 #### Target ######

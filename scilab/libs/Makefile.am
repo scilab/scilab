@@ -11,5 +11,4 @@ SUBDIRS = \
 	dynamiclibrary \
 	doublylinkedlist
 
-SUBDIRS += .
 

@@ -48,41 +48,36 @@ PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 
 PREFERENCES_C_SOURCES =
 
-PREFERENCES_CPP_SOURCES =
+PREFERENCES_CXX_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
                       sci_gateway/cpp/sci_removeModulePreferences.cpp
-
-libscipreferences_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/functions/includes
 
 libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni \
     -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/functions/includes/ \
+    $(AM_CPPFLAGS)
 
 # Without the preferences module 
-libscipreferences_disable_la_CFLAGS = -Iincludes/ \
-    -I$(top_srcdir)/modules/output_stream/includes
+libscipreferences_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	$(AM_CPPFLAGS)
 
 PREFERENCES_DISABLE_C_SOURCES = src/nopreferences/nopreferences.c
-libscipreferences_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscipreferences_disable_la_SOURCES = $(PREFERENCES_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscipreferences-disable.la
@@ -92,16 +87,15 @@ if GUI
     noinst_LTLIBRARIES = libscipreferences-algo.la 
 endif
 
-libscipreferences_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES) $(PREFERENCES_JNI_SOURCES) $(PREFERENCES_CPP_SOURCES)
-libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES) $(PREFERENCES_JNI_SOURCES) $(PREFERENCES_CXX_SOURCES)
+libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
 libscipreferences_algo_la_CFLAGS = $(libscipreferences_la_CFLAGS)
 libscipreferences_algo_la_CPPFLAGS = $(libscipreferences_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(PREFERENCES_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscipreferences_la_CFLAGS)
+INCLUDE_FLAGS = $(libscipreferences_la_CPPFLAGS)
 
 
 GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml

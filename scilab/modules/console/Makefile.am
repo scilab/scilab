@@ -33,9 +33,9 @@ libsciconsole_la_etc_DATA = \
 	etc/XConfiguration-general.xsl
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
+CONSOLE_CXX_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 
-CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
+CONSOLE_CXX_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
 src/cpp/ConsolePrintf.cpp \
 src/cpp/ConsoleRead.cpp \
@@ -132,48 +132,51 @@ libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+libsciconsole_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/core/includes \
-				-I$(top_srcdir)/modules/completion/includes \
-				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/core/includes/ \
+				-I$(top_srcdir)/modules/completion/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/action_binding/includes/ \
 				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/ui_data/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes
-
-
-# Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes -I$(top_srcdir)/modules/commons/src/jni/
+				-I$(top_srcdir)/modules/jvm/includes \
+				$(AM_CPPFLAGS)
 
 # Includes need for the compilation
-libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
-				-I$(srcdir)/includes/ \
+libsciconsole_la_CPPFLAGS= -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/c/cmdLine \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
+				-I$(top_srcdir)/modules/commons/src/jni/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/core/includes \
-				-I$(top_srcdir)/modules/completion/includes \
-				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/core/includes/ \
+				-I$(top_srcdir)/modules/completion/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/action_binding/includes/ \
 				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/ui_data/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes
+				-I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
+				$(AM_CPPFLAGS)
+
+# FIXME: Plateform specific optimisation flags should be set on configure.ac
 if IS_MACOSX
-libsciconsole_la_CFLAGS += -msse2
+libsciconsole_la_CPPFLAGS += -msse2
 endif
 
 # Name of the library
@@ -183,14 +186,13 @@ if GUI
 pkglib_LTLIBRARIES += libsciconsole.la 
 endif
 
-libsciconsole_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CXX_JNI_SOURCES) $(CONSOLE_CXX_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
-INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciconsole_la_CPPFLAGS)
 
 #### console : gateway declaration ####
 libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway

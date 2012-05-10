@@ -22,11 +22,7 @@ includes/MALLOC.h \
 includes/getmaxMALLOC.h \
 includes/ExportImport.h
 
-libscimalloc_la_CFLAGS= 
-
 pkglib_LTLIBRARIES = libscimalloc.la
-
-libscimalloc_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 

@@ -102,9 +102,12 @@ sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
 
-libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libscipolynomials_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscipolynomials.la
@@ -114,15 +117,14 @@ noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
 endif
 
 
-libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
+libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
+INCLUDE_FLAGS = $(libscipolynomials_la_CPPFLAGS)
 
 libscipolynomials_la_LIBADD = libscipolynomials-algo.la
 

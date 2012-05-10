@@ -113,9 +113,12 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes/
+libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
@@ -125,15 +128,14 @@ noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
 endif
 
 
-libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) 
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciinteger_algo_la_CFLAGS = $(libsciinteger_la_CFLAGS)
+libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciinteger_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
 libsciinteger_la_LIBADD = libsciinteger-algo.la

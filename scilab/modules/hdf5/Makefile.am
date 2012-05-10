@@ -35,28 +35,26 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp \
 sci_gateway/cpp/sci_is_hdf5_file.cpp \
 sci_gateway/cpp/sci_listvar_in_hdf5.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
-libscihdf5_forceload_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+libscihdf5_forceload_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
 libscihdf5_forceload_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
-libscihdf5_forceload_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
-libscihdf5_forceload_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+libscihdf5_forceload_disable_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
-libscihdf5_forceload_disable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
 else
 
 HDF5_SOURCES =
 GATEWAY_C_SOURCES =
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 
 endif
 
@@ -69,27 +67,20 @@ endif
 
 #### hdf5 : include files ####
 
-libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
+libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
                 -I$(top_srcdir)/modules/jvm/includes/ \
                 -I$(top_srcdir)/modules/commons/src/jni/ \
-				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
 				$(JAVA_JNI_INCLUDE) \
-				$(HDF5_CFLAGS)
-
-libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/localization/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				$(HDF5_CFLAGS)
+				$(HDF5_CFLAGS) \
+				$(AM_CPPFLAGS)
 
 
 #### hdf5 : gateway declaration ####
@@ -113,16 +104,15 @@ endif
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
 endif
 
-libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
+libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
-libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
+libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
-INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
+CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CXX_SOURCES)
+INCLUDE_FLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # pb of order
 if HDF5

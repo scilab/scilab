@@ -142,10 +142,6 @@ am__objects_4 = libsciui_data_disable_la-noui_data.lo
 am_libsciui_data_disable_la_OBJECTS = $(am__objects_4)
 libsciui_data_disable_la_OBJECTS =  \
 	$(am_libsciui_data_disable_la_OBJECTS)
-libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
-	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la
 am__objects_5 = libsciui_data_la-gw_ui_data.lo
 am__objects_6 = libsciui_data_la-sci_editvar.lo \
@@ -354,6 +350,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -467,7 +467,7 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
                     src/c/PutScilabVariable.c
 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+UI_DATA_CXX_SOURCES = src/cpp/UpdateBrowseVar.cpp \
 		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
@@ -480,50 +480,45 @@ src/jni/ui_data.i
 
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
 		      sci_gateway/cpp/sci_browsevar.cpp \
 		      sci_gateway/cpp/sci_filebrowser.cpp \
 			sci_gateway/cpp/sci_updatebrowsevar.cpp
-
-libsciui_data_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/core/includes
 
 libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/core/includes \
+			$(AM_CPPFLAGS)
 
 
 # Without the ui_data module 
-libsciui_data_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libsciui_data_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_3)
 @GUI_TRUE@noinst_LTLIBRARIES = libsciui_data-algo.la 
-libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
-libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CXX_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciui_data_la_CPPFLAGS)
 libsciui_data_la_LIBADD = libsciui_data-algo.la
 
 #### ui_data : gateway declaration ####
@@ -559,6 +554,16 @@ images/icons/16x16/mimetypes/user.png
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -698,7 +703,7 @@ clean-pkglibLTLIBRARIES:
 libsciui_data-algo.la: $(libsciui_data_algo_la_OBJECTS) $(libsciui_data_algo_la_DEPENDENCIES) $(EXTRA_libsciui_data_algo_la_DEPENDENCIES) 
 	$(CXXLINK) $(am_libsciui_data_algo_la_rpath) $(libsciui_data_algo_la_OBJECTS) $(libsciui_data_algo_la_LIBADD) $(LIBS)
 libsciui_data-disable.la: $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_DEPENDENCIES) $(EXTRA_libsciui_data_disable_la_DEPENDENCIES) 
-	$(libsciui_data_disable_la_LINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
 libsciui_data.la: $(libsciui_data_la_OBJECTS) $(libsciui_data_la_DEPENDENCIES) $(EXTRA_libsciui_data_la_DEPENDENCIES) 
 	$(libsciui_data_la_LINK) $(am_libsciui_data_la_rpath) $(libsciui_data_la_OBJECTS) $(libsciui_data_la_LIBADD) $(LIBS)
 
@@ -744,32 +749,32 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libsciui_data_algo_la-ui_data_wrap.lo: src/jni/ui_data_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_algo_la_CFLAGS) $(CFLAGS) -MT libsciui_data_algo_la-ui_data_wrap.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-ui_data_wrap.Tpo -c -o libsciui_data_algo_la-ui_data_wrap.lo `test -f 'src/jni/ui_data_wrap.c' || echo '$(srcdir)/'`src/jni/ui_data_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciui_data_algo_la-ui_data_wrap.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-ui_data_wrap.Tpo -c -o libsciui_data_algo_la-ui_data_wrap.lo `test -f 'src/jni/ui_data_wrap.c' || echo '$(srcdir)/'`src/jni/ui_data_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-ui_data_wrap.Tpo $(DEPDIR)/libsciui_data_algo_la-ui_data_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/ui_data_wrap.c' object='libsciui_data_algo_la-ui_data_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_algo_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_algo_la-ui_data_wrap.lo `test -f 'src/jni/ui_data_wrap.c' || echo '$(srcdir)/'`src/jni/ui_data_wrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciui_data_algo_la-ui_data_wrap.lo `test -f 'src/jni/ui_data_wrap.c' || echo '$(srcdir)/'`src/jni/ui_data_wrap.c
 
 libsciui_data_algo_la-PutScilabVariable.lo: src/c/PutScilabVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_algo_la_CFLAGS) $(CFLAGS) -MT libsciui_data_algo_la-PutScilabVariable.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-PutScilabVariable.Tpo -c -o libsciui_data_algo_la-PutScilabVariable.lo `test -f 'src/c/PutScilabVariable.c' || echo '$(srcdir)/'`src/c/PutScilabVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciui_data_algo_la-PutScilabVariable.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-PutScilabVariable.Tpo -c -o libsciui_data_algo_la-PutScilabVariable.lo `test -f 'src/c/PutScilabVariable.c' || echo '$(srcdir)/'`src/c/PutScilabVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-PutScilabVariable.Tpo $(DEPDIR)/libsciui_data_algo_la-PutScilabVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PutScilabVariable.c' object='libsciui_data_algo_la-PutScilabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_algo_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_algo_la-PutScilabVariable.lo `test -f 'src/c/PutScilabVariable.c' || echo '$(srcdir)/'`src/c/PutScilabVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciui_data_algo_la-PutScilabVariable.lo `test -f 'src/c/PutScilabVariable.c' || echo '$(srcdir)/'`src/c/PutScilabVariable.c
 
 libsciui_data_disable_la-noui_data.lo: src/noui_data/noui_data.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_disable_la_CFLAGS) $(CFLAGS) -MT libsciui_data_disable_la-noui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_disable_la-noui_data.Tpo -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciui_data_disable_la-noui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_disable_la-noui_data.Tpo -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_disable_la-noui_data.Tpo $(DEPDIR)/libsciui_data_disable_la-noui_data.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noui_data/noui_data.c' object='libsciui_data_disable_la-noui_data.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_disable_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
 
 libsciui_data_la-gw_ui_data.lo: sci_gateway/c/gw_ui_data.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_la_CFLAGS) $(CFLAGS) -MT libsciui_data_la-gw_ui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-gw_ui_data.Tpo -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciui_data_la-gw_ui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-gw_ui_data.Tpo -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-gw_ui_data.Tpo $(DEPDIR)/libsciui_data_la-gw_ui_data.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_ui_data.c' object='libsciui_data_la-gw_ui_data.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

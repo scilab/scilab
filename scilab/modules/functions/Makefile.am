@@ -25,29 +25,30 @@ sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intexec.f
 
-libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
+libscifunctions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/call_scilab/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/localization/includes
+				-I$(top_srcdir)/modules/core/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/call_scilab/includes/ \
+				-I$(top_srcdir)/modules/io/includes/ \
+				-I$(top_srcdir)/modules/string/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
 noinst_LTLIBRARIES = libscifunctions-algo.la
 
-libscifunctions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscifunctions_algo_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES)
 libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscifunctions_algo_la_CFLAGS = $(libscifunctions_la_CFLAGS)
+libscifunctions_algo_la_CPPFLAGS = $(libscifunctions_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
-INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
+INCLUDE_FLAGS = $(libscifunctions_la_CPPFLAGS)
 
 libscifunctions_la_LIBADD =   \
 	libscifunctions-algo.la

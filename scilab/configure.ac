@@ -342,13 +342,6 @@ if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
 
-
-if test "$enable_largefile" = "yes"; then
-   CFLAGS="$CFLAGS $LARGEFILE_CFLAGS"
-   CXXFLAGS="$CXXFLAGS $LARGEFILE_CFLAGS"
-   FFLAGS="$FFLAGS $LARGEFILE_CFLAGS"
-fi
-
 ###############################
 ## get the version
 ###############################
@@ -378,7 +371,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -399,54 +392,54 @@ if test -n "$F77"; then
                 ac_save_FFLAGS="$FFLAGS"
                 FFLAGS="$FFLAGS ${flag}"
                 AC_COMPILE_IFELSE([AC_LANG_PROGRAM()],
-                    [AC_MSG_RESULT([yes])],
-                    [AC_MSG_RESULT([no])
-                    FFLAGS="$ac_save_FFLAGS"
-                    ]
+                    [AC_MSG_RESULT([yes])
+                     DEBUG_FFLAGS="${flag}"
+                    ],
+                    [AC_MSG_RESULT([no])]
                 )
                 ;;
         esac
     done
     AC_LANG_POP([Fortran 77])
    else
-      FFLAGS="$FFLAGS -DNDEBUG"
+      DEBUG_FFLAGS="-DNDEBUG"
    fi
       case "$host" in
          x86_64-*-linux*)
-            FFLAGS="$FFLAGS -m64 -fPIC"
+            ARCH_FFLAGS="-m64 -fPIC"
                     ;;
         # Dec Alpha OSF 4
         alpha*-dec-osf4.*)
-          FFLAGS="$FFLAGS -fpe3"
+          ARCH_FFLAGS="-fpe3"
         ;;
         alpha*-dec-osf*)
-            FFLAGS="$FFLAGS -fpe3 -switch nosqrt_recip"
+            ARCH_FFLAGS="-fpe3 -switch nosqrt_recip"
         ;;
         rs6000-*-*)
-            FFLAGS="$FFLAGS -qcharlen=4096"
+            ARCH_FFLAGS="-qcharlen=4096"
             ;;
         mips-*-ultrix*)
-            FFLAGS="-O0 -fpe1"
+            ARCH_FFLAGS="-O0 -fpe1"
         ;;
           *-*-hpux9.*)
-            FFLAGS="$FFLAGS +Obb1200 +E4 -Dhpux"
+            ARCH_FFLAGS="+Obb1200 +E4 -Dhpux"
         ;;
           *-*-hpux10.*)
             if test "$enable_debug_fortran" = yes; then
-                FFLAGS="+E4 +Z +DAportable -Dhpux"
+                ARCH_FFLAGS="+E4 +Z +DAportable -Dhpux"
             else
-                   FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
+                ARCH_FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
             fi
-#            F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
+#            ARCH_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 
             ;;
           *-*-hpux11.*)
            if test "$enable_debug_fortran" = yes; then
-              FFLAGS=" +Z +DAportable -Dhpux"
+              ARCH_FFLAGS=" +Z +DAportable -Dhpux"
              else
-              FFLAGS="+O2 +Z +DAportable -Dhpux"
+              ARCH_FFLAGS="+O2 +Z +DAportable -Dhpux"
            fi
-              FLIBS="-ldld -lnsl -lU77 -lm"
+           ARCH_LDFLAGS="-ldld -lnsl -lU77 -lm"
 
      ;;
       esac
@@ -493,31 +486,34 @@ if test -z "$CXX"; then
 fi
 
 case "$CXX" in
-     g++-* | g++ | ccache*g++ | ccache*g++-* )
-   ## With GNU C++ Compiler
+    g++-* | g++ | ccache*g++ | ccache*g++-* )
+        ## With GNU C++ Compiler
 
-   # enable the code coverage
-   if test "$enable_code_coverage" = yes; then
-    CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage"
-   fi
+        # enable the code coverage
+        if test "$enable_code_coverage" = yes; then
+            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+        fi
 
-   if test "$enable_debug_CXX" = yes; then
-      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
-          case "$host" in
-          *-linux-gnu )
-          # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
-          ;;
-      esac
-   else
-      CXXFLAGS="$CXXFLAGS -DNDEBUG"
-   fi
-   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
-   ;;
-   clang-* | clang)
-           # clang expect an explict declaration
-           LDFLAGS="$LDFLAGS -lstdc++"
-   ;;
+        if test "$enable_debug_CXX" = yes; then
+            DEBUG_CXXFLAGS="-pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
+            case "$host" in
+                *-linux-gnu )
+                    # Only doing that under Linux
+                    DEBUG_CXXFLAGS="$DEBUG_CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
+                ;;
+            esac
+        else
+            DEBUG_CXXFLAGS="-DNDEBUG"
+        fi
+        COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
+        COMPILER_LDFLAGS="-lstdc++"
+    ;;
+
+    clang-* | clang)
+        # clang linker expect an explict declaration
+        # until the http://libcxx.llvm.org/ release, we select the GNU one.
+        COMPILER_LDFLAGS="-lstdc++"
+    ;;
 esac
 
 #### 64 bits detection
@@ -536,74 +532,74 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
+      DEBUG_CFLAGS="-pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
       # used to be -O
       # -D_FORTIFY_SOURCE=2
       case "$host" in
       *-linux-gnu )
       # Only doing that under Linux
-        if test "$enable_debugLinker" = yes; then
+        if test "$enable_debug_linker" = yes; then
             LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
         fi
-          CFLAGS="$CFLAGS -fdiagnostics-show-option -Werror=format-security"
+          DEBUG_CFLAGS="$DEBUG_CFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
           esac
    else
-      CFLAGS="$CFLAGS  -DNDEBUG"
+      DEBUG_CFLAGS="-DNDEBUG"
    fi
-   CFLAGS="$CFLAGS -fno-stack-protector" # bug 3131
 
+   COMPILER_CFLAGS="-fno-stack-protector " # bug 3131
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.
    # Check if linker supports --as-needed and --no-as-needed options
    if $LD --help 2>/dev/null | grep no-as-needed > /dev/null; then
-      LDFLAGS="$LDFLAGS -Wl,--no-as-needed"
+      COMPILER_LDFLAGS="$COMPILER_LDFLAGS -Wl,--no-as-needed"
    fi
 
 
    case "$host" in
      x86_64-*-linux-gnu | x86_64-linux-gnu)
-        CFLAGS="$CFLAGS -DNARROWPROTO -m64"
+        ARCH_CFLAGS="-DNARROWPROTO -m64"
     ;;
      i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-        CFLAGS="$CFLAGS  -DNARROWPROTO"
+        ARCH_CFLAGS="-DNARROWPROTO"
     ;;
      ia64-*-linux-gnu )
-        CFLAGS="$CFLAGS -DNARROWPROTO"
+        ARCH_CFLAGS="-DNARROWPROTO"
     ;;
      alpha-*-linux-gnu)
-        CFLAGS="$CFLAGS  -mieee-with-inexact"
-        LDFLAGS="$LDFLAGS -mieee-with-inexact"
+        ARCH_CFLAGS="-mieee-with-inexact"
+        ARCH_LDFLAGS="-mieee-with-inexact"
     ;;
      powerpc-*-linux-gnu)
-        CFLAGS="$CFLAGS -D_GNU_SOURCE"
+        ARCH_CFLAGS="-D_GNU_SOURCE"
     ;;
      *-*-solaris*)
-        CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
+        ARCH_CFLAGS="-DSVR4 -DSYSV -Dsolaris"
     ;;
    *-*-freebsd*)
-     CFLAGS="$CFLAGS -Dfreebsd"
-     LDFLAGS="$LDFLAGS -lm"
+     ARCH_CFLAGS="-Dfreebsd"
+     ARCH_LDFLAGS="-lm"
      ;;
 
   alpha-*-netbsd*)
-    CFLAGS="$CFLAGS -Dnetbsd -mieee"
-    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+    ARCH_CFLAGS="-Dnetbsd -mieee"
+    ARCH_FFLAGS="-Dnetbsd -mieee"
     ;;
 
   *-*-netbsd*)
-    CFLAGS="$CFLAGS -Dnetbsd"
+    ARCH_CFLAGS="-Dnetbsd"
     ;;
 
   *-*-darwin*)
-    CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
-    CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
-    FFLAGS="$FFLAGS -mmacosx-version-min=10.5"
+    ARCH_CFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_FFLAGS="-mmacosx-version-min=10.5"
     case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
@@ -616,9 +612,9 @@ case "$CC" in
     esac
     CC="$CC -arch $MAC_DETECTED_ARCH"
     CXX="$CXX -arch $MAC_DETECTED_ARCH"
-    LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
-    CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
-    CXXFLAGS=" $CXXFLAGS -I$FINK_PREFIX/include "
+    COMPILER_LDFLAGS="$COMPILER_LDFLAGS -L$FINK_PREFIX/lib/ $ARCH_LDFLAGS"
+    COMPILER_CFLAGS=" $ARCH_CFLAGS -I$FINK_PREFIX/include"
+    COMPILER_CXXFLAGS=" $ARCH_CXXFLAGS -I$FINK_PREFIX/include"
     ;;
 esac
 ;; # end of the gcc case on the $CC
@@ -626,42 +622,42 @@ esac
 
         ## CC compiler (not GCC)
         if test "$enable_debug_C" != yes; then
-             CFLAGS="$CFLAGS -DNDEBUG"
+             ARCH_CFLAGS="-DNDEBUG"
         fi
 
 case "$host" in
 # Dec Alpha OSF 4
   alpha*-dec-osf4.*)
-      CFLAGS="$CFLAGS -std -ieee_with_inexact"
-      LDFLAGS="$LDFLAGS -ieee_with_inexact"
+      ARCH_CFLAGS="-std -ieee_with_inexact"
+      ARCH_LDFLAGS="-ieee_with_inexact"
       ;;
   alpha*-dec-osf*)
-      CFLAGS="$CFLAGS -ieee_with_inexact"
-      LDFLAGS="$LDFLAGS -ieee_with_inexact"
+      ARCH_CFLAGS="-ieee_with_inexact"
+      ARCH_LDFLAGS="-ieee_with_inexact"
       ;;
   rs6000-*-*) # IBM AIX RS 6000 (NO LONGER SUPPORTED)
-    CFLAGS="-Daix -DSYSV"
+    ARCH_CFLAGS="-Daix -DSYSV"
   ;;
   mips-sgi-irix*) # SGI
-    CFLAGS="$CFLAGS -DSYSV -DSVR4"
+    ARCH_CFLAGS="-DSYSV -DSVR4"
   ;;
   *-*-hpux9.*)
-    CFLAGS="$CFLAGS -DSYSV -Dhpux"
+    ARCH_CFLAGS="-DSYSV -Dhpux"
   ;;
   *-*-hpux10.*) # HP 10
     if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -DSYSV -Dhpux"
+      ARCH_CFLAGS="-DSYSV -Dhpux"
     else
-      CFLAGS="$CFLAGS -DSYSV -Dhpux +Z +DAportable"
+      ARCH_CFLAGS="-DSYSV -Dhpux +Z +DAportable"
     fi
   ;;
 
   *-*-hpux11.*) # HP 11
-    CFLAGS="$CFLAGS -DSYSV -Dhpux -Dhppa +Z +DAportable"
+    ARCH_CFLAGS="-DSYSV -Dhpux -Dhppa +Z +DAportable"
   ;;
   *-*-solaris*) # SUN SOLARIS
-    CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris -I/usr/local/include/"
-    LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
+    ARCH_CFLAGS="-DSVR4 -DSYSV -Dsolaris -I/usr/local/include/"
+    ARCH_LDFLAGS="-L/usr/local/lib/"
   ;;
 esac
 ;; # end of not a gcc compiler
@@ -677,14 +673,14 @@ if test "$enable_code_coverage" = yes; then
    if test -z "$GENHTML" ; then
         AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
    fi
-   LDFLAGS="$LDFLAGS -coverage"
+   CODE_COVERAGE_LDFLAGS="-coverage"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
-CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
+SCILIBS_CFLAGS=''
+SCILIBS_CXXFLAGS=''
+SCILIBS_FFLAGS=''
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
@@ -705,9 +701,9 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 
 case "$host" in
      i*86-linux-gnu|i*86-*-linux-gnu)
-        CFLAGS="$CFLAGS -msse"
-        FFLAGS="$FFLAGS -msse"
-        CPPFLAGS="$CPPFLAGS -msse"
+        SSE_CFLAGS="-msse"
+        SSE_FFLAGS="-msse"
+        SSE_CXXFLAGS="-msse"
      ;;
 esac
 
@@ -1767,9 +1763,19 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
-   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
+    WARNING_CFLAGS="-Werror=implicit-function-declaration -O0"
+    WARNING_CXXFLAGS="-Werror=implicit-function-declaration -O0"
 fi
+
+# SCI_*FLAGS contains all defaults values detected on configure
+SCI_CFLAGS=$(echo   $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
+SCI_CXXFLAGS=$(echo $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
+SCI_FFLAGS=$(echo   $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
+SCI_LDFLAGS=$(echo  $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+AC_SUBST(SCI_CFLAGS)
+AC_SUBST(SCI_CXXFLAGS)
+AC_SUBST(SCI_FFLAGS)
+AC_SUBST(SCI_LDFLAGS)
 
 AC_CONFIG_FILES([
 libs/MALLOC/Makefile
@@ -2237,15 +2243,18 @@ echo "  localedir ...... = $localedir"
 echo "  VERSION ........ = $PACKAGE_VERSION"
 echo "  CC ............. = $CC"
 echo "  CFLAGS ......... = $CFLAGS"
-echo "  PCFLAGS ........ = $PCFLAGS"
+echo "  SCI_CFLAGS ..... = $SCI_CFLAGS"
 echo "  DEFS ........... = $DEFS"
 echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
+echo "  SCI_LDFLAGS .... = $SCI_LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
 echo "  CXXFLAGS ....... = $CXXFLAGS"
+echo "  SCI_CXXFLAGS ... = $SCI_CXXFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
+echo "  SCI_FFLAGS ..... = $SCI_FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
 echo ""

@@ -119,10 +119,6 @@ libsciwindows_tools_la_LIBADD =
 am__objects_1 = libsciwindows_tools_la-nowindows_tools.lo
 am_libsciwindows_tools_la_OBJECTS = $(am__objects_1)
 libsciwindows_tools_la_OBJECTS = $(am_libsciwindows_tools_la_OBJECTS)
-libsciwindows_tools_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciwindows_tools_la_CFLAGS) $(CFLAGS) \
-	$(libsciwindows_tools_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libsciwindows_tools_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciwindows_tools_la_rpath = -rpath \
 @MAINTAINER_MODE_TRUE@	$(pkglibdir)
@@ -309,6 +305,10 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCI_CFLAGS = @SCI_CFLAGS@
+SCI_CXXFLAGS = @SCI_CXXFLAGS@
+SCI_FFLAGS = @SCI_FFLAGS@
+SCI_LDFLAGS = @SCI_LDFLAGS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -402,18 +402,18 @@ top_srcdir = @top_srcdir@
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
-libsciwindows_tools_la_CFLAGS = -I$(srcdir)/includes/ \
+libsciwindows_tools_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciwindows_tools.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciwindows_tools.la
-libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
@@ -435,6 +435,16 @@ libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS = $(SCI_FFLAGS) -I$(top_srcdir)/modules/core/includes/
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 # splint options
 SPLINT_OPTIONS = -weak -booltype BOOL
@@ -571,7 +581,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciwindows_tools.la: $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_DEPENDENCIES) $(EXTRA_libsciwindows_tools_la_DEPENDENCIES) 
-	$(libsciwindows_tools_la_LINK) $(am_libsciwindows_tools_la_rpath) $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_LIBADD) $(LIBS)
+	$(LINK) $(am_libsciwindows_tools_la_rpath) $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -603,11 +613,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libsciwindows_tools_la-nowindows_tools.lo: src/nowindows_tools/nowindows_tools.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwindows_tools_la_CFLAGS) $(CFLAGS) -MT libsciwindows_tools_la-nowindows_tools.lo -MD -MP -MF $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciwindows_tools_la-nowindows_tools.lo -MD -MP -MF $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nowindows_tools/nowindows_tools.c' object='libsciwindows_tools_la-nowindows_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwindows_tools_la_CFLAGS) $(CFLAGS) -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

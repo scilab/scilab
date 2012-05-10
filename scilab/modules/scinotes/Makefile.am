@@ -33,42 +33,37 @@ SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 
-SCINOTES_CPP_SOURCES = src/jni/SciNotes.cpp \
+SCINOTES_CXX_SOURCES = src/jni/SciNotes.cpp \
     src/cpp/callscinotes.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_scinotes.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_scinotes.cpp \
 sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
 
-libsciscinotes_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/functions/includes
-
-libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-    -I$(srcdir)/includes/ \
+libsciscinotes_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
-    -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/functions/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
 
 # Without the scinotes module 
-libsciscinotes_disable_la_CFLAGS = -Iincludes/ \
-    -I$(top_srcdir)/modules/output_stream/includes
+libsciscinotes_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    $(AM_CPPFLAGS)
 
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
-libsciscinotes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciscinotes-disable.la
@@ -78,16 +73,15 @@ if GUI
     noinst_LTLIBRARIES = libsciscinotes-algo.la 
 endif
 
-libsciscinotes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciscinotes_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CPP_SOURCES)
-libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
-libsciscinotes_algo_la_CFLAGS = $(libsciscinotes_la_CFLAGS)
+libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CXX_SOURCES)
+libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
 libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCINOTES_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciscinotes_la_CPPFLAGS)
 
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 

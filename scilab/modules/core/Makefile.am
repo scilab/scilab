@@ -93,7 +93,7 @@ src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
 src/c/windowsChangeManagement.c
 
-CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
+CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp
 
@@ -276,36 +276,32 @@ sci_gateway/fortran/sci_f_iserror.f \
 sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
 
-libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(top_srcdir)/modules/intersci/includes \
-	-I$(top_srcdir)/modules/call_scilab/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/action_binding/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/io/includes \
-	-I$(top_srcdir)/modules/tclsci/includes \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/modules/elementary_functions/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/console/includes \
-	-I$(top_srcdir)/modules/history_manager/includes \
-	$(XML_FLAGS)
-
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/libs/MALLOC/includes/
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(top_srcdir)/modules/intersci/includes/ \
+	-I$(top_srcdir)/modules/call_scilab/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/io/includes/ \
+	-I$(top_srcdir)/modules/tclsci/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	$(XML_FLAGS) \
+    $(AM_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
-libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
+libscicore_la_CPPFLAGS += $(TCL_INC_PATH) \
 		                  $(TK_INC_PATH)
 endif
 
@@ -317,16 +313,15 @@ noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 endif
 
 
-libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicore_la_CPPFLAGS)
 
-libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)
+libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CXX_SOURCES) $(CORE_FORTRAN_SOURCES)
 libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscicore_algo_la_CFLAGS = $(libscicore_la_CFLAGS)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
