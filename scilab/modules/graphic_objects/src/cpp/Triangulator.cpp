@@ -397,7 +397,7 @@ void Triangulator::initialize(void)
 {
     double area;
 
-    numPoints = inputPoints.size();
+    numPoints = (int)inputPoints.size();
 
     determineSmallestAxis();
     fillPoints();
@@ -470,7 +470,7 @@ void Triangulator::triangulate(void)
 
 int Triangulator::getNumberTriangles(void)
 {
-    return (triangleIndices.size() / 3);
+    return (int)(triangleIndices.size() / 3);
 }
 
 int* Triangulator::getIndices(void)

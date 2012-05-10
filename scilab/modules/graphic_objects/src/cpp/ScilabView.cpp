@@ -85,7 +85,7 @@ bool ScilabView::existsFigureId(int id)
 void ScilabView::getFiguresId(int ids[])
 {
     __figureList_iterator it;
-    int i = m_figureList.size() - 1;
+    int i = (int)(m_figureList.size() - 1);
 
     for (it = m_figureList.begin(); it != m_figureList.end(); ++it, --i)
     {
@@ -96,7 +96,7 @@ void ScilabView::getFiguresId(int ids[])
 
 int ScilabView::getNbFigure(void)
 {
-    return m_figureList.size();
+    return (int)m_figureList.size();
 
 }
 
