@@ -392,7 +392,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
          * fill the context
          */
         final String[] realCtx = from.getContext();
-        if (realCtx == null || realCtx.length == 0 || (realCtx.length == 1 && (realCtx[0] == null || realCtx[0].isEmpty()))) {
+        if (realCtx != null && (realCtx.length > 1 || (realCtx.length == 1 && (realCtx[0] != null || realCtx[0].isEmpty())))) {
             final String[][] ctx = new String[realCtx.length][];
             for (int i = 0; i < ctx.length; i++) {
                 ctx[i] = new String[] { realCtx[i] };
