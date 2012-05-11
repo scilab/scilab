@@ -1421,6 +1421,8 @@ CACSD and Signal Processing
 
 * Bug #10169 fixed - Bad clipping option in evans.
 
+* Bug #11092 fixed - Incorrect argument check in h_inf
+
 
 Misc
 =====
