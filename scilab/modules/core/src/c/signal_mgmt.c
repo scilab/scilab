@@ -165,7 +165,17 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
-    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), strsignal(signum), signum);
+    /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
+    char* str;
+    if (signum == 11)
+    {
+        str = "Segmentation fault";
+    }
+    else
+    {
+        str = strsignal(signum);
+    }
+    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
 #else
     ret = snprintf(tmp, size, HOSTFORMAT "Signal: %d\n", stacktrace_hostname, getpid(), signum);
 #endif
