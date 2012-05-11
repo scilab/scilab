@@ -354,9 +354,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
                 drawingTools.clearDepthBuffer();
 
-                if (figure.getImmediateDrawing()) {
-                    askAcceptVisitor(figure.getChildren());
-                }
+                askAcceptVisitor(figure.getChildren());
             }
         }
     }
@@ -766,8 +764,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
                 }
-                canvas.redraw();
+
+                if (isImmediateDrawing(id)) {
+                    canvas.redraw();
+                }
             }
+
+            if (!isImmediateDrawing(id) && GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__.equals(property)) {
+                canvas.waitImage();
+            }
+
         } catch (OutOfMemoryException e) {
             invalidate(GraphicController.getController().getObjectFromId(id), e);
         } catch (ObjectRemovedException e) {
@@ -813,6 +819,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private boolean isImmediateDrawing(String id) {
+        String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        if (parentId == null) {
+            return false;
+        } else {
+            Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
+            return (b == null) ? false : b;
         }
     }
 
