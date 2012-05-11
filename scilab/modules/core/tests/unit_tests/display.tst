@@ -38,20 +38,20 @@ d3=[1+z**10 z**15];
 //display of rationals
 r=num./den
 r'
-tlist('r',d,n)
-tlist('r',n,d)
-tlist('r',d2,n2)
-tlist('r',n2,d2)
-tlist('r',den,num)
-tlist('r',num,den)
-tlist('r',p1,q1)
-tlist('r',q1,p1)
-tlist('r',p,q)
-tlist('r',q,p)
-tlist('r',p,z)
-tlist('r',z,p)
-tlist('r',d1,n1)
-tlist('r',n1,d1)
+rlist(d,n)
+rlist(n,d)
+rlist(d2,n2)
+rlist(n2,d2)
+rlist(den,num)
+rlist(num,den)
+rlist(p1,q1)
+rlist(q1,p1)
+rlist(p,q)
+rlist(q,p)
+rlist(p,z)
+rlist(z,p)
+rlist(d1,n1)
+rlist(n1,d1)
 //display of strings
 digits='abcdefghijklmnopqrstuvwxyz'
 numbers='1234567890'
@@ -68,7 +68,7 @@ ans';
 list()
 list(1,2,3)
 list(list(1,list()),2)
-list(tlist('r',q,p),1.23)
+list(rlist(q,p),1.23)
 // overloading of display
 1:$
 list(1,1:$)
