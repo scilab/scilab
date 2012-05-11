@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -46,7 +46,7 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMenu {
 
     private static final long serialVersionUID = 1L;
-    
+
     private CommonCallBack callback;
     private MouseListener[] nativeMouseListeners;
     private MouseListener customedMouseListener;
@@ -74,7 +74,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
     /**
      * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
      * a LaTeX string, in this case the setIcon method of this object is used.
-     */ 
+     */
     public void setText(String text) {
         this.text = text;
         if (ScilabSpecialTextUtilities.setText(this, text)) {
@@ -275,7 +275,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      */
     public void setCallback(CommonCallBack cb) {
         this.callback = cb;
-        
+
         // Manage callback removing (callback string == "")
         if (cb.getCommand().equals("")) {
             // Back to native listeners
@@ -287,12 +287,23 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
             return;
         }
 
-        /* Remove Java MouseListeners if not already done */
-        /* Save them so that they can be put back */
-        if (nativeMouseListeners == null) {
-            nativeMouseListeners = getMouseListeners();
-            for (int i = 0; i < nativeMouseListeners.length; i++) {
-                removeMouseListener(nativeMouseListeners[i]);
+        if (getItemCount() == 0) {
+            /* No children: managed as a button for callbacks */
+            /* Remove Java MouseListeners if not already done */
+            /* Save them so that they can be put back */
+            if (nativeMouseListeners == null) {
+                nativeMouseListeners = getMouseListeners();
+                for (int i = 0; i < nativeMouseListeners.length; i++) {
+                    removeMouseListener(nativeMouseListeners[i]);
+                }
+            }
+        } else {
+            /* With children */
+            /* Back to native listeners if were already removed */
+            if (nativeMouseListeners != null) {
+                for (int i = 0; i < nativeMouseListeners.length; i++) {
+                    addMouseListener(nativeMouseListeners[i]);
+                }
             }
         }
 
@@ -376,7 +387,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      */
     public void setEnabled(boolean status) {
         super.setEnabled(status);
-        /* (Des)Activate the callback */ 
+        /* (Des)Activate the callback */
         if (callback != null) {
             if (status) {
                 removeMouseListener(customedMouseListener); /* To be sure the callback is not added two times */
