@@ -74,10 +74,10 @@
         <link linkend="boolean_writing_API">boolean writing API</link>,
       </member>
       <member>
-        <link linkend="bsparse_reading_API">bsparse reading API</link>,
+        <link linkend="bsparse_reading_API">boolean sparse reading API</link>,
       </member>
       <member>
-        <link linkend="bsparse_writing_API">bsparse writing API</link>,
+        <link linkend="bsparse_writing_API">boolean sparse writing API</link>,
       </member>
       <member>
         <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
@@ -148,10 +148,10 @@
         <link linkend="list_boolean_writing_API">list boolean writing API</link>
       </member>
       <member>
-        <link linkend="list_bsparse_reading_API">list bsparse reading API</link>
+        <link linkend="list_bsparse_reading_API">list boolean sparse reading API</link>
       </member>
       <member>
-        <link linkend="list_bsparse_writing_API">list bsparse writing API</link>
+        <link linkend="list_bsparse_writing_API">list boolean sparse writing API</link>
       </member>
       <member>
         <link linkend="list_createlist_API">list_createlist API</link>
