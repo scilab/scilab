@@ -22,7 +22,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
+    <synopsis>event_handler_function(win,x,y,ibut)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>

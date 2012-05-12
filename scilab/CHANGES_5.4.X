@@ -239,6 +239,8 @@ Documentation
 
 * Bug #11010 fixed - Examples of preconditioning added in gmres documentation.
 
+* Bug #11090 fixed - Fix a typo in the documentation of event_handler_function.
+
 
 Xcos
 ====
