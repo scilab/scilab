@@ -22,7 +22,7 @@ assert_checkerror( "qmr([1 2;3 4])", "%s: Wrong number of input arguments: At le
 assert_checkerror( "qmr([1 2;3 4;5 6],[1;1;1])", "%s: Wrong size for input argument #%d: Square matrix expected.\n", 10000, "qmr", 1);
 assert_checkerror( "qmr([1 2;3 4;5 6],[1 1 1])", "%s: Wrong size for input argument #%d: Square matrix expected.\n", 10000, "qmr", 1);
 assert_checkerror( "qmr([1 2;3 4],[1 1])", "%s: Wrong size for input argument #%d: Column vector expected.\n", 10000, "qmr", 2);
-assert_checkerror( "qmr([%t %t;%t %t],[1;1])", "%s: Wrong type for input argument #%d : A must be a real or complex matrix or a sparse matrix or a function.\n", 10000, "qmr", 1);
+assert_checkerror( "qmr([%t %t;%t %t],[1;1])", "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse matrix or a function expected.\n", 10000, "qmr", 1);
 assert_checkerror( "qmr([],[])", "%s: Wrong size for input argument #%d: Column vector expected.\n", 10000, "qmr", 2);
 
 // 2. Test with 2 input arguments and all output arguments

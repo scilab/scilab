@@ -70,7 +70,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   case 13 then
     cpt=0;
   else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d : A must be a real or complex matrix or a sparse matrix or a function.\n"),"qmr",1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d : A real or complex matrix or a sparse matrix or a function expected.\n"),"qmr",1));
   end
 
   // If A is a matrix (dense or sparse)
