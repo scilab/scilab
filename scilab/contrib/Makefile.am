@@ -50,6 +50,7 @@ toolbox_skeleton/sci_gateway/fortran/builder_gateway_fortran.sce \
 toolbox_skeleton/sci_gateway/fortran/sci_fsum.c \
 toolbox_skeleton/sci_gateway/c/sci_csub.c \
 toolbox_skeleton/sci_gateway/c/sci_multiplybypi.c \
+toolbox_skeleton/sci_gateway/c/sci_foo.c \
 toolbox_skeleton/sci_gateway/c/sci_csum.c \
 toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
