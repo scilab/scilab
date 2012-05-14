@@ -64,6 +64,7 @@ public abstract class FigureInteraction {
                     Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
                     if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
                         underlyingAxes = (Axes) child;
+                        return underlyingAxes;
                     }
                 }
             }
