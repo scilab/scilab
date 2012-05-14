@@ -326,7 +326,7 @@ Xcos
 
 * Bug #10848 fixed - The first block Drag'n Drop produced an exception.
 
-* Bug #10889 fixed - Exception about block highlighters was thrown by Scinotes.
+* Bug #11094 fixed - Image creation of blocks did not use xinit / xend.
 
 
 Compilation
@@ -410,6 +410,8 @@ Scinotes
                      restoring.
 
 * Bug #10647 fixed - An error message did not repect Scilab localization standard.
+
+* Bug #10889 fixed - Exception about block highlighters was thrown by Scinotes.
 
 
 Performances

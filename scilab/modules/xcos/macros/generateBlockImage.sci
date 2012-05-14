@@ -16,14 +16,12 @@
 // @param path output file path
 // @param[opt] filename the file name to use (without extension).
 //             The default is `block.gui'.
-// @param[opt] handle the graphical handle to use
-//             The default is to get the current handle with gcf().
 // @param[opt] imageType the exported image type. only "svg", "gif", "jpg" is
 //             supported. The default is to use "gif".
 // @param[opt] withPort true if the exported image should contains the port,
 //             false otherwise. The default is value is true.
 // @return status %T if the operation has been sucessfull, %F otherwise.
-function status = generateBlockImage(block, path, filename, handle, imageType, withPort)
+function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
     
     // call loadXcosLibs if not loaded
@@ -65,18 +63,11 @@ function status = generateBlockImage(block, path, filename, handle, imageType, w
         outFile = path + "/" + filename + "." + imageType;
     end
     
-    // generate a default graphic or clear the existing one
-    if exists("handle", 'l') == 0 then
-        handle = gcf();
-        deleteHandle = %t;
-    else
-        if typeof(handle) <> "handle" then
-            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": handle type expected.\n"), "generateBlockImage", "handle"));
-        end
-        
-        clf(handle);
-        deleteHandle = %f;
-    end
+    // set export properties before creating any graphic object (including any figure)
+    previous_driver = driver(imageType);
+    xinit(outFile);
+    
+    handle = gcf();
     
     if ~withPort then
         prot = funcprot();
@@ -114,18 +105,12 @@ function status = generateBlockImage(block, path, filename, handle, imageType, w
         return;
     end
 
-    if imageType == "svg" then
-        xs2svg(handle.figure_id, outFile);
-    elseif imageType == "gif" then
-        xs2gif(handle.figure_id, outFile);
-    elseif imageType == "jpg" then
-        xs2jpg(handle.figure_id, outFile);
-    end
+    // export
+    xend();
     
     // post operations
-    if deleteHandle then
-        delete(handle);
-    end
+    driver(previous_driver);
+
     status = %t;
 endfunction
 
