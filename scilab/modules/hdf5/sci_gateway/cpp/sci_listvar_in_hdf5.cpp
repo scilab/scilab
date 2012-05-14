@@ -35,10 +35,10 @@ typedef struct __VAR_INFO__
     int iType;
     int iSize;
     int iDims;
-    std::vector<int> vectDims;
+    int piDims[2];
 
     __VAR_INFO__() : iType(0), iSize(0), iDims(0) {}
-}VarInfo;
+} VarInfo;
 
 static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
 static bool read_double(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
@@ -72,42 +72,42 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 #endif
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
     iFile = openHDF5File(pstFile);
-    if(iFile < 0)
+    if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
         return 1;
     }
 
     iNbItem = getVariableNames(iFile, NULL);
-    if(iNbItem != 0)
+    if (iNbItem != 0)
     {
         char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
         pInfo = (VarInfo*)MALLOC(iNbItem * sizeof(VarInfo));
 
-        if(Lhs == 1)
+        if (Lhs == 1)
         {
             sciprint("Name                     Type           Size            Bytes\n");
             sciprint("---------------------------------------------------------------\n");
         }
 
         iNbItem = getVariableNames(iFile, pstVarNameList);
-        for(int i = 0; i < iNbItem; i++)
+        for (int i = 0; i < iNbItem; i++)
         {
             int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
-            if(iDataSetId == 0)
+            if (iDataSetId == 0)
             {
                 bRet = false;
                 break;
@@ -115,24 +115,25 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
             strcpy(pInfo[i].varName, pstVarNameList[i]);
             FREE(pstVarNameList[i]);
-            if(read_data(iDataSetId, 0, NULL, &pInfo[i]) == false)
+            if (read_data(iDataSetId, 0, NULL, &pInfo[i]) == false)
             {
                 bRet = false;
                 break;
             }
 
-            if(Lhs == 1)
+            if (Lhs == 1)
             {
                 sciprint("%s\n", pInfo[i].pstInfo);
             }
         }
     }
     else
-    {//no variable returms [] for each Lhs
-        for(int i = 0 ; i < Lhs ; i++)
+    {
+        //no variable returms [] for each Lhs
+        for (int i = 0 ; i < Lhs ; i++)
         {
             createEmptyMatrix(pvApiCtx, Rhs + i + 1);
-            LhsVar(i+1) = Rhs + i + 1;
+            LhsVar(i + 1) = Rhs + i + 1;
         }
 
         PutLhsVar();
@@ -141,14 +142,14 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
     //1st Lhs
     char** pstVarName = (char**)MALLOC(sizeof(char*) * iNbItem);
-    for(int i = 0 ; i < iNbItem ; i++)
+    for (int i = 0 ; i < iNbItem ; i++)
     {
         pstVarName[i] = pInfo[i].varName;
     }
 
     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iNbItem, 1, pstVarName);
     FREE(pstVarName);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
@@ -156,48 +157,48 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
     LhsVar(1) = Rhs + 1;
 
-    if(Lhs > 1)
+    if (Lhs > 1)
     {
         //2nd Lhs
         double* pdblType;
         sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iNbItem, 1, &pdblType);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 1;
         }
 
-        for(int i = 0 ; i < iNbItem ; i++)
+        for (int i = 0 ; i < iNbItem ; i++)
         {
             pdblType[i] = pInfo[i].iType;
         }
 
         LhsVar(2) = Rhs + 2;
 
-        if(Lhs > 2)
+        if (Lhs > 2)
         {
             //3rd Lhs
             int* pList = NULL;
             sciErr = createList(pvApiCtx, Rhs + 3, iNbItem, &pList);
-            for(int i = 0 ; i < iNbItem ; i++)
+            for (int i = 0 ; i < iNbItem ; i++)
             {
                 double* pdblDims = NULL;
                 allocMatrixOfDoubleInList(pvApiCtx, Rhs + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
-                for(int j = 0 ; j < pInfo[i].iDims ; j++)
+                for (int j = 0 ; j < pInfo[i].iDims ; j++)
                 {
-                    pdblDims[j] = pInfo[i].vectDims[j];
+                    pdblDims[j] = pInfo[i].piDims[j];
                 }
             }
 
             LhsVar(3) = Rhs + 3;
         }
 
-        if(Lhs > 3)
+        if (Lhs > 3)
         {
             //4th Lhs
             double* pdblSize;
             sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 4, iNbItem, 1, &pdblSize);
-            for(int i = 0 ; i < iNbItem ; i++)
+            for (int i = 0 ; i < iNbItem ; i++)
             {
                 pdblSize[i] = pInfo[i].iSize;
             }
@@ -219,59 +220,59 @@ static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
     _pInfo->iType = getScilabTypeFromDataSet(_iDatasetId);
     switch (_pInfo->iType)
     {
-    case sci_matrix:
+        case sci_matrix:
         {
             bRet = read_double(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_strings:
+        case sci_strings:
         {
             bRet = read_string(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_list:
-    case sci_tlist:
-    case sci_mlist:
+        case sci_list:
+        case sci_tlist:
+        case sci_mlist:
         {
             bRet = read_list(_iDatasetId, _pInfo->iType, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_boolean:
+        case sci_boolean:
         {
             bRet = read_boolean(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_poly:
+        case sci_poly:
         {
             bRet = read_poly(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_ints:
+        case sci_ints:
         {
             bRet = read_integer(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_sparse:
+        case sci_sparse:
         {
             bRet = read_sparse(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_boolean_sparse:
+        case sci_boolean_sparse:
         {
             bRet = read_boolean_sparse(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_void:             //void item only on list variable
+        case sci_void:             //void item only on list variable
         {
             bRet = read_void(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    case sci_undefined:        //undefined item only on list variable
+        case sci_undefined:        //undefined item only on list variable
         {
             bRet = read_undefined(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-    default:
+        default:
         {
             Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), "listvar_in_hdf5");
             break;
@@ -292,8 +293,8 @@ static bool read_double(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     iComplex = isComplexData(_iDatasetId);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
     _pInfo->iSize = (2 + (iRows * iCols * (iComplex + 1))) * 8;
 
     generateInfo(_pInfo, "constant");
@@ -310,14 +311,14 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
 
     pstData = (char **)MALLOC(iRows * iCols * sizeof(char *));
     iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
 
 
-    for(int i = 0 ; i < iRows * iCols ; i++)
+    for (int i = 0 ; i < iRows * iCols ; i++)
     {
         _pInfo->iSize += (int)strlen(pstData[i]) * 4;
         FREE(pstData[i]);
@@ -342,8 +343,8 @@ static bool read_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, VarInf
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
     _pInfo->iSize = (3 + iRows * iCols) * 4;
 
     generateInfo(_pInfo, "boolean");
@@ -361,9 +362,9 @@ static bool read_integer(int _iDatasetId, int _iItemPos, int *_piAddress, VarInf
     iRet = getDatasetPrecision(_iDatasetId, &iPrec);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
-    _pInfo->iSize = 16 + iRows * iCols * (iPrec%10);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
+    _pInfo->iSize = 16 + iRows * iCols * (iPrec % 10);
 
     generateInfo(_pInfo, "integer");
     return true;
@@ -386,9 +387,9 @@ static bool read_sparse(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     iComplex = isComplexData(_iDatasetId);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
-    _pInfo->iSize = 20 + iRows * 4 + iNbItem * 4 + (iNbItem * (iComplex+1) * 8);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
+    _pInfo->iSize = 20 + iRows * 4 + iNbItem * 4 + (iNbItem * (iComplex + 1) * 8);
 
     generateInfo(_pInfo, "sparse");
     return true;
@@ -411,8 +412,8 @@ static bool read_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddress,
     iComplex = isComplexData(_iDatasetId);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
     _pInfo->iSize = 20 + iRows * 4 + iNbItem * 4;
 
     generateInfo(_pInfo, "boolean sparse");
@@ -439,8 +440,8 @@ static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
     iComplex = isComplexData(_iDatasetId);
 
     _pInfo->iDims = 2;
-    _pInfo->vectDims.push_back(iRows);
-    _pInfo->vectDims.push_back(iCols);
+    _pInfo->piDims[0] = iRows;
+    _pInfo->piDims[1] = iCols;
     _pInfo->iSize = 8 * 4 + (iRows * iCols + 1) * 4;
 
     if (iComplex)
@@ -457,11 +458,11 @@ static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
         iRet = readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
     }
 
-    for(int i = 0 ; i < iRows * iCols ; i++)
+    for (int i = 0 ; i < iRows * iCols ; i++)
     {
         _pInfo->iSize += piNbCoef[i] * 8 * (iComplex + 1);
         FREE(pdblReal[i]);
-        if(iComplex)
+        if (iComplex)
         {
             FREE(pdblImg[i]);
         }
@@ -469,11 +470,11 @@ static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
 
     FREE(piNbCoef);
     FREE(pdblReal);
-    if(iComplex)
+    if (iComplex)
     {
         FREE(pdblImg);
     }
-    
+
     generateInfo(_pInfo, "polynomial");
     return true;
 }
@@ -492,7 +493,8 @@ static bool read_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piAdd
     }
 
     if (iItems == 0)
-    {                           //special case for empty list
+    {
+        //special case for empty list
     }
     else
     {
@@ -502,12 +504,12 @@ static bool read_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piAdd
             return false;
         }
     }
-
+    //_pInfo = (VarInfo*)MALLOC(sizeof(VarInfo));
     _pInfo->iDims = 1;
-    _pInfo->vectDims.push_back(iItems);
+    _pInfo->piDims[0] = iItems;
     _pInfo->iSize = (2 + iItems + 1) * 4;
 
-    for(int i = 0; i < iItems; i++)
+    for (int i = 0; i < iItems; i++)
     {
         int iItemDataset = 0;
 
@@ -526,15 +528,15 @@ static bool read_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piAdd
         _pInfo->iSize += info.iSize;
     }
 
-    if(_iVarType == sci_list)
+    if (_iVarType == sci_list)
     {
         generateInfo(_pInfo, "list");
     }
-    else if(_iVarType == sci_tlist)
+    else if (_iVarType == sci_tlist)
     {
         generateInfo(_pInfo, "tlist");
     }
-    else if(_iVarType == sci_mlist)
+    else if (_iVarType == sci_mlist)
     {
         generateInfo(_pInfo, "mlist");
     }
@@ -558,13 +560,13 @@ static void generateInfo(VarInfo* _pInfo, const char* _pstType)
 {
     char pstSize[17];
 
-    if(_pInfo->iDims == 2)
+    if (_pInfo->iDims == 2)
     {
-        sprintf(pstSize, "%d by %d", _pInfo->vectDims[0], _pInfo->vectDims[1]);
+        sprintf(pstSize, "%d by %d", _pInfo->piDims[0], _pInfo->piDims[1]);
     }
     else
     {
-        sprintf(pstSize, "%d", _pInfo->vectDims[0]);
+        sprintf(pstSize, "%d", _pInfo->piDims[0]);
     }
     sprintf(_pInfo->pstInfo, "%-*s%-*s%-*s%-*d", 25, _pInfo->varName, 15, _pstType, 16, pstSize, 10, _pInfo->iSize);
 }
