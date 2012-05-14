@@ -143,8 +143,6 @@ ja_JP.DescriptionAtoms =ATOMS
 ja_JP.DescriptionHelpScilabCHM =Scilab Help
 ja_JP.ScilabCHM =modules\helptools\chm\scilab_en_US_help.chm
 ;
-ja_JP.DescriptionHelpScicosCHM =Scicos Help
-ja_JP.ScicosCHM =modules\scicos\chm\scilab_en_US_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;

@@ -143,8 +143,6 @@ es_ES.DescriptionAtoms =ATOMS
 es_ES.DescriptionHelpScilabCHM =Scilab Help
 es_ES.ScilabCHM =modules\helptools\chm\scilab_en_US_help.chm
 ;
-es_ES.DescriptionHelpScicosCHM =Scicos Help
-es_ES.ScicosCHM =modules\scicos\chm\scilab_en_US_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;
