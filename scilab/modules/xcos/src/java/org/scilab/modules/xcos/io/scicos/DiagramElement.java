@@ -401,7 +401,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Check the version if applicable
          */
-        final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
+        final String scicosVersion;
+        if (base.size() > VERSION_INDEX) {
+            scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
+        } else {
+            scicosVersion = "";
+        }
         final boolean versionIsValid = VERSIONS.contains(scicosVersion);
         return typeIsValid && versionIsValid;
     }
