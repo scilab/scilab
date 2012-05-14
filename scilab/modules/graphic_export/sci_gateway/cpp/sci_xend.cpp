@@ -25,16 +25,28 @@ extern "C"
 #include "Driver.hxx"
 
 /*--------------------------------------------------------------------------*/
-int sci_xend(char * fname, unsigned long fname_len )
+int sci_xend(char * fname, unsigned long fname_len)
 {
-    CheckRhs(0, 0);
+    CheckInputArgument(pvApiCtx, 0, 0);
 
-    org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), ScilabView::getCurrentFigure());
-    ScilabView::deleteObject(ScilabView::getCurrentFigure());
-    org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
+    char * uid = ScilabView::getCurrentFigure();
+
+    if (uid)
+    {
+        char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
+        ScilabView::deleteObject(uid);
+        org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
+
+        if (*ret != '\0')
+        {
+            Scierror(999, _("%s: An error occured: %s\n"), fname, ret);
+            return 0;
+        }
+    }
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

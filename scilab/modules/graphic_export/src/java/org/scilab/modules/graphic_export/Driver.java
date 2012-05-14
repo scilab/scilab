@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_export;
 
+import org.scilab.modules.localization.Messages;
+
 /**
  * Class to map driver function
  *
@@ -56,9 +58,18 @@ public class Driver {
      * Export the current figure
      * @param uid the uid of the current figure
      */
-    public static void end(String uid) {
-        if (!driver.equalsIgnoreCase("X11") && !driver.equalsIgnoreCase("Rec")) {
-            FileExporter.fileExport(uid, filename, driver, -1, 0);
+    public static String end(String uid) {
+        if (filename == null) {
+            return Messages.gettext("xinit must be called before xend.");
         }
+
+        if (!driver.equalsIgnoreCase("X11") && !driver.equalsIgnoreCase("Rec")) {
+            String ret = FileExporter.fileExport(uid, filename, driver, -1, 0);
+            filename = null;
+
+            return ret;
+        }
+
+        return "";
     }
 }

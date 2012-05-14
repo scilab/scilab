@@ -137,6 +137,10 @@ public class Export {
      * @return the export status
      */
     public static int exportVectorial(String uid, int type, String fileName, ExportParams params) {
+        if (fileName == null) {
+            return INVALID_FILE;
+        }
+
         File f = new File(fileName);
         int ret = Utils.checkWritePermission(f);
         if (ret != SUCCESS) {
@@ -196,6 +200,10 @@ public class Export {
      * @return the export status
      */
     public static int exportBitmap(String uid, int type, String fileName, boolean fromScreen, ExportParams params) {
+        if (fileName == null) {
+            return INVALID_FILE;
+        }
+
         File f = new File(fileName);
         int ret = Utils.checkWritePermission(f);
         if (ret != SUCCESS) {

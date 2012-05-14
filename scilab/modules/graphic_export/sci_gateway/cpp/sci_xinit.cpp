@@ -17,6 +17,7 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "expandPathVariable.h"
+#include "MALLOC.h"
 
 #include "gw_graphic_export.h"
 }
@@ -24,14 +25,14 @@ extern "C"
 #include "Driver.hxx"
 
 /*--------------------------------------------------------------------------*/
-int sci_xinit(char * fname, unsigned long fname_len )
+int sci_xinit(char * fname, unsigned long fname_len)
 {
     SciErr err;
     int * addr = 0;
     char * path = 0;
     char * realPath = 0;
 
-    CheckRhs(1, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -55,11 +56,22 @@ int sci_xinit(char * fname, unsigned long fname_len )
 
     realPath = expandPathVariable(path);
 
-    org_scilab_modules_graphic_export::Driver::setPath(getScilabJavaVM(), realPath);
+    if (realPath)
+    {
+        org_scilab_modules_graphic_export::Driver::setPath(getScilabJavaVM(), realPath);
+        FREE(realPath);
+    }
+    else
+    {
+        Scierror(999, _("%s: Invalid path: %s.\n"), fname, path);
+        return 0;
+    }
+
     freeAllocatedSingleString(path);
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

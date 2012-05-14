@@ -14,6 +14,8 @@
 
 package org.scilab.modules.graphic_export;
 
+import org.scilab.modules.localization.Messages;
+
 /**
  * Static class used to create file export of graphic figures
  * @author Jean-Baptiste Silvy
@@ -47,9 +49,9 @@ public class FileExporter {
         case Export.SUCCESS :
             return "";
         case Export.IOEXCEPTION_ERROR :
-            return "Unable to create export file, permission denied.";
+            return Messages.gettext("Unable to create export file, permission denied.");
         case Export.INVALID_FILE :
-            return "Unable to create export file, invalid file.";
+            return Messages.gettext("Unable to create export file, invalid file.");
         default :
             return "";
         }
