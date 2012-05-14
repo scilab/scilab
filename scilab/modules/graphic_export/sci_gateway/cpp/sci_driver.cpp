@@ -33,13 +33,19 @@ extern "C"
 int sci_driver(char * fname, unsigned long fname_len )
 {
     SciErr err;
-    int * addr = 0;
-    char * driver = 0;
+    int * addr = NULL;
+    char * driver = NULL;
+    char * previous_driver = NULL;
     bool ok = true;
 
     CheckRhs(0, 1);
 
-    if (Rhs == 1) // Change driver
+    // Get current driver
+    previous_driver = org_scilab_modules_graphic_export::Driver::getDriver(getScilabJavaVM());
+    createSingleString(pvApiCtx, Rhs + 1, previous_driver);
+    freeAllocatedSingleString(previous_driver);
+
+    if (Rhs == 1) // Change driver if applicable
     {
         err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
         if (err.iErr)
@@ -71,16 +77,7 @@ int sci_driver(char * fname, unsigned long fname_len )
 
         org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), strcasecmp(driver, "X11") && strcasecmp(driver, "Rec"));
 
-        createSingleString(pvApiCtx, Rhs + 1, driver);
-
         freeAllocatedSingleString(driver);
-    }
-
-    if (Rhs == 0) // Get current driver
-    {
-        driver = org_scilab_modules_graphic_export::Driver::getDriver(getScilabJavaVM());
-
-        createSingleString(pvApiCtx, Rhs + 1, driver);
     }
 
     LhsVar(1) = Rhs + 1;
