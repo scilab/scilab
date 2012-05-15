@@ -503,6 +503,8 @@ Bug fixes
 
 * Bug #7490 fixed - %inf had not always same display.
 
+* Bug #7289 fixed - The menu handle was still valid after calling delmenu(console_menu_handle).
+
 * Bug #7779 fixed - genlib did not check input arguments and did not use current
                     path as default.
 
