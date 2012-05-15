@@ -210,13 +210,15 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1), "window") == 0 || strcmp(cstk(l1), "figure") == 0 )
     {
         // Find if window already exists, if not create a new one
-        if (getObjectFromHandle(x[0]) == NULL)
+        int iID = x[0];
+        char *pFigureUID = getFigureFromIndex(iID);
+        if (pFigureUID == NULL)
         {
-            int iID = x[0];
-            char *pFigureUID = createNewFigureWithAxes();
+            pFigureUID = createNewFigureWithAxes();
             setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
             setCurrentFigure(pFigureUID);
         }
+        setCurrentFigure(pFigureUID);
     }
     else if (( strcmp(cstk(l1), "foreground") == 0) || (strcmp(cstk(l1), "color") == 0) || ( strcmp(cstk(l1), "pattern") == 0) )
     {
@@ -265,7 +267,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "wpos") == 0)
     {
-       int figurePosition[2];
+        int figurePosition[2];
         if (Rhs != 2)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
@@ -273,9 +275,9 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         getOrCreateDefaultSubwin();
 
-       figurePosition[0] = x[0];
-       figurePosition[1] = x[1];
-       setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
+        figurePosition[0] = x[0];
+        figurePosition[1] = x[1];
+        setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
     }
     else if ( strcmp(cstk(l1), "wpdim") == 0 || strcmp(cstk(l1), "wdim") == 0)
     {
@@ -287,9 +289,9 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         getOrCreateDefaultSubwin();
 
-       figureSize[0] = x[0];
-       figureSize[1] = x[1];
-       setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
+        figureSize[0] = x[0];
+        figureSize[1] = x[1];
+        setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
     } /*Ajout A.Djalel le 10/11/03 */
     else if ( strcmp(cstk(l1), "pixmap") == 0)
     {
