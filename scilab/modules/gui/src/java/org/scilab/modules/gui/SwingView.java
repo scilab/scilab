@@ -720,7 +720,15 @@ public final class SwingView implements GraphicView {
 
                 /* Remove an uimenu */
                 if (childType.equals(__GO_UIMENU__)) {
-                    ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
+                    TypedObject childAsTypedObject = allObjects.get(childId);
+                    switch (childAsTypedObject.getType()) {
+                        case UiCheckedMenu:
+                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
+                            break;
+                        default: /* UiParentMenu */
+                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
+                            break;
+                    }
                     needRevalidate = true;
                 }
             }
