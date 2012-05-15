@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-17 11:10+0100\n"
+"Revision-Date: 2012-05-15 09:27+0100\n"
 
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 53
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 87
@@ -75,7 +75,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xmlValidationFile.cpp, line: 51
 # File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 54
 # File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 78
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 143
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 144
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 57
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 94
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 117
@@ -376,7 +376,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_xmlRead.cpp, line: 80
 # File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 78
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 149
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 151
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -460,19 +460,19 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 123
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 160
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 162
 #, c-format
 msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 130
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 129
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 170
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 172
 #, c-format
 msgid "%s: Cannot write the file: %s\n"
 msgstr ""

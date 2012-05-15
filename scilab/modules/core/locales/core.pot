@@ -14,12 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-17 11:10+0100\n"
+"Revision-Date: 2012-05-15 09:26+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
-# File: sci_gateway/cpp/sci_argn.cpp, line: 48
-# File: sci_gateway/cpp/sci_argn.cpp, line: 62
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
@@ -39,7 +37,6 @@ msgstr ""
 # File: sci_gateway/c/sci_newfun.c, line: 115
 # File: sci_gateway/c/sci_predef.c, line: 67
 # File: sci_gateway/c/sci_typename.c, line: 113
-# File: sci_gateway/cpp/sci_exit.cpp, line: 49
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -65,7 +62,6 @@ msgstr ""
 # File: sci_gateway/c/sci_readgateway.c, line: 124
 # File: sci_gateway/c/sci_warning.c, line: 130
 # File: sci_gateway/c/sci_with_module.c, line: 47
-# File: sci_gateway/cpp/sci_global.cpp, line: 33
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -139,8 +135,6 @@ msgstr ""
 # File: sci_gateway/c/sci_getos.c, line: 49
 # File: sci_gateway/c/sci_getos.c, line: 57
 # File: sci_gateway/c/sci_typename.c, line: 183
-# File: sci_gateway/cpp/sci_getos.cpp, line: 71
-# File: sci_gateway/cpp/sci_getos.cpp, line: 78
 # File: src/c/intmacr2tree.c, line: 133
 # File: src/c/intmacr2tree.c, line: 150
 # File: src/c/intmacr2tree.c, line: 155
@@ -285,8 +279,6 @@ msgstr ""
 # File: sci_gateway/c/sci_funcprot.c, line: 59
 # File: sci_gateway/c/sci_newfun.c, line: 87
 # File: sci_gateway/c/sci_typename.c, line: 99
-# File: sci_gateway/cpp/sci_argn.cpp, line: 55
-# File: sci_gateway/cpp/sci_exit.cpp, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -609,7 +601,6 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_where.c, line: 29
-# File: sci_gateway/cpp/sci_argn.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
@@ -629,7 +620,6 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_who.c, line: 176
-# File: sci_gateway/cpp/sci_argn.cpp, line: 110
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
@@ -662,65 +652,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 321
 msgid "Your global variables are:"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_argn.cpp, line: 32
-# File: sci_gateway/cpp/sci_exists.cpp, line: 59
-# File: sci_gateway/cpp/sci_exit.cpp, line: 36
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_clear.cpp, line: 38
-# File: sci_gateway/cpp/sci_clearglobal.cpp, line: 44
-# File: sci_gateway/cpp/sci_global.cpp, line: 39
-# File: sci_gateway/cpp/sci_isglobal.cpp, line: 41
-# File: sci_gateway/cpp/sci_isglobal.cpp, line: 48
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_exists.cpp, line: 65
-# File: sci_gateway/cpp/sci_exists.cpp, line: 71
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_exists.cpp, line: 100
-#, c-format
-msgid "%s: Wrong input argument %d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_exit.cpp, line: 58
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_getos.cpp, line: 35
-# File: sci_gateway/cpp/sci_getscilabmode.cpp, line: 36
-# File: sci_gateway/cpp/sci_isglobal.cpp, line: 34
-# File: src/c/stack2.c, line: 92
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_getos.cpp, line: 41
-# File: src/c/stack2.c, line: 118
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_global.cpp, line: 47
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr ""
 
 #
@@ -1045,7 +976,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/signal_mgmt.c, line: 477
+# File: src/c/signal_mgmt.c, line: 487
 #, c-format
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
@@ -1356,6 +1287,12 @@ msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
 msgstr ""
 
 #
+# File: src/c/stack2.c, line: 92
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
 # File: src/c/stack2.c, line: 96
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -1365,6 +1302,12 @@ msgstr ""
 # File: src/c/stack2.c, line: 114
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack2.c, line: 118
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
@@ -1818,51 +1761,51 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 70
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 71
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 147
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 147
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 148
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 148
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 149
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 149
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 150
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 150
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 151
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 153
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 156
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 159
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 162
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 151
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 153
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 156
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 159
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 162
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 164
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 165
 msgid "&Toolboxes"
 msgstr ""
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-17 11:10+0100\n"
+"Revision-Date: 2012-05-15 09:26+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 48
 #, c-format
@@ -167,6 +167,12 @@ msgstr ""
 # File: macros/narsimul.sci, line: 141
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#
+# File: macros/arma2ss.sci, line: 16
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
 msgstr ""
 
 #

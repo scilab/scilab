@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-04-17 11:10+0100\n"
+"Revision-Date: 2012-05-15 09:26+0100\n"
 
 # File: sci_gateway/c/sci_basename.c, line: 50
 # File: sci_gateway/c/sci_basename.c, line: 58
@@ -972,6 +972,12 @@ msgstr ""
 msgid "Can't get current directory.\n"
 msgstr ""
 
+# File: macros/%_listvarinfile.sci, line: 63
+#, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+
 #
 # File: macros/fprintf.sci, line: 18
 # File: macros/mkdir.sci, line: 26
@@ -1060,13 +1066,6 @@ msgstr ""
 # File: macros/fullfile.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-
-#
-# File: macros/listvarinfile.sci, line: 63
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
 msgstr ""
 
 #
