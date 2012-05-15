@@ -23,6 +23,7 @@ extern "C"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
+#include "expandPathVariable.h"
 }
 
 #include <vector>
@@ -84,12 +85,17 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    iFile = openHDF5File(pstFile);
+    char* pstFileName = expandPathVariable(pstFile);
+    iFile = openHDF5File(pstFileName);
     if (iFile < 0)
     {
+        FREE(pstFileName);
+        FREE(pstFile);
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
         return 1;
     }
+    FREE(pstFileName);
+    FREE(pstFile);
 
     iNbItem = getVariableNames(iFile, NULL);
     if (iNbItem != 0)
