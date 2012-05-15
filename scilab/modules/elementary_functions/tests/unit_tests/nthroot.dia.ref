@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 // unit tests for nthroot() function 
 // =============================================================================
@@ -13,12 +14,12 @@ assert_checkfalse(execstr("nthroot()"   ,"errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot : Nombre erroné d'argument(s) d'entrée : 2 attendu.   
+ nthroot: Wrong number of input argument(s): 2 expected.   
 assert_checkfalse(execstr("nthroot(1)","errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot : Nombre erroné d'argument(s) d'entrée : 2 attendu.   
+ nthroot: Wrong number of input argument(s): 2 expected.   
 assert_checkfalse(execstr("nthroot(%i,1)","errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
