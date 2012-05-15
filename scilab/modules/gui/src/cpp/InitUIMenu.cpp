@@ -77,10 +77,14 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
     else
     {
         /* Figure, uimenu can be the parent */
-        if (valueType != sci_handles)
+        if (valueType == sci_matrix)
+        {
+            Scierror(999, const_cast < char *>(_("%s: can not add a menu into the console in this mode.\n")), "SetMenuParent");
+            return 0;
+        }
+        else
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: A handle expected.\n")), "SetMenuParent");
-
             return 0;
         }
     }
