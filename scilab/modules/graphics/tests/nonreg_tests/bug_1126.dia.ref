@@ -29,5 +29,5 @@ xend();
 driver("Rec")
  ans  =
  
- Rec   
+ GIF   
 // Then open toto.gif in a image viewer.
