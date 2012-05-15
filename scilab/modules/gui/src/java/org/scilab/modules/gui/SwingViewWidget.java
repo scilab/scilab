@@ -231,7 +231,7 @@ public final class SwingViewWidget {
             /* Convert value according to units */
             UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController
                                            .getController().getProperty(uid, __GO_UI_UNITS__));
-            Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl, false);
+            Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl);
             /* Set dimensions before position because position is adjusted according to size */
             uiControl.setDims(new Size(dblValues[WIDTH_INDEX].intValue(), dblValues[HEIGHT_INDEX].intValue()));
             uiControl.setPosition(new Position(dblValues[X_INDEX].intValue(), dblValues[Y_INDEX].intValue()));
