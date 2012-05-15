@@ -44,8 +44,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      Converts a Matlab 5 MAT-file into a Scilab binary file compatible
-      with  the function <literal>load</literal> The Matlab data types are
+      Converts a Matlab 5 MAT-file into a SOD file compatible
+      with the function <literal>load</literal> (See <link linkend="save">save</link> for more information). The Matlab data types are
       converted into the Scilab equivalents.
     </para>
   </refsection>
@@ -59,14 +59,26 @@
         <link linkend="load">load</link>
       </member>
       <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
         <link linkend="mfile2sci">mfile2sci</link>
       </member>
     </simplelist>
   </refsection>
   <refsection>
     <title>Bibliography</title>
-    <para>This function has been developed according to the document  "MAT-File Format":
-      &gt;<ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+    <para>This function has been developed according to the document "MAT-File Format":
+      <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
     </para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Scilab output file in a SOD (Scilab Open Data) file.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

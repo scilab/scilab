@@ -80,6 +80,7 @@ Scilab
  - 'save' displays a message when using old calling sequence
    save(filename, a, b, c) and writes data in old Scilab binary format.
    The previous format will not be supported by Scilab 6.
+ - The 'matfile2sci' function now converts MAT-files to SOD files.
 
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
