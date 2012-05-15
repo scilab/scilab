@@ -473,7 +473,7 @@ msgid "&EPS"
 msgstr "&EPS"
 
 msgid "&FIG"
-msgstr "&GIF"
+msgstr "&FIG"
 
 msgid "&PDF"
 msgstr "&PDF"
