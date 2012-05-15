@@ -227,6 +227,8 @@
       <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"off");' type="0"/>
     </submenu>
   </menu>
+  
+  <!--
   <menu label="&amp;MVC">
     <submenu label="&amp;Log View (Trace all View notifications)">
       <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showLogView' type="3"/>
@@ -241,6 +243,8 @@
     </submenu>
     <separator/>
   </menu>
+  -->
+  
   <menu label="&amp;?">
     <submenu label="&amp;Scilab Help" accelerator="F1" icon="help-browser">
       <callback instruction='help();' type="0"/>
