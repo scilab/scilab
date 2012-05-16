@@ -205,7 +205,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         if (strcmp(parentType, __GO_FIGURE__) != 0)
                         {
                             getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, &parentStyle);
-                            if (!((strcmp(parentType, __GO_UICONTROL__) == 0 && (strcmp(parentStyle, __GO_UI_FRAME__) != 0))))
+                            if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
                             {
                                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                          "Frame uicontrol");
@@ -249,7 +249,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 if (strcmp(parentType, __GO_FIGURE__) != 0)
                 {
                     getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, &parentStyle);
-                    if (!((strcmp(parentType, __GO_UICONTROL__) == 0 && (strcmp(parentStyle, __GO_UI_FRAME__) != 0))))
+                    if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                  "Frame uicontrol");
