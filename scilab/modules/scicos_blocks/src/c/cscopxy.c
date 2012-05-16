@@ -176,7 +176,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, scicos_flag flag)
                 break;
             }
 
-            appendData(block, (double *)block->inptr[0], (double *)block->inptr[1]);
+            appendData(block, block->inptr[0], block->inptr[1]);
             for (j = 0; j < block->insz[0]; j++)
             {
                 result = pushData(block, j);
@@ -389,10 +389,6 @@ static void appendData(scicos_block * block, double *x, double *y)
             for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
             {
                 sco->internal.data[0][i][numberOfPoints + setLen] = x[i];
-            }
-
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
                 sco->internal.data[1][i][numberOfPoints + setLen] = y[i];
             }
         }
