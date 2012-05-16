@@ -156,24 +156,28 @@ AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
 
 case "$host" in
-     *darwin*)
-     if test -n "$with_fink_prefix"; then
-        # If with-fink-prefix is provided, use the provided path to make sure that we will
-    # use it to detect dependencies (for example, gfortran is not provided in xcode.
-    # Therefor, we use the one in fink)
-    FINK_PREFIX="$with_fink_prefix/"
+    *darwin*)
+        if test -n "$with_fink_prefix"; then
+            # If with-fink-prefix is provided, use the provided path to make sure that we will
+            # use it to detect dependencies (for example, gfortran is not provided in xcode.
+            # Therefor, we use the one in fink)
+            FINK_PREFIX="$with_fink_prefix/"
 
-    # Exec the init script of fink to make sure that the env is set
-    if test -f $with_fink_prefix/bin/init.sh; then
-       echo "source $with_fink_prefix/bin/init.sh executed to set the env"
-       source $with_fink_prefix/bin/init.sh
+            # Exec the init script of fink to make sure that the env is set
+            if test -f $with_fink_prefix/bin/init.sh; then
+                echo "source $with_fink_prefix/bin/init.sh executed to set the env"
+                source $with_fink_prefix/bin/init.sh
+            else
+                AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
+            fi
         else
-       AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
-    fi
-     else
-    FINK_PREFIX="/sw/"
-     fi
-     ;;
+            FINK_PREFIX="/sw/"
+        fi
+
+        #Append to the default flags on Apple machines
+        CPPFLAGS="$CPPFLAGS -I$FINK_PREFIX/include/"
+        LDFLAGS="$LDFLAGS -L$FINK_PREFIX/lib/"
+        ;;
 esac
 
 #####################################################
@@ -612,9 +616,6 @@ case "$CC" in
     esac
     CC="$CC -arch $MAC_DETECTED_ARCH"
     CXX="$CXX -arch $MAC_DETECTED_ARCH"
-    COMPILER_LDFLAGS="$COMPILER_LDFLAGS -L$FINK_PREFIX/lib/ $ARCH_LDFLAGS"
-    COMPILER_CFLAGS=" $ARCH_CFLAGS -I$FINK_PREFIX/include"
-    COMPILER_CXXFLAGS=" $ARCH_CXXFLAGS -I$FINK_PREFIX/include"
     ;;
 esac
 ;; # end of the gcc case on the $CC
