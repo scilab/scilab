@@ -1208,7 +1208,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if %LEG.clip_state=='on' then
 	%LEG.clip_box      = mget(4,'dl',fd); // clip_box
       end
-      load(fd,"user_data")
+      %_load(fd,"user_data")
       %LEG.user_data       = user_data;
     else
       visible         = toggle(mget(1,characterFormat,fd)) // visible
