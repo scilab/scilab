@@ -49,19 +49,19 @@ int set_anti_aliasing_property(char* pobjUID, size_t stackPointer, int valueType
     }
     else if ( isStringParamEqual( stackPointer, "2x" ) )
     {
-        quality = 2;
+        quality = 1;
     }
     else if ( isStringParamEqual( stackPointer, "4x" ) )
     {
-        quality = 4;
+        quality = 2;
     }
     else if ( isStringParamEqual( stackPointer, "8x" ) )
     {
-        quality = 8;
+        quality = 3;
     }
     else if ( isStringParamEqual( stackPointer, "16x" ) )
     {
-        quality = 16;
+        quality = 4;
     }
     else
     {
@@ -81,6 +81,6 @@ int set_anti_aliasing_property(char* pobjUID, size_t stackPointer, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-	return status;
+    return status;
 }
 /*------------------------------------------------------------------------*/

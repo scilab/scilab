@@ -38,31 +38,31 @@ int get_anti_aliasing_property(char *pobjUID)
 
     if ( piAntialiasing == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"anti_aliasing");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "anti_aliasing");
         return -1;
     }
 
-    switch(iAntialiasing)
+    switch (iAntialiasing)
     {
-    case 0:
-        return sciReturnString("off");
-        break;
-    case 2:
-        return sciReturnString("2x");
-        break;
-    case 4:
-        return sciReturnString("4x");
-        break;
-    case 8:
-        return sciReturnString("8x");
-        break;
-    case 16:
-        return sciReturnString("16x");
-        break;
-    default:
-        Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
-        return -1 ;
-        break;
+        case 0:
+            return sciReturnString("off");
+            break;
+        case 1:
+            return sciReturnString("2x");
+            break;
+        case 2:
+            return sciReturnString("4x");
+            break;
+        case 3:
+            return sciReturnString("8x");
+            break;
+        case 4:
+            return sciReturnString("16x");
+            break;
+        default:
+            Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
+            return -1 ;
+            break;
     }
 
     return sciReturnString("off");

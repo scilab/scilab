@@ -17,6 +17,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.data.AbstractDataProvider;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -763,6 +764,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.update(id, property);
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
+                }
+
+                if (GraphicObjectProperties.__GO_ANTIALIASING__.equals(property)) {
+                    if (canvas instanceof JoGLCanvas) {
+                        ((JoGLCanvas) canvas).setAntiAliasingLevel(figure.getAntialiasing());
+                    }
                 }
 
                 if (isImmediateDrawing(id)) {
