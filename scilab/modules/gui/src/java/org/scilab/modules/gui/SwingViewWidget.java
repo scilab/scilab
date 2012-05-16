@@ -178,7 +178,10 @@ public final class SwingViewWidget {
             uiControl.setHorizontalAlignment((String) value);
         } else if (property.equals(__GO_UI_LISTBOXTOP__)) {
             if (uiControl instanceof SwingScilabListBox) {
-                ((SwingScilabListBox) uiControl).setListBoxTop(((Integer[]) value)[0]);
+                Integer[] listboxtopValue = ((Integer[]) value);
+                if (listboxtopValue.length > 0) {
+                    ((SwingScilabListBox) uiControl).setListBoxTop(listboxtopValue[0]);
+                }
             }
         } else if (property.equals(__GO_UI_MAX__)) {
             double maxValue = ((Double) value);
@@ -305,6 +308,9 @@ public final class SwingViewWidget {
         } else if (property.equals(__GO_UI_VALUE__)) {
 
             Double[] doubleValue = ((Double[]) value);
+            if (doubleValue.length == 0) {
+                return;
+            }
             int[] intValue = new int[doubleValue.length];
             for (int k = 0; k < doubleValue.length; k++) {
                 intValue[k] = doubleValue[k].intValue();
