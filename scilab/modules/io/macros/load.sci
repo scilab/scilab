@@ -756,7 +756,9 @@ function load(filename, varargin)
         end
     end
 
-    resumeList = %__convertHandles__(resumeList);
+    if isfile(filename) & is_hdf5_file(filename) then
+        resumeList = %__convertHandles__(resumeList);
+    end
 
     execstr("[" + strcat(resumeVarlist, ",") + "] = resume(resumeList(:))");
 endfunction
