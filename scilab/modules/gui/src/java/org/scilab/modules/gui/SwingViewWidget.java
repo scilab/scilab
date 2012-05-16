@@ -178,7 +178,7 @@ public final class SwingViewWidget {
             uiControl.setHorizontalAlignment((String) value);
         } else if (property.equals(__GO_UI_LISTBOXTOP__)) {
             if (uiControl instanceof SwingScilabListBox) {
-                ((SwingScilabListBox) uiControl).setListBoxTop(((Double) value).intValue());
+                ((SwingScilabListBox) uiControl).setListBoxTop(((Integer[]) value)[0]);
             }
         } else if (property.equals(__GO_UI_MAX__)) {
             double maxValue = ((Double) value);
@@ -315,7 +315,7 @@ public final class SwingViewWidget {
                 ((SwingScilabListBox) uiControl).setSelectedIndices(intValue);
             } else if (uiControl instanceof SwingScilabPopupMenu) {
                 // Update selected items in the popupmenu
-                ((SwingScilabPopupMenu) uiControl).setSelectedIndex(intValue[0]);
+                ((SwingScilabPopupMenu) uiControl).setUserSelectedIndex(intValue[0]);
             } else if (uiControl instanceof SwingScilabCheckBox) {
                 // Check the checkbox if the value is equal to MAX property
                 double maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
