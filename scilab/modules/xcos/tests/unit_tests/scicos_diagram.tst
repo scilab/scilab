@@ -43,7 +43,7 @@ function assert_check_props(props)
     assert_checkfalse(isempty(props.title))
     
     // check tol
-    assert_checkequal(props.tol, [0.000001,0.000001,1.000D-10,100001,0,0,0]);
+    assert_checkequal(props.tol(:)', [0.000001,0.000001,1.000D-10,100001,0,0,0]);
     
     // check tf
     assert_checkequal(props.tf, 100000);
