@@ -12,13 +12,12 @@
 
 package org.scilab.modules.graphic_export;
 
-import java.awt.Graphics2D;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,10 +26,9 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
 import org.apache.batik.svggen.SVGGraphics2D;
-import org.apache.batik.dom.GenericDOMImplementation;
-
 import org.apache.fop.Version;
 import org.apache.fop.svg.PDFDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.GraphicContext;
@@ -38,18 +36,15 @@ import org.apache.xmlgraphics.java2d.ps.AbstractPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.EPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.PSDocumentGraphics2D;
 import org.apache.xmlgraphics.ps.DSCConstants;
-
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.graphic_export.convertToPPM.PPMEncoder;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 
@@ -89,7 +84,7 @@ public class Export {
     private static boolean pdfLoaded;
 
     public enum TYPE { PNG, JPEG, GIF, BMP, PPM, SVG, PS, EPS, PDF }
-    private static final TYPE[] types = new TYPE[]{TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS};
+    private static final TYPE[] types = new TYPE[] {TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS};
 
     /**
      * @param type the image type
@@ -118,14 +113,25 @@ public class Export {
      */
     public static int export(String uid, int type, String fileName, ExportParams params) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
+        // Check that the fileName contains an extension
+        int dotPosition = fileName.lastIndexOf('.'); // position of the dot
+        boolean extensionFound = false;
+        if (dotPosition > 0 && dotPosition <= fileName.length() - 2) {
+            extensionFound = true;
+        }
+        String extendedFilename = fileName;
+        if (!extensionFound) { // Add default extension if no one found
+            String[] extensions = {"png", "bmp", "gif", "jpeg", "png", "ppm", "eps", "pdf", "svg", "ps"};
+            extendedFilename = fileName + "." + extensions[type];
+        }
         if (visitor != null) {
             Canvas canvas = visitor.getCanvas();
             if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type])) {
-                return exportBitmap(uid, type, fileName, true, params);
+                return exportBitmap(uid, type, extendedFilename, true, params);
             }
         }
 
-        return exportVectorial(uid, type, fileName, params);
+        return exportVectorial(uid, type, extendedFilename, params);
     }
 
     /**
@@ -176,11 +182,11 @@ public class Export {
         Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
         DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
-            };
+            @Override
+            public void updateObject(String id, String property) {
+                // Don't update during the export
+            }
+        };
         canvas.setMainDrawer(visitor);
         canvas.redraw();
         GraphicController.getController().unregister(visitor);
@@ -242,11 +248,11 @@ public class Export {
                 DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
-                        @Override
-                        public void updateObject(String id, String property) {
-                            // Don't update during the export
-                        }
-                    };
+                    @Override
+                    public void updateObject(String id, String property) {
+                        // Don't update during the export
+                    }
+                };
                 joglCanvas.setMainDrawer(visitor);
                 joglCanvas.redraw();
                 GraphicController.getController().unregister(visitor);
@@ -270,33 +276,33 @@ public class Export {
      */
     private static Exporter getExporter(TYPE type) {
         switch (type) {
-        case PNG :
-            return new PNGExporter();
-        case GIF :
-            return new GIFExporter();
-        case JPEG :
-            return new JPEGExporter();
-        case BMP :
-            return new BMPExporter();
-        case PPM :
-            return new PPMExporter();
-        case SVG :
-            if (!svgLoaded) {
-                ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
-                svgLoaded = true;
-            }
-            return new SVGExporter();
-        case PDF :
-            loadPDF();
-            return new PDFExporter();
-        case PS :
-            loadPDF();
-            return new PSExporter();
-        case EPS :
-            loadPDF();
-            return new PSExporter();
-        default :
-            break;
+            case PNG :
+                return new PNGExporter();
+            case GIF :
+                return new GIFExporter();
+            case JPEG :
+                return new JPEGExporter();
+            case BMP :
+                return new BMPExporter();
+            case PPM :
+                return new PPMExporter();
+            case SVG :
+                if (!svgLoaded) {
+                    ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
+                    svgLoaded = true;
+                }
+                return new SVGExporter();
+            case PDF :
+                loadPDF();
+                return new PDFExporter();
+            case PS :
+                loadPDF();
+                return new PSExporter();
+            case EPS :
+                loadPDF();
+                return new PSExporter();
+            default :
+                break;
         }
 
         return null;
@@ -541,16 +547,16 @@ public class Export {
             try {
                 out = new BufferedOutputStream(new FileOutputStream(file));
                 g2d = new PSDocumentGraphics2D(true, out, width, height) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
-                            }
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
-                    };
+                    }
+                };
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
 
@@ -581,16 +587,16 @@ public class Export {
             try {
                 out = new BufferedOutputStream(new FileOutputStream(file));
                 g2d = new EPSDocumentGraphics2D(true) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
-                            }
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
-                    };
+                    }
+                };
                 g2d.setupDocument(out, width, height);
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
