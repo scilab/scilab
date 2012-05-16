@@ -67,7 +67,7 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
     if (getScilabMode() == SCILAB_STD)
     {
         /* Figure, uimenu or Console can be the parent */
-        if ((valueType == sci_handles) && (valueType == sci_matrix))
+        if ((valueType != sci_handles) && (valueType != sci_matrix))
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: A handle or 0 expected.\n")), "SetMenuParent");
 
@@ -82,7 +82,7 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
             Scierror(999, const_cast < char *>(_("%s: can not add a menu into the console in this mode.\n")), "SetMenuParent");
             return 0;
         }
-        else
+        else if (valueType != sci_handles)
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: A handle expected.\n")), "SetMenuParent");
             return 0;
