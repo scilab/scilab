@@ -25,9 +25,10 @@ Children: []
 Enable = "on"
 Foregroundcolor = [0,0,0]
 Label = Test
+Handle_Visible = "on"
 Visible = "on"
 Callback = 
-Callback_type = 0
+Callback_Type = 0
 Checked =  "off"
 Userdata = []
 Tag = 
