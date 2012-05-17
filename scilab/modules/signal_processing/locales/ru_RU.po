@@ -37,12 +37,6 @@ msgstr ""
 "вектор.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента №%d: ожидалась вещественная или комплексная "
-"матрица.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
@@ -245,7 +239,7 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась матрица вещественных или "
 "комплексных чисел.\n"

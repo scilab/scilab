@@ -36,12 +36,6 @@ msgstr ""
 "%s : Type erroné de l'argument n°%d : Un vecteur réel ou complexe attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice réelle ou complexe "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
@@ -246,7 +240,7 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice réelle ou complexe "
 "attendue.\n"

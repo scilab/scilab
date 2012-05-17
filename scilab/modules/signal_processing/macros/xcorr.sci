@@ -32,11 +32,11 @@ function [c,lagindex]=xcorr(x,varargin)
       autocorr=%t
       maxlags=int(varargin(1))
       if type( maxlags)<>1|size(maxlags,'*')>1|~isreal(maxlags)|maxlags<>int(maxlags) then
-        error(msprintf(_("%s: Wrong type for argument %d: an integer  expected.\n"),...
+        error(msprintf(_("%s: Wrong type for argument #%d: an integer expected.\n"),...
                        "xcorr",2))
       end
       if maxlags<1 then
-        error(msprintf(_("%s: Wrong value for argument %d: the expected value must be greater than %s.\n"),...
+        error(msprintf(_("%s: Wrong value for argument #%d: the expected value must be greater than %d.\n"),...
                        "xcorr",2,1))
       end
     else //xcorr(x,y)
@@ -57,11 +57,11 @@ function [c,lagindex]=xcorr(x,varargin)
     end
     maxlags=int(varargin(2))
     if type( maxlags)<>1|size(maxlags,'*')>1|~isreal(maxlags)|maxlags<>int(maxlags) then
-      error(msprintf(_("%s: Wrong type for argument %d: an integer  expected.\n"),...
+      error(msprintf(_("%s: Wrong type for argument #%d: an integer expected.\n"),...
                        "xcorr",2))
     end
     if maxlags<1 then
-      error(msprintf(_("%s: Wrong value for argument %d: the expected value must be greater than %s.\n"),...
+      error(msprintf(_("%s: Wrong value for argument #%d: the expected value must be greater than %d.\n"),...
                        "xcorr",2,1))
     end
   end

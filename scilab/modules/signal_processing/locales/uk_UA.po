@@ -34,18 +34,6 @@ msgstr ""
 "%s: помилковий тип параметра №%d: мало бути вказано вектор дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних або комплексних значень.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
-"комплексних значень.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
@@ -250,7 +238,7 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
 "комплексних значень.\n"

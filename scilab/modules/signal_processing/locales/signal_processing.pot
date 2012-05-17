@@ -422,7 +422,7 @@ msgstr ""
 # File: macros/convol2d.sci, line: 24
 # File: macros/convol2d.sci, line: 27
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
@@ -807,7 +807,7 @@ msgstr ""
 # File: macros/xcov.sci, line: 35
 # File: macros/xcov.sci, line: 66
 #, c-format
-msgid "%s: Wrong type for argument %d: an integer  expected.\n"
+msgid "%s: Wrong type for argument #%d: an integer expected.\n"
 msgstr ""
 
 #
@@ -817,7 +817,7 @@ msgstr ""
 # File: macros/xcov.sci, line: 70
 #, c-format
 msgid ""
-"%s: Wrong value for argument %d: the expected value must be greater than "
+"%s: Wrong value for argument #%d: the expected value must be greater than "
 "%s.\n"
 msgstr ""
 

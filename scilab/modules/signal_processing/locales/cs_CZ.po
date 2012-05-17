@@ -35,11 +35,6 @@ msgstr ""
 "%s: Špatný typ argumentu #%d: Očekáván reálný nebo komplexní vektor.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu #%d: Očekávána reálná nebo komplexní matice.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
@@ -233,7 +228,7 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 

@@ -21,10 +21,10 @@ function y=convol2d(h,x)
   end
   
   if type(h)<>1 then
-    error(msprintf(_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),"convol2d",1))
+    error(msprintf(_("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"),"convol2d",1))
   end
   if type(x)<>1 then
-    error(msprintf(_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),"convol2d",2))
+    error(msprintf(_("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"),"convol2d",2))
   end
   if isempty(h) then
     y=zeros(x);
