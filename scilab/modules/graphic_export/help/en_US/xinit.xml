@@ -50,11 +50,19 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 driver("Pos")
-xinit("foo.ps")
+xinit(TMPDIR+"/foo.ps")
 plot2d()
 xend()
 driver("X11")
  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+driver("PNG")
+xinit(TMPDIR+"/foo.png")
+plot3d()
+xend()
+driver("X11")
+ ]]></programlisting>
+    
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

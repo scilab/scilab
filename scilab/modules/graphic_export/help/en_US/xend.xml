@@ -43,6 +43,9 @@ driver("X11")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
+        <link linkend="driver">driver</link>
+      </member>
+      <member>
         <link linkend="xinit">xinit</link>
       </member>
     </simplelist>
