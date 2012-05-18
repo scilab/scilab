@@ -570,8 +570,7 @@ detect_java_vm() {
         fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
-# Check if the lib exists or not (we should manage system where .so is not the
-# ext for library
+# Check if the lib exists or not
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
     if test ! -f $LIBJAVA; then
         if test $SCIVERBOSE -ne 0; then
