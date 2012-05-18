@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-05-15 09:26+0100\n"
+"Revision-Date: 2012-05-18 16:34+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -183,10 +183,10 @@ msgstr ""
 # File: src/c/stack1.c, line: 2521
 # File: src/c/stack2.c, line: 2085
 # File: src/c/stack2.c, line: 2408
-# File: src/c/storeCommand.c, line: 100
-# File: src/c/storeCommand.c, line: 108
-# File: src/c/storeCommand.c, line: 145
-# File: src/c/storeCommand.c, line: 153
+# File: src/c/storeCommand.c, line: 102
+# File: src/c/storeCommand.c, line: 110
+# File: src/c/storeCommand.c, line: 147
+# File: src/c/storeCommand.c, line: 155
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -1668,13 +1668,13 @@ msgid "%s: argument must be a string.\n"
 msgstr ""
 
 #
-# File: src/c/storeCommand.c, line: 207
+# File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - No option.\n"
 msgstr ""
 
 #
-# File: src/c/storeCommand.c, line: 211
+# File: src/c/storeCommand.c, line: 213
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr ""
@@ -1761,51 +1761,51 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 70
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 71
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 147
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 147
 msgid "&File"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 148
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 148
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 149
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 149
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 150
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 150
 msgid "&Control"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 151
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 153
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 156
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 159
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 162
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 151
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 153
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 156
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 159
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 162
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
 msgid "&?"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 165
 msgid "&Toolboxes"
 msgstr ""
 
