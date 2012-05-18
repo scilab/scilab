@@ -15,5 +15,6 @@
     <method name="setHeadless" returnType="void" modifier="static">
       <parameter name="headless" type="boolean"/>
     </method>
+    <method name="isHeadless" returnType="boolean" modifier="static" />
   </object>
 </package>

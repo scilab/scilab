@@ -728,6 +728,8 @@ t.
 
 * Bug #11077 fixed - rlist() returned an error.
 
+* Bug #11115 fixed - A graphic window was opened on with two xend().
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================

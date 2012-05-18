@@ -83,6 +83,7 @@ JavaVM * jvm;
 
 protected:
 jmethodID voidsetHeadlessjbooleanbooleanID; // cache method id
+jmethodID jbooleanisHeadlessID; // cache method id
 
 
 
@@ -143,6 +144,8 @@ void endSynchronize();
 
 // Methods
 static void setHeadless(JavaVM * jvm_, bool headless);
+
+static bool isHeadless(JavaVM * jvm_);
 
 
                         /**

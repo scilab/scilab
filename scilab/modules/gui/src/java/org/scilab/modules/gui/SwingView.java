@@ -146,6 +146,10 @@ public final class SwingView implements GraphicView {
         SwingView.headless = headless;
     }
 
+    public static boolean isHeadless() {
+        return SwingView.headless;
+    }
+
     public static SwingViewObject getFromId(String id) {
         TypedObject typedObject = me.allObjects.get(id);
 

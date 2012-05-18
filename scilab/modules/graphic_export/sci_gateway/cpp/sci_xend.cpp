@@ -35,7 +35,6 @@ int sci_xend(char * fname, unsigned long fname_len)
     {
         char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
         ScilabView::deleteObject(uid);
-        org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
 
         if (*ret != '\0')
         {

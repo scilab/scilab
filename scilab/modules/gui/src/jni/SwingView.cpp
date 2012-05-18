@@ -111,6 +111,7 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 voidsetHeadlessjbooleanbooleanID=NULL;
+jbooleanisHeadlessID=NULL;
 
 
 }
@@ -134,6 +135,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         voidsetHeadlessjbooleanbooleanID=NULL;
+jbooleanisHeadlessID=NULL;
 
 
 }
@@ -171,6 +173,26 @@ jboolean headless_ = (static_cast<bool>(headless) ? JNI_TRUE : JNI_FALSE);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+bool SwingView::isHeadless (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisHeadlessID = curEnv->GetStaticMethodID(cls, "isHeadless", "()Z" ) ;
+if (jbooleanisHeadlessID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "isHeadless");
+}
+
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisHeadlessID ));
+                        curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
+
 }
 
 }
