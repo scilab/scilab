@@ -157,6 +157,20 @@ javadoc:
 	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java::$(top_srcdir)/modules/localization/src/java \
 	org.scilab.modules.javasci org.scilab.modules.types
 
+javadoc-all:
+	MASK="$(top_srcdir)/modules/*/src/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		LISTMODULES="$$M:$$LISTMODULES"; \
+		MODULE=$$(echo $$M|cut -d/ -f3); \
+		LISTPKG="$$LISTPKG org.scilab.modules.$$MODULE"; \
+	done; \
+	$(JAVADOC) \
+	-d $(top_builddir)/javadocall \
+	-sourcepath $$LISTMODULES \
+	$$LISTPKG
+
+
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
