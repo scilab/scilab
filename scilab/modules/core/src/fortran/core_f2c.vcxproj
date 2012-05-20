@@ -346,7 +346,6 @@ cd ..
     <ClCompile Include="bexec.c" />
     <ClCompile Include="btof.c" />
     <ClCompile Include="btofm.c" />
-    <ClCompile Include="chkvar.c" />
     <ClCompile Include="clause.c" />
     <ClCompile Include="clunit.c" />
     <ClCompile Include="cmdstr.c" />
@@ -464,7 +463,6 @@ cd ..
     <f2c_rule Include="bexec.f" />
     <f2c_rule Include="btof.f" />
     <f2c_rule Include="btofm.f" />
-    <f2c_rule Include="chkvar.f" />
     <f2c_rule Include="clause.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="cmdstr.f" />

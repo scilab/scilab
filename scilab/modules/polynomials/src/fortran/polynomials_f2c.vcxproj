@@ -276,6 +276,7 @@ cd ..
     <ClCompile Include="bezstp.c" />
     <ClCompile Include="blktit.c" />
     <ClCompile Include="calcsc.c" />
+    <ClCompile Include="chkvar.c" />
     <ClCompile Include="ddmpev.c" />
     <ClCompile Include="dimin.c" />
     <ClCompile Include="dmp2pm.c" />
@@ -356,6 +357,7 @@ cd ..
     <f2c_rule Include="bezstp.f" />
     <f2c_rule Include="blktit.f" />
     <f2c_rule Include="calcsc.f" />
+    <f2c_rule Include="chkvar.f" />
     <f2c_rule Include="ddmpev.f" />
     <f2c_rule Include="dimin.f" />
     <f2c_rule Include="dmp2pm.f" />

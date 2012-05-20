@@ -61,7 +61,8 @@ src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/quad.f \
 src/fortran/calcsc.f \
-src/fortran/writebufsfact.f
+src/fortran/writebufsfact.f \
+src/fortran/chkvar.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \

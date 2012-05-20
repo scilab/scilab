@@ -183,7 +183,6 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="bexec.f"/>
 		<File RelativePath="btof.f"/>
 		<File RelativePath="btofm.f"/>
-		<File RelativePath="chkvar.f"/>
 		<File RelativePath="clause.f"/>
 		<File RelativePath="clunit.f"/>
 		<File RelativePath="cmdstr.f"/>

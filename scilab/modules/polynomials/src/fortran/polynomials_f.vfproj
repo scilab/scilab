@@ -123,6 +123,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\bezstp.f"/>
 		<File RelativePath=".\blktit.f"/>
 		<File RelativePath=".\calcsc.f"/>
+		<File RelativePath=".\chkvar.f"/>
 		<File RelativePath=".\ddmpev.f"/>
 		<File RelativePath=".\dimin.f"/>
 		<File RelativePath=".\dmp2pm.f"/>

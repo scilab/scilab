@@ -255,6 +255,9 @@
     <ClCompile Include="writebufsfact.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="chkvar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="bezout.f">
@@ -486,6 +489,9 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="writebufsfact.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="chkvar.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

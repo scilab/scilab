@@ -45,9 +45,6 @@
     <ClCompile Include="btofm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chkvar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clause.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -392,9 +389,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="btofm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="chkvar.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="clause.f">
