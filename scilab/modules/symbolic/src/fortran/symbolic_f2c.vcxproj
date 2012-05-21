@@ -266,12 +266,14 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ldivf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mulf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rdivf.f" />
+    <f2c_rule Include="atome.f" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_addsubf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ldivf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mulf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rdivf.c" />
+    <ClCompile Include="atome.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

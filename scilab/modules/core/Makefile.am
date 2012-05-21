@@ -117,7 +117,6 @@ src/fortran/funnam.f \
 src/fortran/isnum.f \
 src/fortran/cmdstr.f \
 src/fortran/logops.f \
-src/fortran/atome.f \
 src/fortran/hndlops.f \
 src/fortran/cmplxt.f \
 src/fortran/skpins.f \

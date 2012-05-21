@@ -177,7 +177,6 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="allops.f"/>
 		<File RelativePath="allowptr.f"/>
-		<File RelativePath="atome.f"/>
 		<File RelativePath="basin.f"/>
 		<File RelativePath="basnms.f"/>
 		<File RelativePath="bexec.f"/>

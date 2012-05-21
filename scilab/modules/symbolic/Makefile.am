@@ -19,6 +19,8 @@ sci_gateway/fortran/sci_f_mulf.f \
 sci_gateway/fortran/sci_f_ldivf.f \
 sci_gateway/fortran/sci_f_rdivf.f
 
+FORTRAN_SOURCES = src/fortran/atome.f
+
 libscisymbolic_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -30,7 +32,7 @@ pkglib_LTLIBRARIES = libscisymbolic.la
 noinst_LTLIBRARIES = libscisymbolic-algo.la
 
 
-libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(FORTRAN_SOURCES)
 libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscisymbolic_algo_la_CPPFLAGS = $(libscisymbolic_la_CPPFLAGS)
 # For the code check (splint)

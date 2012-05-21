@@ -27,9 +27,6 @@
     <ClCompile Include="allowptr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="atome.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="basin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -371,9 +368,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="allowptr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="atome.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="basin.f">
