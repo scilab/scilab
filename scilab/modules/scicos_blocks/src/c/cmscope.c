@@ -771,15 +771,22 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row
         setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
         setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
 
-        color = block->ipar[6 + block->nin + input + row];
+        // ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+        //        1     1         1   2       2      nin   nin       1
+        color = block->ipar[7 + block->nin + input + row];
         if (color > 0)
         {
+            LOG("%s: %s at %d at %d to %d\n", "cmscope", "set lines mode", input, row, color);
+
             setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
         }
         else
         {
             color = -color;
+
+            LOG("%s: %s at %d at %d to %d\n", "cmscope", "set mark mode", input, row, -color);
+
             setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
         }
