@@ -31,9 +31,11 @@ fi
 
 have_cplus_demangle=no
 
-AC_MSG_CHECKING([for glibc cplus_demangle])
-AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <demangle.h>]],
-               [[ const char *s; cplus_demangle(s, auto_demangling); ]])],
+AC_LANG_PUSH(C++)
+AC_MSG_CHECKING([for stdc++ abi::__cxa_demangle])
+AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <cxxabi.h>]],
+               [[ 
+  std::size_t length = 0;  int cc;   char* ret = abi::__cxa_demangle("3barI5emptyLi17EE", 0, &length, &cc); ]])],
                [have_cplus_demangle=yes],
                [have_cplus_demangle=no])
 AC_MSG_RESULT($have_cplus_demangle)
@@ -46,4 +48,5 @@ if test "x$have_cplus_demangle" = "xyes"; then
   
   AC_DEFINE(HAVE_CPLUS_DEMANGLE, 1, HAVE_CPLUS_DEMANGLE)
 fi
+AC_LANG_POP
 ])

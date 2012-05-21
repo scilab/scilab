@@ -11,7 +11,7 @@ curDir=pwd();
 cd TMPDIR;
 f1=["int ext1c(int *n, double *a_, double *b, double *c)"
     "{"
-    "char *a;"
+    "char *a=0;"
     "strcpy(a,""plop"");"
     "  return(0);}"];
 mputl(f1,"fun1.c");

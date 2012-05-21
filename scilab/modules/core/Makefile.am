@@ -95,7 +95,9 @@ src/c/windowsChangeManagement.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp
+src/cpp/search_functions.cpp \
+src/cpp/demangle.cpp \
+src/cpp/backtrace_print.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c

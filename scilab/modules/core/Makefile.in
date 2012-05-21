@@ -163,7 +163,8 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
 	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
 	src/c/scimem64.c src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
-	src/cpp/search_functions.cpp src/fortran/clunit.f \
+	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
+	src/cpp/backtrace_print.cpp src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
@@ -270,7 +271,9 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-windowsChangeManagement.lo $(am__objects_1)
 am__objects_3 = libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-namstr.lo \
-	libscicore_algo_la-search_functions.lo
+	libscicore_algo_la-search_functions.lo \
+	libscicore_algo_la-demangle.lo \
+	libscicore_algo_la-backtrace_print.lo
 @USE_DYNAMIC_STACK_TRUE@am__objects_4 = relocstack.lo
 am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
@@ -665,7 +668,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	$(am__append_1)
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp
+src/cpp/search_functions.cpp \
+src/cpp/demangle.cpp \
+src/cpp/backtrace_print.cpp
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
@@ -1039,6 +1044,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-backtrace.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-banier.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-callDynamicGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Plo@am__quote@
@@ -1048,6 +1054,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-coretable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-demangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-dynamic_parallel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-dynamic_tclsci.Plo@am__quote@
@@ -2214,6 +2221,20 @@ libscicore_algo_la-search_functions.lo: src/cpp/search_functions.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/search_functions.cpp' object='libscicore_algo_la-search_functions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-search_functions.lo `test -f 'src/cpp/search_functions.cpp' || echo '$(srcdir)/'`src/cpp/search_functions.cpp
+
+libscicore_algo_la-demangle.lo: src/cpp/demangle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_algo_la-demangle.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-demangle.Tpo -c -o libscicore_algo_la-demangle.lo `test -f 'src/cpp/demangle.cpp' || echo '$(srcdir)/'`src/cpp/demangle.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-demangle.Tpo $(DEPDIR)/libscicore_algo_la-demangle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/demangle.cpp' object='libscicore_algo_la-demangle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-demangle.lo `test -f 'src/cpp/demangle.cpp' || echo '$(srcdir)/'`src/cpp/demangle.cpp
+
+libscicore_algo_la-backtrace_print.lo: src/cpp/backtrace_print.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_algo_la-backtrace_print.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-backtrace_print.Tpo -c -o libscicore_algo_la-backtrace_print.lo `test -f 'src/cpp/backtrace_print.cpp' || echo '$(srcdir)/'`src/cpp/backtrace_print.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-backtrace_print.Tpo $(DEPDIR)/libscicore_algo_la-backtrace_print.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/backtrace_print.cpp' object='libscicore_algo_la-backtrace_print.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-backtrace_print.lo `test -f 'src/cpp/backtrace_print.cpp' || echo '$(srcdir)/'`src/cpp/backtrace_print.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
