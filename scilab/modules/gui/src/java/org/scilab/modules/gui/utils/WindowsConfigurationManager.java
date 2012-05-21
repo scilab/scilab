@@ -180,11 +180,11 @@ public class WindowsConfigurationManager {
 
         Element root = doc.getDocumentElement();
         Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                 "x", (int) window.getLocation().getX(),
-                                 "y", (int) window.getLocation().getY(),
-                                 "width", (int) window.getSize().getWidth(),
-                                 "height", (int) window.getSize().getHeight()
-                                                              });
+                                                               "x", (int) window.getLocation().getX(),
+                                                               "y", (int) window.getLocation().getY(),
+                                                               "width", (int) window.getSize().getWidth(),
+                                                               "height", (int) window.getSize().getHeight()
+            });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -333,37 +333,37 @@ public class WindowsConfigurationManager {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                synchronized (currentlyRestored) {
-                                    while (currentlyRestored.size() > 0) {
-                                        try {
-                                            currentlyRestored.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                        @Override
+                        public void run() {
+                            final Thread t = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        synchronized (currentlyRestored) {
+                                            while (currentlyRestored.size() > 0) {
+                                                try {
+                                                    currentlyRestored.wait();
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
                                         }
+
+                                        // Be sure that te main tab or one of its subcomponent
+                                        // will have the focus on start-up
+                                        Component owner = null;
+                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                            mainTab.requestFocus();
+                                            Thread.yield();
+
+                                            owner = window.getFocusOwner();
+                                        }
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                        window.toFront();
                                     }
-                                }
-
-                                // Be sure that te main tab or one of its subcomponent
-                                // will have the focus on start-up
-                                Component owner = null;
-                                while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                    mainTab.requestFocus();
-                                    Thread.yield();
-
-                                    owner = window.getFocusOwner();
-                                }
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
-                                window.toFront();
-                            }
-                        });
-                        t.start();
-                    }
-                });
+                                });
+                            t.start();
+                        }
+                    });
             }
         }
 
@@ -663,6 +663,11 @@ public class WindowsConfigurationManager {
         }
 
         Element dp = (Element) win.getFirstChild();
+        if (dp == null) {
+            win.getParentNode().removeChild(win);
+            return;
+        }
+
         Element e = validateDockingPortNode(winuuid, dp);
         if (e == null) {
             win.removeChild(dp);
@@ -807,7 +812,7 @@ public class WindowsConfigurationManager {
                                             "factory", factory.getClassName(uuid),
                                             "width", (int) dim.getWidth(),
                                             "height", (int) dim.getHeight()
-                                           });
+            });
         writeDocument();
     }
 

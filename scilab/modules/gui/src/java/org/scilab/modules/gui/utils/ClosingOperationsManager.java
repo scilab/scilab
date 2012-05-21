@@ -63,8 +63,10 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-            ClosingOperation op) {
-        closingOps.put(tab, op);
+                                                ClosingOperation op) {
+        if (tab != null) {
+            closingOps.put(tab, op);
+        }
     }
 
     /**
@@ -76,7 +78,9 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(Tab tab, ClosingOperation op) {
-        registerClosingOperation((SwingScilabTab) tab.getAsSimpleTab(), op);
+        if (tab != null) {
+            registerClosingOperation((SwingScilabTab) tab.getAsSimpleTab(), op);
+        }
     }
 
     /**
@@ -280,12 +284,14 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependency(SwingScilabTab parent, SwingScilabTab child) {
-        List<SwingScilabTab> children = deps.get(parent);
-        if (children == null) {
-            children = new ArrayList<SwingScilabTab>();
-            deps.put(parent, children);
+        if (parent != null && child != null) {
+            List<SwingScilabTab> children = deps.get(parent);
+            if (children == null) {
+                children = new ArrayList<SwingScilabTab>();
+                deps.put(parent, children);
+            }
+            children.add(child);
         }
-        children.add(child);
     }
 
     /**
@@ -297,7 +303,9 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependency(Tab parent, Tab child) {
-        addDependency((SwingScilabTab) parent.getAsSimpleTab(), (SwingScilabTab) child.getAsSimpleTab());
+        if (parent != null && child != null) {
+            addDependency((SwingScilabTab) parent.getAsSimpleTab(), (SwingScilabTab) child.getAsSimpleTab());
+        }
     }
 
     /**
@@ -309,7 +317,9 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependency(SwingScilabTab parent, Tab child) {
-        addDependency(parent, (SwingScilabTab) child.getAsSimpleTab());
+        if (parent != null && child != null) {
+            addDependency(parent, (SwingScilabTab) child.getAsSimpleTab());
+        }
     }
 
     /**
@@ -321,7 +331,9 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependency(Tab parent, SwingScilabTab child) {
-        addDependency((SwingScilabTab) parent.getAsSimpleTab(), child);
+        if (parent != null && child != null) {
+            addDependency((SwingScilabTab) parent.getAsSimpleTab(), child);
+        }
     }
 
     /**
@@ -331,7 +343,9 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependencyWithRoot(SwingScilabTab child) {
-        addDependency(root, child);
+        if (child != null) {
+            addDependency(root, child);
+        }
     }
 
     /**
@@ -341,7 +355,9 @@ public class ClosingOperationsManager {
      *            the child tab
      */
     public static void addDependencyWithRoot(Tab child) {
-        addDependency(root, (SwingScilabTab) child.getAsSimpleTab());
+        if (child != null) {
+            addDependency(root, (SwingScilabTab) child.getAsSimpleTab());
+        }
     }
 
     /**
@@ -638,10 +654,10 @@ public class ClosingOperationsManager {
             }
         }
         switch (apps.size()) {
-            case 0:
-                return null;
-            case 1:
-                return String.format(EXIT_CONFIRM, apps.get(0));
+        case 0:
+            return null;
+        case 1:
+            return String.format(EXIT_CONFIRM, apps.get(0));
         }
 
         String str = apps.remove(0);
@@ -662,7 +678,7 @@ public class ClosingOperationsManager {
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-            List<SwingScilabTab> list) {
+                                                 List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {
