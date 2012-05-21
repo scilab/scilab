@@ -3,7 +3,7 @@
   <refnamediv>
     <refname>ReturnArguments</refname>
     <refpurpose>
-      A C gateway function which update stack information with your modifications.
+      A C gateway function which returns the various variables.
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -13,7 +13,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      A C gateway function which update stack information with your modifications.
+      ReturnArguments() will return the various variables declared through 
+      AssignOutputVariable(X).
     </para>
   </refsection>
   <refsection>

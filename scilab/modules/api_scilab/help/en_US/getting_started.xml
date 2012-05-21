@@ -44,13 +44,18 @@
               <listitem>
                 <para>Get the address to the variable for input argument X</para>
                 <para>
-                  Function <literal>SciErr getVarAddressFromPosition(void* context, int positionOfTheVariable, int** address)</literal>
+                  Function 
+                  <literal>
+                    SciErr <link linkend="Common_getvaraddr_API">getVarAddressFromPosition</link>(void* context, int positionOfTheVariable, int** address)
+                  </literal>
                 </para>
               </listitem>
               <listitem>
                 <para>Check the type of the variable: matrix of double (complex or not), string, etc</para>
                 <para>
-                  <literal>SciErr getVarType(void* context, int* positionOfTheVariable, int* Type)</literal>
+                  <literal>
+                    SciErr <link linkend="Common_getvartype_API">getVarType</link>(void* context, int* positionOfTheVariable, int* Type)
+                  </literal>
                 </para>
                 <para>Other functions are also provided:
                   <itemizedlist>
@@ -100,13 +105,27 @@
               <listitem>
                 <para>If it is relevant, check if the input argument is complex or not.</para>
                 <para>
-                  <literal>int isVarComplex(void* context, int* address)</literal>
+                  <literal>
+                    int <link linkend="Common_iscomplex_API">isVarComplex</link>(void* context, int* address)
+                  </literal>
+                </para>
+              </listitem>
+              <listitem>
+                <para>Dealing with integer, further checks should be done on the precision of the integer</para>
+                <para>
+                  <literal>
+                    SciErr <link linkend="int_getmatrixofintegerprecision_API">getMatrixOfIntegerPrecision</link>(void* context, int* address, int* precision)
+                  </literal>
                 </para>
               </listitem>
               <listitem>
                 <para>Check the size of the variable: square matrix, scalar, etc</para>
                 <para>
-                  The retrieval of the size information will be done with the same functions used to retrieve the actual data. For example, for a matrix of double, the function call <literal>SciErr getMatrixOfDouble(void* context, int* address, int* nbRows, int* nbCols, double** theActualData)</literal> will provide the dimension of the matrix.
+                  The retrieval of the size information will be done with the same functions used to retrieve the actual data. For example, for a matrix of double, the function call 
+                  <literal>
+                    SciErr <link linkend="Double_management_reading_API">getMatrixOfDouble</link>(void* context, int* address, int* nbRows, int* nbCols, double** theActualData)
+                  </literal>
+                  will provide the dimension of the matrix.
                 </para>
                 <para>Almost all Scilab datatypes have an equivalent C function to perform such task.</para>
               </listitem>
@@ -134,7 +153,7 @@
           <para>Create the output arguments for the Scilab engine</para>
           <para>Once the application code has been executed, usually, some data will be returned to the Scilab interpreter.</para>
           <para>For example, to create in the Scilab engine memory a matrix of double, the C function <literal>
-              SciErr createMatrixOfDouble(void* context, int position, int nbRows, int nbCols, const double* matrixOfDouble)
+              SciErr <link linkend="Double_management_writing_API">createMatrixOfDouble</link>(void* context, int position, int nbRows, int nbCols, const double* matrixOfDouble)
             </literal>
             should be called.
           </para>
@@ -155,7 +174,7 @@
           </para>
           
           <para>
-            To commit the new variable to the Scilab engine, the function <literal>ReturnArguments()</literal> must be called.
+            To commit the new variable to the Scilab engine, the function <link linkend="ReturnArguments">ReturnArguments()</link> must be called.
           </para>
         </listitem>
         
@@ -179,6 +198,9 @@
     <para>
       with <literal>a</literal> being a matrix of double and <literal>b</literal> a matrix of boolean with the same size of <literal>a</literal>, foo will multiply each element of <literal>a</literal> by 2 and return it as <literal>c</literal> and transform each element of element of b to its opposite.
     </para>
+    <para>
+      The example is available in the toolbox skeleton provided with the Scilab binary. The path is <literal>contrib/toolbox_skeleton/sci_gateway/c/sci_foo.c</literal>
+    </para>
     <para>Detailed explanations are provided under the form of C comment in the following example.</para>
     <programlisting role="code_gateway">
       <![CDATA[ 
@@ -192,8 +214,6 @@
     // Function declaration
     int sci_foo(char *fname, unsigned long fname_len)
     {
-int sci_foo(char *fname, unsigned long fname_len)
-{
     // Error management variable
     SciErr sciErr;
 
@@ -268,7 +288,7 @@ int sci_foo(char *fname, unsigned long fname_len)
 
     ////////// Check the consistency of the two input arguments //////////
 
-    if ((m1 != m2) | - (n1 != n2))
+    if ((m1 != m2) || (n1 != n2))
     {
         Scierror(999, "%s: Wrong size for input arguments: Same size expected.\n", fname, 1);
         return 0;
@@ -285,30 +305,34 @@ int sci_foo(char *fname, unsigned long fname_len)
         newMatrixOfDouble[i] = matrixOfDouble[i] * 2;
     }
 
-    newMatrixOfBoolean = (int*)malloc(sizeof(double) * m2 * n2);
+    newMatrixOfBoolean = (int*)malloc(sizeof(BOOL) * m2 * n2);
     for (i = 0; i < m2 * n2; i++)
     {
         /* For each element of the matrix, invert the value */
-        newMatrixOfBoolean[i] = matrixOfBoolean[i] == TRUE ? FALSE : TRUE;
+        newMatrixOfBoolean[i] = ((matrixOfBoolean[i] == TRUE) ? FALSE : TRUE);
     }
 
     ////////// Create the output arguments //////////
 
     /* Create the matrix as return of the function */
     sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, m1, n1, newMatrixOfDouble);
+    free(newMatrixOfDouble); // Data have been copied into Scilab memory
     if (sciErr.iErr)
     {
+        free(newMatrixOfBoolean); // Make sure everything is cleanup in case of error
         printError(&sciErr, 0);
         return 0;
     }
 
     /* Create the matrix as return of the function */
     sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 2, m2, n2, newMatrixOfBoolean);
+    free(newMatrixOfBoolean); // Data have been copied into Scilab memory
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+
 
     ////////// Return the output arguments to the Scilab engine //////////
 
