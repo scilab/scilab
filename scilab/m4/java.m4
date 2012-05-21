@@ -477,9 +477,6 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         armv*)
           machine=arm
           ;;
-        s390x) # s390 arch can also returns s390x
-          machine=s390
-          ;;
         sh*)
             machine=sh
           ;;
