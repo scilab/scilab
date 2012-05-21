@@ -60,9 +60,6 @@
     <ClCompile Include="util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wcopy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wgeco.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,9 +111,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="util.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wcopy.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="wgeco.f">

@@ -253,7 +253,6 @@ cd ..
     <ClCompile Include="icopy.c" />
     <ClCompile Include="pade.c" />
     <ClCompile Include="util.c" />
-    <ClCompile Include="wcopy.c" />
     <ClCompile Include="wgeco.c" />
     <ClCompile Include="wgefa.c" />
     <ClCompile Include="wgesl.c" />
@@ -273,7 +272,6 @@ cd ..
     <f2c_rule Include="icopy.f" />
     <f2c_rule Include="pade.f" />
     <f2c_rule Include="util.f" />
-    <f2c_rule Include="wcopy.f" />
     <f2c_rule Include="wgeco.f" />
     <f2c_rule Include="wgefa.f" />
     <f2c_rule Include="wgesl.f" />

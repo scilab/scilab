@@ -138,7 +138,7 @@ am__objects_1 = zwrsk.lo d9b0mp.lo d9b1mp.lo d9knus.lo d9lgmc.lo \
 	zshch.lo zsqrt.lo zuchk.lo zunhj.lo zuni1.lo zuni2.lo zunik.lo \
 	zunk1.lo zunk2.lo zuoik.lo dlngam.lo balanc.lo dtensbs.lo \
 	pchim.lo
-am__objects_2 = dgesl.lo wpade.lo util.lo wcopy.lo dgefa.lo dgbfa.lo \
+am__objects_2 = dgesl.lo wpade.lo util.lo dgefa.lo dgbfa.lo \
 	dgeco.lo dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo wgeco.lo \
 	wgefa.lo wgesl.lo dpofa.lo
 am__objects_3 = balbak.lo
@@ -671,7 +671,6 @@ src/fortran/slatec/pchim.f
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
 	src/fortran/linpack/util.f \
-	src/fortran/linpack/wcopy.f \
 	src/fortran/linpack/dgefa.f \
 	src/fortran/linpack/dgbfa.f \
 	src/fortran/linpack/dgeco.f \
@@ -2027,9 +2026,6 @@ wpade.lo: src/fortran/linpack/wpade.f
 
 util.lo: src/fortran/linpack/util.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
-
-wcopy.lo: src/fortran/linpack/wcopy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wcopy.lo `test -f 'src/fortran/linpack/wcopy.f' || echo '$(srcdir)/'`src/fortran/linpack/wcopy.f
 
 dgefa.lo: src/fortran/linpack/dgefa.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dgefa.lo `test -f 'src/fortran/linpack/dgefa.f' || echo '$(srcdir)/'`src/fortran/linpack/dgefa.f

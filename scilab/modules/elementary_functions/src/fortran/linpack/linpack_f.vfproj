@@ -97,7 +97,6 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<File RelativePath=".\icopy.f"/>
 		<File RelativePath=".\pade.f"/>
 		<File RelativePath=".\util.f"/>
-		<File RelativePath=".\wcopy.f"/>
 		<File RelativePath=".\wgeco.f"/>
 		<File RelativePath=".\wgefa.f"/>
 		<File RelativePath=".\wgesl.f"/>

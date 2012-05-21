@@ -122,7 +122,6 @@ src/fortran/slatec/pchim.f
 LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
 	src/fortran/linpack/util.f \
-	src/fortran/linpack/wcopy.f \
 	src/fortran/linpack/dgefa.f \
 	src/fortran/linpack/dgbfa.f \
 	src/fortran/linpack/dgeco.f \
