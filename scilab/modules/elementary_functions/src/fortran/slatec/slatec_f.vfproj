@@ -111,7 +111,6 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath="dbesk.f"/>
 		<File RelativePath="dbesk0.f"/>
 		<File RelativePath="dbesk1.f"/>
-		<File RelativePath="dbesks.f"/>
 		<File RelativePath="dbesy.f"/>
 		<File RelativePath="dbesy0.f"/>
 		<File RelativePath="dbesy1.f"/>

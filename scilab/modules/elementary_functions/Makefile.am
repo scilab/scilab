@@ -47,7 +47,6 @@ src/fortran/slatec/dbesj.f \
 src/fortran/slatec/dbesk0.f \
 src/fortran/slatec/dbesk1.f \
 src/fortran/slatec/dbesk.f \
-src/fortran/slatec/dbesks.f \
 src/fortran/slatec/dbesy0.f \
 src/fortran/slatec/dbesy1.f \
 src/fortran/slatec/dbesy.f \

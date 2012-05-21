@@ -274,7 +274,6 @@ cd ..
     <ClCompile Include="dbesk.c" />
     <ClCompile Include="dbesk0.c" />
     <ClCompile Include="dbesk1.c" />
-    <ClCompile Include="dbesks.c" />
     <ClCompile Include="dbesy.c" />
     <ClCompile Include="dbesy0.c" />
     <ClCompile Include="dbesy1.c" />
@@ -364,7 +363,6 @@ cd ..
     <f2c_rule Include="dbesk.f" />
     <f2c_rule Include="dbesk0.f" />
     <f2c_rule Include="dbesk1.f" />
-    <f2c_rule Include="dbesks.f" />
     <f2c_rule Include="dbesy.f" />
     <f2c_rule Include="dbesy0.f" />
     <f2c_rule Include="dbesy1.f" />

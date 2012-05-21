@@ -75,9 +75,6 @@
     <ClCompile Include="dbesk1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dbesks.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dbesy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -339,9 +336,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="dbesk1.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dbesks.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="dbesy.f">

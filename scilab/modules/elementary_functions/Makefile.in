@@ -126,7 +126,7 @@ libscielementary_functions_algo_la_LIBADD =
 am__objects_1 = zwrsk.lo d9b0mp.lo d9b1mp.lo d9knus.lo d9lgmc.lo \
 	dasyik.lo dasyjy.lo dbdiff.lo dbesi0.lo dbesi1.lo dbesi.lo \
 	dbesj0.lo dbesj1.lo dbesj.lo dbesk0.lo dbesk1.lo dbesk.lo \
-	dbesks.lo dbesy0.lo dbesy1.lo dbesy.lo dbkias.lo dbkisr.lo \
+	dbesy0.lo dbesy1.lo dbesy.lo dbkias.lo dbkisr.lo \
 	dbsi0e.lo dbsi1e.lo dbsk0e.lo dbsk1e.lo dbskes.lo dbskin.lo \
 	dbsknu.lo dbsynu.lo dcsevl.lo dexint.lo dgamlm.lo dgamln.lo \
 	dgamma.lo dgamrn.lo dhkseq.lo djairy.lo dpsixn.lo dxlegf.lo \
@@ -596,7 +596,6 @@ src/fortran/slatec/dbesj.f \
 src/fortran/slatec/dbesk0.f \
 src/fortran/slatec/dbesk1.f \
 src/fortran/slatec/dbesk.f \
-src/fortran/slatec/dbesks.f \
 src/fortran/slatec/dbesy0.f \
 src/fortran/slatec/dbesy1.f \
 src/fortran/slatec/dbesy.f \
@@ -1804,9 +1803,6 @@ dbesk1.lo: src/fortran/slatec/dbesk1.f
 
 dbesk.lo: src/fortran/slatec/dbesk.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesk.lo `test -f 'src/fortran/slatec/dbesk.f' || echo '$(srcdir)/'`src/fortran/slatec/dbesk.f
-
-dbesks.lo: src/fortran/slatec/dbesks.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesks.lo `test -f 'src/fortran/slatec/dbesks.f' || echo '$(srcdir)/'`src/fortran/slatec/dbesks.f
 
 dbesy0.lo: src/fortran/slatec/dbesy0.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesy0.lo `test -f 'src/fortran/slatec/dbesy0.f' || echo '$(srcdir)/'`src/fortran/slatec/dbesy0.f
