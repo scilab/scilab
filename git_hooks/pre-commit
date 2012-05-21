@@ -87,8 +87,10 @@ indent() {
     fi
 
     # loop on modified files
-    git diff --cached --name-only $against |while read file;
+    git diff --cached --name-status $against |while read st file;
     do
+        # skip deleted files
+        if [ "$st" == 'D' ]; then continue; fi
         local ext=$(expr "$file" : ".*\(\..*\)")
         case $ext in
         .xcos|.xml)
