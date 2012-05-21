@@ -64,6 +64,50 @@
     </itemizedlist>
     <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
   </refsection>
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Add some functions/macros in replacement of stack functions/macros
+          <itemizedlist>
+            <listitem>nbInputArgument
+              <para>
+                Replaces <literal>Rhs</literal>
+              </para>
+            </listitem>
+            <listitem>nbOutputArgument
+              <para>
+                Replaces <literal>Lhs</literal>
+              </para>
+            </listitem>
+            <listitem>AssignOutputVariable
+              <para>
+                Replaces <literal>LhsVar</literal>
+              </para>
+            </listitem>
+            <listitem>ReturnArguments
+              <para>
+                Replaces <literal>PutLhsVar</literal>
+              </para>
+            </listitem>
+            <listitem>CheckInputArgument
+              <para>
+                Replaces <literal>CheckRhs</literal>
+              </para>
+            </listitem>
+            <listitem>CheckOutputArgument
+              <para>
+                Replaces <literal>CheckLhs</literal>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  
   <refsection>
     <title>See Also - API_Scilab</title>
     <simplelist type="inline">
