@@ -119,9 +119,9 @@ libscicacsd_algo_la_LIBADD =
 am__objects_1 = jacl2.lo onface.lo tild.lo degl2.lo qvalz.lo dfrmg.lo \
 	hessl2.lo rtitr.lo watfac.lo sszer.lo mzdivq.lo expan.lo \
 	optml2.lo wdegre.lo phi.lo ricd.lo shrslv.lo qhesz.lo rilac.lo \
-	scaleg.lo arl2.lo wesidu.lo dzdivq.lo arl2a.lo lq.lo outl2.lo \
-	dhetr.lo domout.lo rootgp.lo feq.lo fout.lo deg1l2.lo modul.lo \
-	scapol.lo dlslv.lo giv.lo storl2.lo calsca.lo qitz.lo front.lo
+	arl2.lo wesidu.lo dzdivq.lo arl2a.lo lq.lo outl2.lo dhetr.lo \
+	domout.lo rootgp.lo feq.lo fout.lo deg1l2.lo modul.lo \
+	scapol.lo giv.lo storl2.lo calsca.lo qitz.lo front.lo
 am__objects_2 = sb04pd.lo ib01ad.lo tb01wd.lo ib01py.lo mb01rx.lo \
 	ib01md.lo sb02ru.lo sb04nw.lo sb10dd.lo mb04id.lo sb04ny.lo \
 	ib01qd.lo sb04px.lo sb04rw.lo sb04ry.lo mb01qd.lo mb01ud.lo \
@@ -578,7 +578,6 @@ src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
 src/fortran/rilac.f \
-src/fortran/scaleg.f \
 src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
@@ -593,7 +592,6 @@ src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/dlslv.f \
 src/fortran/giv.f \
 src/fortran/storl2.f \
 src/fortran/calsca.f \
@@ -1079,9 +1077,6 @@ qhesz.lo: src/fortran/qhesz.f
 rilac.lo: src/fortran/rilac.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
 
-scaleg.lo: src/fortran/scaleg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
-
 arl2.lo: src/fortran/arl2.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arl2.lo `test -f 'src/fortran/arl2.f' || echo '$(srcdir)/'`src/fortran/arl2.f
 
@@ -1123,9 +1118,6 @@ modul.lo: src/fortran/modul.f
 
 scapol.lo: src/fortran/scapol.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
-
-dlslv.lo: src/fortran/dlslv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
 
 giv.lo: src/fortran/giv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f

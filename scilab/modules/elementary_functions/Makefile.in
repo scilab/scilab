@@ -126,21 +126,20 @@ libscielementary_functions_algo_la_LIBADD =
 am__objects_1 = zwrsk.lo d9b0mp.lo d9b1mp.lo d9knus.lo d9lgmc.lo \
 	dasyik.lo dasyjy.lo dbdiff.lo dbesi0.lo dbesi1.lo dbesi.lo \
 	dbesj0.lo dbesj1.lo dbesj.lo dbesk0.lo dbesk1.lo dbesk.lo \
-	dbesy0.lo dbesy1.lo dbesy.lo dbkias.lo dbkisr.lo \
-	dbsi0e.lo dbsi1e.lo dbsk0e.lo dbsk1e.lo dbskes.lo dbskin.lo \
-	dbsknu.lo dbsynu.lo dcsevl.lo dexint.lo dgamlm.lo dgamln.lo \
-	dgamma.lo dgamrn.lo dhkseq.lo djairy.lo dpsixn.lo dxlegf.lo \
-	dyairy.lo fdump.lo gamma.lo initds.lo j4save.lo xercnt.lo \
-	xermsg.lo xerprn.lo xersve.lo xgetua.lo zabs.lo zacai.lo \
-	zacon.lo zairy.lo zasyi.lo zbesh.lo zbesi.lo zbesj.lo zbesk.lo \
-	zbesy.lo zbinu.lo zbknu.lo zbuni.lo zbunk.lo zdiv.lo zexp.lo \
-	zkscl.lo zlog.lo zmlri.lo zmlt.lo zrati.lo zs1s2.lo zseri.lo \
-	zshch.lo zsqrt.lo zuchk.lo zunhj.lo zuni1.lo zuni2.lo zunik.lo \
-	zunk1.lo zunk2.lo zuoik.lo dlngam.lo balanc.lo dtensbs.lo \
-	pchim.lo
-am__objects_2 = dgesl.lo wpade.lo util.lo dgefa.lo dgbfa.lo \
-	dgeco.lo dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo wgeco.lo \
-	wgefa.lo wgesl.lo dpofa.lo
+	dbesy0.lo dbesy1.lo dbesy.lo dbkias.lo dbkisr.lo dbsi0e.lo \
+	dbsi1e.lo dbsk0e.lo dbsk1e.lo dbskes.lo dbskin.lo dbsknu.lo \
+	dbsynu.lo dcsevl.lo dexint.lo dgamlm.lo dgamln.lo dgamma.lo \
+	dgamrn.lo dhkseq.lo djairy.lo dpsixn.lo dxlegf.lo dyairy.lo \
+	fdump.lo gamma.lo initds.lo j4save.lo xercnt.lo xermsg.lo \
+	xerprn.lo xersve.lo xgetua.lo zabs.lo zacai.lo zacon.lo \
+	zairy.lo zasyi.lo zbesh.lo zbesi.lo zbesj.lo zbesk.lo zbesy.lo \
+	zbinu.lo zbknu.lo zbuni.lo zbunk.lo zdiv.lo zexp.lo zkscl.lo \
+	zlog.lo zmlri.lo zmlt.lo zrati.lo zs1s2.lo zseri.lo zshch.lo \
+	zsqrt.lo zuchk.lo zunhj.lo zuni1.lo zuni2.lo zunik.lo zunk1.lo \
+	zunk2.lo zuoik.lo dlngam.lo balanc.lo dtensbs.lo pchim.lo
+am__objects_2 = dgesl.lo wpade.lo util.lo dgefa.lo dgbfa.lo dgeco.lo \
+	dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo wgeco.lo wgefa.lo \
+	wgesl.lo dpofa.lo
 am__objects_3 = balbak.lo
 am__objects_4 = libscielementary_functions_algo_la-sci_tools.lo \
 	libscielementary_functions_algo_la-finite.lo \

@@ -131,7 +131,6 @@ src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
 src/fortran/rilac.f \
-src/fortran/scaleg.f \
 src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
@@ -146,7 +145,6 @@ src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/dlslv.f \
 src/fortran/giv.f \
 src/fortran/storl2.f \
 src/fortran/calsca.f \

@@ -295,7 +295,6 @@ cd ..
     <ClCompile Include="degl2.c" />
     <ClCompile Include="dfrmg.c" />
     <ClCompile Include="dhetr.c" />
-    <ClCompile Include="dlslv.c" />
     <ClCompile Include="domout.c" />
     <ClCompile Include="dzdivq.c" />
     <ClCompile Include="expan.c" />
@@ -319,8 +318,6 @@ cd ..
     <ClCompile Include="rilac.c" />
     <ClCompile Include="rootgp.c" />
     <ClCompile Include="rtitr.c" />
-    <ClCompile Include="scaleg.c" />
-    <ClCompile Include="scapol.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_arl2.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dhinf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ereduc.c" />
@@ -346,6 +343,7 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sylv.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tzer.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zrankqr.c" />
+    <ClCompile Include="scapol.c" />
     <ClCompile Include="shrslv.c" />
     <ClCompile Include="sszer.c" />
     <ClCompile Include="storl2.c" />
@@ -362,7 +360,6 @@ cd ..
     <f2c_rule Include="degl2.f" />
     <f2c_rule Include="dfrmg.f" />
     <f2c_rule Include="dhetr.f" />
-    <f2c_rule Include="dlslv.f" />
     <f2c_rule Include="domout.f" />
     <f2c_rule Include="dzdivq.f" />
     <f2c_rule Include="expan.f" />
@@ -386,7 +383,6 @@ cd ..
     <f2c_rule Include="rilac.f" />
     <f2c_rule Include="rootgp.f" />
     <f2c_rule Include="rtitr.f" />
-    <f2c_rule Include="scaleg.f" />
     <f2c_rule Include="scapol.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_arl2.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dhinf.f" />

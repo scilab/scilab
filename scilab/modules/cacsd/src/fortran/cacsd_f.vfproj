@@ -146,7 +146,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\degl2.f"/>
 		<File RelativePath=".\dfrmg.f"/>
 		<File RelativePath=".\dhetr.f"/>
-		<File RelativePath=".\dlslv.f"/>
 		<File RelativePath=".\domout.f"/>
 		<File RelativePath=".\dzdivq.f"/>
 		<File RelativePath=".\expan.f"/>
@@ -170,7 +169,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\rilac.f"/>
 		<File RelativePath=".\rootgp.f"/>
 		<File RelativePath=".\rtitr.f"/>
-		<File RelativePath=".\scaleg.f"/>
 		<File RelativePath=".\scapol.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_arl2.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dhinf.f"/>
