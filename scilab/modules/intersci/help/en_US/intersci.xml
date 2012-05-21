@@ -15,8 +15,8 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>intersci (obsolete)</refname>
-    <refpurpose>Scilab tool to interface C or Fortran functions with scilab</refpurpose>
+    <refname>intersci</refname>
+    <refpurpose>Scilab tool to interface C or Fortran functions with scilab. Deprecated: Please use SWIG</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -15,6 +15,7 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
+#include <stdio.h>
 #include "intersci-n.h"
 #include "getrhs.h"
 #include "crerhs.h"
@@ -45,6 +46,8 @@ int main(int argc, char **argv)
     char *files, *libs;
     char *file;
     int SciLabinterface = 0;
+
+    fprintf(stderr, "WARNING: This program is deprecated and will be removed with Scilab 6.0.0. Please use SWIG ( http://www.swig.org/ ) instead.\n\n");
 
     switch (argc)
     {
