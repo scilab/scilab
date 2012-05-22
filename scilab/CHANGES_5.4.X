@@ -179,6 +179,8 @@ Documentation
 
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
+* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
 * Bug #10673 fixed - Typos fixed in the help page of ssrand.
 
 * Bug #10685 fixed - inttrap help page moved to differential calculus module.
@@ -317,8 +319,6 @@ Xcos
 
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
-
-* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
 
 * Bug #10679 fixed - blocks_link.tst failed.
 
