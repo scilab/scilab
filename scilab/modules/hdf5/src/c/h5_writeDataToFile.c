@@ -17,8 +17,10 @@
 #include <math.h>
 #include <string.h>
 #include "sci_types.h"
+#include "version.h"
 #include "core_math.h"
 #include "h5_writeDataToFile.h"
+#include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 
 static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t * _piDims)
@@ -27,55 +29,55 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t * _piDims)
     int iLevel = _iLevel;*/
 
     return H5P_DEFAULT;
-/*
-  if(iLevel < 0)
-    {
-        iLevel = 0;
-    }
-
-  if(iLevel > 9)
-    {
-        iLevel = 9;
-    }
-
-    if(iLevel)
-    {
-        iRet = H5Pcreate(H5P_DATASET_CREATE);
-        if(iRet < 0)
+    /*
+      if(iLevel < 0)
         {
-            iRet = 0;
+            iLevel = 0;
         }
-        else
+
+      if(iLevel > 9)
         {
-            if(H5Pset_layout(iRet,H5D_COMPACT)<0)
+            iLevel = 9;
+        }
+
+        if(iLevel)
+        {
+            iRet = H5Pcreate(H5P_DATASET_CREATE);
+            if(iRet < 0)
             {
-                H5Pclose(iRet);
                 iRet = 0;
             }
             else
             {
-                if(H5Pset_chunk(iRet,_iRank, _piDims)<0)
+                if(H5Pset_layout(iRet,H5D_COMPACT)<0)
                 {
                     H5Pclose(iRet);
                     iRet = 0;
                 }
                 else
                 {
-                    if(H5Pset_deflate(iRet,iLevel)<0)
+                    if(H5Pset_chunk(iRet,_iRank, _piDims)<0)
                     {
                         H5Pclose(iRet);
                         iRet = 0;
                     }
+                    else
+                    {
+                        if(H5Pset_deflate(iRet,iLevel)<0)
+                        {
+                            H5Pclose(iRet);
+                            iRet = 0;
+                        }
+                    }
                 }
             }
         }
-    }
-    else
-    {
-        iRet = H5Pcopy(H5P_DEFAULT);
-    }
-    return iRet;
-*/
+        else
+        {
+            iRet = H5Pcopy(H5P_DEFAULT);
+        }
+        return iRet;
+    */
 }
 
 static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _iVal)
@@ -162,75 +164,55 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
     return 0;
 }
 
-/*
-static int writeString(int _iFile, char *_pstDatasetName, char *_pstData)
+
+int updateScilabVersion(int _iFile)
 {
-    hsize_t dims[1] = { 1 };
-    hid_t typeId, space, dset;
     herr_t status;
-    hid_t iCompress;
-
-    //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
-    if (space < 0)
+    //try to read attribute
+    char* pstScilabVersion = getScilabVersionAttribute(_iFile);
+    if (pstScilabVersion)
     {
-        return -1;
-    }
-
-    //Create special string type
-    typeId = H5Tcopy(H5T_C_S1);
-    if (strlen(_pstData) > 0)
-    {
-        status = H5Tset_size(typeId, strlen(_pstData));
+        //delete before write
+        status = H5Adelete(_iFile, g_SCILAB_CLASS_SCI_VERSION);
         if (status < 0)
         {
             return -1;
         }
     }
 
-    //Create the data set and write it.
-    iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, typeId, space, iCompress);
-    if (dset < 0)
+    if (strstr(SCI_VERSION_STRING, "branch"))
     {
-        return -1;
+        //compiled by user
+        char pstVersion[64];
+        sprintf(pstVersion, "%s %d.%d.%d", SCI_VERSION_STRING, SCI_VERSION_MAJOR, SCI_VERSION_MINOR, SCI_VERSION_MAINTENANCE);
+        status = addAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION, pstVersion);
+    }
+    else
+    {
+        //compiled by compilation chain
+        status = addAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION, SCI_VERSION_STRING);
     }
 
-    status = H5Dwrite(dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
-    if (status < 0)
-    {
-        return -1;
-    }
-
-    //Add attribute SCILAB_Class = string to dataset
-    status = addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
-    if (status < 0)
-    {
-        return -1;
-    }
-
-    //Close and release resources.
-    status = H5Dclose(dset);
-    if (status < 0)
-    {
-        return -1;
-    }
-
-    status = H5Tclose(typeId);
-    if (status < 0)
-    {
-        return -1;
-    }
-
-    status = H5Sclose(space);
-    if (status < 0)
-    {
-        return -1;
-    }
-
-    return 0;
+    return status;
 }
-*/
+
+int updateFileVersion(int _iFile)
+{
+    herr_t status;
+    //try to read attribute
+    int iHdf5Version = getSODFormatAttribute(_iFile);
+    if (iHdf5Version != -1)
+    {
+        status = H5Adelete(_iFile, g_SCILAB_CLASS_SOD_VERSION);
+        if (status < 0)
+        {
+            return -1;
+        }
+    }
+
+    return addIntAttribute(_iFile, g_SCILAB_CLASS_SOD_VERSION, SOD_FILE_VERSION);
+}
+
 int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, char **data)
 {
     int i;
@@ -526,7 +508,7 @@ int writeUndefined(int _iFile, char *_pstDatasetName)
 }
 
 static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char *_pstGroupName, char *_pstDatasetName, int _iIndex, int _iRows, int _iCols,
-                                          double *_pdblData)
+        double *_pdblData)
 {
     hid_t space;
     hid_t dset;
@@ -1996,17 +1978,17 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 
     switch (_iVarType)
     {
-    case sci_list:
-        pcstClass = g_SCILAB_CLASS_LIST;
-        break;
-    case sci_tlist:
-        pcstClass = g_SCILAB_CLASS_TLIST;
-        break;
-    case sci_mlist:
-        pcstClass = g_SCILAB_CLASS_MLIST;
-        break;
-    default:
-        return 1;
+        case sci_list:
+            pcstClass = g_SCILAB_CLASS_LIST;
+            break;
+        case sci_tlist:
+            pcstClass = g_SCILAB_CLASS_TLIST;
+            break;
+        case sci_mlist:
+            pcstClass = g_SCILAB_CLASS_MLIST;
+            break;
+        default:
+            return 1;
     }
 
     if (_iNbItem == 0)

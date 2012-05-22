@@ -25,6 +25,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "h5_readDataFromFile.h"
+#include "h5_attributeConstants.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -89,7 +90,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar));
     for (int i = 1 ; i < Rhs ; i++)
     {
-        if(strcmp(pstNameList[i], "-append") == 0)
+        if (strcmp(pstNameList[i], "-append") == 0)
         {
             bAppendMode = true;
         }
@@ -111,10 +112,10 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     // open hdf5 file
     pstFileName = expandPathVariable(pstNameList[0]);
     int iH5File = 0;
-    if(bAppendMode)
+    if (bAppendMode)
     {
         iH5File = openHDF5File(pstFileName);
-        if(iH5File < 0)
+        if (iH5File < 0)
         {
             iH5File = createHDF5File(pstFileName);
         }
@@ -140,28 +141,34 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-
-    if(bAppendMode)
+    if (bAppendMode)
     {
+        int iVersion = getSODFormatAttribute(iH5File);
+        if (iVersion != -1 && iVersion != SOD_FILE_VERSION)
+        {
+            Scierror(999, _("%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+            return 1;
+        }
+
         //check if variable already exists
         int iNbItem = getVariableNames(iH5File, NULL);
-        if(iNbItem)
+        if (iNbItem)
         {
             char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
 
             iNbItem = getVariableNames(iH5File, pstVarNameList);
 
             //import all data
-            for(int i = 0 ; i < iNbItem ; i++)
+            for (int i = 0 ; i < iNbItem ; i++)
             {
-                for(int j = 1 ; j < Rhs ; j++)
+                for (int j = 1 ; j < Rhs ; j++)
                 {
-                    if(strcmp(pstNameList[i], "-append") == 0)
+                    if (strcmp(pstNameList[i], "-append") == 0)
                     {
                         continue;
                     }
 
-                    if(strcmp(pstVarNameList[i], pstNameList[j]) == 0)
+                    if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
                     {
 
                         Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
@@ -177,7 +184,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     // export data
     for (int i = 1 ; i < Rhs ; i++)
     {
-        if(strcmp(pstNameList[i], "-append") == 0)
+        if (strcmp(pstNameList[i], "-append") == 0)
         {
             continue;
         }
@@ -186,6 +193,22 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         if (bExport == false)
         {
             break;
+        }
+    }
+
+    if (bExport)
+    {
+        //add or update scilab version and file version in hdf5 file
+        if (updateScilabVersion(iH5File) < 0)
+        {
+            Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname, pstNameList[0]);
+            return 1;
+        }
+
+        if (updateFileVersion(iH5File) < 0)
+        {
+            Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname, pstNameList[0]);
+            return 1;
         }
     }
 
@@ -218,7 +241,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
 
     //free memory
-    for(int i = 0 ; i < Rhs ; i++)
+    for (int i = 0 ; i < Rhs ; i++)
     {
         FREE(pstNameList[i]);
     }
@@ -323,7 +346,7 @@ static bool export_data(int _iH5File, int* _piVar, char* _pstName)
             break;
         }
 
-        default : 
+        default :
         {
             bReturn = false;
             break;
@@ -900,7 +923,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
             return 0;
         }
 
-        if(getAllocatedSingleString(pvApiCtx, piAddr, &_pstNameList[iCount]))
+        if (getAllocatedSingleString(pvApiCtx, piAddr, &_pstNameList[iCount]))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "export_to_hdf5", i);
             return 0;

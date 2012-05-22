@@ -15,6 +15,9 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+HDF5_SCILAB_IMPEXP int updateFileVersion(int _iFile);
+HDF5_SCILAB_IMPEXP int updateScilabVersion(int _iFile);
+
 HDF5_SCILAB_IMPEXP char* createGroupName(char* _pstGroupName);
 HDF5_SCILAB_IMPEXP char* createPathName(char* _pstGroupName, int _iIndex);
 

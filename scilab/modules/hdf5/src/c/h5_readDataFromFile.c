@@ -58,15 +58,15 @@ static herr_t op_func(hid_t loc_id, const char *name, void *operator_data)
 
     switch (statbuf.type)
     {
-    case H5G_GROUP:
-        break;
-    case H5G_DATASET:
-        *pDataSetId = H5Dopen(loc_id, name);
-        break;
-    case H5G_TYPE:
-        break;
-    default:
-        break;
+        case H5G_GROUP:
+            break;
+        case H5G_DATASET:
+            *pDataSetId = H5Dopen(loc_id, name);
+            break;
+        case H5G_TYPE:
+            break;
+        default:
+            break;
     }
 
     return 0;
@@ -76,33 +76,35 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
 {
     hid_t iAttributeId;
     herr_t status;
-    int iVal = 0;
+    int iVal = -1;
 
-    iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
-    if (iAttributeId < 0)
+    if (H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void *)_pstName))
     {
-        return 0;
-    }
+        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+        if (iAttributeId < 0)
+        {
+            return -1;
+        }
 
-    status = H5Aread(iAttributeId, H5T_NATIVE_INT, &iVal);
-    if (status < 0)
-    {
-        return 0;
-    }
+        status = H5Aread(iAttributeId, H5T_NATIVE_INT, &iVal);
+        if (status < 0)
+        {
+            return -1;
+        }
 
-    status = H5Aclose(iAttributeId);
-    if (status < 0)
-    {
-        return 0;
+        status = H5Aclose(iAttributeId);
+        if (status < 0)
+        {
+            return -1;
+        }
     }
-
     return iVal;
 }
 
 /*
 ** WARNING : this function returns an allocated value that must be freed.
 */
-static char *readAttribute(int _iDatasetId, const char *_pstName)
+static char* readAttribute(int _iDatasetId, const char *_pstName)
 {
     hid_t iAttributeId;
     hid_t iFileType, memtype, iSpace;
@@ -211,6 +213,19 @@ static int checkAttribute(int _iDatasetId, char *_pstAttribute, char *_pstValue)
         FREE(pstScilabClass);
     }
     return iRet;
+}
+
+/*
+** WARNING : this function returns an allocated value that must be freed.
+*/
+char* getScilabVersionAttribute(int _iFile)
+{
+    return readAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION);
+}
+
+int getSODFormatAttribute(int _iFile)
+{
+    return readIntAttribute(_iFile, g_SCILAB_CLASS_SOD_VERSION);
 }
 
 int getDatasetDimension(int _iDatasetId, int *_piRows, int *_piCols)
@@ -475,7 +490,8 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 }
 
 int readEmptyMatrix(int _iDatasetId)
-{                               //close dataset
+{
+    //close dataset
     herr_t status;
 
     status = H5Dclose(_iDatasetId);
