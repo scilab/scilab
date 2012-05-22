@@ -43,20 +43,27 @@ int sci_load(char *fname,unsigned long fname_len)
         }
 	    C2F(intload)(&Val,&k1);
     }
-    else
+    else if (isStringType(pvApiCtx, piAddr))
     {
         int lw = 0;
         //call "overload" to prepare data to export_to_hdf5 function.
         C2F(overload) (&lw, "sodload", (unsigned long)strlen("sodload"));
     }
-	return 0;
+    else
+    {
+        int Val = 40;
+        int k1 = 0;
+        C2F(intload)(&Val, &k1);
+    }
+
+    return 0;
 }
 
 int sci_percent_load(char *fname,unsigned long fname_len)
 {
-	int Val=40;
-	int k1=0;
-	C2F(intload)(&Val,&k1);
-	return 0;
+    int Val = 40;
+    int k1 = 0;
+    C2F(intload)(&Val, &k1);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
