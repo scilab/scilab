@@ -81,6 +81,7 @@ import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
+import org.scilab.modules.graphic_export.Driver;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -221,13 +222,14 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void createObject(String id) {
+        boolean isValid = (Boolean) GraphicController.getController().getProperty(id, __GO_VALID__);
+        if (!isValid) {
+            return;
+        }
+	
+        String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+        
         if (!headless && !GraphicsEnvironment.isHeadless()) {
-            boolean isValid = (Boolean) GraphicController.getController().getProperty(id, __GO_VALID__);
-            if (!isValid) {
-                return;
-            }
-
-            String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
             DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
             if (objectType.equals(__GO_FIGURE__)
                     || objectType.equals(__GO_UICONTEXTMENU__)
@@ -247,6 +249,10 @@ public final class SwingView implements GraphicView {
                 } else {
                     allObjects.put(id, null);
                 }
+            }
+        } else {
+            if (objectType.equals(__GO_FIGURE__)) {
+                Driver.setDefaultVisitor(id);
             }
         }
     }

@@ -183,6 +183,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         visitorMap.put(figure.getIdentifier(), visitor);
     }
 
+    public void setDrawingTools(DrawingTools drawingTools) {
+        this.drawingTools = drawingTools;
+    }
+
     public DrawingTools getDrawingTools() {
         return drawingTools;
     }

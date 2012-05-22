@@ -40,10 +40,8 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occured
      *         depending on the kind of error
      */
-    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
-        int ret = Export.export(figureUID, fileType, fileName, new ExportParams(jpegCompressionQuality, fileOrientation, false));
-
-        //int ret = Export.exportBitmap(figureUID, fileType, fileName, false, new ExportParams(jpegCompressionQuality, fileOrientation, false));
+    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation, boolean headless) {
+        int ret = Export.export(figureUID, fileType, fileName, new ExportParams(jpegCompressionQuality, fileOrientation, true), headless);
 
         switch (ret) {
         case Export.SUCCESS :
@@ -67,8 +65,37 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occured
      *         depending on the kind of error
      */
+    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
+        return fileExport(figureUID, fileName, fileType, jpegCompressionQuality, fileOrientation, false);
+    }
+
+    /**
+     * Export a figure into a file
+     * @param figureIndex index of the figure to export
+     * @param fileName name of the file to create
+     * @param fileType kind of the file
+     * @param jpegCompressionQuality the JPEG compression quality
+     * @param fileOrientation orientation of the file
+     * @return 0 if everything worked fine, a non null integer if an exception occured
+     *         depending on the kind of error
+     */
     public static String fileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
         String ext = fileType.toLowerCase();
-        return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation);
+        return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation, false);
+    }
+
+    /**
+     * Export a figure into a file
+     * @param figureIndex index of the figure to export
+     * @param fileName name of the file to create
+     * @param fileType kind of the file
+     * @param jpegCompressionQuality the JPEG compression quality
+     * @param fileOrientation orientation of the file
+     * @return 0 if everything worked fine, a non null integer if an exception occured
+     *         depending on the kind of error
+     */
+    public static String headlessFileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
+        String ext = fileType.toLowerCase();
+        return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation, true);
     }
 }
