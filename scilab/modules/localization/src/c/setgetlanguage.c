@@ -94,7 +94,7 @@ BOOL setlanguage(char *lang)
                 if (ret == NULL)
                 {
 #ifndef _MSC_VER
-                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s' %s %s.\nDid you install the system locales?", lang,
+                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s'\nReturned: %s\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
                             ret, setlocale(LC_MESSAGES, NULL));
 #else
                     fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
