@@ -17,6 +17,7 @@
   <property name="report.html.test.dir" location="${report.test.dir}/html/"/>
   <property name="report.codecoverage.dir" location="${report.test.dir}/codecoverage/"/>
   <property name="report.codecoverage.html.dir" location="${report.test.dir}/html-codecoverage/"/>
+  <property name="report.codecoverage.xml.dir" location="${report.test.dir}/xml-codecoverage/"/>
   
   <!-- Check style definitions -->
   <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
@@ -101,6 +102,31 @@
     </cobertura-merge>
     
     <cobertura-report format="html" destdir="${report.codecoverage.html.dir}"> 
+      
+      <fileset dir="${library.action_binding.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.commons.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.graph.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.hdf5.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.xcos.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.types.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+      <fileset dir="${library.javasci.src.dir}">
+        <include name="**/*.java" />
+      </fileset>
+    </cobertura-report>
+    
+    <cobertura-report format="xml" destdir="${report.codecoverage.xml.dir}"> 
       
       <fileset dir="${library.action_binding.src.dir}">
         <include name="**/*.java" />
