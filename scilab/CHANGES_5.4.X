@@ -678,9 +678,6 @@ t.
 
 * Bug #10577 fixed - getdate did not check input argument.
 
-* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
-                     than gettext.
-
 * Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
 
 * Bug #10631 fixed - The # sign was missing in some error cases.
@@ -694,6 +691,11 @@ t.
                      input.
 
 * Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
+
+* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
+                     than gettext.
+
+* Bug #10662 fixed - xload did not support tlist for user_data property.
 
 * Bug #10710 fixed - Wrong error message fixed in xml module.
 

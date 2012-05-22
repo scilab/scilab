@@ -9,7 +9,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function %_sodload(filename, varargin)
-    function [varValues] = %__convertHandles__(varValues)
+
+function [varValues] = %__convertHandles__(varValues)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then
                 //convert handle to tlist
@@ -67,9 +68,9 @@ function %_sodload(filename, varargin)
             h($+1) = createSingleHandle(matrixHandle.values(i));
             if or(fieldnames(matrixHandle.values(i))=="user_data") then // TODO Remove after graphic branch merge
                 if isList(matrixHandle.values(i).user_data) then
-                    h($).user_data = parseList(matrixHandle.values(i).user_data)
+                    set(h($), "user_data", parseList(matrixHandle.values(i).user_data));
                 elseif typeof(matrixHandle.values(i).user_data) == "ScilabMatrixHandle" then
-                    h($).user_data = createMatrixHandle(matrixHandle.values(i).user_data)
+                    set(h($), "user_data", createMatrixHandle(matrixHandle.values(i).user_data));
                 end
             end
         end
@@ -147,7 +148,7 @@ function %_sodload(filename, varargin)
             if fields(i) == "children" then
                 createMatrixHandle(figureProperties(fields(i)));
             else
-                h(fields(i)) = figureProperties(fields(i));
+                set(h, fields(i), figureProperties(fields(i)));
             end
         end
     endfunction
@@ -159,7 +160,7 @@ function %_sodload(filename, varargin)
         fields = fieldnames(labelProperties);
         fields(1) = [];
         for i = 1:size(fields, "*")
-            h(fields(i)) = labelProperties(fields(i));
+            set(h, fields(i), labelProperties(fields(i)));
         end
     endfunction
 
@@ -191,8 +192,8 @@ function %_sodload(filename, varargin)
         fields(1) = [];
 
         // Get log_flags to be sure to set them after data_bounds
-	    log_flags = axesProperties.log_flags;
-	    fields(fields=="log_flags") = [];
+        log_flags = axesProperties.log_flags;
+        fields(fields=="log_flags") = [];
 
         for i = 1:size(fields, "*")
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
@@ -209,10 +210,10 @@ function %_sodload(filename, varargin)
             elseif fields(i) == "clip_box" then
                 // managed with 'clip_state'
             elseif fields(i) == "data_bounds" then
-			    set(h, "data_bounds", axesProperties.data_bounds);
-			    set(h, "log_flags", log_flags);
+                set(h, "data_bounds", axesProperties.data_bounds);
+                set(h, "log_flags", log_flags);
             else
-                h(fields(i)) = axesProperties(fields(i));
+                set(h, fields(i), axesProperties(fields(i)));;
             end
         end
 
@@ -279,7 +280,7 @@ function %_sodload(filename, varargin)
         fields(fields=="interp_color_mode") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = polylineProperties(fields(i));
+            set(h, fields(i), polylineProperties(fields(i)));
         end
     endfunction
 
@@ -358,7 +359,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = surfaceProperties(fields(i));
+            set(h, fields(i), surfaceProperties(fields(i)));
         end
     endfunction
 
@@ -373,7 +374,7 @@ function %_sodload(filename, varargin)
         fields(fields=="children") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = compoundProperties(fields(i));
+            set(h, fields(i), compoundProperties(fields(i)));
         end
     endfunction
 
@@ -395,7 +396,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = rectangleProperties(fields(i));
+            set(h, fields(i), rectangleProperties(fields(i)));
         end
     endfunction
 
@@ -417,7 +418,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = arcProperties(fields(i));
+            set(h, fields(i), arcProperties(fields(i)));
         end
     endfunction
 
@@ -441,7 +442,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = champProperties(fields(i));
+            set(h, fields(i), champProperties(fields(i)));
         end
     endfunction
 
@@ -464,7 +465,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = segsProperties(fields(i));
+            set(h, fields(i), segsProperties(fields(i)));
         end
     endfunction
 
@@ -488,7 +489,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = grayplotProperties(fields(i));
+            set(h, fields(i), grayplotProperties(fields(i)));
         end
     endfunction
 
@@ -512,7 +513,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = matplotProperties(fields(i));
+            set(h, fields(i), matplotProperties(fields(i)));
         end
     endfunction
 
@@ -537,7 +538,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = fecProperties(fields(i));
+            set(h, fields(i), fecProperties(fields(i)));
         end
     endfunction
 
@@ -572,7 +573,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = textProperties(fields(i));
+            set(h, fields(i), textProperties(fields(i)));
         end
     endfunction
 
@@ -612,7 +613,7 @@ function %_sodload(filename, varargin)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            h(fields(i)) = axisProperties(fields(i));
+            set(h, fields(i), axisProperties(fields(i)));
         end
     endfunction
 
@@ -632,7 +633,7 @@ function %_sodload(filename, varargin)
                     set(children(k), "parent", h);
                 end
             else
-                h(fields(i)) = uimenuProperties(fields(i));
+                set(h, fields(i), uimenuProperties(fields(i)));
             end
         end
     endfunction
@@ -653,7 +654,7 @@ function %_sodload(filename, varargin)
                     set(children(k), "parent", h);
                 end
             else
-                h(fields(i)) = uicontextmenuProperties(fields(i));
+                set(h, fields(i), uicontextmenuProperties(fields(i)));
             end
         end
     endfunction
@@ -675,7 +676,7 @@ function %_sodload(filename, varargin)
                     set(children(k), "parent", h);
                 end
             else
-                h(fields(i)) = uicontrolProperties(fields(i));
+                set(h, fields(i), uicontrolProperties(fields(i)));
             end
         end
     endfunction

@@ -1447,8 +1447,8 @@ function load_user_data(fd)
   if is_higher_than([3 1 0 0]) then
     h; //make a copy of the calling context h here
     %_load(fd,'user_data')
-    if user_data<>[] then
-      h.user_data=user_data;
+    if ~isempty(user_data) then
+      set(h, "user_data", user_data);
     end
   end
 endfunction
