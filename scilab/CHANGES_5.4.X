@@ -82,6 +82,10 @@ Scilab
    The previous format will not be supported by Scilab 6.
  - The 'matfile2sci' function now converts MAT-files to SOD files.
 
+* Calling load with a file descriptor as first input argumlent is now obsolete.
+  Please replace the file descriptor by the corresponding file name.
+  This feature will be removed in Scilab 6.0.0
+
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
 
@@ -727,6 +731,8 @@ t.
 * Bug #11076 fixed -  mlist('r'), tlist('r') returned a wrong error message.
 
 * Bug #11077 fixed - rlist() returned an error.
+
+* Bug #11114 fixed - Using load(file_descriptor, ...) is now obsolete.
 
 * Bug #11115 fixed - A graphic window was opened on with two xend().
 

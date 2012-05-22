@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function load(filename, varargin)
+function %_sodload(filename, varargin)
     function [varValues] = %__convertHandles__(varValues)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then

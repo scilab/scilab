@@ -118,6 +118,7 @@ int sci_save(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(pstVarI);
         }
 
+        if(iOldSave == FALSE)
         {
             int lw = 0;
             //call "overload" to prepare data to export_to_hdf5 function.
@@ -136,9 +137,9 @@ int sci_save(char *fname, unsigned long fname_len)
     {
         if (getWarningMode())
         {
-            sciprint(_("WARNING: Scilab 6 will not support the file format used.\n"));
-            sciprint(_("WARNING: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"));
-            sciprint(_("WARNING: See help('save') for the rational.\n"));
+            sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
+            sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
+            sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
         }
         C2F(intsave)();
     }

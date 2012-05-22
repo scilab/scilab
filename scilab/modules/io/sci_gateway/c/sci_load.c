@@ -11,10 +11,48 @@
  */
 
 #include "gw_io.h"
+#include "api_scilab.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intload)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_load(char *fname,unsigned long fname_len)
+{
+    SciErr sciErr;
+    int* piAddr = NULL;
+
+    //check first input argument type ( double can be file descriptor )
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if(isDoubleType(pvApiCtx, piAddr))
+    {
+	    int Val=40;
+	    int k1=0;
+        if (getWarningMode())
+        {
+            sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), "load(file_descriptor)");
+            sciprint(_("%s: See help('load') for the rational.\n"), _("Warning"));
+            sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.0.0");
+        }
+	    C2F(intload)(&Val,&k1);
+    }
+    else
+    {
+        int lw = 0;
+        //call "overload" to prepare data to export_to_hdf5 function.
+        C2F(overload) (&lw, "sodload", (unsigned long)strlen("sodload"));
+    }
+	return 0;
+}
+
+int sci_percent_load(char *fname,unsigned long fname_len)
 {
 	int Val=40;
 	int k1=0;

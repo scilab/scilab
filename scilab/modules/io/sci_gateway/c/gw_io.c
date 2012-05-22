@@ -37,7 +37,8 @@ static gw_generic_table Tab[] =
     {sci_read4b, "read4b"},
     {sci_write4b, "write4b"},
     {sci_save, "save"},
-    {sci_load, "%_load"}
+    {sci_load, "load"},
+    {sci_percent_load, "%_load"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)

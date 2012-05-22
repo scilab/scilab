@@ -32,6 +32,7 @@ int sci_read4b(char *fname, unsigned long fname_len);
 int sci_write4b(char *fname, unsigned long fname_len);
 int sci_save(char *fname, unsigned long fname_len);
 int sci_load(char *fname, unsigned long fname_len);
+int sci_percent_load(char *fname, unsigned long fname_len);
 int sci_getio(char *fname, unsigned long fname_len);
 int sci_setenv(char *fname, unsigned long fname_len);
 
