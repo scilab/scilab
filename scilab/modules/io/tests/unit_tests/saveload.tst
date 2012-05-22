@@ -130,7 +130,9 @@ a=list(list(1,rand(10,10),'asdfsf',poly(rand(10,10),'s')),$);if ~Check(a) then p
 a=list(1);a(4)='as';a=list(a,[]);if ~Check(a) then pause,end
 a=list(list(1,rand(10,10),'asdfsf',poly(rand(1,11),'s','c')),list());if ~Check(a) then pause,end
 
-
+a = list();
+a(3) = 3;
+assert_checktrue(Check(a));
 
 a=[];b=1;c=[1 2 3];d=[1 2 3;4 5 6];
 if ~Check(a,b) then pause,end

@@ -34,7 +34,7 @@ function load(filename, varargin)
 
     function varValue = parseList(varValue)
         if typeof(varValue)=="list" then
-            for i = 1:size(varValue)
+            for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));
                 elseif isList(varValue(i)) then
@@ -185,7 +185,7 @@ function load(filename, varargin)
         if ~isempty(ind) then
           newaxes();
         end;
-        
+
         h = gca();
         fields = fieldnames(axesProperties);
         fields(1) = [];
@@ -738,7 +738,7 @@ function load(filename, varargin)
             if typeof(variableName) <> "string" | size(variableName, "*") <> 1 then
                 error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", i));
             end
-            
+
             if or(variableList == variableName) then
                 loadFunction(filename, variableName);
                 resumeList($+1) = evstr(variableName);
