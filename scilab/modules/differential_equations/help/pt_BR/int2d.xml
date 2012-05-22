@@ -188,10 +188,4 @@ deff('z=f(x,y)','z=cos(x+y)')
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Autores</title>
-    <para>Autores da rotina FORTRAN twodq: Kahaner,D.K.,N.B.S.,
-      Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. de UTAH
-    </para>
-  </refsection>
 </refentry>

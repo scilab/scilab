@@ -27,43 +27,41 @@
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>y0,ydot0</term>
+        <term>y0, ydot0</term>
         <listitem>
-          <para>real vectors or matrix (initial conditions).</para>
+          <para>real vectors or matrices (initial conditions)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t0</term>
         <listitem>
-          <para>real scalar (initial time).</para>
+          <para>a real scalar (initial time)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real vector (times at which the solution is computed).</para>
+          <para>a real vector (times at which the solution is computed)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>res,adda</term>
+        <term>res, adda</term>
         <listitem>
-          <para>externals (function or character string or list).</para>
+          <para>externals (function or character string or list)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>type</term>
         <listitem>
           <para>
-            string <literal>'adams'</literal> or
-            <literal>'stiff'</literal>
+            string <literal>'adams'</literal> or  <literal>'stiff'</literal>
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
-          <para>real scalar or real vector of the same size as as
-            <literal>y</literal>.
+          <para>real scalars or real vectors of the same size as  <literal>y</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -81,9 +79,9 @@
     <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
     <para>
       <literal>t0</literal> is the initial instant, <literal>y0</literal>
-      is the vector of initial conditions Vector <literal>ydot0</literal> of the
+      is the vector of initial conditions. Vector <literal>ydot0</literal> of the
       time derivative of <literal>y</literal> at <literal>t0</literal> must also
-      be given. r The input <literal>res</literal> is an external i.e. a
+      be given. The input <literal>res</literal> is an <link linkend="external">external</link> i.e. a
       function with specified syntax, or the name a Fortran subroutine or a C
       function (character string) with specified calling sequence or a
       list.
@@ -92,7 +90,7 @@
       If <literal>res</literal> is a function, its syntax must be as
       follows:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 r = res(t,y,ydot)
  ]]></programlisting>
     <para>
@@ -108,8 +106,7 @@ r = res(t,y,ydot)
       that.
     </para>
     <para>
-      <literal>res</literal> can also be a list: see the help of
-      <literal>ode</literal>.
+      <literal>res</literal> can also be a list: see the help of <link linkend="ode">ode</link>.
     </para>
     <para>
       The input <literal>adda</literal> is also an external.
@@ -118,7 +115,7 @@ r = res(t,y,ydot)
       If <literal>adda</literal> is a function, its syntax must be as
       follows:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 r = adda(t,y,p)
  ]]></programlisting>
     <para>
@@ -133,8 +130,7 @@ r = adda(t,y,p)
       that.
     </para>
     <para>
-      <literal>adda</literal> can also be a list: see the help of
-      <literal>ode</literal>.
+      <literal>adda</literal> can also be a list: see the help of <link linkend="ode">ode</link>.
     </para>
     <para>
       The input <literal>jac</literal> is also an external.
@@ -157,8 +153,7 @@ j = jac(t,y,ydot)
       that.
     </para>
     <para>
-      <literal>jac</literal> can also be a list: see the help of
-      <literal>ode</literal>.
+      <literal>jac</literal> can also be a list: see the help of <link linkend="ode">ode</link>.
     </para>
   </refsection>
   <refsection>
