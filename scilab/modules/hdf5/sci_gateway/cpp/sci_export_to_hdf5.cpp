@@ -67,7 +67,6 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     char** pstNameList  = NULL;
     char *pstFileName   = NULL;
     bool bExport        = false;
-    int iStartVarName   = 1;
     bool bAppendMode    = false;
 
     SciErr sciErr;
@@ -87,21 +86,22 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if(strcmp(pstNameList[1], "-append") == 0)
+    piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar));
+    for (int i = 1 ; i < Rhs ; i++)
     {
-        bAppendMode = true;
-        iStartVarName = 2;
-    }
-
-    piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - iStartVarName));
-    for (int i = iStartVarName ; i < Rhs ; i++)
-    {
-        sciErr = getVarAddressFromName(pvApiCtx, pstNameList[i], &piAddrList[i - iStartVarName]);
-        if (sciErr.iErr)
+        if(strcmp(pstNameList[i], "-append") == 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
-            printError(&sciErr, 0);
-            return 1;
+            bAppendMode = true;
+        }
+        else
+        {
+            sciErr = getVarAddressFromName(pvApiCtx, pstNameList[i], &piAddrList[i]);
+            if (sciErr.iErr)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+                printError(&sciErr, 0);
+                return 1;
+            }
         }
     }
 
@@ -154,9 +154,14 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
             //import all data
             for(int i = 0 ; i < iNbItem ; i++)
             {
-                for(int j = 0 ; j < Rhs - iStartVarName; j++)
+                for(int j = 1 ; j < Rhs ; j++)
                 {
-                    if(strcmp(pstVarNameList[i], pstNameList[j + iStartVarName]) == 0)
+                    if(strcmp(pstNameList[i], "-append") == 0)
+                    {
+                        continue;
+                    }
+
+                    if(strcmp(pstVarNameList[i], pstNameList[j]) == 0)
                     {
 
                         Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
@@ -170,9 +175,14 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     }
 
     // export data
-    for (int i = 0 ; i < Rhs - iStartVarName; i++)
+    for (int i = 1 ; i < Rhs ; i++)
     {
-        bExport = export_data(iH5File, piAddrList[i], pstNameList[i + iStartVarName]);
+        if(strcmp(pstNameList[i], "-append") == 0)
+        {
+            continue;
+        }
+
+        bExport = export_data(iH5File, piAddrList[i], pstNameList[i]);
         if (bExport == false)
         {
             break;

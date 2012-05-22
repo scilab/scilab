@@ -36,7 +36,7 @@ ierrsave = 0;
 
 //--loop on the stored variables
 while Name<>"" & ierr==0 & ierrsave==0
-  ierrsave = execstr(Name + " = Matrix; export_to_hdf5(fdo, ""-append"", """+Name+""")", "errcatch")
+  ierrsave = execstr(Name + " = Matrix; save(fdo, ""-append"", """+Name+""")", "errcatch")
   if ierrsave==0 then
     //-- Read next variable
     ierr = execstr("[Name, Matrix, Class] = matfile_varreadnext(fdi);", "errcatch");

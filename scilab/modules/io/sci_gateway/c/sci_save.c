@@ -96,30 +96,32 @@ int sci_save(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            //try to get variable by name
-            sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
-            if (sciErr.iErr)
+            if(strcmp(pstVarI, "-append") != 0)
             {
-                // Try old save because here the input variable can be of type "string" but not a variable name
-                // Ex: a=""; save(filename, a);
-                iOldSave = TRUE;
-                break;
-            }
+                //try to get variable by name
+                sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
+                if (sciErr.iErr)
+                {
+                    // Try old save because here the input variable can be of type "string" but not a variable name
+                    // Ex: a=""; save(filename, a);
+                    iOldSave = TRUE;
+                    break;
+                }
 
-            if (piAddrI2 == 0)
-            {
-                iOldSave = TRUE;
-                break;
+                if (piAddrI2 == 0)
+                {
+                    iOldSave = TRUE;
+                    break;
+                }
             }
 
             freeAllocatedSingleString(pstVarI);
+        }
 
-            {
-                int lw = 0;
-                //call "overload" to prepare data to export_to_hdf5 function.
-                C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
-            }
-
+        {
+            int lw = 0;
+            //call "overload" to prepare data to export_to_hdf5 function.
+            C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
         }
     }
     else

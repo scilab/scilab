@@ -12,6 +12,11 @@ function [] = %_save(filename, varargin)
 
     varList = list();
     for i = 1:size(varargin)
+
+        if varargin(i) == "-append" then
+            continue;
+        end
+
         temp = evstr(varargin(i));
 
         if isList(temp) then
