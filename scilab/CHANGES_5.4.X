@@ -128,6 +128,8 @@ Documentation
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #7167 fixed - Fix a typo in pdiv.
+
 * Bug #7859 fixed - Improvements of the "exists" help page.
 
 * Bug #8685 fixed - Lack of consistency in the keyword documentation.

@@ -53,9 +53,9 @@
       <literal>P1</literal> pelo polinômio <literal>P2</literal> ou pela matriz
       de polinômios <literal>P2</literal>. <literal>Rij</literal> é a matriz de
       restos, <literal>Qij</literal> é a matriz de quocientes e <literal>P1ij =
-        Qij*P2 + Qij
+        Qij*P2 + Rij
       </literal>
-      ou <literal>P1ij = Qij*P2ij + Qij</literal>.
+      ou <literal>P1ij = Qij*P2ij + Rij</literal>.
     </para>
   </refsection>
   <refsection>

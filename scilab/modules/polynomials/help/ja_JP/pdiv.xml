@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[R,Q]=pdiv(P1,P2)
-[Q]=pdiv(P1,P2)</synopsis>
+      [Q]=pdiv(P1,P2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -49,13 +50,14 @@
   <refsection>
     <title>説明</title>
     <para>
-	多項式行列<literal>P1</literal>の多項式<literal>P2</literal>または
-	多項式行列<literal>P2</literal>による
-	要素毎のユークリッド除算.
-	<literal>Rij</literal>は余りの行列,
-	<literal>Qij</literal>は商の行列,そして,
-	<literal>P1ij = Qij*P2 + Qij</literal> または <literal>P1ij = Qij*P2ij + Qij</literal>
-	です.</para>
+      多項式行列<literal>P1</literal>の多項式<literal>P2</literal>または
+      多項式行列<literal>P2</literal>による
+      要素毎のユークリッド除算.
+      <literal>Rij</literal>は余りの行列,
+      <literal>Qij</literal>は商の行列,そして,
+      <literal>P1ij = Qij*P2 + Rij</literal> または <literal>P1ij = Qij*P2ij + Rij</literal>
+      です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
