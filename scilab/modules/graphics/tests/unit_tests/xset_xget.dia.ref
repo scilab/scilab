@@ -117,3 +117,10 @@ assert_checkequal(out, 1);
 xset("clipping", 1,2,3,4);
 out = xget("clipping");
 assert_checkequal(out, [1,2,3,4]);
+// XSET
+// wdim
+xset("wdim",1000,500)
+assert_checkequal(xget("wdim"), [1000,500]);
+xset("wdim",[1000,500]) // 500 is ignored here
+wdim=xget("wdim");
+assert_checkequal(wdim(1), 1000);

@@ -282,9 +282,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1), "wpdim") == 0 || strcmp(cstk(l1), "wdim") == 0)
     {
         int figureSize[2];
-        if (Rhs != 2)
+        if (Rhs != 2 && Rhs != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
         getOrCreateDefaultSubwin();
