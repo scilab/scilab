@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: ru\n"
 
 #, c-format
@@ -333,43 +333,6 @@ msgstr "Ваши переменные:"
 
 msgid "Your global variables are:"
 msgstr "Ваши глобальные переменные:"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %d.\n"
-msgstr "%s: Неверный входной аргумент %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось не больше %d.\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Неисправимая ошибка: Не могу создать таблицу для функций scilab.\n"
@@ -810,12 +773,21 @@ msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась матрица или дескриптор.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"

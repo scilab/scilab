@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-17 19:01+0000\n"
+"PO-Revision-Date: 2012-05-22 20:14+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -419,23 +419,29 @@ msgstr "&Uložit..."
 msgid "&Export to..."
 msgstr "&Exportovat do..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "&Export vektoru"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr "Export &vektoru do..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -445,12 +451,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Kopírovat do schránky"
@@ -733,6 +733,10 @@ msgstr "Žádná vlastnost '%s' pro tento objekt.\n"
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
 msgstr "%s: Špatný typ pro nadřazeného: Očekávána obslužná rutina nebo 0.\n"
+
+#, c-format
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: v tomto režimu nelze přidat menu do konzole.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"

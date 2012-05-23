@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-17 19:05+0000\n"
+"PO-Revision-Date: 2012-05-15 20:04+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -701,14 +701,8 @@ msgstr "Tolerance na čas"
 msgid "Max integration time interval"
 msgstr "Max časový interval začlenění"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Řešitel 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "Druh řešitele"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "maximální velikos kroku (0 znamená bez limitu)"
@@ -1022,10 +1016,6 @@ msgstr "%s: Špatný vstupní argument %s: očekáván svg, gif, nebo jpg.\n"
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ obslužné rutiny.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

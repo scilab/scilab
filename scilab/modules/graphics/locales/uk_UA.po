@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: uk\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -428,6 +428,10 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: слід встановити «%s»\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: невідомий вхідний параметр «%s».\n"
 
@@ -698,7 +702,7 @@ msgid "Unknown property: %s.\n"
 msgstr "Невідома властивість: %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
 
@@ -723,6 +727,11 @@ msgstr "%s: доступну пам’ять вичерпано."
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: значення має належати множині {%s}.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -1019,11 +1028,6 @@ msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 "Помилковий розмір значення властивості «%s»: слід використовувати вектор "
 "дійсних значень 1 x %d.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1845,10 +1849,6 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів «%s»: мало бути використано "
 "вектор розмірності %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"

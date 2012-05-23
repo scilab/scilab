@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: ru\n"
 
 #, c-format
@@ -704,14 +704,8 @@ msgstr "Погрешность по времени"
 msgid "Max integration time interval"
 msgstr "Максимальный временной интервал интегрирования"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Метод решения"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "Максимальный размер шага (0 - без ограничений)"
@@ -1027,10 +1021,6 @@ msgstr "%s: Неверный входной параметр %s: ожидало�
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидался дескриптор.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

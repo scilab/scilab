@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: \n"
 
 #, c-format
@@ -358,43 +358,6 @@ msgstr "Vos variables sont :"
 
 msgid "Your global variables are:"
 msgstr "Vos variables globales sont :"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %d.\n"
-msgstr "%s : Argument d'entrée erroné %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments en sortie : Au moins %d attendus.\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab.\n"
@@ -855,12 +818,20 @@ msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"

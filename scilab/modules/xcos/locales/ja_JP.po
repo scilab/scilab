@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-04 06:49+0000\n"
+"PO-Revision-Date: 2012-05-15 14:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -685,14 +685,8 @@ msgstr "時間の誤差"
 msgid "Max integration time interval"
 msgstr "最大積分時間間隔"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "ソルバ 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "ソルバーの種類"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "最大反復サイズ(0は制限なし)"
@@ -757,10 +751,10 @@ msgid "Xcos file"
 msgstr "Xcosファイル"
 
 msgid "Xcos (zip) file"
-msgstr ""
+msgstr "Xcos (zip) ファイル"
 
 msgid "Scilab Open Data file"
-msgstr ""
+msgstr "Scilab オープンデータファイル"
 
 msgid "Masked SuperBlock editor"
 msgstr "マスクされたスーパーブロックエディタ"
@@ -999,10 +993,6 @@ msgstr "%s: 入力引数 %s が間違っています : svg, gif または jpg �
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ハンドル型を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

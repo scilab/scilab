@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: de\n"
 
 #, c-format
@@ -327,38 +327,6 @@ msgstr "Ihre Variablen sind:"
 
 msgid "Your global variables are:"
 msgstr "Ihre globalen Variablen sind:"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong input argument %d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: falsche Anzahl von Ausgangsargumenten: %d to %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
@@ -790,12 +758,20 @@ msgstr ""
 "%s: falscher Typ für Argument %d: Matrix, die dies verarbeitet, erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: falsche Anzahl an Ausgangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: falsche Anzahl von Ausgangsargumenten: %d to %d erwartet.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"

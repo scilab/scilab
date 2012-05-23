@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-08 14:26+0000\n"
+"PO-Revision-Date: 2012-04-24 14:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -98,7 +98,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定し�
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
-msgstr ""
+msgstr "%s: 出力先の親エンティティは軸(axes)である必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -348,6 +348,10 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' を設定してください\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: 認識できない入力引数 '%s' です.\n"
 
@@ -451,7 +455,7 @@ msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "どうぞ、dev@lists.scilab.org にバグレポートを送ってください。\n"
 
 msgid "Error: ComputeFormat must be used with AXIS objects\n"
-msgstr ""
+msgstr "エラー: ComputeFormat には AXISオブジェクトを指定して使用する必要があります\n"
 
 #
 # File: src/c/Format.c, line: 1171
@@ -525,7 +529,7 @@ msgid "Graphic window number %d"
 msgstr "グラフィック・ウインドウ番号 %d"
 
 msgid "Default axes cannot be created.\n"
-msgstr ""
+msgstr "デフォルトの軸(axes)を作成できません.\n"
 
 #
 # File: src/c/InitObjects.c, line: 828
@@ -602,7 +606,7 @@ msgid "Number of elements must be %d (%d if z coordinate )\n"
 msgstr "要素の数は %d  (%d : z座標の場合)にしてください.\n"
 
 msgid "Number of rows must be a multiple of 2.\n"
-msgstr ""
+msgstr "行数は2の倍数とする必要があります.\n"
 
 msgid "Unhandled data field\n"
 msgstr "未処理のデータフィールド\n"
@@ -802,8 +806,8 @@ msgid "Unknown property: %s.\n"
 msgstr "未知のプロパティ: %s\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "'%s' プロパティの値が間違っています: %s または %s を指定してください.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -824,6 +828,10 @@ msgstr "%s: メモリ不足です."
 #, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' プロパティの値が間違っています: 集合 {%s}の値を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "'%s' プロパティの値が間違っています: %s または %s を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -859,27 +867,27 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr ""
+msgstr "'%s'プロパティの大きさが間違っています: 2要素のリストを指定してください.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの大きさが間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
-msgstr ""
+msgstr "プロパティ'%s' の型が間違っています: 文字列または2要素のリストを指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A Real scalar expected.\n"
-msgstr ""
+msgstr "プロパティ'%s' の型が間違っています: 実スカラーを指定してください.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A Real scalar expected.\n"
-msgstr ""
+msgstr "プロパティ'%s' の大きさが間違っています: 実スカラーを指定してください.\n"
 
 msgid "Children property can not be modified directly.\n"
 msgstr "子のプロパティは直接修正できません.\n"
@@ -1140,16 +1148,16 @@ msgstr "手を加えられた色モードで、色ベクトルの列次元は、
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "警告: %s\n"
 
 msgid "{0,1} values are equivalent for line_style property."
-msgstr ""
+msgstr "{0,1} の値は line_styleプロパティとして等価です."
 
 msgid "0 will be removed after Scilab 5.4.0."
-msgstr ""
+msgstr "0 は Scilab 5.4.0以降削除されます."
 
 msgid "Please use 1 instead."
-msgstr ""
+msgstr "代わりに1を使用してください."
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1194,7 +1202,7 @@ msgstr "プロパティ '%s' で不正な型: '%s' ハンドル または '%s' �
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' ハンドルを指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 60
@@ -1203,11 +1211,7 @@ msgstr "親プロパティは、直接に修正することができません。
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの大きさが間違っています:1 x %d 実数行ベクトルを指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_axes_bounds_property.c, line: 48
@@ -1232,7 +1236,7 @@ msgstr "%s は、この場合セットすることができません。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_dimension_property.c, line: 41
@@ -1306,7 +1310,7 @@ msgstr "%s: x ベクトルは単調ではありません。\n"
 
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
-msgstr ""
+msgstr "%s: ベクトルy は単調ではありません.\n"
 
 #
 # File: src/nographics/nographics.c, line: 23
@@ -1643,13 +1647,13 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or Scilab function "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1657,19 +1661,19 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
-msgstr ""
+msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -2063,10 +2067,6 @@ msgid ""
 msgstr "%s: 入力引数'%s'の大きさが間違っています: 大きさ%d のベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 入力引数 %d の型が間違っています: '軸'のハンドルを指定してください.\n"
 
@@ -2080,7 +2080,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の型が間違っています: ハンドル'%s'を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2143,4 +2143,4 @@ msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
 msgid "%s: Wrong value given for %s."
-msgstr ""
+msgstr "%s: %s に指定された値が間違っています."

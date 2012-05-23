@@ -14,12 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
+"X-Generator: Launchpad (build 15282)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -37,6 +32,10 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nie można otworzyć pliku %s.\n"
 
 #, c-format
+msgid "%s: Variable '%s' already exists in file '%s'."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana jest wartość "
@@ -47,10 +46,6 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
 "znaków.\n"
-
-#, c-format
-msgid "%s: Type: %dx%d\n"
-msgstr "%s: Typ: %dx%d\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"

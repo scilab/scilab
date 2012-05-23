@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-09 14:26+0000\n"
+"PO-Revision-Date: 2012-05-15 14:28+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -24,19 +24,27 @@ msgstr "Scilabグラフィック・モジュール は、-nogui または -nwni 
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Invalid driver: %s.\n"
-msgstr ""
+msgstr "%s: ドライバが無効です: %s.\n"
+
+#, c-format
+msgid "%s: An error occured: %s\n"
+msgstr "%s: エラーが発生しました: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: パスが無効です: %s.\n"
 
 #, c-format
 msgid ""
@@ -73,6 +81,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 0 から 1 の範�
 #, c-format
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
+
+msgid "xinit must be called before xend."
+msgstr "xinit は xend の前にコールする必要があります."
+
+msgid "Unable to create export file, permission denied."
+msgstr "許可がないため, エキスポートファイルを作成できません."
+
+msgid "Unable to create export file, invalid file."
+msgstr "ファイルが無効なため, エキスポートファイルを作成できません."
 
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Scilabグラフィックエクスポートモジュールはインストールされていません.\n"

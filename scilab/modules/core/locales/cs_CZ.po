@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -325,38 +325,6 @@ msgstr "Vaše proměnné josu:"
 
 msgid "Your global variables are:"
 msgstr "Vaše globální proměnné jsou:"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s: Špatný typ pro vstupní argument #%d: Očekáván jeden řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván jeden řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %d.\n"
-msgstr "%s: Špatný vstupní argument %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr "%s: Špatný počet výstupních argumentů: Očekáváno nejvíce %d.\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Závažná Chyba: Nelze vytvořit tabulku pro funkce scilab.\n"
@@ -787,12 +755,20 @@ msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice obslužné rutiny.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"

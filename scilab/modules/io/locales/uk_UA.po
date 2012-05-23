@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-05 16:56+0000\n"
+"PO-Revision-Date: 2012-05-15 16:48+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: uk\n"
 
 #, c-format
@@ -154,6 +154,15 @@ msgstr ""
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 "%s: умовні позначення не відповідають поточному контексту. Пропущено.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr "%s: змінної «%s» немає у «%s».\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

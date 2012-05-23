@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: pl\n"
 
 #, c-format
@@ -454,23 +454,29 @@ msgstr "&Zapisz..."
 msgid "&Export to..."
 msgstr "&Eksportuj do..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "&Eksportowanie wektorowe"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -480,12 +486,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Kopiuj do schowka"
@@ -767,6 +767,10 @@ msgstr "Brak ustawienia '%s' dla tego obiektu.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not add a menu into the console in this mode.\n"
 msgstr ""
 
 #, c-format

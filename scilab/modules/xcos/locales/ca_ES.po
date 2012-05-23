@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: ca\n"
 
 #, c-format
@@ -702,14 +702,8 @@ msgstr "Tolerància temporal"
 msgid "Max integration time interval"
 msgstr "Intèrval màxim d'integració"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Solver 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "mida màxima del pas (0 indica que no hi ha límit)"
@@ -1026,12 +1020,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
-"tractament.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

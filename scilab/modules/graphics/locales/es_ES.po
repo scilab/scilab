@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: es\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -425,6 +425,10 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' debe ser establecido\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Argumento de entrada no reconocido'%s'.\n"
 
@@ -690,8 +694,8 @@ msgid "Unknown property: %s.\n"
 msgstr "Propiedad desconocida: %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "Valor incorrecto para la propiedad '%s': Se esperaba %s o %s.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -713,6 +717,10 @@ msgstr "%s: Memoria insuficiente."
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Valor incorrecto para la propiedad '%s': Debe estar en el conjunto {%s}.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "Valor incorrecto para la propiedad '%s': Se esperaba %s o %s.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -974,10 +982,6 @@ msgstr "La propiedad del padre no puede ser modificada directamente.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -1765,10 +1769,6 @@ msgid ""
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada '%s': Se esperaba un vector "
 "de dimensión %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"

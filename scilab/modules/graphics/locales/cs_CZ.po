@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -388,6 +388,10 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' musí být nastaveno\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Nerozpoznaný vstupní argument '%s'.\n"
 
@@ -636,8 +640,8 @@ msgid "Unknown property: %s.\n"
 msgstr "Neznámá vlastnost: %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "Špatný hodnota vlastnosti '%s': Očekáváno %s nebo %s.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -658,6 +662,10 @@ msgstr "%s: Není více paměti."
 #, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Musí být v sadě {%s}.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "Špatný hodnota vlastnosti '%s': Očekáváno %s nebo %s.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -903,10 +911,6 @@ msgstr "Nadřazená vlastnost nemůže být změněna přímo.\n"
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 "Špatná velikost vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1658,10 +1662,6 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu '%s': Očekáván vektor o velikosti "
 "%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"

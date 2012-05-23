@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-28 11:56+0000\n"
-"Last-Translator: Daniel Dietrich <Unknown>\n"
+"PO-Revision-Date: 2012-05-07 18:55+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "Language: de\n"
 
 #, c-format
@@ -341,7 +341,7 @@ msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Kann Eingabeargument nicht lesen #%d.\n"
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
 msgid ""
@@ -357,7 +357,7 @@ msgstr "%s: Die Datei %s existiert nicht.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Speicher-Allokationsfehler.\n"
+msgstr "%s: Speicherreservierungsfehler.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -430,23 +430,29 @@ msgstr "&Speichern"
 msgid "&Export to..."
 msgstr "&Exportieren nach..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "&Vektorielles Exportieren"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -456,12 +462,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&In die Zwischenablage kopieren"
@@ -743,6 +743,10 @@ msgstr "Keine Eigenschaft '%s' für dieses Objekt.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not add a menu into the console in this mode.\n"
 msgstr ""
 
 #, c-format

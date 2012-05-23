@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-08 14:27+0000\n"
+"PO-Revision-Date: 2012-04-24 14:38+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Generator: Launchpad (build 15282)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -399,14 +399,9 @@ msgid "&Export to..."
 msgstr "エクスポート(&E)..."
 
 #
-# File: scilab_fake_localization_file.c, line: 6
-msgid "&BMP"
-msgstr "BMP(&B)"
-
-#
-# File: scilab_fake_localization_file.c, line: 7
-msgid "&GIF"
-msgstr "GIF(&G)"
+# File: scilab_fake_localization_file.c, line: 9
+msgid "P&NG"
+msgstr "PNG(&N)"
 
 #
 # File: scilab_fake_localization_file.c, line: 8
@@ -414,17 +409,32 @@ msgid "&JPG"
 msgstr "JPG(&J)"
 
 #
-# File: scilab_fake_localization_file.c, line: 9
-msgid "P&NG"
-msgstr "PNG(&N)"
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&GIF"
+msgstr "GIF(&G)"
 
 #
 # File: scilab_fake_localization_file.c, line: 10
 msgid "&PPM"
 msgstr "PPM(&P)"
 
-msgid "&Vectorial export"
-msgstr "ベクトル形式でエクスポート(&V)"
+#
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&BMP"
+msgstr "BMP(&B)"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 15
+msgid "&PDF"
+msgstr "PDF(&P)"
+
+#
+# File: scilab_fake_localization_file.c, line: 16
+msgid "&SVG"
+msgstr "SVG(&S)"
 
 #
 # File: scilab_fake_localization_file.c, line: 12
@@ -440,16 +450,6 @@ msgstr "EPS(&E)"
 # File: scilab_fake_localization_file.c, line: 14
 msgid "&FIG"
 msgstr "FIG(&F)"
-
-#
-# File: scilab_fake_localization_file.c, line: 15
-msgid "&PDF"
-msgstr "PDF(&P)"
-
-#
-# File: scilab_fake_localization_file.c, line: 16
-msgid "&SVG"
-msgstr "SVG(&S)"
 
 #
 # File: scilab_fake_localization_file.c, line: 17
@@ -491,7 +491,7 @@ msgid "&Zoom"
 msgstr "ズーム(&Z)"
 
 msgid "&Original View"
-msgstr ""
+msgstr "オリジナルビュー (&O)"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D回転(&R)"
@@ -539,16 +539,16 @@ msgid "Stop datatip manager"
 msgstr "データティップマネージャを停止"
 
 msgid "&MVC"
-msgstr ""
+msgstr "&MVC"
 
 msgid "&Log View (Trace all View notifications)"
-msgstr ""
+msgstr "ログビュー (&L) (ビュー通知を全てトレース)"
 
 msgid "&All Objects View (All objects with properties)"
-msgstr ""
+msgstr "全てのオブジェクトビュー (&A) (プロパティ付きの全オブジェクト)"
 
 msgid "&Ged-like View (Future ged)"
-msgstr ""
+msgstr "ゲドライクビュー(&G) (未来ged)"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
@@ -831,7 +831,7 @@ msgstr "Scilab デモ(&D)"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
-msgstr ""
+msgstr "このハンドルには '%s' プロパティが存在しません.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
@@ -839,19 +839,23 @@ msgstr "このオブジェクトに '%s'プロパティはありません.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s: parentの型が間違っています: ハンドルまたは0を指定してください.\n"
+
+#, c-format
+msgid "%s: can not add a menu into the console in this mode.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"
-msgstr ""
+msgstr "%s: parentの型が間違っています: ハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
-msgstr ""
+msgstr "%s: parentの型が間違っています: Figureまたはuimenuハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for parent: 0 expected.\n"
-msgstr ""
+msgstr "%s: parentの値が間違っています: 0を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1015,7 +1019,7 @@ msgstr "'%s'プロパティの型が間違っています: 実数行ベクトル
 msgid ""
 "Warning: '%s' 'Value' property should be an integer, the value will be "
 "truncated.\n"
-msgstr ""
+msgstr "警告: '%s' 'Value' プロパティは整数である必要があり, 値は丸められます.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -1415,7 +1419,7 @@ msgid "Uicontrols with LaTeX/MathML"
 msgstr "LaTeX/MathULサポート付きのUIコントロール"
 
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "uicontrols付きの画像を表示 "
 
 msgid "<Enter color name here>"
 msgstr "<色名をここに入力してください>"
