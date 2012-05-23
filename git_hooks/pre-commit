@@ -67,6 +67,16 @@ then
     echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.c' "
     echo "  git config --add astyle.ignored 'scilab/modules/javasci/src/java/org/scilab/modules/javasci/Call_Scilab*.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/renderer/src/java/org/scilab/modules/renderer/FigureScilabCall*.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/SynopsisLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/XML/XMLLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/c/CLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/java/JavaLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/scilab/ScilabLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/FunctionScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/IndentScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
+
     echo
     
     ASTYLE_IGNORED=""

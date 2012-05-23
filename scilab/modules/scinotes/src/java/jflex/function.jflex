@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.text.Element;
 
+@javax.annotation.Generated("JFlex")
+@SuppressWarnings("fallthrough")
 %%
 
 %public

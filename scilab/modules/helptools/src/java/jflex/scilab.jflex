@@ -15,6 +15,8 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.IOException;
 
+@javax.annotation.Generated("JFlex")
+@SuppressWarnings("fallthrough")
 %%
 
 %public
