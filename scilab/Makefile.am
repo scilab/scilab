@@ -285,6 +285,8 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 clean-generated:
+# Deleted junit + code coverage
+	rm -rf $(top_builddir)/reports/
 	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
 
 distclean-generated:
