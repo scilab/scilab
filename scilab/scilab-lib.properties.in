@@ -110,6 +110,7 @@ library.ui_data.src.dir=${modules.dir}/ui_data/${library.src.path}
 library.ui_data.name=org.scilab.modules.ui_data.jar
 
 library.graphic_objects.dir=${modules.dir}/graphic_objects/${build.jar.dir}/
+library.graphic_objects.src.dir=${modules.dir}/graphic_export/${library.src.path}
 library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
 
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
