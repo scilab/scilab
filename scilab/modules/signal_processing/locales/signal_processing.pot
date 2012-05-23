@@ -419,13 +419,6 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/convol2d.sci, line: 24
-# File: macros/convol2d.sci, line: 27
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-
-#
 # File: macros/cspect.sci, line: 67
 # File: macros/pspect.sci, line: 75
 #, c-format
