@@ -38,6 +38,7 @@ import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.nio.FloatBuffer;
+import java.text.DecimalFormat;
 
 /**
  * @author Pierre Lando
@@ -150,7 +151,7 @@ public class AxesRulerDrawer {
             values = rulerDrawingResult.getTicksValues();
             if (axes.getXAxisAutoTicks()) {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
             }
 
@@ -226,7 +227,7 @@ public class AxesRulerDrawer {
             values = rulerDrawingResult.getTicksValues();
             if (axes.getYAxisAutoTicks()) {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
             }
 
@@ -314,7 +315,7 @@ public class AxesRulerDrawer {
                 values = rulerDrawingResult.getTicksValues();
                 if (axes.getZAxisAutoTicks()) {
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values));
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
                 }
 
@@ -459,10 +460,11 @@ public class AxesRulerDrawer {
         return new Vector3d(x, 0, z);
     }
 
-    private String[] toStringArray(double[] values) {
+    private String[] toStringArray(double[] values, DecimalFormat format) {
+        AxesRulerSpriteFactory.setScilabStyle(format);
         String[] r = new String[values.length];
         for (int i = 0; i < values.length; i++) {
-            r[i] = String.valueOf(values[i]);
+            r[i] = format.format(values[i]);
         }
         return r;
     }

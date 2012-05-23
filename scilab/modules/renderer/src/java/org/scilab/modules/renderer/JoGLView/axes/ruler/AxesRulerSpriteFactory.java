@@ -103,7 +103,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
      * Set the given {@see DecimalFormat} to scilab style.
      * @param format the given {@see DecimalFormat}.
      */
-    private void setScilabStyle(DecimalFormat format) {
+    public static void setScilabStyle(DecimalFormat format) {
         DecimalFormatSymbols decimalFormatSymbols = format.getDecimalFormatSymbols();
         decimalFormatSymbols.setDecimalSeparator('.');
         decimalFormatSymbols.setExponentSeparator("e");
