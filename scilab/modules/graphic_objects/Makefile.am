@@ -136,10 +136,9 @@ libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_objects_la_sci_gateway_DATA = sci_gateway/graphic_objects_gateway.xml
 
 includes/graphicObjectsProperties.h: Makefile.am src/scripts/propertiesMap.properties
-	@echo "-- Building includes/graphicObjectProperties.h --"
 	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --C $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/includes/graphicObjectProperties.h
-	@echo "-- Building GraphicObjectProperties.java --"
 	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --java $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
+
 if GUI
 USEANT=1
 endif

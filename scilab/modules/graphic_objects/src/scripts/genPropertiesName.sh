@@ -13,7 +13,7 @@
 main()
 {
     if [ $# -ne 3 ]; then
-        echo "Usage: $0 --java|--C <PropertieFile> <OuputFile>"
+        echo "Usage: $0 --java|--C <PropertiesFile> <OuputFile>"
         exit 1
     fi
 
@@ -31,15 +31,19 @@ main()
 
 generateJavaFile()
 {
+    if test "$PropertiesFile" -ot "$OutFile"; then
+        exit 0
+    fi
+	echo "-- Building includes/graphicObjectProperties.h --"
     generateHeader
     echo "package org.scilab.modules.graphic_objects.graphicObject;" >> $OutFile
     echo ""  >> $OutFile
     echo "public class GraphicObjectProperties {" >> $OutFile
     echo ""  >> $OutFile
 
-    cat $PropertiesFile | sed s/"@DECLARE@"/"    public static final String"/g \
-        | sed s/"@EQUAL@"/"="/g \
-        | sed s/" @END@"/";"/g >> $OutFile
+    sed -e "s/@DECLARE@/    public static final String/g" \
+        -e "s/@EQUAL@/=/g" \
+        -e "s/ @END@/;/g" $PropertiesFile >> $OutFile
 
     echo ""  >> $OutFile
     echo "}"  >> $OutFile
@@ -48,14 +52,18 @@ generateJavaFile()
 
 generateCFile()
 {
+    if test "$PropertiesFile" -ot "$OutFile"; then
+        exit 0
+    fi
+    echo "-- Building GraphicObjectProperties.java --"
      generateHeader
      echo "#ifndef  __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
      echo "#define __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
      echo ""  >> $OutFile
 
-     cat $PropertiesFile | sed s/"@DECLARE@"/"#define"/g \
-         | sed s/"@EQUAL@"/"    "/g \
-         | sed s/" @END@"/""/g >> $OutFile
+     sed -e "s/@DECLARE@/#define/g" \
+         -e "s/@EQUAL@/    /g" \
+         -e "s/ @END@//g" $PropertiesFile >> $OutFile
 
      echo ""  >> $OutFile
      echo "#endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */" >> $OutFile
