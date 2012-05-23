@@ -193,29 +193,11 @@ function [typ,dim,vol]=listnextvar(u)
     mseek(nn*6*4,u,"cur") //skip the names
     vol=(2+np+1+nclas+1+nn*6)*4
   case 15 then //list
-    n=mget(1,"il",u);dim=n//number of fields
-    mseek((n+1)*4,u,"cur") //skip pointers
-    vol=(2+(n+1))*4
-    for k=1:n
-      [t,d,v]=listnextvar(u)
-      vol=vol+v
-    end
+    [dim, vol] = getListInfo(u);
   case 16 then //tlist
-    n=mget(1,"il",u);dim=n//number of fields
-    mseek((n+1)*4,u,"cur") //skip pointers
-    vol=(2+(n+1))*4
-    for k=1:n
-      [t,d,v]=listnextvar(u)
-      vol=vol+v
-    end
+    [dim, vol] = getListInfo(u);
   case 17 then //mlist
-    n=mget(1,"il",u);dim=n//number of fields
-    mseek((n+1)*4,u,"cur") //skip pointers
-    vol=(2+(n+1))*4
-    for k=1:n
-      [t,d,v]=listnextvar(u)
-      vol=vol+v
-    end
+    [dim, vol] = getListInfo(u);
   case 128 then //pointer: API?? 
     
   case 129 then //size implicit index (same as polynomial)
@@ -236,7 +218,15 @@ function [typ,dim,vol]=listnextvar(u)
 endfunction
 
 //////////////////////////////////////////////////////////
+function [item, totalSize] = getListInfo(file_descriptor)
+    item = mget(1, "il", file_descriptor);//read item count
+    mseek(item * 4, file_descriptor, "cur") //find the last offset
+    totalSize = (mget(1, "il" , file_descriptor) - 1) * 8; //read total items list size
+    mseek(totalSize, file_descriptor, "cur");//move to end of list
+    totalSize = (2 + (item + 1)) * 4 + totalSize;//add header + offset size to totalSize
+endfunction
 
+//////////////////////////////////////////////////////////
 function v=code2var(id)
   nsiz=6
   i1=1
