@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-  version=[5 2 0 0]
+  version=[5 4 0 0]
   mput(version,'uc',fd)
   
   // There are issues when saving characters with 'c' format
@@ -683,8 +683,8 @@ function save_graphichandle(h,fd)
 endfunction
 
 function save_text_vector(t,fd)
-    t=strcat(t,ascii(10))
-    mput(length(t),'il',fd);mput(ascii(t),characterFormat,fd);
+    t=ascii(strcat(t,ascii(10)));
+    mput(length(t),'il',fd);mput(t,characterFormat,fd);
 endfunction
 
 // save a text matrix

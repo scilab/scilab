@@ -571,6 +571,8 @@ Bug fixes
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
+* Bug #10241 fixed - A .scg file could not be opened when a non-ascii character was in the legend.
+
 * Bug #10250 fixed - Bug in the detection of the Java path under GNU/Linux fixed.
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
