@@ -195,6 +195,14 @@ function [varValues] = %__convertHandles__(varValues)
         log_flags = axesProperties.log_flags;
         fields(fields=="log_flags") = [];
 
+        // Get mark_mode to be sure to set it after mark_style
+        mark_mode = axesProperties.mark_mode;
+        fields(fields=="mark_mode") = [];
+
+        // Get auto_ticks to be sure to set it after ticks labels
+        auto_ticks = axesProperties.auto_ticks;
+        fields(fields=="auto_ticks") = [];
+
         for i = 1:size(fields, "*")
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
                 createLabel(axesProperties(fields(i)), h(fields(i)));
@@ -212,10 +220,15 @@ function [varValues] = %__convertHandles__(varValues)
             elseif fields(i) == "data_bounds" then
                 set(h, "data_bounds", axesProperties.data_bounds);
                 set(h, "log_flags", log_flags);
+            elseif fields(i) == "mark_style" then
+                set(h, "mark_style", axesProperties.mark_style);
+                set(h, "mark_mode", mark_mode);
             else
                 set(h, fields(i), axesProperties(fields(i)));;
             end
         end
+
+        set(h, "auto_ticks", auto_ticks);
 
         // Legend management
         global %LEG
@@ -279,8 +292,17 @@ function [varValues] = %__convertHandles__(varValues)
         fields(fields=="interp_color_vector") = [];
         fields(fields=="interp_color_mode") = [];
 
+        // Get mark_mode to be sure to set it after mark_style
+        mark_mode = polylineProperties.mark_mode;
+        fields(fields=="mark_mode") = [];
+
         for i = 1:size(fields, "*")
-            set(h, fields(i), polylineProperties(fields(i)));
+            if fields(i) == "mark_style" then
+                set(h, "mark_style", polylineProperties.mark_style);
+                set(h, "mark_mode", mark_mode);
+            else
+                h(fields(i)) = polylineProperties(fields(i));
+            end
         end
     endfunction
 
@@ -342,6 +364,10 @@ function [varValues] = %__convertHandles__(varValues)
         a.z_label.text = z_label_text;
         a.isoview = axes_isoview;
 
+        // Get mark_mode to be sure to set it after mark_style
+        mark_mode = surfaceProperties.mark_mode;
+        fields(fields=="mark_mode") = [];
+
         h=gce();
 
         if or(fields=="cdata_mapping") then // Fac3d specific
@@ -359,7 +385,12 @@ function [varValues] = %__convertHandles__(varValues)
         fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
-            set(h, fields(i), surfaceProperties(fields(i)));
+            if fields(i) == "mark_style" then
+                set(h, "mark_style", surfaceProperties.mark_style);
+                set(h, "mark_mode", mark_mode);
+            else
+                h(fields(i)) = surfaceProperties(fields(i));
+            end
         end
     endfunction
 
@@ -395,8 +426,17 @@ function [varValues] = %__convertHandles__(varValues)
         fields(fields=="clip_box") = [];
         fields(fields=="clip_state") = [];
 
+        // Get mark_mode to be sure to set it after mark_style
+        mark_mode = rectangleProperties.mark_mode;
+        fields(fields=="mark_mode") = [];
+
         for i = 1:size(fields, "*")
-            set(h, fields(i), rectangleProperties(fields(i)));
+            if fields(i) == "mark_style" then
+                set(h, "mark_style", rectangleProperties.mark_style);
+                set(h, "mark_mode", mark_mode);
+            else
+                h(fields(i)) = rectangleProperties(fields(i));
+            end
         end
     endfunction
 
@@ -464,8 +504,17 @@ function [varValues] = %__convertHandles__(varValues)
         fields(fields=="clip_box") = [];
         fields(fields=="clip_state") = [];
 
+        // Get mark_mode to be sure to set it after mark_style
+        mark_mode = segsProperties.mark_mode;
+        fields(fields=="mark_mode") = [];
+
         for i = 1:size(fields, "*")
-            set(h, fields(i), segsProperties(fields(i)));
+            if fields(i) == "mark_style" then
+                set(h, "mark_style", segsProperties.mark_style);
+                set(h, "mark_mode", mark_mode);
+            else
+                h(fields(i)) = segsProperties(fields(i));
+            end
         end
     endfunction
 

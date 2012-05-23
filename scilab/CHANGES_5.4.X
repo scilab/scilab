@@ -721,6 +721,8 @@ t.
 
 * Bug #10861 fixed - debug([]) returned a wrong error message.
 
+* Bug #10867 fixed - Loading a .scg file failed when the legend contained accentuated characters.
+
 * Bug #10904 fixed - error messages of and() and or() builtin were not standard.
 
 * Bug #10880 fixed - Default startup directory moved to "My Documents folder"
