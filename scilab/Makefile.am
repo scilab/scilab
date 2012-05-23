@@ -308,6 +308,7 @@ check-java:
 		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
 		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
 	done
+	rm -f reports/xml/TEST-org.scilab.*.xml
 
 codecoverage-java:
 	@echo "Check if --enable-debug-java has been set"; \
