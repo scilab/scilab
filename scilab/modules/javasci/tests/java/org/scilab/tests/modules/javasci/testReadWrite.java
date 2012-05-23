@@ -185,17 +185,22 @@ public class testReadWrite {
         aOriginal.add(new ScilabInteger(new byte[][] {{1, 2, 3}, {3, 4, 5}}, true));
         aOriginal.add(new ScilabSparse(new double[][] {{0, 22.0, 0, 39.0}, {23.2, 0, 0, 40.0}}, new double[][] {{0, 11.0, 0, 18.5}, {1.34, 0, 0, 41.0}}));
         aOriginal.add(new ScilabPolynomial(new double[][][] {{{1, 2, 3}, {2}, {0, 0, 0, -4}}, {{ -1, 0, 2}, {0, 2, 0, 0, 3}, {0}}}, new double[][][] {{{2, -1, 3}, {0}, {2, 0, 1, -3}}, {{3, 0, 1}, {1, -3, 0, 0, -2}, {0}}}));
+
         ScilabMList ml = new ScilabMList();
         aOriginal.add(ml);
         ml.add(new ScilabDouble(new double[][] {{1, 2, 3}, {3, 4, 5}}));
         ml.add(new ScilabPolynomial(new double[][][] {{{1, 2, 3}, {2}, {0, 0, 0, -4}}, {{ -1, 0, 2}, {0, 2, 0, 0, 3}, {0}}}, new double[][][] {{{2, -1, 3}, {0}, {2, 0, 1, -3}}, {{3, 0, 1}, {1, -3, 0, 0, -2}, {0}}}));
+
         ScilabList l = new ScilabList();
         ml.add(l);
         l.add(new ScilabInteger(new short[][] {{1, 2, 3}, {3, 4, 5}}, false));
         l.add(new ScilabInteger(new short[][] {{1, 2, 3}, {3, 4, 5}}, true));
         ml.add(new ScilabPolynomial(new double[][][] {{{1, 2, 3}, {2}, {0, 0, 0, -4}}, {{ -1, 0, 2}, {0, 2, 0, 0, 3}, {0}}}));
+
         ScilabTList tl = new ScilabTList();
         ml.add(tl);
+        tl.add(new ScilabInteger(new short[][] {{1, 2, 3}, {3, 4, 5}}, true));
+
         ScilabList l1 = new ScilabList();
         tl.add(l1);
         l1.add(new ScilabInteger(new byte[][] {{1, 2, 3}, {3, 4, 5}}, false));

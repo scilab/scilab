@@ -22,6 +22,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
+import org.scilab.modules.javasci.JavasciException.AlreadyRunningException;
 
 import org.scilab.modules.commons.ScilabConstants;
 
@@ -96,11 +97,22 @@ public class testOpenClose {
         assertEquals(((ScilabBoolean)c).getData()[0][0], false);
     }
 
-    @Test( expected = JavasciException.class)
+    @Test( expected = AlreadyRunningException.class)
     public void OpenMultipleTimeTest() throws NullPointerException, JavasciException {
         assertTrue(sci.open("a=42*2;"));
+    }
+
+    @Test( expected = InitializationException.class)
+    public void fakeWindowsTest() throws NullPointerException, InitializationException, JavasciException {
+        assertTrue(sci.close());
+
+        System.setProperty("os.name", "windows");
+        System.clearProperty("SCI");
+        sci = new Scilab(); // Will faill
+        sci.open();
 
     }
+
 
     /**
      * See #open()

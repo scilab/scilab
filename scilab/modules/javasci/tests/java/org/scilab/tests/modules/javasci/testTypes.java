@@ -103,6 +103,11 @@ public class testTypes {
 
     }
 
+    @Test( expected = UndefinedVariableException.class)
+    public void failGetVariableType2Test() throws NullPointerException, IllegalArgumentException, JavasciException {
+        sci.getVariableTypeInCurrentScilabSession("nonexistingvariable");
+
+    }
     /**
      * See #open()
      */

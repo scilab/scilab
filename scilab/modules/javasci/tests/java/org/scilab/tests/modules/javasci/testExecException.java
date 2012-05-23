@@ -44,7 +44,6 @@ public class testExecException {
 
     @Test()
     public void execAndReadTest() throws NullPointerException, JavasciException {
-
         /* Scalar test */
         sci.execException("a = 1+1");
         ScilabType a = sci.get("a");
@@ -134,6 +133,37 @@ public class testExecException {
         assertEquals(((ScilabDouble)a).getRealPart()[0][0], 111.0, 1e-8);
     }
 
+    @Test()
+    public void execExecFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
+
+        try {
+            // Create temp file.
+            File tempScript = File.createTempFile("tempScript", ".sci");
+
+            // Write to temp file
+            BufferedWriter out = new BufferedWriter(new FileWriter(tempScript));
+            out.write("a=4+42;");
+            out.close();
+
+            sci.execException(tempScript);
+
+            ScilabType a = sci.get("a");
+            double[][] aReal = ((ScilabDouble)a).getRealPart();
+
+            assertEquals(aReal[0][0], 46, 1e-8);
+        } catch (IOException e) {
+        }
+
+    }
+
+    @Test( expected = FileNotFoundException.class)
+    public void execExecNonFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
+
+        sci.execException(new File("Doesnotexist"));
+
+
+
+    }
     /**
      * See #open()
      */
