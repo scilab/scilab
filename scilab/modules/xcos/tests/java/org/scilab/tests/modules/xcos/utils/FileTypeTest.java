@@ -14,10 +14,14 @@ package org.scilab.tests.modules.xcos.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.awt.GraphicsEnvironment;
 
 import org.junit.Test;
+import org.junit.Assume;
+
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
+
 
 /**
  * Test the {@link XcosFileType} class.
@@ -65,6 +69,7 @@ public class FileTypeTest {
 
     @Test
     public void validateXcosFindFileType() throws Exception {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
         XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
 
@@ -75,6 +80,7 @@ public class FileTypeTest {
 
     @Test
     public void validateZcosFindFileType() throws Exception {
+        Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
         XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
 
