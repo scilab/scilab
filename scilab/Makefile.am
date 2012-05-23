@@ -320,6 +320,7 @@ codecoverage-java:
 		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
 		$(ANT) -buildfile $$BASE/build.xml codecoverage || exit $$?; \
 	done
+	rm -f reports/xml/TEST-org.scilab.*.xml
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
