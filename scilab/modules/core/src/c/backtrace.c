@@ -81,14 +81,6 @@ sci_backtrace_t *sci_backtrace_create(void)
 
     sci_backtrace_t *bt = NULL;
 
-    /*
-    ** nbIgnoreCall
-    ** When signal is trapped, catching functions will be present
-    ** within call stack so we shift to remove them.
-    **
-    */
-    int nbIgnoredCall = 4;
-
     /* Create backtrace structure */
 
     bt = malloc(sizeof(sci_backtrace_t));
@@ -99,9 +91,9 @@ sci_backtrace_t *sci_backtrace_create(void)
         void * tr_array[200];
         int tr_size = backtrace(tr_array, 200);
 
-       /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
-         * backtrace is useful mainly in case of severe errors, so we avoid
-         * higher level constructs as much as possible at this stage. */
+        /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
+          * backtrace is useful mainly in case of severe errors, so we avoid
+          * higher level constructs as much as possible at this stage. */
 
         if (tr_size < 2)// || tr_strings == NULL)
         {
@@ -109,7 +101,7 @@ sci_backtrace_t *sci_backtrace_create(void)
             return NULL;
         }
 
-        bt->size = tr_size - nbIgnoredCall;
+        bt->size = tr_size;
 
         bt->s_file = malloc(tr_size * sizeof(char *));
         bt->s_func = malloc(tr_size * sizeof(char *));
@@ -138,30 +130,30 @@ sci_backtrace_t *sci_backtrace_create(void)
 
         }
 
-	Dl_info * infos = (Dl_info *)MALLOC(sizeof(Dl_info));
+        Dl_info * infos = (Dl_info *)MALLOC(sizeof(Dl_info));
 
         for (i = 0; i < bt->size; i++)
         {
-	    char buffer[32];
-            void * p = tr_array[i + nbIgnoredCall];    /* Shift by nbIgnoredCall to ignore functions */
-	    
+            char buffer[32];
+            void * p = tr_array[i];
+
             bt->s_file[i] = NULL;
             bt->s_func[i] = NULL;
             bt->s_addr[i] = NULL;
-	 
-	    if (dladdr(p, infos))
-	    {
-		bt->s_func[i] = infos->dli_sname ? strdup(infos->dli_sname) : strdup(" ");
-		bt->s_file[i] = infos->dli_fname ? strdup(infos->dli_fname) : strdup(" ");
 
-		// we calculate the relative address in the library
-		snprintf(buffer, 32, "%p", p - infos->dli_fbase);
-		bt->s_addr[i] = strdup(buffer);
-	    }
+            if (dladdr(p, infos))
+            {
+                bt->s_func[i] = infos->dli_sname ? strdup(infos->dli_sname) : strdup(" ");
+                bt->s_file[i] = infos->dli_fname ? strdup(infos->dli_fname) : strdup(" ");
+
+                // we calculate the relative address in the library
+                snprintf(buffer, 32, "%p", p - infos->dli_fbase);
+                bt->s_addr[i] = strdup(buffer);
+            }
         }
 
-	FREE(infos);
-	infos = NULL;
+        FREE(infos);
+        infos = NULL;
     }
 
     return bt;
@@ -241,32 +233,32 @@ void sci_backtrace_demangle(sci_backtrace_t * bt)
 
             char *s_cplus_func_p = NULL;
             char *s_cplus_func = NULL;
-	    size_t funcnamesize = 0;
-	    int status = 0;
+            size_t funcnamesize = 0;
+            int status = 0;
 
             if (bt->s_func[i] == NULL)
             {
                 continue;
             }
-	    
+
             s_cplus_func_p = sci_demangle(bt->s_func[i], NULL, &funcnamesize, &status);
-            
+
             if (s_cplus_func_p == NULL)
             {
                 continue;
             }
 
-	    if (status)
-	    {
-		free(s_cplus_func_p);
-		continue;
-	    }
+            if (status)
+            {
+                free(s_cplus_func_p);
+                continue;
+            }
 
             l = strlen(s_cplus_func_p);
 
             if (l == 0)
             {
-		free(s_cplus_func_p);
+                free(s_cplus_func_p);
                 continue;
             }
 
@@ -280,7 +272,7 @@ void sci_backtrace_demangle(sci_backtrace_t * bt)
                 bt->s_func[i] = s_cplus_func;
             }
 
-	    free(s_cplus_func_p);
+            free(s_cplus_func_p);
         }
 
     }
