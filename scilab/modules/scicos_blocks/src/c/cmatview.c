@@ -401,7 +401,7 @@ static char *getGrayplot(char *pAxeUID, scicos_block * block)
         return sco->scope.cachedGrayplotUID;
     }
 
-    pGrayplot = findChildWithKindAt(pAxeUID, __GO_GRAYPLOT__, 1);
+    pGrayplot = findChildWithKindAt(pAxeUID, __GO_GRAYPLOT__, 0);
 
     /*
      * Allocate if necessary

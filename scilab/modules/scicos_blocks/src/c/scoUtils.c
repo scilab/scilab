@@ -28,6 +28,10 @@
 #include "strdup_windows.h"
 #endif
 
+// #include <stdio.h>
+// #define LOG printf
+#define LOG
+
 char *findChildWithKindAt(char *parent, const char *type, const int position)
 {
     char *child = NULL;
@@ -44,7 +48,7 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
     getGraphicObjectProperty(parent, __GO_CHILDREN_COUNT__, jni_int, (void **)&pChildrenCount);
     getGraphicObjectProperty(parent, __GO_CHILDREN__, jni_string_vector, (void **)&children);
 
-    for (typeCount = 0, i = 0; i < childrenCount; i++)
+    for (typeCount = 0, i = childrenCount - 1; i >= 0; i--)
     {
         getGraphicObjectProperty(children[i], __GO_TYPE__, jni_string, (void **)&childType);
 
@@ -59,6 +63,7 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
         if (typeCount == (position + 1))
         {
             child = strdup(children[i]);
+            LOG("%s: found %s at %d : %s\n", "findChildWithKindAt", type, position, child);
             break;
         }
     }
