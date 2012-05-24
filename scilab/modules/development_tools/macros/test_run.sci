@@ -778,8 +778,7 @@ if isfile(tmp_dia) then
   dia = mgetl(tmp_dia);
 else
   status.id = 6;
-  status.message = "failed: Cannot find the dia file: "+tmp_dia "\n" + ...
-       "Check if the Scilab used correctly starts";
+  status.message = "failed: Cannot find the dia file: "+tmp_dia+"\nCheck if the Scilab used correctly starts";
   status.details = checkthefile(tmp_dia);
   return;
 end
