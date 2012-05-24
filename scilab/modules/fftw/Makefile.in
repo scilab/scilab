@@ -491,6 +491,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_FALSE@			-I$(srcdir)/src/c/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/output_stream/includes/ \
+@FFTW_FALSE@			-I$(top_srcdir)/modules/localization/includes/ \
 @FFTW_FALSE@			$(AM_CPPFLAGS)
 
 @FFTW_TRUE@libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \

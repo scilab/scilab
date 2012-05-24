@@ -87,6 +87,7 @@ libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
 			$(AM_CPPFLAGS)
 endif
 

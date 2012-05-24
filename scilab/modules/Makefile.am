@@ -219,13 +219,14 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 libscilab_la_LIBADD =
 
 if GUI
-libscilab_la_LIBADD += $(GUI_LIBS)
+libscilab_la_LIBADD += $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
 else
 libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) \
+	$(top_builddir)/modules/libscilab-cli.la
 
 
 ################## libscilab-cli  ##################

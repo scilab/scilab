@@ -58,7 +58,7 @@ host_triplet = @host@
 @JAVASCI_TRUE@am__append_2 = javasci
 @HDF5_TRUE@am__append_3 = $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
 @HDF5_TRUE@am__append_4 = $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
-@GUI_TRUE@am__append_5 = $(GUI_LIBS)
+@GUI_TRUE@am__append_5 = $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
 @GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -122,8 +122,7 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libscilab_la_DEPENDENCIES = $(am__append_5) $(am__append_6) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la \
-	$(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -567,8 +566,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 # Core modules
 libscilab_la_LIBADD = $(am__append_5) $(am__append_6) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la \
-	$(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 
