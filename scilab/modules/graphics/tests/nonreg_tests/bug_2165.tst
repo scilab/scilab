@@ -20,4 +20,6 @@ f = gcf();
 
 delete(f);
 
+warning("off");
 if execstr("save(TMPDIR+""/bug_2165.tst"");", "errcatch")<>0 then pause; end
+warning("on");

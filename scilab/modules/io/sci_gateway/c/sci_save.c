@@ -55,74 +55,81 @@ int sci_save(char *fname, unsigned long fname_len)
         int iColsI      = 0;
         char* pstVarI   = NULL;
 
-        int i = 0;
-        for (i = 2 ; i <= Rhs ; i++)
+        if(Rhs > 1)
         {
-            sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrI);
-            if (sciErr.iErr)
+            int i = 0;
+            for (i = 2 ; i <= Rhs ; i++)
             {
-                printError(&sciErr, 0);
-                return 1;
-            }
-
-            sciErr = getVarType(pvApiCtx, piAddrI, &iTypeI);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 1;
-            }
-
-            if (iTypeI != sci_strings)
-            {
-                iOldSave = TRUE;
-                break;
-            }
-
-            sciErr = getVarDimension(pvApiCtx, piAddrI, &iRowsI, &iColsI);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 1;
-            }
-
-            if (iRowsI != 1 || iColsI != 1)
-            {
-                iOldSave = TRUE;
-                break;
-            }
-
-            if (getAllocatedSingleString(pvApiCtx, piAddrI, &pstVarI))
-            {
-                return 1;
-            }
-
-            if(strcmp(pstVarI, "-append") != 0)
-            {
-                //try to get variable by name
-                sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
+                sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrI);
                 if (sciErr.iErr)
                 {
-                    // Try old save because here the input variable can be of type "string" but not a variable name
-                    // Ex: a=""; save(filename, a);
-                    iOldSave = TRUE;
-                    break;
+                    printError(&sciErr, 0);
+                    return 1;
                 }
 
-                if (piAddrI2 == 0)
+                sciErr = getVarType(pvApiCtx, piAddrI, &iTypeI);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                if (iTypeI != sci_strings)
                 {
                     iOldSave = TRUE;
                     break;
                 }
+
+                sciErr = getVarDimension(pvApiCtx, piAddrI, &iRowsI, &iColsI);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                if (iRowsI != 1 || iColsI != 1)
+                {
+                    iOldSave = TRUE;
+                    break;
+                }
+
+                if (getAllocatedSingleString(pvApiCtx, piAddrI, &pstVarI))
+                {
+                    return 1;
+                }
+
+                if(strcmp(pstVarI, "-append") != 0)
+                {
+                    //try to get variable by name
+                    sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
+                    if (sciErr.iErr)
+                    {
+                        // Try old save because here the input variable can be of type "string" but not a variable name
+                        // Ex: a=""; save(filename, a);
+                        iOldSave = TRUE;
+                        break;
+                    }
+
+                    if (piAddrI2 == 0)
+                    {
+                        iOldSave = TRUE;
+                        break;
+                    }
+                }
+
+                freeAllocatedSingleString(pstVarI);
             }
 
-            freeAllocatedSingleString(pstVarI);
+            if(iOldSave == FALSE)
+            {
+                int lw = 0;
+                //call "overload" to prepare data to export_to_hdf5 function.
+                C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+            }
         }
-
-        if(iOldSave == FALSE)
+        else
         {
-            int lw = 0;
-            //call "overload" to prepare data to export_to_hdf5 function.
-            C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+            iOldSave = TRUE;
         }
     }
     else
