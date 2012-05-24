@@ -28,6 +28,7 @@ import org.scilab.modules.commons.ScilabConstants;
 
 public class testOpenClose {
     private Scilab sci;
+    private String SCIBack; // for fakeWindowsTest
 
     /*
      * This method will be called for each test.
@@ -38,6 +39,7 @@ public class testOpenClose {
      */
     @Before
     public void openTest() throws NullPointerException, JavasciException {
+        SCIBack = System.getProperty("SCI");
         sci = new Scilab();
         assertTrue(sci.open());
     }
@@ -105,12 +107,10 @@ public class testOpenClose {
     @Test( expected = InitializationException.class)
     public void fakeWindowsTest() throws NullPointerException, InitializationException, JavasciException {
         assertTrue(sci.close());
-
         System.setProperty("os.name", "windows");
         System.clearProperty("SCI");
         sci = new Scilab(); // Will faill
         sci.open();
-
     }
 
 
@@ -119,7 +119,10 @@ public class testOpenClose {
      */
     @After
     public void close() {
+        try {
+            System.setProperty("SCI", SCIBack);
+        } catch (Exception e) {
+        }
         sci.close();
-
     }
 }
