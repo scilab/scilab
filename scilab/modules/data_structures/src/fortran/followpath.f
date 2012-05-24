@@ -107,7 +107,7 @@ c     extract infos out of the current sublist
       voll=istk(illisti+mi+2)-1+sadr(3+mi)
 c     go ahead along the path
 
-      if(typi.eq.13.or.typi.eq.11) then
+      if(typi.eq.13.or.typi.eq.11.or.typi.eq.130) then
 c     .  not an extraction but a function call
          info=2
          goto 50
