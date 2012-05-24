@@ -21,10 +21,11 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
     double *position = NULL;
     int nbValues = 0;
     BOOL status = FALSE;
+    char* type = NULL;
 
     if (valueType == sci_strings)
     {
-        if(nbCol != 1)
+        if (nbCol != 1)
         {
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
             return SET_PROPERTY_ERROR;
@@ -41,7 +42,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
     }
     else if (valueType == sci_matrix)
     {
-        if(nbCol != 4 || nbRow != 1)
+        if (nbCol != 4 || nbRow != 1)
         {
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
             return SET_PROPERTY_ERROR;
@@ -56,7 +57,31 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), position, jni_double_vector, 4);
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**)&type);
+
+    /* Figure position set as an uicontrol one */
+    if (strcmp(type, __GO_FIGURE__) == 0)
+    {
+        int figurePosition[2];
+        int figureSize[2];
+
+        figurePosition[0] = (int) position[0];
+        figurePosition[1] = (int) position[1];
+        figureSize[0] = (int) position[2];
+        figureSize[1] = (int) position[3];
+
+        status = setGraphicObjectProperty(sciObjUID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
+        if (status == FALSE)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+            return SET_PROPERTY_ERROR;
+        }
+        status = setGraphicObjectProperty(sciObjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
+    }
+    else
+    {
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), position, jni_double_vector, 4);
+    }
 
     if (valueType == sci_strings)
     {
@@ -69,7 +94,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
     }
     else
     {
-        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ForegroundColor");
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
         return SET_PROPERTY_ERROR;
     }
 }
