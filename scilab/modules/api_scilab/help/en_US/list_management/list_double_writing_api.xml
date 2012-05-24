@@ -23,9 +23,11 @@
     </refsection>
     <title>Calling Sequence</title>
     <para>Input argument profile:</para>
-    <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
-    <para>Named variable profile:</para>
-    <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
+    <synopsis>SciErr createMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+    <synopsis>SciErr createComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
+      <para>Named variable profile:</para>
+      <synopsis>SciErr createMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+      <synopsis>SciErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>

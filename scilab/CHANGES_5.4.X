@@ -136,6 +136,8 @@ Documentation
 
 * Bug #8685 fixed - Lack of consistency in the keyword documentation.
 
+* Bug #9255 fixed - Correct bad calling sequence in list_double_writing api page.
+
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
 * Bug #9654 fixed - an example of 'optim' help was poorly implemented.
