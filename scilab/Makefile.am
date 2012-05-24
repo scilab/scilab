@@ -298,9 +298,12 @@ if IS_MACOSX
 MACOSX=1
 endif
 
+clean-reports:
+	rm -f reports/xml/TEST-org.scilab.*.xml
+
 # For each module, build and call Java unitary tests
 # If fails, stops the call
-check-java:
+check-java: clean-reports
 	@echo "-- Launch all Junit (Java) unitary tests"; \
 	MASK="$(top_srcdir)/modules/*/tests/java/"; \
 	MODULES=`ls -d $$MASK`; \
@@ -310,7 +313,7 @@ check-java:
 	done
 	rm -f reports/xml/TEST-org.scilab.*.xml
 
-codecoverage-java:
+codecoverage-java: clean-reports
 	@echo "Check if --enable-debug-java has been set"; \
 	grep "build.debug=on" $(top_srcdir)/scilab.properties > /dev/null || exit 10; \
 	echo "-- Launch all Junit (Java) unitary tests + code coverage"; \

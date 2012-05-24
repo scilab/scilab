@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- JVM NOT MANDATORY -->
+//
 if  %inf <>  %inf <> %f then pause,end
 if  %inf ==  %inf <> %t then pause,end
 if  %inf >   %inf <> %f then pause,end

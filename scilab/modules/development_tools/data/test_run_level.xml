@@ -22,7 +22,6 @@
     <module name="core">
       <test>clear</test>
       <test>colon</test>
-      <test>type</test>
       <test>matelm</test>
       <test>matops</test>
       <test>inf_nan</test>

@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // easy and simple test
 
 A=[0,2,0,1;2,2,3,2;4,-3,0,1.;6,1,-6,-5];
