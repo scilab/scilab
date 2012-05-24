@@ -68,9 +68,3 @@ msgstr ""
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr ""
 
-#
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 21
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 27
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 34
-msgid "HDF5 is not installed"
-msgstr ""

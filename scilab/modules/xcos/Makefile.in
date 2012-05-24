@@ -247,7 +247,6 @@ GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
 HDF5_CFLAGS = @HDF5_CFLAGS@
-HDF5_ENABLE = @HDF5_ENABLE@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
@@ -815,7 +814,7 @@ images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
 
-@GUI_TRUE@@HDF5_TRUE@@XCOS_TRUE@USEANT = 1
+@GUI_TRUE@@XCOS_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

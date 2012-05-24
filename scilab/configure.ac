@@ -718,19 +718,8 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## HDF5
 #################
 
-AC_ARG_WITH(hdf5,
-    AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))
-
-HDF5_ENABLE=no
-
-if test "$with_hdf5" != no; then
-   AC_HDF5()
-# TODO: check if the JNI JHDF5 library are available
-   HDF5_ENABLE=yes
-fi
-
-AC_SUBST(HDF5_ENABLE)
-AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+AC_HDF5()
+# The Java detection is done after in this file.
 
 #################
 ## XCOS
@@ -845,8 +834,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                    AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
-                   # Java HDF5 is only needed for Xcos
-                   if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
+                   # Java HDF5 is only needed for Xcos. Should be dropped in 5.4.X (with X > 0)
+                   if test "$with_xcos" != no -a "$with_gui" != no;  then
                       AC_JAVA_HDF5()
                       if test "$MACOSX" = 1; then
                          echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"

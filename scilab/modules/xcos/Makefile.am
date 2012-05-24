@@ -405,9 +405,7 @@ images/palettes/ZCROSS_f.png
 
 if XCOS
 if GUI
-if HDF5
 USEANT=1
-endif
 endif
 endif
 

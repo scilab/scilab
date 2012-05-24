@@ -7,8 +7,6 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if HDF5
-
 if GUI
 if XCOS
 # No GUI. Disable the Java build
@@ -50,14 +48,6 @@ libscihdf5_forceload_disable_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 
-else
-
-HDF5_SOURCES =
-GATEWAY_C_SOURCES =
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
-
-endif
-
 GIWS_WRAPPERS = src/jni/jhdf5load.giws.xml
 
 if GIWS
@@ -90,11 +80,8 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 pkglib_LTLIBRARIES = libscihdf5.la
 noinst_LTLIBRARIES =
 
-if HDF5
 noinst_LTLIBRARIES += libscihdf5-algo.la
-endif
 
-if HDF5
 # When Scilab is built with HDF5, we need some libraries for a workaround
 
 if NEED_JAVA
@@ -102,7 +89,6 @@ noinst_LTLIBRARIES += libscihdf5-forceload.la
 endif
 
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
-endif
 
 libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 
@@ -114,14 +100,7 @@ libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CPPFLAGS)
 
-# pb of order
-if HDF5
-libscihdf5_la_LIBADD = libscihdf5-algo.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-else
-libscihdf5_la_LIBADD =
-endif
+libscihdf5_la_LIBADD = libscihdf5-algo.la
 
 #### Target ######
 modulename=hdf5

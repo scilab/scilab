@@ -347,6 +347,8 @@ Compilation
 
 * An option --without-arpack-ng has been added to disable the Arnoldi features.
 
+* HDF5 is now a mandatory dependency of Scilab (even in a minimal build)
+
 * Bug #11060 fixed - ccache use can be disabled with --disable-ccache .
 
 
