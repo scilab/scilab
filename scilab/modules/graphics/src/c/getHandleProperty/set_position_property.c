@@ -45,7 +45,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
      * Implemented for SCI_FIGURE as POSITION and SIZE set calls
      */
 #if 0
-    if(sciGetEntityType(pobj) == SCI_UICONTROL || sciGetEntityType(pobj) == SCI_FIGURE)
+    if (sciGetEntityType(pobj) == SCI_UICONTROL || sciGetEntityType(pobj) == SCI_FIGURE)
     {
         SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
         return SET_PROPERTY_SUCCEED;
@@ -54,7 +54,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
 
     /* Deactivated for now */
 #if 0
-    if ( sciGetEntityType(pobj)== SCI_UIMENU )
+    if ( sciGetEntityType(pobj) == SCI_UIMENU )
     {
         pUIMENU_FEATURE(pobj)->MenuPosition = (int) getDoubleFromStack( stackPointer );
         return SET_PROPERTY_SUCCEED;
@@ -78,7 +78,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         int figureSize[2];
         int status1, status2;
 
-        if(nbCol != 4 || nbRow != 1)
+        if (nbCol != 4 || nbRow != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A 1 x %d real row vector expected.\n"), "position", 4);
             return SET_PROPERTY_ERROR;
@@ -99,11 +99,11 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_position");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_position");
             status1 = SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_SIZE__, figureSize, jni_int_vector, 2);
+        status = setGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
 
         if (status == TRUE)
         {
@@ -111,7 +111,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_size");
             status2 = SET_PROPERTY_ERROR;
         }
 
@@ -137,7 +137,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"position");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
             return SET_PROPERTY_ERROR;
         }
 
@@ -154,7 +154,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"position");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
             return SET_PROPERTY_ERROR;
         }
 
@@ -165,7 +165,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"position");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
         return SET_PROPERTY_ERROR;
     }
 }
