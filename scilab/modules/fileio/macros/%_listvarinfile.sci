@@ -218,12 +218,17 @@ function [typ,dim,vol]=listnextvar(u)
 endfunction
 
 //////////////////////////////////////////////////////////
-function [item, totalSize] = getListInfo(file_descriptor)
-    item = mget(1, "il", file_descriptor);//read item count
-    mseek(item * 4, file_descriptor, "cur") //find the last offset
-    totalSize = (mget(1, "il" , file_descriptor) - 1) * 8; //read total items list size
-    mseek(totalSize, file_descriptor, "cur");//move to end of list
-    totalSize = (2 + (item + 1)) * 4 + totalSize;//add header + offset size to totalSize
+function [items, totalSize] = getListInfo(file_descriptor)
+    items = mget(1, "il", file_descriptor);//read item count
+    offset = mget(1 + items, "il", file_descriptor);//read offset between vars
+    totalSize = (2 + (items + 1)) * 4;
+    for i = 1:items
+        //bypass Undefined item
+        if offset(i) <> offset(i + 1) then
+            [t, d, v] = listnextvar(file_descriptor);
+            totalSize = totalSize + v;
+        end
+    end
 endfunction
 
 //////////////////////////////////////////////////////////
