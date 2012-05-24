@@ -7,7 +7,7 @@
 
 // <-- NOT FIXED -->
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 m = 200;
 n = 400;

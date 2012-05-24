@@ -15,7 +15,7 @@
 // it removes the line. It should add it at the end instead instead.
 // exec le<TAB>
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);

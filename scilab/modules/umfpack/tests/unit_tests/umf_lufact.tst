@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // this is the small linear test system from UMFPACK
 // whom solution must be [1;2;3;4;5]

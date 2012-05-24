@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Here with give a complete example on adding new primitive to Scilab
 // Note that is a unitary test but it could have been a non reg test of bug

@@ -6,7 +6,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 function sortedRoots=sortRoots(rootsToSort)
     //Sort roots using rounded values to avoid rounding errors
     //Here 10000 is ok due to roots values

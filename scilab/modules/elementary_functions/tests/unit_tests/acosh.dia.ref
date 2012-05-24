@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // unit tests for acos() function (element wise cosine inverse)
 // =============================================================================
 if execstr("acosh()"   ,"errcatch") == 0 then bugmes();quit;end

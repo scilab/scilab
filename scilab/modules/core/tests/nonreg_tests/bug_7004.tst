@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Crash in siflibs after stack change of location (i.e. after a resize from gstacksize)
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 gstacksize('max');
 1+1;

@@ -15,7 +15,7 @@
 // cd SCI/modules/arnoldi/nonreg_tes[TAB]
 
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);

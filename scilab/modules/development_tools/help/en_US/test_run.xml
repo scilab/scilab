@@ -240,8 +240,9 @@
       </listitem>
       <listitem>
         <para>
-          &lt;-- JVM NOT MANDATORY --&gt;
-          This test will be executed with the nwni mode by default.
+          &lt;-- CLI SHELL MODE --&gt;
+          (was: &lt;-- JVM NOT MANDATORY --&gt;)
+          This test will be executed with scilab-cli (nwni mode) by default.
         </para>
       </listitem>
       <listitem>
@@ -437,7 +438,12 @@ test_run([],[],['no_check_ref','mode_nw']);
               Returns %f if any error has been detected
             </listitem>
           </itemizedlist>
-          <literal>show_diff</literal> and <literal>show_error</literal> added as new options
+          <para>
+            <literal>show_diff</literal> and <literal>show_error</literal> added as new options
+          </para>
+          <para>
+            <literal>CLI SHELL MODE</literal> tag is added. Replaces <literal>JVM NOT MANDATORY</literal> (still supported)
+          </para>
         </revdescription>
       </revision>
     </revhistory>

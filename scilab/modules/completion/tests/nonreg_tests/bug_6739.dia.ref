@@ -13,7 +13,7 @@
 // if a Scilab coded library function is redefined in a new library, completion
 //   on its name maked Scilab crashed 
 // 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 mkdir(TMPDIR,'test');
 m=['function y = acosd(x)'
 '  r=180/%pi     '

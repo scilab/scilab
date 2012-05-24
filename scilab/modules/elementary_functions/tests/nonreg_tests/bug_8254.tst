@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // The nearfloat function does not work properly for near denormalized numbers.
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 
 //

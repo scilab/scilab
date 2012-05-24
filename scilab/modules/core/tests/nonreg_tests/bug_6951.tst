@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 6951 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // stacksize had a strange behaviour.
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 r = stacksize();
 stacksize('max');

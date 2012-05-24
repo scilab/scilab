@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 ierr = execstr("get_absolute_file_path();","errcatch");
 if ierr <> 77 then pause,end

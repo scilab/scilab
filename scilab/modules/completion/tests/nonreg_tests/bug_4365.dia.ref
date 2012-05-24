@@ -12,7 +12,7 @@
 // <-- Short Description -->
 // completion fails and returns a bad value if we try to use it on a path that doesn't exist 
 // cd SCI/modules/arnoldi/nonreg_tes[TAB]
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then bugmes();quit;end

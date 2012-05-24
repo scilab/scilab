@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- INTERACTIVE TEST -->
 // <-- WINDOWS ONLY -->
 

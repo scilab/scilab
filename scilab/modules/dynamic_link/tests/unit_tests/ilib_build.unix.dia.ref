@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 TMP_OS_DIR=TMPDIR;
 TMP_DIR = TMP_OS_DIR+filesep()+'ilib_build';
 rmdir(TMP_DIR,'s');

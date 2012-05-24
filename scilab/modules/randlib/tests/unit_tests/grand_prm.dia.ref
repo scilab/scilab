@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 rtol = 1.e-2;
 // Set the seed to always get the same random numbers
 grand("setsd",0);

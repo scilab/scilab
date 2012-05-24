@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Operations on strings
 if 'a'=='b'  then bugmes();quit;end
 if 'a'==''   then bugmes();quit;end

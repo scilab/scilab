@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);

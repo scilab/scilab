@@ -16,7 +16,7 @@
 // 
 
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 mkdir(TMPDIR,'test');
 m=['function y = acosd(x)'

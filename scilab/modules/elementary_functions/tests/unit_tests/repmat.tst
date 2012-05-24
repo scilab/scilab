@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if or(repmat(1:3,2,2)<>[1,2,3,1,2,3;1,2,3,1,2,3]) then pause,end
 if or(repmat(1+2*%i,2)<>[ 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2]) then pause,end

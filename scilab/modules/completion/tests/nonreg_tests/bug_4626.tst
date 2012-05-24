@@ -15,6 +15,6 @@
 // when using the CLI version (NO GRAPHICS), the autocompletion feature make Scilab crash
 
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 r = completion('a','graphic_properties');
 if ~isdef('r') then pause,end

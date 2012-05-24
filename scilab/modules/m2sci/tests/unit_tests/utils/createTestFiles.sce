@@ -26,7 +26,7 @@ conversionContents = ["// ======================================================
 "//  This file is distributed under the same license as the Scilab package.";
 "// =============================================================================";
 "";
-"// <-- JVM NOT MANDATORY -->";
+"// <-- CLI SHELL MODE -->";
 "// <-- ENGLISH IMPOSED -->";
 "// <-- LONG TIME EXECUTION -->";
 "";
@@ -43,7 +43,7 @@ executionContents = ["// =======================================================
 "//  This file is distributed under the same license as the Scilab package.";
 "// =============================================================================";
 "";
-"// <-- JVM NOT MANDATORY -->";
+"// <-- CLI SHELL MODE -->";
 "// <-- ENGLISH IMPOSED -->";
 "// <-- LONG TIME EXECUTION -->";
 "";
@@ -60,7 +60,7 @@ noExecutionContents = ["// =====================================================
 "//  This file is distributed under the same license as the Scilab package.";
 "// =============================================================================";
 "";
-"// <-- JVM NOT MANDATORY -->";
+"// <-- CLI SHELL MODE -->";
 "// <-- ENGLISH IMPOSED -->";
 "// <-- LONG TIME EXECUTION -->";
 "";

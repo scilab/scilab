@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK ERROR OUTPUT -->
 // =============================================================================
 fprintf(0,'My error which is going to be displayed on the stderr');

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/common_read_api"));

@@ -7,7 +7,7 @@
 
 // <-- ENGLISH IMPOSED -->
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // unit tests for nthroot() function 
 // =============================================================================

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 c = ["Formula_1"  "Formula_2"  "Formula_3"  "Formula_4"];
 if ( intersect("Formula_2", c ) <> "Formula_2" ) then pause,end;

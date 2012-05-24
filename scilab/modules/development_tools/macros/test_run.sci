@@ -556,7 +556,7 @@ function status = test_single(_module, _testPath, _testName)
     execMode = "NW";
   end
 
-  if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
+  if (~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) | ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->"))) then
     jvm = %F;
     execMode = "NWNI";
   end
@@ -778,7 +778,7 @@ if isfile(tmp_dia) then
   dia = mgetl(tmp_dia);
 else
   status.id = 6;
-  status.message = "failed: Cannot find the dia file: "+tmp_dia+"\nCheck if the Scilab used correctly starts";
+  status.message = "failed: Cannot find the dia file: " + tmp_dia + "\nCheck if the Scilab used correctly starts";
   status.details = checkthefile(tmp_dia);
   return;
 end
