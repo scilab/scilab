@@ -20,7 +20,15 @@ int SetUicontrolString(char* sciObjUID, size_t stackPointer, int valueType, int 
 {
     BOOL status = FALSE;
     char* objectStyle = NULL;
+    char* type = NULL;
 
+    // Check type
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
+    if (strcmp(type, __GO_UICONTROL__) != 0)
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+        return SET_PROPERTY_ERROR;
+    }
 
     // Label must be a character string
     if (valueType != sci_strings)
@@ -53,7 +61,7 @@ int SetUicontrolString(char* sciObjUID, size_t stackPointer, int valueType, int 
     status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING_COLNB__), &nbCol, jni_int, 1);
     if (status == FALSE)
     {
-        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 
@@ -65,7 +73,7 @@ int SetUicontrolString(char* sciObjUID, size_t stackPointer, int valueType, int 
     }
     else
     {
-        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 }

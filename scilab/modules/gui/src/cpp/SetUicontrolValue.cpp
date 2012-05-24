@@ -30,6 +30,15 @@ int SetUicontrolValue(char* sciObjUID, size_t stackPointer, int valueType, int n
     double minValue = 0;
     double* pdblMinValue = &minValue;
     char* objectStyle = NULL;
+    char* type = NULL;
+
+    // Check type
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
+    if (strcmp(type, __GO_UICONTROL__) != 0)
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
+        return SET_PROPERTY_ERROR;
+    }
 
     if (valueType == sci_matrix)
     {
