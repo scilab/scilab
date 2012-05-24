@@ -14,6 +14,11 @@
 
 
 ilib_verbose(0);
+setenv('__USE_DEPRECATED_STACK_FUNCTIONS__','YES');
+
+curdir = pwd();
+file_path = get_file_path('lapackscilab.sce');
+chdir(file_path);
 
 files_functions = ["intdgemm.c";
 "intzgemm.c";
@@ -47,3 +52,5 @@ A = rand(2,2) + %i * rand(2,2);
 B = A;
 C = A;
 C = zgemm(alfa, A, B, betha, C)
+
+cd(curdir);
