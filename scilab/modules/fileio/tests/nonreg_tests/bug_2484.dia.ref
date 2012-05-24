@@ -19,4 +19,4 @@ save(TMPDIR+"/test.sav",a);
 if execstr("listvarinfile(TMPDIR+""/test.sav"");", "errcatch")<>0 then bugmes();quit;end
 Name                     Type           Size            Bytes     
 ---------------------------------------------------------------
-a                        list           2               43        
+a                        list           2               44        
