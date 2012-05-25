@@ -134,7 +134,7 @@ am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
 	solsy.lo lsodi.lo ddassl.lo order.lo epsalg.lo cfode.lo \
 	rscma1.lo colnew.lo dcutet.lo xsetf.lo dgbsl.lo rkf45.lo \
 	rchek.lo dqag0.lo xerrwv.lo twodq.lo dqags.lo greatr.lo \
-	hpdel.lo hpins.lo svcar1.lo daux.lo rscom1.lo rksimp.lo \
+	hpdel.lo hpins.lo svcar1.lo rscom1.lo rksimp.lo \
 	roots.lo stoda.lo bnorm.lo rchek2.lo stode.lo vmnorm.lo \
 	prepj.lo lsdisc.lo fnorm.lo ddasrt.lo stodi.lo xsetun.lo \
 	intdy.lo ewset.lo roots2.lo prepji.lo svcma1.lo lsrgk.lo \
@@ -503,7 +503,6 @@ src/fortran/greatr.f \
 src/fortran/hpdel.f \
 src/fortran/hpins.f \
 src/fortran/svcar1.f \
-src/fortran/daux.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
@@ -1101,9 +1100,6 @@ hpins.lo: src/fortran/hpins.f
 
 svcar1.lo: src/fortran/svcar1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o svcar1.lo `test -f 'src/fortran/svcar1.f' || echo '$(srcdir)/'`src/fortran/svcar1.f
-
-daux.lo: src/fortran/daux.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o daux.lo `test -f 'src/fortran/daux.f' || echo '$(srcdir)/'`src/fortran/daux.f
 
 rscom1.lo: src/fortran/rscom1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rscom1.lo `test -f 'src/fortran/rscom1.f' || echo '$(srcdir)/'`src/fortran/rscom1.f

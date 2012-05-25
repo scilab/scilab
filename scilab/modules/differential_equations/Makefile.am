@@ -51,7 +51,6 @@ src/fortran/greatr.f \
 src/fortran/hpdel.f \
 src/fortran/hpins.f \
 src/fortran/svcar1.f \
-src/fortran/daux.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \

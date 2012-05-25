@@ -84,9 +84,6 @@
     <ClCompile Include="..\c\commons_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="daux.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dcutet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -357,9 +354,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="colnew.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="daux.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dcutet.f">
