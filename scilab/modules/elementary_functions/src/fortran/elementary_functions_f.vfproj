@@ -138,7 +138,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\bdiag.f"/>
 		<File RelativePath=".\calerf.f"/>
 		<File RelativePath=".\cbal.f"/>
-		<File RelativePath=".\ccopy.f"/>
 		<File RelativePath=".\cerr.f"/>
 		<File RelativePath=".\coef.f"/>
 		<File RelativePath=".\comqr3.f"/>

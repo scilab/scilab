@@ -169,7 +169,7 @@ am__objects_5 = psi.lo wasum.lo dexpm1.lo wwdiv.lo wdotcr.lo iset.lo \
 	cbal.lo cuproi.lo dsum.lo urand.lo intp.lo watan.lo wipowe.lo \
 	wacos.lo wdpow1.lo dmsum.lo dlgama.lo exch.lo wsign.lo \
 	kronr.lo wrscal.lo pythag.lo dmmul1.lo dwpow.lo wmmul.lo \
-	dsearch.lo ddif.lo wdiv.lo wtan.lo ccopy.lo ddpow.lo magic.lo \
+	dsearch.lo ddif.lo wdiv.lo wtan.lo ddpow.lo magic.lo \
 	wcerr.lo ivimp.lo cupro.lo dadd.lo calerf.lo isort.lo \
 	hilber.lo wdpowe.lo wmprod.lo wscal.lo dlblks.lo kronc.lo \
 	ddrdiv.lo dipow.lo wshrsl.lo wwrdiv.lo coshin.lo iwamax.lo \
@@ -723,7 +723,6 @@ src/fortran/dsearch.f \
 src/fortran/ddif.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
-src/fortran/ccopy.f \
 src/fortran/ddpow.f \
 src/fortran/magic.f \
 src/fortran/wcerr.f \
@@ -2182,9 +2181,6 @@ wdiv.lo: src/fortran/wdiv.f
 
 wtan.lo: src/fortran/wtan.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wtan.lo `test -f 'src/fortran/wtan.f' || echo '$(srcdir)/'`src/fortran/wtan.f
-
-ccopy.lo: src/fortran/ccopy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ccopy.lo `test -f 'src/fortran/ccopy.f' || echo '$(srcdir)/'`src/fortran/ccopy.f
 
 ddpow.lo: src/fortran/ddpow.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddpow.lo `test -f 'src/fortran/ddpow.f' || echo '$(srcdir)/'`src/fortran/ddpow.f

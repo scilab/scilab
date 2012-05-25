@@ -33,9 +33,6 @@
     <ClCompile Include="cbal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ccopy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cerr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -531,9 +528,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cbal.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ccopy.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cerr.f">

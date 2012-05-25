@@ -288,7 +288,6 @@ cd ..
     <ClCompile Include="bdiag.c" />
     <ClCompile Include="calerf.c" />
     <ClCompile Include="cbal.c" />
-    <ClCompile Include="ccopy.c" />
     <ClCompile Include="cerr.c" />
     <ClCompile Include="coef.c" />
     <ClCompile Include="comqr3.c" />
@@ -456,7 +455,6 @@ cd ..
     <f2c_rule Include="bdiag.f" />
     <f2c_rule Include="calerf.f" />
     <f2c_rule Include="cbal.f" />
-    <f2c_rule Include="ccopy.f" />
     <f2c_rule Include="cerr.f" />
     <f2c_rule Include="coef.f" />
     <f2c_rule Include="comqr3.f" />

@@ -176,7 +176,6 @@ src/fortran/dsearch.f \
 src/fortran/ddif.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
-src/fortran/ccopy.f \
 src/fortran/ddpow.f \
 src/fortran/magic.f \
 src/fortran/wcerr.f \
