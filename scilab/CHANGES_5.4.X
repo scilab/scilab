@@ -1761,6 +1761,7 @@ Bug Fixes
 * Bug #10366 fixed - A warning about fun2string redefinition was displayed
                     when we used "Edit label generator" and click "Ok".
 
+* Bug #11106 fixed - Add functions to identify a list variable in API.
 
 Known Issues
 ============

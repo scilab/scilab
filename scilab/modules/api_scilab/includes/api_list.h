@@ -1372,6 +1372,47 @@ extern "C" {
      */
     SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
 
+    /**
+     * Check if the variable type is list
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isListType(void* _pvCtx, int* _piAddress);
+
+    /**
+     * Check if the variable type is named list
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isNamedListType(void* _pvCtx, const char* _pstName);
+
+    /**
+     * Check if the variable type is tlist
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isTListType(void* _pvCtx, int* _piAddress);
+
+    /**
+     * Check if the variable type is named tlist
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isNamedTListType(void* _pvCtx, const char* _pstName);
+
+    /**
+     * Check if the variable type is mlist
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isMListType(void* _pvCtx, int* _piAddress);
+
+    /**
+     * Check if the variable type is named mlist
+     * @param[in] _piAddress variable address
+     * @return 1 for true and 0 for false
+     */
+    int isNamedMListType(void* _pvCtx, const char* _pstName);
 #ifdef __cplusplus
 }
 #endif

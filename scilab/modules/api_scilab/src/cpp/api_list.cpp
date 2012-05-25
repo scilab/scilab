@@ -3160,3 +3160,40 @@ static void closeList(int _iVar, int *_piEnd)
     updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
 /*--------------------------------------------------------------------------*/
+
+int isListType(void* _pvCtx, int* _piAddress)
+{
+    return checkVarType(_pvCtx, _piAddress, sci_list);
+}
+
+/*--------------------------------------------------------------------------*/
+int isNamedListType(void* _pvCtx, const char* _pstName)
+{
+    return checkNamedVarType(_pvCtx, _pstName, sci_list);
+}
+
+/*--------------------------------------------------------------------------*/
+int isTListType(void* _pvCtx, int* _piAddress)
+{
+    return checkVarType(_pvCtx, _piAddress, sci_tlist);
+}
+
+/*--------------------------------------------------------------------------*/
+int isNamedTListType(void* _pvCtx, const char* _pstName)
+{
+    return checkNamedVarType(_pvCtx, _pstName, sci_tlist);
+}
+
+/*--------------------------------------------------------------------------*/
+int isMListType(void* _pvCtx, int* _piAddress)
+{
+    return checkVarType(_pvCtx, _piAddress, sci_mlist);
+}
+
+/*--------------------------------------------------------------------------*/
+int isNamedMListType(void* _pvCtx, const char* _pstName)
+{
+    return checkNamedVarType(_pvCtx, _pstName, sci_mlist);
+}
+
+/*--------------------------------------------------------------------------*/
