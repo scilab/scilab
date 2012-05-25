@@ -48,7 +48,6 @@ src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
 src/fortran/zqnbd.f \
 src/fortran/ajour.f \
-src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
 src/fortran/nlis2.f \
@@ -60,13 +59,11 @@ src/fortran/icse1.f \
 src/fortran/ctonb.f \
 src/fortran/icscof.f \
 src/fortran/fmlag1.f \
-src/fortran/fpq2.f \
 src/fortran/n1fc1.f \
 src/fortran/ffinf1.f \
 src/fortran/ctcab.f \
 src/fortran/n1gc2b.f \
 src/fortran/fprf2.f \
-src/fortran/fremf1.f \
 src/fortran/icse.f \
 src/fortran/rlbd.f \
 src/fortran/calmaj.f \

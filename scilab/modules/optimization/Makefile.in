@@ -126,10 +126,10 @@ am__objects_2 = gcbd.lo qpgen2.lo n1qn2a.lo fuclid.lo fmc11b.lo \
 	fmuls1.lo icsec2.lo gcp.lo n1fc1a.lo n1gc2.lo proj.lo \
 	n1gc2a.lo ddd2.lo fremf2.lo dcube.lo fcube.lo bfgsd.lo \
 	fcomp1.lo fmulb1.lo n1fc1o.lo relvar.lo satur.lo strang.lo \
-	fmc11a.lo fmani1.lo fmc11e.lo zqnbd.lo ajour.lo fretc1.lo \
+	fmc11a.lo fmani1.lo fmc11e.lo zqnbd.lo ajour.lo \
 	qnbd.lo nlis0.lo nlis2.lo n1qn2.lo majz.lo n1qn3a.lo frdf1.lo \
-	icse1.lo ctonb.lo icscof.lo fmlag1.lo fpq2.lo n1fc1.lo \
-	ffinf1.lo ctcab.lo n1gc2b.lo fprf2.lo fremf1.lo icse.lo \
+	icse1.lo ctonb.lo icscof.lo fmlag1.lo n1fc1.lo \
+	ffinf1.lo ctcab.lo n1gc2b.lo fprf2.lo icse.lo \
 	rlbd.lo calmaj.lo calbx.lo rednor.lo zgcbd.lo writebuf.lo \
 	qpgen1sci.lo intreadmps.lo rdmps1.lo rdmpsz.lo
 am__objects_3 = lmdif.lo qrfac.lo hybrj1.lo dogleg.lo lmder.lo \
@@ -481,7 +481,6 @@ src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
 src/fortran/zqnbd.f \
 src/fortran/ajour.f \
-src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
 src/fortran/nlis2.f \
@@ -493,13 +492,11 @@ src/fortran/icse1.f \
 src/fortran/ctonb.f \
 src/fortran/icscof.f \
 src/fortran/fmlag1.f \
-src/fortran/fpq2.f \
 src/fortran/n1fc1.f \
 src/fortran/ffinf1.f \
 src/fortran/ctcab.f \
 src/fortran/n1gc2b.f \
 src/fortran/fprf2.f \
-src/fortran/fremf1.f \
 src/fortran/icse.f \
 src/fortran/rlbd.f \
 src/fortran/calmaj.f \
@@ -993,9 +990,6 @@ zqnbd.lo: src/fortran/zqnbd.f
 ajour.lo: src/fortran/ajour.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ajour.lo `test -f 'src/fortran/ajour.f' || echo '$(srcdir)/'`src/fortran/ajour.f
 
-fretc1.lo: src/fortran/fretc1.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fretc1.lo `test -f 'src/fortran/fretc1.f' || echo '$(srcdir)/'`src/fortran/fretc1.f
-
 qnbd.lo: src/fortran/qnbd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qnbd.lo `test -f 'src/fortran/qnbd.f' || echo '$(srcdir)/'`src/fortran/qnbd.f
 
@@ -1029,9 +1023,6 @@ icscof.lo: src/fortran/icscof.f
 fmlag1.lo: src/fortran/fmlag1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmlag1.lo `test -f 'src/fortran/fmlag1.f' || echo '$(srcdir)/'`src/fortran/fmlag1.f
 
-fpq2.lo: src/fortran/fpq2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fpq2.lo `test -f 'src/fortran/fpq2.f' || echo '$(srcdir)/'`src/fortran/fpq2.f
-
 n1fc1.lo: src/fortran/n1fc1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1fc1.lo `test -f 'src/fortran/n1fc1.f' || echo '$(srcdir)/'`src/fortran/n1fc1.f
 
@@ -1046,9 +1037,6 @@ n1gc2b.lo: src/fortran/n1gc2b.f
 
 fprf2.lo: src/fortran/fprf2.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fprf2.lo `test -f 'src/fortran/fprf2.f' || echo '$(srcdir)/'`src/fortran/fprf2.f
-
-fremf1.lo: src/fortran/fremf1.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fremf1.lo `test -f 'src/fortran/fremf1.f' || echo '$(srcdir)/'`src/fortran/fremf1.f
 
 icse.lo: src/fortran/icse.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icse.lo `test -f 'src/fortran/icse.f' || echo '$(srcdir)/'`src/fortran/icse.f

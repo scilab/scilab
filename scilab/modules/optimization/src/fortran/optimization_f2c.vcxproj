@@ -301,12 +301,9 @@ cd ..
     <ClCompile Include="fmlag1.c" />
     <ClCompile Include="fmulb1.c" />
     <ClCompile Include="fmuls1.c" />
-    <ClCompile Include="fpq2.c" />
     <ClCompile Include="fprf2.c" />
     <ClCompile Include="frdf1.c" />
-    <ClCompile Include="fremf1.c" />
     <ClCompile Include="fremf2.c" />
-    <ClCompile Include="fretc1.c" />
     <ClCompile Include="fuclid.c" />
     <ClCompile Include="gcbd.c" />
     <ClCompile Include="gcp.c" />
@@ -402,12 +399,9 @@ cd ..
     <f2c_rule Include="fmlag1.f" />
     <f2c_rule Include="fmulb1.f" />
     <f2c_rule Include="fmuls1.f" />
-    <f2c_rule Include="fpq2.f" />
     <f2c_rule Include="fprf2.f" />
     <f2c_rule Include="frdf1.f" />
-    <f2c_rule Include="fremf1.f" />
     <f2c_rule Include="fremf2.f" />
-    <f2c_rule Include="fretc1.f" />
     <f2c_rule Include="fuclid.f" />
     <f2c_rule Include="gcbd.f" />
     <f2c_rule Include="gcp.f" />

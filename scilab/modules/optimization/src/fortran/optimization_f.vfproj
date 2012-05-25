@@ -152,12 +152,9 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\fmlag1.f"/>
 		<File RelativePath=".\fmulb1.f"/>
 		<File RelativePath=".\fmuls1.f"/>
-		<File RelativePath=".\fpq2.f"/>
 		<File RelativePath=".\fprf2.f"/>
 		<File RelativePath=".\frdf1.f"/>
-		<File RelativePath=".\fremf1.f"/>
 		<File RelativePath=".\fremf2.f"/>
-		<File RelativePath=".\fretc1.f"/>
 		<File RelativePath=".\fuclid.f"/>
 		<File RelativePath=".\gcbd.f"/>
 		<File RelativePath=".\gcp.f"/>
