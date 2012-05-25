@@ -51,8 +51,6 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
         super();
         editorTab = new SwingScilabVariableEditor(variableName, type, data);
         tabPane = editorTab.getTabPane();
-        editorTab.setCallback(ScilabCallBack.createCallback("org.scilab.modules.ui_data.EditVar.closeVariableEditor",
-                                                            CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
         TextBox infobar = ScilabTextBox.createTextBox();
         editorTab.addInfoBar(infobar);
         addTab(editorTab);
@@ -68,11 +66,9 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
         for (int i = 0; i < cl.length; i++) {
             tabPane.removeChangeListener(cl[i]);
         }
-        editvarWindow.removeTab(editorTab);
-        editorTab.setVisible(false);
-        editorTab.close();
         instance = null;
         map.clear();
+        super.close();
     }
 
     /**

@@ -248,7 +248,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     public static void removeActions(SwingScilabTab tab) {
         tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
         tab.setActionBlocked(UNDOCK, true);
-        tab.getTitlebar().revalidate();
+        if (tab.getTitlebar() != null) {
+            tab.getTitlebar().revalidate();
+        }
     }
 
     public static void addActions(SwingScilabTab tab) {
