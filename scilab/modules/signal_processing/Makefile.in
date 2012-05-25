@@ -117,16 +117,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscisignal_processing_algo_la_LIBADD =
 am__objects_1 = degree.lo parcha.lo ouch.lo dfftbi.lo dsqrtc.lo \
-	tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo bounn.lo \
-	nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo cheby.lo \
-	trbize.lo r2tx.lo deli2.lo gee.lo r4tx.lo transn.lo r8tx.lo \
-	kaiser.lo deli11.lo compel.lo filbut.lo desi01.lo desi22.lo \
-	amell.lo desi24.lo dellk.lo syredi.lo dpspln.lo coeft.lo \
-	tranpo.lo blnumz.lo sn.lo bldenz.lo dspln.lo belan.lo desib.lo \
-	freque.lo desi12.lo cmpse2.lo desi14.lo delip.lo deli1.lo \
-	trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo snell.lo \
-	fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo desi21.lo \
-	dfftmx.lo
+	tranze.lo tscccf.lo dsn2.lo hammin.lo bounn.lo nstabl.lo \
+	ino.lo desia.lo desi11.lo cmpse3.lo cheby.lo trbize.lo r2tx.lo \
+	deli2.lo gee.lo r4tx.lo transn.lo r8tx.lo deli11.lo compel.lo \
+	filbut.lo desi01.lo desi22.lo amell.lo desi24.lo dellk.lo \
+	syredi.lo coeft.lo tranpo.lo blnumz.lo sn.lo bldenz.lo \
+	desib.lo freque.lo desi12.lo cmpse2.lo desi14.lo delip.lo \
+	deli1.lo trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo \
+	snell.lo fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo \
+	desi21.lo dfftmx.lo
 am__objects_2 = libscisignal_processing_algo_la-corrtable.lo \
 	libscisignal_processing_algo_la-conv2.lo
 am_libscisignal_processing_algo_la_OBJECTS = $(am__objects_1) \
@@ -445,7 +444,6 @@ src/fortran/ouch.f \
 src/fortran/dfftbi.f \
 src/fortran/dsqrtc.f \
 src/fortran/tranze.f \
-src/fortran/chebc.f \
 src/fortran/tscccf.f \
 src/fortran/dsn2.f \
 src/fortran/hammin.f \
@@ -463,7 +461,6 @@ src/fortran/gee.f \
 src/fortran/r4tx.f \
 src/fortran/transn.f \
 src/fortran/r8tx.f \
-src/fortran/kaiser.f \
 src/fortran/deli11.f \
 src/fortran/compel.f \
 src/fortran/filbut.f \
@@ -473,14 +470,11 @@ src/fortran/amell.f \
 src/fortran/desi24.f \
 src/fortran/dellk.f \
 src/fortran/syredi.f \
-src/fortran/dpspln.f \
 src/fortran/coeft.f \
 src/fortran/tranpo.f \
 src/fortran/blnumz.f \
 src/fortran/sn.f \
 src/fortran/bldenz.f \
-src/fortran/dspln.f \
-src/fortran/belan.f \
 src/fortran/desib.f \
 src/fortran/freque.f \
 src/fortran/desi12.f \
@@ -872,9 +866,6 @@ dsqrtc.lo: src/fortran/dsqrtc.f
 tranze.lo: src/fortran/tranze.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tranze.lo `test -f 'src/fortran/tranze.f' || echo '$(srcdir)/'`src/fortran/tranze.f
 
-chebc.lo: src/fortran/chebc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o chebc.lo `test -f 'src/fortran/chebc.f' || echo '$(srcdir)/'`src/fortran/chebc.f
-
 tscccf.lo: src/fortran/tscccf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tscccf.lo `test -f 'src/fortran/tscccf.f' || echo '$(srcdir)/'`src/fortran/tscccf.f
 
@@ -926,9 +917,6 @@ transn.lo: src/fortran/transn.f
 r8tx.lo: src/fortran/r8tx.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r8tx.lo `test -f 'src/fortran/r8tx.f' || echo '$(srcdir)/'`src/fortran/r8tx.f
 
-kaiser.lo: src/fortran/kaiser.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o kaiser.lo `test -f 'src/fortran/kaiser.f' || echo '$(srcdir)/'`src/fortran/kaiser.f
-
 deli11.lo: src/fortran/deli11.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli11.lo `test -f 'src/fortran/deli11.f' || echo '$(srcdir)/'`src/fortran/deli11.f
 
@@ -956,9 +944,6 @@ dellk.lo: src/fortran/dellk.f
 syredi.lo: src/fortran/syredi.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o syredi.lo `test -f 'src/fortran/syredi.f' || echo '$(srcdir)/'`src/fortran/syredi.f
 
-dpspln.lo: src/fortran/dpspln.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpspln.lo `test -f 'src/fortran/dpspln.f' || echo '$(srcdir)/'`src/fortran/dpspln.f
-
 coeft.lo: src/fortran/coeft.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o coeft.lo `test -f 'src/fortran/coeft.f' || echo '$(srcdir)/'`src/fortran/coeft.f
 
@@ -973,12 +958,6 @@ sn.lo: src/fortran/sn.f
 
 bldenz.lo: src/fortran/bldenz.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bldenz.lo `test -f 'src/fortran/bldenz.f' || echo '$(srcdir)/'`src/fortran/bldenz.f
-
-dspln.lo: src/fortran/dspln.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspln.lo `test -f 'src/fortran/dspln.f' || echo '$(srcdir)/'`src/fortran/dspln.f
-
-belan.lo: src/fortran/belan.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o belan.lo `test -f 'src/fortran/belan.f' || echo '$(srcdir)/'`src/fortran/belan.f
 
 desib.lo: src/fortran/desib.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desib.lo `test -f 'src/fortran/desib.f' || echo '$(srcdir)/'`src/fortran/desib.f

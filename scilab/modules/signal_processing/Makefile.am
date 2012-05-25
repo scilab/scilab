@@ -12,7 +12,6 @@ src/fortran/ouch.f \
 src/fortran/dfftbi.f \
 src/fortran/dsqrtc.f \
 src/fortran/tranze.f \
-src/fortran/chebc.f \
 src/fortran/tscccf.f \
 src/fortran/dsn2.f \
 src/fortran/hammin.f \
@@ -30,7 +29,6 @@ src/fortran/gee.f \
 src/fortran/r4tx.f \
 src/fortran/transn.f \
 src/fortran/r8tx.f \
-src/fortran/kaiser.f \
 src/fortran/deli11.f \
 src/fortran/compel.f \
 src/fortran/filbut.f \
@@ -40,14 +38,11 @@ src/fortran/amell.f \
 src/fortran/desi24.f \
 src/fortran/dellk.f \
 src/fortran/syredi.f \
-src/fortran/dpspln.f \
 src/fortran/coeft.f \
 src/fortran/tranpo.f \
 src/fortran/blnumz.f \
 src/fortran/sn.f \
 src/fortran/bldenz.f \
-src/fortran/dspln.f \
-src/fortran/belan.f \
 src/fortran/desib.f \
 src/fortran/freque.f \
 src/fortran/desi12.f \
