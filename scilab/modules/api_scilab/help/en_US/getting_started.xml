@@ -99,6 +99,21 @@
                         <literal>int isStringType(void* context, int* address)</literal>
                       </para>
                     </listitem>
+                    <listitem>
+                      <para>
+                        <literal>int isListType(void* context, int* address)</literal>
+                      </para>
+                    </listitem>
+                    <listitem>
+                      <para>
+                        <literal>int isTListType(void* context, int* address)</literal>
+                      </para>
+                    </listitem>
+                    <listitem>
+                      <para>
+                        <literal>int isMListType(void* context, int* address)</literal>
+                      </para>
+                    </listitem>
                   </itemizedlist>
                 </para>
               </listitem>

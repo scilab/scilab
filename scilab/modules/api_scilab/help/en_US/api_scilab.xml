@@ -103,6 +103,11 @@
               </para>
             </listitem>
           </itemizedlist>
+          <para>
+            Add functions to identify list datatypes:
+            <literal>isListType</literal>, <literal>isNamedListType</literal>, <literal>isTListType</literal>, <literal>isNamedTListType</literal>, <literal>isMListType</literal>,
+            <literal>isNamedMListType</literal>
+          </para>
         </revdescription>
       </revision>
     </revhistory>

@@ -1430,6 +1430,15 @@ returns the value of the ScilabTypeEnum enum.
                    EDT was crashing the execution of a Java program.
 
 
+API Scilab
+==========
+
+* Add functions to identify list datatypes:
+  isListType, isNamedListType, isTListType, isNamedTListType, isMListType,
+  isNamedMListType
+  See bug #11106 
+
+
 CACSD and Signal Processing
 ===========================
 
@@ -1761,7 +1770,7 @@ Bug Fixes
 * Bug #10366 fixed - A warning about fun2string redefinition was displayed
                     when we used "Edit label generator" and click "Ok".
 
-* Bug #11106 fixed - Add functions to identify a list variable in API.
+
 
 Known Issues
 ============
