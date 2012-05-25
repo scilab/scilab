@@ -252,6 +252,8 @@ Documentation
 
 * Bug #11010 fixed - Examples of preconditioning added in gmres documentation.
 
+* Bug #11029 fixed - Fix execution path to TMPDIR in example of dae help page.
+
 * Bug #11090 fixed - Fix a typo in the documentation of event_handler_function.
 
 
