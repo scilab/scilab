@@ -287,14 +287,6 @@ unsigned long * getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
  */
 int putUnsignedLong(char* variableName, unsigned long *variable, int nbRow, int nbCol);
 
-
-/**
- * Return the last error message as a single string
- *
- * @return The last error message
- */
-char* getLastErrorMessageSingle();
-
 /**
  * Return a matrix of string
  *

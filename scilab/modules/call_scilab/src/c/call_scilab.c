@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #ifdef _MSC_VER
 #include <windows.h>
-#endif 
+#endif
 #include "BOOL.h"
 #include "call_scilab.h"
 #include "lasterror.h"          /* clearLastError */
@@ -297,6 +297,32 @@ sci_types getVariableType(char *varName)
         return -1;
     }
     return (sci_types) iSciType;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/**
+ * Call the Scilab function getLastErrorMessage
+ * Take the result (a matrix of string) and concatenate into a single string
+ * This is way easier to manage in swig.
+*/
+char *getLastErrorMessageSingle(void)
+{
+    int iNbLines, i, nbChar = 0;
+    const char **msgs = getLastErrorMessage(&iNbLines);
+    char *concat;
+
+    for (i = 0; i < iNbLines; i++)
+    {
+        nbChar += (int)strlen(msgs[i]);
+    }
+    concat = (char *)malloc((nbChar + 1) * sizeof(char));
+    strcpy(concat, "");
+    for (i = 0; i < iNbLines; i++)
+    {
+        strcat(concat, msgs[i]);
+    }
+    return concat;
 }
 
 /*--------------------------------------------------------------------------*/

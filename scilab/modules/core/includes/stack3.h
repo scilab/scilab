@@ -22,7 +22,7 @@
 #define STACK3_H
 
 #if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
-    #error Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
+#error Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include "machine.h"
@@ -83,7 +83,7 @@ int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int
 int iAllocComplexMatrixOfPolyToAddress(int _iAddr, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData);
-int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
+int iAllocComplexSparseMatrix(int _iNewVal, int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolData);
 int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow);
@@ -178,7 +178,7 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 
-/** 
+/**
 *  Set the target real and imaginary part of an array from a source doublecomplex array.
 *  @param _poComplex the source array
 *  @param _iSize the number of elements to set
@@ -202,7 +202,7 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 /**
 *  Free the given pointer of double complex.
 *  Note
-*  The goal of this function is to allow the client 
+*  The goal of this function is to allow the client
 *  code to be independent of the particular allocation system used
 *  in oGetDoubleComplexFromPointer.
 *  @param _poComplex the array to free
@@ -229,4 +229,6 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 *  @return a pointer on the data of a matrix of double.
 */
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
+
+int C2F(str2name)  (const char *name__, int *id, unsigned long name_len);
 #endif

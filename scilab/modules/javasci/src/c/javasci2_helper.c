@@ -495,30 +495,6 @@ int putUnsignedLong(char *variableName, unsigned long *variable, int *nbRow, int
 
 #endif
 
-/**
- * Call the Scilab function getLastErrorMessage
- * Take the result (a matrix of string) and concatenate into a single string
- * This is way easier to manage in swig.
-*/
-char *getLastErrorMessageSingle(void)
-{
-    int iNbLines, i, nbChar = 0;
-    const char **msgs = getLastErrorMessage(&iNbLines);
-    char *concat;
-
-    for (i = 0; i < iNbLines; i++)
-    {
-        nbChar += (int)strlen(msgs[i]);
-    }
-    concat = (char *)malloc((nbChar + 1) * sizeof(char));
-    strcpy(concat, "");
-    for (i = 0; i < iNbLines; i++)
-    {
-        strcat(concat, msgs[i]);
-    }
-    return concat;
-}
-
 char **getString(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;

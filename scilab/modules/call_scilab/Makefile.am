@@ -64,7 +64,6 @@ libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
 libscicall_scilab_la_includedir=$(pkgincludedir)
-libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
-	includes/call_scilab.h
+libscicall_scilab_la_include_HEADERS = includes/call_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am
