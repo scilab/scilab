@@ -272,7 +272,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bezout.c" />
     <ClCompile Include="bezstp.c" />
     <ClCompile Include="blktit.c" />
     <ClCompile Include="calcsc.c" />
@@ -287,7 +286,6 @@ cd ..
     <ClCompile Include="dmpext.c" />
     <ClCompile Include="dmpins.c" />
     <ClCompile Include="dmpmu.c" />
-    <ClCompile Include="dmptld.c" />
     <ClCompile Include="dmptra.c" />
     <ClCompile Include="dpmul.c" />
     <ClCompile Include="dpmul1.c" />
@@ -303,7 +301,6 @@ cd ..
     <ClCompile Include="impext.c" />
     <ClCompile Include="impins.c" />
     <ClCompile Include="imptra.c" />
-    <ClCompile Include="matra.c" />
     <ClCompile Include="mpdegr.c" />
     <ClCompile Include="mpdiag.c" />
     <ClCompile Include="mpinsp.c" />
@@ -353,7 +350,6 @@ cd ..
     <ClCompile Include="writebufsfact.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="bezout.f" />
     <f2c_rule Include="bezstp.f" />
     <f2c_rule Include="blktit.f" />
     <f2c_rule Include="calcsc.f" />
@@ -368,7 +364,6 @@ cd ..
     <f2c_rule Include="dmpext.f" />
     <f2c_rule Include="dmpins.f" />
     <f2c_rule Include="dmpmu.f" />
-    <f2c_rule Include="dmptld.f" />
     <f2c_rule Include="dmptra.f" />
     <f2c_rule Include="dpmul.f" />
     <f2c_rule Include="dpmul1.f" />
@@ -383,7 +378,6 @@ cd ..
     <f2c_rule Include="impext.f" />
     <f2c_rule Include="impins.f" />
     <f2c_rule Include="imptra.f" />
-    <f2c_rule Include="matra.f" />
     <f2c_rule Include="mpdegr.f" />
     <f2c_rule Include="mpdiag.f" />
     <f2c_rule Include="mpinsp.f" />

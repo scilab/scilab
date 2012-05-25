@@ -13,10 +13,8 @@ src/fortran/dmpcnc.f \
 src/fortran/wmpmu.f \
 src/fortran/mpinsp.f \
 src/fortran/impext.f \
-src/fortran/bezout.f \
 src/fortran/recbez.f \
 src/fortran/sfact1.f \
-src/fortran/dmptld.f \
 src/fortran/dpodiv.f \
 src/fortran/dmptra.f \
 src/fortran/dmpins.f \
@@ -37,7 +35,6 @@ src/fortran/horner.f \
 src/fortran/idegre.f \
 src/fortran/fxshfr.f \
 src/fortran/mpdiag.f \
-src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
 src/fortran/wpodiv.f \

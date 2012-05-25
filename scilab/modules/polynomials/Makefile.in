@@ -117,11 +117,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscipolynomials_algo_la_LIBADD =
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
-	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
-	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
+	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo \
+	recbez.lo sfact1.lo dpodiv.lo dmptra.lo dmpins.lo \
 	dpsimp.lo dmp2pm.lo dmpext.lo wpmul.lo bezstp.lo wmpad.lo \
 	dprxc.lo quadsd.lo wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo \
-	mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo matra.lo \
+	mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo \
 	dmpcle.lo rpoly.lo wpodiv.lo wdmpmu.lo wmptra.lo wmpins.lo \
 	mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo dmpad.lo \
 	nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo impcnc.lo \
@@ -453,10 +453,8 @@ src/fortran/dmpcnc.f \
 src/fortran/wmpmu.f \
 src/fortran/mpinsp.f \
 src/fortran/impext.f \
-src/fortran/bezout.f \
 src/fortran/recbez.f \
 src/fortran/sfact1.f \
-src/fortran/dmptld.f \
 src/fortran/dpodiv.f \
 src/fortran/dmptra.f \
 src/fortran/dmpins.f \
@@ -477,7 +475,6 @@ src/fortran/horner.f \
 src/fortran/idegre.f \
 src/fortran/fxshfr.f \
 src/fortran/mpdiag.f \
-src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
 src/fortran/wpodiv.f \
@@ -930,17 +927,11 @@ mpinsp.lo: src/fortran/mpinsp.f
 impext.lo: src/fortran/impext.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o impext.lo `test -f 'src/fortran/impext.f' || echo '$(srcdir)/'`src/fortran/impext.f
 
-bezout.lo: src/fortran/bezout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bezout.lo `test -f 'src/fortran/bezout.f' || echo '$(srcdir)/'`src/fortran/bezout.f
-
 recbez.lo: src/fortran/recbez.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o recbez.lo `test -f 'src/fortran/recbez.f' || echo '$(srcdir)/'`src/fortran/recbez.f
 
 sfact1.lo: src/fortran/sfact1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sfact1.lo `test -f 'src/fortran/sfact1.f' || echo '$(srcdir)/'`src/fortran/sfact1.f
-
-dmptld.lo: src/fortran/dmptld.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmptld.lo `test -f 'src/fortran/dmptld.f' || echo '$(srcdir)/'`src/fortran/dmptld.f
 
 dpodiv.lo: src/fortran/dpodiv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpodiv.lo `test -f 'src/fortran/dpodiv.f' || echo '$(srcdir)/'`src/fortran/dpodiv.f
@@ -1001,9 +992,6 @@ fxshfr.lo: src/fortran/fxshfr.f
 
 mpdiag.lo: src/fortran/mpdiag.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mpdiag.lo `test -f 'src/fortran/mpdiag.f' || echo '$(srcdir)/'`src/fortran/mpdiag.f
-
-matra.lo: src/fortran/matra.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matra.lo `test -f 'src/fortran/matra.f' || echo '$(srcdir)/'`src/fortran/matra.f
 
 dmpcle.lo: src/fortran/dmpcle.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpcle.lo `test -f 'src/fortran/dmpcle.f' || echo '$(srcdir)/'`src/fortran/dmpcle.f
