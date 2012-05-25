@@ -227,13 +227,8 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="isnum.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
-		<File RelativePath="logops.f"/>
 		<File RelativePath="lst2vars.f"/>
 		<File RelativePath="macro.f"/>
-		<File RelativePath="majmin.f"/>
-		<File RelativePath="matc.f"/>
-		<File RelativePath="matz.f"/>
-		<File RelativePath="matzs.f"/>
 		<File RelativePath="misops.f"/>
 		<File RelativePath="mkindx.f"/>
 		<File RelativePath="mklist.f"/>

@@ -118,7 +118,6 @@ src/fortran/compil.f \
 src/fortran/funnam.f \
 src/fortran/isnum.f \
 src/fortran/cmdstr.f \
-src/fortran/logops.f \
 src/fortran/hndlops.f \
 src/fortran/cmplxt.f \
 src/fortran/skpins.f \
@@ -131,7 +130,6 @@ src/fortran/prompt.f \
 src/fortran/intstr.f \
 src/fortran/createref.f \
 src/fortran/btof.f \
-src/fortran/matzs.f \
 src/fortran/getnum.f \
 src/fortran/btofm.f \
 src/fortran/getsym.f \
@@ -147,7 +145,6 @@ src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
-src/fortran/majmin.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
@@ -164,7 +161,6 @@ src/fortran/defmat.f \
 src/fortran/mklist.f \
 src/fortran/sigbas.f \
 src/fortran/indxg.f \
-src/fortran/matz.f \
 src/fortran/istrue.f \
 src/fortran/inisci.f \
 src/fortran/ptover.f \
@@ -178,7 +174,6 @@ src/fortran/cvwm.f \
 src/fortran/storeglobal.f \
 src/fortran/lst2vars.f \
 src/fortran/basnms.f \
-src/fortran/matc.f \
 src/fortran/ptrback.f \
 src/fortran/getch.f \
 src/fortran/ftob.f \

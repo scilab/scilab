@@ -390,13 +390,8 @@ cd ..
     <ClCompile Include="isnum.c" />
     <ClCompile Include="istrue.c" />
     <ClCompile Include="itosci.c" />
-    <ClCompile Include="logops.c" />
     <ClCompile Include="lst2vars.c" />
     <ClCompile Include="macro.c" />
-    <ClCompile Include="majmin.c" />
-    <ClCompile Include="matc.c" />
-    <ClCompile Include="matz.c" />
-    <ClCompile Include="matzs.c" />
     <ClCompile Include="misops.c" />
     <ClCompile Include="mkindx.c" />
     <ClCompile Include="mklist.c" />
@@ -506,13 +501,8 @@ cd ..
     <f2c_rule Include="isnum.f" />
     <f2c_rule Include="istrue.f" />
     <f2c_rule Include="itosci.f" />
-    <f2c_rule Include="logops.f" />
     <f2c_rule Include="lst2vars.f" />
     <f2c_rule Include="macro.f" />
-    <f2c_rule Include="majmin.f" />
-    <f2c_rule Include="matc.f" />
-    <f2c_rule Include="matz.f" />
-    <f2c_rule Include="matzs.f" />
     <f2c_rule Include="misops.f" />
     <f2c_rule Include="mkindx.f" />
     <f2c_rule Include="mklist.f" />

@@ -177,25 +177,10 @@
     <ClCompile Include="itosci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lst2vars.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="majmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matz.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matzs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="misops.c">
@@ -520,25 +505,10 @@
     <f2c_rule Include="itosci.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="logops.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lst2vars.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="macro.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="majmin.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matc.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matz.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matzs.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="misops.f">
