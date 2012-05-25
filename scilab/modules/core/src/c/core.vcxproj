@@ -368,6 +368,7 @@ cd ..
     <ClCompile Include="xscion.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\sci_types.h" />
     <ClInclude Include="banier.h" />
     <ClInclude Include="..\..\includes\BOOL.h" />
     <ClInclude Include="callDynamicGateway.h" />
