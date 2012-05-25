@@ -162,7 +162,7 @@ am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_zgeev.lo \
 	libscilinear_algebra_la-sci_zggev.lo \
 	libscilinear_algebra_la-sci_zheev.lo
-am__objects_4 = bschur.lo
+am__objects_4 = 
 am_libscilinear_algebra_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscilinear_algebra_la_OBJECTS =  \
 	$(am_libscilinear_algebra_la_OBJECTS)
@@ -534,7 +534,7 @@ sci_gateway/c/sci_zgeev.c \
 sci_gateway/c/sci_zggev.c \
 sci_gateway/c/sci_zheev.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
+GATEWAY_FORTRAN_SOURCES = 
 libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -1123,9 +1123,6 @@ intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-
-bschur.lo: sci_gateway/fortran/bschur.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bschur.lo `test -f 'sci_gateway/fortran/bschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/bschur.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

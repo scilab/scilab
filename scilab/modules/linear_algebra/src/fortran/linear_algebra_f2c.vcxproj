@@ -260,7 +260,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\bschur.c" />
     <ClCompile Include="common_f2c.c" />
     <ClCompile Include="complexify.c" />
     <ClCompile Include="DGELSY1.c" />
@@ -317,7 +316,6 @@ cd ..
     <ClCompile Include="zoldqr.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bschur.f" />
     <f2c_rule Include="complexify.f" />
     <f2c_rule Include="DGELSY1.f" />
     <f2c_rule Include="doldqr.f" />

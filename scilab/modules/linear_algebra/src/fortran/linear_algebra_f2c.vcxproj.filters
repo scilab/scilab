@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\bschur.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="common_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -188,9 +185,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bschur.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="complexify.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>

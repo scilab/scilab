@@ -86,7 +86,7 @@ sci_gateway/c/sci_zgeev.c \
 sci_gateway/c/sci_zggev.c \
 sci_gateway/c/sci_zheev.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
+GATEWAY_FORTRAN_SOURCES =
 
 libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
