@@ -88,5 +88,6 @@
 <module name="history_browser" activate="@JAVA_ENABLE@"/>
 <module name="preferences" activate="@GUI_ENABLE@"/>
 <module name="xml" activate="yes"/>
+<module name="external_objects" activate="yes"/>
 </modules>
 

@@ -1846,6 +1846,7 @@ modules/modules_manager/Makefile
 modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
+modules/external_objects/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

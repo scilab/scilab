@@ -295,6 +295,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
+	-I$(top_srcdir)/modules/external_objects/includes/ \
 	$(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

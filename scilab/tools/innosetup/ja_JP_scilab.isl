@@ -57,6 +57,7 @@ ja_JP.DescriptionUmfpack =UMFPACK for Scilab
 ja_JP.DescriptionCompatFunctions =Compatibility functions
 ja_JP.DescriptionM2sci =M2SCI Toolbox
 ja_JP.DescriptionMatio =MAT File Input/Output Toolbox
+ja_JP.DescriptionExternalObjects =External objects
 ja_JP.DescriptionSound =Sound file handling Toolbox
 ja_JP.DescriptionRandlib =Randlib Toolbox
 ja_JP.DescriptionMexlib =Mexlib Tools

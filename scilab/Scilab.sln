@@ -510,6 +510,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_objects", "modules\graphic_objects\src\nographic_objects\nographic_objects.vcxproj", "{A910BD0C-8FAF-4382-B06A-F767E4752733}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "external_objects", "modules\external_objects\external_objects.vcxproj", "{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1606,6 +1608,14 @@ Global
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|Win32.Build.0 = Release|Win32
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.ActiveCfg = Release|x64
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.Build.0 = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.Build.0 = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.ActiveCfg = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.Build.0 = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.ActiveCfg = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.Build.0 = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.ActiveCfg = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
