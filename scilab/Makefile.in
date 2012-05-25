@@ -697,7 +697,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
-CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/
+CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/ $(FLIBS)
 CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
 call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
 call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
@@ -2015,7 +2015,7 @@ check-call_scilab: $(check_PROGRAMS)
 	for f in $(check_PROGRAMS); do \
 		if test "$$f" != "call_scilab_c"; then \
 			echo "Run: LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(top_srcdir) ./$$f"; \
-			LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(abs_top_builddir) ./$$f; \
+			LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(abs_top_builddir) ./$$f || exit 1; \
 		fi \
 	done
 
