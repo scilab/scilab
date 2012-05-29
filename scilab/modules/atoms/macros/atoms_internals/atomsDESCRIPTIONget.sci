@@ -33,7 +33,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
   // =========================================================================
   atoms_path_all_users = atomsPath("system", "allusers");
   atoms_path_user = atomsPath("system", "user");
-  
+
   filename_test_rw = "__ATOMS_RW__";
   if isfile(atoms_path_all_users + filename_test_rw) then
     mdelete(atoms_path_all_users + filename_test_rw);
@@ -56,13 +56,13 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
       end
     end
   else  // The user is not a Scilab admin => default user profile used
-    packages_path = atoms_path_all_users + "packages";
+    packages_path = atoms_path_user + "packages";
   end
 
   categories_path  = atoms_path_user + "categories";
   packages_path_info = fileinfo(packages_path);
-  
-  
+
+
   // in offline mode we use only DESCRIPTION file of the module
   if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
     if isfile(atomsPath("system", "session") + "/DESCRIPTION_archives") then
@@ -76,7 +76,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     end
     return
   end
-  
+
 
   // If necessary, rebuild the struct
   // =========================================================================
@@ -217,7 +217,11 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     categories     = description("categories");
     categories_flat  = description("categories_flat");
 
-    save(packages_path, "packages", "categories", "categories_flat")
+    commandToExec = "save(packages_path, ""packages"", ""categories"", ""categories_flat"")";
+    ierr = execstr(commandToExec, "errcatch");
+    if ierr <> 0 then
+      error(msprintf(gettext("%s: save (''%s'') has failed.\n"),"atomsDESCRIPTIONget", packages_path));
+    end
 
   // Just load from file
   // =========================================================================
