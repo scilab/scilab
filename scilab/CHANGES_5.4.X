@@ -140,7 +140,7 @@ Documentation
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
-* Bug #9520 fixed - add documentation of Named functions in API Scilab pages.
+* Bug #9520 fixed - add missing named functions in API Scilab pages.
 
 * Bug #9654 fixed - an example of 'optim' help was poorly implemented.
 
@@ -181,6 +181,8 @@ Documentation
 
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
+
+* Bug #10628 fixed - Change reference to sci_types enum and add see also section.
 
 * Bug #10634 fixed - dsearch help page referenced an invalid input argument
                      name.
