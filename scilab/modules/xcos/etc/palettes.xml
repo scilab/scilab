@@ -162,6 +162,15 @@
       </block>
     </node>
     <node xsi:type="PreLoaded" enable="true" name="Event handling">
+      <block name="CLOCK_c">
+        <icon variable="SCI" path="/modules/xcos/images/palettes/CLOCK_c.png"/>
+      </block>
+      <block name="SampleCLK">
+        <icon variable="SCI" path="/modules/xcos/images/palettes/SampleCLK.png"/>
+      </block>
+      <block name="VirtualCLK0">
+        <icon variable="SCI" path="/modules/xcos/images/palettes/VirtualCLK0.png"/>
+      </block>
       <block name="ANDBLK">
         <icon variable="SCI" path="/modules/xcos/images/palettes/ANDBLK.png"/>
       </block>
@@ -185,9 +194,6 @@
       </block>
       <block name="CLKSOMV_f">
         <icon variable="SCI" path="/modules/xcos/images/palettes/CLKSOMV_f.png"/>
-      </block>
-      <block name="CLOCK_c">
-        <icon variable="SCI" path="/modules/xcos/images/palettes/CLOCK_c.png"/>
       </block>
       <block name="EDGE_TRIGGER">
         <icon variable="SCI" path="/modules/xcos/images/palettes/EDGE_TRIGGER.png"/>
@@ -227,9 +233,6 @@
       </block>
       <block name="MFCLCK_f">
         <icon variable="SCI" path="/modules/xcos/images/palettes/MFCLCK_f.png"/>
-      </block>
-      <block name="SampleCLK">
-        <icon variable="SCI" path="/modules/xcos/images/palettes/SampleCLK.png"/>
       </block>
       <block name="freq_div">
         <icon variable="SCI" path="/modules/xcos/images/palettes/freq_div.png"/>

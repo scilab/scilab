@@ -919,6 +919,7 @@
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
+  <add as="VirtualCLK0" extend="CLOCK_f"/>
   <add as="CLKSPLIT_f" extend="Split"/>
   <add as="IMPSPLIT_f" extend="Split"/>
   <add as="CLKSOM_f" extend="CLKSOMV_f"/>
