@@ -140,6 +140,8 @@ Documentation
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
+* Bug #9520 fixed - add documentation of Named functions in API Scilab pages.
+
 * Bug #9654 fixed - an example of 'optim' help was poorly implemented.
 
 * Bug #9700 fixed - optim help page had a mistake about bounds management.
