@@ -215,15 +215,22 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
   <ItemGroup>
     <ClInclude Include="..\includes\charEncoding.h" />
     <ClInclude Include="..\includes\dynlib_localization.h" />
+    <ClInclude Include="..\includes\TerminateLocalization.h" />
+    <ClInclude Include="c\defaultlanguage.h" />
+    <ClInclude Include="c\getentrieshashtable.h" />
     <ClInclude Include="c\getLcidString.h" />
+    <ClInclude Include="c\getLocaleInfo_Apple.h" />
     <ClInclude Include="c\getLocaleInfo_Windows.h" />
     <ClInclude Include="..\includes\gw_localization.h" />
     <ClInclude Include="..\includes\InitializeLocalization.h" />
+    <ClInclude Include="c\hashtable_localization.h" />
     <ClInclude Include="c\LanguagePreferences_Windows.h" />
+    <ClInclude Include="c\loadhashtableslocalization.h" />
     <ClInclude Include="c\LocaleNameToLCID_Windows.h" />
     <ClInclude Include="..\includes\localization.h" />
     <ClInclude Include="..\includes\localizationJava.h" />
     <ClInclude Include="..\includes\setgetlanguage.h" />
+    <ClInclude Include="c\tableslanguages.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\locales\localization.pot" />

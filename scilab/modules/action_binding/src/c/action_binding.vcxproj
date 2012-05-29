@@ -219,6 +219,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_action_binding.h" />
+    <ClInclude Include="..\..\includes\gw_action_binding.h" />
     <ClInclude Include="InterpreterManagement.h" />
     <ClInclude Include="..\jni\Signal.hxx" />
   </ItemGroup>

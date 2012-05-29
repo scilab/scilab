@@ -991,6 +991,24 @@
     <ClInclude Include="scoUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dmmul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="matz_cath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="matz_catv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scicos_evalhermite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scicos_indexfinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_scicos_blocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">

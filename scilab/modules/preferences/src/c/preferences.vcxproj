@@ -276,6 +276,8 @@
     <ClCompile Include="DllmainPreferences.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_preferences_scilab.h" />
+    <ClInclude Include="..\..\includes\gw_preferences.h" />
     <ClInclude Include="..\jni\ScilabPreferences.hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

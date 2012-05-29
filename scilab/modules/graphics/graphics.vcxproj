@@ -567,6 +567,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
     <ClInclude Include="includes\Contour.h" />
@@ -598,6 +599,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\Plot2d.h" />
     <ClInclude Include="includes\sciCall.h" />
     <ClInclude Include="includes\sciMatrix.h" />
+    <ClInclude Include="src\c\loadTextRenderingAPI.h" />
     <ClInclude Include="src\c\scitokenize.h" />
     <ClInclude Include="src\c\getHandleProperty\set_data_property.h" />
     <ClInclude Include="src\c\getHandleProperty\setGetHashTable.h" />

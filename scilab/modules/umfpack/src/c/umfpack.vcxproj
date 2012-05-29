@@ -219,6 +219,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_umfpack.h" />
     <ClInclude Include="..\..\includes\gw_umfpack.h" />
+    <ClInclude Include="common_umfpack.h" />
     <ClInclude Include="sciumfpack.h" />
     <ClInclude Include="taucs_scilab.h" />
     <ClInclude Include="..\..\includes\with_umfpack.h" />

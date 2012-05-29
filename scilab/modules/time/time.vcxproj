@@ -209,6 +209,7 @@
     <ClInclude Include="includes\gw_time.h" />
     <ClInclude Include="includes\realtime.h" />
     <ClInclude Include="includes\timer.h" />
+    <ClInclude Include="src\c\getdate.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\time.rc" />

@@ -228,6 +228,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\dynlib_xml_scilab.h" />
+    <ClInclude Include="includes\gw_xml.h" />
+    <ClInclude Include="includes\xml.h" />
+    <ClInclude Include="includes\xmlObjects.h" />
+    <ClInclude Include="includes\xml_constants.h" />
+    <ClInclude Include="includes\xml_mlist.h" />
     <ClInclude Include="src\cpp\extraction.hpp" />
     <ClInclude Include="src\cpp\insertion.hpp" />
     <ClInclude Include="src\cpp\SplitString.hxx" />

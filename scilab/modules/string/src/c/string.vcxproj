@@ -267,7 +267,9 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="tokens.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\code2str.h" />
     <ClInclude Include="..\..\includes\stringToDouble.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="..\..\includes\cvstr.h" />
@@ -281,11 +283,13 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="..\..\includes\men_Sutils.h" />
     <ClInclude Include="partfunction.h" />
     <ClInclude Include="pcre_error.h" />
+    <ClInclude Include="pcre_internal.h" />
     <ClInclude Include="pcre_private.h" />
     <ClInclude Include="..\..\includes\scistrtostr.h" />
     <ClInclude Include="setScilabCharactersCodes.h" />
     <ClInclude Include="..\..\includes\stricmp.h" />
     <ClInclude Include="..\..\includes\StringConvert.h" />
+    <ClInclude Include="strcatfunction.h" />
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrchr.h" />
     <ClInclude Include="stringsstrrev.h" />
@@ -293,6 +297,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="strsplitfunction.h" />
     <ClInclude Include="..\..\includes\strsubst.h" />
     <ClInclude Include="tokens.h" />
+    <ClInclude Include="ucp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\string.pot" />

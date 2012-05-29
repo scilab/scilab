@@ -212,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\FileBrowserChDir.h" />
+    <ClInclude Include="..\..\includes\ui_data.h" />
     <ClInclude Include="..\..\includes\UpdateBrowseVar.h" />
     <ClInclude Include="..\jni\BrowseVar.hxx" />
     <ClInclude Include="..\..\includes\dynlib_ui_data.h" />

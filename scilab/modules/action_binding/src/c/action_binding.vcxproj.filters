@@ -55,6 +55,9 @@
     <ClInclude Include="..\jni\Signal.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gw_action_binding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\InterpreterManagement.i">

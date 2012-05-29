@@ -541,10 +541,16 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="zcross2.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_scicos_blocks.h" />
     <ClInclude Include="..\jni\AfficheBlock.hxx" />
     <ClInclude Include="..\..\includes\blocks.h" />
     <ClInclude Include="..\..\includes\scicos_block.h" />
     <ClInclude Include="..\..\includes\scicos_block4.h" />
+    <ClInclude Include="dmmul.h" />
+    <ClInclude Include="matz_cath.h" />
+    <ClInclude Include="matz_catv.h" />
+    <ClInclude Include="scicos_evalhermite.h" />
+    <ClInclude Include="scicos_indexfinder.h" />
     <ClInclude Include="scoUtils.h" />
   </ItemGroup>
   <ItemGroup>

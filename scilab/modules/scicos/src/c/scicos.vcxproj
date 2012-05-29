@@ -314,6 +314,8 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\scicos_free.h" />
     <ClInclude Include="..\..\includes\scicos_malloc.h" />
     <ClInclude Include="..\..\includes\scicos_math.h" />
+    <ClInclude Include="sciblk2.h" />
+    <ClInclude Include="sciblk4.h" />
     <ClInclude Include="tree.h" />
     <ClInclude Include="var2sci.h" />
   </ItemGroup>

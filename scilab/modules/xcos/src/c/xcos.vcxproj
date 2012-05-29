@@ -214,6 +214,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_xcos.h" />
     <ClInclude Include="..\..\includes\gw_xcos.h" />
+    <ClInclude Include="..\..\includes\xcosUtilities.hxx" />
     <ClInclude Include="..\jni\Modelica.hxx" />
     <ClInclude Include="..\jni\Palette.hxx" />
     <ClInclude Include="..\jni\Xcos.hxx" />

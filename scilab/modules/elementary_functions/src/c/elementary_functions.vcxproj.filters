@@ -298,6 +298,42 @@
     <ClInclude Include="convertbase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IsEqualVar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-char.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-short.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vceil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vfloor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vfrexp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def">

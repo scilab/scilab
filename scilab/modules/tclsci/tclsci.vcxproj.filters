@@ -161,6 +161,15 @@
     <ClInclude Include="includes\TerminateTclTk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\InitTclTk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ScilabEval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\setenvtcl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\tclsci.rc">

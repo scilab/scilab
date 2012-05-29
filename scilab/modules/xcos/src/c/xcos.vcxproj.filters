@@ -100,6 +100,9 @@
     <ClInclude Include="..\jni\Xcos.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\xcosUtilities.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">

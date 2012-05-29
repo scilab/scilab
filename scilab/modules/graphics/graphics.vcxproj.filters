@@ -1258,6 +1258,12 @@
     <ClInclude Include="src\c\XsetXgetParameters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\CheckScilabXgc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\loadTextRenderingAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui_Import.def">

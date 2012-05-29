@@ -242,6 +242,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\addToClasspath.h" />
     <ClInclude Include="includes\addToLibrarypath.h" />
     <ClInclude Include="includes\catchIfJavaException.h" />
+    <ClInclude Include="includes\loadOnUseClassPath.h" />
     <ClInclude Include="src\c\createMainScilabObject.h" />
     <ClInclude Include="includes\dynlib_jvm.h" />
     <ClInclude Include="src\c\getClasspath.h" />
@@ -261,6 +262,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="src\c\system_getproperty.h" />
     <ClInclude Include="src\c\system_setproperty.h" />
     <ClInclude Include="includes\TerminateJVM.h" />
+    <ClInclude Include="src\c\with_java.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\libjvm.rc" />

@@ -292,7 +292,19 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />
+    <ClInclude Include="cmp.h" />
     <ClInclude Include="convertbase.h" />
+    <ClInclude Include="gsort.h" />
+    <ClInclude Include="IsEqualVar.h" />
+    <ClInclude Include="qsort-char.h" />
+    <ClInclude Include="qsort-double.h" />
+    <ClInclude Include="qsort-int.h" />
+    <ClInclude Include="qsort-short.h" />
+    <ClInclude Include="qsort-string.h" />
+    <ClInclude Include="qsort.h" />
+    <ClInclude Include="vceil.h" />
+    <ClInclude Include="vfloor.h" />
+    <ClInclude Include="vfrexp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />

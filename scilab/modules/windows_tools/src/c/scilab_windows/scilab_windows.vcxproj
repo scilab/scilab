@@ -243,6 +243,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="killScilabProcess.h" />
     <ClInclude Include="mmapWindows.h" />
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="scilab_main.h" />
     <ClInclude Include="SetHeapOptions.h" />
     <ClInclude Include="SetScilabEnvironmentVariables.h" />

@@ -304,7 +304,11 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
     <ClInclude Include="includes\createtempfilename.h" />
+    <ClInclude Include="includes\deleteafile.h" />
+    <ClInclude Include="includes\diary.h" />
+    <ClInclude Include="includes\getshortpathname.h" />
     <ClInclude Include="includes\mgetl.h" />
+    <ClInclude Include="includes\readline.h" />
     <ClInclude Include="includes\sendtorecyclebin.h" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="includes\cluni0.h" />

@@ -482,6 +482,18 @@
     <ClInclude Include="includes\createtempfilename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\deleteafile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\diary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\getshortpathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\readline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fileio.rc">

@@ -170,6 +170,12 @@
     <ClInclude Include="includes\TerminateJVM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\with_java.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\loadOnUseClassPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\libjvm.rc">

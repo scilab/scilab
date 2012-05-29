@@ -59,6 +59,27 @@
     <ClInclude Include="..\includes\setgetlanguage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="c\defaultlanguage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getentrieshashtable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLocaleInfo_Apple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\hashtable_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\loadhashtableslocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\tableslanguages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\TerminateLocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="io_Import.def">

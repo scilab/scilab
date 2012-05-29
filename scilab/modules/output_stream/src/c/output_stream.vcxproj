@@ -260,6 +260,8 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <ClInclude Include="..\..\includes\basout.h" />
     <ClInclude Include="..\..\includes\cerro.h" />
+    <ClInclude Include="..\..\includes\do_xxprintf.h" />
+    <ClInclude Include="..\..\includes\msgs.h" />
     <ClInclude Include="diary.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\diary_manager.hxx" />

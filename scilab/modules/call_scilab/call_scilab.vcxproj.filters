@@ -56,9 +56,6 @@
     <ClInclude Include="includes\call_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\CallScilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\dynlib_call_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>

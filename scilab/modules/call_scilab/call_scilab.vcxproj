@@ -219,7 +219,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\call_scilab.h" />
-    <ClInclude Include="includes\CallScilab.h" />
     <ClInclude Include="includes\dynlib_call_scilab.h" />
     <ClInclude Include="src\c\fromc.h" />
     <ClInclude Include="includes\fromjava.h" />
