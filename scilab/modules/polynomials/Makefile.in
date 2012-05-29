@@ -117,16 +117,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscipolynomials_algo_la_LIBADD =
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
-	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo \
-	recbez.lo sfact1.lo dpodiv.lo dmptra.lo dmpins.lo \
-	dpsimp.lo dmp2pm.lo dmpext.lo wpmul.lo bezstp.lo wmpad.lo \
-	dprxc.lo quadsd.lo wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo \
-	mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo \
-	dmpcle.lo rpoly.lo wpodiv.lo wdmpmu.lo wmptra.lo wmpins.lo \
-	mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo dmpad.lo \
-	nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo impcnc.lo \
-	wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
-	writebufsfact.lo chkvar.lo
+	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo recbez.lo \
+	sfact1.lo dpodiv.lo dmptra.lo dmpins.lo dpsimp.lo dmp2pm.lo \
+	dmpext.lo wpmul.lo bezstp.lo wmpad.lo dprxc.lo quadsd.lo \
+	wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo mptri.lo horner.lo \
+	idegre.lo fxshfr.lo mpdiag.lo dmpcle.lo rpoly.lo wpodiv.lo \
+	wdmpmu.lo wmptra.lo wmpins.lo mpdegr.lo ddmpev.lo realit.lo \
+	dpmul.lo sfact2.lo dmpad.lo nextk.lo blktit.lo dimin.lo \
+	newest.lo dwmpmu.lo impcnc.lo wdmpad.lo wmpcle.lo quadit.lo \
+	quad.lo calcsc.lo writebufsfact.lo chkvar.lo
 am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)

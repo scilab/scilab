@@ -162,7 +162,7 @@ am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_zgeev.lo \
 	libscilinear_algebra_la-sci_zggev.lo \
 	libscilinear_algebra_la-sci_zheev.lo
-am__objects_4 = 
+am__objects_4 =
 am_libscilinear_algebra_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscilinear_algebra_la_OBJECTS =  \
 	$(am_libscilinear_algebra_la_OBJECTS)
@@ -721,7 +721,7 @@ clean-pkglibLTLIBRARIES:
 libscilinear_algebra-algo.la: $(libscilinear_algebra_algo_la_OBJECTS) $(libscilinear_algebra_algo_la_DEPENDENCIES) $(EXTRA_libscilinear_algebra_algo_la_DEPENDENCIES) 
 	$(F77LINK) $(am_libscilinear_algebra_algo_la_rpath) $(libscilinear_algebra_algo_la_OBJECTS) $(libscilinear_algebra_algo_la_LIBADD) $(LIBS)
 libscilinear_algebra.la: $(libscilinear_algebra_la_OBJECTS) $(libscilinear_algebra_la_DEPENDENCIES) $(EXTRA_libscilinear_algebra_la_DEPENDENCIES) 
-	$(F77LINK) $(am_libscilinear_algebra_la_rpath) $(libscilinear_algebra_la_OBJECTS) $(libscilinear_algebra_la_LIBADD) $(LIBS)
+	$(LINK) $(am_libscilinear_algebra_la_rpath) $(libscilinear_algebra_la_OBJECTS) $(libscilinear_algebra_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

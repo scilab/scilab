@@ -126,12 +126,12 @@ am__objects_2 = gcbd.lo qpgen2.lo n1qn2a.lo fuclid.lo fmc11b.lo \
 	fmuls1.lo icsec2.lo gcp.lo n1fc1a.lo n1gc2.lo proj.lo \
 	n1gc2a.lo ddd2.lo fremf2.lo dcube.lo fcube.lo bfgsd.lo \
 	fcomp1.lo fmulb1.lo n1fc1o.lo relvar.lo satur.lo strang.lo \
-	fmc11a.lo fmani1.lo fmc11e.lo zqnbd.lo ajour.lo \
-	qnbd.lo nlis0.lo nlis2.lo n1qn2.lo majz.lo n1qn3a.lo frdf1.lo \
-	icse1.lo ctonb.lo icscof.lo fmlag1.lo n1fc1.lo \
-	ffinf1.lo ctcab.lo n1gc2b.lo fprf2.lo icse.lo \
-	rlbd.lo calmaj.lo calbx.lo rednor.lo zgcbd.lo writebuf.lo \
-	qpgen1sci.lo intreadmps.lo rdmps1.lo rdmpsz.lo
+	fmc11a.lo fmani1.lo fmc11e.lo zqnbd.lo ajour.lo qnbd.lo \
+	nlis0.lo nlis2.lo n1qn2.lo majz.lo n1qn3a.lo frdf1.lo icse1.lo \
+	ctonb.lo icscof.lo fmlag1.lo n1fc1.lo ffinf1.lo ctcab.lo \
+	n1gc2b.lo fprf2.lo icse.lo rlbd.lo calmaj.lo calbx.lo \
+	rednor.lo zgcbd.lo writebuf.lo qpgen1sci.lo intreadmps.lo \
+	rdmps1.lo rdmpsz.lo
 am__objects_3 = lmdif.lo qrfac.lo hybrj1.lo dogleg.lo lmder.lo \
 	hybrd.lo dpmpar.lo lmpar.lo hybrj.lo r1updt.lo enorm.lo \
 	qform.lo qrsolv.lo fdjac1.lo hybrd1.lo fdjac2.lo r1mpyq.lo
