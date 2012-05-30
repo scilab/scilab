@@ -55,7 +55,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
 
     if (piLinksCount == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"links");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
         return SET_PROPERTY_ERROR;
     }
 
@@ -65,11 +65,11 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
         return SET_PROPERTY_ERROR;
     }
 
-    links = (char**) MALLOC(iLinksCount*sizeof(char*));
+    links = (char**) MALLOC(iLinksCount * sizeof(char*));
 
     if (links == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"set_z_ticks_property");
+        Scierror(999, _("%s: No more memory.\n"), "set_z_ticks_property");
         return SET_PROPERTY_ERROR;
     }
 
@@ -80,7 +80,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
     for (i = 0 ; i < iLinksCount ; i++)
     {
         char* polylineParentAxes;
-        char* polylineObjectUID = getObjectFromHandle( getHandleFromStack( stackPointer+i ) );
+        char* polylineObjectUID = getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
 
         getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, &type);
 
@@ -93,7 +93,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
 
         links[i] = polylineObjectUID;
 
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &polylineParentAxes);
+        getGraphicObjectProperty(polylineObjectUID, __GO_PARENT_AXES__, jni_string, &polylineParentAxes);
 
         if (strcmp(polylineParentAxes, parentAxes) != 0)
         {
@@ -119,7 +119,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"links");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
         return SET_PROPERTY_ERROR;
     }
 }
