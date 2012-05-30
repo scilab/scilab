@@ -149,17 +149,6 @@
                          clear %fileToWrite isempty'
             type="0"/>
       </submenu>
-      <submenu label="&amp;FIG">
-        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
-        <callback
-            instruction='
-                         %fileToWrite = uigetfile("*.fig", pwd(), gettext("Select a file name"));
-                         if ~isempty(%fileToWrite) then
-                         xs2fig([SCILAB_FIGURE_ID], %fileToWrite);
-                         end
-                         clear %fileToWrite isempty'
-            type="0"/>
-      </submenu>
     </submenu>
     <submenu label="&amp;Copy to clipboard" accelerator="OSSCKEY C" icon="edit-copy">
       <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
