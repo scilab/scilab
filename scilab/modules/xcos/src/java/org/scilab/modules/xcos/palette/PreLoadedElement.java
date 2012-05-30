@@ -34,8 +34,7 @@ import org.scilab.modules.xcos.palette.model.VariablePath;
  * Decode a palette into a {@link PreLoaded} palette.
  */
 public class PreLoadedElement extends AbstractElement<PreLoaded> {
-    private static final List<String> DATA_FIELD_NAMES = asList("palette",
-            "name", "blockNames", "blocks", "icons", "style");
+    private static final List<String> DATA_FIELD_NAMES = asList("palette", "name", "blockNames", "blocks", "icons", "style");
 
     /** Mutable field to easily get the data through methods */
     private ScilabTList data;
@@ -48,7 +47,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
     /**
      * Check the type name compatibility.
-     * 
+     *
      * @param element
      *            the current element
      * @return <code>true</code> if the data can be decoded by this instance,
@@ -65,7 +64,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
     /**
      * Decode the current element on the into argument.
-     * 
+     *
      * @param element
      *            the Scilab data
      * @param into
@@ -77,8 +76,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
      *      java.lang.Object)
      */
     @Override
-    public PreLoaded decode(ScilabType element, PreLoaded into)
-            throws ScicosFormatException {
+    public PreLoaded decode(ScilabType element, PreLoaded into) throws ScicosFormatException {
         data = (ScilabTList) element;
         PreLoaded palette = into;
 
@@ -118,17 +116,12 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
                 PaletteBlock current = new PaletteBlock();
                 current.setName(blockNames[i][j]);
 
-                VariablePath dataPath = new VariablePath();
-                dataPath.setVariable(null);
-                dataPath.setPath(blocks[i][j]);
-                current.setData(dataPath);
-
                 VariablePath iconPath = new VariablePath();
                 iconPath.setVariable(null);
                 File icon = new File(icons[i][j]);
                 if (!icon.exists()) {
                     try {
-                        Palette.generatePaletteIcon(blocks[i][j], icons[i][j]);
+                        Palette.generatePaletteIcon(blockNames[i][j], icons[i][j]);
                     } catch (IOException e) {
                         throw new WrongTypeException(e);
                     }
@@ -145,11 +138,11 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -193,30 +186,25 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
         // the second field must contain the palette name.
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1
-                || data.get(field).getHeight() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1 || data.get(field).getHeight() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the third field must contains the block name (row column)
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the fourth field must contains the block instance path (row column)
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the fifth field must contains the block icon path (row column)
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -225,7 +213,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
     /**
      * Not implemented yet, always return null.
-     * 
+     *
      * @param from
      *            the source
      * @param element

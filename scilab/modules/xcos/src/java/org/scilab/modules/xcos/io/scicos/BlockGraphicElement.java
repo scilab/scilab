@@ -59,7 +59,7 @@ class BlockGraphicElement extends BlockPartsElement {
     private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
 
     /** Size factor use to scale Xcos-Scicos dimensions */
-    private static final double SIZE_FACTOR = 1.0;
+    private static final double SIZE_FACTOR = 20.0;
     /** Minimal side length use for any Xcos block */
     private static final double MINIMAL_SIZE = 8.0;
 

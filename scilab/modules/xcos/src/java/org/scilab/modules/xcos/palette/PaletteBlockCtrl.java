@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
@@ -143,7 +144,7 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.addCell(block);
             INTERNAL_GRAPH.selectAll();
 
-            INTERNAL_GRAPH.updateCellSize(block, false);
+            BlockPositioning.updateBlockView(block);
 
             mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
             transfer = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
