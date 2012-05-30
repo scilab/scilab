@@ -16,4 +16,4 @@ ierr = execstr("set(""figure_style"", ""new"")", "errcatch");
 if ierr <> 0 then bugmes();quit;end
 ierr = execstr("set(""figure_style"", ""old"")", "errcatch");
 if ierr <> 999 then bugmes();quit;end
-if lasterror() <> msprintf("%s", gettext("Old graphic mode is no longer available. Please refer to the set help page.\n")) then bugmes();quit;end
+if lasterror() <> msprintf(gettext("Old graphic mode is no longer available. Please refer to the set help page.\n")) then bugmes();quit;end

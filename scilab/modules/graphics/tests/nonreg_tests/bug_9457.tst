@@ -20,5 +20,5 @@ if ierr <> 0 then pause, end
 
 ierr = execstr("set(""figure_style"", ""old"")", "errcatch");
 if ierr <> 999 then pause, end
-if lasterror() <> msprintf("%s", gettext("Old graphic mode is no longer available. Please refer to the set help page.\n")) then pause, end
+if lasterror() <> msprintf(gettext("Old graphic mode is no longer available. Please refer to the set help page.\n")) then pause, end
 
