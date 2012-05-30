@@ -90,7 +90,6 @@ mkdir('example_addinter');
 chdir('example_addinter');
 
 src = ['#include <math.h>'
-'#include <stack-c.h>'
 '#include <api_scilab.h>'
 '#include <Scierror.h>'
 '#include <localization.h>'
