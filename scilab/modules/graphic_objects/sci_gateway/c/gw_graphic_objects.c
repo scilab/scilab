@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_graphic_objects.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"

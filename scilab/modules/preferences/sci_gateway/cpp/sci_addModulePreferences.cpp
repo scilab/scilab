@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_preferences.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
