@@ -115,19 +115,19 @@ public class Scilab {
         }
 
         /*
+         * Set options for JOGL
+         * they must be set before creating GUI
+         */
+        setJOGLFlags();
+        SwingView.registerSwingView();
+
+        /*
          * if not API mode
          * bug 3673 by default in API mode we dont modify look n feel
          * If SCI_JAVA_ENABLE_HEADLESS is set, do not set the look and feel.
          * (needed when building the documentation under *ux)
          */
         if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null) {
-            /*
-             * Set options for JOGL
-             * they must be set before creating GUI
-             */
-            setJOGLFlags();
-            SwingView.registerSwingView();
-
             /* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
             try {
 
