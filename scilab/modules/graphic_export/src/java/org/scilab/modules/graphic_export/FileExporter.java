@@ -44,14 +44,18 @@ public class FileExporter {
         int ret = Export.export(figureUID, fileType, fileName, new ExportParams(jpegCompressionQuality, fileOrientation, true), headless);
 
         switch (ret) {
-        case Export.SUCCESS :
-            return "";
-        case Export.IOEXCEPTION_ERROR :
-            return Messages.gettext("Unable to create export file, permission denied.");
-        case Export.INVALID_FILE :
-            return Messages.gettext("Unable to create export file, invalid file.");
-        default :
-            return "";
+            case Export.SUCCESS :
+                return "";
+            case Export.IOEXCEPTION_ERROR :
+                return Messages.gettext("Unable to create export file, permission denied.");
+            case Export.INVALID_FILE :
+                return Messages.gettext("Unable to create export file, invalid file.");
+            case Export.MEMORY_ERROR :
+                return Messages.gettext("Unable to create export file, not enough memory. Decreasing the number of elements or the size of the figure should fix this error.");
+            case Export.UNKNOWN_ERROR :
+                return Messages.gettext("Unable to create export file, please fill a bug report at http://bugzilla.scilab.org.");
+            default :
+                return "";
         }
     }
 

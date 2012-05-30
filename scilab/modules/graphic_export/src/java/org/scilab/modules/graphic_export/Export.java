@@ -62,6 +62,8 @@ public class Export {
     public static final int SUCCESS = 0;
     public static final int IOEXCEPTION_ERROR = 1;
     public static final int INVALID_FILE = 2;
+    public static final int MEMORY_ERROR = 3;
+    public static final int UNKNOWN_ERROR = 4;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
@@ -134,7 +136,13 @@ public class Export {
         if (visitor != null) {
             Canvas canvas = visitor.getCanvas();
             if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type])) {
-                return exportBitmap(uid, type, extendedFilename, true, params);
+                try {
+                    return exportBitmap(uid, type, extendedFilename, true, params);
+                } catch (OutOfMemoryError e) {
+                    return MEMORY_ERROR;
+                } catch (Throwable e) {
+                    return UNKNOWN_ERROR;
+                }
             }
         }
 
@@ -162,12 +170,10 @@ public class Export {
         }
 
         try {
-            exportVectorial(uid, types[type], f, params, headless);
+            return exportVectorial(uid, types[type], f, params, headless);
         } catch (IOException e) {
             return IOEXCEPTION_ERROR;
         }
-
-        return SUCCESS;
     }
 
     /**
@@ -177,7 +183,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void exportVectorial(String uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
+    public static int exportVectorial(String uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
 
         if (!headless) {
@@ -192,28 +198,48 @@ public class Export {
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                    @Override
-                    public void updateObject(String id, String property) {
-                        // Don't update during the export
-                    }
-                };
-            canvas.setMainDrawer(visitor);
-            canvas.redraw();
-            GraphicController.getController().unregister(visitor);
-            DrawerVisitor.changeVisitor(figure, oldVisitor);
+                @Override
+                public void updateObject(String id, String property) {
+                    // Don't update during the export
+                }
+            };
 
-            exporter.write();
-            g2d.dispose();
+            try {
+                canvas.setMainDrawer(visitor);
+                canvas.redraw();
+                exporter.write();
+            } catch (OutOfMemoryError e) {
+                return MEMORY_ERROR;
+            } catch (Throwable e) {
+                return UNKNOWN_ERROR;
+            } finally {
+                GraphicController.getController().unregister(visitor);
+                DrawerVisitor.changeVisitor(figure, oldVisitor);
+                exporter.dispose();
+            }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
             Canvas canvas = visitor.getCanvas();
-            canvas.redraw();
-            Exporter exporter = visitorsToExp.get(visitor);
-            if (exporter != null) {
-                exporter.file = file;
-                exporter.write();
+            Exporter exporter = null;
+            try {
+                canvas.redraw();
+                exporter = visitorsToExp.get(visitor);
+                if (exporter != null) {
+                    exporter.file = file;
+                    exporter.write();
+                }
+            } catch (OutOfMemoryError e) {
+                return MEMORY_ERROR;
+            } catch (Throwable e) {
+                return UNKNOWN_ERROR;
+            } finally {
+                if (exporter != null) {
+                    exporter.dispose();
+                }
             }
         }
+
+        return SUCCESS;
     }
 
     /**
@@ -268,11 +294,11 @@ public class Export {
                 DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
-                        @Override
-                        public void updateObject(String id, String property) {
-                            // Don't update during the export
-                        }
-                    };
+                    @Override
+                    public void updateObject(String id, String property) {
+                        // Don't update during the export
+                    }
+                };
                 joglCanvas.setMainDrawer(visitor);
                 joglCanvas.redraw();
                 GraphicController.getController().unregister(visitor);
@@ -308,11 +334,11 @@ public class Export {
 
         G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
-            };
+            @Override
+            public void updateObject(String id, String property) {
+                // Don't update during the export
+            }
+        };
         visitor.setDrawingTools(canvas.getDrawingTools());
         canvas.setMainDrawer(visitor);
         visitorsToExp.put(visitor, exporter);
@@ -325,33 +351,33 @@ public class Export {
      */
     private static Exporter getExporter(TYPE type) {
         switch (type) {
-        case PNG :
-            return new PNGExporter();
-        case GIF :
-            return new GIFExporter();
-        case JPEG :
-            return new JPEGExporter();
-        case BMP :
-            return new BMPExporter();
-        case PPM :
-            return new PPMExporter();
-        case SVG :
-            if (!svgLoaded) {
-                ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
-                svgLoaded = true;
-            }
-            return new SVGExporter();
-        case PDF :
-            loadPDF();
-            return new PDFExporter();
-        case PS :
-            loadPDF();
-            return new PSExporter();
-        case EPS :
-            loadPDF();
-            return new PSExporter();
-        default :
-            break;
+            case PNG :
+                return new PNGExporter();
+            case GIF :
+                return new GIFExporter();
+            case JPEG :
+                return new JPEGExporter();
+            case BMP :
+                return new BMPExporter();
+            case PPM :
+                return new PPMExporter();
+            case SVG :
+                if (!svgLoaded) {
+                    ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
+                    svgLoaded = true;
+                }
+                return new SVGExporter();
+            case PDF :
+                loadPDF();
+                return new PDFExporter();
+            case PS :
+                loadPDF();
+                return new PSExporter();
+            case EPS :
+                loadPDF();
+                return new PSExporter();
+            default :
+                break;
         }
 
         return null;
@@ -386,6 +412,8 @@ public class Export {
          * Write the file
          */
         abstract void write() throws IOException;
+
+        abstract void dispose();
     }
 
     /**
@@ -418,6 +446,11 @@ public class Export {
         @Override
         public void write() throws IOException {
             ExportBitmap.writeFile(image, "png", file);
+        }
+
+        @Override
+        public void dispose() {
+            g2d.dispose();
         }
     }
 
@@ -535,6 +568,11 @@ public class Export {
             svgs.flush();
             svgs.close();
         }
+
+        @Override
+        public void dispose() {
+            g2d.dispose();
+        }
     }
 
     /**
@@ -596,6 +634,11 @@ public class Export {
                 out.close();
             }
         }
+
+        @Override
+        public void dispose() {
+            g2d.dispose();
+        }
     }
 
     /**
@@ -622,16 +665,16 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new PSDocumentGraphics2D(true, out, width, height) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
-                            }
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
-                    };
+                    }
+                };
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
 
@@ -654,6 +697,11 @@ public class Export {
                 out.close();
             }
         }
+
+        @Override
+        public void dispose() {
+            g2d.dispose();
+        }
     }
 
     /**
@@ -675,16 +723,16 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new EPSDocumentGraphics2D(true) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
-                            }
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
-                    };
+                    }
+                };
                 g2d.setupDocument(out, width, height);
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
