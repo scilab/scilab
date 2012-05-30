@@ -401,13 +401,21 @@ public final class Palette {
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
     public static void generatePaletteIcon(final String blockName, final String iconPath) throws IOException {
         BasicBlock block;
+
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+
         try {
             synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(blockName, "define"));
-            block = new ScilabDirectHandler().readBlock();
+            block = handler.readBlock();
         } catch (ScicosFormatException e) {
             throw new IOException(e);
         } catch (InterpreterException e) {
             throw new IOException(e);
+        } finally {
+            handler.release();
         }
 
         generateIcon(block, iconPath);

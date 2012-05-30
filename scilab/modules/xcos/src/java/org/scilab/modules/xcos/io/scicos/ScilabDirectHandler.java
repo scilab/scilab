@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -45,9 +47,76 @@ public class ScilabDirectHandler implements Handler {
     public static final String BLK = "blk";
 
     private static final Logger LOG = Logger.getLogger(ScilabDirectHandler.class.getPackage().getName());
+    private static final ScilabDirectHandler INSTANCE = new ScilabDirectHandler();
 
-    public ScilabDirectHandler() {
+    private final Semaphore lock = new Semaphore(1, true);
+
+    private ScilabDirectHandler() {
     }
+
+    /*
+     * Lock management to avoid multiple actions
+     */
+
+    /**
+     * Get the current instance of a ScilabDirectHandler.
+     *
+     * Please note that after calling {@link #acquire()} and performing action,
+     * you should release the instance using {@link #release()}.
+     *
+     * <p>
+     * It is recommended practice to <em>always</em> immediately follow a call
+     * to {@code getInstance()} with a {@code try} block, most typically in a
+     * before/after construction such as:
+     *
+     * <pre>
+     * class X {
+     *
+     *     // ...
+     *
+     *     public void m() {
+     *         final ScilabDirectHandler handler = ScilabDirectHandler.getInstance();
+     *         try {
+     *             // ... method body
+     *         } finally {
+     *             handler.release();
+     *         }
+     *     }
+     * }
+     * </pre>
+     *
+     * @see #release()
+     * @return the instance or null if another operation is in progress
+     */
+    public static ScilabDirectHandler acquire() {
+        LOG.finest("lock request");
+
+        try {
+            final boolean status = INSTANCE.lock.tryAcquire(0, TimeUnit.SECONDS);
+            if (!status) {
+                return null;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LOG.finest("lock acquired");
+
+        return INSTANCE;
+    }
+
+    /**
+     * Release the instance
+     */
+    public void release() {
+        LOG.finest("lock release");
+
+        INSTANCE.lock.release();
+    }
+
+    /*
+     * Handler implementation
+     */
 
     @Override
     public BasicBlock readBlock() throws ScicosFormatException {

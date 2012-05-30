@@ -163,13 +163,21 @@ public final class PaletteBlockCtrl {
     protected BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
+
             // Load the block with a reference instance
+            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+            if (handler == null) {
+                return null;
+            }
+
             try {
                 synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-                block = new ScilabDirectHandler().readBlock();
+                block = handler.readBlock();
             } catch (InterpreterException e1) {
                 LOG.severe(e1.toString());
                 block = null;
+            } finally {
+                handler.release();
             }
 
             // invalid block case

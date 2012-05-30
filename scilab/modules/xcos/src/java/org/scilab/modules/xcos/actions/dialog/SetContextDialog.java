@@ -178,8 +178,16 @@ public class SetContextDialog extends JDialog {
                     /*
                      * Validate the context
                      */
-                    new ScilabDirectHandler().writeContext(context);
-                    ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+                    if (handler == null) {
+                        return;
+                    }
+                    try {
+                        handler.writeContext(context);
+                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                    } finally {
+                        handler.release();
+                    }
 
                     dispose();
                 } catch (PropertyVetoException e2) {

@@ -1264,41 +1264,50 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             return;
         }
 
-        // Write scs_m
-        new ScilabDirectHandler().writeBlock(this);
-        // Write context
-        new ScilabDirectHandler().writeContext(context);
-
-        final ActionListener action = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LOG.finest("Updating data.");
-
-                graph.getView().clear(this, true, true);
-
-                // Now read new Block
-                graph.getModel().beginUpdate();
-                try {
-                    final BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
-                    updateBlockSettings(modifiedBlock);
-
-                    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
-                } catch (ScicosFormatException ex) {
-                    LOG.severe(ex.toString());
-                } finally {
-                    graph.getModel().endUpdate();
-                }
-                setLocked(false);
-            }
-        };
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
 
         try {
+            // Write scs_m
+            handler.writeBlock(this);
+            // Write context
+            handler.writeContext(context);
+
+            final ActionListener action = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    LOG.finest("Updating data.");
+
+                    graph.getView().clear(this, true, true);
+
+                    // Now read new Block
+                    graph.getModel().beginUpdate();
+                    try {
+                        final BasicBlock modifiedBlock = handler.readBlock();
+                        updateBlockSettings(modifiedBlock);
+
+                        graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
+                    } catch (ScicosFormatException ex) {
+                        LOG.severe(ex.toString());
+                    } finally {
+                        graph.getModel().endUpdate();
+                        setLocked(false);
+
+                        handler.release();
+                    }
+                }
+            };
+
             setLocked(true);
             ScilabInterpreterManagement.asynchronousScilabExec(action, "blk = xcosBlockInterface", getInterfaceFunctionName().toCharArray(), "set",
                     ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
         } catch (InterpreterException e) {
             LOG.severe(e.toString());
             setLocked(false);
+
+            handler.release();
         }
     }
 

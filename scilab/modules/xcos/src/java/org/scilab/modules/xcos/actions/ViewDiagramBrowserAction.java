@@ -75,12 +75,19 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
             return;
         }
 
-        new ScilabDirectHandler().writeDiagram(graph);
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+
+        handler.writeDiagram(graph);
         try {
             final String cmd = "tree_show(scs_m); ";
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
         } catch (InterpreterException e2) {
             e2.printStackTrace();
+        } finally {
+            handler.release();
         }
     }
 }

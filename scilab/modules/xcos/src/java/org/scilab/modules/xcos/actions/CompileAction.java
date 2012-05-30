@@ -13,11 +13,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javax.swing.SwingWorker;
@@ -29,7 +26,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -81,37 +77,44 @@ public class CompileAction extends SimulationNotRunningAction {
             return;
         }
 
-        ((XcosDiagram) getGraph(null)).info(XcosMessages.EXPORT_IN_PROGRESS);
+        graph.info(XcosMessages.EXPORT_IN_PROGRESS);
 
-        final String temp;
-        try {
-            temp = FileUtils.createTempFile();
-        } catch (IOException e1) {
-            Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
             return;
         }
-
         (new SwingWorker<Void, Void>() {
 
             @Override
-            protected Void doInBackground() throws Exception {
-                new ScilabDirectHandler().writeDiagram(((XcosDiagram) getGraph(null)));
-                ((XcosDiagram) getGraph(null)).setReadOnly(true);
+            protected Void doInBackground() {
+                try {
+                    handler.writeDiagram(((XcosDiagram) getGraph(null)));
+                    ((XcosDiagram) getGraph(null)).setReadOnly(true);
+                } catch (Exception e) {
+                    cancel(true);
+                }
                 return null;
             }
 
             @Override
             protected void done() {
-                ((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
+                if (isCancelled()) {
+                    graph.info(XcosMessages.EMPTY_INFO);
 
+                    handler.release();
+                    return;
+                }
+
+                graph.info(XcosMessages.COMPILATION_IN_PROGRESS);
                 String cmd = "cpr = xcos_compile(scs_m);";
 
                 final ActionListener action = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        delete(temp);
-                        ((XcosDiagram) getGraph(null)).setReadOnly(false);
-                        ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+                        graph.setReadOnly(false);
+                        graph.info(XcosMessages.EMPTY_INFO);
+
+                        handler.release();
                     }
                 };
 
@@ -119,6 +122,8 @@ public class CompileAction extends SimulationNotRunningAction {
                     ScilabInterpreterManagement.asynchronousScilabExec(action, cmd);
                 } catch (InterpreterException e) {
                     Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
+
+                    handler.release();
                 }
             }
 

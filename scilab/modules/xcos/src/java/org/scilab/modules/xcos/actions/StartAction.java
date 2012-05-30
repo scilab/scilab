@@ -83,6 +83,7 @@ public class StartAction extends OneBlockDependantAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
+        String cmd;
 
         // action disabled when the cell is edited
         final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
@@ -90,15 +91,20 @@ public class StartAction extends OneBlockDependantAction {
             return;
         }
 
-        String cmd;
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
 
         updateUI(true);
 
         try {
-            cmd = createSimulationCommand(graph);
+            cmd = createSimulationCommand(graph, handler);
         } catch (IOException ex) {
             Logger.getLogger(StartAction.class.getName()).severe(ex.toString());
             updateUI(false);
+
+            handler.release();
             return;
         }
 
@@ -107,6 +113,8 @@ public class StartAction extends OneBlockDependantAction {
             public void actionPerformed(ActionEvent e) {
                 updateUI(false);
                 graph.getEngine().setCompilationNeeded(false);
+
+                handler.release();
             }
         };
 
@@ -115,6 +123,8 @@ public class StartAction extends OneBlockDependantAction {
         } catch (InterpreterException e1) {
             e1.printStackTrace();
             updateUI(false);
+
+            handler.release();
         }
     }
 
@@ -123,11 +133,13 @@ public class StartAction extends OneBlockDependantAction {
      *
      * @param diagram
      *            the working diagram
+     * @param handler
+     *            the handler use to communicate with Scilab
      * @return the command string
      * @throws IOException
      *             when temporary files must not be created.
      */
-    private String createSimulationCommand(final XcosDiagram diagram) throws IOException {
+    private String createSimulationCommand(final XcosDiagram diagram, final ScilabDirectHandler handler) throws IOException {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
@@ -140,7 +152,7 @@ public class StartAction extends OneBlockDependantAction {
         /*
          * Import a valid scs_m structure into Scilab
          */
-        new ScilabDirectHandler().writeDiagram(diagram);
+        handler.writeDiagram(diagram);
         command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 
         /*

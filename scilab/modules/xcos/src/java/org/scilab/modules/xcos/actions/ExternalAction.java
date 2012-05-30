@@ -77,17 +77,22 @@ public class ExternalAction extends DefaultAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
 
         final BasicBlock block;
         final ActionListener callback;
         try {
+
             /*
              * First export the selected block
              */
             Object cell = graph.getSelectionCell();
             if (cell instanceof BasicBlock) {
                 block = (BasicBlock) cell;
-                new ScilabDirectHandler().writeBlock(block);
+                handler.writeBlock(block);
             } else {
                 block = null;
             }
@@ -95,7 +100,7 @@ public class ExternalAction extends DefaultAction {
             /*
              * Export the whole diagram
              */
-            new ScilabDirectHandler().writeDiagram(graph.getRootDiagram());
+            handler.writeDiagram(graph.getRootDiagram());
 
             /*
              * Import the updated block
@@ -106,22 +111,31 @@ public class ExternalAction extends DefaultAction {
                     public void actionPerformed(ActionEvent e) {
                         try {
 
-                            final BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
+                            final BasicBlock modifiedBlock = handler.readBlock();
                             block.updateBlockSettings(modifiedBlock);
 
                             graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, block));
                         } catch (ScicosFormatException e1) {
                             LOG.severe(e1.getMessage());
+                        } finally {
+                            handler.release();
                         }
                     }
                 };
             } else {
-                callback = null;
+                callback = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        handler.release();
+                    }
+                };
             }
 
             ScilabInterpreterManagement.asynchronousScilabExec(callback, localCommand);
         } catch (InterpreterException e2) {
             LOG.warning(e2.toString());
+
+            handler.release();
         }
     }
 }
