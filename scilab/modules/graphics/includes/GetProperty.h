@@ -64,9 +64,6 @@ GRAPHICS_IMPEXP void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCo
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 GRAPHICS_IMPEXP unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
-GRAPHICS_IMPEXP int sciGetMarkBackground (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
-
 GRAPHICS_IMPEXP int sciGetFontStyle (sciPointObj * pobj); /* GET */
 
 /* Legend */

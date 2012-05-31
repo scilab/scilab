@@ -321,12 +321,6 @@ int sciInitMarkBackground(char *pobj, int colorindex)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetMarkBackground(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitMarkForeground(char *pobj, int colorindex)
 {
     return -1;
