@@ -2010,28 +2010,6 @@ int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
     }
     return nbFound ;
 }
-/*-----------------------------------------------------------------------------------*/
-/**
-* return the hidden color of a surface or the inherated attribute of a subwindow.
-*/
-int sciGetHiddenColor( sciPointObj * pObj )
-{
-
-    int colorIndex;
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_SUBWIN:
-            colorIndex = pSUBWIN_FEATURE(pObj)->hiddencolor;
-            break;
-        case SCI_SURFACE:
-            colorIndex = pSURFACE_FEATURE(pObj)->hiddencolor;
-            break;
-        default:
-            printSetGetErrorMessage("hidden_color");
-            return -10 ;
-    }
-    return colorIndex ;
-}
 /*----------------------------------------------------------------------------------*/
 /**
 * return if the drawlater mode is on for the parent figure.
