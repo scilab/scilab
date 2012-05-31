@@ -368,42 +368,6 @@ sciSetIsMark (char * pobjUID, BOOL ismark)
 
 }
 
-int sciInitMarkBackground( char * pobjUID, int colorindex )
-{
-    if(!sciCheckColorIndex(pobjUID, colorindex)) return 0;
-    colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
-
-    if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
-    {
-        sciGetGraphicContext((sciPointObj *)pobjUID)->markbackground =
-            Max (-1, Min (colorindex - 1, sciGetNumColors (pobjUID) + 1));
-        return 0;
-    }
-
-    printSetGetErrorMessage("mark_background");
-    return -1;
-}
-
-/**sciSetMarkBackground
- * sets the number of the Marks'Background
- */
-int
-sciSetMarkBackground (char * pobjUID, int colorindex)
-{
-
-    colorindex = sciSetGoodIndex(pobjUID,colorindex); /* Adding F.Leray 31.03.04*/
-
-    if ( sciGetMarkBackground((sciPointObj *) pobjUID ) == colorindex )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitMarkBackground( pobjUID, colorindex ) ;
-
-}
-
-
-
 int sciInitMarkStyle( char * pobjUID, int markstyle )
 {
     BOOL status;

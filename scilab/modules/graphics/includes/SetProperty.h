@@ -70,8 +70,6 @@ GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
 GRAPHICS_IMPEXP int sciInitMarkSizeUnit(char* pobj, int marksizeunit);
 GRAPHICS_IMPEXP int sciSetMarkSizeUnit (char* pobj, int marksizeunit); /* SET */
 
-GRAPHICS_IMPEXP int sciInitMarkBackground(char* pobj, int colorindex);
-GRAPHICS_IMPEXP int sciSetMarkBackground (char* pobj, int colorindex);  /* SET */
 
 GRAPHICS_IMPEXP int sciInitBoxType( char* pobj, EAxesBoxType type ) ;
 GRAPHICS_IMPEXP int sciSetBoxType ( char* pobj, EAxesBoxType type ) ; /* SET */
