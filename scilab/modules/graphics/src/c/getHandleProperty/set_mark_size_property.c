@@ -34,9 +34,6 @@ int set_mark_size_property(char* pobjUID, size_t stackPointer, int valueType, in
     return SET_PROPERTY_ERROR ;
   }
 
-  /* sciSetIsMark((sciPointObj *) pobj, TRUE); */
-  /* F.Leray 27.01.05 commented because mark_size is automatically launched */
-  /* in tcl/tk editor (which causes marks appearance even when unwanted). */
   return sciSetMarkSize( pobjUID, (int) getDoubleFromStack( stackPointer ) ) ;
 }
 /*------------------------------------------------------------------------*/

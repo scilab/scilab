@@ -297,12 +297,6 @@ int sciInitMarkStyle(char *pobj, int markstyle)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitIsMark(char *pobj, BOOL ismark)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitMarkBackground(char *pobj, int colorindex)
 {
     return -1;

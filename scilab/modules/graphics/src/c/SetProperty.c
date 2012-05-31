@@ -118,37 +118,6 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     return -1;
 }
 
-
-int sciInitIsMark( char * pobjUID, BOOL ismark )
-{
-
-    if (sciGetGraphicContext((sciPointObj*)pobjUID) != NULL)
-    {
-        sciGetGraphicContext((sciPointObj*)pobjUID)->ismark = ismark;
-        return 0;
-    }
-
-    printSetGetErrorMessage("mark_mode");
-    return -1;
-
-}
-
-/**sciSetIsMark
- * Sets the line style
- */
-int
-sciSetIsMark (char * pobjUID, BOOL ismark)
-{
-
-    if ( sciGetIsMark((sciPointObj *)pobjUID) == ismark )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitIsMark( pobjUID, ismark ) ;
-
-}
-
 int sciInitMarkStyle( char * pobjUID, int markstyle )
 {
     BOOL status;
