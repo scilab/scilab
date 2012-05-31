@@ -1221,28 +1221,6 @@ sciGetVisibility (sciPointObj * pobj)
     return visible;
 }
 
-/**sciGetName
-* Returns the name of the Figure or SubWindow
-* @param sciPointObj * pobj: the pointer to the entity
-* @return the pointer to the char name
-*/
-char *
-sciGetName (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return pFIGURE_FEATURE (pobj)->name;
-            break;
-        case SCI_SUBWIN:
-        case SCI_AGREG:
-        default:
-            printSetGetErrorMessage("figure_name");
-            return NULL;
-            break;
-    }
-}
-
 /**sciGetNum
 * Returns the number of the Figure.
 * @param sciPointObj * pobj: the pointer to the entity
