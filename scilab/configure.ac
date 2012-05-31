@@ -568,13 +568,7 @@ case "$CC" in
 
    case "$host" in
      x86_64-*-linux-gnu | x86_64-linux-gnu)
-        ARCH_CFLAGS="-DNARROWPROTO -m64"
-    ;;
-     i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-        ARCH_CFLAGS="-DNARROWPROTO"
-    ;;
-     ia64-*-linux-gnu )
-        ARCH_CFLAGS="-DNARROWPROTO"
+        ARCH_CFLAGS="-m64"
     ;;
      alpha-*-linux-gnu)
         ARCH_CFLAGS="-mieee-with-inexact"

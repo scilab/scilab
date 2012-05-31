@@ -6,7 +6,7 @@ dnl
 AC_DEFUN([SCI_INTEL_COMPILER],
 [
 		
-		CFLAGS=" $CFLAGS -DNARROWPROTO -mp"
+		CFLAGS=" $CFLAGS -mp"
 		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
 
 		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
