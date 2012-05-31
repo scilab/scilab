@@ -784,6 +784,8 @@ t.
 
 * Bug #11138 fixed - a = list() crashed on Windows x64.
 
+* Bug #11154 fixed - Grid color made it too visible in demonstration Graphics/2D & 3D plots/plot2d.
+
 * Bug #11186 fixed - 'typeof' of a type 130 returned an error.
 
 
