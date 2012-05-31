@@ -54,13 +54,5 @@ int set_mark_foreground_property(char* pobjUID, size_t stackPointer, int valueTy
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_foreground");
         return SET_PROPERTY_ERROR;
     }
-
-/* To be implemented since it involves color range checks */
-#if 0
-  /*    sciSetIsMark((sciPointObj *) pobj, TRUE); */
-  /* F.Leray 27.01.05 commented because mark_size is automatically launched */
-  /* in tcl/tk editor (which causes marks appearance even when unwanted). */
-  return sciSetMarkForeground( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
-#endif
 }
 /*------------------------------------------------------------------------*/
