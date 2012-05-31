@@ -34,16 +34,18 @@
 /*------------------------------------------------------------------------*/
 int get_title_property(char *pobjUID)
 {
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    char* labelUID = NULL;
+    long labelHandle;
+
+    char* type = NULL;
+
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_AXES__) != 0)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
         return -1;
     }
-#endif
-
-    char* labelUID;
-    long labelHandle;
 
     getGraphicObjectProperty(pobjUID, __GO_TITLE__, jni_string, &labelUID);
 
@@ -56,9 +58,5 @@ int get_title_property(char *pobjUID)
     labelHandle = getHandle(labelUID);
 
     return sciReturnHandle(labelHandle);
-
-#if 0
-    return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_title ) );
-#endif
 }
 /*------------------------------------------------------------------------*/
