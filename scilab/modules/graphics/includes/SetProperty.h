@@ -171,7 +171,6 @@ GRAPHICS_IMPEXP int sciSetHiddenColor(  char* pObj, int newColor ) ;
 GRAPHICS_IMPEXP int sciInitHiddenAxisColor( char* pObj, int newColor ) ;
 GRAPHICS_IMPEXP int sciSetHiddenAxisColor( char* pObj, int newColor ) ;
 
-GRAPHICS_IMPEXP int setSubWinAngles( char* psubwin, double theta, double alpha );
 GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );

@@ -68,60 +68,6 @@
 
 #define MAX_MARK_STYLE 14
 
-/*---------------------------------------------------------------------------*/
-/* setSubWinAngles                                                                    */
-/* Modify the viewing angles of a subwindow                                           */
-/* for safer modifications prefer use Obj_RedrawNewAngle                              */
-/*---------------------------------------------------------------------------*/
-int setSubWinAngles( char *psubwin, double theta, double alpha )
-{
-    // FIXME
-    abort();
-#if 0
-    /**dj20003***/
-    sciSubWindow * ppSubWin = pSUBWIN_FEATURE (psubwin) ;
-
-    ppSubWin->alpha = alpha ;
-    ppSubWin->theta = theta ;
-
-    if ((alpha == 0.0) && (theta == 270.0))
-    {
-        ppSubWin->is3d = FALSE ;
-        ppSubWin->project[2]= 0; /* no z to display */
-        return 0;
-    }
-
-    ppSubWin->is3d  = TRUE  ;
-    if ((alpha == 0.0 ) || (alpha == 180.0 ) || (alpha == -180.0 ))  /* DJ.A 30/12 */
-    {
-        ppSubWin->project[2]= 0; /* no z to display */
-    }
-    else
-    {
-        ppSubWin->project[2]= 1; /* z must be displayed */
-        if (    ((alpha == 90.0 ) || (alpha == 270.0 ) || (alpha == -90.0 ) || (alpha == -270.0 ))
-                && ((theta == 90.0 ) || (theta == -90.0 ) || (theta == 270.0 ) || (theta == -270.0 )))
-        {
-            ppSubWin->project[1]= 0; /* no y to display */
-        }
-        else
-        {
-            ppSubWin->project[1]= 1;
-            if (   ( (alpha == 90.0 ) || (alpha == 270.0 ) || (alpha == -90.0  ) || (alpha == -270.0 ))
-                   && ( (theta == 0.0  ) || (theta == 180.0 ) || (alpha == -180.0 ) ))
-            {
-                ppSubWin->project[0]= 0; /* BUG evreywhere when theta == 0 */
-            }
-            else
-            {
-                ppSubWin->project[0]= 1;
-            }
-        }
-    }
-#endif
-    return 0 ;
-}
-
 int sciInitNumColors( char * pobjUID, int numcolors)
 {
     // FIXME
