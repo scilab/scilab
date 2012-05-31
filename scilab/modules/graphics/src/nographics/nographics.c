@@ -602,12 +602,6 @@ void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetGridStyle(sciPointObj * pObj, int *xStyle, int *yStyle, int *zStyle)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetAutoSubticks(sciPointObj * pObj)
 {
     return FALSE;

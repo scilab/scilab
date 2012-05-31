@@ -2025,33 +2025,6 @@ BOOL sciGetImmediateDrawingMode(sciPointObj * pobj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* To retrieve the type of grid for each dimension
-*/
-void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle )
-{
-    switch ( sciGetEntityType (pObj) )
-    {
-        case SCI_SUBWIN:
-            if (xStyle != NULL)
-            {
-                *xStyle = pSUBWIN_FEATURE(pObj)->grid[0];
-            }
-            if (yStyle != NULL)
-            {
-                *yStyle = pSUBWIN_FEATURE(pObj)->grid[1];
-            }
-            if (zStyle != NULL)
-            {
-                *zStyle = pSUBWIN_FEATURE(pObj)->grid[2];
-            }
-            break ;
-        default:
-            printSetGetErrorMessage("grid");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * To retrieve the viewport property
 * viewport property is only enable when the auto_resize property of the figure is
 * disable.
