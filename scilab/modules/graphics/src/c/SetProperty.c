@@ -68,21 +68,6 @@
 
 #define MAX_MARK_STYLE 14
 
-/*** Adding F.Leray 31.03.04 for supporting -1 and -2 indexes.*/
-/* retrieve the realindex inside the colormap from the handle color property */
-/* -1 is actually m+1 and -2, m+2 */
-int sciSetGoodIndex(char * pobjUID, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
-{
-    int m = sciGetNumColors (pobjUID);	/* the number of the color*/
-
-    if( colorindex == -1 ) /* Black */
-        return m + 1 ; /* modif. ici*/
-    else if( colorindex == -2 ) /* White */
-        return m + 2 ; /* modif. ici*/
-    else
-        return colorindex;
-}
-
 int sciSetLineWidth( char * pobjUID, double linewidth )
 {
 /*

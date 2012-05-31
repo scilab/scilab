@@ -35,8 +35,6 @@
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciSetGoodIndex(char* pobj, int colorindex);  /* SET */
-
 GRAPHICS_IMPEXP int sciInitLineWidth( char* pobj, double linewidth ) ;
 GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */
 
