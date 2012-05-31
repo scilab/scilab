@@ -160,43 +160,6 @@ sciSetMarkSize (char * pobjUID, int marksize)
     return sciInitMarkSize( pobjUID, marksize ) ;
 }
 
-int sciInitFontSize( char * pobjUID, double fontSize )
-{
-    if (fontSize < 0)
-    {
-        Scierror(999, _("The font size must be greater than %d.\n"),0);
-        return -1;
-    }
-    else
-    {
-        if (sciGetFontContext((sciPointObj *)pobjUID) != NULL)
-        {
-            (sciGetFontContext((sciPointObj *)pobjUID))->fontSize = fontSize;
-            return 0;
-        }
-        else
-        {
-            printSetGetErrorMessage("font_size");
-            return -1;
-        }
-    }
-}
-
-/**sciSetFontSize
- * Sets the font size
- */
-int sciSetFontSize(char * pobjUID, double fontSize)
-{
-
-    if (sciGetFontSize( pobjUID ) == fontSize)
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitFontSize(pobjUID, fontSize) ;
-
-}
-
 int sciInitFontOrientation( char * pobjUID, double textorientation )
 {
     if (sciGetFontContext((sciPointObj *)pobjUID) != NULL)

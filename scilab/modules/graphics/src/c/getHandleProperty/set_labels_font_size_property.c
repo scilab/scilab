@@ -47,19 +47,6 @@ int set_labels_font_size_property(char* pobjUID, size_t stackPointer, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-  if (   sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE
-      || sciGetEntityType (pobj) == SCI_AXES)
-  {
-    return sciSetFontSize( pobj, getDoubleFromStack(stackPointer) ) ; /* F.Leray 08.04.04 */
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_size") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
     fontSize = getDoubleFromStack(stackPointer);
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);

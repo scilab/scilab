@@ -259,12 +259,6 @@ long sciGetHandle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitFontSize(char *pobj, double fontSize)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 char *allocateText(char *pparentsubwinUID,
                    char **text,
                    int nbRow,

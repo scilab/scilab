@@ -61,9 +61,6 @@ GRAPHICS_IMPEXP int sciInitNbZSubTics(char* pobj, int nbsubtics);
 GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciInitFontSize(char* pobj, double fontSize); /* SET */
-GRAPHICS_IMPEXP int sciSetFontSize (char* pobj, double fontSize); /* SET */
-
 GRAPHICS_IMPEXP int sciInitFontOrientation(char* pobj, double textorientation); /* SET */
 GRAPHICS_IMPEXP int sciSetFontOrientation (char* pobj, double textorientation); /* SET */
 
