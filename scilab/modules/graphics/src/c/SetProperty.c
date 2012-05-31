@@ -2060,50 +2060,6 @@ int sciSetCenterPos( char * pobjUID, BOOL newCP )
     return sciInitCenterPos( pobjUID, newCP ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciInitGridStyle( char * pobjUID, int xStyle, int yStyle, int zStyle )
-{
-    // FIXME
-    abort();
-#if 0
-        if (    !sciCheckColorIndex(pobjUID, xStyle)
-            || !sciCheckColorIndex(pobjUID, yStyle)
-            || !sciCheckColorIndex(pobjUID, zStyle))
-    {
-        return -1;
-    }
-
-    switch( sciGetEntityType( pobjUID ) )
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->grid[0] = xStyle ;
-        pSUBWIN_FEATURE(pobjUID)->grid[1] = yStyle ;
-        pSUBWIN_FEATURE(pobjUID)->grid[2] = zStyle ;
-        return 0 ;
-    default:
-        printSetGetErrorMessage("grid");
-        return -1 ;
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * Set the grid of an axes object
- */
-int sciSetGridStyle( char * pobjUID, int xStyle, int yStyle, int zStyle )
-{
-    int curX ;
-    int curY ;
-    int curZ ;
-    sciGetGridStyle((sciPointObj*) pobjUID, &curX, &curY, &curZ ) ;
-    if ( curX == xStyle && curY == yStyle && curZ == zStyle )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitGridStyle( pobjUID, xStyle, yStyle, zStyle ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 /**
  * Set the viewport property of a figure.
  * Effective only if the auto_resize property is enable
