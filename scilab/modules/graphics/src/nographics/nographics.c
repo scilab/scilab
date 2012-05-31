@@ -879,12 +879,6 @@ BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsDisplayingLines(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetIsMark(sciPointObj * pobj)
 {
     return FALSE;

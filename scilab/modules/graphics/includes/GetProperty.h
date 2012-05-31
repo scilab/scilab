@@ -43,7 +43,6 @@ GRAPHICS_IMPEXP int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET
 
 GRAPHICS_IMPEXP double sciGetLineWidth (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP BOOL sciGetIsDisplayingLines(sciPointObj * pObj);
 GRAPHICS_IMPEXP int sciGetLineStyle (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */

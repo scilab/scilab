@@ -267,14 +267,6 @@ sciGetIsLine (sciPointObj * pobj)
     }
 }
 
-/**
-* @return TRUE if the object is actually displaying lines.
-*/
-BOOL sciGetIsDisplayingLines(sciPointObj * pObj)
-{
-    return sciGetIsLine(pObj) && (sciGetLineWidth(pObj) > 0.0);
-}
-
 /**sciGetIsFilled
 * Returns the filled line existence
 */
