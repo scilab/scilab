@@ -49,8 +49,6 @@ GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
 
 GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
 
-GRAPHICS_IMPEXP int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
-
 GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
 
 GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;

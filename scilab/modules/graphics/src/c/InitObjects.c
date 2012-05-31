@@ -1243,64 +1243,6 @@ int InitAxesModel()
     return 0;
 }
 
-int ResetFigureToDefaultValues(sciPointObj * pobj)
-{
-// ???
-#if 0
-    int x[2];
-
-    if (sciGetEntityType(pobj) != SCI_FIGURE)   /* MUST BE used for figure entities only */
-        return -1;
-
-  /** Initialize the colormap */
-    /* try to install the colormap in the graphic context */
-    //sciSetColormap(pobj, pFIGURE_FEATURE(pfiguremdl)->pModelData->colorMap, sciGetNumColors(pfiguremdl), 3);
-
-    /* initialisation de context et mode graphique par defaut (figure model) */
-    if (sciInitGraphicContext(pobj) == -1)
-    {
-        //sciDelHandle (pobj);
-        FREE(pobj->pfeatures);
-        FREE(pobj);
-        return -1;
-    }
-    if (sciInitGraphicMode(pobj) == -1)
-    {
-        //sciDelHandle (pobj);
-        FREE(pobj->pfeatures);
-        FREE(pobj);
-        return -1;
-    }
-
-    /* F.Leray 08.04.04 */
-    if (sciInitFontContext(pobj) == -1)
-    {
-        //sciDelHandle (pobj);
-        FREE(pobj->pfeatures);
-        FREE(pobj);
-        return -1;
-    }
-
-    sciInitName(pobj, sciGetName(pfiguremdl));
-    sciSetResize(pobj, sciGetResize(pfiguremdl));
-    if (!sciGetResize(pobj))
-    {
-        /* window size and axes size may change independently */
-        //sciSetWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl));
-    }
-
-    //sciGetScreenPosition(pfiguremdl, &x[0], &x[1]);
-    //sciSetScreenPosition(pobj, x[0], x[1]);
-    pFIGURE_FEATURE(pobj)->isselected = pFIGURE_FEATURE(pfiguremdl)->isselected;
-    pFIGURE_FEATURE(pobj)->rotstyle = pFIGURE_FEATURE(pfiguremdl)->rotstyle;
-    pFIGURE_FEATURE(pobj)->visible = pFIGURE_FEATURE(pfiguremdl)->visible;
-    sciInitImmediateDrawingMode(pobj, sciGetImmediateDrawingMode(pfiguremdl));
-    pFIGURE_FEATURE(pobj)->numsubwinselected = pFIGURE_FEATURE(pfiguremdl)->numsubwinselected;
-    sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
-#endif
-    return 0;
-}
-
 /*
  * This function has been adapted to the MVC framework.
  * Its code ought to be moved to the Java Model implementation,
