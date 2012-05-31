@@ -1053,6 +1053,21 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
             if (logMask)
             {
                 tmpValid &= DecompositionUtils::isLogValid(coords[0][0], coords[0][1], coords[0][2], logMask);
+
+                if (logMask & 0x01)
+                {
+                    coords[0][0] = DecompositionUtils::getLog10Value(coords[0][0]);
+                }
+
+                if (logMask & 0x02)
+                {
+                    coords[0][1] = DecompositionUtils::getLog10Value(coords[0][1]);
+                }
+
+                if (logMask & 0x04)
+                {
+                    coords[0][2] = DecompositionUtils::getLog10Value(coords[0][2]);
+                }
             }
 
             isValid &= tmpValid;

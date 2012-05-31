@@ -281,15 +281,15 @@ public class DataManager {
                 }
             }
             if (property.equals(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__)) {
-                updateChildrenVertex(id, 0x01);
+                updateChildrenVertexIndex(id, 0x01);
             }
 
             if (property.equals(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)) {
-                updateChildrenVertex(id, 0x02);
+                updateChildrenVertexIndex(id, 0x02);
             }
 
             if (property.equals(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)) {
-                updateChildrenVertex(id, 0x04);
+                updateChildrenVertexIndex(id, 0x04);
             }
         } catch (ObjectRemovedException e) {
             // Object has been removed before drawing : do nothing.
@@ -297,18 +297,37 @@ public class DataManager {
     }
 
     /**
-     * Update vertex buffer of the given object and is descendant.
+     * Update the vertex buffer and index buffers of the given object and its descendants.
      * @param id the id of the object.
      * @param coordinateMask the coordinateMask to use.
-     * @throws ObjectRemovedException if the object is now longer present.
+     * @throws ObjectRemovedException if the object is no longer present.
+     * @throws OutOfMemoryException if there was not enough memory.
      */
-    private void updateChildrenVertex(String id, int coordinateMask) throws ObjectRemovedException {
+    private void updateChildrenVertexIndex(String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
         ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
         if (vertexBuffer != null) {
             updateVertexBuffer(vertexBuffer, id, coordinateMask);
         }
+
+        /*
+         * To update the index and wire index buffers, on the contrary to updateVertexBuffer, we must perform a complete fill.
+         * That is because IndicesBuffer's getData method returns a read-only buffer, which cannot be written to, as is
+         * done by updateVertexBuffer, whereas the fill methods allocate new buffers (see the implementations of getData in
+         * SciRenderer's ElementsBuffer and IndicesBuffer). To allow an allocation-free update would require modifying
+         * IndicesBuffer's getData method.
+         */
+        IndicesBuffer indexBuffer = indexBufferMap.get(id);
+        if (indexBuffer != null) {
+            fillIndexBuffer(indexBuffer, id);
+        }
+
+        IndicesBuffer wireIndexBuffer = wireIndexBufferMap.get(id);
+        if (wireIndexBuffer != null) {
+            fillWireIndexBuffer(wireIndexBuffer, id);
+        }
+
         for (String childId : (String []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
-            updateChildrenVertex(childId, coordinateMask);
+            updateChildrenVertexIndex(childId, coordinateMask);
         }
     }
 
@@ -434,7 +453,8 @@ public class DataManager {
             /* Do not call JNI when the buffer is empty */
             /* Because under Mac OS X, GetDirectBufferAddress returns a NULL pointer in this case */
             /* This generates an exception in DataLoader_wrap.c */
-            actualLength = MainDataLoader.fillIndices(id, data, DEFAULT_LOG_MASK);
+            int logMask = MainDataLoader.getLogMask(id);
+            actualLength = MainDataLoader.fillIndices(id, data, logMask);
         }
 
         /* Set the buffer size to the actual number of indices */
@@ -452,7 +472,8 @@ public class DataManager {
             /* Do not call JNI when the buffer is empty */
             /* Because under Mac OS X, GetDirectBufferAddress returns a NULL pointer in this case */
             /* This generates an exception in DataLoader_wrap.c */
-            actualLength = MainDataLoader.fillWireIndices(id, data, DEFAULT_LOG_MASK);
+            int logMask = MainDataLoader.getLogMask(id);
+            actualLength = MainDataLoader.fillWireIndices(id, data, logMask);
         }
 
         /* Set the buffer size to the actual number of indices */
