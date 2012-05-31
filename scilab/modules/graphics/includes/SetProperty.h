@@ -61,7 +61,6 @@ GRAPHICS_IMPEXP int sciInitNbZSubTics(char* pobj, int nbsubtics);
 GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciSetStrings( char* pobj, const StringMatrix * pStrings ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciInitFontStyle(char* pobj, int iAttributes ) ;

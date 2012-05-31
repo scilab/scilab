@@ -161,53 +161,6 @@ sciSetMarkSize (char * pobjUID, int marksize)
     return sciInitMarkSize( pobjUID, marksize ) ;
 }
 
-int sciSetStrings( char * pobjUIDDest, const StringMatrix * pStrings )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUIDDest))
-    {
-    case SCI_TEXT:
-        deleteMatrix( pTEXT_FEATURE (pobjUIDDest)->pStrings ) ;
-        pTEXT_FEATURE (pobjUIDDest)->pStrings = copyStringMatrix( pStrings ) ;
-        if ( pTEXT_FEATURE (pobjUIDDest)->pStrings == NULL )
-        {
-            return -1 ;
-        }
-        break;
-    case SCI_LEGEND:
-        deleteMatrix( pLEGEND_FEATURE (pobjUIDDest)->text.pStrings ) ;
-        pLEGEND_FEATURE (pobjUIDDest)->text.pStrings = copyStringMatrix( pStrings ) ;
-        if ( pLEGEND_FEATURE (pobjUIDDest)->text.pStrings == NULL )
-        {
-            return -1 ;
-        }
-        break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-        return sciSetStrings( pLABEL_FEATURE(pobjUIDDest)->text, pStrings ) ;
-        break;
-    case SCI_UIMENU:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    default:
-        printSetGetErrorMessage("text");
-        return -1;
-        break;
-    }
-#endif
-    return 0;
-}
-
 /**sciSetText
  * Sets the Text in TEXT, TITLE or LEGEND
  * @param char * pobjUID: the pointer to the entity
