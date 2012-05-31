@@ -331,12 +331,6 @@ int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitArrowSize(char *pobj, double size)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitPolylineStyle(char *pobj, int plot)
 {
     return -1;

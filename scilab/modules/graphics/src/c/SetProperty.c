@@ -318,26 +318,6 @@ int sciInitPolylineStyle( char * pobjUID, int plot )
     return -1;
 
 }
-/**sciInitArrowSize
- * Sets Polyline arrow size (to be used with polyline_style=4)
- */
-int sciInitArrowSize( char * pobjUID, double size )
-{
-    // FIXME
-    abort();
-#if 0
-    if (sciGetEntityType(pobjUID) == SCI_POLYLINE)
-    {
-        pPOLYLINE_FEATURE(pobjUID)->arsize_factor = size;
-        return 0;
-    }
-
-    printSetGetErrorMessage("arrow_size");
-#endif
-    return -1;
-
-}
-
 
 int sciInitFontSize( char * pobjUID, double fontSize )
 {

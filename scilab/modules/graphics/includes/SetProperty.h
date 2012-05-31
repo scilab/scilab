@@ -47,7 +47,6 @@ GRAPHICS_IMPEXP int sciInitIsFilled(char* pobj, BOOL isfilled);
 GRAPHICS_IMPEXP int sciSetIsFilled (char* pobj, BOOL isfilled);  /* SET */
 
 GRAPHICS_IMPEXP int sciInitPolylineStyle( char* pobj, int plot );
-GRAPHICS_IMPEXP int sciInitArrowSize( char* pobj, double size );
 
 GRAPHICS_IMPEXP int sciInitMarkStyle(char* pobj, int markstyle);
 GRAPHICS_IMPEXP int sciSetMarkStyle (char* pobj, int markstyle); /* SET */
