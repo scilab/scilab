@@ -40,18 +40,7 @@ int get_labels_font_color_property(char *pobjUID)
     int iFontColor = 0;
     int* piFontColor = &iFontColor;
 
-#if 0
-  if (   sciGetEntityType (pobj) == SCI_SUBWIN
-      || sciGetEntityType (pobj) == SCI_FIGURE
-      || sciGetEntityType(pobj) == SCI_AXES)
-  {
-    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
-  }
-  Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_color");
-  return -1 ;
-#endif
-
-  getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, &piFontColor);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, &piFontColor);
 
     if (piFontColor == NULL)
     {
@@ -60,13 +49,5 @@ int get_labels_font_color_property(char *pobjUID)
     }
 
     return sciReturnDouble(iFontColor);
-
-    /*
-     * Deactivated for now since it involves color range checks
-     * To be implemented.
-     */
-#if 0
-    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
-#endif
 }
 /*------------------------------------------------------------------------*/

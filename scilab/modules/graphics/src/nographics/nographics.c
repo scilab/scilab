@@ -259,12 +259,6 @@ long sciGetHandle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetFontForeground(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitFontSize(char *pobj, double fontSize)
 {
     return -1;

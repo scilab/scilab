@@ -44,10 +44,5 @@ int get_font_foreground_property(char *pobjUID)
     }
 
     return sciReturnInt(*fontColor);
-
-/* To be implemented later since it involves color range checks */
-#if 0
-    return sciReturnInt( sciGetFontForegroundToDisplay( pobj ) );
-#endif
 }
 /*------------------------------------------------------------------------*/

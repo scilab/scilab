@@ -43,11 +43,6 @@ int get_font_color_property(char *pobjUID)
         return -1;
     }
 
-/* Deactivated for now since it involves color range checks, to be implemented. */
-#if 0
-    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) );
-#endif
-
     return sciReturnDouble(*fontColor);
 }
 /*------------------------------------------------------------------------*/
