@@ -37,7 +37,6 @@
 
 GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */
 
-GRAPHICS_IMPEXP int sciInitLineStyle( char* pobj, int linestyle ) ;
 GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciInitIsMark(char* pobj, BOOL ismark);  /* SET */

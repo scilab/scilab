@@ -93,29 +93,10 @@ int sciSetLineWidth (char * pobjUID, double linewidth)
     return -1;
 }
 
-
-int sciSetLineStyle( char * pobjUID, int linestyle )
-{
-/*
- * Deactivated: the property is set within the MVC regardless of its
- * currently stored value.
- */
-#if 0
-    if ( sciGetLineStyle( pobjUID ) == linestyle )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-#endif
-
-    return sciInitLineStyle( pobjUID, linestyle ) ;
-}
-
 /**sciSetLineStyle
  * Sets the line style
  */
-int
-sciInitLineStyle (char * pobjUID, int linestyle)
+int sciSetLineStyle(char * pobjUID, int linestyle)
 {
     BOOL status;
     if (linestyle < 0)

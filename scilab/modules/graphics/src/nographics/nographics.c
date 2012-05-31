@@ -285,11 +285,6 @@ int sciInitIsFilled(char *pobj, BOOL isfilled)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitLineStyle(char *pobj, int linestyle)
-{
-    return -1;
-}
-/*--------------------------------------------------------------------------*/
 int sciInitBackground(char *pobj, int colorindex)
 {
     return -1;

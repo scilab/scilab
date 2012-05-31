@@ -115,7 +115,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
         lineMode = 1;
 
         getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, &piTmp);
-        sciInitLineStyle(pobjUID, iTmp);
+        sciSetLineStyle(pobjUID, iTmp);
     }
 
     getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piTmp);
