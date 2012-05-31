@@ -54,10 +54,5 @@ int set_foreground_property(char* pobjUID, size_t stackPointer, int valueType, i
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"foreground");
         return SET_PROPERTY_ERROR;
     }
-
-    /* To be implemented later since it involves color index range checks */
-#if 0
-    return sciSetForeground( pobj, (int) getDoubleFromStack( stackPointer ) );
-#endif
 }
 /*------------------------------------------------------------------------*/

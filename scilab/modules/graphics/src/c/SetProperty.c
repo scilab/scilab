@@ -83,38 +83,6 @@ int sciSetGoodIndex(char * pobjUID, int colorindex) /* return colorindex or m (D
         return colorindex;
 }
 
-int sciInitForeground( char * pobjUID, int colorindex )
-{
-    // FIXME
-    abort();
-#if 0
-    int m = sciGetNumColors(pobjUID);
-    if(!sciCheckColorIndex(pobjUID, colorindex)) return 0;
-
-    colorindex = sciSetGoodIndex(pobjUID,colorindex);
-
-    if (sciGetGraphicContext(pobjUID) != NULL)
-    {
-        sciGetGraphicContext(pobjUID)->foregroundcolor = Max (0, Min (colorindex - 1, m + 1));
-        return 0;
-    }
-
-    /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
-#endif
-    return -1;
-}
-
-/**sciSetForeground
- * sets the number of the Foreground
- */
-int
-sciSetForeground (char * pobjUID, int colorindex)
-{
-    // FIXME
-    abort();
-    return 0;
-}
-
 int sciSetLineWidth( char * pobjUID, double linewidth )
 {
 /*

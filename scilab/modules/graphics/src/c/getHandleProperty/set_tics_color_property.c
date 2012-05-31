@@ -47,22 +47,6 @@ int set_tics_color_property(char* pobjUID, size_t stackPointer, int valueType, i
 
     status = setGraphicObjectProperty(pobjUID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
 
-/* Deactivated for now since it involves color range checks, to be implemented. */
-#if 0
-    sciSetForeground(pobj, (int) getDoubleFromStack( stackPointer ));
-#endif
-
-  /* To be implemented using the MVC framework */
-#if 0
-    if ( sciGetEntityType(pobj) == SCI_SUBWIN )
-    {
-        sciprint("Warning: tics_color use is deprecated and no more taken into account, use foreground property to edit Axes color\n");
-
-        /* To be implemented using the MVC framework */
-        pSUBWIN_FEATURE (pobj)->axes.ticscolor = (int)getDoubleFromStack( stackPointer ) ;
-    }
-#endif
-
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;
