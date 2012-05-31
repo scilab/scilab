@@ -148,9 +148,6 @@ GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciInitSelectedObject( char* pObj ) ;
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
-GRAPHICS_IMPEXP int sciInitHiddenColor( char* pObj, int newColor ) ;
-GRAPHICS_IMPEXP int sciSetHiddenColor(  char* pObj, int newColor ) ;
-
 GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );

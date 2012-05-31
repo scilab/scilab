@@ -2060,39 +2060,6 @@ int sciSetCenterPos( char * pobjUID, BOOL newCP )
     return sciInitCenterPos( pobjUID, newCP ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciInitHiddenColor( char * pobjUID, int newColor )
-{
-    // FIXME
-    abort();
-#if 0
-        if(!sciCheckColorIndex(pobjUID, newColor)) { return -1;}
-
-    switch( sciGetEntityType( pobjUID ) )
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->hiddencolor = newColor;
-        return 0 ;
-    case SCI_SURFACE:
-        pSURFACE_FEATURE(pobjUID)->hiddencolor = newColor;
-        return 0;
-    default:
-        printSetGetErrorMessage("hidden_color");
-        return -1 ;
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetHiddenColor( char * pobjUID, int newColor )
-{
-    if ( sciGetHiddenColor((sciPointObj*) pobjUID ) == newColor )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitHiddenColor( pobjUID, newColor ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitGridStyle( char * pobjUID, int xStyle, int yStyle, int zStyle )
 {
     // FIXME

@@ -54,10 +54,5 @@ int set_hidden_color_property(char* pobjUID, size_t stackPointer, int valueType,
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_color");
         return SET_PROPERTY_ERROR;
     }
-
-/* To be implemented using the MVC framework since it involves color range checks. */
-#if 0
-    return sciSetHiddenColor( pobj, (int) getDoubleFromStack( stackPointer ) );
-#endif
 }
 /*------------------------------------------------------------------------*/
