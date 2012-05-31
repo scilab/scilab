@@ -68,42 +68,6 @@
 
 #define MAX_MARK_STYLE 14
 
-int sciInitNumColors( char * pobjUID, int numcolors)
-{
-    // FIXME
-    abort();
-#if 0
-    /* modified jb Silvy 06/2006 */
-	if (sciGetEntityType (pobjUID)==SCI_FIGURE)
-    {
-        pFIGURE_FEATURE(pobjUID)->numcolors = numcolors ;
-        return 0 ;
-    }else{
-        return sciSetNumColors( sciGetParentFigure( pobjUID ), numcolors ) ;
-    }
-#endif
-    return 0;
-}
-
-/**sciSetNumColors
- * This function sets the number of the color defined in colormap
- * param char * pobjUID: the pointer to the entity
- * param int numcolor: the number of the indexed color
- * return 0 if ok, -1 if not
- */
-int
-sciSetNumColors (char * pobjUID, int numcolors)
-{
-    if ( sciGetNumColors( pobjUID ) == numcolors )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitNumColors( pobjUID, numcolors ) ;
-
-}
-
-
 /*** Adding F.Leray 31.03.04 for supporting -1 and -2 indexes.*/
 /* retrieve the realindex inside the colormap from the handle color property */
 /* -1 is actually m+1 and -2, m+2 */

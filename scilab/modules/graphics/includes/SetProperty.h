@@ -35,9 +35,6 @@
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciInitNumColors( char* pobj, int numcolors ) ; /* SET */
-GRAPHICS_IMPEXP int sciSetNumColors ( char* pobj, int numcolors ) ; /* SET */
-
 GRAPHICS_IMPEXP int sciSetGoodIndex(char* pobj, int colorindex);  /* SET */
 
 GRAPHICS_IMPEXP int sciInitForeground( char* pobj, int colorindex ) ;
