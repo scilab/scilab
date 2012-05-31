@@ -68,29 +68,10 @@
 
 #define MAX_MARK_STYLE 14
 
-int sciSetLineWidth( char * pobjUID, double linewidth )
-{
-/*
- * Deactivated: the property is set within the MVC regardless of its
- * currently stored value.
- */
-#if 0
-    if ( sciGetLineWidth( pobjUID ) == linewidth )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-#endif
-
-    return sciInitLineWidth( pobjUID, linewidth ) ;
-}
-
-
 /**sciSetLineWidth
  * Sets the line width
  */
-int
-sciInitLineWidth (char * pobjUID, double linewidth)
+int sciSetLineWidth (char * pobjUID, double linewidth)
 {
     BOOL status;
 

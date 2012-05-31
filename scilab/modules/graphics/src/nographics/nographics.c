@@ -289,13 +289,6 @@ int sciInitLineStyle(char *pobj, int linestyle)
 {
     return -1;
 }
-
-/*--------------------------------------------------------------------------*/
-int sciInitLineWidth(char *pobj, double linewidth)
-{
-    return -1;
-}
-
 /*--------------------------------------------------------------------------*/
 int sciInitBackground(char *pobj, int colorindex)
 {
