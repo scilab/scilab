@@ -44,11 +44,6 @@ int set_font_color_property(char* pobjUID, size_t stackPointer, int valueType, i
 
     value = (int) getDoubleFromStack( stackPointer );
 
-    /* Deactivated for now since it involves color range checks, to be implemented. */
-#if 0
-    return sciSetFontForeground( pobj,value );
-#endif
-
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &value, jni_int, 1);
 
     if (status == TRUE)

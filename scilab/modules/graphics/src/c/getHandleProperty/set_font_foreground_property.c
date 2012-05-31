@@ -42,11 +42,6 @@ int set_font_foreground_property(char* pobjUID, size_t stackPointer, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-    /* Deactivated for now since it involves color range checks, to be implemented. */
-#if 0
-    return sciSetFontForeground( pobj, (int) getDoubleFromStack( stackPointer ) );
-#endif
-
     value = (int) getDoubleFromStack( stackPointer );
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &value, jni_int, 1);

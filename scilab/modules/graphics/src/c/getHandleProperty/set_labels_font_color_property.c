@@ -47,26 +47,8 @@ int set_labels_font_color_property(char* pobjUID, size_t stackPointer, int value
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-  if (   sciGetEntityType (pobj) == SCI_SUBWIN
-      || sciGetEntityType (pobj) == SCI_FIGURE
-      || sciGetEntityType (pobj) == SCI_AXES)
-  {
-    return sciSetFontForeground( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
-  } /* F.Leray 08.04.04 */
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_color") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
     fontColor = (int) getDoubleFromStack(stackPointer);
 
-    /*
-     * sciSetFontForeground involves color range checks
-     * To be implemented.
-     */
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
 
     if (status == TRUE)
