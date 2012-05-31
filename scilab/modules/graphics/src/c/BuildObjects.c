@@ -774,9 +774,6 @@ char *allocatePolyline(char *pparentsubwinUID, double *pvecx, double *pvecy, dou
     {
         /* This does use the MVC */
         setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, mark_style, jni_int, 1);
-#if 0
-        sciInitMarkStyle(pobj, (*mark_style));
-#endif
     }
 
     if (mark_foreground != NULL)

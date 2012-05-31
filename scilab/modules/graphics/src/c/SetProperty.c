@@ -66,8 +66,6 @@
 #include "FigureModel.h"
 #include "AxesModel.h"
 
-#define MAX_MARK_STYLE 14
-
 /**sciSetLineWidth
  * Sets the line width
  */
@@ -116,51 +114,6 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
 
     printSetGetErrorMessage("line_style");
     return -1;
-}
-
-int sciInitMarkStyle( char * pobjUID, int markstyle )
-{
-    BOOL status;
-
-    if (markstyle < 0 || markstyle > MAX_MARK_STYLE )
-    {
-        Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
-        return -1;
-    }
-    else
-    {
-        status = setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, &markstyle, jni_int, 1);
-
-        if (status == TRUE)
-        {
-            return 0;
-        }
-    }
-
-    printSetGetErrorMessage("mark_style");
-    return -1;
-}
-
-
-/**sciSetMarkStyle
- * Sets the mark style
- */
-int
-sciSetMarkStyle (char * pobjUID, int markstyle)
-{
-/*
- * Deactivated: the property is set within the MVC regardless of its
- * currently stored value.
- */
-#if 0
-    if ( sciGetMarkStyle( pobjUID ) == markstyle )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-#endif
-
-    return sciInitMarkStyle( pobjUID, markstyle ) ;
 }
 
 int sciInitMarkSize( char * pobjUID, int marksize )

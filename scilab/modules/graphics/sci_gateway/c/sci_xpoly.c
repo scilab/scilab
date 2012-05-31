@@ -107,7 +107,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
         lineMode = 0;
 
         getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, &piTmp);
-        sciInitMarkStyle(pobjUID, iTmp);
+        setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
     }
     else
     {

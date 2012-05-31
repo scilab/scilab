@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
-#include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
@@ -29,13 +29,15 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
+#define MAX_MARK_STYLE 14
+
 /*------------------------------------------------------------------------*/
 int set_mark_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     int status1;
-    int status2;
 
     BOOL status;
+    BOOL status2;
 
     int markMode = 1;
     int markStyle;
@@ -48,11 +50,16 @@ int set_mark_style_property(char* pobjUID, size_t stackPointer, int valueType, i
 
     markStyle = (int) getDoubleFromStack(stackPointer);
 
+    if (markStyle < 0 || markStyle > MAX_MARK_STYLE )
+    {
+        Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
+        return SET_PROPERTY_ERROR;
+    }
+
     status = setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    status2 = setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
 
-    status2 = sciSetMarkStyle(pobjUID, (int) getDoubleFromStack(stackPointer));
-
-    if (status == TRUE)
+    if (status == TRUE && status2 == TRUE)
     {
         status1 = SET_PROPERTY_SUCCEED;
     }

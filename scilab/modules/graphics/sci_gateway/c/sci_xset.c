@@ -246,8 +246,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         int markMode = 1;
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
-
-        sciSetMarkStyle(getOrCreateDefaultSubwin(), x[0]);
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_STYLE__, x, jni_int, 1);
     }
     else if ( strcmp(cstk(l1), "colormap") == 0)
     {
