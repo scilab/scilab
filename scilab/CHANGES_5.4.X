@@ -757,6 +757,9 @@ t.
 
 * Bug #11077 fixed - rlist() returned an error.
 
+* Bug #11081 fixed -  movefile, copyfile did not support '~', 'TMPDIR',
+                      shortcuts in filenames.
+
 * Bug #11093 fixed - isNamedVarExist() didn't search in builtin functions names.
 
 * Bug #11114 fixed - Using load(file_descriptor, ...) is now obsolete.
@@ -1443,7 +1446,7 @@ API Scilab
 * Add functions to identify list datatypes:
   isListType, isNamedListType, isTListType, isNamedTListType, isMListType,
   isNamedMListType
-  See bug #11106 
+  See bug #11106
 
 
 CACSD and Signal Processing
