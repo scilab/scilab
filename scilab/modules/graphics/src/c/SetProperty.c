@@ -8,6 +8,7 @@
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -158,35 +159,6 @@ sciSetMarkSize (char * pobjUID, int marksize)
 #endif
 
     return sciInitMarkSize( pobjUID, marksize ) ;
-}
-
-int sciInitFontOrientation( char * pobjUID, double textorientation )
-{
-    if (sciGetFontContext((sciPointObj *)pobjUID) != NULL)
-    {
-        (sciGetFontContext((sciPointObj *)pobjUID))->textorientation = textorientation;
-        return 0;
-    }
-    printSetGetErrorMessage("font_angle");
-    return -1;
-}
-
-
-
-/**sciSetFontOrientation
- * Sets the font Orientation
- */
-int
-sciSetFontOrientation (char * pobjUID, double textorientation)
-{
-
-    if ( sciGetFontOrientation((sciPointObj *)pobjUID ) == textorientation )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitFontOrientation( pobjUID, textorientation ) ;
-
 }
 
 int sciSetStrings( char * pobjUIDDest, const StringMatrix * pStrings )

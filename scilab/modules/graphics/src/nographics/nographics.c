@@ -411,12 +411,6 @@ void sciGetLogFlags(char *pObjUID, char flags[3])
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetFontOrientation(char *pobj, double textorientation)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetAutoPosition(sciPointObj * pObj)
 {
     return FALSE;
