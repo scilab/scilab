@@ -64,11 +64,9 @@ GRAPHICS_IMPEXP void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCo
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 GRAPHICS_IMPEXP unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
-GRAPHICS_IMPEXP int sciGetFontBackground (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetFontForeground (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkBackground (sciPointObj * pobj); /* GET */
-/* F.Leray 09.04.04*/
-GRAPHICS_IMPEXP int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
+
 GRAPHICS_IMPEXP int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
 
