@@ -160,48 +160,6 @@ sciSetMarkSize (char * pobjUID, int marksize)
     return sciInitMarkSize( pobjUID, marksize ) ;
 }
 
-int sciInitMarkSizeUnit( char * pobjUID, int marksizeunit )
-{
-    if (marksizeunit < 0)
-    {
-        Scierror(999, _("The mark size unit must be greater than %d.\n"),0);
-        return -1;
-    }
-    else
-    {
-        if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
-        {
-            (sciGetGraphicContext((sciPointObj *)pobjUID))->marksizeunit = marksizeunit;
-            return 0;
-        }
-    }
-
-    printSetGetErrorMessage("mark_size_unit");
-    return -1;
-}
-
-/**sciSetMarkSizeUnit
- * Sets the mark size unit
- * 1 : points, 2 : tabulated
- */
-int
-sciSetMarkSizeUnit (char * pobjUID, int marksizeunit)
-{
-/*
- * Deactivated: the property is set within the MVC regardless of its
- * currently stored value.
- */
-#if 0
-    if ( sciGetMarkSizeUnit( pobjUID ) == marksizeunit )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-#endif
-
-    return sciInitMarkSizeUnit( pobjUID, marksizeunit ) ;
-}
-
 /**sciInitPolylineStyle
  * Sets Polyline Style (plot)
  */

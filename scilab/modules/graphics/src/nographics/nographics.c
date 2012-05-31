@@ -301,11 +301,6 @@ int sciInitMarkForeground(char *pobj, int colorindex)
 {
     return -1;
 }
-/*--------------------------------------------------------------------------*/
-int sciInitMarkSizeUnit(char *pobj, int marksizeunit)
-{
-    return -1;
-}
 
 /*--------------------------------------------------------------------------*/
 int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)

@@ -47,10 +47,6 @@ GRAPHICS_IMPEXP int sciInitPolylineStyle( char* pobj, int plot );
 GRAPHICS_IMPEXP int sciInitMarkSize(char* pobj, int marksize);
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
 
-GRAPHICS_IMPEXP int sciInitMarkSizeUnit(char* pobj, int marksizeunit);
-GRAPHICS_IMPEXP int sciSetMarkSizeUnit (char* pobj, int marksizeunit); /* SET */
-
-
 GRAPHICS_IMPEXP int sciInitBoxType( char* pobj, EAxesBoxType type ) ;
 GRAPHICS_IMPEXP int sciSetBoxType ( char* pobj, EAxesBoxType type ) ; /* SET */
 
