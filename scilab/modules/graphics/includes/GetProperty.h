@@ -94,7 +94,6 @@ GRAPHICS_IMPEXP double *sciGetClipping (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
 GRAPHICS_IMPEXP BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 
 
 /* Window Functions */

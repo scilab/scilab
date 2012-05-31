@@ -1221,54 +1221,6 @@ sciGetVisibility (sciPointObj * pobj)
     return visible;
 }
 
-
-
-/**sciGetResize (replace sciGetwresize()in the next version)
-* Returns if this object is in autoresizing mode (when the window is resized by user)
-* @param sciPointObj * pobj: the pointer to the entity
-* @return TRUE if yes, FALSE if no
-*/
-BOOL
-sciGetResize (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            if (isFigureModel(pobj->UID))
-            {
-                return pFIGURE_FEATURE(pobj)->pModelData->autoResizeMode;
-            }
-            else
-            {
-                return sciGetJavaAutoResizeMode(pobj);
-            }
-            break;
-        case SCI_SUBWIN:
-            /* the value is inhirated by the parent */
-            return sciGetResize (sciGetParent (pobj));
-            break;
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("auto_resize");
-            return FALSE;
-            break;
-    }
-    return FALSE;
-}
-
-
 /**sciGetName
 * Returns the name of the Figure or SubWindow
 * @param sciPointObj * pobj: the pointer to the entity
