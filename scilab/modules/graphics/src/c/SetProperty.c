@@ -160,26 +160,6 @@ sciSetMarkSize (char * pobjUID, int marksize)
     return sciInitMarkSize( pobjUID, marksize ) ;
 }
 
-/**sciInitPolylineStyle
- * Sets Polyline Style (plot)
- */
-int sciInitPolylineStyle( char * pobjUID, int plot )
-{
-    // FIXME
-    abort();
-#if 0
-    if (sciGetEntityType(pobjUID) == SCI_POLYLINE)
-    {
-        pPOLYLINE_FEATURE(pobjUID)->plot = 4;
-        return 0;
-    }
-
-    printSetGetErrorMessage("polyline_style");
-#endif
-    return -1;
-
-}
-
 int sciInitFontSize( char * pobjUID, double fontSize )
 {
     if (fontSize < 0)

@@ -309,12 +309,6 @@ int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitPolylineStyle(char *pobj, int plot)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetNumColors(char *pobjUID)
 {
     return -1;
