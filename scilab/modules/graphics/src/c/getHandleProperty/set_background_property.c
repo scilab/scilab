@@ -55,10 +55,5 @@ int set_background_property(char* pobjUID, size_t stackPointer, int valueType, i
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
     return SET_PROPERTY_ERROR;
   }
-
-/* deactivated for now since it involves drawing operations, to be implemented */
-#if 0
-  return sciSetBackground( pobj, (int)getDoubleFromStack(stackPointer) ) ;
-#endif
 }
 /*------------------------------------------------------------------------*/

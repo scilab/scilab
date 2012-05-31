@@ -119,50 +119,6 @@ int sciSetGoodIndex(char * pobjUID, int colorindex) /* return colorindex or m (D
         return colorindex;
 }
 
-int sciInitBackground( char * pobjUID, int colorindex )
-{
-    int m = sciGetNumColors(pobjUID);
-    if(!sciCheckColorIndex(pobjUID, colorindex)) return 0;
-
-    colorindex = sciSetGoodIndex(pobjUID,colorindex);
-
-    if (sciGetGraphicContext((sciPointObj *)pobjUID) != NULL)
-    {
-        int newIndex = Max (0, Min (colorindex - 1, m + 1));
-        sciGetGraphicContext((sciPointObj*) pobjUID)->backgroundcolor = newIndex;
-
-        if (sciGetEntityType((sciPointObj*)pobjUID) == SCI_FIGURE && !isFigureModel(pobjUID))
-        {
-			/* disable protection since this function will call Java */
-            //disableFigureSynchronization(pobjUID);
-            sciSetJavaBackground((sciPointObj*)pobjUID, newIndex);
-			//enableFigureSynchronization(pobjUID);
-        }
-
-        return 0;
-    }
-
-    /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
-    return -1;
-}
-
-/**sciSetBackground
- * Sets the number of the Background
- */
-int
-sciSetBackground (char * pobjUID, int colorindex)
-{
-    if ( sciGetBackground((sciPointObj*) pobjUID ) == colorindex )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-
-    return sciInitBackground( pobjUID, colorindex ) ;
-
-}
-
-
 int sciInitForeground( char * pobjUID, int colorindex )
 {
     // FIXME
