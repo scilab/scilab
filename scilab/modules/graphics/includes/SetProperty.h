@@ -128,8 +128,6 @@ GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciInitName(char* pobj, char * newName); /* SET */
-GRAPHICS_IMPEXP int sciSetName (char* pobj, char * newName); /* SET */
 GRAPHICS_IMPEXP int sciInitNum( char* pobj, int value ) ;
 GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
 

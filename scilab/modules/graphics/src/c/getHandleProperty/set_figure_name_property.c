@@ -60,16 +60,5 @@ int set_figure_name_property(char* pobjUID, size_t stackPointer, int valueType, 
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
         return SET_PROPERTY_ERROR;
     }
-
-    /* deactivated for now since it involves drawing operations, to be implemented */
-    /* disable protection since this function will call Java */
-#if 0
-    disableFigureSynchronization(pobj);
-    status = sciSetName( pobj, getStringFromStack( stackPointer )) ;
-    enableFigureSynchronization(pobj);
-
-    /* return set property unchanged since repaint is not really needed */
-    return sciSetNoRedrawStatus((SetPropertyStatus)status);
-#endif
 }
 /*------------------------------------------------------------------------*/
