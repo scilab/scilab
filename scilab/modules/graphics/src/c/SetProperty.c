@@ -2108,39 +2108,6 @@ int sciSetHiddenColor( char * pobjUID, int newColor )
     return sciInitHiddenColor( pobjUID, newColor ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciInitHiddenAxisColor( char * pobjUID, int newColor )
-{
-    // FIXME
-    abort();
-#if 0
-        int m = sciGetNumColors(pobjUID);
-    if(newColor < -2 || newColor > m + 2) return 0;
-
-    newColor = sciSetGoodIndex(pobjUID,newColor);
-
-    switch( sciGetEntityType( pobjUID ) )
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.hiddenAxisColor = Max (0, Min (newColor - 1, m + 1));
-        return 0 ;
-    default:
-        printSetGetErrorMessage("hidden_axis_color");
-        return -1 ;
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetHiddenAxisColor( char * pobjUID, int newColor )
-{
-    if ( sciGetHiddenAxisColor((sciPointObj*) pobjUID ) == newColor )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitHiddenAxisColor( pobjUID, newColor ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitGridStyle( char * pobjUID, int xStyle, int yStyle, int zStyle )
 {
     // FIXME
