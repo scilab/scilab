@@ -137,8 +137,6 @@ GRAPHICS_IMPEXP int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type
 
 GRAPHICS_IMPEXP int sciGetHiddenColor( sciPointObj * pObj ) ; /* GET */
 
-GRAPHICS_IMPEXP int sciGetHiddenAxisColor( sciPointObj * pObj ) ; /* GET */
-
 GRAPHICS_IMPEXP BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 GRAPHICS_IMPEXP BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
 

@@ -2077,26 +2077,6 @@ int sciGetHiddenColor( sciPointObj * pObj )
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* return the color of the back trihedron of an subwin object.
-*/
-int sciGetHiddenAxisColor( sciPointObj * pObj )
-{
-
-    int colorIndex;
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_SUBWIN:
-            colorIndex = pSUBWIN_FEATURE(pObj)->axes.hiddenAxisColor + 1 ;
-            break;
-        default:
-            printSetGetErrorMessage("hidden_axis_color");
-            return -10 ;
-    }
-    colorIndex = sciGetGoodIndex(pObj, colorIndex);
-    return colorIndex ;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * return if the drawlater mode is on for the parent figure.
 */
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
