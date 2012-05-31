@@ -791,12 +791,6 @@ int sciGetMarkSize(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetMarkSizeUnit(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetLineStyle(sciPointObj * pobj)
 {
     return -1;

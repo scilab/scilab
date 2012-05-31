@@ -52,7 +52,6 @@ GRAPHICS_IMPEXP EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ; /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkStyle (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkSize (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */

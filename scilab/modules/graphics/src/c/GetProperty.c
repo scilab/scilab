@@ -231,24 +231,6 @@ sciGetMarkSize (sciPointObj * pobj)
     return -1;
 }
 
-
-/**sciGetMarkSizeUnit
-* Gets the mark size unit
-* 1 : points, 2 : tabulated
-*/
-int
-sciGetMarkSizeUnit (sciPointObj * pobj)
-{
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        return (sciGetGraphicContext(pobj))->marksizeunit;
-    }
-
-    printSetGetErrorMessage("mark_size_unit");
-    return -1;
-
-}
-
 /**sciGetIsLine
 * Returns the line drawing existence
 */
