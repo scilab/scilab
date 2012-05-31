@@ -70,12 +70,10 @@ GRAPHICS_IMPEXP unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetFontBackground (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetFontForeground (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkBackground (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetMarkForeground (sciPointObj * pobj); /* GET */
 /* F.Leray 09.04.04*/
 GRAPHICS_IMPEXP int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP int sciGetFontStyle (sciPointObj * pobj); /* GET */
 

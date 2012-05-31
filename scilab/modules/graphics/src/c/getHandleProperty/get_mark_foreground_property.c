@@ -46,10 +46,5 @@ int get_mark_foreground_property(char *pobjUID)
     }
 
     return sciReturnDouble(iMarkForeground);
-
-/* To be implemented since it involves color range checks */
-#if 0
-  return sciReturnDouble( sciGetMarkForegroundToDisplay( pobj ) ) ;
-#endif
 }
 /*------------------------------------------------------------------------*/

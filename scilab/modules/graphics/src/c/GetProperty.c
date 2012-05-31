@@ -152,7 +152,6 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
         return colorindex;
 }
 
-
 /**sciGetBackground
 * Gets the color number of the Background. Be carreful the return of the subwindow
 * is the feature of its parent figure.
@@ -195,48 +194,6 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
 
     return colorindex;
 }
-
-
-/**sciGetMarkForeground
-* Gets the color number of the Marks'Foreground
-*/
-int
-sciGetMarkForeground (sciPointObj * pobj)
-{
-
-    int colorindex = -999;
-
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        colorindex = sciGetGraphicContext(pobj)->markforeground + 1;
-    }
-    else
-    {
-        printSetGetErrorMessage("mark_foreground");
-        return -1;
-    }
-
-    colorindex = sciGetGoodIndex(pobj, colorindex);
-
-    return colorindex;
-}
-
-
-int
-sciGetMarkForegroundToDisplay (sciPointObj * pobj)
-{
-
-    int colorindex = -999;
-    int m = sciGetNumColors((char*)pobj);
-
-    colorindex = sciGetMarkForeground(pobj);
-
-    if ((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-
-    return colorindex;
-}
-
-
 
 /**sciGetMarkBackground
 * Gets the color number of the Marks'Background. Be carreful the return of the subwindow
