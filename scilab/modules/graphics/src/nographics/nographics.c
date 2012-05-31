@@ -380,12 +380,6 @@ int deallocateText(sciPointObj * pthis)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitFontBackground(char *pobj, int color)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetLegendPos(sciPointObj * pobj, double position[2])
 {
 

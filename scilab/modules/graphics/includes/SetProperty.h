@@ -87,9 +87,6 @@ GRAPHICS_IMPEXP int sciSetFontOrientation (char* pobj, double textorientation); 
 GRAPHICS_IMPEXP int sciSetStrings( char* pobj, const StringMatrix * pStrings ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitFontBackground(char* pobj, int color);
-GRAPHICS_IMPEXP int sciSetFontBackground (char* pobj, int color); /* SET */
-
 GRAPHICS_IMPEXP int sciInitFontForeground(char* pobj, int colorindex ) ;
 GRAPHICS_IMPEXP int sciSetFontForeground (char* pobj, int colorindex ) ; /* SET */
 
