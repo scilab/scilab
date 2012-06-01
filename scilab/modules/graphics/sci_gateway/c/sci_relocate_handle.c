@@ -17,6 +17,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
+#include "setGraphicObjectProperty.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "HandleManagement.h"
