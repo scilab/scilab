@@ -139,19 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/* This function */
-int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
-{
-    int m = sciGetNumColors ((char*)pobj);	/* the number of the color*/
-
-    if (colorindex == -1) /* Black */
-        return m + 1;
-    else if (colorindex == -2) /* White */
-        return m + 2;
-    else
-        return colorindex;
-}
-
 /**sciGetLineWidth
 * Gets the line width
 */
