@@ -69,6 +69,11 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     /** The drawable component where the draw is performed */
     private final Component drawableComponent;
 
+    static {
+        try {
+            System.loadLibrary("gluegen2-rt");
+        } catch (Exception e) { System.err.println(e); }
+    }
     /*
      * Using GLJPanel for MacOSX may lead to a deadlock on deletion.
      * Wrap call to removeNotify to ensure we are not outside Swing Thread
@@ -95,10 +100,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     public SwingScilabCanvas(int figureId, final Figure figure) {
         super(new PanelLayout());
         this.figure = figure;
-
-        try {
-            System.loadLibrary("gluegen2-rt");
-        } catch (Exception e) { System.err.println(e); }
 
         /*
          * Even with the good Java 1.6 version
