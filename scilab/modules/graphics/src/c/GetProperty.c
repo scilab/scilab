@@ -139,22 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetMarkSize
-* Gets the mark size
-*/
-int
-sciGetMarkSize (sciPointObj * pobj)
-{
-
-    if (sciGetGraphicContext(pobj) != NULL )
-    {
-        return sciGetGraphicContext(pobj)->marksize;
-    }
-
-    printSetGetErrorMessage("mark_size");
-    return -1;
-}
-
 /**sciGetIsLine
 * Returns the line drawing existence
 */

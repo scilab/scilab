@@ -761,12 +761,6 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetMarkSize(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 double sciGetArrowSize(sciPointObj * pobj)
 {
     return 0.;
