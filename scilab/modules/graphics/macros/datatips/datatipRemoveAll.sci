@@ -33,16 +33,16 @@ function datatipRemoveAll(curve_handles)
     error(msprintf(_("%s: Wrong type for input argument #%d: handle on axes or axes children expected.\n"),"datatipRemoveAll",1))
   end
 
-
   fig=ax.parent
   id=fig.immediate_drawing;
   fig.immediate_drawing="off"
-
   for k=1:size(curve_handles,'*')
     ck=curve_handles(k);
     ud=datatipGetStruct(ck)// the curve datatips data structure
     if typeof(ud)=='datatips' then
-      delete(ud.tips);
+      if ud.tips <> []
+          delete(ud.tips);
+      end
       ud.tips=[]
       ud.selected=0;
       datatipSetStruct(ck,ud)

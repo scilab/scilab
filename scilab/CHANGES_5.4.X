@@ -790,6 +790,8 @@ t.
 
 * Bug #11166 fixed - datatipRemove example did not work.
 
+* Bug #11167 fixed - datatipRemoveAll example did not work.
+
 * Bug #11186 fixed - 'typeof' of a type 130 returned an error.
 
 * Bug #11223 fixed - Deletion of datatips.
