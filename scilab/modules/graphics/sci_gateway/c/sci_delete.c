@@ -40,6 +40,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, unsigned long fname_len)
@@ -66,52 +67,52 @@ int sci_delete(char *fname, unsigned long fname_len)
     {
         switch (VarType(1))
         {
-        case sci_handles:      /* delete Entity given by a handle */
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
-            nb_handles = m1 * n1;
+            case sci_handles:      /* delete Entity given by a handle */
+                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
+                nb_handles = m1 * n1;
 
-            if (Rhs == 2)
-            {
-                GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
-            }
-            hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
-            break;
-        case sci_strings:      /* delete("all") */
-            CheckRhs(1, 1);
-            GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
-            if (strcmp(cstk(l2), "all") == 0)
-            {
-                //startGraphicDataWriting();
-                //sciClearFigure(sciGetCurrentFigure());
-                //endGraphicDataWriting();
-                //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
-                int i = 0;
-                int iFigureNumber = sciGetNbFigure();
-                int *piFigureIds = (int *) MALLOC(iFigureNumber * sizeof(int));
-
-                sciGetFiguresId(piFigureIds);
-
-                for (i = 0; i < iFigureNumber; ++i)
+                if (Rhs == 2)
                 {
-                    deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
+                    GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
                 }
-                FREE(piFigureIds);
-                LhsVar(1) = 0;
-                PutLhsVar();
+                hdl = (unsigned long) * hstk(l1); /* Puts the value of the Handle to hdl */
+                break;
+            case sci_strings:      /* delete("all") */
+                CheckRhs(1, 1);
+                GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
+                if (strcmp(cstk(l2), "all") == 0)
+                {
+                    //startGraphicDataWriting();
+                    //sciClearFigure(sciGetCurrentFigure());
+                    //endGraphicDataWriting();
+                    //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+                    int i = 0;
+                    int iFigureNumber = sciGetNbFigure();
+                    int *piFigureIds = (int *) MALLOC(iFigureNumber * sizeof(int));
 
+                    sciGetFiguresId(piFigureIds);
+
+                    for (i = 0; i < iFigureNumber; ++i)
+                    {
+                        deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
+                    }
+                    FREE(piFigureIds);
+                    LhsVar(1) = 0;
+                    PutLhsVar();
+
+                    return 0;
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "all");
+                    return 0;
+                }
+                break;
+            default:
+                // Overload
+                lw = 1 + Top - Rhs;
+                C2F(overload) (&lw, "delete", 6);
                 return 0;
-            }
-            else
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "all");
-                return 0;
-            }
-            break;
-        default:
-            // Overload
-            lw = 1 + Top - Rhs;
-            C2F(overload) (&lw, "delete", 6);
-            return 0;
         }
     }
 
@@ -119,7 +120,7 @@ int sci_delete(char *fname, unsigned long fname_len)
     {
         if (Rhs != 0)
         {
-            hdl = (unsigned long)*hstk(l1 + i); /* Puts the value of the Handle to hdl */
+            hdl = (unsigned long) * hstk(l1 + i); /* Puts the value of the Handle to hdl */
         }
 
         pobjUID = getObjectFromHandle(hdl);
@@ -173,6 +174,10 @@ int sci_delete(char *fname, unsigned long fname_len)
                 getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_string, (void **)&pstChildType);
                 if (strcmp(pstChildType, __GO_AXES__) == 0)
                 {
+                    if (strcmp(getCurrentSubWin(), pobjUID) == 0) // Current axes has been deleted
+                    {
+                        setCurrentSubWin(pstChildren[iChild]);
+                    }
                     iAxesFound = 1;
                     break;
                 }
