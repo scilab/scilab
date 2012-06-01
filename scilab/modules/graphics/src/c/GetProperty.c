@@ -139,25 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetMarkStyle
-* Gets the mark style
-*/
-int
-sciGetMarkStyle (sciPointObj * pobj)
-{
-
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        return (sciGetGraphicContext(pobj))->markstyle;
-    }
-
-    printSetGetErrorMessage("mark_style");
-    return -1;
-
-}
-
-
-
 /**sciGetMarkSize
 * Gets the mark size
 */
