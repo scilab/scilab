@@ -139,24 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetIsLine
-* Returns the line drawing existence
-*/
-BOOL
-sciGetIsLine (sciPointObj * pobj)
-{
-
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        return sciGetGraphicContext(pobj)->isline;
-    }
-    else
-    {
-        printSetGetErrorMessage("line_mode");
-        return FALSE;
-    }
-}
-
 /**sciGetIsFilled
 * Returns the filled line existence
 */

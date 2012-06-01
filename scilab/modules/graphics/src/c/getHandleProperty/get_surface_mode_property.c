@@ -35,27 +35,6 @@ int get_surface_mode_property(char *pobjUID)
     int iSurfaceMode = 0;
     int *piSurfaceMode = &iSurfaceMode;
 
-#if 0
-  if ( (sciGetEntityType(pobj) == SCI_PLOT3D ) ||
-       (sciGetEntityType(pobj) == SCI_FAC3D  ) ||
-       (sciGetEntityType(pobj) == SCI_SURFACE)   )
-  {
-    if ( sciGetIsLine( pobj ) )
-    {
-      return sciReturnString( "on" ) ;
-    }
-    else
-    {
-      return sciReturnString( "off" ) ;
-    }
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_mode") ;
-    return -1;
-  }
-#endif
-
   getGraphicObjectProperty(pobjUID, __GO_SURFACE_MODE__, jni_bool, &piSurfaceMode);
 
   if (piSurfaceMode == NULL)

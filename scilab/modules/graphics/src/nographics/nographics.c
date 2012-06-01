@@ -459,12 +459,6 @@ BOOL sciGetIsBoxed(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsLine(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetAutoSize(sciPointObj * pObj)
 {
     return FALSE;
