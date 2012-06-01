@@ -21,7 +21,10 @@ function datatipRemove(handle,ind)
     end
     ind=[]
 
+    ax=handle.parent
+    while ax.type<>"Axes" then ax=ax.parent,end
     curve_handles=datatipGetEntities(ax)
+
     for k=1:size(curve_handles,'*')
       ck=curve_handles(k)
       ud=datatipGetStruct(ck);
