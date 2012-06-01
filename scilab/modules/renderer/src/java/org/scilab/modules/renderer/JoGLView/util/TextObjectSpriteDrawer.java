@@ -12,6 +12,11 @@
 
 package org.scilab.modules.renderer.JoGLView.util;
 
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.Icon;
+
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
@@ -20,16 +25,12 @@ import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.texture.TextEntity;
 import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
-import org.scilab.modules.renderer.utils.textRendering.FontManager;
-import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.jvm.LoadClassPath;
-
-import javax.swing.Icon;
-import java.awt.Dimension;
-import java.awt.Font;
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 /**
  * A {@see SpriteDrawer} who draw a Scilab {@see Text} object.
@@ -111,8 +112,8 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         /* Fill the entity matrix */
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
-        this.width  = (int)((double)sum(columnWidth) + scaleFactor*(double)(MARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor*(double)(spaceWidth * (columnNumber - 1)));
-        this.height = (int)((double)sum(lineHeight)  + scaleFactor*(double)(MARGIN * (lineNumber + 1)) + 2 * thickness);
+        this.width  = (int)((double)sum(columnWidth) + scaleFactor * (double)(MARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor * (double)(spaceWidth * (columnNumber - 1)));
+        this.height = (int)((double)sum(lineHeight)  + scaleFactor * (double)(MARGIN * (lineNumber + 1)) + 2 * thickness);
     }
 
     /**
@@ -132,12 +133,13 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                     if (isLatex(text)) {
                         LoadClassPath.loadOnUse("graphics_latex_textrendering");
                         TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
+                        formula.setColor(textColor);
                         TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, font.getSize());
                         dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
                         entities[column][line] = icon;
                     } else if (isMathML(text)) {
-                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
-                        Icon icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize());
+                        LoadClassPath.loadOnUse("graphics_mathml_textrendering");
+                        Icon icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize(), textColor);
                         dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
                         entities[column][line] = icon;
                     } else {
@@ -272,7 +274,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
     public int getSpaceWidth() {
         return spaceWidth;
     }
-    
+
     /**
      * Compute and return the matrix of text string from the given {@see Text} object.
      * @param text the given {@see Text} object.
@@ -310,7 +312,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      */
     private Font computeFont(final TextObject text, double scaleFactor) {
         Font font  = FontManager.getSciFontManager().getFontFromIndex(text.getFontStyle(), 1.0);
-        return font.deriveFont(font.getSize2D()*(float)scaleFactor);
+        return font.deriveFont(font.getSize2D() * (float)scaleFactor);
     }
 
     /**
@@ -319,15 +321,15 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * @return the alignment factor corresponding to the given scilab text.
      */
     protected float computeAlignmentFactor(Text text) {
-        switch(text.getAlignmentAsEnum()) {
-        case LEFT:
-            return 0f;
-        case CENTER:
-            return 1f / 2f;
-        case RIGHT:
-            return 1f;
-        default:
-            return 0f;
+        switch (text.getAlignmentAsEnum()) {
+            case LEFT:
+                return 0f;
+            case CENTER:
+                return 1f / 2f;
+            case RIGHT:
+                return 1f;
+            default:
+                return 0f;
         }
     }
 
