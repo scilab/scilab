@@ -32,10 +32,10 @@
  */
 typedef enum
 {
-  RESIZE_SUCCESS = 0,
-  RESIZE_MULTIPLE_DOCKED_TAB = -1,
-  RESIZE_SIZE_TOO_LARGE = -2,
-  RESIZE_UNCHANGED = 1
+    RESIZE_SUCCESS = 0,
+    RESIZE_MULTIPLE_DOCKED_TAB = -1,
+    RESIZE_SIZE_TOO_LARGE = -2,
+    RESIZE_UNCHANGED = 1
 } EResizeStatus;
 
 
@@ -58,8 +58,8 @@ GRAPHICS_IMPEXP int Objmove(char* pobjUID, double d[], int m, BOOL opt); /* INTE
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-GRAPHICS_IMPEXP void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
-                    const int initialRect[4], int endRect[4], int * usedButton);
+GRAPHICS_IMPEXP void pixelRubberBox(char * pFigure, BOOL isClick,
+                                    const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
  * Call rubber box using a subwn scale
@@ -70,8 +70,8 @@ GRAPHICS_IMPEXP void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-GRAPHICS_IMPEXP void rubberBox(sciPointObj * pSubwin, BOOL isClick,
-               const double initialRect[4], double endRect[4], int * usedButton);
+GRAPHICS_IMPEXP void rubberBox(char * pSubwin, BOOL isClick,
+                               const double initialRect[4], double endRect[4], int * usedButton);
 
 
 /**

@@ -38,7 +38,22 @@ public final class CallRenderer {
             visitor.getInteractionManager().startInteractiveZoom();
         }
     }
-
+    
+    public static double[] clickRubberBox(String id, double initialRect[]) {
+        DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
+        if (visitor != null) {
+            return visitor.getInteractionManager().startClickRubberBox(initialRect);
+        }
+        return new double[] {-1,-1,-1,-1,-1,-1,-1};
+    }
+    
+    public static double[] dragRubberBox(String id) {
+        DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
+        if (visitor != null) {
+            return visitor.getInteractionManager().startDragRubberBox();
+        }
+        return new double[] {-1,-1,-1,-1,-1,-1,-1};
+    }
     /**
      * Updates the coordinate transformation of the Axes object given by the identifier.
      * @param id the Axes' identifier.

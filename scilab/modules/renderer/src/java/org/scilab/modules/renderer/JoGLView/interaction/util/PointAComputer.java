@@ -21,7 +21,7 @@ import java.awt.Point;
  * The point correspond to a mouse coordinate.
  * @author Pierre Lando
  */
-public class PointAComputer extends CubeFacesPointComputer {
+public class PointAComputer extends CubeFacesPointComputer implements PointComputer {
 
     /**
      * Constructor.
@@ -51,5 +51,10 @@ public class PointAComputer extends CubeFacesPointComputer {
     @Override
     public final Vector3d getSecondPosition() {
         return getPosition();
+    }
+
+    @Override
+    public boolean is2D() {
+        return false;
     }
 }

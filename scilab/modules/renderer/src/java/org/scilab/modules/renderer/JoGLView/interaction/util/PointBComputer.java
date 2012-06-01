@@ -19,7 +19,7 @@ import java.awt.Point;
 /**
  * @author Pierre Lando
  */
-public class PointBComputer extends AbstractPointComputer {
+public class PointBComputer extends AbstractPointComputer implements PointComputer {
 
     /** First axis index */
     private final int firstAxisIndex;
@@ -36,16 +36,16 @@ public class PointBComputer extends AbstractPointComputer {
      * @param pointAComputer the first point computer.
      * @param point the clicked point in AWT coordinate.
      */
-    public PointBComputer(Axes axes, PointAComputer pointAComputer, Point point) {
+    public PointBComputer(Axes axes, PointComputer pointAComputer, Point point) {
         super(axes, point);
 
         firstAxisIndex = pointAComputer.getFirstAxisIndex();
         if (firstAxisIndex != -1) {
-            double value = pointAComputer.getPosition().getData()[firstAxisIndex];
+            double value = pointAComputer.getFirstPosition().getData()[firstAxisIndex];
             double lambda = computeLambda(value, firstAxisIndex);
             Vector3d coordinate = computeCoordinate(lambda, value, firstAxisIndex);
 
-            firstPosition = pointAComputer.getPosition();
+            firstPosition = pointAComputer.getFirstPosition();
             secondPosition = clamp(coordinate);
 
             if (check2D()) {

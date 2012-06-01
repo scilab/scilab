@@ -19,7 +19,7 @@ import java.awt.Point;
 /**
  * @author Pierre Lando
  */
-public class PointCComputer extends CubeFacesPointComputer {
+public class PointCComputer extends CubeFacesPointComputer implements PointComputer {
 
     private final Vector3d secondPosition;
     private final Vector3d firstPosition;
@@ -33,7 +33,7 @@ public class PointCComputer extends CubeFacesPointComputer {
      * @param pointBComputer previous point computer.
      * @param point clicked point in AWT coordinate.
      */
-    public PointCComputer(Axes axes, PointBComputer pointBComputer, Point point) {
+    public PointCComputer(Axes axes, PointComputer pointBComputer, Point point) {
         super(axes, point);
         firstAxisIndex = pointBComputer.getFirstAxisIndex();
         if (getPosition() != null) {
@@ -63,5 +63,10 @@ public class PointCComputer extends CubeFacesPointComputer {
     @Override
     public final Vector3d getSecondPosition() {
         return secondPosition;
+    }
+
+    @Override
+    public boolean is2D() {
+        return false;
     }
 }

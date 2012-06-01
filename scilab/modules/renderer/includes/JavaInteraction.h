@@ -34,15 +34,12 @@ RENDERER_IMPEXP void startInteractiveZoom(char *pstObjUID);
 
 /**
  * Call rubber box on a figure
- * @param pFigure figure on which to apply the rubber box
- * @param isClick specify whether the rubber box is selected by mouse click
- *        or a sequence of press/release.
+ * @param pstObjUID figure UID on which to apply the rubber box
  * @param intialRect if not null, specify the initial rectangle to use
- * @param[out] endRect array containing the coordinates of two opposite corners of
- *                     the rubber box
- * @param[out] usedButton Scilab code of the button used to terminate the rubber box
+ * @return [usedButton x y z l L h]
  */
-RENDERER_IMPEXP void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
+RENDERER_IMPEXP double *javaClickRubberBox(char *pstObjUID, double *initialRect, int iRectSize);
+    RENDERER_IMPEXP double *javaDragRubberBox(char *pstObjUID);
 
 /**
  * Perform an interactive zoom of the figure using a rectangular selection.

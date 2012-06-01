@@ -57,7 +57,7 @@ public class HelpersGeometry extends DefaultGeometry {
         bufferManager.dispose(vertexBuffer);
     }
 
-    public void updateVertex(Axes axes, PointAComputer pointAComputer, Vector3d secondPoint, RubberBox.Status status) {
+    public void updateVertex(Axes axes, PointComputer pointAComputer, Vector3d secondPoint, RubberBox.Status status) {
         if ((pointAComputer != null) && (pointAComputer.getFirstAxisIndex() != -1)) {
             FloatBuffer data;
             boolean oneAxis;

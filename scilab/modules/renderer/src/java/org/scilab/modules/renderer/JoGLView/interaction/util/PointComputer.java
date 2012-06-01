@@ -44,4 +44,10 @@ public interface PointComputer {
      * @return the first axis index.
      */
     public abstract int getFirstAxisIndex();
+
+    /**
+     * 2D status getter.
+     * @return true if the zoom is in 2D mode.
+     */
+    public boolean is2D();
 }

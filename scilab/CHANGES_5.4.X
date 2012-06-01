@@ -255,8 +255,6 @@ Documentation
 
 * Bug #10809, #10810 fixed - error_table help page was not up-to-date.
 
-* Bug #10820 fixed - datatipscurve generator was freezing Scilab.
-
 * Bug #10828 fixed - Developer arguments were not displayed in the help of
                      Scilab scripts.
 
@@ -560,6 +558,8 @@ Bug fixes
 
 * Bug #7289 fixed - The menu handle was still valid after calling delmenu(console_menu_handle).
 
+* Bug #7728 fixed - rubberbox(): Instantaneous pointer's coordinates are now displayed in the status bar.
+
 * Bug #7779 fixed - genlib did not check input arguments and did not use current
                     path as default.
 
@@ -766,6 +766,8 @@ t.
 
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
+
+* Bug #10820 fixed - datatipscurve generator was freezing Scilab.
 
 * Bug #10831 fixed - set("auto_clear", "on") and set("auto_clear", "off") returned an error.
 
