@@ -230,5 +230,12 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 */
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
 
+/* functions ONLY for compatibility and/or internal use */
 int C2F(str2name)  (const char *name__, int *id, unsigned long name_len);
+int C2F(objptr)(char *namex, int *lp, int *fin, unsigned long name_len);
+int C2F(creadmat)(char *namex, int *m, int *n, double *scimat, unsigned long name_len);
+int C2F(creadchain)(char *namex,  int *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len);
+int C2F(cmatptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
+
+
 #endif
