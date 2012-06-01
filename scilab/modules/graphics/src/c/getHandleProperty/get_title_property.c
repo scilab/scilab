@@ -19,7 +19,7 @@
 /* desc : function to retrieve in Scilab the title field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
