@@ -25,6 +25,7 @@ extern "C" {
 #include "machine.h"
 #include "BOOL.h"
 #include "sci_types.h"
+#include "lasterror.h"
     /*--------------------------------------------------------------------------*/
 
     /**
@@ -132,7 +133,8 @@ extern "C" {
      * fail or not
      * @return 0 if no error. Not 0 for an error.
      */
-    int getLastErrorValue(void);
+    /* int getLastErrorValue(void); */
+    /* Defined in lasterror.h */
 
 
     /**
