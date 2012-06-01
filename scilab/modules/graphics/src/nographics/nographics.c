@@ -273,12 +273,6 @@ char *allocateText(char *pparentsubwinUID,
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitIsFilled(char *pobj, BOOL isfilled)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitBackground(char *pobj, int colorindex)
 {
     return -1;
@@ -780,12 +774,6 @@ void intArrayCopy(int dest[], const int src[], int nbElement)
 
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsClosed(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsFilled(sciPointObj * pobj)
 {
     return FALSE;
 }

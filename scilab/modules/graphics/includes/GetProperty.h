@@ -40,7 +40,6 @@ GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP double sciGetArrowSize (sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ; /* GET */

@@ -34,14 +34,6 @@ int set_filled_property(char* pobjUID, size_t stackPointer, int valueType, int n
     BOOL status;
     int b =  (int)FALSE;
 
-#if 0
-    if (sciGetEntityType(pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"filled");
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "filled");
     if(b == NOT_A_BOOLEAN_VALUE)
     {
@@ -59,13 +51,5 @@ int set_filled_property(char* pobjUID, size_t stackPointer, int valueType, int n
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"filled");
         return SET_PROPERTY_ERROR;
     }
-
-    /*
-     * deactivated for now, to be implemented, since the operations performed
-     * by SetIsFilled depend on the object type
-     */
-#if 0
-    return sciSetIsFilled(pobj, b);
-#endif
 }
 /*------------------------------------------------------------------------*/

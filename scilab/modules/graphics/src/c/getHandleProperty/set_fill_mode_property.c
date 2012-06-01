@@ -52,13 +52,5 @@ int set_fill_mode_property(char* pobjUID, size_t stackPointer, int valueType, in
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"fill_mode");
         return SET_PROPERTY_ERROR;
     }
-
-/*
- * To be implemented later since setting fill_mode performs
- * particular operations for the Label object
- */
-#if 0
-    return sciSetIsFilled(pobj, b);
-#endif
 }
 /*------------------------------------------------------------------------*/

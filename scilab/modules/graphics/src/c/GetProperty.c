@@ -139,31 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetIsFilled
-* Returns the filled line existence
-*/
-BOOL
-sciGetIsFilled (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pobj)->axes.filled;
-        default:
-            if (sciGetGraphicContext(pobj) != NULL)
-            {
-                return sciGetGraphicContext(pobj)->isfilled;
-            }
-            else
-            {
-                printSetGetErrorMessage("fill_mode");
-                return FALSE;
-            }
-    }
-}
-
-
-
 /**sciGetFontContext
 * Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
 * @param sciPointObj * pobj: the pointer to the entity

@@ -1193,54 +1193,6 @@ int sciSetUsedWindow( int winNum )
     return 1;
 }
 
-/*----------------------------------------------------------------------------------*/
-
-
-
-int sciInitIsFilled( char * pobjUID, BOOL isfilled )
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_LABEL:
-        /* isfilled correspond to several properties in text object */
-        sciInitIsBoxed(  pLABEL_FEATURE(pobjUID)->text, isfilled ) ;
-        sciInitIsLine(   pLABEL_FEATURE(pobjUID)->text, isfilled ) ;
-        return sciInitIsFilled( pLABEL_FEATURE(pobjUID)->text, isfilled ) ;
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.filled = isfilled;
-        return 0;
-    default:
-        if(sciGetGraphicContext(pobjUID) != NULL)
-        {
-            sciGetGraphicContext(pobjUID)->isfilled = isfilled;
-            return 0;
-        }
-    }
-
-    printSetGetErrorMessage("fill_mode");
-#endif
-    return -1;
-}
-
-/**sciSetIsFilled
- * Sets the filled line existence
- */
-int
-sciSetIsFilled (char * pobjUID, BOOL isfilled)
-{
-
-    if ( sciGetIsFilled((sciPointObj *) pobjUID ) == isfilled )
-    {
-        return 1 ;
-    }
-    return sciInitIsFilled( pobjUID, isfilled ) ;
-
-}
-
-
 int sciInitBoxType( char * pobjUID, EAxesBoxType type )
 {
     // FIXME
