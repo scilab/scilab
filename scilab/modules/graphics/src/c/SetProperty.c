@@ -117,7 +117,7 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     return -1;
 }
 
-int sciInitMarkSize( char * pobjUID, int marksize )
+int sciSetMarkSize( char * pobjUID, int marksize )
 {
     if (marksize < 0)
     {
@@ -138,27 +138,6 @@ int sciInitMarkSize( char * pobjUID, int marksize )
 
     printSetGetErrorMessage("mark_size");
     return -1;
-}
-
-/**sciSetMarkSize
- * Sets the mark size
- */
-int
-sciSetMarkSize (char * pobjUID, int marksize)
-{
-/*
- * Deactivated: the property is set within the MVC regardless of its
- * currently stored value.
- */
-#if 0
-    if ( sciGetMarkSize( pobjUID ) == marksize )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-#endif
-
-    return sciInitMarkSize( pobjUID, marksize ) ;
 }
 
 /**sciSetText

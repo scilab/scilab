@@ -887,12 +887,6 @@ void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitMarkSize(char *pobj, int marksize)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 double *sciGetClipping(sciPointObj * pobj)
 {
     return NULL;

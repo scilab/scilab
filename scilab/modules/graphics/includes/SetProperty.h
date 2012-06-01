@@ -42,7 +42,6 @@ GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 GRAPHICS_IMPEXP int sciInitIsFilled(char* pobj, BOOL isfilled);
 GRAPHICS_IMPEXP int sciSetIsFilled (char* pobj, BOOL isfilled);  /* SET */
 
-GRAPHICS_IMPEXP int sciInitMarkSize(char* pobj, int marksize);
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
 
 GRAPHICS_IMPEXP int sciInitBoxType( char* pobj, EAxesBoxType type ) ;
