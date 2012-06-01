@@ -27,6 +27,6 @@ void SciError(int n)
 /*--------------------------------------------------------------------------*/
 void SciStoreError(int n)
 {
-    setLastErrorValue(n);
+    setInternalLastErrorValue(n);
 }
 /*--------------------------------------------------------------------------*/

@@ -26,7 +26,7 @@ static char **splitErrorMessage(const char *msg, int *nbLines);
 /*--------------------------------------------------------------------------*/
 int C2F(linestore)(int *n)
 {
-    setLastErrorLinePosition(*n);
+    setInternalLastErrorLinePosition(*n);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -36,7 +36,7 @@ int C2F(funnamestore)(char *str, int *n, int lenstr)
     if ( (functionName) && (*n >= 0) )
     {
         functionName[*n] = 0;
-        setLastErrorFunctionName(functionName);
+        setInternalLastErrorFunctionName(functionName);
     }
 
     if (functionName)
@@ -77,7 +77,7 @@ int C2F(msgstore)(char *str, int *n)
     {
         for (i = 0; i < nbLines; i++)
         {
-            iRes = appendStringToLastErrorMessage(multilines[i]);
+            iRes = appendStringToInternalLastErrorMessage(multilines[i]);
             if (iRes) break;
         }
         freeArrayOfString(multilines, nbLines);
@@ -85,7 +85,7 @@ int C2F(msgstore)(char *str, int *n)
     }
     else
     {
-        iRes = appendStringToLastErrorMessage(msg);
+        iRes = appendStringToInternalLastErrorMessage(msg);
     }
 
     if (msg)
@@ -99,7 +99,7 @@ int C2F(msgstore)(char *str, int *n)
 /*--------------------------------------------------------------------------*/
 int GetLastErrorCode(void)
 {
-    return getLastErrorValue();
+    return getInternalLastErrorValue();
 }
 /*--------------------------------------------------------------------------*/
 static char **splitErrorMessage(const char *msg, int *nbLines)

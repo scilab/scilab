@@ -47,7 +47,7 @@ int errorTable(int iErr)
     int iValueReturned = 0;
 
     /* clean last error */
-    clearLastError();
+    clearInternalLastError();
 
     switch (iErr)
     {

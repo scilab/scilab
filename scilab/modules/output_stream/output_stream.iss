@@ -25,7 +25,6 @@ Source: bin\{#OUTPUT_STREAM}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCIL
 Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OUTPUT_STREAM}\includes\*.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#OUTPUT_STREAM}\includes\lasterror.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\Scierror.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\sciprint.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\do_error_number.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}

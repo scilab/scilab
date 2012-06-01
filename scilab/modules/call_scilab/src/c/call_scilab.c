@@ -18,7 +18,7 @@
 #endif
 #include "BOOL.h"
 #include "call_scilab.h"
-#include "lasterror.h"          /* clearLastError */
+#include "lasterror.h"          /* clearInternalLastError, getInternalLastErrorValue */
 #include "MALLOC.h"
 #include "scilabmode.h"
 #include "fromc.h"
@@ -229,7 +229,7 @@ BOOL TerminateScilab(char *ScilabQuit)
         }
 
         /* Make sure that the error management is reset. See bug #8830 */
-        clearLastError();
+        clearInternalLastError();
 
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
@@ -309,7 +309,7 @@ sci_types getVariableType(char *varName)
 char *getLastErrorMessageSingle(void)
 {
     int iNbLines, i, nbChar = 0;
-    const char **msgs = getLastErrorMessage(&iNbLines);
+    const char **msgs = getInternalLastErrorMessage(&iNbLines);
     char *concat;
 
     for (i = 0; i < iNbLines; i++)
@@ -326,3 +326,9 @@ char *getLastErrorMessageSingle(void)
 }
 
 /*--------------------------------------------------------------------------*/
+ int getLastErrorValue(void)
+ {
+     /* defined in lasterror.h */
+     return getInternalLastErrorValue();
+ }
+ /*--------------------------------------------------------------------------*/

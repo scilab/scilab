@@ -40,7 +40,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         {
             double dValue = 0.;
             int iValue = 0;
-            int iLastErrorValue = getLastErrorValue();
+            int iLastErrorValue = getInternalLastErrorValue();
 
             if (!isScalar(pvApiCtx, piAddressVarOne))
             {
@@ -63,7 +63,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
                 C2F(errgst).err2 = 0;
 
                 /* clear last error buffer (C) */
-                clearLastError();
+                clearInternalLastError();
              }
         }
         else
@@ -78,7 +78,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         C2F(errgst).err2 = 0;
 
         /* clear last error buffer (C) */
-        clearLastError();
+        clearInternalLastError();
     }
     LhsVar(1) = 0;
     PutLhsVar();
