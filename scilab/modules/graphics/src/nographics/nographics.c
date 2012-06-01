@@ -773,12 +773,6 @@ int sciGetMarkSize(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetLineStyle(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 double sciGetArrowSize(sciPointObj * pobj)
 {
     return 0.;

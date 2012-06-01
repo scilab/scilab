@@ -139,21 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetLineStyle
-* Gets the line style
-*/
-int
-sciGetLineStyle (sciPointObj * pobj)
-{
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        return sciGetGraphicContext(pobj)->linestyle;
-    }
-    printSetGetErrorMessage("line_style");
-    return -1;
-}
-
-
 /**sciGetIsMark
 * Gets the line style
 */
