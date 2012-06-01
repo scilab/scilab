@@ -126,7 +126,7 @@ public class ScilabDirectHandler implements Handler {
     @Override
     public synchronized BasicBlock readBlock(final BasicBlock instance) throws ScicosFormatException {
         LOG.entering("ScilabDirectHandler", "readBlock");
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(null);
 
         LOG.finer("object allocated");
 
@@ -255,7 +255,7 @@ public class ScilabDirectHandler implements Handler {
     public void writeBlock(final BasicBlock block) {
         LOG.entering("ScilabDirectHandler", "writeBlock");
 
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(null);
         final ScilabType data = element.encode(block, null);
 
         LOG.finer("encoding done");

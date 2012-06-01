@@ -48,10 +48,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
     private ScilabMList data;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockModelElement modelElement = new BlockModelElement();
+    private final BlockModelElement modelElement;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockGraphicElement graphicElement = new BlockGraphicElement();
+    private final BlockGraphicElement graphicElement;
 
     /*
      * Decoder state
@@ -69,7 +69,9 @@ public class BlockElement extends AbstractElement<BasicBlock> {
      * The state change on each {@link BlockElement} instance so be careful when
      * allocated a new {@link BlockElement}.
      */
-    public BlockElement() {
+    public BlockElement(final XcosDiagram diag) {
+        modelElement = new BlockModelElement(diag);
+        graphicElement = new BlockGraphicElement(diag);
     }
 
     /**

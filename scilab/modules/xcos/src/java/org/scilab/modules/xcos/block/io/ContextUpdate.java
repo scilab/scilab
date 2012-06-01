@@ -295,9 +295,10 @@ public abstract class ContextUpdate extends BasicBlock {
         public static Map<IOBlocks, List<mxICell>> getAllBlocks(SuperBlock parent) {
             final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(IOBlocks.class);
 
-            final SuperBlockDiagram graph = parent.getChild();
+            SuperBlockDiagram graph = parent.getChild();
             if (graph == null) {
                 parent.createChildDiagram();
+                graph = parent.getChild();
             }
 
             /* Allocation */

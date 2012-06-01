@@ -1753,8 +1753,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         /*
          * Update the id if this is an identifier cell (herited identifier)
          */
-        if (child.getId().endsWith(EditFormatAction.HASH_IDENTIFIER)) {
-            child.setId(getId() + EditFormatAction.HASH_IDENTIFIER);
+        if (child.getId().endsWith(XcosDiagram.HASH_IDENTIFIER)) {
+            child.setId(getId() + XcosDiagram.HASH_IDENTIFIER);
         }
 
         return super.insert(child, index);

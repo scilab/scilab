@@ -33,7 +33,9 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -48,6 +50,7 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
@@ -220,7 +223,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      */
     private void decodeObjs(XcosDiagram diag) throws ScicosFormatException {
         final int nbOfObjs = ((ScilabList) base.get(OBJS_INDEX)).size();
-        final BlockElement blockElement = new BlockElement();
+        final BlockElement blockElement = new BlockElement(diag);
         final LinkElement linkElement = new LinkElement(blocks);
         final LabelElement labelElement = new LabelElement();
 
@@ -274,21 +277,57 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Perform post-calculus
          */
-
-        // Translate the y axis for blocks and links
         final double minY = -minimalYaxisValue + V_MARGIN;
-        mxGraphModel.filterDescendants(diag.getModel(), new mxGraphModel.Filter() {
+        final mxIGraphModel model = diag.getModel();
+        mxGraphModel.filterDescendants(model, new mxGraphModel.Filter() {
             @Override
             public boolean filter(Object cell) {
-                mxGeometry geom = ((mxICell) cell).getGeometry();
-                if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
-                    geom.translate(H_MARGIN, minY);
-                }
+                translate(cell, model, minY);
+                updateLabels(cell, model);
 
                 // never store the cell
                 return false;
             }
         });
+    }
+
+    // Translate the y axis for blocks and links
+    private static void translate(final Object cell, final mxIGraphModel model, final double minY) {
+        final mxGeometry geom = model.getGeometry(cell);
+
+        if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
+            geom.translate(H_MARGIN, minY);
+        }
+    }
+
+    // update the labels of ports for SuperBlock
+    private static void updateLabels(final Object cell, final mxIGraphModel model) {
+        if (cell instanceof SuperBlock) {
+            final SuperBlock parent = (SuperBlock) cell;
+
+            // Assume that the children are sorted after decode
+            // blk.sortChildren();
+            final Map<IOBlocks, List<mxICell>> ports = IOBlocks.getAllPorts(parent);
+            final Map<IOBlocks, List<mxICell>> blocks = IOBlocks.getAllBlocks(parent);
+
+            for (final IOBlocks io : IOBlocks.values()) {
+                final List<mxICell> port = ports.get(io);
+                final List<mxICell> block = blocks.get(io);
+
+                final int len = Math.min(port.size(), block.size());
+                for (int i = 0; i < len; i++) {
+                    final mxICell p = port.get(i);
+                    final mxICell b = block.get(i);
+
+                    // if the I/O block has a port child and a label child,
+                    // update
+                    if (b.getChildCount() > 1) {
+                        final Object value = b.getChildAt(b.getChildCount() - 1).getValue();
+                        p.setValue(value);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -522,7 +561,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      *            the objs field number
      */
     private void fillObjs(XcosDiagram from, int field) {
-        final BlockElement blockElement = new BlockElement();
+        final BlockElement blockElement = new BlockElement(from);
         final LinkElement linkElement = new LinkElement(null);
         final ScilabList data = (ScilabList) base.get(field);
 

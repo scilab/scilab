@@ -87,7 +87,7 @@ public class H5RWHandler implements Handler {
     @Override
     public BasicBlock readBlock(BasicBlock into) throws ScicosFormatException {
         final ScilabMList data = new ScilabMList();
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(null);
         BasicBlock instance;
 
         if (LOG.isLoggable(Level.FINEST)) {
@@ -240,7 +240,7 @@ public class H5RWHandler implements Handler {
     @Override
     @Deprecated
     public void writeBlock(BasicBlock block) {
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(null);
         final ScilabType data = element.encode(block, null);
 
         if (LOG.isLoggable(Level.FINEST)) {

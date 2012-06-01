@@ -25,6 +25,7 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -32,6 +33,7 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 
 /**
@@ -54,6 +56,7 @@ class BlockGraphicElement extends BlockPartsElement {
     private static final int DIMS_INDEX = 2;
     private static final int FLIP_INDEX = 3;
     private static final int EXPRS_INDEX = 5;
+    private static final int ID_INDEX = 11;
     private static final int STYLE_INDEX = 16;
 
     private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
@@ -66,10 +69,14 @@ class BlockGraphicElement extends BlockPartsElement {
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
+    /** In-progress decoded diagram */
+    private final XcosDiagram diag;
+
     /**
      * Default constructor
      */
-    public BlockGraphicElement() {
+    public BlockGraphicElement(final XcosDiagram diag) {
+        this.diag = diag;
     }
 
     /**
@@ -89,7 +96,7 @@ class BlockGraphicElement extends BlockPartsElement {
      *      java.lang.Object)
      */
     @Override
-    public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
+    public BasicBlock decode(ScilabType element, final BasicBlock into) throws ScicosFormatException {
 
         if (into == null) {
             throw new IllegalArgumentException();
@@ -108,6 +115,7 @@ class BlockGraphicElement extends BlockPartsElement {
         fillDimension(block);
         fillOrigin(block);
         fillFlipAndRotation(block);
+        fillIdCell(block);
 
         block.setExprs(data.get(EXPRS_INDEX));
 
@@ -269,7 +277,7 @@ class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillOrigin(BasicBlock into) {
+    private void fillOrigin(final BasicBlock into) {
         /*
          * Getting the values
          */
@@ -284,8 +292,10 @@ class BlockGraphicElement extends BlockPartsElement {
         /*
          * Apply compatibility patterns
          */
-        x *= SIZE_FACTOR;
-        y *= SIZE_FACTOR;
+        if (diag == null) {
+            x *= SIZE_FACTOR;
+            y *= SIZE_FACTOR;
+        }
 
         /*
          * Invert y-axis and translate it.
@@ -305,7 +315,7 @@ class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillDimension(BasicBlock into) {
+    private void fillDimension(final BasicBlock into) {
         /*
          * Getting the values
          */
@@ -318,10 +328,13 @@ class BlockGraphicElement extends BlockPartsElement {
         h = vector[vector.length - 1];
 
         /*
-         * Apply compatibility patterns
+         * When a block has no parent diagram, the size should be updated. On a
+         * diagram decode, size is right.
          */
-        h *= SIZE_FACTOR;
-        w *= SIZE_FACTOR;
+        if (diag == null) {
+            h *= SIZE_FACTOR;
+            w *= SIZE_FACTOR;
+        }
 
         h = Math.max(h, MINIMAL_SIZE);
         w = Math.max(w, MINIMAL_SIZE);
@@ -339,7 +352,7 @@ class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillFlipAndRotation(BasicBlock into) {
+    private void fillFlipAndRotation(final BasicBlock into) {
         /*
          * Flip management
          */
@@ -358,6 +371,31 @@ class BlockGraphicElement extends BlockPartsElement {
         theta = BlockPositioning.roundAngle(theta);
 
         into.setAngle(theta);
+    }
+
+    /**
+     * Preserve the id if applicable
+     *
+     * @param into
+     *            the target instance
+     */
+    private void fillIdCell(final BasicBlock into) {
+        if (diag == null) {
+            return;
+        }
+
+        final String[][] id = ((ScilabString) data.get(ID_INDEX)).getData();
+        if (id.length == 0 || id[0].length == 0 || id[0][0].isEmpty()) {
+            return;
+        }
+
+        /*
+         * Create the local identifier
+         */
+        final mxCell identifier = diag.createCellIdentifier(into);
+        identifier.setValue(id[0][0]);
+
+        into.insert(identifier);
     }
 
     /**
