@@ -815,12 +815,6 @@ BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsMark(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetNbPoints(sciPointObj * pObj)
 {
     return -1;

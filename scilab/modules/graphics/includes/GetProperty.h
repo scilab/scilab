@@ -41,7 +41,6 @@ GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /*
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP double sciGetArrowSize (sciPointObj * pobj); /* GET */
 
