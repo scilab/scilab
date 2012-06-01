@@ -143,7 +143,7 @@
     <para>102 "Variable or function %s are not in file."</para>
     <para>103 "Variable %s is not a valid rational function."</para>
     <para>104 "Variable %s is not a valid state space representation."</para>
-    <para>105 "Undefined fonction."</para>
+    <para>105 "Undefined function."</para>
     <para>106 "Function name already used."</para>
     <para>* 107 "Too many functions are defined (maximum #:%d)."</para>
     <para>108 "Too complex for scilab, may be a too long control
