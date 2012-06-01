@@ -57,13 +57,10 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
             a.setFillColor(new Color(0, 0, 0, 0));
         }
 
-        if (legend.getLineMode()) {
-            Color lineColor = ColorFactory.createColor(colorMap, legend.getLineColor());
-            a.setLineColor(lineColor);
-            a.setLineWidth(1);
-        } else {
-            a.setLineWidth(0);
-        }
+        /* Force line width to 0 */
+        /* For legends, line mode is used to draw the legend outline */
+        /* Line mode must not be used for the text */
+        a.setLineWidth(0);
 
         return a;
     }
