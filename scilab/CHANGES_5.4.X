@@ -260,6 +260,8 @@ Documentation
 
 * Bug #11090 fixed - Fix a typo in the documentation of event_handler_function.
 
+* Bug #11175 fixed - xstringl example did not work.
+
 
 Xcos
 ====
