@@ -779,12 +779,6 @@ int sciGetLineStyle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-double sciGetLineWidth(sciPointObj * pobj)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
 double sciGetArrowSize(sciPointObj * pobj)
 {
     return 0.;

@@ -40,7 +40,6 @@ GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 
-GRAPHICS_IMPEXP double sciGetLineWidth (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetLineStyle (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsMark (sciPointObj * pobj); /* GET */

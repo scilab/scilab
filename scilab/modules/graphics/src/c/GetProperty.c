@@ -139,20 +139,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetLineWidth
-* Gets the line width
-*/
-double sciGetLineWidth (sciPointObj * pobj)
-{
-    if (sciGetGraphicContext(pobj) != NULL)
-    {
-        return sciGetGraphicContext(pobj)->linewidth;
-    }
-    printSetGetErrorMessage("thickness");
-    return -1;
-}
-
-
 /**sciGetLineStyle
 * Gets the line style
 */
