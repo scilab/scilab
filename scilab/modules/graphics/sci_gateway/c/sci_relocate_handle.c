@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2012 - scilab-Enterprises - Cedric DELAMARRE
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +35,11 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   int parentStkIndex ;
   int outIndex ;
   int i ;
-  unsigned long * handleArray = NULL ;
+
+  long children = 0 ;
+  char* childrenID = NULL;
+  long parent = 0 ;
+  char* parentID = NULL;
 
   /* the function should be called with relocate_handle( handle, parent_handle ) */
   CheckRhs(2,2) ;
@@ -45,35 +50,22 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   nbHandle = handleRow * handleCol ;
   GetRhsVar( 2,GRAPHICAL_HANDLE_DATATYPE, &parentRow, &parentCol, &parentStkIndex );
 
-  if ( parentCol * parentRow != 1 )
+  if(parentCol * parentRow != 1)
   {
     Scierror(999,_("%s: Handles must be relocated under a single parent.\n"),fname);
     return 0 ;
   }
 
-  /* create an array of handles */
-  handleArray = MALLOC( nbHandle * sizeof( unsigned long ) ) ;
-  if ( handleArray == NULL )
+  parent = (long) *hstk(parentStkIndex);
+  parentID = getObjectFromHandle(parent);
+
+  for(i = 0; i < nbHandle; i++)
   {
-    Scierror(999,_("%s: No more memory.\n"),fname);
-    return 0 ;
+    children = (long) *hstk( handleStkIndex + i );
+    childrenID = getObjectFromHandle(children);
+    setGraphicObjectRelationship(parentID, childrenID);
   }
 
-  for ( i = 0 ; i < nbHandle ; i++ )
-  {
-    handleArray[i] = (unsigned long) *hstk( handleStkIndex + i ) ;
-  }
-
-// FIXME : loop on each handle and call MVC to enable new relationship.
-
-//  if ( sciRelocateHandles( handleArray          ,
-//                           handleRow * handleCol,
-//                           (unsigned long) *hstk( parentStkIndex ) ) != 0 )
-//  {
-//		PutLhsVar();
-//		return 0 ;
-//  }
-  FREE( handleArray ) ;
   CreateVar( Rhs + 1,GRAPHICAL_HANDLE_DATATYPE, &handleCol, &handleRow, &outIndex );
   *hstk(outIndex) = *hstk(handleStkIndex) ;
   LhsVar(1) = Rhs + 1 ;
