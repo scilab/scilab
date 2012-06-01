@@ -1983,13 +1983,16 @@ public class XcosDiagram extends ScilabGraph {
                         }
 
                         final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                        if (variable != null && handler != null) {
-                            try {
+                        try {
+                            if (variable != null && handler != null) {
                                 handler.readDiagram(XcosDiagram.this, variable);
-                            } finally {
+                            }
+                        } finally {
+                            if (handler != null) {
                                 handler.release();
                             }
                         }
+
                         instance.setLastError("");
                     } catch (Exception e) {
                         Throwable ex = e;
