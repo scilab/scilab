@@ -624,6 +624,8 @@ Bug fixes
 
 * Bug #10342 fixed - assert_checkerror help file had a wrong format.
 
+* Bug #10345 fixed - uicontrols were not always drawn at the right place.
+
 * Bug #10372 fixed - remove dependencies of MALLOC.h on Windows.h and machine.h
                      on Windows.
 

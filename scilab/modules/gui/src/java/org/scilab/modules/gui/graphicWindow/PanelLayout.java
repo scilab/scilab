@@ -16,10 +16,14 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.Serializable;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.SwingViewObject;
+
 /**
  * @author Pierre Lando
  */
-public class PanelLayout implements LayoutManager, Serializable{
+public class PanelLayout implements LayoutManager, Serializable {
 
     public static final String GL_CANVAS = "GL_CANVAS";
     public static final String UI_CONTROL = "UI_CONTROL";
@@ -54,11 +58,12 @@ public class PanelLayout implements LayoutManager, Serializable{
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
             }
 
-            /* Here you can perform the layout of UI object.
+            /* Here you can perform the layout of UI object. */
             if (child instanceof SwingViewObject) {
-                String id = ((SwingViewObject) child).getId());
+                String id = ((SwingViewObject) child).getId();
+                ((SwingViewObject) child).update(GraphicObjectProperties.__GO_POSITION__,
+                                                 GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_POSITION__));
             }
-            */
         }
     }
 }
