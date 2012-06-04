@@ -30,6 +30,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 import javax.swing.JDialog;
@@ -140,7 +141,7 @@ public abstract class XCommonManager {
         long nextTime  = System.currentTimeMillis();
         long deltaTime = nextTime - time;
         if (performances) {
-            System.out.println((msg.startsWith("*")?"":" |  ") + msg + " in " + deltaTime + " ms.");
+            System.out.println((msg.startsWith("*") ? "" : " |  ") + msg + " in " + deltaTime + " ms.");
         }
         time = nextTime;
     }
@@ -237,10 +238,10 @@ public abstract class XCommonManager {
         List<File> list = new ArrayList<File>();
         File modulesDir = new File(SCI + "/modules/");
         File[] modules = modulesDir.listFiles(new FileFilter() {
-                public boolean accept(File f) {
-                    return f.isDirectory();
-                }
-            });
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+        });
 
         for (File module : modules) {
             File etc = new File(module, "/etc/");
@@ -266,10 +267,10 @@ public abstract class XCommonManager {
 
             for (File etc : etcs) {
                 File[] xsls = etc.listFiles(new FilenameFilter() {
-                        public boolean accept(File dir, String name) {
-                            return name.endsWith(".xsl") && name.startsWith("XConfiguration");
-                        }
-                    });
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".xsl") && name.startsWith("XConfiguration");
+                    }
+                });
                 for (File xsl : xsls) {
                     try {
                         buffer.append("<xsl:import href=\"").append(xsl.getCanonicalPath()).append("\"/>\n");
@@ -324,7 +325,7 @@ public abstract class XCommonManager {
      */
     public static Element getElementByContext(final String context) {
         String[] ids = context.split("/");
-        Element element = (Element) document.getDocumentElement();
+        Element element = document.getDocumentElement();
         for (int i = 0; i < ids.length; i++) {
             int index = Integer.parseInt(ids[i]);
             // get the element with corresponding index (filter text nodes)
@@ -360,7 +361,9 @@ public abstract class XCommonManager {
         Node action = actions[0];
         // All actions must be of the same kind.
 
-        if (!getAttribute(action, "set").equals(NAV)) {
+        boolean enable = getAttribute(action, "enable").equals(NAV) || getAttribute(action, "enable").equals("true");
+
+        if (!getAttribute(action, "set").equals(NAV) && enable) {
             for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
                 String context = getAttribute(action, "context");
@@ -369,6 +372,7 @@ public abstract class XCommonManager {
                 String attribute = getAttribute(action, "set");
                 if (element != null) {
                     element.setAttribute(attribute, value);
+                    XConfiguration.addModifiedPath(getNodePath(element));
                 }
             }
             refreshDisplay();
@@ -376,7 +380,7 @@ public abstract class XCommonManager {
             return true;
         }
 
-        if (!getAttribute(action, "insert").equals(NAV)) {
+        if (!getAttribute(action, "insert").equals(NAV) && enable) {
             for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
                 String context = getAttribute(action, "context");
@@ -419,7 +423,7 @@ public abstract class XCommonManager {
             return true;
         }
 
-        if (!getAttribute(action, "delete").equals(NAV)) {
+        if (!getAttribute(action, "delete").equals(NAV) && enable) {
             for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
                 String context = getAttribute(action, "context");
@@ -445,7 +449,7 @@ public abstract class XCommonManager {
                             deleted = node;
                             break;
                         }
-                        delete --;
+                        delete--;
                     }
                 }
                 if (element != null && deleted != null) {
@@ -458,9 +462,10 @@ public abstract class XCommonManager {
             return true;
         }
 
-        if (!getAttribute(action, "choose").equals(NAV)) {
+        if (!getAttribute(action, "choose").equals(NAV) && enable) {
             String context = getAttribute(action, "context");
             Element element = getElementByContext(context);
+
             if (source == null) {
                 return false;
             }
@@ -481,6 +486,7 @@ public abstract class XCommonManager {
                         } else {
                             element.setAttribute(attribute, value.toString());
                         }
+                        XConfiguration.addModifiedPath(getNodePath(element));
                     }
                     refreshDisplay();
                     updated = true;
@@ -491,6 +497,31 @@ public abstract class XCommonManager {
             return true;
         }
         return false;
+    }
+
+    public static final String getNodePath(Node node) {
+        StringBuilder buffer = new StringBuilder("/");
+        Stack<String> stack = new Stack<String>();
+        Node n = node;
+
+        while (n != null) {
+            stack.push(n.getNodeName());
+            n = n.getParentNode();
+        }
+
+        if (stack.size() >= 3) {
+            stack.pop();
+            stack.pop();
+        } else {
+            return null;
+        }
+
+        while (!stack.empty()) {
+            buffer.append("/");
+            buffer.append(stack.pop());
+        }
+
+        return buffer.toString();
     }
 
     /**
@@ -585,8 +616,8 @@ public abstract class XCommonManager {
         if (response.equals(NAV) || response.equals("")) {
             return value;
         }
-	
-	return response.equalsIgnoreCase("true");
+
+        return response.equalsIgnoreCase("true");
     }
 
     /**

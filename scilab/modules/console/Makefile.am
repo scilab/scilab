@@ -30,7 +30,8 @@ libsciconsole_la_etc_DATA = \
 	etc/XConfiguration-console.xml \
 	etc/XConfiguration-console.xsl \
 	etc/XConfiguration-general.xml \
-	etc/XConfiguration-general.xsl
+	etc/XConfiguration-general.xsl \
+	etc/Actions-Configuration.xml
 
 #### console : List of the cpp files ####
 CONSOLE_CXX_JNI_SOURCES = src/jni/CallScilabBridge.cpp

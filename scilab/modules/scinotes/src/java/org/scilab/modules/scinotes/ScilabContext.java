@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises -Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,12 +13,13 @@
 
 package org.scilab.modules.scinotes;
 
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
@@ -25,6 +27,7 @@ import javax.swing.text.Element;
 
 import org.w3c.dom.Document;
 
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.ScilabFontUtils;
@@ -34,6 +37,10 @@ import org.scilab.modules.gui.utils.ScilabFontUtils;
  * @author Calixte DENIZET
  */
 public class ScilabContext implements ViewFactory {
+
+    public static final String COLORSPATH = "//colors/body/syntax-highlighting-colors/item";
+    public static final String SYSTEMFONTPATH = "//fonts/body/fonts";
+    public static final String FONTPATH = "//fonts/body/fonts/item";
 
     /**
      * Contains the colors of the different tokens
@@ -49,6 +56,12 @@ public class ScilabContext implements ViewFactory {
      * Contains the attrib (underline or stroke) of the different tokens
      */
     public int[] tokenAttrib;
+
+    private Font baseFont;
+    private boolean isDesktop;
+    private boolean compatible;
+    private FontInfo[] scinotesInfos;
+    private FontInfo[] desktopInfos;
 
     private View view;
     private boolean plain;
@@ -71,29 +84,61 @@ public class ScilabContext implements ViewFactory {
         this.plain = plain;
     }
 
+    public void configurationChanged(SciNotesConfiguration.Conf conf) {
+        boolean modified = false;
+        FontInfo[] scinotes = null;
+        FontInfo[] desktop = null;
+        Document doc = null;
+        if (conf.colors) {
+            genAll();
+            modified = true;
+        }
+
+        if (!modified && conf.font) {
+            doc = XConfiguration.getXConfigurationDocument();
+            scinotes = XConfiguration.get(FontInfo.class, doc, FONTPATH + "[@name='Scinotes']");
+            if (!scinotes[0].equals(scinotesInfos)) {
+                genAll();
+                modified = true;
+            }
+        }
+
+        if (!modified && conf.systemfont) {
+            doc = XConfiguration.getXConfigurationDocument();
+            desktop = XConfiguration.get(FontInfo.class, doc, SYSTEMFONTPATH);
+            genAll();
+        }
+    }
+
     public void genAll() {
         tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
         tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
         tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
         Document doc = XConfiguration.getXConfigurationDocument();
-        FontInfo[] desktop = XConfiguration.get(FontInfo.class, doc, "//fonts/body/fonts");
-        FontInfo[] scinotes = XConfiguration.get(FontInfo.class, doc, "//fonts/body/fonts/item[@name='Scinotes']");
+        desktopInfos = XConfiguration.get(FontInfo.class, doc, SYSTEMFONTPATH);
+        scinotesInfos = XConfiguration.get(FontInfo.class, doc, FONTPATH + "[@name='Scinotes']");
         Font font;
-        if (scinotes[0].isDesktop()) {
-            font = desktop[0].getFont();
+        if (scinotesInfos[0].isDesktop()) {
+            font = desktopInfos[0].getFont();
+            isDesktop = true;
         } else {
-            font = scinotes[0].getFont();
+            font = scinotesInfos[0].getFont();
+            isDesktop = false;
         }
-        boolean compatible = ScilabFontUtils.isAllStylesSameWidths(font);
 
-        FontDecoration[] decorations = XConfiguration.get(FontDecoration.class, doc, "//colors/body/syntax-highlighting-colors/item");
+        if (font != baseFont) {
+            compatible = ScilabFontUtils.isAllStylesSameWidths(font);
+            baseFont = font;
+        }
+
+        FontDecoration[] decorations = XConfiguration.get(FontDecoration.class, doc, COLORSPATH);
         doc = null;
 
         for (FontDecoration deco : decorations) {
             tokenAttrib[deco.getType()] = deco.getValue();
             tokenColors[deco.getType()] = deco.getColor();
-            tokenFonts[deco.getType()] = compatible ? font.deriveFont(deco.getFontFace()) : font;
+            tokenFonts[deco.getType()] = compatible ? baseFont.deriveFont(deco.getFontFace()) : baseFont;
         }
 
         // Default color and special case
@@ -182,19 +227,19 @@ public class ScilabContext implements ViewFactory {
         Font font = tokenFonts[ScilabLexerConstants.TOKENS.get(name)];
         int style = font.getStyle();
         switch (type) {
-        case -2 :
-            font = font.deriveFont(style & ~Font.ITALIC);
-            break;
-        case -1 :
-            font = font.deriveFont(style & ~Font.BOLD);
-            break;
-        case 1 :
-            font = font.deriveFont(style | Font.BOLD);
-            break;
-        case 2 :
-            font = font.deriveFont(style | Font.ITALIC);
-            break;
-        default :
+            case -2 :
+                font = font.deriveFont(style & ~Font.ITALIC);
+                break;
+            case -1 :
+                font = font.deriveFont(style & ~Font.BOLD);
+                break;
+            case 1 :
+                font = font.deriveFont(style | Font.BOLD);
+                break;
+            case 2 :
+                font = font.deriveFont(style | Font.ITALIC);
+                break;
+            default :
         }
 
         tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
@@ -233,6 +278,7 @@ public class ScilabContext implements ViewFactory {
     /**
      * Inner class to retrieve configuration elements from configuration file
      */
+    @XConfAttribute
     private static class FontInfo {
 
         private String fontname;
@@ -241,15 +287,10 @@ public class ScilabContext implements ViewFactory {
 
         public FontInfo() { }
 
-        public void setFontName(String fontname) {
+        @XConfAttribute(attributes = {"font-name", "font-size", "desktop"})
+        public void set(String fontname, int fontsize, boolean desktop) {
             this.fontname = fontname;
-        }
-
-        public void setFontSize(int fontsize) {
             this.fontsize = fontsize;
-        }
-
-        public void setDesktop(boolean desktop) {
             this.desktop = desktop;
         }
 
@@ -260,11 +301,21 @@ public class ScilabContext implements ViewFactory {
         public Font getFont() {
             return new Font(fontname, Font.PLAIN, fontsize);
         }
+
+        public boolean equals(Object o) {
+            if (o instanceof FontInfo) {
+                FontInfo f = (FontInfo) o;
+                return fontname.equals(f.fontname) && fontsize == f.fontsize && desktop == f.desktop;
+            }
+
+            return false;
+        }
     }
 
     /**
      * Inner class to retrieve configuration elements from configuration file
      */
+    @XConfAttribute
     private static class FontDecoration {
 
         private boolean underline;
@@ -276,28 +327,14 @@ public class ScilabContext implements ViewFactory {
 
         public FontDecoration() { }
 
-        public void setUnderline(boolean underline) {
+        @XConfAttribute(attributes = {"underline", "strike-through", "name", "italic", "color", "bold"})
+        public void set(boolean underline, boolean strikeThrough, String name, boolean italic, Color color, boolean bold) {
             this.underline = underline;
-        }
-
-        public void setStrikeThrough(boolean strikeThrough) {
             this.strikeThrough = strikeThrough;
-        }
-
-        public void setName(String name) {
-            type = ScilabLexerConstants.TOKENS.get(name);
-        }
-
-        public void setColor(Color color) {
+            this.type = ScilabLexerConstants.TOKENS.get(name);
             this.color = color;
-        }
-
-        public void setBold(boolean bold) {
-            this.bold = bold;
-        }
-
-        public void setItalic(boolean italic) {
             this.italic = italic;
+            this.bold = bold;
         }
 
         public int getFontFace() {
@@ -331,6 +368,15 @@ public class ScilabContext implements ViewFactory {
 
         public int getType() {
             return type;
+        }
+
+        public boolean equals(Object o) {
+            if (o instanceof FontDecoration) {
+                FontDecoration f = (FontDecoration) o;
+                return underline == f.underline && strikeThrough == f.strikeThrough && bold == f.bold && italic == f.italic && color.equals(f.color) && type == f.type;
+            }
+
+            return false;
         }
     }
 }

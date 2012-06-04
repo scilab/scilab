@@ -74,9 +74,9 @@ import org.scilab.modules.scinotes.actions.SaveAction;
  * @author Calixte DENIZET
  */
 public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
-                                                  DragSourceListener,
-                                                  DropTargetListener,
-                                                  Transferable {
+    DragSourceListener,
+    DropTargetListener,
+    Transferable {
 
     private static final ImageIcon CLOSEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab.png");
     private static final ImageIcon CLOSEONICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab-on.png");
@@ -102,13 +102,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         super();
         this.editor = editor;
         setFocusTraversalPolicy(new java.awt.DefaultFocusTraversalPolicy() {
-                public Component getComponentAfter(Container aContainer, Component aComponent) {
-                    if (aComponent instanceof ScilabEditorPane) {
-                        return aComponent;
-                    }
-                    return super.getComponentAfter(aContainer, aComponent);
+            public Component getComponentAfter(Container aContainer, Component aComponent) {
+                if (aComponent instanceof ScilabEditorPane) {
+                    return aComponent;
                 }
-            });
+                return super.getComponentAfter(aContainer, aComponent);
+            }
+        });
 
         setFocusCycleRoot(true);
 
@@ -117,14 +117,14 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         dragsource.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, this);
         DropTarget droptarget = new DropTarget(this, this);
         addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
-                        int index = indexAtLocation(e.getX(), e.getY());
-                        ((CloseTabButton) getTabComponentAt(index)).closeTab();
-                        e.consume();
-                    }
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
+                    int index = indexAtLocation(e.getX(), e.getY());
+                    ((CloseTabButton) getTabComponentAt(index)).closeTab();
+                    e.consume();
                 }
-            });
+            }
+        });
     }
 
     /**
@@ -184,7 +184,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      * @return the supported flavors
      */
     public DataFlavor[] getTransferDataFlavors() {
-        return new DataFlavor[]{DATAFLAVOR};
+        return new DataFlavor[] {DATAFLAVOR};
     }
 
     /**
@@ -375,45 +375,44 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      */
     private JPopupMenu createPopupMenu() {
         JPopupMenu popup = new JPopupMenu() {
-                public void show(Component invoker, int x, int y) {
-                    int index = ScilabTabbedPane.this.indexAtLocation(x, y);
-                    ScilabTabbedPane.this.setSelectedIndex(index);
-                    super.show(invoker, x, y);
-                }
-            };
+            public void show(Component invoker, int x, int y) {
+                int index = ScilabTabbedPane.this.indexAtLocation(x, y);
+                ScilabTabbedPane.this.setSelectedIndex(index);
+                super.show(invoker, x, y);
+            }
+        };
 
-        Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
-        ConfigSciNotesManager.addMapActionNameKeys(map);
+        Map<String, KeyStroke> map = SciNotes.getActionKeys();
 
         SwingScilabMenuItem menuItem;
-        menuItem = (SwingScilabMenuItem) SaveAction.createMenu(SciNotesMessages.SAVE, editor, map.get("SaveAction")).getAsSimpleMenuItem();
+        menuItem = (SwingScilabMenuItem) SaveAction.createMenu(SciNotesMessages.SAVE, editor, map.get("scinotes-save")).getAsSimpleMenuItem();
         popup.add(menuItem);
 
-        menuItem = (SwingScilabMenuItem) CloseAction.createMenu(SciNotesMessages.CLOSE, editor, map.get("CloseAction")).getAsSimpleMenuItem();
+        menuItem = (SwingScilabMenuItem) CloseAction.createMenu(SciNotesMessages.CLOSE, editor, map.get("scinotes-close")).getAsSimpleMenuItem();
         popup.add(menuItem);
 
-        menuItem = (SwingScilabMenuItem) CloseAllButThisAction.createMenu(SciNotesMessages.CLOSEALLBUTTHIS, editor, map.get("CloseAllButThisAction")).getAsSimpleMenuItem();
+        menuItem = (SwingScilabMenuItem) CloseAllButThisAction.createMenu(SciNotesMessages.CLOSEALLBUTTHIS, editor, map.get("scinotes-close-all-but")).getAsSimpleMenuItem();
         popup.add(menuItem);
 
         popup.addSeparator();
 
         final JMenuItem menuitem = new JMenuItem(SciNotesMessages.COPYFULLFILEPATH);
         menuitem.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if (editor.getTextPane() != null) {
-                        StringSelection sel = new StringSelection(editor.getTextPane().getName());
-                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
-                    }
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (editor.getTextPane() != null) {
+                    StringSelection sel = new StringSelection(editor.getTextPane().getName());
+                    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
                 }
-            });
+            }
+        });
         menuitem.addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String name = editor.getTextPane().getName();
-                        menuitem.setEnabled(name != null && !name.isEmpty());
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String name = editor.getTextPane().getName();
+                    menuitem.setEnabled(name != null && !name.isEmpty());
                 }
-            });
+            }
+        });
         popup.add(menuitem);
 
         return popup;
@@ -483,10 +482,10 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setBorderPainted(false);
                 setContentAreaFilled(false);
                 addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            closeTab();
-                        }
-                    });
+                    public void actionPerformed(ActionEvent e) {
+                        closeTab();
+                    }
+                });
             }
         }
     }

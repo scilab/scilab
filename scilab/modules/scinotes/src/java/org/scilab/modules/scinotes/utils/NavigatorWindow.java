@@ -85,7 +85,7 @@ import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
  * @author Calixte DENIZET
  */
 public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
-TreeExpansionListener {
+    TreeExpansionListener {
 
     private static final String EMPTY = "";
 
@@ -286,14 +286,14 @@ TreeExpansionListener {
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         if (win != null && win.getDockingPort() != null) {
-	    Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-	    for (SwingScilabTab tab : set) {
-		if (tab == editor) {
-		    addToolBar(editor.getToolBar());
-		    break;
-		}
-	    }
-	}
+            Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+            for (SwingScilabTab tab : set) {
+                if (tab == editor) {
+                    addToolBar(editor.getToolBar());
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -466,37 +466,37 @@ TreeExpansionListener {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                .addComponent(labelGotoLine)
-                                                .addComponent(labelNumerotation))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                                                        .addContainerGap())
-                );
+                                  .addGroup(layout.createSequentialGroup()
+                                            .addContainerGap()
+                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                    .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(labelGotoLine)
+                                                                    .addComponent(labelNumerotation))
+                                                            .addGap(18, 18, 18)
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                                                    .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                            .addContainerGap())
+                                 );
         layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                .addComponent(labelGotoLine)
-                                .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(labelNumerotation)
-                                        .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap())
-                );
+                                .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                                          .addContainerGap()
+                                          .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                                          .addPreferredGap(ComponentPlacement.RELATED)
+                                          .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+                                          .addPreferredGap(ComponentPlacement.RELATED)
+                                          .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                                  .addComponent(labelGotoLine)
+                                                  .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                          .addGap(4, 4, 4)
+                                          .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                                  .addComponent(labelNumerotation)
+                                                  .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                          .addContainerGap())
+                               );
         /* End NetBeans */
 
         List<Component> components = new ArrayList(3);
@@ -526,7 +526,7 @@ TreeExpansionListener {
         fileMenu.setMnemonic('F');
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(callback);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotesGUI.getActionKeyMap().get("ExitAction"));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotes.getActionKeys().get("scinotes-exit"));
         menu.setText(SciNotesMessages.EXIT);
         fileMenu.add(menu);
         menubar.add(fileMenu);

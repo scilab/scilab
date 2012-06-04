@@ -47,30 +47,30 @@ class ComponentFactory {
 
     static {
         actions.put("Scroll", new MyAction() {
-                public Component getComponent(final Node node) {
-                    return new Scroll(node, new JPanel());
-                }
-            });
+            public Component getComponent(final Node node) {
+                return new Scroll(node, new JPanel());
+            }
+        });
         actions.put("#text", new MyAction() {
-                public Component getComponent(final Node node) {
-                    return new JLabel(node.getNodeValue());
-                }
-            });
+            public Component getComponent(final Node node) {
+                return new JLabel(node.getNodeValue());
+            }
+        });
         actions.put("VSpace", new MyAction() {
-                public Component getComponent(final Node node) {
-                    return Box.createVerticalStrut(XConfigManager.getInt(node, "height", SPACE));
-                }
-            });
+            public Component getComponent(final Node node) {
+                return Box.createVerticalStrut(XConfigManager.getInt(node, "height", SPACE));
+            }
+        });
         actions.put("HSpace", new MyAction() {
-                public Component getComponent(final Node node) {
-                    return Box.createHorizontalStrut(XConfigManager.getInt(node, "height", SPACE));
-                }
-            });
+            public Component getComponent(final Node node) {
+                return Box.createHorizontalStrut(XConfigManager.getInt(node, "height", SPACE));
+            }
+        });
         actions.put("Glue", new MyAction() {
-                public Component getComponent(final Node node) {
-                    return Box.createGlue();
-                }
-            });
+            public Component getComponent(final Node node) {
+                return Box.createGlue();
+            }
+        });
     }
 
     public static final Component getComponent(final Node node) {
@@ -88,12 +88,13 @@ class ComponentFactory {
             try {
                 componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);
             } catch (ClassNotFoundException e) {
+                System.err.println(e);
                 return new XStub(node, "ClassNotFoundException");
             }
 
             try {
                 // First with a Node as argument
-                Class[] parameter = new Class[]{Node.class};
+                Class[] parameter = new Class[] {Node.class};
                 constructor = componentClass.getConstructor(parameter);
             } catch (NoSuchMethodException e) {
                 System.err.println("NoSuchMethodException:" + e);
@@ -108,7 +109,7 @@ class ComponentFactory {
         }
 
         try {
-            component = (Component) constructor.newInstance(new Object[]{node});
+            component = (Component) constructor.newInstance(new Object[] {node});
         } catch (InstantiationException e) {
             System.err.println("InstantiationException:" + e);
             return new XStub(node, "InstantiationException");
@@ -159,7 +160,7 @@ class ComponentFactory {
         public XStub(final Node node, final String cause) {
             super();
             Border red = BorderFactory.createLineBorder(Color.RED);
-            TitledBorder title = BorderFactory.createTitledBorder(red, node.getNodeName());
+            TitledBorder title = BorderFactory.createTitledBorder(red, node.getNodeName() + " " + cause);
             Dimension dimension = new Dimension(D_WIDTH, D_HEIGHT);
             setPreferredSize(dimension);
             setOpaque(false);

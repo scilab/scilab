@@ -28,19 +28,19 @@ public final class ScilabKeyStroke {
         String key = "";
         int mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
         if ((mask & KeyEvent.CTRL_MASK) != 0) {
-            key += " control";
+            key += " Ctrl";
         }
         if ((mask & KeyEvent.META_MASK) != 0) {
-            key += " meta";
+            key += " Meta";
         }
         if ((mask & KeyEvent.SHIFT_MASK) != 0) {
-            key += " shift";
+            key += " Shift";
         }
         if ((mask & KeyEvent.ALT_MASK) != 0) {
-            key += " alt";
+            key += " Alt";
         }
         if ((mask & KeyEvent.ALT_GRAPH_MASK) != 0) {
-            key += " altGraph";
+            key += " AltGraph";
         }
 
         if (key.length() > 0 && key.startsWith(" ")) {
@@ -51,13 +51,21 @@ public final class ScilabKeyStroke {
     }
 
     /**
+     * Get the OS meta key: usually Ctrl for Linux or Windows OS, and Meta (Apple) for Mac OS
+     * @return the OS special meta key
+     */
+    public static final String getOSMetaKey() {
+        return oSKey;
+    }
+
+    /**
      * @param key String representation of the key "control A" or
      * "OSSCKEY A" where OSSCKEY is replaced by the default meta key of
      * the OS.
      * @return the corresponding key
      */
     public static KeyStroke getKeyStroke(String key) {
-        String str = key.replaceAll("OSSCKEY", oSKey);
+        String str = key.replaceAll("OSSCKEY", oSKey.toLowerCase());
 
         return KeyStroke.getKeyStroke(str);
     }

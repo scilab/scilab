@@ -31,6 +31,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.preferences.Component.Entry;
+import org.scilab.modules.preferences.Component.FileSelector;
 import org.scilab.modules.preferences.Component.Scroll;
 import org.scilab.modules.preferences.Component.Table;
 import org.scilab.modules.preferences.Component.Select;
@@ -189,6 +190,9 @@ public class XUpdateVisitor {
         if (node.getNodeName().equals("actionPerformed")) {
             return false;
         }
+        if (node.getNodeName().equals("entryChanged")) {
+            return false;
+        }
         // b. Text nodes with only invisible characters are invisible.
         if (node.getNodeName().equals("#text")) {
             if (node.getNodeValue().replaceAll("^[ \t\n]+$", "").equals("")) {
@@ -251,6 +255,11 @@ public class XUpdateVisitor {
         if (listener.equals("EntryListener")) {
             if (component instanceof Entry) {
                 ((Entry) component).getDocument().addDocumentListener(sentinel);
+                return;
+            }
+
+            if (component instanceof FileSelector) {
+                ((FileSelector) component).addDocumentListener(sentinel);
                 return;
             }
         }

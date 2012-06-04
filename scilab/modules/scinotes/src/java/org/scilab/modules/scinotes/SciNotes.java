@@ -33,6 +33,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -46,7 +47,12 @@ import javax.swing.text.EditorKit;
 import javax.swing.text.View;
 import javax.swing.undo.UndoManager;
 
+import org.w3c.dom.Document;
+
 import org.flexdock.docking.event.DockingEvent;
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
+import org.scilab.modules.commons.xml.XConfiguration;
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -107,6 +113,9 @@ public class SciNotes extends SwingScilabTab {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
+    private static final String XPATH_SCINOTES_KEY = "//general/shortcuts/body/actions/action-folder[@name='Scinotes']/action";
+    private static final String XPATH_SCINOTES_ACTION = "/map/scinotes/entry";
+
     private static final String SCINOTES = "SciNotes";
     private static final String SCI_EXTENSION = ".sci";
     private static final String SCE_EXTENSION = ".sce";
@@ -126,6 +135,9 @@ public class SciNotes extends SwingScilabTab {
     private static final String DOT = ".";
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
+
+    private static final Map<String, String> actionToName;
+    private static Map<String, KeyStroke> actionKeys;
 
     private static List<SciNotes> scinotesList = new ArrayList<SciNotes>();
     private static SciNotes editor;
@@ -159,6 +171,10 @@ public class SciNotes extends SwingScilabTab {
                 updateSciNotes();
             }
         });
+
+        Document doc = ScilabXMLUtilities.readDocument(System.getenv("SCI") + "/modules/console/etc/Actions-Configuration.xml");
+        actionToName = XConfiguration.get(doc, "name", String.class, "action", String.class, XPATH_SCINOTES_ACTION);
+        XConfiguration.addXConfigurationListener(new SciNotesConfiguration());
     }
 
     /**
@@ -201,6 +217,25 @@ public class SciNotes extends SwingScilabTab {
      */
     public SciNotes() {
         this(UUID.randomUUID().toString());
+    }
+
+    public static void configurationChanged(SciNotesConfiguration.Conf conf) {
+        setWhereamiLineNumbering();
+        setAutoIndent();
+        updatePanes(conf);
+    }
+
+    public static Map<String, KeyStroke> getActionKeys() {
+        if (actionKeys == null) {
+            Document doc = XConfiguration.getXConfigurationDocument();
+            actionKeys = XConfiguration.get(doc, "name", String.class, "key", KeyStroke.class, XPATH_SCINOTES_KEY);
+        }
+
+        return actionKeys;
+    }
+
+    public static Map<String, String> getActionName() {
+        return actionToName;
     }
 
     /**
@@ -969,10 +1004,10 @@ public class SciNotes extends SwingScilabTab {
         // process and return true
         if (!textPaneAt.checkExternalModif() && !((ScilabDocument) textPaneAt.getDocument()).isContentModified() && (textPaneAt.getName() != null)) {
             /*
-                                                                                                                                                           * Bug
-                                                                                                                                                           * 5103
-                                                                                                                                                           * fix
-                                                                                                                                                           */
+             * Bug
+             * 5103
+             * fix
+             */
             return true;
         }
 
@@ -1336,16 +1371,17 @@ public class SciNotes extends SwingScilabTab {
      */
     public void initPane(ScilabEditorPane pane, boolean plain) {
         setHighlight(pane);
-	ScilabEditorKit kit = new ScilabEditorKit(plain);
+        ScilabEditorKit kit = new ScilabEditorKit(plain);
         pane.setEditorKit(kit);
 
         // Panel of line number for the text pane
-        pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
+        pane.getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
         activateHelpOnTyping(pane);
 
         pane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         pane.setFont(kit.getStylePreferences().tokenFonts[0]);
 
+        // TODO rajouter ca ds les prefs
         pane.setBackground(ConfigSciNotesManager.getSciNotesBackgroundColor());
         pane.setCaretColor(ConfigSciNotesManager.getSciNotesForegroundColor());
 
@@ -1737,14 +1773,14 @@ public class SciNotes extends SwingScilabTab {
      * @param state
      *            int
      */
-    public static void setWhereamiLineNumbering(int state) {
+    public static void setWhereamiLineNumbering() {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
                 ScilabEditorPane sep = ed.getTextPane(i);
-                sep.getXln().setWhereamiLineNumbering(state);
+                sep.getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
                 if (sep.getOtherPaneInSplit() != null) {
-                    sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(state);
+                    sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
                 }
             }
             ed.repaint();
@@ -1757,14 +1793,14 @@ public class SciNotes extends SwingScilabTab {
      * @param b
      *            true to activate auto-indent mode
      */
-    public static void setAutoIndent(boolean b) {
+    public static void setAutoIndent() {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
                 ScilabEditorPane sep = ed.getTextPane(i);
-                ((ScilabDocument) sep.getDocument()).setAutoIndent(b);
+                ((ScilabDocument) sep.getDocument()).setAutoIndent(SciNotesOptions.getSciNotesDisplay().automaticIndent);
                 if (sep.getOtherPaneInSplit() != null) {
-                    ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(b);
+                    ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(SciNotesOptions.getSciNotesDisplay().automaticIndent);
                 }
             }
         }
@@ -1806,7 +1842,7 @@ public class SciNotes extends SwingScilabTab {
                     sep.copyProps(pane);
                     pane.setDocument(sep.getDocument());
                     pane.setCaretPosition(sep.getCaretPosition());
-                    pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
+                    pane.getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
                     ed.tabPane.setComponentAt(i, pane.getEditorComponent());
                     ed.activateHelpOnTyping(pane);
                     ed.initInputMap(pane);
@@ -1818,6 +1854,11 @@ public class SciNotes extends SwingScilabTab {
             }
         }
     }
+
+    /**
+         * Set a line numbering compatible with the whereami function
+         * @param state 0 for nothing, 1 for normal and 2 for whereami
+         */
 
     /**
      * Enable the highlighted line in this editor
@@ -1886,6 +1927,26 @@ public class SciNotes extends SwingScilabTab {
                         ((ScilabPlainView) view).reinitialize();
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Set the color of the highlighted line in this editor
+     *
+     * @param c
+     *            Color
+     */
+    public static void updatePanes(SciNotesConfiguration.Conf conf) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = ed.getTextPane(i);
+                sep.configurationChanged(conf);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().configurationChanged(conf);
+                }
+                sep.repaint();
             }
         }
     }
@@ -2262,39 +2323,48 @@ public class SciNotes extends SwingScilabTab {
      *            the SciNotes editor
      */
     private static void setKeyStrokeAction(ScilabEditorPane sep, SciNotes ed) {
-        Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
-        ConfigSciNotesManager.addMapActionNameKeys(map);
+        if (ed.getTextPane(0) != sep) {
+            ScilabEditorPane s = ed.getTextPane(0);
+            sep.setInputMap(JComponent.WHEN_FOCUSED, s.getInputMap());
+            return;
+        }
+
+        Map<String, KeyStroke> map = getActionKeys();
 
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         Iterator<String> iter = map.keySet().iterator();
         while (iter.hasNext()) {
-            String action = iter.next();
-            if (!action.equals("SciNotesCompletionAction")) {
-                String className;
-                if (action.lastIndexOf(DOT) != -1) {
-                    className = action;
+            String actionName = iter.next();
+            KeyStroke key = map.get(actionName);
+            String action = actionToName.get(actionName);
+            if (key != null) {
+                if (!action.equals("SciNotesCompletionAction")) {
+                    String className;
+                    if (action.lastIndexOf(DOT) != -1) {
+                        className = action;
+                    } else {
+                        className = DEFAULTACTIONPATH + DOT + action;
+                    }
+                    try {
+                        Class clazz = loader.loadClass(className);
+                        Constructor constructor = clazz.getConstructor(new Class[] { String.class, SciNotes.class });
+                        Object act = constructor.newInstance(new Object[] { "", ed });
+                        sep.getInputMap().put(key, act);
+                    } catch (ClassNotFoundException e) {
+                        System.err.println("No action: " + className);
+                    } catch (InstantiationException e) {
+                        System.err.println("Problem to instantiate in action: " + className);
+                    } catch (NoSuchMethodException e) {
+                        System.err.println("No valid constructor in action: " + className);
+                    } catch (IllegalAccessException e) {
+                        System.err.println("The constructor must be public: " + className);
+                    } catch (InvocationTargetException e) {
+                        System.err.println("The constructor in " + className + " threw an exception :");
+                        e.printStackTrace();
+                    }
                 } else {
-                    className = DEFAULTACTIONPATH + DOT + action;
+                    sep.getInputMap().put(key, new SciNotesCompletionAction(sep, ed));
                 }
-                try {
-                    Class clazz = loader.loadClass(className);
-                    Constructor constructor = clazz.getConstructor(new Class[] { String.class, SciNotes.class });
-                    Object act = constructor.newInstance(new Object[] { "", ed });
-                    sep.getInputMap().put(map.get(action), act);
-                } catch (ClassNotFoundException e) {
-                    System.err.println("No action: " + className);
-                } catch (InstantiationException e) {
-                    System.err.println("Problem to instantiate in action: " + className);
-                } catch (NoSuchMethodException e) {
-                    System.err.println("No valid constructor in action: " + className);
-                } catch (IllegalAccessException e) {
-                    System.err.println("The constructor must be public: " + className);
-                } catch (InvocationTargetException e) {
-                    System.err.println("The constructor in " + className + " threw an exception :");
-                    e.printStackTrace();
-                }
-            } else {
-                sep.getInputMap().put(map.get(action), new SciNotesCompletionAction(sep, ed));
             }
         }
     }

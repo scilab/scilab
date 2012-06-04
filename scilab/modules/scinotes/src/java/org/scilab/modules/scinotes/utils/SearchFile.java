@@ -262,8 +262,8 @@ public class SearchFile extends SwingScilabTab {
     }
 
     public void fillTab(SearchManager.MatchingPositions pos, String base, boolean recursive, boolean ignoreCR,
-            String filePattern, boolean fileCaseSensitive, String wordPattern,
-            boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+                        String filePattern, boolean fileCaseSensitive, String wordPattern,
+                        boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
         String title;
 
         if (wordPattern == null || wordPattern.isEmpty()) {
@@ -322,7 +322,7 @@ public class SearchFile extends SwingScilabTab {
         fileMenu.setMnemonic('F');
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(callback);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotesGUI.getActionKeyMap().get("ExitAction"));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotes.getActionKeys().get("scinotes-exit"));
         menu.setText(SciNotesMessages.EXIT);
         fileMenu.add(menu);
         menubar.add(fileMenu);
@@ -356,9 +356,9 @@ public class SearchFile extends SwingScilabTab {
      * @return the corresponding JTree
      */
     public static JTree getJTree(SearchManager.MatchingPositions files, final SciNotes editor, final TextBox statusbar,
-            String base, boolean recursive, boolean ignoreCR,
-            String filePattern, boolean fileCaseSensitive,
-            String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+                                 String base, boolean recursive, boolean ignoreCR,
+                                 String filePattern, boolean fileCaseSensitive,
+                                 String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
         if (files == null) {
             List<SearchManager.MatchingPositions> list = new ArrayList<SearchManager.MatchingPositions>();
             files = new SearchManager.MatchingPositions(new File(base).getAbsolutePath(), list);
@@ -377,7 +377,7 @@ public class SearchFile extends SwingScilabTab {
             @Override
             public void mousePressed(MouseEvent e) {
                 int row = tree.getRowForLocation(e.getX(), e.getY());
-                if(row != -1) {
+                if (row != -1) {
                     if (e.getClickCount() == 2) {
                         validNode(editor, p, tree.getPathForRow(row));
                     }
@@ -399,7 +399,7 @@ public class SearchFile extends SwingScilabTab {
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
-                    boolean expanded, boolean leaf, int row, boolean hasFocus) {
+            boolean expanded, boolean leaf, int row, boolean hasFocus) {
                 super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
                 DefaultMutableTreeNode mtn = (DefaultMutableTreeNode) value;
                 SearchManager.Iconable pos = (SearchManager.Iconable) mtn.getUserObject();
@@ -552,8 +552,8 @@ public class SearchFile extends SwingScilabTab {
          * @param regexp, if true the word pattern is considered as a regex
          */
         public MyBackgroundSearch(JComponent component, SciNotes editor, String base, boolean recursive, boolean ignoreCR,
-                String filePattern, boolean fileCaseSensitive,
-                String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+                                  String filePattern, boolean fileCaseSensitive,
+                                  String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
             super();
             this.component = component;
             this.editor = editor;

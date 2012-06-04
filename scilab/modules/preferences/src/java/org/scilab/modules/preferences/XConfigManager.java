@@ -63,6 +63,7 @@ public final class XConfigManager extends XCommonManager {
     /** User configuration file.*/
     private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
 
+
     /**
      * Constructor blocked, singleton pattern.
      */
@@ -91,18 +92,18 @@ public final class XConfigManager extends XCommonManager {
 
         // Plug in resize
         //dialog.setResizable(false);
-        dialog.addComponentListener(new ComponentAdapter(){
-                public void componentResized(ComponentEvent e) {
-                    Element element = (Element) document.getDocumentElement();
-                    Dimension dimension = dialog.getSize();
-                    int height = XConfigManager.getInt(element, "height", 0);
-                    int width = XConfigManager.getInt(element, "width",  0);
-                    if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 && Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
-                        element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
-                        element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
-                    }
+        dialog.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                Element element = (Element) document.getDocumentElement();
+                Dimension dimension = dialog.getSize();
+                int height = XConfigManager.getInt(element, "height", 0);
+                int width = XConfigManager.getInt(element, "width",  0);
+                if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 && Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
+                    element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
+                    element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
                 }
-            });
+            }
+        });
 
         // Set up correspondence
         correspondance = new HashMap<Component, XSentinel>();
@@ -143,7 +144,7 @@ public final class XConfigManager extends XCommonManager {
         Element toolbox = (Element) toolboxes.item(0);
         toolboxes = toolbox.getChildNodes();
 
-        if (toolboxes.getLength()>0) {
+        if (toolboxes.getLength() > 0) {
             System.err.println("Recover from inconsistent state...");
             while (toolbox.hasChildNodes()) {
                 toolbox.removeChild(toolbox.getFirstChild());
@@ -157,10 +158,10 @@ public final class XConfigManager extends XCommonManager {
         toolbox.appendChild(body);
 
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-        System.out.println(""+infos.size()+ " toolboxes loaded.");
-        for (int i = 0; i<infos.size(); i++) {
+        System.out.println("" + infos.size() + " toolboxes loaded.");
+        for (int i = 0; i < infos.size(); i++) {
             ToolboxInfos info = infos.get(i);
-            String UserToolboxToken = info.getName().replace(' ','_');
+            String UserToolboxToken = info.getName().replace(' ', '_');
             String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + UserToolboxToken + ".xml";
             createUserCopy(info.getPrefFile(), UserToolboxFile);
             // Building document fragment
@@ -186,24 +187,26 @@ public final class XConfigManager extends XCommonManager {
         // Toolboxes files
         NodeList toolboxes = document.getElementsByTagName("toolboxes");
         Element toolbox = (Element) toolboxes.item(0);
-        toolbox.removeChild(toolbox.getFirstChild()); // body
-        List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-        toolboxes = toolbox.getChildNodes();
-        if (infos.size() != toolboxes.getLength()) {
-            System.err.println("Can't hook toolboxes [3]");
-            return;
-        }
-        for (int i = 0; i<infos.size(); i++) {
-            Node ToolboxNode = toolboxes.item(i);
-            if (ToolboxNode != null) {
-                ToolboxInfos info = infos.get(i);
-                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ','_') + ".xml";
-                writeDocument(UserToolboxFile, ToolboxNode.getFirstChild());
-                //toolbox.removeChild(ToolboxNode);
+        if (toolbox.getFirstChild() != null) {
+            toolbox.removeChild(toolbox.getFirstChild()); // body
+            List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+            toolboxes = toolbox.getChildNodes();
+            if (infos.size() != toolboxes.getLength()) {
+                System.err.println("Can't hook toolboxes [3]");
+                return;
+            }
+            for (int i = 0; i < infos.size(); i++) {
+                Node ToolboxNode = toolboxes.item(i);
+                if (ToolboxNode != null) {
+                    ToolboxInfos info = infos.get(i);
+                    String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
+                    XConfiguration.writeDocument(UserToolboxFile, ToolboxNode.getFirstChild());
+                    //toolbox.removeChild(ToolboxNode);
+                }
             }
         }
         // Main file
-        writeDocument(USER_CONFIG_FILE, document);
+        XConfiguration.writeDocument(USER_CONFIG_FILE, document);
     }
 
     /** Interpret action.
@@ -237,21 +240,23 @@ public final class XConfigManager extends XCommonManager {
             WriteUserDocuments();
             dialog.dispose();
             updated = false;
+            XConfiguration.fireXConfigurationEvent();
             return true;
         }
         if (callback.equals("Apply")) {
             updated = false;
             WriteUserDocuments();
+            XConfiguration.fireXConfigurationEvent();
             return true;
         }
         if (callback.equals("Default")) {
             reloadTransformer(SCILAB_CONFIG_XSL);
-	    document = XConfiguration.createDocument();
-	    writeDocument(USER_CONFIG_FILE, document);
+            document = XConfiguration.createDocument();
+            writeDocument(USER_CONFIG_FILE, document);
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-            for (int i=0; i<infos.size(); i++) {
+            for (int i = 0; i < infos.size(); i++) {
                 ToolboxInfos info = infos.get(i);
-                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ','_') + ".xml";
+                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
                 refreshUserCopy(info.getPrefFile(), UserToolboxFile);
             }
             readUserDocuments();
@@ -261,31 +266,12 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         if (callback.equals("Cancel")) {
-            readUserDocuments();
-            /* TODO advertise it!
-               if (updated) {
-               <<some advertising statement>>
-               }
-            */
+            dialog.dispose();
+            XConfiguration.clearModifiedPath();
             updated = false;
             refreshDisplay();
             return true;
         }
         return false;
     }
-
-    /** TODO How to impact modification of preferences ?
-     *
-     */
-    public static void subscribeUpdate() {
-    }
-
-    /** TODO How to impact modification of preferences ?
-     *
-     */
-    public static void notifyUpdate() {
-    }
 }
-
-
-
