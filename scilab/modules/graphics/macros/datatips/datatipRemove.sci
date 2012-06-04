@@ -49,6 +49,9 @@ function datatipRemove(handle,ind)
   if  typeof(ud)<>'datatips' then return,end
   tips=ud.tips.children
   if ind<=size(tips,'*') then
+    if argn(2)==2
+      ind = length(tips) - ind + 1;
+    end
     del=tips(ind)
     if ud.selected==ind then
       ud.selected=0;
