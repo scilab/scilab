@@ -34,5 +34,5 @@ endfunction
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
 xcos_simulate(scs_m, 4);
 
-assert_checkequal(status, ["pre_called"])
+assert_checkequal(status, ["pre_called"]);
 
