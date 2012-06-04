@@ -27,6 +27,8 @@ Graphic capabilities
 * Bug #4289 fixed - Graphic exports were not working when the drawlater or the
                     pixmap modes were activated.
 
+* Bug #4339 fixed - listvarinfile did not manage graphic handles.
+
 * Bug #4818 fixed - Scilab could not export graphics with a lot of information.
 
 * Bug #8241 fixed - Graphical properties were not always inherit.
