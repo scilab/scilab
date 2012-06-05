@@ -27,7 +27,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 /**
  * Perform label transformation between Xcos and Scicos.
  */
-public class LabelElement extends AbstractElement<TextBlock> {
+public final class LabelElement extends AbstractElement<TextBlock> {
     private static final List<String> DATA_FIELD_NAMES = asList("Text", "graphics", "model", "void", "gui");
 
     /** Mutable field to easily get the data through methods */

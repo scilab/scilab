@@ -31,7 +31,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     /**
      * The side-size of any port. All ports must have the same size.
      */
-    public static final int DEFAULT_PORTSIZE = 8;
+    public static final double DEFAULT_PORTSIZE = 8;
 
     private static final long serialVersionUID = -5022701071026919015L;
     private static final int DEFAULT_DATALINES = -1;
@@ -96,7 +96,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
             }
 
             // We assume that the types are sorted well on the enum definition
-            return (double) this.ordinal();
+            return this.ordinal();
         }
 
         /**
@@ -217,14 +217,12 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     public String getToolTipText() {
         StringBuilder result = new StringBuilder();
         result.append(ScilabGraphConstants.HTML_BEGIN);
-        result.append("Port number : " + getOrdering()
-                      + ScilabGraphConstants.HTML_NEWLINE);
+        result.append("Port number : " + getOrdering() + ScilabGraphConstants.HTML_NEWLINE);
 
         final int length = getStyle().length();
         result.append("Style : ");
         if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
-            result.append(getStyle().substring(0,
-                                               XcosConstants.MAX_CHAR_IN_STYLE));
+            result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
             result.append(XcosMessages.DOTS);
         } else {
             result.append(getStyle());
@@ -281,10 +279,8 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 
             // set up the port position
             style.put(mxConstants.STYLE_ALIGN, current.getLabelPosition());
-            style.put(mxConstants.STYLE_VERTICAL_ALIGN,
-                      current.getVerticalLabelPosition());
-            style.put(mxConstants.STYLE_SPACING,
-                      Integer.toString(BasicPort.DEFAULT_PORTSIZE + 2));
+            style.put(mxConstants.STYLE_VERTICAL_ALIGN, current.getVerticalLabelPosition());
+            style.put(mxConstants.STYLE_SPACING, Double.toString(BasicPort.DEFAULT_PORTSIZE + 2.0));
 
             setStyle(style.toString());
         }

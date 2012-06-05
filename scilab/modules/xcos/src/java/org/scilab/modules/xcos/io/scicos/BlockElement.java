@@ -40,7 +40,7 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
-public class BlockElement extends AbstractElement<BasicBlock> {
+public final class BlockElement extends AbstractElement<BasicBlock> {
     private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
     private static final int INTERFUNCTION_INDEX = 3;
 

@@ -36,7 +36,7 @@ public final class BlockPositioning {
      * The default grid size. This value is used when the grid size isn't
      * accessible (on the palette).
      */
-    public static final double DEFAULT_GRIDSIZE = 10.0;
+    public static final double DEFAULT_GRIDSIZE = Double.MIN_NORMAL;
     /** The rotation step of the clockwise and anticlockwise rotation */
     public static final int ROTATION_STEP = 90;
     /** The max valid rotation value (always 360 degres) */
@@ -48,14 +48,13 @@ public final class BlockPositioning {
 
     /**
      * Dispatch ports on Block's _WEST_ side.
-     * 
+     *
      * @param block
      *            The block we have to work on.
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateWestPortsPosition(BasicBlock block,
-            List<? extends BasicPort> ports) {
+    public static void updateWestPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
 
         double gridSize;
         if (block.getParentDiagram() == null) {
@@ -68,7 +67,7 @@ public final class BlockPositioning {
         assert blockGeom != null;
         final int portsSize = ports.size();
         final double blockLength = blockGeom.getHeight();
-        final double segLength = blockLength / portsSize;
+        final double segLength = blockLength / (portsSize + 1);
 
         beginUpdate(block);
         for (int i = 0; i < portsSize; ++i) {
@@ -82,8 +81,7 @@ public final class BlockPositioning {
             } else {
                 order = i;
             }
-            double alignedPosition = calculateAlignedPosition(gridSize,
-                    segLength, order);
+            double alignedPosition = calculateAlignedPosition(gridSize, segLength, order);
 
             portGeom.setX(nonVariantPosition);
             portGeom.setY(alignedPosition);
@@ -95,7 +93,7 @@ public final class BlockPositioning {
 
     /**
      * Calculate an aligned port position.
-     * 
+     *
      * @param gridSize
      *            the grid size
      * @param segLength
@@ -104,40 +102,36 @@ public final class BlockPositioning {
      *            the current working index
      * @return the aligned position on the grid.
      */
-    private static double calculateAlignedPosition(final double gridSize,
-            final double segLength, int i) {
+    private static double calculateAlignedPosition(final double gridSize, final double segLength, int i) {
         /*
          * The base position is the origin of the port geometry. It is the
          * upper-left corner position.
          */
-        final double basePosition = i * segLength + (segLength / 2.0);
+        final double basePosition = (i + 1) * segLength;
 
         /*
          * The aligned base position is the base position aligned on the grid.
          */
-        final double alignedBasePosition = basePosition
-                - Math.IEEEremainder(basePosition, gridSize);
+        final double alignedBasePosition = basePosition - Math.IEEEremainder(basePosition, gridSize);
 
         /*
          * The aligned position is the base position translated from origin to
          * the middle of the port.
          */
-        final double alignedPosition = alignedBasePosition
-                - (BasicPort.DEFAULT_PORTSIZE / 2.0);
+        final double alignedPosition = alignedBasePosition - (BasicPort.DEFAULT_PORTSIZE / 2.0);
 
         return alignedPosition;
     }
 
     /**
      * Dispatch ports on Block's _NORTH_ side.
-     * 
+     *
      * @param block
      *            The block we have to work on.
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateNorthPortsPosition(BasicBlock block,
-            List<? extends BasicPort> ports) {
+    public static void updateNorthPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
         double gridSize;
         if (block.getParentDiagram() == null) {
             gridSize = DEFAULT_GRIDSIZE;
@@ -149,7 +143,7 @@ public final class BlockPositioning {
         assert blockGeom != null;
         final int portsSize = ports.size();
         final double blockLength = blockGeom.getWidth();
-        final double segLength = blockLength / portsSize;
+        final double segLength = blockLength / (portsSize + 1);
 
         beginUpdate(block);
         for (int i = 0; i < portsSize; ++i) {
@@ -163,8 +157,7 @@ public final class BlockPositioning {
             } else {
                 order = i;
             }
-            double alignedPosition = calculateAlignedPosition(gridSize,
-                    segLength, order);
+            double alignedPosition = calculateAlignedPosition(gridSize, segLength, order);
 
             portGeom.setX(alignedPosition);
             portGeom.setY(nonVariantPosition);
@@ -176,14 +169,13 @@ public final class BlockPositioning {
 
     /**
      * Dispatch ports on Block's _EAST_ side.
-     * 
+     *
      * @param block
      *            The block we have to work on.
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateEastPortsPosition(BasicBlock block,
-            List<? extends BasicPort> ports) {
+    public static void updateEastPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
         double gridSize;
         if (block.getParentDiagram() == null) {
             gridSize = DEFAULT_GRIDSIZE;
@@ -195,7 +187,7 @@ public final class BlockPositioning {
         assert blockGeom != null;
         final int portsSize = ports.size();
         final double blockLength = blockGeom.getHeight();
-        final double segLength = blockLength / portsSize;
+        final double segLength = blockLength / (portsSize + 1);
 
         beginUpdate(block);
         for (int i = 0; i < portsSize; ++i) {
@@ -209,8 +201,7 @@ public final class BlockPositioning {
             } else {
                 order = i;
             }
-            double alignedPosition = calculateAlignedPosition(gridSize,
-                    segLength, order);
+            double alignedPosition = calculateAlignedPosition(gridSize, segLength, order);
 
             portGeom.setX(nonVariantPosition);
             portGeom.setY(alignedPosition);
@@ -222,14 +213,13 @@ public final class BlockPositioning {
 
     /**
      * Dispatch ports on Block's _SOUTH_ side.
-     * 
+     *
      * @param block
      *            The block we have to work on.
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateSouthPortsPosition(BasicBlock block,
-            List<? extends BasicPort> ports) {
+    public static void updateSouthPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
         double gridSize;
         if (block.getParentDiagram() == null) {
             gridSize = DEFAULT_GRIDSIZE;
@@ -241,7 +231,7 @@ public final class BlockPositioning {
         assert blockGeom != null;
         final int portsSize = ports.size();
         final double blockLength = blockGeom.getWidth();
-        final double segLength = blockLength / portsSize;
+        final double segLength = blockLength / (portsSize + 1);
 
         beginUpdate(block);
         for (int i = 0; i < portsSize; ++i) {
@@ -255,8 +245,7 @@ public final class BlockPositioning {
             } else {
                 order = i;
             }
-            double alignedPosition = calculateAlignedPosition(gridSize,
-                    segLength, order);
+            double alignedPosition = calculateAlignedPosition(gridSize, segLength, order);
 
             portGeom.setX(alignedPosition);
             portGeom.setY(nonVariantPosition);
@@ -268,13 +257,12 @@ public final class BlockPositioning {
 
     /**
      * Update all the port position of the block.
-     * 
+     *
      * @param block
      *            The block we have to work on.
      */
     public static void updatePortsPosition(BasicBlock block) {
-        final Map<Orientation, List<BasicPort>> ports = BasicBlockInfo
-                .getAllOrientedPorts(block);
+        final Map<Orientation, List<BasicPort>> ports = BasicBlockInfo.getAllOrientedPorts(block);
 
         beginUpdate(block);
         for (Orientation iter : Orientation.values()) {
@@ -289,7 +277,7 @@ public final class BlockPositioning {
     /**
      * Update the port position for the specified orientation. This function
      * manage the flip and mirror properties.
-     * 
+     *
      * @param block
      *            The block we are working on
      * @param ports
@@ -297,8 +285,7 @@ public final class BlockPositioning {
      * @param iter
      *            The orientation.
      */
-    private static void updatePortsPositions(BasicBlock block,
-            List<BasicPort> ports, Orientation iter) {
+    private static void updatePortsPositions(BasicBlock block, List<BasicPort> ports, Orientation iter) {
         final List<BasicPort> invertedPorts = new ArrayList<BasicPort>(ports) {
             {
                 Collections.reverse(this);
@@ -335,7 +322,7 @@ public final class BlockPositioning {
     /**
      * Ugly modification of the iter to update at the right position. Works only
      * for 0 - 90 - 180 - 270 angles.
-     * 
+     *
      * @param iter
      *            the real orientation
      * @param mirrored
@@ -344,22 +331,19 @@ public final class BlockPositioning {
      *            is the block flipped
      * @return The modified orientation
      */
-    private static Orientation rotateOrientation(final Orientation iter,
-            final boolean mirrored, final boolean flipped) {
+    private static Orientation rotateOrientation(final Orientation iter, final boolean mirrored, final boolean flipped) {
         final int nbOfOrientations = Orientation.values().length; // 4
         Orientation rotated = iter;
 
         /* Flip & Mirror management */
         if (mirrored) {
             if (rotated == Orientation.EAST || rotated == Orientation.WEST) {
-                rotated = Orientation.values()[(rotated.ordinal() + 2)
-                        % nbOfOrientations];
+                rotated = Orientation.values()[(rotated.ordinal() + 2) % nbOfOrientations];
             }
         }
         if (flipped) {
             if (rotated == Orientation.NORTH || rotated == Orientation.SOUTH) {
-                rotated = Orientation.values()[(rotated.ordinal() + 2)
-                        % nbOfOrientations];
+                rotated = Orientation.values()[(rotated.ordinal() + 2) % nbOfOrientations];
             }
         }
         return rotated;
@@ -368,7 +352,7 @@ public final class BlockPositioning {
     /**
      * Update the ports positions according to the angle. This function doesn't
      * handle order inversion.
-     * 
+     *
      * @param block
      *            The block we are working on
      * @param iter
@@ -378,8 +362,7 @@ public final class BlockPositioning {
      * @param working
      *            The ordered ports we are working on.
      */
-    private static void updatePortsPosition(BasicBlock block, Orientation iter,
-            final int angle, List<BasicPort> working) {
+    private static void updatePortsPosition(BasicBlock block, Orientation iter, final int angle, List<BasicPort> working) {
         /*
          * Ugly modification of the iter to update at the right position Works
          * only for 0 - 90 - 180 - 270 angles.
@@ -389,32 +372,31 @@ public final class BlockPositioning {
 
         /* Angle management */
         int rotationIndex = angle / ROTATION_STEP;
-        rotated = Orientation.values()[(rotated.ordinal() + rotationIndex)
-                % nbOfOrientations];
+        rotated = Orientation.values()[(rotated.ordinal() + rotationIndex) % nbOfOrientations];
 
         /* Call the associated function */
         switch (rotated) {
-        case NORTH:
-            updateNorthPortsPosition(block, working);
-            break;
-        case SOUTH:
-            updateSouthPortsPosition(block, working);
-            break;
-        case EAST:
-            updateEastPortsPosition(block, working);
-            break;
-        case WEST:
-            updateWestPortsPosition(block, working);
-            break;
+            case NORTH:
+                updateNorthPortsPosition(block, working);
+                break;
+            case SOUTH:
+                updateSouthPortsPosition(block, working);
+                break;
+            case EAST:
+                updateEastPortsPosition(block, working);
+                break;
+            case WEST:
+                updateWestPortsPosition(block, working);
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 
     /**
      * Rotate all the port of the block.
-     * 
+     *
      * @param block
      *            The block to work on.
      */
@@ -433,17 +415,12 @@ public final class BlockPositioning {
 
                 /* Apply angle */
                 if (block.getParentDiagram() != null) {
-                    final mxIGraphModel model = block.getParentDiagram()
-                            .getModel();
-                    final String rot = Integer.toString(orientation
-                            .getRelativeAngle(angle, port.getClass(), flipped,
-                                    mirrored));
-                    mxUtils.setCellStyles(model, new Object[] { port },
-                            XcosConstants.STYLE_ROTATION, rot);
+                    final mxIGraphModel model = block.getParentDiagram().getModel();
+                    final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+                    mxUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
                 } else {
                     final StyleMap m = new StyleMap(port.getStyle());
-                    final int rot = orientation.getRelativeAngle(angle,
-                            port.getClass(), flipped, mirrored);
+                    final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
                     m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
                     port.setStyle(m.toString());
                 }
@@ -455,7 +432,7 @@ public final class BlockPositioning {
 
     /**
      * Update the geometry of the block's ports.
-     * 
+     *
      * @param block
      *            The block to work on
      */
@@ -468,7 +445,7 @@ public final class BlockPositioning {
         /*
          * FIXME: #6705; This placement trick doesn't work on the first block
          * Dnd as the view is not revalidated.
-         * 
+         *
          * On block loading, parentDiagram is null thus placement is not
          * performed.
          */
@@ -476,7 +453,7 @@ public final class BlockPositioning {
 
     /**
      * Flip a block (horizontal inversion).
-     * 
+     *
      * @param block
      *            The block to work on
      */
@@ -488,7 +465,7 @@ public final class BlockPositioning {
 
     /**
      * Mirror a block (vertical inversion).
-     * 
+     *
      * @param block
      *            The block to work on
      */
@@ -500,7 +477,7 @@ public final class BlockPositioning {
 
     /**
      * Rotate a block with an anti-clockwise next value
-     * 
+     *
      * @param block
      *            The block to work on
      */
@@ -511,20 +488,19 @@ public final class BlockPositioning {
 
     /**
      * Get the next anti-clockwise rotation value
-     * 
+     *
      * @param block
      *            The block to work on
      * @return The angle value
      */
     public static int getNextAntiClockwiseAngle(BasicBlock block) {
-        int angle = (block.getAngle() - ROTATION_STEP + MAX_ROTATION)
-                % MAX_ROTATION;
+        int angle = (block.getAngle() - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
         return angle;
     }
 
     /**
      * Get the next clockwise rotation value
-     * 
+     *
      * @param block
      *            The block to work on
      * @return The angle value
@@ -536,7 +512,7 @@ public final class BlockPositioning {
 
     /**
      * Convert any angle value to a valid block value
-     * 
+     *
      * @param angle
      *            the non valid value
      * @return the nearest graph valid value
@@ -561,7 +537,7 @@ public final class BlockPositioning {
 
     /**
      * Helper function that protect the block model.
-     * 
+     *
      * @param block
      *            The block to protect
      */
@@ -573,7 +549,7 @@ public final class BlockPositioning {
 
     /**
      * Helper function that end the protection of the block model.
-     * 
+     *
      * @param block
      *            The block previously protected
      */

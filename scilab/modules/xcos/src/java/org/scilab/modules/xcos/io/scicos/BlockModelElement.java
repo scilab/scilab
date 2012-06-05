@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.port.control.ControlPort;
  * This class is intentionally package-protected to prevent external use.
  */
 // CSOFF: ClassDataAbstractionCoupling
-class BlockModelElement extends BlockPartsElement {
+final class BlockModelElement extends BlockPartsElement {
     private static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state",
             "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
 

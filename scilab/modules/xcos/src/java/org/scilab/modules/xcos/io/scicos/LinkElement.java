@@ -41,7 +41,7 @@ import com.mxgraph.util.mxPoint;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: FanOutComplexity
-public class LinkElement extends AbstractElement<BasicLink> {
+public final class LinkElement extends AbstractElement<BasicLink> {
     private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
 
     private static final int XX_INDEX = 1;
@@ -171,14 +171,10 @@ public class LinkElement extends AbstractElement<BasicLink> {
          */
         for (int i = min; i < max; i++) {
             double x = xAxis[indexes[0]][indexes[1]];
-            double y = -yAxis[indexes[0]][indexes[1]];
+            double y = yAxis[indexes[0]][indexes[1]];
 
-            // Center links
-            x = x + ((start.getGeometry().getX() + end.getGeometry().getX()) / 2.0);
-            y = y + ((start.getGeometry().getY() + end.getGeometry().getY()) / 2.0);
-
-            // offset the axis
-            y = y + start.getGeometry().getHeight();
+            // invert the y-axis value
+            y = -y;
 
             points.add(new mxPoint(x, y));
 

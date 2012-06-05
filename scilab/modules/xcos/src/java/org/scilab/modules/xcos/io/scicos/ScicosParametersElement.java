@@ -31,7 +31,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 /**
  * Default element used to handle Scicos simulation parameters
  */
-public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
+public final class ScicosParametersElement extends AbstractElement<ScicosParameters> {
     private static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc");
 
     private static final int TOL_INDEX = 3;

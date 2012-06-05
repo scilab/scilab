@@ -33,7 +33,7 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  * On this element we doesn't validate the Scicos values has they have been
  * already checked on the {@link BlockElement}.
  */
-public class OutputPortElement extends AbstractElement<OutputPort> {
+public final class OutputPortElement extends AbstractElement<OutputPort> {
     private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
 
     private static final int GRAPHICS_INDEX = 1;
