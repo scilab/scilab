@@ -44,7 +44,14 @@ public class MarkSpriteFactory {
          * Compute the sprite pixel size.
          */
         if (mark.getMarkSizeUnit() == Mark.MarkSizeUnitType.TABULATED) {
-            finalSize = (8 + 2 * mark.getSize());
+            // Special case for compatibility with older versions
+            // dot mark with tabulated size of 0
+            // is drawn in pixel size instead of tabulated size
+            if (mark.getStyle() == 0 && mark.getSize() == 0) {
+                finalSize = 0;
+            } else {
+                finalSize = (8 + 2 * mark.getSize());
+            }
         } else {
             finalSize = mark.getSize();
         }
@@ -73,21 +80,36 @@ public class MarkSpriteFactory {
 
         if (finalSize != 1) {
             switch (mark.getStyle()) {
-                case  0: return new DotSpriteDrawer(foregroundColor, finalSize);
-                case  1: return new PlusSpriteDrawer(appearance, finalSize);
-                case  2: return new CrossSpriteDrawer(appearance, finalSize);
-                case  3: return new StarSpriteDrawer(appearance, finalSize);
-                case  4: return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
-                case  5: return new DiamondSpriteDrawer(appearance, finalSize);
-                case  6: return new TriangleUpSpriteDrawer(appearance, finalSize);
-                case  7: return new TriangleDownSpriteDrawer(appearance, finalSize);
-                case  8: return new DiamondPlusSpriteDrawer(appearance, finalSize);
-                case  9: return new CircleSpriteDrawer(appearance, finalSize);
-                case 10: return new AsteriskSpriteDrawer(appearance, finalSize);
-                case 11: return new SquareSpriteDrawer(appearance, finalSize);
-                case 12: return new TriangleRightSpriteDrawer(appearance, finalSize);
-                case 13: return new TriangleLeftSpriteDrawer(appearance, finalSize);
-                case 14: return new PentagramSpriteDrawer(appearance, finalSize);
+                case  0:
+                    return new DotSpriteDrawer(foregroundColor, finalSize);
+                case  1:
+                    return new PlusSpriteDrawer(appearance, finalSize);
+                case  2:
+                    return new CrossSpriteDrawer(appearance, finalSize);
+                case  3:
+                    return new StarSpriteDrawer(appearance, finalSize);
+                case  4:
+                    return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                case  5:
+                    return new DiamondSpriteDrawer(appearance, finalSize);
+                case  6:
+                    return new TriangleUpSpriteDrawer(appearance, finalSize);
+                case  7:
+                    return new TriangleDownSpriteDrawer(appearance, finalSize);
+                case  8:
+                    return new DiamondPlusSpriteDrawer(appearance, finalSize);
+                case  9:
+                    return new CircleSpriteDrawer(appearance, finalSize);
+                case 10:
+                    return new AsteriskSpriteDrawer(appearance, finalSize);
+                case 11:
+                    return new SquareSpriteDrawer(appearance, finalSize);
+                case 12:
+                    return new TriangleRightSpriteDrawer(appearance, finalSize);
+                case 13:
+                    return new TriangleLeftSpriteDrawer(appearance, finalSize);
+                case 14:
+                    return new PentagramSpriteDrawer(appearance, finalSize);
 
                 default:
                     return new PlusSpriteDrawer(appearance, finalSize);
@@ -157,8 +179,8 @@ public class MarkSpriteFactory {
         public PlusSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
             int r = size / 2;
-            coordinate1 = new int[] {-r, 0, r, 0};
-            coordinate2 = new int[] { 0,-r, 0, r};
+            coordinate1 = new int[] { -r, 0, r, 0};
+            coordinate2 = new int[] { 0, -r, 0, r};
         }
 
         @Override
@@ -179,8 +201,8 @@ public class MarkSpriteFactory {
         public CrossSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
             int r = (int) (size * Math.sqrt(2.0) / 2.0);
-            coordinate1 = new int[] {-r, -r, r,  r};
-            coordinate2 = new int[] {-r,  r, r, -r};
+            coordinate1 = new int[] { -r, -r, r,  r};
+            coordinate2 = new int[] { -r,  r, r, -r};
         }
 
         @Override
@@ -201,8 +223,8 @@ public class MarkSpriteFactory {
         public StarSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
             int r = size / 2;
-            coordinate1 = new int[] {-r, 0, r, 0};
-            coordinate2 = new int[] { 0,-r, 0, r};
+            coordinate1 = new int[] { -r, 0, r, 0};
+            coordinate2 = new int[] { 0, -r, 0, r};
         }
 
         @Override
@@ -230,7 +252,7 @@ public class MarkSpriteFactory {
             appearance.setFillColor(color);
             appearance.setLineColor(color);
 
-            coordinates = new int[] {-r,0, 0,-r, +r,0, 0,+r};
+            coordinates = new int[] { -r, 0, 0, -r, +r, 0, 0, +r};
         }
 
         @Override
@@ -250,7 +272,7 @@ public class MarkSpriteFactory {
 
         public TriangleSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
-            double tmpr = (double)(size/2);
+            double tmpr = (double)(size / 2);
 
             r = (int) (tmpr);
 
@@ -275,7 +297,7 @@ public class MarkSpriteFactory {
             super(appearance, size);
             int r = size / 2;
 
-            coordinates = new int[] {-r,0, 0,-r, r,0, 0,r};
+            coordinates = new int[] { -r, 0, 0, -r, r, 0, 0, r};
         }
 
         @Override
@@ -292,7 +314,7 @@ public class MarkSpriteFactory {
         public TriangleUpSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
 
-            coordinates = new int[] {-basex,basey, 0,-r, basex,basey};
+            coordinates = new int[] { -basex, basey, 0, -r, basex, basey};
         }
     }
 
@@ -304,7 +326,7 @@ public class MarkSpriteFactory {
         public TriangleDownSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
 
-            coordinates = new int[] {-basex,-basey, basex,-basey, 0,r};
+            coordinates = new int[] { -basex, -basey, basex, -basey, 0, r};
         }
     }
 
@@ -360,11 +382,11 @@ public class MarkSpriteFactory {
         public AsteriskSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
             int r = size / 2;
-            coordinate1 = new int[] {-r, 0, r, 0};
-            coordinate2 = new int[] { 0,-r, 0, r};
-            r = (int) (r*Math.sqrt(2.0) / 2.0);
-            coordinate3 = new int[] {-r,-r, r, r};
-            coordinate4 = new int[] {-r, r,+r,-r};
+            coordinate1 = new int[] { -r, 0, r, 0};
+            coordinate2 = new int[] { 0, -r, 0, r};
+            r = (int) (r * Math.sqrt(2.0) / 2.0);
+            coordinate3 = new int[] { -r, -r, r, r};
+            coordinate4 = new int[] { -r, r, +r, -r};
         }
 
         @Override
@@ -386,7 +408,7 @@ public class MarkSpriteFactory {
         public SquareSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
             int r = size / 2;
-            coordinate = new int[] {-r,-r, +r,-r, +r,+r, -r,+r};
+            coordinate = new int[] { -r, -r, +r, -r, +r, +r, -r, +r};
         }
 
         @Override
@@ -403,7 +425,7 @@ public class MarkSpriteFactory {
         public TriangleRightSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
 
-            coordinates = new int[] {-basey,basex, -basey,-basex, r,0};
+            coordinates = new int[] { -basey, basex, -basey, -basex, r, 0};
         }
     }
 
@@ -415,7 +437,7 @@ public class MarkSpriteFactory {
         public TriangleLeftSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
 
-            coordinates = new int[] {basey,basex, -r,0, basey,-basex};
+            coordinates = new int[] {basey, basex, -r, 0, basey, -basex};
         }
     }
 
@@ -426,23 +448,23 @@ public class MarkSpriteFactory {
     private static class PentagramSpriteDrawer extends ScilabSpriteDrawer {
         private final int[] coordinates;
 
-        private static final double COS_PI_OVER_10 = Math.cos(Math.PI/10.0);
-        private static final double SIN_PI_OVER_10 = Math.sin(Math.PI/10.0);
-        private static final double COS_3_PI_OVER_10 = Math.cos(3.0*Math.PI/10.0);
-        private static final double SIN_3_PI_OVER_10 = Math.sin(3.0*Math.PI/10.0);
+        private static final double COS_PI_OVER_10 = Math.cos(Math.PI / 10.0);
+        private static final double SIN_PI_OVER_10 = Math.sin(Math.PI / 10.0);
+        private static final double COS_3_PI_OVER_10 = Math.cos(3.0 * Math.PI / 10.0);
+        private static final double SIN_3_PI_OVER_10 = Math.sin(3.0 * Math.PI / 10.0);
 
         public PentagramSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
 
             int r = size / 2;
 
-            double tmpy = SIN_PI_OVER_10*(double)r;
+            double tmpy = SIN_PI_OVER_10 * (double)r;
 
-            int x = (int)(COS_PI_OVER_10*(double)r);
-            int y = (int)(SIN_PI_OVER_10*(double)r);
+            int x = (int)(COS_PI_OVER_10 * (double)r);
+            int y = (int)(SIN_PI_OVER_10 * (double)r);
 
-            int x2 = (int)(COS_3_PI_OVER_10*(double)r);
-            int y2 = (int)(SIN_3_PI_OVER_10*(double)r);
+            int x2 = (int)(COS_3_PI_OVER_10 * (double)r);
+            int y2 = (int)(SIN_3_PI_OVER_10 * (double)r);
 
             double tmpinnr = tmpy / SIN_3_PI_OVER_10;
 
@@ -455,7 +477,7 @@ public class MarkSpriteFactory {
 
             int innr = (int)tmpinnr;
 
-            coordinates = new int[] {-x2,y2, -xinn2,yinn2, -x,-y, -xinn,-yinn, 0,-r, xinn,-yinn, x,-y, xinn2,yinn2, x2,y2, 0,innr};
+            coordinates = new int[] { -x2, y2, -xinn2, yinn2, -x, -y, -xinn, -yinn, 0, -r, xinn, -yinn, x, -y, xinn2, yinn2, x2, y2, 0, innr};
         }
 
         @Override
