@@ -32,14 +32,10 @@ import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.awt.GLJPanel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
@@ -79,44 +75,12 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
             System.loadLibrary("gluegen2-rt");
         } catch (Exception e) { System.err.println(e); }
     }
-    /*
-     * Using GLJPanel for MacOSX may lead to a deadlock on deletion.
-     * Wrap call to removeNotify to ensure we are not outside Swing Thread
-     * and PBuffer is not locked.
-     */
-    private final class MacOSXGLJPanel extends GLJPanel {
-        private static final long serialVersionUID = -6166986369022555750L;
-
-        private void superRemoveNotify() {
-            super.removeNotify();
-        }
-
-        @Override
-        public void removeNotify() {
-            final MacOSXGLJPanel panel = this;
-            SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        panel.superRemoveNotify();
-                    }
-                });
-        }
-    }
 
     public SwingScilabCanvas(int figureId, final Figure figure) {
         super(new PanelLayout());
         this.figure = figure;
-
-        /*
-         * Even with the good Java 1.6 version
-         * MacOSX does not manage mixing ligthweight and heavyweight components
-         * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
-         * lead to deadlock on deletion.
-         */
-        if (OS.get() == OS.MAC) {
-            drawableComponent = new MacOSXGLJPanel();
-        } else {
-            drawableComponent = new GLCanvas();
-        }
+        
+        drawableComponent = SwingScilabCanvasImpl.getInstance().createOpenGLComponent();
 
         drawableComponent.setEnabled(true);
         drawableComponent.setVisible(true);
