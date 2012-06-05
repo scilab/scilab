@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +18,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
+import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -123,6 +124,10 @@ public class Legend extends ClippableTextObject {
 			return getLegendLocation();
 		} else if (property == LegendProperty.POSITION) {
 			return getPosition();
+		} else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
+			return getValidTextArrayDimensions();
+		} else if (property == FormattedText.FormattedTextProperty.TEXT) {
+			return getValidTextStrings();
 		} else {
 			return super.getProperty(property);	
 		}
@@ -243,6 +248,38 @@ public class Legend extends ClippableTextObject {
 		for (int i = 0; i < links.length; i++) {
 			this.links.add(links[i]);
 		}
+	}
+
+	/**
+	 * Returns the dimensions of the text array, taking into account only valid links.
+	 * @return the dimensions of the text array
+	 */
+	public Integer[] getValidTextArrayDimensions() {
+		return new Integer[]{getValidLinksCount(), 1};
+	}
+
+	/**
+	 * Returns the array of valid text strings.
+	 * A string if considered valid if its corresponding link is also valid, otherwise it is ignored.
+	 * This is used when getting the Legend's TEXT_STRINGS property in order to return only the strings
+	 * corresponding to valid links (see also getValidLinks).
+	 * @return the valid text strings
+	 */
+	public String[] getValidTextStrings() {
+		int numValidLinks = 0;
+		ArrayList <String> validStrings = new ArrayList<String>(0);
+
+		/* Text strings are stored in reverse order relative to links. */
+		for (int i = 0; i < links.size(); i++) {
+			GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(links.size()-i-1));
+
+			if (object != null) {
+				validStrings.add(text[i].getText());
+				numValidLinks++;
+			}
+		}
+
+		return validStrings.toArray(new String[validStrings.size()]);
 	}
 
 	/**

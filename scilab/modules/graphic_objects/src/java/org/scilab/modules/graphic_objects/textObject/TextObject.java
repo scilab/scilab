@@ -29,14 +29,14 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public abstract class TextObject extends ContouredObject {
 	/** TextObject properties names */
-	private enum TextObjectProperty { TEXT, TEXT_ARRAY_DIMENSIONS };
+	protected enum TextObjectProperty { TEXT, TEXT_ARRAY_DIMENSIONS };
 
 	/**
 	 * Formatted text objects array, row-major order.
 	 * For now, elements are supposed to have identical font properties values,
 	 * hence the current associated get/set methods implementation.
 	 */
-	private FormattedText[] text;
+	protected FormattedText[] text;
 
 	/** Text array dimensions (number of rows, number of columns) */
 	private int[] dimensions;
