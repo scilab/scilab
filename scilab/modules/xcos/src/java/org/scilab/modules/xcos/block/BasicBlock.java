@@ -1580,8 +1580,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      *            value
      */
     public void setFlip(boolean flip) {
+        isFlipped = flip;
         if (getParentDiagram() != null) {
-            isFlipped = flip;
             final mxIGraphModel model = getParentDiagram().getModel();
             mxUtils.setCellStyles(model, new Object[] { this }, ScilabGraphConstants.STYLE_FLIP, Boolean.toString(flip));
         }
@@ -1609,8 +1609,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      *            new mirror value
      */
     public void setMirror(boolean mirror) {
+        isMirrored = mirror;
         if (getParentDiagram() != null) {
-            isMirrored = mirror;
             final mxIGraphModel model = getParentDiagram().getModel();
             mxUtils.setCellStyles(model, new Object[] { this }, ScilabGraphConstants.STYLE_MIRROR, Boolean.toString(mirror));
         }

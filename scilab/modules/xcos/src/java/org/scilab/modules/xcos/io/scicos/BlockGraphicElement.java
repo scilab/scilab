@@ -357,9 +357,9 @@ class BlockGraphicElement extends BlockPartsElement {
          * Flip management
          */
         if (!((ScilabBoolean) data.get(FLIP_INDEX)).getData()[0][0]) {
-            into.setFlip(true);
+            into.setMirror(true);
         } else {
-            into.setFlip(false);
+            into.setMirror(false);
         }
 
         /*
