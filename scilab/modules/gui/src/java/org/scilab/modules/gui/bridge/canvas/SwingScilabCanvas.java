@@ -16,23 +16,8 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-import org.scilab.modules.commons.OS;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
-import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
-import org.scilab.modules.gui.graphicWindow.PanelLayout;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.awt.GLJPanel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -44,6 +29,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+
+import javax.media.opengl.GL;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.awt.GLJPanel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
+import org.scilab.modules.gui.graphicWindow.PanelLayout;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
@@ -108,38 +113,27 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
          * lead to deadlock on deletion.
          */
         if (OS.get() == OS.MAC) {
-            GLJPanel glCanvas = new MacOSXGLJPanel();
-            drawableComponent = glCanvas;
-            glCanvas.setEnabled(true);
-            add(glCanvas, PanelLayout.GL_CANVAS);
-
-            rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
-            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
-            rendererCanvas.setMainDrawer(drawerVisitor);
-
-            drawableComponent.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        GlobalEventWatcher.setAxesUID(figure.getIdentifier());
-                    }
-                });
+            drawableComponent = new MacOSXGLJPanel();
         } else {
-            GLCanvas glCanvas = new GLCanvas();
-            drawableComponent = glCanvas;
-            glCanvas.setEnabled(true);
-            add(glCanvas, PanelLayout.GL_CANVAS);
-
-            rendererCanvas = JoGLCanvasFactory.createCanvas(glCanvas);
-            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
-            rendererCanvas.setMainDrawer(drawerVisitor);
-
-            drawableComponent.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        GlobalEventWatcher.setAxesUID(figure.getIdentifier());
-                    }
-                });
+            drawableComponent = new GLCanvas();
         }
+
+        drawableComponent.setEnabled(true);
+        drawableComponent.setVisible(true);
+
+        add(drawableComponent, PanelLayout.GL_CANVAS);
+
+        rendererCanvas = JoGLCanvasFactory.createCanvas((GLAutoDrawable) drawableComponent);
+        drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+        rendererCanvas.setMainDrawer(drawerVisitor);
+        drawableComponent.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+            }
+        });
+        
+        setBackground(Color.white);
     }
 
     /**
@@ -154,7 +148,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * figure getter.
      * @return the MVC figure.
      */
-    public Figure getFigure() {
+    private Figure getFigure() {
         return figure;
     }
 
@@ -174,7 +168,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * Drawable component getter.
      * @return the drawable component.
      */
-    Component getDrawableComponent() {
+    private Component getDrawableComponent() {
         return drawableComponent;
     }
 
@@ -404,5 +398,9 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     @Override
     public void setAutoSwapBufferMode(boolean onOrOff) {
         // TODO Auto-generated method stub
+    }
+
+    public boolean isAutoResize() {
+        return (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), __GO_AUTORESIZE__);
     }
 }

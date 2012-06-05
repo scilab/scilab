@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,6 +20,7 @@ import java.io.Serializable;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * @author Pierre Lando
@@ -42,19 +44,24 @@ public class PanelLayout implements LayoutManager, Serializable {
 
     @Override
     public Dimension preferredLayoutSize(Container parent) {
-        return null;
+        return new Dimension(0, 0);
     }
 
     @Override
     public Dimension minimumLayoutSize(Container parent) {
-        return null;
+        return new Dimension(0, 0);
     }
 
     @Override
     public void layoutContainer(Container parent) {
         for (Component child : parent.getComponents()) {
             if (child.equals(canvas)) {
-                child.setBounds(0, 0, parent.getWidth(), parent.getHeight());
+                if (((SwingScilabCanvas) canvas.getParent()).isAutoResize()) {
+                    canvas.setBounds(0, 0, parent.getWidth(), parent.getHeight());
+                } else {
+                    canvas.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                }
+                //child.setPreferredSize(new Dimension(parent.getWidth(), parent.getHeight()));
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
             }
 

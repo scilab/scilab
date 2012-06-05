@@ -15,22 +15,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -44,12 +28,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -64,7 +48,6 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -86,9 +69,9 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
-import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -112,6 +95,23 @@ import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -155,7 +155,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private SwingScilabAxes contentPane;
 
     /** Scroll the axes */
-    private ScilabScrollPane scrolling;
+    private SwingScilabScrollPane scrolling;
 
     private Image icon;
 
@@ -259,12 +259,14 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         tab.getTitlebar().revalidate();
     }
 
-    public SwingScilabTab(String figureTitle, int figureId, Figure figure) {
+    public SwingScilabTab(String figureTitle, int figureId, final Figure figure) {
         this(figureTitle, figureId);
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
-        setContentPane(canvas);
+        scrolling = new SwingScilabScrollPane(canvas, figure);
+        
+        setContentPane(scrolling.getAsContainer());
         canvas.setVisible(true);
 
         /* Manage figure_position property */
@@ -275,9 +277,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             public void ancestorMoved(HierarchyEvent e) {
                 if (e.getChanged() instanceof SwingScilabWindow) {
                     Position parentPosition =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getPosition();
-                    Integer[] newPosition = new Integer[2];
-                    newPosition[0] = parentPosition.getX();
-                    newPosition[1] = parentPosition.getY();
+                    Integer[] newPosition = new Integer[] {parentPosition.getX(), parentPosition.getY()};
                     GraphicController.getController().setProperty(id, __GO_POSITION__, newPosition);
                 }
             }
@@ -290,18 +290,19 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             }
 
             public void componentResized(ComponentEvent arg0) {
+
                 /* Update the figure_size property */
                 Size parentSize =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
-                Integer[] newSize = new Integer[2];
-                newSize[0] = parentSize.getWidth();
-                newSize[1] = parentSize.getHeight();
+                Integer[] newSize = new Integer[] {parentSize.getWidth(), parentSize.getHeight()};
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
-                /* Update the axes_size property */
-                Dimension contentPaneSize = getContentPane().getSize();
-                Integer[] newAxesSize = new Integer[2];
-                newAxesSize[0] = contentPaneSize.width;
-                newAxesSize[1] = contentPaneSize.height;
-                GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
+
+                Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
+                
+                if (autoreSize) {
+                    /* Update the axes_size property */
+                    Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
+                    GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
+                }
             }
 
             public void componentMoved(ComponentEvent arg0) {
@@ -351,7 +352,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     /**
-     * @param the window icon associated with this tab
+     * @param iconName window icon associated with this tab
      */
     public void setWindowIcon(String iconName) {
         setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon(iconName, "256x256")).getImage());
@@ -388,7 +389,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * Sets the Name of a swing Scilab tab
      * @param newTabName the Name of the tab
-     * @see org.scilab.modules.gui.tab.Tab#setName()
+     * @see org.scilab.modules.gui.tab.ScilabTab#setName(String)
      */
     @Override
     public void setName(String newTabName) {
@@ -407,7 +408,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * Gets the title of a swing Scilab tab
      * @return the title of the tab
-     * @see org.scilab.modules.gui.tab.Tab#getTitle()
+     * @see org.scilab.modules.gui.tab.ScilabTab#getName()
      */
     @Override
     public String getName() {
@@ -513,34 +514,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public int addMember(Canvas member) {
-        int result;
-
-        if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-            int[] currentView = getViewingRegion();
-            final SwingScilabTab thisF = this;
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        scrolling = new AwtScilabScrollPane(contentPane, thisF);
-                        setContentPane(scrolling.getAsContainer());
-                        revalidate();
-
-                    }
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.getCause().printStackTrace();
-            }
-            // set the canvas after doing every thing
-            result = contentPane.addMember(member);
-            // set the same viewport as before
-            setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
-        } else {
-            result = contentPane.addMember(member);
-        }
-        return result;
+        return 0;
     }
 
     /**
@@ -549,23 +523,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void removeMember(Canvas member) {
-        contentPane.removeMember(member);
-        if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        scrolling = new SwingScilabScrollPane(contentPane);
-                        setContentPane(scrolling.getAsContainer());
-                        revalidate();
-                    }
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.getCause().printStackTrace();
-            }
-        }
     }
 
     /**
@@ -574,9 +531,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     public void addMember(SwingViewObject member) {
         if (member instanceof SwingScilabFrame) {
-            this.add((Component) member, BOTTOM_POSITION);
+            getContentPane().add((Component) member);
         } else {
-            this.add((Component) member, TOP_POSITION);
+            getContentPane().add((Component) member, TOP_POSITION);
         }
     }
 
@@ -1251,68 +1208,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setViewingRegion(int posX, int posY, int width, int height) {
-        // Check that the canvas can be resized
-        if (!scrolling.getAutoResizeMode()) {
-            // don't set viewport size here it should always fit parent tab size
-            // It seems that we must check the viewport size and positions
-            // to get coherent values, otherwise the setViewPosition hangs...
-            // there are three checks that must be performed for the two dimensions
-            // - be sure that viewport position is greater than 0.
-            // - if the viewport is larger than the canvas, then it can't be moved
-            // - if the viewport is smaller than the canvas, then it should remains
-            //   inside the canvas
-
-            int canvasWidth = contentPane.getWidth();
-            int canvasHeight = contentPane.getHeight();
-            int[] curViewedRegion = getViewingRegion();
-            int viewportPosX = curViewedRegion[0];
-            int viewPortPosY = curViewedRegion[1];
-            int viewportWidth = curViewedRegion[2];
-            int viewportHeight = curViewedRegion[VIEWPORT_SIZE - 1];
-
-            // use previous values as default ones
-            int realPosX = 0;
-            int realPosY = 0;
-
-
-            if (viewportWidth <= canvasWidth) {
-                // viewport smaller than the canvas
-                // check that the viewport stays in the canvas
-                // the left most position is canvasWidth - viewporwidth
-                realPosX = Math.min(posX, canvasWidth - viewportWidth);
-            } else {
-                // viewport larger than the canvas
-                // get previous position (should be 0)
-                realPosX = viewportPosX;
-            }
-            // last check, greater than 0
-            realPosX = Math.max(0, realPosX);
-
-            if (viewportHeight <= canvasHeight) {
-                realPosY = Math.min(posY, canvasHeight - viewportHeight);
-            } else {
-                realPosY = viewPortPosY;
-            }
-            realPosY = Math.max(0, realPosY);
-
-            // must be called on the Swing thread otherwise some JOGL corruption may appear
-            final Point realPos = new Point(realPosX, realPosY);
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        scrolling.setViewPosition(realPos.x, realPos.y);
-                    }
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.getCause().printStackTrace();
-            }
-
-
-        }
-    }
+       }
 
     /**
      * Set the event handler of the Canvas
@@ -1343,7 +1239,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setAutoResizeMode(boolean onOrOff) {
-        scrolling.setAutoResizeMode(onOrOff);
     }
 
     /**
@@ -1351,7 +1246,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public boolean getAutoResizeMode() {
-        return scrolling.getAutoResizeMode();
+        return true;
     }
 
     /**
@@ -1452,9 +1347,10 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         } else if (property.equals(__GO_AXES_SIZE__)) {
             Integer[] axesSize = (Integer[]) value;
             Dimension oldAxesSize = getContentPane().getSize();
-            if (oldAxesSize.getWidth() != axesSize[0] || oldAxesSize.getHeight() != axesSize[1]) {
-                // Autoresize == "on" management
-                // TODO manage scrolling in with autoresize mode set to "off"
+            if (
+                    ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1])) &&
+                    ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+                    ) {
                 // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
                 int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
                 int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
