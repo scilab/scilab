@@ -127,6 +127,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 {
                     FREE(pStVarOne[i]);
                 }
+                FREE(pStVarOne);
                 FREE(lenStVarOne);
                 return 0;
             }

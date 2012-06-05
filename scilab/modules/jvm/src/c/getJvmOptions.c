@@ -29,124 +29,136 @@
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_JavaVMOption)
+JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_JavaVMOption)
 {
-	if ( FileExist(filename_xml_conf) )
-	{
-		JavaVMOption *jvm_options = NULL;
-		char *encoding = GetXmlFileEncoding(filename_xml_conf);
+    if ( FileExist(filename_xml_conf) )
+    {
+        JavaVMOption *jvm_options = NULL;
+        char *encoding = GetXmlFileEncoding(filename_xml_conf);
 
-		/* Don't care about line return / empty line */
-		xmlKeepBlanksDefault(0);
-		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if (stricmp("utf-8", encoding)==0)
-		{
-			xmlDocPtr doc = NULL;
-			xmlXPathContextPtr xpathCtxt = NULL;
-			xmlXPathObjectPtr xpathObj = NULL;
-			char *jvm_option_string = NULL;
+        /* Don't care about line return / empty line */
+        xmlKeepBlanksDefault(0);
+        /* check if the XML file has been encoded with utf8 (unicode) or not */
+        if (stricmp("utf-8", encoding) == 0)
+        {
+            xmlDocPtr doc = NULL;
+            xmlXPathContextPtr xpathCtxt = NULL;
+            xmlXPathObjectPtr xpathObj = NULL;
+            char *jvm_option_string = NULL;
 
-			int indice = 0;
-			{
-				BOOL bConvert = FALSE;
-				char *shortfilename_xml_conf = getshortpathname(filename_xml_conf,&bConvert);
-				if (shortfilename_xml_conf)
-				{
-					doc = xmlParseFile (shortfilename_xml_conf);
-					FREE(shortfilename_xml_conf);
-					shortfilename_xml_conf = NULL;
-				}
-			}
+            int indice = 0;
+            {
+                BOOL bConvert = FALSE;
+                char *shortfilename_xml_conf = getshortpathname(filename_xml_conf, &bConvert);
+                if (shortfilename_xml_conf)
+                {
+                    doc = xmlParseFile (shortfilename_xml_conf);
+                    FREE(shortfilename_xml_conf);
+                    shortfilename_xml_conf = NULL;
+                }
+            }
 
-			if (doc == NULL)
-			{
-				fprintf(stderr,_("Error: Could not parse file %s.\n"), filename_xml_conf);
-				if (encoding) {FREE(encoding);encoding=NULL;}
-				*size_JavaVMOption = 0;
-				return NULL;
-			}
+            if (doc == NULL)
+            {
+                fprintf(stderr, _("Error: Could not parse file %s.\n"), filename_xml_conf);
+                if (encoding)
+                {
+                    FREE(encoding);
+                    encoding = NULL;
+                }
+                *size_JavaVMOption = 0;
+                return NULL;
+            }
 
-			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
+            xpathCtxt = xmlXPathNewContext(doc);
+            xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
 
-			if(xpathObj && xpathObj->nodesetval->nodeMax)
-			{
-				/* the Xpath has been understood and there are node */
-				int	i;
-				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
-				{
+            if (xpathObj && xpathObj->nodesetval->nodeMax)
+            {
+                /* the Xpath has been understood and there are node */
+                int	i;
+                for (i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+                {
 
-					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <option>  */
-					while (attrib != NULL)
-					{
-						/* loop until when have read all the attributes */
-						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
-						{
-							/* we found the tag name */
-							const char *str=(const char*)attrib->children->content;
-							jvm_option_string = strdup(str);
-						}
-						attrib = attrib->next;
-					}
+                    xmlAttrPtr attrib = xpathObj->nodesetval->nodeTab[i]->properties;
+                    /* Get the properties of <option>  */
+                    while (attrib != NULL)
+                    {
+                        /* loop until when have read all the attributes */
+                        if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
+                        {
+                            /* we found the tag name */
+                            const char *str = (const char*)attrib->children->content;
+                            jvm_option_string = strdup(str);
+                        }
+                        attrib = attrib->next;
+                    }
 
-					if ( (jvm_option_string) && (strlen(jvm_option_string) > 0) )
-					{
-						char *option_string_path_separator = NULL;
-						char *option_string_sci_path = NULL;
+                    if ( (jvm_option_string) && (strlen(jvm_option_string) > 0) )
+                    {
+                        char *option_string_path_separator = NULL;
+                        char *option_string_sci_path = NULL;
 
-						option_string_path_separator = strsub(jvm_option_string,"$PATH_SEPARATOR",PATH_SEPARATOR);
-						if (jvm_option_string)
-						{
-							FREE(jvm_option_string);
-						}
+                        option_string_path_separator = strsub(jvm_option_string, "$PATH_SEPARATOR", PATH_SEPARATOR);
 
-						option_string_sci_path = strsub(option_string_path_separator,"$SCILAB",SCI_PATH);
-						if (option_string_sci_path)
-						{
-							FREE(option_string_path_separator);
-						}
+                        option_string_sci_path = strsub(option_string_path_separator, "$SCILAB", SCI_PATH);
+                        if (option_string_sci_path)
+                        {
+                            FREE(option_string_path_separator);
+                        }
 
-						jvm_options = (JavaVMOption *)REALLOC(jvm_options,sizeof(JavaVMOption)*(indice+1));
-						jvm_options[indice].optionString = option_string_sci_path;
-						indice++;
-					}
-				}
-			}
+                        jvm_options = (JavaVMOption *)REALLOC(jvm_options, sizeof(JavaVMOption) * (indice + 1));
+                        jvm_options[indice].optionString = option_string_sci_path;
+                        indice++;
+                    }
 
-			if(xpathObj) xmlXPathFreeObject(xpathObj);
-			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
-			xmlFreeDoc (doc);
+                    if (jvm_option_string) FREE(jvm_option_string);
 
-			/* xmlCleanupParser is called in
-			 * modules/core/src/c/TerminateCore.c 
-			 * since it needs to be done only once.
-			 */
+                }
+            }
 
-			if (getenv("SCI_JAVA_ENABLE_HEADLESS")!=NULL) {
-				/* When Scilab is built from a virtual machine, it needs
-				 * an X11 server / input
-				 * This is only called by "make doc" by the SCI/Makefile.am
-				 */
-				#define HEADLESS "-Djava.awt.headless=true"
-				jvm_options = (JavaVMOption *)REALLOC(jvm_options,sizeof(JavaVMOption)*(indice+1));
-				jvm_options[indice].optionString = MALLOC((strlen(HEADLESS)+1)*sizeof(char));
-				strcpy(jvm_options[indice].optionString,HEADLESS);
-				indice++;
-				#undef HEADLESS
-			}
+            if (xpathObj) xmlXPathFreeObject(xpathObj);
+            if (xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+            xmlFreeDoc (doc);
 
-			if (encoding) {FREE(encoding);encoding=NULL;}
+            /* xmlCleanupParser is called in
+             * modules/core/src/c/TerminateCore.c
+             * since it needs to be done only once.
+             */
 
-			*size_JavaVMOption = indice;
-			return jvm_options;
-		}
-		else
-		{
-			fprintf(stderr,_("Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' found.\n"), filename_xml_conf, "utf-8", encoding);
-		}
-		if (encoding) {FREE(encoding);encoding=NULL;}
-	}
-	return NULL;
+            if (getenv("SCI_JAVA_ENABLE_HEADLESS") != NULL)
+            {
+                /* When Scilab is built from a virtual machine, it needs
+                 * an X11 server / input
+                 * This is only called by "make doc" by the SCI/Makefile.am
+                 */
+#define HEADLESS "-Djava.awt.headless=true"
+                jvm_options = (JavaVMOption *)REALLOC(jvm_options, sizeof(JavaVMOption) * (indice + 1));
+                jvm_options[indice].optionString = MALLOC((strlen(HEADLESS) + 1) * sizeof(char));
+                strcpy(jvm_options[indice].optionString, HEADLESS);
+                indice++;
+#undef HEADLESS
+            }
+
+            if (encoding)
+            {
+                FREE(encoding);
+                encoding = NULL;
+            }
+
+            *size_JavaVMOption = indice;
+            return jvm_options;
+        }
+        else
+        {
+            fprintf(stderr, _("Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' found.\n"), filename_xml_conf, "utf-8", encoding);
+        }
+        if (encoding)
+        {
+            FREE(encoding);
+            encoding = NULL;
+        }
+    }
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/

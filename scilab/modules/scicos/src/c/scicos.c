@@ -5555,8 +5555,8 @@ int read_xml_initial_states(int nvar, const char * xmlfile, char **ids, double *
 
     if (model == NULL)
     {
-        sciprint(_("Error: cannot find '%s'  \n"), xmlfile);
-        return -1;/* file does not existe*/
+        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
+        return -1;/* file does not exist*/
     }
 
     elements = ezxml_child(model, "elements");
@@ -5663,8 +5663,13 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     model = ezxml_parse_file(xmlfile);
     if (model == NULL)
     {
-        sciprint(_("Error: cannot find '%s'  \n"), xmlfile);
-        return -1;/* file does not existe*/
+        sciprint(_("Error: cannot find file '%s'.\n"), xmlfile);
+        for (i = 0; i < nvar; i++)
+        {
+            FREE(xv[i]);
+        }
+        FREE(xv);
+        return -1;/* file does not exist */
     }
 
     elements = ezxml_child(model, "elements");
@@ -5676,7 +5681,7 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
         if (result == 0 )
         {
             /* sciprint(_("cannot find %s in '%s' \n"),ids[i],xmlfile);      */
-            /* err= -1;*/ /* Varaible does not exist*/
+            /* err= -1;*/ /* Variable does not exist*/
         }
     }
 
