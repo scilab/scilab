@@ -1,17 +1,17 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be
- * still available and supported in Scilab 6.
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+* Please note that piece of code will be rewrited for the Scilab 6 family
+* However, the API (profile of the functions in the header files) will be
+* still available and supported in Scilab 6.
+*/
 
 #include <string>
 #include <stdlib.h>
@@ -76,9 +76,9 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iMsgCount = 0;
 
     /*
-     * store the name in recu array, fname can be a non null terminated char array
-     * Get_Iname() can be used in other function to get the interface name
-     */
+    * store the name in recu array, fname can be a non null terminated char array
+    * Get_Iname() can be used in other function to get the interface name
+    */
     int cx0 = 0;
     C2F(cvname) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz],  ((StrCtx *) _pvCtx)->pstName, &cx0, (unsigned long int)strlen(((StrCtx *)_pvCtx)->pstName));
 
@@ -263,7 +263,7 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
     if (_iVar > Rhs && _iVar > Nbvars)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), ((StrCtx *) _pvCtx)->pstName,
-                        "getVarAddressFromPosition");
+            "getVarAddressFromPosition");
         return sciErr;
     }
 
@@ -413,13 +413,13 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
     getVarType(_pvCtx, _piAddress, &iType);
     switch (iType)
     {
-        case sci_matrix:
-        case sci_poly:
-        case sci_sparse:
-            iComplex = _piAddress[3];
-            break;
-        default:
-            iComplex = 0;
+    case sci_matrix:
+    case sci_poly:
+    case sci_sparse:
+        iComplex = _piAddress[3];
+        break;
+    default:
+        iComplex = 0;
     }
     return iComplex;
 }
@@ -445,7 +445,6 @@ int isNamedVarComplex(void *_pvCtx, const char *_pstName)
 void createNamedVariable(int *_piVarID)
 {
     int iOne = 1;
-
     C2F(stackp) (_piVarID, &iOne);
 }
 
@@ -476,18 +475,18 @@ int isVarMatrixType(void *_pvCtx, int *_piAddress)
 
         switch (iType)
         {
-            case sci_matrix:
-            case sci_poly:
-            case sci_boolean:
-            case sci_sparse:
-            case sci_boolean_sparse:
-            case sci_matlab_sparse:
-            case sci_ints:
-            case sci_handles:
-            case sci_strings:
-                return 1;
-            default:
-                return 0;
+        case sci_matrix:
+        case sci_poly:
+        case sci_boolean:
+        case sci_sparse:
+        case sci_boolean_sparse:
+        case sci_matlab_sparse:
+        case sci_ints:
+        case sci_handles:
+        case sci_strings:
+            return 1;
+        default:
+            return 0;
         }
     }
     else
@@ -564,7 +563,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
         if (iRows2 != 1 || iCols2 != 1)
         {
             addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
-                            1);
+                1);
             return sciErr;
         }
 
@@ -585,7 +584,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
         if (iRows2 != 1 || iCols2 != 1)
         {
             addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
-                            1);
+                1);
             return sciErr;
         }
 
@@ -610,7 +609,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
     else
     {
         addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"),
-                        "getProcessMode", _iPos);
+            "getProcessMode", _iPos);
         return sciErr;
     }
 
@@ -631,7 +630,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
     else
     {
         addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "getProcessMode",
-                        _iPos, "'*', 'r', 'c', 'm', '0', '1', '2'", "-1");
+            _iPos, "'*', 'r', 'c', 'm', '0', '1', '2'", "-1");
         return sciErr;
     }
     return sciErr;
@@ -661,7 +660,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
         if (isVarComplex(_pvCtx, _piAddress))
         {
             addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "getDimFromVar",
-                            getRhsFromAddress(_pvCtx, _piAddress));
+                getRhsFromAddress(_pvCtx, _piAddress));
             return sciErr;
         }
 
@@ -688,7 +687,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
         if (iRows != 1 || iCols != 1)
         {
             addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode",
-                            getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
+                getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
             return sciErr;
         }
 
@@ -702,89 +701,89 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
         switch (iPrec)
         {
         case SCI_INT8:
-        {
-            char *pcData = NULL;
-
-            sciErr = getMatrixOfInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pcData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                char *pcData = NULL;
+
+                sciErr = getMatrixOfInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pcData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = pcData[0];
             }
-            *_piVal = pcData[0];
-        }
-        break;
+            break;
         case SCI_UINT8:
-        {
-            unsigned char *pucData = NULL;
-
-            sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pucData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                unsigned char *pucData = NULL;
+
+                sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _piAddress, &iRows, &iCols, &pucData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = pucData[0];
             }
-            *_piVal = pucData[0];
-        }
-        break;
+            break;
         case SCI_INT16:
-        {
-            short *psData = NULL;
-
-            sciErr = getMatrixOfInteger16(_pvCtx, _piAddress, &iRows, &iCols, &psData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                short *psData = NULL;
+
+                sciErr = getMatrixOfInteger16(_pvCtx, _piAddress, &iRows, &iCols, &psData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = psData[0];
             }
-            *_piVal = psData[0];
-        }
-        break;
+            break;
         case SCI_UINT16:
-        {
-            unsigned short *pusData = NULL;
-
-            sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _piAddress, &iRows, &iCols, &pusData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                unsigned short *pusData = NULL;
+
+                sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _piAddress, &iRows, &iCols, &pusData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = pusData[0];
             }
-            *_piVal = pusData[0];
-        }
-        break;
+            break;
         case SCI_INT32:
-        {
-            int *piData = NULL;
-
-            sciErr = getMatrixOfInteger32(_pvCtx, _piAddress, &iRows, &iCols, &piData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                int *piData = NULL;
+
+                sciErr = getMatrixOfInteger32(_pvCtx, _piAddress, &iRows, &iCols, &piData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = piData[0];
             }
-            *_piVal = piData[0];
-        }
-        break;
+            break;
         case SCI_UINT32:
-        {
-            unsigned int *puiData = NULL;
-
-            sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _piAddress, &iRows, &iCols, &puiData);
-            if (sciErr.iErr)
             {
-                addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
-                return sciErr;
+                unsigned int *puiData = NULL;
+
+                sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _piAddress, &iRows, &iCols, &puiData);
+                if (sciErr.iErr)
+                {
+                    addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Unable to get argument data"), "getDimFromVar");
+                    return sciErr;
+                }
+                *_piVal = puiData[0];
             }
-            *_piVal = puiData[0];
-        }
-        break;
+            break;
         }
     }
     else
     {
         addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or a integer scalar expected.\n"),
-                        "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
+            "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
         return sciErr;
     }
     return sciErr;
@@ -803,7 +802,7 @@ SciErr getDimFromNamedVar(void *_pvCtx, const char *_pstName, int *_piVal)
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("%s: Unable to get dimension from variable \"%s\""), "getDimFromNamedVar",
-                        _pstName);
+            _pstName);
         return sciErr;
     }
 
@@ -811,7 +810,7 @@ SciErr getDimFromNamedVar(void *_pvCtx, const char *_pstName, int *_piVal)
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_NAMED_DIMFROMVAR, _("%s: Unable to get dimension from variable \"%s\""), "getDimFromNamedVar",
-                        _pstName);
+            _pstName);
         return sciErr;
     }
 
@@ -1308,5 +1307,44 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     // add here some others rules
 
     return iRet;
+}
+/*--------------------------------------------------------------------------*/
+int deleteNamedVariable(void* _pvCtx, const char* _pstName)
+{
+    SciErr sciErr;
+    int iVarID[nsiz];
+    int iZero = 0;
+    int il;
+
+    if(isNamedVarExist(_pvCtx, _pstName) == 0)
+    {
+        return 0;
+    }
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedComplexZMatrixOfDouble");
+        return 0;
+    }
+
+    //get varId from varName
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+
+    //create a null matrix a the Top of the stack
+    il = iadr(*Lstk(Top));
+    *istk(il) = 0;
+    *Lstk(Top+1) = *Lstk(Top) + 1;
+    Rhs = 0;
+
+    //Replace existing value by null matrix to delete it
+    C2F(stackp) (iVarID, &iZero);
+    if(C2F(iop).err > 0/* || C2F(errgst).err1 > 0*/)
+    {
+        return 0;
+    }
+
+    //No Idea :x
+    Fin = 1;
+    return 1;
 }
 /*--------------------------------------------------------------------------*/

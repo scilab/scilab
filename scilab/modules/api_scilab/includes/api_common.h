@@ -409,6 +409,13 @@ extern "C" {
      */
     int isNamedEmptyMatrix(void* _pvCtx, const char* _pstName);
 
+    /**
+     * Delete a variable for stack
+     * @param[in] _pstName variable name
+     * @return 1 for true and 0 for false
+     */
+    int deleteNamedVariable(void* _pvCtx, const char* _pstName);
+
 #ifdef __cplusplus
 }
 #endif
