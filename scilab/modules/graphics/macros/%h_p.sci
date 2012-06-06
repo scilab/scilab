@@ -206,7 +206,6 @@ function %h_p(h)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(h.user_data)
                 "tag = "+h.tag
-                "UID = "+sci2exp(h.UID)
             ]
 
         // Legend
@@ -314,7 +313,6 @@ function %h_p(h)
                 "event_handler_enable = " + sci2exp( h.event_handler_enable ) ;
                 "user_data = "+fmtuser_data(u)
                 "tag = "+sci2exp(h.tag)
-                "UID = "+sci2exp(h.UID)
             ]
 
         // Grayplot
@@ -903,11 +901,7 @@ function %h_p(h)
             t=[t;
                 "Children: "+fmtchildren(h.children)
                 "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
-                "UID = "+sci2exp(h.UID)
                 ]
-        else
-            t=[t;
-               "UID = "+sci2exp(h.UID)]
         end
     end
     write(%io(2),t)
