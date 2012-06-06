@@ -19,13 +19,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JToggleButton.ToggleButtonModel;
 
+import org.scilab.modules.commons.utils.StringBlockingResult;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewMenu;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
-import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -72,7 +72,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
              * @param arg0 the action
              */
             public void actionPerformed(ActionEvent arg0) {
-                BlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
+                StringBlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
             }
         });
         this.autoCheckedMode = autoCheckedMode;

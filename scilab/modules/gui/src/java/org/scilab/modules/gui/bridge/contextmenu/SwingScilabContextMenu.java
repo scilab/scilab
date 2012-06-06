@@ -18,13 +18,13 @@ import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
 
+import org.scilab.modules.commons.utils.StringBlockingResult;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
-import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -88,7 +88,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
     public String displayAndWait() {
         setVisible(true);
         setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-        return BlockingResult.getInstance().getResult();
+        return StringBlockingResult.getInstance().getResult();
     }
 
     /**
@@ -264,7 +264,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @see javax.swing.JPopupMenu#firePopupMenuCanceled()
      */
     public void firePopupMenuCanceled() {
-        BlockingResult.getInstance().setResult("");
+        StringBlockingResult.getInstance().setResult("");
         super.firePopupMenuCanceled();
     }
 

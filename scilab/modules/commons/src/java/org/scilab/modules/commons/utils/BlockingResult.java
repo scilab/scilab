@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,60 +11,41 @@
  *
  */
 
-package org.scilab.modules.gui.events;
+package org.scilab.modules.commons.utils;
 
 /**
  * Class use for dialogs that wait for a user input
  * 
  * @author Bruno JOFRET
  */
-public final class BlockingResult {
+public class BlockingResult<BlockingResultType> {
 
-	private static BlockingResult me;
-	
-	private String theResult;
-	
-	/**
-	 * Constructor
-	 */
-	private BlockingResult() {
-		theResult = null;
-	}
+	private BlockingResultType theResult = null;
+	private Object lock;
 
-	/**
-	 * Get the current instance of BlockingResult
-	 * @return this instance
-	 */
-	public static BlockingResult getInstance() {
-		if (me == null) {
-			me = new BlockingResult();	
-		}
-		return me;
-	}
-	
 	/**
 	 * Get the user input (wait until it)
 	 * @return the user input
 	 */
-	public String getResult() {
-		synchronized (me) {
+	public BlockingResultType getResult() {
+		synchronized (lock) {
 			try {
-				me.wait();
+				lock.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		return me.theResult;
+		return theResult;
 	}
 
 	/**
 	 * Set the result for this BlockingResult and notify
 	 * @param theResult the user input to set
 	 */
-	public void setResult(String theResult) {
+	public void setResult(BlockingResultType theResult) {
 		this.theResult = theResult;
-		synchronized (me) {
-			me.notify();
+		synchronized (lock) {
+			lock.notify();
 		}
 	}
 	

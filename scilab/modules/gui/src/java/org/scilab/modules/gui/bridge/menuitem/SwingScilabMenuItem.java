@@ -20,13 +20,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import org.scilab.modules.commons.utils.StringBlockingResult;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewMenu;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
-import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -40,7 +41,6 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
@@ -79,7 +79,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
                  * @param arg0 the action
                  */
                 public void actionPerformed(ActionEvent arg0) {
-                    BlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
+                    StringBlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
                 }
             });
         this.autoCheckedMode = autoCheckedMode;
