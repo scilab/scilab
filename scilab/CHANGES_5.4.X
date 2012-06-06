@@ -531,6 +531,8 @@ Bug fixes
 
 * Bug #2479 fixed - Graphic editor could not be used when format was not format("v",18).
 
+* Bug #2853 fixed - sd2sci.sci removed from sources.
+
 * Bug #4806 fixed - If A is a sparse matrix, A^0 returned A and not the identity
                     matrix as expected.
 

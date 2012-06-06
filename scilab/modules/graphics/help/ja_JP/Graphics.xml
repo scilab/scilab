@@ -1009,14 +1009,6 @@
           <para>対話的なグラフィック曲線エディタ</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <link linkend="sd2sci">sd2sci</link>
-        </term>
-        <listitem>
-          <para>Scilab命令コンバータ用のgr_menu 構造体</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>

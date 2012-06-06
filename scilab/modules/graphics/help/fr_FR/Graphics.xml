@@ -1031,14 +1031,6 @@
           <para>éditeur graphique interactif</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <link linkend="sd2sci">sd2sci</link>
-        </term>
-        <listitem>
-          <para>conversion d'objets gr_menu en instructions Scilab</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>

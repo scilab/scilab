@@ -661,12 +661,6 @@
           <para>editor gráfico interativo simples</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>sd2sci</term>
-        <listitem>
-          <para>estrutura gr_menu para conversor de instrução Scilab</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
