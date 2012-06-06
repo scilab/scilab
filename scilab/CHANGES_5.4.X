@@ -555,6 +555,8 @@ Bug fixes
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
                     simplified and optimized.
 
+* Bug #8651 fixed - The error message of write_csv was wrong.
+
 * Bug #8682 fixed - funcprot did not return the previous value when called with
                     an argument.
 
