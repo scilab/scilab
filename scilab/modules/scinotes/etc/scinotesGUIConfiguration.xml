@@ -69,7 +69,7 @@
         <separator/>
         <menuitem action="scinotes-code-navigator" label="Code Navigator"/>
       </menu>
-       
+      
     </menu>
     
     <menu label="Format" mnemonic="P">
@@ -145,7 +145,7 @@
     <menuitem action="scinotes-paste-column" label="Paste Column"/>
     <separator/>
     <menuitem action="scinotes-indent" label="Correct Indentation"/>
-     
+    
     <separator/>
     <menuitem action="scinotes-copy-with-lines" label="Copy as HTML with line number"/>
     <separator/>
@@ -180,8 +180,8 @@
     <button action="scinotes-incremental-search" tooltip="Incremental Search" icon="go-bottom"/>
     <separator/>
     <button action="scinotes-execute-scilab" tooltip="Execute" icon="media-playback-start"/>
-    <button action="scinotes-save-execute" tooltip="Execute" icon="save-and-execute"/>
-    <button action="scinotes-save-execute-all" tooltip="Execute" icon="execute-all"/>
+    <button action="scinotes-save-execute" tooltip="Save and execute" icon="save-and-execute"/>
+    <button action="scinotes-save-execute-all" tooltip="Save and execute all" icon="execute-all"/>
   </ToolBar>
   
 </Configuration>
