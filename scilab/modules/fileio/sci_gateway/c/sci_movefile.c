@@ -292,7 +292,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname)
         wchar_t buffer[BUFFER_SIZE];
 
         if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-            dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
+                           dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
         {
             wcscpy(buffer, L"Unknown Error");
         }
@@ -342,6 +342,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname)
         if (sciError[0] == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freeArrayOfWideString(sciError, 1);
             return 0;
         }
         wcscpy(sciError[0], L"");
