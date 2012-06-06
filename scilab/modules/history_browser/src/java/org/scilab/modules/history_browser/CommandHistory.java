@@ -204,21 +204,21 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         if (isHistoryVisible()) {
             // put the expansion in an invokeLater to avoid some kind of freeze with huge history
             SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        scilabHistoryTree.setVisible(true);
-                        if (!modelLoaded) {
-                            scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
-                            modelLoaded = true;
-                        }
-
-                        for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
-                            scilabHistoryTree.expandRow(i);
-                        }
-
-                        WindowsConfigurationManager.restorationFinished(getBrowserTab());
-                        scrollAtBottom();
+                public void run() {
+                    scilabHistoryTree.setVisible(true);
+                    if (!modelLoaded) {
+                        scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
+                        modelLoaded = true;
                     }
-                });
+
+                    for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
+                        scilabHistoryTree.expandRow(i);
+                    }
+
+                    WindowsConfigurationManager.restorationFinished(getBrowserTab());
+                    scrollAtBottom();
+                }
+            });
         }
     }
 
@@ -476,11 +476,11 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     private static void scrollAtBottom() {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    scrollPane.getHorizontalScrollBar().setValue(0);
-                    scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-                }
-            });
+            public void run() {
+                scrollPane.getHorizontalScrollBar().setValue(0);
+                scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+            }
+        });
 
     }
 
@@ -512,24 +512,24 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
             setLargeModel(true);
 
             setCellRenderer(new DefaultTreeCellRenderer() {
-                        {
-                            defaultColor = getTextNonSelectionColor();
-                        }
+                {
+                    defaultColor = getTextNonSelectionColor();
+                }
 
-                    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-                        if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
-                            setTextNonSelectionColor(sessionColor);
-                        } else {
-                            setTextNonSelectionColor(defaultColor);
-                        }
-
-                        return this;
+                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                    super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                    if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
+                        setTextNonSelectionColor(sessionColor);
+                    } else {
+                        setTextNonSelectionColor(defaultColor);
                     }
-                });
+
+                    return this;
+                }
+            });
         }
 
-        public void paint (Graphics g) {
+        public void paint(final Graphics g) {
             if (first) {
                 g.setFont(getFont());
                 int height = g.getFontMetrics().getHeight();
@@ -539,7 +539,15 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                 scrollPane.getVerticalScrollBar().setUnitIncrement(height);
                 scrollAtBottom();
             }
-            super.paint(g);
+            try {
+                super.paint(g);
+            } catch (Exception e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        paint(g);
+                    }
+                });
+            }
         }
     }
 }
