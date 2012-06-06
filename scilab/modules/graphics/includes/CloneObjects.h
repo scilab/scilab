@@ -49,5 +49,11 @@ GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdenti
  */
 GRAPHICS_IMPEXP int cloneFontContext(char* sourceIdentifier, char* destIdentifier);
 /*--------------------------------------------------------------------------*/
+/**
+ * Clones a polyline
+ * @param sourceIdentifier the source polyline's identifier
+ * @return the identifier of the cloned polyline.
+ */
+GRAPHICS_IMPEXP char* clonePolyline(char* sourceIdentifier);
 
 #endif /* __SCI_CLONE__ */

@@ -21,6 +21,7 @@
  *    This file contains all functions used to CLONE an object, it means make
  *    a copy of an object under the same subwin.
  --------------------------------------------------------------------------*/
+
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
@@ -142,3 +143,86 @@ int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
 
     return 0;
 }
+
+char* clonePolyline(char* sourcePolyline)
+{
+    char *clonedPolylineUID = NULL;
+    char* parentAxes = NULL;
+
+    double* dataX = NULL;
+    double* dataY = NULL;
+    double* dataZ = NULL;
+
+    double lineThickness = 0.0;
+    double* pLineThickness = &lineThickness;
+
+    int nPoints = 0;
+    int* pNPoints = &nPoints;
+
+    int closed = 0;
+    int* pClosed = &closed;
+
+    int polylineStyle = 0;
+    int* pPolylineStyle = &polylineStyle;
+
+    int tmp = 0;
+    int* pTmp = &tmp;
+
+    int lineStyle;
+    int foreground;
+    int background;
+    int markForeground;
+    int markBackground;
+    int markStyle;
+
+    int lineMode;
+    int fillMode;
+    int markMode;
+    int interpShaded;
+
+    getGraphicObjectProperty(sourcePolyline, __GO_PARENT_AXES__, jni_string, &parentAxes);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &pNPoints);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_CLOSED__, jni_bool, &pClosed);
+    getGraphicObjectProperty(sourcePolyline, __GO_POLYLINE_STYLE__, jni_int, &pPolylineStyle);
+
+    /* ContouredObject properties */
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_THICKNESS__, jni_double, &pLineThickness);
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_STYLE__, jni_int, &pTmp);
+    lineStyle = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_COLOR__, jni_int, &pTmp);
+    foreground = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_BACKGROUND__, jni_int, &pTmp);
+    background = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_STYLE__, jni_int, &pTmp);
+    markStyle = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_FOREGROUND__, jni_int, &pTmp);
+    markForeground = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_BACKGROUND__, jni_int, &pTmp);
+    markBackground = tmp;
+
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_MODE__, jni_bool, &pTmp);
+    lineMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_FILL_MODE__, jni_bool, &pTmp);
+    fillMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_MODE__, jni_bool, &pTmp);
+    markMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_INTERP_COLOR_MODE__, jni_bool, &pTmp);
+    interpShaded = tmp;
+
+    clonedPolylineUID = allocatePolyline(parentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
+                                         &foreground, &background, &markStyle, &markForeground, &markBackground,
+                                         lineMode, fillMode, markMode, interpShaded);
+
+    /* These properties must be aditionally set as this is not done by allocatePolyline */
+    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+
+    return clonedPolylineUID;
+}
+

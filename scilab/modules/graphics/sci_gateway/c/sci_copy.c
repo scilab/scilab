@@ -39,6 +39,7 @@ int sci_copy(char *fname,unsigned long fname_len)
     int m1, n1, l1,l2;
     int numrow, numcol, outindex,lw;
     char* pstType;
+    int isPolyline;
 
     CheckRhs(1,2);
     CheckLhs(0,1);
@@ -71,6 +72,15 @@ int sci_copy(char *fname,unsigned long fname_len)
     }
     //psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
 
+    if (strcmp(pstType, __GO_POLYLINE__) == 0)
+    {
+        isPolyline = 1;
+    }
+    else
+    {
+        isPolyline = 0;
+    }
+
     if (Rhs > 1)
     {
         GetRhsVar(2,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l2); /* Gets the command name */
@@ -91,17 +101,30 @@ int sci_copy(char *fname,unsigned long fname_len)
         }
 
     }
+    else
+    {
+        /* No destination Axes specified, use the copied object's parent Axes */
+        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &psubwinparenttargetUID);
+    }
 
     numrow   = 1;
     numcol   = 1;
     CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
     //*hstk(outindex) = sciGetHandle(pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
-    pcopyobjUID = cloneGraphicObject(pobjUID);
-    *hstk(outindex) = getHandle(pcopyobjUID);
-    if (Rhs > 1)
+
+    if (isPolyline)
     {
-        setGraphicObjectRelationship(psubwinparenttargetUID, pcopyobjUID);
+        pcopyobjUID = clonePolyline(pobjUID);
     }
+    else
+    {
+        pcopyobjUID = cloneGraphicObject(pobjUID);
+    }
+
+    *hstk(outindex) = getHandle(pcopyobjUID);
+
+    setGraphicObjectRelationship(psubwinparenttargetUID, pcopyobjUID);
+
     //sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
 
     LhsVar(1) = Rhs+1;
