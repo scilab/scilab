@@ -33,6 +33,7 @@ import java.util.Iterator;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -153,7 +154,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** Contains the canvas and widgets */
     private SwingScilabAxes contentPane;
-
+    private JLayeredPane layerdPane;
+    
     /** Scroll the axes */
     private SwingScilabScrollPane scrolling;
 
@@ -264,7 +266,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
-        scrolling = new SwingScilabScrollPane(canvas, figure);
+        
+        layerdPane = new JLayeredPane();
+        layerdPane.setLayout(null);
+        layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
+        
+        scrolling = new SwingScilabScrollPane(layerdPane, canvas, figure);
         
         setContentPane(scrolling.getAsContainer());
         canvas.setVisible(true);
@@ -530,10 +537,14 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
+        /**
+         * Force adding Widget at JLayeredPane.DEFAULT_LAYER + 1
+         * to draw them uppon GLJPanel (even if it is at level JLayeredPane.FRAME_CONTENT_LAYER)
+         */
         if (member instanceof SwingScilabFrame) {
-            getContentPane().add((Component) member);
+            layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
         } else {
-            getContentPane().add((Component) member, TOP_POSITION);
+            layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
         }
     }
 

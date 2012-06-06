@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -43,13 +44,15 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
 
     private SwingScilabCanvas canvas;
     private Figure figure;
+    private Component comp;
 
     /**
      * Create a new Scroll pane around an axes.
      * @param axes axes to scroll
      */
-    public SwingScilabScrollPane(SwingScilabCanvas canvas, Figure figure) {
-        super(canvas);
+    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, Figure figure) {
+        super(comp);
+        this.comp = comp;
         this.canvas = canvas;
         this.figure = figure;
         // use the axes background as default one
@@ -126,8 +129,8 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
 
             if ( property.equals(__GO_AXES_SIZE__)) {
                 Dimension d = new Dimension(figure.getAxesSize()[0], figure.getAxesSize()[1]);
-                canvas.setPreferredSize(d);
-                canvas.setSize(d);
+                comp.setPreferredSize(d);
+                comp.setSize(d);
                 canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
             }
 
