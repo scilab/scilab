@@ -12,17 +12,22 @@
 
 package org.scilab.modules.graph.event;
 
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 import javax.swing.Timer;
 
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.utils.BlockPositioning;
+
+import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxRectangle;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxGraph;
 
 /**
@@ -35,44 +40,63 @@ public final class ArrowKeyListener implements KeyListener {
     private static final int DEFAULT_DELAY = 800; // milliseconds
 
     /* Configuration variables */
-    private int pixelMove = DEFAULT_PIXEL_MOVE;
+    private final int pixelMove = DEFAULT_PIXEL_MOVE;
     private int delay = DEFAULT_DELAY;
 
     /* Runtime variables */
-    private int xIncrement;
-    private int yIncrement;
+    private double xIncrement;
+    private double yIncrement;
     private mxGraph graph;
 
-    private Timer repetitionTimer;
-    private ActionListener doMove = new ActionListener() {
+    private final Timer repetitionTimer;
+    private final ActionListener doMove = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent arg0) {
             if (graph != null) {
-                graph.getModel().beginUpdate();
+
+                final mxIGraphModel model = graph.getModel();
+                model.beginUpdate();
                 try {
                     for (Object cell : graph.getSelectionCells()) {
-                        final Rectangle rect = graph.getModel().getGeometry(cell).getRectangle();
-
                         // first increment
-                        rect.x = rect.x + xIncrement;
-                        rect.y = rect.y + yIncrement;
+                        graph.translateCell(cell, xIncrement, yIncrement);
 
                         // then align
-                        int x = (int) graph.snap(rect.x);
-                        int y = (int) graph.snap(rect.y);
-                        rect.width = (int) graph.snap(rect.width - x + rect.x);
-                        rect.height = (int) graph.snap(rect.height - y + rect.y);
-                        rect.x = x;
-                        rect.y = y;
+                        final mxGeometry geom = model.getGeometry(cell);
+                        model.setGeometry(cell, snap(graph, geom));
 
-                        graph.resizeCell(cell, new mxRectangle(rect));
+                        if (cell instanceof BasicBlock) {
+                            BlockPositioning.updateBlockView((BasicBlock) cell);
+                        }
                     }
                 } finally {
-                    graph.getModel().endUpdate();
+                    model.endUpdate();
                 }
 
             }
         }
     };
+
+    private static final mxGeometry snap(final mxGraph graph, final mxGeometry rect) {
+        final double x = graph.snap(rect.getX());
+        final double y = graph.snap(rect.getY());
+
+        final double width = graph.snap(rect.getWidth() - x + rect.getX());
+        final double height = graph.snap(rect.getHeight() - y + rect.getY());
+
+        final List<mxPoint> points = rect.getPoints();
+        if (points != null) {
+            for (final mxPoint p : points) {
+                p.setX(graph.snap(p.getX()));
+                p.setY(graph.snap(p.getY()));
+            }
+        }
+
+        final mxGeometry snappedGeom = new mxGeometry(x, y, width, height);
+        snappedGeom.setPoints(points);
+
+        return snappedGeom;
+    }
 
     /**
      * Constructor
@@ -83,7 +107,8 @@ public final class ArrowKeyListener implements KeyListener {
     }
 
     /**
-     * @param delay the delay to set
+     * @param delay
+     *            the delay to set
      */
     public void setDelay(int delay) {
         this.delay = delay;
@@ -103,6 +128,7 @@ public final class ArrowKeyListener implements KeyListener {
      * @param e
      *            key event
      */
+    @Override
     public void keyPressed(KeyEvent e) {
         if (e.isConsumed()) {
             return;
@@ -166,6 +192,7 @@ public final class ArrowKeyListener implements KeyListener {
      * @param e
      *            key event
      */
+    @Override
     public void keyReleased(KeyEvent e) {
         if (e.isConsumed()) {
             return;
@@ -185,6 +212,7 @@ public final class ArrowKeyListener implements KeyListener {
      * @param e
      *            Not used
      */
+    @Override
     public void keyTyped(KeyEvent e) {
     }
 }
