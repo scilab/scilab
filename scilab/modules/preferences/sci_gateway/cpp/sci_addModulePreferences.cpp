@@ -76,7 +76,7 @@ int sci_addModulePreferences(char * fname, unsigned long fname_len)
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+        Scierror(999, _("%s: %s"), fname, e.getJavaDescription().c_str());
         for (int i = 0; i < Rhs; i++)
         {
             if (array[i])

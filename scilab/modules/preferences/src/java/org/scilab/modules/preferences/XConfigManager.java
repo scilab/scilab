@@ -167,8 +167,9 @@ public final class XConfigManager extends XCommonManager {
 
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
         for (ToolboxInfos info: infos) {
+            String filename = new File(info.getPrefFile()).getName();
             String tbxTag = info.getName().replace(' ', '_');
-            String tbxFile = ScilabCommons.getSCIHOME() + "/" + tbxTag + ".xml";
+            String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
 
             // the copy is made only if needed
             createUserCopy(info.getPrefFile(), tbxFile);
@@ -201,7 +202,8 @@ public final class XConfigManager extends XCommonManager {
                 if (list != null && list.getLength() != 0) {
                     Element mytbx = (Element) list.item(0);
                     if (mytbx.hasChildNodes()) {
-                        String tbxFile = ScilabCommons.getSCIHOME() + "/" + tbxTag + ".xml";
+                        String filename = new File(info.getPrefFile()).getName();
+                        String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
                         XConfiguration.writeDocument(tbxFile, mytbx.getFirstChild());
                     }
                 }
@@ -268,7 +270,8 @@ public final class XConfigManager extends XCommonManager {
             writeDocument(USER_CONFIG_FILE, document);
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
             for (ToolboxInfos info : infos) {
-                String tbxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
+                String filename = new File(info.getPrefFile()).getName();
+                String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
                 refreshUserCopy(info.getPrefFile(), tbxFile);
             }
             readUserDocuments();
