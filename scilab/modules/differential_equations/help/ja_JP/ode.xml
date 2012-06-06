@@ -46,14 +46,15 @@
         <term>type</term>
         <listitem>
           <para>
-            以下の文字列のどれか: <literal>"adams"
-              "stiff" "rk" "rkf" "fix" "discrete" "roots"
-            </literal>
+            以下の文字列のどれか: <literal>"adams"</literal>,
+	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
+             <literal>"rkf"</literal>, <literal>"fix"</literal>,
+	    <literal>"discrete"</literal>, <literal>"roots"</literal>.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
           <para>
             実数定数または<literal>y</literal>と同じ大きさの実数ベクトル.
@@ -67,7 +68,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
           <para>実数ベクトル.</para>
         </listitem>
@@ -160,7 +161,7 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para>"rkf"と同じソルバですがユーザインターフェイスが非常にシンプルで,
+          <para><literal>"rkf"</literal>と同じソルバですがユーザインターフェイスが非常にシンプルで,
             <literal>rtol</literal> および <literal>atol</literal>パラメータのみを
             ソルバに指定することが可能です.
             この手法は使用できる中で最も簡単な手法です.
@@ -174,14 +175,16 @@
             <literal>lsodar</literal> ソルバが使用されます. 
             使用されているのは<literal>lsoda</literal> ソルバを改変したもので,
             指定したベクトル関数の根を見つけることができます.
-            詳細は ode_root のヘルプを参照してください.
+            詳細は <link
+linkend="ode_root">ode_root</link> のヘルプを参照してください.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>離散時間シミュレーション. 詳細は ode_discrete のヘルプを参照してください.</para>
+          <para>離散時間シミュレーション. 詳細は <link
+linkend="ode_discrete">ode_discrete</link> のヘルプを参照してください.</para>
         </listitem>
       </varlistentry>
     </variablelist>

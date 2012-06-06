@@ -48,14 +48,15 @@
         <term>type</term>
         <listitem>
           <para>
-            une des chaînes de caractères : <literal>"adams" "stiff" "rk"
-              "rkf" "fix" "discrete" "roots"
-            </literal>
+            une des chaînes de caractères : <literal>"adams"</literal>,
+	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
+             <literal>"rkf"</literal>, <literal>"fix"</literal>,
+	    <literal>"discrete"</literal>, <literal>"roots"</literal>
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
           <para>constantes ou vecteurs réels de même taille que
             <literal>y</literal>.
@@ -71,7 +72,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
           <para>vecteurs réels</para>
         </listitem>
@@ -166,7 +167,8 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para>Identique à "rkf", mais l'interface est simplifiée, i.e.
+          <para>Identique à <literal>"rkf"</literal>, mais l'interface est
+simplifiée, i.e.
             uniquement <literal>rtol</literal> et <literal>atol</literal> sont
             communiqués au solveur.
           </para>
@@ -178,7 +180,8 @@
           <para>Solveur d'EDO avec recherche de racines. Le solveur
             <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une
             variante de <literal>lsoda</literal> permettant la recherche d'une
-            racine d'une fonction vectorielle donnée. Voir ode_root pour plus de
+            racine d'une fonction vectorielle donnée. Voir <link
+linkend="ode_root">ode_root</link> pour plus de
             détails.
           </para>
         </listitem>
@@ -186,7 +189,8 @@
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>Simulation en temps discret. Voir ode_discrete pour plus de
+          <para>Simulation en temps discret. Voir <link
+linkend="ode_discrete">ode_discrete</link> pour plus de
             détails.
           </para>
         </listitem>
