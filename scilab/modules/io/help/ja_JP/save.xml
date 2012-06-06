@@ -106,7 +106,7 @@ for i=1:4, load(fd,'x','k');x,k,end
 mclose(fd)
 
 // 古い保存したファイルに変数を追加
-fd=mopen('TMPDIR/foo','r+')
+fd=mopen('TMPDIR/foo','rb+')
 mseek(0,fd,'end') 
 lst=list(1,2,3)
 save(fd,lst)

@@ -256,6 +256,8 @@ Documentation
 
 * Bug #10881 fixed - Typo in ftest and ftuneq fixed.
 
+* Bug #10928 fixed - Examples of save was updated to fix trouble on windows.
+
 * Bug #11010 fixed - Examples of preconditioning added in gmres documentation.
 
 * Bug #11029 fixed - Fix execution path to TMPDIR in example of dae help page.
