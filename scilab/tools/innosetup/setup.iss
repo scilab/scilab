@@ -13,8 +13,6 @@
 ;
 ;-------------------------------------------------------------------------------
 
-;Minimun O.S version : Windows XP
-MinVersion=5.01,5.01
 ; data to modify with version
 #ifdef SCILAB_X64
 ArchitecturesAllowed=x64
