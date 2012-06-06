@@ -53,15 +53,18 @@
 
 
   <xsl:template match="*" mode="left-tree">
-    <tableNode name="{local-name()}">
+    <tableNode>
+      <xsl:attribute name="name">
+	<xsl:value-of select="./@title"/> 
+      </xsl:attribute>
       <xsl:apply-templates mode="left-tree"/>
     </tableNode>
   </xsl:template>
 
   <xsl:template match="toolboxes" mode="left-tree">
-    <xsl:if test="*[ not(self::body)]">
+    <xsl:if test="*[not(self::body)]">
       <tableNode name="{local-name()}">
-        <xsl:apply-templates mode="left-tree"/>
+	<xsl:apply-templates mode="left-tree"/>
       </tableNode>
     </xsl:if>
   </xsl:template>
@@ -84,29 +87,14 @@
         <xsl:call-template name="here"/>
       </xsl:for-each>
     </xsl:variable>
+    <!--xsl:message>
+      <xsl:value-of select="$local-path"/>::::::::<xsl:value-of select="$path"/>
+    </xsl:message-->
     <xsl:if test="$local-path=$path">
       <VBox path="{$path}" fill="both">
         <xsl:apply-templates/>
       </VBox>
     </xsl:if>
   </xsl:template>
-
-  <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-       ::
-       ::     M A I N   P A N E L   E X E M P L E
-       ::
-       ::
-  -->
-
-  <xsl:template match="toolbox-info">
-    <Glue/>
-    <HBox>
-      <Glue/>
-      Select your toolbox in the left side navigation panel.
-      <Glue/>
-    </HBox>
-    <Glue/>
-  </xsl:template>
-
 </xsl:stylesheet>
 

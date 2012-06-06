@@ -62,9 +62,9 @@ int sci_addModulePreferences(char * fname, unsigned long fname_len)
                 }
             }
             return 0;
-	}
-	
-	getAllocatedSingleString(pvApiCtx, addr, array[i]);
+        }
+
+        getAllocatedSingleString(pvApiCtx, addr, array[i]);
     }
 
     expTbxPath = expandPathVariable(const_cast<char *>(tbxPath));
@@ -77,7 +77,17 @@ int sci_addModulePreferences(char * fname, unsigned long fname_len)
     catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
-        error = true;
+        for (int i = 0; i < Rhs; i++)
+        {
+            if (array[i])
+            {
+                freeAllocatedSingleString(*(array[i]));
+            }
+        }
+        FREE(expTbxPath);
+        FREE(expTbxPrefFile);
+
+        return 0;
     }
 
     for (int i = 0; i < Rhs; i++)
@@ -90,11 +100,8 @@ int sci_addModulePreferences(char * fname, unsigned long fname_len)
     FREE(expTbxPath);
     FREE(expTbxPrefFile);
 
-    if (!error)
-    {
-        LhsVar(1) = 0;
-        PutLhsVar();
-    }
+    LhsVar(1) = 0;
+    PutLhsVar();
 
     return 0;
 }

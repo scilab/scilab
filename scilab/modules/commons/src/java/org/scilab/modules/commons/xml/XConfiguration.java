@@ -13,6 +13,8 @@
 package org.scilab.modules.commons.xml;
 
 import java.awt.Color;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.FileFilter;
@@ -145,6 +147,41 @@ public class XConfiguration {
     }
 
     /**
+     * Save the modifications
+     */
+    public static String dumpNode(Node written) {
+        Transformer transformer = null;
+        try {
+            transformer = ScilabTransformerFactory.newInstance().newTransformer();
+        } catch (TransformerConfigurationException e1) {
+            System.err.println("Cannot dump xml");
+            return "";
+        } catch (TransformerFactoryConfigurationError e1) {
+            System.err.println("Cannot dump xml");
+            return "";
+        }
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        StreamResult result = new StreamResult(new BufferedOutputStream(stream));
+        DOMSource source = new DOMSource(written);
+        String str = "";
+        try {
+            transformer.transform(source, result);
+            str = stream.toString();
+        } catch (TransformerException e) {
+            System.err.println("Cannot dump xml");
+            return str;
+        } finally {
+            try {
+                stream.close();
+            } catch (Exception e) { }
+        }
+
+        return str;
+    }
+
+    /**
      * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
      * @return the built document
      */
@@ -237,8 +274,9 @@ public class XConfiguration {
         }
     }
 
-    public static void clearModifiedPath() {
+    public static void invalidate() {
         modifiedPaths.clear();
+        doc = null;
     }
 
     public static void addXConfigurationListener(XConfigurationListener listener) {

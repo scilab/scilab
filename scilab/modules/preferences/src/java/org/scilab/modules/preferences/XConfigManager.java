@@ -63,6 +63,9 @@ public final class XConfigManager extends XCommonManager {
     /** User configuration file.*/
     private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
 
+    static {
+        //ScilabPreferences.addToolboxInfos("MyToolbox", System.getenv("SCI") + "/contrib/toolbox_skeleton/", System.getenv("SCI") + "/contrib/toolbox_skeleton/etc/toolbox_skeleton_preferences.xml");
+    }
 
     /**
      * Constructor blocked, singleton pattern.
@@ -94,7 +97,7 @@ public final class XConfigManager extends XCommonManager {
         //dialog.setResizable(false);
         dialog.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
-                Element element = (Element) document.getDocumentElement();
+                Element element = document.getDocumentElement();
                 Dimension dimension = dialog.getSize();
                 int height = XConfigManager.getInt(element, "height", 0);
                 int width = XConfigManager.getInt(element, "width",  0);
@@ -133,80 +136,87 @@ public final class XConfigManager extends XCommonManager {
     /** Read files to modify (and possibly create it).
      */
     private static void readUserDocuments() {
+        /*
+         * The default document just contains an empty tag <toolboxes/>
+         * We add a body and the different toolbox entries to have something like
+         * <toolboxes>
+         *   <body/>
+         *   <mytoolbox1><body>...</body></mytoolbox1>
+         *   <mytoolbox2><body>...</body></mytoolbox2>
+         * </toolboxes>
+         */
+
         document = XConfiguration.getXConfigurationDocument();
+
+        // We remove all the previous tags (should be empty but an error could have occured...)
         NodeList toolboxes = document.getElementsByTagName("toolboxes");
-        if (toolboxes.getLength() != 1) {
-            System.err.println("Can't hook toolboxes [1]");
-            return;
-        }
-
-        // Toolboxes files
-        Element toolbox = (Element) toolboxes.item(0);
-        toolboxes = toolbox.getChildNodes();
-
-        if (toolboxes.getLength() > 0) {
-            System.err.println("Recover from inconsistent state...");
-            while (toolbox.hasChildNodes()) {
-                toolbox.removeChild(toolbox.getFirstChild());
+        for (int i = 0; i < toolboxes.getLength(); i++) {
+            try {
+                document.getDocumentElement().removeChild(toolboxes.item(i));
+            } catch (Exception e) {
+                // Maybe root is not the good parent...
             }
         }
 
+        Element tbxs = document.createElement("toolboxes");
+        document.getDocumentElement().appendChild(tbxs);
+
         // Body (rendered as XConfiguration.xsl example)
         Element body = document.createElement("body");
-        Element toolboxInfo = document.createElement("toolbox-info");
-        body.appendChild(toolboxInfo);
-        toolbox.appendChild(body);
+        tbxs.appendChild(body);
 
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-        System.out.println("" + infos.size() + " toolboxes loaded.");
-        for (int i = 0; i < infos.size(); i++) {
-            ToolboxInfos info = infos.get(i);
-            String UserToolboxToken = info.getName().replace(' ', '_');
-            String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + UserToolboxToken + ".xml";
-            createUserCopy(info.getPrefFile(), UserToolboxFile);
+        for (ToolboxInfos info: infos) {
+            String tbxTag = info.getName().replace(' ', '_');
+            String tbxFile = ScilabCommons.getSCIHOME() + "/" + tbxTag + ".xml";
+
+            // the copy is made only if needed
+            createUserCopy(info.getPrefFile(), tbxFile);
+
             // Building document fragment
-            Element token = document.createElement(UserToolboxToken);
+            Element token = document.createElement(tbxTag);
+            token.setAttribute("title", info.getName());
             DocumentFragment fragment = document.createDocumentFragment();
-            Document ToolboxDocument = readDocument(UserToolboxFile);
-            Node transferred = ToolboxDocument.getDocumentElement();
-            //-- System.out.println("-->" + transferred.getNodeName());
+            Document tbxDocument = readDocument(tbxFile);
+            Node transferred = tbxDocument.getDocumentElement();
+
             transferred = document.importNode(transferred, true);
             fragment.appendChild(transferred);
             token.insertBefore(fragment, null);
-            toolbox.appendChild(token);
-        }
-
-        toolboxes = toolbox.getChildNodes();
-        if (infos.size() + 1 != toolboxes.getLength()) {
-            System.err.println("Can't hook toolboxes [4]");
-            return;
+            tbxs.appendChild(token);
         }
     }
 
     private static void WriteUserDocuments() {
         // Toolboxes files
         NodeList toolboxes = document.getElementsByTagName("toolboxes");
-        Element toolbox = (Element) toolboxes.item(0);
-        if (toolbox.getFirstChild() != null) {
-            toolbox.removeChild(toolbox.getFirstChild()); // body
+        Element tbxs = null;
+        Element emptyTbxs;
+        if (toolboxes != null && toolboxes.getLength() != 0) {
+            tbxs = (Element) toolboxes.item(0);
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-            toolboxes = toolbox.getChildNodes();
-            if (infos.size() != toolboxes.getLength()) {
-                System.err.println("Can't hook toolboxes [3]");
-                return;
-            }
-            for (int i = 0; i < infos.size(); i++) {
-                Node ToolboxNode = toolboxes.item(i);
-                if (ToolboxNode != null) {
-                    ToolboxInfos info = infos.get(i);
-                    String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
-                    XConfiguration.writeDocument(UserToolboxFile, ToolboxNode.getFirstChild());
-                    //toolbox.removeChild(ToolboxNode);
+            for (ToolboxInfos info: infos) {
+                String tbxTag = info.getName().replace(' ', '_');
+                NodeList list = tbxs.getElementsByTagName(tbxTag);
+                if (list != null && list.getLength() != 0) {
+                    Element mytbx = (Element) list.item(0);
+                    if (mytbx.hasChildNodes()) {
+                        String tbxFile = ScilabCommons.getSCIHOME() + "/" + tbxTag + ".xml";
+                        XConfiguration.writeDocument(tbxFile, mytbx.getFirstChild());
+                    }
                 }
             }
         }
-        // Main file
+
+        if (tbxs != null) {
+            document.getDocumentElement().removeChild(tbxs);
+        }
+
         XConfiguration.writeDocument(USER_CONFIG_FILE, document);
+
+        if (tbxs != null) {
+            document.getDocumentElement().appendChild(tbxs);
+        }
     }
 
     /** Interpret action.
@@ -239,8 +249,10 @@ public final class XConfigManager extends XCommonManager {
         if (callback.equals("Ok")) {
             WriteUserDocuments();
             dialog.dispose();
+            XCommonManager.invalidateXSL();
             updated = false;
             XConfiguration.fireXConfigurationEvent();
+            XConfiguration.invalidate();
             return true;
         }
         if (callback.equals("Apply")) {
@@ -250,14 +262,14 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         if (callback.equals("Default")) {
+            XConfiguration.invalidate();
             reloadTransformer(SCILAB_CONFIG_XSL);
             document = XConfiguration.createDocument();
             writeDocument(USER_CONFIG_FILE, document);
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-            for (int i = 0; i < infos.size(); i++) {
-                ToolboxInfos info = infos.get(i);
-                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
-                refreshUserCopy(info.getPrefFile(), UserToolboxFile);
+            for (ToolboxInfos info : infos) {
+                String tbxFile = ScilabCommons.getSCIHOME() + "/" + info.getName().replace(' ', '_') + ".xml";
+                refreshUserCopy(info.getPrefFile(), tbxFile);
             }
             readUserDocuments();
             updated = false;
@@ -267,7 +279,13 @@ public final class XConfigManager extends XCommonManager {
         }
         if (callback.equals("Cancel")) {
             dialog.dispose();
-            XConfiguration.clearModifiedPath();
+            XCommonManager.invalidateXSL();
+            XConfiguration.invalidate();
+            NodeList toolboxes = document.getElementsByTagName("toolboxes");
+            if (toolboxes != null && toolboxes.getLength() != 0) {
+                Element tbxs = (Element) toolboxes.item(0);
+                document.getDocumentElement().removeChild(tbxs);
+            }
             updated = false;
             refreshDisplay();
             return true;

@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +41,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.URIResolver;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -115,7 +118,7 @@ public abstract class XCommonManager {
     /**
      * XSL Transformer factory.
      */
-    protected static TransformerFactory factory = ScilabTransformerFactory.newInstance();
+    protected static TransformerFactory factory;
 
     /**
      * XML Document builder factory.
@@ -134,6 +137,39 @@ public abstract class XCommonManager {
 
     private static String XSLCODE;
 
+    static {
+        factory = ScilabTransformerFactory.newInstance();
+        factory.setURIResolver(new URIResolver() {
+            public Source resolve(String href, String base) throws TransformerException {
+                if (href.startsWith("$SCI")) {
+                    href = href.replace("$SCI", SCI);
+                    base = null;
+                }
+
+                try {
+                    File baseDir = null;
+                    if (base != null && !base.isEmpty()) {
+                        baseDir = new File(new URI(base)).getParentFile();
+                    }
+                    File f;
+                    if (baseDir != null) {
+                        f = new File(baseDir, href);
+                    } else {
+                        f = new File(href);
+                    }
+
+                    if (f.exists() && f.canRead()) {
+                        return new StreamSource(f);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                throw new TransformerException("Cannot find the file " + href + "::" + base);
+            }
+        });
+    }
+
     /**
      * Monitor time between calls.
      */
@@ -151,7 +187,7 @@ public abstract class XCommonManager {
      * @return whether XSL return a node or not.
      */
     public static boolean refreshDisplay() {
-        topDOM = generateViewDOM().getNode().getFirstChild();
+        topDOM = generateViewDOM().getNode().getFirstChild();//System.out.println(XConfiguration.dumpNode(generateViewDOM().getNode()));
         if (topDOM == null) {
             System.err.println("XSL does not give a node!");
             return false;
@@ -265,12 +301,15 @@ public abstract class XCommonManager {
             buffer.append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n");
             buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
 
+            FilenameFilter filter = new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".xsl") && name.startsWith("XConfiguration");
+                }
+            };
+
+            // Include standard Scilab xsl files
             for (File etc : etcs) {
-                File[] xsls = etc.listFiles(new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        return name.endsWith(".xsl") && name.startsWith("XConfiguration");
-                    }
-                });
+                File[] xsls = etc.listFiles(filter);
                 for (File xsl : xsls) {
                     try {
                         buffer.append("<xsl:import href=\"").append(xsl.getCanonicalPath()).append("\"/>\n");
@@ -279,12 +318,36 @@ public abstract class XCommonManager {
                     }
                 }
             }
+
+            // Include toolboxes xsl files
+            List<ScilabPreferences.ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+            filter = new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".xsl");
+                }
+            };
+            for (ScilabPreferences.ToolboxInfos i : infos) {
+                File etc = new File(i.getPrefFile()).getParentFile();
+                File[] xsls = etc.listFiles(filter);
+                for (File xsl : xsls) {
+                    try {
+                        buffer.append("<xsl:import href=\"").append(xsl.getCanonicalPath()).append("\"/>\n");
+                    } catch (IOException e) {
+                        buffer.append("<xsl:import href=\"").append(xsl.getAbsolutePath()).append("\"/>\n");
+                    }
+                }
+            }
+
             buffer.append("</xsl:stylesheet>");
 
             XSLCODE = buffer.toString();
         }
 
         return XSLCODE;
+    }
+
+    public static void invalidateXSL() {
+        XSLCODE = null;
     }
 
     /**

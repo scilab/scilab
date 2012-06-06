@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xsl:stylesheet version ="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <xsl:import href="XCommon.xsl"/>
+  <xsl:import href="$SCI/modules/preferences/src/xslt/XCommon.xsl"/>
 
-  <xsl:template match="environment" mode="tooltip">Environment</xsl:template>
-  <xsl:template match="environment">
+  <xsl:template match="toolbox_skeleton" mode="tooltip">Environment</xsl:template>
+  <xsl:template match="toolbox_skeleton">
     <VSpace height="25"/>
     <Title text="Environment">
       <HBox>

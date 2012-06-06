@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<general>
+<general title="General">
   <body>
     <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
     <java-heap-memory heap-size="128"/>
   </body>
-  <confirmation-dialogs>
+  <confirmation-dialogs title="Confirmation dialogs"> 
     <body>
       <tools order="ascending">
         <tool state="checked" name="Scinotes" description="Prompt"/>
@@ -13,7 +13,7 @@
       </tools>
     </body>
   </confirmation-dialogs>
-  <shortcuts>
+  <shortcuts title="Shortcuts">
     <body>
       <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
         <action-folder name="Console">
