@@ -774,6 +774,8 @@ t.
 * Bug #10966 fixed - linspace was producing some numerical errors on the last
                      element.
 
+* Bug #10982 fixed - completion failed when space are used before the command.
+
 * Bug #11055 fixed - 'string' function did not manage implicit size type as
                      input argument.
 
