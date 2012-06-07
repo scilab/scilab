@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
-import static java.util.Arrays.asList;
-
 import java.util.List;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -34,18 +32,22 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  * already checked on the {@link BlockElement}.
  */
 public final class OutputPortElement extends AbstractElement<OutputPort> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
+    protected static final List<String> DATA_FIELD_NAMES = BlockElement.DATA_FIELD_NAMES;
 
-    private static final int GRAPHICS_INDEX = 1;
-    private static final int MODEL_INDEX = 2;
+    protected static final List<String> GRAPHICS_DATA_FIELD_NAMES_FULL = BlockGraphicElement.DATA_FIELD_NAMES_FULL;
+    protected static final List<String> MODEL_DATA_FIELD_NAMES = BlockModelElement.DATA_FIELD_NAMES;
 
-    private static final int GRAPHICS_POUT_INDEX = 7;
-    private static final int GRAPHICS_OUTIMPL_INDEX = 13;
-    private static final int GRAPHICS_OUTSTYLE_INDEX = 15;
+    private static final int GRAPHICS_INDEX = DATA_FIELD_NAMES.indexOf("graphics");
+    private static final int MODEL_INDEX = DATA_FIELD_NAMES.indexOf("model");
 
-    private static final int MODEL_OUT_DATALINE_INDEX = 5;
-    private static final int MODEL_OUT_DATACOL_INDEX = 6;
-    private static final int MODEL_OUT_DATATYPE_INDEX = 7;
+    private static final int GRAPHICS_POUT_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("pout");
+    private static final int GRAPHICS_OUTIMPL_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_implicit");
+    private static final int GRAPHICS_OUTSTYLE_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_style");
+    private static final int GRAPHICS_OUTLABEL_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_label");
+
+    private static final int MODEL_OUT_DATALINE_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("out");
+    private static final int MODEL_OUT_DATACOL_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("out2");;
+    private static final int MODEL_OUT_DATATYPE_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("outtyp");;
 
     private static final String EXPLICIT = "E";
     private static final String IMPLICIT = "I";
@@ -227,14 +229,31 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
 
         final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
 
-        final boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
-        final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+        boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
+        int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
         if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
             final String style;
 
             style = styles.getData()[indexes[0]][indexes[1]];
             port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+        }
+
+        // protection against previously stored blocks
+        if (graphics.size() <= GRAPHICS_OUTLABEL_INDEX || isEmptyField(graphics.get(GRAPHICS_OUTLABEL_INDEX))) {
+            return;
+        }
+
+        final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
+
+        isColumnDominant = styles.getHeight() >= styles.getWidth();
+        indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+
+        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
+            final String label;
+
+            label = labels.getData()[indexes[0]][indexes[1]];
+            port.setValue(label);
         }
     }
 
@@ -363,6 +382,11 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
         strings = sciStrings.getData();
         strings[alreadyDecodedCount][0] = from.getStyle();
+
+        // out_label
+        sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
+        strings = sciStrings.getData();
+        strings[alreadyDecodedCount][0] = String.valueOf(from.getValue());
     }
 
     /**

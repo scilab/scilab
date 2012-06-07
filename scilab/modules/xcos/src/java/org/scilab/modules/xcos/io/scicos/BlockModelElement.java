@@ -40,14 +40,14 @@ import org.scilab.modules.xcos.port.control.ControlPort;
  */
 // CSOFF: ClassDataAbstractionCoupling
 final class BlockModelElement extends BlockPartsElement {
-    private static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state",
-            "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
+    static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate",
+            "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
 
-    private static final int CTRL_PORT_INDEX = 8;
-    private static final int CMD_PORT_INDEX = 9;
-    private static final int STATE_INDEX = 10;
-    private static final int FIRING_INDEX = 17;
-    private static final int DEPENDU_INDEX = 18;
+    private static final int CTRL_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtin");
+    private static final int CMD_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtout");
+    private static final int STATE_INDEX = DATA_FIELD_NAMES.indexOf("state");
+    private static final int FIRING_INDEX = DATA_FIELD_NAMES.indexOf("firing");
+    private static final int DEPENDU_INDEX = DATA_FIELD_NAMES.indexOf("dep_ut");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;

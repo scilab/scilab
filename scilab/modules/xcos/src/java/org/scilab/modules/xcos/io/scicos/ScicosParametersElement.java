@@ -32,11 +32,12 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
  * Default element used to handle Scicos simulation parameters
  */
 public final class ScicosParametersElement extends AbstractElement<ScicosParameters> {
-    private static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc");
+    protected static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3",
+            "doc");
 
-    private static final int TOL_INDEX = 3;
-    private static final int TF_INDEX = 4;
-    private static final int CONTEXT_INDEX = 5;
+    private static final int TOL_INDEX = DATA_FIELD_NAMES.indexOf("tol");
+    private static final int TF_INDEX = DATA_FIELD_NAMES.indexOf("tf");
+    private static final int CONTEXT_INDEX = DATA_FIELD_NAMES.indexOf("context");
 
     private static final int TOL_SIZE = 7;
 

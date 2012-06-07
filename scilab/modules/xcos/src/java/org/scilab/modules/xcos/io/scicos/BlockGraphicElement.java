@@ -47,17 +47,17 @@ final class BlockGraphicElement extends BlockPartsElement {
      * "in_style", "out_style" and style have been added on the 5.3-5.4 dev.
      * cycle they are not checked to be compatible with older versions.
      */
-    private static final List<String> DATA_FIELD_NAMES = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
+    protected static final List<String> DATA_FIELD_NAMES = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
             "id", "in_implicit", "out_implicit");
-    private static final List<String> DATA_FIELD_NAMES_FULL = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout",
-            "gr_i", "id", "in_implicit", "out_implicit", "in_style", "out_style", "style");
+    protected static final List<String> DATA_FIELD_NAMES_FULL = asList("graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout",
+            "gr_i", "id", "in_implicit", "out_implicit", "in_style", "out_style", "in_label", "out_label", "style");
 
-    private static final int ORIGIN_INDEX = 1;
-    private static final int DIMS_INDEX = 2;
-    private static final int FLIP_INDEX = 3;
-    private static final int EXPRS_INDEX = 5;
-    private static final int ID_INDEX = 11;
-    private static final int STYLE_INDEX = 16;
+    private static final int ORIGIN_INDEX = DATA_FIELD_NAMES_FULL.indexOf("orig");
+    private static final int DIMS_INDEX = DATA_FIELD_NAMES_FULL.indexOf("sz");
+    private static final int FLIP_INDEX = DATA_FIELD_NAMES_FULL.indexOf("flip");
+    private static final int EXPRS_INDEX = DATA_FIELD_NAMES_FULL.indexOf("exprs");
+    private static final int ID_INDEX = DATA_FIELD_NAMES_FULL.indexOf("id");
+    private static final int STYLE_INDEX = DATA_FIELD_NAMES_FULL.indexOf("style");
 
     private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
 
@@ -480,6 +480,8 @@ final class BlockGraphicElement extends BlockPartsElement {
         field++; // out_implicit
         field++; // in_style
         field++; // out_style
+        field++; // in_label
+        field++; // out_label
 
         field++; // style
         data.set(field, new ScilabString(from.getStyle()));
@@ -535,6 +537,8 @@ final class BlockGraphicElement extends BlockPartsElement {
         addSizedPortVector(element, ScilabString.class, getOutSize()); // out_implicit
         addSizedPortVector(element, ScilabString.class, getInSize()); // in_style
         addSizedPortVector(element, ScilabString.class, getOutSize()); // out_style
+        addSizedPortVector(element, ScilabString.class, getInSize()); // in_label
+        addSizedPortVector(element, ScilabString.class, getOutSize()); // out_label
         element.add(new ScilabString("")); // style
         return element;
     }

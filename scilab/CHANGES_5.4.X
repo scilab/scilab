@@ -313,6 +313,9 @@ Xcos
   Xcos standard one. This new format will allow us more flexibility on data
   format.
 
+* Ports styles and ports labels are now accessible to external modules. This
+  will ease tracing from Xcos to any external tools.
+
 * New examples are provided in the documentation for the blocks:
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay

@@ -60,12 +60,12 @@ import com.mxgraph.util.mxPoint;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 public final class DiagramElement extends AbstractElement<XcosDiagram> {
-    private static final List<String> MINIMAL_BASE_FIELD_NAMES = asList("diagram", "props", "objs");
-    private static final List<String> BASE_FIELD_NAMES = asList("diagram", "props", "objs", "version", "contrib");
+    protected static final List<String> DATA_FIELD_NAMES = asList("diagram", "props", "objs");
+    protected static final List<String> DATA_FIELD_NAMES_FULL = asList("diagram", "props", "objs", "version", "contrib");
     private static final List<String> VERSIONS = asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 
-    private static final int OBJS_INDEX = 2;
-    private static final int VERSION_INDEX = 3;
+    private static final int OBJS_INDEX = DATA_FIELD_NAMES_FULL.indexOf("objs");
+    private static final int VERSION_INDEX = DATA_FIELD_NAMES_FULL.indexOf("version");
 
     private static final double H_MARGIN = 40.0;
     private static final double V_MARGIN = 40.0;
@@ -387,8 +387,8 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
     private void validate(boolean checkVersion) throws ScicosFormatException {
 
         // Have we enough fields ?
-        if (base.size() < MINIMAL_BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        if (base.size() < DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
         }
 
         int field = 0;
@@ -399,19 +399,19 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Check the first field
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
         String[] header = ((ScilabString) base.get(field)).getData()[0];
 
         // Check the number of fields
-        if (header.length < MINIMAL_BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        if (header.length < DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
         }
 
         // Check the first fields values
-        for (int i = 0; i < MINIMAL_BASE_FIELD_NAMES.size(); i++) {
-            if (!header[i].equals(MINIMAL_BASE_FIELD_NAMES.get(i))) {
-                throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        for (int i = 0; i < DATA_FIELD_NAMES.size(); i++) {
+            if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
+                throw new WrongStructureException(DATA_FIELD_NAMES);
             }
         }
 
@@ -422,13 +422,13 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         // the second field must contain list of props
         field++;
         if (!(base.get(field) instanceof ScilabTList)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the third field must contains lists of blocks and links
         field++;
         if (!(base.get(field) instanceof ScilabList)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the last field must contain the scicos version used
@@ -440,7 +440,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         }
 
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         /*
@@ -475,7 +475,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
          * Checking header
          */
         final String type = ((ScilabString) base.get(0)).getData()[0][0];
-        final boolean typeIsValid = type.equals(MINIMAL_BASE_FIELD_NAMES.get(0));
+        final boolean typeIsValid = type.equals(DATA_FIELD_NAMES.get(0));
 
         /*
          * Check the version if applicable
@@ -543,7 +543,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList data = new ScilabMList(BASE_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList data = new ScilabMList(DATA_FIELD_NAMES_FULL.toArray(new String[0]));
         data.add(allocatePropsField()); // props
         data.add(new ScilabList()); // objs
         data.add(new ScilabString(VERSIONS.get(0))); // official version

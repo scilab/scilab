@@ -42,13 +42,13 @@ import com.mxgraph.util.mxPoint;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: FanOutComplexity
 public final class LinkElement extends AbstractElement<BasicLink> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
+    protected static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
 
-    private static final int XX_INDEX = 1;
-    private static final int YY_INDEX = 2;
-    private static final int CT_INDEX = 5;
-    private static final int FROM_INDEX = 6;
-    private static final int TO_INDEX = 7;
+    private static final int XX_INDEX = DATA_FIELD_NAMES.indexOf("xx");
+    private static final int YY_INDEX = DATA_FIELD_NAMES.indexOf("yy");
+    private static final int CT_INDEX = DATA_FIELD_NAMES.indexOf("ct");
+    private static final int FROM_INDEX = DATA_FIELD_NAMES.indexOf("from");
+    private static final int TO_INDEX = DATA_FIELD_NAMES.indexOf("to");
 
     private static final Logger LOG = Logger.getLogger(LinkElement.class.getName());
 
