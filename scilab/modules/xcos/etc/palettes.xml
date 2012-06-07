@@ -603,6 +603,9 @@
       <block name="CONSTRAINT_c">
         <icon variable="SCI" path="/modules/xcos/images/palettes/CONSTRAINT_c.png"/>
       </block>
+      <block name="CONSTRAINT2_c">
+        <icon variable="SCI" path="/modules/xcos/images/palettes/CONSTRAINT2_c.png"/>
+      </block>
       <block name="DIFF_f">
         <icon variable="SCI" path="/modules/xcos/images/palettes/DIFF_f.png"/>
       </block>

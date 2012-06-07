@@ -395,8 +395,11 @@
     <remove as="image"/>
     <add as="fontSize" value="20"/>
   </add>
-  <add as="CONSTRAINT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="=0 ?"/>
+  <add as="CONSTRAINT_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x == %s"/>
+  </add>
+  <add as="CONSTRAINT2_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
   </add>
   <!-- MODELICA -->
   <add as="MBLOCK" extend="blockWithLabel">

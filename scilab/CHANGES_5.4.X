@@ -341,6 +341,8 @@ Xcos
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
 
+* Bug #10657 fixed - CONSTRAINT_c had no icons on a graph.
+
 * Bug #10679 fixed - blocks_link.tst failed.
 
 * Bug #10697 fixed - post_xcos_simulate function did not work if a TOWS_c block
