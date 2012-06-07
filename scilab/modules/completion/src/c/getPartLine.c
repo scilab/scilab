@@ -16,6 +16,11 @@
 #endif
 #include "getPartLine.h"
 #include "core_math.h"
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/
+#define SPACE_CHAR ' '
+/*--------------------------------------------------------------------------*/
+static char *removeSpacesAtBeginning(char *line);
 /*--------------------------------------------------------------------------*/
 char *getPartLevel(char *line)
 {
@@ -41,20 +46,25 @@ char *getPartLevel(char *line)
 char *getFilePartLevel(char *line)
 {
 #define MAX_SYMBS_F 4
-#define SPACE_CHAR ' '
     int index = 0;
     int i = 0;
     int lenLine = 0;
     int symbol_found = 0;
     char symbs[MAX_SYMBS_F] = ";,'\"";
+    char *lineWithoutSpaceAtBeginning = NULL;
+    char *returnedLine = NULL;
 
-    if (line == NULL) return NULL;
-    lenLine = (int)strlen(line);
+    if (line == NULL) return returnedLine;
+
+    lineWithoutSpaceAtBeginning = removeSpacesAtBeginning(line);
+    if (lineWithoutSpaceAtBeginning == NULL) return returnedLine;
+
+    lenLine = (int)strlen(lineWithoutSpaceAtBeginning);
 
     /* search last character in ";,'\"" */
     for (i = 0; i < MAX_SYMBS_F; i++) 
     {
-        char *prch = strrchr(line, symbs[i]);
+        char *prch = strrchr(lineWithoutSpaceAtBeginning, symbs[i]);
         if (prch) 
         {
             int len = (int) (lenLine - strlen(prch));
@@ -67,18 +77,18 @@ char *getFilePartLevel(char *line)
     if (!symbol_found)
     {
         /* search last and first space character */
-        char *prch = strrchr(line, SPACE_CHAR);
-        char *pch = strchr(line, SPACE_CHAR);
+        char *prch = strrchr(lineWithoutSpaceAtBeginning, SPACE_CHAR);
+        char *pch = strchr(lineWithoutSpaceAtBeginning, SPACE_CHAR);
         if (pch && prch)
         {
             int len = 0;
             if (pch != prch)
             {
-                len = (int) (strlen(line) - strlen(pch));
+                len = (int) (strlen(lineWithoutSpaceAtBeginning) - strlen(pch));
             }
             else
             {
-                len = (int) (strlen(line) - strlen(prch));
+                len = (int) (strlen(lineWithoutSpaceAtBeginning) - strlen(prch));
             }
             index = Max(index, len);
             symbol_found = 1;
@@ -89,7 +99,7 @@ char *getFilePartLevel(char *line)
     {
         index++;
         /* skip spaces if there are consecutive */
-        while (line[index] == SPACE_CHAR)
+        while (lineWithoutSpaceAtBeginning[index] == SPACE_CHAR)
         {
             if (index + 1 >= lenLine)
             {
@@ -100,8 +110,39 @@ char *getFilePartLevel(char *line)
                 index++;
             }
         }
-        return strdup(&line[index]);
+        returnedLine = strdup(&lineWithoutSpaceAtBeginning[index]);
     }
-    return NULL;
+
+    FREE(lineWithoutSpaceAtBeginning);
+    lineWithoutSpaceAtBeginning = NULL;
+
+    return returnedLine;
+}
+/*--------------------------------------------------------------------------*/
+static char *removeSpacesAtBeginning(char *line)
+{
+    char *returnedLine = NULL;
+    if (line)
+    {
+        int i = 0;
+        int index = 0;
+        int l = (int)strlen(line);
+        for (i = 0; i < l; i++)
+        {
+            if (line[i] == SPACE_CHAR)
+            {
+                index++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (index != l)
+        {
+            returnedLine = strdup(&line[index]);
+        }
+    }
+    return returnedLine;
 }
 /*--------------------------------------------------------------------------*/
