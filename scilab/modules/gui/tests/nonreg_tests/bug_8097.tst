@@ -19,6 +19,6 @@ f = gcf();
 ierr = execstr("set(f, ""units"", ""pixels"")", "errcatch");
 msg = lasterror();
 
-if ierr==0 | msg<>msprintf(_("No ''%s'' property for this object.\n"), "Units") then pause; end
+if ierr==0 | msg<>msprintf(_("''%s'' property does not exist for this handle.\n"), "Units") then pause; end
 
 delete(f);
