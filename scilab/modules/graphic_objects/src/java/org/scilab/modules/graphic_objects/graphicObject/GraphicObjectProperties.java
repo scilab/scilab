@@ -128,6 +128,7 @@ public class GraphicObjectProperties {
     public static final String __GO_EVENTHANDLER_ENABLE__ =    "EventHandlerEnable";
     public static final String __GO_TAG__ =                    "Tag";
     public static final String __GO_ROTATION_TYPE__ =          "RotationType";
+    public static final String __GO_RESIZEFCN__ =              "ResizeFcn";
 
     public static final String __GO_UPPER_LEFT_POINT__ =       "UpperLeftPoint";
     public static final String __GO_WIDTH__ =                  "Width";

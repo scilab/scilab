@@ -75,6 +75,9 @@ function save_graphichandle(h,fd)
     mput(length(h.event_handler_enable),characterFormat,fd); // even_handler_enable
     mput(ascii(h.event_handler_enable),characterFormat,fd); // need to be put after event_handler
     
+    mput(length(ascii(h.resizefcn)),characterFormat,fd) ; // resizefcn
+    mput(ascii(h.resizefcn),characterFormat,fd) ;
+
     // children
     c=h.children;
     n=size(c,'*')

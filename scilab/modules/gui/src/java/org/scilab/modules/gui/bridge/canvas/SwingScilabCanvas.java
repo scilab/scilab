@@ -73,13 +73,15 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     static {
         try {
             System.loadLibrary("gluegen2-rt");
-        } catch (Exception e) { System.err.println(e); }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     public SwingScilabCanvas(int figureId, final Figure figure) {
         super(new PanelLayout());
         this.figure = figure;
-        
+
         drawableComponent = SwingScilabCanvasImpl.getInstance().createOpenGLComponent();
 
         drawableComponent.setEnabled(true);
@@ -96,7 +98,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
                 GlobalEventWatcher.setAxesUID(figure.getIdentifier());
             }
         });
-        
+
         setBackground(Color.white);
     }
 
@@ -112,7 +114,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * figure getter.
      * @return the MVC figure.
      */
-    private Figure getFigure() {
+    public Figure getFigure() {
         return figure;
     }
 

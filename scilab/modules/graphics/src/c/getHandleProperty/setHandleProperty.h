@@ -64,6 +64,7 @@ int set_figure_position_property(char *pobj, size_t stackPointer, int valueType,
 int set_figure_name_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_figure_size_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_figure_id_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_figure_resizefcn_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_rotation_style_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_immediate_drawing_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_pixmap_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);

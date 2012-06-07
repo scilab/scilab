@@ -85,4 +85,11 @@ GRAPHICS_IMPEXP char *ConstructCompoundSeq(int number); /* BUILD */
 
 GRAPHICS_IMPEXP char *ConstructLabel(char *pparentsubwinUID, char *text, int type); /* BUILD */
 
+/**
+ * Create a polyline but does not add it to Scilab hierarchy
+ */
+GRAPHICS_IMPEXP char *allocatePolyline(char *pparentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
+                       int closed, int n1, int plot, int *foreground, int *background,
+                       int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);
+
 #endif /* __SCI_BUILD__ */

@@ -283,6 +283,9 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
                 totalSize = seekString(fd, totalSize); // event_handler
                 totalSize = seekString(fd, totalSize); // event_handler_enable
             end
+            if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
+                totalSize = seekString(fd, totalSize); // resizefcn
+            end
 
             [totalSize, axesCount] = readInt(fd, totalSize); // children
             for i = 1 : axesCount

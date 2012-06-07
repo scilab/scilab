@@ -133,6 +133,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.event_handler_enable = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // event_handler_enable
     end
 
+    if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
+        h.resizefcn = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // resizefcn
+    end
+
     // children
     n_axes=mget(1,'il',fd);
     if n_axes==1 then

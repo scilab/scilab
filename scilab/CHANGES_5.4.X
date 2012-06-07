@@ -69,6 +69,9 @@ GUI
 * The 'Value' property can now contain non integer values and allow to take full
   advantage of 'slider' style uicontrols (See bug #7380).
 
+* Figure resizing can now be managed by the user (uicontrol position setting, ...)
+  through the 'resizefcn' property.
+
 
 Scilab
 ======

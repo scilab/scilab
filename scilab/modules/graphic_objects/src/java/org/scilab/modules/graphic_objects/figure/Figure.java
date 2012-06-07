@@ -30,6 +30,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZEFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROTATION_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
@@ -42,77 +43,77 @@ public class Figure extends GraphicObject {
     /** Figure properties names */
     private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
-        BACKGROUND, TAG, ROTATIONTYPE
+        BACKGROUND, TAG, ROTATIONTYPE, RESIZEFCN
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
     public enum RotationType { UNARY, MULTIPLE;
 
-    /**
-     * Converts an integer to the corresponding enum
-     * @param intValue the integer value
-     * @return the rotation type enum
-     */
+                               /**
+                                * Converts an integer to the corresponding enum
+                                * @param intValue the integer value
+                                * @return the rotation type enum
+                                */
     public static RotationType intToEnum(Integer intValue) {
-        switch(intValue) {
-        case 0:
-            return RotationType.UNARY;
-        case 1:
-            return RotationType.MULTIPLE;
-        default:
-            return null;
+        switch (intValue) {
+            case 0:
+                return RotationType.UNARY;
+            case 1:
+                return RotationType.MULTIPLE;
+            default:
+                return null;
         }
     }
-    }
+                             }
 
     /** Pixel drawing logical operations */
     private enum PixelDrawingMode { CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR, NOR,
-        EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
+                                    EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
 
-    /**
-     * Converts an integer to the corresponding enum
-     * @param intValue the integer value
-     * @return the pixel drawing mode enum
-     */
+                                    /**
+                                     * Converts an integer to the corresponding enum
+                                     * @param intValue the integer value
+                                     * @return the pixel drawing mode enum
+                                     */
     public static PixelDrawingMode intToEnum(Integer intValue) {
-        switch(intValue) {
-        case 0:
-            return PixelDrawingMode.CLEAR;
-        case 1:
-            return PixelDrawingMode.AND;
-        case 2:
-            return PixelDrawingMode.ANDREVERSE;
-        case 3:
-            return PixelDrawingMode.COPY;
-        case 4:
-            return PixelDrawingMode.ANDINVERTED;
-        case 5:
-            return PixelDrawingMode.NOOP;
-        case 6:
-            return PixelDrawingMode.XOR;
-        case 7:
-            return PixelDrawingMode.OR;
-        case 8:
-            return PixelDrawingMode.NOR;
-        case 9:
-            return PixelDrawingMode.EQUIV;
-        case 10:
-            return PixelDrawingMode.INVERT;
-        case 11:
-            return PixelDrawingMode.ORREVERSE;
-        case 12:
-            return PixelDrawingMode.COPYINVERTED;
-        case 13:
-            return PixelDrawingMode.ORINVERTED;
-        case 14:
-            return PixelDrawingMode.NAND;
-        case 15:
-            return PixelDrawingMode.SET;
-        default:
-            return null;
+        switch (intValue) {
+            case 0:
+                return PixelDrawingMode.CLEAR;
+            case 1:
+                return PixelDrawingMode.AND;
+            case 2:
+                return PixelDrawingMode.ANDREVERSE;
+            case 3:
+                return PixelDrawingMode.COPY;
+            case 4:
+                return PixelDrawingMode.ANDINVERTED;
+            case 5:
+                return PixelDrawingMode.NOOP;
+            case 6:
+                return PixelDrawingMode.XOR;
+            case 7:
+                return PixelDrawingMode.OR;
+            case 8:
+                return PixelDrawingMode.NOR;
+            case 9:
+                return PixelDrawingMode.EQUIV;
+            case 10:
+                return PixelDrawingMode.INVERT;
+            case 11:
+                return PixelDrawingMode.ORREVERSE;
+            case 12:
+                return PixelDrawingMode.COPYINVERTED;
+            case 13:
+                return PixelDrawingMode.ORINVERTED;
+            case 14:
+                return PixelDrawingMode.NAND;
+            case 15:
+                return PixelDrawingMode.SET;
+            default:
+                return null;
         }
     }
-    };
+                                  };
 
     /** FigureDimensions properties names */
     public enum FigureDimensionsProperty { POSITION, SIZE };
@@ -243,7 +244,7 @@ public class Figure extends GraphicObject {
     public enum RenderingModeProperty { PIXMAP, PIXELDRAWINGMODE, ANTIALIASING, IMMEDIATEDRAWING };
 
     /**
-     * RenderingMode class 
+     * RenderingMode class
      */
     private class RenderingMode {
         /** Specifies rendering into a pixmap */
@@ -287,7 +288,7 @@ public class Figure extends GraphicObject {
     /**
      * EventHandler class
      */
-    private class EventHandler{
+    private class EventHandler {
         /** Event handler string */
         private String eventHandler = "";
 
@@ -339,6 +340,9 @@ public class Figure extends GraphicObject {
     /** Event handler */
     private EventHandler eventHandler;
 
+    /** ResizeFcn */
+    private String resizeFcn;
+
     /** Tag */
     private String tag;
 
@@ -357,6 +361,7 @@ public class Figure extends GraphicObject {
         renderingMode = new RenderingMode();
         background = 0;
         eventHandler = new EventHandler();
+        resizeFcn = "";
         tag = "";
         rotation = RotationType.UNARY;
     }
@@ -427,6 +432,8 @@ public class Figure extends GraphicObject {
             return FigureProperty.TAG;
         } else if (propertyName.equals(__GO_ROTATION_TYPE__)) {
             return FigureProperty.ROTATIONTYPE;
+        } else if (propertyName.equals(__GO_RESIZEFCN__)) {
+            return FigureProperty.RESIZEFCN;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -476,6 +483,8 @@ public class Figure extends GraphicObject {
             return getTag();
         } else if (property == FigureProperty.ROTATIONTYPE) {
             return getRotation();
+        } else if (property == FigureProperty.RESIZEFCN) {
+            return getResizeFcn();
         } else {
             return super.getProperty(property);
         }
@@ -524,6 +533,8 @@ public class Figure extends GraphicObject {
             setTag((String) value);
         } else if (property == FigureProperty.ROTATIONTYPE) {
             setRotation((Integer) value);
+        } else if (property == FigureProperty.RESIZEFCN) {
+            setResizeFcn((String) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -755,7 +766,7 @@ public class Figure extends GraphicObject {
      * @param name the name to set
      */
     public void setName(String name) {
-        figureName.name = name;	
+        figureName.name = name;
     }
 
     /**
@@ -885,6 +896,20 @@ public class Figure extends GraphicObject {
         if (rotationType != null) {
             this.rotation = rotationType;
         }
+    }
+
+    /**
+     * @return the resize function
+     */
+    public String getResizeFcn() {
+        return resizeFcn;
+    }
+
+    /**
+     * @param resizeFcn the resize function to set
+     */
+    public void setResizeFcn(String resizeFcn) {
+        this.resizeFcn = resizeFcn;
     }
 
     /**

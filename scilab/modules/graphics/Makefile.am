@@ -295,6 +295,8 @@ src/c/getHandleProperty/set_outside_colors_property.c \
 src/c/getHandleProperty/set_grid_position_property.c \
 src/c/getHandleProperty/set_anti_aliasing_property.c \
 src/c/getHandleProperty/set_tag_property.c \
+src/c/getHandleProperty/set_figure_resizefcn_property.c \
+src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

@@ -17,6 +17,7 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.Serializable;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
@@ -63,6 +64,12 @@ public class PanelLayout implements LayoutManager, Serializable {
                 }
                 //child.setPreferredSize(new Dimension(parent.getWidth(), parent.getHeight()));
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
+            }
+
+            String figureIdentifier = ((SwingScilabCanvas) parent).getFigure().getIdentifier();
+            String resizeFcn = (String) GraphicController.getController().getProperty(figureIdentifier, GraphicObjectProperties.__GO_RESIZEFCN__);
+            if (resizeFcn != null && !resizeFcn.equals("")) {
+                InterpreterManagement.requestScilabExec(resizeFcn);
             }
 
             /* Here you can perform the layout of UI object. */

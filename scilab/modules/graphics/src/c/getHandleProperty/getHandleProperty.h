@@ -58,6 +58,7 @@ int get_axes_size_property(char *pobjUID);
 int get_figure_size_property(char *pobjUID);
 int get_figure_name_property(char *pobjUID);
 int get_figure_id_property(char *pobjUID);
+int get_figure_resizefcn_property(char *pobjUID);
 int get_rotation_style_property(char *pobjUID);
 int get_immediate_drawing_property(char *pobjUID);
 int get_pixmap_property(char *pobjUID);
