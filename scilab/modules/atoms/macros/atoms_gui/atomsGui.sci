@@ -129,6 +129,7 @@ function atomsGui()
     "position"   , [0 0 figwidth figheight],..
     "background" , -2,..
     "UserData"   , allModules, ..
+    "ResizeFcn", "atomsGuiResizeFcn", ..
     "tag"    , "atomsFigure");
 
   // Remove Scilab graphics menus & toolbar
