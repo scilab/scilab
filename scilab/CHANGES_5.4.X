@@ -46,6 +46,8 @@ Graphic capabilities
 
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
+* Bug #10841 fixed - sliderStep property could not be set with "big" default value.
+
 
 GUI
 ===

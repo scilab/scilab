@@ -25,14 +25,26 @@ int SetUicontrolSliderStep(char* sciObjUID, size_t stackPointer, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    if((nbRow > 1) || (nbCol != 2))
+    if( nbRow == 1 && nbCol == 1)
+    {
+        double pdblStep[2];
+        double* pdblStackVal = getDoubleMatrixFromStack(stackPointer);
+
+        pdblStep[0] = pdblStackVal[0];
+        pdblStep[1] = 0.1;// default big value : 10%
+        
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), pdblStep, jni_double_vector, 2);
+    }
+    else if(nbRow == 1 && nbCol == 2)
+    {
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), getDoubleMatrixFromStack(stackPointer), jni_double_vector, 2);
+    }
+    else
     {
         /* Wrong value size */
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
         return SET_PROPERTY_ERROR;
     }
-
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), getDoubleMatrixFromStack(stackPointer), jni_double_vector, 2);
 
     if (status == TRUE)
     {
