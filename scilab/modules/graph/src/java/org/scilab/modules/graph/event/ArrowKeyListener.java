@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,9 +21,6 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.Timer;
-
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
@@ -64,10 +62,6 @@ public final class ArrowKeyListener implements KeyListener {
                         // then align
                         final mxGeometry geom = model.getGeometry(cell);
                         model.setGeometry(cell, snap(graph, geom));
-
-                        if (cell instanceof BasicBlock) {
-                            BlockPositioning.updateBlockView((BasicBlock) cell);
-                        }
                     }
                 } finally {
                     model.endUpdate();
