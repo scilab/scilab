@@ -49,10 +49,9 @@
         <listitem>
           <para>
             um dos strings seguintes: <literal>"adams"</literal>,
-	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
-             <literal>"rkf"</literal>, <literal>"fix"</literal>,
-	    <literal>"discrete"</literal>, <literal>"roots"</literal>.
-            </literal>
+            <literal>"stiff"</literal>, <literal>"rk"</literal>,
+            <literal>"rkf"</literal>, <literal>"fix"</literal>,
+            <literal>"discrete"</literal>, <literal>"roots"</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -164,8 +163,9 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para>Mesmo solucionador que <literal>"rkf"</literal>, mas a
-interface do usuário é bem
+          <para>
+            Mesmo solucionador que <literal>"rkf"</literal>, mas a
+            interface do usuário é bem
             simples, i.e. apenas os parâmetros <literal>rtol</literal> e
             <literal>atol</literal> podem ser passados ao solucionador. Este é o
             método mais simples a se tentar.
@@ -186,7 +186,8 @@ interface do usuário é bem
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>Simulação de tempo discreto. Ver ajuda em <link
+          <para>
+            Simulação de tempo discreto. Ver ajuda em <link
 linkend="ode_discrete">ode_discrete</link> para
             mais detalhes.
           </para>
