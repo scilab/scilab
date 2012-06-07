@@ -19,6 +19,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         loadXcosLibs();
     end
   funcprot(prot);
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // Hook according to SEP066
     if isdef("pre_xcos_simulate") then

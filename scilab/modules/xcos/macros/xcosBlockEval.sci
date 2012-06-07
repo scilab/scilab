@@ -34,6 +34,7 @@ function blk = xcosBlockEval(interfaceAlias, blk, context)
     %scicos_prob = %f
     %scicos_debug_gr = %f
     needcompile = 4;
+    [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // allocate the context
     %scicos_context = struct();

@@ -170,19 +170,12 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   end
 
 // Define Scicos data tables ===========================================
-if ( ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
   [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
   // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
 
-
-  //** load palettes
-  //----------------
-  exec(loadpallibs,-1)
 
   //** redefine some  functions
   prot = funcprot();funcprot(0);
