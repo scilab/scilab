@@ -46,8 +46,6 @@ Graphic capabilities
 
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
-* Bug #10841 fixed - sliderStep property could not be set with "big" default value.
-
 
 GUI
 ===
@@ -764,6 +762,8 @@ t.
 
 * Bug #10839 fixed - dec2hex function was limited to 32 bits.
 
+* Bug #10841 fixed - sliderStep property could not be set with "big" default value.
+
 * Bug #10847 fixed - dec2base returned a wrong error message with a complex
                      number as input argument.
 
@@ -771,10 +771,12 @@ t.
 
 * Bug #10867 fixed - Loading a .scg file failed when the legend contained accentuated characters.
 
-* Bug #10904 fixed - error messages of and() and or() builtin were not standard.
-
 * Bug #10880 fixed - Default startup directory moved to "My Documents folder"
                      on Windows for icon shorcut.
+
+* Bug #10904 fixed - error messages of and() and or() builtin were not standard.
+
+* Bug #10913 fixed - The "View code" button was missing in GUI demos.
 
 * Bug #10966 fixed - linspace was producing some numerical errors on the last
                      element.

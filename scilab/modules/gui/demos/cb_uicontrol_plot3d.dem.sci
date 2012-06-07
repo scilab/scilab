@@ -76,6 +76,8 @@ function uicontrol_plot3d()
 			"callback"  , "demo_plot3d=get_figure_handle(100001);delete(demo_plot3d);", ..
 			"tag"       , "close_menu");
 	
+    demo_viewCode(SCI+ "/modules/gui/demos/cb_uicontrol_plot3d.dem.sci");
+
 	sleep(500);
 	demo_plot3d.axes_size       = [axes_w axes_h];
 	

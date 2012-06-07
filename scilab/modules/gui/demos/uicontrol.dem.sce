@@ -73,7 +73,6 @@ if answ==1 then
 end
 endfunction
 
-
 // Create a figure
 f = figure("figure_name", gettext("Uicontrols demo"),...
     "Position",[50 50 300 195],...
@@ -107,6 +106,8 @@ submenu2 = uimenu("Parent", menu, "Label", gettext("Sub-menu 2"), "Callback", "m
 submenu21 = uimenu("Parent", submenu2, "Label", gettext("Sub-menu 2-1"), "Callback", "menu_callback()");
 submenu22 = uimenu("Parent", submenu2, "Label", gettext("Sub-menu 2-2"), "Callback", "menu_callback()");
 submenu3 = uimenu("Parent", menu, "Label", gettext("Sub-menu 2"), "Checked", "on", "Callback", "checked_menu_callback()");
+
+demo_viewCode("uicontrol.dem.sce");
 
 // Frame with uicontrols used to edit the colors list
 edit_frame = uicontrol(f, "Position", [10 10 170 75], ...

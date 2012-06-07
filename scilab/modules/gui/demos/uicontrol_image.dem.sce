@@ -15,6 +15,8 @@ h = uicontrol("Parent", f, ..
               "Position", [(figSize(1)-imageWidth)/2 (figSize(2)-imageHeight)/2 imageWidth imageHeight], ..
               "String", SCI + "/modules/demo_tools/images/logo_scilab.png");
 
+demo_viewCode(SCI+ "/modules/gui/demos/uicontrol_image.dem.sce");
+
 // Play with image size
 scales = [1:.01:2 2:-0.01:1];
 for k=scales
