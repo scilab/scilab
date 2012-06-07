@@ -67,10 +67,10 @@
     </para>
     <para>
       <literal>save(fd)</literal> saves all current variables in the file
-      defined by the descriptor <literal>fd</literal>.
+      defined by the descriptor <literal>fd</literal>. <emphasis role="bold">This prototype is obsolete and will be removed in Scilab 6.</emphasis>
     </para>
     <para>
-      <literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> (with <literal>x</literal> and <literal>y</literal> variables of your environment) saves only named variables <literal>x</literal> and <literal>y</literal>.
+      <literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> (with <literal>x</literal> and <literal>y</literal> variables of your environment) saves only named variables <literal>x</literal> and <literal>y</literal>. <literal>save(fd,x,y)</literal> <emphasis role="bold"> is obsolete and will be removed in Scilab 6.</emphasis>
     </para>
     <para>
       <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data using the SOD (Scilab Open Data) format (based on HDF5), format that will be readable by Scilab 6 family.
@@ -153,6 +153,7 @@ load("val.sod", "a", "b");
           <itemizedlist>
             <listitem>When called with variables names (character string) as input, variables are saved in SOD format, format that will be readable by Scilab 6 family.</listitem>
             <listitem>The Scilab 5.X format is deprecated and will be removed with Scilab 6.</listitem>
+            <listitem>Using save with a file descriptor as first input argument is deprecated and will be removed with Scilab 6.</listitem>
           </itemizedlist>
         </revdescription>
       </revision>
