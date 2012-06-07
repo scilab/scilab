@@ -698,7 +698,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
 CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/ $(FLIBS)
-CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
+CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la $(COMPILER_LDFLAGS)
 call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
 call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_c_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
@@ -2010,7 +2010,7 @@ codecoverage-java: clean-reports
 check-call_scilab: $(check_PROGRAMS)
 	@for a in $(JAVA_JNI_LIBS); do \
 		LD_PATH=`echo $$a|grep '^-L'|sed -e 's|-L\(.*\)|\1|g'`;\
-		LOCAL_LD="$$LOCAL_LD:$$LD_PATH"; \
+		LOCAL_LD="$$LOCAL_LD:$$LD_PATH:$$LD_LIBRARY_PATH"; \
 	done; \
 	for f in $(check_PROGRAMS); do \
 		if test "$$f" != "call_scilab_c"; then \
