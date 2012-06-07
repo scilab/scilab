@@ -28,8 +28,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
 {
-    int iForeground = 0;
-    int *piForeground = &iForeground;
+    int iStyle = 1;
+    int iClosed = 0;
     int m1 = 0, n1 = 0, l1 = 0;
     int m2 = 0, n2 = 0, l2 = 0;
     int m3 = 0, n3 = 0, l3 = 0;
@@ -48,19 +48,14 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
     {
         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
         CheckScalar(3, m3, n3);
-        iForeground = (int) *stk(l3);
+        iClosed = (int) *stk(l3);
     }
 
     mn1 = m1 * n1;
 
     psubwinUID = getOrCreateDefaultSubwin();
 
-    if (iForeground == 0)
-    {
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
-    }
-
-    Objfpoly(stk(l1), stk(l2), mn1, &iForeground, &hdl, 0);
+    Objfpoly(stk(l1), stk(l2), mn1, &iStyle, &iClosed, &hdl, 0);
 
     LhsVar(1) = 0;
     PutLhsVar();

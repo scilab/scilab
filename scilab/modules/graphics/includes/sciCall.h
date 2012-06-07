@@ -56,6 +56,7 @@ GRAPHICS_IMPEXP void Objfpoly ( double  * x    ,
                 double  * y    ,
                 int   n    ,
                 int * style,
+                int * closed,
                 long    * hdl  ,
                 int   shading ) ;
 
