@@ -40,7 +40,6 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
 
     int v1 = 0;                 /* v1 is the flag used for flat (v1==1) or interpolated (v1==2) shading */
     int i = 0;
-    int iClosed = 1;
     long hdl = 0;
 
     char *pstSubWinUID = NULL;
@@ -102,17 +101,43 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         {
             if (*istk(l3 + i) == 0)
             {
-                getGraphicObjectProperty(pstSubWinUID, __GO_MARK_STYLE__, jni_int, (void **)&piSubWinForeground);
-                Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, piSubWinForeground, &iClosed, &hdl, v1);
+                int iColorMapSize = 0;
+                int* piColorMapSize = &iColorMapSize;
+                int iForeGround = 0;
+                int* piForeGround = &iForeGround;
+                char* psubwinUID = getOrCreateDefaultSubwin();
+                char* pstParentUID = NULL;
+
+                //get color map size
+                getGraphicObjectProperty(psubwinUID, __GO_PARENT_FIGURE__, jni_int, &pstParentUID);
+                getGraphicObjectProperty(pstParentUID, __GO_COLORMAP_SIZE__, jni_int, &piColorMapSize);
+
+                //get current foreground color
+                getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeGround);
+
+                if(iForeGround == -1)
+                {
+                    iSubWinForeground = iColorMapSize + 1;
+                }
+                else if(iForeGround == -2)
+                {
+                    iSubWinForeground = iColorMapSize + 2;
+                }
+                else
+                {
+                    iSubWinForeground = iForeGround;
+                }
+
+                Objpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, 1, iSubWinForeground, &hdl);
             }
             else
             {
-                Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, istk(l3 + i), &iClosed, &hdl, v1);
+                Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, istk(l3 + i), &hdl, v1);
             }
         }
         else                    /* we have a color matrix used for interpolated shading : one color per vertex */
         {
-            Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, istk(l3 + i * m3), &iClosed, &hdl, v1);
+            Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, istk(l3 + i * m3), &hdl, v1);
         }
     }
 

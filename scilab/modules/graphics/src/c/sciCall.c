@@ -178,7 +178,6 @@ void Objfpoly ( double  * x    ,
                 double  * y    ,
                 int   n    ,
                 int * style,
-                int * closed,
                 long    * hdl  ,
                 int   shading )
 {
@@ -189,6 +188,8 @@ void Objfpoly ( double  * x    ,
     int contourcolor = 0;
     int *piContourColor = &contourcolor;
 
+    int closed = 1; /* we close the polyline by default */
+
     psubwinUID = getCurrentSubWin();
 
     checkRedrawing();
@@ -196,7 +197,7 @@ void Objfpoly ( double  * x    ,
     if(shading == 2)
     {
         /* interpolated shading is "on" */
-        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,*closed,n,
+        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                  1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
     }
     else
@@ -206,20 +207,20 @@ void Objfpoly ( double  * x    ,
         if (*style < 0)
         {
             fillcolor = abs(*style);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,*closed,n,
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
         }
         else if (*style == 0)
         {
             getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,*closed,n,
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
         }
         else
         { /* *style > 0*/
             fillcolor = *style;
             getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,*closed,n,
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
         }
 
