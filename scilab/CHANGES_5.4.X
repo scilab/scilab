@@ -788,6 +788,8 @@ t.
 
 * Bug #11093 fixed - isNamedVarExist() didn't search in builtin functions names.
 
+* Bug #11105 fixed - Crash with color_flag 3 fixed.
+
 * Bug #11114 fixed - Using load(file_descriptor, ...) is now obsolete.
 
 * Bug #11115 fixed - A graphic window was opened on with two xend().
