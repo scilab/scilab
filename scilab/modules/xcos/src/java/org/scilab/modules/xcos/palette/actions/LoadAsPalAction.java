@@ -15,18 +15,15 @@ package org.scilab.modules.xcos.palette.actions;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
-import javax.swing.JFileChooser;
-
+import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
@@ -48,8 +45,7 @@ public final class LoadAsPalAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_O;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
@@ -90,31 +86,15 @@ public final class LoadAsPalAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(final ActionEvent e) {
-        final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser
-                                           .createFileChooser().getAsSimpleFileChooser());
+        final SwingScilabFileChooser fc = OpenAction.createFileChooser();
 
-        /* Standard files */
-        fc.setTitle(XcosMessages.OPEN);
-        fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
-        fc.setMultipleSelection(false);
+        /* Configure the file chooser */
+        OpenAction.configureFileFilters(fc);
+        fc.setCurrentDirectory(new File(CommonFileUtils.getCWD()));
 
-        final SciFileFilter xcosFilter = new SciFileFilter(
-            XcosFileType.XCOS.getFileMask(), null, 0);
-        final SciFileFilter cosFilter = new SciFileFilter(
-            XcosFileType.COS.getFileMask() + "*", null, 1);
-        final SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
-        fc.addChoosableFileFilter(xcosFilter);
-        fc.addChoosableFileFilter(cosFilter);
-        fc.addChoosableFileFilter(allFilter);
-        fc.setFileFilter(xcosFilter);
-
-        ConfigurationManager.configureCurrentDirectory(fc);
-
-        fc.setAcceptAllFileFilterUsed(false);
         fc.displayAndWait();
 
-        if ((fc.getSelection() == null) || (fc.getSelection().length == 0)
-                || fc.getSelection()[0].equals("")) {
+        if ((fc.getSelection() == null) || (fc.getSelection().length == 0) || fc.getSelection()[0].equals("")) {
             return;
         }
 

@@ -17,7 +17,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -325,16 +327,6 @@ public enum XcosFileType {
     }
 
     /**
-     * @return the possible file format
-     */
-    public static Set<XcosFileType> getAvailableSaveFormats() {
-        final Set<XcosFileType> values = EnumSet.noneOf(XcosFileType.class);
-        values.add(XcosFileType.XCOS);
-        values.add(XcosFileType.ZCOS);
-        return values;
-    }
-
-    /**
      * Load a file into an XcosDiagram instance
      *
      * @param file
@@ -359,46 +351,79 @@ public enum XcosFileType {
     public abstract void save(final String file, final XcosDiagram from) throws Exception;
 
     /**
-     * @return the valid file filters
+     * @return the file filters which can be used to load a file
      */
-    public static FileFilter[] getValidFilters() {
-        final FileFilter[] filters = new FileFilter[values().length];
+    public static FileFilter[] getLoadingFilters() {
+        Collection<XcosFileType> used = EnumSet.allOf(XcosFileType.class);
+        Iterator<XcosFileType> it = used.iterator();
 
-        for (int i = 0; i < filters.length; i++) {
-            final XcosFileType type = values()[i];
-            filters[i] = new FileNameExtensionFilter(type.getDescription(), type.getExtension());
+        final FileFilter[] filters = new FileFilter[used.size() + 1];
+
+        final String[] extensions = new String[used.size()];
+        final String[] descriptions = new String[used.size()];
+        for (int i = 0; i < extensions.length; i++) {
+            final XcosFileType type = it.next();
+
+            descriptions[i] = type.getDescription();
+            extensions[i] = type.getExtension();
         }
+
+        /*
+         * One file filter for all valid extensions
+         */
+        filters[0] = new FileNameExtensionFilter(XcosMessages.ALL_SUPPORTED_FORMATS, extensions);
+
+        /*
+         * Then one file filter per enum value.
+         */
+        for (int i = 0; i < descriptions.length; i++) {
+            filters[i + 1] = new FileNameExtensionFilter(descriptions[i], extensions[i]);
+        }
+
         return filters;
     }
 
     /**
-     * Get a valid file mask (useable by file selector)
-     *
-     * @return A valid file mask
+     * @return the file filters which can be used to save a file
      */
-    public static String[] getValidFileMask() {
-        String[] result = new String[XcosFileType.values().length - 1];
+    public static FileFilter[] getSavingFilters() {
+        Collection<XcosFileType> used = getAvailableSaveFormats();
+        Iterator<XcosFileType> it = used.iterator();
 
-        for (int i = 0; i < result.length; i++) {
-            result[i] = XcosFileType.values()[i].getFileMask();
+        final FileFilter[] filters = new FileFilter[used.size() + 1];
+
+        final String[] extensions = new String[used.size()];
+        final String[] descriptions = new String[used.size()];
+        for (int i = 0; i < extensions.length; i++) {
+            final XcosFileType type = it.next();
+
+            descriptions[i] = type.getDescription();
+            extensions[i] = type.getExtension();
         }
 
-        return result;
+        /*
+         * One file filter for all valid extensions
+         */
+        filters[0] = new FileNameExtensionFilter(XcosMessages.ALL_SUPPORTED_FORMATS, extensions);
+
+        /*
+         * Then one file filter per enum value.
+         */
+        for (int i = 0; i < descriptions.length; i++) {
+            filters[i + 1] = new FileNameExtensionFilter(descriptions[i], extensions[i]);
+        }
+
+        return filters;
     }
 
     /**
-     * Get a valid file description (useable by file selector)
-     *
-     * @return A valid file mask
+     * @return the possible file format
      */
-    public static String[] getValidFileDescription() {
-        String[] result = new String[XcosFileType.values().length - 1];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = XcosFileType.values()[i].getDescription() + BEFORE_EXT + XcosFileType.values()[i].getExtension() + AFTER_EXT;
-        }
-
-        return result;
+    public static Set<XcosFileType> getAvailableSaveFormats() {
+        final Set<XcosFileType> values = EnumSet.noneOf(XcosFileType.class);
+        values.add(XcosFileType.XCOS);
+        values.add(XcosFileType.ZCOS);
+        return values;
     }
 
     /**

@@ -102,7 +102,7 @@ public final class OpenAction extends DefaultAction {
      * Helpers functions to share file chooser code
      */
 
-    protected static SwingScilabFileChooser createFileChooser() {
+    public static SwingScilabFileChooser createFileChooser() {
         final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
         fc.setTitle(XcosMessages.OPEN);
@@ -111,14 +111,14 @@ public final class OpenAction extends DefaultAction {
         return fc;
     }
 
-    protected static void configureFileFilters(final JFileChooser fc) {
+    public static void configureFileFilters(final JFileChooser fc) {
         fc.setAcceptAllFileFilterUsed(true);
 
-        final FileFilter[] filters = XcosFileType.getValidFilters();
+        final FileFilter[] filters = XcosFileType.getLoadingFilters();
         for (FileFilter fileFilter : filters) {
             fc.addChoosableFileFilter(fileFilter);
         }
-        fc.setFileFilter(filters[0]);
+        fc.setFileFilter(fc.getAcceptAllFileFilter());
     }
 
     protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) throws IOException {

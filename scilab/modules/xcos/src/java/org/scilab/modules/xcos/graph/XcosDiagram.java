@@ -39,7 +39,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
@@ -47,7 +46,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -56,6 +54,7 @@ import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -1738,21 +1737,9 @@ public class XcosDiagram extends ScilabGraph {
 
         info(XcosMessages.SAVING_DIAGRAM);
         if (fileName == null) {
-            // Choose a filename
-            final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-            fc.setTitle(XcosMessages.SAVE_AS);
-            fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
+            final SwingScilabFileChooser fc = SaveAsAction.createFileChooser();
+            SaveAsAction.configureFileFilters(fc);
 
-            // Xcos files or anything are supported
-            final Set<XcosFileType> defaults = XcosFileType.getAvailableSaveFormats();
-            for (XcosFileType type : defaults) {
-                final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(type.getDescription(), type.getExtension());
-                fc.addChoosableFileFilter(xcosFilter);
-            }
-            fc.setAcceptAllFileFilterUsed(true);
-            fc.setFileFilter(fc.getChoosableFileFilters()[0]);
-
-            fc.setMultipleSelection(false);
             if (getSavedFile() != null) {
                 fc.setSelectedFile(getSavedFile());
             } else {

@@ -245,6 +245,7 @@ public final class XcosMessages {
     public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
 
     /* File description */
+    public static final String ALL_SUPPORTED_FORMATS = Messages.gettext("All supported formats");
     public static final String FILE_COSF = Messages.gettext("Scicos file");
     public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
