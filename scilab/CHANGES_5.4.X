@@ -46,6 +46,9 @@ Graphic capabilities
 
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
+* Bug #10637 fixed - xs2svg crashed when first input argument was not a figure handle.
+                     Now it returns an error message.
+
 
 GUI
 ===

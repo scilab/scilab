@@ -31,25 +31,28 @@
 #include "freeArrayOfString.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
 #include "HandleManagement.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
     /* Check input and output sizes */
-    CheckLhs(0,1);
+    CheckLhs(0, 1);
     if (isVectorialExport(fileType) || fileType == JPG_EXPORT)
     {
-        CheckRhs(2,3);
+        CheckRhs(2, 3);
     }
     else
     {
-        CheckRhs(2,2);
+        CheckRhs(2, 2);
     }
 
     if (GetType(1) != sci_matrix && GetType(1) != sci_handles)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: An integer or a handle expected.\n"),fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: An integer or a handle expected.\n"), fname, 1);
         LhsVar(1) = 0;
         PutLhsVar();
         return 0;
@@ -67,43 +70,52 @@ int xs2file(char * fname, ExportFileType fileType )
         char *status = NULL;
 
         /* get handle by figure number */
-        if(GetType(1) == sci_matrix)
+        if (GetType(1) == sci_matrix)
         {
-            GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-            if(m1*n1 != 1)
+            GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
+            if (m1*n1 != 1)
             {
-                Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
                 return 0;
             }
 
             figurenum = *istk(l1);
             if (!sciIsExistingFigure(figurenum))
             {
-                Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n",fname, 1);
+                Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n", fname, 1);
                 return 0;
             }
             figureUID = getFigureFromIndex(figurenum);
         }
         /* check given handle */
-        if(GetType(1) == sci_handles)
+        if (GetType(1) == sci_handles)
         {
-            GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-            if(m1*n1 != 1)
+            char* pstHandleType = NULL;
+            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
+            if (m1*n1 != 1)
             {
-                Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return 0;
             }
-            figureUID = getObjectFromHandle(getHandleFromStack(l1));
 
-            if(figureUID == NULL)
+            figureUID = getObjectFromHandle(getHandleFromStack(l1));
+            if (figureUID == NULL)
             {
-                Scierror(999, "%s: Input argument #%d must be a valid handle.\n",fname, 1);
+                Scierror(999, _("%s: Input argument #%d must be a valid handle.\n"), fname, 1);
+                return 0;
+            }
+
+            getGraphicObjectProperty(figureUID, __GO_TYPE__, jni_string, (void**)&pstHandleType);
+
+            if (strcmp(pstHandleType, __GO_FIGURE__))
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"), fname, 1, "Figure");
                 return 0;
             }
         }
 
         /* get file name */
-        GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&fileName);
+        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &fileName);
         if (m1*n1 == 1)
         {
             if (Rhs == 3)
@@ -118,39 +130,39 @@ int xs2file(char * fname, ExportFileType fileType )
 
                     if (GetType(3) != sci_strings)
                     {
-                        freeArrayOfString(fileName,m1*n1);
-                        Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 3);
+                        freeArrayOfString(fileName, m1 * n1);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 3);
                         return 0;
                     }
 
-                    GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&sciOrientation);
+                    GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &sciOrientation);
                     if (nbRow*nbCol == 1)
                     {
                         /* Value should be 'landscape' or 'portrait' but check only the first character */
                         /* for compatibility with Scilab 4*/
                         if (strcmp(sciOrientation[0], "landscape") == 0 || strcmp(sciOrientation[0], "l") == 0)
                         {
-                            freeArrayOfString(sciOrientation,nbRow*nbCol);
+                            freeArrayOfString(sciOrientation, nbRow * nbCol);
                             orientation = EXPORT_LANDSCAPE;
                         }
-                        else if(strcmp(sciOrientation[0], "portrait") == 0 || strcmp(sciOrientation[0], "p") == 0)
+                        else if (strcmp(sciOrientation[0], "portrait") == 0 || strcmp(sciOrientation[0], "p") == 0)
                         {
-                            freeArrayOfString(sciOrientation,nbRow*nbCol);
+                            freeArrayOfString(sciOrientation, nbRow * nbCol);
                             orientation = EXPORT_PORTRAIT;
                         }
                         else
                         {
-                            freeArrayOfString(fileName,m1*n1);
-                            freeArrayOfString(sciOrientation,nbRow*nbCol);
-                            Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+                            freeArrayOfString(fileName, m1 * n1);
+                            freeArrayOfString(sciOrientation, nbRow * nbCol);
+                            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "portrait", "landscape");
                             return 0;
                         }
                     }
                     else
                     {
-                        freeArrayOfString(fileName,m1*n1);
-                        freeArrayOfString(sciOrientation,nbRow*nbCol);
-                        Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname, 3);
+                        freeArrayOfString(fileName, m1 * n1);
+                        freeArrayOfString(sciOrientation, nbRow * nbCol);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 3);
                         return 0;
                     }
                 }
@@ -161,10 +173,10 @@ int xs2file(char * fname, ExportFileType fileType )
                     if (nbRow != 1 || nbCol != 1 || *stk(quality) < 0 || *stk(quality) > 1)
                     {
                         freeArrayOfString(fileName, m1 * n1);
-                        Scierror(999,_("%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"),fname, 3);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"), fname, 3);
                         return 0;
                     }
-                    jpegCompressionQuality = (float) *stk(quality);
+                    jpegCompressionQuality = (float) * stk(quality);
                 }
             }
 
@@ -180,25 +192,25 @@ int xs2file(char * fname, ExportFileType fileType )
                 FREE(real_filename);
                 real_filename = NULL;
             }
-            freeArrayOfString(fileName,m1*n1);
+            freeArrayOfString(fileName, m1 * n1);
 
             /* treat errors */
             if (strlen(status) != 0)
             {
-                Scierror(999,_("%s: %s\n"), fname, status);
+                Scierror(999, _("%s: %s\n"), fname, status);
                 return 0;
             }
         }
         else
         {
-            freeArrayOfString(fileName,m1*n1);
-            Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname, 2);
+            freeArrayOfString(fileName, m1 * n1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 2);
             return 0;
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -211,8 +223,8 @@ int xs2file(char * fname, ExportFileType fileType )
 static BOOL isVectorialExport(ExportFileType fileType)
 {
     return fileType == EPS_EXPORT
-        || fileType == PS_EXPORT
-        || fileType == PDF_EXPORT
-        || fileType == SVG_EXPORT;
+           || fileType == PS_EXPORT
+           || fileType == PDF_EXPORT
+           || fileType == SVG_EXPORT;
 }
 /*--------------------------------------------------------------------------*/
