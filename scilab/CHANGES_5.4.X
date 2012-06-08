@@ -131,6 +131,8 @@ Documentation
   - Bad formating
   - Typos
 
+* Bug #1084 fixed - $ is not documented.
+
 * Bug #3811 fixed - The overloading charcode was wrong for libraries.
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
