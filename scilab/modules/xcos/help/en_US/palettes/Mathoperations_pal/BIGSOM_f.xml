@@ -84,6 +84,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_BIGSOM_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Seealso_BIGSOM_f">See also</xref>
             </para>
           </listitem>
@@ -257,6 +262,18 @@
         <para>SCI/modules/scicos_blocks/src/c/sum.c (Type 2)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_BIGSOM_f">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/BIGSOM_f_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/mathoperations_pal/BIGSOM_f_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
   <refsection id="Seealso_BIGSOM_f">
     <title>See also</title>
