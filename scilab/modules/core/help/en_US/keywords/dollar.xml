@@ -21,10 +21,10 @@
  <refsection>
     <title>Description</title>
     <para>
-      The $ symbol denotes the last index (row or column) of the array. It is therefore equal to the number of rows or columns.
+      The <literal>$</literal> symbol denotes the last index (row or column) of the array. It is therefore equal to the number of rows or columns.
     </para>
     <para>
-      This $ symbol is also used to LaTeX texts, which must start and end by $  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
+      The <literal>$</literal> symbol is also used to LaTeX texts, which must start and end by <literal>$</literal>. See also  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
     </para>
   </refsection>
   <refsection>
@@ -34,16 +34,33 @@ a=[1,2,3;4,5,6];
 a($)
 
 b = [1 2 3;4 5 6;7 8 9];
-// Access the last element of first row, ie 3
+// Access the last element of first row, i.e. 3
 b(1,$)
-// Access the last element of second column, ie 7
+// Access the last element of second column, i.e. 7
 b($,2)
-//Access the last element of b, ie 9
+//Access the last element of b, i.e. 9
 b($,$)
 
 // Add a row at the end of the matrix b
 b($+1,:) = [1 1 1];
 b
+
+// The $ symbol as a LaTeX delimiter
+titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>
