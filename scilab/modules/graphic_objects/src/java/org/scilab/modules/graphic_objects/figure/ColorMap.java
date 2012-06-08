@@ -85,7 +85,7 @@ public class ColorMap {
         int lastScilabIndex = getSize();
 
         if (index == 0) {
-            index = 1;
+            index = -1;
         }
 
         if (index > lastScilabIndex) {
