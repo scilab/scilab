@@ -48,6 +48,8 @@ Graphic capabilities
 
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
+* Bug #10365 fixed - copy a handle to a figure (instead of an axes) crashed Scilab.
+
 * Bug #10395 fixed - xset("clipping", [1,2,3,4]) returned an error.
 
 * Bug #10637 fixed - xs2svg crashed when first input argument was not a figure handle.
