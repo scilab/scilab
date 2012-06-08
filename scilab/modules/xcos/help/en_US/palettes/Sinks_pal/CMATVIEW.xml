@@ -78,6 +78,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_CMATVIEW">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Seealso_CMATVIEW">See also</xref>
             </para>
           </listitem>
@@ -227,6 +232,19 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_CMATVIEW">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+  </refsection>
+  
   <refsection id="Seealso_CMATVIEW">
     <title>See also</title>
     <itemizedlist>
