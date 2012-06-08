@@ -136,7 +136,7 @@ public class ScilabTextureManager {
         public void deleteObject(String id) {
             if (isValid() && identifier.equals(id)) {
                 isValid = false;
-                // TODO: GraphicController.getController().unRegister(this);
+                GraphicController.getController().unregister(this);
             }
         }
 
