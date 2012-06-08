@@ -35,6 +35,7 @@ function y = linspace(d1, d2, n)
 
     if int(n) <> n then
       warning(msprintf('%s: Using a non integer value for input argument #%d is deprecated and will produce an error in version 5.4.1.\n',"linspace",3));
+      n = int(n);
     end
   
   end
