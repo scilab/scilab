@@ -781,7 +781,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (!isImmediateDrawing(id) && GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__.equals(property)) {
+            if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__.equals(property) && !isImmediateDrawing(id)) {
                 canvas.waitImage();
             }
 
@@ -862,7 +862,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             visitorMap.remove(id);
         }
 
-        canvas.redraw();
+        if (isImmediateDrawing(id)) {
+            canvas.redraw();
+        }
     }
 
     /**
