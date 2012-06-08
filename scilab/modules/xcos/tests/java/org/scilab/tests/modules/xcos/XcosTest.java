@@ -12,8 +12,10 @@
 
 package org.scilab.tests.modules.xcos;
 
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 import org.scilab.modules.xcos.Xcos;
-import org.junit.*;
 
 /**
  * Test of the {@link XcosTest} class.
@@ -25,7 +27,7 @@ public class XcosTest {
      */
     @Test
     public void checkVersion() {
-        assert Xcos.TRADENAME.compareTo("Xcos") == 0;
-        assert Xcos.VERSION.compareTo("1.0") == 0;
+        assertTrue(Xcos.TRADENAME.compareTo("Xcos") == 0);
+        assertTrue(Xcos.VERSION.compareTo("1.0") == 0);
     }
 }

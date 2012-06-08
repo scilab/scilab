@@ -11,32 +11,33 @@
  */
 package org.scilab.tests.modules.types;
 
-import org.junit.*;
-import org.scilab.modules.types.ScilabDouble;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+
+import org.junit.Test;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testTypes {
 
     @Test
     public void doubleTest() throws NullPointerException {
-        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
+        double[][] a = { { 21.2, 22.0, 42.0, 39.0 }, { 23.2, 24.0, 44.0, 40.0 } };
         ScilabDouble aOriginal = new ScilabDouble(a, null);
         ScilabDouble aOriginal2 = new ScilabDouble(null, a);
-        assert aOriginal.getImaginaryPart() == null;
-        assert Arrays.deepEquals(aOriginal.getRealPart(), a) == true;
-        assert aOriginal.getType() == ScilabTypeEnum.sci_matrix;
-        assert aOriginal2.getType() == ScilabTypeEnum.sci_matrix;
-        assert aOriginal2.isSwaped() == false;
-        assert aOriginal.isSwaped() == false;
+        assertTrue(Arrays.deepEquals(aOriginal.getRealPart(), a) == true);
+        assertTrue(aOriginal.getType() == ScilabTypeEnum.sci_matrix);
+        assertTrue(aOriginal2.getType() == ScilabTypeEnum.sci_matrix);
+        assertTrue(aOriginal2.isSwaped() == false);
+        assertTrue(aOriginal.isSwaped() == false);
 
         ScilabDouble adouble = new ScilabDouble(a);
-        assert aOriginal.isReal() == true;
-        assert aOriginal.isEmpty() == false;
+        assertTrue(aOriginal.isReal() == true);
+        assertTrue(aOriginal.isEmpty() == false);
 
         ScilabDouble adouble2 = new ScilabDouble(a);
-        assert adouble.equals(adouble2) == true;
+        assertTrue(adouble.equals(adouble2) == true);
 
     }
 

@@ -13,7 +13,6 @@
 package org.scilab.modules.types;
 
 import java.io.Externalizable;
-import java.io.Serializable;
 
 /**
  * This interface specifies what is a Scilab types<br>
@@ -22,7 +21,7 @@ import java.io.Serializable;
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  */
-public interface ScilabType extends Externalizable, Serializable, Cloneable {
+public interface ScilabType extends Externalizable, Cloneable {
 
     /**
      * Return the type of Scilab

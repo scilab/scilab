@@ -11,8 +11,12 @@
  */
 
 package org.scilab.tests.modules.commons;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.scilab.modules.commons.ScilabCommons;
-import org.junit.*;
 
 /**
  * Check the access of the {@link ScilabCommons} public fields
@@ -26,15 +30,14 @@ public class CommonsTests {
 
     @Test
     public void getlanguage() {
-        assert ScilabCommons.getlanguage() != null;
-        assert ScilabCommons.getlanguage().length() > 0;
+        assertTrue(ScilabCommons.getlanguage() != null);
+        assertTrue(ScilabCommons.getlanguage().length() > 0);
     }
 
     @Test
     public void createTempFilename() {
-        assert ScilabCommons.createtempfilename("prefix_", 0) != null;
-        assert ScilabCommons.createtempfilename("prefix_", 0).length() > 0;
+        assertTrue(ScilabCommons.createtempfilename("prefix_", 0) != null);
+        assertTrue(ScilabCommons.createtempfilename("prefix_", 0).length() > 0);
     }
-
 
 }

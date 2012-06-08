@@ -12,12 +12,14 @@
 
 package org.scilab.tests.modules.commons;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.scilab.modules.commons.ScilabConstants;
-import org.junit.*;
-import org.junit.*;
 
 /**
  * Check the access of the {@link ScilabConstants} public fields
@@ -31,33 +33,33 @@ public class Constants {
 
     @Test
     public void checkTmp() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
-        assert ScilabConstants.TMPDIR != null;
-        assert ScilabConstants.TMPDIR.isDirectory();
+        assertTrue(ScilabConstants.TMPDIR != null);
+        assertTrue(ScilabConstants.TMPDIR.isDirectory());
 
         final File tmpFile = new File(ScilabConstants.TMPDIR, "tmpFile");
-        assert tmpFile.createNewFile();
-        assert tmpFile.exists();
-        assert tmpFile.delete();
+        tmpFile.createNewFile();
+        assertTrue(tmpFile.exists());
+        assertTrue(tmpFile.delete());
     }
 
     @Test
     public void checkSci() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-        assert ScilabConstants.SCI != null;
-        assert ScilabConstants.SCI.isDirectory();
+        assertTrue(ScilabConstants.SCI != null);
+        assertTrue(ScilabConstants.SCI.isDirectory());
 
         final File copying = new File(ScilabConstants.SCI, "COPYING");
-        assert copying.exists();
+        assertTrue(copying.exists());
     }
 
     @Test
     public void checkSciHome() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
-        assert ScilabConstants.SCIHOME != null;
-        assert ScilabConstants.SCIHOME.exists();
-        assert ScilabConstants.SCIHOME.isDirectory();
+        assertTrue(ScilabConstants.SCIHOME != null);
+        assertTrue(ScilabConstants.SCIHOME.exists());
+        assertTrue(ScilabConstants.SCIHOME.isDirectory());
 
         final File homeFile = new File(ScilabConstants.SCIHOME, "homeFile");
-        assert homeFile.createNewFile();
-        assert homeFile.exists();
-        assert homeFile.delete();
+        assertTrue(homeFile.createNewFile());
+        assertTrue(homeFile.exists());
+        assertTrue(homeFile.delete());
     }
 }
