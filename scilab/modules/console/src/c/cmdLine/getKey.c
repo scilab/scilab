@@ -290,7 +290,7 @@ char *getCmdLine(void)
 
     unsigned int cursorLocation = 0;
 
-    static wchar_t *wideString = NULL;
+    static wchar_t *commandLine = NULL;
 
     static int nextLineLocationInWideString = 0;
 
@@ -302,14 +302,14 @@ char *getCmdLine(void)
     }
     setTokenInteruptExecution(RESET_TOKEN);
 
-    if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')
+    if (commandLine == NULL || commandLine[nextLineLocationInWideString] == L'\0')
     {
-        if (wideString != NULL)
+        if (commandLine != NULL)
         {
-            FREE(wideString);
+            FREE(commandLine);
         }
-        wideString = MALLOC(1024 * sizeof(*wideString));
-        *wideString = L'\0';
+        commandLine = MALLOC(1024 * sizeof(*commandLine));
+        *commandLine = L'\0';
         nextLineLocationInWideString = 0;
     }
     else
@@ -320,23 +320,23 @@ char *getCmdLine(void)
 
     while (getTokenInteruptExecution() == CONTINUE_COMMAND)
     {
-        getKey(&wideString, &cursorLocation);
+        getKey(&commandLine, &cursorLocation);
     }
 
     cursorLocation = nextLineLocationInWideString;
-    while (wideString[cursorLocation] != L'\n' && wideString[cursorLocation] != L'\0')
+    while (commandLine[cursorLocation] != L'\n' && commandLine[cursorLocation] != L'\0')
     {
         cursorLocation++;
     }
 
-    wideString[cursorLocation] = L'\0';
+    commandLine[cursorLocation] = L'\0';
 
     if (getTokenInteruptExecution() == SEND_MULTI_COMMAND)
     {
-        printf("%ls\n", &wideString[nextLineLocationInWideString]);
+        printf("%ls\n", &commandLine[nextLineLocationInWideString]);
     }
 
-    multiByteString = wide_string_to_UTF8(&wideString[nextLineLocationInWideString]);
+    multiByteString = wide_string_to_UTF8(&commandLine[nextLineLocationInWideString]);
 
     nextLineLocationInWideString = cursorLocation + 1;
 
