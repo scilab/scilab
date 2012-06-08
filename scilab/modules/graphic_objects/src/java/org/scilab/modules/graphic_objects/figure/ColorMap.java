@@ -92,11 +92,7 @@ public class ColorMap {
             index = lastScilabIndex - index;
         }
 
-        if (index < -2) {
-            index = -2;
-        }
-
-        if (index==-1) {
+        if (index==-1 || index < -2) {
             return BLACK_COLOR;
         } else if (index==-2) {
             return WHITE_COLOR;
