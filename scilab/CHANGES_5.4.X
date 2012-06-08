@@ -252,6 +252,8 @@ Documentation
 
 * Bug #10809, #10810 fixed - error_table help page was not up-to-date.
 
+* Bug #10820 fixed - datatipscurve generator was freezing Scilab.
+
 * Bug #10828 fixed - Developer arguments were not displayed in the help of
                      Scilab scripts.
 
