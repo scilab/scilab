@@ -144,7 +144,7 @@ public enum LinkPortMap {
      * @return 1.0 if is a start point, 0.0 otherwise.
      */
     public static double isStart(BasicPort port) {
-        if (port instanceof InputPort || port instanceof CommandPort) {
+        if (port instanceof InputPort || port instanceof ControlPort) {
             return 1.0;
         } else {
             return 0.0;

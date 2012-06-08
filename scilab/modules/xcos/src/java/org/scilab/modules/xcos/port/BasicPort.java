@@ -16,6 +16,7 @@ import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -310,7 +311,11 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 
         final mxICell parent = getParent();
         if (parent != null) {
-            str.append(parent.getClass().getSimpleName()).append('.');
+            if (parent instanceof BasicBlock) {
+                str.append(((BasicBlock) parent).getInterfaceFunctionName()).append('.');
+            } else {
+                str.append(parent.getClass().getSimpleName()).append('.');
+            }
         }
 
         if (getChildCount() > 0) {

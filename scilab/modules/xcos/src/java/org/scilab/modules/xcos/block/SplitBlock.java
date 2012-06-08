@@ -11,8 +11,6 @@
  */
 package org.scilab.modules.xcos.block;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.scilab.modules.types.ScilabDouble;
@@ -59,14 +57,20 @@ public final class SplitBlock extends BasicBlock {
             addPort(new ExplicitInputPort());
             addPort(new ExplicitOutputPort());
             addPort(new ExplicitOutputPort());
+
+            setInterfaceFunctionName("SPLIT_f");
         } else if (source.getType() == Type.IMPLICIT) {
             addPort(new ImplicitInputPort());
             addPort(new ImplicitOutputPort());
             addPort(new ImplicitOutputPort());
+
+            setInterfaceFunctionName("IMPSPLIT_f");
         } else {
             addPort(new ControlPort());
             addPort(new CommandPort());
             addPort(new CommandPort());
+
+            setInterfaceFunctionName("CLKSPLIT_f");
         }
 
         getChildAt(0).setVisible(false);
@@ -106,57 +110,25 @@ public final class SplitBlock extends BasicBlock {
     /**
      * @return input port
      */
-    @SuppressWarnings("unchecked")
     public BasicPort getIn() {
-        return getChild(0, Arrays.asList(ExplicitInputPort.class, ImplicitInputPort.class, ControlPort.class), 1);
+        sortChildren();
+        return (BasicPort) getChildAt(0);
     }
 
     /**
      * @return first output port
      */
-    @SuppressWarnings("unchecked")
     public BasicPort getOut1() {
-        return getChild(1, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 1);
+        sortChildren();
+        return (BasicPort) getChildAt(1);
     }
 
     /**
      * @return second output port
      */
-    @SuppressWarnings("unchecked")
     public BasicPort getOut2() {
-        return getChild(2, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 2);
-    }
-
-    /**
-     * Get the child of the kind class from the start to a count.
-     *
-     * @param startIndex
-     *            the start index (default position)
-     * @param kind
-     *            the kind of the port
-     * @param ordering
-     *            the ordering of the port
-     * @return the found port or null.
-     */
-    private BasicPort getChild(int startIndex, List < Class <? extends BasicPort >> kind, int ordering) {
-        final int size = children.size();
-
-        int loopCount = size;
-        for (int i = startIndex; loopCount > 0; i = (i + 1) % size, loopCount--) {
-            Object child = children.get(i);
-            for (Class <? extends BasicPort > klass : kind) {
-                if (klass.isInstance(child)) {
-                    BasicPort port = klass.cast(child);
-
-                    if (port.getOrdering() == ordering) {
-                        // end of the loop
-                        return klass.cast(child);
-                    }
-                }
-            }
-        }
-        Logger.getLogger(SplitBlock.class.getName()).severe("Unable to find a child.");
-        return null;
+        sortChildren();
+        return (BasicPort) getChildAt(2);
     }
 
     /**

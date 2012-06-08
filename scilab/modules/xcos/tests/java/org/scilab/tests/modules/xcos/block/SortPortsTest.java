@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -26,7 +28,6 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.junit.*;
 
 public class SortPortsTest {
 
@@ -97,10 +98,10 @@ public class SortPortsTest {
     }
 
     private void fillRandomly(final List<Object> children) {
-        final int size = (int) (Math.random() * 10);
+        final int size = (int) (Math.random() * 10) + 3;
 
         for (int i = 0; i < size; i++) {
-            final int type = (int) Math.random() * 6;
+            final int type = (int) (Math.random() * 6);
 
             final BasicPort p;
             switch (type) {

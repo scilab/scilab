@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -45,7 +45,7 @@ import com.mxgraph.util.mxRectangle;
 
 /**
  * Root base class for links.
- * 
+ *
  * A link is always oriented from Input to Output or from Command to Control.
  */
 // CSOFF: ClassDataAbstractionCoupling
@@ -57,7 +57,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Default constructor
-     * 
+     *
      * @param style
      *            The style to use for this link
      */
@@ -103,7 +103,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Get all the points
-     * 
+     *
      * @param index
      *            the start index
      * @param fromStart
@@ -120,11 +120,11 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         final List<mxPoint> points = getGeometry().getPoints();
         if (fromStart) {
             return new ArrayList<mxPoint>(points.subList(0,
-                    Math.min(points.size(), index)));
+                                          Math.min(points.size(), index)));
         } else {
             if (index < points.size()) {
                 return new ArrayList<mxPoint>(points.subList(index,
-                        points.size()));
+                                              points.size()));
             } else {
                 return new ArrayList<mxPoint>();
             }
@@ -141,7 +141,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Find the nearest link point of the point
-     * 
+     *
      * @param point
      *            The base point
      * @return the nearest point index in the point list.
@@ -153,14 +153,14 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         }
 
         double startX = (getSource().getParent().getGeometry().getX() + getSource()
-                .getGeometry().getX());
+                         .getGeometry().getX());
         double startY = (getSource().getParent().getGeometry().getY() + getSource()
-                .getGeometry().getY());
+                         .getGeometry().getY());
 
         double endX = (getTarget().getParent().getGeometry().getX() + getTarget()
-                .getGeometry().getX());
+                       .getGeometry().getX());
         double endY = (getTarget().getParent().getGeometry().getY() + getTarget()
-                .getGeometry().getY());
+                       .getGeometry().getY());
 
         double saveDist = -1;
         int findPos = 0;
@@ -173,16 +173,16 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
                 point1 = new Point2D.Double(startX, startY);
             } else {
                 point1 = new Point2D.Double(
-                        (int) (getGeometry().getPoints().get(i - 1)).getX(),
-                        (int) (getGeometry().getPoints().get(i - 1)).getY());
+                    (int) (getGeometry().getPoints().get(i - 1)).getX(),
+                    (int) (getGeometry().getPoints().get(i - 1)).getY());
             }
 
             if (i == getGeometry().getPoints().size()) {
                 point2 = new Point2D.Double(endX, endY);
             } else {
                 point2 = new Point2D.Double(
-                        (int) (getGeometry().getPoints().get(i)).getX(),
-                        (int) (getGeometry().getPoints().get(i)).getY());
+                    (int) (getGeometry().getPoints().get(i)).getX(),
+                    (int) (getGeometry().getPoints().get(i)).getY());
             }
 
             Point2D.Double addPoint = new Point2D.Double(point.getX(),
@@ -205,7 +205,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Add a point at the position
-     * 
+     *
      * @param x
      *            X coordinate
      * @param y
@@ -221,7 +221,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Insert point on the nearest link
-     * 
+     *
      * @param point
      *            the point to add
      */
@@ -247,10 +247,10 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
             for (int i = 0; i < getGeometry().getPoints().size(); i++) {
                 mxPoint oldPoint = getGeometry().getPoints().get(i);
                 mxRectangle rect = new mxRectangle(oldPoint.getX()
-                        - (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
-                        - (DETECTION_RECTANGLE_DIMENSION / 2),
-                        DETECTION_RECTANGLE_DIMENSION,
-                        DETECTION_RECTANGLE_DIMENSION);
+                                                   - (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
+                                                   - (DETECTION_RECTANGLE_DIMENSION / 2),
+                                                   DETECTION_RECTANGLE_DIMENSION,
+                                                   DETECTION_RECTANGLE_DIMENSION);
                 if (rect.contains(point.getX(), point.getY())) {
                     getGeometry().getPoints().remove(i);
                     return;
@@ -278,7 +278,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Open the contextual menu of the link
-     * 
+     *
      * @param graph
      *            The associated graph
      */
@@ -305,15 +305,15 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         menu.add(linkStyle);
 
         ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-                MouseInfo.getPointerInfo().getLocation().x, MouseInfo
-                        .getPointerInfo().getLocation().y);
+            MouseInfo.getPointerInfo().getLocation().x, MouseInfo
+            .getPointerInfo().getLocation().y);
 
         menu.setVisible(true);
     }
 
     /**
      * Create a typed link
-     * 
+     *
      * @param from
      *            The source
      * @param to
@@ -399,7 +399,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         }
         str.append(linkSep);
 
-        str.append(target);
+        str.append(target).append("\n");
 
         return str.toString();
     }
