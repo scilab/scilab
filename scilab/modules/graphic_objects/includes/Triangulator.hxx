@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -36,11 +36,8 @@ typedef struct
  * its two largest dimensions are considered and the third is ignored.
  *
  * To do:
- *    -optimize: iterate only over the list of reflex vertices when performing
- *     the ear test. It requires the lists of convex and reflex vertices to be updated during the execution;
- *     they are not used at the moment, just filled at initialization time.
  *    -extend to take into account self-intersecting polygons
- *    -use a more efficient algorithm (such as the decomposition into monotone pieces O(n log n) algorithm)
+ *    -use a more efficient and robust algorithm (such as the decomposition into monotone pieces O(n log n) algorithm)
  *    -use a dedicated library (more efficient and/or robust)
  */
 class Triangulator
@@ -57,6 +54,9 @@ private:
 
     /** The polygon's number of points. */
     int numPoints;
+
+    /** The polygons's initial number of points, including colinear vertices. */
+    int numInitPoints;
 
     /**
      * Specifies which of the polygon's axes is the smallest. 0, 1 and 2
@@ -79,6 +79,9 @@ private:
 
     /** The list of vertex indices. */
     std::list<int> vertexIndices;
+
+    /** The list of actual vertex indices. */
+    std::vector<int> actualVertexIndices;
 
     /** The list of ear vertex indices. */
     std::list<int> earList;
@@ -107,6 +110,9 @@ private:
     /** The number of ear tests performed. */
     int numEarTests;
 
+    /** The number of colinear vertices. */
+    int numColinearVertices;
+
 private:
     /**
      * Determines the polygon's smallest axis and its two largest axes.
@@ -132,6 +138,16 @@ private:
      * Fills the list of vertex indices, depending on their order.
      */
     void fillVertexIndices(void);
+
+    /**
+     * Removes colinear vertices.
+     */
+    void removeColinearVertices(void);
+
+    /**
+     * Removes duplicate vertices.
+     */
+    void removeDuplicateVertices(void);
 
     /**
      * Fills the list of convex vertices, determining whether each vertex vi is convex or not.
@@ -208,6 +224,33 @@ private:
     static double dot(Vector3d v0, Vector3d v1);
 
     /**
+     * Normalizes a 2D vector, the z coordinate is ignored. 
+     * It should be moved to a Vector3d class.
+     * @param[in] the vector to normalize.
+     * @return the normalized vector.
+     */
+    static Vector3d normalize(Vector3d v);
+
+    /**
+     * Compares whether two vertices are identical or not.
+     * Two vertices are considered identical if they x and y coordinates
+     * are equal, the z coordinate being ignored.
+     * It should be moved to a Vector3d class.
+     * @param[in] the first vector.
+     * @param[in] the second vector.
+     * @return true if the two vertices are identical, false if not.
+     */
+    static bool compareVertices(Vector3d v0, Vector3d v1);
+
+    /**
+     * Determines whether two floating-point values are equal.
+     * @param[in] the first value.
+     * @param[in] the second value.
+     * @return true if the values are equal, false if not.
+     */
+    static bool areEqual(double x0, double x1);
+
+    /**
      * Computes and returns a vector p orthogonal to vector v,
      * such that the angle from v to p is +90°. v and p are considered
      * to lie in the xy plane.
@@ -271,5 +314,15 @@ public:
      */
     void clear(void);
 };
+
+/**
+ * An arbitrary tolerance value used to determine colinear edges.
+ */
+#define TOLERANCE 0.0000001
+
+/**
+ * An epsilon value used when comparing vertices.
+ */
+#define EPSILON 0.00000001
 
 #endif

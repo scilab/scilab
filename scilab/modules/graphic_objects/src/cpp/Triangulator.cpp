@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -11,6 +11,8 @@
  */
 
 #include "Triangulator.hxx"
+
+#include <math.h>
 
 void Triangulator::determineSmallestAxis(void)
 {
@@ -120,6 +122,148 @@ void Triangulator::fillVertexIndices(void)
     }
 }
 
+void Triangulator::removeColinearVertices(void)
+{
+    double dp = 0.;
+    std::list<int>::iterator vi, vim1, vip1;
+
+    std::vector<Vector3d> sievedPoints;
+    std::list<int> tmpVertexIndices;
+
+    int numColinear = 0;
+    int index = 0;
+
+    for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
+    {
+        getAdjacentVertices(vi, vim1, vip1);
+
+        dp = computeDotProduct(*vim1, *vi, *vip1);
+
+        if (fabs(dp) < TOLERANCE)
+        {
+            numColinear++;
+        }
+        else
+        {
+            sievedPoints.push_back(points[*vi]);
+            actualVertexIndices.push_back(*vi);
+        }
+
+        index++;
+    }
+
+    points.clear();
+
+    if (flipped)
+    {
+        // Reverse the actual vertex indices list
+        std::vector<int> tmpList;
+
+        for (int i = 0; i < actualVertexIndices.size(); i++)
+        {
+            tmpList.push_back(actualVertexIndices[actualVertexIndices.size()-i-1]);
+        }
+
+        actualVertexIndices.clear();
+
+        for (int i = 0; i < tmpList.size(); i++)
+        {
+            actualVertexIndices.push_back(tmpList[i]);
+        }
+
+        tmpList.clear();
+    }
+
+    if (flipped)
+    {
+        for (int i = sievedPoints.size()-1; i >= 0 ; i--)
+        {
+            points.push_back(sievedPoints[i]);
+        }
+    }
+    else
+    {
+        for (int i = 0; i < sievedPoints.size(); i++)
+        {
+            points.push_back(sievedPoints[i]);
+        }
+    }
+
+    /* Must be updated */
+    numPoints = points.size();
+
+    sievedPoints.clear();
+
+    numColinearVertices = numColinear;
+}
+
+void Triangulator::removeDuplicateVertices(void)
+{
+    int numDuplicateVertices = 0;
+    std::vector<int> duplicateFlagArray;
+
+    std::vector<Vector3d> sievedPoints;
+    std::vector<int> tmpActualVertexIndices;
+
+    sievedPoints.clear();
+    tmpActualVertexIndices.clear();
+
+    duplicateFlagArray.resize(points.size());
+
+    for (int i = 0; i < points.size(); i++)
+    {
+        int ic = (i+1) % points.size();
+        int icm1 = i;
+
+        Vector3d vi = points[icm1];
+        Vector3d vip1 = points[ic];
+
+        if (compareVertices(vi, vip1))
+        {
+            numDuplicateVertices++;
+            duplicateFlagArray[ic] = 1;
+        }
+        else
+        {
+            duplicateFlagArray[ic] = 0;
+        }
+    }
+
+    for (int i = 0; i < points.size(); i++)
+    {
+        if (duplicateFlagArray[i] == 0)
+        {
+            /* Keep as it is not a duplicate */
+            sievedPoints.push_back(points[i]);
+            tmpActualVertexIndices.push_back(actualVertexIndices[i]);
+        }
+    }
+
+    actualVertexIndices.clear();
+    points.clear();
+
+    /* Copy the two new lists */
+    for (int i = 0; i < tmpActualVertexIndices.size(); i++)
+    {
+        actualVertexIndices.push_back(tmpActualVertexIndices[i]);
+    }
+
+    for (int i = 0; i < sievedPoints.size(); i++)
+    {
+        points.push_back(sievedPoints[i]);
+    }
+
+    /*
+     * Must be updated but seems to cause problems.
+     * To investigate.
+     */
+    numPoints = points.size();
+
+    duplicateFlagArray.clear();
+    sievedPoints.clear();
+    tmpActualVertexIndices.clear();
+}
+
 void Triangulator::fillConvexVerticesList(void)
 {
     double dp = 0.;
@@ -193,9 +337,6 @@ void Triangulator::getAdjacentVertices(std::list<int>::iterator vi, std::list<in
     }
 }
 
-/*
- * To do: optimize by iterating only over the reflex vertex list.
- */
 int Triangulator::isAnEar(std::list<int>::iterator vertex)
 {
     int isEar = 1;
@@ -210,7 +351,7 @@ int Triangulator::isAnEar(std::list<int>::iterator vertex)
     v1 = points[*vertex];
     v2 = points[*succ];
 
-    for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
+    for (vi = reflexList.begin(); vi != reflexList.end(); vi++)
     {
         if (*vi == *pred || *vi == *vertex || *vi == *succ)
         {
@@ -273,7 +414,8 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
     else
     {
         /*
-         * Non-convex vertex: may become convex, so its flag must be updated.
+         * Non-convex vertex: may become convex, so its flag must be updated, as well
+         * as the reflex vertex list.
          * Also determine whether it has become an ear and update the ear list accordingly.
          */
         getAdjacentVertices(vertex, pred, succ);
@@ -287,6 +429,8 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
 
         if (flagList[*vertex])
         {
+            reflexList.remove(*vertex);
+
             res = isAnEar(vertex);
 
             if (res)
@@ -309,10 +453,21 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
 double Triangulator::computeDotProduct(int im1, int i, int ip1)
 {
     double dp = 0.;
+    Vector3d eim1p;
+
+    double n1 = 0.;
+    double n2 = 0.;
+
     Vector3d eim1 = minus(points[i], points[im1]);
     Vector3d ei = minus(points[ip1], points[i]);
-    Vector3d eim1p = perpendicularVector(eim1);
+
+    /* Normalize */
+    eim1 = normalize(eim1);
+    ei = normalize(ei);
+
     /* Ought to use cross product */
+    eim1p = perpendicularVector(eim1);
+
     dp = dot(eim1p, ei);
 
     return dp;
@@ -363,6 +518,21 @@ double Triangulator::dot(Vector3d v0, Vector3d v1)
     return v0.x*v1.x + v0.y*v1.y + v0.z*v1.z;
 }
 
+Vector3d Triangulator::normalize(Vector3d v)
+{
+    double n = sqrt(v.x*v.x+v.y*v.y);
+
+    if (n < EPSILON)
+    {
+        n = 1.0;
+    }
+
+    v.x /= n;
+    v.y /= n;
+
+    return v;
+}
+
 Vector3d Triangulator::perpendicularVector(Vector3d v)
 {
     Vector3d perp;
@@ -373,14 +543,50 @@ Vector3d Triangulator::perpendicularVector(Vector3d v)
     return perp;
 }
 
+bool Triangulator::compareVertices(Vector3d v0, Vector3d v1)
+{
+    if (areEqual(v0.x, v1.x) && areEqual(v0.y, v1.y))
+    {
+        return true;
+    }
+    else
+    { 
+        return false;
+    }
+}
+
+bool Triangulator::areEqual(double x0, double x1)
+{
+    if (fabs(x0 - x1) <= EPSILON * fabs(x0))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 Triangulator::Triangulator(void)
 {
     numPoints = 0;
+    numInitPoints = 0;
     flipped = false;
     numAddEars = 0;
     numDelEars = 0;
     numSteps = 0;
     numEarTests = 0;
+    numColinearVertices = 0;
+
+    inputPoints.clear();
+    points.clear();
+    vertexIndices.clear();
+    actualVertexIndices.clear();
+    earList.clear();
+    convexList.clear();
+    reflexList.clear();
+    flagList.clear();
+    triangleIndices.clear();
 }
 
 void Triangulator::initialize(void)
@@ -403,6 +609,20 @@ void Triangulator::initialize(void)
     }
 
     fillVertexIndices();
+
+    numInitPoints = numPoints;
+
+    /*
+     * An additional colinear vertices removal pass should be performed
+     * after the duplicate removal pass, as some adjacent edges may become colinear.
+     */
+    removeColinearVertices();
+    removeDuplicateVertices();
+
+    /* Vertex indices must be re-filled */
+    vertexIndices.clear();
+    fillVertexIndices();
+
     fillConvexVerticesList();
     fillEarList();
 }
@@ -420,7 +640,7 @@ void Triangulator::addPoint(double x, double y, double z)
 
 void Triangulator::triangulate(void)
 {
-    int triIndex = 0;
+    int triIndex;
     std::list<int>::iterator it;
     std::list<int>::iterator vertex, pred, succ;
 
@@ -428,6 +648,9 @@ void Triangulator::triangulate(void)
 
     while (vertexIndices.size() >= 3 && earList.size() > 0)
     {
+        int v0, v1, v2;
+        int v0actual, v1actual, v2actual;
+
         it = earList.begin();
 
         /* If not found, we should break out of the loop. To be checked. */
@@ -441,12 +664,21 @@ void Triangulator::triangulate(void)
 
         numDelEars++;
 
+
         triIndex = *pred;
-        triangleIndices.push_back(triIndex);
+        v0 = triIndex;
         triIndex = *vertex;
-        triangleIndices.push_back(triIndex);
+        v1 = triIndex;
         triIndex = *succ;
-        triangleIndices.push_back(triIndex);
+        v2 = triIndex;
+
+        v0actual = actualVertexIndices[v0];
+        v1actual = actualVertexIndices[v1];
+        v2actual = actualVertexIndices[v2];
+
+        triangleIndices.push_back(v0actual);
+        triangleIndices.push_back(v1actual);
+        triangleIndices.push_back(v2actual);
 
         /* Update the predecessor vertex */
         updateVertex(pred);
@@ -483,11 +715,20 @@ void Triangulator::clear(void)
     inputPoints.clear();
     points.clear();
     numPoints = 0;
+    numInitPoints = 0;
 
     vertexIndices.clear();
+    actualVertexIndices.clear();
     earList.clear();
     convexList.clear();
     reflexList.clear();
     flagList.clear();
     triangleIndices.clear();
+
+    numAddEars = 0;
+    numDelEars = 0;
+    numSteps = 0;
+    numEarTests = 0;
+    numColinearVertices = 0;
 }
+
