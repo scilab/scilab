@@ -62,7 +62,12 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PID">Contenu du Superbloc compilé</link>
+              <xref linkend="CompiledSuperBlockcontent_PID">Contenu du Superbloc compilé</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Example_PID">Exemple</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -211,6 +216,30 @@
           <imagedata fileref="../../../images/PID_img3_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Example_PID">
+    <title>Exemple 1</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+  </refsection>
+  <refsection id="Example_2_PID">
+    <title>Exemple 2</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID2_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
     </para>
   </refsection>
 </refentry>
