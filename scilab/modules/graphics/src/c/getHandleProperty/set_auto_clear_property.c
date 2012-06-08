@@ -27,6 +27,8 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CurrentSubwin.h"
+#include "BuildObjects.h"
+
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -40,7 +42,7 @@ int set_auto_clear_property(char* pobjUID, size_t stackPointer, int valueType, i
 
 	if (pobjUID == NULL)
 	{
-		objUID = getCurrentSubWin();
+		objUID = getOrCreateDefaultSubwin();
 	}
     else
     {

@@ -219,7 +219,7 @@ int sci_set(char *fname, unsigned long fname_len)
         }
         else
         {
-#define NB_PROPERTIES_SUPPORTED 6
+#define NB_PROPERTIES_SUPPORTED 7
             /* No object specified */
             /* ONLY supported properties are */
             /* 'current_entity' */
@@ -236,7 +236,8 @@ int sci_set(char *fname, unsigned long fname_len)
                 "current_figure",
                 "current_axes",
                 "figure_style",
-                "default_values"
+                "default_values",
+                "auto_clear"
             };
             int i = 0;
             int iPropertyFounded = 0;

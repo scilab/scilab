@@ -762,6 +762,8 @@ t.
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
 
+* Bug #10831 fixed - set("auto_clear", "on") and set("auto_clear", "off") returned an error.
+
 * Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
 
 * Bug #10836 fixed - resize_matrix with boolean failed.
