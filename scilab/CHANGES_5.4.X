@@ -44,7 +44,7 @@ Graphic capabilities
 * Bug #10206 fixed - SVG with a french localization was, in some cases, using
                      , instead of . for numerical separator.
 
-* Bug #10280 fixed - Update error message for bad assignement of interp_color_vector.
+* Bug #10290 fixed - Error message for bad assignement of interp_color_vector updated.
 
 * Bug #10360 fixed - Default format for export is now PNG instead of BMP.
 
