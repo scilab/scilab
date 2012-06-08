@@ -54,10 +54,10 @@ public class AxesRulerDrawer {
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
     /** Ticks length in pixels. */
-    private static final int TICKS_LENGTH = 8;
+    private static final int TICKS_LENGTH = 6;
 
     /** Sub-ticks length in pixels. */
-    private static final int SUB_TICKS_LENGTH = 5;
+    private static final int SUB_TICKS_LENGTH = 3;
 
     /**Ticks sprites distance in pixels. */
     private static final int SPRITE_DISTANCE = 12;
@@ -163,7 +163,7 @@ public class AxesRulerDrawer {
 
             if (axes.getXAxisGridColor() != -1) {
                 FloatBuffer vertexData;
-                if(axes.getXAxisLogFlag()) {
+                if (axes.getXAxisLogFlag()) {
                     vertexData = getXGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
                 } else {
                     vertexData = getXGridData(values, rulerModel);
@@ -173,10 +173,10 @@ public class AxesRulerDrawer {
                 Transformation mirror;
                 try {
                     mirror = TransformationFactory.getScaleTransformation(
-                            1,
-                            matrix[6] < 0 ? gridPosition : -gridPosition,
-                            matrix[10] < 0 ? gridPosition : -gridPosition
-                    );
+                                 1,
+                                 matrix[6] < 0 ? gridPosition : -gridPosition,
+                                 matrix[10] < 0 ? gridPosition : -gridPosition
+                             );
                 } catch (DegenerateMatrixException ignored) {
                     // Should never happens as long as gridPosition the value 1 or -1
                     mirror = TransformationFactory.getIdentity();
@@ -239,7 +239,7 @@ public class AxesRulerDrawer {
 
             if (axes.getYAxisGridColor() != -1) {
                 FloatBuffer vertexData;
-                if(axes.getYAxisLogFlag()) {
+                if (axes.getYAxisLogFlag()) {
                     vertexData = getYGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
                 } else {
                     vertexData = getYGridData(values, rulerModel);
@@ -249,10 +249,10 @@ public class AxesRulerDrawer {
                 Transformation mirror;
                 try {
                     mirror = TransformationFactory.getScaleTransformation(
-                            matrix[2] < 0 ? gridPosition : -gridPosition,
-                            1,
-                            matrix[10] < 0 ? gridPosition : -gridPosition
-                    );
+                                 matrix[2] < 0 ? gridPosition : -gridPosition,
+                                 1,
+                                 matrix[10] < 0 ? gridPosition : -gridPosition
+                             );
                 } catch (DegenerateMatrixException ignored) {
                     // Should never happens as long as gridPosition the value 1 or -1
                     mirror = TransformationFactory.getIdentity();
@@ -327,7 +327,7 @@ public class AxesRulerDrawer {
 
                 if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
                     FloatBuffer vertexData;
-                    if(axes.getZAxisLogFlag()) {
+                    if (axes.getZAxisLogFlag()) {
                         vertexData = getZGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
                     } else {
                         vertexData = getZGridData(values, rulerModel);
@@ -337,10 +337,10 @@ public class AxesRulerDrawer {
                     Transformation mirror;
                     try {
                         mirror = TransformationFactory.getScaleTransformation(
-                                matrix[2] < 0 ? gridPosition : -gridPosition,
-                                matrix[6] < 0 ? gridPosition : -gridPosition,
-                                1
-                        );
+                                     matrix[2] < 0 ? gridPosition : -gridPosition,
+                                     matrix[6] < 0 ? gridPosition : -gridPosition,
+                                     1
+                                 );
                     } catch (DegenerateMatrixException ignored) {
                         // Should never happens as long as gridPosition the value 1 or -1
                         mirror = TransformationFactory.getIdentity();
@@ -487,10 +487,22 @@ public class AxesRulerDrawer {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
         for (double value : values) {
             float p = (float) rulerModel.getPosition(value).getX();
-            vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(p); vertexData.put(-1); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(p); vertexData.put(+1); vertexData.put(-1); vertexData.put(1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(p);
+            vertexData.put(-1);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(-1);
+            vertexData.put(1);
         }
         vertexData.rewind();
         return vertexData;
@@ -506,10 +518,22 @@ public class AxesRulerDrawer {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
         for (double value : values) {
             float p = (float) rulerModel.getPosition(value).getY();
-            vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(-1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-            vertexData.put(+1); vertexData.put(p); vertexData.put(-1); vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(-1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(+1);
+            vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(-1);
+            vertexData.put(1);
         }
         vertexData.rewind();
         return vertexData;
@@ -526,10 +550,22 @@ public class AxesRulerDrawer {
         int limit = 0;
         for (double value : values) {
             float p = (float) rulerModel.getPosition(value).getZ();
-            vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-            vertexData.put(-1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-            vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-            vertexData.put(+1); vertexData.put(-1); vertexData.put(p); vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(1);
+            vertexData.put(-1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(+1);
+            vertexData.put(p);
+            vertexData.put(1);
+            vertexData.put(+1);
+            vertexData.put(-1);
+            vertexData.put(p);
+            vertexData.put(1);
             limit += 16;
         }
         vertexData.limit(limit);
