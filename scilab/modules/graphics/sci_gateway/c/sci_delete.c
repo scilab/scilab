@@ -59,7 +59,16 @@ int sci_delete(char *fname, unsigned long fname_len)
 
     if (Rhs == 0)               /* Delete current object */
     {
-        hdl = (unsigned long)getHandle(getCurrentObject());
+        pobjUID = getCurrentObject();
+        if (pobjUID == NULL)
+        {
+            //No current object, we can leave
+            LhsVar(1) = 0;
+            PutLhsVar();
+            return 0;
+        }
+
+        hdl = (unsigned long)getHandle(pobjUID);
         dont_overload = 1;
         nb_handles = 1;
     }
@@ -88,7 +97,17 @@ int sci_delete(char *fname, unsigned long fname_len)
                     //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
                     int i = 0;
                     int iFigureNumber = sciGetNbFigure();
-                    int *piFigureIds = (int *) MALLOC(iFigureNumber * sizeof(int));
+                    int *piFigureIds = NULL;
+
+                    if (iFigureNumber == 0)
+                    {
+                        //no graphic windows, we can leave
+                        LhsVar(1) = 0;
+                        PutLhsVar();
+                        return 0;
+                    }
+
+                    piFigureIds = (int *) MALLOC(iFigureNumber * sizeof(int));
 
                     sciGetFiguresId(piFigureIds);
 
