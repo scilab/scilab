@@ -123,10 +123,31 @@ int sci_xset( char *fname, unsigned long fname_len )
     if (strcmp(cstk(l1), "clipping") == 0)
     {
         int clipState = 2;
-        if (Rhs != 5)
+        if (Rhs != 5 && Rhs != 2)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 5);
-            return -1;
+            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 5);
+            return 1;
+        }
+
+        if(Rhs == 2)
+        {
+            int i = 0;
+            int lr = 0;
+            int iRows = 0;
+            int iCols = 0;
+
+            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &lr);
+
+            if(iRows * iCols != 4)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A %d-element vector expected.\n"), fname, 2, 4);
+                return 1;
+            }
+
+            for(i = 0; i < 4 ; i++)
+            {
+                xx[i] = *stk(lr + i);
+            }
         }
         subwinUID = getOrCreateDefaultSubwin();
         setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
