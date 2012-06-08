@@ -94,7 +94,7 @@ int set_interp_color_vector_property(char* pobjUID, size_t stackPointer, int val
         }
         else
         {
-            Scierror(999, _("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+            Scierror(999, _("The number of column of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
             return SET_PROPERTY_ERROR;
         }
 
