@@ -63,23 +63,22 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_TOWS_c">Default
-                properties
-              </xref>
+              <xref linkend="Defaultproperties_TOWS_c">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_TOWS_c">Interfacing
-                function
-              </xref>
+              <xref linkend="Interfacingfunction_TOWS_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_TOWS_c">Computational
-                function
-              </xref>
+              <xref linkend="Computationalfunction_TOWS_c">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_TOWS_c">Example</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -239,4 +238,17 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_TOWS_c">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/TOWS_c_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/sinks_pal/TOWS_c_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+  </refsection>
+  
 </refentry>
