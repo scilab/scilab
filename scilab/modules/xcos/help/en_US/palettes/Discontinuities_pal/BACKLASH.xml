@@ -76,6 +76,11 @@
               <xref linkend="Computationalfunction_BACKLASH">Computational function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_BACKLASH">Example</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -228,5 +233,17 @@
         <para> SCI/modules/scicos_blocks/src/c/backlash.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_BACKLASH">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/BACKLASH_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/discontinuities_pal/BACKLASH_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>
