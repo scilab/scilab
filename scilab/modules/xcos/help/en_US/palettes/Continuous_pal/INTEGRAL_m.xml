@@ -58,35 +58,27 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialogbox_INTEGRAL_m">Dialog
-                box
-              </xref>
+              <xref linkend="Dialogbox_INTEGRAL_m">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_INTEGRAL_m">Default
-                properties
-              </xref>
+              <xref linkend="Defaultproperties_INTEGRAL_m">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_INTEGRAL_m">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_INTEGRAL_m">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Example_INTEGRAL_m">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_INTEGRAL_m">Interfacing
-                function
-              </xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_INTEGRAL_m">Computational
-                function
-              </xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -290,22 +282,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example_INTEGRAL_m">
-    <title>Example</title>
-    <para>This sample model demonstrates how to use the integrator's state
-      port.
-    </para>
-    <para>The re-initialization parameter is set to 1, the Upper limit to 1
-      and the lower limit to -1.
-    </para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/INTEGRAL_diagram.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
   <refsection id="Interfacingfunction_INTEGRAL_m">
     <title>Interfacing function</title>
     <itemizedlist>
@@ -324,5 +300,33 @@
         <para>SCI/modules/scicos_blocks/src/c/integralz_func.c</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_INTEGRAL_m">
+    <title>Example 1</title>
+    <para>This sample model demonstrates how to use the integrator's state
+      port.
+    </para>
+    <para>The re-initialization parameter is set to 1, the Upper limit to 1
+      and the lower limit to -1.
+    </para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/INTEGRAL_diagram.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Example2_INTEGRAL_m">
+    <title>Example 2</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

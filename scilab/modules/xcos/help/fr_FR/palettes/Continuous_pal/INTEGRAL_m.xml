@@ -57,17 +57,17 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Example_INTEGRAL_m">Exemple</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Interfacingfunction_INTEGRAL_m">Fonction d'interfaçage</xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Computationalfunction_INTEGRAL_m">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_INTEGRAL_m">Exemple</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -244,18 +244,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example_INTEGRAL_m">
-    <title>Exemple</title>
-    <para>Cet exemple de modèle montre comment utiliser le port d'état de l'intégrateur.</para>
-    <para>Le paramètre de ré-initialisation est mis à 1, La limite haute à 1 et la limite basse à -1.</para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/INTEGRAL_diagram.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
   <refsection id="Interfacingfunction_INTEGRAL_m">
     <title>Fonction d'interfaçage</title>
     <itemizedlist>
@@ -274,5 +262,29 @@
         <para>SCI/modules/scicos_blocks/src/c/integralz_func.c</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_INTEGRAL_m">
+    <title>Exemple 1</title>
+    <para>Cet exemple de modèle montre comment utiliser le port d'état de l'intégrateur.</para>
+    <para>Le paramètre de ré-initialisation est mis à 1, La limite haute à 1 et la limite basse à -1.</para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/INTEGRAL_diagram.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Example2_INTEGRAL_m">
+    <title>Exemple 2</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>
