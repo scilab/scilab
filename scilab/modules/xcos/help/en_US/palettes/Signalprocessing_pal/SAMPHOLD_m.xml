@@ -76,6 +76,11 @@
               <xref linkend="Computationalfunction_SAMPHOLD_m">Computational function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_SAMPHOLD_m">Example</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -208,5 +213,17 @@
         <para> SCI/modules/scicos_blocks/src/c/samphold4_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_SAMPHOLD_m">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SAMPHOLD_m_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SAMPHOLD_m_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>
