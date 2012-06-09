@@ -234,17 +234,19 @@ public class MatchingBlockManager {
         }
         if (mpos != this.smpos) {
             this.smpos = mpos;
-            if (first != null) {
-                highlighter.removeHighlight(first);
-                if (second != null) {
-                    highlighter.removeHighlight(second);
+            try {
+                if (first != null) {
+                    highlighter.removeHighlight(first);
+                    if (second != null) {
+                        highlighter.removeHighlight(second);
+                    }
                 }
-            }
-            if (mpos != null && ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
-                createHighlights(mpos, insideOc, ocIncluded, ocPainter);
-            } else if (mpos != null && kwPainter != null && (!isMouse || isKWMouseover)) {
-                createHighlights(mpos, insideKw, kwIncluded, kwPainter);
-            }
+                if (mpos != null && ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
+                    createHighlights(mpos, insideOc, ocIncluded, ocPainter);
+                } else if (mpos != null && kwPainter != null && (!isMouse || isKWMouseover)) {
+                    createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                }
+            } catch (NullPointerException e) { }
         }
     }
 
