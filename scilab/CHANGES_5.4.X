@@ -281,6 +281,12 @@ Documentation
 * Bug #11175 fixed - xstringl example did not work.
 
 
+Dynamic Link
+=============
+
+* DEBUG_SCILAB_DYNAMIC_LINK was not available under GNU/Linux or Mac OS X.
+  See bug #11142
+
 Xcos
 ====
 

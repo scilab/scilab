@@ -29,8 +29,7 @@ function libn = ilib_compile(lib_name, ..
   lib_name_orig = strsubst(lib_name,"/^lib/","","r");
 
   libn=""; //** init variable
-
-  if ~haveacompiler() then
+  if getos() == "Windows" & ~haveacompiler() then
     error(_("A Fortran or C compiler is required."))
     return;
   end

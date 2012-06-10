@@ -31,6 +31,10 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
   end
   
+  if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+     envFlag = envFlag + " -g ";
+  end
+
   // CFLAGS
   if cflags <> '' then
     cmd = cmd + " CFLAGS="""+tbxFlag+envFlag+cflags+""""
