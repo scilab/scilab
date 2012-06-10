@@ -27,7 +27,7 @@
     <title>Parâmetros</title>
     <variablelist>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>números reais</para>
         </listitem>
@@ -48,7 +48,7 @@
         <term>ea</term>
         <listitem>
           <para>erro absoluto requerido no resultado. Valor padrão:
-            1.d-14
+            1.d-14.
           </para>
         </listitem>
       </varlistentry>
@@ -56,7 +56,7 @@
         <term>er</term>
         <listitem>
           <para>erro relativo requerido no resultado. Valor padrão:
-            1.d-8
+            1.d-8.
           </para>
         </listitem>
       </varlistentry>
@@ -98,16 +98,13 @@
     </para>
     <para>
       No caso FORTRAN, a seqüência de chamamento deve ser <literal>double
-        precision function f(x)
-      </literal>
+        precision function f(x)</literal>
       onde <literal>x</literal> tabém é um
       número de dupla precisão.
     </para>
     <para>
       No caso C, a seqüência de chamamento é <literal>double f(double
-        *x)
-      </literal>
-      .
+        *x)</literal>.
     </para>
   </refsection>
   <refsection>

@@ -15,9 +15,9 @@
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
-          <para>nombres réels</para>
+          <para>nombres réels.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -31,25 +31,25 @@
       <varlistentry>
         <term>ea, er</term>
         <listitem>
-          <para>nombres réels</para>
+          <para>nombres réels.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ea</term>
         <listitem>
-          <para>erreur absolue désirée (1.d-14 par défaut)</para>
+          <para>erreur absolue désirée (1.d-14 par défaut).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>er</term>
         <listitem>
-          <para>erreur relative (1.d-8 par défaut)</para>
+          <para>erreur relative (1.d-8 par défaut).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>estimation de l'erreur absolue sur le résultat</para>
+          <para>estimation de l'erreur absolue sur le résultat.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -65,7 +65,7 @@
       L'évaluation satisfait si possible <literal>abs(I-v)&lt;=
         max(ea,er*abs(I))
       </literal>
-      où I représente la valeur exacte de
+      où <literal>I</literal> représente la valeur exacte de
       l'intégrale.
     </para>
     <para>
@@ -88,16 +88,13 @@
     </para>
     <para>
       Dans le cas Fortran la liste d'appel doit être: <literal>double
-        precision function f(x)
-      </literal>
+        precision function f(x)</literal>
       où <literal>x</literal> est aussi un
       nombre double precision.
     </para>
     <para>
       Dans la cas C la liste d'appel doit être: <literal>double f(double
-        *x)
-      </literal>
-      .
+        *x)</literal>.
     </para>
   </refsection>
   <refsection>
