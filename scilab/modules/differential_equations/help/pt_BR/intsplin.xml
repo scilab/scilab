@@ -19,7 +19,8 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>vetor de dados de coordenadas x crescentes. O valor padrão é
+          <para>vetor de dados de coordenadas <literal>x</literal> crescentes.
+O valor padrão é
             <literal>1:size(y,'*')</literal>
           </para>
         </listitem>
@@ -27,7 +28,7 @@
       <varlistentry>
         <term>s</term>
         <listitem>
-          <para>vetor de dados de coordenadas y </para>
+          <para>vetor de dados de coordenadas <literal>y</literal> </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,7 +42,7 @@
   <refsection>
     <title>Descrição</title>
     <para>Computa :</para>
-    <para>Onde f é uma função descrita por um conjunto de valores
+    <para>Onde <literal>f</literal> é uma função descrita por um conjunto de valores
       experimentais:
     </para>
     <para>
