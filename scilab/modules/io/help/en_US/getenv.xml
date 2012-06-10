@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>env=getenv(str [, rep] )</synopsis>
+    <synopsis>env=getenv(str [, defaultReturn] )</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,10 +32,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rep</term>
+        <term>defaultReturn</term>
         <listitem>
           <para>
-            an optional character string. When this optional value  is used, the function <literal>getenv</literal> returns the value <literal>rep</literal> when the environment variable <literal>str</literal> is not found.
+            an optional character string. When this optional value is used, the function <literal>getenv</literal> returns the value <literal>defaultReturn</literal> when the environment variable <literal>str</literal> is not found.
           </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Return the value of an environment variable if it exists.</para>
+      Return the value of an environment variable if it exists.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

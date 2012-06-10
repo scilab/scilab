@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>env=getenv(str [, rep] )</synopsis>
+    <synopsis>env=getenv(str [, defaultReturn] )</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -28,15 +28,16 @@
       <varlistentry>
         <term>str  </term>
         <listitem>
-          <para>chaîne de caractères contenant le nom de la variable d'environnement rep : chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>rep</literal> quand la variable d'environnement <literal>str</literal> n'existe pas. 
-</para>
+          <para>
+            chaîne de caractères contenant le nom de la variable d'environnement <literal>defaultReturn</literal> : chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>defaultReturn</literal> quand la variable d'environnement <literal>str</literal> n'existe pas. 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>env  </term>
         <listitem>
           <para>chaîne de caractères contenant la valeur de la variable d'environnement
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,8 +45,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
-  </para>
+      Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
