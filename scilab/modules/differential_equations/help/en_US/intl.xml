@@ -28,11 +28,11 @@
       <varlistentry>
         <term>z0</term>
         <listitem>
-          <para>complex number</para>
+          <para>a complex number</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>two real numbers</para>
         </listitem>
@@ -57,7 +57,7 @@
       If <literal>f</literal> is a complex-valued function,
       <literal>intl(a,b,z0,r,f)</literal> computes the integral of
       <literal>f(z)dz</literal> along the curve in the complex plane defined by
-      <literal>z0 + r.exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
+      <literal>z0 + r.*exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
       .(part of the circle with center <literal>z0</literal> and radius
       <literal>r</literal> with phase between <literal>a</literal> and
       <literal>b</literal>).
