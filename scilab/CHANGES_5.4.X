@@ -133,6 +133,8 @@ XML
 
 * Bug #10670 fixed - Crash avoided when xmlRead had an argument with a bad size.
 
+* Bug #11250 fixed - Avoid a crash when an error is met during xmlValidation.
+
 
 Documentation
 =============
