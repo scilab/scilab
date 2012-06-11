@@ -68,7 +68,7 @@ function demo_gui()
   delmenu(demo_fig.figure_id, gettext("&Edit"));
   delmenu(demo_fig.figure_id, gettext("&?"));
   toolbar(demo_fig.figure_id, "off");
-  //demo_fig.visible = "off"; // to be sure that no plot can appear in the plot
+  demo_fig.visible = "off"; // to be sure that no plot can appear in the plot
 
   // Add the new one
 

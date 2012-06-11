@@ -351,14 +351,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void visit(Figure figure) {
         synchronized (figure) {
+            /** Set the current {@see ColorMap}. */
+            colorMap = figure.getColorMap();
+
+            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+            drawingTools.clearDepthBuffer();
             if (figure.getVisible()) {
-
-                /** Set the current {@see ColorMap}. */
-                colorMap = figure.getColorMap();
-
-                drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-                drawingTools.clearDepthBuffer();
-
                 askAcceptVisitor(figure.getChildren());
             }
         }
