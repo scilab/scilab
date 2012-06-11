@@ -72,10 +72,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>escalares reais ou vetores colunas com o mesmo tamanho que
-            <literal>y</literal>. <literal>atol,rtol</literal> fornecem
+            <literal>y</literal>. <literal>atol, rtol</literal> fornecem
             respectivamente as tolerâncias de erros absolutos e relativos da
             solução. Se forem vetores, as tolerâncias são especificadas para
             cada elemento de <literal>y</literal>.
@@ -139,7 +139,7 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*) 
  ]]></programlisting>
-              <para>Os arrays rpar e ipar devem estar presentes, mas não podem
+              <para>Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
                 ser utilizados.
               </para>
             </listitem>

@@ -72,11 +72,11 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>
             実数スカラーまたは<literal>y</literal>と同じ大きさの列ベクトル.
-            <literal>atol,rtol</literal> はそれぞれ絶対および相対許容誤差を指定します.
+            <literal>atol, rtol</literal> はそれぞれ絶対および相対許容誤差を指定します.
             ベクトルの場合,<literal>y</literal>の各要素毎に許容誤差が指定されます.
           </para>
         </listitem>
@@ -140,7 +140,7 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)  
  ]]></programlisting>
-              <para>rpar と ipar 配列は存在しますが,
+              <para><literal>rpar</literal> と <literal>ipar</literal> 配列は存在しますが,
                 使用できません.
               </para>
             </listitem>

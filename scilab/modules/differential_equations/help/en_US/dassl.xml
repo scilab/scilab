@@ -72,7 +72,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>a real scalars or column vectors of same size as
             <literal>y</literal>. <literal>atol, rtol</literal> give respectively
@@ -140,7 +140,7 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)  
  ]]></programlisting>
-              <para>The rpar and ipar arrays must be present but cannot be
+              <para>The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
                 used.
               </para>
             </listitem>
@@ -257,7 +257,7 @@ integer ipar(*)
               <term>info(5)</term>
               <listitem>
                 <para>a real scalar which gives the initial step size. Set
-                  <literal>info(4)=[]</literal> if not specified.
+                  <literal>info(5)=[]</literal> if not specified.
                 </para>
               </listitem>
             </varlistentry>
