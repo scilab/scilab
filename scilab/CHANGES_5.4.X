@@ -193,6 +193,8 @@ Documentation
 
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
+* Bug #10588 fixed - Update waitbar help page, function returns handle.
+
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
 
