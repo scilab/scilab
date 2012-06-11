@@ -76,6 +76,7 @@ import java.util.UUID;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -226,9 +227,9 @@ public final class SwingView implements GraphicView {
         if (!isValid) {
             return;
         }
-	
+
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-        
+
         if (!headless && !GraphicsEnvironment.isHeadless()) {
             DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
             if (objectType.equals(__GO_FIGURE__)
@@ -520,14 +521,18 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void deleteObject(String id) {
-        TypedObject requestedObject = allObjects.get(id);
+        final TypedObject requestedObject = allObjects.get(id);
         if (requestedObject != null) {
             switch (requestedObject.getType()) {
                 case Figure:
-                    SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
-                    DockingManager.close(tab);
-                    DockingManager.unregisterDockable((Dockable) tab);
-                    tab.close();
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                            DockingManager.close(tab);
+                            DockingManager.unregisterDockable((Dockable) tab);
+                            tab.close();
+                        }
+                    });
                     break;
                 case Progressbar:
                 case Waitbar:

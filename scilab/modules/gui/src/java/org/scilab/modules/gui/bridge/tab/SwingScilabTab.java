@@ -155,7 +155,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /** Contains the canvas and widgets */
     private SwingScilabAxes contentPane;
     private JLayeredPane layerdPane;
-    
+
     /** Scroll the axes */
     private SwingScilabScrollPane scrolling;
 
@@ -266,13 +266,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
-        
+
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
         layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
-        
+
         scrolling = new SwingScilabScrollPane(layerdPane, canvas, figure);
-        
+
         setContentPane(scrolling.getAsContainer());
         canvas.setVisible(true);
 
@@ -304,8 +304,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
 
                 Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
-                
-                if (autoreSize) {
+
+                if (autoreSize != null && autoreSize) {
                     /* Update the axes_size property */
                     Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
                     GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
@@ -1219,7 +1219,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setViewingRegion(int posX, int posY, int width, int height) {
-       }
+    }
 
     /**
      * Set the event handler of the Canvas
@@ -1359,9 +1359,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             Integer[] axesSize = (Integer[]) value;
             Dimension oldAxesSize = getContentPane().getSize();
             if (
-                    ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1])) &&
-                    ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
-                    ) {
+                ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1])) &&
+                ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+            ) {
                 // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
                 int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
                 int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();

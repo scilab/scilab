@@ -102,6 +102,14 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         setBackground(Color.white);
     }
 
+    public void removeNotify() {//Thread.dumpStack();
+        drawableComponent.setVisible(false);
+        drawableComponent.setEnabled(false);
+        remove(drawableComponent);
+
+        super.removeNotify();
+    }
+
     /**
      * Rendering canvas getter.
      * @return the SciRenderer canvas.
