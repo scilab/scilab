@@ -85,10 +85,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>escalares reais ou vetores colunas com o mesmo tamanho que
-            <literal>y</literal>. <literal>atol,rtol</literal> fornecem
+            <literal>y</literal>. <literal>atol, rtol</literal> fornecem
             respectivamente as tolerâncias de erros absolutos e relativos da
             solução. Se forem vetores, as tolerâncias são especificadas para
             cada elemento de <literal>y</literal>.
@@ -99,7 +99,7 @@
         <term>res</term>
         <listitem>
           <para>função, lista ou string externos. Computa o valor de
-            <literal>g(t,y,ydot)</literal>.Pode ser :
+            <literal>g(t,y,ydot)</literal>. Pode ser :
           </para>
           <itemizedlist>
             <listitem>
@@ -121,13 +121,13 @@
               <para>Esta forma permite passar outros parâmetros além de
                 t,y,ydot à função. Deve ser como segue:
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
               <para>Onde a seqüência de chamamento da função
                 <literal>res</literal> é agora
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -145,17 +145,17 @@ r=res(t,y,ydot,x1,x2,...)
                 Scilab.
               </para>
               <para>Em C a seqüência de chamamento:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[]) 
  ]]></programlisting>
               <para>Em Fortran deve ser:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para>Os arrays rpar e ipar devem estar presentes, mas não podem
+              <para>Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
                 ser utilizados.
               </para>
             </listitem>
@@ -182,13 +182,13 @@ integer ires,ipar(*)
             <listitem>
               <para>Uma lista</para>
               <para>Deve ser como segue</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
               <para>Onde a seqüência de chamamento da função
                 <literal>jac</literal> é agora
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...) 
 ]]></programlisting>
               <para>
@@ -203,12 +203,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                 ligada ao Scilab
               </para>
               <para>Em C, a seqüência de chamamento deve ser</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], 
          double pd[], double *cj, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Em Fortran deve ser</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -235,14 +235,14 @@ integer ipar(*)
             <listitem>
               <para>Uma lista</para>
               <para>Deve ser como segue:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(surf,x1,x2,...)
  ]]></programlisting>
               <para>
                 onde a seqüência de chamamento <literal>surf</literal> é
                 agora
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
             </listitem>
@@ -252,11 +252,11 @@ r=surf(t,y,x1,x2,...)
                 ligada ao Scilab
               </para>
               <para>Em C a seqüência de chamamento deve ser:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
               <para>Em Fortran deve ser</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
@@ -359,8 +359,8 @@ integer ny,ng
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>matriz de reais . Cada coluna é o vetor [t;x(t);xdot(t)] onde
-            t é o índice do tempo para o qual a solução foi computada
+          <para>matriz de reais . Cada coluna é o vetor <literal>[t;x(t);xdot(t)]</literal> onde
+            <literal>t</literal> é o índice do tempo para o qual a solução foi computada
           </para>
         </listitem>
       </varlistentry>
@@ -369,7 +369,7 @@ integer ny,ng
   <refsection>
     <title>Descrição</title>
     <para>Solução da equação diferencial implícita</para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  e   ydot(t0)=ydot0
  ]]></programlisting>
@@ -377,7 +377,7 @@ y(t0)=y0  e   ydot(t0)=ydot0
       superfície alcançada em <literal>nn</literal>.
     </para>
     <para>Exemplos detalhados podem ser encontrados em
-      SCIDIR/tests/dassldasrt.tst
+      SCIDIR/tests/unit_tests/dassldasrt.tst
     </para>
   </refsection>
   <refsection>
