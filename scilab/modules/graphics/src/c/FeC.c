@@ -75,251 +75,261 @@ static void coloutPatch(int colout[2]);
 ---------------------------------------------------------------*/
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr,
-	     char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
-	     int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
+             char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
+             int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
 {
-  int n1=1;
+    int n1 = 1;
 
-  /* Fec code */
+    /* Fec code */
 
-  char * pptabofpointobjUID = NULL;
-  char * psubwinUID = NULL;
-  char * pFecUID = NULL;
-  char * parentCompoundUID = NULL;
+    char * pptabofpointobjUID = NULL;
+    char * psubwinUID = NULL;
+    char * pFecUID = NULL;
+    char * parentCompoundUID = NULL;
 
-  long hdltab[2];
-  int cmpt = 0;
-  double drect[6];
+    long hdltab[2];
+    int cmpt = 0;
+    double drect[6];
 
-  BOOL bounds_changed = FALSE;
-  BOOL axes_properties_changed = FALSE;
+    BOOL bounds_changed = FALSE;
+    BOOL axes_properties_changed = FALSE;
 
-  char textLogFlags[3];
-  int clipState = 0;
-  int autoScale = 0;
-  int *piAutoScale = &autoScale;
-  int firstPlot = 0;
-  int *piFirstPlot = &firstPlot;
-  int logFlags[3];
-  int autoSubticks = 0;
-  int iTmp = 0;
-  int *piTmp = &iTmp;
-  double rotationAngles[2];
+    char textLogFlags[3];
+    int clipState = 0;
+    int autoScale = 0;
+    int *piAutoScale = &autoScale;
+    int firstPlot = 0;
+    int *piFirstPlot = &firstPlot;
+    int logFlags[3];
+    int autoSubticks = 0;
+    int iTmp = 0;
+    int *piTmp = &iTmp;
+    double rotationAngles[2];
 
-  psubwinUID = getCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
-  checkRedrawing();
+    checkRedrawing();
 
-  /*
-   * Deactivated for now
-   * Searches the object hierarchy until a Surface object is found
-   * in order to specify the view type (2D or 3D)
-   * To be implemented
-   */
+    /*
+     * Deactivated for now
+     * Searches the object hierarchy until a Surface object is found
+     * in order to specify the view type (2D or 3D)
+     * To be implemented
+     */
 #if 0
-  /* Force psubwin->is3d to FALSE: we are in 2D mode */
-  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-  {
-    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-  }
-  else
-  {
-    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
-  }
+    /* Force psubwin->is3d to FALSE: we are in 2D mode */
+    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+    {
+        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
+    }
+    else
+    {
+        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
+        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
+    }
 #endif
 
-  rotationAngles[0] = 0.0;
-  rotationAngles[1] = 270.0;
+    rotationAngles[0] = 0.0;
+    rotationAngles[1] = 270.0;
 
-  setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-  /* Force psubwin->axes.aaint to those given by argument aaint*/
-  /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
+    /* Force psubwin->axes.aaint to those given by argument aaint*/
+    /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
-  /* Force "cligrf" clipping (1) */
-  clipState = 1;
-  setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    /* Force "cligrf" clipping (1) */
+    clipState = 1;
+    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-  /* Force  axes_visible property */
-  /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
+    /* Force  axes_visible property */
+    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-  getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
-  getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
-  if (autoScale)
-  {
-    /* compute and merge new specified bounds with the data bounds */
-    switch (strflag[1])  {
-      case '0':
-        /* do not change data bounds */
-        break;
-      case '1' : case '3' : case '5' : case '7':
-        /* Force data bounds=brect */
-        re_index_brect(brect, drect);
-        break;
-      case '2' : case '4' : case '6' : case '8':case '9':
+    if (autoScale)
+    {
+        /* compute and merge new specified bounds with the data bounds */
+        switch (strflag[1])
+        {
+            case '0':
+                /* do not change data bounds */
+                break;
+            case '1' :
+            case '3' :
+            case '5' :
+            case '7':
+                /* Force data bounds=brect */
+                re_index_brect(brect, drect);
+                break;
+            case '2' :
+            case '4' :
+            case '6' :
+            case '8':
+            case '9':
 
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[0] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[1] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[2] = iTmp;
+
+                /* Conversion required by compute_data_bounds2 */
+                textLogFlags[0] = getTextLogFlag(logFlags[0]);
+                textLogFlags[1] = getTextLogFlag(logFlags[1]);
+                textLogFlags[2] = getTextLogFlag(logFlags[2]);
+
+                compute_data_bounds2(0, 'g', textLogFlags, x, y, n1, *Nnode, drect);
+                break;
+        }
+
+        /* merge data bounds and drect */
+        if (!firstPlot &&
+                (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+        {
+            double* dataBounds;
+            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+
+            drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
+            drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
+            drect[1] = Max(dataBounds[1], drect[1]); /*xmax*/
+            drect[3] = Max(dataBounds[3], drect[3]); /*ymax*/
+        }
+
+        if (strflag[1] != '0')
+        {
+            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
+        }
+    }
+
+    if (firstPlot)
+    {
+        bounds_changed = TRUE;
+    }
+
+    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
+
+    /* just after strflag2axes_properties */
+    firstPlot = 0;
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+
+    /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
+    u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+
+    /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
+    /* store new value for flagNax */
+    autoSubticks = !flagNax;
+    setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+
+    if (flagNax == TRUE)
+    {
         getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
         logFlags[0] = iTmp;
         getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
         logFlags[1] = iTmp;
-        getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-        logFlags[2] = iTmp;
 
-        /* Conversion required by compute_data_bounds2 */
-        textLogFlags[0] = getTextLogFlag(logFlags[0]);
-        textLogFlags[1] = getTextLogFlag(logFlags[1]);
-        textLogFlags[2] = getTextLogFlag(logFlags[2]);
+        if (logFlags[0] == 0 && logFlags[1] == 0)
+        {
+            int autoTicks;
 
-        compute_data_bounds2(0,'g',textLogFlags,x,y,n1,*Nnode,drect);
-        break;
-    }
+            autoTicks = 0;
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
-    /* merge data bounds and drect */
-    if (!firstPlot &&
-      (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
-    {
-        double* dataBounds;
-        getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
-
-        drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
-        drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
-        drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
-        drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
-    }
-
-    if (strflag[1] != '0')
-    {
-        bounds_changed = update_specification_bounds(psubwinUID, drect,2);
-    }
-  }
-
-  if (firstPlot)
-  {
-      bounds_changed = TRUE;
-  }
-
-  axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
-
-  /* just after strflag2axes_properties */
-  firstPlot = 0;
-  setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
-
-  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
-  u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-
-  /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
-  /* store new value for flagNax */
-  autoSubticks = !flagNax;
-  setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
-
-  if (flagNax == TRUE)
-  {
-    getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-    logFlags[0] = iTmp;
-    getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-    logFlags[1] = iTmp;
-
-    if (logFlags[0] == 0 && logFlags[1] == 0)
-    {
-      int autoTicks;
-
-      autoTicks = 0;
-      setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-      setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-
-      /*
-       * Creates user-defined ticks using the Nax values
-       * The MVC does not distinguish yet between automatically computed ticks
-       * and user-defined ones.
-       * To be implemented using the MVC framework
-       */
+            /*
+             * Creates user-defined ticks using the Nax values
+             * The MVC does not distinguish yet between automatically computed ticks
+             * and user-defined ones.
+             * To be implemented using the MVC framework
+             */
 #if 0
-      CreatePrettyGradsFromNax(psubwin,aaint);
+            CreatePrettyGradsFromNax(psubwin, aaint);
+#endif
+        }
+        else
+        {
+            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+        }
+    }
+
+    if (bounds_changed || axes_properties_changed )
+    {
+        /*
+         * Deactivated since it tells the renderer module that the object has changed
+         * To be implemented
+         */
+#if 0
+        forceRedraw(psubwin);
 #endif
     }
-    else
+
+    /* Construct the object */
+    /* Patch on colout */
+    /* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
+    /* [-1,-1] */
+    coloutPatch(colout);
+    pFecUID = ConstructFec(psubwinUID, x, y, triangles, func,
+                           *Nnode, *Ntr, zminmax, colminmax, colout, with_mesh);
+
+    if (pFecUID == NULL)
     {
-      sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+        // error in allocation
+        Scierror(999, _("%s: No more memory.\n"), "fec");
+        return -1;
     }
-  }
 
-  if(bounds_changed || axes_properties_changed )
-  {
-  /*
-   * Deactivated since it tells the renderer module that the object has changed
-   * To be implemented
-   */
+    /* Set fec as current */
+    setCurrentObject(pFecUID);
+
+    /* retrieve the created object : fec */
+    hdltab[cmpt] = getHandle(pFecUID);
+    cmpt++;
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pFecUID, jni_string, 1);
+
+    parentCompoundUID = ConstructCompound (hdltab, cmpt);
+    setCurrentObject(parentCompoundUID);  /** construct Compound **/
+    releaseGraphicObjectProperty(__GO_PARENT__, parentCompoundUID, jni_string, 1);
+
+    /*
+     * Deactivated since it involves drawing via the renderer module
+     * To be implemented
+     */
+    /* draw every one */
 #if 0
-    forceRedraw(psubwin);
-#endif
-  }
-
-  /* Construct the object */
-	/* Patch on colout */
-	/* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
-	/* [-1,-1] */
-	coloutPatch(colout);
-  pFecUID = ConstructFec(psubwinUID,x,y,triangles,func,
-                      *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh);
-
-  if (pFecUID == NULL)
-  {
-    // error in allocation
-    Scierror(999, _("%s: No more memory.\n"), "fec");
-    return -1;
-  }
-
-  /* Set fec as current */
-  setCurrentObject(pFecUID);
-
-  /* retrieve the created object : fec */
-  pptabofpointobjUID = pFecUID;
-  hdltab[cmpt] = getHandle(pptabofpointobjUID);
-  cmpt++;
-
-  parentCompoundUID = ConstructCompound (hdltab, cmpt);
-  setCurrentObject(parentCompoundUID);  /** construct Compound **/
-
-  /*
-   * Deactivated since it involves drawing via the renderer module
-   * To be implemented
-   */
-  /* draw every one */
-#if 0
-  sciDrawObj(parentCompound);
+    sciDrawObj(parentCompound);
 #endif
 
-  return(0);
+    return(0);
 
 }
 /*--------------------------------------------------------------------------*/
 static void coloutPatch(int colout[2])
 {
-	if (colout[0] < 0)
-	{
-		/* default mode */
-		colout[0] = 0;
-	}
-	else if (colout[0] == 0)
-	{
-		/* transparent facet */
-		colout[0] = -1;
-	}
+    if (colout[0] < 0)
+    {
+        /* default mode */
+        colout[0] = 0;
+    }
+    else if (colout[0] == 0)
+    {
+        /* transparent facet */
+        colout[0] = -1;
+    }
 
-	if (colout[1] < 0)
-	{
-		/* default mode */
-		colout[1] = 0;
-	}
-	else if (colout[1] == 0)
-	{
-		/* transparent facet */
-		colout[1] = -1;
-	}
+    if (colout[1] < 0)
+    {
+        /* default mode */
+        colout[1] = 0;
+    }
+    else if (colout[1] == 0)
+    {
+        /* transparent facet */
+        colout[1] = -1;
+    }
 
 }
 /*--------------------------------------------------------------------------*/

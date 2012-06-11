@@ -56,7 +56,7 @@
  -------------------------------------------------------------------*/
 
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1,
-	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
+            int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     char* psubwinUID = NULL;
     char* newSegsUID = NULL;
@@ -74,7 +74,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     int firstPlot = 0;
     int* piFirstPlot = &firstPlot;
     int logFlags[3];
-    int flag,type = 1;
+    int flag, type = 1;
     double arsize1 = 0.;
     int *style = NULL;
 
@@ -94,11 +94,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     /* F.Leray Allocation de style[dim = Nbr1] */
     if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"champg");
+        Scierror(999, _("%s: No more memory.\n"), "champg");
         return;
     }
 
-    flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
+    flag = 1; /* je le mets ï¿½ 1 pour voir F.Leray 19.02.04*/
     arsize1 = *arfact;
 
     psubwinUID = getCurrentSubWin();
@@ -110,13 +110,13 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     clipState = 1;
     setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    for(i=0;i<(*n1);i++)
+    for (i = 0; i < (*n1); i++)
     {
         style[i] = i;
     }
 
-    newSegsUID = ConstructSegs(psubwinUID,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
-                            style,arsize1,colored,typeofchamp);
+    newSegsUID = ConstructSegs(psubwinUID, type, x, y, NULL, *n1, *n2, 0, fx, fy, flag,
+                               style, arsize1, colored, typeofchamp);
 
     if (newSegsUID == NULL)
     {
@@ -131,7 +131,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     setCurrentObject(newSegsUID);
 
-    if( style != NULL )
+    if ( style != NULL )
     {
         FREE( style );
         style = NULL;
@@ -141,9 +141,9 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     clipState = 1;
     setGraphicObjectProperty(newSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-  /* Deactivated since it tells the renderer module that the object has changed */
+    /* Deactivated since it tells the renderer module that the object has changed */
 #if 0
-  forceRedraw(newSegs); /* update drawer */
+    forceRedraw(newSegs); /* update drawer */
 #endif
 
     /* Get segs bounding box */
@@ -154,18 +154,21 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     yy[0] = boundingBox[2];
     yy[1] = boundingBox[3];
 
+    releaseGraphicObjectProperty(__GO_BOUNDING_BOX__, boundingBox, jni_double_vector, 4);
+    releaseGraphicObjectProperty(__GO_PARENT__, newSegsUID, jni_string, 1);
+
     /* To be implemented */
 #if 0
     /* Force psubwin->is3d to FALSE: we are in 2D mode */
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
     {
         pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
     }
     else
     {
-        pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
+        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
     }
 #endif
 
@@ -183,49 +186,56 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         /* compute and merge new specified bounds with the data bounds */
         switch (strflag[1])
         {
-        case '0':
-          /* do not change data bounds */
-          break;
-        case '1' : case '3' : case '5' : case '7':
-          /* Force data bounds=brect */
-          re_index_brect(brect,drect);
-          break;
-        case '2' : case '4' : case '6' : case '8': case '9':
+            case '0':
+                /* do not change data bounds */
+                break;
+            case '1' :
+            case '3' :
+            case '5' :
+            case '7':
+                /* Force data bounds=brect */
+                re_index_brect(brect, drect);
+                break;
+            case '2' :
+            case '4' :
+            case '6' :
+            case '8':
+            case '9':
 
-          getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[0] = iTmp;
-          getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[1] = iTmp;
-          getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-          logFlags[2] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[0] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[1] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[2] = iTmp;
 
-          /* Conversion required by compute_data_bounds2 */
-          textLogFlags[0] = getTextLogFlag(logFlags[0]);
-          textLogFlags[1] = getTextLogFlag(logFlags[1]);
-          textLogFlags[2] = getTextLogFlag(logFlags[2]);
+                /* Conversion required by compute_data_bounds2 */
+                textLogFlags[0] = getTextLogFlag(logFlags[0]);
+                textLogFlags[1] = getTextLogFlag(logFlags[1]);
+                textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-          /* Force data bounds to the x and y bounds */
-          compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
-          break;
+                /* Force data bounds to the x and y bounds */
+                compute_data_bounds2(0, 'g', textLogFlags, xx, yy, nn1, nn2, drect);
+                break;
         }
 
         /* merge data bounds and drect */
         if (!firstPlot &&
-          (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9'))
+                (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
             double* dataBounds;
 
             getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
-            drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
-            drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
-            drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
-            drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
+            drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
+            drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
+            drect[1] = Max(dataBounds[1], drect[1]); /*xmax*/
+            drect[3] = Max(dataBounds[3], drect[3]); /*ymax*/
         }
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwinUID, drect,2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
         }
 
     }
@@ -241,20 +251,20 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     firstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  /*
-   * Deactivated since it tells the renderer module that the object has changed
-   * To be implemented
-   */
+    /*
+     * Deactivated since it tells the renderer module that the object has changed
+     * To be implemented
+     */
 #if 0
-    if( bounds_changed || axes_properties_changed )
+    if ( bounds_changed || axes_properties_changed )
     {
         forceRedraw(psubwin);
     }
 #endif
 
-  /*
-   * Deactivated since it involves drawing via the renderer module
-   */
+    /*
+     * Deactivated since it involves drawing via the renderer module
+     */
 #if 0
     sciDrawObj(sciGetCurrentFigure());
 #endif
@@ -263,14 +273,14 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
-  return(0);
+    champg("champ", 0, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
+    return(0);
 }
 
 int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
-  return(0);
+    champg("champ1", 1, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
+    return(0);
 }
 /*----------------------------------------------------------------------------------*/
 

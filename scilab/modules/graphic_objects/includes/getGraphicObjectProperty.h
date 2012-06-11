@@ -24,4 +24,18 @@
 */
 GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(char const* _pstID, char const* _pstName, enum _ReturnType_ _returnType, void **_pvData);
 
+/**
+ * @brief release a Graphic object property from the Model.
+ *
+ * Data are free/delete if they are passed by copy. Passed by copy properties are :
+ *  1. out of DataModel properties
+ *  2. with datatype passed as pointer or pointer of pointer
+ *
+ * @param _pstName property name
+ * @param _pvData the data to release
+ * @param _returnType the property type descriptor
+ * @param numElements size of the _pvData argument
+ */
+GRAPHIC_OBJECTS_IMPEXP void releaseGraphicObjectProperty(char const* _pstName, void * _pvData, enum _ReturnType_ _returnType, int numElements);
+
 #endif /* !__GETGRAPHICOBJECTPROPERTY_H__ */

@@ -14,6 +14,7 @@
 #ifndef M_PI
 #define M_PI           3.14159265358979323846
 #endif
+#include <string.h>
 
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
@@ -21,8 +22,8 @@
 #include "MALLOC.h"
 #include "elementary_functions.h"
 
-#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "createGraphicObject.h"
 
@@ -32,6 +33,10 @@
 #include "scicos.h"
 
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 #include "FigureList.h"
 #include "BuildObjects.h"
 #include "AxesModel.h"
@@ -53,7 +58,7 @@ typedef struct
 
     struct
     {
-        char *cachedFigureUID;
+        char const* cachedFigureUID;
         char *cachedAxeUID;
         char **cachedArcsUIDs;
     } scope;
@@ -100,7 +105,7 @@ static BOOL pushData(scicos_block * block, int row);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char *getFigure(scicos_block * block);
+static char const* getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
@@ -110,7 +115,7 @@ static char *getFigure(scicos_block * block);
  * \param input the current input index (0-indexed)
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char *pFigureUID, scicos_block * block);
+static char *getAxe(char const* pFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the arc associated with the row
@@ -140,7 +145,7 @@ static BOOL setBounds(scicos_block * block);
 */
 SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block, scicos_flag flag)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
 
     sco_data *sco;
 
@@ -281,18 +286,13 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.data);
         FREE(sco->internal.ballsSize);
 
-        //      Commented due to the C++ allocation
-        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-        //      FREE(sco->scope.cachedFigureUID);
-        //      sco->scope.cachedFigureUID = NULL;
-        //      for (i=0; i<block->nin; i++) {
-        //          for (j=0; j<block->insz[i]; j++) {
-        //              FREE(sco->scope.cachedArcsUIDs[i][j]);
-        //              sco->scope.cachedArcsUIDs[i][j] = NULL;
-        //          }
-        //          FREE(sco->scope.cachedAxeUID[i]);
-        //          sco->scope.cachedAxeUID[i] = NULL;
-        //      }
+        for (i = 0; i < block->insz[0]; i++)
+        {
+            FREE(sco->scope.cachedArcsUIDs[i]);
+            sco->scope.cachedArcsUIDs[i] = NULL;
+        }
+        FREE(sco->scope.cachedAxeUID);
+        sco->scope.cachedAxeUID = NULL;
 
         FREE(sco);
     }
@@ -324,7 +324,7 @@ static void appendData(scicos_block * block, double *x, double *y)
 
 static BOOL pushData(scicos_block * block, int row)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pArcUID;
 
@@ -355,10 +355,10 @@ static BOOL pushData(scicos_block * block, int row)
  *
  ****************************************************************************/
 
-static char *getFigure(scicos_block * block)
+static char const* getFigure(scicos_block * block)
 {
     signed int figNum;
-    char *pFigureUID = NULL;
+    char const* pFigureUID = NULL;
     char *pAxe = NULL;
     int i__1 = 1;
     BOOL b_true = TRUE;
@@ -386,6 +386,8 @@ static char *getFigure(scicos_block * block)
         pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
         sco->scope.cachedFigureUID = pFigureUID;
 
         // allocate the axes through the getter
@@ -407,7 +409,7 @@ static char *getFigure(scicos_block * block)
     return pFigureUID;
 }
 
-static char *getAxe(char *pFigureUID, scicos_block * block)
+static char *getAxe(char const* pFigureUID, scicos_block * block)
 {
     char *pAxe;
     int i;
@@ -444,10 +446,14 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
     }
 
     /*
-     * then cache
+     * then cache with local storage
      */
-    sco->scope.cachedAxeUID = pAxe;
-    return pAxe;
+    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
+    {
+        sco->scope.cachedAxeUID = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    }
+    return sco->scope.cachedAxeUID;
 }
 
 static char *getArc(char *pAxeUID, scicos_block * block, int row)
@@ -501,18 +507,19 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
     }
 
     /*
-     * then cache
+     * then cache with local storage
      */
-    if (sco->scope.cachedArcsUIDs != NULL)
+    if (pArc != NULL && sco->scope.cachedArcsUIDs != NULL && sco->scope.cachedArcsUIDs[row] == NULL)
     {
-        sco->scope.cachedArcsUIDs[row] = pArc;
+        sco->scope.cachedArcsUIDs[row] = strdup(pArc);
+        releaseGraphicObjectProperty(__GO_PARENT__, pArc, jni_string, 1);
     }
-    return pArc;
+    return sco->scope.cachedArcsUIDs[row];
 }
 
 static BOOL setBounds(scicos_block * block)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
 
     double dataBounds[6];

@@ -83,7 +83,7 @@ int sci_driver(char * fname, unsigned long fname_len )
         else if (org_scilab_modules_gui::SwingView::isHeadless(getScilabJavaVM()))
         {
             org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
-            char * uid = ScilabView::getCurrentFigure();
+            char const* uid = ScilabView::getCurrentFigure();
 
             if (uid)
             {

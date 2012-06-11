@@ -336,12 +336,13 @@ src/c/zcross2.c
 SCICOS_BLOCKS_CXX_SOURCES = \
 src/cpp/affich2.cpp
 
-NON_BLOCK_C_SOURCES =  src/c/scoUtils.c \
+NON_BLOCK_C_SOURCES = \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CXX_SOURCES = \
-src/jni/AfficheBlock.cpp
+src/jni/AfficheBlock.cpp \
+src/cpp/scoUtils.cpp
 
 GIWS_WRAPPERS = \
 src/jni/Blocks.giws.xml

@@ -16,10 +16,10 @@
 #include "dynlib_graphic_objects.h"
 #include "BOOL.h"
 
-GRAPHIC_OBJECTS_IMPEXP char* getFigureModel(void);
+GRAPHIC_OBJECTS_IMPEXP char const* getFigureModel(void);
 
-GRAPHIC_OBJECTS_IMPEXP void setFigureModel(char *UID);
+GRAPHIC_OBJECTS_IMPEXP void setFigureModel(char const* UID);
 
-GRAPHIC_OBJECTS_IMPEXP BOOL isFigureModel(char *UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isFigureModel(char const* UID);
 
 #endif /* !__FIGURE_MODEL_H__ */

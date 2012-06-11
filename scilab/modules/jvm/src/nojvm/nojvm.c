@@ -46,7 +46,7 @@ JVM_IMPEXP BOOL loadBackGroundClassPath(void)
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL loadOnUseClassPath(char *tag)
+JVM_IMPEXP BOOL loadOnUseClassPath(char const* tag)
 {
     return FALSE;
 }

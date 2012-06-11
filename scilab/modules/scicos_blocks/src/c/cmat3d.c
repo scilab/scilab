@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
@@ -31,6 +32,9 @@
 #include "scicos.h"
 
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -46,7 +50,7 @@ typedef struct
 {
     struct
     {
-        char *cachedFigureUID;
+        char const* cachedFigureUID;
         char *cachedAxeUID;
         char *cachedPlot3dUID;
     } scope;
@@ -83,7 +87,7 @@ static BOOL pushData(scicos_block * block, double *data);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char *getFigure(scicos_block * block);
+static char const* getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
@@ -92,7 +96,7 @@ static char *getFigure(scicos_block * block);
  * \param block the block
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char *pFigureUID, scicos_block * block);
+static char *getAxe(char const* pFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the plot3d
@@ -138,7 +142,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID);
 */
 SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
 
     double *u;
     sco_data *sco;
@@ -239,13 +243,16 @@ static void freeScoData(scicos_block * block)
 
     if (sco != NULL)
     {
-        FREE(sco);
+        FREE(sco->scope.cachedAxeUID);
+        FREE(sco->scope.cachedPlot3dUID);
     }
+
+    FREE(sco);
 }
 
 static BOOL pushData(scicos_block * block, double *data)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pPlot3dUID;
 
@@ -277,10 +284,10 @@ static BOOL pushData(scicos_block * block, double *data)
  *
  ****************************************************************************/
 
-static char *getFigure(scicos_block * block)
+static char const* getFigure(scicos_block * block)
 {
     signed int figNum;
-    char *pFigureUID = NULL;
+    char const* pFigureUID = NULL;
     char *pAxe = NULL;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
@@ -307,6 +314,10 @@ static char *getFigure(scicos_block * block)
         pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = pFigureUID;
+
         setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, block->rpar, jni_double_vector, block->ipar[2]);
 
         // allocate the axes through the getter
@@ -324,12 +335,14 @@ static char *getFigure(scicos_block * block)
         setGraphicObjectProperty(pAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
     }
 
-    sco->scope.cachedFigureUID = pFigureUID;
-
+    if (sco->scope.cachedFigureUID == NULL)
+    {
+        sco->scope.cachedFigureUID = pFigureUID;
+    }
     return pFigureUID;
 }
 
-static char *getAxe(char *pFigureUID, scicos_block * block)
+static char *getAxe(char const* pFigureUID, scicos_block * block)
 {
     char *pAxe;
     sco_data *sco = (sco_data *) * (block->work);
@@ -356,9 +369,15 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
         getPlot3d(pAxe, block);
     }
 
-    sco->scope.cachedAxeUID = pAxe;
-
-    return pAxe;
+    /*
+     * then cache with local storage
+     */
+    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
+    {
+        sco->scope.cachedAxeUID = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    }
+    return sco->scope.cachedAxeUID;
 }
 
 static char *getPlot3d(char *pAxeUID, scicos_block * block)
@@ -401,10 +420,14 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
     }
 
     /*
-     * then cache
+     * then cache with a local storage
      */
-    sco->scope.cachedPlot3dUID = pPlot3d;
-    return pPlot3d;
+    if (pPlot3d != NULL && sco->scope.cachedPlot3dUID == NULL)
+    {
+        sco->scope.cachedPlot3dUID = strdup(pPlot3d);
+        releaseGraphicObjectProperty(__GO_PARENT__, pPlot3d, jni_string, 1);
+    }
+    return sco->scope.cachedPlot3dUID;
 }
 
 static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)

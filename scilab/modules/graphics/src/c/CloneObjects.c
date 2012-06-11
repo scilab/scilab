@@ -62,6 +62,11 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     int markSizeUnit = 0;
     double lineThickness = 0.;
 
+    /*
+     * All these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     */
+
     getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool, &piTmp);
     lineMode = iTmp;
     getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int, &piTmp);
@@ -126,6 +131,11 @@ int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
     int fontFractional = 0;
     int iTmp = 0;
     int *piTmp = &iTmp;
+
+    /*
+     * All these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     */
 
     getGraphicObjectProperty(sourceIdentifier, __GO_FONT_COLOR__, jni_int, &piTmp);
     fontColor = iTmp;
@@ -222,6 +232,17 @@ char* clonePolyline(char* sourcePolyline)
     /* These properties must be aditionally set as this is not done by allocatePolyline */
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+
+    /*
+     * Some these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     *
+     * releaseGraphicObjectProperty has a real impact for the following :
+     *  - jni_string
+     *  - jni_double_vector out of the DATA_MODEL
+     */
+    releaseGraphicObjectProperty(__GO_PARENT_AXES__, parentAxes, jni_string, 1);
+
 
     return clonedPolylineUID;
 }

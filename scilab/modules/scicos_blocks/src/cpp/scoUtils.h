@@ -23,7 +23,7 @@
  * \param position the n child of kind (starting at 0)
  * \return the found child
  */
-char *findChildWithKindAt(char *parent, const char *type, const int position);
+char *findChildWithKindAt(char const* parent, char const* type, const int position);
 
 /**
  * Set the labels of the axe
@@ -32,6 +32,6 @@ char *findChildWithKindAt(char *parent, const char *type, const int position);
  * \param _pstName the property name (eg. __GO_X_AXIS_LABEL__ or __GO_Y_AXIS_LABEL__)
  * \param label the label to set
  */
-BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label);
+BOOL setLabel(char const* pAxeUID, char const* _pstName, char const* label);
 
 #endif /* _SCO_UTILS_ */

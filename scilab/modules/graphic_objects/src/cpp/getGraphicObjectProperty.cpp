@@ -92,3 +92,68 @@ void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnT
     }
 
 }
+
+
+void releaseGraphicObjectProperty(char const* _pstName, void * _pvData, enum _ReturnType_ _returnType, int numElements)
+{
+
+    /* All the Data model properties have the DATA_MODEL prefix */
+    if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
+    {
+        // passed by reference, do not free them
+        return;
+    }
+
+    switch (_returnType)
+    {
+        case jni_string:
+        {
+            delete[] (char*) _pvData;
+            return;
+        }
+        case jni_string_vector:
+        {
+            char** data = (char**) _pvData;
+            for (int i = 0; i < numElements; ++i)
+            {
+                delete[] data[i];
+            }
+            delete[] data;
+            return;
+        }
+        case jni_double:
+        {
+            // passed by value
+            return;
+        }
+        case jni_double_vector:
+        {
+            delete[] (double*) _pvData;
+            return;
+        }
+        case jni_bool:
+        {
+            // passed by value
+            return;
+        }
+        case jni_bool_vector:
+        {
+            delete[] (int*) _pvData;
+            return;
+        }
+        case jni_int:
+        {
+            // passed by value
+            return;
+        }
+        case jni_int_vector:
+        {
+            delete[] (int*) _pvData;
+            return;
+        }
+        default:
+            return;
+    }
+
+}
+

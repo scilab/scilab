@@ -29,19 +29,19 @@ void createPushButton(sciPointObj* sciObj)
 
 int setCurentFigureAsPushButtonParent(char *sciObjUID)
 {
-  // Scilab list of parent
-  //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
+    // Scilab list of parent
+    //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
 
-  char *pstCurrentFigure = getCurrentFigure();
-  if (pstCurrentFigure == NULL)
-  {
-      pstCurrentFigure = createNewFigureWithAxes();
-  }
-  setGraphicObjectRelationship(pstCurrentFigure, sciObjUID);
+    char const* pstCurrentFigure = getCurrentFigure();
+    if (pstCurrentFigure == NULL)
+    {
+        pstCurrentFigure = createNewFigureWithAxes();
+    }
+    setGraphicObjectRelationship(pstCurrentFigure, sciObjUID);
 
 
-  // Java objects
-  //CallScilabBridge::setPushButtonParent(getScilabJavaVM(), pobjCurrentFigure->UID, sciObj->UID);
+    // Java objects
+    //CallScilabBridge::setPushButtonParent(getScilabJavaVM(), pobjCurrentFigure->UID, sciObj->UID);
 
-  return SET_PROPERTY_SUCCEED;
+    return SET_PROPERTY_SUCCEED;
 }

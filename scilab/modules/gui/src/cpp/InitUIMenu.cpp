@@ -38,9 +38,9 @@ using namespace org_scilab_modules_gui_bridge;
 
 int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-    char *pstCurrentFigure = NULL;
-    char *parentType = NULL;
-    char *pParentUID = NULL;
+    char const* pstCurrentFigure = NULL;
+    char * parentType = NULL;
+    char const* pParentUID = NULL;
 
     double *value = NULL;
 
@@ -99,13 +99,13 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
                     || (strcmp(parentType, __GO_UICONTEXTMENU__) == 0))
             {
                 setGraphicObjectRelationship(pParentUID, pobjUID);
-                free(parentType);
+                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
             }
             else
             {
                 Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: Figure or uimenu handle expected.\n")), "SetMenuParent");
 
-                free(parentType);
+                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
                 return SET_PROPERTY_ERROR;
             }
         }

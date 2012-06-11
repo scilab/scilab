@@ -29,7 +29,7 @@ int sci_xend(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    char * uid = ScilabView::getCurrentFigure();
+    char const* uid = ScilabView::getCurrentFigure();
 
     if (uid)
     {

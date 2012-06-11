@@ -14,15 +14,15 @@
 #define __SCILAB_VIEW_HXX__
 
 #include <map>
-#include <string.h>
+#include <string>
 
 #include "dynlib_graphic_objects.h"
 
 extern "C"
 {
-    void ScilabNativeView__createObject(char* pstId);
-    void ScilabNativeView__deleteObject(char* pstId);
-    void ScilabNativeView__updateObject(char* pstId, char* pstProperty);
+    void ScilabNativeView__createObject(char const* pstId);
+    void ScilabNativeView__deleteObject(char const* pstId);
+    void ScilabNativeView__updateObject(char const* pstId, char const* pstProperty);
 }
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView
@@ -30,59 +30,52 @@ class GRAPHIC_OBJECTS_IMPEXP ScilabView
 private :
     ScilabView() {}
     ~ScilabView() {}
-    struct cmp_str
-    {
-        bool operator()(char const *a, char const *b)
-        {
-            return strcmp(a, b) < 0;
-        }
-    };
 
     // Define type for easy manipulation.
-    typedef std::map<char*, long, cmp_str>  __handleList;
+    typedef std::map<std::string, long>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
-    typedef std::map<char*, int, cmp_str>    __figureList;
+    typedef std::map<std::string, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
 
     static __figureList                     m_figureList;
     static __handleList                     m_handleList;
     static long                             m_topHandleValue;
-    static char*                            m_currentFigure;
-    static char*                            m_currentObject;
-    static char*                            m_currentSubWin;
-    static char*                            m_figureModel;
-    static char*                            m_axesModel;
+    static std::string                      m_currentFigure;
+    static std::string                      m_currentObject;
+    static std::string                      m_currentSubWin;
+    static std::string                      m_figureModel;
+    static std::string                      m_axesModel;
 
 public :
-    static void   createObject(char* pstId);
-    static void   deleteObject(char* pstId);
-    static void   updateObject(char* pstId, char* pstProperty);
+    static void   createObject(char const* pstId);
+    static void   deleteObject(char const* pstId);
+    static void   updateObject(char const* pstId, char const* pstProperty);
 
     static int    getNbFigure(void);
     static void   getFiguresId(int ids[]);
     static void   registerToController(void);
     static void   unregisterToController(void);
     static bool   existsFigureId(int id);
-    static char*  getFigureFromIndex(int figureNumber);
+    static char const*  getFigureFromIndex(int figureNumber);
     static bool   isEmptyFigureList(void);
 
-    static char*  getCurrentFigure(void);
-    static void   setCurrentFigure(char *UID);
+    static char const*  getCurrentFigure(void);
+    static void   setCurrentFigure(char const* UID);
 
-    static char*  getCurrentObject(void);
-    static void   setCurrentObject(char *UID);
+    static char const*  getCurrentObject(void);
+    static void   setCurrentObject(char const* UID);
 
-    static char*  getCurrentSubWin(void);
-    static void   setCurrentSubWin(char *UID);
+    static char const*  getCurrentSubWin(void);
+    static void   setCurrentSubWin(char const* UID);
 
-    static long   getObjectHandle(char *UID);
-    static char*  getObjectFromHandle(long handle);
+    static long   getObjectHandle(char const* UID);
+    static char const*  getObjectFromHandle(long handle);
 
-    static char*  getFigureModel(void);
-    static void   setFigureModel(char *UID);
+    static char const*  getFigureModel(void);
+    static void   setFigureModel(char const* UID);
 
-    static char*  getAxesModel(void);
-    static void   setAxesModel(char *UID);
+    static char const* getAxesModel(void);
+    static void setAxesModel(char const* UID);
 
 };
 

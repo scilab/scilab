@@ -258,9 +258,10 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/fortran/sinblk.f src/fortran/sqrblk.f src/fortran/sum2.f \
 	src/fortran/sum3.f src/fortran/tanblk.f src/fortran/tcslti.f \
 	src/fortran/tcsltj.f src/fortran/timblk.f src/fortran/trash.f \
-	src/fortran/writef.f src/fortran/zcross.f src/c/scoUtils.c \
+	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scicos_evalhermite.c src/c/scicos_indexfinder.c \
-	src/jni/AfficheBlock.cpp src/cpp/affich2.cpp
+	src/jni/AfficheBlock.cpp src/cpp/scoUtils.cpp \
+	src/cpp/affich2.cpp
 @XCOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absblk.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-absolute_value.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-acos_blk.lo \
@@ -584,10 +585,11 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 @XCOS_TRUE@	sciblk.lo selblk.lo sinblk.lo sqrblk.lo sum2.lo \
 @XCOS_TRUE@	sum3.lo tanblk.lo tcslti.lo tcsltj.lo timblk.lo \
 @XCOS_TRUE@	trash.lo writef.lo zcross.lo
-@XCOS_TRUE@am__objects_3 = libsciscicos_blocks_la-scoUtils.lo \
+@XCOS_TRUE@am__objects_3 =  \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_evalhermite.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_indexfinder.lo
-@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-AfficheBlock.lo
+@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-AfficheBlock.lo \
+@XCOS_TRUE@	libsciscicos_blocks_la-scoUtils.lo
 @XCOS_TRUE@am__objects_5 = libsciscicos_blocks_la-affich2.lo
 @XCOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @XCOS_TRUE@	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -1286,12 +1288,13 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@SCICOS_BLOCKS_CXX_SOURCES = \
 @XCOS_TRUE@src/cpp/affich2.cpp
 
-@XCOS_TRUE@NON_BLOCK_C_SOURCES = src/c/scoUtils.c \
+@XCOS_TRUE@NON_BLOCK_C_SOURCES = \
 @XCOS_TRUE@src/c/scicos_evalhermite.c \
 @XCOS_TRUE@src/c/scicos_indexfinder.c
 
 @XCOS_TRUE@NON_BLOCK_CXX_SOURCES = \
-@XCOS_TRUE@src/jni/AfficheBlock.cpp
+@XCOS_TRUE@src/jni/AfficheBlock.cpp \
+@XCOS_TRUE@src/cpp/scoUtils.cpp
 
 @XCOS_TRUE@GIWS_WRAPPERS = \
 @XCOS_TRUE@src/jni/Blocks.giws.xml
@@ -4025,13 +4028,6 @@ libsciscicos_blocks_la-zcross2.lo: src/c/zcross2.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-zcross2.lo `test -f 'src/c/zcross2.c' || echo '$(srcdir)/'`src/c/zcross2.c
 
-libsciscicos_blocks_la-scoUtils.lo: src/c/scoUtils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scoUtils.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Tpo -c -o libsciscicos_blocks_la-scoUtils.lo `test -f 'src/c/scoUtils.c' || echo '$(srcdir)/'`src/c/scoUtils.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Tpo $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scoUtils.c' object='libsciscicos_blocks_la-scoUtils.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scoUtils.lo `test -f 'src/c/scoUtils.c' || echo '$(srcdir)/'`src/c/scoUtils.c
-
 libsciscicos_blocks_la-scicos_evalhermite.lo: src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicos_evalhermite.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo -c -o libsciscicos_blocks_la-scicos_evalhermite.lo `test -f 'src/c/scicos_evalhermite.c' || echo '$(srcdir)/'`src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Plo
@@ -4073,6 +4069,13 @@ libsciscicos_blocks_la-AfficheBlock.lo: src/jni/AfficheBlock.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/AfficheBlock.cpp' object='libsciscicos_blocks_la-AfficheBlock.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-AfficheBlock.lo `test -f 'src/jni/AfficheBlock.cpp' || echo '$(srcdir)/'`src/jni/AfficheBlock.cpp
+
+libsciscicos_blocks_la-scoUtils.lo: src/cpp/scoUtils.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-scoUtils.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Tpo -c -o libsciscicos_blocks_la-scoUtils.lo `test -f 'src/cpp/scoUtils.cpp' || echo '$(srcdir)/'`src/cpp/scoUtils.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Tpo $(DEPDIR)/libsciscicos_blocks_la-scoUtils.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scoUtils.cpp' object='libsciscicos_blocks_la-scoUtils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-scoUtils.lo `test -f 'src/cpp/scoUtils.cpp' || echo '$(srcdir)/'`src/cpp/scoUtils.cpp
 
 libsciscicos_blocks_la-affich2.lo: src/cpp/affich2.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-affich2.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-affich2.Tpo -c -o libsciscicos_blocks_la-affich2.lo `test -f 'src/cpp/affich2.cpp' || echo '$(srcdir)/'`src/cpp/affich2.cpp
