@@ -923,7 +923,7 @@ int InitAxesModel()
         sprintf(labelBuffer, "%.1f", tab[i]);
         stringVector[i] = strdup(labelBuffer);
 
-        if (stringVector == NULL)
+        if (stringVector[i] == NULL)
         {
             return -1;
         }
@@ -948,7 +948,7 @@ int InitAxesModel()
         sprintf(labelBuffer, "%.1f", tabZTicksLocations[i]);
         stringVector[i] = strdup(labelBuffer);
 
-        if (stringVector == NULL)
+        if (stringVector[i] == NULL)
         {
             return -1;
         }
