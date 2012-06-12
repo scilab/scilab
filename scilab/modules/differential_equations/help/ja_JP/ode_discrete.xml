@@ -74,7 +74,7 @@
     </para>
     <para>他の引数およびその他のオプションは
       <literal>ode</literal>と同じです.
-      odeのヘルプを参照ください.
+      <link linkend="ode">ode</link>のヘルプを参照ください.
     </para>
   </refsection>
   <refsection>
