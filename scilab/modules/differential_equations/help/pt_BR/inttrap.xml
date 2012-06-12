@@ -31,7 +31,7 @@
         <term>x</term>
         <listitem>
           <para>vetor de dados de coordenadas x crescentes. O valor padrão é
-            <literal>1:size(y,'*')</literal>
+            <literal>1:size(s,'*')</literal>
           </para>
         </listitem>
       </varlistentry>

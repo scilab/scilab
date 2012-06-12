@@ -20,7 +20,7 @@
         <term>x</term>
         <listitem>
           <para>vecteur des abscisses, classées par ordre croissant. La valeur
-            par défaut est <literal>1:size(y,'*')</literal>
+            par défaut est <literal>1:size(s,'*')</literal>
           </para>
         </listitem>
       </varlistentry>

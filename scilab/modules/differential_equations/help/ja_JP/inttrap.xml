@@ -31,7 +31,7 @@
           <para>
             昇順の x 座標データのベクトル.
             デフォルト値は
-            <literal>1:size(y,'*')</literal>です
+            <literal>1:size(s,'*')</literal>です
           </para>
         </listitem>
       </varlistentry>

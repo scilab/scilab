@@ -31,7 +31,7 @@
         <term>x</term>
         <listitem>
           <para>vector of increasing x coordinate data. Default value is
-            <literal>1:size(y,'*')</literal>
+            <literal>1:size(s,'*')</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -51,13 +51,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>computes :</para>
-    <para>Where f is a function described by a set of experimental
-      value:
-    </para>
+    <para>Computes:</para>
     <para>
       <literal>s(i)=f(x(i))</literal> and <literal>x0=x(1)</literal>,
       <literal>x1=x(n)</literal>
+    </para>
+    <para>
+      where <literal>f</literal> is a function described by a set of experimental values.
     </para>
     <para>Between mesh points function is interpolated linearly.</para>
   </refsection>
