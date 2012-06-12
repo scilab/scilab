@@ -37,6 +37,7 @@ import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 
@@ -89,6 +90,7 @@ public class AxesRulerDrawer {
         rulerModel.setTicksLength(TICKS_LENGTH);
         rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
         rulerModel.setSpriteDistance(SPRITE_DISTANCE);
+        rulerModel.setColor(ColorFactory.createColor(colorMap, axes.getLineColor()));
 
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 
