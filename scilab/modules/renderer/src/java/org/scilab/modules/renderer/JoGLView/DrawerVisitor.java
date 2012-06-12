@@ -858,6 +858,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         if (object instanceof Figure && visitorMap.containsKey(id)) {
             visitorMap.remove(id);
+            GraphicController.getController().unregister(this);
         }
 
         if (isImmediateDrawing(id)) {
