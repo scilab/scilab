@@ -24,6 +24,7 @@
 #include "DefaultCommandArg.h"
 #include "Scierror.h"
 #include "localization.h"
+#include <sciprint.h>
 
 #include "BuildObjects.h"
 
@@ -51,6 +52,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   char   * legend   = NULL  ;
   int    * nax      = NULL  ;
   BOOL     flagNax  = FALSE ;
+  char strfl[4];
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
 			                      {-1,"frameflag","?",0,0,0},
@@ -61,6 +63,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 		                        {-1,"strf","?",0,0,0},
 		                        {-1,"style","?",0,0,0},
                             {-1,NULL,NULL,0,0}};
+  
   if (Rhs == 0)
   {
     sci_demo(fname, fname_len);
@@ -174,15 +177,19 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   }
 
   sciGetStyle( fname, 3+iskip, n1, opts, &style ) ;
+
   GetStrf( fname, 4+iskip, opts, &strf ) ;
+
   GetLegend( fname, 5+iskip, opts, &legend );
+
   GetRect( fname, 6+iskip, opts, &rect );
+
   GetNax( 7+iskip, opts, &nax, &flagNax ) ;
+
   if (iskip==0) { GetLogflags( fname, 8, opts, &logFlags ) ; }
 
   if ( isDefStrf( strf ) )
   {
-    char strfl[4];
     strcpy(strfl,DEFSTRFN);
 
     strf = strfl;
@@ -200,7 +207,9 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     {
       strfl[1] = (char)(*frame+48);
     }
+
     GetOptionalIntArg(fname, 9,"axesflag",&axes,1,opts);
+
     if(axes != &axes_def)
     {
       strfl[2] = (char)(*axes+48);
