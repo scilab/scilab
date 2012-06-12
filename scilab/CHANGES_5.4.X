@@ -38,6 +38,8 @@ Graphic capabilities
 
 * Bug #8705 fixed - Could not save some specific graphics.
 
+* Bug #8916 fixed - Menu to export in PS format was missing in graphic figures.
+
 * Bug #9721 fixed - Improve the documentation on tight_limits. Thanks to Samuel
                     Gougeon.
 

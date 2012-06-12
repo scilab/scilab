@@ -94,18 +94,29 @@
       </submenu>
     </submenu>
     <submenu label="&amp;Vectorial export to...">
-      <submenu label="&amp;PDF">
-        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
-        <callback
-            instruction='
+        <submenu label="&amp;PDF">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+            <callback
+                instruction='
                          %fileToWrite = uigetfile("*.pdf", pwd(), gettext("Select a file name"));
                          if ~isempty(%fileToWrite) then
                          xs2pdf([SCILAB_FIGURE_ID], %fileToWrite);
                          end
                          clear %fileToWrite isempty'
-            type="0"/>
-      </submenu>
-      <submenu label="&amp;SVG">
+                type="0"/>
+        </submenu>
+        <submenu label="&amp;PS">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+            <callback
+                instruction='
+                         %fileToWrite = uigetfile("*.ps", pwd(), gettext("Select a file name"));
+                         if ~isempty(%fileToWrite) then
+                         xs2ps([SCILAB_FIGURE_ID], %fileToWrite);
+                         end
+                         clear %fileToWrite isempty'
+                type="0"/>
+        </submenu>
+        <submenu label="&amp;SVG">
         <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
         <callback
             instruction='
