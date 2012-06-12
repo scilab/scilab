@@ -31,6 +31,8 @@ Graphic capabilities
 
 * Bug #4818 fixed - Scilab could not export graphics with a lot of information.
 
+* Bug #6644 fixed - New graphic windows take care of default figure properties (uimenu).
+
 * Bug #7998 fixed - %h_get failed on heterogeneous handle matrix.
 
 * Bug #8241 fixed - Graphical properties were not always inherit.
