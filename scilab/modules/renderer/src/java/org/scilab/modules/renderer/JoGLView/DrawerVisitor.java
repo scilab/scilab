@@ -859,10 +859,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (object instanceof Figure && visitorMap.containsKey(id)) {
             visitorMap.remove(id);
             GraphicController.getController().unregister(this);
-        }
-
-        if (isImmediateDrawing(id)) {
-            canvas.redraw();
+            canvas.destroy();
+        } else {
+            if (isImmediateDrawing(id)) {
+                canvas.redraw();
+            }
         }
     }
 
