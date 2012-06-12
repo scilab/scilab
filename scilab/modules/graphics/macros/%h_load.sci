@@ -1468,20 +1468,12 @@ endfunction
 
 function text=load_text_vector(fd)
   T=mget(mget(1,'il',fd),characterFormat,fd)
-  if is_higher_than([5 4 0 0]) then
-    newline=[strindex(T,ascii(10)) length(T)+1];
-  else
-    newline=[find(T==10) size(T,'*')+1];
-  end
+  newline=[find(T==10) size(T,'*')+1];
   text=[]
   p=1
   for k=1:size(newline,'*')
-    if is_higher_than([5 4 0 0]) then
-      text=[text;part(T,p:newline(k)-1)];
-    else
-      text=[text;ascii(T(p:newline(k)-1))];
-    end
-      p=newline(k)+1
+    text=[text;ascii(T(p:newline(k)-1))];
+    p=newline(k)+1
   end
 endfunction
 
