@@ -89,6 +89,7 @@ public class AxesRulerDrawer {
         DefaultRulerModel rulerModel = new DefaultRulerModel();
         rulerModel.setTicksLength(TICKS_LENGTH);
         rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
+        rulerModel.setLineWidth(axes.getLineThickness());
         rulerModel.setSpriteDistance(SPRITE_DISTANCE);
         rulerModel.setColor(ColorFactory.createColor(colorMap, axes.getLineColor()));
 
@@ -127,6 +128,7 @@ public class AxesRulerDrawer {
 
         Appearance gridAppearance = new Appearance();
         gridAppearance.setLinePattern(GRID_LINE_PATTERN);
+        gridAppearance.setLineWidth(axes.getLineThickness().floatValue());
 
         rulerModel.setTicksDirection(xTicksDirection);
         rulerModel.setFirstPoint(xAxisPosition.setX(-1));
