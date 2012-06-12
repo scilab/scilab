@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_axes_bounds_property(char *pobjUID)
 {
-    double* axesBounds;
+    double* axesBounds = NULL;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_SUBWIN )

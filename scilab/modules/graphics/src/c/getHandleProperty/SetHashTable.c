@@ -219,7 +219,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
 /*--------------------------------------------------------------------------*/
 SetPropertyHashTable *createScilabSetHashTable(void)
 {
-    int i;
+    int i = 0;
 
     if (setHashTableCreated)
     {

@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_matplot1( char * fname, unsigned long fname_len )
 {
-    int m1, n1, l1,m2,n2,l2;
+    int m1 = 0, n1 = 0, l1 = 0,m2 = 0,n2 = 0,l2 = 0;
     if ( Rhs <= 0 )
     {
         sci_demo(fname, fname_len);

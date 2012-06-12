@@ -37,7 +37,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     char **Str = NULL;
     char **sendStr = NULL;
     int sendm3 = 0, sendn3 = 0;
-    long hdlstr;
+    long hdlstr = 0;
     int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
 

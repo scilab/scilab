@@ -34,9 +34,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_unglue(char *fname,unsigned long fname_len)
 {
-    int m1,n1,l1;
-    unsigned long hdl;
-    int outindex, i;
+    int m1 = 0,n1 = 0,l1 = 0;
+    unsigned long hdl = 0;
+    int outindex = 0, i = 0;
 
     int iOne = 1;
     char *pobjUID = NULL;

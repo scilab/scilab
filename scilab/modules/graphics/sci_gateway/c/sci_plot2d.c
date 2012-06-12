@@ -31,18 +31,18 @@
 int sci_plot2d( char * fname, unsigned long fname_len )
 {
 
-  int m1, n1, l1, m2, n2, l2, lt;
-  int test,i,j,iskip;
-  int frame_def=8;
+  int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, lt = 0;
+  int test = 0,i = 0,j = 0,iskip = 0;
+  int frame_def = 8;
   int *frame=&frame_def;
   int axes_def=1;
   int *axes=&axes_def;
 
   /* F.Leray 18.05.04 : log. case test*/
-  int size_x,size_y;
+  int size_x = 0, size_y = 0;
   double xd[2];
-  double *x1;
-  char dataflag;
+  double *x1 = NULL;
+  char dataflag = 0;
 
   char   * logFlags = NULL  ;
   int    * style    = NULL  ;

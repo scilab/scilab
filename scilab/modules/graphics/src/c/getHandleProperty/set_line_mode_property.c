@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int set_line_mode_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "line_mode");
     if(b == NOT_A_BOOLEAN_VALUE)
     {

@@ -34,8 +34,8 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
   sciPointObj * rotatedObject = NULL;
 
 
-  int nbRow;
-  int nbCol;
+  int nbRow = 0;
+  int nbCol = 0;
   size_t stackPointer = 0;
 
   /* check size of input and output */

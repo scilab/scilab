@@ -34,7 +34,7 @@
 /*--------------------------------------------------------------------------*/
 int get_color_map_property(char *pobjUID)
 {
-    double *pdblColorMap;
+    double *pdblColorMap = NULL;
 
     int iCmapSize = 0;
     int * piCmapSize = &iCmapSize;

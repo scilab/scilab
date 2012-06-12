@@ -405,17 +405,17 @@ sciDelCallback (sciPointObj * pthis)
 
 static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 {
-    int i;
+    int i = 0;
     double x = displacement[0];
     double y = displacement[1];
     double z = (displacementSize == 3 ? displacement[2] : 0.0);
 
-    int iNum;
+    int iNum = 0;
     int *piNum = &iNum;
-    double* pdblData;
-    double* pdblDataY;
-    double* pdblDataZ;
-    char* pstType;
+    double* pdblData = NULL;
+    double* pdblDataY = NULL;
+    double* pdblDataZ = NULL;
+    char* pstType = NULL;
 
     double* dataX = NULL;
     double* dataY = NULL;
@@ -430,7 +430,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
-    char **pstChildrenUID;
+    char **pstChildrenUID = NULL;
 
     // Get type
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
@@ -727,7 +727,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Segs.
     else if (strcmp(pstType, __GO_SEGS__) == 0)
     {
-        double* pdblDirection;
+        double* pdblDirection = NULL;
 
         getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, &piNum);
         getGraphicObjectProperty(pobjUID, __GO_BASE__, jni_double_vector, &pdblData);

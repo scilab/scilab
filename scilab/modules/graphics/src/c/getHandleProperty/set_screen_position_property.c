@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_screen_position_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  double * values;
-  BOOL status;
+  double * values = NULL;
+  BOOL status = FALSE;
   int intValues[2];
 
 

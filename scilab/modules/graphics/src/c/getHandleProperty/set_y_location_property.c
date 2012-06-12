@@ -33,8 +33,8 @@
 /*------------------------------------------------------------------------*/
 int set_y_location_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
-  int axisLocation;
+  BOOL status = FALSE;
+  int axisLocation = 0;
 
   if ( !isParameterStringMatrix( valueType ) )
   {

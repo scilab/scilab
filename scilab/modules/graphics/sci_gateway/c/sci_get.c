@@ -52,12 +52,12 @@ int sciGet(char *pobjUID, char *marker)
 /*--------------------------------------------------------------------------*/
 int sci_get(char *fname, unsigned long fname_len)
 {
-    int m1, n1, numrow2, numcol2, l2;
-    int l1;
-    long hdl;
+    int m1 = 0, n1 = 0, numrow2 = 0, numcol2 = 0, l2 = 0;
+    int l1 = 0;
+    long hdl = 0;
 
-    int lw;
-    char *pobjUID;
+    int lw = 0;
+    char *pobjUID = NULL;
 
     /* Root properties */
     char **stkAdr = NULL;

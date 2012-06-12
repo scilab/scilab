@@ -82,26 +82,26 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   /* Fec code */
 
-  char * pptabofpointobjUID;
-  char * psubwinUID;
-  char * pFecUID;
-  char * parentCompoundUID;
+  char * pptabofpointobjUID = NULL;
+  char * psubwinUID = NULL;
+  char * pFecUID = NULL;
+  char * parentCompoundUID = NULL;
 
   long hdltab[2];
-  int cmpt=0;
+  int cmpt = 0;
   double drect[6];
 
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
 
   char textLogFlags[3];
-  int clipState;
+  int clipState = 0;
   int autoScale = 0;
   int *piAutoScale = &autoScale;
   int firstPlot = 0;
   int *piFirstPlot = &firstPlot;
   int logFlags[3];
-  int autoSubticks;
+  int autoSubticks = 0;
   int iTmp = 0;
   int *piTmp = &iTmp;
   double rotationAngles[2];

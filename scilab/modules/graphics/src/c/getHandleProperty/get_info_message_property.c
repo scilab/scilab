@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------*/
 int get_info_message_property(char *pobjUID)
 {
-    char *infoMessage;
+    char *infoMessage = NULL;
     getGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, jni_string, &infoMessage);
 
     if ( infoMessage == NULL )

@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_rotation_angles_property(char *pobjUID)
 {
-    double* angles;
+    double* angles = NULL;
 
 #if 0
     /* DJ.A 2003 */

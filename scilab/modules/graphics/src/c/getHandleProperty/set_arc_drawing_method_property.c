@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_arc_drawing_method_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int arcDrawingMethod;
+    BOOL status = FALSE;
+    int arcDrawingMethod = 0;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )

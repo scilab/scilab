@@ -127,7 +127,7 @@ sciGetNumColors (char *pobjUID)
 {
     if (pobjUID)
     {
-        char* parentFigure;
+        char* parentFigure = NULL;
         int iNumColors = 0;
         int* piNumColors = &iNumColors;
 
@@ -294,8 +294,8 @@ void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
 
 BOOL sciisTextEmpty(char* identifier)
 {
-    int nbElements;
-    int* dimensions;
+    int nbElements = 0;
+    int* dimensions = NULL;
 
     getGraphicObjectProperty(identifier, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
 
@@ -313,7 +313,7 @@ BOOL sciisTextEmpty(char* identifier)
 
     if (nbElements == 1)
     {
-        char** textMatrix;
+        char** textMatrix = NULL;
         getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
         if (textMatrix[0] == NULL)
@@ -465,7 +465,7 @@ sciGetParentFigure (sciPointObj * pobj)
 sciPointObj *
 sciGetParentSubwin (sciPointObj * pobj)
 {
-    sciPointObj *subwin;
+    sciPointObj *subwin = NULL;
 
     subwin = pobj;
     switch (sciGetEntityType (pobj))
@@ -984,9 +984,9 @@ sciIsExistingSubWin (double WRect[4])
 /**MAJ pour le 3D DJ.Abdemouche 2003**/
 double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 {
-    char* type;
-    double *tab;
-    int i;
+    char* type = NULL;
+    double *tab = NULL;
+    int i = 0;
 
     getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
 
@@ -996,8 +996,8 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
      */
     if (strcmp(type, __GO_FIGURE__) == 0)
     {
-        int* figurePosition;
-        int* axesSize;
+        int* figurePosition = NULL;
+        int* axesSize = NULL;
 
         *numrow = 2;
         *numcol = 2;
@@ -1020,7 +1020,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
-        char* parentAxes;
+        char* parentAxes = NULL;
         double* dataX = NULL;
         double* dataY = NULL;
         double* dataZ = NULL;
@@ -1116,8 +1116,8 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_RECTANGLE__) == 0)
     {
-        char* parentAxes;
-        double* upperLeftPoint;
+        char* parentAxes = NULL;
+        double* upperLeftPoint = NULL;
         double width = 0.0;
         double *pdblWidth = &width;
         double height = 0.0;
@@ -1162,17 +1162,17 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_ARC__) == 0)
     {
-        char* parentAxes;
-        double* upperLeftPoint;
+        char* parentAxes = NULL;
+        double* upperLeftPoint = NULL;
         double width = 0.0;
         double *pdblWidth = &width;
 
-        double height;
+        double height = 0.;
         double *pdblHeight = &height;
 
-        double startAngle;
+        double startAngle = 0.;
         double *pdblStartAngle = &startAngle;
-        double endAngle;
+        double endAngle = 0.;
         double *pdblEndAngle = &endAngle;
         int view = 0;
         int *piView = &view;
@@ -1226,8 +1226,8 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_TEXT__) == 0)
     {
-        char* parentAxes;
-        double* textPosition;
+        char* parentAxes = NULL;
+        double* textPosition = NULL;
         int iView = 0;
         int* piView = &iView;
 
@@ -1263,9 +1263,9 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
         int* piView = &iView;
         int iNumArrows = 0;
         int* piNumArrows = &iNumArrows;
-        char* parentAxes;
-        double* arrowBases;
-        double* arrowDirections;
+        char* parentAxes = NULL;
+        double* arrowBases = NULL;
+        double* arrowDirections = NULL;
 
         getGraphicObjectProperty(pthis, __GO_NUMBER_ARROWS__, jni_int, &piNumArrows);
         *numrow = iNumArrows;
@@ -1363,8 +1363,8 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_FEC__) == 0)
     {
-        double* coordinates;
-        double* values;
+        double* coordinates = NULL;
+        double* values = NULL;
         int iTmp = 0;
         int* piTmp = &iTmp;
 
@@ -1518,7 +1518,7 @@ void sciGetPointerToUserData (sciPointObj * pobj, int ***user_data_ptr, int **si
 */
 sciPointObj * sciGetSurface( sciPointObj * pObj )
 {
-    sciSons * psonstmp;
+    sciSons * psonstmp = NULL;
     sciPointObj * sonSurface = NULL ;
 
     psonstmp = sciGetSons( pObj ) ;
@@ -1835,9 +1835,7 @@ BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
 int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
 {
     int nbFound = 0 ;
-    sciSons * curSon ;
-
-    curSon = sciGetSons( pObj ) ;
+    sciSons * curSon = sciGetSons( pObj ) ;
     while ( curSon != NULL )
     {
         if ( sciGetEntityType( curSon->pointobj ) == type )
@@ -1978,7 +1976,7 @@ double * sciGetMargins( sciPointObj * pObj )
 */
 void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
 {
-    int i;
+    int i = 0;
     switch ( sciGetEntityType(pObj) )
     {
         case SCI_SUBWIN:
@@ -2018,7 +2016,7 @@ void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
 */
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
 {
-    int i;
+    int i = 0;
     switch ( sciGetEntityType(pObj) )
     {
         case SCI_SUBWIN:
@@ -2068,7 +2066,7 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
 void sciGetLogFlags(char * pObjUID, char flags[3])
 {
     char* logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
-    int i;
+    int i = 0;
     int iLogFlag = 0;
     int* piLogFlag = &iLogFlag;
 

@@ -31,12 +31,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname,unsigned long fname_len)
 {
-    int m1,n1,l1;
-    char *pstCurrentFigure;
+    int m1 = 0,n1 = 0,l1 = 0;
+    char *pstCurrentFigure = NULL;
     CheckRhs(-1,1);
     if (Rhs >= 1) {
-        int i;
-		double * windowNumbers;
+        int i = 0;
+		double * windowNumbers = NULL;
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 		/* First check that all the window numbers are valid */

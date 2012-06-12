@@ -37,11 +37,11 @@
 /*------------------------------------------------------------------------*/
 int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    char* type;
-    char* parentAxes;
-    char** links;
-    int i;
+    BOOL status = FALSE;
+    char* type = NULL;
+    char* parentAxes = NULL;
+    char** links = NULL;
+    int i = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 

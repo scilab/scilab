@@ -47,14 +47,14 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
 /* reinit a subwindow (but don't change position ) */
 static void reinitSubWin(char * pSubWinUID)
 {
-  int visible;
-  int firstPlot;
-  int axisLocation;
-  char *labelUID;
+  int visible = 0;
+  int firstPlot = 0;
+  int axisLocation = 0;
+  char *labelUID = NULL;
   int iChildrenCount = 0;
   int *piChildrenCount = &iChildrenCount;
-  int i;
-  char **pstChildrenUID;
+  int i = 0;
+  char **pstChildrenUID = NULL;
 
   /* Deletes the Axes' children */
   getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
@@ -103,7 +103,7 @@ void initSubWinAngles(char * pSubWinUID)
 {
     int iViewType = 0;
     int* piViewType = &iViewType;
-    double* rotationAngles;
+    double* rotationAngles = NULL;
     char* axesModelUID = getAxesModel();
 
     getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, (void **) &piViewType);
@@ -134,8 +134,8 @@ void initSubWinSize( sciPointObj * pSubWin )
 /* set the data_bounds of the axes to the default value */
 void initSubWinBounds(char * pSubWinUID)
 {
-    double* dataBounds;
-    double* realDataBounds;
+    double* dataBounds = NULL;
+    double* realDataBounds = NULL;
     char* axesModelUID = getAxesModel();
 
     getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
@@ -172,10 +172,10 @@ BOOL checkRedrawing( void )
  */
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
 {
-  int xPos;
-  int yPos;
-  int width;
-  int height;
+  int xPos = 0;
+  int yPos = 0;
+  int width = 0;
+  int height = 0;
   /* get area used by the subwindow */
   sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
 
@@ -192,10 +192,10 @@ static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
  */
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
 {
-  int xPos;
-  int yPos;
-  int width;
-  int height;
+  int xPos = 0;
+  int yPos = 0;
+  int width = 0;
+  int height = 0;
   /* get area used by the subwindow */
   sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
 
@@ -205,7 +205,7 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
 /*--------------------------------------------------------------------------------*/
 sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 {
-  int nbItem;
+  int nbItem = 0;
   sciPointObj * res = NULL;
 
   /* First get the list of subwindow that are under the click */

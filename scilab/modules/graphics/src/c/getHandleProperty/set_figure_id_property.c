@@ -34,8 +34,8 @@
 /*------------------------------------------------------------------------*/
 int set_figure_id_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    int id;
-    BOOL status;
+    int id = 0;
+    BOOL status = FALSE;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

@@ -40,10 +40,10 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   /* ids of object to unzoom */
   char** objectsId = NULL;
 
-  char* objectUID;
+  char* objectUID = NULL;
 
   /* object type */
-  char *pstType;
+  char *pstType = NULL;
 
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
@@ -57,7 +57,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   }
   else
   {
-    int m,n,i;
+    int m = 0,n = 0,i = 0;
     size_t stackPointer = 0;
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer);
 

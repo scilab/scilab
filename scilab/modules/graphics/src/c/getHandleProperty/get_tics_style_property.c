@@ -34,7 +34,7 @@ int get_tics_style_property(char *pobjUID)
 {
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
-    char ticksStyle;
+    char ticksStyle = 0;
 
 #if 0
     if ( sciGetEntityType( pobj ) != SCI_AXES )

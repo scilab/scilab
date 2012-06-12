@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------*/
 int get_tics_labels_property(char *pobjUID)
 {
-    char** labels;
+    char** labels = NULL;
     int iNumberTicksLabels = 0;
     int* piNumberTicksLabels = &iNumberTicksLabels;
 

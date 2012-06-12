@@ -42,8 +42,8 @@ int get_auto_ticks_property(char *pobjUID)
   int iAutoTicks = 0;
   int* piAutoTicks = &iAutoTicks;
 
-  int i;
-  int j;
+  int i = 0;
+  int j = 0;
   int status = -1;
 
 #if 0

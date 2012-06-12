@@ -30,7 +30,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
 {
-    int m1,n1,l1,m2,n2,l2,m3,n3,l3;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,l3 = 0;
     int nbDim = 2;
     BOOL alone = FALSE;
     char* pobjUID = NULL;

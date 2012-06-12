@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_matplot(char *fname,unsigned long fname_len)
 {
-  int m1, n1, l1;
+  int m1 = 0, n1 = 0, l1 = 0;
   int frame_def=8;
   int *frame=&frame_def;
   int axes_def=1;

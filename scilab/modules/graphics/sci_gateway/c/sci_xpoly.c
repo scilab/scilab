@@ -39,13 +39,13 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     char *psubwinUID = NULL;
     char* pobjUID = NULL;
 
-    int m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
+    int m1 = 0,n1 = 0,l1 = 0 ,m2 = 0 ,n2 = 0 ,l2 = 0,m3 = 0,n3 = 0,l3 = 0,m4 = 0,n4 = 0,l4 = 0,close=0,mn2 = 0;
 
-    long hdl;/* NG */
-    int mark;/* NG */
-    int markMode;
-    int lineMode;
-    int foreground;
+    long hdl = 0;/* NG */
+    int mark = 0;/* NG */
+    int markMode = 0;
+    int lineMode = 0;
+    int foreground = 0;
     int iTmp = 0;
     int* piTmp = &iTmp;
 

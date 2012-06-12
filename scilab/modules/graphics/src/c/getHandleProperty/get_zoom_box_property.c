@@ -33,7 +33,7 @@
 int get_zoom_box_property(char *pobjUID)
 {
     double dblTmp = 0;
-    double* zoomBox;
+    double* zoomBox = NULL;
     int iZoomEnabled = 0;
     int* zoomEnabled = &iZoomEnabled;
 

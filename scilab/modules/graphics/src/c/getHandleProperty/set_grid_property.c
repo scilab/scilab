@@ -35,7 +35,7 @@
 int set_grid_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
-    int i;
+    int i = 0;
     int iGridColor = 0;
     int* piGridColor = &iGridColor;
     int gridStyles[3];

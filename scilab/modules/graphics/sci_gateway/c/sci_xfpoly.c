@@ -34,7 +34,7 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
     int m3 = 0, n3 = 0, l3 = 0;
     int mn1 = 0;
 
-    long hdl; /* NG */
+    long hdl = 0; /* NG */
 
     CheckRhs(2, 3);
 

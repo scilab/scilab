@@ -72,7 +72,7 @@
  */
 int sciSetLineWidth (char * pobjUID, double linewidth)
 {
-    BOOL status;
+    BOOL status = FALSE;
 
     if (linewidth < 0)
     {
@@ -97,7 +97,7 @@ int sciSetLineWidth (char * pobjUID, double linewidth)
  */
 int sciSetLineStyle(char * pobjUID, int linestyle)
 {
-    BOOL status;
+    BOOL status = FALSE;
     if (linestyle < 0)
     {
         Scierror(999, _("The line style must be greater than %d.\n"),0);
@@ -126,9 +126,7 @@ int sciSetMarkSize( char * pobjUID, int marksize )
     }
     else
     {
-        BOOL status;
-
-        status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+        BOOL status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -151,7 +149,7 @@ int sciSetMarkSize( char * pobjUID, int marksize )
 int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
 {
     int dimensions[2];
-    BOOL status;
+    BOOL status = FALSE;
 
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(text, nbRow, nbCol);
@@ -707,8 +705,8 @@ int sciInitSelectedSubWin( char * psubwinobj )
 int
 sciSetSelectedSubWin (char * psubwinobjUID)
 {
-    char* type;
-    char* parent;
+    char* type = NULL;
+    char* parent = NULL;
 
     getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, &type);
 
@@ -835,7 +833,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_RECTANGLE__) == 0)
     {
-        double* currentUpperLeftPoint;
+        double* currentUpperLeftPoint = NULL;
         double upperLeftPoint[3];
         int widthIndex = 2;
         int size = *numrow * *numcol;
@@ -880,13 +878,13 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_ARC__) == 0)
     {
-        double startAngle;
-        double endAngle;
+        double startAngle = 0.;
+        double endAngle = 0.;
         double upperLeftPoint[3];
-        double width;
-        double height;
-        double* currentUpperLeftPoint;
-        int size;
+        double width = 0.;
+        double height = 0.;
+        double* currentUpperLeftPoint = NULL;
+        int size = 0;
 
         size = *numrow * *numcol;
 
@@ -937,7 +935,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_TEXT__) == 0)
     {
-        char* parentAxes;
+        char* parentAxes = NULL;
         double position[3];
         int iView = 0;
         int* piView = &iView;
@@ -977,7 +975,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_SEGS__) == 0)
     {
-        int numArrows;
+        int numArrows = 0;
         double* arrowPoints = NULL;
 
         if ((*numcol != 3)&&(*numcol != 2))
@@ -1061,10 +1059,10 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_MATPLOT__) == 0)
     {
-        int nx;
-        int ny;
+        int nx = 0;
+        int ny = 0;
         int gridSize[4];
-        int result;
+        int result = 0;
 
         ny = *numrow;
         nx = *numcol;
@@ -1090,8 +1088,8 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_FEC__) == 0)
     {
-        BOOL result;
-        int Nnode;
+        BOOL result = FALSE;
+        int Nnode = 0;
         if (*numcol != 3)
         {
             Scierror(999, _("Number of columns must be %d.\n"),3);
@@ -1163,8 +1161,7 @@ case SCI_UIMENU:
 int sciInitdrawmode( BOOL mode )
 {
 #if 0
-    static sciPointObj * pobj ;
-    pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
+    static sciPointObj * pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
     pSUBWIN_FEATURE(pobj)->visible = mode ;
     sciDrawObj(sciGetCurrentFigure ());
 #endif
@@ -1641,8 +1638,8 @@ int sciInitUserSize( char * pobjUID, double width, double height )
 /*-----------------------------------------------------------------------------------*/
 int sciSetUserSize( char * pobjUID, double width, double height )
 {
-    double curWidth  ;
-    double curHeight ;
+    double curWidth  = 0.;
+    double curHeight = 0.;
     sciGetUserSize((sciPointObj*) pobjUID, &curWidth, &curHeight ) ;
     if ( curWidth == width && curHeight == height )
     {

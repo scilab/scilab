@@ -219,7 +219,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
 /*--------------------------------------------------------------------------*/
 GetPropertyHashTable *createScilabGetHashTable(void)
 {
-    int i;
+    int i = 0;
 
     if (getHashTableCreated)
     {

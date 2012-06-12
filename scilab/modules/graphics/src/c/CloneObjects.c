@@ -51,16 +51,16 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     int iTmp = 0;
     int *piTmp = &iTmp;
 
-    int lineMode;
-    int foreground;
-    int lineStyle;
-    int background;
-    int markForeground;
-    int markBackground;
-    int markStyle;
-    int markSize;
-    int markSizeUnit;
-    double lineThickness;
+    int lineMode = 0;
+    int foreground = 0;
+    int lineStyle = 0;
+    int background = 0;
+    int markForeground = 0;
+    int markBackground = 0;
+    int markStyle = 0;
+    int markSize = 0;
+    int markSizeUnit = 0;
+    double lineThickness = 0.;
 
     getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool, &piTmp);
     lineMode = iTmp;
@@ -120,10 +120,10 @@ int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
 {
     double dblTmp = 0.0;
     double *pdblTmp = &dblTmp;
-    double fontSize;
-    int fontColor;
-    int fontStyle;
-    int fontFractional;
+    double fontSize = 0.;
+    int fontColor = 0;
+    int fontStyle = 0;
+    int fontFractional = 0;
     int iTmp = 0;
     int *piTmp = &iTmp;
 
@@ -168,17 +168,17 @@ char* clonePolyline(char* sourcePolyline)
     int tmp = 0;
     int* pTmp = &tmp;
 
-    int lineStyle;
-    int foreground;
-    int background;
-    int markForeground;
-    int markBackground;
-    int markStyle;
+    int lineStyle = 0;
+    int foreground = 0;
+    int background = 0;
+    int markForeground = 0;
+    int markBackground = 0;
+    int markStyle = 0;
 
-    int lineMode;
-    int fillMode;
-    int markMode;
-    int interpShaded;
+    int lineMode = 0;
+    int fillMode = 0;
+    int markMode = 0;
+    int interpShaded = 0;
 
     getGraphicObjectProperty(sourcePolyline, __GO_PARENT_AXES__, jni_string, &parentAxes);
 

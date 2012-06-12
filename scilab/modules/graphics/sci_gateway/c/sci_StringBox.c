@@ -40,8 +40,8 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res);
 /*--------------------------------------------------------------------------*/
 static int getScalarFromStack(int paramIndex, char * funcName, double * res)
 {
-  int m;
-  int n;
+  int m = 0;
+  int n = 0;
   size_t stackPointer = 0;
   if ( VarType(paramIndex) != sci_matrix )
   {

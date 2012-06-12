@@ -45,10 +45,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, unsigned long fname_len)
 {
-    int m1, n1, l1, m2, n2, l2, lw;
-    unsigned long hdl;
-    int nb_handles = 0, i, dont_overload = 0;
-    char *pobjUID;
+    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, lw = 0;
+    unsigned long hdl = 0;
+    int nb_handles = 0, i = 0, dont_overload = 0;
+    char *pobjUID = NULL;
 
     char *pstParentUID = NULL;
     char *pstParentType = NULL;

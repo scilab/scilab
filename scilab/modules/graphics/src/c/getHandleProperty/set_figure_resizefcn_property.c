@@ -23,7 +23,7 @@
 /*------------------------------------------------------------------------*/
 int set_figure_resizefcn_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

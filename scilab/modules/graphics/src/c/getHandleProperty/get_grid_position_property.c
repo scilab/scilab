@@ -29,7 +29,7 @@
 /*------------------------------------------------------------------------*/
 int get_grid_position_property(char *pobjUID)
 {
-    int iGridPosition;
+    int iGridPosition = 0;
     int* piGridPosition = &iGridPosition;
 
 #if 0

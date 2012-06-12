@@ -35,7 +35,7 @@
 int get_figure_size_property(char *pobjUID)
 {
   double figureSize[2] ;
-  int* intSize;
+  int* intSize = NULL;
   getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, &intSize);
 
   if (intSize == NULL)

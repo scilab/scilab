@@ -40,13 +40,13 @@
 int getgrayplotdata(char *pobjUID)
 {
     char * variable_tlist[] = {"grayplotdata","x","y","z"};
-    int numX;
+    int numX = 0;
     int *piNumX = &numX;
-    int numY;
+    int numY = 0;
     int *piNumY = &numY;
-    double* dataX;
-    double* dataY;
-    double* dataZ;
+    double* dataX = NULL;
+    double* dataY = NULL;
+    double* dataZ = NULL;
 
     /* Add 'variable' tlist items to stack */
     returnedList * tList = createReturnedList( 3, variable_tlist );
@@ -77,11 +77,11 @@ int getgrayplotdata(char *pobjUID)
 int getchampdata(char *pobjUID)
 {
     char * variable_tlist[] = {"champdata","x","y","fx","fy"};
-    int* dimensions;
-    double* arrowBasesX;
-    double* arrowBasesY;
-    double* arrowDirectionsX;
-    double* arrowDirectionsY;
+    int* dimensions = NULL;
+    double* arrowBasesX = NULL;
+    double* arrowBasesY = NULL;
+    double* arrowDirectionsX = NULL;
+    double* arrowDirectionsY = NULL;
 
     /* Add 'variable' tlist items to stack */
 
@@ -113,14 +113,14 @@ int get3ddata(char *pobjUID)
 {
     char *variable_tlist_color[] = {"3d","x","y","z","color"};
     char *variable_tlist[] = {"3d","x","y","z"};
-    char* type;
-    double* colors;
-    double* dataX;
-    double* dataY;
-    double* dataZ;
+    char* type = NULL;
+    double* colors = NULL;
+    double* dataX = NULL;
+    double* dataY = NULL;
+    double* dataZ = NULL;
     int nbRow = 0;
     int *piNbRow = &nbRow;
-    int nbCol;
+    int nbCol = 0;
     int *piNbCol = &nbCol;
 
     returnedList * tList = NULL;
@@ -223,7 +223,7 @@ int get3ddata(char *pobjUID)
 /*------------------------------------------------------------------------*/
 int get_data_property(char *pobjUID)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 

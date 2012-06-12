@@ -57,10 +57,10 @@
 extern void unzoom()
 {
   /** 17/09/2002 ***/
-  double fmin,fmax,lmin,lmax;
-  int min,max,puiss,deux=2,dix=10;
-  sciPointObj *psousfen;
-  sciSons *psonstmp;
+  double fmin = 0., fmax = 0, lmin = 0., lmax = 0.;
+  int min = 0, max = 0, puiss = 0, deux = 2, dix = 10;
+  sciPointObj *psousfen = NULL;
+  sciSons *psonstmp = NULL;
 
   /***** 02/10/2002 ****/
   psonstmp = sciGetSons(sciGetCurrentFigure());
@@ -110,7 +110,7 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
                                    int rect[4])
 {
     /* coordinates transformation */
-    int i;
+    int i = 0;
     char * selectedSubwinUID = getOrCreateDefaultSubwin();
     updateSubwinScale(selectedSubwinUID);
 
@@ -139,7 +139,7 @@ void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords
                                     int rect[4])
 {
     /* coordinates transformation */
-    int i;
+    int i = 0;
     char * selectedSubwinUID = getOrCreateDefaultSubwin();
     updateSubwinScale(selectedSubwinUID);
     for (i = 0; i < nbCoords; i++)

@@ -87,7 +87,7 @@ void sciGetDisplayedBounds( char * pSubWinUID,
 
   int iZoomEnabled = 0;
   int* piZoomEnabled = &iZoomEnabled;
-  double* bounds;
+  double* bounds = NULL;
   int iLogFlag = 0;
   int *piLogFlag = &iLogFlag;
 

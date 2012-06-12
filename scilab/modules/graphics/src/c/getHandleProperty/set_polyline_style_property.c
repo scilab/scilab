@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int set_polyline_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int value = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )

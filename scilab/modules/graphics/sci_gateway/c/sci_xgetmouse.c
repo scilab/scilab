@@ -48,7 +48,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
     int selPosition = 0;
 
-    char *pstWindowUID;
+    char *pstWindowUID = NULL;
 
     int iFigureId = 0;
 

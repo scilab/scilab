@@ -167,7 +167,7 @@ GRAPHICS_IMPEXP char *getOrCreateDefaultSubwin(void)
  */
 char *ConstructSubWin(char *pparentfigureUID)
 {
-    char *parentType;
+    char *parentType = NULL;
     char *pCloneUID = (char *)NULL;
     char *paxesmdlUID = getAxesModel();
 
@@ -223,7 +223,7 @@ char *allocateText(char *pparentsubwinUID,
     int clipState = 0;
     int *piClipState = &clipState;
 
-    double *clipRegion;
+    double *clipRegion = NULL;
     double position[3];
     double setUserSize[2];
 
@@ -358,7 +358,7 @@ char *ConstructText(char *pparentsubwinUID, char **text, int nbRow, int nbCol, d
                     double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
                     BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
 {
-    char *parentType;
+    char *parentType = NULL;
     char *pobjUID = NULL;
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
@@ -404,23 +404,23 @@ char *ConstructLegend(char *pparentsubwinUID, char **text, long long tabofhandle
 {
     char *pobjUID = NULL;
 
-    int i;
+    int i = 0;
     int iLegendPresent = 0;
     int *piLegendPresent = &iLegendPresent;
-    int iVisible;
+    int iVisible = 0;
     int *piVisible = &iVisible;
     int textDimensions[2];
-    int fillMode;
-    int legendLocation;
+    int fillMode = 0;
+    int legendLocation = 0;
 
-    int clipRegionSet;
-    int clipState;
+    int clipRegionSet = 0;
+    int clipState = 0;
 
-    double *clipRegion;
+    double *clipRegion = NULL;
     double position[2];
 
-    char **lineIDS;
-    char *parentType;
+    char **lineIDS = NULL;
+    char *parentType = NULL;
 
     /* Check beforehand whether a Legend object is already present */
     getGraphicObjectProperty(pparentsubwinUID, __GO_HAS_LEGEND_CHILD__, jni_bool, &piLegendPresent);
@@ -551,20 +551,20 @@ char *allocatePolyline(char *pparentsubwinUID, double *pvecx, double *pvecy, dou
 {
     char *pobjUID = NULL;
     int i = 0;
-    BOOL result;
-    char *type;
-    char *polylineID;
-    double barWidth;
-    double arrowSizeFactor;
-    double *clipRegion;
-    double *dataVector;
+    BOOL result = FALSE;
+    char *type = NULL;
+    char *polylineID = NULL;
+    double barWidth = 0.;
+    double arrowSizeFactor = 0.;
+    double *clipRegion = NULL;
+    double *dataVector = NULL;
     int clipState = 0;
     int *piClipState = &clipState;
-    int lineClosed;
+    int lineClosed = 0;
     int numElementsArray[2];
     int visible = 0;
     int *piVisible = &visible;
-    int zCoordinatesSet;
+    int zCoordinatesSet = 0;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
 
@@ -836,9 +836,9 @@ char *ConstructArc(char *pparentsubwinUID, double x, double y,
                    double height, double width, double alphabegin, double alphaend, int *foreground, int *background, BOOL isfilled, BOOL isline)
 {
     char *pobjUID = NULL;
-    char *type;
+    char *type = NULL;
     double upperLeftPoint[3];
-    double *clipRegion;
+    double *clipRegion = NULL;
     int visible = 0;
     int *piVisible = &visible;
     int arcDrawingMethod = 0;
@@ -964,9 +964,9 @@ char *ConstructRectangle(char *pparentsubwinUID, double x, double y,
                          double height, double width, int *foreground, int *background, int isfilled, int isline)
 {
     char *pobjUID = NULL;
-    char *type;
+    char *type = NULL;
     double upperLeftPoint[3];
-    double *clipRegion;
+    double *clipRegion = NULL;
     int visible = 0;
     int *piVisible = &visible;
     int clipRegionSet = 0;
@@ -1087,8 +1087,8 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
                        int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n)
 {
     char *pobjUID = NULL;
-    char *parentType;
-    char *surfaceID;
+    char *parentType = NULL;
+    char *surfaceID = NULL;
     char *surfaceTypes[2] = { __GO_PLOT3D__, __GO_FAC3D__ };
 
     double *clipRegion = NULL;
@@ -1324,20 +1324,20 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
 
     char *objectTypes[3] = { __GO_GRAYPLOT__, __GO_MATPLOT__, __GO_MATPLOT__ };
 
-    char *typeParent;
-    char *grayplotID;
-    int result;
-    int dataMapping;
+    char *typeParent = NULL;
+    char *grayplotID = NULL;
+    int result = 0;
+    int dataMapping = 0;
     int gridSize[4];
 
     int parentVisible = 0;
     int *piParentVisible = &parentVisible;
-    double *clipRegion;
+    double *clipRegion = NULL;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
-    int numElements;
+    int numElements = 0;
 
     double pdblScale[2];
 
@@ -1479,15 +1479,15 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
                     int nx, double *vy, int ny, char **str, int subint, char *format,
                     int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels)
 {
-    char *parentType;
+    char *parentType = NULL;
     char *pobjUID = NULL;
-    int i;
-    int clipRegionSet;
-    int clipState;
-    int ticksDirection;
-    int ticksStyle;
-    double *clipRegion;
-    double doubleFontSize;
+    int i = 0;
+    int clipRegionSet = 0;
+    int clipState = 0;
+    int ticksDirection = 0;
+    int ticksStyle = 0;
+    double *clipRegion = NULL;
+    double doubleFontSize = 0.;
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
 
@@ -1673,13 +1673,13 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
 {
     char *pobjUID = NULL;
     char *fecId = NULL;
-    int result;
+    int result = 0;
 
-    char *parentType;
+    char *parentType = NULL;
     int parentVisible = 0;
     int *piParentVisible = &parentVisible;
 
-    double *clipRegion;
+    double *clipRegion = NULL;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
     int iClipState = 0;
@@ -1810,12 +1810,12 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
-    int numberArrows;
+    int numberArrows = 0;
     int dimensions[2];
-    int i;
+    int i = 0;
 
-    double *clipRegion;
-    double *arrowCoords;
+    double *clipRegion = NULL;
+    double *arrowCoords = NULL;
 
     if (type == 0)
     {
@@ -2003,11 +2003,11 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
  */
 char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types with definition */
 {
-    char *compoundUID;
-    char *parentAxesUID;
-    char *firstMovedObjectUID;
+    char *compoundUID = NULL;
+    char *parentAxesUID = NULL;
+    char *firstMovedObjectUID = NULL;
 
-    int i;
+    int i = 0;
     int parentVisible = 0;
     int *piParentVisible = &parentVisible;
 
@@ -2081,14 +2081,12 @@ char *ConstructCompoundSeq(int number)
     char *parentFigure = NULL;
     int numberChildren = 0;
     int *piNumberChildren = &numberChildren;
-    int i;
+    int i = 0;
     int visible = 0;
     int *piVisible = &visible;
 
     char *pobjUID = NULL;
-    char *psubwinUID;
-
-    psubwinUID = getCurrentSubWin();
+    char *psubwinUID = getCurrentSubWin();
 
     /* Creates the Compound object A */
     pobjUID = createGraphicObject(__GO_COMPOUND__);

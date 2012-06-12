@@ -34,8 +34,8 @@
 /*------------------------------------------------------------------------*/
 int set_arrow_size_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    double arrowSize;
+    BOOL status = FALSE;
+    double arrowSize = 0.;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

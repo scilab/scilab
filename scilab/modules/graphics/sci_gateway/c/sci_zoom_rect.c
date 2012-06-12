@@ -47,11 +47,11 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
  */
 static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
 {
-    int nbRow;
-    int nbCol;
+    int nbRow = 0;
+    int nbCol = 0;
     size_t stackPointer = 0;
-    int i;
-    double * rectVect;
+    int i = 0;
+    double * rectVect = NULL;
     GetRhsVar(attribPos, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
 
     if (nbRow * nbCol != 4)
@@ -85,11 +85,11 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
  */
 static char * getZoomedObject(const char * fname)
 {
-    int nbRow;
-    int nbCol;
+    int nbRow  = 0;
+    int nbCol = 0;
     size_t stackPointer = 0;
     char *res = NULL;
-    char *pstType;
+    char *pstType = NULL;
     /* if a handle is specified it must be the first input argument */
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
 

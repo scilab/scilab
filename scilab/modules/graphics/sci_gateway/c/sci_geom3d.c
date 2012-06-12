@@ -28,7 +28,7 @@ int geom3d(double *x, double *y, double *z, int n);
 /*--------------------------------------------------------------------------*/
 int geom3d(double *x, double *y, double *z, int n)
 {
-    int i;
+    int i = 0;
     double userCoords2d[2];
 
     char * psubwinUID = getOrCreateDefaultSubwin();
@@ -47,7 +47,7 @@ int geom3d(double *x, double *y, double *z, int n)
 /*--------------------------------------------------------------------------*/
 int sci_geom3d(char * fname, unsigned long fname_len)
 {
-    int ix1, m1, n1, l1, m2, n2, l2, m3, n3, l3;
+    int ix1 = 0, m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
 
     CheckRhs(3,3);
     CheckLhs(2,3);

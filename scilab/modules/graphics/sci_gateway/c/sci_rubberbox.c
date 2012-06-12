@@ -38,9 +38,9 @@ static int getInitialRectangle(double initRect[4])
     int rectNbRow = 0;
     int rectNbCol = 0;
     int rectStackPointer = 0;
-    int i;
-    int nbDims;
-    double * rect;
+    int i = 0;
+    int nbDims = 0;
+    double * rect = NULL;
 
     /* Initial rect is always in first position */
     GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &rectNbRow, &rectNbCol, &rectStackPointer);
@@ -76,7 +76,7 @@ static int getEditionMode(int rhsPos)
     int stackPointer = 0;
     int nbRow = 0;
     int nbCol = 0;
-    BOOL isEditionModeOn;
+    BOOL isEditionModeOn = FALSE;
     GetRhsVar(rhsPos, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &stackPointer);
 
     if (nbRow * nbCol != 1)
@@ -151,7 +151,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
     int initialRectSize = 0;
 
     double *piJavaValues = NULL;
-    char *pFigureUID;
+    char *pFigureUID = NULL;
     char *pSubwinUID = getOrCreateDefaultSubwin();
     int iView = 0;
     int* piView = &iView;
@@ -229,7 +229,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
         /* Default values, intial rect and edition mode to false */
         double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
-        int editionModeStatus;
+        int editionModeStatus = 0;
 
         // Check we are running 2D view rubberbox,
         // Otherwise initial_rect and edition_mode are not usable.

@@ -77,7 +77,7 @@ int sci_set(char *fname, unsigned long fname_len)
     }
     else                        /* others types */
     {
-        int m1, n1, l1, m2, n2, l2;
+        int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0;
         int numrow3 = 0;
         int numcol3 = 0;
         size_t l3 = 0;
@@ -86,7 +86,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
         int valueType = 0;      /* type of the rhs */
 
-        int numrow[4], i;
+        int numrow[4], i = 0;
         int numcol[4], lxyzcol[4];
         int ptrindex[2];
         int setStatus = 0;

@@ -33,8 +33,8 @@
 /*------------------------------------------------------------------------*/
 int set_view_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
-  int viewType;
+  BOOL status = FALSE;
+  int viewType = 0;
 
   if ( !isParameterStringMatrix( valueType ) )
   {

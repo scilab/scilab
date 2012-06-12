@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_data_bounds_property(char *pobjUID)
 {
-    double* dataBounds;
+    double* dataBounds = NULL;
     int iView = 0;
     int* piView = &iView;
 

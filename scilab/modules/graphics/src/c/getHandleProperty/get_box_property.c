@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------*/
 int get_box_property(char *pobjUID)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
 

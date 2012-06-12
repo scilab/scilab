@@ -183,9 +183,9 @@ int C2F(graphicsmodels) (void)
 {
     double margins[4];
     double clipRegion[4];
-    int clipRegionSet;
-    int firstPlot;
-    int result;
+    int clipRegionSet = 0;
+    int firstPlot = 0;
+    int result = 0;
 
     char *pfiguremdlUID = NULL;
     char *paxesmdlUID = NULL;
@@ -271,7 +271,7 @@ int C2F(graphicsmodels) (void)
  */
 int sciInitGraphicContext(sciPointObj * pobj)
 {
-    char *type;
+    char *type = NULL;
 
     /*
      * initialisation du contexte graphique par defaut
@@ -389,21 +389,21 @@ int sciInitGraphicContext(sciPointObj * pobj)
         }
         else if (strcmp(type, __GO_ARC__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_SEGS__) == 0)
         {
-            char *parent;
-
+            char *parent = NULL;
+ 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_CHAMP__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
@@ -413,7 +413,7 @@ int sciInitGraphicContext(sciPointObj * pobj)
          */
         else if (strcmp(type, __GO_POLYLINE__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
@@ -428,35 +428,35 @@ int sciInitGraphicContext(sciPointObj * pobj)
         }
         else if (strcmp(type, __GO_RECTANGLE__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_AXIS__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_LEGEND__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_TEXT__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneGraphicContext(parent, pobj->UID);
@@ -543,7 +543,7 @@ int initFCfromCopy(sciPointObj * pObjSource, sciPointObj * pObjDest)
  */
 int sciInitFontContext(sciPointObj * pobj)
 {
-    char *type;
+    char *type = NULL;
 
     /*
      * initialisation du contexte font par defaut
@@ -663,21 +663,21 @@ case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 *
         }
         else if (strcmp(type, __GO_LEGEND__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneFontContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_TEXT__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneFontContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_AXIS__) == 0)
         {
-            char *parent;
+            char *parent = NULL;
 
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
             cloneFontContext(parent, pobj->UID);
@@ -710,30 +710,30 @@ default:
 
 int InitAxesModel()
 {
-    int cubeScaling;
-    int logFlag;
-    int ticksColor;
-    int axisLocation;
-    int boxType;
-    int filled;
-    int gridColor;
-    int gridPosition;
-    int view;
-    int axisReverse;
-    int axisVisible;
-    int defaultNumberTicks;
-    int autoTicks;
-    int autoSubticks;
-    int nbSubticks;
-    int hiddenAxisColor;
-    int hiddenColor;
-    int isoview;
+    int cubeScaling = 0;
+    int logFlag = 0;
+    int ticksColor = 0;
+    int axisLocation = 0;
+    int boxType = 0;
+    int filled = 0;
+    int gridColor = 0;
+    int gridPosition = 0;
+    int view = 0;
+    int axisReverse = 0;
+    int axisVisible = 0;
+    int defaultNumberTicks = 0;
+    int autoTicks = 0;
+    int autoSubticks = 0;
+    int nbSubticks = 0;
+    int hiddenAxisColor = 0;
+    int hiddenColor = 0;
+    int isoview = 0;
     int visible = 0;
     int *piVisible = &visible;
-    int clipState;
-    int tightLimits;
-    int arcDrawingMethod;
-    int i;
+    int clipState = 0;
+    int tightLimits = 0;
+    int arcDrawingMethod = 0;
+    int i = 0;
     double axesBounds[4];
     double dataBounds[6];
     double rotationAngles[2];
@@ -741,7 +741,7 @@ int InitAxesModel()
     /* z-axis initial ticks locations */
     double tabZTicksLocations[] = { -1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 };
     char labelBuffer[LABEL_BUFFER_LENGTH];
-    char **stringVector;
+    char **stringVector = NULL;
 
     int lineColor = -1;
     int background = -2;
@@ -1049,7 +1049,7 @@ int InitAxesModel()
  */
 int sciInitGraphicMode(char *pobjUID)
 {
-    char *type;
+    char *type = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 

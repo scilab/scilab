@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int set_info_message_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
+  BOOL status = FALSE;
   if ( !isParameterStringMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "info_message");

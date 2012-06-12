@@ -37,8 +37,8 @@
 /*------------------------------------------------------------------------*/
 int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    char* type;
+    BOOL status = FALSE;
+    char* type = NULL;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

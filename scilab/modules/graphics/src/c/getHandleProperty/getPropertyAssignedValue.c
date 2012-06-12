@@ -62,7 +62,7 @@ void copyDoubleVectorFromStack( size_t stackPointer, double dest[], int nbElemen
 /*--------------------------------------------------------------------------*/
 void copyDoubleVectorToIntFromStack( size_t stackPointer, int dest[], int nbElement )
 {
-    int i ;
+    int i = 0;
     double * values = getDoubleMatrixFromStack( stackPointer ) ;
     for ( i = 0 ; i < nbElement ; i++ )
     {
@@ -94,7 +94,7 @@ char ** getStringMatrixFromStack( size_t stackPointer )
 /*--------------------------------------------------------------------------*/
 char ** createCopyStringMatrixFromStack( size_t stackPointer, int nbElement )
 {
-    int i ;
+    int i = 0;
     char ** res    = MALLOC( nbElement * sizeof(char *) ) ;
     char ** values = getStringMatrixFromStack( stackPointer ) ;
 

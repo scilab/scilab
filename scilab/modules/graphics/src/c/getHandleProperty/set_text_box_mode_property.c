@@ -34,10 +34,10 @@
 int set_text_box_mode_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[2];
-    int autoSize;
-    int textBoxMode;
-    int status1;
-    int status2;
+    int autoSize = 0;
+    int textBoxMode = 0;
+    int status1 = 0;
+    int status2 = 0;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

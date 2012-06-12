@@ -36,8 +36,8 @@
 /*------------------------------------------------------------------------*/
 int set_color_mode_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int colorMode;
+    BOOL status = FALSE;
+    int colorMode = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

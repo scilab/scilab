@@ -89,8 +89,8 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
 
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
-  char c;
-  int des,len = 0;
+  char c = 0;
+  int des = 0,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -165,8 +165,8 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
 
 void ChoixFormatE1(char *fmt, double *xx, int nx)
 {
-  char c;
-  int des,len = 0;
+  char c = 0;
+  int des = 0,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -200,11 +200,11 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
 static void FormatPrec1(char *fmt, int *desres, double *xx, int nx)
 {
   char buf1[100],buf2[100];
-  double xpas;
-  int i=0;
+  double xpas = 0.;
+  int i = 0;
   while ( i < nx-1 && *desres  < 10 )
     {
-      double x1,x2;
+      double x1 = 0., x2 = 0.;
       sprintf(buf1,fmt,*desres,xx[i]);
       sprintf(buf2,fmt,*desres,xx[i+1]);
       sscanf(buf1,"%lf",&x1);
@@ -272,7 +272,7 @@ int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, in
 
 static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar, int count)
 {
-  int npr,b,i,dx,dxmi,dxma;
+  int npr = 0,b = 0,i = 0,dx = 0,dxmi = 0, dxma = 0;
   /* fprintf(stderr,"[%20.10f,%20.10f]\n",*xmi,*xma); */
   /*
    *
@@ -291,8 +291,8 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
   /* fprintf(stderr,"choix de b=%d",b); */
   if ( b >= 10 )
     {
-      double xmi1,xma1;
-      int iexp ;
+      double xmi1 = 0., xma1 = 0.;
+      int iexp = 0;
       /* fprintf(stderr,"je ne peux decomposer les 2 nombres sont identiques\n"); */
       /*
 	a la precision donnee les deux nombre ne peuvent etre decomposer
@@ -378,10 +378,10 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
 
 static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, int *npr, int *b)
 {
-  double x0=*xmi,x1=*xma,loc;
-  int x0k,x0a;
-  int x1k,x1a;
-  int kmin1,kmax1,a1,np1,kmin2,kmax2,a2,np2,kmin,kmax,a,np;
+  double x0 = *xmi, x1 = *xma, loc = 0.;
+  int x0k = 0, x0a = 0;
+  int x1k = 0, x1a = 0;
+  int kmin1 = 0,kmax1 = 0,a1 = 0,np1 = 0,kmin2 = 0,kmax2 = 0,a2 = 0,np2 = 0,kmin = 0,kmax = 0,a = 0,np = 0;
   decompInf(x0,&x0k,&x0a,*b);
   decompSup(x1,&x1k,&x1a,*b);
   /** special cases **/
@@ -552,8 +552,8 @@ static void decompInf(double x, int *xk, int *xa, int b)
 void flexpo1(double *x, double *f, double *sg, double *scale)
 {
   /*    x = sg*f*scale, sg=+-1; scale=10^n; 10 <= f < 100  */
-  double xa, k, un=1;
-  *sg=un;  xa=*x;
+  double xa = 0., k = 0., un = 1.;
+  *sg = un;  xa = *x;
   if (xa<0) {xa=-xa;*sg=-1;}
   *f=xa;*scale=un;
   if (xa<10)
@@ -581,7 +581,7 @@ void flexpo1(double *x, double *f, double *sg, double *scale)
 
 void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale)
 {
-  double fmin, fmax, sgmin, sgmax, sclmax,sclmin, arguc, arguf, scl;
+  double fmin = 0., fmax = 0., sgmin = 0., sgmax = 0., sclmax = 0.,sclmin = 0., arguc = 0., arguf = 0., scl = 0.;
   flexpo1(xminv,&fmin,&sgmin,&sclmin);
   flexpo1(xmaxv,&fmax,&sgmax,&sclmax);
     if ( Abs(*xmaxv) > Abs(*xminv))
@@ -594,9 +594,9 @@ void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *sc
 
 int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidth,int *tst0,double * scal)
 {
-  int i1;
-  static double f,x,sg,scale;
-  static int k, w;
+  int i1 = 0;
+  static double f = 0., x = 0., sg = 0., scale = 0.;
+  static int k = 0, w = 0;
 
   *tst0 = *xmin == 0;
   x = *xmax - *xmin;
@@ -632,8 +632,8 @@ int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidt
 int gradu2(double *xmax,double  *thewidth,double  *scal)
 {
 
-  static double f,x,sg,scale;
-  static int k, w;
+  static double f = 0, x = 0, sg = 0, scale = 0;
+  static int k = 0, w = 0;
 
   x = *xmax;
   flexpo1(&x, &f, &sg, &scale);
@@ -648,9 +648,9 @@ int gradu2(double *xmax,double  *thewidth,double  *scal)
 
 void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, int *tst0,double *scal)
 {
-  double span,width2,low,up;
-  double nup,nlow;
-  int res,k;
+  double span = 0., width2 = 0., low = 0., up = 0.;
+  double nup = 0., nlow = 0.;
+  int res = 0, k = 0;
   span  = *xmaxv - *xminv ;
   res   = gradu2( &span, thewidth, scal ) ;
   width2 = (*thewidth) * (*scal) ;
@@ -696,9 +696,9 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
 
 int agrandir(double *xmin,double * xmax,double * xlow,double * xup)
 {
-  int i1;
-  static double work[20], thewidth, scal;
-  static int i, j, s, nticks, tst0;
+  int i1 = 0;
+  static double work[20], thewidth = 0., scal = 0.;
+  static int i = 0, j = 0, s = 0, nticks = 0, tst0 = 0;
 
   for (s = 0; s <= 100; ++s) {
     i1 = s;
@@ -725,7 +725,7 @@ int agrandir(double *xmin,double * xmax,double * xlow,double * xup)
  */
 void correctBounds( double min, double max, double * lBound, double * uBound )
 {
-  double offset ;
+  double offset = 0.;
 
   if ( Abs(min) < 10.0 && Abs(max) < 10.0 )
   {
@@ -764,9 +764,10 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
  *   If xminv<0 and xmaxv>0 one of the ticks is at zero.        */
 
 {
-  double d1, d2;  int i1;
-  static double xmin, xmax, work[20], xlow, thewidth, xup, scale, scal;
-  static int k, tst0;
+  double d1 = 0., d2 = 0.;
+  int i1 = 0;
+  static double xmin = 0., xmax = 0., work[20], xlow = 0., thewidth = 0., xup = 0., scale = 0., scal = 0.;
+  static int k = 0, tst0 = 0;
 
   /* check if the two bounds are not too close for a correct display */
   if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) )
@@ -891,7 +892,7 @@ int TheTicks( double * xminv ,
 /* Returns 0 if 2 consecutive grads at least are equal */
 int GradEqual(const double grads[],const int *ngrads)
 {
-  int i;
+  int i = 0;
   const double *g = grads;
   for( i= 0 ; i < (*ngrads) -1 ; i++)
     {
@@ -905,7 +906,7 @@ int GradEqual(const double grads[],const int *ngrads)
 elements on step backward */
 static void removeIndex( double * changedArray, int size, int ind )
 {
-  int i ;
+  int i  = 0;
   for ( i = ind + 1 ; i < size ; i++ )
   {
     changedArray[i-1] = changedArray[i] ;
@@ -916,7 +917,7 @@ static void removeIndex( double * changedArray, int size, int ind )
 /* is true. The value nbtics is an in-out variable */
 static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTicks )
 {
-  int i ;
+  int i  = 0;
   for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
   {
     if ( removedTicks[i] )
@@ -930,8 +931,8 @@ static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTick
 /* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
 static void GradFixedlog( double minVal, double maxVal, double * outTicks, int nbGrads )
 {
-  int initSize ;
-  int i ;
+  int initSize  = 0;
+  int i = 0;
 
   /* intialize the array as usual */
   double tempTicks[20];
@@ -942,7 +943,7 @@ static void GradFixedlog( double minVal, double maxVal, double * outTicks, int n
     /* we create a smaller vector from a bigger one */
     int nbRemove = initSize - nbGrads ;
 
-    BOOL * removedTicks ;
+    BOOL * removedTicks = NULL;
     if( ( removedTicks = MALLOC( initSize * sizeof(BOOL) ) ) == NULL )
     {
       return ;
@@ -980,9 +981,9 @@ int GradLog( double   _min   ,
             int    * n_grads,
             int      compNgrads )
 {
-  int i;
-  int log_min, log_max;
-  int size;
+  int i = 0;
+  int log_min = 0, log_max = 0;
+  int size = 0;
 
   if ( compNgrads )
   {
@@ -1078,10 +1079,10 @@ int sciGetLogExponent( double minBound, double maxBound, double * expMin, double
  */
 int ComputeC_format(char * pobjUID, char * c_format)
 {
-	int i,j;
+	int i = 0, j = 0;
 	int pos = 0;
 	int* piPos = &pos;
-        int xy_type = 0;
+    int xy_type = 0;
 	int* piXy_type = &xy_type;
 	int nx = 0;
 	int* piNx = &nx;
@@ -1089,11 +1090,11 @@ int ComputeC_format(char * pobjUID, char * c_format)
 	int* piNy = &ny;
 	double *x = NULL;
 	double *y = NULL;
-	double* tmpx;
-	double* tmpy;
-        char* type;
+	double* tmpx = NULL;
+	double* tmpy = NULL;
+    char* type = NULL;
 	int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
-	char* parentAxesID;
+	char* parentAxesID = NULL;
 	int logFlag = 0;
 	int* piLogFlag = &logFlag;
 
@@ -1285,16 +1286,16 @@ int ComputeC_format(char * pobjUID, char * c_format)
  */
 int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim )
 {
-  int i;
+  int i = 0;
   double * val = NULL; /* represents the x or y ticks coordinates */
-  int nval;
+  int nval = 0;
 
-  int n;
+  int n = 0;
   int nx = 0;
   int* piNx = &nx;
   int ny = 0;
   int* piNy = &ny;
-  BOOL ishoriz;
+  BOOL ishoriz = FALSE;
 
   getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
   getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
@@ -1408,7 +1409,7 @@ StringMatrix * computeDefaultTicsLabels( char * pobjUID )
   char         * c_format   = NULL   ;
   double       * vector     = NULL   ; /* position of labels */
   char           curLabelBuffer[257] ;
-  int            i                   ;
+  int            i = 0;
 
   int tmp = 0;
   int* piTmp = &tmp;
@@ -1539,7 +1540,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 /*--------------------------------------------------------------------------*/
 char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize )
 {
-  int i ;
+  int i = 0;
   char ** res = MALLOC( nbStrings * sizeof(char *) ) ;
 
   if ( res == NULL )

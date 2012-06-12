@@ -36,8 +36,8 @@
 /*------------------------------------------------------------------------*/
 int set_data_mapping_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int dataMapping;
+    BOOL status = FALSE;
+    int dataMapping = 0;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

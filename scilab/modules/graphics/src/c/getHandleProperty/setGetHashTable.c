@@ -32,7 +32,7 @@
 static unsigned int setGetHashTableHash( void * key )
 {
   unsigned long hash = 5381;
-  int c ;
+  int c = 0;
   char * str = key ;
 
   while ( (c = tolower(*str++)) )

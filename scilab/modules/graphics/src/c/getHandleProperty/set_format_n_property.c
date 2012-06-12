@@ -36,8 +36,8 @@
 /*------------------------------------------------------------------------*/
 int set_format_n_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    char* format;
+    BOOL status = FALSE;
+    char* format = NULL;
     if ( !isParameterStringMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "format_n");

@@ -35,7 +35,7 @@
 /*------------------------------------------------------------------------*/
 int set_y_label_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type;
+    char* type = NULL;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_SUBWIN )

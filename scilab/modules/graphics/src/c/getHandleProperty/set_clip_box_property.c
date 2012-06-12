@@ -35,10 +35,10 @@
 int set_clip_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status[2];
-  int status1;
-  int status2;
+  int status1 = 0;
+  int status2 = 0;
 
-  double* clipBox;
+  double* clipBox = NULL;
   /* 2: on */
   int clipState = 2;
 

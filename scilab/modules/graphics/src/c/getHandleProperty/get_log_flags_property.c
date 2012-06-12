@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_log_flags_property(char *pobjUID)
 {
-    int i;
+    int i = 0;
     int iLogFlag = 0;
     int* piLogFlag = &iLogFlag;
     int logFlags[3];

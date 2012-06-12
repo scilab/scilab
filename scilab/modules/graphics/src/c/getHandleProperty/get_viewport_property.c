@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int get_viewport_property(char *pobjUID)
 {
-    int* viewport;
+    int* viewport = NULL;
     getGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, jni_int_vector, &viewport);
 
     if (viewport == NULL)

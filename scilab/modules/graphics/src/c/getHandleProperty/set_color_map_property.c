@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int set_color_map_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

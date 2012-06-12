@@ -47,7 +47,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
 char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 {
     int nbtics = *u_nxgrads;
-    int i;
+    int i = 0;
     char ** ticklabel = (char **) NULL;
     int cmpteur = 0, cmpteur2 = 0, offset = 0;
 

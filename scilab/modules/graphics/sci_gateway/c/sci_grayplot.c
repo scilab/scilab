@@ -32,7 +32,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     int *frame=&frame_def;
     int axes_def=1;
     int *axes=&axes_def;
-    int m1, n1, l1, m2, n2, l2, m3, n3, l3;
+    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
     static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
                               {-1,"frameflag","?",0,0,0},
                               {-1,"nax","?",0,0,0},

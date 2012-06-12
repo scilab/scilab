@@ -34,7 +34,7 @@ static char logFlagsCpy[3] ; /* real logflags may use either this or the stack *
 /*--------------------------------------------------------------------------*/
 int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 {
-  int m,n,l,first_opt=FirstOpt(),kopt,un=1,ix,i,l1;
+  int m = 0,n = 0,l = 0, first_opt = FirstOpt(), kopt = 0, un = 1, ix = 0, i = 0, l1 = 0;
 
   Nbvars = Max(Nbvars,Rhs);
 

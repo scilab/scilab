@@ -33,7 +33,7 @@ int get_xtics_coord_property(char *pobjUID)
 {
     int iXNumberTicks = 0;
     int* xNumberTicks = &iXNumberTicks;
-    double* xTicksCoords;
+    double* xTicksCoords = NULL;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_AXES )

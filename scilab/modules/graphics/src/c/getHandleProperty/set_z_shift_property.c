@@ -35,8 +35,8 @@
 /*------------------------------------------------------------------------*/
 int set_z_shift_property(char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL result;
-    double* shiftCoordinates;
+    BOOL result = FALSE;
+    double* shiftCoordinates = NULL;
     int nbElement = nbRow * nbCol;
     int iNumElements = 0;
     int* piNumElements = &iNumElements;

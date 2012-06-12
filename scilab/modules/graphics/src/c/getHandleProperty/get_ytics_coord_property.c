@@ -33,7 +33,7 @@ int get_ytics_coord_property(char *pobjUID)
 {
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
-    double* yTicksCoords;
+    double* yTicksCoords = NULL;
 
 #if 0
     if ( sciGetEntityType(pobj) != SCI_AXES )

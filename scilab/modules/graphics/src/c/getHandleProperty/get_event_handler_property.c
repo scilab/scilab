@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------*/
 int get_event_handler_property(char *pobjUID)
 {
-    char* eventHandler;
+    char* eventHandler = NULL;
     getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, jni_string, &eventHandler);
 
     if ( eventHandler == NULL )

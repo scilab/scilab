@@ -40,7 +40,7 @@ int set_current_axes_property(char* pobjUID, size_t stackPointer, int valueType,
 {
     char * curAxesUID   = NULL;
     char * parentFigureUID = NULL;
-    char * type;
+    char * type = NULL;
 
     if (pobjUID != NULL)
     {

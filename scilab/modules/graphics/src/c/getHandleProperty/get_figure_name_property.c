@@ -38,7 +38,7 @@
 /*------------------------------------------------------------------------*/
 int get_figure_name_property(char *pobjUID)
 {
-    char* figureName;
+    char* figureName = NULL;
     getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **) &figureName);
 
     if ( figureName == NULL )

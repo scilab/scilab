@@ -33,8 +33,8 @@
 /*------------------------------------------------------------------------*/
 int set_font_color_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int value;
+    BOOL status = FALSE;
+    int value = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

@@ -40,9 +40,9 @@ int sci_champ_G(char *fname,
                 int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
                 unsigned long fname_len)
 {
-    double arfact_def=1.0;
-    double * arfact=&arfact_def;
-    int m1, n1, l1, m2, n2, l2, m3, n3, l3, m4, n4, l4;
+    double arfact_def = 1.0;
+    double * arfact = &arfact_def;
+    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0, m4 = 0, n4 = 0, l4 = 0;
     static rhs_opts opts[]= { {-1,"arfact","?",0,0,0},
                               {-1,"rect","?",0,0,0},
                               {-1,"strf","?",0,0,0},

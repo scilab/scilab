@@ -40,8 +40,8 @@ int get_axes_reverse_property(char *pobjUID)
   int iAxesReverse = 0;
   int* piAxesReverse = &iAxesReverse;
 
-  int i;
-  int j;
+  int i = 0;
+  int j = 0;
   int status = -1;
 
 #if 0

@@ -41,8 +41,8 @@
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_y_ticks_property(char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL autoTicks;
-    BOOL status;
+    BOOL autoTicks = FALSE;
+    BOOL status = FALSE;
     AssignedList * tlist     = NULL ;
     int            nbTicsRow = 0    ;
     int            nbTicsCol = 0    ;

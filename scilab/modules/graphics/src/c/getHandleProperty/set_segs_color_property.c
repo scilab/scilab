@@ -35,10 +35,10 @@
 /*------------------------------------------------------------------------*/
 int set_segs_color_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int iNbSegs = 0;
     int* piNbSegs = &iNbSegs;
-    int* segsColors;
+    int* segsColors = NULL;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

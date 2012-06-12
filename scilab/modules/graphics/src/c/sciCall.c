@@ -115,8 +115,8 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        )
 {
-    char * psubwinUID;
-    char * pobjUID;
+    char * psubwinUID = NULL;
+    char * pobjUID = NULL;
 
     psubwinUID = getCurrentSubWin();
     checkRedrawing();
@@ -451,9 +451,9 @@ void Objplot3d ( char    * fname ,
      /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {
     sciTypeOf3D typeof3d;
-    int flagcolor;
-    long *hdltab;
-    int i;
+    int flagcolor = 0;
+    long *hdltab = NULL;
+    int i = 0;
 
     char *psubwinUID = NULL;
     char *pobjUID = NULL;
@@ -461,7 +461,7 @@ void Objplot3d ( char    * fname ,
 
     double drect[6];
     double rotationAngles[2];
-    double* dataBounds;
+    double* dataBounds = NULL;
     char * loc = NULL;
     char * legx = NULL;
     char * legy = NULL;
@@ -472,18 +472,18 @@ void Objplot3d ( char    * fname ,
     int flag_y = 1;
     int dimvectx = -1;
     int dimvecty = -1;
-    int view;
+    int view = 0;
     int linLogFlag;
     int firstPlot = 0;
     int *piFirstPlot = &firstPlot;
 
-    int box;
-    int axisVisible;
+    int box = 0;
+    int axisVisible = 0;
     int autoScale = 0;
     int *piAutoScale = &autoScale;
 
-    int isoview;
-    int clipState;
+    int isoview = 0;
+    int clipState = 0;
 
     char *pNewSurfaceUID = NULL;
 

@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int get_format_n_property(char *pobjUID)
 {
-    char* formatn;
+    char* formatn = NULL;
 
 #if 0
     if ( sciGetEntityType (pobj) != SCI_AXES )

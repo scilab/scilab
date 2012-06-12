@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int get_color_flag_property(char *pobjUID)
 {
-    int iColorFlag;
+    int iColorFlag = 0;
     int* piColorFlag = &iColorFlag;
 
 #if 0

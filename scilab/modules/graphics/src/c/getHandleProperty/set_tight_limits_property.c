@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int set_tight_limits_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	BOOL status;
+	BOOL status = FALSE;
 
 	int b =  (int)FALSE;
 

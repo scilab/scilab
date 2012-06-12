@@ -86,15 +86,15 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
 /*------------------------------------------------------------------------*/
 int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
 
     /* JB Silvy 09/11/05 */
-    double   xMin ;
-    double   xMax ;
-    double   yMin ;
-    double   yMax ;
-    double   zMin ;
-    double   zMax ;
+    double   xMin = 0. ;
+    double   xMax = 0. ;
+    double   yMin = 0. ;
+    double   yMax = 0. ;
+    double   zMin = 0. ;
+    double   zMax = 0. ;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

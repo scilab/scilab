@@ -34,8 +34,8 @@
 /*------------------------------------------------------------------------*/
 int get_position_property(char *pobjUID)
 {
-    char* type;
-    double* position;
+    char* type = NULL;
+    double* position = NULL;
 
   /* Deactivated for now */
 #if 0

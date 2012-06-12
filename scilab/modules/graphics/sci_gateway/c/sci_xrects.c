@@ -36,9 +36,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
 {
-    int m1,n1,l1,m2,n2,l2;
-    long  hdl;
-    int i;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0;
+    long  hdl = 0;
+    int i = 0;
     char* psubwinUID = NULL;
 
     int foreground = 0;

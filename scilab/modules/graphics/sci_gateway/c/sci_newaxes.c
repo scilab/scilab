@@ -35,7 +35,7 @@
 int sci_newaxes( char * fname,unsigned long fname_len )
 {
     char *psubwinUID = NULL;
-    int outindex,numrow   = 1,numcol   = 1;
+    int outindex = 0,numrow   = 1,numcol   = 1;
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 

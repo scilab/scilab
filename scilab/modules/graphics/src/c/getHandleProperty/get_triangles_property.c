@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int get_triangles_property(char *pobjUID)
 {
-    double* triangles;
-    int numTriangles;
+    double* triangles = NULL;
+    int numTriangles = 0;
     int *piNumTriangles = &numTriangles;
 
 #if 0

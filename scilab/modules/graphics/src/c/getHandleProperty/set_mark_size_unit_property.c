@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_mark_size_unit_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
-  int markSizeUnit;
+  BOOL status = FALSE;
+  int markSizeUnit = 0;
 
   if ( !isParameterStringMatrix( valueType ) )
   {

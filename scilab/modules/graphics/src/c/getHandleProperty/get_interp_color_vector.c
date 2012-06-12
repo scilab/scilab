@@ -33,7 +33,7 @@
 /*--------------------------------------------------------------------------*/
 int get_interp_color_vector_property(char *pobjUID)
 {
-    int* piInterpVector;
+    int* piInterpVector = NULL;
     int iInterpVectorSet = 0;
     int *piInterpVectorSet = &iInterpVectorSet;
     int iNumElements = 0;

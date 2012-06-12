@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int get_z_bounds_property(char *pobjUID)
 {
-    double* zBounds;
+    double* zBounds = NULL;
 
 #if 0
     if (sciGetEntityType (pobj) != SCI_FEC)

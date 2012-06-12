@@ -35,8 +35,8 @@
 /*------------------------------------------------------------------------*/
 int set_font_angle_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    double fontAngle;
+    BOOL status = FALSE;
+    double fontAngle = 0.;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

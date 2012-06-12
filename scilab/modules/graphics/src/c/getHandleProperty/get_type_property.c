@@ -29,7 +29,7 @@
 /*------------------------------------------------------------------------*/
 int get_type_property(char *pobjUID)
 {
-    char *piResult;
+    char *piResult = NULL;
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &piResult);
     return sciReturnString(piResult);
     //return sciReturnString( sciGetCharEntityType( pobj ) ) ;

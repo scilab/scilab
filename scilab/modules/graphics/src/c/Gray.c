@@ -48,16 +48,16 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int nn1=1,nn2=2;
     double drect[6];
     BOOL bounds_changed = FALSE;
-    BOOL isRedrawn;
+    BOOL isRedrawn = FALSE;
     BOOL axes_properties_changed = FALSE;
 
     char textLogFlags[3];
     double rotationAngles[2];
-    int clipState;
-    int autoScale;
-    int firstPlot;
+    int clipState = 0;
+    int autoScale = 0;
+    int firstPlot = 0;
     int logFlags[3];
-    int autoSubticks;
+    int autoSubticks = 0;
 
     int iTmp = 0;
     int* piTmp = &iTmp;
@@ -258,11 +258,11 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 
     char textLogFlags[3];
     double rotationAngles[2];
-    int clipState;
-    int autoScale;
-    int firstPlot;
+    int clipState = 0;
+    int autoScale = 0;
+    int firstPlot = 0;
     int logFlags[3];
-    int autoSubticks;
+    int autoSubticks = 0;
 
     int iTmp = 0;
     int* piTmp = &iTmp;
@@ -450,9 +450,9 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
 {
     char * psubwinUID = NULL;
     char * pGrayplotUID = NULL;
-    BOOL isRedrawn;
+    BOOL isRedrawn = FALSE;
     double y; /* void for ConstructGrayplot */
-    int clipState;
+    int clipState = 0;
 
     isRedrawn = checkRedrawing();
 

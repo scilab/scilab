@@ -29,12 +29,12 @@ int sci_is_handle_valid(char *fname,unsigned long fname_len)
   /* Call isValid = is_handle_valid(h) with h a matrix of handle */
   /* and isValid a matrix of boolean */
 
-  int nbCol;
-  int nbRow;
-  int nbHandle;
-  int handleStackPointer;
-  int resultStackPointer;
-  int i;
+  int nbCol = 0;
+  int nbRow = 0;
+  int nbHandle = 0;
+  int handleStackPointer = 0;
+  int resultStackPointer = 0;
+  int i = 0;
 
   CheckRhs(1,1);
   CheckLhs(0,1);

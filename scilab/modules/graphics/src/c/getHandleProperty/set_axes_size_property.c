@@ -36,7 +36,7 @@
 int set_axes_size_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * newWindowSize = getDoubleMatrixFromStack( stackPointer ) ;
-  BOOL status;
+  BOOL status = FALSE;
   int intValues[2];
 
   if ( !isParameterDoubleMatrix( valueType ) )

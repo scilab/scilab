@@ -34,12 +34,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)
 {
-    unsigned long hdl, hdlparent;
-    char *pobjUID, *psubwinparenttargetUID, *pcopyobjUID;
-    int m1, n1, l1,l2;
-    int numrow, numcol, outindex,lw;
-    char* pstType;
-    int isPolyline;
+    unsigned long hdl = 0, hdlparent = 0;
+    char *pobjUID = NULL, *psubwinparenttargetUID = NULL, *pcopyobjUID = NULL;
+    int m1 = 0, n1 = 0, l1 = 0,l2 = 0;
+    int numrow = 0, numcol = 0, outindex = 0, lw = 0;
+    char* pstType = NULL;
+    int isPolyline = 0;
 
     CheckRhs(1,2);
     CheckLhs(0,1);

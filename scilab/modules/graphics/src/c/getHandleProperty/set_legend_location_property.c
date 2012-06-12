@@ -36,13 +36,13 @@
 /*------------------------------------------------------------------------*/
 int set_legend_location_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     char* legendLocationsNames[11] = {"in_upper_right", "in_upper_left", "in_lower_right", "in_lower_left",
       "out_upper_right", "out_upper_left", "out_lower_right", "out_lower_left", "upper_caption", "lower_caption",
       "by_coordinates"};
-    int i;
+    int i = 0;
     int index = -1;
-    char* legendLocation;
+    char* legendLocation = NULL;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

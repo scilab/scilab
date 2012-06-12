@@ -34,13 +34,13 @@
 /*------------------------------------------------------------------------*/
 int set_mark_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    int status1;
+    int status1 = 0;
 
-    BOOL status;
-    BOOL status2;
+    BOOL status = FALSE;
+    BOOL status2 = FALSE;
 
     int markMode = 1;
-    int markStyle;
+    int markStyle = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

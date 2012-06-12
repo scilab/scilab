@@ -35,10 +35,10 @@
 /*------------------------------------------------------------------------*/
 int set_tics_labels_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int iNbTicksLabels = 0;
     int* piNbTicksLabels = &iNbTicksLabels;
-    char** stringVector;
+    char** stringVector = NULL;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

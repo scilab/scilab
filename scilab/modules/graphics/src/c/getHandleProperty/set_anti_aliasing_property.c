@@ -35,7 +35,7 @@ int set_anti_aliasing_property(char* pobjUID, size_t stackPointer, int valueType
 {
 
     int quality = 0;
-    BOOL status;
+    BOOL status = FALSE;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

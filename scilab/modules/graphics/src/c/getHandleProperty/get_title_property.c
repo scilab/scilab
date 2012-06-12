@@ -35,7 +35,7 @@
 int get_title_property(char *pobjUID)
 {
     char* labelUID = NULL;
-    long labelHandle;
+    long labelHandle = 0;
 
     char* type = NULL;
 

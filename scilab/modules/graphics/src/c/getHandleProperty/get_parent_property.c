@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int get_parent_property(char *pobjUID)
 {
-    char* parentID;
+    char* parentID = NULL;
 
     /* All Graphic Objects have the __GO_PARENT__ property */
     getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &parentID);

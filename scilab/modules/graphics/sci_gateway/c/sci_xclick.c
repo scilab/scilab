@@ -35,7 +35,7 @@
 int sci_xclick(char *fname,unsigned long fname_len)
 {
   int one = 1, three = 3, rep = 0;
-  int istr;
+  int istr = 0;
   //int iflag = 0;
 
   int mouseButtonNumber = 0;
@@ -47,8 +47,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
   int iFigureId = 0;
   int *piFigureId = &iFigureId;
 
-  CheckRhs(-1,1) ;
-  CheckLhs(1,5) ;
+  CheckRhs(-1, 1) ;
+  CheckLhs(1, 5) ;
 
   //iflag = ( Rhs >= 1) ? 1 :0;
 

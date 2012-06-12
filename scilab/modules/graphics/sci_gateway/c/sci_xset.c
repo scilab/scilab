@@ -43,8 +43,8 @@ int xsetg(char * str, char * str1, int lx0, int lx1) ;
 /*--------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {
-    int m1, n1, l1, m2, n2, l2, xm[5], xn[5], x[5], i, v;
-    int lr;
+    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, xm[5], xn[5], x[5], i = 0, v = 0;
+    int lr = 0;
     double  xx[5];
     sciPointObj *subwin = NULL;
     char * subwinUID = NULL;

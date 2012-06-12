@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_mark_background_property( char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int markBackground;
+    BOOL status = FALSE;
+    int markBackground = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

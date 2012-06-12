@@ -61,8 +61,8 @@ int get_y_ticks_property(char *pobjUID)
     }
     else
     {
-        char ** labels;
-        double * positions;
+        char ** labels = NULL;
+        double * positions = NULL;
 
         getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 

@@ -35,7 +35,7 @@
 /*------------------------------------------------------------------------*/
 int set_interp_color_mode_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int b =  (int)FALSE;
     int iInterpColorVectorSet = 0;
     int* piInterpColorVectorSet = &iInterpColorVectorSet;

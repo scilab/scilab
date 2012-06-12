@@ -36,9 +36,9 @@
 /*------------------------------------------------------------------------*/
 int set_sub_tics_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int result;
-    char* type;
+    BOOL status = FALSE;
+    int result = 0;
+    char* type = NULL;
     char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
     if ( !isParameterDoubleMatrix( valueType ) )

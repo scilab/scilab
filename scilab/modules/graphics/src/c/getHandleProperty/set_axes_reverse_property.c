@@ -38,7 +38,7 @@ int set_axes_reverse_property(char* pobjUID, size_t stackPointer, int valueType,
 {
     BOOL status[3];
     char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
-    BOOL reverse;
+    BOOL reverse = FALSE;
 
     char ** values = getStringMatrixFromStack( stackPointer );
 

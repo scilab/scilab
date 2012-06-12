@@ -35,7 +35,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
     int *piColor = &color;
     int dstyle = -1, *style, colorFlag;
     double * zptr = NULL;
-    int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc;
+    int mx = 0,nx = 0,lx = 0,my = 0,ny = 0,ly = 0,mz = 0, nz = 0,lz = 0,mc = 0, nc = 0, lc = 0;
     const double arsize = 0.0 ; // no arrow here
     char * psubwinUID = NULL;
 

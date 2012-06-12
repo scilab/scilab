@@ -27,15 +27,15 @@
 
 int sci_relocate_handle( char * fname, unsigned long fname_len )
 {
-  int handleCol ;
-  int handleRow ;
-  int nbHandle ;
-  int handleStkIndex ;
-  int parentCol ;
-  int parentRow ;
-  int parentStkIndex ;
-  int outIndex ;
-  int i ;
+  int handleCol  = 0;
+  int handleRow = 0 ;
+  int nbHandle = 0 ;
+  int handleStkIndex = 0 ;
+  int parentCol = 0 ;
+  int parentRow = 0 ;
+  int parentStkIndex = 0 ;
+  int outIndex = 0 ;
+  int i = 0 ;
 
   long children = 0 ;
   char* childrenID = NULL;

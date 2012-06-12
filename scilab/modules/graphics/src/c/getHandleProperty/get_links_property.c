@@ -32,10 +32,10 @@
 /*------------------------------------------------------------------------*/
 int get_links_property(char *pobjUID)
 {
-    int i;
-    long *handles;
-    char** links;
-    int status;
+    int i = 0;
+    long *handles = NULL;
+    char** links = NULL;
+    int status = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 

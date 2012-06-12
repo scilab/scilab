@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_fec(char *fname,unsigned long fname_len)
 {
-    int m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4, mn1;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,l3 = 0,m4 = 0,n4 = 0,l4 = 0, mn1 = 0;
 
     static rhs_opts opts[]= { {-1,"colminmax","?",0,0,0},
                               {-1,"colout","?",0,0,0},

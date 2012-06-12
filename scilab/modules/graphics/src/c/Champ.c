@@ -61,27 +61,27 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     char* psubwinUID = NULL;
     char* newSegsUID = NULL;
 
-    int clipState;
+    int clipState = 0;
     char textLogFlags[3];
     double xx[2];
     double yy[2];
-    double* boundingBox;
+    double* boundingBox = NULL;
     double rotationAngles[2];
-    int nn1=1;
-    int nn2=2;
+    int nn1 = 1;
+    int nn2 = 2;
     int autoScale = 0;
     int* piAutoScale = &autoScale;
     int firstPlot = 0;
     int* piFirstPlot = &firstPlot;
     int logFlags[3];
-    int flag,type =1;
-    double arsize1;
-    int *style;
+    int flag,type = 1;
+    double arsize1 = 0.;
+    int *style = NULL;
 
     int iTmp = 0;
     int* piTmp = &iTmp;
 
-    int i;
+    int i = 0;
     double drect[6];
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;

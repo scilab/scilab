@@ -41,17 +41,17 @@
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
-    int numrow,numcol,l1,l2,n,m2,n2;
+    int numrow = 0,numcol = 0,l1 = 0,l2 = 0,n = 0,m2 = 0,n2 = 0;
     long handlesvalue = 0;
-    int outindex,i;
-    char *pobjUID;
-    long long *tabofhandles;
+    int outindex = 0,i = 0;
+    char *pobjUID = NULL;
+    long long *tabofhandles = NULL;
     char * psubwinUID = NULL;
     char * pFigureUID = NULL;
     sciLegendPlace location;
-    char * type;
+    char * type = NULL;
     char **Str = NULL;
-    char * legendUID;
+    char * legendUID = NULL;
 
     CheckRhs(2,3);
     CheckLhs(0,1);

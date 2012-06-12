@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------*/
 int get_axes_size_property(char *pobjUID)
 {
-    int* axesSize;
+    int* axesSize = NULL;
     getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, &axesSize);
 
     if ( axesSize == NULL )

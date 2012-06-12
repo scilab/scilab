@@ -26,12 +26,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
+  int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,m4 = 0,n4 = 0,l4 = 0,m5 = 0,n5 = 0,l5 = 0,m6 = 0,n6 = 0,l6 = 0;
   BOOL autoSize = TRUE ;
-  double x,y,w,hx;
-  char **Str;
-  double rect[4],angle=0;
-  long hdlstr;
+  double x = 0.,y = 0.,w = 0.,hx = 0.;
+  char **Str = NULL;
+  double rect[4], angle = 0.;
+  long hdlstr = 0;
   double userSize[2] ;
 
   if ( Rhs <= 0 )

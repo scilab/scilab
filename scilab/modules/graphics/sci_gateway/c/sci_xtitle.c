@@ -38,8 +38,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
-    int  narg;
-    int  nbLabels; /* number of modified labels */
+    int  narg = 0;
+    int  nbLabels = 0; /* number of modified labels */
     int  box = 0;
     BOOL isBoxSpecified = FALSE;
     char * psubwinUID = NULL;
@@ -72,7 +72,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
         int type = GetType(4);
         if ( type == 1 || type == 8 )/* double or int */
         {
-            int n,m;
+            int n = 0,m = 0;
             int boxPtr   = -1 ; /* pointer of box on the stack */
             GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m,&n,&boxPtr);
             CheckScalar(4,m,n);
@@ -99,8 +99,8 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
     for ( narg = 1 ; narg <= nbLabels ; narg++)
     {
-        int m,n;
-        char **Str;
+        int m = 0,n = 0;
+        char **Str = NULL;
         char * modifiedLabel = NULL;
 
         GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);

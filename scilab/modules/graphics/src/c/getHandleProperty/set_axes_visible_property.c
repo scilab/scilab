@@ -37,7 +37,7 @@
 int set_axes_visible_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
-    BOOL visible;
+    BOOL visible = FALSE;
     char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
 
     char ** values = getStringMatrixFromStack( stackPointer );

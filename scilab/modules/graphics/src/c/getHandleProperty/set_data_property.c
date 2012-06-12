@@ -48,7 +48,7 @@ int setchampdata( char* pobjUID, AssignedList * tlist )
     int nbRow[4];
     int nbCol[4];
 
-    int numberArrows;
+    int numberArrows = 0;
     int dimensions[2];
 
     double * vx  = NULL;

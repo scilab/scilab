@@ -30,8 +30,8 @@
 /*------------------------------------------------------------------------*/
 int set_grid_position_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
-  int position;
+  BOOL status = FALSE;
+  int position = 0;
 
 #if 0
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )

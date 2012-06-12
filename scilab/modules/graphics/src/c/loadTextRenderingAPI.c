@@ -23,7 +23,7 @@ static BOOL loadedDepMathML = FALSE;
 void loadTextRenderingAPI(char **text, int nbRow, int nbCol)
 {
 
-	int i;
+	int i = 0;
 
 	/* We already loaded both, don't need to check again */
 	if (loadedDepLatex && loadedDepMathML) 

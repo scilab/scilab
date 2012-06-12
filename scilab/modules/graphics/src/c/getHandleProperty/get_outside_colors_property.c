@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_outside_colors_property(char *pobjUID)
 {
-    int* colors;
+    int* colors = NULL;
 #if 0
     if (sciGetEntityType (pobj) != SCI_FEC)
     {

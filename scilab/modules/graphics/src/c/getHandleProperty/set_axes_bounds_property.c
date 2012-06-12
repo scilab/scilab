@@ -36,7 +36,7 @@
 /*------------------------------------------------------------------------*/
 int set_axes_bounds_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
+  BOOL status = FALSE;
   double axesBounds[4];
 
   if ( !isParameterDoubleMatrix( valueType ) )

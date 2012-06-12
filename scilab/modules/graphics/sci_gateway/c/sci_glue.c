@@ -36,9 +36,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
 {
-    int numrow,numcol,l1,l2,lind,n,cx1=1;
+    int numrow = 0,numcol = 0,l1 = 0,l2 = 0,lind = 0,n = 0,cx1=1;
     long *handelsvalue = NULL ;
-    int outindex,i;
+    int outindex = 0,i = 0;
 
     char *pstCompoundUID = NULL;
     char *pstParentUID = NULL;

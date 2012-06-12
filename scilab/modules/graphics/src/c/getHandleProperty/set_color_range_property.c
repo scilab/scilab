@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int set_color_range_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int values[2];
     int nbColors = 0;
 

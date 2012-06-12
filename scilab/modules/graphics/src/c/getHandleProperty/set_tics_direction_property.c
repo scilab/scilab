@@ -34,8 +34,8 @@
 /*------------------------------------------------------------------------*/
 int set_tics_direction_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int ticksDirection;
+    BOOL status = FALSE;
+    int ticksDirection = 0;
     int yNumberTicks = 0;
     int *piYNumberTicks = &yNumberTicks;
 

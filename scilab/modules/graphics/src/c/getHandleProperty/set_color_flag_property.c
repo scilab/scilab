@@ -39,7 +39,7 @@
 /*------------------------------------------------------------------------*/
 int set_color_flag_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type;
+    char* type = NULL;
     int flagcolor = (int) getDoubleFromStack( stackPointer );
 
     if ( !isParameterDoubleMatrix( valueType ) )

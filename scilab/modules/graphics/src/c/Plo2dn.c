@@ -99,12 +99,12 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int closeflag = 0;
     int jj = 0;
     long long *tabofhandles = NULL;
-    long hdl;
+    long hdl = 0;
     long *hdltab = NULL;
     int cmpt = 0;
-    int with_leg;
+    int with_leg = 0;
     double drect[6];
-    char dataflag;
+    char dataflag = 0;
 
     /* To be removed */
 #if 0
@@ -114,15 +114,15 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     BOOL axes_properties_changed = FALSE;
 
     double rotationAngles[2];
-    int clipState;
-    int autoScale;
+    int clipState = 0;
+    int autoScale = 0;
     int logFlags[3];
     int iTmp = 0;
     int *piTmp = &iTmp;
     char textLogFlags[3];
-    int firstPlot;
-    int newFirstPlot;
-    int autoSubticks;
+    int firstPlot = 0;
+    int newFirstPlot = 0;
+    int autoSubticks = 0;
 
     /* Deactivated since it uses synchronization */
 #if 0
@@ -478,9 +478,9 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
  */
 void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, double *y, int n1, int n2, double *drect)
 {
-    int size_x, size_y;
+    int size_x = 0, size_y = 0;
     double xd[2];
-    double *x1;
+    double *x1 = NULL;
 
     switch (dataflag)
     {
@@ -614,18 +614,18 @@ int re_index_brect(double *brect, double *drect)
 BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
 {
     BOOL haschanged = FALSE;
-    BOOL tightLimitsPrev;
-    BOOL isoviewPrev;
-    int boxPrev;
-    int tightLimits;
-    int firstPlot;
-    int axisVisible;
-    int boxType;
-    int xLocationPrev;
-    int yLocationPrev;
-    int xLocation;
-    int yLocation;
-    int isoview;
+    BOOL tightLimitsPrev = FALSE;
+    BOOL isoviewPrev = FALSE;
+    int boxPrev = 0;
+    int tightLimits = 0;
+    int firstPlot = 0;
+    int axisVisible = 0;
+    int boxType = 0;
+    int xLocationPrev = 0;
+    int yLocationPrev = 0;
+    int xLocation = 0;
+    int yLocation = 0;
+    int isoview = 0;
     int axesVisiblePrev[3];
     int axesVisible[3];
 

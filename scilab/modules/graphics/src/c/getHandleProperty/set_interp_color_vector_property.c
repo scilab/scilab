@@ -35,7 +35,7 @@
 /*------------------------------------------------------------------------*/
 int set_interp_color_vector_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 

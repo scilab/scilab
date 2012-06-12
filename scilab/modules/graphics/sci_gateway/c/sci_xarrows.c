@@ -26,10 +26,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {
-    int dstyle = -1,m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3;
-    int *style,flag;
-    int m4,n4,l4,mn2;
-    double arsize=-1.0;
+    int dstyle = -1,m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0, m3 = 1, n3 = 1, l3 = 0;
+    int *style = NULL, flag = 0;
+    int m4 = 0, n4 = 0, l4 = 0, mn2 = 0;
+    double arsize = -1.0;
 
     CheckRhs(2,4);
 

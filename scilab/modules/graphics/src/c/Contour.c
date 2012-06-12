@@ -287,9 +287,9 @@ static void look(ptr_level_f func, int i, int j, int ib, int jb, int qq, double 
 static int contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, int *N, int *style, int *err)
 {
   int check = 1;
-  char *F;
-  int n1,n2,ncont,i,c,j,k,n5;
-  int stylec;
+  char *F = NULL;
+  int n1 = 0,n2 = 0,ncont = 0,i = 0,c = 0,j = 0,k = 0,n5 = 0;
+  int stylec = 0;
   n1=N[0];n2=N[1];ncont=N[2];
   F=getFPF();
   if ( F[0] == '\0') 
@@ -366,9 +366,9 @@ static int contourI(ptr_level_f func, double *x, double *y, double *z, double *z
 int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style)
 {
   int err=0;
-  static double *zconst;
-  double zmin,zmax;
-  int N[3],i;
+  static double *zconst = NULL;
+  double zmin = 0.,zmax = 0.;
+  int N[3],i = 0;
 
   zmin=(double) Mini(z,*n1*(*n2)); 
   zmax=(double) Maxi(z,*n1*(*n2));
@@ -410,8 +410,8 @@ int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagn
 
 static int ffnd (ptr_level_f func, int i1, int i2, int i3, int i4, int jj1, int jj2, int jj3, int jj4, int ent, int qq, double Cont, int *zds)
 {
-  double phi1,phi2,phi3,phi4,xav,yav,phiav;
-  int revflag,i;
+  double phi1 = 0.,phi2 = 0.,phi3 = 0.,phi4 = 0.,xav = 0.,yav = 0.,phiav = 0.;
+  int revflag = 0, i = 0;
   phi1=phi_cont(i1,jj1)-Cont;
   phi2=phi_cont(i2,jj2)-Cont;
   phi3=phi_cont(i3,jj3)-Cont;
@@ -471,8 +471,8 @@ static int ffnd (ptr_level_f func, int i1, int i2, int i3, int i4, int jj1, int 
  * double in order to access to the stored data at Scilab level 
  *----------------------------------------------------------------*/
 
-static int last=-1;
-static int count=0; 
+static int last = -1;
+static int count = 0; 
  
 /** used to bring back data to Scilab Stack **/
 
@@ -487,7 +487,7 @@ int C2F(getconts)(double **x, double **y, int *mm, int *n)
 
 static void GContStore2(int ival, double Cont, double xncont, double yncont)
 {
-  int n;
+  int n = 0;
   if ( ival == 0) 
     {
       /* Here : ival == 0 means stop the current level curve and 

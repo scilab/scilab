@@ -35,7 +35,7 @@
 int get_figure_position_property(char *pobjUID)
 {
   double figurePos[2] ;
-  int* position;
+  int* position = NULL;
   getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, &position);
 
   if (position == NULL)

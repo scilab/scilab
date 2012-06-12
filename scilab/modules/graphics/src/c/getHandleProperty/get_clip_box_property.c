@@ -34,7 +34,7 @@ int get_clip_box_property(char *pobjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
-    double* clipBox;
+    double* clipBox = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, &piClipState);
 

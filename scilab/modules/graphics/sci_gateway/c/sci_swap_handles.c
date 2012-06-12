@@ -28,19 +28,19 @@
 /*--------------------------------------------------------------------------*/
 int sci_swap_handles( char * fname, unsigned long fname_len )
 {
-  int firstHdlCol  ;
-  int firstHdlRow  ;
-  int secondHdlCol ;
-  int secondHdlRow ;
-  int firstHdlStkIndex  ;
-  int secondHdlStkIndex ;
-  char *pstHandle_1;
-  char *pstHandle_2;
-  char *pstParent_1;
-  char *pstParent_2;
+  int firstHdlCol = 0;
+  int firstHdlRow = 0;
+  int secondHdlCol = 0;
+  int secondHdlRow = 0;
+  int firstHdlStkIndex = 0;
+  int secondHdlStkIndex = 0;
+  char *pstHandle_1 = NULL;
+  char *pstHandle_2 = NULL;
+  char *pstParent_1 = NULL;
+  char *pstParent_2 = NULL;
   int iChildrenCount = 0;
   int *piChildrenCount = &iChildrenCount;
-  char **pstChildrenUID;
+  char **pstChildrenUID = NULL;
   int i = 0;
   long h = 0;
 

@@ -33,7 +33,7 @@
 /*------------------------------------------------------------------------*/
 int get_x_shift_property(char *pobjUID)
 {
-    double* shiftCoordinates;
+    double* shiftCoordinates = NULL;
     int iValue = 0;
     int* piValue = &iValue;
 

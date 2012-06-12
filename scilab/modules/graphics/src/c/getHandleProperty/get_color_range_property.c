@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_color_range_property(char *pobjUID)
 {
-    int* range;
+    int* range = NULL;
 
 #if 0
     if (sciGetEntityType (pobj) != SCI_FEC)

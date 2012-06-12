@@ -31,8 +31,8 @@
 int sci_xarc(char *fname,unsigned long fname_len)
 {
     char* psubwinUID = NULL;
-    int m1,n1,l1,l2,l3,l4,l5,l6;
-    long hdl;
+    int m1 = 0,n1 = 0,l1 = 0,l2 = 0,l3 = 0,l4 = 0,l5 = 0,l6 = 0;
+    long hdl = 0;
     int curcolor = 0;
     int *piCurColor = &curcolor;
     double angle1 = 0.0;

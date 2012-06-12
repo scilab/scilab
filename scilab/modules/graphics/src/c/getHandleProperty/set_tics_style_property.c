@@ -38,7 +38,7 @@ int set_tics_style_property(char* pobjUID, size_t stackPointer, int valueType, i
     BOOL status = FALSE;
     int ticksStyle = 0;
 
-    char xy_type;
+    char xy_type = 0;
 
     if ( !isParameterStringMatrix( valueType ) )
     {

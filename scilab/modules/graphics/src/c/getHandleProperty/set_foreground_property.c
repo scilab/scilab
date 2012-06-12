@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_foreground_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    int lineColor;
+    BOOL status = FALSE;
+    int lineColor = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

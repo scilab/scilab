@@ -31,7 +31,7 @@
 /*------------------------------------------------------------------------*/
 int get_margins_property(char *pobjUID)
 {
-  double* margins;
+  double* margins = NULL;
 
 #if 0
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )

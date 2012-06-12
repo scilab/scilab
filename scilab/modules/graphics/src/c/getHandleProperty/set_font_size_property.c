@@ -32,8 +32,8 @@
 /*------------------------------------------------------------------------*/
 int set_font_size_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    double fontSize;
+    BOOL status = FALSE;
+    double fontSize = 0.;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

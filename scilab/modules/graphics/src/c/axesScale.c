@@ -43,9 +43,9 @@
  */
 int sciZoom2D(char * subwinUID, const double zoomRect[4])
 {
-    double* zoomBox;
     if (subwinUID != NULL)
     {
+        double* zoomBox = NULL;
         // add Z scale to data bounds.
         getGraphicObjectProperty(subwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **) &zoomBox);
 
@@ -69,7 +69,7 @@ int sciZoom2D(char * subwinUID, const double zoomRect[4])
  */
 int sciZoom3D(char * subwinUID, const double zoomBox[6])
 {
-    BOOL status;
+    BOOL status = FALSE;
     int zoomEnabled = 1;
 
     // convert zoomBox to [xMin, xMax, yMin, yMax, zMin, zMax]
@@ -110,7 +110,7 @@ int sciZoom3D(char * subwinUID, const double zoomBox[6])
 /*------------------------------------------------------------------------------*/
 int sciZoomRect(char* objUID, const double zoomRect[4])
 {
-    char *pstType;
+    char *pstType = NULL;
     getGraphicObjectProperty(objUID, __GO_TYPE__, jni_string, (void **) &pstType);
     if (strcmp(pstType, __GO_FIGURE__) == 0)
     {
@@ -128,11 +128,11 @@ int sciZoomRect(char* objUID, const double zoomRect[4])
 /*------------------------------------------------------------------------------*/
 int sciFigureZoom2D(char* figureUID, const double zoomRect[4])
 {
-    int i;
-    int childrenCount;
+    int i = 0;
+    int childrenCount = 0;
     int* pChildrenCount = &childrenCount;
 
-    char** children;
+    char** children = NULL;
 
     getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount); 
 
@@ -219,12 +219,12 @@ void sciUnzoomSubwin(char* subwinUID)
  */
 void sciUnzoomFigure(char* figureUID)
 {
-  char* pstType;
-  char** pstChildrenUID;
+  char* pstType = NULL;
+  char** pstChildrenUID = NULL;
 
-  int i;
+  int i = 0;
   int zoomEnabled = 0;
-  int childrenCount;
+  int childrenCount = 0;
   int* piChildrenCount = &childrenCount;
 
   getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
@@ -250,8 +250,8 @@ void sciUnzoomFigure(char* figureUID)
 void sciUnzoomArray(char* objectsUID[], int nbObjects)
 {
   /* object type */
-  char* pstType;
-  int i;
+  char* pstType = NULL;
+  int i = 0;
   for (i = 0; i < nbObjects; i++)
   {
     getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_string, (void **) &pstType);

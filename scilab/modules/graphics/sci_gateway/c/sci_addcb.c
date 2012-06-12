@@ -31,9 +31,9 @@ int sci_addcb(char *fname,unsigned long fname_len)
 // ???
     abort();
 #if 0
-  unsigned long hdl;
-  int m1, n1, l1,m2, n2, l2;
-  sciPointObj *pobj;
+  unsigned long hdl = 0;
+  int m1 = 0, n1 = 0, l1 = 0,m2 = 0, n2 = 0, l2 = 0;
+  sciPointObj *pobj = NULL;
 
   CheckRhs(2,3);
   CheckLhs(0,1);

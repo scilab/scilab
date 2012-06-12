@@ -50,8 +50,8 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   int *frame=&frame_def;
   int axes_def=1;
   int *axes=&axes_def;
-  int iskip,test;
-  int m1 = 0,n1 = 0,l1 = 0, m2 = 0, n2 = 0, l2 = 0, lt, i, j ;
+  int iskip = 0, test  = 0;
+  int m1 = 0,n1 = 0,l1 = 0, m2 = 0, n2 = 0, l2 = 0, lt = 0, i = 0, j = 0;
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
                             {-1,"frameflag","?",0,0,0},

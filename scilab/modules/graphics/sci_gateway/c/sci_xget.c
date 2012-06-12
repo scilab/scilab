@@ -147,7 +147,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"clipping") == 0)
     {
-        double *clipBox;
+        double *clipBox = NULL;
         char* pobjUID = getOrCreateDefaultSubwin();
 
         getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
@@ -235,7 +235,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0)
     {
-        int *piFigureSize;
+        int *piFigureSize = NULL;
         double pdblFigureSize[2];
 
         getOrCreateDefaultSubwin();
@@ -251,7 +251,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wpos") == 0)
     {
-        int *piFigurePosition;
+        int *piFigurePosition = NULL;
         double pdblFigurePosition[2];
 
         getOrCreateDefaultSubwin();
@@ -267,7 +267,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"viewport") == 0)
     {
-        int* viewport;
+        int* viewport = NULL;
         double pdblViewport[2];
 
         getOrCreateDefaultSubwin();

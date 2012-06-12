@@ -41,8 +41,8 @@ int get_axes_visible_property(char *pobjUID)
     int iAxesVisible = 0;
     int* piAxesVisible = &iAxesVisible;
 
-    int i;
-    int j;
+    int i = 0;
+    int j = 0;
     int status = -1;
 
 #if 0

@@ -38,8 +38,8 @@
 int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
-    BOOL autoTicks;
-    char ** values;
+    BOOL autoTicks = FALSE;
+    char ** values = NULL;
     int mSize = nbRow * nbCol;
 
     char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};

@@ -42,8 +42,8 @@ int get_y_label_property(char *pobjUID)
     }
 #endif
 
-    char* labelUID;
-    long labelHandle;
+    char* labelUID = NULL;
+    long labelHandle = 0;
 
     getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LABEL__, jni_string, &labelUID);
 

@@ -38,7 +38,7 @@
 int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type = NULL;
-    BOOL status;
+    BOOL status = FALSE;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 

@@ -33,8 +33,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )
 {
-    long hdl;
-    int m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
+    long hdl = 0;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,l3 = 0,m4 = 0,n4 = 0,l4 = 0;
     char* psubwinUID = NULL;
 
     int foreground = 0;

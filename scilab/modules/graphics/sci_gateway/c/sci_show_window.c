@@ -47,7 +47,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
         int nbRow        = 0 ;
         int nbCol        = 0 ;
         size_t stackPointer = 0 ;
-        char *type;
+        char *type = NULL;
 
         if ( isParameterHandle( paramType ) )
         {
@@ -79,7 +79,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
         else if ( isParameterDoubleMatrix( paramType ) )
         {
             /* by its number */
-            int winNum;
+            int winNum = 0;
             GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
             if ( nbRow * nbCol != 1 )
             {

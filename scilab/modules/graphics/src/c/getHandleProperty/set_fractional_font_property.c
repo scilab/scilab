@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int set_fractional_font_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int b =  (int)FALSE;
 #if 0
     if (   sciGetEntityType(pobj) != SCI_SUBWIN

@@ -38,8 +38,8 @@
 /*------------------------------------------------------------------------*/
 int set_labels_font_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-   BOOL status;
-   int fontStyle;
+   BOOL status = FALSE;
+   int fontStyle = 0;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {

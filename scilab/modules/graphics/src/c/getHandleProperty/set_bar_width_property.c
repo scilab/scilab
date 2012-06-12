@@ -34,8 +34,8 @@
 /*------------------------------------------------------------------------*/
 int set_bar_width_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    double barWidth;
+    BOOL status = FALSE;
+    double barWidth = 0.;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {

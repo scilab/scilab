@@ -90,8 +90,8 @@ int destroyGraphicHierarchy(char * pthis)
 /* free the user_data */
 void clearUserData( sciPointObj * pObj )
 {
-  int ** pUserData ;
-  int *  pSizeUD   ;
+  int ** pUserData = NULL;
+  int *  pSizeUD = NULL;
   sciGetPointerToUserData( pObj, &pUserData, &pSizeUD ) ;
   if ( pUserData != NULL && *pUserData != NULL )
   {

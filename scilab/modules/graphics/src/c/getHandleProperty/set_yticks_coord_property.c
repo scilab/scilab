@@ -38,7 +38,7 @@
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
 int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
+    BOOL status = FALSE;
     int N = 0;
     double * vector = NULL;
     char c_format[5];
@@ -48,7 +48,7 @@ int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, 
     double* coordsVector = NULL;
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
-    char ticksStyle;
+    char ticksStyle = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {
