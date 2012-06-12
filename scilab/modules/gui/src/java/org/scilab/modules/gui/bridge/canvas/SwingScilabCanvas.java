@@ -375,6 +375,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     }
 
     public boolean isAutoResize() {
-        return (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), __GO_AUTORESIZE__);
+        Boolean b = (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), __GO_AUTORESIZE__);
+        return b == null ? false : b;
     }
 }

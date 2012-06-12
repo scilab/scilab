@@ -544,6 +544,7 @@ public final class SwingView implements GraphicView {
                     // uicontrol case: the object is destroyed when its parent updates its children
                     break;
             }
+            allObjects.remove(id);
         }
     }
 
