@@ -284,6 +284,8 @@ Documentation
 
 * Bug #11175 fixed - xstringl example did not work.
 
+* Bug #11222 fixed - Links added between xdel, close and delete help pages.
+
 
 Dynamic Link
 =============
