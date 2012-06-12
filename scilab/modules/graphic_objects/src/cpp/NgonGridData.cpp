@@ -187,12 +187,12 @@ void NgonGridData::getDataProperty(int property, void **_pvData)
 
 int NgonGridData::setGridSize(int const* gridSize)
 {
-    int newXSize;
-    int newYSize;
-    int xModified;
-    int yModified;
-    int zModified;
-    int result;
+    int newXSize = 0;
+    int newYSize = 0;
+    int xModified = 0;
+    int yModified = 0;
+    int zModified = 0;
+    int result = 0;
 
     double* newXCoordinates = NULL;
     double* newYCoordinates = NULL;

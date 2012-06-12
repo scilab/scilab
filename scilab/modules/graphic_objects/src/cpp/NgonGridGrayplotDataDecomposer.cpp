@@ -30,11 +30,11 @@ NgonGridGrayplotDataDecomposer* NgonGridGrayplotDataDecomposer::decomposer = NUL
  */
 void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parentFigure;
-    char* parent;
+    char* parentFigure = NULL;
+    char* parent = NULL;
 
-    double* z;
-    double* colormap;
+    double* z = NULL;
+    double* colormap = NULL;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -85,9 +85,9 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
 
 int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
     double zShift = 0.0;
     double* pdZShift = &zShift;
 
@@ -96,7 +96,7 @@ int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int buffe
     int numY = 0;
     int* piNumY = &numY;
 
-    int numberIndices;
+    int numberIndices = 0;
 
     NgonGridGrayplotDataDecomposer* decomposer = get();
 
@@ -125,11 +125,11 @@ int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int buffe
  */
 int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
 {
-    double zij;
-    double zijp1;
+    double zij = 0.;
+    double zijp1 = 0.;
 
-    int lowerZValid;
-    int upperZValid;
+    int lowerZValid = 0;
+    int upperZValid = 0;
 
     /* First, z-coordinate values are tested */
     zij = getZCoordinate(z, numX, numY, i, j, logUsed);

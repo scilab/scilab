@@ -161,13 +161,13 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     double mo0[3];
     double mo1[3];
 
-    double nmo0;
-    double nmo1;
+    double nmo0 = 0.;
+    double nmo1 = 0.;
 
-    double dot0;
-    double dot1;
+    double dot0 = 0.;
+    double dot1 = 0.;
 
-    double denom;
+    double denom = 0.;
 
     /*
      * The input vertices are given in counter-clockwise order, from v0 to v3.

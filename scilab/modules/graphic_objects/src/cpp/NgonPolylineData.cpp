@@ -344,11 +344,9 @@ int NgonPolylineData::setZCoordinatesShift(double const* data, int numElements)
 
 int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
 {
-    int newNumElements;
-    int previousNumElements;
-    int result;
-
-    result = 1;
+    int newNumElements = 0;
+    int previousNumElements = 0;
+    int result = 1;
 
     if (numElementsArray[0] != 1)
     {
@@ -499,8 +497,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
 
 void NgonPolylineData::copyShiftCoordinatesArray(double * newShift, double const* oldShift, int numElementsNew)
 {
-    int i;
-    int numElementsCopied;
+    int numElementsCopied = 0;
 
     if (numElementsNew < numVerticesPerGon)
     {
@@ -511,12 +508,12 @@ void NgonPolylineData::copyShiftCoordinatesArray(double * newShift, double const
         numElementsCopied = numVerticesPerGon;
     }
 
-    for (i = 0; i < numElementsCopied; i++)
+    for (int i = 0; i < numElementsCopied; i++)
     {
         newShift[i] = oldShift[i];
     }
 
-    for (i = numElementsCopied; i < numElementsNew; i++)
+    for (int i = numElementsCopied; i < numElementsNew; i++)
     {
         newShift[i] = 0.0;
     }

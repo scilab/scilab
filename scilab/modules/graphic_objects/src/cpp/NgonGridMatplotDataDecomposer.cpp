@@ -30,7 +30,7 @@ void NgonGridMatplotDataDecomposer::fillVertices(char* id, float* buffer, int bu
 {
     double* matplotScale = NULL;
     double* matplotTranslate = NULL;
-    double zShift;
+    double zShift = 0.;
     double* pdZShift = &zShift;
 
     double xTrans[2];
@@ -70,19 +70,16 @@ void NgonGridMatplotDataDecomposer::fillVertices(char* id, float* buffer, int bu
 void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
     double* x, double* y, double* z, int numX, int numY)
 {
-    double xi;
-    double yj;
-    double zij;
-    double yjp1;
-    double xip1;
+    double xi = 0.;
+    double yj = 0.;
+    double zij = 0.;
+    double yjp1 = 0.;
+    double xip1 = 0.;
 
-    int i;
-    int j;
-
-    int bufferOffset;
+    int bufferOffset = 0;
 
 #if PER_VERTEX_VALUES
-    for (j = 0; j < numY; j++)
+    for (int j = 0; j < numY; j++)
     {
         yj = (double) j * y[1] + y[0];
 
@@ -94,7 +91,7 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
             }
         }
 
-        for (i = 0; i < numX; i++)
+        for (int i = 0; i < numX; i++)
         {
             xi = (double) i * x[1] + x[0];
             bufferOffset = elementsSize*(numX*j + i);
@@ -130,7 +127,7 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
 #else
     bufferOffset = 0;
 
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
         double ycoords[4];
         int yindices[4];
@@ -157,11 +154,10 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
         yindices[2] = j+1;
         yindices[3] = j+1;
 
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             double xcoords[4];
             int xindices[4];
-            int k;
 
             xi = (double) i * x[1] + x[0];
             xip1 = (double) (i+1) * x[1] + x[0];
@@ -182,7 +178,7 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
             xindices[2] = i;
             xindices[3] = i+1;
 
-            for (k = 0; k < 4; k++)
+            for (int k = 0; k < 4; k++)
             {
                 if (coordinateMask & 0x1)
                 {
@@ -221,12 +217,12 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
  */
 void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parent;
-    char* parentFigure;
+    char* parent = NULL;
+    char* parentFigure = NULL;
 
-    double* z;
-    double* colormap;
-    double currentZ;
+    double* z = NULL;
+    double* colormap = NULL;
+    double currentZ = 0.;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -235,8 +231,6 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
 
-    int i;
-    int j;
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
@@ -264,9 +258,9 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
     }
 
 #if PER_VERTEX_VALUES
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             currentZ = z[i*(numY-1)+(numY-2-j)];
 
@@ -294,7 +288,7 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
     }
 
     /* Last line */
-    for (i = 0; i < numX-1; i++)
+    for (int i = 0; i < numX-1; i++)
     {
         currentZ = z[(numY-1)*i+0];
 
@@ -320,9 +314,9 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
 
 #else
 
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             float facetColor[3];
 
@@ -345,9 +339,9 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
  */
 int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
     double zShift = 0.0;
     double* pdZShift = &zShift;
 
@@ -356,7 +350,7 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
     int numY = 0;
     int* piNumY = &numY;
 
-    int numberIndices;
+    int numberIndices = 0;
 
     NgonGridMatplotDataDecomposer* decomposer = get();
 
@@ -382,8 +376,8 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
 
 int NgonGridMatplotDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
-    double zij;
-    int facetValid;
+    double zij = 0.;
+    int facetValid = 0;
 
     zij = getZCoordinate(z, numX, numY, i, j, logUsed);
 

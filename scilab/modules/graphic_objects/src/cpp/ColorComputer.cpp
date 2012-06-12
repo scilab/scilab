@@ -23,8 +23,8 @@ extern "C"
 
 void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colormap, int colormapSize, float* returnedColor)
 {
-    double value;
-    int index;
+    double value = 0.;
+    int index = 0;
 
     if (!DecompositionUtils::isANumber(s))
     {
@@ -56,8 +56,8 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
 
 void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colormap, int minIndex, int maxIndex, int colormapSize, float* returnedColor)
 {
-    double value;
-    int index;
+    double value = 0.;
+    int index = 0;
 
     if (!DecompositionUtils::isANumber(s))
     {
@@ -89,8 +89,8 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
 
 double ColorComputer::getIndex(double s, double smin, double srange, double indexOffset, int minIndex, int maxIndex)
 {
-    double value;
-    double index;
+    double value = 0.;
+    double index = 0.;
 
     if (!DecompositionUtils::isANumber(s))
     {
@@ -120,7 +120,7 @@ double ColorComputer::getIndex(double s, double smin, double srange, double inde
 
 void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)
 {
-    int index;
+    int index = 0;
 
     if (s <= (double) BLACK_LOWER_INDEX)
     {
@@ -153,7 +153,7 @@ void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize,
 
 double ColorComputer::getDirectIndex(double s, int colormapSize)
 {
-    double index;
+    double index = 0.;
 
     if (s <= (double) WHITE_LOWER_INDEX)
     {
@@ -222,7 +222,7 @@ double ColorComputer::getClampedDirectIndex(double s, int colormapSize)
 
 void ColorComputer::getClampedDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)
 {
-    int index;
+    int index = 0;
 
     if (!DecompositionUtils::isANumber(s))
     {

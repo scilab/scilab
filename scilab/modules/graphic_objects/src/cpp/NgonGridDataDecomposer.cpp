@@ -43,9 +43,9 @@ int NgonGridDataDecomposer::getDataSize(char* id)
 
 void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
-    double* x;
-    double* y;
-    double zShift;
+    double* x = NULL;
+    double* y = NULL;
+    double zShift = 0.;
     double* pdZShift = &zShift;
 
     int numX = 0;
@@ -68,17 +68,14 @@ void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLen
 void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
     double* x, double* y, double* z, int numX, int numY)
 {
-    double xi;
-    double yj;
-    double zij;
+    double xi = 0.;
+    double yj = 0.;
+    double zij = 0.;
 
-    int i;
-    int j;
-
-    int bufferOffset;
+    int bufferOffset = 0;
 
 #if PER_VERTEX_VALUES
-    for (j = 0; j < numY; j++)
+    for (int j = 0; j < numY; j++)
     {
         yj = y[j];
 
@@ -90,7 +87,7 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
             }
         }
 
-        for (i = 0; i < numX; i++)
+        for (int i = 0; i < numX; i++)
         {
             xi = x[i];
             bufferOffset = elementsSize*(numX*j + i);
@@ -125,12 +122,12 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
     }
 #else
 
-    double yjp1;
-    double xip1;
+    double yjp1 = 0.;
+    double xip1 = 0.;
 
     bufferOffset = 0;
 
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
         double ycoords[4];
         int yindices[4];
@@ -157,11 +154,10 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
         yindices[2] = j+1;
         yindices[3] = j+1;
 
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             double xcoords[4];
             int xindices[4];
-            int k;
 
             xi = x[i];
             xip1 = x[i+1];
@@ -182,7 +178,7 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
             xindices[2] = i;
             xindices[3] = i+1;
 
-            for (k = 0; k < 4; k++)
+            for (int k = 0; k < 4; k++)
             {
                 if (coordinateMask & 0x1)
                 {
@@ -220,13 +216,10 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
 void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
     double* z, int numX, int numY)
 {
-    double zMin;
-    double zMax;
-    double zRange;
-    double minDoubleValue;
-
-    int i;
-    int j;
+    double zMin = 0.;
+    double zMax = 0.;
+    double zRange = 0.;
+    double minDoubleValue = 0.;
 
     int bufferOffset = 0;
 
@@ -245,9 +238,9 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
     }
 
 #if PER_VERTEX_VALUES
-    for (j = 0; j < numY; j++)
+    for (int j = 0; j < numY; j++)
     {
-        for (i = 0; i < numX; i++)
+        for (int i = 0; i < numX; i++)
         {
             int currentPointIndex = getPointIndex(numX, numY, i, j);
 
@@ -262,9 +255,9 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
         }
     }
 #else
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             double avgz;
             float facetColor[3];
@@ -285,16 +278,13 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
 void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
     double* z, int numX, int numY)
 {
-    int i;
-    int j;
-
-    int currentPointIndex;
+    int currentPointIndex = 0;
     int bufferOffset = 0;
 
 #if PER_VERTEX_VALUES
-    for (j = 0; j < numY; j++)
+    for (int j = 0; j < numY; j++)
     {
-        for (i = 0; i < numX; i++)
+        for (int i = 0; i < numX; i++)
         {
             currentPointIndex = getPointIndex(numX, numY, i, j);
 
@@ -309,9 +299,9 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
         }
     }
 #else
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             float facetColor[3];
 
@@ -355,7 +345,7 @@ double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int
 
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j, int logUsed)
 {
-    double zij;
+    double zij = 0.;
 
     if (logUsed)
     {
@@ -396,16 +386,16 @@ int NgonGridDataDecomposer::getIndicesSize(char* id)
 
 int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
 
     int numX = 0;
     int* piNumX = &numX;
     int numY = 0;
     int* piNumY = &numY;
 
-    int numberIndices;
+    int numberIndices = 0;
 
     NgonGridDataDecomposer* decomposer = get();
 
@@ -432,25 +422,23 @@ int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength,
  */
 int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY)
 {
-    int i;
-    int j;
     int bufferOffset = 0;
 
-    int currentRowValid;
-    int nextRowValid;
+    int currentRowValid = 0;
+    int nextRowValid = 0;
 
-    int currentColumnValid;
-    int nextColumnValid;
+    int currentColumnValid = 0;
+    int nextColumnValid = 0;
 
-    int currentEdgeValid;
-    int nextEdgeValid;
+    int currentEdgeValid = 0;
+    int nextEdgeValid = 0;
 
-    int currentFacetValid;
+    int currentFacetValid = 0;
 
-    int ij;
-    int ip1j;
-    int ip1jp1;
-    int ijp1;
+    int ij = 0;
+    int ip1j = 0;
+    int ip1jp1 = 0;
+    int ijp1 = 0;
 
     /* 0 indices if less than 2 points along either dimension */
     if (numX < 2 || numY < 2)
@@ -467,7 +455,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
     }
 
     /* To do: optimize */
-    for (j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY-1; j++)
     {
         nextRowValid = DecompositionUtils::isValid(y[j+1]);
 
@@ -498,7 +486,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
 
         currentEdgeValid = isFacetEdgeValid(z, values, numX, numY, 0, j, logMask & 0x4);
 
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
             nextColumnValid = DecompositionUtils::isValid(x[i+1]);
 
@@ -584,11 +572,11 @@ int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, in
 
 int NgonGridDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
 {
-    double zij;
-    double zijp1;
+    double zij = 0.;
+    double zijp1 = 0.;
 
-    int lowerZValid;
-    int upperZValid;
+    int lowerZValid = 0;
+    int upperZValid = 0;
 
     zij = getZCoordinate(z, numX, numY, i, j);
     zijp1 = getZCoordinate(z, numX, numY, i, j+1);
@@ -619,23 +607,21 @@ int NgonGridDataDecomposer::getPointIndex(int numX, int numY, int i, int j)
 
 void NgonGridDataDecomposer::computeMinMaxZValues(double* z, int numX, int numY, double* zMin, double* zMax)
 {
-    double maxDouble;
-    double tmpZMin;
-    double tmpZMax;
-    double zi;
+    double maxDouble = 0;
+    double tmpZMin = 0;
+    double tmpZMax = 0;
+    double zi = 0;
 
-    int i;
-    int j;
-    int currentPoint;
+    int currentPoint = 0;
 
     maxDouble = DecompositionUtils::getMaxDoubleValue();
 
     tmpZMin = maxDouble;
     tmpZMax = -maxDouble;
 
-    for (j = 0; j < numY; j++)
+    for (int j = 0; j < numY; j++)
     {
-        for (i = 0; i < numX; i++)
+        for (int i = 0; i < numX; i++)
         {
             currentPoint = getPointIndex(numX, numY, i, j);
             zi = z[currentPoint];
@@ -661,8 +647,8 @@ void NgonGridDataDecomposer::computeMinMaxZValues(double* z, int numX, int numY,
 
 double NgonGridDataDecomposer::computeFacetAverageZValue(double* z, int numX, int numY, int i, int j)
 {
-    double avgz;
-    int pointIndex;
+    double avgz = 0.;
+    int pointIndex = 0;
 
     avgz = 0.0;
     pointIndex = getPointIndex(numX, numY, i, j);
@@ -681,9 +667,7 @@ double NgonGridDataDecomposer::computeFacetAverageZValue(double* z, int numX, in
 
 void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize)
 {
-    int k;
-
-    for (k = 0; k < 4; k++)
+    for (int k = 0; k < 4; k++)
     {
         buffer[bufferOffset] = color[0];
         buffer[bufferOffset +1] = color[1];

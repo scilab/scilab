@@ -34,7 +34,7 @@ extern "C"
 
 int getTextureWidth(char* id)
 {
-  char* type;
+  char* type = NULL;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
   if (strcmp(type, __GO_MATPLOT__) == 0)
   {
@@ -48,7 +48,7 @@ int getTextureWidth(char* id)
 
 int getTextureHeight(char* id)
 {
-  char* type;
+  char* type = NULL;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
   if (strcmp(type, __GO_MATPLOT__) == 0)
   {
@@ -62,7 +62,7 @@ int getTextureHeight(char* id)
 
 int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 {
-  char* type;
+  char* type = NULL;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
   if (strcmp(type, __GO_MATPLOT__) == 0)
   {
@@ -76,7 +76,7 @@ int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 
 int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
-  char* type;
+  char* type = NULL;
   getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
   if (strcmp(type, __GO_MATPLOT__) == 0)
   {
@@ -90,7 +90,7 @@ int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x,
 
 int getDataSize(char* id)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -127,7 +127,7 @@ int getDataSize(char* id)
 
 void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -159,7 +159,7 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 
 void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -179,7 +179,7 @@ void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
 
 void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -208,7 +208,7 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 
 int getIndicesSize(char* id)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -243,7 +243,7 @@ int getIndicesSize(char* id)
 
 int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -277,7 +277,7 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 
 int getWireIndicesSize(char* id)
 {
-    char* type;
+    char* type = NULL;
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
     if (strcmp(type, __GO_FAC3D__) == 0)
@@ -302,7 +302,7 @@ int getWireIndicesSize(char* id)
 
 int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    char* type;
+    char* type = NULL;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 

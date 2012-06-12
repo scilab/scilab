@@ -103,7 +103,7 @@ int ScilabView::getNbFigure(void)
 void ScilabView::createObject(char *pstId)
 {
     //std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
-    char *pstType;
+    char *pstType = NULL;
 
     getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
     if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)

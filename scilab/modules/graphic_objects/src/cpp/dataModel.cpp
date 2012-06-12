@@ -22,9 +22,9 @@ DataModel *DataModel::m_me = NULL;
 
 BOOL DataModel::setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements)
 {
-    Data3D* dataObject;
-    int property;
-    int returnValue;
+    Data3D* dataObject = NULL;
+    int property = 0;
+    int returnValue = 0;
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
 
@@ -37,8 +37,8 @@ BOOL DataModel::setGraphicObjectProperty(char const* _pstID, char const* _pstNam
 
 void DataModel::getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData)
 {
-    Data3D* dataObject;
-    int property;
+    Data3D* dataObject = NULL;
+    int property = 0;
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
 
@@ -49,8 +49,8 @@ void DataModel::getGraphicObjectProperty(char const* _pstID, char const* _pstNam
 
 void DataModel::getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData)
 {
-    Data3D* dataObject;
-    int property;
+    Data3D* dataObject = NULL;
+    int property = 0;
 
     property = (*m_dataMap)[std::string(_pstID)]->getPropertyFromName(_pstName);
 
@@ -63,7 +63,7 @@ void DataModel::getGraphicObjectIntProperty(char const* _pstID, char const* _pst
 
 char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
 {
-    Data3D* newObject;
+    Data3D* newObject = NULL;
 
     /*
      * To be implemented as the Java graphicObject class' similar function

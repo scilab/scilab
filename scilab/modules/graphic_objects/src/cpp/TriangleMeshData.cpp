@@ -180,9 +180,7 @@ unsigned int TriangleMeshData::getNumVertices(void)
  */
 int TriangleMeshData::setNumVertices(unsigned int numVertices)
 {
-    int result;
-
-    result = 1;
+    int result = 1;
 
     if (numVertices == 0 && numberVertices > 0)
     {
@@ -260,9 +258,7 @@ unsigned int TriangleMeshData::getNumIndices(void)
 
 int TriangleMeshData::setNumIndices(unsigned int numIndices)
 {
-    int result;
-
-    result = 1;
+    int result = 1;
 
     if (numIndices != this->numberTriangles)
     {

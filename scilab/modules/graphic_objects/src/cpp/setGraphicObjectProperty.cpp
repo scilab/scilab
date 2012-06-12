@@ -34,9 +34,9 @@ BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void *_p
 {
     bool result = false;
 
-    double doubleValue;
-    int intValue;
-    BOOL boolValue;
+    double doubleValue = 0.;
+    int intValue = 0;
+    BOOL boolValue = FALSE;
 
     // Special Case for data, no need to go through Java.
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)

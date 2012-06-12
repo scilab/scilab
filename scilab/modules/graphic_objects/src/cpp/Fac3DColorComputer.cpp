@@ -254,8 +254,8 @@ int Fac3DColorComputer::isFacetColorValid(int facetIndex)
 
 double Fac3DColorComputer::computeAverageValue(int facetIndex)
 {
-    double averageValue;
-    int i;
+    double averageValue = 0.;
+    int i = 0;
 
     averageValue = 0.0;
 
@@ -271,11 +271,11 @@ double Fac3DColorComputer::computeAverageValue(int facetIndex)
 
 void Fac3DColorComputer::computeMinMaxValues(void)
 {
-    double maxDouble;
-    double tmpValueMin;
-    double tmpValueMax;
+    double maxDouble = 0.;
+    double tmpValueMin = 0.;
+    double tmpValueMax = 0.;
 
-    int i;
+    int i = 0;
 
     maxDouble = DecompositionUtils::getMaxDoubleValue();
 
@@ -293,7 +293,7 @@ void Fac3DColorComputer::computeMinMaxValues(void)
 
 void Fac3DColorComputer::computeFacetMinMax(int facetIndex, double* currentMin, double* currentMax)
 {
-    double value;
+    double value = 0.;
 
     for (int i = 0; i < numColorsPerFacet; i++)
     {

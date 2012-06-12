@@ -102,13 +102,13 @@ void NgonGridMatplotData::getDataProperty(int property, void **_pvData)
  */
 int NgonGridMatplotData::setGridSize(int const* gridSize)
 {
-    int newXSize;
-    int newYSize;
-    int xModified;
-    int yModified;
-    int zModified;
-    int result;
-    int formerGridSize;
+    int newXSize = 0;
+    int newYSize = 0;
+    int xModified = 0;
+    int yModified = 0;
+    int zModified = 0;
+    int result = 0;
+    int formerGridSize = 0;
 
     double* newXCoordinates = NULL;
     double* newYCoordinates = NULL;
@@ -286,16 +286,14 @@ double* NgonGridMatplotData::getBounds(void)
 
 void NgonGridMatplotData::computeCoordinates(void)
 {
-    int i;
-
     if (type == 0)
     {
-        for (i = 0; i < xSize; i++)
+        for (int i = 0; i < xSize; i++)
         {
             xCoordinates[i] = 0.5 + (double) i;
         }
 
-        for (i = 0; i < ySize; i++)
+        for (int i = 0; i < ySize; i++)
         {
             yCoordinates[i] = 0.5 + (double) i;
         }
@@ -307,12 +305,10 @@ void NgonGridMatplotData::computeCoordinates(void)
     }
     else
     {
-        double min;
-        double max;
-        int numElements;
+        double min = boundingRectangle[0];
+        double max = boundingRectangle[1];
+        int numElements = 0;
 
-        min = boundingRectangle[0];
-        max = boundingRectangle[1];
 
         if (xSize == 1)
         {
@@ -323,7 +319,7 @@ void NgonGridMatplotData::computeCoordinates(void)
             numElements = xSize - 1;
         }
 
-        for (i = 0; i < xSize; i++)
+        for (int i = 0; i < xSize; i++)
         {
             xCoordinates[i] = min + (double) i * (max - min) / (double) numElements;
         }
@@ -340,7 +336,7 @@ void NgonGridMatplotData::computeCoordinates(void)
             numElements = ySize - 1;
         }
 
-        for (i = 0; i < ySize; i++)
+        for (int i = 0; i < ySize; i++)
         {
             yCoordinates[i] = min + (double) i * (max - min) / (double) numElements;
         }

@@ -14,13 +14,10 @@
 
 void Triangulator::determineSmallestAxis(void)
 {
-    double minval;
+    double minval = 0.;
 
-    Vector3d min;
-    Vector3d max;
-
-    min = inputPoints[0];
-    max = min;
+    Vector3d min = inputPoints[0];
+    Vector3d max = min;
 
     for (int i = 1 ; i < numPoints; i++)
     {
@@ -92,11 +89,10 @@ void Triangulator::fillPoints(void)
 double Triangulator::computeArea(void)
 {
     double area = 0.0;
-    int ip1;
 
     for (int i = 0; i < numPoints; i++)
     {
-        ip1 = (i+1) % numPoints;
+        int ip1 = (i+1) % numPoints;
 
         area += ((points[i].x*points[ip1].y)-(points[i].y*points[ip1].x));
     }
@@ -126,7 +122,7 @@ void Triangulator::fillVertexIndices(void)
 
 void Triangulator::fillConvexVerticesList(void)
 {
-    double dp;
+    double dp = 0.;
     std::list<int>::iterator vi, vim1, vip1;
 
     flagList.resize(vertexIndices.size());
@@ -153,7 +149,7 @@ void Triangulator::fillConvexVerticesList(void)
 void Triangulator::fillEarList(void)
 {
     std::list<int>::iterator vi;
-    int res;
+    int res = 0;
 
     for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
     {
@@ -243,8 +239,8 @@ int Triangulator::isAnEar(std::list<int>::iterator vertex)
 /* To do: streamline */
 void Triangulator::updateVertex(std::list<int>::iterator vertex)
 {
-    double dp;
-    int res;
+    double dp = 0.;
+    int res = 0;
 
     std::list<int>::iterator pred, succ;
 
@@ -312,17 +308,11 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
 
 double Triangulator::computeDotProduct(int im1, int i, int ip1)
 {
-    double dp;
-    Vector3d eim1;
-    Vector3d ei;
-    Vector3d eim1p;
-
-    eim1 = minus(points[i], points[im1]);
-    ei = minus(points[ip1], points[i]);
-
+    double dp = 0.;
+    Vector3d eim1 = minus(points[i], points[im1]);
+    Vector3d ei = minus(points[ip1], points[i]);
+    Vector3d eim1p = perpendicularVector(eim1);
     /* Ought to use cross product */
-    eim1p = perpendicularVector(eim1);
-
     dp = dot(eim1p, ei);
 
     return dp;
@@ -330,9 +320,9 @@ double Triangulator::computeDotProduct(int im1, int i, int ip1)
 
 int Triangulator::pointInTriangle(Vector3d A, Vector3d B, Vector3d C, Vector3d P)
 {
-    double dot00, dot01, dot02, dot11, dot12;
-    double invDenom;
-    double u, v;
+    double dot00 = 0., dot01 = 0., dot02 = 0., dot11 = 0., dot12 = 0.;
+    double invDenom = 0.;
+    double u = 0., v = 0.;
 
     Vector3d v0, v1, v2;
 
@@ -395,7 +385,7 @@ Triangulator::Triangulator(void)
 
 void Triangulator::initialize(void)
 {
-    double area;
+    double area = 0.;
 
     numPoints = (int)inputPoints.size();
 
@@ -430,7 +420,7 @@ void Triangulator::addPoint(double x, double y, double z)
 
 void Triangulator::triangulate(void)
 {
-    int triIndex;
+    int triIndex = 0;
     std::list<int>::iterator it;
     std::list<int>::iterator vertex, pred, succ;
 

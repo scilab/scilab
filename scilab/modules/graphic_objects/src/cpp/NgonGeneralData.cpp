@@ -196,7 +196,7 @@ void NgonGeneralData::setData(double const* data, int numElements)
 
 void NgonGeneralData::setDataX(double const* data, int numElements)
 {
-    double* xCoordinates;
+    double* xCoordinates = NULL;
 
     xCoordinates = coordinates;
 
@@ -222,7 +222,7 @@ void NgonGeneralData::setDataY(double const* data, int numElements)
 
 void NgonGeneralData::setDataZ(double const* data, int numElements)
 {
-    double* zCoordinates;
+    double* zCoordinates = NULL;
 
     zCoordinates = &coordinates[2 * numGons * numVerticesPerGon];
 
@@ -242,9 +242,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
 {
     double* newCoordinates = NULL;
     double* newColorValues = NULL;
-    int result;
-
-    result = 1;
+    int result = 1;
 
     /* Test whether the number of colors is valid */
     if ((numElementsArray[2] != numElementsArray[0]*numElementsArray[1]) &&

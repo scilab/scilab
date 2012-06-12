@@ -26,9 +26,9 @@ Plot3DDecomposer* Plot3DDecomposer::decomposer = NULL;
 
 void Plot3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -49,7 +49,7 @@ void Plot3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, i
 
 double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j)
 {
-    double zij;
+    double zij = 0.;
 
     zij = z[numX*j+i];
 
@@ -58,7 +58,7 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
 
 double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j, int logUsed)
 {
-    double zij;
+    double zij = 0.;
 
     zij = z[numX*j+i];
 
@@ -88,11 +88,11 @@ void Plot3DDecomposer::getFacetTriangles(double* x, double* y, double* z, int nu
  */
 void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parentFigure;
-    char* parent;
+    char* parentFigure = NULL;
+    char* parent = NULL;
 
-    double* z;
-    double* colormap;
+    double* z = NULL;
+    double* colormap = NULL;
 
 
     int numX = 0;
@@ -133,16 +133,16 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
 
 int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
 
     int numX = 0;
     int* piNumX = &numX;
     int numY = 0;
     int* piNumY = &numY;
 
-    int numberIndices;
+    int numberIndices = 0;
 
     Plot3DDecomposer* decomposer = get();
 
@@ -189,47 +189,43 @@ int Plot3DDecomposer::getWireIndicesSize(char* id)
  */
 int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* x;
-    double* y;
-    double* z;
+    double* x = NULL;
+    double* y = NULL;
+    double* z = NULL;
 
     int numX = 0;
     int* piNumX = &numX;
     int numY = 0;
     int* piNumY = &numY;
 
-    /* x-axis and y-axis indices (respectively) */
-    int i;
-    int j;
+    int previousRowValid = 0;
+    int currentRowValid = 0;
+    int nextRowValid = 0;
 
-    int previousRowValid;
-    int currentRowValid;
-    int nextRowValid;
+    int previousColumnValid = 0;
+    int currentColumnValid = 0;
+    int nextColumnValid = 0;
 
-    int previousColumnValid;
-    int currentColumnValid;
-    int nextColumnValid;
+    int lowerLeftZValid = 0;
+    int lowerRightZValid = 0;
+    int upperLeftZValid = 0;
+    int upperRightZValid = 0;
 
-    int lowerLeftZValid;
-    int lowerRightZValid;
-    int upperLeftZValid;
-    int upperRightZValid;
+    int jm1HorizontalEdgeZValid = 0;
+    int im1VerticalEdgeZValid = 0;
+    int jHorizontalEdgeZValid = 0;
+    int iVerticalEdgeZValid = 0;
+    int jp1HorizontalEdgeZValid = 0;
+    int ip1VerticalEdgeZValid = 0;
 
-    int jm1HorizontalEdgeZValid;
-    int im1VerticalEdgeZValid;
-    int jHorizontalEdgeZValid;
-    int iVerticalEdgeZValid;
-    int jp1HorizontalEdgeZValid;
-    int ip1VerticalEdgeZValid;
+    int ij = 0;
+    int ip1j = 0;
+    int ijp1 = 0;
+    int ip1jp1 = 0;
+    int ijm1 = 0;
+    int ip1jm1 = 0;
 
-    int ij;
-    int ip1j;
-    int ijp1;
-    int ip1jp1;
-    int ijm1;
-    int ip1jm1;
-
-    int firstVertexIndex;
+    int firstVertexIndex = 0;
 
     int bufferOffset = 0;
 
@@ -258,7 +254,8 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     /* Set to 0 as it is not relevant for the first row iteration */
     jm1HorizontalEdgeZValid = 0;
 
-    for (j = 0; j < numY-1; j++)
+    /* x-axis and y-axis indices (respectively) */
+    for (int j = 0; j < numY-1; j++)
     {
         nextRowValid = DecompositionUtils::isValid(y[j+1]);
 
@@ -299,7 +296,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         /* Set to 0 as not relevant for the first column iteration */
         im1VerticalEdgeZValid = 0;
 
-        for (i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX-1; i++)
         {
 #if !PER_VERTEX_VALUES
             firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
@@ -430,7 +427,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
 
     ij = getPointIndex(numX, numY, 0, numY-1);
 
-    for (i = 0; i < numX-1; i++)
+    for (int i = 0; i < numX-1; i++)
     {
         nextColumnValid = DecompositionUtils::isValid(x[i+1]);
 

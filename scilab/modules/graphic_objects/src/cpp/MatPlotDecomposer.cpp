@@ -23,7 +23,7 @@ extern "C" {
 
 int MatPlotDecomposer::getTextureWidth(char* id)
 {
-  int width;
+  int width = 0;
   int* piWidth = &width;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piWidth);
   return width - 1;
@@ -32,7 +32,7 @@ int MatPlotDecomposer::getTextureWidth(char* id)
 
 int MatPlotDecomposer::getTextureHeight(char* id)
 {
-  int height;
+  int height = 0;
   int* piHeight = &height;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piHeight);
   return height - 1;
@@ -41,7 +41,7 @@ int MatPlotDecomposer::getTextureHeight(char* id)
 
 int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 {
-  double* value;
+  double* value = NULL;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &value);
   int textureWidth = getTextureWidth(id);
   int textureHeight = getTextureHeight(id);
@@ -49,9 +49,9 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
   if (dataSize * 4 == bufferLength)
   {
 
-    char* parentFigure;
-    double* colormap;
-    int colormapSize;
+    char* parentFigure = NULL;
+    double* colormap = NULL;
+    int colormapSize = 0;
     int* piColormapSize = &colormapSize;
 
     getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
@@ -78,13 +78,13 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
 
 int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
-  double* value;
+  double* value = NULL;
   getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &value);
   if (width * height * 4 == bufferLength)
   {
-    char* parentFigure;
-    double* colormap;
-    int colormapSize;
+    char* parentFigure = NULL;
+    double* colormap = NULL;
+    int colormapSize = 0;
     int* piColormapSize = &colormapSize;
     getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);

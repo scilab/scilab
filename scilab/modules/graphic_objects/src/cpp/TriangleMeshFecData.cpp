@@ -123,9 +123,7 @@ unsigned int TriangleMeshFecData::getNumIndices(void)
 
 int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
 {
-    int result;
-
-    result = 1;
+    int result = 1;
 
     if (numIndices != this->numberTriangles)
     {

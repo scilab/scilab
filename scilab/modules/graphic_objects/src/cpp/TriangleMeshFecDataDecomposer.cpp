@@ -35,16 +35,15 @@ int TriangleMeshFecDataDecomposer::getDataSize(char* id)
 
 void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
-    double* coordinates;
+    double* coordinates = NULL;
 
     int numVertices = 0;
     int* piNumVertices = &numVertices;
-    int i;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**) &coordinates);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**) &piNumVertices);
 
-    for (i = 0; i < numVertices; i++)
+    for (int i = 0; i < numVertices; i++)
     {
         buffer[elementsSize*i] = (float)coordinates[3*i];
         buffer[elementsSize*i +1] = (float)coordinates[3*i+1];
@@ -60,25 +59,24 @@ void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bu
 
 void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
 {
-    char* parentFigure;
+    char* parentFigure = NULL;
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
-    int* colorRange;
+    int* colorRange = NULL;
 
-    double colorsNumber;
-    double scale;
-    double t;
+    double colorsNumber = 0.;
+    double scale = 0.;
+    double t = 0.;
 
-    double* values;
-    double* zBounds;
+    double* values = NULL;
+    double* zBounds = NULL;
 
-    double minValue;
-    double maxValue;
+    double minValue = 0.;
+    double maxValue = 0.;
 
     int numVertices = 0;
     int* piNumVertices = &numVertices;
 
-    int i;
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
@@ -123,7 +121,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
 
     if (maxValue == minValue)
     {
-        for (i = 0; i < numVertices; i++)
+        for (int i = 0; i < numVertices; i++)
         {
             buffer[bufferOffset++] = (float)minValue;
             buffer[bufferOffset++] = 0;
@@ -133,7 +131,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
     }
     else
     {
-        for (i = 0; i < numVertices; i++)
+        for (int i = 0; i < numVertices; i++)
         {
             buffer[bufferOffset++] = (float)(t + scale * (values[i] - minValue) / (maxValue - minValue));
             buffer[bufferOffset++] = 0;
@@ -145,16 +143,16 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
 
 void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parent;
-    char* parentFigure;
+    char* parent = NULL;
+    char* parentFigure = NULL;
 
-    double* values;
-    double* zBounds;
-    double* colormap;
+    double* values = NULL;
+    double* zBounds = NULL;
+    double* colormap = NULL;
 
-    double minValue;
-    double maxValue;
-    double valueRange;
+    double minValue = 0.;
+    double maxValue = 0.;
+    double valueRange = 0.;
 
     float minColor[3];
     float maxColor[3];
@@ -165,12 +163,11 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
     int numVertices = 0;
     int* piNumVertices = &numVertices;
 
-    int minColorIndex;
-    int maxColorIndex;
+    int minColorIndex = 0;
+    int maxColorIndex = 0;
 
-    int* colorRange;
+    int* colorRange = NULL;
     int useOutsideColors = 0;
-    int i;
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
@@ -255,7 +252,7 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
         valueRange = maxValue - minValue;
     }
 
-    for (i = 0; i < numVertices; i++)
+    for (int i = 0; i < numVertices; i++)
     {
         bufferOffset = elementsSize*i;
 
@@ -295,19 +292,12 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
 
 void TriangleMeshFecDataDecomposer::computeMinMaxValues(double* values, int numValues, double* valueMin, double* valueMax)
 {
-    double maxDouble;
-    double tmpValueMin;
-    double tmpValueMax;
-    double value;
+    double maxDouble = DecompositionUtils::getMaxDoubleValue();
+    double tmpValueMin = maxDouble;
+    double tmpValueMax = -maxDouble;
+    double value = 0.;
 
-    int i;
-
-    maxDouble = DecompositionUtils::getMaxDoubleValue();
-
-    tmpValueMin = maxDouble;
-    tmpValueMax = -maxDouble;
-
-    for (i = 0; i < numValues; i++)
+    for (int i = 0; i < numValues; i++)
     {
         value = values[i];
 
@@ -338,21 +328,19 @@ int TriangleMeshFecDataDecomposer::getIndicesSize(char* id)
 
 int TriangleMeshFecDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* coordinates;
-    double* values;
+    double* coordinates = NULL;
+    double* values = NULL;
 
     int numIndices = 0;
     int* piNumIndices = &numIndices;
     int numVertices = 0;
     int* piNumVertices = &numVertices;
 
-    int* triangleIndices;
+    int* triangleIndices = NULL;
 
-    int i;
-
-    int v0;
-    int v1;
-    int v2;
+    int v0 = 0;
+    int v1 = 0;
+    int v2 = 0;
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumIndices);
@@ -369,7 +357,7 @@ int TriangleMeshFecDataDecomposer::fillIndices(char* id, int* buffer, int buffer
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_INDICES__, jni_int_vector, (void**) &triangleIndices);
 
-    for (i = 0; i < numIndices; i++)
+    for (int i = 0; i < numIndices; i++)
     {
         v0 = triangleIndices[3*i];
         v1 = triangleIndices[3*i+1];
@@ -456,19 +444,18 @@ int TriangleMeshFecDataDecomposer::getWireIndicesSize(char* id)
  */
 int TriangleMeshFecDataDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    double* coordinates;
-    double* values;
+    double* coordinates = NULL;
+    double* values = NULL;
 
     int numVertices = 0;
     int* piNumVertices = &numVertices;
     int numIndices = 0;
     int* piNumIndices = &numIndices;
-    int* triangleIndices;
+    int* triangleIndices = NULL;
 
-    int i;
-    int v0;
-    int v1;
-    int v2;
+    int v0 = 0;
+    int v1 = 0;
+    int v2 = 0;
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumIndices);
@@ -485,7 +472,7 @@ int TriangleMeshFecDataDecomposer::fillWireIndices(char* id, int* buffer, int bu
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_INDICES__, jni_int_vector, (void**) &triangleIndices);
 
-    for (i = 0; i < numIndices; i++)
+    for (int i = 0; i < numIndices; i++)
     {
         v0 = triangleIndices[3*i];
         v1 = triangleIndices[3*i+1];
