@@ -25,7 +25,7 @@
       This page describes the the most important values returned in the
       optional lhs <link linkend="ode">ode</link> function arguments <literal>w</literal> and
       <literal>iw</literal>.
-      These are valid only for the <literal>lsode</literal> 
+      These are valid only for the <literal>lsode</literal>, 
       <literal>lsoda</literal> and  <literal>lsodar</literal> ode solver.
       For more details, one can look at the solvers fortran code comments in <literal>SCI/modules/differential_equations/src/fortran/lsod*.f</literal>.
       </para>
@@ -47,7 +47,7 @@
         <listitem>
           <para> the current value of the independent variable
 	    which the solver has actually reached, i.e. the
-	    current internal mesh point in t.  on output, tcur
+	    current internal mesh point in t.  On output, tcur
 	    will always be at least as far as the argument
 	    t, but may be farther (if interpolation was done).</para>
         </listitem>
@@ -58,11 +58,11 @@
           <para> a tolerance scale factor, greater than 1.0,
 	    computed when a request for too much accuracy was
 	    detected (istate = -3 if detected at the start of
-	    the problem, istate = -2 otherwise).  if itol is
+	    the problem, istate = -2 otherwise).  If itol is
 	    left unaltered but rtol and atol are uniformly
 	    scaled up by a factor of <literal>tolsf=w(14)</literal> for the next call,
 	    then the solver is deemed likely to succeed.
-	    (the user may also ignore <literal>tolsf</literal> and alter the
+	    (The user may also ignore <literal>tolsf</literal> and alter the
 	    tolerance parameters in any other way appropriate.)</para>
         </listitem>
       </varlistentry>
@@ -126,7 +126,7 @@
           <para> the length of <literal>w</literal> actually required, assuming
 	    that the length of rwork is to be fixed for the
 	    rest of the problem, and that switching may occur.
-	    this is defined on normal returns and on an illegal
+	    This is defined on normal returns and on an illegal
 	    input return for insufficient storage.</para>
         </listitem>
       </varlistentry>
@@ -136,14 +136,14 @@
           <para> the length of <literal>iw</literal> actually required, assuming
 	    that the length of <literal>iw</literal> is to be fixed for the
 	    rest of the problem, and that switching may occur.
-	    this is defined on normal returns and on an illegal
+	    This is defined on normal returns and on an illegal
 	    input return for insufficient storage.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>iw(19)</term>
         <listitem>
-          <para> the method indicator for the last successful step..
+          <para> the method indicator for the last successful step.
 	    1 means adams (nonstiff), 2 means bdf (stiff). This value is not significant with
 	    <literal>lsode</literal> solver.</para>
         </listitem>
@@ -151,10 +151,10 @@
       <varlistentry>
         <term>iw(20)</term>
         <listitem>
-          <para> the current method indicator..
+          <para> the current method indicator.
 	    1 means adams (nonstiff), 2 means bdf (stiff).
-	    this is the method to be attempted
-	    on the next step.  thus it differs from <literal>iw(19)</literal>
+	   This is the method to be attempted
+	    on the next step.  Thus it differs from <literal>iw(19)</literal>
 	    only if a method switch has just been made. This value is not significant with
 	    <literal>lsode</literal> solver.</para>
         </listitem>
