@@ -32,7 +32,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname, unsigned long l)
 {
-    static int stkAdr, nbCol, nbRow;
+    static int stkAdr = 0, nbCol = 0, nbRow = 0;
 
     char *Output = NULL;
 

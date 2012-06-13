@@ -25,7 +25,7 @@ int GetUicontrolString(char *sciObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
-    char **pstString;
+    char **pstString = NULL;
 
     getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING_SIZE__), jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING__), jni_string_vector, (void **) &pstString);

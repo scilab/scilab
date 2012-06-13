@@ -25,7 +25,7 @@ extern "C"
 int SetConsoleShowHiddenHandles(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
-    BOOL status;
+    BOOL status = FALSE;
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, const_cast < char *>("ShowHiddenHandles"));
 

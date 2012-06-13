@@ -15,7 +15,7 @@
 
 int GetUicontrolSliderStep(char *sciObjUID)
 {
-  double *sliderStep;
+  double *sliderStep = NULL;
   int status = FALSE;
 
   getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), jni_double_vector, (void**) &sliderStep);

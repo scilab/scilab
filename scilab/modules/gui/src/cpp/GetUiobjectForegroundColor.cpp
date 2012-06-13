@@ -16,7 +16,7 @@
 
 int GetUiobjectForegroundColor(char* sciObjUID)
 {
-    double *tmp;
+    double *tmp = NULL;
     int status = 0;
 
     getGraphicObjectProperty(sciObjUID,  const_cast<char*>(__GO_UI_FOREGROUNDCOLOR__), jni_double_vector, (void **) &tmp);

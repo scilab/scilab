@@ -25,7 +25,7 @@ extern "C"
 
 int GetUicontrolStyle(char *sciObjUID)
 {
-    char *pstrStyle;
+    char *pstrStyle = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_string, (void **) &pstrStyle);
 

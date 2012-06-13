@@ -30,7 +30,7 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_printfigure(char *fname, unsigned long l)
 {
-    static int l1, n1, m1;
+    static int l1 = 0, n1 = 0, m1 = 0;
     int num_win = -2;
     int *status = NULL;
 

@@ -15,7 +15,7 @@
 int SetUimenuChecked(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
-    BOOL status;
+    BOOL status = FALSE;
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "Checked");
     if (b == NOT_A_BOOLEAN_VALUE)
