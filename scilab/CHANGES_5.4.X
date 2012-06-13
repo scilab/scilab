@@ -862,6 +862,8 @@ t.
 
 * Bug #11223 fixed - Deletion of datatips.
 
+* Bug #11265 fixed - msprintf crashed on a huge string.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
