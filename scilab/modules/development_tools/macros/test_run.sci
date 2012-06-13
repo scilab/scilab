@@ -26,7 +26,8 @@ function test_run_result = test_run(varargin)
     return;
   end
 
-  status.details_failed         = "";
+  status.detailled_failures     = "";
+  status.testsuites             = [];
   status.test_count             = 0;
   status.test_passed_count      = 0;
   status.test_failed_count      = 0;
@@ -49,7 +50,7 @@ function test_run_result = test_run(varargin)
   params.show_error             = %f;
 
 // =======================================================
-// Gestion des types de tests à lancer et des options
+// Management of the kind of tests to run and the options
 // =======================================================
   if rhs >= 3 then
 
@@ -116,6 +117,13 @@ function test_run_result = test_run(varargin)
 
       return;
     end
+
+    if rhs == 4 then
+        params.exportFile = varargin(4);
+        // Doing the XML export, force the display of the error and diff
+        params.show_diff = %t;
+        params.show_error = %t; 
+    end
   end
 
 
@@ -124,7 +132,7 @@ function test_run_result = test_run(varargin)
     printf("\n");
   end
 // =======================================================
-// Gestion des tests à lancer
+// Management of the tests to run
 // =======================================================
   if (rhs == 0) ..
            | ((rhs == 1) & (varargin(1)==[])) ..
@@ -150,7 +158,8 @@ function test_run_result = test_run(varargin)
       result              = test_module(params);
 
       if params.reference <> "list" then
-        status.details_failed       = [status.details_failed; result.details_failed];
+        status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
+        status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
         status.test_count           = status.test_count + result.test_count;
         status.test_passed_count    = status.test_passed_count + result.test_passed_count;
         status.test_failed_count    = status.test_failed_count + result.test_failed_count;
@@ -166,6 +175,7 @@ function test_run_result = test_run(varargin)
   elseif (rhs == 1) ..
         | ((rhs == 2) & (varargin(2)==[])) ..
         | ((rhs == 3) & (varargin(2)==[])) ..
+        | ((rhs == 4) & (varargin(2)==[])) ..
         | ( ~ isempty(params.skip_mat)) then
 
 // One input argument
@@ -188,7 +198,8 @@ function test_run_result = test_run(varargin)
 
       status.test_count   = status.test_count + result.test_count;
       if params.reference <> "list" then
-        status.details_failed       = [status.details_failed; result.details_failed];
+        status.detailled_failures       = [status.detailled_failures; result.detailled_failures];
+        status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
         status.test_passed_count    = status.test_passed_count + result.test_passed_count;
         status.test_failed_count    = status.test_failed_count + result.test_failed_count;
         status.test_skipped_count   = status.test_skipped_count + result.test_skipped_count;
@@ -199,7 +210,7 @@ function test_run_result = test_run(varargin)
         status.list                 = [status.list; result.list];
       end
     end
-  elseif or(rhs==[2 3]) then
+  elseif or(rhs==[2 3 4]) then
 // Two input arguments
 // test_run(<module_name>,<test_name>)
 // test_run(<module_name>,[<test_name_1>,<test_name_2>] )
@@ -221,7 +232,8 @@ function test_run_result = test_run(varargin)
 
     if params.reference <> "list" then
       status.totalTime            = result.totalTime;
-      status.details_failed       = [status.details_failed; result.details_failed];
+      status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
+      status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
       status.test_count           = status.test_count + result.test_count;
       status.test_passed_count    = status.test_passed_count + result.test_passed_count;
       status.test_failed_count    = status.test_failed_count + result.test_failed_count;
@@ -253,6 +265,10 @@ function test_run_result = test_run(varargin)
     test_failed_percent  = 0;
   end
 
+  if isfield(params, "exportFile") then
+     exportToXUnitFormat(params.exportFile, status.testsuites);
+  end
+
   if params.full_summary then
     printf("\n");
     printf("   --------------------------------------------------------------------------\n");
@@ -264,9 +280,14 @@ function test_run_result = test_run(varargin)
     printf("   length             %4.2f sec \n", status.totalTime);
     printf("   --------------------------------------------------------------------------\n");
 
+    if isfield(params, "exportFile") then
+      printf("   Export to          %s \n", params.exportFile);
+      printf("   --------------------------------------------------------------------------\n");
+    end
+
     if status.test_failed_count > 0 then
       printf("   Details\n\n");
-      printf("%s\n",status.details_failed);
+      printf("%s\n",status.detailled_failures);
       printf("\n");
       printf("   --------------------------------------------------------------------------\n");
     end
@@ -290,6 +311,7 @@ endfunction
 
 function status = test_module(_params)
   name = splitModule(_params.moduleName);
+
   if with_module(name(1)) then
 // It's a scilab internal module
     module.path = pathconvert(SCI + "/modules/" + name(1), %F);
@@ -353,7 +375,7 @@ function status = test_module(_params)
   end
 
   //initialize counter
-  details_failed      = "";
+  detailled_failures      = "";
   test_count          = size(tests, "r");
   test_passed_count   = 0;
   test_failed_count   = 0;
@@ -368,6 +390,12 @@ function status = test_module(_params)
       moduleName = "SCIHOME" + part(moduleName,length(SCIHOME)+1:length(moduleName));
     end
   end
+
+ // For the XML export
+  testsuite.name=moduleName
+  testsuite.time=0
+  testsuite.tests=0
+  testsuite.errors=0
 
   //don't test only return list of tests.
   if _params.reference == "list" then
@@ -411,6 +439,11 @@ function status = test_module(_params)
 
     result = test_single(_params, tests(i,1), tests(i,2));
 
+    testsuite.tests = testsuite.tests + 1
+
+    testsuite.testcase(i).name=tests(i,2);
+//    testsuite.testcase(i).time= DONT HAVE YET
+
     if result.id == 0 then
       printf("passed\n");
       test_passed_count = test_passed_count + 1;
@@ -424,10 +457,15 @@ function status = test_module(_params)
       if result.id < 10 then
         //failed
         test_failed_count = test_failed_count + 1;
-        details_failed = [ details_failed ; sprintf("   TEST : [%s] %s", _params.moduleName, tests(i,2))];
-        details_failed = [ details_failed ; sprintf("   %s", result.message) ];
-        details_failed = [ details_failed ; result.details ];
-        details_failed = [ details_failed ; "" ];
+        detailled_failures = [ detailled_failures ; sprintf("   TEST : [%s] %s", _params.moduleName, tests(i,2))];
+        detailled_failures = [ detailled_failures ; sprintf("   %s", result.message) ];
+        detailled_failures = [ detailled_failures ; result.details ];
+        detailled_failures = [ detailled_failures ; "" ];
+
+        testsuite.errors = testsuite.errors + 1
+        testsuite.testcase(i).failure.type=result.message
+        testsuite.testcase(i).failure.content=result.details
+
       elseif (result.id >= 10) & (result.id < 20) then
 // skipped
         test_skipped_count = test_skipped_count + 1;
@@ -436,6 +474,9 @@ function status = test_module(_params)
   end
 
   status.totalTime = toc();
+
+  testsuite.time=status.totalTime;
+
   clearglobal TICTOC;
   status.test_passed_count  = test_passed_count;
   status.test_failed_count  = test_failed_count;
@@ -443,7 +484,8 @@ function status = test_module(_params)
 
 // Summary
   status.test_count     = test_count;
-  status.details_failed   = details_failed;
+  status.detailled_failures   = detailled_failures;
+  status.testsuite   = testsuite;
 endfunction
 
 function status = test_single(_module, _testPath, _testName)
@@ -746,12 +788,6 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
-      else // Remove messages due to JOGL2 RC8
-        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
-        txt(toRemove) = [];
-        if isempty(txt) then
-          deletefile(tmp_err);
-        end      
       end
     end
   end
@@ -803,6 +839,11 @@ if try_catch & grep(dia,"<--Error on the test script file-->") <> [] then
   status.id = 3;
   status.message = "failed: premature end of the test script";
   status.details = details;
+  if params.show_error == %t then
+    status.details = [ status.details; dia($-10:$) ]
+    mprintf("%s\n",dia($-10:$));
+  end
+
   return;
 end
 
@@ -832,6 +873,7 @@ if grep(dia_tmp,"error on test")<>[] then
   status.message = "failed: one or several tests failed";
   status.details = details;
   if params.show_error == %t then
+    status.details = [ status.details; dia($-10:$) ]
     mprintf("%s\n",dia($-10:$));
   end
   return;
@@ -1014,7 +1056,14 @@ function msg = comparethefiles ( filename1 , filename2 )
   msg(3) = "   - "+filename2
   if params.show_diff == %t then
     if getos() <> "Windows" then
-      unix("diff -u " +filename1 + " " +filename2);
+      targetFile=TMPDIR + "/tempdiff.diff";
+      unix("diff -u " +filename1 + " " +filename2 + " > " + targetFile);
+      // unix_g is failing to return the output into a variable
+      fd = mopen(targetFile,"r");
+      msg=[msg; mgetl(fd)]
+      disp(msg(4:$));
+      mclose(fd);
+      deletefile(targetFile);
     end
   end
 endfunction
@@ -1076,4 +1125,37 @@ function value = assign_option(var, option, truevalue, falsevalue)
   else
     value = falsevalue;
   end
+endfunction
+
+
+function result =  exportToXUnitFormat(exportToFile, testsuites)
+         doc = xmlDocument(exportToFile);
+         root = xmlElement(doc, "testsuites");
+         for i=1:size(testsuites, "*") // Export module by module
+          module = testsuites(i);
+          root.children(i) = xmlElement(doc,"testsuite");
+          root.children(i).attributes.name = module.name;
+
+          root.children(i).attributes.time  = string(module.time);
+
+          root.children(i).attributes.tests = string(module.tests);
+          root.children(i).attributes.errors = string(module.errors);
+
+          for j=1:size(module.testcase,"*") // Export test by test
+           root.children(i).children(j) = xmlElement(doc,"testcase");
+           unitTest = module.testcase(j);
+           root.children(i).children(j).attributes.name = unitTest.name;
+
+           if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
+             root.children(i).children(j).children(1) = xmlElement(doc,"failure");
+             root.children(i).children(j).children(1).attributes.type = unitTest.failure.type;
+             root.children(i).children(j).children(1).content = unitTest.failure.content;
+           end
+          end
+         end
+         // if failure
+         doc.root=root
+         xmlWrite(doc);
+
+
 endfunction

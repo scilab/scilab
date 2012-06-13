@@ -38,6 +38,12 @@ Obsolete Functions
 * uipopup function is now obsolete. Please use 'uicontextmenu' instead.
 
 
+Unitary tests
+=============
+
+* A fourth argument added to test_run to export test results to XUnit format.
+
+
 Bug Fixes
 =========
 
