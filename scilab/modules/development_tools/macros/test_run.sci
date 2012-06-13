@@ -49,7 +49,7 @@ function test_run_result = test_run(varargin)
   params.show_error             = %f;
 
 // =======================================================
-// Gestion des types de tests à lancer et des options
+// Gestion des types de tests Ã  lancer et des options
 // =======================================================
   if rhs >= 3 then
 
@@ -124,7 +124,7 @@ function test_run_result = test_run(varargin)
     printf("\n");
   end
 // =======================================================
-// Gestion des tests à lancer
+// Gestion des tests Ã  lancer
 // =======================================================
   if (rhs == 0) ..
            | ((rhs == 1) & (varargin(1)==[])) ..
@@ -743,6 +743,12 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
+      else // Remove messages due to JOGL2 RC8
+        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
+        txt(toRemove) = [];
+        if isempty(txt) then
+          deletefile(tmp_err);
+        end      
       end
     end
   end
