@@ -15,6 +15,8 @@
 #define GRAPHIC_OBJECTS "graphic_objects"
 ;
 Source: bin\sci{#GRAPHIC_OBJECTS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\nosci{#GRAPHIC_OBJECTS}.dll; DestDir: {app}\bin; DestName: sci{#GRAPHIC_OBJECTS}.dll; Components: not ({#COMPN_GRAPHICS})
+;
 Source: modules\{#GRAPHIC_OBJECTS}\jar\org.scilab.modules.{#GRAPHIC_OBJECTS}.jar;DestDir: {app}\modules\{#GRAPHIC_OBJECTS}\jar; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHIC_OBJECTS}\etc\{#GRAPHIC_OBJECTS}.quit; DestDir: {app}\modules\{#GRAPHIC_OBJECTS}\etc; Components: {#COMPN_GRAPHICS}

@@ -115,12 +115,6 @@ double Mini(const double vect[], int n)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciHasFigures(void)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 char **getDictionaryGetProperties(int *sizearray)
 {
     return NULL;

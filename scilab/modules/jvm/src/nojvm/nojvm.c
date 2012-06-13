@@ -21,32 +21,32 @@
 #include "loadOnUseClassPath.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int gw_jvm(void)
+JVM_IMPEXP int gw_jvm(void)
 {
     Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL InitializeJVM(void)
+JVM_IMPEXP BOOL InitializeJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL TerminateJVM(void)
+JVM_IMPEXP BOOL TerminateJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL loadBackGroundClassPath(void)
+JVM_IMPEXP BOOL loadBackGroundClassPath(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL loadOnUseClassPath(char *tag)
+JVM_IMPEXP BOOL loadOnUseClassPath(char *tag)
 {
     return FALSE;
 }
@@ -65,13 +65,13 @@ JVM_IMPEXP void forceCloseMainScilabObject(void)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL ExecuteInitialHooks(void)
+JVM_IMPEXP BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL isItTheDisabledLib(void)
+JVM_IMPEXP BOOL isItTheDisabledLib(void)
 {
     return TRUE;
 }
