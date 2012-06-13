@@ -176,7 +176,7 @@ void Triangulator::removeColinearVertices(void)
 
     if (flipped)
     {
-        for (int i = sievedPoints.size()-1; i >= 0 ; i--)
+        for (size_t i = sievedPoints.size()-1; i >= 0 ; i--)
         {
             points.push_back(sievedPoints[i]);
         }
@@ -190,7 +190,7 @@ void Triangulator::removeColinearVertices(void)
     }
 
     /* Must be updated */
-    numPoints = points.size();
+    numPoints = (int)points.size();
 
     sievedPoints.clear();
 
@@ -257,7 +257,7 @@ void Triangulator::removeDuplicateVertices(void)
      * Must be updated but seems to cause problems.
      * To investigate.
      */
-    numPoints = points.size();
+    numPoints = (int)points.size();
 
     duplicateFlagArray.clear();
     sievedPoints.clear();
@@ -640,7 +640,7 @@ void Triangulator::addPoint(double x, double y, double z)
 
 void Triangulator::triangulate(void)
 {
-    int triIndex;
+    int triIndex = 0;
     std::list<int>::iterator it;
     std::list<int>::iterator vertex, pred, succ;
 
@@ -648,8 +648,8 @@ void Triangulator::triangulate(void)
 
     while (vertexIndices.size() >= 3 && earList.size() > 0)
     {
-        int v0, v1, v2;
-        int v0actual, v1actual, v2actual;
+        int v0 = 0, v1 = 0, v2 = 0;
+        int v0actual = 0, v1actual = 0, v2actual = 0;
 
         it = earList.begin();
 
