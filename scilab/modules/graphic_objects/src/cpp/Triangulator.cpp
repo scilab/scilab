@@ -139,7 +139,8 @@ void Triangulator::removeColinearVertices(void)
 
         dp = computeDotProduct(*vim1, *vi, *vip1);
 
-        if (fabs(dp) < TOLERANCE)
+        if ((!compareVertices(points[*vim1], points[*vi]) && !compareVertices(points[*vi], points[*vip1])) &&
+            fabs(dp) < TOLERANCE)
         {
             numColinear++;
         }
@@ -156,17 +157,17 @@ void Triangulator::removeColinearVertices(void)
 
     if (flipped)
     {
-        // Reverse the actual vertex indices list
+        /* Reverse the actual vertex indices list */
         std::vector<int> tmpList;
 
-        for (int i = 0; i < actualVertexIndices.size(); i++)
+        for (size_t i = 0; i < actualVertexIndices.size(); i++)
         {
             tmpList.push_back(actualVertexIndices[actualVertexIndices.size()-i-1]);
         }
 
         actualVertexIndices.clear();
 
-        for (int i = 0; i < tmpList.size(); i++)
+        for (size_t i = 0; i < tmpList.size(); i++)
         {
             actualVertexIndices.push_back(tmpList[i]);
         }
@@ -176,14 +177,14 @@ void Triangulator::removeColinearVertices(void)
 
     if (flipped)
     {
-        for (size_t i = sievedPoints.size()-1; i >= 0 ; i--)
+        for (size_t i = 0; i < sievedPoints.size(); i++)
         {
-            points.push_back(sievedPoints[i]);
+            points.push_back(sievedPoints[sievedPoints.size()-i-1]);
         }
     }
     else
     {
-        for (int i = 0; i < sievedPoints.size(); i++)
+        for (size_t i = 0; i < sievedPoints.size(); i++)
         {
             points.push_back(sievedPoints[i]);
         }
@@ -210,7 +211,7 @@ void Triangulator::removeDuplicateVertices(void)
 
     duplicateFlagArray.resize(points.size());
 
-    for (int i = 0; i < points.size(); i++)
+    for (size_t i = 0; i < points.size(); i++)
     {
         int ic = (i+1) % points.size();
         int icm1 = i;
@@ -229,7 +230,7 @@ void Triangulator::removeDuplicateVertices(void)
         }
     }
 
-    for (int i = 0; i < points.size(); i++)
+    for (size_t i = 0; i < points.size(); i++)
     {
         if (duplicateFlagArray[i] == 0)
         {
@@ -243,12 +244,12 @@ void Triangulator::removeDuplicateVertices(void)
     points.clear();
 
     /* Copy the two new lists */
-    for (int i = 0; i < tmpActualVertexIndices.size(); i++)
+    for (size_t i = 0; i < tmpActualVertexIndices.size(); i++)
     {
         actualVertexIndices.push_back(tmpActualVertexIndices[i]);
     }
 
-    for (int i = 0; i < sievedPoints.size(); i++)
+    for (size_t i = 0; i < sievedPoints.size(); i++)
     {
         points.push_back(sievedPoints[i]);
     }
@@ -429,8 +430,6 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
 
         if (flagList[*vertex])
         {
-            reflexList.remove(*vertex);
-
             res = isAnEar(vertex);
 
             if (res)
@@ -446,6 +445,7 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
                 }
             }
 
+            reflexList.remove(*vertex);
         }
     }
 }
@@ -650,11 +650,13 @@ void Triangulator::triangulate(void)
     {
         int v0 = 0, v1 = 0, v2 = 0;
         int v0actual = 0, v1actual = 0, v2actual = 0;
+        int vertexIndex = 0;
 
         it = earList.begin();
 
         /* If not found, we should break out of the loop. To be checked. */
         vertex = find(vertexIndices.begin(), vertexIndices.end(), *it);
+        vertexIndex = *vertex;
 
         getAdjacentVertices(vertex, pred, succ);
 
@@ -667,8 +669,7 @@ void Triangulator::triangulate(void)
 
         triIndex = *pred;
         v0 = triIndex;
-        triIndex = *vertex;
-        v1 = triIndex;
+        v1 = vertexIndex;
         triIndex = *succ;
         v2 = triIndex;
 
