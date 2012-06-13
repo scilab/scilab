@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-05-18 16:34+0100\n"
+"Revision-Date: 2012-06-13 10:54+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -1009,73 +1009,73 @@ msgid "ATOMS"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 137
+# File: macros/atoms_gui/atomsGui.sci, line: 138
 msgid "&File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 138
+# File: macros/atoms_gui/atomsGui.sci, line: 139
 msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 139
+# File: macros/atoms_gui/atomsGui.sci, line: 140
 msgid "&Edit"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 140
+# File: macros/atoms_gui/atomsGui.sci, line: 141
 msgid "&?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 149
+# File: macros/atoms_gui/atomsGui.sci, line: 150
 msgid "File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 154
+# File: macros/atoms_gui/atomsGui.sci, line: 155
 msgid "Installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 161
+# File: macros/atoms_gui/atomsGui.sci, line: 162
 msgid "Update List of Packages"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 170
+# File: macros/atoms_gui/atomsGui.sci, line: 171
 msgid "Close"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 177
+# File: macros/atoms_gui/atomsGui.sci, line: 178
 msgid "?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 182
+# File: macros/atoms_gui/atomsGui.sci, line: 183
 msgid "Atoms Help..."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 260
-# File: macros/atoms_gui/atomsGui.sci, line: 334
+# File: macros/atoms_gui/atomsGui.sci, line: 261
+# File: macros/atoms_gui/atomsGui.sci, line: 335
 msgid "List of installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 287
+# File: macros/atoms_gui/atomsGui.sci, line: 288
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 297
+# File: macros/atoms_gui/atomsGui.sci, line: 298
 msgid "Install"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 307
+# File: macros/atoms_gui/atomsGui.sci, line: 308
 msgid "Update"
 msgstr ""
 
@@ -1282,6 +1282,12 @@ msgstr ""
 # File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 158
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 223
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
 msgstr ""
 
 #

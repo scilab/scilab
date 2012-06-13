@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-05-18 16:34+0100\n"
+"Revision-Date: 2012-06-13 10:54+0100\n"
 
 # File: sci_gateway/c/sci_ascii.c, line: 250
 msgid "WARNING : \n"
@@ -78,13 +78,13 @@ msgstr ""
 # File: sci_gateway/c/sci_code2str.c, line: 85
 # File: sci_gateway/c/sci_convstr.c, line: 116
 # File: sci_gateway/c/sci_grep.c, line: 318
-# File: sci_gateway/c/sci_length.c, line: 141
-# File: sci_gateway/c/sci_length.c, line: 157
-# File: sci_gateway/c/sci_length.c, line: 168
-# File: sci_gateway/c/sci_length.c, line: 190
-# File: sci_gateway/c/sci_length.c, line: 303
-# File: sci_gateway/c/sci_length.c, line: 399
-# File: sci_gateway/c/sci_length.c, line: 439
+# File: sci_gateway/c/sci_length.c, line: 146
+# File: sci_gateway/c/sci_length.c, line: 163
+# File: sci_gateway/c/sci_length.c, line: 175
+# File: sci_gateway/c/sci_length.c, line: 200
+# File: sci_gateway/c/sci_length.c, line: 320
+# File: sci_gateway/c/sci_length.c, line: 419
+# File: sci_gateway/c/sci_length.c, line: 462
 # File: sci_gateway/c/sci_part.c, line: 114
 # File: sci_gateway/c/sci_regexp.c, line: 255
 # File: sci_gateway/c/sci_regexp.c, line: 293
@@ -147,10 +147,10 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 76
-# File: sci_gateway/c/sci_length.c, line: 126
+# File: sci_gateway/c/sci_length.c, line: 131
 # File: sci_gateway/c/sci_strchr.c, line: 123
 # File: sci_gateway/c/sci_strcmp.c, line: 63
-# File: sci_gateway/c/sci_strindex.c, line: 297
+# File: sci_gateway/c/sci_strindex.c, line: 318
 # File: sci_gateway/c/sci_strsubst.c, line: 99
 # File: sci_gateway/c/sci_strsubst.c, line: 175
 # File: sci_gateway/c/sci_strsubst.c, line: 213
@@ -267,10 +267,10 @@ msgstr ""
 # File: sci_gateway/c/sci_isascii.c, line: 292
 # File: sci_gateway/c/sci_isdigit.c, line: 57
 # File: sci_gateway/c/sci_isdigit.c, line: 80
-# File: sci_gateway/c/sci_length.c, line: 263
-# File: sci_gateway/c/sci_length.c, line: 313
-# File: sci_gateway/c/sci_length.c, line: 409
-# File: sci_gateway/c/sci_length.c, line: 449
+# File: sci_gateway/c/sci_length.c, line: 278
+# File: sci_gateway/c/sci_length.c, line: 331
+# File: sci_gateway/c/sci_length.c, line: 430
+# File: sci_gateway/c/sci_length.c, line: 473
 # File: sci_gateway/c/sci_strchr.c, line: 78
 # File: sci_gateway/c/sci_strchr.c, line: 133
 # File: sci_gateway/c/sci_strsplit.c, line: 194
@@ -299,24 +299,24 @@ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_length.c, line: 120
-# File: sci_gateway/c/sci_length.c, line: 295
-# File: sci_gateway/c/sci_length.c, line: 391
-# File: sci_gateway/c/sci_length.c, line: 431
+# File: sci_gateway/c/sci_length.c, line: 125
+# File: sci_gateway/c/sci_length.c, line: 311
+# File: sci_gateway/c/sci_length.c, line: 410
+# File: sci_gateway/c/sci_length.c, line: 453
 #, c-format
 msgid "%s: Can not read input argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_length.c, line: 134
-# File: sci_gateway/c/sci_length.c, line: 150
-# File: sci_gateway/c/sci_length.c, line: 179
+# File: sci_gateway/c/sci_length.c, line: 139
+# File: sci_gateway/c/sci_length.c, line: 156
+# File: sci_gateway/c/sci_length.c, line: 187
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_length.c, line: 277
+# File: sci_gateway/c/sci_length.c, line: 293
 #, c-format
 msgid "%s: Wrong type for input argument(s).\n"
 msgstr ""
@@ -455,7 +455,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 168
-# File: sci_gateway/c/sci_strindex.c, line: 301
+# File: sci_gateway/c/sci_strindex.c, line: 322
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Row vector of strings or column "
@@ -463,7 +463,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 240
+# File: sci_gateway/c/sci_strindex.c, line: 257
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""

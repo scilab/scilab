@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-05-18 16:34+0100\n"
+"Revision-Date: 2012-06-13 10:54+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 53
 #, c-format
@@ -112,7 +112,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 990
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 998
 msgid "parent diagram not found."
 msgstr ""
 
@@ -356,32 +356,32 @@ msgid "Please take a look into the Scilab console"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 58
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 63
 #, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 66
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 63
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 68
 #, c-format
 msgid "Unable to import %s .\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 67
+# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 68
 #, c-format
 msgid "Unable to load block from %s ."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 68
+# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 69
 msgid "Loading the block"
 msgstr ""
 
@@ -1207,141 +1207,146 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 248
+msgid "All supported formats"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 249
 msgid "Scicos file"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 250
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 251
 msgid "Xcos file"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 251
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 252
 msgid "Xcos (zip) file"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 252
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 253
 msgid "Scilab Open Data file"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 255
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 256
 msgid "Masked SuperBlock editor"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 256
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 257
 msgid "Insert"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 257
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
 msgid "Delete"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 259
 msgid "Move Up"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 259
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 260
 msgid "Move Down"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 260
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 261
 msgid "Rows"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 261
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 262
 msgid "Variable settings"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 262
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
 msgid "Default values"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
 msgid "WinTitle"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
 msgid "Window title"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
 msgid "Variable names"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 267
 msgid "Variable descriptions"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 267
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 268
 msgid "Editable"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 268
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 269
 msgid "Values"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 269
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 270
 msgid "Set block parameters"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 273
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 274
 msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 274
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 275
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
 "default one."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 277
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 278
 msgid "Setting up Modelica Compiler."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 278
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
 msgid "Modelica initialize"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 285
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 286
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 286
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 287
 msgid "Evaluation problem: wrong port number."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 287
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 288
 #, c-format
 msgid "Expecting '%d'."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 289
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 290
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
 ">Please reconnect it.</body></html>"
@@ -1900,29 +1905,29 @@ msgid "Unable to simulate %s"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 32
+# File: macros/xcos_simulate.sci, line: 33
 msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 93
-# File: macros/xcos_simulate.sci, line: 95
+# File: macros/xcos_simulate.sci, line: 94
+# File: macros/xcos_simulate.sci, line: 96
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 101
+# File: macros/xcos_simulate.sci, line: 102
 #, c-format
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 327
+# File: macros/xcos_simulate.sci, line: 328
 msgid "Simulation problem"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 353
+# File: macros/xcos_simulate.sci, line: 354
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
