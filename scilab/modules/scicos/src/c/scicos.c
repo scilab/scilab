@@ -5663,7 +5663,7 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     model = ezxml_parse_file(xmlfile);
     if (model == NULL)
     {
-        sciprint(_("Error: cannot find file '%s'.\n"), xmlfile);
+        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
         for (i = 0; i < nvar; i++)
         {
             FREE(xv[i]);
