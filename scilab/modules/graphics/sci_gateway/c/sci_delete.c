@@ -33,6 +33,7 @@
 #include "FigureList.h"
 #include "deleteGraphicObject.h"
 #include "CurrentObject.h"
+#include "CurrentFigure.h"
 #include "BuildObjects.h"
 
 #include "AxesModel.h"
@@ -40,8 +41,9 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "getConsoleIdentifier.h"
 #include "CurrentSubwin.h"
-
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, unsigned long fname_len)
 {
@@ -49,6 +51,12 @@ int sci_delete(char *fname, unsigned long fname_len)
     unsigned long hdl = 0;
     int nb_handles = 0, i = 0, dont_overload = 0;
     char *pobjUID = NULL;
+    char* pFigureUID = NULL;
+    char** childrenUID = NULL;
+    int iChildrenCount = 0;
+    int* childrencount = &iChildrenCount;
+    int iHidden = 0;
+    int *piHidden = &iHidden;
 
     char *pstParentUID = NULL;
     char *pstParentType = NULL;
@@ -97,7 +105,6 @@ int sci_delete(char *fname, unsigned long fname_len)
                     //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
                     int i = 0;
                     int iFigureNumber = sciGetNbFigure();
-                    int *piFigureIds = NULL;
 
                     if (iFigureNumber == 0)
                     {
@@ -107,15 +114,21 @@ int sci_delete(char *fname, unsigned long fname_len)
                         return 0;
                     }
 
-                    piFigureIds = (int *) MALLOC(iFigureNumber * sizeof(int));
+                    pFigureUID = getCurrentFigure();
 
-                    sciGetFiguresId(piFigureIds);
+                    getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
 
-                    for (i = 0; i < iFigureNumber; ++i)
+                    getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+
+                    for (i = 0; i < childrencount[0]; ++i)
                     {
-                        deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
+                        getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                        if (iHidden == 0)
+                        {
+                            deleteGraphicObject(childrenUID[i]);
+                        }
                     }
-                    FREE(piFigureIds);
+
                     LhsVar(1) = 0;
                     PutLhsVar();
 
@@ -134,7 +147,6 @@ int sci_delete(char *fname, unsigned long fname_len)
                 return 0;
         }
     }
-
     for (i = 0; i < nb_handles; i++)
     {
         if (Rhs != 0)
