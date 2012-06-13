@@ -88,7 +88,7 @@
   <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="relocate_handle"/>
   <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="swap_handles"/>
   <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="rubberbox"/>
-  <PRIMITIVE gatewayId="7" primitiveId="79" primitiveName="rotate_axes"/>
+  <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="rotate_axes"/>
   <PRIMITIVE gatewayId="7" primitiveId="70" primitiveName="is_handle_valid"/>
   <PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="captions"/>
 </GATEWAY>
