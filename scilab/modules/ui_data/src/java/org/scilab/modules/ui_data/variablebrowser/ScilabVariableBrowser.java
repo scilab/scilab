@@ -73,9 +73,13 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * @param data : data from scilab (type, name, size, ...)
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, Object[][] data) {
-        VariableBrowser variableBrowser = getVariableBrowser(update);
-        variableBrowser.setData(data);
+    public static VariableBrowser getVariableBrowser(boolean update, final Object[][] data) {
+        final VariableBrowser variableBrowser = getVariableBrowser(update);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                variableBrowser.setData(data);
+            }
+        });
         return variableBrowser;
     }
 

@@ -856,6 +856,8 @@ t.
 
 * Bug #11186 fixed - 'typeof' of a type 130 returned an error.
 
+* Bug #11194 fixed - Sometimes, there was a browsevar exception at start-up.
+
 * Bug #11205 fixed - A rare exception at Scilab startup could occur.
 
 * Bug #11223 fixed - Deletion of datatips.
