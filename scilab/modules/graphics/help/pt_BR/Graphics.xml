@@ -531,12 +531,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xs2fig</term>
-        <listitem>
-          <para>envia gráficos para um arquivo em sintaxe Xfig</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xs2gif</term>
         <listitem>
           <para>envia gráficos a um arquivo em sintaxe GIF</para>

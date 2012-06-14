@@ -840,28 +840,104 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <link linkend="xs2fig">xs2fig</link>
+          <link linkend="xs2bmp">xs2bmp</link>
         </term>
         <listitem>
-          <para>Send graphics to a file in Xfig syntax</para>
+          <para>Export graphics using the BMP format</para>
         </listitem>
       </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2emf">xs2emf</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the EMF format</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2eps">xs2eps</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the EPS format</para>
+        </listitem>
+      </varlistentry>
+
+
+
       <varlistentry>
         <term>
           <link linkend="xs2gif">xs2gif</link>
         </term>
         <listitem>
-          <para>Send graphics to a file in Gif syntax</para>
+          <para>Export graphics using the GIF format</para>
         </listitem>
       </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2jpg">xs2jpg</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the JPG format</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2pdf">xs2pdf</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the PDF format</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2png">xs2png</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the PNG format</para>
+        </listitem>
+      </varlistentry>
+
+
       <varlistentry>
         <term>
           <link linkend="xs2ppm">xs2ppm</link>
         </term>
         <listitem>
-          <para>Send graphics to a file in PPM syntax</para>
+          <para>Export graphics using the PPM format</para>
         </listitem>
       </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2ps">xs2ps</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the PS format</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2svg">xs2svg</link>
+        </term>
+        <listitem>
+          <para>Export graphics using the SVG format</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
   <refsection>

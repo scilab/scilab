@@ -107,9 +107,6 @@ end
       <member>
         <link linkend="xs2ps">xs2ps</link>
       </member>
-      <member>
-        <link linkend="xs2fig">xs2fig</link>
-      </member>
     </simplelist>
   </refsection>
 </refentry>

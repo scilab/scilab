@@ -105,9 +105,6 @@ xs2eps(0,filename);
         <link linkend="xs2ps">xs2ps</link>
       </member>
       <member>
-        <link linkend="xs2fig">xs2fig</link>
-      </member>
-      <member>
         <link linkend="xs2emf">xs2emf</link>
       </member>
     </simplelist>

@@ -862,26 +862,100 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <link linkend="xs2fig">xs2fig</link>
+          <link linkend="xs2bmp">xs2bmp</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format XFig</para>
+          <para>Exporte un graphique vers un fichier au format BMP</para>
         </listitem>
       </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2emf">xs2emf</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format EMF</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2eps">xs2eps</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format EPS</para>
+        </listitem>
+      </varlistentry>
+
+
       <varlistentry>
         <term>
           <link linkend="xs2gif">xs2gif</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format Gif</para>
+          <para>Exporte un graphique vers un fichier au format GIF</para>
         </listitem>
       </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2jpg">xs2jpg</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format JPG</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2pdf">xs2pdf</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PDF</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2png">xs2png</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PNG</para>
+        </listitem>
+      </varlistentry>
+
+
       <varlistentry>
         <term>
           <link linkend="xs2ppm">xs2ppm</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format PPM</para>
+          <para>Exporte un graphique vers un fichier au format PPM</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2ps">xs2ps</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PS</para>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term>
+          <link linkend="xs2svg">xs2svg</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format SVG</para>
         </listitem>
       </varlistentry>
     </variablelist>

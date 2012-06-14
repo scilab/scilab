@@ -106,9 +106,6 @@ xs2ps(0,filename);
         <link linkend="xs2svg">xs2svg</link>
       </member>
       <member>
-        <link linkend="xs2fig">xs2fig</link>
-      </member>
-      <member>
         <link linkend="xs2emf">xs2emf</link>
       </member>
     </simplelist>

@@ -842,14 +842,6 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <link linkend="xs2fig">xs2fig</link>
-        </term>
-        <listitem>
-          <para>グラフィックをXfig 形式でファイルに保存</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <link linkend="xs2gif">xs2gif</link>
         </term>
         <listitem>
