@@ -45,10 +45,10 @@ public class MarkSpriteFactory {
          */
         if (mark.getMarkSizeUnit() == Mark.MarkSizeUnitType.TABULATED) {
             // Special case for compatibility with older versions
-            // dot mark with tabulated size of 0
-            // is drawn in pixel size instead of tabulated size
+            // dot mark with tabulated size of 0 is a single pixel
+            // drawn in pixel size instead of tabulated size
             if (mark.getStyle() == 0 && mark.getSize() == 0) {
-                finalSize = 0;
+                finalSize = 1;
             } else {
                 finalSize = (8 + 2 * mark.getSize());
             }
