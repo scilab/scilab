@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-16 11:29+0000\n"
+"PO-Revision-Date: 2012-05-30 09:55+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: \n"
 
 #, c-format
@@ -252,15 +252,6 @@ msgstr "SciNotes文件默认编码；UTF-8；Windows 1252 (ANSI)；ISO-8859-1"
 msgid "Line Endings"
 msgstr "行结束符"
 
-msgid "Auto-completion on"
-msgstr "自动补全开"
-
-msgid "(, [, ..."
-msgstr "(, [, ..."
-
-msgid "if, function, ..."
-msgstr "if, function, ..."
-
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行号；关；普通；Whereami兼容"
 
@@ -337,7 +328,7 @@ msgid "Error while reading the String"
 msgstr "读取字符串时出错"
 
 msgid "Source of '"
-msgstr ""
+msgstr "来源之‘"
 
 msgid "Recent Files"
 msgstr "最近的文件"
@@ -364,7 +355,7 @@ msgid "Tools"
 msgstr "工具"
 
 msgid "Help on typing"
-msgstr ""
+msgstr "即时输入帮助"
 
 msgid "Generate help from function"
 msgstr "从函数生成帮助"
@@ -466,7 +457,7 @@ msgid "Help on selected text or keyword"
 msgstr "所选文本或关键字帮助"
 
 msgid "Help about '"
-msgstr "帮助关于‘"
+msgstr "帮助之‘"
 
 msgid "Find:"
 msgstr "查找:"

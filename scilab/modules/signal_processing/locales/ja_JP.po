@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-05-22 12:51+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-26 08:43+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -493,12 +493,12 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: an integer expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for argument #%d: the expected value must be greater than "
-"%s.\n"
+"%d.\n"
 msgstr ""
 
 #, c-format
@@ -516,17 +516,3 @@ msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順�
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: 周波数範囲の終端近くで急峻過ぎる変化です.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-#~ msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: an integer  expected.\n"
-#~ msgstr "%s: 引数 %d の型が間違っています: 整数を指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for argument %d: the expected value must be greater than "
-#~ "%s.\n"
-#~ msgstr "%s: 引数 %d の値が間違っています: 指定した値は %s よりも大きい必要があります.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -772,6 +772,9 @@ msgstr "Rastreio da execução de bloco e chamadas de depuração por bloco"
 
 msgid "Debug block calls without trace"
 msgstr "Depurar as chamadas de bloco sem rastreio"
+
+msgid "All supported formats"
+msgstr ""
 
 msgid "Scicos file"
 msgstr "Arquivo Scicos"

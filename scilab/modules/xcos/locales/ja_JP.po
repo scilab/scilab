@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -743,6 +743,9 @@ msgstr "ブロック毎の実行トレースとデバッグブロックコール
 
 msgid "Debug block calls without trace"
 msgstr "トレースなしのデバッグブロックコール"
+
+msgid "All supported formats"
+msgstr ""
 
 msgid "Scicos file"
 msgstr "Scicosファイル"

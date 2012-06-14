@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-05-22 12:51+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-24 02:48+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: fr\n"
 
 #, c-format
@@ -510,7 +510,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for argument #%d: the expected value must be greater than "
-"%s.\n"
+"%d.\n"
 msgstr ""
 
 #, c-format
@@ -533,9 +533,3 @@ msgstr ""
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr ""
 "%s : Changement trop brusque près de la fin de la bande de fréquence.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument %d : Une matrice réelle ou complexe "
-#~ "attendue.\n"

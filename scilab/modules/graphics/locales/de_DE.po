@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -248,6 +248,12 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: Vektor der Größe %d oder %d "
@@ -405,6 +411,15 @@ msgstr ""
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s: '%s' muß gesetzt sein\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -593,29 +608,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "Der Linienstil muß größer als %d sein.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr ""
-"falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Die Markierungsgröße der Einheit muß größer oder gleich %d sein.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "Die Markierungsgröße der Einheit muß größer als %d sein.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "Die Zeichensatzgröße muß größer als %d sein.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "Kann die voreingestellten Werte nicht laden.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"Diagramm könnte kein %% Zeichen enthalten, Ausnahme ein Einzelnes %%d.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Handhabung ist kein SubWindow.\n"
@@ -890,11 +887,9 @@ msgstr "Sie müssen zuerst ein %s für dieses Objekt spezifizieren.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"Im interpolierten Farbmodus muß die Spaltendimension des Farbvektors die "
-"Anzahl der Punkte die Linie definieren (welche %d oder %d sein muß).\n"
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -938,6 +933,11 @@ msgstr ""
 "logarithmischen Modus zu wechseln.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr ""
+"falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "falscher Typ für '%s' Eigenschaft: Handhabung '%s' oder '%s' erwartet.\n"
@@ -948,10 +948,6 @@ msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "Übergeordnete Eigenschaft kann icht direkt modifiziert werden.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1693,10 +1689,6 @@ msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument %d: eine 'Achsen' Handhabung "
 "erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"

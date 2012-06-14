@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-17 18:44+0000\n"
+"PO-Revision-Date: 2012-06-13 19:20+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -236,6 +236,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+"%s: Nelze spustit rubberbox v 3D zobrazení s volbou initial_rect nebo "
+"edition_mode. Prohlédněte si nápovědu pro další informace.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor o velikosti %d "
@@ -386,6 +394,16 @@ msgstr ""
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' musí být nastaveno\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s %d prvky.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -565,27 +583,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "Styl čáry musí být větší než %d.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "Špatný hodnota vlastnosti '%s': Musí být mezi %d a %d.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Velikost značky musí být větší nebo rovna %d.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "Velikost značky musí být větší než %d.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "Velikost písma musí být větší než %d.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "Nelze načíst výchozí hodnoty.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr "Název obrazce nesmí obsahovat žádné znaky %%, kromě jediného %%d.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Obslužná rutina není PodOkno.\n"
@@ -846,11 +848,11 @@ msgstr "Nejdříve musíte pro tento objekt určit %s.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"Pod interpolovaným barevným režimem se musí rozměr sloupce barevného vektoru "
-"shodovat s počtem bodů určujících čáru (která musí být %d nebo %d).\n"
+"Počet sloupců vektoru barvy se musí shodovat s počtem bodů určující čáru "
+"(jenž musí být %d nebo %d).\n"
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -895,6 +897,10 @@ msgstr ""
 "do logaritmického režimu.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "Špatný hodnota vlastnosti '%s': Musí být mezi %d a %d.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "Špatný typ vlastnosti '%s': Očekávána obslužná rutina '%s' nebo '%s'.\n"
@@ -906,11 +912,6 @@ msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "Nadřazená vlastnost nemůže být změněna přímo.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Špatná velikost vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1673,10 +1674,6 @@ msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu %d: Očekávána obslužná rutina "
 "'Axes'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"

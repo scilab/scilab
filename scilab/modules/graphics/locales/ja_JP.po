@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -216,6 +216,12 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 図または軸ハ�
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: サイズ %d または%d のベクトルを指定してください．\n"
 
@@ -346,6 +352,15 @@ msgstr "%s: 入力引数#%dの大きさが間違っています: %d, %d また�
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' を設定してください\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -562,31 +577,13 @@ msgid "The line style must be greater than %d.\n"
 msgstr "線スタイルは、%d 以上必要です。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "プロパティ '%s' の値が間違っています:  %d および %d の間とする必要があります.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "記号の大きさは %d 以上とする必要があります.\n"
-
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "記号の大きさの単位は %d より大きい必要があります.\n"
-
-#
-# File: src/c/SetProperty.c, line: 931
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "フォントサイズは %d 以上必要です。\n"
 
 #
 # File: src/c/SetProperty.c, line: 1652
 msgid "Unable to load default values.\n"
 msgstr "標準値をロードできません。\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr "図の名前には %%d 以外の %% 文字を含めることはできません.\n"
 
 #
 # File: src/c/SetProperty.c, line: 2154
@@ -1138,13 +1135,11 @@ msgstr "プロパティ '%s' で不正な値: -1 または 適切なカラーイ
 msgid "You must first specify an %s for this object.\n"
 msgstr "このオブジェクトには %s  を指定する必要があります.\n"
 
-#
-# File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 57
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
-msgstr "手を加えられた色モードで、色ベクトルの列次元は、線を定義している点の数と調和しなくてはいけません(%d または %d です)。\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
+msgstr ""
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -1193,6 +1188,10 @@ msgid ""
 "logarithmic mode.\n"
 msgstr "エラー: %s 軸のdata_boundsは、対数のモードに変えるとき、厳密でなくてはいけません。\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "プロパティ '%s' の値が間違っています:  %d および %d の間とする必要があります.\n"
+
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 38
 # File: src/c/getHandleProperty/set_parent_property.c, line: 50
@@ -1208,10 +1207,6 @@ msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' 
 # File: src/c/getHandleProperty/set_parent_property.c, line: 60
 msgid "Parent property can not be modified directly.\n"
 msgstr "親プロパティは、直接に修正することができません。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています:1 x %d 実数行ベクトルを指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_axes_bounds_property.c, line: 48
@@ -2073,10 +2068,6 @@ msgstr "%s: 入力引数 %d の型が間違っています: '軸'のハンドル
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 入力引数 %d の大きさが正しくありません: 'Axes' ハンドルを1つ指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"

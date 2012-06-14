@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-05 16:46+0000\n"
+"PO-Revision-Date: 2012-06-13 21:05+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: uk\n"
 
 #, c-format
@@ -742,6 +742,10 @@ msgstr "%s: не знайдено gzip.\n"
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""
 "%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr "%s: спроба збереження («%s») зазнала невдачі.\n"
 
 #, c-format
 msgid ""

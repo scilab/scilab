@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: es\n"
 
 #, c-format
@@ -81,15 +81,35 @@ msgstr "%s: No hay más memoria.\n"
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Variable de entorno %s no definida.\n"
 
-msgid "WARNING: Scilab 6 will not support the file format used.\n"
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
 msgstr ""
 
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"WARNING: Please quote the variable declaration. Example, "
-"save('myData.sod',a) becomes save('myData.sod','a').\n"
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
 msgstr ""
 
-msgid "WARNING: See help('save') for the rational.\n"
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
 msgstr ""
 
 #, c-format
@@ -123,6 +143,18 @@ msgid "%s : Invalid entity %s\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Número incorrecto del argumento de entrada.\n"
 
@@ -135,18 +167,6 @@ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba el valor "
 "'%s'.\n"
-
-#, c-format
-msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: variable '%s' does not exist in '%s'.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -548,22 +548,6 @@ msgstr "Scilabスタックを確保するためのメモリが不足していま
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"コールスタック:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"スタックの終端\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
 "Please report a bug on %s with:\n"
@@ -1082,6 +1066,20 @@ msgstr ""
 # File: src/c/version.c, line: 33
 msgid "Scilab Version Info."
 msgstr "Scilabバージョン情報."
+
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"コールスタック:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"スタックの終端\n"
+"\n"
 
 msgid ""
 "No available console !\n"

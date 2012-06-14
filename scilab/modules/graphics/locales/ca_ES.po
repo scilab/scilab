@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: ca\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -265,6 +265,12 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
@@ -425,6 +431,15 @@ msgstr ""
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s : S'ha d'establir '%s'\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -613,28 +628,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "L'estil de la línia ha de ser major que %d.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre %d i %d.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "La mida de la marca ha de ser igual o major que %d.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "La unitat de la mida de la marca ha de ser major que %d.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "La mida de la lletra ha de ser major que %d.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "No es poden carregar els valors predeterminats.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"El nom de la figura no pot contenir el caràcter %%, excepte un sol %%d.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "El tractament no és un SubWindow.\n"
@@ -920,12 +918,9 @@ msgstr "Primer heu d'especificar un %s per aquest objecte.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"En el mode de color interpolat, la dimensió de columna del vector de color "
-"ha de coincidir amb el nombre de punts que defineixen la línia (que ha de "
-"ser %d o %d).\n"
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -973,6 +968,10 @@ msgstr ""
 "positius per canviar al mode logarítmic.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre %d i %d.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser el tractament '%s' o "
@@ -984,10 +983,6 @@ msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "No es pot modificar directament la propietat pare.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1753,10 +1748,6 @@ msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %d té una mida incorrecta: Ha de ser un tractament "
 "'Axes'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"

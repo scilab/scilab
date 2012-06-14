@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-26 23:46+0000\n"
+"PO-Revision-Date: 2012-06-13 15:54+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1201,8 +1201,12 @@ msgstr ""
 " ошибка в якобиане"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Error: невозможно найти '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Ошибка: Невозможно найти файл '%s'.\n"
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr "Ошибка: Невозможно найти файл '%s'.\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1440,7 +1444,7 @@ msgid "Evaluation problem: value not updated from context."
 msgstr "Проблема вычисления: значение не обновлено из контекста."
 
 msgid "Evaluation problem: Unknown block"
-msgstr ""
+msgstr "Проблема выполнения: Неизвестный блок"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Извините: поддерживаются только языки C или FORTRAN"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: zh_CN\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -212,6 +212,12 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为一个简单的 Figure 
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该是大小为 %d 或 %d 的向量。\n"
 
@@ -340,6 +346,15 @@ msgstr "%s：输入参数 #%d 的大小错误：应该为 %d，%d 或 %d。\n"
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s：必须设置“%s”\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -503,27 +518,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "线的风格必须大于 %d。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "属性“%s”值错误：必须介于 %d 和 %d 之间。\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "标号大小必须大于或等于 %d。\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "标号大小的单位必须大于 %d。\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "字体大小必须大于 %d。\n"
-
 msgid "Unable to load default values.\n"
 msgstr "无法装载缺省值。\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr "Figure 的名称不能包含任何 %% 字符，除非是一个简单的 %%d。\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "句柄不是一个 SubWindow。\n"
@@ -773,9 +772,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
-msgstr "在插入颜色的模式下，颜色向量的列维数必须与定义直线的点的数目(必须是 %d 或 %d)一致。\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
+msgstr ""
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -817,6 +816,10 @@ msgid ""
 msgstr "错误：坐标 %s 上的数据范围必须严格切换到对数模式。\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "属性“%s”值错误：必须介于 %d 和 %d 之间。\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr "属性“%s”类型错误：应该是“%s”或“%s”句柄。\n"
 
@@ -826,10 +829,6 @@ msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "母属性不能直接被修改。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1538,10 +1537,6 @@ msgstr "%s：输入参数 %d 的类型错误：应该为一个“Axes”句柄�
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s：输入参数 %d 的大小错误：应该为一个“Axes”句柄。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数 #%d 类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"

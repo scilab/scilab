@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-10 03:02+0000\n"
+"PO-Revision-Date: 2012-06-13 15:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: ru\n"
 
 #, c-format
@@ -705,7 +705,7 @@ msgid "Max integration time interval"
 msgstr "Максимальный временной интервал интегрирования"
 
 msgid "Solver kind"
-msgstr ""
+msgstr "Вид программы решения"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "Максимальный размер шага (0 - без ограничений)"
@@ -766,6 +766,9 @@ msgstr "Трассировка всех блоков и вызовы блока 
 msgid "Debug block calls without trace"
 msgstr "Вызовы блока отладки без трассировки"
 
+msgid "All supported formats"
+msgstr "Все поддерживаемые форматы"
+
 msgid "Scicos file"
 msgstr "Файл Scicos"
 
@@ -773,10 +776,10 @@ msgid "Xcos file"
 msgstr "Файл Xcos"
 
 msgid "Xcos (zip) file"
-msgstr ""
+msgstr "Xcos (zip) файл"
 
 msgid "Scilab Open Data file"
-msgstr ""
+msgstr "Файл формата открытых данных Scilab"
 
 msgid "Masked SuperBlock editor"
 msgstr "Редактор маскированного суперблока"

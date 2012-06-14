@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-22 20:57+0000\n"
+"PO-Revision-Date: 2012-06-13 19:27+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -1135,8 +1135,12 @@ msgstr ""
 " chyba v Jakobiánu"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Chyba: nelze najít '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Chyba: Nelze najít soubor '%s'.\n"
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr "Chyba: nelze najít soubor '%s'.\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"

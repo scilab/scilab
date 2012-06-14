@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-22 11:22+0000\n"
+"PO-Revision-Date: 2012-05-30 08:55+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -495,22 +495,6 @@ msgstr "无空间用来分配 Scilab 栈。\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"调用堆栈：\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"堆栈结束\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
 "Please report a bug on %s with:\n"
@@ -519,6 +503,13 @@ msgid ""
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
+"糟糕。Scilab检测到一个致命错误。\n"
+"你的实例可能即将崩溃。\n"
+"请按以下内容提交关于%s的bug：\n"
+"* 可再现此问题的样例代码\n"
+"* 结果之 [a, b] = getdebuginfo()\n"
+"* 一下信息:\n"
+"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -952,6 +943,20 @@ msgstr ""
 
 msgid "Scilab Version Info."
 msgstr "Scilab版本信息。"
+
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"调用堆栈：\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"堆栈结束\n"
+"\n"
 
 msgid ""
 "No available console !\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-15 19:54+0000\n"
+"PO-Revision-Date: 2012-06-13 19:13+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -61,6 +61,15 @@ msgstr ""
 "rutina.\n"
 
 #, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr "%s: vstupní argument #%d musí být platná obslužná rutina.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina ''%s''.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
 msgstr ""
@@ -96,6 +105,20 @@ msgstr "Nelze vytvořit soubor exportu, přístup odepřen."
 
 msgid "Unable to create export file, invalid file."
 msgstr "Nelze vytvořit soubor exportu, neplatný soubor."
+
+msgid ""
+"Unable to create export file, not enough memory. Decreasing the number of "
+"elements or the size of the figure should fix this error."
+msgstr ""
+"Nelze vytvořit soubor exportu, nedostatečná paměť. Snížením počtu prvků nebo "
+"velikosti čísla by tuto chybu mělo spravit."
+
+msgid ""
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
+msgstr ""
+"Nelze vytvořit soubor exportu, prosím ohlaste tuto chybu na "
+"http://bugzilla.scilab.org."
 
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Grafický modul exportu Scilab není nainstalován.\n"

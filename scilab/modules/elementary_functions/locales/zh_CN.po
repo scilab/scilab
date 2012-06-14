@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-07 01:21+0000\n"
+"PO-Revision-Date: 2012-05-30 09:03+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: \n"
 
 #, c-format
@@ -365,15 +365,15 @@ msgstr "%s：第%d个参数的类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
-msgstr ""
+msgstr "%s：输入参数%d的类型错误：参数应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
-msgstr ""
+msgstr "%s：输入参数%d的类型错误：n必须是标量。\n"
 
 #, c-format
 msgid "%s: If x is negative, n must be an odd integer\n"
-msgstr ""
+msgstr "%s：如果x是负数，n必须是奇数\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
@@ -423,7 +423,7 @@ msgstr "%s：输出矩阵需要的维数错误：稀疏矩阵应该为%d个。\n
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目出错：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"

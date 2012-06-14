@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: ja\n"
 
 #, c-format
@@ -30,8 +30,20 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません.\n"
 
 #, c-format
+msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Variable '%s' already exists in file '%s'."
 msgstr "%s: 変数 '%s' はファイル '%s' に既に存在します."
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -48,6 +60,3 @@ msgstr "%s: ファイルをオープンできません: %s\n"
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: 無効なHDF5 Scilab形式.\n"
-
-msgid "HDF5 is not installed"
-msgstr "HDF5 がインストールされていません"

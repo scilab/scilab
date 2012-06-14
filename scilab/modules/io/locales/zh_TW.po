@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -96,15 +96,35 @@ msgstr "%s: 記憶體空間不足.\n"
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: %s 環境變數尚未定義.\n"
 
-msgid "WARNING: Scilab 6 will not support the file format used.\n"
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
 msgstr ""
 
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"WARNING: Please quote the variable declaration. Example, "
-"save('myData.sod',a) becomes save('myData.sod','a').\n"
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
 msgstr ""
 
-msgid "WARNING: See help('save') for the rational.\n"
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
 msgstr ""
 
 #
@@ -140,6 +160,18 @@ msgstr "無法管理的錯誤 by v2cunit.\n"
 msgid "%s : Invalid entity %s\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr ""
+
 #
 # File: macros/halt.sci, line: 22
 #, c-format
@@ -153,18 +185,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr "%s: 第 %d 個輸入參數的值錯誤: 應該是 '%s'  值.\n"
-
-#, c-format
-msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: variable '%s' does not exist in '%s'.\n"
-msgstr ""
 
 # File: macros/unix_w.sci, line: 30
 # File: macros/unix_s.sci, line: 29

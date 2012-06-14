@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-22 01:12+0000\n"
-"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
+"PO-Revision-Date: 2012-06-12 16:11+0000\n"
+"Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: pt_BR\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -265,6 +265,12 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um vetor "
@@ -432,6 +438,15 @@ msgstr ""
 #, c-format
 msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' tem que estar definido\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -623,29 +638,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "O estilo de linha deve ser maior do que %d.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "Valor incorreto para propriedade '%s': deve estar entre %d e %d.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "O tamanho de marca deve ser maior ou igual a %d.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "A unidade de tamanho da marca deve ser maior do que %d.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "O tamanho de fonte deve ser maior do que %d.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "Não é possível carregar os valores padrões.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"O nome da figura não pode conter qualquer caractere %%, exceto um único "
-"%%d.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "O manipulador não está em uma subjanela.\n"
@@ -702,7 +699,7 @@ msgstr "Propriedade desconhecida: %s.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "Valor incorreto para a propriedade '%s': esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -770,15 +767,18 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
-msgstr ""
+msgstr "Tamanho incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr ""
+"Tamanho incorreto para a propriedade \"%s\": esperava-se uma lista com 2 "
+"itens.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
+"Tamanho incorreto para a propriedade \"%s\": esperava-se um número real.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
@@ -934,16 +934,13 @@ msgstr "Você primeiro deve especificar um %s para este objeto.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"Sob o modo de cores interpoladas, a dimensão da coluna do vetor de cores "
-"deve coincidir com o número de pontos definindo a linha (que deve ser %d ou "
-"%d).\n"
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "AVISO: %s\n"
 
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "os valores {0,1} são equivalentes para a propriedade line_style."
@@ -986,6 +983,10 @@ msgstr ""
 "para o modo logarítmico.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "Valor incorreto para propriedade '%s': deve estar entre %d e %d.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "Tipo incorreto para a propriedade '%s': esperava-se um manipulador de '%s' "
@@ -994,13 +995,11 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
+"Valor incorreto para a propriedade '%s': esperava-se um manipulador '%s' ou "
+"'%s'.\n"
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "A propriedade do pai não pode ser modificada diretamente.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
@@ -1017,7 +1016,7 @@ msgstr "%s não pode ser ajustado nesse caso.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr ""
+msgstr "Tipo incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -1386,6 +1385,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
+"reais.\n"
 
 #, c-format
 msgid ""
@@ -1413,6 +1414,7 @@ msgstr "Erro %d: em plot2d chamado por contour2d"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
@@ -1698,6 +1700,8 @@ msgstr ""
 msgid ""
 "Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
+"Selecionador de entidade não pode ser habilitado. Campo de figura de dados "
+"do usuário já está em uso."
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
@@ -1822,12 +1826,10 @@ msgstr ""
 "manipulador 'Axes' .\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Tipo incorreto para o %dº argumento de entrada.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
 msgstr ""
+"%s Tipo incorreto para o argumento de entrada: esperava-se um manipulador "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."

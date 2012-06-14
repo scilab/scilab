@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-17 16:14+0000\n"
+"PO-Revision-Date: 2012-06-13 15:29+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -60,6 +60,15 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался графический дескиптор.\n"
 
 #, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr "%s: Входной аргумент № #%d должен быть корректным дескриптором.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
 msgstr ""
@@ -97,6 +106,20 @@ msgstr "Невозможно создвать файл экспорта, нет 
 
 msgid "Unable to create export file, invalid file."
 msgstr "Невозможно создать файл экспорта, некорректный файл."
+
+msgid ""
+"Unable to create export file, not enough memory. Decreasing the number of "
+"elements or the size of the figure should fix this error."
+msgstr ""
+"Невозможно создать экспортный файл, не хватает памяти. Уменьшение количества "
+"элементов или размера фигуры должно исправить эту ошибку."
+
+msgid ""
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
+msgstr ""
+"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на "
+"http://bugzilla.scilab.org."
 
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Модуль экспорта графики Scilab не установлен.\n"

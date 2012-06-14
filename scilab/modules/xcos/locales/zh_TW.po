@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -736,6 +736,9 @@ msgstr "每一block 執行trace和 Debug block calls"
 
 msgid "Debug block calls without trace"
 msgstr "Debug block 呼叫沒有 trace"
+
+msgid "All supported formats"
+msgstr ""
 
 msgid "Scicos file"
 msgstr "Scicos 檔"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -255,15 +255,6 @@ msgstr ""
 
 msgid "Line Endings"
 msgstr "Finais de linhas"
-
-msgid "Auto-completion on"
-msgstr ""
-
-msgid "(, [, ..."
-msgstr ""
-
-msgid "if, function, ..."
-msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeração de linha;Nenhuma;Normal;Compatível com whereami"

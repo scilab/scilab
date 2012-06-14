@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-03-10 12:39+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-05-30 10:07+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 "Language: \n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -276,7 +276,7 @@ msgstr "不能得到目前的界面风格"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid ""
@@ -290,7 +290,7 @@ msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -302,12 +302,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为一个1xn或mx1数组。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -319,7 +319,7 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid ""
@@ -377,6 +377,9 @@ msgstr ""
 
 msgid "&PDF"
 msgstr "&PDF"
+
+msgid "&PS"
+msgstr ""
 
 msgid "&SVG"
 msgstr "&SVG"
@@ -472,13 +475,13 @@ msgid "&Close"
 msgstr "关闭(&C)"
 
 msgid "&Incremental Search"
-msgstr ""
+msgstr "增量搜索（I）"
 
 msgid "In&crease font size"
-msgstr ""
+msgstr "增大字体（C）"
 
 msgid "&Decrease font size"
-msgstr ""
+msgstr "缩小字体（D）"
 
 msgid "&Execute..."
 msgstr "执行...(&E)"
@@ -556,7 +559,7 @@ msgid "&Applications"
 msgstr "应用程序(&A)"
 
 msgid "&SciNotes"
-msgstr ""
+msgstr "SciNotes（S）"
 
 msgid "&Xcos"
 msgstr "Xcos(&X)"
@@ -565,16 +568,16 @@ msgid "&Matlab to Scilab translator"
 msgstr "Matlab到Scilab转换器(&M)"
 
 msgid "M&odule manager - ATOMS"
-msgstr ""
+msgstr "模块管理器（M）- ATOMS"
 
 msgid "&Variable Browser"
-msgstr ""
+msgstr "变量浏览器（V）"
 
 msgid "&Command History"
-msgstr ""
+msgstr "命令历史（C）"
 
 msgid "&File Browser"
-msgstr ""
+msgstr "文件浏览器（F）"
 
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
@@ -589,22 +592,22 @@ msgid "Scilab &Web Site"
 msgstr "Scilab网站(&W)"
 
 msgid "Scilab &Online Help"
-msgstr ""
+msgstr "Scilab在线帮助（O）"
 
 msgid "Scilab &Wiki"
-msgstr ""
+msgstr "Scilab百科（W）"
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Scilab &ATOMS网页"
 
 msgid "&File Exchange"
-msgstr ""
+msgstr "文件交换（F）"
 
 msgid "&Mailing Lists"
-msgstr ""
+msgstr "邮件列表（M）"
 
 msgid "Mailing Lists &Archives"
-msgstr ""
+msgstr "邮件列表存档（A）"
 
 msgid "&Forge"
 msgstr ""
@@ -613,7 +616,7 @@ msgid "&Bugs And Requests"
 msgstr "错误和新功能需求数据库(&B)"
 
 msgid "&Scilab Enterprises"
-msgstr ""
+msgstr "&Scilab Enterprises"
 
 msgid "Rotate"
 msgstr "旋转"
@@ -652,7 +655,7 @@ msgid "Print..."
 msgstr "打印..."
 
 msgid "Module manager - ATOMS"
-msgstr ""
+msgstr "模块管理器 - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
@@ -914,7 +917,7 @@ msgid "Help about a selected text"
 msgstr "选定文字的帮助"
 
 msgid "Help about '"
-msgstr ""
+msgstr "帮助之‘"
 
 msgid "Evaluate selection with echo"
 msgstr ""
@@ -985,22 +988,22 @@ msgid ""
 msgstr "'。"
 
 msgid "Font Chooser"
-msgstr ""
+msgstr "字体选择器"
 
 msgid "Font"
-msgstr ""
+msgstr "字体"
 
 msgid "Attributes"
-msgstr ""
+msgstr "属性"
 
 msgid "Bold"
-msgstr ""
+msgstr "加粗"
 
 msgid "Italic"
-msgstr ""
+msgstr "倾斜"
 
 msgid "Monospaced"
-msgstr ""
+msgstr "等宽"
 
 msgid "SciNotes compatible"
 msgstr ""
@@ -1027,10 +1030,10 @@ msgid "Edit in the Scilab Text Editor"
 msgstr "在Scilab文本编辑器中编辑"
 
 msgid "Back"
-msgstr ""
+msgstr "后退"
 
 msgid "Forward"
-msgstr ""
+msgstr "前进"
 
 msgid "Tree Overview"
 msgstr ""
@@ -1048,7 +1051,7 @@ msgid "Save and execute"
 msgstr "保存并执行"
 
 msgid "Empty tab"
-msgstr ""
+msgstr "空标签"
 
 #, c-format
 msgid ""
@@ -1065,7 +1068,7 @@ msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
 msgid "Exit"
-msgstr ""
+msgstr "退出"
 
 msgid "An error occured: "
 msgstr ""
@@ -1077,7 +1080,7 @@ msgid "Scilab SCE files"
 msgstr ""
 
 msgid "Scilab binary files"
-msgstr ""
+msgstr "Scilab二进制文件"
 
 msgid "All Scilab files"
 msgstr "所有Scilab文件"
@@ -1089,7 +1092,7 @@ msgid "Scicos files"
 msgstr "Scicos文件"
 
 msgid "Test files"
-msgstr ""
+msgstr "测试文件"
 
 msgid "Scilab Start files"
 msgstr ""
@@ -1101,19 +1104,19 @@ msgid "Scilab Demo files"
 msgstr ""
 
 msgid "All PDF files"
-msgstr ""
+msgstr "所有PDF文件"
 
 msgid "All Postscript files"
-msgstr ""
+msgstr "所有Postscript文件"
 
 msgid "All Encapsulated PS files"
 msgstr ""
 
 msgid "All PNG image files"
-msgstr ""
+msgstr "所有PNG图像文件"
 
 msgid "All RTF (Rich Text Format) files"
-msgstr ""
+msgstr "所有RTF (Rich Text Format) 文件"
 
 #, c-format
 msgid "All %s files"
@@ -1129,7 +1132,7 @@ msgid "Acknowledgements"
 msgstr "致谢"
 
 msgid "Could not open: "
-msgstr ""
+msgstr "不能代开： "
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -1167,7 +1170,7 @@ msgid "GUI"
 msgstr "GUI"
 
 msgid "Dialogs"
-msgstr ""
+msgstr "对话框"
 
 msgid "Uicontrols 1"
 msgstr ""
@@ -1195,17 +1198,17 @@ msgstr "没有选中颜色"
 
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "所选颜色是：%s。"
 
 msgid "Selected colors"
-msgstr ""
+msgstr "所选颜色"
 
 #, c-format
 msgid "You clicked on menu '%s'."
 msgstr "你点击了菜单'%s'."
 
 msgid "Selected menu"
-msgstr ""
+msgstr "所选菜单"
 
 msgid "checked"
 msgstr "已选"
@@ -1225,10 +1228,10 @@ msgstr ""
 
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "你选择了’%s‘。"
 
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "弹出菜单选择"
 
 msgid "Do you really want to quit Scilab?"
 msgstr "你真的要退出Scilab么？"
@@ -1240,13 +1243,13 @@ msgid "Uicontrols demo"
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "应用程序"
 
 msgid "Exit figure"
 msgstr "退出Figure"
 
 msgid "Scilab Graphics"
-msgstr ""
+msgstr "Scilab图形"
 
 msgid "Launch plot3d"
 msgstr "运行plot3d"
@@ -1258,16 +1261,16 @@ msgid "Menu"
 msgstr "菜单"
 
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "子菜单1"
 
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "子菜单2"
 
 msgid "Sub-menu 2-1"
 msgstr ""
 
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "子菜单2-2"
 
 msgid "Colors list edition"
 msgstr ""
@@ -1291,7 +1294,7 @@ msgid "Display selection"
 msgstr ""
 
 msgid "Slider demo"
-msgstr ""
+msgstr "滑动条演示"
 
 msgid "item1|item2|item3|item4"
 msgstr ""

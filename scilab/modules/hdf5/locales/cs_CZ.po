@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-05-15 20:01+0000\n"
+"PO-Revision-Date: 2012-06-13 19:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15282)\n"
+"X-Generator: Launchpad (build 15405)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -30,8 +30,21 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nelze otevřít soubor %s.\n"
 
 #, c-format
+msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
+msgstr ""
+"%s: Špatná verze formátu souboru hdf5. Očekáváno: %d, soubor má: %d\n"
+
+#, c-format
 msgid "%s: Variable '%s' already exists in file '%s'."
 msgstr "%s: Proměnná '%s' již existuje v souboru '%s'."
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s: Nelze aktualizovat verzi Scilab v \"%s\"."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr "%s: Nelze aktualizovat verzi formátu HDF5 v \"%s\"."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -48,6 +61,3 @@ msgstr "%s: Nelze otevřít soubor: %s\n"
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Neplatný Scilab formát HDF5.\n"
-
-msgid "HDF5 is not installed"
-msgstr "HDF5 není nainstalováno"
