@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>y,rd[,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+    <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -51,7 +51,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
           <para>
             実数定数または<literal>y</literal>と同じ大きさの実数ベクトル.
@@ -65,7 +65,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
           <para>実数ベクトル.</para>
         </listitem>
@@ -103,7 +103,7 @@
       <literal>g</literal> が関数の場合,その構文は以下のようにする
       必要があります:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 z = g(t,y)
  ]]></programlisting>
     <para>
@@ -119,7 +119,7 @@ z = g(t,y)
       (プログラムの出力)です.
       <literal>g</literal> は,
       <literal>f</literal> と同じ表記のリストです.
-      (odeのヘルプ参照)．
+      (<link linkend="ode">ode</link>のヘルプ参照)．
     </para>
     <para>
       出力 <literal>rd</literal> は <literal>1 x k</literal> ベクトルです.
@@ -130,7 +130,7 @@ z = g(t,y)
       (<literal>(k-1)</literal> 個の面)が同時に符号が変わったことを意味します.
     </para>
     <para>他の引数と他のオプションは,
-      <literal>ode</literal>と同じです.odeのヘルプを参照ください.
+      <literal>ode</literal>と同じです.<link linkend="ode">ode</link>のヘルプを参照ください.
     </para>
   </refsection>
   <refsection>
