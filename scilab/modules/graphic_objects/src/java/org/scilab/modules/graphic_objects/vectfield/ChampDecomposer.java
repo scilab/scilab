@@ -217,10 +217,6 @@ public class ChampDecomposer extends VectFieldDecomposer {
             }
         }
 
-        if (arrowSize == 0.0) {
-            return;
-        }
-
         /* Arrow colors */
         for (int j = 0; j < yBase.length; j++) {
             for (int i = 0; i < xBase.length; i++) {

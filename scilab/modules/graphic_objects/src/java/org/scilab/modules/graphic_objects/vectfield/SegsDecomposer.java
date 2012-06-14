@@ -76,10 +76,6 @@ public class SegsDecomposer extends VectFieldDecomposer {
             writeSegmentColors(buffer, elementsSize, bufferOffset, color);
         }
 
-        if (arrowSize == 0.0) {
-            return;
-        }
-
         /* Arrow colors */
         for (int i = 0; i < numberArrows; i++) {
             float[] color = colorMap.getScilabColor(segmentColors[i]);
