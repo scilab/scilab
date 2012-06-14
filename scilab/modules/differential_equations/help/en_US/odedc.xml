@@ -29,7 +29,7 @@
       <varlistentry>
         <term>y0</term>
         <listitem>
-          <para>real column vector (initial conditions),
+          <para>a real column vector (initial conditions),
             <literal>y0=[y0c;y0d]</literal> where <literal>y0d</literal> has
             <literal>nd</literal> components.
           </para>
@@ -39,7 +39,7 @@
         <term>nd</term>
         <listitem>
           <para>
-            integer, dimension of <literal>y0d</literal>
+            an integer, dimension of <literal>y0d</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -47,33 +47,30 @@
         <term>stdel</term>
         <listitem>
           <para>
-            real vector with one or two entries, <literal>stdel=[h,
-              delta]
-            </literal>
-            (with <literal>delta=0</literal> as default
-            value).
+            a real vector with one or two entries, <literal>stdel=[h, delta]</literal>
+            (with <literal>delta=0</literal> as default value).
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t0</term>
         <listitem>
-          <para>real scalar (initial time).</para>
+          <para>a real scalar (initial time).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
           <para>
-            real (row) vector, instants where <literal>yt</literal> is
-            calculated .
+            a real (row) vector, instants where <literal>yt</literal> is
+            calculated.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>external i.e. function or character string or list with
+          <para>an external i.e. a function or a character string or a list with
             calling sequence: <literal>yp=f(t,yc,yd,flag)</literal>.
           </para>
         </listitem>
@@ -88,27 +85,27 @@
       state <literal>yd_k</literal> is embedded into a piecewise constant
       <literal>yd(t)</literal> time function as follows:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 yd(t) = yd_k for t in 
-[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h[ (with delay=h*delta).
+[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h] (with delay=h*delta).
  ]]></programlisting>
     <para>The simulated equations are now:</para>
-    <programlisting role=""><![CDATA[ 
-dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)]
 yc(t0) = y0c
  ]]></programlisting>
     <para>
       and at instants <literal>t_k</literal> the discrete variable
       <literal>yd</literal> is updated by:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
  ]]></programlisting>
     <para>
       Note that, using the definition of <literal>yd(t)</literal> the last
       equation gives
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
  ]]></programlisting>
     <para>
@@ -130,14 +127,16 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
     </para>
     <para>
       <literal>y</literal> is the vector
-      <literal>y=[y(t(1)),y(t(2)),...]</literal>. This function can be called
-      with the same optional parameters as the <literal>ode</literal> function
-      (provided <literal>nd</literal> and <literal>stdel</literal> are given in
+      <literal>y=[y(t(1)),y(t(2)),...]</literal>.     
+    </para>
+    <para>
+      This function can be called with the same optional parameters as the <literal>ode</literal> 
+      function (provided <literal>nd</literal> and <literal>stdel</literal> are given in
       the calling sequence as second and third parameters). In particular
       integration flags, tolerances can be set. Optional parameters can be set
       by the <literal>odeoptions</literal> function.
     </para>
-    <para>An example for calling an external routine is given in directory
+    <para>An example for calling an external routine is given in
       <literal>SCIDIR/default/fydot2.f</literal>
     </para>
     <para>External routines can be dynamically linked (see
@@ -154,7 +153,7 @@ xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
 nx=2;
 plot2d1('onn',t',x',[1:nx],'161');
 plot2d2('onn',t',u',[nx+1:nx+nu],'000');
-//Fortran external( see fydot2.f): 
+//Fortran external (see fydot2.f): 
 norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
 
 //Sampled feedback 
@@ -195,6 +194,9 @@ xset("window",0);
     <simplelist type="inline">
       <member>
         <link linkend="ode">ode</link>
+      </member>
+       <member>
+        <link linkend="link">link</link>
       </member>
       <member>
         <link linkend="odeoptions">odeoptions</link>

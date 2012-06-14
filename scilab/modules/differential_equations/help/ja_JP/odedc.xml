@@ -87,27 +87,27 @@
       区間内は定数となる時間関数<literal>yd(t)</literal>として
       組み込まれます:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 以下の t について yd(t) = yd_k
-[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h[ (ただし delay=h*delta).
+[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h] (ただし delay=h*delta).
  ]]></programlisting>
     <para>シミュレーションされる方程式は以下のようになります:</para>
-    <programlisting role=""><![CDATA[ 
-dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)]
 yc(t0) = y0c
  ]]></programlisting>
     <para>
       そして, 時刻 <literal>t_k</literal> において
       離散変数 <literal>yd</literal> が以下のように更新されます:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
  ]]></programlisting>
     <para>
       <literal>yd(t)</literal>の定義に基づき,
       最後の式から以下が導かれることに注意してください
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
  ]]></programlisting>
     <para>
@@ -131,7 +131,9 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
     </para>
     <para>
       <literal>y</literal> は
-      ベクトル<literal>y=[y(t(1)),y(t(2)),...]</literal>です.
+      ベクトル<literal>y=[y(t(1)),y(t(2)),...]</literal>です.    
+    </para>
+    <para>
       この関数は <literal>ode</literal> 関数と同じオプションパラメータを指定して
       コールすることができます
       (<literal>nd</literal> および <literal>stdel</literal> 
@@ -157,7 +159,7 @@ xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
 nx=2;
 plot2d1('onn',t',x',[1:nx],'161');
 plot2d2('onn',t',u',[nx+1:nx+nu],'000');
-//Fortran外部関数( fydot2.f参照): 
+//Fortran外部関数 (fydot2.f参照): 
 norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
 
 //サンプル値フィードバック 
@@ -198,6 +200,9 @@ xset("window",0);
     <simplelist type="inline">
       <member>
         <link linkend="ode">ode</link>
+      </member>
+       <member>
+        <link linkend="link">link</link>
       </member>
       <member>
         <link linkend="odeoptions">odeoptions</link>

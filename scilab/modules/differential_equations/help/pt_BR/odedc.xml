@@ -88,27 +88,27 @@
       discreto <literal>yd_k</literal> é embutido em uma função de tempo
       seccional constante <literal>yd(t)</literal> como segue:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[
 yd(t)=yd_k para t em 
-[t_k=atraso+k*h,t_(k+1)=delay+(k+1)*h[ (com atraso=h*delta).
+[t_k=atraso+k*h,t_(k+1)=delay+(k+1)*h] (com atraso=h*delta).
  ]]></programlisting>
     <para>As equações simuladas são agora:</para>
-    <programlisting role=""><![CDATA[ 
-dyc/dt=f(t,yc(t),yd(t),0),  para t em [t_k,t_(k+1)[
+    <programlisting role="no-scilab-exec"><![CDATA[
+dyc/dt=f(t,yc(t),yd(t),0),  para t em [t_k,t_(k+1)]
 yc(t0)=y0c
  ]]></programlisting>
     <para>
       e nos instantes <literal>t_k</literal> a variável discreta
       <literal>yd</literal> é atualizada por:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[
 yd(t_k+)=f(yc(t_k-),yd(t_k-),1)
  ]]></programlisting>
     <para>
       Note que, utilizando a definição de <literal>yd(t)</literal>, a
       última equação fornece
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[
 yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk))
  ]]></programlisting>
     <para>
@@ -129,7 +129,10 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk))
     </para>
     <para>
       <literal>y</literal> é o vetor
-      <literal>y=[y(t(1)),y(t(2)),...]</literal>. Esta função pode ser chamada
+      <literal>y=[y(t(1)),y(t(2)),...]</literal>.     
+    </para>
+    <para>
+      Esta função pode ser chamada
       com os mesmo parâmetro opcionais da função <literal>ode</literal> (desde
       que <literal>nd</literal> e <literal>stdel</literal> sejam dados na
       seqüência de chamamento como segundo e terceiro parâmetros). Em
@@ -155,7 +158,7 @@ nx=2;
 plot2d1('onn',t',x',[1:nx],'161');
 plot2d2('onn',t',u',[nx+1:nx+nu],'000');
 
-//função externa FORTRAN( ver fydot2.f): 
+//função externa FORTRAN (ver fydot2.f): 
 norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
 
 //feedback (resposta) amostrado
@@ -196,6 +199,9 @@ xset("window",0);
     <simplelist type="inline">
       <member>
         <link linkend="ode">ode</link>
+      </member>
+       <member>
+        <link linkend="link">link</link>
       </member>
       <member>
         <link linkend="odeoptions">odeoptions</link>
