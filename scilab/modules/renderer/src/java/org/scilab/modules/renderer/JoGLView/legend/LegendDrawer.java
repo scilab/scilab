@@ -515,7 +515,8 @@ public class LegendDrawer {
             if (!barDrawn) {
                 lineVertices.setData(lineVertexData, 4);
 
-                if (polyline.getLineMode()) {
+                /* A line must also be drawn for the vertical polyline style (3), whatever line mode's value */
+                if (polyline.getLineMode() || polylineStyle == 3) {
                     DefaultGeometry line = new DefaultGeometry();
                     line.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                     line.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
@@ -526,8 +527,6 @@ public class LegendDrawer {
                     lineAppearance.setLinePattern(linePattern);
 
                     drawingTools.draw(line, lineAppearance);
-
-
                 }
             }
 
