@@ -100,14 +100,13 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
     private ScilabMList base;
 
-    /** Map from index to blocks */
-    private final Map<Integer, BasicBlock> blocks;
+    private double minimalYaxisValue = Double.POSITIVE_INFINITY;
+    private double minimalXaxisValue = Double.POSITIVE_INFINITY;
 
     /**
      * Default constructor
      */
     public DiagramElement() {
-        blocks = new HashMap<Integer, BasicBlock>();
     }
 
     /**
@@ -190,6 +189,8 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
     @Override
     public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
         into.setChildrenParentDiagram();
+        into.generateUID();
+
         return super.afterDecode(element, into);
     }
 
@@ -213,6 +214,8 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Decode the objs attributes
         decodeObjs(diag);
+        // Update the objs properties if applicable
+        updateObjs(diag);
     }
 
     /**
@@ -223,14 +226,13 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
      * @throws ScicosFormatException
      *             on error
      */
-    private void decodeObjs(XcosDiagram diag) throws ScicosFormatException {
+    private void decodeObjs(final XcosDiagram diag) throws ScicosFormatException {
         final int nbOfObjs = ((ScilabList) base.get(OBJS_INDEX)).size();
+        final HashMap<Integer, BasicBlock> blocks = new HashMap<Integer, BasicBlock>(nbOfObjs, 1.0f);
+
         final BlockElement blockElement = new BlockElement(diag);
         final LinkElement linkElement = new LinkElement(blocks);
         final LabelElement labelElement = new LabelElement();
-
-        double minimalYaxisValue = Double.POSITIVE_INFINITY;
-        double minimalXaxisValue = Double.POSITIVE_INFINITY;
 
         /*
          * Decode blocks
@@ -282,15 +284,19 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
                 diag.addCell(cell);
             }
         }
+    }
 
-        /*
-         * Perform post-calculus
-         */
-        final double minY = -minimalYaxisValue + V_MARGIN;
-        final double minX = -minimalXaxisValue + H_MARGIN;
-
+    /**
+     * Update the diagram object after decode
+     *
+     * @param diag
+     *            the diagram to update
+     */
+    private void updateObjs(final XcosDiagram diag) {
         final mxGraphModel model = (mxGraphModel) diag.getModel();
 
+        final double minY = -minimalYaxisValue + V_MARGIN;
+        final double minX = -minimalXaxisValue + H_MARGIN;
         for (final Object cell : model.getCells().values()) {
             updateMinimalSize(cell, model);
             translate(cell, model, minX, minY);
@@ -343,29 +349,30 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
     // update the labels of ports for SuperBlock
     private static final void updateLabels(final Object cell, final mxIGraphModel model) {
-        if (cell instanceof SuperBlock) {
-            final SuperBlock parent = (SuperBlock) cell;
+        if (!(cell instanceof SuperBlock)) {
+            return;
+        }
+        final SuperBlock parent = (SuperBlock) cell;
 
-            // Assume that the children are sorted after decode
-            // blk.sortChildren();
-            final Map<IOBlocks, List<mxICell>> ports = IOBlocks.getAllPorts(parent);
-            final Map<IOBlocks, List<mxICell>> blocks = IOBlocks.getAllBlocks(parent);
+        // Assume that the children are sorted after decode
+        // blk.sortChildren();
+        final Map<IOBlocks, List<mxICell>> ports = IOBlocks.getAllPorts(parent);
+        final Map<IOBlocks, List<mxICell>> blocks = IOBlocks.getAllBlocks(parent);
 
-            for (final IOBlocks io : IOBlocks.values()) {
-                final List<mxICell> port = ports.get(io);
-                final List<mxICell> block = blocks.get(io);
+        for (final IOBlocks io : IOBlocks.values()) {
+            final List<mxICell> port = ports.get(io);
+            final List<mxICell> block = blocks.get(io);
 
-                final int len = Math.min(port.size(), block.size());
-                for (int i = 0; i < len; i++) {
-                    final mxICell p = port.get(i);
-                    final mxICell b = block.get(i);
+            final int len = Math.min(port.size(), block.size());
+            for (int i = 0; i < len; i++) {
+                final mxICell p = port.get(i);
+                final mxICell b = block.get(i);
 
-                    // if the I/O block has a port child and a label child,
-                    // update
-                    if (b.getChildCount() > 1) {
-                        final Object value = b.getChildAt(b.getChildCount() - 1).getValue();
-                        p.setValue(value);
-                    }
+                // if the I/O block has a port child and a label child,
+                // update
+                if (b.getChildCount() > 1) {
+                    final Object value = b.getChildAt(b.getChildCount() - 1).getValue();
+                    p.setValue(value);
                 }
             }
         }

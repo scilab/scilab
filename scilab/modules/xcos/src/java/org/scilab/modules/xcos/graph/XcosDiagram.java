@@ -66,7 +66,6 @@ import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
-import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
@@ -451,10 +450,9 @@ public class XcosDiagram extends ScilabGraph {
             assert diagram == updatedBlock.getParentDiagram();
 
             /*
-             * TODO: is this really necessary on the EDT ? It might be a huge
-             * improvement of the user experience.
+             * The rpar value is set as invalid, encode the child on demand.
              */
-            updatedBlock.setRealParameters(new DiagramElement().encode(updatedBlock.getChild()));
+            updatedBlock.invalidateRpar();
 
             if (diagram instanceof SuperBlockDiagram) {
                 final SuperBlock parentBlock = ((SuperBlockDiagram) diagram).getContainer();
@@ -2082,14 +2080,15 @@ public class XcosDiagram extends ScilabGraph {
 
                         // generate a child diagram with UID
                         parent.createChildDiagram(true);
-
                     } else {
                         // we have a hidden SuperBlock, create a real one
-                        final SuperBlock newSP = (SuperBlock) BlockFactory.createBlock(SuperBlock.INTERFUNCTION_NAME);
+                        SuperBlock newSP = (SuperBlock) BlockFactory.createBlock(SuperBlock.INTERFUNCTION_NAME);
+                        newSP.setParentDiagram(block.getParentDiagram());
+
                         newSP.setRealParameters(block.getRealParameters());
                         newSP.createChildDiagram(true);
-                        newSP.setParentDiagram(this);
-                        block.setRealParameters(new DiagramElement().encode(newSP.getChild()));
+
+                        block.setRealParameters(newSP.getRealParameters());
                     }
                 } else if (block.getId() == null || block.getId().compareTo("") == 0) {
                     block.generateId();
@@ -2257,29 +2256,22 @@ public class XcosDiagram extends ScilabGraph {
                     returnBlock = block;
                 } else {
                     if (block instanceof SuperBlock) {
-                        boolean created = false;
-                        if (((SuperBlock) block).getChild() == null) {
-                            // create temporary SuperBlock to find child
-                            ((SuperBlock) block).createChildDiagram();
-                            created = true;
-                        }
+                        ((SuperBlock) block).createChildDiagram();
 
                         // search in child
                         returnBlock = ((SuperBlock) block).getChild().getChildById(uid);
 
-                        if (created) { // if temporary, destroy it
-                            ((SuperBlock) block).syncParameters();
-                        }
                     } else if (block.getRealParameters() instanceof ScilabMList) {
                         // we have a hidden SuperBlock, create a real one
                         SuperBlock newSP = (SuperBlock) BlockFactory.createBlock(SuperBlock.INTERFUNCTION_NAME);
                         newSP.setParentDiagram(block.getParentDiagram());
+
                         newSP.setRealParameters(block.getRealParameters());
-                        newSP.createChildDiagram();
+                        newSP.createChildDiagram(true);
+
                         // search in child
                         returnBlock = newSP.getChild().getChildById(uid);
-                        newSP.syncParameters();
-                        newSP = null;
+                        block.setRealParameters(newSP.getRealParameters());
                     }
                 }
             }

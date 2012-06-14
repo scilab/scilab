@@ -24,6 +24,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
@@ -88,6 +89,7 @@ public final class SuperBlock extends BasicBlock {
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
     private SuperBlockDiagram child;
+    private boolean hasAValidRpar = false;
 
     /**
      * Constructor
@@ -144,6 +146,30 @@ public final class SuperBlock extends BasicBlock {
         setBlockType("h");
         setNbZerosCrossing(new ScilabDouble(0));
         setNmode(new ScilabDouble(0));
+    }
+
+    @Override
+    public ScilabType getRealParameters() {
+        if (hasAValidRpar || child == null) {
+            return super.getRealParameters();
+        }
+
+        /*
+         * Encode the children as a new rpar.
+         */
+        final ScilabType rpar = new DiagramElement().encode(child);
+        super.setRealParameters(rpar);
+        hasAValidRpar = true;
+
+        return super.getRealParameters();
+    }
+
+    /**
+     * Invalide the rpar, a new child diagram encoding will be performed on
+     * demand.
+     */
+    public void invalidateRpar() {
+        hasAValidRpar = false;
     }
 
     /**
@@ -237,31 +263,6 @@ public final class SuperBlock extends BasicBlock {
     }
 
     /**
-     * Action to be performed when the diagram is closed or whenever we have to
-     * commit a child modification.
-     *
-     * This method does not handle tab closing operation.
-     */
-    public void syncParameters() {
-        /*
-         * Do not ask the user, the diagram is saved and closed.
-         *
-         * By this way we are sure that the main scs_m structure is always
-         * valid.
-         *
-         * The child can be null in case of a block conversion (to native code
-         * or other)
-         */
-        if (getChild() != null && getChild().isModified()) {
-            // normal hierarchy case
-
-            setRealParameters(new DiagramElement().encode(getChild()));
-            getChild().setModified(true);
-            getChild().setModifiedNonRecursively(false);
-        }
-    }
-
-    /**
      * @param graph
      *            parent diagram
      */
@@ -306,16 +307,18 @@ public final class SuperBlock extends BasicBlock {
      */
     public boolean createChildDiagram(boolean generatedUID) {
         if (child == null) {
-            child = new SuperBlockDiagram(this);
-            child.installListeners();
+            final ScilabType rpar = getRealParameters();
 
             final DiagramElement element = new DiagramElement();
-            if (!element.canDecode(getRealParameters())) {
+            if (!element.canDecode(rpar)) {
                 return false;
             }
 
+            child = new SuperBlockDiagram(this);
+            child.installListeners();
+
             try {
-                element.decode(getRealParameters(), child, false);
+                element.decode(rpar, child, false);
             } catch (ScicosFormatException e) {
                 Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 return false;

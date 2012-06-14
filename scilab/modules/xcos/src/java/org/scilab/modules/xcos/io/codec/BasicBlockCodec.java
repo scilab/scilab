@@ -111,10 +111,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE, String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
 
-        if (obj instanceof SuperBlock) {
-            ((SuperBlock) obj).syncParameters();
-        }
-
         /*
          * Log some informations
          */

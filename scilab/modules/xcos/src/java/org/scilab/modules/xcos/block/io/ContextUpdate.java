@@ -297,7 +297,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
             SuperBlockDiagram graph = parent.getChild();
             if (graph == null) {
-                parent.createChildDiagram();
+                parent.createChildDiagram(true);
                 graph = parent.getChild();
             }
 
