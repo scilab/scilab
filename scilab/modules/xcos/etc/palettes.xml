@@ -738,6 +738,9 @@
       <block name="STEP_FUNCTION">
         <icon variable="SCI" path="/modules/xcos/images/palettes/STEP_FUNCTION.png"/>
       </block>
+      <block name="PULSE_SC">
+        <icon variable="SCI" path="/modules/xcos/images/palettes/PULSE_SC.png"/>
+      </block>
       <block name="SampleCLK">
         <icon variable="SCI" path="/modules/xcos/images/palettes/SampleCLK.png"/>
       </block>

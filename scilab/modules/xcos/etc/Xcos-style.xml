@@ -168,6 +168,9 @@
   <add as="STEP_FUNCTION" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
   </add>
+  <add as="PULSE_SC" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PULSE_SC.svg"/>
+  </add>
   <add as="CLOCK_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>

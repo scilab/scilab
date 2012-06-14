@@ -344,6 +344,8 @@ Xcos
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
 
+* Bug #9131 fixed - PULSE_SC has been added to the Source palette.
+
 * Bug #10081 fixed - Palette configuration saving could produce an invalid
                      file.
 

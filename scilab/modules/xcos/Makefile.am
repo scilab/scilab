@@ -157,6 +157,7 @@ images/blocks/PNP.svg \
 images/blocks/PotentialSensor.svg \
 images/blocks/PRODUCT.svg \
 images/blocks/PuitP.svg \
+images/blocks/PULSE_SC.svg \
 images/blocks/QUANT_f.svg \
 images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
@@ -224,8 +225,8 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
-images/palettes/CONSTRAINT_c.png \
 images/palettes/CONSTRAINT2_c.png \
+images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \
@@ -346,6 +347,7 @@ images/palettes/POWBLK_f.png \
 images/palettes/PROD_f.png \
 images/palettes/PRODUCT.png \
 images/palettes/PuitsP.png \
+images/palettes/PULSE_SC.png \
 images/palettes/QUANT_f.png \
 images/palettes/RAMP.png \
 images/palettes/RAND_m.png \
@@ -363,6 +365,7 @@ images/palettes/SAMPHOLD_m.png \
 images/palettes/SampleCLK.png \
 images/palettes/SATURATION.png \
 images/palettes/SAWTOOTH_f.png \
+images/palettes/SCALAR2VECTOR.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
 images/palettes/SELF_SWITCH_off.png \
@@ -396,6 +399,7 @@ images/palettes/TrigFun.png \
 images/palettes/VanneReglante.png \
 images/palettes/VARIABLE_DELAY.png \
 images/palettes/VariableResistor.png \
+images/palettes/VirtualCLK0.png \
 images/palettes/VoltageSensor.png \
 images/palettes/VsourceAC.png \
 images/palettes/VVsourceAC.png \
