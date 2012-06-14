@@ -26,7 +26,8 @@ static gw_generic_table Tab[] =
   {sci_znaupd,"znaupd"},
   {sci_dseupd,"dseupd"},
   {sci_dneupd,"dneupd"},
-  {sci_zneupd,"zneupd"}
+  {sci_zneupd,"zneupd"},
+  {sci_eigs,"%_eigs"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_arnoldi(void)

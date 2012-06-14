@@ -53,6 +53,13 @@ Obsolete Functions
 * uipopup function is now obsolete. Please use 'uicontextmenu' instead.
 
 
+Arnoldi Package
+====================
+
+* New function:
+  - eigs function added (See SEP #82)
+
+
 Unitary tests
 =============
 
