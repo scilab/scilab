@@ -288,6 +288,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
          */
         final double minY = -minimalYaxisValue + V_MARGIN;
         final double minX = -minimalXaxisValue + H_MARGIN;
+
         final mxGraphModel model = (mxGraphModel) diag.getModel();
 
         for (final Object cell : model.getCells().values()) {

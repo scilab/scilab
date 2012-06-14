@@ -17,6 +17,7 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -35,6 +36,7 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxConstants;
 
 /**
  * Protected class which decode graphic fields of a block.
@@ -60,9 +62,7 @@ final class BlockGraphicElement extends BlockPartsElement {
     private static final int STYLE_INDEX = DATA_FIELD_NAMES_FULL.indexOf("style");
 
     private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
-
-    /** Size factor use to scale Xcos-Scicos dimensions */
-    private static final double SIZE_FACTOR = 20.0;
+    private static final double DEFAULT_SIZE_FACTOR = 20.0;
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
@@ -70,11 +70,46 @@ final class BlockGraphicElement extends BlockPartsElement {
     /** In-progress decoded diagram */
     private final XcosDiagram diag;
 
+    /** Size factor use to scale Xcos-Scicos dimensions */
+    private final double sizeFactor;
+
     /**
      * Default constructor
      */
+    public BlockGraphicElement() {
+        this(null);
+    }
+
+    /**
+     * Default constructor with diagram
+     *
+     * @param diag
+     *            the diagram
+     */
     public BlockGraphicElement(final XcosDiagram diag) {
         this.diag = diag;
+
+        /*
+         * Out of a diagram update, use the DEFAULT_SIZE_FACTOR.
+         */
+        if (diag == null) {
+            sizeFactor = DEFAULT_SIZE_FACTOR;
+        } else {
+            sizeFactor = 1.0;
+        }
+    }
+
+    /**
+     * Default constructor with diagram
+     *
+     * @param diag
+     *            the diagram
+     * @param sizeFactor
+     *            the size factor
+     */
+    public BlockGraphicElement(final XcosDiagram diag, final double sizeFactor) {
+        this.diag = diag;
+        this.sizeFactor = sizeFactor;
     }
 
     /**
@@ -290,10 +325,8 @@ final class BlockGraphicElement extends BlockPartsElement {
         /*
          * Apply compatibility patterns
          */
-        if (diag == null) {
-            x *= SIZE_FACTOR;
-            y *= SIZE_FACTOR;
-        }
+        x *= sizeFactor;
+        y *= sizeFactor;
 
         /*
          * Invert the y-axis value and translate it.
@@ -329,10 +362,8 @@ final class BlockGraphicElement extends BlockPartsElement {
          * When a block has no parent diagram, the size should be updated. On a
          * diagram decode, size is right.
          */
-        if (diag == null) {
-            h *= SIZE_FACTOR;
-            w *= SIZE_FACTOR;
-        }
+        h *= sizeFactor;
+        w *= sizeFactor;
 
         /*
          * fill parameter
@@ -361,11 +392,16 @@ final class BlockGraphicElement extends BlockPartsElement {
          * Rotation management
          */
         int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
+        if (theta != 0) {
+            // convert to a valid value
+            theta = BlockPositioning.roundAngle(-theta);
 
-        // convert to a valid value
-        theta = BlockPositioning.roundAngle(theta);
+            into.setAngle(theta);
 
-        into.setAngle(theta);
+            final StyleMap map = new StyleMap(into.getStyle());
+            map.put(mxConstants.STYLE_ROTATION, Integer.toString(theta));
+            into.setStyle(map.toString());
+        }
     }
 
     /**

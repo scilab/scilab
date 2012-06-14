@@ -37,7 +37,7 @@ public final class LabelElement extends AbstractElement<TextBlock> {
     private final BlockModelElement modelElement = new BlockModelElement(null);
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockGraphicElement graphicElement = new BlockGraphicElement(null);
+    private final BlockGraphicElement graphicElement = new BlockGraphicElement(null, 1.0);
 
     /**
      * Default constructor
