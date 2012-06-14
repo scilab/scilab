@@ -105,6 +105,10 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     }
     setCurrentFigure(pFigureUID);
 
+    char* pstrAxesUID = NULL;
+    getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
+    setCurrentSubWin(pstrAxesUID);
+
     return 0;
 #if 0
     /* select the figure num */
