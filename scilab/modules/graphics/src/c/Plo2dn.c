@@ -235,7 +235,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
 
         /* merge data bounds and drect */
-        if (getCurrentSubWin() && (strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+        if (!firstPlot && (strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
             double *dataBounds;
 
