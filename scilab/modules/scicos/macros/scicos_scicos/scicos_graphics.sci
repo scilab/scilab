@@ -42,20 +42,16 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     out_implicit=I(ones(pout(:)));
   end
   if exists('in_style','local')==0 then
-    S="";
-    in_style="" + S(ones(pin(:)));
+    in_style=emptystr(pin);
   end
   if exists('out_style','local')==0 then
-    S="";
-    out_style="" + S(ones(pout(:)));
+    out_style=emptystr(pout);
   end
   if exists('in_label','local')==0 then
-    S="";
-    in_label="" + S(ones(pin(:)));
+    in_label=emptystr(pin);
   end
   if exists('out_label','local')==0 then
-    S="";
-    out_label="" + S(ones(pout(:)));
+    out_label=emptystr(pout);
   end
   if exists('style','local')==0 then style="" + [],end
 

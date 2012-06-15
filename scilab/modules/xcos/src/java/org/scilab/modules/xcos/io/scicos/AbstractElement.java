@@ -19,12 +19,12 @@ import org.scilab.modules.types.ScilabType;
 
 /**
  * Root implementation for any Element.
- * 
+ *
  * This class provide some useful methods to manage {@link ScilabType} classes.
- * 
+ *
  * @param <T>
  *            the chosen implementation
- * 
+ *
  */
 public abstract class AbstractElement<T> implements Element<T> {
     /**
@@ -35,7 +35,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Default implementation is empty.
-     * 
+     *
      * @param from
      *            not used
      * @param element
@@ -51,10 +51,10 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Encode the instance and return a new element.
-     * 
+     *
      * Provide a default implementation which call
      * {@link #encode(Object, ScilabType)} with a null parameter.
-     * 
+     *
      * @param from
      *            the source instance
      * @return the element parameter
@@ -67,7 +67,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Default implementation is empty.
-     * 
+     *
      * @param from
      *            not used
      * @param element
@@ -83,7 +83,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Default implementation is empty.
-     * 
+     *
      * @param element
      *            not used
      * @param into
@@ -99,7 +99,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Default implementation is empty.
-     * 
+     *
      * @param element
      *            not used
      * @param into
@@ -113,34 +113,35 @@ public abstract class AbstractElement<T> implements Element<T> {
         return into;
     };
 
+    /*
+     * Utilities
+     */
+
     /**
      * Check the emptiness of a type.
-     * 
+     *
      * @param object
      *            the data to test for emptiness
      * @return true, if the object is empty, false otherwise
      */
-    protected static boolean isEmptyField(ScilabType object) {
-        final boolean doubleEmptiness = object instanceof ScilabDouble
-                && ((ScilabDouble) object).isEmpty();
-        final boolean stringEmptiness = object instanceof ScilabString
-                && ((ScilabString) object).isEmpty();
-        final boolean listEmptiness = object instanceof ScilabList
-                && ((ScilabList) object).isEmpty();
+    public static final boolean isEmptyField(ScilabType object) {
+        final boolean doubleEmptiness = object instanceof ScilabDouble && ((ScilabDouble) object).isEmpty();
+        final boolean stringEmptiness = object instanceof ScilabString && ((ScilabString) object).isEmpty();
+        final boolean listEmptiness = object instanceof ScilabList && ((ScilabList) object).isEmpty();
 
         return doubleEmptiness || stringEmptiness || listEmptiness;
     }
 
     /**
      * Get an array of index, for the current index.
-     * 
+     *
      * @param index
      *            the index.
      * @param isColumnDominant
      *            the index placement flag
      * @return the column-row index.
      */
-    public static int[] getIndexes(int index, boolean isColumnDominant) {
+    public static final int[] getIndexes(int index, boolean isColumnDominant) {
         int[] ret = { 0, 0 };
 
         if (isColumnDominant) {
@@ -154,13 +155,13 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Increment the indexes according to the isColumnDominant flag.
-     * 
+     *
      * @param indexes
      *            the current indexes (length=2)
      * @param isColumnDominant
      *            flag to specify the field to increment.
      */
-    public static void incrementIndexes(int[] indexes, boolean isColumnDominant) {
+    public static final void incrementIndexes(int[] indexes, boolean isColumnDominant) {
         if (isColumnDominant) {
             indexes[0]++;
         } else {
@@ -170,7 +171,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 
     /**
      * Check if the data can be extracted without throwing an exception.
-     * 
+     *
      * @param data
      *            the data
      * @param indexes
@@ -178,7 +179,7 @@ public abstract class AbstractElement<T> implements Element<T> {
      * @return true if the data can be extracted without throwing an exception,
      *         false if not.
      */
-    public static boolean canGet(ScilabType data, int[] indexes) {
+    public static final boolean canGet(ScilabType data, int[] indexes) {
         return data.getHeight() > indexes[0] && data.getWidth() > indexes[1];
     }
 }

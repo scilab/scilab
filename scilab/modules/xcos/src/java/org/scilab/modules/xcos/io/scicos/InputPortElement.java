@@ -150,7 +150,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         final String[][] inimpl = inImplicit.getData();
 
         // can we safely access the indexed data ?
-        final boolean isSet = indexes[0] < inimpl.length && indexes[1] < inimpl[indexes[0]].length;
+        final boolean isSet = canGet(inImplicit, indexes);
 
         /*
          * when the type is set, create a new port instance; create an explicit
@@ -233,7 +233,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
         int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
+        if (canGet(styles, indexes)) {
             final String style;
 
             style = styles.getData()[indexes[0]][indexes[1]];
@@ -250,11 +250,14 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         isColumnDominant = styles.getHeight() >= styles.getWidth();
         indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
-            final String label;
+        if (canGet(labels, indexes)) {
+            final String label = labels.getData()[indexes[0]][indexes[1]];
 
-            label = labels.getData()[indexes[0]][indexes[1]];
-            port.setValue(label);
+            if (label != null) {
+                port.setValue(label);
+            } else {
+                port.setValue("");
+            }
         }
     }
 
@@ -387,7 +390,11 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         // in_label
         sciStrings = (ScilabString) graphics.get(GRAPHICS_INLABEL_INDEX);
         strings = sciStrings.getData();
-        strings[alreadyDecodedCount][0] = String.valueOf(from.getValue());
+        if (from.getValue() != null) {
+            strings[alreadyDecodedCount][0] = from.getValue().toString();
+        } else {
+            strings[alreadyDecodedCount][0] = "";
+        }
     }
 
     /**

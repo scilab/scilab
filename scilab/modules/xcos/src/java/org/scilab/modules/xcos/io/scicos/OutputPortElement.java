@@ -150,7 +150,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         final String[][] outimpl = outImplicit.getData();
 
         // can we safely access the indexed data ?
-        final boolean isSet = indexes[0] < outimpl.length && indexes[1] < outimpl[indexes[0]].length;
+        final boolean isSet = canGet(outImplicit, indexes);
 
         /*
          * when the type is set, create a new port instance; create an explicit
@@ -232,7 +232,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
         int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
+        if (canGet(styles, indexes)) {
             final String style;
 
             style = styles.getData()[indexes[0]][indexes[1]];
@@ -246,14 +246,17 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
 
         final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
 
-        isColumnDominant = styles.getHeight() >= styles.getWidth();
+        isColumnDominant = labels.getHeight() >= labels.getWidth();
         indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        if (styles.getData() != null && indexes[0] < styles.getHeight() && indexes[1] < styles.getWidth()) {
-            final String label;
+        if (canGet(styles, indexes)) {
+            final String label = labels.getData()[indexes[0]][indexes[1]];
 
-            label = labels.getData()[indexes[0]][indexes[1]];
-            port.setValue(label);
+            if (label != null) {
+                port.setValue(label);
+            } else {
+                port.setValue("");
+            }
         }
     }
 
@@ -386,7 +389,11 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         // out_label
         sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
         strings = sciStrings.getData();
-        strings[alreadyDecodedCount][0] = String.valueOf(from.getValue());
+        if (from.getValue() != null) {
+            strings[alreadyDecodedCount][0] = from.getValue().toString();
+        } else {
+            strings[alreadyDecodedCount][0] = "";
+        }
     }
 
     /**
