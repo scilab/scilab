@@ -31,6 +31,7 @@ import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.fec.Fec;
@@ -311,7 +312,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (arc.isValid() && arc.getVisible()) {
             axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
-                contouredObjectDrawer.draw(arc);
+                contouredObjectDrawer.draw(arc, currentAxes.getViewAsEnum() == ViewType.VIEW_2D);
             } catch (Exception e) {
                 invalidate(arc, e);
             }
@@ -452,6 +453,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
+                geometry.setPolygonOffsetMode(currentAxes.getCamera().getView() == ViewType.VIEW_3D);
+
                 /* Interpolated color rendering is used only for basic polylines for now. */
                 Appearance appearance = new Appearance();
 
@@ -506,7 +509,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (rectangle.isValid() && rectangle.getVisible()) {
             axesDrawer.enableClipping(currentAxes, rectangle.getClipProperty());
             try {
-                contouredObjectDrawer.draw(rectangle);
+                contouredObjectDrawer.draw(rectangle, currentAxes.getCamera().getView() == ViewType.VIEW_2D);
             } catch (Exception e) {
                 invalidate(rectangle, e);
             }
@@ -528,6 +531,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+
+                    geometry.setPolygonOffsetMode(true);
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
@@ -595,6 +600,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     } else {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                     }
+
+                    geometry.setPolygonOffsetMode(true);
+
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                     /* Back-facing triangles */

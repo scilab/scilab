@@ -80,7 +80,7 @@ public class ArcDecomposer {
 
                 int offset = 0;
 
-                coords = new float[(NB_SECTORS+2)*elementsSize];
+                coords = new float[3];
 
                 Double [] leftUpperPoint = (Double []) GraphicController.getController().getProperty(id, __GO_UPPER_LEFT_POINT__);
                 Double width = (Double) GraphicController.getController().getProperty(id, __GO_WIDTH__);
@@ -108,7 +108,8 @@ public class ArcDecomposer {
                                 currentPoint[0] = Math.log10(currentPoint[0]);
                         }
 
-                        coords[offset] = (float) (currentPoint[0] * scale[0] + translation[0]);
+                        coords[0] = (float) (currentPoint[0] * scale[0] + translation[0]);
+                        buffer.put(offset, coords[0]);
                 }
 
                 if ((coordinateMask & 0x2) != 0) {
@@ -118,7 +119,8 @@ public class ArcDecomposer {
                                 currentPoint[1] = Math.log10(currentPoint[1]);
                         }
 
-                        coords[offset+1] = (float) (currentPoint[1] * scale[1] + translation[1]);
+                        coords[1] = (float) (currentPoint[1] * scale[1] + translation[1]);
+                        buffer.put(offset+1, coords[1]);
                 }
 
                 if ((coordinateMask & 0x4) != 0) {
@@ -128,11 +130,12 @@ public class ArcDecomposer {
                                 currentPoint[2] = Math.log10(currentPoint[2]);
                         }
 
-                        coords[offset+2] = (float) (currentPoint[2] * scale[2] + translation[2]);
+                        coords[2] = (float) (currentPoint[2] * scale[2] + translation[2]);
+                        buffer.put(offset+2, coords[2]);
                 }
 
                 if (elementsSize == 4 && (coordinateMask & 0x8) != 0) {
-                        coords[offset+3] = 1.0f;
+                        buffer.put(offset+3, 1.0f);
                 }
 
                 offset += elementsSize;
@@ -157,7 +160,8 @@ public class ArcDecomposer {
                                         currentPoint[0] = Math.log10(currentPoint[0]);
                                 }
 
-                                coords[offset] = (float) (currentPoint[0] * scale[0] + translation[0]);
+                                coords[0] = (float) (currentPoint[0] * scale[0] + translation[0]);
+                                buffer.put(offset, coords[0]);
                         }
 
                         if ((coordinateMask & 0x2) != 0) {
@@ -167,7 +171,8 @@ public class ArcDecomposer {
                                         currentPoint[1] = Math.log10(currentPoint[1]);
                                 }
 
-                                coords[offset+1] = (float) (currentPoint[1] * scale[1] + translation[1]);
+                                coords[1] = (float) (currentPoint[1] * scale[1] + translation[1]);
+                                buffer.put(offset+1, coords[1]);
                         }
 
                         if ((coordinateMask & 0x4) != 0) {
@@ -177,17 +182,16 @@ public class ArcDecomposer {
                                         currentPoint[2] = Math.log10(currentPoint[2]);
                                 }
 
-                                coords[offset+2] = (float) (currentPoint[2] * scale[2] + translation[2]);
+                                coords[2] = (float) (currentPoint[2] * scale[2] + translation[2]);
+                                buffer.put(offset+2, coords[2]);
                         }
 
                         if (elementsSize == 4 && (coordinateMask & 0x8) != 0) {
-                                coords[offset+3] = 1.0f;
+                                buffer.put(offset+3, 1.0f);
                         }
 
                         offset +=  elementsSize;
                 }
-
-                buffer.put(coords);
         }
 
         /**

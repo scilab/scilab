@@ -73,6 +73,7 @@ class FecDrawer {
 
                 geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                geometry.setPolygonOffsetMode(true);
 
                 if (fec.getLineMode()) {
                     geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
