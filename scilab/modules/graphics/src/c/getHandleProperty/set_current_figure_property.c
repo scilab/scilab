@@ -45,6 +45,7 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     int res = -1 ;
     char* pFigureUID = NULL;
     char* curFigUID = NULL;
+    char* pstrAxesUID = NULL;
 
 	if (pobjUID != NULL)
 	{
@@ -105,7 +106,6 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     }
     setCurrentFigure(pFigureUID);
 
-    char* pstrAxesUID = NULL;
     getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
     setCurrentSubWin(pstrAxesUID);
 
