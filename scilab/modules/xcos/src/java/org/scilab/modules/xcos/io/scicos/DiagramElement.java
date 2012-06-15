@@ -189,7 +189,6 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
     @Override
     public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
         into.setChildrenParentDiagram();
-        into.generateUID();
 
         return super.afterDecode(element, into);
     }

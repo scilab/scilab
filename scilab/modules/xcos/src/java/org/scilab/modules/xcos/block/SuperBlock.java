@@ -325,10 +325,6 @@ public final class SuperBlock extends BasicBlock {
             }
 
             child.installSuperBlockListeners();
-            // only for loading and generate sub block UID
-            if (generatedUID) {
-                child.generateUID();
-            }
 
             final XcosDiagram parent = Xcos.findParent(this);
             if (parent != null) {

@@ -160,7 +160,7 @@ public class EditFormatAction extends DefaultAction {
             identifier = cell;
             identifierStyle = cellStyle;
         } else {
-            identifier = graph.getCellIdentifier(cell);
+            identifier = graph.getOrCreateCellIdentifier(cell);
             identifierStyle = new StyleMap(identifier.getStyle());
         }
 
@@ -295,7 +295,7 @@ public class EditFormatAction extends DefaultAction {
             identifier = cell;
             identifierStyle = cellStyle;
         } else {
-            identifier = graph.getCellIdentifier(cell);
+            identifier = graph.getOrCreateCellIdentifier(cell);
             identifierStyle = new StyleMap(identifier.getStyle());
         }
 
@@ -369,7 +369,9 @@ public class EditFormatAction extends DefaultAction {
             identifier = cell;
         } else {
             identifier = graph.getCellIdentifier(cell);
-            model.remove(identifier);
+            if (identifier != null) {
+                model.remove(identifier);
+            }
         }
 
         cellStyle.clear();

@@ -1451,15 +1451,13 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Return the identifier for the cell
+     * Return or create the identifier for the cell
      *
      * @param cell
      *            the cell to check
-     * @param model
-     *            the current model
      * @return the identifier cell
      */
-    public mxCell getCellIdentifier(final mxCell cell) {
+    public mxCell getOrCreateCellIdentifier(final mxCell cell) {
         final mxGraphModel graphModel = (mxGraphModel) getModel();
 
         final mxCell identifier;
@@ -1474,6 +1472,20 @@ public class XcosDiagram extends ScilabGraph {
             identifier = (mxCell) graphModel.getCell(cellId);
         }
         return identifier;
+    }
+
+    /**
+     * Return the identifier for the cell
+     *
+     * @param cell
+     *            the cell to check
+     * @return the identifier cell
+     */
+    public mxCell getCellIdentifier(final mxCell cell) {
+        final mxGraphModel graphModel = (mxGraphModel) getModel();
+        final String cellId = cell.getId() + HASH_IDENTIFIER;
+
+        return (mxCell) graphModel.getCell(cellId);
     }
 
     /**
@@ -2091,6 +2103,10 @@ public class XcosDiagram extends ScilabGraph {
                         block.setRealParameters(newSP.getRealParameters());
                     }
                 } else if (block.getId() == null || block.getId().compareTo("") == 0) {
+                    /*
+                     * FIXME: Change of a cell id out of model modification in
+                     * which case ?
+                     */
                     block.generateId();
                 }
             }

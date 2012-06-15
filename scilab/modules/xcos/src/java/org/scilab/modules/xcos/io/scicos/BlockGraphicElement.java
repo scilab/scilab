@@ -145,10 +145,10 @@ final class BlockGraphicElement extends BlockPartsElement {
         /*
          * fill the data
          */
-        fillDimension(block);
-        fillOrigin(block);
-        fillFlipAndRotation(block);
-        fillIdCell(block);
+        decodeDimension(block);
+        decodeOrigin(block);
+        decodeFlipAndRotation(block);
+        decodeIdCell(block);
 
         block.setExprs(data.get(EXPRS_INDEX));
 
@@ -310,7 +310,7 @@ final class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillOrigin(final BasicBlock into) {
+    private void decodeOrigin(final BasicBlock into) {
         /*
          * Getting the values
          */
@@ -346,7 +346,7 @@ final class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillDimension(final BasicBlock into) {
+    private void decodeDimension(final BasicBlock into) {
         /*
          * Getting the values
          */
@@ -378,7 +378,7 @@ final class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillFlipAndRotation(final BasicBlock into) {
+    private void decodeFlipAndRotation(final BasicBlock into) {
         /*
          * Flip management
          */
@@ -410,7 +410,7 @@ final class BlockGraphicElement extends BlockPartsElement {
      * @param into
      *            the target instance
      */
-    private void fillIdCell(final BasicBlock into) {
+    private void decodeIdCell(final BasicBlock into) {
         if (diag == null) {
             return;
         }
@@ -470,14 +470,20 @@ final class BlockGraphicElement extends BlockPartsElement {
         data = (ScilabMList) beforeEncode(from, data);
 
         /*
-         * Fill the geometry data
+         * fill the data
          */
-        field = encodePosition(from, field);
+
+        field++; // orig
+        encodeOrigin(from, field);
+
+        field++; // sz
+        encodeDimension(from, field);
 
         field++; // flip
-        data.set(field, new ScilabBoolean(true));
+        encodeFlip(from, field);
+
         field++; // theta
-        data.set(field, new ScilabDouble(0));
+        encodeRotation(from, field);
 
         field++; // exprs
         data.set(field, from.getExprs());
@@ -506,6 +512,7 @@ final class BlockGraphicElement extends BlockPartsElement {
         data.set(field, graphics);
 
         field++; // id
+        encodeIdCell(from, field);
 
         /*
          * Fields managed by specific elements.
@@ -528,27 +535,75 @@ final class BlockGraphicElement extends BlockPartsElement {
     }
 
     /**
-     * Encode the position and dimensions
+     * Encode the position (in Xcos coordinates)
      *
      * @param from
      *            the instance
      * @param field
-     *            the current field index
-     * @return the new field index
+     *            the incremented field index
      */
-    private int encodePosition(BasicBlock from, int field) {
+    private final void encodeOrigin(BasicBlock from, final int field) {
         final mxGeometry geom = from.getGeometry();
-        int internalField = field;
 
-        internalField++; // orig
         final double[][] orig = { { geom.getX() - geom.getWidth(), -geom.getY() } };
-        data.set(internalField, new ScilabDouble(orig));
+        data.set(field, new ScilabDouble(orig));
+    }
 
-        internalField++; // sz
+    /**
+     * Encode the dimension
+     *
+     * @param from
+     *            the instance
+     * @param field
+     *            the incremented field index
+     */
+    private final void encodeDimension(BasicBlock from, final int field) {
+        final mxGeometry geom = from.getGeometry();
+
         final double[][] sz = { { geom.getWidth(), geom.getHeight() } };
-        data.set(internalField, new ScilabDouble(sz));
+        data.set(field, new ScilabDouble(sz));
+    }
 
-        return internalField;
+    /**
+     * Encode the flip
+     *
+     * @param from
+     *            the instance
+     * @param field
+     *            the incremented field index
+     */
+    private final void encodeFlip(BasicBlock from, final int field) {
+        // take care, the flip value is inverted
+        data.set(field, new ScilabBoolean(!from.getFlip()));
+    }
+
+    /**
+     * Encode the theta value
+     *
+     * @param from
+     *            the instance
+     * @param field
+     *            the incremented field index
+     */
+    private final void encodeRotation(BasicBlock from, final int field) {
+        // take care, the angle value has a 0 symmetry
+        data.set(field, new ScilabDouble(-from.getAngle()));
+    }
+
+    /**
+     * Encode the id value
+     *
+     * @param from
+     *            the instance
+     * @param field
+     *            the incremented field index
+     */
+    private final void encodeIdCell(BasicBlock from, final int field) {
+        final mxCell identifier = diag.getCellIdentifier(from);
+
+        if (identifier != null) {
+            data.set(field, new ScilabString(String.valueOf(identifier.getValue())));
+        }
     }
 
     /**

@@ -255,7 +255,7 @@ public class ScilabDirectHandler implements Handler {
     public void writeBlock(final BasicBlock block) {
         LOG.entering("ScilabDirectHandler", "writeBlock");
 
-        final BlockElement element = new BlockElement(null);
+        final BlockElement element = new BlockElement(block.getParentDiagram());
         final ScilabType data = element.encode(block, null);
 
         LOG.finer("encoding done");

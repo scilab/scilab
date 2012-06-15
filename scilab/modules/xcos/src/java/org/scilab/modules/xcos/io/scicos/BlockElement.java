@@ -167,7 +167,6 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
          * The double type is used as the default one, generate on empty field.
          */
         if (scilabType instanceof ScilabDouble) {
-            into.generateId();
             return;
         }
 
@@ -183,8 +182,6 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
                 return;
             }
         }
-
-        into.generateId();
     }
 
     /**
