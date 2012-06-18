@@ -32,7 +32,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
-							src/jni/ScilabNativeView_wrap.c
+							src/jni/ScilabNativeView_wrap.c \
+							src/jni/PolylineData_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -92,14 +93,14 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/core/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ 
 			$(AM_CPPFLAGS)
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ 
 			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
@@ -122,7 +123,8 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/DataLoader.i \
-				src/jni/ScilabNativeView.i
+				src/jni/ScilabNativeView.i \
+				src/jni/PolylineData.i
 if SWIG
   BUILT_SOURCES += swig
 endif

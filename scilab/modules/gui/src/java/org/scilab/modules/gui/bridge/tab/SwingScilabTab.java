@@ -114,6 +114,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 
+import org.scilab.modules.gui.editor.EditorEventListener;
+
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
@@ -165,6 +167,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** The listener for event handling */
     private ScilabEventListener eventHandler;
+	private EditorEventListener editorEventHandler;
 
     /** A reference to the canvas used for event handling management */
     SwingScilabCanvas contentCanvas;
@@ -266,6 +269,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
+
+		editorEventHandler = new EditorEventListener(figure.getIdentifier());
+		contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+		contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+		contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);

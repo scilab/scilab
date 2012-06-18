@@ -91,6 +91,10 @@ GUI
 * Figure resizing can now be managed by the user (uicontrol position setting, ...)
   through the 'resizefcn' property.
 
+* Interactive point-and-click curve editor, now the user can select/unselect
+  hide/unhide and delete curves, copy, cut and paste selected curves between figures,
+  now figures can be copied as an image to system clipboard(only under Windows).
+
 
 Scilab
 ======

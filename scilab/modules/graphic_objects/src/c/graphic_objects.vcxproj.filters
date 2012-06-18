@@ -146,6 +146,9 @@
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\PolylineData_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -256,6 +259,9 @@
     <None Include="..\..\sci_gateway\graphic_objects_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\jni\ScilabNativeView.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\PolylineData.i">
       <Filter>Swig Files</Filter>
     </None>
   </ItemGroup>
