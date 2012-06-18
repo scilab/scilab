@@ -220,7 +220,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         if (pdblColorMap == NULL)
         {
             sprintf(error_message, _("%s: No more memory.\n"), "InitFigureModel");
-            return;
+            return 0;
         }
 
         int piFigurePosition[2] = {200, 200};
