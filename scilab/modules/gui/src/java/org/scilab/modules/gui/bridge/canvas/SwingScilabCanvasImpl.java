@@ -38,9 +38,10 @@ public class SwingScilabCanvasImpl {
 
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
+    static boolean testCanvasAtStartup = false;
 
     static {
-        if (OS.get() != OS.MAC) {
+        if (testCanvasAtStartup && OS.get() != OS.MAC) {
             long lastTime = Calendar.getInstance().getTimeInMillis();
 
             Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
