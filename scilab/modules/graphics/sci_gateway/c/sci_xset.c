@@ -16,7 +16,7 @@
 /* file: sci_xset.c                                                       */
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
-
+#include <stdio.h>
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
@@ -38,6 +38,9 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "AxesModel.h"
+#include "getGraphicObjectProperty.h"
+#include "deleteGraphicObject.h"
+
 /*--------------------------------------------------------------------------*/
 int xsetg(char * str, char * str1, int lx0, int lx1) ;
 /*--------------------------------------------------------------------------*/
@@ -194,16 +197,51 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "default") == 0 )
     {
-        // Create figure if it not exist.
-        char* pFigureUID = getCurrentFigure();
-        if (pFigureUID == NULL)
+        // default color map
+        unsigned short defcolors[] =
         {
-            pFigureUID = createNewFigureWithAxes();
-            setCurrentFigure(pFigureUID);
-            LhsVar(1) = 0;
-            PutLhsVar();
-            return 0;
-        }
+            0, 0, 0,                    /* Black: DEFAULTBLACK */
+            0, 0, 255,                  /* Blue */
+            0, 255, 0,                  /* Green */
+            0, 255, 255,                /* Cyan */
+            255, 0, 0,                  /* Red */
+            255, 0, 255,                /* Magenta */
+            255, 255, 0,                /* Yellow */
+            255, 255, 255,              /* White: DEFAULTWHITE */
+            0, 0, 144,                  /* Blue4 */
+            0, 0, 176,                  /* Blue3 */
+            0, 0, 208,                  /* Blue2 */
+            135, 206, 255,              /* LtBlue */
+            0, 144, 0,                  /* Green4 */
+            0, 176, 0,                  /* Green3 */
+            0, 208, 0,                  /* Green2 */
+            0, 144, 144,                /* Cyan4 */
+            0, 176, 176,                /* Cyan3 */
+            0, 208, 208,                /* Cyan2 */
+            144, 0, 0,                  /* Red4 */
+            176, 0, 0,                  /* Red3 */
+            208, 0, 0,                  /* Red2 */
+            144, 0, 144,                /* Magenta4 */
+            176, 0, 176,                /* Magenta3 */
+            208, 0, 208,                /* Magenta2 */
+            128, 48, 0,                 /* Brown4 */
+            160, 64, 0,                 /* Brown3 */
+            192, 96, 0,                 /* Brown2 */
+            255, 128, 128,              /* Pink4 */
+            255, 160, 160,              /* Pink3 */
+            255, 192, 192,              /* Pink2 */
+            255, 224, 224,              /* Pink */
+            255, 215, 0                 /* Gold */
+        };
+
+        int piFigurePosition[2] = {200, 200};
+        int piFigureSize[2]     = {500, 500};
+        int piAxesSize[2]       = {498, 366};
+        int piViewPort[2]       = {0, 0};
+        int piEmptyMatrix[4]    = {1, 0, 0, 0};
+
+        // Create new axes and set it in current figure
+        char* pSubWinUID = getCurrentSubWin();
 
         // init variables
         int iZero   = 0;
@@ -217,20 +255,24 @@ int sci_xset( char *fname, unsigned long fname_len )
         char error_message[70];
 
         double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
-        if (pdblColorMap == NULL)
+
+        // Create figure if it not exist.
+        char* pFigureUID = getCurrentFigure();
+        if (pFigureUID == NULL)
         {
-            sprintf(error_message, _("%s: No more memory.\n"), "InitFigureModel");
+            pFigureUID = createNewFigureWithAxes();
+            setCurrentFigure(pFigureUID);
+            LhsVar(1) = 0;
+            PutLhsVar();
             return 0;
         }
 
-        int piFigurePosition[2] = {200, 200};
-        int piFigureSize[2]     = {500, 500};
-        int piAxesSize[2]       = {498, 366};
-        int piViewPort[2]       = {0, 0};
-        int piEmptyMatrix[4]    = {1, 0, 0, 0};
+        if (pdblColorMap == NULL)
+        {
+            sprintf(error_message, _("%s: No more memory.\n"), "xset");
+            return 0;
+        }
 
-        // Create new axes and set it in current figure
-        char* pSubWinUID = getCurrentSubWin();
         if (pSubWinUID != NULL)
         {
             int iChildrenCount  = 0;
@@ -274,43 +316,6 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(pFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
         setGraphicObjectProperty(pFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
         setGraphicObjectProperty(pFigureUID, __GO_TAG__, "", jni_string, 1);
-
-        // default color map
-        unsigned short defcolors[] =
-        {
-            0, 0, 0,                    /* Black: DEFAULTBLACK */
-            0, 0, 255,                  /* Blue */
-            0, 255, 0,                  /* Green */
-            0, 255, 255,                /* Cyan */
-            255, 0, 0,                  /* Red */
-            255, 0, 255,                /* Magenta */
-            255, 255, 0,                /* Yellow */
-            255, 255, 255,              /* White: DEFAULTWHITE */
-            0, 0, 144,                  /* Blue4 */
-            0, 0, 176,                  /* Blue3 */
-            0, 0, 208,                  /* Blue2 */
-            135, 206, 255,              /* LtBlue */
-            0, 144, 0,                  /* Green4 */
-            0, 176, 0,                  /* Green3 */
-            0, 208, 0,                  /* Green2 */
-            0, 144, 144,                /* Cyan4 */
-            0, 176, 176,                /* Cyan3 */
-            0, 208, 208,                /* Cyan2 */
-            144, 0, 0,                  /* Red4 */
-            176, 0, 0,                  /* Red3 */
-            208, 0, 0,                  /* Red2 */
-            144, 0, 144,                /* Magenta4 */
-            176, 0, 176,                /* Magenta3 */
-            208, 0, 208,                /* Magenta2 */
-            128, 48, 0,                 /* Brown4 */
-            160, 64, 0,                 /* Brown3 */
-            192, 96, 0,                 /* Brown2 */
-            255, 128, 128,              /* Pink4 */
-            255, 160, 160,              /* Pink3 */
-            255, 192, 192,              /* Pink2 */
-            255, 224, 224,              /* Pink */
-            255, 215, 0                 /* Gold */
-        };
 
         for (i = 0; i < m; i++)
         {
