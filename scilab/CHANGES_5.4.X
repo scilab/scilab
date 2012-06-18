@@ -869,6 +869,8 @@ t.
 
 * Bug #11265 fixed - msprintf crashed on a huge string.
 
+* Bug #11289 fixed - swap_handles function modified the properties.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
