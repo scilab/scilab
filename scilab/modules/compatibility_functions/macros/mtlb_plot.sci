@@ -28,7 +28,7 @@ mtlbmarkers=["+","o","*",".","x","s","d","^","v",">","<","p","h"]
 scimarkers= [ 1 , 9 , 3 , 0 , 2 , -1, 5 , 6 , 7 , -1, -1, -1, -1]
 
 mtlblinestyles=["-","--",":","-."]
-scilinestyles= [ 0 , 2  , -1, 5  ]
+scilinestyles= [ 1 , 2  , -1, 5  ]
 
 // plot(axes_handle,...)
 if type(varargin(1))==9 then
@@ -168,14 +168,14 @@ function mtlb_plotY(Y)
   end
   e=gce()
   e.children(1).foreground=color(mtlbColor(1),mtlbColor(2),mtlbColor(3))
-  e.children(1).line_style=0
+  e.children(1).line_style=1
 endfunction
 
 function mtlb_plotXY(X,Y)
   plot2d(X,Y)
   e=gce()
   e.children(1).foreground=color(mtlbColor(1),mtlbColor(2),mtlbColor(3))
-  e.children(1).line_style=0
+  e.children(1).line_style=1
 endfunction
 
 function mark=linespec2sci(linespec,cur_handle)
