@@ -129,7 +129,7 @@ int sci_xset( char *fname, unsigned long fname_len )
             return 1;
         }
 
-        if(Rhs == 2)
+        if (Rhs == 2)
         {
             int i = 0;
             int lr = 0;
@@ -138,13 +138,13 @@ int sci_xset( char *fname, unsigned long fname_len )
 
             GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &lr);
 
-            if(iRows * iCols != 4)
+            if (iRows * iCols != 4)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A %d-element vector expected.\n"), fname, 2, 4);
                 return 1;
             }
 
-            for(i = 0; i < 4 ; i++)
+            for (i = 0; i < 4 ; i++)
             {
                 xx[i] = *stk(lr + i);
             }
@@ -194,7 +194,134 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "default") == 0 )
     {
-        // FIXME
+        // Create figure if it not exist.
+        char* pFigureUID = getCurrentFigure();
+        if (pFigureUID == NULL)
+        {
+            pFigureUID = createNewFigureWithAxes();
+            setCurrentFigure(pFigureUID);
+            LhsVar(1) = 0;
+            PutLhsVar();
+            return 0;
+        }
+
+        // init variables
+        int iZero   = 0;
+        BOOL bTrue  = TRUE;
+        BOOL bFalse = FALSE;
+        int m       = NUMCOLORS_SCI;
+        int i       = 0;
+        int iCopy   = 3;
+
+        int defaultBackground = -2;
+        char error_message[70];
+
+        double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
+        if (pdblColorMap == NULL)
+        {
+            sprintf(error_message, _("%s: No more memory.\n"), "InitFigureModel");
+            return;
+        }
+
+        int piFigurePosition[2] = {200, 200};
+        int piFigureSize[2]     = {500, 500};
+        int piAxesSize[2]       = {498, 366};
+        int piViewPort[2]       = {0, 0};
+        int piEmptyMatrix[4]    = {1, 0, 0, 0};
+
+        // Create new axes and set it in current figure
+        char* pSubWinUID = getCurrentSubWin();
+        if (pSubWinUID != NULL)
+        {
+            int iChildrenCount  = 0;
+            int* childrencount  = &iChildrenCount;
+            char** childrenUID  = NULL;
+            int iHidden         = 0;
+            int *piHidden       = &iHidden;
+
+            getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+            getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+
+            for (i = 0; i < childrencount[0]; ++i)
+            {
+                getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                if (iHidden == 0)
+                {
+                    deleteGraphicObject(childrenUID[i]);
+                }
+            }
+        }
+
+        cloneAxesModel(pFigureUID);
+
+        // Set default figure properties
+        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
+        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
+        setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+        setGraphicObjectProperty(pFigureUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
+        setGraphicObjectProperty(pFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER__, "", jni_string, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
+        setGraphicObjectProperty(pFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_TAG__, "", jni_string, 1);
+
+        // default color map
+        unsigned short defcolors[] =
+        {
+            0, 0, 0,                    /* Black: DEFAULTBLACK */
+            0, 0, 255,                  /* Blue */
+            0, 255, 0,                  /* Green */
+            0, 255, 255,                /* Cyan */
+            255, 0, 0,                  /* Red */
+            255, 0, 255,                /* Magenta */
+            255, 255, 0,                /* Yellow */
+            255, 255, 255,              /* White: DEFAULTWHITE */
+            0, 0, 144,                  /* Blue4 */
+            0, 0, 176,                  /* Blue3 */
+            0, 0, 208,                  /* Blue2 */
+            135, 206, 255,              /* LtBlue */
+            0, 144, 0,                  /* Green4 */
+            0, 176, 0,                  /* Green3 */
+            0, 208, 0,                  /* Green2 */
+            0, 144, 144,                /* Cyan4 */
+            0, 176, 176,                /* Cyan3 */
+            0, 208, 208,                /* Cyan2 */
+            144, 0, 0,                  /* Red4 */
+            176, 0, 0,                  /* Red3 */
+            208, 0, 0,                  /* Red2 */
+            144, 0, 144,                /* Magenta4 */
+            176, 0, 176,                /* Magenta3 */
+            208, 0, 208,                /* Magenta2 */
+            128, 48, 0,                 /* Brown4 */
+            160, 64, 0,                 /* Brown3 */
+            192, 96, 0,                 /* Brown2 */
+            255, 128, 128,              /* Pink4 */
+            255, 160, 160,              /* Pink3 */
+            255, 192, 192,              /* Pink2 */
+            255, 224, 224,              /* Pink */
+            255, 215, 0                 /* Gold */
+        };
+
+        for (i = 0; i < m; i++)
+        {
+            pdblColorMap[i]         = (double)(defcolors[3 * i] / 255.0);
+            pdblColorMap[i + m]     = (double)(defcolors[3 * i + 1] / 255.0);
+            pdblColorMap[i + 2 * m] = (double)(defcolors[3 * i + 2] / 255.0);
+        }
+
+        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+        setGraphicObjectProperty(pFigureUID, __GO_PARENT__, "", jni_string, 1);
+
     }
     else if ( strcmp(cstk(l1), "clipgrf") == 0 )
     {
