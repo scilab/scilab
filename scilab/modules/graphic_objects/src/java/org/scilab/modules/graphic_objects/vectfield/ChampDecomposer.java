@@ -297,7 +297,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
 
                 base[0] = xBase[i];
                 base[1] = yBase[j];
-                base[2] = zBase[i*xBase.length+j];
+                base[2] = zBase[j*xBase.length+i];
 
                 direction[0] = xDirection[j*xBase.length+i];
                 direction[1] = yDirection[j*xBase.length+i];
@@ -409,7 +409,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
 
                 base[0] = xBase[i];
                 base[1] = yBase[j];
-                base[2] = zBase[i*xBase.length+j];
+                base[2] = zBase[j*xBase.length+i];
 
                 direction[0] = xDirection[j*xBase.length+i];
                 direction[1] = yDirection[j*xBase.length+i];
