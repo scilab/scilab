@@ -110,6 +110,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
     {
         /* Rhs == 0 */
         /* raise current figure */
+        getOrCreateDefaultSubwin();
         pFigureUID = getCurrentFigure();
     }
 
