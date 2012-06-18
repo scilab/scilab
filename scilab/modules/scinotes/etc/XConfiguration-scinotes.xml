@@ -10,7 +10,7 @@
   </display>
   <autosave title="Autosave">
     <body>
-      <scinotes-autosave enable="true" save-every="5" automatic-delete="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
+      <scinotes-autosave enable="true" save-every="5" automatic-delete="true" append-filename="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
     </body>
   </autosave>
 </scinotes>

@@ -175,6 +175,7 @@ public class SciNotes extends SwingScilabTab {
         Document doc = ScilabXMLUtilities.readDocument(System.getenv("SCI") + "/modules/console/etc/Actions-Configuration.xml");
         actionToName = XConfiguration.get(doc, "name", String.class, "action", String.class, XPATH_SCINOTES_ACTION);
         XConfiguration.addXConfigurationListener(new SciNotesConfiguration());
+        SciNotesAutosave.autosave();
     }
 
     /**
@@ -229,6 +230,9 @@ public class SciNotes extends SwingScilabTab {
             actionKeys = null;
             setKeyStrokeActions();
             setAllMenus();
+        }
+        if (conf.autosave) {
+            SciNotesAutosave.autosave();
         }
         updatePanes(conf);
     }
@@ -646,7 +650,7 @@ public class SciNotes extends SwingScilabTab {
      */
     public void restorePreviousSession() {
         restored = true;
-        if (!ConfigSciNotesManager.getRestoreOpenedFiles() || ConfigSciNotesManager.countExistingOpenFiles(getUUID()) == 0) {
+        if (!SciNotesOptions.getSciNotesPreferences().restartOpen || !ConfigSciNotesManager.getRestoreOpenedFiles() || ConfigSciNotesManager.countExistingOpenFiles(getUUID()) == 0) {
             if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
                 openFile(null, 0, null);
             }
@@ -791,6 +795,10 @@ public class SciNotes extends SwingScilabTab {
          */
 
         scinotesList.remove(this);
+        if (scinotesList.size() == 0) {
+            SciNotesAutosave.stopAutosave();
+        }
+
         editor = null;
         ConfigSciNotesManager.resetDocument();
     }

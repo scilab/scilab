@@ -73,6 +73,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
     private boolean contentModified;
+    private boolean contentModifiedSinceBackup;
     private boolean alphaOrder;
 
     // Editor's default encoding is UTF-8
@@ -105,6 +106,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         undoManagerEnabled = true;
 
         contentModified = false;
+        contentModifiedSinceBackup = false;
     }
 
     /**
@@ -260,6 +262,29 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         }
     }
 
+    public void addEOL() {
+        if (SciNotesOptions.getSciNotesPreferences().addLineTermination) {
+            int len = getLength();
+            int lenEOL = getEOL().length();
+            if (getLength() >= lenEOL) {
+                try {
+                    String end = getText(len - lenEOL, lenEOL);
+                    if (!end.equals(getEOL())) {
+                        insertString(len, getEOL(), null);
+                    }
+                } catch (BadLocationException e) {
+                    System.err.println(e);
+                }
+            } else {
+                try {
+                    insertString(len, getEOL(), null);
+                } catch (BadLocationException e) {
+                    System.err.println(e);
+                }
+            }
+        }
+    }
+
     /**
      * Begins a compound edit (for the undo)
      */
@@ -312,6 +337,22 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * isContentModifiedSinceBackup
+     * @return boolean
+     */
+    public boolean isContentModifiedSinceBackup() {
+        return contentModifiedSinceBackup;
+    }
+
+    /**
+     * setContentModified
+     * @param contentModified boolean
+     */
+    public void setContentModifiedSinceBackup(boolean contentModified) {
+        this.contentModifiedSinceBackup = contentModified;
+    }
+
+    /**
      * setContentModified
      * @param contentModified boolean
      */
@@ -320,6 +361,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         if (!contentModified) {
             undo.setReference();
             pane.updateTitle();
+        } else {
+            this.contentModifiedSinceBackup = true;
         }
     }
 
@@ -696,6 +739,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             contentModified = true;
             pane.updateTitle();
         }
+        contentModifiedSinceBackup = true;
 
         DocumentEvent.ElementChange chg = ev.getChange(getDefaultRootElement());
         if (chg != null) {

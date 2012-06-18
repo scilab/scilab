@@ -157,6 +157,7 @@ public class SciNotesOptions {
         public boolean autoSave;
         public int saveEvery;
         public boolean automaticDelete;
+        public boolean appendFilename;
         public String appendWith;
         public String replaceWith;
         public boolean sourceFlag;
@@ -164,11 +165,12 @@ public class SciNotesOptions {
 
         private Autosave() { }
 
-        @XConfAttribute(tag = "scinotes-autosave", attributes = {"enable", "save-every", "automatic-delete", "append-with", "replace-with", "source-flag", "single-directory"})
-        private void set(boolean autoSave, int saveEvery, boolean automaticDelete, String appendWith, String replaceWith, boolean sourceFlag, String singleDirectory) {
+        @XConfAttribute(tag = "scinotes-autosave", attributes = {"enable", "save-every", "automatic-delete", "append-filename", "append-with", "replace-with", "source-flag", "single-directory"})
+        private void set(boolean autoSave, int saveEvery, boolean automaticDelete, boolean appendFilename, String appendWith, String replaceWith, boolean sourceFlag, String singleDirectory) {
             this.autoSave = autoSave;
             this.saveEvery = saveEvery;
             this.automaticDelete = automaticDelete;
+            this.appendFilename = appendFilename;
             this.appendWith = appendWith;
             this.replaceWith = replaceWith;
             this.sourceFlag = sourceFlag;

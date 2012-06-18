@@ -31,6 +31,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.SciNotesOptions;
 
 /**
  * Save File utility class
@@ -54,14 +55,29 @@ public final class SaveFile {
      * @return true if saved
      */
     public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
+        return doSave(textPane, index, fOut, editorKit, true, false);
+    }
+
+    /**
+     * save text in JEditorPane
+     * @param textPane JEditorPane
+     * @param fOut File
+     * @param editorKit EditorKit
+     * @return true if saved
+     */
+    public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit, boolean addEOL, boolean silent) {
         ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
         boolean enc = false;
-        if (!styledDocument.getEncoding().equalsIgnoreCase(ConfigSciNotesManager.getDefaultEncoding())) {
-            String msg = String.format(SciNotesMessages.DIFFERENT_ENCODINGS, styledDocument.getEncoding(), ConfigSciNotesManager.getDefaultEncoding());
-            if (ScilabModalDialog.show(textPane.getEditor(), msg, SciNotesMessages.DIFFERENT_ENCODINGS_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+        if (!styledDocument.getEncoding().equalsIgnoreCase(SciNotesOptions.getSciNotesPreferences().encoding)) {
+            if (!silent) {
+                String msg = String.format(SciNotesMessages.DIFFERENT_ENCODINGS, styledDocument.getEncoding(), SciNotesOptions.getSciNotesPreferences().encoding);
+                if (ScilabModalDialog.show(textPane.getEditor(), msg, SciNotesMessages.DIFFERENT_ENCODINGS_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+                    return false;
+                }
+                enc = true;
+            } else {
                 return false;
             }
-            enc = true;
         }
 
         try {
@@ -71,7 +87,9 @@ public final class SaveFile {
         }
 
         if (!fOut.canWrite()) {
-            ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            if (!silent) {
+                ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            }
             return false;
         }
 
@@ -82,6 +100,10 @@ public final class SaveFile {
         if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
             System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
         }
+        if (addEOL) {
+            styledDocument.addEOL();
+        }
+
         boolean bReturn = false;
 
         BufferedWriter bw = null;
