@@ -10,6 +10,7 @@
  */
 package org.scilab.modules.renderer.JoGLView.interaction;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -23,6 +24,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+
+import javax.swing.SwingUtilities;
 
 /**
  * This class manage figure interaction.
@@ -151,15 +154,20 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         @Override
         public void mouseDragged(MouseEvent e) {
             switch (e.getModifiers()) {
-            case XY_TRANSLATION_MODIFIER:
-                doXYTranslation(e);
-                break;
-            case Z_TRANSLATION_MODIFIER:
-                doZTranslation(e);
-                break;
-            case ROTATION_MODIFIER:
+                case XY_TRANSLATION_MODIFIER:
+                    doXYTranslation(e);
+                    break;
+                case Z_TRANSLATION_MODIFIER:
+                    doZTranslation(e);
+                    break;
+                case ROTATION_MODIFIER:
+                    doRotation(e);
+                    break;
+            }
+
+            // Specific Mac OS case for rotation
+            if (SwingUtilities.isRightMouseButton(e)) {
                 doRotation(e);
-                break;
             }
 
             previousEvent = e;
@@ -187,8 +195,8 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     double orientation = Math.signum(Math.cos(Math.toRadians(currentAxes.getRotationAngles()[0])));
                     double angle = - orientation * Math.toRadians(currentAxes.getRotationAngles()[1]);
 
-                    double xDelta = (bounds[0] - bounds[1])/100;
-                    double yDelta = (bounds[2] - bounds[3])/100;
+                    double xDelta = (bounds[0] - bounds[1]) / 100;
+                    double yDelta = (bounds[2] - bounds[3]) / 100;
 
                     double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
                     double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
@@ -212,7 +220,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             if (currentAxes != null) {
                 Double[] bounds = currentAxes.getDisplayedBounds();
 
-                double zDelta = (bounds[5] - bounds[4])/100;
+                double zDelta = (bounds[5] - bounds[4]) / 100;
 
                 bounds[4] += zDelta * dy;
                 bounds[5] += zDelta * dy;
