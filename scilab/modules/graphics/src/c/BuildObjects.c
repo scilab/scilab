@@ -1400,8 +1400,8 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
     if (type == 2)
     {
         setGraphicObjectProperty(pobjUID, __GO_MATPLOT_TRANSLATE__, pvecx, jni_double_vector, 2);
-        pdblScale[0] = (pvecx[2] - pvecx[0]) / (n1 - 1);
-        pdblScale[1] = (pvecx[3] - pvecx[1]) / (n2 - 1);
+        pdblScale[0] = (pvecx[2] - pvecx[0]) / (n2 - 1.0);
+        pdblScale[1] = (pvecx[3] - pvecx[1]) / (n1 - 1.0);
         setGraphicObjectProperty(pobjUID, __GO_MATPLOT_SCALE__, pdblScale, jni_double_vector, 2);
     }
 
