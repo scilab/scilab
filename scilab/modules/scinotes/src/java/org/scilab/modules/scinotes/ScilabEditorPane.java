@@ -258,10 +258,25 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
     }
 
+    public void enableColorization(boolean b) {
+        View view = ((ScilabDocument) getDocument()).getView();
+        if (view != null) {
+            if (view instanceof ScilabView) {
+                ((ScilabView) view).enable(b);
+            } else {
+                ((ScilabPlainView) view).enable(b);
+            }
+        }
+    }
+
     public void configurationChanged(SciNotesConfiguration.Conf conf) {
         ((ScilabEditorKit) getEditorKit()).getStylePreferences().configurationChanged(conf);
 
         if (conf.display) {
+            enableHighlightedLine(SciNotesOptions.getSciNotesDisplay().highlightCurrentLine);
+            setHighlightedLineColor(SciNotesOptions.getSciNotesDisplay().currentLineColor);
+            enableColorization(SciNotesOptions.getSciNotesDisplay().keywordsColorization);
+
             boolean kw = SciNotesOptions.getSciNotesDisplay().highlightKeywords;
             boolean op = SciNotesOptions.getSciNotesDisplay().highlightBrackets;
 

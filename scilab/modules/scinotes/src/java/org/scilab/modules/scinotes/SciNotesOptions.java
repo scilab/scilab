@@ -28,6 +28,7 @@ public class SciNotesOptions {
     public static final String PREFERENCESPATH = "//scinotes/body/scinotes-preferences";
     public static final String DISPLAYPATH = "//scinotes/display/body/scinotes-display";
     public static final String AUTOSAVEPATH = "//scinotes/autosave/body/scinotes-autosave";
+    public static final String KEYMAPPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"scinotes\"]/action";
 
     private static SciNotesOptions.Preferences prefs;
     private static SciNotesOptions.Display display;
@@ -44,18 +45,28 @@ public class SciNotesOptions {
         public int numberOfRecentlyOpen;
         public String encoding;
         public String eol;
+        public boolean useScinotes;
         public boolean externalCmd;
         public String cmd;
 
         private Preferences() { }
 
         @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd"})
-        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean externalCmd, String cmd) {
+        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, boolean externalCmd, String cmd) {
             this.restartOpen = restartOpen;
             this.addLineTermination = addLineTermination;
             this.numberOfRecentlyOpen = numberOfRecentlyOpen;
-            this.encoding = encoding;
-            this.eol = eol;
+            this.encoding = encoding.toLowerCase();
+
+            if (eol.startsWith("Windows")) {
+                this.eol = ScilabDocument.EOLWIN;
+            } else if (eol.startsWith("Mac")) {
+                this.eol = ScilabDocument.EOLMAC;
+            } else {
+                this.eol = ScilabDocument.EOLUNIX;
+            }
+
+            this.useScinotes = useScinotes;
             this.externalCmd = externalCmd;
             this.cmd = cmd;
         }
@@ -80,19 +91,23 @@ public class SciNotesOptions {
         public boolean keywordsOnmouseover;
         public boolean whereami;
         public int tabSize;
+        public int tabRepresentation;
         public boolean useSpaces;
         public int indentSize;
         public boolean automaticIndent;
+        public boolean autoCompleteOpeners;
+        public boolean autoCompleteKeywords;
 
         private Display() { }
 
-        @XConfAttribute(tag = "scinotes-display", attributes = {"highlight-current-line", "current-line-color", "show-line-numbers", "wrap-lines", "keywordsColorization", "highlight-brackets", "brackets-color", "brackets-highlightment", "brackets-onmouseover", "highlight-keywords", "keywords-color", "keywords-highlightment", "keywords-onmouseover", "whereami", "tab-size", "use-spaces", "indent-size", "automatic-indent"})
-        private void set(boolean highlightCurrentLine, Color currentLineColor, boolean showLineNumbers, boolean wrapLines, boolean keywordsColorization, boolean highlightBrackets, Color bracketsColor, String bracketsHighlightment, boolean bracketsOnmouseover, boolean highlightKeywords, Color keywordsColor, String keywordsHighlightment, boolean keywordsOnmouseover, boolean whereami, int tabSize, boolean useSpaces, int indentSize, boolean automaticIndent) {
+        @XConfAttribute(tag = "scinotes-display", attributes = {"highlight-current-line", "current-line-color", "show-line-numbers", "wrap-lines", "keywords-colorization", "highlight-brackets", "brackets-color", "brackets-highlightment", "brackets-onmouseover", "highlight-keywords", "keywords-color", "keywords-highlightment", "keywords-onmouseover", "whereami", "tab-size", "tab-representation", "use-spaces", "indent-size", "automatic-indent", "auto-complete-openers", "auto-complete-keywords"})
+        private void set(boolean highlightCurrentLine, Color currentLineColor, boolean showLineNumbers, boolean wrapLines, boolean keywordsColorization, boolean highlightBrackets, Color bracketsColor, String bracketsHighlightment, boolean bracketsOnmouseover, boolean highlightKeywords, Color keywordsColor, String keywordsHighlightment, boolean keywordsOnmouseover, boolean whereami, int tabSize, String tabRepresentation, boolean useSpaces, int indentSize, boolean automaticIndent, boolean autoCompleteOpeners, boolean autoCompleteKeywords) {
             this.highlightCurrentLine = highlightCurrentLine;
             this.currentLineColor = currentLineColor;
             this.showLineNumbers = showLineNumbers;
             this.wrapLines = wrapLines;
             this.keywordsColorization = keywordsColorization;
+
             this.highlightBrackets = highlightBrackets;
             this.bracketsColor = bracketsColor;
             this.bracketsOnmouseover = bracketsOnmouseover;
@@ -101,6 +116,15 @@ public class SciNotesOptions {
             this.keywordsOnmouseover = keywordsOnmouseover;
             this.whereami = whereami;
             this.tabSize = tabSize;
+            if (tabRepresentation.equalsIgnoreCase("chevrons")) {
+                this.tabRepresentation = ScilabView.TABDOUBLECHEVRONS;
+            } else if (tabRepresentation.equalsIgnoreCase("hrule")) {
+                this.tabRepresentation = ScilabView.TABHORIZONTAL;
+            } else if (tabRepresentation.equalsIgnoreCase("vrule")) {
+                this.tabRepresentation = ScilabView.TABVERTICAL;
+            } else {
+                this.tabRepresentation = ScilabView.TABNOTHING;
+            }
             this.useSpaces = useSpaces;
             this.indentSize = indentSize;
             this.automaticIndent = automaticIndent;
@@ -120,6 +144,9 @@ public class SciNotesOptions {
             } else {
                 this.keywordsHighlightment = MatchingBlockManager.ScilabKeywordsPainter.UNDERLINED;
             }
+
+            this.autoCompleteOpeners = autoCompleteOpeners;
+            this.autoCompleteKeywords = autoCompleteKeywords;
         }
     }
 
@@ -153,10 +180,12 @@ public class SciNotesOptions {
         if (conf.preferences) {
             prefs = null;
             doc = null;
-        } else if (conf.display) {
+        }
+        if (conf.display) {
             display = null;
             doc = null;
-        } else if (conf.autosave) {
+        }
+        if (conf.autosave) {
             autosave = null;
             doc = null;
         }

@@ -58,10 +58,8 @@ public class Select extends JComboBox implements XComponent, XChooser {
         for (int i = 0; i < nodelist.getLength(); i++) {
             Node node = nodelist.item(i);
             if (node.getNodeName().equals("option")) {
-                String value = XConfigManager.getAttribute(node , "value");
-                String selected = XConfigManager.getAttribute(
-                        node ,
-                        "selected");
+                String value = XConfigManager.getAttribute(node, "value");
+                String selected = XConfigManager.getAttribute(node, "selected");
                 addItem(value);
                 if (selected.equals("selected")) {
                     select = index;
@@ -82,7 +80,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
         for (int i = 0; i < nodelist.getLength(); i++) {
             Node node = nodelist.item(i);
             if (node.getNodeName().equals("option")) {
-                String selected = XConfigManager.getAttribute(node ,"selected");
+                String selected = XConfigManager.getAttribute(node , "selected");
                 if (selected.equals("selected")) {
                     select = index;
                 }
@@ -93,7 +91,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
             setEnabled(false);
             setSelectedIndex(select);
         }
-        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
+        String enable = XConfigManager.getAttribute(peer , "enable", "true");
         setEnabled(enable.equals("true"));
     }
 

@@ -76,7 +76,6 @@
     <entry type="java" action="RestoreOpenedFilesAction" name="scinotes-restore-startup"/>
     <entry type="java" action="ExportAction" name="scinotes-export"/>
     <entry type="java" action="EncodingAction" name="scinotes-encoding"/>
-    <entry type="java" action="DefaultEncodingAction" name="scinotes-default-encoding"/>
     <entry type="java" action="EndOfLineAction" name="scinotes-eof"/>
     <entry type="java" action="CopySelectionInNewTabAction" name="scinotes-selection-new-tab"/>
     <entry type="java" action="SplitAction" name="scinotes-split"/>

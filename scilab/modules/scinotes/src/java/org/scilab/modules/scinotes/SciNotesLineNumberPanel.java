@@ -104,18 +104,20 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * @param state 0 for nothing, 1 for normal and 2 for whereami
      */
     public void setWhereamiLineNumbering(int state) {
-        if (state != 0) {
-            if (!display) {
-                textPane.getScrollPane().setRowHeaderView(this);
+        if (state != this.state) {
+            if (state != 0) {
+                if (!display) {
+                    textPane.getScrollPane().setRowHeaderView(this);
+                }
+                whereami = state == 2;
+                display = true;
+            } else {
+                textPane.getScrollPane().setRowHeaderView(null);
+                display = false;
             }
-            whereami = state == 2;
-            display = true;
-        } else {
-            textPane.getScrollPane().setRowHeaderView(null);
-            display = false;
+            updateLineNumber();
+            this.state = state;
         }
-        updateLineNumber();
-        this.state = state;
     }
 
     public static int getState(boolean showLinesNumber, boolean whereami) {

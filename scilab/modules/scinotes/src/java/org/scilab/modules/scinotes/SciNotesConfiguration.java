@@ -42,18 +42,30 @@ public class SciNotesConfiguration implements XConfigurationListener {
         public boolean colors;
         public boolean systemfont;
         public boolean font;
+        public boolean keymap;
 
         public Conf(Set<String> path) {
-            preferences = path.contains(SciNotesOptions.PREFERENCESPATH);
-            display = path.contains(SciNotesOptions.DISPLAYPATH);
-            autosave = path.contains(SciNotesOptions.AUTOSAVEPATH);
-            colors = path.contains(ScilabContext.COLORSPATH);
-            systemfont = path.contains(ScilabContext.SYSTEMFONTPATH);
-            font = path.contains(ScilabContext.FONTPATH);
+            if (path.contains("ALL")) {
+                preferences = true;
+                display = true;
+                autosave = true;
+                colors = true;
+                systemfont = true;
+                font = true;
+                keymap = true;
+            } else {
+                preferences = path.contains(SciNotesOptions.PREFERENCESPATH);
+                display = path.contains(SciNotesOptions.DISPLAYPATH);
+                autosave = path.contains(SciNotesOptions.AUTOSAVEPATH);
+                colors = path.contains(ScilabContext.COLORSPATH);
+                systemfont = path.contains(ScilabContext.SYSTEMFONTPATH);
+                font = path.contains(ScilabContext.FONTPATH);
+                keymap = path.contains(SciNotesOptions.KEYMAPPATH);
+            }
         }
 
         public boolean changed() {
-            return preferences || display || autosave || colors || systemfont || font;
+            return preferences || display || autosave || colors || systemfont || font || keymap;
         }
     }
 }

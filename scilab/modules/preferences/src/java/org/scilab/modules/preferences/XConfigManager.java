@@ -265,6 +265,7 @@ public final class XConfigManager extends XCommonManager {
         }
         if (callback.equals("Default")) {
             XConfiguration.invalidate();
+            XConfiguration.addModifiedPath("ALL");
             reloadTransformer(SCILAB_CONFIG_XSL);
             document = XConfiguration.createDocument();
             writeDocument(USER_CONFIG_FILE, document);

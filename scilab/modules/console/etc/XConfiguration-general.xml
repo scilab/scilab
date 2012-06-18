@@ -16,7 +16,7 @@
   <shortcuts title="Shortcuts">
     <body>
       <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
-        <action-folder name="Console">
+        <action-folder name="Console" xconf-uid="console">
           <action key="OSSCKEY E" description="Execute" name="console-execute"/>
           <action key="OSSCKEY O" description="Open a file" name="console-open"/>
           <action key="OSSCKEY L" description="Load environment" name="console-load"/>
@@ -57,7 +57,7 @@
           <action key="" description="Open Bugzilla" name="console-bugzilla-website"/>
           <action key="Shift F1" description="About Scilab" name="console-about"/>
         </action-folder>
-        <action-folder name="Scinotes">
+        <action-folder name="Scinotes" xconf-uid="scinotes">
           <action key="OSSCKEY H" description="Auto complete (, [,..." name="scinotes-autocomplete-openers"/>
           <action key="OSSCKEY Shift H" description="Auto complete keyword" name="scinotes-autocomplete-keyword"/>
           <action key="OSSCKEY Shift G" description="Generate Help prototype" name="scinotes-help-prototype"/>
@@ -126,19 +126,19 @@
           <action key="" description="Convert quote to double quote" name="scinotes-double-quote"/>
           <action key="" description="Line numbering" name="scinotes-line-numbering"/>
         </action-folder>
-        <action-folder name="Xcos">
+        <action-folder name="Xcos" xconf-uid="xcos">
           <action key="OSSCKEY S" description="Save diagramm" name="xcos-save"/>
         </action-folder>
-        <action-folder name="Variable Browser">
+        <action-folder name="Variable Browser" xconf-uid="browsevar">
           <action key="OSSCKEY S" description="Save" name="variablebrowser-save"/>
         </action-folder>
-        <action-folder name="Variable Editor">
+        <action-folder name="Variable Editor" xconf-uid="editvar">
           <action key="OSSCKEY S" description="Save variable" name="editvar-save"/>
         </action-folder>
-        <action-folder name="History Browser">
+        <action-folder name="History Browser" xconf-uid="historybrowser">
           <action key="OSSCKEY S" description="Save history" name="historybrowser-save"/>
         </action-folder>
-        <action-folder name="File Browser">
+        <action-folder name="File Browser" xconf-uid="filebrowser">
           <action key="OSSCKEY S" description="Save file" name="filebrowser-save"/>
         </action-folder>
       </actions>

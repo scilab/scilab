@@ -568,7 +568,15 @@ public abstract class XCommonManager {
         Node n = node;
 
         while (n != null) {
-            stack.push(n.getNodeName());
+            String nname = n.getNodeName();
+            NamedNodeMap attrs = n.getAttributes();
+            if (attrs != null && attrs.getLength() != 0) {
+                Node attr = attrs.getNamedItem("xconf-uid");
+                if (attr != null) {
+                    nname += "[@xconf-uid=\"" + attr.getNodeValue() + "\"]";
+                }
+            }
+            stack.push(nname);
             n = n.getParentNode();
         }
 

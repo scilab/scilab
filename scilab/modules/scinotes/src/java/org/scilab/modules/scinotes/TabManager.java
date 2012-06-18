@@ -15,8 +15,6 @@ package org.scilab.modules.scinotes;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-
 /**
  * This class handles the tabulation
  * @author Calixte DENIZET
@@ -76,10 +74,10 @@ public class TabManager {
     }
 
     /**
-     * Set the type and the size of a tabulation in using ConfigSciNotesManager
+     * Set the type and the size of a tabulation
      */
     public void setDefaultTabulation() {
-        setTabulation(ConfigSciNotesManager.getDefaultTabulation());
+        setTabulation(new Tabulation());
     }
 
     /**
@@ -125,7 +123,7 @@ public class TabManager {
     public int[] tabifyLines(int start, int end) {
         Element startL = elem.getElement(elem.getElementIndex(start));
         int sstart = startL.getStartOffset();
-        int[] ret = new int[]{0, 0};
+        int[] ret = new int[] {0, 0};
         int send = end;
 
         try {
@@ -261,6 +259,13 @@ public class TabManager {
             this.number = number;
             this.type = type;
             this.rep = rep;
+        }
+
+        public Tabulation() {
+            this.tab = SciNotesOptions.getSciNotesDisplay().useSpaces ? ' ' : '\t';
+            this.number = SciNotesOptions.getSciNotesDisplay().tabSize;
+            this.type = SciNotesOptions.getSciNotesDisplay().tabRepresentation;
+            this.rep = ' ';
         }
     }
 }

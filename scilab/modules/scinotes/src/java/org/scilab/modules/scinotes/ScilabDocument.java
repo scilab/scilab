@@ -12,6 +12,8 @@
 
 package org.scilab.modules.scinotes;
 
+import java.nio.charset.Charset;
+
 import java.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +76,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean alphaOrder;
 
     // Editor's default encoding is UTF-8
-    private String encoding = "utf-8";
+    private String encoding;
     private boolean updater = true;
     private boolean binary;
     private boolean autoIndent;
@@ -85,7 +87,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private ScilabEditorPane pane;
     private boolean focused;
 
-    private String eolStyle = System.getProperty(LINE_SEPARATOR);
+    private String eolStyle;
 
     /**
      * Constructor
@@ -94,8 +96,9 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         super(new GapContent(GAPBUFFERCAPACITY));
         setAsynchronousLoadPriority(2);
 
-        autoIndent = ConfigSciNotesManager.getAutoIndent();
-        encoding = ConfigSciNotesManager.getDefaultEncoding();
+        autoIndent = SciNotesOptions.getSciNotesDisplay().automaticIndent;
+        encoding = Charset.forName(SciNotesOptions.getSciNotesPreferences().encoding).toString();
+        eolStyle = SciNotesOptions.getSciNotesPreferences().eol;
 
         undo = new CompoundUndoManager(this);
         addUndoableEditListener(undo);
@@ -396,48 +399,48 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 if (elem instanceof ScilabDocument.ScilabLeafElement) {
                     int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
                     switch (type) {
-                    case ScilabDocument.ScilabLeafElement.NOTHING :
-                        break;
-                    case ScilabDocument.ScilabLeafElement.FUN :
-                        base.add(new DefaultMutableTreeNode(elem));
-                        break;
-                    case ScilabDocument.ScilabLeafElement.ENDFUN :
-                        break;
-                    default :
-                        break;
+                        case ScilabDocument.ScilabLeafElement.NOTHING :
+                            break;
+                        case ScilabDocument.ScilabLeafElement.FUN :
+                            base.add(new DefaultMutableTreeNode(elem));
+                            break;
+                        case ScilabDocument.ScilabLeafElement.ENDFUN :
+                            break;
+                        default :
+                            break;
                     }
                 }
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                        int n = l1.getFunctionName().compareTo(l2.getFunctionName());
-                        if (n != 0) {
-                            return n;
-                        }
-                        return l1.getStartOffset() - l2.getStartOffset();
+                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                    int n = l1.getFunctionName().compareTo(l2.getFunctionName());
+                    if (n != 0) {
+                        return n;
                     }
+                    return l1.getStartOffset() - l2.getStartOffset();
+                }
 
-                    public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                        return false;
-                    }
-                });
+                public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                    return false;
+                }
+            });
             for (int i = 0; i < nlines; i++) {
                 Element elem = root.getElement(i);
                 if (elem instanceof ScilabDocument.ScilabLeafElement) {
                     int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
                     switch (type) {
-                    case ScilabDocument.ScilabLeafElement.NOTHING :
-                        break;
-                    case ScilabDocument.ScilabLeafElement.FUN :
-                        set.add(new DefaultMutableTreeNode(elem));
-                        break;
-                    case ScilabDocument.ScilabLeafElement.ENDFUN :
-                        break;
-                    default :
-                        break;
+                        case ScilabDocument.ScilabLeafElement.NOTHING :
+                            break;
+                        case ScilabDocument.ScilabLeafElement.FUN :
+                            set.add(new DefaultMutableTreeNode(elem));
+                            break;
+                        case ScilabDocument.ScilabLeafElement.ENDFUN :
+                            break;
+                        default :
+                            break;
                     }
                 }
             }
@@ -464,20 +467,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                        int n = l1.getAnchorName().compareTo(l2.getAnchorName());
-                        if (n != 0) {
-                            return n;
-                        }
-                        return l1.getStartOffset() - l2.getStartOffset();
+                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                    int n = l1.getAnchorName().compareTo(l2.getAnchorName());
+                    if (n != 0) {
+                        return n;
                     }
+                    return l1.getStartOffset() - l2.getStartOffset();
+                }
 
-                    public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                        return false;
-                    }
-                });
+                public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                    return false;
+                }
+            });
             for (int i = 0; i < nlines; i++) {
                 ScilabLeafElement elem = (ScilabLeafElement) root.getElement(i);
                 if (elem.isAnchor()) {
@@ -586,20 +589,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         while (index != -1) {
             ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
             switch (e.getType()) {
-            case ScilabLeafElement.NOTHING :
-                break;
-            case ScilabLeafElement.FUN :
-                if (compt == 0) {
-                    FunctionScanner.FunctionInfo info = e.getFunctionInfo();
-                    return new List[]{info.returnValues, info.argsValues};
-                } else {
-                    compt++;
-                }
-                break;
-            case ScilabLeafElement.ENDFUN :
-                compt--;
-                break;
-            default :
+                case ScilabLeafElement.NOTHING :
+                    break;
+                case ScilabLeafElement.FUN :
+                    if (compt == 0) {
+                        FunctionScanner.FunctionInfo info = e.getFunctionInfo();
+                        return new List[] {info.returnValues, info.argsValues};
+                    } else {
+                        compt++;
+                    }
+                    break;
+                case ScilabLeafElement.ENDFUN :
+                    compt--;
+                    break;
+                default :
             }
         }
         return null;
@@ -618,23 +621,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         while (index != -1) {
             ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
             switch (e.getType()) {
-            case ScilabLeafElement.NOTHING :
-                break;
-            case ScilabLeafElement.FUN :
-                if (compt == 0) {
-                    String str = e.getFunctionInfo().functionName;
-                    if (str == null) {
-                        str = SciNotesMessages.UNKNOWN_FUNCTION;
+                case ScilabLeafElement.NOTHING :
+                    break;
+                case ScilabLeafElement.FUN :
+                    if (compt == 0) {
+                        String str = e.getFunctionInfo().functionName;
+                        if (str == null) {
+                            str = SciNotesMessages.UNKNOWN_FUNCTION;
+                        }
+                        return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), str, line - index);
+                    } else {
+                        compt++;
                     }
-                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), str, line - index);
-                } else {
-                    compt++;
-                }
-                break;
-            case ScilabLeafElement.ENDFUN :
-                compt--;
-                break;
-            default :
+                    break;
+                case ScilabLeafElement.ENDFUN :
+                    compt--;
+                    break;
+                default :
             }
         }
         return String.format(SciNotesMessages.POS_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset());
@@ -721,7 +724,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
             boolean broken = line.isBroken();
             if (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
-                || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
+                    || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
                 pane.repaint();
             }
         }
@@ -746,7 +749,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         funScanner = new FunctionScanner(this);
         BranchElement map = (BranchElement) createBranchElement(null, null);
         Element line = createLeafElement(map, null, 0, 1);
-        map.replace(0, 0, new Element[]{line});
+        map.replace(0, 0, new Element[] {line});
         return map;
     }
 

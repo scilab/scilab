@@ -292,19 +292,20 @@ public class XConfiguration {
     }
 
     public static void fireXConfigurationEvent() {
-        XConfigurationEvent event = null;
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == XConfigurationListener.class) {
-                if (event == null) {
-                    event = new XConfigurationEvent(modifiedPaths);
+        if (!modifiedPaths.isEmpty()) {
+            XConfigurationEvent event = null;
+            Object[] listeners = listenerList.getListenerList();
+            for (int i = listeners.length - 2; i >= 0; i -= 2) {
+                if (listeners[i] == XConfigurationListener.class) {
+                    if (event == null) {
+                        event = new XConfigurationEvent(modifiedPaths);
+                    }
+                    ((XConfigurationListener) listeners[i + 1]).configurationChanged(event);
                 }
-
-                ((XConfigurationListener) listeners[i + 1]).configurationChanged(event);
             }
-        }
 
-        modifiedPaths.clear();
+            modifiedPaths.clear();
+        }
     }
 
     /**
