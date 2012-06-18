@@ -344,9 +344,11 @@ public class AxisDrawer {
          * @return the label corresponding to the given value.
          */
         private String getLabel(double value) {
-            int index = (int) (value * (max - min));
+            // 0 <= value <= 1
+            // Should find right index through given labels.
             String[] ticksLabel = axis.getTicksLabels();
-            if ((index < 0) || (index >= ticksLabel.length)) {
+            int index = (int) (value * (ticksLabel.length - 1));
+            if ((index < 0) || (index > ticksLabel.length)) {
                 return null;
             } else {
                 return ticksLabel[index];
