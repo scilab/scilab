@@ -16,10 +16,8 @@ function []=xsetech(wrect, frect, logflag, arect)
         error(77, sprintf(_("%s: Wrong number of input argument(s): %d to %d expected."), "xsetech", 1, 3));
     end
 
-    // If argument is not given, use properties from default axes.
-    defaultAxes = gda();
     if ~exists("wrect", "local")
-        wrect = defaultAxes.axes_bounds;
+        wrect = [];
     else
         // Check wrect
         if (type(wrect) <> 1 | isreal(wrect) == %f | size(wrect) <> [1 4])
@@ -28,7 +26,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     if ~exists("frect", "local")
-        frect = defaultAxes.data_bounds;
+        frect = [];
     else
         // Check frect
         if (type(wrect) <> 1 | isreal(wrect) == %f | size(wrect) <> [1 4])
@@ -38,7 +36,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     if ~exists("logflag", "local")
-        logflag = defaultAxes.log_flags;
+        logflag = [];
     else
         // check logflag
         if (type(logflag) <> 10 | or(logflag == ["ll" "nn" "nl" "ln"]) == %f)
@@ -47,17 +45,40 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     if ~exists("arect", "local")
-        arect = defaultAxes.margins;
+        arect = [];
     else
         if (type(arect) <> 1 | isreal(arect) == %f | size(arect) <> [1 4])
             error(77, sprintf(_("%s: Wrong value given for %s."), "xsetech", "arect"));
         end
     end
 
-    a = newaxes();
-    a.axes_bounds = wrect;
-    a.data_bounds = frect;
-    a.log_flags = logflag;
-    a.margins = arect;
+    // Check if an existing axes matches wrect
+    curFig = gcf();
+    allAxes = curFig.children;
+    found = %F;
+    for kAxes = 1:size(allAxes, "*")
+        if and(allAxes(kAxes).axes_bounds(:)==wrect(:)) then
+            a = sca(allAxes(kAxes));
+            found = %T;
+            break;
+        end
+    end
+
+    if ~found then
+        a = newaxes();
+        if ~isempty(wrect) then
+            a.axes_bounds = wrect;
+        end
+    end
+    
+    if ~isempty(frect) then
+        a.data_bounds = frect;
+    end
+    if ~isempty(logflag) then
+        a.log_flags = logflag;
+    end
+    if ~isempty(arect) then
+        a.margins = arect;
+    end
 
 endfunction
