@@ -36,6 +36,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "FigureList.h"
+#include "CurrentSubwin.h"
 
 
 /*------------------------------------------------------------------------*/
