@@ -95,6 +95,7 @@ int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, 
     double   yMax = 0. ;
     double   zMin = 0. ;
     double   zMax = 0. ;
+    int firstPlot = 0;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {
@@ -146,6 +147,8 @@ int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, 
 
         status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }
+
+    setGraphicObjectProperty(pobjUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* To be implemented using the MVC framework */
 #if 0
