@@ -718,6 +718,8 @@ t.
 * Bug #10450 fixed - Overloading for gamma, dlgamma and gammaln functions for list,
                      tlist, mlist and hypermatrices types was not allowed.
 
+* Bug #10458 fixed - demo_gui didn't clear its variables when closing the figure.
+
 * Bug #10466 fixed - mgetl detected an error but it did not return an error
                      message in Scilab.
 
