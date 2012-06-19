@@ -2,7 +2,7 @@
 <general title="General">
   <body>
     <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
-    <java-heap-memory heap-size="128"/>
+    <java-heap-memory heap-size="256"/>
   </body>
   <confirmation-dialogs title="Confirmation dialogs"> 
     <body>

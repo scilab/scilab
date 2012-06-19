@@ -28,6 +28,9 @@
 #include "getos.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
+#include "getScilabPreference.h"
+
+static char * getJavaHeapSize();
 /*--------------------------------------------------------------------------*/
 JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_JavaVMOption)
 {
@@ -45,6 +48,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             xmlXPathContextPtr xpathCtxt = NULL;
             xmlXPathObjectPtr xpathObj = NULL;
             char *jvm_option_string = NULL;
+            char * heapSize = getJavaHeapSize();
 
             int indice = 0;
             {
@@ -76,7 +80,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             if (xpathObj && xpathObj->nodesetval->nodeMax)
             {
                 /* the Xpath has been understood and there are node */
-                int	i;
+                int i;
+                char heapSizeUsed = 0;
                 for (i = 0; i < xpathObj->nodesetval->nodeNr; i++)
                 {
 
@@ -89,7 +94,15 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         {
                             /* we found the tag name */
                             const char *str = (const char*)attrib->children->content;
-                            jvm_option_string = strdup(str);
+                            if (strstr(str, "-Xmx") == str && heapSize)
+                            {
+                                jvm_option_string = heapSize;
+                                heapSizeUsed = 1;
+                            }
+                            else
+                            {
+                                jvm_option_string = strdup(str);
+                            }
                         }
                         attrib = attrib->next;
                     }
@@ -113,7 +126,11 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                     }
 
                     if (jvm_option_string) FREE(jvm_option_string);
+                }
 
+                if (!heapSizeUsed)
+                {
+                    FREE(heapSize);
                 }
             }
 
@@ -162,3 +179,21 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
+char * getJavaHeapSize()
+{
+    const char * value = getScilabPreferences()->heapSize;
+    char * rvalue = NULL;
+    int ivalue;
+
+    if (value)
+    {
+        ivalue = (int)atof(value);
+        if (ivalue > 0)
+        {
+            rvalue = (char *)MALLOC(24 * sizeof(char));
+            sprintf(rvalue, "-Xmx%dm", ivalue);
+        }
+    }
+
+    return rvalue;
+}

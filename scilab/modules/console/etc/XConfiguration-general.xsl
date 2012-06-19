@@ -61,7 +61,7 @@
       <Grid>
         <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
         <Panel gridx="2" gridy="1" weightx="1"/>
-        <NumericalSpinner min-value = "128"
+        <NumericalSpinner min-value = "0"
                           increment = "128"
                           length = "6"
                           listener = "ActionListener"
@@ -71,6 +71,8 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
+        <Label text="(modify this option requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+	<Panel gridx="2" gridy="2" weightx="1" fill="both"/>	
       </Grid>
     </Title>
 
