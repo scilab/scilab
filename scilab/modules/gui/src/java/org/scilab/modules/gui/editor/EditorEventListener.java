@@ -53,10 +53,11 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void keyReleased(KeyEvent arg0) {
+    /* TODO add copy/cut/paste by keyboard shortcut*/
         if (arg0.isControlDown()) {
             if (arg0.getKeyCode() == KeyEvent.VK_C) {
                 if (editor.getSelected() != null) {
-                    System.out.println("CTRL+C Typed!");
+                    
                 }
             }
         }
@@ -87,7 +88,6 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             String picked = ep.pick( windowUid, arg0.getX(), arg0.getY() );
             editor.setSelected(picked);
         } else if (arg0.getButton() == 3) {
-            editor.mouseDown(arg0);
         }
     }
 
@@ -98,8 +98,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     */
     public void mouseReleased(MouseEvent arg0) {
         if (arg0.getButton() == 3) {
-            editor.mouseUp(arg0);
-        } else {
+            editor.onMouseClick(arg0);
         }
     }
 

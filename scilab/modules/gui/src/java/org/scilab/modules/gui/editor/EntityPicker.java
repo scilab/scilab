@@ -76,15 +76,8 @@ public class EntityPicker {
         if (polylines != null) {
             for (int i = 0; i < polylines.length; ++i) {
                 if (PolylineHandler.getInstance().isVisible(polylines[i])) {
-                    Time = System.currentTimeMillis();
                     if (isOverLine(polylines[i], c2d[0], c2d[1])) {
-                        //if (binarySearch(polylines[i], c2d[0], c2d[1])) {
-                        Time = System.currentTimeMillis() - Time;
-                        System.out.println("You picked a entity! ->" + polylines[i] + "\nTime: " + Time);
                         return polylines[i];
-                    } else {
-                        Time = System.currentTimeMillis() - Time;
-                        System.out.println("\nTime: " + Time);
                     }
                 }
             }
@@ -103,9 +96,8 @@ public class EntityPicker {
     */
     private boolean isOverLine(String uid, Double x, Double y) {
 
-        System.out.println("IsOverLine\nGetting data!");
-        double[] datax = (double[])PolylineData.getDataX(uid);//DataController.getController().getProperty(uid, GraphicObjectProperties.__GO_DATA_MODEL_X__);
-        double[] datay = (double[])PolylineData.getDataY(uid);//DataController.getController().getProperty(uid, GraphicObjectProperties.__GO_DATA_MODEL_Y__);
+        double[] datax = (double[])PolylineData.getDataX(uid);
+        double[] datay = (double[])PolylineData.getDataY(uid);
         int size = datax.length;
 
 
@@ -118,20 +110,7 @@ public class EntityPicker {
     }
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
-
-        /*Double xmin, xmax, ymin, ymax;
-        if (x0 < x1) {
-        	xmin = x0; xmax = x1;
-        }
-        else {
-        	xmin = x1; xmax = x0;
-        }
-
-        if (x < xmin || x > xmax) {
-        	return false;
-        }*/
-
-
+		/* Fast bound check*/
         double dx = x1 - x0;
         double p1 = x - x0;
         double p2 = x1 - x;
@@ -143,54 +122,6 @@ public class EntityPicker {
         if (y >= (yy - dy)) {
             if (y <= (yy + dy)) {
                 return (true && (Math.abs(p1) + Math.abs(p2) ) <= Math.abs(dx)) ;
-            }
-        }
-        return false;
-    }
-
-    /**
-    * Check algorithm using binary search and linear intepolation
-    * @param uid	Polyline uid to be checked
-    * @param x		position on x axis in view coordinates
-    * @param y		position on y axis in view coordinates
-    * @return		true if x,y belongs or is closest to the polyline
-    */
-    private boolean binarySearch(String uid, Double x, Double y) {
-
-        System.out.println("BinarySearch");
-
-        double[] datax = (double[])PolylineData.getDataX(uid);
-        double[] datay = (double[])PolylineData.getDataY(uid);
-        int size = datax.length;
-
-        int begin = 0, end = size - 1;
-
-        while ((end - begin) > 1) {
-            int m = ((begin + end) / 2);
-            if (x <= datax[m]) {
-                end = m;
-            } else {
-                begin = m;
-            }
-        }
-
-        if (begin == end) {
-            return isOverLerp(datax[begin - 1], datax[end], datay[begin - 1], datay[end], x, y)
-                   || isOverLerp(datax[begin], datax[end + 1], datay[begin], datay[end + 1], x, y);
-        } else {
-            return isOverLerp(datax[begin], datax[end], datay[begin], datay[end], x, y);
-        }
-    }
-
-    private boolean isOverLerp(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
-
-        Double ca = (y1 - y0) / (x1 - x0);
-
-        Double yy = y0 + ca * (x - x0);
-
-        if (y >= (yy - dy)) {
-            if (y <= (yy + dy)) {
-                return true;
             }
         }
         return false;

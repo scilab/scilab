@@ -70,6 +70,11 @@ public class AxesHandler {
 
 
 
+    /**
+     * Change the status from the axes to visible and the axis too
+     *
+     * @param axes Axes to set visible
+     */
     public static void setAxesVisible(String axes) {
 
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, true);
@@ -78,7 +83,13 @@ public class AxesHandler {
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_VISIBLE__, true);
     }
 
-    public static String duplicateAxes(String figureUid, String axes) {
+    /**
+     * Clone an axes and delete all their children's, change the labels from axes to empty
+     *
+     * @param axes The axes to duplicate
+     * @return Return a duplicated axes without childrens
+     */
+    public static String duplicateAxes(String axes) {
 
         String newAxes = GraphicController.getController().cloneObject(axes);
         setAxesVisible(newAxes);
@@ -86,6 +97,12 @@ public class AxesHandler {
         return newAxes;
     }
 
+    /**
+     * Set the AxesTo bounds with the max bounds between axesFrom and axesTo(used when paste new objects to make all object visible)
+     *
+     * @param axesFrom Axes from you want to merge the bounds
+     * @param axesTo Axes that will be set the max bounds between the two axes
+     */
     public static void axesBound(String axesFrom, String axesTo) {
 
         Double[] axesFB = (Double[])GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_DATA_BOUNDS__);

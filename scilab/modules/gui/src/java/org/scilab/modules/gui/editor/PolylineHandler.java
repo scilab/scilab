@@ -89,15 +89,11 @@ public class PolylineHandler {
     */
     public String duplicate(String uid) {
         String dup = null;
-        try {
-            dup = GraphicController.getController().cloneObject(uid);
-            GraphicController.getController().setGraphicObjectRelationship("", dup);
-            dup = PolylineData.createPolylineData(uid, dup);
-            if (dup == null) {
-                delete(dup);
-            }
-        } catch (Exception e) {
-            System.out.println("Exception at Duplicate!" + e);
+        dup = GraphicController.getController().cloneObject(uid);
+        GraphicController.getController().setGraphicObjectRelationship("", dup);
+        dup = PolylineData.createPolylineData(uid, dup);
+        if (dup == null) {
+            delete(dup);
         }
         return dup;
 

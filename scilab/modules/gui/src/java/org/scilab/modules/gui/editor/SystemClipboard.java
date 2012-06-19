@@ -27,13 +27,13 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
-* implements the system clipboard, where a figure of scilab goes to the clipboard as an image
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * implements the system clipboard, where a figure of scilab goes to the clipboard as an image
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 
 public class SystemClipboard {
 
@@ -47,7 +47,11 @@ public class SystemClipboard {
         return instance;
     }
 
-
+    /**
+     * Given a figureID it make a buffered image and copy it to system clipboard
+     *
+     * @param uid The figure to copy
+     */
     public static void copyToSysClipboard(String uid) {
         BufferedImage image = bufferFromUID(uid);
         ImageTransfer img = new ImageTransfer((Image)image);
@@ -55,6 +59,9 @@ public class SystemClipboard {
         System.out.println("Image copied to clipboard!");
     }
 
+    /**
+     * Structure to retain an buffered image in the clipboard
+     */
     public static class ImageTransfer implements Transferable {
 
         private Image image;
@@ -63,14 +70,31 @@ public class SystemClipboard {
             this.image = image;
         }
 
+        /**
+         * Default structure for transferable flavors(type of flavor)
+         *
+         */
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[] { DataFlavor.imageFlavor };
         }
 
+        /**
+         * Default structure for transferable flavor( supported / not suported )
+         *
+         * @param flavor
+         * @return <ReturnValue>
+         */
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
 
+
+        /**
+         * Default structure for transferable flavor, returns the image or throw an excepction
+         *
+         * @param flavor
+         * @return <ReturnValue>
+         */
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
             if (!DataFlavor.imageFlavor.equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);
@@ -94,61 +118,5 @@ public class SystemClipboard {
         }
         return null;
     }
-
-
-    public static void copyToSysClipboardB(String uid) {
-
-        List<File> image = new ArrayList<File>();
-        image.add(fileFromUID(uid));
-        FileTransfer file = new FileTransfer(image);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(file, null);
-        System.out.println("Image copied to clipboard!");
-    }
-
-    public static class FileTransfer implements Transferable {
-
-        private List<File> image;
-
-        public FileTransfer(List<File> image) {
-            this.image = image;
-        }
-
-        public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[] { DataFlavor.javaFileListFlavor  };
-        }
-
-        public boolean isDataFlavorSupported(DataFlavor flavor) {
-            return DataFlavor.javaFileListFlavor .equals(flavor);
-        }
-
-        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-            if (!DataFlavor.javaFileListFlavor .equals(flavor)) {
-                throw new UnsupportedFlavorException(flavor);
-            }
-            return image;
-        }
-    }
-
-    private static File fileFromUID(String uid) {
-
-        JoGLCanvas joglCanvas = null;
-        DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-        Canvas canvas = visitor.getCanvas();
-        if (canvas instanceof JoGLCanvas) {
-            joglCanvas = (JoGLCanvas)canvas;
-        }
-        if (joglCanvas != null) {
-            try {
-                BufferedImage image = joglCanvas.getImage();
-                File f = new File("temp.png").getAbsoluteFile();
-                joglCanvas.destroy();
-                ImageIO.write(image, name, f);
-                return f;
-            } catch (IOException e) {
-            }
-        }
-        return null;
-    }
-
 }
 
