@@ -59,6 +59,21 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
         /* Avoid the L&F to erase user background settings */
         setContentAreaFilled(false);
         setOpaque(true);
+        actListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Double[] value = new Double[1];
+                value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                if (isSelected()) {
+                    value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                }
+                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+                if (callback != null) {
+                    callback.actionPerformed(e);
+                }
+            }
+        };
+        addActionListener(actListener);
     }
 
     /**
@@ -112,25 +127,7 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
      * @param cb the callback to set
      */
     public void setCallback(CommonCallBack cb) {
-        if (actListener != null) {
-            removeActionListener(actListener);
-        }
-
         callback = cb;
-
-        actListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Double[] value = new Double[1];
-                value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-                if (isSelected()) {
-                    value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-                }
-                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
-                callback.actionPerformed(e);
-            }
-        };
-        addActionListener(actListener);
     }
 
     /**

@@ -15,7 +15,11 @@
 package org.scilab.modules.gui.bridge.popupmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.StringTokenizer;
 
 import javax.swing.JComboBox;
@@ -56,6 +60,19 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         super();
         /* Bug 3635 fixed: allow arrow keys to browse items */
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
+        ActionListener actionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Double[] scilabIndices = new Double[1];
+                scilabIndices[0] = (double) getUserSelectedIndex();
+                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
+                if (callback != null) {
+                    callback.actionPerformed(null);
+                }
+
+
+            }
+        };
+        addActionListener(actionListener);
     }
 
     /**
@@ -109,11 +126,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param callback the callback to set.
      */
     public void setCallback(CommonCallBack callback) {
-        if (this.callback != null) {
-            removeActionListener(this.callback);
-        }
         this.callback = callback;
-        addActionListener(this.callback);
     }
 
     /**
@@ -338,12 +351,12 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
     /**
      * Class created as a workaround for bug: http://bugzilla.scilab.org/show_bug.cgi?id=7898
      * This bug is a Java bug: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
-     * 
+     *
      * This workaround has been proposed by a user on Java bug tracker.
-     * 
+     *
      * The toString method will be used to display the elements, but because the class inherits its
      * equals method from Object instead of String, none of the elements are considered duplicates.
-     * 
+     *
      */
     private class SwingScilabPopupMenuItem {
 
