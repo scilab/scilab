@@ -117,7 +117,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
     private boolean isSetData = false;
 
-    private TableRowSorter< ? > rowSorter;
+    private TableRowSorter < ? > rowSorter;
 
     /**
      * Create a JTable with data Model.
@@ -140,7 +140,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         dataModel = new SwingTableModel<Object>(columnsName);
 
-        table = new JTable(dataModel){
+        table = new JTable(dataModel) {
             //Implement table cell tool tips.
             public String getToolTipText(MouseEvent e) {
                 String tip = null;
@@ -159,7 +159,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                         }
                     } else {
 
-                        if (colIndex==BrowseVar.SIZE_COLUMN_INDEX) {
+                        if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
                             /* Use the getModel() method because the
                              * column 5 has been removed from display
                              * but still exist in the model */
@@ -256,7 +256,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         VariableBrowserRowTypeFilter rowTypeFilter = new VariableBrowserRowTypeFilter(getFilteredTypeValues());
         VariableBrowserRowDataFilter rowDataFilter = new VariableBrowserRowDataFilter(getFilteredDataValues());
 
-        List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>();
+        List<RowFilter<Object, Object>> filters = new ArrayList<RowFilter<Object, Object>>();
         RowFilter<Object, Object> compoundRowFilter = null;
         filters.add(rowTypeFilter);
         filters.add(rowDataFilter);
@@ -296,35 +296,35 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                     };
 
                     String variableVisibility = ((JTable) e.getSource())
-                            .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+                                                .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
 
                     // Global variables are not editable yet
                     if (variableVisibility.equals("global")) {
                         ScilabModalDialog.show(getBrowserTab(),
-                                UiDataMessages.GLOBAL_NOT_EDITABLE,
-                                UiDataMessages.VARIABLE_EDITOR,
-                                IconType.ERROR_ICON);
+                                               UiDataMessages.GLOBAL_NOT_EDITABLE,
+                                               UiDataMessages.VARIABLE_EDITOR,
+                                               IconType.ERROR_ICON);
                         return;
                     }
 
                     try {
                         asynchronousScilabExec(action,
-                                "if exists(\"" + variableName + "\") == 1 then "
-                                        + "  try "
-                                        + "    editvar(\"" + variableName + "\"); "
-                                        + "  catch "
-                                        + "    messagebox(\"Variables of type \"\"\" + typeof ("
-                                        + variableName + ") + \"\"\" can not be edited.\""
-                                        + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                        + "    clear ans;"   // clear return value of messagebox
-                                        + "  end "
-                                        + "else "
-                                        + "  messagebox(\"Variable \"\""
-                                        + variableName + "\"\" no more exists.\""
-                                        + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                        + "  clear ans;"  // clear return value of messagebox
-                                        + "  browsevar();" // Reload browsevar to remove cleared variables
-                                        + "end");
+                                               "if exists(\"" + variableName + "\") == 1 then "
+                                               + "  try "
+                                               + "    editvar(\"" + variableName + "\"); "
+                                               + "  catch "
+                                               + "    messagebox(\"Variables of type \"\"\" + typeof ("
+                                               + variableName + ") + \"\"\" can not be edited.\""
+                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                               + "    clear ans;"   // clear return value of messagebox
+                                               + "  end "
+                                               + "else "
+                                               + "  messagebox(\"Variable \"\""
+                                               + variableName + "\"\" no more exists.\""
+                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                               + "  clear ans;"  // clear return value of messagebox
+                                               + "  browsevar();" // Reload browsevar to remove cleared variables
+                                               + "end");
                     } catch (InterpreterException e1) {
                         System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
                     }
@@ -420,6 +420,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         filterMenu.add(filterIntegerCheckBox);
 
         filterGraphicHandlesCheckBox = GraphicHandlesFilteringAction.createCheckBoxMenu();
+        filterGraphicHandlesCheckBox.setChecked(true);
         filterMenu.add(filterGraphicHandlesCheckBox);
 
         filterUncompiledFuncCheckBox = UncompiledFunctionFilteringAction.createCheckBoxMenu();
@@ -463,7 +464,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      */
     public boolean getFilteredDataValues() {
         return filterScilabVarCheckBox.isChecked();
-        //        return filteringButton.isEnabled();
 
     }
 
