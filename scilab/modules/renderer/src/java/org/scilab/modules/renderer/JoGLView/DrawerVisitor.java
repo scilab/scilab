@@ -467,7 +467,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
                 if (!polyline.getInterpColorMode() || polyline.getPolylineStyle() != 1) {
-                    appearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
+                    int fillColor;
+
+                    /*
+                     * The line color is used as fill color for the filled patch polyline style
+                     * whereas the background color is used for all the other styles.
+                     */
+                    if (polyline.getPolylineStyle() == 5) {
+                        fillColor = polyline.getLineColor();
+                    } else {
+                        fillColor = polyline.getBackground();
+                    }
+
+                    appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
                 }
 
                 drawingTools.draw(geometry, appearance);

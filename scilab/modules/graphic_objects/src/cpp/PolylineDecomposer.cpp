@@ -77,6 +77,11 @@ int PolylineDecomposer::getDataSize(char* id)
 
         return nPoints + nArrowVertices;
     }
+    /* Filled patch  */
+    else if (polylineStyle == 5)
+    {
+        return nPoints;
+    }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
@@ -130,6 +135,10 @@ void PolylineDecomposer::fillVertices(char* id, float* buffer, int bufferLength,
         fillVerticalLinesDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
     }
     else if (polylineStyle == 4)
+    {
+        fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+    }
+    else if (polylineStyle == 5)
     {
         fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
     }
@@ -889,6 +898,17 @@ int PolylineDecomposer::getIndicesSize(char* id)
     {
         nIndices = PolylineDecomposer::getArrowTriangleIndicesSize(nPoints, closed);
     }
+    /* Filled patch  */
+    else if (polylineStyle == 5)
+    {
+        if (nPoints < 3)
+        {
+            return 0;
+        }
+
+        /* Maximum number of triangles output by the triangulator */
+        nIndices = 3*(nPoints-2);
+    }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
@@ -966,11 +986,16 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
 
     if (polylineStyle == 1)
     {
-        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode);
+        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode, polylineStyle);
     }
     else if (polylineStyle == 4)
     {
         return fillArrowTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+    }
+    else if (polylineStyle == 5)
+    {
+        /* Set fill mode to on, since patches are always filled whatever fill mode's value */
+        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, 1, polylineStyle);
     }
     else if (polylineStyle == 6)
     {
@@ -985,7 +1010,7 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
 }
 
 int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLength,
-    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode)
+    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode, int polylineStyle)
 {
     double coords[4][3];
 
@@ -1011,11 +1036,11 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     getGraphicObjectProperty(id, __GO_INTERP_COLOR_MODE__, jni_bool, (void**) &piInterpColorMode);
 
     /*
-     * Do not triangulate if the interpolated color mode is set to 'on',
-     * the quadrilateral facet decomposition function is used instead, if nPoints == 4,
+     * Do not triangulate if the interpolated color mode is set to 'on' and the polyline style is filled patch (5).
+     * The quadrilateral facet decomposition function is used instead, if nPoints == 4,
      * for compatibility reasons, although triangulation could be used.
      */
-    if (interpColorMode)
+    if (interpColorMode && polylineStyle != 5)
     {
         triangulate = 0;
     }
@@ -1355,6 +1380,11 @@ int PolylineDecomposer::getWireIndicesSize(char* id)
     {
         return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
     }
+    /* Filled patch  */
+    else if (polylineStyle == 5)
+    {
+        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
+    }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
@@ -1494,6 +1524,10 @@ int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength,
         return fillVerticalLinesDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
     }
     else if (polylineStyle == 4)
+    {
+        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+    }
+    else if (polylineStyle == 5)
     {
         return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
     }

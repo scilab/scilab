@@ -199,10 +199,11 @@ private :
      * @param[in] the polyline y-shift array.
      * @param[in] the polyline z-shift array.
      * @param[in] the fill mode flag.
+     * @param[in] the polyline style.
      * @return the number of indices actually written.
      */
     static int fillTriangleIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode, int polylineStyle);
 
     /**
      * Fills a buffer with the triangle indices of the arrow heads of a polyline's segments.
