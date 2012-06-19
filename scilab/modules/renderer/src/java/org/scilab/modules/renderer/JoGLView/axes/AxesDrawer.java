@@ -276,10 +276,10 @@ public class AxesDrawer {
         double[] matrix = transformation.getMatrix();
         try {
             return TransformationFactory.getScaleTransformation(
-                    matrix[2] < 0 ? 1 : -1,
-                    matrix[6] < 0 ? 1 : -1,
-                    matrix[10] < 0 ? 1 : -1
-            );
+                       matrix[2] < 0 ? 1 : -1,
+                       matrix[6] < 0 ? 1 : -1,
+                       matrix[10] < 0 ? 1 : -1
+                   );
         } catch (DegenerateMatrixException e) {
             // Should never happen.
             return TransformationFactory.getIdentity();
@@ -336,26 +336,26 @@ public class AxesDrawer {
 
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
-                axes.getAxes()[0].getReverse() ? 1 : -1,
-                axes.getAxes()[1].getReverse() ? 1 : -1,
-                axes.getAxes()[2].getReverse() ? 1 : -1
-        );
+                                            axes.getAxes()[0].getReverse() ? 1 : -1,
+                                            axes.getAxes()[1].getReverse() ? 1 : -1,
+                                            axes.getAxes()[2].getReverse() ? 1 : -1
+                                        );
 
         // Scale data.
         Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
                 2.0 / (bounds[1] - bounds[0]),
                 2.0 / (bounds[3] - bounds[2]),
                 2.0 / (bounds[5] - bounds[4])
-        );
+                                             );
         transformation = transformation.rightTimes(scaleTransformation);
 
 
         // Translate data.
         Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
-                -(bounds[0] + bounds[1]) / 2.0,
-                -(bounds[2] + bounds[3]) / 2.0,
-                -(bounds[4] + bounds[5]) / 2.0
-        );
+                    -(bounds[0] + bounds[1]) / 2.0,
+                    -(bounds[2] + bounds[3]) / 2.0,
+                    -(bounds[4] + bounds[5]) / 2.0
+                );
         transformation = transformation.rightTimes(translateTransformation);
         return transformation;
     }
@@ -375,6 +375,7 @@ public class AxesDrawer {
     private Transformation computeBoxTransformation(Axes axes, Canvas canvas, boolean use2dView) throws DegenerateMatrixException {
         Double[] bounds = axes.getDisplayedBounds();
 
+
         double alpha;
         double theta;
 
@@ -392,7 +393,7 @@ public class AxesDrawer {
         // Rotate.
         if (use2dView) {
             alpha = 0.0;
-            theta = 2*DEFAULT_THETA;
+            theta = 2 * DEFAULT_THETA;
         } else {
             alpha = -axes.getRotationAngles()[0];
             theta = DEFAULT_THETA + axes.getRotationAngles()[1];
@@ -426,8 +427,9 @@ public class AxesDrawer {
         // Scale projected data to fit in the cube.
         Transformation isoScale;
         if (axes.getIsoview()) {
-            double minScale = Math.min(tmpX, tmpY);
-            isoScale = TransformationFactory.getScaleTransformation(minScale, minScale, tmpZ);
+            Double[] axesBounds = axes.getAxesBounds();
+            double minScale = Math.min(tmpX * axesBounds[2], tmpY * axesBounds[3]);
+            isoScale = TransformationFactory.getScaleTransformation(minScale / axesBounds[2] , minScale / axesBounds[3] , tmpZ);
         } else {
             isoScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
         }
@@ -519,9 +521,9 @@ public class AxesDrawer {
     public Vector3d getBoxCoordinates(Vector3d point) {
         double[] dataCoordinates = new double[3];
 
-        dataCoordinates[0] = 1 - 2.0*(point.getX()-reversedBounds[0])/reversedBoundsIntervals[0];
-        dataCoordinates[1] = 1 - 2.0*(point.getY()-reversedBounds[2])/reversedBoundsIntervals[1];
-        dataCoordinates[2] = 1 - 2.0*(point.getZ()-reversedBounds[4])/reversedBoundsIntervals[2];
+        dataCoordinates[0] = 1 - 2.0 * (point.getX() - reversedBounds[0]) / reversedBoundsIntervals[0];
+        dataCoordinates[1] = 1 - 2.0 * (point.getY() - reversedBounds[2]) / reversedBoundsIntervals[1];
+        dataCoordinates[2] = 1 - 2.0 * (point.getZ() - reversedBounds[4]) / reversedBoundsIntervals[2];
 
         return new Vector3d(dataCoordinates);
     }
@@ -534,9 +536,9 @@ public class AxesDrawer {
     public Vector3d getObjectCoordinates(Vector3d point) {
         double[] objectCoordinates = new double[3];
 
-        objectCoordinates[0] = 0.5*(1.0-point.getX())*(reversedBounds[1]-reversedBounds[0]) + reversedBounds[0];
-        objectCoordinates[1] = 0.5*(1.0-point.getY())*(reversedBounds[3]-reversedBounds[2]) + reversedBounds[2];
-        objectCoordinates[2] = 0.5*(1.0-point.getZ())*(reversedBounds[5]-reversedBounds[4]) + reversedBounds[4];
+        objectCoordinates[0] = 0.5 * (1.0 - point.getX()) * (reversedBounds[1] - reversedBounds[0]) + reversedBounds[0];
+        objectCoordinates[1] = 0.5 * (1.0 - point.getY()) * (reversedBounds[3] - reversedBounds[2]) + reversedBounds[2];
+        objectCoordinates[2] = 0.5 * (1.0 - point.getZ()) * (reversedBounds[5] - reversedBounds[4]) + reversedBounds[4];
 
         return new Vector3d(objectCoordinates);
     }
@@ -711,7 +713,7 @@ public class AxesDrawer {
             point = projection2d.unproject(point);
         }
 
-        return new double[]{point.getX(), point.getY(), point.getZ()};
+        return new double[] {point.getX(), point.getY(), point.getZ()};
     }
 
     /**
@@ -726,7 +728,7 @@ public class AxesDrawer {
         DrawerVisitor currentVisitor;
         AxesDrawer axesDrawer;
 
-        double[] coords2dView = new double[]{0.0, 0.0, 0.0};
+        double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
@@ -762,7 +764,7 @@ public class AxesDrawer {
         DrawerVisitor currentVisitor;
         AxesDrawer axesDrawer;
 
-        double[] coords2dView = new double[]{0.0, 0.0, 0.0};
+        double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
@@ -815,7 +817,7 @@ public class AxesDrawer {
     public static double[] getViewingArea(Axes axes) {
         DrawerVisitor currentVisitor;
 
-        double[] viewingArea = new double[]{0.0, 0.0, 0.0, 0.0};
+        double[] viewingArea = new double[] {0.0, 0.0, 0.0, 0.0};
 
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
@@ -832,7 +834,7 @@ public class AxesDrawer {
             Rectangle2D axesZone = axesDrawer.computeZone(axes);
 
             /* Compute the upper-left point's y coordinate */
-            upperLeftY = axesZone.getY() + axesZone.getHeight()*2.0;
+            upperLeftY = axesZone.getY() + axesZone.getHeight() * 2.0;
 
             /* Convert from normalized coordinates to 2D pixel coordinates */
             viewingArea[0] = (axesZone.getX() + 1.0) * 0.5 * width;
@@ -896,9 +898,9 @@ public class AxesDrawer {
                     clipBounds[i] = bounds[i];
                 }
 
-                offsets[0] = CLIPPING_EPSILON*(bounds[1]-bounds[0]);
-                offsets[1] = CLIPPING_EPSILON*(bounds[3]-bounds[2]);
-                offsets[2] = CLIPPING_EPSILON*(bounds[5]-bounds[4]);
+                offsets[0] = CLIPPING_EPSILON * (bounds[1] - bounds[0]);
+                offsets[1] = CLIPPING_EPSILON * (bounds[3] - bounds[2]);
+                offsets[2] = CLIPPING_EPSILON * (bounds[5] - bounds[4]);
             } else if (clipProperty.getClipState() == ClipStateType.ON) {
                 /*
                  * The clip box property defines values only for the x and y axes,
@@ -948,8 +950,8 @@ public class AxesDrawer {
                     }
                 }
 
-                offsets[0] = CLIPPING_EPSILON*(clipBounds[1]-clipBounds[0]);
-                offsets[1] = CLIPPING_EPSILON*(clipBounds[3]-clipBounds[2]);
+                offsets[0] = CLIPPING_EPSILON * (clipBounds[1] - clipBounds[0]);
+                offsets[1] = CLIPPING_EPSILON * (clipBounds[3] - clipBounds[2]);
             }
 
             equations = new Vector4d[numPlanes];
