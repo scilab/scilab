@@ -62,17 +62,6 @@
   </menu>
   <!-- Preferences menu -->
   <menu label="&amp;Preferences" enabled="false">
-    <submenu label="&amp;Colors">
-      <submenu label="Console &amp;Background..." icon="color-fill">
-        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground" type="3"/>
-      </submenu>
-      <submenu label="Console &amp;Font..." icon="draw-brush">
-        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleForeground" type="3"/>
-      </submenu>
-    </submenu>
-    <submenu label="&amp;Font..." icon="format-text-bold">
-      <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont" type="3"/>
-    </submenu>
     <submenu label="Show/Hide &amp;Toolbar">
       <callback instruction="                 if toolbar(-1)==&quot;on&quot; then                   toolbar(-1, &quot;off&quot;);                 else                   toolbar(-1, &quot;on&quot;);                 end" type="0"/>
     </submenu>
