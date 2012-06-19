@@ -80,7 +80,7 @@ public class AxesHandler {
 
     public static String duplicateAxes(String figureUid, String axes) {
 
-        String newAxes = (String)GraphicController.getController().cloneObject(axes);
+        String newAxes = GraphicController.getController().cloneObject(axes);
         setAxesVisible(newAxes);
         PolylineHandler.getInstance().deleteAll(newAxes);
         return newAxes;

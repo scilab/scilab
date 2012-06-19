@@ -111,7 +111,7 @@ public class PolylineHandler {
     */
     public void insert(String axes, String polyline) {
         GraphicController.getController().setGraphicObjectRelationship(axes, polyline);
-        String newCompound = (String)GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+        String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
         GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
         GraphicController.getController().setGraphicObjectRelationship(newCompound, polyline);
     }

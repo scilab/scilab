@@ -166,7 +166,7 @@ public class EntityPicker {
         int begin = 0, end = size - 1;
 
         while ((end - begin) > 1) {
-            int m = (int)((begin + end) / 2);
+            int m = ((begin + end) / 2);
             if (x <= datax[m]) {
                 end = m;
             } else {
