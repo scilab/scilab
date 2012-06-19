@@ -1,3 +1,9 @@
+
+* Interactive point-and-click curve editor, now the user can select/unselect
+  hide/unhide and delete curves, copy, cut and paste selected curves between figures,
+  now figures can be copied as an image to system clipboard(only under Windows).
+
+
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================
 
@@ -90,10 +96,6 @@ GUI
 
 * Figure resizing can now be managed by the user (uicontrol position setting, ...)
   through the 'resizefcn' property.
-
-* Interactive point-and-click curve editor, now the user can select/unselect
-  hide/unhide and delete curves, copy, cut and paste selected curves between figures,
-  now figures can be copied as an image to system clipboard(only under Windows).
 
 
 Scilab
