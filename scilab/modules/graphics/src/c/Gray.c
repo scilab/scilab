@@ -453,6 +453,7 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     BOOL isRedrawn = FALSE;
     double y; /* void for ConstructGrayplot */
     int clipState = 0;
+    int firstPlot = 0;
 
     isRedrawn = checkRedrawing();
 
@@ -480,6 +481,8 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     }
 
     setCurrentObject(pGrayplotUID);
+
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* if the auto_clear is on we must redraw everything */
     /*
