@@ -70,6 +70,7 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
 {
     int iID = 0;
     char *pFigureUID = NULL;
+    int* axesSize = NULL;
 
     pFigureUID = cloneGraphicObject(getFigureModel());
 
@@ -86,6 +87,12 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
     cloneAxesModel(pFigureUID);
 
     setCurrentFigure(pFigureUID);
+
+    /*
+     * Force axes size after window creation ( Java )
+     */
+    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, &axesSize);
+    setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, axesSize, jni_int_vector, 2);
 
     return pFigureUID;
 }
