@@ -29,12 +29,14 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -163,6 +165,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private Object[] objs;
     private Object[] buttons;
     private boolean modal = true;
+    private JCheckBox checkbox;
 
     /**
      * Default constructor
@@ -220,6 +223,17 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             message += "<div>" + mess[line] + "</div>";
         }
         message += mess[line] + "</HTML>";
+    }
+
+    /**
+     * Set a checkbox in the messagebox
+     * @param message text of the checkbox
+     * @param action the associated action
+     * @param checked if true the checkbox is checked
+     */
+    public void setCheckbox(String message, Action action) {
+        checkbox = new JCheckBox(action);
+        checkbox.setText(message);
     }
 
     /**
@@ -540,10 +554,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
             // All objects in the MessageBox:
             //  - Message
-            objs = new Object[1];
+            int nb = checkbox == null ? 1 : 2;
+            objs = new Object[nb];
 
             // Add the message
             objs[0] = messageScrollPane;
+            if (nb == 2) {
+                objs[1] = checkbox;
+            }
 
             // And now the buttons
             if (buttonsLabels == null) {

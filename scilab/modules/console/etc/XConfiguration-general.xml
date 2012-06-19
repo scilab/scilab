@@ -6,10 +6,10 @@
   </body>
   <confirmation-dialogs title="Confirmation dialogs"> 
     <body>
-      <tools order="ascending">
-        <tool state="checked" name="Scinotes" description="Prompt"/>
-        <tool state="unchecked" name="Console" description="Warn before clearing the Console"/>
-        <tool state="checked" name="Command History" description="Warn before deleting Command History items"/>
+      <tools>
+        <tool state="checked" id="console-exit" name="Console" description="Warn before exiting Scilab"/>
+        <tool state="checked" id="delete-history-item" name="Command History" description="Warn before deleting Command History items"/>
+        <tool state="unchecked" id="console-clear" name="Console" description="Warn before clearing the Console"/>
       </tools>
     </body>
   </confirmation-dialogs>
