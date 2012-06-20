@@ -24,6 +24,8 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.preferences.ScilabPreferences.ToolboxInfos;
 
 /**
@@ -107,6 +110,14 @@ public final class XConfigManager extends XCommonManager {
                 }
             }
         });
+
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cancel();
+            }
+        });
+        ScilabSwingUtilities.closeOnEscape(dialog);
 
         // Set up correspondence
         correspondance = new HashMap<Component, XSentinel>();
@@ -221,6 +232,19 @@ public final class XConfigManager extends XCommonManager {
         }
     }
 
+    private static void cancel() {
+        dialog.dispose();
+        XCommonManager.invalidateXSL();
+        XConfiguration.invalidate();
+        NodeList toolboxes = document.getElementsByTagName("toolboxes");
+        if (toolboxes != null && toolboxes.getLength() != 0) {
+            Element tbxs = (Element) toolboxes.item(0);
+            document.getDocumentElement().removeChild(tbxs);
+        }
+        updated = false;
+        refreshDisplay();
+    }
+
     /** Interpret action.
      *
      * @param action : to be interpreted.
@@ -282,16 +306,7 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         if (callback.equals("Cancel")) {
-            dialog.dispose();
-            XCommonManager.invalidateXSL();
-            XConfiguration.invalidate();
-            NodeList toolboxes = document.getElementsByTagName("toolboxes");
-            if (toolboxes != null && toolboxes.getLength() != 0) {
-                Element tbxs = (Element) toolboxes.item(0);
-                document.getDocumentElement().removeChild(tbxs);
-            }
-            updated = false;
-            refreshDisplay();
+            cancel();
             return true;
         }
         return false;
