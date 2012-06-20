@@ -71,7 +71,7 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-        <Label text="(modify this option requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+        <Label text="(This requires a restart of Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
 	<Panel gridx="2" gridy="2" weightx="1" fill="both"/>	
       </Grid>
     </Title>
@@ -79,22 +79,51 @@
   </xsl:template>
 
   <xsl:template match="tools">
-      <Title text="Confirmation dialogs">
-        <Grid>
-          <xsl:for-each select="tool">
-            <Checkbox
-                gridy    = "{position() + 1}"
-                gridx    = "1"
-                listener = "ActionListener"
-                checked  = "{@state}"
-                text     = "{@description}">
-              <actionPerformed choose="state">
-                <xsl:call-template name="context"/>
-              </actionPerformed>
-            </Checkbox>
-          </xsl:for-each>
-        </Grid>
-      </Title>
+    <Title text="Confirmation dialogs">
+      <Grid>
+        <xsl:for-each select="tool">
+          <Checkbox
+              gridy    = "{position() + 1}"
+              gridx    = "1"
+              listener = "ActionListener"
+              checked  = "{@state}"
+              text     = "{@description}">
+            <actionPerformed choose="state">
+              <xsl:call-template name="context"/>
+            </actionPerformed>
+          </Checkbox>
+        </xsl:for-each>
+      </Grid>
+    </Title>
+  </xsl:template>
+
+  <xsl:template match="layouts">
+    <xsl:variable name="name" select="@name"/>
+    <Title text="Desktop Layout">
+      <Grid>
+        <Label gridx="1" gridy="1" weightx="0" text="Select a layout"/>
+        <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
+        <Panel gridx="3" gridy="1">
+          <xsl:call-template name="Select">
+            <xsl:with-param name="among">
+              <xsl:for-each select="layout">
+                <option name="{@name}"/>
+              </xsl:for-each>
+            </xsl:with-param>
+          </xsl:call-template>
+        </Panel>
+	<Label text="(modify the layout requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+	<Panel gridx="1" gridy="3">
+	  <VSpace height="10"/>
+	</Panel>
+        <Image gridx="1" gridy="4" gridwidth="3">
+          <xsl:attribute name="url">
+            <xsl:value-of select="layout[@name=$name]/@image"/>
+          </xsl:attribute>
+        </Image>
+	
+      </Grid>
+    </Title>
   </xsl:template>
 
   <xsl:template match="actions">

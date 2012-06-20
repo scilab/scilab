@@ -33,7 +33,8 @@ libscigui_la_etc_DATA = \
 	etc/main_menubar.xml \
 	etc/main_toolbar.xml \
 	etc/flexdock-themes.xml \
-	etc/windowsConfiguration.xml \
+	etc/integratedConfiguration.xml \
+	etc/simpleConfiguration.xml \
 	etc/XConfiguration-colors.xml \
 	etc/XConfiguration-colors.xsl \
 	etc/XConfiguration-font.xml \
@@ -395,7 +396,10 @@ images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png
+images/icons/undock_default.png \
+images/preferences/integrated.png \
+images/preferences/simple.png
+
 
 if GUI
 USEANT=1
