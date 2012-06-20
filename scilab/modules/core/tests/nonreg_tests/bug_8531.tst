@@ -20,11 +20,13 @@
 global resultPathfname
 resultPath = "";
 clearfun("editor");
+warning('off')
 function editor(fname)
   global('resultPathfname');
   resultPathfname = fname;
   clear('resultPathfname')
 endfunction
+warning('on')
 
 exec("SCI/modules/core/tests/nonreg_tests/bug_8531.sci");
 if ~isdef("BUG_8531") then pause, end
