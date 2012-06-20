@@ -875,6 +875,9 @@ Bug Fixes
 
 * Bug #11265 fixed - msprintf crashed on a huge string.
 
+* Bug #11281 fixed - References to x_left & y_top were false in reversed axes
+                     cases in rubberbox help page.
+
 * Bug #11289 fixed - swap_handles function modified the properties.
 
 

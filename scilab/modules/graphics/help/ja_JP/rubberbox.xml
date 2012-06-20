@@ -21,10 +21,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[final_rect,btn]=rubberbox()
-[final_rect,btn]=rubberbox(initial_rect)
-[final_rect,btn]=rubberbox(edition_mode)
-[final_rect,btn]=rubberbox(initial_rect, edition_mode)
-</synopsis>
+      [final_rect,btn]=rubberbox(initial_rect)
+      [final_rect,btn]=rubberbox(edition_mode)
+      [final_rect,btn]=rubberbox(initial_rect, edition_mode)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Pパラメータ</title>
@@ -33,25 +33,27 @@
         <term>initial_rect</term>
         <listitem>
           <para>2個または4個のエントリを有するベクトル.4個のエントリを有する場合,
-	[x_left, y_top, width, height]で定義される初期矩形を指定し,
-	2個のエントリを有する場合, 幅と高さは0と仮定されます.
-  </para>
+            [x_min, y_max, width, height]で定義される初期矩形を指定し,
+            2個のエントリを有する場合, 幅と高さは0と仮定されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>edition_mode</term>
         <listitem>
-          <para>論理値, edition_mode が<literal>%t</literal>の場合,
-	ボタンを押すと最初の角が選択され,開放すると反対の角が選択されます.
-	edition_mode が<literal>%f</literal>の場合, ボタンを押すか
-	クリックすると最初の角,クリックすると反対の角が選択されます.
-	デフォルトは %f です.</para>
+          <para>
+            論理値, edition_mode が<literal>%t</literal>の場合,
+            ボタンを押すと最初の角が選択され,開放すると反対の角が選択されます.
+            edition_mode が<literal>%f</literal>の場合, ボタンを押すか
+            クリックすると最初の角,クリックすると反対の角が選択されます.
+            デフォルトは %f です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>final_rect</term>
         <listitem>
-          <para>[x_left, y_top, width, height]で定義された矩形</para>
+          <para>[x_min, y_max, width, height]で定義された矩形</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -64,13 +66,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>rubberbox(initial_rect)</literal> はマウスに基づき
-	カレントのグラフィックウインドウ内で輪ゴムボックスを
-	追跡します.
-	ボタンがクリックされると, <literal>rubberbox</literal> は
-	<literal>final_Rect</literal>で定義された最後の矩形を返します
-	引数<literal>initial_rect</literal>が指定されない場合,
-	最初の角の位置を固定するためのクリックが必要です.</para>
+    <para>
+      <literal>rubberbox(initial_rect)</literal> はマウスに基づき
+      カレントのグラフィックウインドウ内で輪ゴムボックスを
+      追跡します.
+      ボタンがクリックされると, <literal>rubberbox</literal> は
+      <literal>final_Rect</literal>で定義された最後の矩形を返します
+      引数<literal>initial_rect</literal>が指定されない場合,
+      最初の角の位置を固定するためのクリックが必要です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
