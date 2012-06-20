@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-06-13 10:54+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: sci_gateway/c/gw_graphic_export.c, line: 76
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -160,21 +160,18 @@ msgid "Scilab Graphic export module not installed.\n"
 msgstr ""
 
 # File: macros/xs2emf.sci, line: 16
-# File: macros/xs2fig.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
 # File: macros/xs2emf.sci, line: 22
-# File: macros/xs2fig.sci, line: 23
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
 # File: macros/xs2emf.sci, line: 28
-# File: macros/xs2fig.sci, line: 29
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -193,37 +190,12 @@ msgstr ""
 
 #
 # File: macros/xs2emf.sci, line: 94
-# File: macros/xs2fig.sci, line: 108
 #, c-format
 msgid "%s: Unable to create export file, permission denied.\n"
 msgstr ""
 
 #
 # File: macros/xs2emf.sci, line: 105
-# File: macros/xs2fig.sci, line: 120
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
-msgstr ""
-
-#
-# File: macros/xs2fig.sci, line: 52
-msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr ""
-
-#
-# File: macros/xs2fig.sci, line: 55
-msgid "Scilab error"
-msgstr ""
-
-#
-# File: macros/xs2fig.sci, line: 55
-msgid "error"
-msgstr ""
-
-#
-# File: macros/xs2fig.sci, line: 63
-#, c-format
-msgid ""
-"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
-"to be able to use this feature.\n"
 msgstr ""

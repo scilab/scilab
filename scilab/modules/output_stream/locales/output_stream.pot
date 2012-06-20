@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-06-13 10:54+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: sci_gateway/c/sci_mprintf.c, line: 64
 # File: sci_gateway/c/sci_msprintf.c, line: 156
@@ -277,12 +277,14 @@ msgstr ""
 # File: src/c/do_xxprintf.c, line: 260
 # File: src/c/do_xxprintf.c, line: 458
 # File: src/c/do_xxprintf.c, line: 491
+# File: src/c/do_xxprintf.c, line: 548
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
 # File: src/c/do_xxprintf.c, line: 260
+# File: src/c/do_xxprintf.c, line: 548
 msgid "Buffer too small."
 msgstr ""
 
