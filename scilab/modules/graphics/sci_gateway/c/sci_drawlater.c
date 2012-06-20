@@ -19,7 +19,7 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "CurrentFigure.h"
+#include "BuildObjects.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
@@ -28,18 +28,16 @@ int sci_drawlater( char * fname, unsigned long fname_len )
     int iFalse =  (int)FALSE;
     char* pFigureUID = NULL;
 
-    CheckRhs(0,0);
-    CheckLhs(0,1);
+    CheckRhs(0, 0);
+    CheckLhs(0, 1);
 
     if (Rhs <= 0)
     {
-        //startGraphicDataWriting();
-        pFigureUID = getCurrentFigure();
+        pFigureUID = getOrCreateDefaultSubwin();
         if (pFigureUID != NULL)
         {
             setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
         }
-        //endGraphicDataWriting();
     }
 
     LhsVar(1) = 0;
