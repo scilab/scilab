@@ -75,7 +75,11 @@ public class MarkSpriteFactory {
         Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
         Color foregroundColor = ColorFactory.createColor(colorMap, mark.getForeground());
 
-        appearance.setFillColor(backgroundColor);
+        if (mark.getBackground() != 0) {
+            appearance.setFillColor(backgroundColor);
+        } else {
+            appearance.setFillColor(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        }
         appearance.setLineColor(foregroundColor);
 
         if (finalSize != 1) {
