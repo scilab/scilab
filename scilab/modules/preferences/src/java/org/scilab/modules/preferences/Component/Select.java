@@ -67,8 +67,12 @@ public class Select extends JComboBox implements XComponent, XChooser {
                 index += 1;
             }
         }
-        setSelectedIndex(select);
+
+        if (select < getItemCount()) {
+            setSelectedIndex(select);
+        }
     }
+
     /** Refresh the component by the use of actuators.
     *
     * @param peer the corresponding view DOM node
@@ -87,7 +91,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
                 index += 1;
             }
         }
-        if (select != getSelectedIndex()) {
+        if (select != getSelectedIndex() && select < getItemCount()) {
             setEnabled(false);
             setSelectedIndex(select);
         }

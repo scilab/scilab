@@ -24,6 +24,8 @@ libscipreferences_la_etc_DATA = \
 	etc/preferences.quit \
 	etc/preferences.start \
 	etc/XConfiguration.xml \
+	etc/XConfiguration-preference.xml \
+	etc/XConfiguration-preference.xsl \
 	etc/XWizard-expression.xml \
 	etc/XWizard-function.xml \
 	etc/XWizard-xcos.xml \

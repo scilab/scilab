@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -753,7 +752,7 @@ public abstract class XCommonManager {
         /* Create a local copy of the configuration file */
         try {
             copyFile(new File(original), new File(copy));
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.err.println(ERROR_READ + copy);
         }
     }
@@ -764,7 +763,7 @@ public abstract class XCommonManager {
      * @param out dest file
      * @throws FileNotFoundException
      */
-    private static void copyFile(final File in, final File out) throws FileNotFoundException {
+    protected static void copyFile(final File in, final File out) throws IOException {
         FileInputStream fis = new FileInputStream(in);
         FileOutputStream fos = new FileOutputStream(out);
 

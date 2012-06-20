@@ -32,6 +32,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XChooser;
@@ -60,6 +61,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
     private JButton button;
     private String currentDir = System.getProperty("user.home");
     private boolean dirSelection;
+    private boolean checkEntry;
     private String previousPath;
 
     /** Constructor.
@@ -72,6 +74,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
 
         textField = new JTextField();
         textField.setEditable(true);
+        textField.setColumns(10);
         textField.getDocument().addDocumentListener(this);
 
         button = new JButton("...");
@@ -94,15 +97,13 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
                 String[] paths = fileChooser.getSelection();
                 if (paths != null && paths.length != 0 && !paths[0].isEmpty()) {
                     File file = new File(paths[0]);
-                    if (file.exists()) {
-                        if (dirSelection) {
-                            currentDir = file.getAbsolutePath();
-                        } else {
-                            currentDir = file.getParentFile().getAbsolutePath();
-                        }
-
-                        textField.setText(file.getAbsolutePath());
+                    if (dirSelection) {
+                        currentDir = file.getAbsolutePath();
+                    } else {
+                        currentDir = file.getParentFile().getAbsolutePath();
                     }
+
+                    textField.setText(file.getAbsolutePath());
                 }
             }
         });
@@ -127,6 +128,9 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
 
         String dirsel = XCommonManager.getAttribute(peer, "dir-selection", "false");
         dirSelection = dirsel.equals("true");
+
+        String checkentry = XConfigManager.getAttribute(peer, "check-entry", "true");
+        checkEntry = checkentry.equals("true");
     }
 
     public void addDocumentListener(DocumentListener listener) {
@@ -138,7 +142,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
      * @return array of actuator names.
      */
     public final String[] actuators() {
-        String[] actuators = {"enable", "href", "desc", "mask", "dir-selection"};
+        String[] actuators = {"enable", "href", "desc", "mask", "dir-selection", "check-entry"};
         return actuators;
     }
 
@@ -147,17 +151,20 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
      * @param peer the corresponding view DOM node
      */
     public final void refresh(final Node peer) {
-        String href = XCommonManager.getAttribute(peer , "href");
+        String href = XCommonManager.getAttribute(peer, "href");
         if (!href.equals(href())) {
             href(href);
         }
 
-        String dirsel = XCommonManager.getAttribute(peer , "dir-selection", "false");
+        String dirsel = XCommonManager.getAttribute(peer, "dir-selection", "false");
         dirSelection = dirsel.equals("true");
 
-        String enable = XConfigManager.getAttribute(peer , "enable", "true");
+        String enable = XConfigManager.getAttribute(peer, "enable", "true");
         textField.setEnabled(enable.equals("true"));
         button.setEnabled(enable.equals("true"));
+
+        String checkentry = XConfigManager.getAttribute(peer, "check-entry", "true");
+        checkEntry = checkentry.equals("true");
     }
 
     /** Sensor for 'href' attribute.
@@ -214,6 +221,8 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
             return false;
         }
 
+        path = ScilabCommonsUtils.getCorrectedPath(path);
+
         File file = new File(path);
         boolean ok = false;
         if (file.exists()) {
@@ -224,13 +233,13 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
             }
         }
 
-        if (ok) {
+        if (!checkEntry || ok) {
             textField.setForeground(NORMALCOLOR);
         } else {
             textField.setForeground(ERRORCOLOR);
         }
 
-        return ok;
+        return checkEntry ? ok : true;
     }
 
     /** Actual response read by the listener.
