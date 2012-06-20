@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-20 09:48+0000\n"
+"PO-Revision-Date: 2012-06-20 12:11+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15405)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -259,6 +259,9 @@ msgid ""
 "%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
 "option. See help for more information.\n"
 msgstr ""
+"%s : Impossible d'exécuter rubberbox sur une vue 3D avec les options "
+"initial_rect ou edition_mode. Veuillez consulter l'aide pour plus "
+"d'informations.\n"
 
 #, c-format
 msgid ""
@@ -426,12 +429,14 @@ msgstr "%s : '%s' doit être déclaré\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de %d "
+"éléments attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -917,6 +922,8 @@ msgid ""
 "The number of column of the color vector must match the number of points "
 "defining the line (which must be %d or %d).\n"
 msgstr ""
+"Le nombre de colonnes du vecteur de couleur doit correspondre au nombre de "
+"points définissant la ligne (qui doit être %d ou %d).\n"
 
 #, c-format
 msgid "WARNING: %s\n"

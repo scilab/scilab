@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-15 19:33+0000\n"
+"PO-Revision-Date: 2012-06-20 12:13+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15405)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 #, c-format
@@ -464,13 +464,13 @@ msgid "&BMP"
 msgstr "&BMP"
 
 msgid "&Vectorial export to..."
-msgstr ""
+msgstr "Export &vectoriel vers..."
 
 msgid "&PDF"
 msgstr "&PDF"
 
 msgid "&PS"
-msgstr ""
+msgstr "&PS"
 
 msgid "&SVG"
 msgstr "&SVG"
@@ -542,16 +542,16 @@ msgid "Stop datatip manager"
 msgstr "Arrêter le gestionnaire de datatips"
 
 msgid "&MVC"
-msgstr ""
+msgstr "&MVC"
 
 msgid "&Log View (Trace all View notifications)"
-msgstr ""
+msgstr "Vue &log(Trace de toutes les notifications aux vues)"
 
 msgid "&All Objects View (All objects with properties)"
-msgstr ""
+msgstr "&Voir toutes les objets (Tous les objets avec leurs propriétés)"
 
 msgid "&Ged-like View (Future ged)"
-msgstr ""
+msgstr "Vue &Ged (Futur GED)"
 
 msgid "&?"
 msgstr "&?"
@@ -768,7 +768,7 @@ msgstr "%s : Type erroné du parent : Un handle ou 0 attendu.\n"
 
 #, c-format
 msgid "%s: can not add a menu into the console in this mode.\n"
-msgstr ""
+msgstr "%s : Impossible d'ajouter un menu dans la console dans ce mode.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"
