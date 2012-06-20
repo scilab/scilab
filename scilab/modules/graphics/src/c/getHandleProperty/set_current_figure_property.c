@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -72,19 +73,10 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
             return SET_PROPERTY_ERROR ;
         }
         setCurrentFigure(curFigUID);
+        getGraphicObjectProperty(curFigUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
+        setCurrentSubWin(pstrAxesUID);
 
         return 0;
-// FIXME
-#if 0
-        if ( sciGetEntityType( curFig ) != SCI_FIGURE )
-        {
-            Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
-            return SET_PROPERTY_ERROR;
-        }
-        startGraphicDataReading();
-        figNum = sciGetNum( curFig ) ;
-        endGraphicDataReading();
-#endif
     }
     else if ( isParameterDoubleMatrix( valueType ) )
     {
@@ -111,14 +103,5 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     setCurrentSubWin(pstrAxesUID);
 
     return 0;
-#if 0
-    /* select the figure num */
-    res = sciSetUsedWindow( figNum ) ;
-    if ( res < 0 )
-    {
-        Scierror(999, _("Unable to create requested figure: No more memory.\n"));
-    }
-    return res ;
-#endif
 }
 /*------------------------------------------------------------------------*/
