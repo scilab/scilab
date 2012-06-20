@@ -68,7 +68,7 @@
       <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
     </submenu>
     <separator/>
-    <submenu label="P&amp;references">
+    <submenu label="P&amp;references" icon="preferences-system">
       <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
     </submenu>
   </menu>
