@@ -1763,10 +1763,17 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 
 all-local: $(TARGETS_ALL)
 
-macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
+
+check-jvm-dep:
+# Check that scilab-cli does not have a dependency on libjvm
+@IS_MACOSX_FALSE@	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
+@IS_MACOSX_FALSE@	if test $$? == 0; then \
+@IS_MACOSX_FALSE@		echo "Found dependency from scilab-cli-bin to libjvm found"; \
+@IS_MACOSX_FALSE@	fi
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"
