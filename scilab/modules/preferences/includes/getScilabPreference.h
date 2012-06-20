@@ -32,8 +32,8 @@ typedef struct
 #define HISTORYFILE_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-file"
 #define HISTORYLINES_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-lines"
 
-PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences();
-PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences();
-PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences();
+PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
+PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);
+PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
 
 #endif // __GETSCILABPREFERENCES_H__

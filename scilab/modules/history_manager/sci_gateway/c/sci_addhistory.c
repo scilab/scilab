@@ -19,31 +19,38 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_addhistory(char *fname,unsigned long fname_len)
+int sci_addhistory(char *fname, unsigned long fname_len)
 {
-	static int n1,m1;
+    static int n1, m1;
 
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-	if (GetType(1) == sci_strings)
-	{
-		char **lines=NULL;
-		BOOL bOK = FALSE;
+    if (GetType(1) == sci_strings)
+    {
+        char **lines = NULL;
+        BOOL bOK = FALSE;
 
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&lines);
-		bOK = appendLinesToScilabHistory(lines,m1*n1);
-		freeArrayOfString(lines, m1*n1);
+        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &lines);
+        bOK = appendLinesToScilabHistory(lines, m1 * n1);
+        freeArrayOfString(lines, m1 * n1);
 
-		LhsVar(1) = 0;
-		PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String array expected.\n"),fname,1);
-		return 0;
-	}
+        if (!bOK)
+        {
+            Scierror(999, _("%s: Could not add line to the history.\n"), fname, 1);
+            return 0;
 
-	return 0;
+        }
+
+        LhsVar(1) = 0;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String array expected.\n"), fname, 1);
+        return 0;
+    }
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

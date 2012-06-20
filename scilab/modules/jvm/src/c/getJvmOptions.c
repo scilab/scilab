@@ -30,7 +30,7 @@
 #include "BOOL.h"
 #include "getScilabPreference.h"
 
-static char * getJavaHeapSize();
+static char * getJavaHeapSize(void);
 /*--------------------------------------------------------------------------*/
 JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_JavaVMOption)
 {
@@ -70,6 +70,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                     FREE(encoding);
                     encoding = NULL;
                 }
+                FREE(heapSize);
                 *size_JavaVMOption = 0;
                 return NULL;
             }
@@ -114,6 +115,11 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
 
                         option_string_path_separator = strsub(jvm_option_string, "$PATH_SEPARATOR", PATH_SEPARATOR);
 
+                        if (jvm_option_string)
+                        {
+                            FREE(jvm_option_string);
+                        }
+
                         option_string_sci_path = strsub(option_string_path_separator, "$SCILAB", SCI_PATH);
                         if (option_string_sci_path)
                         {
@@ -125,7 +131,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         indice++;
                     }
 
-                    if (jvm_option_string) FREE(jvm_option_string);
                 }
 
                 if (!heapSizeUsed)
@@ -179,7 +184,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-char * getJavaHeapSize()
+char * getJavaHeapSize(void)
 {
     const char * value = getScilabPreferences()->heapSize;
     char * rvalue = NULL;
