@@ -23,7 +23,7 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
     y = x;
     z = eval3d(Surf2, x, y)
 
-    scf();
+    //scf();
     subplot(211);
     contour(x, y, Surf1, 10);
     subplot(212);
