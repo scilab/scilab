@@ -17,6 +17,14 @@
       </tools>
     </body>
   </confirmation-dialogs>
+  <desktop-layout title="Desktop layout">
+    <body>
+      <layouts name="Integrated">
+        <layout name="Integrated" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
+        <layout name="Simple" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
+      </layouts>
+    </body>
+  </desktop-layout>
   <shortcuts title="Shortcuts">
     <body>
       <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
