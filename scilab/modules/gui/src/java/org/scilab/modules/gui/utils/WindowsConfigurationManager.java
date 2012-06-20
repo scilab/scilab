@@ -38,10 +38,6 @@ import org.flexdock.perspective.persist.xml.PersistenceConstants;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
-import org.scilab.modules.commons.xml.XConfiguration;
-import org.scilab.modules.commons.xml.XConfigurationEvent;
-import org.scilab.modules.commons.xml.XConfigurationListener;
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -59,14 +55,12 @@ import org.w3c.dom.NodeList;
  *
  * @author Calixte DENIZET
  */
-public class WindowsConfigurationManager implements XConfigurationListener {
+public class WindowsConfigurationManager {
 
     private static final int DEFAULTX = 0;
     private static final int DEFAULTY = 0;
     private static final int DEFAULTHEIGHT = 500;
     private static final int DEFAULTWIDTH = 500;
-
-    private static final String LAYOUT_PATH = "//general/desktop-layout/body/layouts";
 
     private static final String SCI = "SCI";
     private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
@@ -80,21 +74,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     private static boolean oneTry;
     private static Document doc;
 
-    private static boolean mustInvalidate;
-
     static {
-        new WindowsConfigurationManager();
-        Scilab.registerFinalHook(new Runnable() {
-            public void run() {
-                if (mustInvalidate) {
-                    File f = new File(USER_WINDOWS_CONFIG_FILE);
-                    if (f.exists() && f.isFile()) {
-                        f.delete();
-                    }
-                }
-            }
-        });
-
         defaultWinAttributes.put("x", new Integer(DEFAULTX));
         defaultWinAttributes.put("y", new Integer(DEFAULTY));
         defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
@@ -106,35 +86,12 @@ public class WindowsConfigurationManager implements XConfigurationListener {
           }, java.awt.AWTEvent.FOCUS_EVENT_MASK);*/
     }
 
-    private WindowsConfigurationManager() {
-        XConfiguration.addXConfigurationListener(this);
-    }
-
-    public void configurationChanged(XConfigurationEvent e) {
-        if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
-            mustInvalidate = true;
-        }
-    }
-
-    public static String getLayoutFilePath() {
-        try {
-            Document doc = XConfiguration.getXConfigurationDocument();
-            XPath xp = XPathFactory.newInstance().newXPath();
-            NodeList nodes = (NodeList) xp.compile(LAYOUT_PATH + "/layout[@name=../@name]/@path").evaluate(doc, XPathConstants.NODESET);
-            if (nodes != null && nodes.getLength() > 0) {
-                return nodes.item(0).getNodeValue().replace("$SCI", System.getenv(SCI));
-            }
-        } catch (Exception e) { }
-
-        return WINDOWS_CONFIG_FILE;
-    }
-
     /**
      * Create a copy of windows configuration file in the user directory
      */
     public static void createUserCopy() {
         if (isCopyNeeded()) {
-            ScilabCommonsUtils.copyFile(new File(getLayoutFilePath()), new File(USER_WINDOWS_CONFIG_FILE));
+            ScilabCommonsUtils.copyFile(new File(WINDOWS_CONFIG_FILE), new File(USER_WINDOWS_CONFIG_FILE));
             doc = null;
         }
     }
@@ -149,7 +106,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         if (doc == null && !oneTry) {
-            System.err.println("Try to reload the default configuration file.");
+            System.err.println("Try to reload the default configuration file: " + WINDOWS_CONFIG_FILE);
             File f = new File(USER_WINDOWS_CONFIG_FILE);
             if (f.exists() && f.isFile()) {
                 f.delete();
@@ -223,11 +180,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
         Element root = doc.getDocumentElement();
         Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                 "x", (int) window.getLocation().getX(),
-                                 "y", (int) window.getLocation().getY(),
-                                 "width", (int) window.getSize().getWidth(),
-                                 "height", (int) window.getSize().getHeight()
-                                                              });
+                                                               "x", (int) window.getLocation().getX(),
+                                                               "y", (int) window.getLocation().getY(),
+                                                               "width", (int) window.getSize().getWidth(),
+                                                               "height", (int) window.getSize().getHeight()
+            });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -376,37 +333,37 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                synchronized (currentlyRestored) {
-                                    while (currentlyRestored.size() > 0) {
-                                        try {
-                                            currentlyRestored.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                        @Override
+                        public void run() {
+                            final Thread t = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        synchronized (currentlyRestored) {
+                                            while (currentlyRestored.size() > 0) {
+                                                try {
+                                                    currentlyRestored.wait();
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
                                         }
+
+                                        // Be sure that te main tab or one of its subcomponent
+                                        // will have the focus on start-up
+                                        Component owner = null;
+                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                            mainTab.requestFocus();
+                                            Thread.yield();
+
+                                            owner = window.getFocusOwner();
+                                        }
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                        window.toFront();
                                     }
-                                }
-
-                                // Be sure that te main tab or one of its subcomponent
-                                // will have the focus on start-up
-                                Component owner = null;
-                                while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                    mainTab.requestFocus();
-                                    Thread.yield();
-
-                                    owner = window.getFocusOwner();
-                                }
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
-                                window.toFront();
-                            }
-                        });
-                        t.start();
-                    }
-                });
+                                });
+                            t.start();
+                        }
+                    });
             }
         }
 
@@ -855,7 +812,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                             "factory", factory.getClassName(uuid),
                                             "width", (int) dim.getWidth(),
                                             "height", (int) dim.getHeight()
-                                           });
+            });
         writeDocument();
     }
 
