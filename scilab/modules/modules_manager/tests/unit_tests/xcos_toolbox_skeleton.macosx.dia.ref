@@ -1,0 +1,71 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- NO CHECK ERROR OUTPUT -->
+// <-- ENGLISH IMPOSED -->
+// Test the Xcos toolbox skeleton in SCI/contrib/
+//  - Building/Compilation
+//  - Loading
+//  - Tests
+// Xcos external module skeleton
+status = copyfile(SCI + "/contrib/xcos_toolbox_skeleton/", TMPDIR + "/xcos_toolbox_skeleton/");
+assert_checkequal(status, 1);
+exec("TMPDIR/xcos_toolbox_skeleton/builder.sce");
+Building macros...
+-- Creation of [xcos_toolbox_skeletonlib] (Macros) --
+genlib: Processing file: TBX_SUM_c.sci
+genlib: Processing file: TBX_MUT_STYLE.sci
+genlib: Regenerate names and lib
+Building blocks...
+Building sources...
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy block_sum.c to TMPDIR
+   ilib_gen_Make: Copy business_sum.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
+   Generate a cleaner file
+Building gateway...
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy libxcos_toolbox_skeleton_c.c to TMPDIR
+   ilib_gen_Make: Copy sci_tbx_sum.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+Generating loader_gateway.sce...
+Generating cleaner_gateway.sce...
+Building help...
+
+Building the master document:
+	TMPDIR/xcos_toolbox_skeleton/help/en_US
+
+Building the manual file [javaHelp] in TMPDIR/xcos_toolbox_skeleton/help/en_US.
+Generating loader.sce...
+Generating unloader.sce...
+Generating cleaner.sce...
+exec("TMPDIR/xcos_toolbox_skeleton/loader.sce");
+Start Xcos toolbox skeleton
+	Load macros
+	Load palette
+	Load simulations functions
+	Load gateways
+	Load help
+	Load demos
+test_run("TMPDIR/xcos_toolbox_skeleton/", [], "short_summary");
+   001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
+
+   001/001 - [TMPDIR/xcos_toolbox_skeleton/] tbx_sum............passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
