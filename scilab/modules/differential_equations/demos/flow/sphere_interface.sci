@@ -283,7 +283,7 @@ function sphere_create_gui()
         "String"            , "speed"                                , ...
         "BackgroundColor"   , [1 1 1]                                , ...
         "tag"               , "text_speed"                           );
-    
+
     slider_speed = uicontrol(my_figure_handle                        , ...
         "position"          , [x_slider y slider_width slider_height], ...
         "Style"             , "slider"                               , ...
@@ -292,21 +292,21 @@ function sphere_create_gui()
         "Max"               , 100                                      , ...
         "callback"          , "change_speed()"                       , ...
         "tag"               , "slider_speed"                         );
-    
+
     value_speed = uicontrol(my_figure_handle                         , ...
         "position"          , [x_value  y value_width slider_height] , ...
         "Style"             , "text"                                 , ...
         "String"            , string(g_speed)                        , ...
         "BackgroundColor"   , [1 1 1]                                , ...
         "tag"               , "value_speed"                          );
-    
+
     unite_speed = uicontrol(my_figure_handle                         , ...
         "position"          , [x_unit y unit_width slider_height]    , ...
         "Style"             , "text"                                 , ...
         "String"            , "(m/s)"                                  , ...
         "BackgroundColor"   , [1 1 1]                                , ...
         "tag"               , "unite_speed"                          );
-    
+
     // Slider direction
     // =========================================================================
     y = y - (slider_height+y_margin)
@@ -316,7 +316,7 @@ function sphere_create_gui()
         "String"         , "direction"                                   , ...
         "BackgroundColor", [1 1 1]                                   , ...
         "tag"            , "text_dir"                              );
-    
+
     slider_dir = uicontrol(my_figure_handle                          , ...
         "position"  , [x_slider y slider_width slider_height]        , ...
         "Style"     , "slider"                                       , ...
@@ -325,14 +325,14 @@ function sphere_create_gui()
         "Value"     , g_Vdir                                           , ...
         "callback"  , "change_dir()"                                   , ...
         "tag"       , "slider_dir"                                 );
-    
+
     value_dir = uicontrol(my_figure_handle                           , ...
         "position"        , [x_value  y value_width  slider_height]  , ...
         "Style"           , "text"                                   , ...
         "String"          , string(g_Vdir)                              , ...
         "BackgroundColor" , [1 1 1]                                  , ...
         "tag"             , "value_dir"                            );
-    
+
     unite_dir = uicontrol(my_figure_handle                           , ...
         "position"        , [x_unit y unit_width slider_height]      , ...
         "Style"           , "text"                                   , ...
@@ -354,7 +354,7 @@ function sphere_create_gui()
         "BackgroundColor"      , [1 1 1]                                    , ...
         "callback"             , "start_simu()"                             , ...
         "tag"                  , "start_button"                             );
-    
+
     x=x+btn_width+btn_margin
     stop_button = uicontrol(my_figure_handle                                    , ...
         "Position"               , [x y btn_width btn_height]               , ...
@@ -374,7 +374,7 @@ function sphere_create_gui()
         "BackgroundColor"        , [1 1 1]                                  , ...
         "callback"               , "clear_simu"                             , ...
         "tag"                    , "clear_button"                           );
-    
+
     return
 endfunction
 
@@ -383,14 +383,14 @@ endfunction
 // =============================================================================
 
 function change_r(r)
-//r slider callback 
+//r slider callback
   // r is in [0 1]
   slider_r     = findobj("tag", "slider_r");
   slider_theta = findobj("tag", "slider_theta");
   slider_speed = findobj("tag", "slider_speed");
   slider_dir   = findobj("tag", "slider_dir");
   slider_r     = findobj("tag", "slider_r");
- 
+
   value_r       = findobj("tag", "value_r");
   if argn(2)==1 then
     slider_r.Value=(r)*100;
@@ -400,19 +400,19 @@ function change_r(r)
   end
   value_r.String=msprintf("%.3f",r)
   draw_initial_point(slider_r.Value/100,slider_theta.value*360/100,slider_speed.Value*20/100,slider_dir.value*360/100,%F);
-  
+
 endfunction
 
 
 function change_theta(theta)
-//theta slider callback  
+//theta slider callback
 //theta is in [0 360]
   slider_r     = findobj("tag", "slider_r");
   slider_theta = findobj("tag", "slider_theta");
   slider_speed = findobj("tag", "slider_speed");
   slider_dir   = findobj("tag", "slider_dir");
   slider_r     = findobj("tag", "slider_r");
- 
+
   value_theta   = findobj("tag", "value_theta");
   if argn(2)==1 then
     slider_theta.Value=(theta)*100/360;
@@ -425,7 +425,7 @@ function change_theta(theta)
 endfunction
 
 function change_speed(speed)
-//speed slider callback  
+//speed slider callback
 //speed is in [0 20]
   slider_r     = findobj("tag", "slider_r");
   slider_theta = findobj("tag", "slider_theta");
@@ -444,7 +444,7 @@ function change_speed(speed)
 endfunction
 
 function change_dir(dir)
-//direction slider callback  
+//direction slider callback
 //dir is in [0 360]
   slider_r      = findobj("tag", "slider_r");
   slider_theta  = findobj("tag", "slider_theta");
@@ -483,6 +483,7 @@ function start_simu()
   traj_handle=curAxe.children(1).children(5);
   traj_handle.data=[x(1),y(1),z(1)];
   for k=2:size(x,'*')
+    sleep(10)
     if execstr('fin=my_figure_handle.user_data','errcatch')<>0|fin then break,end
     traj_handle.data=[traj_handle.data;[x(k),y(k),z(k)]];
   end
