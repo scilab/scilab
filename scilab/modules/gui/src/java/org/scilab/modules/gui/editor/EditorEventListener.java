@@ -42,6 +42,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
     String windowUid;
     Editor editor;
+    boolean isInRotation = false;
 
     public EditorEventListener(String uid) {
         windowUid = uid;
@@ -98,11 +99,15 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     */
     public void mouseReleased(MouseEvent arg0) {
         if (arg0.getButton() == 3) {
-            editor.onMouseClick(arg0);
+            if (!isInRotation) {
+                editor.onMouseClick(arg0);
+            }
         }
+        isInRotation = false;
     }
 
     public void mouseDragged(MouseEvent arg0) {
+        isInRotation = true;
     }
 
     public void mouseMoved(MouseEvent arg0) {
