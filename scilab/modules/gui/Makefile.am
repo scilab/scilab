@@ -333,6 +333,7 @@ images/icons/16x16/apps/help-browser.png \
 images/icons/16x16/apps/scilab.png \
 images/icons/16x16/apps/utilities-system-monitor.png \
 images/icons/16x16/categories/applications-system.png \
+images/icons/16x16/categories/preferences-system.png \
 images/icons/16x16/devices/media-floppy.png \
 images/icons/16x16/devices/printer.png \
 images/icons/16x16/emblems/emblem-important.png \

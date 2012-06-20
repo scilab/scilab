@@ -36,6 +36,11 @@
     <callback instruction="if with_module(&quot;xcos&quot;) then xcos(); else disp(gettext(&quot;Please install xcos module.&quot;)); end" type="0"/>
   </button>
   <separator/>
+  <!-- Preferences -->
+  <button icon="preferences-system" tooltiptext="Scilab Preferences">
+    <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
+  </button>
+  <separator/>
   <!-- Démos -->
   <button icon="applications-system" tooltiptext="Scilab Demonstrations">
     <callback instruction="demo_gui();" type="0"/>
