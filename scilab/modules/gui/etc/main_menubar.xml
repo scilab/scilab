@@ -56,12 +56,7 @@
     <submenu label="&amp;Select all" accelerator="OSSCKEY A" icon="edit-select-all">
       <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
     </submenu>
-    <submenu label="P&amp;references">
-      <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
-    </submenu>
-  </menu>
-  <!-- Preferences menu -->
-  <menu label="&amp;Preferences" enabled="false">
+    <separator/>
     <submenu label="Show/Hide &amp;Toolbar">
       <callback instruction="                 if toolbar(-1)==&quot;on&quot; then                   toolbar(-1, &quot;off&quot;);                 else                   toolbar(-1, &quot;on&quot;);                 end" type="0"/>
     </submenu>
@@ -71,6 +66,10 @@
     </submenu>
     <submenu label="Clear C&amp;onsole" icon="edit-clear">
       <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
+    </submenu>
+    <separator/>
+    <submenu label="P&amp;references">
+      <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
     </submenu>
   </menu>
   <!-- Control menu -->
