@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -264,6 +264,7 @@ cd ..
     <ClCompile Include="inffic.c" />
     <ClCompile Include="inisci-c.c" />
     <ClCompile Include="InitializeCore.c" />
+    <ClCompile Include="InitializePreferences.c" />
     <ClCompile Include="InitScilab.c" />
     <ClCompile Include="inittypenames.c" />
     <ClCompile Include="intmacr2tree.c" />
@@ -346,7 +347,9 @@ cd ..
     <ClCompile Include="sciquit.c" />
     <ClCompile Include="scirun.c" />
     <ClCompile Include="..\cpp\search_functions.cpp" />
+    <ClCompile Include="setformat.c" />
     <ClCompile Include="setgetSCIpath.c" />
+    <ClCompile Include="setieee.c" />
     <ClCompile Include="SetScilabEnvironment.c" />
     <ClCompile Include="stack1.c" />
     <ClCompile Include="stack2.c" />
