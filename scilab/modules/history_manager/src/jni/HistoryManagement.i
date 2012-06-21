@@ -11,6 +11,8 @@
 %{
 #include "MALLOC.h"
 #include "../../includes/HistoryManager.h"
+#include "../../includes/TerminateHistoryManager.h"
+#include "../../includes/InitializeHistoryManager.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -288,3 +290,27 @@ public";
     */
 public";
     BOOL historyIsEnabled(void);
+
+%javamethodmodifiers setSizeMaxScilabHistory(int N)"
+    /**
+    * set the number of max lines
+    * @return true or false
+    */
+public";
+    BOOL setSizeMaxScilabHistory(int nbLinesMax);
+
+%javamethodmodifiers InitializeHistoryManager(void)"
+    /**
+    * terminate the history manager
+    * @return true or false
+    */
+public";
+    BOOL InitializeHistoryManager(void);
+
+%javamethodmodifiers TerminateHistoryManager(void)"
+    /**
+    * terminate the history manager
+    * @return true or false
+    */
+public";
+    BOOL TerminateHistoryManager(void);

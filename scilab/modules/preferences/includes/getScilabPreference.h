@@ -23,6 +23,7 @@ typedef struct
     const char * historySaveAfter;
     const char * historyFile;
     const char * historyLines;
+    const char * historyEnable;
     const char * ieee;
     const char * format;
     const char * formatWidth;
@@ -34,6 +35,7 @@ typedef struct
 #define HISTORYSAVEAFTER_XPATH (const xmlChar*)"//command-history/body/history-save/@after"
 #define HISTORYFILE_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-file"
 #define HISTORYLINES_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-lines"
+#define HISTORYENABLE_XPATH (const xmlChar*)"//command-history/body/history-settings/@enable"
 #define IEEE_XPATH (const xmlChar*)"//general/body/environment/@fpe"
 #define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
 #define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"

@@ -55,6 +55,7 @@ void initPrefs()
     scilabPref.historySaveAfter = NULL;
     scilabPref.historyFile = NULL;
     scilabPref.historyLines = NULL;
+    scilabPref.historyEnable = NULL;
     scilabPref.ieee = NULL;
     scilabPref.format = NULL;
     scilabPref.formatWidth = NULL;
@@ -76,6 +77,7 @@ void clearScilabPreferences()
         if (scilabPref.historySaveAfter) FREE((void*)scilabPref.historySaveAfter);
         if (scilabPref.historyFile) FREE((void*)scilabPref.historyFile);
         if (scilabPref.historyLines) FREE((void*)scilabPref.historyLines);
+        if (scilabPref.historyEnable) FREE((void*)scilabPref.historyEnable);
         if (scilabPref.ieee) FREE((void*)scilabPref.ieee);
         if (scilabPref.format) FREE((void*)scilabPref.format);
         if (scilabPref.formatWidth) FREE((void*)scilabPref.formatWidth);
@@ -136,6 +138,7 @@ void getPrefs()
             scilabPref.historySaveAfter = strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));
             scilabPref.historyFile = strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
             scilabPref.historyLines = strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
+            scilabPref.historyEnable = strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
 
             attr = (char*)getAttribute(doc, xpathCtxt, IEEE_XPATH);
             if (attr)
