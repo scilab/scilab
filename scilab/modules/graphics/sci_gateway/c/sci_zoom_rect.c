@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,6 +29,7 @@
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
+#include "BuildObjects.h"
 
 #include "JavaInteraction.h"
 
@@ -123,12 +125,25 @@ static char * getZoomedObject(const char * fname)
 /*--------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname, unsigned long fname_len)
 {
+    char* pFigureUID = NULL;
+    char** childrenUID = NULL;
+    int iChildrenCount = 0;
+    int* childrencount = &iChildrenCount;
+    int iHidden = 0;
+    int *piHidden = &iHidden;
+    int i = 0;
+
     CheckRhs(0, 2) ;
     CheckLhs(0, 1) ;
     if (Rhs == 0)
     {
         /* zoom_rect() */
-        startInteractiveZoom(getCurrentFigure());
+        pFigureUID = getCurrentFigure();
+        if (pFigureUID == NULL)
+        {
+            pFigureUID = createNewFigureWithAxes();
+        }
+        startInteractiveZoom(pFigureUID);
     }
     else if (Rhs == 1)
     {
@@ -149,7 +164,22 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             if (getZoomRect(fname, 1, rect))
             {
                 /* rectangle found */
-                int status = sciZoom2D(getCurrentSubWin(), rect);
+                //int status = sciZoom2D(getCurrentSubWin(), rect);
+                int status = 0;
+                pFigureUID = getCurrentFigure();
+
+                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+
+                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+
+                for (i = 0; i < childrencount[0]; ++i)
+                {
+                    getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                    if (iHidden == 0)
+                    {
+                        status = sciZoom2D(childrenUID[i], rect);
+                    }
+                }
                 if (status == SET_PROPERTY_ERROR)
                 {
                     /* error on rectangle bounds */
@@ -201,3 +231,4 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+
