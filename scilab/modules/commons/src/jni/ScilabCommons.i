@@ -22,8 +22,8 @@
 #include "../../../core/includes/tmpdir.h"
 #include "../../../fileio/includes/createtempfilename.h"
 #include "../../../localization/includes/setgetlanguage.h"
-#include "../../../core/src/c/setieee.h"
-#include "../../../core/src/c/setformat.h"
+#include "../../../core/includes/setieee.h"
+#include "../../../core/includes/setformat.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */

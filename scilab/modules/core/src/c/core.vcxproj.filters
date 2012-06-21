@@ -452,6 +452,15 @@
     <ClCompile Include="DllmainCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InitializePreferences.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setformat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setieee.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">
@@ -746,6 +755,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sci_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitializePreferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setformat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setieee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

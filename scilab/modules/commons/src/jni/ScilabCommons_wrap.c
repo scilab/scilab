@@ -195,8 +195,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../../../core/includes/tmpdir.h"
 #include "../../../fileio/includes/createtempfilename.h"
 #include "../../../localization/includes/setgetlanguage.h"
-#include "../../../core/src/c/setieee.h"
-#include "../../../core/src/c/setformat.h"
+#include "../../../core/includes/setieee.h"
+#include "../../../core/includes/setformat.h"
 
 
 #ifdef __cplusplus
