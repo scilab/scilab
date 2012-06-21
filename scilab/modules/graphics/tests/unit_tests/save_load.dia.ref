@@ -181,7 +181,6 @@ save(plotExportFile, "f");
 delete(f);
 // reload data
 load(plotExportFile);
-WARNING : The size of the figure may not be as wide as you want.
 // xsegs
 clf();
 x=2*%pi*(0:9)/10;
