@@ -1,6 +1,13 @@
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
-			
+
+
+Xcos
+====
+
+* Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
+                    stopped from user interface.
+
 
 Bug Fixes
 =========
@@ -318,7 +325,7 @@ CLI Console (GNU/Linux and Mac OS X only)
             the line.
   - UP or Ctrl+P recalls previous line.
   - DOWN or Ctrl+N recalls next line.
-  - TAB for completion. Scilab displays a list of all names (functions, variables…) that 
+  - TAB for completion. Scilab displays a list of all names (functions, variables) that
     start with the characters already typed by the user.
   - Ctrl + A or HOME moves the cursor to beginning of current line.
   - Ctrl + B or LEFT moves the cursor one character to the left.
