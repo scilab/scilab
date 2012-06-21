@@ -46,14 +46,14 @@ public class XUpdateVisitor {
     /**
      * stores preceding correspondence to compute diff.
      */
-    private Map<Component, XSentinel> correspondance;
+    private Map<Component, XSentinel> matching;
 
     /** Construction of  visitor.
      *
      * @param table : previous correspondence.
      */
     public XUpdateVisitor(final Map<Component, XSentinel> table) {
-        correspondance = table;
+        matching = table;
     }
 
     /** build a component from scratch with a given node.
@@ -82,7 +82,7 @@ public class XUpdateVisitor {
      */
     public final void forget(final Container view, final Component component) {
         view.remove(component);
-        correspondance.remove(component);
+        matching.remove(component);
     }
 
     /** Computes a recursive diff on both tree structure
@@ -115,7 +115,7 @@ public class XUpdateVisitor {
                     } else {
                         component = view.getComponent(visibleIndex);
                     }
-                    sentinel = (XSentinel) correspondance.get(component);
+                    sentinel = matching.get(component);
                     if (sentinel == null || !sentinel.checks(item)) {
                         forget(view, component);
                         component = build(view, peer, item, visibleIndex);
@@ -143,10 +143,10 @@ public class XUpdateVisitor {
         }
 
         // Sentinel sets watch.
-        sentinel = (XSentinel) correspondance.get(view);
+        sentinel = matching.get(view);
         if (sentinel == null) {
             sentinel = new XSentinel(view, peer);
-            correspondance.put(view, sentinel);
+            matching.put(view, sentinel);
             if (view instanceof XComponent) {
                 addListeners(view, peer, sentinel);
             }
