@@ -10,7 +10,7 @@
   <xsl:template match="environment">
     <Title text="Environment">
       <Grid>
-        <Label gridx="1" gridy="1" weightx="0" text="Floating point exception: "/>
+        <Label gridx="1" gridy="1" weightx="0" text="Floating point exception (iee): "/>
 	<Panel gridx="2" gridy="1" weightx="1"/>
         <Panel gridx="3" gridy="1" weightx="0">
           <xsl:call-template name="Select">
