@@ -23,6 +23,9 @@ typedef struct
     const char * historySaveAfter;
     const char * historyFile;
     const char * historyLines;
+    const char * ieee;
+    const char * format;
+    const char * formatWidth;
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
@@ -31,6 +34,9 @@ typedef struct
 #define HISTORYSAVEAFTER_XPATH (const xmlChar*)"//command-history/body/history-save/@after"
 #define HISTORYFILE_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-file"
 #define HISTORYLINES_XPATH (const xmlChar*)"//command-history/body/history-settings/@history-lines"
+#define IEEE_XPATH (const xmlChar*)"//general/body/environment/@fpe"
+#define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
+#define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"
 
 PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);

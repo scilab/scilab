@@ -91,7 +91,10 @@ src/c/storeCommand.c \
 src/c/backtrace.c \
 src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
-src/c/windowsChangeManagement.c
+src/c/windowsChangeManagement.c \
+src/c/setieee.c \
+src/c/setformat.c \
+src/c/InitializePreferences.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \

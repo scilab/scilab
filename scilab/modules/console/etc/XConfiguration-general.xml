@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <general title="General">
   <body>
-    <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
+    <environment fpe="Produces an error" printing-format="Variable format" width="10">
+      <fpe floating-point-exception="Produces an error"/>
+      <fpe floating-point-exception="Produces a warning"/>
+      <fpe floating-point-exception="Produces Inf or NaN"/>
+    </environment>
     <java-heap-memory heap-size="256"/>
   </body>
   <confirmation-dialogs title="Confirmation dialogs"> 

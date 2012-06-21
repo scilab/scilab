@@ -15,9 +15,9 @@
         <Panel gridx="3" gridy="1" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
-              <option floating-point-exception="Produces an error"/>
-              <option floating-point-exception="Produces a warning"/>
-              <option floating-point-exception="Produces Inf or Nan"/>
+              <xsl:for-each select="fpe">
+                <option fpe="{@floating-point-exception}"/>
+              </xsl:for-each>
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
@@ -26,13 +26,8 @@
         <Panel gridx="3" gridy="2" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
-              <option printing-format="short"/>
-              <option printing-format="long"/>
-              <option printing-format="short e"/>
-              <option printing-format="long e"/>
-              <option printing-format="short g"/>
-              <option printing-format="long g"/>
-              <option printing-format="variable format"/>
+              <option printing-format="Scientific format"/>
+              <option printing-format="Variable format"/>
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
@@ -41,7 +36,8 @@
         <NumericalSpinner gridx="3"
                           gridy="3"
                           weightx="0"
-                          min-value = "1"
+                          min-value = "2"
+			  max-value = "25"
                           increment = "1"
                           length = "3"
                           listener = "ActionListener"

@@ -58,6 +58,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
@@ -83,6 +84,10 @@ public class XConfiguration {
     private static final Set<String> modifiedPaths = new HashSet<String>();
 
     private static Document doc;
+
+    static {
+        addXConfigurationListener(ScilabGeneralPrefs.getInstance());
+    }
 
     /**
      * Get the document in SCIHOME corresponding to the configuration file.
