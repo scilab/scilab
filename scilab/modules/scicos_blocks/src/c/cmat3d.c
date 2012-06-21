@@ -417,6 +417,11 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
         setBounds(block, pAxeUID, pPlot3d);
         setPlot3dSettings(pPlot3d);
         setDefaultValues(block, pPlot3d);
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*
@@ -493,6 +498,8 @@ static BOOL setPlot3dSettings(char *pPlot3dUID)
     result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
     result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
     result &= setGraphicObjectProperty(pPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
+
+    setGraphicObjectProperty(pPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
 
     return result;
 }

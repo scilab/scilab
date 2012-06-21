@@ -504,6 +504,11 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
         setGraphicObjectProperty(pArc, __GO_HEIGHT__, &sco->internal.ballsSize[row], jni_double, 1);
 
         setGraphicObjectProperty(pArc, __GO_FILL_MODE__, &b__true, jni_bool, 1);
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pArc, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*

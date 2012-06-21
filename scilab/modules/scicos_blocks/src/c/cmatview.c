@@ -440,6 +440,11 @@ static char *getGrayplot(char *pAxeUID, scicos_block * block)
         setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
         setBounds(block, pAxeUID, pGrayplot);
         setDefaultValues(block, pGrayplot);
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pGrayplot, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*
