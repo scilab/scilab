@@ -36,6 +36,7 @@
 /*--------------------------------------------------------------------------*/
 static unsigned char isInit = 0;
 static ScilabPreferences scilabPref;
+static char * emptyAttribute = "";
 /*--------------------------------------------------------------------------*/
 static void getPrefs();
 static char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath);
@@ -182,7 +183,7 @@ void getPrefs()
 /*--------------------------------------------------------------------------*/
 char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath)
 {
-    char * value = NULL;
+    char * value = emptyAttribute;
     xmlXPathObjectPtr xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
     if (xpathObj && xpathObj->nodesetval->nodeMax)
     {
