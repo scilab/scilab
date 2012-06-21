@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int2d" xml:lang="ru">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>int2d</refname>
+    <refpurpose>определённый двумерный интеграл методом квадратуры и кубатуры</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>
+            массив 3 на  <literal>N</literal>, содержащий абсциссы вершин <literal>N</literal> треугольников.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y</term>
+        <listitem>
+          <para>
+            массив 3 на <literal>N</literal>, содержащий ординаты вершин <literal>N</literal> треугольников.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>
+            внешняя (функция или список или строка), определяющая подынтегральное выражение.
+            <literal>f(u,v)</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>params</term>
+        <listitem>
+          <para>
+            вещественный вектор <literal>[tol, iclose, maxtri, mevals, iflag]</literal>.
+            Значение по умолчанию <literal>[1.d-10, 1, 50, 4000, 1]</literal>.
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>tol</term>
+              <listitem>
+                <para>
+                  желаемые пределы ошибки. Если <literal>iflag=0</literal>, то <literal>tol</literal> 
+                  интерпретируется как предел по относительной ошибке; если <literal>iflag=1</literal>, то
+                  предел по абсолютной ошибке.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iclose</term>
+              <listitem>
+                <para>
+                  целочисленный параметр, который определяет выбор методов
+                  LQM0 или LQM1. Если <literal>iclose=1</literal>, то используется LQM1.
+                  Любое другое значение <literal>iclose</literal> приводит к использованию
+                  LQM0. LQM0 использует значения функции только во внутренних точках
+                  треугольника. LQM1 обычно гораздо точнее, чем LQM0, но включает в себя вычисление
+                  подынтегральной функции на большем количестве точек, включая некоторые
+                  на границах треугольника. Обычно лучше использовать LQM1 несмотря на то, что
+                  подынтегральное выражение имеет точки неопределённости на границах треугольника.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>maxtri</term>
+              <listitem>
+                <para>
+                  максимальное количество треугольников в конечной триангуляции области.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mevals</term>
+              <listitem>
+                <para>
+                  максимальное число разрешённых вычислений функции. Это число будет эффективным в 
+                  ограничении вычислений только если оно меньше, чем
+                  <literal>94*maxtri</literal>, когда определён LQM1, либо 
+                  <literal>56*maxtri</literal>, когда определён LQM0.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iflag</term>
+              <listitem>
+                <para>
+                  если <literal>iflag=0</literal>, то <literal>tol</literal> 
+                  интерпретируется как предел по относительной ошибке; если <literal>iflag=1</literal>, то
+                  предел по абсолютной ошибке.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>I</term>
+        <listitem>
+          <para>целочисленное значение.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>err</term>
+        <listitem>
+          <para>оцененная ошибка.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Функция <literal>int2d</literal> вычисляет двумерный интеграл фукнции <literal>f</literal> 
+      по области, состоящей из <literal>n</literal> треугольников. Оценка общей ошибки получается
+      и сравнивается с допуском <literal>tol</literal>, который является входным аргументом функции. Допуск 
+      ошибки считается либо относительным, либо абсолютным в зависимости от входного значения <literal>iflag</literal>.
+      Метод "локальный квадратурный модуль" (LQM) применяется к каждому входному треугольнику и оценивает общий 
+      интеграл и вычисляются оценки общего интеграла и общей ошибки. Локальный квадратурный модуль является 
+      либо процедурой LQM0, либо процедурой LQM1 и выбор между ними определяется значением
+      входной переменной <literal>iclose</literal>.
+    </para>
+    <para>
+      Если оценка общей ошибки превышает допуск, то треугольник с наибольшей абсолютной ошибкой
+      делится на два треугольника медианой к его наибольшей стороне.  Локальный квадратурный модуль 
+      затем применяется к каждому из этих треугольников для получения новых оценок интеграла и ошибки.
+      Этот процесс повторяется до тех пор, пока (1) допуск ошибки не будет удовлетворён, 
+      (2) количество сформированных треугольников не превысит входной параметр <literal>maxtri</literal>, 
+      (3) количество вычислений подынтегральной функции не превысит входной параметр <literal>mevals</literal>,
+      либо (4) функция не почувствует, что ошибки округления начинают портить результат.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+X=[0,0;1,1;1,0];
+Y=[0,0;0,1;1,1];
+deff('z=f(x,y)','z=cos(x+y)')
+[I,e]=int2d(X,Y,f)
+// вычисляет подынтегральное выражение по площади [0 1]x[0 1]
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="int3d">int3d</link>
+      </member>
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
+      <member>
+        <link linkend="mesh">mesh</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+

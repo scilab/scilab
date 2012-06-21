@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intl" xml:lang="ru">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intl</refname>
+    <refpurpose>интеграл Коши</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>z0</term>
+        <listitem>
+          <para>комплексное число</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a, b</term>
+        <listitem>
+          <para>два вещественных числа</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>положительное вещественное число</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>"внешняя" функция</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Если <literal>f</literal> является комплекснозначной функцией, то
+      <literal>intl(a,b,z0,r,f)</literal> вычисляет интеграл от функции
+      <literal>f(z)</literal> по <literal>dz</literal> вдоль кривой на
+      комплексной плоскости, определённой как <literal>z0 +
+        r.*exp(%i*t)
+      </literal>
+      для <literal>a&lt;=t&lt;=b</literal> (часть
+      окружности с центром <literal>z0</literal> и радиусом
+      <literal>r</literal> с фазой  между <literal>a</literal> и
+      <literal>b</literal>).
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+

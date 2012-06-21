@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="odedc" xml:lang="ru">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>odedc</refname>
+    <refpurpose>программа решения дискретно-непрерывных  ОДУ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>y0</term>
+        <listitem>
+          <para>
+            вещественный вектор-столбец (начальные условия),
+            <literal>y0=[y0c;y0d]</literal>, где <literal>y0d</literal> имеет <literal>nd</literal> элементов.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nd</term>
+        <listitem>
+          <para>
+            целое число, размер <literal>y0d</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stdel</term>
+        <listitem>
+          <para>
+            вещественный вектор с одним или двумя элементами <literal>stdel=[h, delta]</literal> (с <literal>delta=0</literal> в качестве значения по умолчанию).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t0</term>
+        <listitem>
+          <para>вещественный скаляр (начальное время).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>
+            вещественный вектор-(строка), моменты времени, в которые вычислено <literal>yt</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>
+            внешняя функция, то есть функция или символьная строка или список с последовательностью вызова: <literal>yp=f(t,yc,yd,flag)</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> вычисляет решение смешанной дискретно-непрерывной системы. Состояние дискретной системы <literal>yd_k</literal> вложено в кусочно-постоянную функцию времени <literal>yd(t)</literal> в виде:
+    </para>
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+yd(t) = yd_k для t в
+[t_k=delay+k*h, t_(k+1)=delay+(k+1)*h] (с задержкой delay=h*delta).
+ ]]></programlisting>
+    <para>Теперь моделируемые уравнения имеют вид:</para>
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+dyc/dt = f(t,yc(t),yd(t),0),  для t в [t_k,t_(k+1)]
+yc(t0) = y0c
+ ]]></programlisting>
+    <para>
+      и в моменты времени <literal>t_k</literal> дискретная переменная
+      <literal>yd</literal> обновляется как:
+    </para>
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
+ ]]></programlisting>
+    <para>
+      Заметьте, что, используя определение <literal>yd(t)</literal>, последнее уравнение даёт
+    </para>
+    <programlisting role="no-scilab-exec"><![CDATA[ 
+yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc непрерывно во времени: yc(t_k-)=yc(tk))
+ ]]></programlisting>
+    <para>
+      Параметры вызова <literal>f</literal> фиксированы:
+      <literal>ycd=f(t,yc,yd,flag)</literal>; эта функция должно возвращать либо производную 
+      вектора <literal>yc</literal>, если <literal>flag=0</literal>, либо обновлять 
+      <literal>yd</literal>, если <literal>flag=1</literal>.
+    </para>
+    <para>
+      <literal>ycd=dot(yc)</literal> должна быть вектором того же размера, что и 
+      <literal>yc</literal>, если <literal>flag=0</literal> и <literal>ycd=update(yd)</literal> 
+      должна быть вектором того же размера, что и <literal>yd</literal>, если 
+      <literal>flag=1</literal>.
+    </para>
+    <para>
+      <literal>t</literal> -- это вектор моментов времени, в которых вычисляется решение
+      <literal>y</literal>.
+    </para>
+    <para>
+      <literal>y</literal> -- это вектор <literal>y=[y(t(1)),y(t(2)),...]</literal>.  
+    </para>
+    <para>
+      Эта функция может быть вызвана с теми же самыми необязательными параметрами, что и функция <literal>ode</literal>
+      (указанные <literal>nd</literal> и <literal>stdel</literal> даны в последовательности 
+      вызова как второй и третий параметры). В частности, могут быть установлены флаги 
+      интегрирования, допуски. Необязательные параметры могут быть установлены с помощью 
+      функции <literal>odeoptions</literal>.
+    </para>
+    <para>
+      Пример вызова внешней процедуры предоставлен в
+      <literal>SCIDIR/default/fydot2.f</literal>
+    </para>
+    <para>
+      Внешние процедуры могут быть динамически скомпонованы (см. 
+      <link linkend="link">link</link>).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+//Линейная система с переключающимися входами
+deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
+x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
+xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
+nx=2;
+plot2d1('onn',t',x',[1:nx],'161');
+plot2d2('onn',t',u',[nx+1:nx+nu],'000');
+//Внешняя процедура Fortran (см. fydot2.f): 
+norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
+ 
+//Дискретизированная обратная связь
+//
+//      |    xcdot=fc(t,xc,u)
+//  (система)      |
+//      |      y=hc(t,xc)
+//
+//
+//      |     xd+=fd(xd,y)
+//  (обр. связь)   |
+//      |      u=hd(t,xd)
+//
+deff('xcd=f(t,xc,xd,iflag)',...
+  ['if iflag==0 then '
+   '  xcd=fc(t,xc,e(t)-hd(t,xd));'
+   'else '
+   '  xcd=fd(xd,hc(t,xc));'
+   'end']);
+A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1];C=[1,1,1];
+Ad=[1/2,1;0,1/20];Bd=[1;1];Cd=[1,1];
+deff('st=e(t)','st=sin(3*t)')
+deff('xdot=fc(t,x,u)','xdot=A*x+B*u')
+deff('y=hc(t,x)','y=C*x')
+deff('xp=fd(x,y)','xp=Ad*x + Bd*y')
+deff('u=hd(t,x)','u=Cd*x')
+h=0.1;t0=0;t=0:0.1:2;
+x0c=[0;0;0];x0d=[0;0];nd=2;
+xcd=odedc([x0c;x0d],nd,h,t0,t,f);
+norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // Быстрое вычисление (см. fydot2.f)
+plot2d([t',t',t'],xcd(1:3,:)');
+xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
+xset("window",0);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="odeoptions">odeoptions</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="csim">csim</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+

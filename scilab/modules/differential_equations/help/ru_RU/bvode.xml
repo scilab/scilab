@@ -1,0 +1,2381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bvode" xml:lang="ru">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bvode</refname>
+    <refpurpose>задачи граничных значений для ОДУ с помощью метода коллокации
+    </refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="bvodeS">
+    <refname>bvodeS</refname>
+    <refpurpose>упрощённый вызов bvode</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>
+      zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+    </synopsis>
+    <synopsis>
+      zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>zu</term>
+        <listitem>
+          <para>
+            вектор-столбец длиной <literal>M</literal>. Решение ОДУ, вычисленное по сетке, 
+            заданной точками. Она содержит <literal>z(u(x))</literal> для каждой искомой точки;
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xpoints</term>
+        <listitem>
+          <para>
+            массив, который содержит точки для которых нужно найти решение;
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>
+            скаляр с целочисленным значением, количество дифференциальных уравнений
+            (<literal>N</literal> &lt;= 20).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>
+            вектор размером <literal>N</literal> с целочисленными элементами. Это вектор порядка 
+            каждого из дифференциальных уравнений: <literal>m(i)</literal> указывает порядок  
+            <literal>i</literal>-го дифференциального уравнения. Далее, <literal>M</literal> 
+            будет представлять сумму элементов  <literal>m</literal>. <!--Порядок 
+	    <literal>i</literal>-го дифференциального уравнения <literal>m(i)</literal> не 
+	      может быть больше 4.-->
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_low</term>
+        <listitem>
+          <para>скаляр: левый конец интервала</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_up</term>
+        <listitem>
+          <para>скаляр: правый конец интервала</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zeta</term>
+        <listitem>
+          <para>
+            вектор размером <literal>M</literal>; <literal>zeta(j)</literal> указывает  
+            <literal>j</literal>-тую точку граничного условия (граничную точку). Необходимо, 
+            чтобы выполнялось условие 
+            <literal>x_low&lt;=zeta(j)&lt;=zeta(j+1)&lt;=x_up</literal>.
+          </para>
+          <para>
+            Все точки граничных условий должны составлять сетку точек во всех используемых 
+            сетках, см. ниже описание <literal>ipar(11)</literal> и  <literal>fixpnt</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ipar</term>
+        <listitem>
+          <para>массив с 11-ю целочисленными элементами:</para>
+          <para>
+            <literal>[nonlin, collpnt, subint, ntol, ndimf, ndimi, iprint,
+              iread, iguess, rstart,nfxpnt]
+            </literal>
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>nonlin: ipar(1)</term>
+              <listitem>
+                <para>0, если задача линейна; 1, если задача нелинейна.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>collpnt: ipar(2)</term>
+              <listitem>
+                <para>
+                  Задаёт количество рядом расположенных точек на подынтервале, где 
+                  <literal>max(m(j)) &lt;= collpnt &lt;= 7</literal>.
+                </para>
+                <para>
+                  Если <literal>ipar(2)=0</literal>, то <literal>collpnt</literal> установлен равным  <literal>max( max(m(j))+1, 5-max(m(j)) )</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>subint: ipar(3)</term>
+              <listitem>
+                <para>
+                  Задаёт количество подынтервалов в исходной сетке. Если                  
+                  <literal>ipar(3) = 0</literal>, то  <literal>bvode</literal> произвольным образом устанавливается <literal>subint = 5</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ntol: ipar(4)</term>
+              <listitem>
+                <para>
+                  Задаёт количество решений и допустимые отклонения производных.
+                  Требуется, чтобы <literal>0 &lt; ntol &lt;= M</literal>.  
+                  <literal>ipar(4)</literal> должно быть установлено равным размеру аргумента 
+                  <literal>tol</literal> или равным <literal>0</literal>. В последнем случае 
+                  фактическое значение будет автоматически установлено равным                   
+                  <literal>size(tol,'*')</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ndimf: ipar(5)</term>
+              <listitem>
+                <para>
+                  Задаёт размер <literal>fspace</literal> (вещественнозначный рабочий массив). Его значение 
+                  указывает ограничение по максимальному количеству подынтервалов 
+                  <literal>nmax</literal>.
+                </para>
+                <para>
+                  Значение <literal>ipar(5)</literal> должно соответствовать ограничению
+                  <literal>ipar(5)&gt;=nmax*nsizef</literal>, где
+                  <literal>nsizef=4 + 3*M + (5+collpnt*N)*(collpnt*N+M) + (2*M- 
+                    nrec)*2*M
+                  </literal>
+                  (<literal>nrec</literal> -- количество граничных условий 
+                  с правой стороны).
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ndimi: ipar(6)</term>
+              <listitem>
+                <para>
+                  Задаёт размер <literal>ispace</literal> (целочисленный рабочий массив).
+                  Это значение указывает ограничение по <literal>nmax</literal>, максимальному количеству подынтервалов.
+                </para>
+                <para>
+                  Значение <literal>ipar(6)</literal> должно соответствовать ограничению
+                  <literal>ipar(6)&gt;=nmax*nsizei</literal>, где <literal>nsizei= 3 + collpnt*N + M</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iprint: ipar(7)</term>
+              <listitem>
+                <para>контроль на выходе, может принимать следующие значения:</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>-1</term>
+                    <listitem>
+                      <para>для полной диагностической распечатки</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>0</term>
+                    <listitem>
+                      <para>для избранной распечатки</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>1</term>
+                    <listitem>
+                      <para>для отказа от распечатки</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iread: ipar(8)</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>
+                        заставляет <literal>bvode</literal> генерировать равномерную исходную 
+                        сетку.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= xx</term>
+                    <listitem>
+                      <para>
+                        другие значения в Scilab'е пока не реализованы
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>
+                        если исходная сетка указана пользователем, то она будет определена в 
+                        <literal>fspace</literal> следующим образом: сетка будет занимать 
+                        <literal>fspace(1), ..., fspace(n+1)</literal>. Пользователю нужно предоставить 
+                        только внутренние точки сетки <literal>fspace(j) = x(j), j = 2, ..., n</literal>.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 2 </term>                          
+                    <listitem>
+                      <para>
+                        если исходная сетка представлена пользователем как в случае
+                        <literal>ipar(8)=1</literal>, и, к тому же, никакого выбора адаптивной сетки не 
+                        делается.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iguess: ipar(9)</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>
+                        если никакого первоначального предположения для решения не 
+                        предоставлено.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>
+                        если первоначальное предположение предоставлено пользователем с 
+                        помощью аргумента <literal>guess</literal>.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 2</term>
+                    <listitem>
+                      <para>
+                        если исходная сетка и коэффициенты приближённого решения предоставлены пользователем в <literal>fspace</literal>  (прежняя и новая сетки одни и те же).
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 3</term>
+                    <listitem>
+                      <para>
+                        если прежняя сетка и коэффициенты приближённого решения предоставлены 
+                        пользователем в <literal>fspace</literal>, а новая сетка взята в два раза реже, то есть каждая вторая точка из прежней сетки.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 4</term>
+                    <listitem>
+                      <para>
+                        если в дополнение к прежней исходной сетке и коэффициента приближённого 
+                        решения также предоставлена новая сетка в <literal>fspace</literal>  
+                        (см. описание выходных данных для более подробной информации по iguess = 2, 
+                        3 и 4).
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ireg: ipar(10)</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>если задача является регулярной</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>
+                        если первый коэффициент релаксации равен <literal>ireg</literal>, и
+                        нелинейная итерация не зависит от прошлой сходимости (использовать только
+                        для сверхчувствительных нелинейных задач)
+                        only).
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 2</term>
+                    <listitem>
+                      <para>
+                        если вы хотите возврата немедленно при (а) двух, следующих друг за другом,
+                        несходимостях, либо (б) после получения ошибочной оценки в первый раз.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nfxpnt: ipar(11)</term>
+              <listitem>
+                <para>
+                  указывает количество фиксированных точек в сетке, отличных от 
+                  <literal>x_low</literal> и <literal>x_up</literal> (размерность <literal>fixpnt</literal>).
+                  <literal>ipar(11)</literal> должна быть установлена равной размерности аргумента
+                  <literal>fixpnt</literal> или равной <literal>0</literal>. В последнем случае фактическое значение будет автоматически установлено равным
+                  <literal>size(fixpnt,'*')</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ltol</term>
+        <listitem>
+          <para>
+            массив размерности <literal>ntol=ipar(4)</literal>.
+            <literal>ltol(j) = l</literal> определяет, что <literal>j</literal>-тый допуск в массиве
+            <literal> tol</literal> управляет ошибкой в <literal>l</literal>-том элементе
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mi>z</mml:mi>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>u</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            .
+            Также требуется, чтобы:
+          </para>
+          <para>
+            <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
+              &lt;= M
+            </literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>
+            массив размерности <literal>ntol=ipar(4)</literal>.
+          </para>
+          <para>
+            <literal>tol(j)</literal> допуск ошибки в
+            <literal>ltol(j)</literal>-том элементе
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mi>z</mml:mi>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>u</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            . Таким образом код пытается удовлетворить
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mfenced mml:close="∣" mml:open="∣">
+                            <mml:msub>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mi>z</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                    <mml:mo mml:stretchy="false">−</mml:mo><mml:mi>z</mml:mi>
+                                  </mml:mrow>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>u</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                              <mml:mrow>
+                                <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>j</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+                            </mml:msub>
+                          </mml:mfenced>
+                          <mml:mo mml:stretchy="false">≤</mml:mo><mml:mi mml:fontstyle="italic">tol</mml:mi>
+                        </mml:mrow>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>j</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">⋅</mml:mo>
+                            <mml:mfenced mml:close="∣" mml:open="∣">
+                              <mml:msub>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+                                  <mml:mrow>
+                                    <mml:mi>z</mml:mi>
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>u</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>j</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                              </mml:msub>
+                            </mml:mfenced>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">+</mml:mo><mml:mi mml:fontstyle="italic">tol</mml:mi>
+                        </mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>j</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+                        <mml:mi>,</mml:mi><mml:mi mml:fontstyle="normal">for</mml:mi>
+                        <mml:mrow>
+                          <mml:mi>j</mml:mi><mml:mo mml:stretchy="false">=</mml:mo><mml:mn>1</mml:mn>
+                        </mml:mrow>
+                        <mml:mi mml:fontstyle="normal">:</mml:mi><mml:mi mml:fontstyle="normal">ntol</mml:mi>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">abs(z(v)-z(u))_{ltol(j)}
+                        &lt;= tol(j) cdot abs(z(u))_{ltol(j)} + tol(j), for
+                        j=1:ntol
+                      </mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            в каждом подынтервале, где
+          </para>
+          <para>
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mi>v</mml:mi>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            -- вектор приближённого решения, а
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mi>u</mml:mi>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+             -- точное решение (неизвестное).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fixpnt</term>
+        <listitem>
+          <para>
+            массив размером <literal>nfxpnt=ipar(11)</literal>. Он содержит точки отличные от 
+            <literal>x_low</literal> и <literal>x_up</literal>, которые нужно включить во все 
+            сетки. Код требует, чтобы все точки дополнительных условий, отличные от            
+            <literal>x_low</literal> и <literal>x_up</literal> (см. описание <literal>zeta</literal> ) 
+            были включены в качестве фиксированных точек в <literal>fixpnt</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fsub</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя функция</link>, используемая для вычисления вектор-столбца <literal>f=</literal> 
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">[</mml:mo>
+                        <mml:mrow>
+                          <mml:msub>
+                            <mml:mi>f</mml:mi><mml:mn>1</mml:mn>
+                          </mml:msub>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mi>x</mml:mi><mml:mi>,</mml:mi><mml:mi>z</mml:mi>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mi>;</mml:mi>
+                          <mml:msub>
+                            <mml:mi>f</mml:mi><mml:mn>2</mml:mn>
+                          </mml:msub>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mi>x</mml:mi><mml:mi>,</mml:mi><mml:mi>z</mml:mi>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mi>,</mml:mi><mml:mo mml:stretchy="false">⋯</mml:mo><mml:mi>,</mml:mi>
+                          <mml:msub>
+                            <mml:mi>f</mml:mi><mml:mi>N</mml:mi>
+                          </mml:msub>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mi>x</mml:mi><mml:mi>,</mml:mi><mml:mi>z</mml:mi>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mrow>
+                        <mml:mo mml:stretchy="false">]</mml:mo>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">[f_1(x,z(u(x)));
+                        f_2(x,z(u(x))),dotsaxis,
+                        f_N(x,z(u(x)))]
+                      </mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            ,
+            для всех  <literal>x</literal> таких, что <literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal>
+            и для любых <literal>z=z(u(x))</literal> (см. описание ниже).
+          </para>
+          <para>Внешняя функция должна иметь заголовки:</para>
+          <itemizedlist>
+            <listitem>
+              <para>В Fortran последовательность вызова должна быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+subroutine fsub(x,zu,f)
+double precision zu(*), f(*),x 
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>В C прототип функции должен быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+void fsub(double *x, double *zu, double *f)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>А в Scilab'е:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+function f=fsub(x,zu,parameters)
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dfsub</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя функция</link>, используемая для вычисления 
+            якобиана от <literal>f(x,z(u))</literal> в точке <literal>x</literal>, где
+            <literal>z(u(x))</literal> определена как для <literal>fsub</literal>, и массив 
+            <literal>df</literal> размером <literal>N</literal> на <literal>M</literal> должен быть заполнен частными производными от <literal>f</literal>:
+          </para>
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center">
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:mi mml:fontstyle="italic">df</mml:mi>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mi>i</mml:mi>
+                              <mml:mi>,</mml:mi>
+                              <mml:mi>j</mml:mi>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:mfrac>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">∂</mml:mo>
+                              <mml:msub>
+                                <mml:mi>f</mml:mi>
+                                <mml:mi>i</mml:mi>
+                              </mml:msub>
+                            </mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">∂</mml:mo>
+                              <mml:msub>
+                                <mml:mi>z</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:msub>
+                            </mml:mrow>
+                          </mml:mfrac>
+                        </mml:mrow>
+                        <mml:mtext> для
+                        </mml:mtext>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="true">{</mml:mo>
+                          <mml:mtable>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>i</mml:mi>
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+                                <mml:mi mml:fontstyle="italic">N</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>j</mml:mi>
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+                                <mml:mi mml:fontstyle="italic">M</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+                          </mml:mtable>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">df(i,j)= {partial{f_i}} over
+                        {partial{z_j}} ~ for ~ left lbrace binom{i=1:N}{j=1:M} right
+                        none
+                      </mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+          <para>Внешняя функция должна иметь заголовки:</para>
+          <itemizedlist>
+            <listitem>
+              <para>В Fortran вызывающая последовательность должна быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+subroutine dfsub(x,zu,df)
+double precision zu(*), df(*),x
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>В C прототип функции должен быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+void dfsub(double *x, double *zu, double *df)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>И в Scilab'е:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+function df=dfsub(x,zu,parameters)
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gsub</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя функция</link>, используемая для вычисления
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:msub>
+                          <mml:mi>g</mml:mi><mml:mi>i</mml:mi>
+                        </mml:msub>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mo mml:stretchy="false">ζ</mml:mo><mml:mi>i</mml:mi>
+                            </mml:msub>
+                            <mml:mi>,</mml:mi><mml:mi>z</mml:mi>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mi>u</mml:mi>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+                                  <mml:msub>
+                                    <mml:mo mml:stretchy="false">ζ</mml:mo><mml:mi>i</mml:mi>
+                                  </mml:msub>
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">g_i(%zeta_i,z(u(%zeta_i)))</mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            задавая z=
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:mi>z</mml:mi>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+                          <mml:mrow>
+                            <mml:mi>u</mml:mi>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:msub>
+                                <mml:mo mml:stretchy="false">ζ</mml:mo><mml:mi>i</mml:mi>
+                              </mml:msub>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">z(u(%zeta_i))</mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+            <literal>z = zeta(i)</literal> для
+            <literal>1&lt;=i&lt;=M.</literal>
+          </para>
+          <para>Внешняя функция должна иметь заголовки:</para>
+          <itemizedlist>
+            <listitem>
+              <para>В Fortran вызывающая последовательность должна быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+subroutine gsub(i,zu,g)
+double precision zu(*), g(*)
+integer i
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>В C прототип функции должен быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+void gsub(int *i, double *zu, double *g)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>А в Scilab'е:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+function g=gsub(i,zu,parameters)
+ ]]></programlisting>
+              <para>
+                Заметьте, что в отличие от <literal>f</literal> в <literal>fsub</literal>, здесь только одно значение за вызов возвращается в <literal>g</literal>.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dgsub</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя функция</link>, используемая для вычисления
+            <literal>i</literal>-той строки якобиана от <literal>g(x,u(x))</literal>, где
+            <literal>z(u)</literal> такая, как для  <literal>fsub</literal>, <literal>i</literal> как для <literal>gsub</literal> а <literal>M</literal>-вектор <literal>dg</literal> должен быть заполнен частными производными от <literal>g</literal>, то есть, для отдельного вызова вычисляется
+          </para>
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center">
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mrow>
+                        <mml:mi mml:fontstyle="italic">dg</mml:mi>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mi>i</mml:mi>
+                              <mml:mi>,</mml:mi>
+                              <mml:mi>j</mml:mi>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:mfrac>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">∂</mml:mo>
+                              <mml:msub>
+                                <mml:mi>g</mml:mi>
+                                <mml:mi>i</mml:mi>
+                              </mml:msub>
+                            </mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">∂</mml:mo>
+                              <mml:msub>
+                                <mml:mi>z</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:msub>
+                            </mml:mrow>
+                          </mml:mfrac>
+                        </mml:mrow>
+                        <mml:mtext> для
+                        </mml:mtext>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="true">{</mml:mo>
+                          <mml:mtable>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>i</mml:mi>
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+                                <mml:mi mml:fontstyle="italic">M</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>j</mml:mi>
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+                                <mml:mi mml:fontstyle="italic">M</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+                          </mml:mtable>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:annotation mml:encoding="StarMath 5.0">dg(i,j)= {partial{g_i}} over
+                        {partial{z_j}} ~ for ~ left lbrace binom{i=1:M}{j=1:M} right
+                        none
+                      </mml:annotation>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+          <para>Внешняя функция должна иметь заголовки:</para>
+          <itemizedlist>
+            <listitem>
+              <para>В Fortran вызывающая последовательность должна быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+subroutine dgsub(i,zu,dg)
+double precision zu(*), dg(*)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>В C прототип функции должен быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+void dgsub(int *i, double *zu, double *dg)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>А в Scilab'е: </para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+function dg=dgsub(i,zu,parameters)
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>guess</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя функция</link>, используемая для вычисления 
+            исходной аппроксимации для <literal>z(u(x))</literal> и
+            <literal>dmval(u(x))</literal>, вектора <literal>mj</literal>-тых производных от
+            <literal>u(x)</literal>. Заметьте, что эта процедура используется только если
+            <literal>ipar(9) = 1</literal>, и тогда все <literal>M</literal>
+            элементы <literal>zu</literal> и <literal>N</literal> элементы <literal>dmval</literal> должны быть вычислены для любого <literal>x</literal> такого, что <literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal>.
+          </para>
+          <para>Внешняя функция должна иметь заголовки:</para>
+          <itemizedlist>
+            <listitem>
+              <para>В Fortran вызывающая последовательность должна быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+subroutine guess(x,zu,dmval)
+double precision x,z(*), dmval(*)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>В C прототип функции должне быть:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+void fsub(double *x, double *zu, double *dmval)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+              <para>А в Scilab'е: </para>
+              <programlisting role="no-scilab-exec"><![CDATA[ 
+function [dmval,zu]=fsub(x,parameters)
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;optional_args&gt;</term>
+        <listitem>
+          <para>Необязательные аргументы, должны быть либо:</para>
+          <itemizedlist>
+            <listitem>
+              <para>любой левой частью упорядоченной последовательности значений:
+                <literal>guess, dfsub, dgsub, fixpnt, ndimf, ndimi, ltol, tol,
+                  ntol,nonlin, collpnt, subint, iprint, ireg, ifail
+                </literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                либо любой последовательностью <literal>arg_name=argvalue</literal>
+                с <literal>arg_name</literal> из: <literal>guess</literal>,
+                <literal>dfsub</literal>, <literal>dgsub</literal>,
+                <literal>fixpnt</literal>, <literal>ndimf</literal>,
+                <literal>ndimi</literal>, <literal>ltol</literal>,
+                <literal>tol</literal>, <literal>ntol</literal>,
+                <literal>nonlin</literal>, <literal>collpnt</literal>,
+                <literal>subint</literal>, <literal>iprint</literal>,
+                <literal>ireg</literal>, <literal>ifail</literal>.
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para>
+            Все эти аргументы за исключением <literal>ifail</literal> описаны выше.
+            <literal>ifail</literal> может использоваться для отображения вызова
+            bvode в соответствии с выбранными необязательными аргументами. Если
+            <literal>guess</literal>задано, то <literal>iguess</literal> равно 1.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Эти функции решают задачу многоточечных граничных значений для системы ОДУ смешанного порядка, заданной как:
+    </para>
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="left">
+            <mml:math>
+              <mml:semantics>
+                <mml:mrow>
+                  <mml:mo mml:stretchy="true">{</mml:mo>
+                  <mml:mtable>
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:msubsup>
+                            <mml:mi>u</mml:mi>
+                            <mml:mi>i</mml:mi>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:msub>
+                                <mml:mi>m</mml:mi>
+                                <mml:mi>i</mml:mi>
+                              </mml:msub>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:msubsup>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:msub>
+                            <mml:mi>f</mml:mi>
+                            <mml:mi>i</mml:mi>
+                          </mml:msub>
+                        </mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+                          <mml:mrow>
+                            <mml:mi>x</mml:mi>
+                            <mml:mi>,</mml:mi>
+                            <mml:mi>z</mml:mi>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mi>u</mml:mi>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+                                  <mml:mi>x</mml:mi>
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+                        <mml:mi/>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="true">{</mml:mo>
+                          <mml:mtable>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>i</mml:mi>
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+                                <mml:mi>N</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mi>x</mml:mi>
+                                <mml:mo mml:stretchy="false">∈</mml:mo>
+                                <mml:mfenced mml:close="[" mml:open="]">
+                                  <mml:mrow>
+                                    <mml:msub>
+                                      <mml:mi>x</mml:mi>
+                                      <mml:mi>l</mml:mi>
+                                    </mml:msub>
+                                    <mml:mi>,</mml:mi>
+                                    <mml:msub>
+                                      <mml:mi>x</mml:mi>
+                                      <mml:mi>u</mml:mi>
+                                    </mml:msub>
+                                  </mml:mrow>
+                                </mml:mfenced>
+                              </mml:mrow>
+                            </mml:mtr>
+                          </mml:mtable>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mtr>
+                    <mml:mtr>
+                      <mml:mi/>
+                    </mml:mtr>
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:msub>
+                          <mml:mi>g</mml:mi>
+                          <mml:mi>j</mml:mi>
+                        </mml:msub>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:msub>
+                                <mml:mo mml:stretchy="false">ζ</mml:mo>
+                                <mml:mi>j</mml:mi>
+                              </mml:msub>
+                              <mml:mi>,</mml:mi>
+                              <mml:mi>z</mml:mi>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo>
+                                    <mml:msub>
+                                      <mml:mo mml:stretchy="false">ζ</mml:mo>
+                                      <mml:mi>j</mml:mi>
+                                    </mml:msub>
+                                    <mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:mn>0</mml:mn>
+                        </mml:mrow>
+                        <mml:mi/>
+                        <mml:mrow>
+                          <mml:mtext>,</mml:mtext>
+                          <mml:mi>j</mml:mi>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:mn>1</mml:mn>
+                        </mml:mrow>
+                        <mml:mi mml:fontstyle="normal">:</mml:mi>
+                        <mml:mi>M</mml:mi>
+                      </mml:mrow>
+                    </mml:mtr>
+                  </mml:mtable>
+                </mml:mrow>
+                <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                  stack{u_i^(m_i)=f_i(x,z(u(x))) ~~left lbrace { binom{i=1:N}{x
+                  in left ] a_l, a_u right [} } right none# `#
+                  g_j(%zeta_j,z(u(%zeta_j))) = 0~~j=1:M} right
+                  none
+                </mml:annotation>
+              </mml:semantics>
+            </mml:math>
+          </imagedata>
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+    <para>где:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata align="left">
+          <mml:math>
+            <mml:semantics>
+              <mml:mrow>
+                <mml:mo mml:stretchy="true">{</mml:mo>
+                <mml:mtable>
+                  <mml:mtr>
+                    <mml:mrow>
+                      <mml:mi>M</mml:mi>
+                      <mml:mo mml:stretchy="false">=</mml:mo>
+                      <mml:mrow>
+                        <mml:munderover>
+                          <mml:mo mml:stretchy="false">∑</mml:mo>
+                          <mml:mrow>
+                            <mml:mi>i</mml:mi>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>1</mml:mn>
+                          </mml:mrow>
+                          <mml:mi>N</mml:mi>
+                        </mml:munderover>
+                        <mml:msub>
+                          <mml:mi>m</mml:mi>
+                          <mml:mi>i</mml:mi>
+                        </mml:msub>
+                      </mml:mrow>
+                    </mml:mrow>
+                  </mml:mtr>
+                  <mml:mtr>
+                    <mml:mi/>
+                  </mml:mtr>
+                  <mml:mtr>
+                    <mml:mrow>
+                      <mml:mi>z</mml:mi>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+                          <mml:mrow>
+                            <mml:mi>u</mml:mi>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+                        <mml:mo mml:stretchy="false">=</mml:mo>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">[</mml:mo>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>u</mml:mi>
+                              <mml:mn>1</mml:mn>
+                            </mml:msub>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mi>;</mml:mi>
+                            <mml:msubsup>
+                              <mml:mi>u</mml:mi>
+                              <mml:mn>1</mml:mn>
+                              <mml:mn>1</mml:mn>
+                            </mml:msubsup>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mi>;</mml:mi>
+                            <mml:mo mml:stretchy="false">⋯</mml:mo>
+                            <mml:msubsup>
+                              <mml:mi>u</mml:mi>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:msub>
+                                    <mml:mi>m</mml:mi>
+                                    <mml:mn>1</mml:mn>
+                                  </mml:msub>
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:msubsup>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mi>;</mml:mi>
+                            <mml:mi/>
+                            <mml:mo mml:stretchy="false">⋯</mml:mo>
+                            <mml:mi>;</mml:mi>
+                            <mml:mi/>
+                            <mml:msub>
+                              <mml:mi>u</mml:mi>
+                              <mml:mi>N</mml:mi>
+                            </mml:msub>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mi>;</mml:mi>
+                            <mml:msubsup>
+                              <mml:mi>u</mml:mi>
+                              <mml:mi>N</mml:mi>
+                              <mml:mn>1</mml:mn>
+                            </mml:msubsup>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mi>;</mml:mi>
+                            <mml:mo mml:stretchy="false">⋯</mml:mo>
+                            <mml:mi>;</mml:mi>
+                            <mml:msubsup>
+                              <mml:mi>u</mml:mi>
+                              <mml:mi>N</mml:mi>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:msub>
+                                    <mml:mi>m</mml:mi>
+                                    <mml:mi>N</mml:mi>
+                                  </mml:msub>
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:msubsup>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">]</mml:mo>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mrow>
+                  </mml:mtr>
+                  <mml:mtr>
+                    <mml:mi/>
+                  </mml:mtr>
+                  <mml:mtr>
+                    <mml:mrow>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>x</mml:mi>
+                              <mml:mi>l</mml:mi>
+                            </mml:msub>
+                            <mml:mo mml:stretchy="false">≤</mml:mo>
+                            <mml:msub>
+                              <mml:mo mml:stretchy="false">ζ</mml:mo>
+                              <mml:mn>1</mml:mn>
+                            </mml:msub>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">≤</mml:mo>
+                          <mml:mo mml:stretchy="false">⋯</mml:mo>
+                        </mml:mrow>
+                        <mml:mo mml:stretchy="false">≤</mml:mo>
+                        <mml:msub>
+                          <mml:mo mml:stretchy="false">ζ</mml:mo>
+                          <mml:mi>M</mml:mi>
+                        </mml:msub>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">≤</mml:mo>
+                      <mml:msub>
+                        <mml:mi>x</mml:mi>
+                        <mml:mi>u</mml:mi>
+                      </mml:msub>
+                    </mml:mrow>
+                  </mml:mtr>
+                </mml:mtable>
+              </mml:mrow>
+              <mml:annotation mml:encoding="StarMath 5.0">left lbrace stack
+                { M= sum from {i=1} to {N} m_i # ~# z(u(x)) =
+                [u_1(x);u_1^{1}(x);dotsaxis u_1^(m_1-1)(x);~ dotsaxis;
+                ~u_N(x);u_N^{1}(x);dotsaxis; u_N^(m_N-1)(x)]# ~# x_l &lt;=
+                %zeta_1 &lt;= dotsaxis &lt;= %zeta_M &lt;=x_u}right
+                none
+              </mml:annotation>
+            </mml:semantics>
+          </mml:math>
+        </imagedata>
+      </imageobject>
+    </mediaobject>
+    <para>
+      Аргумент <literal>zu</literal>, используемый внешними функциями и возвращаемый 
+      <literal>bvode</literal>, является вектор-столбцом, сформированным элементами 
+      <literal>z(u(x))</literal> для заданных <literal>x</literal>.
+    </para>
+    <para>
+      Метод, используемый для аппроксимации решения, <literal>u</literal> является 
+      коллокацией в гауссовских точках, требующих <literal>m(i)-1</literal> непрерывных 
+      производных в <literal>i</literal>-том элементе, <literal>i = 1:N</literal>. Здесь, 
+      <literal>k</literal> -- количество точек коллокации (этапов) на подынтервале, и оно 
+      выбирается так, чтобы <literal>k .ge. max m(i)</literal>. Используется представление 
+      решения одночленного решения Рунге-Кутты.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <para>Первые две задачи взяты из [1] раздела Литература.
+    </para>
+    <itemizedlist>
+      <listitem> 
+        <para>
+          <emphasis role="bold">Задача 1</emphasis> описывает однородно нагруженную балку переменной жёсткости просто поддерживаемую на обоих концах.
+        </para>
+        <para>Она может быть определена следующим образом.</para>
+        <para>Решим дифференциальное уравнение четвёртого порядка:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left">
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mfrac>
+                      <mml:msup>
+                        <mml:mi>d</mml:mi>
+                        <mml:mn>4</mml:mn>
+                      </mml:msup>
+                      <mml:mrow>
+                        <mml:mi>d</mml:mi>
+                        <mml:msup>
+                          <mml:mi>x</mml:mi>
+                          <mml:mn>4</mml:mn>
+                        </mml:msup>
+                      </mml:mrow>
+                    </mml:mfrac>
+                    <mml:mi>u</mml:mi>
+                    <mml:mrow>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo>
+                        <mml:mi>x</mml:mi>
+                        <mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">=</mml:mo>
+                      <mml:mfrac>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mn>1</mml:mn>
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mn>6</mml:mn>
+                                <mml:mo mml:stretchy="false">.</mml:mo>
+                                <mml:msup>
+                                  <mml:mi>x</mml:mi>
+                                  <mml:mn>2</mml:mn>
+                                </mml:msup>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">.</mml:mo>
+                              <mml:mfrac>
+                                <mml:msup>
+                                  <mml:mi>d</mml:mi>
+                                  <mml:mn>3</mml:mn>
+                                </mml:msup>
+                                <mml:mrow>
+                                  <mml:mi>d</mml:mi>
+                                  <mml:msup>
+                                    <mml:mi>x</mml:mi>
+                                    <mml:mn>3</mml:mn>
+                                  </mml:msup>
+                                </mml:mrow>
+                              </mml:mfrac>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mn>6</mml:mn>
+                                <mml:mo mml:stretchy="false">.</mml:mo>
+                                <mml:mi>x</mml:mi>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">.</mml:mo>
+                              <mml:mfrac>
+                                <mml:msup>
+                                  <mml:mi>d</mml:mi>
+                                  <mml:mn>2</mml:mn>
+                                </mml:msup>
+                                <mml:mrow>
+                                  <mml:mi>d</mml:mi>
+                                  <mml:msup>
+                                    <mml:mi>x</mml:mi>
+                                    <mml:mn>2</mml:mn>
+                                  </mml:msup>
+                                </mml:mrow>
+                              </mml:mfrac>
+                            </mml:mrow>
+                          </mml:mrow>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mi>x</mml:mi>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mrow>
+                        <mml:msup>
+                          <mml:mi>x</mml:mi>
+                          <mml:mn>3</mml:mn>
+                        </mml:msup>
+                      </mml:mfrac>
+                    </mml:mrow>
+                  </mml:mrow>
+                  <mml:annotation mml:encoding="StarMath 5.0">d^4 over {d
+                    x^4} u(x)={1 -6*x^2*{{d^3} over {d x^3}} u(x)-6*x*{{d^2}
+                    over {d x^2}} u(x)} over x^3
+                  </mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+        <para>Налагаемые граничные условия:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left">
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mo mml:stretchy="true">{</mml:mo>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mn>1</mml:mn>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mfrac>
+                            <mml:msup>
+                              <mml:mi>d</mml:mi>
+                              <mml:mn>2</mml:mn>
+                            </mml:msup>
+                            <mml:mrow>
+                              <mml:mi>d</mml:mi>
+                              <mml:msup>
+                                <mml:mi>x</mml:mi>
+                                <mml:mn>2</mml:mn>
+                              </mml:msup>
+                            </mml:mrow>
+                          </mml:mfrac>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mi>x</mml:mi>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mn>1</mml:mn>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mn>2</mml:mn>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mfrac>
+                            <mml:msup>
+                              <mml:mi>d</mml:mi>
+                              <mml:mn>2</mml:mn>
+                            </mml:msup>
+                            <mml:mrow>
+                              <mml:mi>d</mml:mi>
+                              <mml:msup>
+                                <mml:mi>x</mml:mi>
+                                <mml:mn>2</mml:mn>
+                              </mml:msup>
+                            </mml:mrow>
+                          </mml:mfrac>
+                          <mml:mi>u</mml:mi>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mi>x</mml:mi>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mn>2</mml:mn>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                  <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{ u(1)=0# {{d^2} over {d x^2}} u(x)(1)=0# u(2)=0#
+                    {{d^2} over {d x^2}} u(x)(2)=0} right
+                    none
+                  </mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+        <para>Известно точное решение этой задачи:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left">
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mi>u</mml:mi>
+                    <mml:mrow>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo>
+                        <mml:mi>x</mml:mi>
+                        <mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">=</mml:mo>
+                      <mml:mfrac>
+                        <mml:mn>1</mml:mn>
+                        <mml:mn>4</mml:mn>
+                      </mml:mfrac>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="false">(</mml:mo>
+                      <mml:mrow>
+                        <mml:mn>10</mml:mn>
+                        <mml:mi/>
+                        <mml:mi>log</mml:mi>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mn>2</mml:mn>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">−</mml:mo>
+                          <mml:mn>3</mml:mn>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mi/>
+                    <mml:mrow>
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo>
+                        <mml:mrow>
+                          <mml:mn>1</mml:mn>
+                          <mml:mo mml:stretchy="false">−</mml:mo>
+                          <mml:mi>x</mml:mi>
+                        </mml:mrow>
+                        <mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">+</mml:mo>
+                      <mml:mfrac>
+                        <mml:mn>1</mml:mn>
+                        <mml:mn>2</mml:mn>
+                      </mml:mfrac>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="false">[</mml:mo>
+                      <mml:mrow>
+                        <mml:mfrac>
+                          <mml:mn>1</mml:mn>
+                          <mml:mi>x</mml:mi>
+                        </mml:mfrac>
+                        <mml:mo mml:stretchy="false">+</mml:mo>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+                            <mml:mrow>
+                              <mml:mn>3</mml:mn>
+                              <mml:mo mml:stretchy="false">+</mml:mo>
+                              <mml:mi>x</mml:mi>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                          <mml:mi/>
+                          <mml:mi>log</mml:mi>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mi>x</mml:mi>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+                            <mml:mi>x</mml:mi>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mrow>
+                      <mml:mo mml:stretchy="false">]</mml:mo>
+                    </mml:mrow>
+                  </mml:mrow>
+                  <mml:annotation mml:encoding="StarMath 5.0">u(x)=1 over 4
+                    (10`log(2)-3)`(1-x)+ {1 over 2} [ {1 over x} + {(3+x) `
+                    log(x)-x}]
+                  </mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+        <programlisting role="example"><![CDATA[ 
+N=1;// только одно дифференциальное уравнение
+m=4;//дифференциальное уравнение четвёртого порядка
+M=sum(m);
+ 
+x_low=1;x_up=2; // пределы x
+zeta=[x_low,x_low,x_up,x_up]; // два ограничения (на значение u и его вторую производную) на каждой границе.
+ 
+//Внешние функции
+//Эти функции вызываются программой решения с zu=[u(x);u'(x);u''(x);u'''(x)]
+ 
+// - Функция, которая вычисляет правую сторону дифференциального уравнения
+function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
+ 
+// - Функция, которая вычисляет производную fsub по zu
+function df=dfsub(x,zu),df=[0,0,-6/x^2,-6/x],endfunction
+ 
+// - Функция, которая вычисляет i-тое ограничение для заданной i
+function g=gsub(i,zu),
+  select i
+  case 1 then  //x=zeta(1)=1
+    g=zu(1) //u(1)=0
+  case 2 then //x=zeta(2)=1
+    g=zu(3) //u''(1)=0
+  case 3 then //x=zeta(3)=2
+    g=zu(1) //u(2)=0
+  case 4 then  //x=zeta(4)=2
+    g=zu(3) //u''(2)=0
+  end
+endfunction
+ 
+// - Функция, которая вычисляет производную gsub по z
+function dg=dgsub(i,z)
+  select i
+  case 1 then  //x=zeta(1)=1
+    dg=[1,0,0,0]
+  case 2 then //x=zeta(2)=1
+    dg=[0,0,1,0]
+  case 3 then //x=zeta(3)=2
+     dg=[1,0,0,0]
+  case 4 then  //x=zeta(4)=2
+    dg=[0,0,1,0]
+  end
+endfunction
+ 
+// - Функция, которая вычисляет начальное предположение, здесь не используется
+function [zu,mpar]=guess(x),zu=0;mpar=0,endfunction 
+ 
+ //определим функцию, которая вычисляет точное значение u для заданного x (в целях проверки)
+function zu=trusol(x)
+  zu=0*ones(4,1)
+  zu(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)
+  zu(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)
+  zu(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)
+  zu(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)
+endfunction
+ 
+fixpnt=[ ];//Все граничные условия находятся в x_low и x_up
+ 
+//    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
+ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
+ 
+ltol=[1,3];//установка контроля допуска на zu(1) и zu(3)
+tol=[1.e-11,1.e-11];//установка значений допуска для контроля допуска
+xpoints=x_low:0.01:x_up;
+ 
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub,dfsub,gsub,dgsub,guess)
+//проверка ограничений
+zu([1,3],[1 $]) // должно быть нулевым
+plot(xpoints,zu(1,:)) // процесс решения u
+zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
+norm(zu-zu1)
+ ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          Та же задача с использованием <literal>bvodeS</literal> и начальным предположением.
+        </para>
+        <programlisting role="example"><![CDATA[ 
+function [z,lhS]=zstart(x)
+  z=zeros(5,1);z(5)=1;
+  lhS=[0;1];
+endfunction
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
+  ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Задача 2</emphasis> описывает малую конечную деформацию тонкой мелкой сферической чаши постоянной толщины, подверженной квадратично меняющемуся асимметричному распределению внешнего давления. Здесь <latex>$\varphi$</latex> описывает изменение угла по меридиану деформированной стенки, а <latex>$\psi$</latex> является функцией напряжений. Для <latex>$\varepsilon=\mu=10^{-3}$</latex> можно найти два различных решения в зависимости от точки начала.
+        </para>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left">
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mo mml:stretchy="true">{</mml:mo>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mfrac>
+                            <mml:msup>
+                              <mml:mo mml:stretchy="false">ε</mml:mo>
+                              <mml:mn>4</mml:mn>
+                            </mml:msup>
+                            <mml:mo mml:stretchy="false">μ</mml:mo>
+                          </mml:mfrac>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">φ</mml:mo>
+                                <mml:mi>'</mml:mi>
+                                <mml:mrow>
+                                  <mml:mrow>
+                                    <mml:mi>'</mml:mi>
+                                    <mml:mo mml:stretchy="false">+</mml:mo>
+                                    <mml:mfrac>
+                                      <mml:mrow>
+                                        <mml:mo mml:stretchy="false">φ</mml:mo>
+                                        <mml:mi>'</mml:mi>
+                                      </mml:mrow>
+                                      <mml:mi>x</mml:mi>
+                                    </mml:mfrac>
+                                  </mml:mrow>
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+                                  <mml:mfrac>
+                                    <mml:mo mml:stretchy="false">φ</mml:mo>
+                                    <mml:msup>
+                                      <mml:mi>x</mml:mi>
+                                      <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                  </mml:mfrac>
+                                </mml:mrow>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">+</mml:mo>
+                            <mml:mo mml:stretchy="false">ψ</mml:mo>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                <mml:mrow>
+                                  <mml:mn>1</mml:mn>
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+                                  <mml:mfrac>
+                                    <mml:mo mml:stretchy="false">φ</mml:mo>
+                                    <mml:mi>x</mml:mi>
+                                  </mml:mfrac>
+                                </mml:mrow>
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+                              <mml:mo mml:stretchy="false">φ</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">+</mml:mo>
+                            <mml:mo mml:stretchy="false">γ</mml:mo>
+                          </mml:mrow>
+                          <mml:mi>x</mml:mi>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mn>1</mml:mn>
+                                <mml:mo mml:stretchy="false">−</mml:mo>
+                                <mml:mfrac>
+                                  <mml:msup>
+                                    <mml:mi>x</mml:mi>
+                                    <mml:mn>2</mml:mn>
+                                  </mml:msup>
+                                  <mml:mn>2</mml:mn>
+                                </mml:mfrac>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">μ</mml:mo>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">ψ</mml:mo>
+                                <mml:mi>'</mml:mi>
+                                <mml:mrow>
+                                  <mml:mrow>
+                                    <mml:mi>'</mml:mi>
+                                    <mml:mo mml:stretchy="false">+</mml:mo>
+                                    <mml:mfrac>
+                                      <mml:mrow>
+                                        <mml:mo mml:stretchy="false">ψ</mml:mo>
+                                        <mml:mi>'</mml:mi>
+                                      </mml:mrow>
+                                      <mml:mi>x</mml:mi>
+                                    </mml:mfrac>
+                                  </mml:mrow>
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+                                  <mml:mfrac>
+                                    <mml:mo mml:stretchy="false">ψ</mml:mo>
+                                    <mml:msup>
+                                      <mml:mi>x</mml:mi>
+                                      <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                  </mml:mfrac>
+                                </mml:mrow>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+                            <mml:mo mml:stretchy="false">φ</mml:mo>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+                              <mml:mrow>
+                                <mml:mn>1</mml:mn>
+                                <mml:mo mml:stretchy="false">−</mml:mo>
+                                <mml:mfrac>
+                                  <mml:mo mml:stretchy="false">φ</mml:mo>
+                                  <mml:mn>2x</mml:mn>
+                                </mml:mfrac>
+                              </mml:mrow>
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo mml:stretchy="false">&lt;</mml:mo>
+                            <mml:mi>x</mml:mi>
+                          </mml:mrow>
+                          <mml:mo mml:stretchy="false">&lt;</mml:mo>
+                          <mml:mn>1</mml:mn>
+                        </mml:mrow>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                  <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{{%epsilon^4} over %mu (%phi''+ {%phi'} over x
+                    -{%phi} over {x^2} ) +%psi (1- %phi over x ) -%phi+%gamma
+                    x(1-{x^2} over 2)=0# %mu(%psi''+{%psi'} over x-%psi over
+                    {x^2})-%phi(1-%phi over{2x})=0 # 0&lt;x&lt;1} right
+                    none
+                  </mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+        <para>Граничные условия:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left">
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mo mml:stretchy="true">{</mml:mo>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">φ</mml:mo>
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+                          <mml:mn>0</mml:mn>
+                        </mml:mrow>
+                      </mml:mtr>
+                      <mml:mtr>
+                        <mml:mrow>
+                          <mml:mi>x</mml:mi>
+                          <mml:mi/>
+                          <mml:mo mml:stretchy="false">ψ</mml:mo>
+                          <mml:mrow>
+                            <mml:mi>'</mml:mi>
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+                            <mml:mn>0,3</mml:mn>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">ψ</mml:mo>
+                              <mml:mo mml:stretchy="false">+</mml:mo>
+                              <mml:mn>0,7x</mml:mn>
+                            </mml:mrow>
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                  <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{ %phi=0# x`%psi'-0.3%psi+0.7x=0} right
+                    none
+                  </mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+        <para>
+          для <literal>x=0</literal> и <literal>x=1</literal>
+        </para>
+        <programlisting role="example"><![CDATA[ 
+N=2;// два дифференциальных уравнения
+m=[2 2];// каждое дифференциальное уравнение второго порядка
+M=sum(m);
+ 
+x_low=0;x_up=1; // пределы по x
+zeta=[x_low,x_low, x_up x_up]; //два ограничения на каждой границе
+ 
+//Внешние функции
+//Эти функции вызываются программой решения с zu=[u1(x);u1'(x);u2(x);u2'(x)]
+ 
+// - Функция, которая вычисляет правую сторону дифференциального уравнения
+function f=fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+   f=[zu(1)/x^2-zu(2)/x+(zu(1)-zu(3)*(1-zu(1)/x)-gam*x*(1-x^2/2))/eps4mu //phi''
+      zu(3)/x^2-zu(4)/x+zu(1)*(1-zu(1)/(2*x))/dmu];//psi''
+endfunction
+ 
+// - Функция, которая вычисляет производную от fsub по zu
+function df=dfsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+  df=[1/x^2+(1+zu(3)/x)/eps4mu, -1/x, -(1-zu(1)/x)/eps4mu, 0
+      (1-zu(1)/x)/dmu             0    1/x^2              -1/x];
+endfunction
+ 
+// - Функция, которая вычисляет i-тое ограничение для заданного i
+function g=gsub2(i,zu),
+  select i
+  case 1 then  //x=zeta(1)=0
+    g=zu(1) //u(0)=0
+  case 2 then //x=zeta(2)=0
+    g=-0.3*zu(3) //x*psi'-0.3*psi+0.7x=0
+  case 3 then //x=zeta(3)=1
+    g=zu(1) //u(1)=0
+  case 4 then  //x=zeta(4)=1
+    g=1*zu(4)-0.3*zu(3)+0.7*1 //x*psi'-0.3*psi+0.7x=0
+  end
+endfunction
+ 
+// - Функция, которая вычисляет производную от gsub по z
+function dg=dgsub2(i,z)
+  select i
+  case 1 then  //x=zeta(1)=1
+    dg=[1,0,0,0]
+  case 2 then //x=zeta(2)=1
+    dg=[0,0,-0.3,0]
+  case 3 then //x=zeta(3)=2
+     dg=[1,0,0,0]
+  case 4 then  //x=zeta(4)=2
+    dg=[0,0,-0.3,1]
+  end
+endfunction
+ 
+gam=1.1
+eps=1d-3
+dmu=eps
+eps4mu=eps^4/dmu
+xt=sqrt(2*(gam-1)/gam)
+ 
+fixpnt=[ ];// все граничные условия размещены в x_low и x_up
+collpnt=4;
+nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
+nsizei=3 + collpnt*N+M;;
+nmax=200;
+//    nonlin  collpnt n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
+ipar=[1       k       10 4    nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
+ 
+ltol=1:4;//установка контроля допусков на zu(1), zu(2), zu(3) и zu(4)
+tol=[1.e-5,1.e-5,1.e-5,1.e-5];//установка значений для контроля допусков
+xpoints=x_low:0.01:x_up;
+ 
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub2,dfsub2,gsub2,dgsub2,guess2);
+scf(1);clf();plot(xpoints,zu([1 3],:)) // процесс решения phi и psi
+ 
+//использование начального предположения
+// - Функция, которая вычисляет начальное предположение, здесь не используется
+function [zu,dmval]=guess2(x,gam),
+   cons=gam*x*(1-x^2/2)
+   dcons=gam*(1-3*x^2/2)
+   d2cons=-3*gam*x
+   dmval=zeros(2,1)
+   if x>xt then
+     zu=[0 0 -cons -dcons]
+     dmval(2)=-d2cons
+   else
+     zu=[2*x;2;-2*x+cons;-2*dcons]
+     dmval(2)=d2cons
+   end
+endfunction 
+ipar(9)=1;//iguess
+ 
+zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub2,dfsub2,gsub2,dgsub2,guess2);
+scf(2);clf();plot(xpoints,zu2([1 3],:)) // процесс решения phi и psi
+ ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Задача нахождения собственных значений</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[ 
+// y''(x)=-la*y(x)
+// BV: y(0)=y'(0); y(1)=0
+// Собственные функции и собственные значения y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
+// где s(n) - нули f(s,n)=s+atan(s)-(n+1)*pi, n=0,1,2,...
+// Чтобы получить третье граничное условие, мы выбираем y(0)=1
+// (с y(x) также c*y(x) является решением для каждой константы c.)
+// Решим следующую систему ОДУ:
+// y''=-la*y
+// la'=0
+// BV: y(0)=y'(0), y(0)=1; y(1)=0
+// z=[y(x) ; y'(x) ; la]
+ 
+function rhs=fsub(x,z)
+  rhs=[-z(3)*z(1);0]
+endfunction
+ 
+function g=gsub(i,z)
+  g=[z(1)-z(2) z(1)-1 z(1)]
+  g=g(i)
+endfunction
+ 
+// Следующая начальная функция годится для первых 8 собственных функций.
+function [z,lhs]=ystart(x,z,la0)
+  z=[1;0;la0]
+  lhs=[0;0]
+endfunction
+ 
+a=0;b=1;
+m=[2;1];
+n=2;
+zeta=[a a b];
+N=101;
+x=linspace(a,b,N)';
+ 
+//Имеем s(n)-(n+1/2)*pi -> 0 для n, стремящимся к бесконечности.
+la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+ 
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+ 
+clf()
+plot(x,[z(1,:)' z(2,:)']) 
+xtitle(['Начальное значение =  '+string(la0);'Собственное значение = '+string(z(3,1))],'x',' ')
+legend(['y(x)';'y''(x)'])
+ ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Краевая задача, у которой решений больше одного</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[ 
+// DE: y''(x)=-exp(y(x))
+// BV: y(0)=0; y(1)=0
+// Эта краевая задача имеет более одного решения.
+//Показано как найти два из них с помощью некоторой
+// предварительной информации о решениях y(x) для построения функции ystart.
+// z=[y(x);y'(x)]
+ 
+a=0;b=1;m=2;n=1;
+zeta=[a b];
+N=101;
+tol=1e-8*[1 1];
+x=linspace(a,b,N);
+ 
+function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+ 
+function g=gsub(i,z)
+  g=[z(1) z(1)]
+  g=g(i)
+endfunction
+ 
+function [z,lhs]=ystart(x,z,M) 
+  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z=[M;0]
+  //lhs=[-exp(4*x*(1-x)*M)]
+  lhs=0
+endfunction
+ 
+for M=[1 4]
+   if M==1
+      z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   else
+      z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   end
+end
+ 
+// Интегрирование ОДУ даёт, например, два решения yex и yex1. 
+ 
+function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+c=fsolve(2,f);
+ 
+function y=yex(x,c)
+  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+endfunction 
+ 
+function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+c1=fsolve(0.1,f1);
+ 
+function y=yex1(x,c1)
+  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+endfunction 
+ 
+disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+clf();
+subplot(2,1,1)
+plot2d(x,z(1,:),style=[5])
+xtitle('Два различных решения','x',' ') 
+subplot(2,1,2)
+plot2d(x,z1(1,:),style=[5])
+xtitle(' ','x',' ')
+ ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Многоточечная краевая задача</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[ 
+// DE y'''(x)=1
+// z=[y(x);y'(x);y''(x)]
+// BV: y(-1)=2 y(1)=2
+//Дополнительное условие: y(0)=1 
+ 
+a=-1;b=1;c=0;
+// Точка дополнительного условия c должна быть включена в массив fixpnt.
+n=1;
+m=[3];
+ 
+function rhs=fsub(x,z)
+  rhs=1
+endfunction
+ 
+function g=gsub(i,z)
+  g=[z(1)-2 z(1)-1 z(1)-2]
+  g=g(i)
+endfunction
+ 
+N=10;
+zeta=[a c b];
+x=linspace(a,b,N);
+ 
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
+          
+function y=yex(x)
+y=x.^3/6+x.^2-x./6+1
+endfunction
+ 
+disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+ ]]></programlisting>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Используемые функции</title>
+    <para>Эта функция основана на процедуре Fortran
+      <literal>colnew</literal>, разработанной
+    </para>
+    <para>U. Ascher, Department of Computer Science, University of British
+      Columbia, Vancouver, B.C. V6T 1W5, Canada
+    </para>
+    <para>G. Bader, institut f. Angewandte mathematik university of
+      Heidelberg; im Neuenheimer feld 294d-6900 Heidelberg 1
+    </para>
+  </refsection>
+  <refsection>
+    <title>Литература</title>
+    <orderedlist>
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. Russell, collocation
+          software for boundary-value ODEs, acm trans. math software 7 (1981),
+          209-222. this paper contains EXAMPLES where use of the code is
+          demonstrated.
+        </para>
+      </listitem>
+      <listitem>
+        <para>G. Bader and U. Ascher, a new basis implementation for a mixed
+          order boundary value ode solver, siam j. scient. stat. comput.
+          (1987).
+        </para>
+      </listitem>
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. Russell, a collocation
+          solver for mixed order systems of boundary value problems, math. comp.
+          33 (1979), 659-679.
+        </para>
+      </listitem>
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. russell, colsys - a
+          collocation code for boundary value problems, lecture notes comp.sc.
+          76, springer verlag, b. children et. al. (eds.) (1979), 164-185.
+        </para>
+      </listitem>
+      <listitem>
+        <para>C. Deboor and R. Weiss, solveblok: a package for solving almost
+          block diagonal linear systems, acm trans. math. software 6 (1980),
+          80-87.
+        </para>
+      </listitem>
+    </orderedlist>
+  </refsection>
+</refentry>
+
