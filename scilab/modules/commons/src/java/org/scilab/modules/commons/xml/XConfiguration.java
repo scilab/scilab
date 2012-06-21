@@ -60,7 +60,6 @@ import org.w3c.dom.NodeList;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.history_manager.HistoryPrefs;
 
 /**
  * Class to retrieve object from the xml configuration file
@@ -88,7 +87,14 @@ public class XConfiguration {
 
     static {
         addXConfigurationListener(ScilabGeneralPrefs.getInstance());
-        addXConfigurationListener(HistoryPrefs.getInstance());
+
+        try {
+            Class histoprefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.history_manager.HistoryPrefs");
+            Method getinstance = histoprefs.getDeclaredMethod("getInstance");
+            addXConfigurationListener((XConfigurationListener)getinstance.invoke(null));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     /**

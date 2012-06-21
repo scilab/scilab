@@ -33,7 +33,7 @@
                           weightx="0"
 			  enable="{@enable}"
                           min-value = "0"
-                          increment = "100"
+                          increment = "1000"
                           length = "4"
                           listener = "ActionListener"
                           value = "{@history-lines}">
