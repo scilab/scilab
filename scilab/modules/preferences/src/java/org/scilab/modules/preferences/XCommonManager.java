@@ -299,7 +299,7 @@ public abstract class XCommonManager {
 
             StringBuilder buffer = new StringBuilder("<?xml version='1.0' encoding='utf-8'?>\n");
             buffer.append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n");
-	    buffer.append("<xsl:param name=\"OS\"/>\n");
+            buffer.append("<xsl:param name=\"OS\"/>\n");
             buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
 
             FilenameFilter filter = new FilenameFilter() {
@@ -358,7 +358,7 @@ public abstract class XCommonManager {
         try {
             StreamSource source = new StreamSource(new StringReader(createXSLFile()));
             transformer = factory.newTransformer(source);
-	    transformer.setParameter("OS", OS.getVersionName());
+            transformer.setParameter("OS", OS.getVersionName());
         } catch (TransformerConfigurationException e1) {
             System.err.println(ERROR_READ + address);
         } catch (TransformerFactoryConfigurationError e1) {
@@ -721,8 +721,12 @@ public abstract class XCommonManager {
      * @return top-level frame.
      */
     public static Frame getTopLevel() {
-        Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
-        return (Frame) SwingUtilities.getAncestorOfClass(Frame.class, main);
+        if (ScilabConsole.isExistingConsole()) {
+            Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
+            return (Frame) SwingUtilities.getAncestorOfClass(Frame.class, main);
+        }
+
+        return null;
     }
 
     /**

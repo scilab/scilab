@@ -53,7 +53,8 @@ PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
-                      sci_gateway/cpp/sci_removeModulePreferences.cpp
+                      sci_gateway/cpp/sci_removeModulePreferences.cpp \
+                      sci_gateway/cpp/sci_preferences.cpp
 
 libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \

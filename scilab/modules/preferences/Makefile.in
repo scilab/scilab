@@ -144,7 +144,8 @@ libscipreferences_cli_la_OBJECTS =  \
 libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la
 am__objects_3 = libscipreferences_la-gw_preferences.lo
 am__objects_4 = libscipreferences_la-sci_addModulePreferences.lo \
-	libscipreferences_la-sci_removeModulePreferences.lo
+	libscipreferences_la-sci_removeModulePreferences.lo \
+	libscipreferences_la-sci_preferences.lo
 am__objects_5 = libscipreferences_la-ScilabPreferences.lo
 am_libscipreferences_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5)
@@ -484,7 +485,8 @@ PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
-                      sci_gateway/cpp/sci_removeModulePreferences.cpp
+                      sci_gateway/cpp/sci_removeModulePreferences.cpp \
+                      sci_gateway/cpp/sci_preferences.cpp
 
 libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
@@ -701,6 +703,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-ScilabPreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-gw_preferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_preferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Plo@am__quote@
 
 .c.o:
@@ -779,6 +782,13 @@ libscipreferences_la-sci_removeModulePreferences.lo: sci_gateway/cpp/sci_removeM
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_removeModulePreferences.cpp' object='libscipreferences_la-sci_removeModulePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_removeModulePreferences.lo `test -f 'sci_gateway/cpp/sci_removeModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removeModulePreferences.cpp
+
+libscipreferences_la-sci_preferences.lo: sci_gateway/cpp/sci_preferences.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-sci_preferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-sci_preferences.Tpo -c -o libscipreferences_la-sci_preferences.lo `test -f 'sci_gateway/cpp/sci_preferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_preferences.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-sci_preferences.Tpo $(DEPDIR)/libscipreferences_la-sci_preferences.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_preferences.cpp' object='libscipreferences_la-sci_preferences.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_preferences.lo `test -f 'sci_gateway/cpp/sci_preferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_preferences.cpp
 
 libscipreferences_la-ScilabPreferences.lo: src/jni/ScilabPreferences.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-ScilabPreferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-ScilabPreferences.Tpo -c -o libscipreferences_la-ScilabPreferences.lo `test -f 'src/jni/ScilabPreferences.cpp' || echo '$(srcdir)/'`src/jni/ScilabPreferences.cpp

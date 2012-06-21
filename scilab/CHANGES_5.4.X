@@ -8,6 +8,11 @@ Xcos
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
 
+Preferences
+===========
+
+* Add a function preferences() to open the Preferences window.
+
 
 Bug Fixes
 =========

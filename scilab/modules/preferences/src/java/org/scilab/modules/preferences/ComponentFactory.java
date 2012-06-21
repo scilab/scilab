@@ -30,6 +30,7 @@ import javax.swing.border.TitledBorder;
 
 import org.w3c.dom.Node;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.Component.Scroll;
 
 /**
@@ -84,6 +85,10 @@ class ComponentFactory {
 
         Constructor constructor = cache.get(tag);
         if (constructor == null) {
+            if ("PreviewCode".equals(tag)) {
+                ScilabCommonsUtils.loadOnUse("SciNotes");
+            }
+
             Class<Component> componentClass;
             try {
                 componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);

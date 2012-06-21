@@ -24,6 +24,7 @@ import javax.swing.text.DefaultCaret;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;

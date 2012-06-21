@@ -87,9 +87,10 @@ public final class XConfigManager extends XCommonManager {
         XWizardManager.active = false;
 
         reloadTransformer(SCILAB_CONFIG_XSL);
+        Frame topWindow = XCommonManager.getTopLevel();
 
         // Set up Swing Side
-        dialog = new JDialog(getTopLevel(), "Scilab Preferences", true);
+        dialog = new JDialog(topWindow, "Scilab Preferences", true);
         topSwing = dialog.getContentPane();
         topSwing.setLayout(new BorderLayout());
         // AWT implies to set layout at construction time.
@@ -127,10 +128,11 @@ public final class XConfigManager extends XCommonManager {
         // Let the show begin!
         if (refreshDisplay()) {
             // Center the dialog on the parent window
-            Frame topWindow = XCommonManager.getTopLevel();
-            int x = topWindow.getX() + (topWindow.getWidth() - dialog.getWidth()) / 2;
-            int y = topWindow.getY() + (topWindow.getHeight() - dialog.getHeight()) / 2;
-            dialog.setLocation(x, y);
+            if (topWindow != null) {
+                int x = topWindow.getX() + (topWindow.getWidth() - dialog.getWidth()) / 2;
+                int y = topWindow.getY() + (topWindow.getHeight() - dialog.getHeight()) / 2;
+                dialog.setLocation(x, y);
+            }
 
             dialog.setVisible(true);
         }
