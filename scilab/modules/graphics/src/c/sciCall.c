@@ -52,8 +52,8 @@
  * then use the default values
  */
 static void getDrect(const double vector[], int nbElements,
-										 double * dMin, double * dMax,
-										 double defaultMin, double defaultMax);
+                     double * dMin, double * dMax,
+                     double defaultMin, double defaultMax);
 /*------------------------------------------------
  * Objrect :
  * On recupere la figure courante, puis on recupere la sous fenetre qui y est selectionnee
@@ -80,8 +80,8 @@ void Objrect ( double * x         ,
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
-    newObjUID = ConstructRectangle(psubwinUID ,*x,*y,*height, *width,
-                              foreground, background, isfilled, isline);
+    newObjUID = ConstructRectangle(psubwinUID , *x, *y, *height, *width,
+                                   foreground, background, isfilled, isline);
 
     if (newObjUID == NULL)
     {
@@ -120,11 +120,12 @@ void Objarc( double * angle1    ,
 
     psubwinUID = getCurrentSubWin();
     checkRedrawing();
-    pobjUID = ConstructArc(psubwinUID,*x,*y,
-                       *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
+    pobjUID = ConstructArc(psubwinUID, *x, *y,
+                           *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
     setCurrentObject(pobjUID);
 
-    *hdl=getHandle(pobjUID);
+    *hdl = getHandle(pobjUID);
+    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 }
 
 /*------------------------------------------------
@@ -150,23 +151,24 @@ void Objpoly ( double  * x     ,
     if (mark <= 0)
     {
         int absmark = abs(mark);
-        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,1,
-            NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+        pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n, 1,
+                                    NULL, NULL, &absmark, NULL, NULL, FALSE, FALSE, TRUE, FALSE);
     }
     else
     {
-        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,1,
-            &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+        pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n, 1,
+                                    &mark, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
     }
 
     if (pobjUID == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"Objpoly");
+        Scierror(999, _("%s: No more memory.\n"), "Objpoly");
         return;
     }
 
     setCurrentObject(pobjUID);
-    *hdl=getHandle(pobjUID);
+    *hdl = getHandle(pobjUID);
+    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 }
 
 
@@ -194,11 +196,11 @@ void Objfpoly ( double  * x    ,
 
     checkRedrawing();
 
-    if(shading == 2)
+    if (shading == 2)
     {
         /* interpolated shading is "on" */
-        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
-                                 1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
+        pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
+                                    1, NULL, style, NULL, NULL, NULL, FALSE, TRUE, FALSE, TRUE);
     }
     else
     {
@@ -207,33 +209,36 @@ void Objfpoly ( double  * x    ,
         if (*style < 0)
         {
             fillcolor = abs(*style);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
-                                     1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
+            pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
+                                        1, NULL, &fillcolor, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE);
         }
         else if (*style == 0)
         {
             getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
-                                     1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+            pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
+                                        1, &contourcolor, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
         }
         else
-        { /* *style > 0*/
+        {
+            /* *style > 0*/
             fillcolor = *style;
             getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
-                                     1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
+            pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
+                                        1, &contourcolor, &fillcolor, NULL, NULL, NULL, TRUE, TRUE, FALSE, FALSE);
         }
 
     }
 
     if (pobjUID == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"Objfpoly");
+        Scierror(999, _("%s: No more memory.\n"), "Objfpoly");
         return;
     }
 
     setCurrentObject(pobjUID);
-    *hdl=getHandle(pobjUID);
+    *hdl = getHandle(pobjUID);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 }
 
 
@@ -250,20 +255,20 @@ void Objsegs ( int * style,
 {
     char *pobjUID = NULL;
     char *psubwinUID = NULL;
-    int type=0, colored=0;
-    double *fx =NULL,*fy = NULL; // No fx or fy
+    int type = 0, colored = 0;
+    double *fx = NULL, *fy = NULL; // No fx or fy
     int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
 
     checkRedrawing() ;
     psubwinUID = getCurrentSubWin();
 
-    pobjUID = ConstructSegs(psubwinUID,type,
-                  x,y,z,n1,n1, (z==NULL ? 0 : n1),     // x, y and z have the same size n1
-                  fx,fy,flag,style,arsize,colored,typeofchamp);
+    pobjUID = ConstructSegs(psubwinUID, type,
+                            x, y, z, n1, n1, (z == NULL ? 0 : n1), // x, y and z have the same size n1
+                            fx, fy, flag, style, arsize, colored, typeofchamp);
 
     if (pobjUID == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"Objsegs");
+        Scierror(999, _("%s: No more memory.\n"), "Objsegs");
         return;
     }
 
@@ -317,28 +322,26 @@ void Objstring( char            ** fname      ,
 #endif
 
     pobjUID = ConstructText( psubwinUID   ,
-                                   fname     ,
-                                   nbRow     ,
-                                   nbCol     ,
-                                   x         ,
-                                   y         ,
-                                   autoSize  ,
-                                   userSize  ,
-                                   centerPos ,
-                                   foreground,
-                                   background,
-                                   isboxed   ,
-                                   isline    ,
-                                   isfilled  ,
-                                   alignment  );
+                             fname     ,
+                             nbRow     ,
+                             nbCol     ,
+                             x         ,
+                             y         ,
+                             autoSize  ,
+                             userSize  ,
+                             centerPos ,
+                             foreground,
+                             background,
+                             isboxed   ,
+                             isline    ,
+                             isfilled  ,
+                             alignment  );
 
     if (pobjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "Objstring");
         return;
     }
-
-    setCurrentObject(pobjUID);
 
     /* Deactivated (synchronization) */
 #if 0
@@ -347,12 +350,11 @@ void Objstring( char            ** fname      ,
     startFigureDataReading(pFigure);
 #endif
 
-    pobjUID = getCurrentObject();
     *hdl = getHandle(pobjUID);
 
     setGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, angle, jni_double, 1);
 
-  /* Deactivated (drawing and synchronization) */
+    /* Deactivated (drawing and synchronization) */
 #if 0
     sciDrawObj(pobj);
     endFigureDataReading(pFigure);
@@ -378,7 +380,7 @@ void Objplot2d ( int       ptype     ,
                  int   aaint[]   ,
                  BOOL      flagNax    )
 {
-  plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz);
+    plot2dn(ptype, logflags, x, y, n1, n2, style, strflag, legend, brect, aaint, flagNax, 4L, bsiz);
 }
 
 /*------------------------------------------------
@@ -394,7 +396,7 @@ void Objgrayplot ( double    x[]      ,
                    int   aaint[]  ,
                    BOOL      flagNax   )
 {
-  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
+    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, bsiz );
 }
 
 /*------------------------------------------------
@@ -408,7 +410,7 @@ void Objmatplot (double    z[]      ,
                  int    aaint[]  ,
                  BOOL      flagNax   )
 {
-  C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
+    C2F(xgray1)(z, n1, n2, strflag, brect, aaint, flagNax, bsiz);
 }
 
 /*------------------------------------------------
@@ -419,7 +421,7 @@ void Objmatplot1 ( double    z[],
                    int * n2 ,
                    double    xrect[] )
 {
-  C2F(xgray2)(z, n1, n2,xrect);
+    C2F(xgray2)(z, n1, n2, xrect);
 }
 
 /*------------------------------------------------
@@ -447,8 +449,8 @@ void Objplot3d ( char    * fname ,
                  int * n3    ,
                  int * m3n   ,
                  int * n3n    )
-     /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
-     /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
+/* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
+/* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {
     sciTypeOf3D typeof3d;
     int flagcolor = 0;
@@ -531,16 +533,16 @@ void Objplot3d ( char    * fname ,
     {
         int textDimensions[2] = {1, 1};
         /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
-        loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
+        loc = (char *) MALLOC( (strlen(legend) + 1) * sizeof(char));
         if ( loc == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "Objplot3d");
         }
 
-        strcpy(loc,legend);
+        strcpy(loc, legend);
 
         /*   legx=strtok_r(loc,"@",&buff); */
-        legx=strtok(loc,"@");
+        legx = strtok(loc, "@");
 
         if (legx != NULL)
         {
@@ -551,7 +553,7 @@ void Objplot3d ( char    * fname ,
         }
 
         /*   legy=strtok_r((char *)0,"@",&buff); */
-        legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
+        legy = strtok((char *)NULL, "@"); /* NULL to begin at the last read character */
         if ( legy != NULL )
         {
             getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
@@ -561,7 +563,7 @@ void Objplot3d ( char    * fname ,
         }
 
         /*   legz=strtok_r((char *)0,"@",&buff); */
-        legz=strtok((char *)NULL,"@");
+        legz = strtok((char *)NULL, "@");
         if ( legz != NULL )
         {
             getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
@@ -587,11 +589,12 @@ void Objplot3d ( char    * fname ,
 #if 0
     pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
 
-    if (iflag[1] != 0){
-        if (iflag[1]<7)
+    if (iflag[1] != 0)
+    {
+        if (iflag[1] < 7)
             pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]; /* type: scaling (no more useful)  */
         else
-            pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
+            pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1] - 6; /* type: scaling (no more useful)  */
     }
 #endif
 
@@ -610,7 +613,7 @@ void Objplot3d ( char    * fname ,
         pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
 #endif
 
-        if(iflag[2] == 0 || iflag[2] == 1)
+        if (iflag[2] == 0 || iflag[2] == 1)
         {
             if (firstPlot)
             {
@@ -634,7 +637,7 @@ void Objplot3d ( char    * fname ,
             }
             /*else no changes : the axes visible properties are driven by the previous plot */
         }
-        else if(iflag[2] == 2)
+        else if (iflag[2] == 2)
         {
             /* 2: HIDDEN_AXES */
             box = 2;
@@ -655,7 +658,7 @@ void Objplot3d ( char    * fname ,
             getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
-        else if(iflag[2] == 3)
+        else if (iflag[2] == 3)
         {
             /* 1: ON */
             box = 1;
@@ -676,7 +679,7 @@ void Objplot3d ( char    * fname ,
             getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
-        else if(iflag[2] == 4)
+        else if (iflag[2] == 4)
         {
             /* 1: ON */
             box = 1;
@@ -713,7 +716,10 @@ void Objplot3d ( char    * fname ,
         {
             case 0:  /* do not change data bounds */
                 break;
-            case 1 : case 3 : case 5 : case 7 : /* Force data bounds=ebox */
+            case 1 :
+            case 3 :
+            case 5 :
+            case 7 : /* Force data bounds=ebox */
                 drect[0] = ebox[0]; /*xmin*/
                 drect[2] = ebox[2]; /*ymin*/
                 drect[1] = ebox[1]; /*xmax*/
@@ -721,7 +727,10 @@ void Objplot3d ( char    * fname ,
                 drect[4] = ebox[4]; /*zmin*/
                 drect[5] = ebox[5]; /*zmax*/
                 break;
-            case 2 : case 4 : case 6 : case 8:/* Force data bounds to the x and y bounds */
+            case 2 :
+            case 4 :
+            case 6 :
+            case 8:/* Force data bounds to the x and y bounds */
                 getDrect(x, (*m1) * (*n1), &drect[0], &drect[1], dataBounds[0], dataBounds[1]);
                 getDrect(y, (*m2) * (*n2), &drect[2], &drect[3], dataBounds[2], dataBounds[3]);
                 getDrect(z, (*m3) * (*n3), &drect[4], &drect[5], dataBounds[4], dataBounds[5]);
@@ -745,7 +754,7 @@ void Objplot3d ( char    * fname ,
         }
     }
 
-    if(iflag[1] != 0)
+    if (iflag[1] != 0)
     {
         isoview = ( iflag[1] == 3 || iflag[1] == 4 || iflag[1] == 5 || iflag[1] == 6);
 
@@ -756,49 +765,49 @@ void Objplot3d ( char    * fname ,
     * Analyze arguments to find entity type
     * ================================================= */
 
-    if (*isfac== 1)
+    if (*isfac == 1)
     {
         if (*izcol == 0)
         {
-            if (strcmp(fname,"plot3d1")==0)
+            if (strcmp(fname, "plot3d1") == 0)
             {
                 typeof3d = SCI_FAC3D;
-                flagcolor=1;
+                flagcolor = 1;
             }
             else
             {
                 typeof3d = SCI_FAC3D;
-                flagcolor=0;
+                flagcolor = 0;
             }
         }
         else if (*izcol == 2)
         {
             typeof3d = SCI_FAC3D;
-            flagcolor=3;
+            flagcolor = 3;
         }
         else
         {
             typeof3d = SCI_FAC3D;
-            flagcolor=2;
+            flagcolor = 2;
         }
     }
-    else if (*isfac== 0)
+    else if (*isfac == 0)
     {
-        if (strcmp(fname,"plot3d1")==0)
+        if (strcmp(fname, "plot3d1") == 0)
         {
             typeof3d = SCI_PLOT3D;
-            flagcolor=1;
+            flagcolor = 1;
         }
         else
         {
             typeof3d = SCI_PLOT3D;
-            flagcolor=0;
+            flagcolor = 0;
         }
     }
     else
     {
         typeof3d = SCI_PARAM3D1;
-        flagcolor=1;
+        flagcolor = 1;
     }
 
     /* =================================================
@@ -835,7 +844,7 @@ void Objplot3d ( char    * fname ,
 #if 0
                 endFigureDataWriting(parentFigure);
 #endif
-                Scierror(999, _("%s: x vector is not monotonous.\n"),"Objplot3d");
+                Scierror(999, _("%s: x vector is not monotonous.\n"), "Objplot3d");
                 return;
             }
 
@@ -860,7 +869,7 @@ void Objplot3d ( char    * fname ,
             dimvecty = -1;
         }
 
-        if( dimvecty > 1 )
+        if ( dimvecty > 1 )
         {
             /* test the monotony on y*/
             int monotony = checkMonotony( y, dimvecty );
@@ -870,7 +879,7 @@ void Objplot3d ( char    * fname ,
 #if 0
                 endFigureDataWriting(parentFigure);
 #endif
-                Scierror(999, _("%s: y vector is not monotonous.\n"),"Objplot3d");
+                Scierror(999, _("%s: y vector is not monotonous.\n"), "Objplot3d");
                 return;
             }
 
@@ -878,8 +887,8 @@ void Objplot3d ( char    * fname ,
         }
 
         pNewSurfaceUID = ConstructSurface( psubwinUID, typeof3d,
-            x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
-            isfac,m1,n1,m2,n2,m3,n3,m3n,n3n);
+                                           x, y, z, zcol, *izcol, *m, *n, iflag, ebox, flagcolor,
+                                           isfac, m1, n1, m2, n2, m3, n3, m3n, n3n);
 
         if ( pNewSurfaceUID == NULL )
         {
@@ -887,7 +896,7 @@ void Objplot3d ( char    * fname ,
 #if 0
             endFigureDataWriting(parentFigure);
 #endif
-            Scierror(999, _("%s: No more memory.\n"),"Objplot3d");
+            Scierror(999, _("%s: No more memory.\n"), "Objplot3d");
             return;
         }
 
@@ -902,6 +911,8 @@ void Objplot3d ( char    * fname ,
         /* Force clipping, 1: CLIPGRF */
         clipState = 1;
         setGraphicObjectProperty(pNewSurfaceUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+        releaseGraphicObjectProperty(__GO_PARENT__, pNewSurfaceUID, jni_string, 1);
     }
     else
     {
@@ -914,7 +925,7 @@ void Objplot3d ( char    * fname ,
 #if 0
             endFigureDataWriting(parentFigure);
 #endif
-            Scierror(999,"%s: No more memory.\n",fname);
+            Scierror(999, "%s: No more memory.\n", fname);
             return;
         }
 
@@ -934,29 +945,30 @@ void Objplot3d ( char    * fname ,
                 {
                     int intzcol = (int) zcol[i];
                     pNewPolylineUID = ConstructPolyline
-                        (currentSubwinUID,
-                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                         &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+                                      (currentSubwinUID,
+                                       &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
+                                       &intzcol, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
                 }
                 else
                 {
-                    int intzcol = (int) -zcol[i];
+                    int intzcol = (int) - zcol[i];
                     pNewPolylineUID = ConstructPolyline
-                        (currentSubwinUID,
-                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                         NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+                                      (currentSubwinUID,
+                                       &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
+                                       NULL, NULL, &intzcol, NULL, NULL, FALSE, FALSE, TRUE, FALSE);
                 }
             }
             else
-            { /* default case, nothing is given */
+            {
+                /* default case, nothing is given */
                 int curcolor = 0;
                 int *piCurColor = &curcolor;
 
                 getGraphicObjectProperty(currentSubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
 
                 pNewPolylineUID = ConstructPolyline(currentSubwinUID,
-                                                 &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                                                 &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+                                                    &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
+                                                    &curcolor, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
             }
 
             if (pNewPolylineUID == NULL)
@@ -966,6 +978,8 @@ void Objplot3d ( char    * fname ,
             }
 
             setCurrentObject(pNewPolylineUID);
+            releaseGraphicObjectProperty(__GO_PARENT__, pNewPolylineUID, jni_string, 1);
+            pNewPolylineUID = NULL;
 
             pobjUID = getCurrentObject();
 
@@ -973,13 +987,15 @@ void Objplot3d ( char    * fname ,
             clipState = 1;
             setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-            hdltab[i]=getHandle(pobjUID);
+            hdltab[i] = getHandle(pobjUID);
         }
 
         /** construct Compound and make it current object**/
-        if ( *n>1 )
+        if ( *n > 1 )
         {
-            setCurrentObject(ConstructCompound (hdltab, *n));
+            char* o = ConstructCompound (hdltab, *n);
+            setCurrentObject(o);
+            releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
         }
         FREE(hdltab);
     }
@@ -1000,7 +1016,8 @@ void Objplot3d ( char    * fname ,
     firstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-    FREE(loc); loc = NULL;
+    FREE(loc);
+    loc = NULL;
 
 }
 /*-----------------------------------------------------------
@@ -1031,8 +1048,8 @@ void Objdrawaxis ( char     dir    ,
     checkRedrawing();
 
     pobjUID = ConstructAxis(
-               psubwinUID,
-               dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels);
+                  psubwinUID,
+                  dir, tics, x, *nx, y, *ny, val, subint, format, font, textcol, ticscol, flag, seg, nb_tics_labels);
 
     if (pobjUID == NULL)
     {
@@ -1041,7 +1058,7 @@ void Objdrawaxis ( char     dir    ,
     }
 
     setCurrentObject(pobjUID);
-
+    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 }
 
 /*-----------------------------------------------------------
@@ -1057,7 +1074,7 @@ void Objnumb( char          * fname    ,
               double        * angle    ,
               double        * box       )
 {
-  /*** faire une macro scilab sur xstring ****/
+    /*** faire une macro scilab sur xstring ****/
 
 
 }
@@ -1081,23 +1098,23 @@ void Objfec ( double    x[]        ,
               BOOL      WithMesh   ,
               BOOL      flagNax     )
 {
-  C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-	   Zminmax,Colminmax,ColOut,WithMesh,flagNax,4L,bsiz);
+    C2F(fec)(x, y, noeud, fun, n, m, strflag, legend, brect, aaint,
+             Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
 }
 /*------------------------------------------------------------------------*/
 static void getDrect(const double vector[], int nbElements,
-										 double * dMin, double * dMax,
-										 double defaultMin, double defaultMax)
+                     double * dMin, double * dMax,
+                     double defaultMin, double defaultMax)
 {
-	if (containsOneFiniteElement(vector, nbElements))
-	{
-		*dMin = Mini(vector, nbElements);
-		*dMax = Maxi(vector, nbElements);
-	}
-	else
-	{
-		*dMin = defaultMin;
-		*dMax = defaultMax;
-	}
+    if (containsOneFiniteElement(vector, nbElements))
+    {
+        *dMin = Mini(vector, nbElements);
+        *dMax = Maxi(vector, nbElements);
+    }
+    else
+    {
+        *dMin = defaultMin;
+        *dMax = defaultMax;
+    }
 }
 /*------------------------------------------------------------------------*/

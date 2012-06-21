@@ -33,7 +33,7 @@
         <term>initial_rect</term>
         <listitem>
           <para>vector with two or four entries. With four entries it gives the
-            initial rectangle defined by [x_left, y_top, width, height], with
+            initial rectangle defined by [x_min, y_max, width, height], with
             two entries width and height are supposed to be 0.
           </para>
         </listitem>
@@ -52,7 +52,7 @@
       <varlistentry>
         <term>final_rect</term>
         <listitem>
-          <para>a rectangle defined by [x_left, y_top, width, height]</para>
+          <para>a rectangle defined by [x_min, y_max, width, height]</para>
         </listitem>
       </varlistentry>
       <varlistentry>

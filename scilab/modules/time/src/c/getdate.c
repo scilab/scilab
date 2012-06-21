@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
+ * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,7 @@
 #ifdef _MSC_VER
 #include <sys/timeb.h>
 #else
-#include <sys/time.h> 
+#include <sys/time.h>
 #endif
 #include <time.h>
 #include <stdio.h>
@@ -183,7 +183,7 @@ double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iE
         for (k = 0; k < lenResults; k++) dResults[k] = 0;
 
         *iErr = 0;
-        for(k = 0; k < nbElements; k++)
+        for (k = 0; k < nbElements; k++)
         {
             int iErr2 = 0;
             double *dConverted = getConvertedDateAsDoubleVector(dDates[k], &iErr2);
@@ -201,6 +201,7 @@ double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iE
             else
             {
                 FREE(dResults);
+                FREE(dConverted);
                 dResults = NULL;
                 *iErr = iErr2;
                 return NULL;
@@ -231,7 +232,7 @@ double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iE
 *  Monday; the first ISO week has the year's first Thursday.  YDAY may
 *  be as small as YDAY_MINIMUM.  */
 /*--------------------------------------------------------------------------*/
-static int week_days (int yday,int wday)
+static int week_days (int yday, int wday)
 {
     /* Add enough to the first operand of % to make it nonnegative.  */
     int big_enough_multiple_of_7 = (-YDAY_MINIMUM / 7 + 2) * 7;

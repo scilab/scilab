@@ -10,6 +10,8 @@
  *
  */
 
+#include <string.h>
+
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
@@ -28,6 +30,9 @@
 #include "scicos.h"
 
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -54,7 +59,7 @@ typedef struct
     {
         int periodCounter;
 
-        char *cachedFigureUID;
+        char const* cachedFigureUID;
         char *cachedAxeUID;
         char **cachedPolylinesUIDs;
     } scope;
@@ -104,7 +109,7 @@ static BOOL pushData(scicos_block * block, int input, int row);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char *getFigure(scicos_block * block);
+static char const* getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
@@ -114,7 +119,7 @@ static char *getFigure(scicos_block * block);
  * \param input the current input index (0-indexed)
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char *pFigureUID, scicos_block * block, int input);
+static char *getAxe(char const* pFigureUID, scicos_block * block, int input);
 
 /**
  * Get (and allocate on demand) the polyline associated with the row
@@ -155,7 +160,7 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
 */
 SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
 
     double t;
     int links_count;
@@ -348,18 +353,11 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.data);
         FREE(sco->internal.time);
 
-        //      Commented due to the C++ allocation
-        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-        //      FREE(sco->scope.cachedFigureUID);
-        //      sco->scope.cachedFigureUID = NULL;
-        //      for (i=0; i<1; i++) {
-        //          for (j=0; j<links_count; j++) {
-        //              FREE(sco->scope.cachedPolylinesUIDs[i][j]);
-        //              sco->scope.cachedPolylinesUIDs[i][j] = NULL;
-        //          }
-        //          FREE(sco->scope.cachedAxeUID[i]);
-        //          sco->scope.cachedAxeUID[i] = NULL;
-        //      }
+        for (i = 0; i < links_count; i++)
+        {
+            FREE(sco->scope.cachedPolylinesUIDs[i]);
+        }
+        FREE(sco->scope.cachedAxeUID);
 
         FREE(sco);
     }
@@ -473,7 +471,7 @@ static void appendData(scicos_block * block, int input, double t, double *data)
 
 static BOOL pushData(scicos_block * block, int input, int row)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pPolylineUID;
 
@@ -511,7 +509,7 @@ static BOOL pushData(scicos_block * block, int input, int row)
  * \param pFigureUID the figure uid
  * \param block the current block
  */
-static void setFigureSettings(char *pFigureUID, scicos_block * block)
+static void setFigureSettings(char const* pFigureUID, scicos_block * block)
 {
     int *ipar = GetIparPtrs(block);
 
@@ -540,10 +538,10 @@ static void setFigureSettings(char *pFigureUID, scicos_block * block)
  *
  ****************************************************************************/
 
-static char *getFigure(scicos_block * block)
+static char const* getFigure(scicos_block * block)
 {
     signed int figNum;
-    char *pFigureUID = NULL;
+    char const* pFigureUID = NULL;
     char *pAxe = NULL;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
@@ -571,6 +569,10 @@ static char *getFigure(scicos_block * block)
         pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = pFigureUID;
+
         // set configured parameters
         setFigureSettings(pFigureUID, block);
 
@@ -590,8 +592,6 @@ static char *getFigure(scicos_block * block)
 
             setPolylinesBounds(block, i, 0);
         }
-
-        sco->scope.cachedFigureUID = pFigureUID;
     }
 
     if (sco->scope.cachedFigureUID == NULL)
@@ -601,7 +601,7 @@ static char *getFigure(scicos_block * block)
     return pFigureUID;
 }
 
-static char *getAxe(char *pFigureUID, scicos_block * block, int input)
+static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
 {
     char *pAxe;
     int i;
@@ -622,7 +622,7 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
     if (pAxe == NULL)
     {
         cloneAxesModel(pFigureUID);
-        pAxe = getCurrentObject();
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
     }
 
     /*
@@ -638,10 +638,14 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
     }
 
     /*
-     * then cache
+     * then cache with a local storage
      */
-    sco->scope.cachedAxeUID = pAxe;
-    return pAxe;
+    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
+    {
+        sco->scope.cachedAxeUID = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    }
+    return sco->scope.cachedAxeUID;
 }
 
 static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
@@ -709,20 +713,21 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     }
 
     /*
-     * then cache
+     * then cache with local storage
      */
-    if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] == NULL)
+    if (pPolyline != NULL && sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] == NULL)
     {
-        sco->scope.cachedPolylinesUIDs[row] = pPolyline;
+        sco->scope.cachedPolylinesUIDs[row] = strdup(pPolyline);
+        releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
     }
-    return pPolyline;
+    return sco->scope.cachedPolylinesUIDs[row];
 }
 
 static BOOL setPolylinesBuffers(scicos_block * block, int input, int maxNumberOfPoints)
 {
     int i;
 
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pPolylineUID;
 
@@ -744,7 +749,7 @@ static BOOL setPolylinesBuffers(scicos_block * block, int input, int maxNumberOf
 
 static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
 
     double dataBounds[6];

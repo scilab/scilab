@@ -115,11 +115,11 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
                 //get current foreground color
                 getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeGround);
 
-                if(iForeGround == -1)
+                if (iForeGround == -1)
                 {
                     iSubWinForeground = iColorMapSize + 1;
                 }
-                else if(iForeGround == -2)
+                else if (iForeGround == -2)
                 {
                     iSubWinForeground = iColorMapSize + 2;
                 }
@@ -142,7 +142,11 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     }
 
     /** Construct Compound and make it current object**/
-    setCurrentObject(ConstructCompoundSeq(n1));
+    {
+        char * o = ConstructCompoundSeq(n1);
+        setCurrentObject(o);
+        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
+    }
 
     LhsVar(1) = 0;
     PutLhsVar();

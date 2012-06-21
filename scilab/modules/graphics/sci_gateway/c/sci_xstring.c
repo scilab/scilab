@@ -28,6 +28,9 @@
 
 #include "CurrentSubwin.h"
 
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, unsigned long fname_len)
 {
@@ -144,7 +147,10 @@ int sci_xstring(char *fname, unsigned long fname_len)
          * the compound build call will crash.
          * To be modified
          */
-        ConstructCompoundSeq(nbElement);
+        {
+            char * o = ConstructCompoundSeq(nbElement);
+            releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
+        }
     }
 
     /* we must free Str memory */

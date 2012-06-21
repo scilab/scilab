@@ -41,9 +41,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
-    int numrow = 0,numcol = 0,l1 = 0,l2 = 0,n = 0,m2 = 0,n2 = 0;
+    int numrow = 0, numcol = 0, l1 = 0, l2 = 0, n = 0, m2 = 0, n2 = 0;
     long handlesvalue = 0;
-    int outindex = 0,i = 0;
+    int outindex = 0, i = 0;
     char *pobjUID = NULL;
     long long *tabofhandles = NULL;
     char * psubwinUID = NULL;
@@ -53,37 +53,37 @@ int sci_Legend( char * fname, unsigned long fname_len )
     char **Str = NULL;
     char * legendUID = NULL;
 
-    CheckRhs(2,3);
-    CheckLhs(0,1);
+    CheckRhs(2, 3);
+    CheckLhs(0, 1);
 
 
-    GetMatrixdims(1,&numrow,&numcol);
-    n=numrow*numcol;
-    if (numrow==0 || numcol==0)
+    GetMatrixdims(1, &numrow, &numcol);
+    n = numrow * numcol;
+    if (numrow == 0 || numcol == 0)
     {
-        CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l1);
-        LhsVar(1) = Rhs+1;
+        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &numrow, &numcol, &l1);
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
         return 0;
     }
-    GetMatrixdims(2,&m2,&n2);
+    GetMatrixdims(2, &m2, &n2);
     if (m2*n2 != n)
     {
-        Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"),fname,1,2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"), fname, 1, 2);
         return 0;
     }
 
 
-    GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1);
-    GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
-    if (Rhs==3)
+    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &l1);
+    GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m2, &n2, &Str);
+    if (Rhs == 3)
     {
-        GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
+        GetRhsVar(3, STRING_DATATYPE, &m2, &n2, &l2);
         location = propertyNameToLegendPlace(cstk(l2));
 
         if (location == SCI_LEGEND_POSITION_UNSPECIFIED)
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: Incorrect value.\n"),fname,3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Incorrect value.\n"), fname, 3);
             return 0;
         }
     }
@@ -92,11 +92,11 @@ int sci_Legend( char * fname, unsigned long fname_len )
         location = propertyNameToLegendPlace(DEF_LEGEND_LOCATION);
     }
 
-    tabofhandles = (long long *)MALLOC(n*sizeof(long long));
+    tabofhandles = (long long *)MALLOC(n * sizeof(long long));
     if (tabofhandles == NULL)
     {
-        freeArrayOfString(Str,n);
-        Scierror(999,_("%s: No more memory.\n"),fname);
+        freeArrayOfString(Str, n);
+        Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 
@@ -104,13 +104,13 @@ int sci_Legend( char * fname, unsigned long fname_len )
     {
         char* subwinUID;
 
-        handlesvalue = (unsigned long) (hstk(l1))[n-1-i];
+        handlesvalue = (unsigned long) (hstk(l1))[n - 1 - i];
         pobjUID = getObjectFromHandle(handlesvalue);
 
         /**
          * We get the current pSubwin & pFigure from the first handle's parents.
          */
-        if (i==0)
+        if (i == 0)
         {
             getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, &pFigureUID);
             getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &psubwinUID);
@@ -123,15 +123,15 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
         if (strcmp(psubwinUID, subwinUID) != 0)
         {
-            Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
+            Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
             return 0;
         }
 
         if (pobjUID == NULL)
         {
-            freeArrayOfString(Str,n);
+            freeArrayOfString(Str, n);
             FREE(tabofhandles);
-            Scierror(999,_("%s: The handle is no more valid.\n"),fname);
+            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
             return 0;
         }
 
@@ -140,13 +140,13 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
         if (strcmp(type, __GO_POLYLINE__) != 0)
         {
-            freeArrayOfString(Str,n);
+            freeArrayOfString(Str, n);
             FREE(tabofhandles);
-            Scierror(999,_("%s: The %d th handle is not a polyline handle.\n"),fname,i+1);
+            Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
             return 0;
         }
 
-        tabofhandles[i]=handlesvalue;
+        tabofhandles[i] = handlesvalue;
     }
 
     /* Create the legend */
@@ -154,17 +154,15 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
     setGraphicObjectProperty(legendUID, __GO_LEGEND_LOCATION__, &location, jni_int, 1);
 
-    setCurrentObject(legendUID);
-
-    freeArrayOfString(Str,n);
+    freeArrayOfString(Str, n);
     FREE(tabofhandles);
 
     /* Return the handle of the newly created legend */
     numrow = 1;
     numcol = 1;
-    CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
+    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
     hstk(outindex)[0] = getHandle((char *) getCurrentObject());
-    LhsVar(1) = Rhs+1;
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }

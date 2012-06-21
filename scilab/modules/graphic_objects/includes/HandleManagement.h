@@ -64,9 +64,24 @@ GRAPHICS_IMPEXP long generateNewHandle(sciPointObj * pObj);
 
 GRAPHIC_OBJECTS_IMPEXP void *sciGetPointerFromHandle(long handle);
 
-GRAPHIC_OBJECTS_IMPEXP long getHandle(char* UID);
+/**
+ * @brief Get the handle for an UID.
+ *
+ * This should also allocate a new handle on demand. UID can be safely
+ * deallocated after this call.
+ *
+ * @param any uid
+ * @return a handle mapped to the uid
+ */
+GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
 
-GRAPHIC_OBJECTS_IMPEXP char* getObjectFromHandle(long handle);
+/**
+ * @brief Get the uid of an handle.
+ *
+ * @param a valid handle
+ * @return a reference to an existing uid or null if invalid.
+ */
+GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
 
 // DEPRECATED functions : Should be removed
 GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);

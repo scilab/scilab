@@ -15,13 +15,29 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
@@ -34,7 +50,6 @@ import java.util.Iterator;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -549,11 +564,15 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
          * Force adding Widget at JLayeredPane.DEFAULT_LAYER + 1
          * to draw them uppon GLJPanel (even if it is at level JLayeredPane.FRAME_CONTENT_LAYER)
          */
-        if (member instanceof SwingScilabFrame) {
-            layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
-        } else {
-            layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
-        }
+        layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
+    }
+
+    /**
+     * Remove a SwingViewObject (from SwingView.java)
+     * @param member the member to remove
+     */
+    public void removeMember(SwingViewObject member) {
+        layerdPane.remove((Component) member);
     }
 
     /**

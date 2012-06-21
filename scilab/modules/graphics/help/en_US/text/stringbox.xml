@@ -89,7 +89,7 @@
       left point without rotation, the following vertex are given clockwise in
       the resulting matrix.
     </para>
-    <para>The result migth not be very accurate with PostScript driver.</para>
+    <para>The result might not be very accurate with PostScript driver.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

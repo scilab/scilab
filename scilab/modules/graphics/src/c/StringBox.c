@@ -51,18 +51,18 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     updateSubwinScale(parentSubwinUID);
 
 #if 0
-  startFigureDataWriting(parentFigure);
+    startFigureDataWriting(parentFigure);
 #endif
 
     pTextUID = allocateText(parentSubwinUID,
-                       text, nbRow, nbCol,
-                       xPos, yPos,
-                       TRUE,
-                       NULL,
-                       FALSE,
-                       &defaultColor, &defaultColor,
-                       FALSE, FALSE, FALSE,
-                       ALIGN_LEFT);
+                            text, nbRow, nbCol,
+                            xPos, yPos,
+                            TRUE,
+                            NULL,
+                            FALSE,
+                            &defaultColor, &defaultColor,
+                            FALSE, FALSE, FALSE,
+                            ALIGN_LEFT);
 
     /* Make it invisible to be sure */
     visible = 0;
@@ -104,9 +104,10 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
 
     deleteGraphicObject(pTextUID);
 
+    releaseGraphicObjectProperty(__GO_PARENT__, pTextUID, jni_string, 1);
 
 #if 0
-  endFigureDataWriting(parentFigure);
+    endFigureDataWriting(parentFigure);
 #endif
 }
 /*-------------------------------------------------------------------------------*/

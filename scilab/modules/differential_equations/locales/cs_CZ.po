@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15405)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 msgid "bike simulation, stable trajectory"
 msgstr "simulace kola, stabilní trajektorie"
@@ -209,3 +209,27 @@ msgstr "Výchozí hodnoty jsou zadány v hranatých závorkách"
 
 msgid "If the function is called without argument, default values are used"
 msgstr "Pokud je funkce zavolána bez argumentů, jsou použity výchozí hodnoty"
+
+msgid "tcrit (assumes itask=4 or 5)"
+msgstr ""
+
+msgid "h0 (first step tried)"
+msgstr ""
+
+msgid "hmax (max step size)"
+msgstr ""
+
+msgid "hmin (min step size)"
+msgstr ""
+
+msgid "mxstep (max number of steps allowed)"
+msgstr ""
+
+msgid "maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr ""
+
+msgid "maxords (maximum stiff order allowed, at most 5)"
+msgstr ""
+
+msgid "ixpr (print level 0 or 1)"
+msgstr ""

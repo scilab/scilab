@@ -166,30 +166,35 @@ static char* readAttribute(int _iDatasetId, const char *_pstName)
         status = H5Aread(iAttributeId, memtype, pstValue);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
         status = H5Tclose(memtype);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
         status = H5Sclose(iSpace);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
         status = H5Tclose(iFileType);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
         status = H5Aclose(iAttributeId);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
     }

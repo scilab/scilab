@@ -3,11 +3,11 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,6 +24,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
@@ -59,6 +60,41 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      */
     public SwingScilabEditBox() {
         super();
+        // Create a focus listener to call the callback action
+        focusListener = new FocusListener() {
+            public void focusGained(FocusEvent arg0) {
+                // Do nothing
+            }
+            public void focusLost(FocusEvent arg0) {
+                // Validates user input
+                if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
+                    String[] stringProperty = new String[] {getText()};
+                    GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
+
+                    if (SwingView.getFromId(uid) != null && callback != null) {
+                        callback.actionPerformed(null);
+                    }
+                }
+            }
+        };
+        addFocusListener(focusListener);
+
+        // Create n action listener to get ENTER keystrokes
+        actionListener = new ActionListener() {
+
+            public void actionPerformed(ActionEvent arg0) {
+                // Validates user input
+                if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
+                    String[] stringProperty = new String[] {getText()};
+                    GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
+                    if (SwingView.getFromId(uid) != null && callback != null) {
+                        callback.actionPerformed(null);
+                    }
+                }
+            }
+
+        };
+        addActionListener(actionListener);
     }
 
     /**
@@ -112,45 +148,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * @param cb the callback to set.
      */
     public void setCallback(CommonCallBack cb) {
-
-        // Remove previous callback
-        if (focusListener != null) {
-            removeFocusListener(focusListener);
-            removeActionListener(actionListener);
-        }
-
         this.callback = cb;
-
-        // Create a focus listener to call the callback action
-        focusListener = new FocusListener() {
-            public void focusGained(FocusEvent arg0) {
-                // Do nothing
-            }
-            public void focusLost(FocusEvent arg0) {
-                // Validates user input
-                if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
-                    String[] stringProperty = new String[1];
-                    stringProperty[0] = getText();
-                    GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
-                    callback.actionPerformed(null);
-                }
-            }
-        };
-        addFocusListener(focusListener);
-
-        // Create n action listener to get ENTER keystrokes
-        actionListener = new ActionListener() {
-
-            public void actionPerformed(ActionEvent arg0) {
-                // Validates user input
-                String[] stringProperty = new String[1];
-                stringProperty[0] = getText();
-                GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
-                callback.actionPerformed(null);
-            }
-
-        };
-        addActionListener(actionListener);
     }
 
     /**
@@ -159,7 +157,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      */
     public void setEnabled(boolean status) {
         super.setEnabled(status);
-        /* (Des)Activate the callback */ 
+        /* (Des)Activate the callback */
         if (callback != null) {
             if (status) {
                 removeFocusListener(focusListener); /* To be sure the callback is not added two times */

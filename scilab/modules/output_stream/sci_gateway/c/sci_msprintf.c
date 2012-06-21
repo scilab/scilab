@@ -264,7 +264,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                             FREE(ptrFormat);
                             ptrFormat = NULL;
                         }
-
+                        freeArrayOfString(pOutputStrings, mOut * nOut);
                         Scierror(999, _("%s: No more memory.\n"), fname);
                         return 0;
                     }
@@ -350,7 +350,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                         FREE(ptrFormat);
                         ptrFormat = NULL;
                     }
-
+                    freeArrayOfString(pOutputStrings, mOut * nOut);
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }

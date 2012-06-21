@@ -70,6 +70,26 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     public SwingScilabListBox() {
         super();
         getViewport().add(getList());
+
+        mouseListener = new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+                // Scilab indices in Value begin at 1 and Java indices begin at 0
+                int[] javaIndices = getList().getSelectedIndices().clone();
+                Double[] scilabIndices = new Double[javaIndices.length];
+                for (int i = 0; i < getList().getSelectedIndices().length; i++) {
+                    scilabIndices[i] = (double) javaIndices[i] + 1;
+                }
+                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
+                if (e.getButton() == MouseEvent.BUTTON1 && callback != null) {
+                    callback.actionPerformed(null);
+                }
+            }
+            public void mouseEntered(MouseEvent arg0) { }
+            public void mouseExited(MouseEvent arg0) { }
+            public void mousePressed(MouseEvent arg0) { }
+            public void mouseReleased(MouseEvent arg0) { }
+        };
+        getList().addMouseListener(mouseListener);
     }
 
     /**
@@ -200,35 +220,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param cb the callback to set.
      */
     public void setCallback(CommonCallBack cb) {
-        if (mouseListener != null) {
-            getList().removeMouseListener(mouseListener);
-        }
         this.callback = cb;
-
-        mouseListener = new MouseListener() {
-
-            public void mouseClicked(MouseEvent e) {
-                // Scilab indices in Value begin at 1 and Java indices begin at 0
-                int[] javaIndices = getList().getSelectedIndices().clone();
-                Double[] scilabIndices = new Double[javaIndices.length];
-                for (int i = 0; i < getList().getSelectedIndices().length; i++) {
-                    scilabIndices[i] = (double) javaIndices[i] + 1;
-                }
-                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
-                if (e.getButton() == MouseEvent.BUTTON1) {
-                    callback.actionPerformed(null);
-                }
-            }
-
-            public void mouseEntered(MouseEvent arg0) { }
-            public void mouseExited(MouseEvent arg0) { }
-            public void mousePressed(MouseEvent arg0) { }
-            public void mouseReleased(MouseEvent arg0) { }
-        };
-
-        if (isEnabled()) {
-            getList().addMouseListener(mouseListener);
-        }
     }
 
     /**

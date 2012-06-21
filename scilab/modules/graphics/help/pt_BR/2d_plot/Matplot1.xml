@@ -85,6 +85,7 @@ for k=-n:n,
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //enviando o buffer duplo para a tela
+  sleep(8);
 end
 f.pixmap='off';
  ]]></programlisting>

@@ -61,7 +61,7 @@
       <Grid>
         <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
         <Panel gridx="2" gridy="1" weightx="1"/>
-        <NumericalSpinner min-value = "128"
+        <NumericalSpinner min-value = "0"
                           increment = "128"
                           length = "6"
                           listener = "ActionListener"
@@ -71,96 +71,30 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
+        <Label text="(modify this option requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+	<Panel gridx="2" gridy="2" weightx="1" fill="both"/>	
       </Grid>
     </Title>
 
   </xsl:template>
 
   <xsl:template match="tools">
-    <VBox>
-      <VSpace height="1"/>
-      <HBox>
-        <HSpace width="200"/>
-        <VBox>
-          <HBox>&lt;HTML&gt;&lt;I&gt;The following dialog boxes
-          require user confirmation.
-          </HBox>
-          <HBox>&lt;HTML&gt;&lt;I&gt;Select a check
-          box if you want that dialog box to appear.
-          </HBox>
-        </VBox>
-      </HBox>
-
       <Title text="Confirmation dialogs">
         <Grid>
-          <Label gridy="1" gridx="1" text="&lt;HTML&gt;&lt;B&gt;Dialog box description"/>
-          <Label gridy="1" gridx="2" text="&lt;HTML&gt;&lt;B&gt;Tool"/>
-          <Icon  gridy="1" gridx="3" listener="MouseListener">
-            <xsl:attribute name="src">
-              <xsl:choose>
-                <xsl:when test="@order='ascending'">
-                  <xsl:text>go-up.png</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:text>go-down.png</xsl:text>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:attribute>
-            <mouseClicked set="order">
-              <xsl:attribute name="value">
-                <xsl:choose>
-                  <xsl:when test="@order='ascending'">
-                    <xsl:text>descending</xsl:text>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:text>ascending</xsl:text>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:attribute>
-              <xsl:call-template name="context"/>
-            </mouseClicked>
-          </Icon>
           <xsl:for-each select="tool">
-            <xsl:sort order="{@order}" select="@name"/>
             <Checkbox
                 gridy    = "{position() + 1}"
                 gridx    = "1"
                 listener = "ActionListener"
                 checked  = "{@state}"
-                text     = "{@description}"
-                >
+                text     = "{@description}">
               <actionPerformed choose="state">
                 <xsl:call-template name="context"/>
               </actionPerformed>
             </Checkbox>
-            <Label
-                gridy    = "{position() + 1}"
-                gridx    = "2"
-                text     = "{@name}"/>
           </xsl:for-each>
         </Grid>
       </Title>
-      <Glue/>
-      <HBox>
-        <Glue/>
-        <Button text="Select All" listener="ActionListener">
-          <xsl:for-each select="tool">
-            <actionPerformed set="state" value="checked">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </xsl:for-each>
-        </Button>
-        <Glue/>
-        <Button text="Clear All" listener="ActionListener">
-          <xsl:for-each select="tool">
-            <actionPerformed set="state" value="unchecked">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </xsl:for-each>
-        </Button>
-        <Glue/>
-      </HBox>
-    </VBox>
   </xsl:template>
 
   <xsl:template match="actions">

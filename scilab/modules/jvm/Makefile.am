@@ -37,6 +37,7 @@ libscijvm_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/call_scilab/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/preferences/includes/ \
 			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscijvm-disable.la
@@ -54,7 +55,7 @@ if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
-libscijvm_la_LIBADD =  libscijvm-algo.la
+libscijvm_la_LIBADD = libscijvm-algo.la
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -107,6 +108,7 @@ libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/preferences/src/c \
 			$(AM_CPPFLAGS)
 
 libscijvm_algo_la_SOURCES = $(JVM_C_SOURCES)

@@ -196,42 +196,42 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         /* compute and merge new specified bounds with the data bounds */
         switch (strflag[1])
         {
-        case '0':
-            /* do not change data bounds */
-            break;
-        case '1':
-        case '3':
-        case '5':
-        case '7':
-            /* Force data bounds=brect */
-            re_index_brect(brect, drect);
-            break;
-        case '2':
-        case '4':
-        case '6':
-        case '8':
-        case '9':
-            /* Force data bounds to the x and y bounds */
-            if ((int)strlen(logflags) < 1)
-                dataflag = 'g';
-            else
-                dataflag = logflags[0];
+            case '0':
+                /* do not change data bounds */
+                break;
+            case '1':
+            case '3':
+            case '5':
+            case '7':
+                /* Force data bounds=brect */
+                re_index_brect(brect, drect);
+                break;
+            case '2':
+            case '4':
+            case '6':
+            case '8':
+            case '9':
+                /* Force data bounds to the x and y bounds */
+                if ((int)strlen(logflags) < 1)
+                    dataflag = 'g';
+                else
+                    dataflag = logflags[0];
 
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[0] = iTmp;
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[1] = iTmp;
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[2] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[0] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[1] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[2] = iTmp;
 
-            /* Conversion required by compute_data_bounds2 */
-            textLogFlags[0] = getTextLogFlag(logFlags[0]);
-            textLogFlags[1] = getTextLogFlag(logFlags[1]);
-            textLogFlags[2] = getTextLogFlag(logFlags[2]);
+                /* Conversion required by compute_data_bounds2 */
+                textLogFlags[0] = getTextLogFlag(logFlags[0]);
+                textLogFlags[1] = getTextLogFlag(logFlags[1]);
+                textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-            compute_data_bounds2(0, dataflag, textLogFlags, x, y, *n1, *n2, drect);
+                compute_data_bounds2(0, dataflag, textLogFlags, x, y, *n1, *n2, drect);
 
-            break;
+                break;
         }
 
         /* merge data bounds and drect */
@@ -380,6 +380,8 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
                 setCurrentObject(pobjUID);
 
                 hdl = getHandle(pobjUID);
+                releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+                pobjUID = NULL;
                 if (with_leg)
                 {
                     tabofhandles[cmpt] = hdl;
@@ -438,8 +440,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 
                 setGraphicObjectProperty(legUID, __GO_FILL_MODE__, &contourMode, jni_bool, 1);
                 setGraphicObjectProperty(legUID, __GO_LINE_MODE__, &contourMode, jni_bool, 1);
-
-                setCurrentObject(legUID);
             }
 
             freeArrayOfString(Str, nleg);
@@ -450,7 +450,9 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         /*---- construct Compound ----*/
         if (cmpt > 0)
         {
-            setCurrentObject(ConstructCompound(hdltab, cmpt));
+            char* o = ConstructCompound (hdltab, cmpt);
+            setCurrentObject(o);
+            releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
         }
         FREE(hdltab);
 
@@ -484,21 +486,21 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
 
     switch (dataflag)
     {
-    case 'e':
-        xd[0] = 1.0;
-        xd[1] = (double)n2;
-        x1 = xd;
-        size_x = (n2 != 0) ? 2 : 0;
-        break;
-    case 'o':
-        x1 = x;
-        size_x = n2;
-        break;
-    case 'g':
-    default:
-        x1 = x;
-        size_x = (cflag == 1) ? n1 : (n1 * n2);
-        break;
+        case 'e':
+            xd[0] = 1.0;
+            xd[1] = (double)n2;
+            x1 = xd;
+            size_x = (n2 != 0) ? 2 : 0;
+            break;
+        case 'o':
+            x1 = x;
+            size_x = n2;
+            break;
+        case 'g':
+        default:
+            x1 = x;
+            size_x = (cflag == 1) ? n1 : (n1 * n2);
+            break;
     }
 
     if (size_x != 0)
@@ -509,7 +511,8 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[1] = Maxi(x1, size_x);
         }
         else
-        {                       /* log. case */
+        {
+            /* log. case */
             drect[0] = sciFindStPosMin(x1, size_x);
             drect[1] = Maxi(x1, size_x);
         }
@@ -523,7 +526,8 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[1] = 10.0;
         }
         else
-        {                       /* log. case */
+        {
+            /* log. case */
             drect[0] = 1.0;
             drect[1] = 10.0;
         }
@@ -538,7 +542,8 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[3] = Maxi(y, size_y);
         }
         else
-        {                       /* log. case */
+        {
+            /* log. case */
             drect[2] = sciFindStPosMin(y, size_y);
             drect[3] = Maxi(y, size_y);
         }
@@ -552,7 +557,8 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[3] = 10.0;
         }
         else
-        {                       /* log. case */
+        {
+            /* log. case */
             drect[2] = 1.0;
             drect[3] = 10.0;
         }
@@ -656,28 +662,28 @@ BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
     /* strflag[1] Isoview & tight_limits flags management */
     switch (strflag[1])
     {
-    case '0':
-    case '9':
-        /* no changes */
-        break;
-    case '1':
-    case '2':
-    case '7':
-    case '8':
-        tightLimits = 1;
-        setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
-        break;
-    case '3':
-    case '4':
-        isoview = 1;
-        setGraphicObjectProperty(psubwinUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
-        break;
-    case '5':
-    case '6':
-        /* pretty axes */
-        tightLimits = 0;
-        setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
-        break;
+        case '0':
+        case '9':
+            /* no changes */
+            break;
+        case '1':
+        case '2':
+        case '7':
+        case '8':
+            tightLimits = 1;
+            setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            break;
+        case '3':
+        case '4':
+            isoview = 1;
+            setGraphicObjectProperty(psubwinUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
+            break;
+        case '5':
+        case '6':
+            /* pretty axes */
+            tightLimits = 0;
+            setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            break;
     }
 
     /* F.Leray 07.05.04 */
@@ -685,100 +691,100 @@ BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
     switch (strflag[2])
     {
 
-    case '0':
-        getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
-        firstPlot = iTmp;
+        case '0':
+            getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
+            firstPlot = iTmp;
 
-        if (firstPlot)
-        {
+            if (firstPlot)
+            {
+                axisVisible = 0;
+                /* 0: OFF */
+                boxType = 0;
+
+                setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                /* also trigger z axis */
+                setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+            }
+            /*else no changes : the isaxes properties is driven by the previous plot */
+            break;
+        case '1':
+            axisVisible = 1;
+            /* 1: ON */
+            boxType = 1;
+            /* 4: LEFT */
+            yLocation = 4;
+
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
+            break;
+        case '2':
             axisVisible = 0;
-            /* 0: OFF */
-            boxType = 0;
+            boxType = 1;
 
             setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
             setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
             /* also trigger z axis */
             setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
             setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
-        }
-        /*else no changes : the isaxes properties is driven by the previous plot */
-        break;
-    case '1':
-        axisVisible = 1;
-        /* 1: ON */
-        boxType = 1;
-        /* 4: LEFT */
-        yLocation = 4;
 
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+            break;
+        case '3':
+            axisVisible = 1;
+            boxType = 0;
+            /* 5: RIGHT */
+            yLocation = 5;
 
-        break;
-    case '2':
-        axisVisible = 0;
-        boxType = 1;
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        /* also trigger z axis */
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+            break;
+        case '4':
+            axisVisible = 1;
+            /* 2: MIDDLE */
+            xLocation = 2;
+            yLocation = 2;
+            boxType = 0;
 
-        break;
-    case '3':
-        axisVisible = 1;
-        boxType = 0;
-        /* 5: RIGHT */
-        yLocation = 5;
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            /* also trigger z axis */
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+            break;
+        case '5':
+            axisVisible = 1;
+            xLocation = 2;
+            yLocation = 2;
+            boxType = 1;
 
-        break;
-    case '4':
-        axisVisible = 1;
-        /* 2: MIDDLE */
-        xLocation = 2;
-        yLocation = 2;
-        boxType = 0;
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            /* also trigger z axis */
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        /* also trigger z axis */
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+            break;
+        case '9':
+            axisVisible = 1;
 
-        break;
-    case '5':
-        axisVisible = 1;
-        xLocation = 2;
-        yLocation = 2;
-        boxType = 1;
-
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        /* also trigger z axis */
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
-
-        break;
-    case '9':
-        axisVisible = 1;
-
-        setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-        /* also trigger z axis */
-        setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            /* also trigger z axis */
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
     }
 
     getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, jni_bool, &piTmp);
@@ -803,9 +809,9 @@ BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
 
     /* Find if something has changed */
     if (axesVisible[0] != axesVisiblePrev[0]
-        || axesVisible[1] != axesVisiblePrev[1]
-        || axesVisible[2] != axesVisiblePrev[2]
-        || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev || tightLimits != tightLimitsPrev || isoview != isoviewPrev)
+            || axesVisible[1] != axesVisiblePrev[1]
+            || axesVisible[2] != axesVisiblePrev[2]
+            || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev || tightLimits != tightLimitsPrev || isoview != isoviewPrev)
     {
         haschanged = TRUE;
     }

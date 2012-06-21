@@ -86,6 +86,7 @@ for k=-n:n,
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //send double buffer to screen
+  sleep(8); // Slow down the simulation
 end
 f.pixmap='off';
  ]]></programlisting>

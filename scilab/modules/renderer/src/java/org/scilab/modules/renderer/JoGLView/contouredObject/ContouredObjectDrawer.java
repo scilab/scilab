@@ -59,10 +59,11 @@ public class ContouredObjectDrawer {
     /**
      * Draws the given ContouredObject.
      * @param contouredObject the ContouredObject to draw.
+     * @param use2dView a boolean specifying whether the 2D view mode is used or not.
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      * @throws ObjectRemovedException 
      */
-    public void draw(ContouredObject contouredObject) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
+    public void draw(ContouredObject contouredObject, boolean use2dView) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
 
@@ -91,6 +92,10 @@ public class ContouredObjectDrawer {
             appearance.setLineWidth(contouredObject.getLineThickness().floatValue());
         } else {
             geometry.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
+        }
+
+        if (!use2dView) {
+            geometry.setPolygonOffsetMode(true);
         }
 
         drawingTools.draw(geometry, appearance);

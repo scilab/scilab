@@ -18,17 +18,17 @@ extern "C"
 #include "FigureModel.h"
 }
 
-char* getFigureModel(void)
+char const* getFigureModel(void)
 {
     return ScilabView::getFigureModel();
 }
 
-void setFigureModel(char *UID)
+void setFigureModel(char const* UID)
 {
     ScilabView::setFigureModel(UID);
 }
 
-BOOL isFigureModel(char *UID)
+BOOL isFigureModel(char const* UID)
 {
     if (strcmp(UID, getFigureModel()) == 0)
     {

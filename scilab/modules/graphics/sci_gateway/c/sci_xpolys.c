@@ -73,7 +73,11 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     }
 
     /** Construct Compound and make it current object**/
-    setCurrentObject(ConstructCompoundSeq(n1));
+    {
+        char * o = ConstructCompoundSeq(n1);
+        setCurrentObject(o);
+        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
+    }
 
     LhsVar(1) = 0;
     PutLhsVar();

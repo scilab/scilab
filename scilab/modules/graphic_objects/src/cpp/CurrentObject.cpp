@@ -14,22 +14,24 @@
 
 extern "C"
 {
+#include <string.h>
+
 #include "BOOL.h"
 #include "CurrentObject.h"
 }
 
 
-char* getCurrentObject(void)
+char const* getCurrentObject(void)
 {
     return ScilabView::getCurrentObject();
 }
 
-void setCurrentObject(char *UID)
+void setCurrentObject(char const* UID)
 {
     ScilabView::setCurrentObject(UID);
 }
 
-BOOL isCurrentObject(char* UID)
+BOOL isCurrentObject(char const* UID)
 {
     if (strcmp(UID, ScilabView::getCurrentObject()) == 0)
     {

@@ -27,12 +27,12 @@ void *sciGetPointerFromHandle(long handle)
     return NULL;
 }
 
-long getHandle(char* UID)
+long getHandle(char const* UID)
 {
     return ScilabView::getObjectHandle(UID);
 }
 
-char *getObjectFromHandle(long handle)
+char const* getObjectFromHandle(long handle)
 {
     return ScilabView::getObjectFromHandle(handle);
 }

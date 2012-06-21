@@ -10,6 +10,8 @@
  *
  */
 
+extern "C"
+{
 #include "machine.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -24,15 +26,12 @@
 
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+    // #include <stdio.h>
+    // #define LOG(...) printf(__VA_ARGS__)
+#define LOG(...)
+}
 
-// #include <stdio.h>
-// #define LOG printf
-#define LOG
-
-char *findChildWithKindAt(char *parent, const char *type, const int position)
+char *findChildWithKindAt(char const* parent, char const* type, const int position)
 {
     char *child = NULL;
 
@@ -44,7 +43,6 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
     int typeCount;
 
     int *pChildrenCount = &childrenCount;
-
     getGraphicObjectProperty(parent, __GO_CHILDREN_COUNT__, jni_int, (void **)&pChildrenCount);
     getGraphicObjectProperty(parent, __GO_CHILDREN__, jni_string_vector, (void **)&children);
 
@@ -56,32 +54,32 @@ char *findChildWithKindAt(char *parent, const char *type, const int position)
         {
             typeCount++;
         }
-        //      Commented due to the C++ allocation
-        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-        //      FREE(childType);
+
+        releaseGraphicObjectProperty(__GO_TYPE__, childType, jni_string, 1);
 
         if (typeCount == (position + 1))
         {
-            child = strdup(children[i]);
+            /*
+             * Use a C++ allocation, to allow a future delete char* . Using strdup there will perform a malloc allocation instead of a new allocation.
+             */
+            int len = (int) strlen(children[i]);
+            child = new char[len + 1];
+            strcpy(child, children[i]);
+
             LOG("%s: found %s at %d : %s\n", "findChildWithKindAt", type, position, child);
             break;
         }
     }
 
-    //  Commented due to the C++ allocation
-    //  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-    //  for (; i>=0; i--) {
-    //      FREE(children[i]);
-    //  }
-    //  FREE(children);
+    releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_string_vector, childrenCount);
+    releaseGraphicObjectProperty(__GO_CHILDREN_COUNT__, &childrenCount, jni_int, 1);
 
     return child;
 };
 
-BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label)
+BOOL setLabel(char const* pAxeUID, char const* _pstName, char const* label)
 {
     char *pLabelUID;
-    char *rwLabel = strdup(label);
     int dimensions[2];
 
     BOOL result = TRUE;
@@ -98,13 +96,10 @@ BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label)
 
     if (pLabelUID != NULL && result == TRUE)
     {
-        result = setGraphicObjectProperty(pLabelUID, __GO_TEXT_STRINGS__, &rwLabel, jni_string_vector, 1);
+        result = setGraphicObjectProperty(pLabelUID, __GO_TEXT_STRINGS__, &label, jni_string_vector, 1);
     }
 
-    FREE(rwLabel);
-    //  Commented due to the C++ allocation
-    //  see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-    //  FREE(pLabelUID);
+    releaseGraphicObjectProperty(_pstName, pLabelUID, jni_string, 1);
 
-    return result && pLabelUID != NULL;
+    return (BOOL) (result && pLabelUID != NULL);
 }

@@ -17,16 +17,16 @@
 /**
  * Returns UID of the current selected figure.
  */
-GRAPHIC_OBJECTS_IMPEXP char* getCurrentFigure(void);
+GRAPHIC_OBJECTS_IMPEXP char const* getCurrentFigure(void);
 
 /**
  * Modify the current figure if needed.
  */
-GRAPHIC_OBJECTS_IMPEXP void setCurrentFigure(char* UID);
+GRAPHIC_OBJECTS_IMPEXP void setCurrentFigure(char const* UID);
 
 /**
  * To know if a figure is the selected one.
  */
-GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentFigure(char* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentFigure(char const* UID);
 
 #endif /* !__CURRENT_FIGURE_H__ */

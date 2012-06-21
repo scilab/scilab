@@ -51,6 +51,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getScilabPreference.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\ScilabPreferences.hxx">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_preferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getScilabPreference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

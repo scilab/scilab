@@ -10,12 +10,6 @@
  */
 package org.scilab.modules.renderer.JoGLView.interaction;
 
-import org.scilab.modules.commons.OS;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,7 +19,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import javax.swing.SwingUtilities;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * This class manage figure interaction.
@@ -35,8 +33,9 @@ import javax.swing.SwingUtilities;
 public class DragZoomRotateInteraction extends FigureInteraction {
 
     private static final int XY_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK;
-    private static final int Z_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK;
+    private static final int Z_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.ALT_MASK;
     private static final int ROTATION_MODIFIER = MouseEvent.BUTTON3_MASK;
+    private static final int MACOSX_ROTATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK;
 
     /**
      * The box size is multiply by this value.
@@ -154,8 +153,24 @@ public class DragZoomRotateInteraction extends FigureInteraction {
     private class FigureMouseMotionListener extends MouseMotionAdapter implements MouseMotionListener {
 
         @Override
+        public void mouseMoved(MouseEvent e) {
+            /*
+             * Mac OS X specific case: the users first presses CTRL and then left-clic.
+             */
+            if (OS.get() == OS.MAC && e.isControlDown() && e.getButton() == 0) {
+                doRotation(e);
+            }
+        }
         public void mouseDragged(MouseEvent e) {
             switch (e.getModifiers()) {
+                case MACOSX_ROTATION_MODIFIER:
+                    /*
+                     * Mac OS X specific case: the users first left-clic and then presses CTRL
+                     */
+                    if (OS.get() == OS.MAC && e.isControlDown()) {
+                        doRotation(e);
+                        break;
+                    }
                 case XY_TRANSLATION_MODIFIER:
                     doXYTranslation(e);
                     break;
@@ -165,11 +180,6 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 case ROTATION_MODIFIER:
                     doRotation(e);
                     break;
-            }
-
-            // Specific Mac OS case for rotation
-            if (SwingUtilities.isRightMouseButton(e)) {
-                doRotation(e);
             }
 
             previousEvent = e;

@@ -971,7 +971,7 @@
     <ClCompile Include="zcross2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scoUtils.c">
+    <ClCompile Include="..\cpp\scoUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -986,9 +986,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scicos_block4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scoUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dmmul.h">
@@ -1007,6 +1004,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_scicos_blocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\scoUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

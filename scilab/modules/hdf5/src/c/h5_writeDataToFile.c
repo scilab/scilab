@@ -663,6 +663,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols,
         status = H5Gclose(group);
         if (status < 0)
         {
+            FREE(pstGroupName);
             return -1;
         }
     }

@@ -44,8 +44,8 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 {
     char* psubwinUID = NULL;
     char* pgrayplotUID = NULL;
-    double xx[2],yy[2];
-    int nn1=1,nn2=2;
+    double xx[2], yy[2];
+    int nn1 = 1, nn2 = 2;
     double drect[6];
     BOOL bounds_changed = FALSE;
     BOOL isRedrawn = FALSE;
@@ -62,8 +62,10 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int iTmp = 0;
     int* piTmp = &iTmp;
 
-    xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
-    yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
+    xx[0] = Mini(x, *n1);
+    xx[1] = Maxi(x, *n1);
+    yy[0] = Mini(y, *n2);
+    yy[1] = Maxi(y, *n2);
 
     /* Adding F.Leray 22.04.04 */
     psubwinUID = getCurrentSubWin();
@@ -81,12 +83,12 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
     {
         pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
     }
     else
     {
-        pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
+        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
     }
 #endif
 
@@ -111,48 +113,56 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
-        switch (strflag[1])  {
-          case '0':
-            /* do not change data bounds */
-            break;
-          case '1' : case '3' : case '5' : case '7':
-            /* Force data bounds=brect */
-            re_index_brect(brect, drect);
-            break;
-          case '2' : case '4' : case '6' : case '8': case '9':
+        switch (strflag[1])
+        {
+            case '0':
+                /* do not change data bounds */
+                break;
+            case '1' :
+            case '3' :
+            case '5' :
+            case '7':
+                /* Force data bounds=brect */
+                re_index_brect(brect, drect);
+                break;
+            case '2' :
+            case '4' :
+            case '6' :
+            case '8':
+            case '9':
 
-              getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-              logFlags[0] = iTmp;
-              getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-              logFlags[1] = iTmp;
-              getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-              logFlags[2] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[0] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[1] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[2] = iTmp;
 
-            /* Conversion required by compute_data_bounds2 */
-            textLogFlags[0] = getTextLogFlag(logFlags[0]);
-            textLogFlags[1] = getTextLogFlag(logFlags[1]);
-            textLogFlags[2] = getTextLogFlag(logFlags[2]);
+                /* Conversion required by compute_data_bounds2 */
+                textLogFlags[0] = getTextLogFlag(logFlags[0]);
+                textLogFlags[1] = getTextLogFlag(logFlags[1]);
+                textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-            /* Force data bounds to the x and y bounds */
-            compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
-            break;
+                /* Force data bounds to the x and y bounds */
+                compute_data_bounds2(0, 'g', textLogFlags, xx, yy, nn1, nn2, drect);
+                break;
         }
 
         /* merge data bounds and drect */
-        if (!firstPlot &&(strflag[1] == '7' || strflag[1] == '8'))
+        if (!firstPlot && (strflag[1] == '7' || strflag[1] == '8'))
         {
             double* dataBounds;
             getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
-            drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
-            drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
-            drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
-            drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
+            drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
+            drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
+            drect[1] = Max(dataBounds[1], drect[1]); /*xmax*/
+            drect[3] = Max(dataBounds[3], drect[3]); /*ymax*/
         }
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwinUID, drect,2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
         }
     }
 
@@ -190,7 +200,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
              * To be implemented using the MVC framework
              */
 #if 0
-            CreatePrettyGradsFromNax(psubwin,aaint);
+            CreatePrettyGradsFromNax(psubwin, aaint);
 #endif
         }
         else
@@ -199,19 +209,19 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         }
     }
 
-    if( bounds_changed || axes_properties_changed )
+    if ( bounds_changed || axes_properties_changed )
     {
-      /*
-       * Deactivated since it tells the renderer module that the object has changed
-       * To be implemented
-       */
+        /*
+         * Deactivated since it tells the renderer module that the object has changed
+         * To be implemented
+         */
 #if 0
         forceRedraw(psubwin);
 #endif
     }
 
     /* Constructs the object */
-    pgrayplotUID = ConstructGrayplot(getCurrentSubWin(), x,y,z,*n1,*n2,0);
+    pgrayplotUID = ConstructGrayplot(getCurrentSubWin(), x, y, z, *n1, *n2, 0);
 
     /* Failed allocation */
     if (pgrayplotUID == NULL)
@@ -222,6 +232,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 
     /* Sets the grayplot as current */
     setCurrentObject(pgrayplotUID);
+    releaseGraphicObjectProperty(__GO_PARENT__, pgrayplotUID, jni_string, 1);
 
     /*
      * Deactivated as it performs redrawing.
@@ -250,8 +261,8 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 {
     char* psubwinUID = NULL;
     char* pGrayplotUID = NULL;
-    double xx[2],yy[2];
-    static int nn1=1,nn2=2;
+    double xx[2], yy[2];
+    static int nn1 = 1, nn2 = 2;
     double drect[6];
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;
@@ -268,9 +279,9 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     int* piTmp = &iTmp;
 
     xx[0] = 0.5;
-    xx[1]= *n2+0.5;
+    xx[1] = *n2 + 0.5;
     yy[0] = 0.5;
-    yy[1] = *n1+0.5;
+    yy[1] = *n1 + 0.5;
 
     /* Adding F.Leray 22.04.04 */
     psubwinUID = getCurrentSubWin();
@@ -284,12 +295,12 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
     {
         pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
     }
     else
     {
-        pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
+        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
     }
 #endif
 
@@ -314,34 +325,42 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
-        switch (strflag[1])  {
-        case '0':
-            /* do not change data bounds */
-            break;
-        case '1' : case '3' : case '5' : case '7':
-            /* Force data bounds=brect */
-            re_index_brect(brect, drect);
-            break;
-        case '2' : case '4' : case '6' : case '8': case '9':
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[0] = iTmp;
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[1] = iTmp;
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
-            logFlags[2] = iTmp;
+        switch (strflag[1])
+        {
+            case '0':
+                /* do not change data bounds */
+                break;
+            case '1' :
+            case '3' :
+            case '5' :
+            case '7':
+                /* Force data bounds=brect */
+                re_index_brect(brect, drect);
+                break;
+            case '2' :
+            case '4' :
+            case '6' :
+            case '8':
+            case '9':
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[0] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[1] = iTmp;
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                logFlags[2] = iTmp;
 
-            /* Conversion required by compute_data_bounds2 */
-            textLogFlags[0] = getTextLogFlag(logFlags[0]);
-            textLogFlags[1] = getTextLogFlag(logFlags[1]);
-            textLogFlags[2] = getTextLogFlag(logFlags[2]);
+                /* Conversion required by compute_data_bounds2 */
+                textLogFlags[0] = getTextLogFlag(logFlags[0]);
+                textLogFlags[1] = getTextLogFlag(logFlags[1]);
+                textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-            compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
-            break;
+                compute_data_bounds2(0, 'g', textLogFlags, xx, yy, nn1, nn2, drect);
+                break;
         }
 
         /* merge data bounds and drect */
         if (!firstPlot &&
-          (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+                (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
             double* dataBounds;
             getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
@@ -394,7 +413,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
              * To be implemented using the MVC framework
              */
 #if 0
-            CreatePrettyGradsFromNax(psubwin,aaint);
+            CreatePrettyGradsFromNax(psubwin, aaint);
 #endif
         }
         else
@@ -403,7 +422,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
         }
     }
 
-    if( bounds_changed || axes_properties_changed )
+    if ( bounds_changed || axes_properties_changed )
     {
         /* subwin has been modified by the above code */
         /*
@@ -416,7 +435,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     }
 
     /* Construct the grayplot object */
-    pGrayplotUID = ConstructGrayplot(psubwinUID,NULL,NULL,z,*n1 + 1,*n2 + 1,1);
+    pGrayplotUID = ConstructGrayplot(psubwinUID, NULL, NULL, z, *n1 + 1, *n2 + 1, 1);
 
     if (pGrayplotUID == NULL)
     {
@@ -426,6 +445,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     }
 
     setCurrentObject(pGrayplotUID);
+    releaseGraphicObjectProperty(__GO_PARENT__, pGrayplotUID, jni_string, 1);
     /* if the auto_clear is on we must redraw everything */
 
     /*
@@ -453,6 +473,7 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     BOOL isRedrawn = FALSE;
     double y; /* void for ConstructGrayplot */
     int clipState = 0;
+    int firstPlot = 0;
 
     isRedrawn = checkRedrawing();
 
@@ -469,8 +490,8 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
 #endif
 
     pGrayplotUID = ConstructGrayplot
-        ((char *) psubwinUID,
-         xrect,&y,z,*n1+1,*n2+1,2);
+                   ((char *) psubwinUID,
+                    xrect, &y, z, *n1 + 1, *n2 + 1, 2);
 
     if (pGrayplotUID == NULL)
     {
@@ -480,6 +501,9 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     }
 
     setCurrentObject(pGrayplotUID);
+    releaseGraphicObjectProperty(__GO_PARENT__, pGrayplotUID, jni_string, 1);
+
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* if the auto_clear is on we must redraw everything */
     /*

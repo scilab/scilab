@@ -59,7 +59,6 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     bool bImport = true;
 
     int iSelectedVar = Rhs - 1;
-    bool bSelectedVar = false;
 
     checkInputArgumentAtLeast(pvApiCtx, 1);
     CheckLhs(1, 1);
@@ -71,13 +70,13 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     iCloseList = 0;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstFilename))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFilename))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
@@ -97,26 +96,26 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     FREE(pstExpandedFilename);
     FREE(pstFilename);
 
-    if(iSelectedVar)
-    {//selected variable
-        bSelectedVar = true;
+    if (iSelectedVar)
+    {
+        //selected variable
         char* pstVarName = NULL;
-        for(int i = 0 ; i < iSelectedVar ; i++)
+        for (int i = 0 ; i < iSelectedVar ; i++)
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, i + 2, &piAddr);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 1;
             }
 
-            if(getAllocatedSingleString(pvApiCtx, piAddr, &pstVarName))
+            if (getAllocatedSingleString(pvApiCtx, piAddr, &pstVarName))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, i + 1);
                 return 1;
             }
 
-            if(import_variable(iFile, pstVarName) == false)
+            if (import_variable(iFile, pstVarName) == false)
             {
                 bImport = false;
                 break;
@@ -126,7 +125,8 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
         }
     }
     else
-    {//all variables
+    {
+        //all variables
         int iNbItem = 0;
         iNbItem = getVariableNames(iFile, NULL);
         if (iNbItem != 0)
@@ -138,7 +138,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
             //import all data
             for (int i = 0; i < iNbItem; i++)
             {
-                if(import_variable(iFile, pstVarNameList[i]) == false)
+                if (import_variable(iFile, pstVarNameList[i]) == false)
                 {
                     bImport = false;
                     break;
@@ -194,59 +194,59 @@ static bool import_data(int _iDatasetId, int _iItemPos, int *_piAddress, char *_
 
     switch (iVarType)
     {
-    case sci_matrix:
+        case sci_matrix:
         {
             bRet = import_double(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_strings:
+        case sci_strings:
         {
             bRet = import_string(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_list:
-    case sci_tlist:
-    case sci_mlist:
+        case sci_list:
+        case sci_tlist:
+        case sci_mlist:
         {
             bRet = import_list(_iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_boolean:
+        case sci_boolean:
         {
             bRet = import_boolean(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_poly:
+        case sci_poly:
         {
             bRet = import_poly(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_ints:
+        case sci_ints:
         {
             bRet = import_integer(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_sparse:
+        case sci_sparse:
         {
             bRet = import_sparse(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_boolean_sparse:
+        case sci_boolean_sparse:
         {
             bRet = import_boolean_sparse(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_void:             //void item only on list variable
+        case sci_void:             //void item only on list variable
         {
             bRet = import_void(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    case sci_undefined:        //undefined item only on list variable
+        case sci_undefined:        //undefined item only on list variable
         {
             bRet = import_undefined(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-    default:
+        default:
         {
             Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
 #ifdef PRINT_DEBUG
@@ -533,7 +533,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
 
     switch (iPrec)
     {
-    case SCI_INT8:
+        case SCI_INT8:
         {
             char *pcData = NULL;
 
@@ -554,7 +554,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_UINT8:
+        case SCI_UINT8:
         {
             unsigned char *pucData = NULL;
 
@@ -575,7 +575,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_INT16:
+        case SCI_INT16:
         {
             short *psData = NULL;
 
@@ -596,7 +596,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_UINT16:
+        case SCI_UINT16:
         {
             unsigned short *pusData = NULL;
 
@@ -617,7 +617,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_INT32:
+        case SCI_INT32:
         {
             int *piData = NULL;
 
@@ -638,7 +638,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_UINT32:
+        case SCI_UINT32:
         {
             unsigned int *puiData = NULL;
 
@@ -659,7 +659,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             }
         }
         break;
-    case SCI_INT64:
+        case SCI_INT64:
         {
 #ifdef __SCILAB_INT64__
             long long *pllData = NULL;
@@ -684,7 +684,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
 #endif
         }
         break;
-    case SCI_UINT64:
+        case SCI_UINT64:
         {
 #ifdef __SCILAB_INT64__
             unsigned long long *pullData = NULL;
@@ -709,8 +709,8 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
 #endif
         }
         break;
-    default:
-        return false;
+        default:
+            return false;
     }
 
 #ifdef PRINT_DEBUG
@@ -845,7 +845,7 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int *_piAddress, char *_
         {
             sciErr =
                 createComplexMatrixOfPolyInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal,
-                                                     pdblImg);
+                        pdblImg);
         }
         else
         {
@@ -940,7 +940,7 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         {
             sciErr =
                 createComplexSparseMatrixInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos,
-                                                     pdblReal, pdblImg);
+                        pdblReal, pdblImg);
         }
         else
         {
@@ -1051,7 +1051,8 @@ static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piA
     }
 
     if (iItems == 0)
-    {                           //special case for empty list
+    {
+        //special case for empty list
     }
     else
     {
@@ -1073,34 +1074,34 @@ static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piA
     {
         switch (_iVarType)
         {
-        case sci_list:
-            sciErr = createNamedList(pvApiCtx, _pstVarname, iItems, &piListAddr);
-            break;
-        case sci_tlist:
-            sciErr = createNamedTList(pvApiCtx, _pstVarname, iItems, &piListAddr);
-            break;
-        case sci_mlist:
-            sciErr = createNamedMList(pvApiCtx, _pstVarname, iItems, &piListAddr);
-            break;
-        default:
-            return false;
+            case sci_list:
+                sciErr = createNamedList(pvApiCtx, _pstVarname, iItems, &piListAddr);
+                break;
+            case sci_tlist:
+                sciErr = createNamedTList(pvApiCtx, _pstVarname, iItems, &piListAddr);
+                break;
+            case sci_mlist:
+                sciErr = createNamedMList(pvApiCtx, _pstVarname, iItems, &piListAddr);
+                break;
+            default:
+                return false;
         }
     }
     else                        //if not null this variable is in a list
     {
         switch (_iVarType)
         {
-        case sci_list:
-            sciErr = createListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        case sci_tlist:
-            sciErr = createTListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        case sci_mlist:
-            sciErr = createMListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        default:
-            return false;
+            case sci_list:
+                sciErr = createListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
+                break;
+            case sci_tlist:
+                sciErr = createTListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
+                break;
+            case sci_mlist:
+                sciErr = createMListInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
+                break;
+            default:
+                return false;
         }
     }
 

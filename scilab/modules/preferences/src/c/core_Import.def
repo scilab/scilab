@@ -6,3 +6,4 @@ EXPORTS
 callFunctionFromGateway
 getScilabMode
 com_
+getSCIHOME

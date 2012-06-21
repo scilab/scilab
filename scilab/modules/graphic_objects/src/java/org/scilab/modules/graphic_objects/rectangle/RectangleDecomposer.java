@@ -78,8 +78,6 @@ public class RectangleDecomposer {
                 /* The rectangle's z coordinate */
                 double zcoord;
 
-                float [] coords;
-
                 xcoords = new double[2];
                 ycoords = new double[2];
 
@@ -95,8 +93,6 @@ public class RectangleDecomposer {
 
                 zcoord = upperLeftPoint[2];
 
-                coords = new float[NUMBER_VERTICES*elementsSize];
-
                 /* Vertices are output in the following order: lower-left, lower-right, upper-left and upper-right. */
                 if ((coordinateMask & 0x1) != 0) {
                         if ((logMask & 0x1) != 0) {
@@ -107,10 +103,10 @@ public class RectangleDecomposer {
                         xcoords[0] = xcoords[0] * scale[0] + translation[0];
                         xcoords[1] = xcoords[1] * scale[0] + translation[0];
 
-                        coords[0] = (float) xcoords[0];
-                        coords[elementsSize] = (float) xcoords[1];
-                        coords[2*elementsSize] = (float) xcoords[0];
-                        coords[3*elementsSize] = (float) xcoords[1];
+                        buffer.put(0, (float) xcoords[0]);
+                        buffer.put(elementsSize, (float) xcoords[1]);
+                        buffer.put(2*elementsSize, (float) xcoords[0]);
+                        buffer.put(3*elementsSize, (float) xcoords[1]);
                 }
 
                 if ((coordinateMask & 0x2) != 0) {
@@ -122,10 +118,10 @@ public class RectangleDecomposer {
                         ycoords[0] = ycoords[0] * scale[1] + translation[1];
                         ycoords[1] = ycoords[1] * scale[1] + translation[1];
 
-                        coords[1] = (float) ycoords[0];
-                        coords[elementsSize +1] = (float) ycoords[0];
-                        coords[2*elementsSize +1] = (float) ycoords[1];
-                        coords[3*elementsSize +1] = (float) ycoords[1];
+                        buffer.put(1, (float) ycoords[0]);
+                        buffer.put(elementsSize +1, (float) ycoords[0]);
+                        buffer.put(2*elementsSize +1, (float) ycoords[1]);
+                        buffer.put(3*elementsSize +1, (float) ycoords[1]);
                 }
 
                 if ((coordinateMask & 0x4) != 0) {
@@ -135,20 +131,18 @@ public class RectangleDecomposer {
 
                         zcoord = zcoord * scale[2] + translation[2];
 
-                        coords[2] = (float) zcoord;
-                        coords[elementsSize +2] = (float) zcoord;
-                        coords[2*elementsSize +2] = (float) zcoord;
-                        coords[3*elementsSize +2] = (float) zcoord;
+                        buffer.put(2, (float) zcoord);
+                        buffer.put(elementsSize +2, (float) zcoord);
+                        buffer.put(2*elementsSize +2, (float) zcoord);
+                        buffer.put(3*elementsSize +2, (float) zcoord);
                 }
 
                 if (elementsSize == 4 && (coordinateMask & 0x8) != 0) {
-                        coords[3] = 1.0f;
-                        coords[elementsSize +3] = 1.0f;
-                        coords[2*elementsSize +3] = 1.0f;
-                        coords[3*elementsSize +3] = 1.0f;
+                        buffer.put(3, 1.0f);
+                        buffer.put(elementsSize +3, 1.0f);
+                        buffer.put(2*elementsSize +3, 1.0f);
+                        buffer.put(3*elementsSize +3, 1.0f);
                 }
-
-                buffer.put(coords);
         }
 
         /**

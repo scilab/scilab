@@ -122,7 +122,7 @@ $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
 $(top_builddir)/libs/libst/libscilibst.la
 
 
-GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
+GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
@@ -134,7 +134,8 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
 # HDF5 is here because it needs the JVM (see bug #5481)
@@ -184,10 +185,11 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
-    $(top_builddir)/modules/statistics/libscistatistics.la \
-    $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
-	$(top_builddir)/modules/xml/libscixml.la
+	$(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -205,8 +207,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/preferences/libscipreferences.la
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # Core modules

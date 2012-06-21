@@ -39,9 +39,9 @@ function demo_ode_lorentz()
   function h = poly3d(x,y,z)
     xpoly(x,y);h=gce();h.data(:,3)=z
   endfunction
-  
+
   curAxe = gca();
-  
+
   drawlater()
   curAxe                 = gca();
   curAxe.view            = '3d'
@@ -57,18 +57,18 @@ function demo_ode_lorentz()
   curAxe.x_label.text    = 'y1'
   curAxe.y_label.text    = 'y2'
   curAxe.z_label.text    = 'y3'
-  
+
   //the trace
   p = poly3d(y(1,1),y(2,1),y(3,1));
   drawnow()
-  
+
   //Animate
   for k=1:size(y,2)
-  
+    sleep(10)
     if ~is_handle_valid(my_handle) then
       break;
     end
-  
+
     if is_handle_valid(p) then
       p.data=[p.data;
         y(1:3,k)'];

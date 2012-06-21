@@ -85,7 +85,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private int width = -1;
     private boolean isLatex;
 
-    private PlainView plainView;
     private List<KeyStroke> keysForHistory;
 
     /**

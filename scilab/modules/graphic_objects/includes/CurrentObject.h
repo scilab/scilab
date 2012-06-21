@@ -17,16 +17,16 @@
 /**
  * Returns UID of the current selected object.
  */
-GRAPHIC_OBJECTS_IMPEXP char* getCurrentObject(void);
+GRAPHIC_OBJECTS_IMPEXP char const* getCurrentObject(void);
 
 /**
  * Modify the current object if needed.
  */
-GRAPHIC_OBJECTS_IMPEXP void setCurrentObject(char* UID);
+GRAPHIC_OBJECTS_IMPEXP void setCurrentObject(char const* UID);
 
 /**
  * To know if an object is the selected one.
  */
-GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentObject(char* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentObject(char const* UID);
 
 #endif /* !__CURRENT_OBJECT_H__ */

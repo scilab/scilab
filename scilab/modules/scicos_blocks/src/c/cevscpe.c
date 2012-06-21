@@ -10,6 +10,8 @@
  *
  */
 
+#include <string.h>
+
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
@@ -29,6 +31,9 @@
 #include "scicos.h"
 
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -57,7 +62,7 @@ typedef struct
     {
         int periodCounter;
 
-        char *cachedFigureUID;
+        char const* cachedFigureUID;
         char *cachedAxeUID;
         char **cachedSegsUIDs;
     } scope;
@@ -104,7 +109,7 @@ static BOOL pushData(scicos_block * block, int input);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char *getFigure(scicos_block * block);
+static char const* getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
@@ -113,7 +118,7 @@ static char *getFigure(scicos_block * block);
  * \param block the block
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char *pFigureUID, scicos_block * block);
+static char *getAxe(char const* pFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the segs associated with the input
@@ -152,7 +157,7 @@ static BOOL setBounds(scicos_block * block, int periodCounter);
 */
 SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
 
     double t;
     int i;
@@ -338,18 +343,11 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.maxNumberOfPoints);
         FREE(sco->internal.numberOfPoints);
 
-        //      Commented due to the C++ allocation
-        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-        //      FREE(sco->scope.cachedFigureUID);
-        //      FREE(sco->scope.cachedAxeUID);
-        //      sco->scope.cachedFigureUID = NULL;
-        //      for (i=0; i<nclk; i++) {
-        //              FREE(sco->scope.cachedPolylinesUIDs[i]);
-        //              sco->scope.cachedPolylinesUIDs[i] = NULL;
-        //      }
-        //      sco->scope.cachedAxeUID = NULL;
-
-        FREE(sco->scope.cachedSegsUIDs);
+        for (i = 0; i < nclk; i++)
+        {
+            FREE(sco->scope.cachedSegsUIDs[i]);
+        }
+        FREE(sco->scope.cachedAxeUID);
 
         FREE(sco);
     }
@@ -484,7 +482,7 @@ static void appendData(scicos_block * block, int input, double t)
 
 static BOOL pushData(scicos_block * block, int input)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pSegsUID;
 
@@ -527,7 +525,7 @@ static BOOL pushData(scicos_block * block, int input)
  * \param pFigureUID the figure uid
  * \param block the current block
  */
-static void setFigureSettings(char *pFigureUID, scicos_block * block)
+static void setFigureSettings(char const* pFigureUID, scicos_block * block)
 {
     int nipar = GetNipar(block);
     int *ipar = GetIparPtrs(block);
@@ -557,10 +555,10 @@ static void setFigureSettings(char *pFigureUID, scicos_block * block)
  *
  ****************************************************************************/
 
-static char *getFigure(scicos_block * block)
+static char const* getFigure(scicos_block * block)
 {
     signed int figNum;
-    char *pFigureUID = NULL;
+    char const* pFigureUID = NULL;
     char *pAxe = NULL;
     int i__1 = 1;
     sco_data *sco = getScoData(block);
@@ -586,6 +584,10 @@ static char *getFigure(scicos_block * block)
         pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = pFigureUID;
+
         // set configured parameters
         setFigureSettings(pFigureUID, block);
 
@@ -602,8 +604,6 @@ static char *getFigure(scicos_block * block)
         setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
         setBounds(block, 0);
-
-        sco->scope.cachedFigureUID = pFigureUID;
     }
 
     if (sco->scope.cachedFigureUID == NULL)
@@ -613,7 +613,7 @@ static char *getFigure(scicos_block * block)
     return pFigureUID;
 }
 
-static char *getAxe(char *pFigureUID, scicos_block * block)
+static char *getAxe(char const* pFigureUID, scicos_block * block)
 {
     char *pAxe;
     int i;
@@ -635,7 +635,7 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
     if (pAxe == NULL)
     {
         cloneAxesModel(pFigureUID);
-        pAxe = getCurrentObject();
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
     }
 
     /*
@@ -651,13 +651,14 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
     }
 
     /*
-     * then cache
+     * then cache with a local storage
      */
-    if (sco->scope.cachedAxeUID == NULL)
+    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
     {
-        sco->scope.cachedAxeUID = pAxe;
+        sco->scope.cachedAxeUID = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     }
-    return pAxe;
+    return sco->scope.cachedAxeUID;
 }
 
 static char *getSegs(char *pAxeUID, scicos_block * block, int input)
@@ -719,18 +720,19 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
     }
 
     /*
-     * then cache
+     * then cache with a local storage
      */
-    if (sco->scope.cachedSegsUIDs != NULL)
+    if (pSegs != NULL && sco->scope.cachedSegsUIDs != NULL && sco->scope.cachedSegsUIDs[input] == NULL)
     {
-        sco->scope.cachedSegsUIDs[input] = pSegs;
+        sco->scope.cachedSegsUIDs[input] = strdup(pSegs);
+        releaseGraphicObjectProperty(__GO_PARENT__, pSegs, jni_string, 1);
     }
-    return pSegs;
+    return sco->scope.cachedSegsUIDs[input];
 }
 
 static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
     char *pSegsUID;
 
@@ -763,7 +765,7 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
 
 static BOOL setBounds(scicos_block * block, int periodCounter)
 {
-    char *pFigureUID;
+    char const* pFigureUID;
     char *pAxeUID;
 
     double dataBounds[6];

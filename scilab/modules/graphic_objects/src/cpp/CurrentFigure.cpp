@@ -14,21 +14,23 @@
 
 extern "C"
 {
+#include <string.h>
+
 #include "BOOL.h"
 #include "CurrentFigure.h"
 }
 
-char* getCurrentFigure(void)
+char const* getCurrentFigure(void)
 {
     return ScilabView::getCurrentFigure();
 }
 
-void setCurrentFigure(char *UID)
+void setCurrentFigure(char const* UID)
 {
     ScilabView::setCurrentFigure(UID);
 }
 
-BOOL isCurrentFigure(char* UID)
+BOOL isCurrentFigure(char const* UID)
 {
     if (strcmp(UID, ScilabView::getCurrentFigure()) == 0)
     {

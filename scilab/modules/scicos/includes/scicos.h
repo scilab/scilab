@@ -25,11 +25,11 @@
 #include "scicos_block4.h"
 #include "import.h"
 
-/* maximum value for sum of number of inputs and outputs ports of a given 
+/* maximum value for sum of number of inputs and outputs ports of a given
 block of type 2 */
 #define SZ_SIZE 60
 
-/* maximum value for sum of number of inputs and outputs of a given block 
+/* maximum value for sum of number of inputs and outputs of a given block
 of type 0 */
 #define TB_SIZE 500
 
@@ -89,72 +89,72 @@ typedef void (*ScicosF4) (ARGS_scicos4);
 
 typedef struct
 {
-    char *name;
+    char const* name;
     ScicosF fonc;
 } OpTab;
 
 /**
  * @TODO add comment
  *
- * @param x_in  
- * @param xptr_in   
- * @param z__   
- * @param work  
- * @param zptr  
- * @param modptr_in 
- * @param oz    
- * @param ozsz  
- * @param oztyp 
- * @param ozptr 
- * @param iz    
- * @param izptr 
- * @param t0_in 
- * @param tf_in 
- * @param tevts_in  
- * @param evtspt_in 
- * @param nevts 
- * @param pointi_in 
- * @param outtbptr_in   
- * @param outtbsz_in    
- * @param outtbtyp_in   
- * @param outtb_elem_in 
- * @param nelem1    
- * @param nlnk1 
- * @param funptr    
- * @param funtyp_in 
- * @param inpptr_in 
- * @param outptr_in 
- * @param inplnk_in 
- * @param outlnk_in 
- * @param rpar  
- * @param rpptr 
- * @param ipar  
- * @param ipptr 
- * @param opar  
- * @param oparsz    
- * @param opartyp   
- * @param opptr 
- * @param clkptr_in 
- * @param ordptr_in 
- * @param nordptr1  
- * @param ordclk_in 
- * @param cord_in   
- * @param ncord1    
- * @param iord_in   
- * @param niord1    
- * @param oord_in   
- * @param noord1    
- * @param zord_in   
- * @param nzord1    
- * @param critev_in 
- * @param nblk1 
- * @param ztyp  
- * @param zcptr_in  
- * @param subscr    
- * @param nsubs 
- * @param simpar    
- * @param flag__    
- * @param ierr_out  
+ * @param x_in
+ * @param xptr_in
+ * @param z__
+ * @param work
+ * @param zptr
+ * @param modptr_in
+ * @param oz
+ * @param ozsz
+ * @param oztyp
+ * @param ozptr
+ * @param iz
+ * @param izptr
+ * @param t0_in
+ * @param tf_in
+ * @param tevts_in
+ * @param evtspt_in
+ * @param nevts
+ * @param pointi_in
+ * @param outtbptr_in
+ * @param outtbsz_in
+ * @param outtbtyp_in
+ * @param outtb_elem_in
+ * @param nelem1
+ * @param nlnk1
+ * @param funptr
+ * @param funtyp_in
+ * @param inpptr_in
+ * @param outptr_in
+ * @param inplnk_in
+ * @param outlnk_in
+ * @param rpar
+ * @param rpptr
+ * @param ipar
+ * @param ipptr
+ * @param opar
+ * @param oparsz
+ * @param opartyp
+ * @param opptr
+ * @param clkptr_in
+ * @param ordptr_in
+ * @param nordptr1
+ * @param ordclk_in
+ * @param cord_in
+ * @param ncord1
+ * @param iord_in
+ * @param niord1
+ * @param oord_in
+ * @param noord1
+ * @param zord_in
+ * @param nzord1
+ * @param critev_in
+ * @param nblk1
+ * @param ztyp
+ * @param zcptr_in
+ * @param subscr
+ * @param nsubs
+ * @param simpar
+ * @param flag__
+ * @param ierr_out
  * @return <ReturnValue>
  */
 int C2F(scicos) (double *x_in, int *xptr_in, double *z__,

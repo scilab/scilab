@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -146,7 +146,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -187,7 +187,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -227,6 +227,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="acos_blk.c" />
     <ClCompile Include="acosh_blk.c" />
     <ClCompile Include="..\cpp\affich2.cpp" />
+    <ClCompile Include="..\cpp\scoUtils.cpp" />
     <ClCompile Include="..\jni\AfficheBlock.cpp" />
     <ClCompile Include="andlog.c" />
     <ClCompile Include="asin_blk.c" />
@@ -479,7 +480,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="scicos_evalhermite.c" />
     <ClCompile Include="scicos_indexfinder.c" />
     <ClCompile Include="scicosexit.c" />
-    <ClCompile Include="scoUtils.c" />
     <ClCompile Include="selector.c" />
     <ClCompile Include="selector_m.c" />
     <ClCompile Include="shift_16_LA.c" />
@@ -551,7 +551,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="matz_catv.h" />
     <ClInclude Include="scicos_evalhermite.h" />
     <ClInclude Include="scicos_indexfinder.h" />
-    <ClInclude Include="scoUtils.h" />
+    <ClInclude Include="..\cpp\scoUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def" />

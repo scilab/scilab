@@ -30,7 +30,7 @@ void setGraphicObjectRelationship(char const* _parentId, char const* _childId)
     CallGraphicController::setGraphicObjectRelationship(getScilabJavaVM(), _parentId, _childId);
 }
 
-BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void *_pvValue, _ReturnType_ _valueType, int numElements)
+BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _pvValue, _ReturnType_ _valueType, int numElements)
 {
     bool result = false;
 

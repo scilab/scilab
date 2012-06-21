@@ -81,4 +81,27 @@
     <entry type="java" action="SplitAction" name="scinotes-split"/>
     <entry type="java" action="HelpOnKeywordInPopupAction" name="scinotes-help-keyword-popup"/>
   </scinotes>
+  <console>
+    <entry type="java" action="org.scilab.modules.console.SelectAllAction" name="console-select-all"/>
+    <entry type="java" action="org.scilab.modules.console.ClearConsoleAction" name="console-clear"/>
+    <entry type="java" action="org.scilab.modules.console.ConsoleboxAction" name="console-box"/>
+    <entry type="java" action="org.scilab.modules.console.HelpAction" name="console-help-browser"/>
+    <entry type="java" action="org.scilab.modules.console.ValidationAction" name="console-enter"/>
+    <entry type="java" action="org.scilab.modules.console.CompletionAction" name="console-completion"/>
+    <entry type="java" action="org.scilab.modules.console.LineBeginningAction" name="console-line-begin"/>
+    <entry type="java" action="org.scilab.modules.console.GetPreviousAction" name="console-prev-history"/>
+    <entry type="java" action="org.scilab.modules.console.GetNextAction" name="console-next-history"/>
+    <entry type="java" action="org.scilab.modules.console.LineEndAction" name="console-line-end"/>
+    <entry type="java" action="org.scilab.modules.console.PreviousCharAction" name="console-prev-char"/>
+    <entry type="java" action="org.scilab.modules.console.NextCharAction" name="console-next-char"/>
+    <entry type="java" action="org.scilab.modules.console.DelPreviousCharAction" name="console-del-prev-char"/>
+    <entry type="java" action="org.scilab.modules.console.DelNextCharAction" name="console-del-next-char"/>
+    <entry type="java" action="org.scilab.modules.console.DelLastWordAction" name="console-del-last-word"/>
+    <entry type="java" action="org.scilab.modules.console.DelEndOfLineAction" name="console-del-end-line"/>
+    <entry type="java" action="org.scilab.modules.console.DelWholeLineAction" name="console-del-whole-line"/>
+    <entry type="java" action="org.scilab.modules.console.InterruptScilabWorkOrCut" name="console-cut-or-interrupt"/>
+    <entry type="java" action="org.scilab.modules.console.InterruptScilabWorkOrCopy" name="console-copy-or-interrupt"/>
+    <entry type="java" action="org.scilab.modules.console.PageUpAction" name="console-prev-page"/>
+    <entry type="java" action="org.scilab.modules.console.PageDownAction" name="console-next-page"/>
+  </console>
 </map>

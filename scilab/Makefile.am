@@ -142,11 +142,20 @@ $(top_builddir)/Version.incl
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+
+check-jvm-dep:
+# Check that scilab-cli does not have a dependency on libjvm
+if !IS_MACOSX
+	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
+	if test $$? == 0; then \
+		echo "Found dependency from scilab-cli-bin to libjvm found"; \
+	fi
+endif
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"

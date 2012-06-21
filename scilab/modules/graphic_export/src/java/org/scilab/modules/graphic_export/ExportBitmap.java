@@ -86,6 +86,7 @@ public class ExportBitmap {
         writer.setOutput(output);
         writer.write(null, new IIOImage(image, null, null), param);
         writer.dispose();
+        output.close();
         return true;
     }
 }

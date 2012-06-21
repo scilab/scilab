@@ -307,7 +307,7 @@ public class Export {
 
             if (joglCanvas != null) {
                 BufferedImage image = joglCanvas.getImage();
-                joglCanvas.destroy();
+                //joglCanvas.destroy();
                 PNGExporter exporter = (PNGExporter) getExporter(type);
                 exporter.setImage(file, image, params);
                 exporter.write();

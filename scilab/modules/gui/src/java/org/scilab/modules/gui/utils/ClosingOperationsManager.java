@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,7 +21,9 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JCheckBox;
 
 import org.flexdock.docking.DockingConstants;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -34,6 +37,9 @@ import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+import org.scilab.modules.commons.xml.XConfiguration;
+
 /**
  * Class to handle the different closing operations.
  *
@@ -43,6 +49,8 @@ public class ClosingOperationsManager {
 
     private static final String EXIT_CONFIRM = Messages.gettext("Are you sure you want to close %s ?");
     private static final String EXIT_CONFIRM_AND = Messages.gettext("Are you sure you want to close %s and %s ?");
+    private static final String DONT_SHOW = Messages.gettext("Do not show this message again");
+    private static final String CONFIRMATION_PATH = "//general/confirmation-dialogs/body/tools/tool[@id='console-exit']";
     private static final String EXIT = Messages.gettext("Exit");
     private static final String NULLUUID = new UUID(0L, 0L).toString();
     private static final Map<SwingScilabTab, ClosingOperation> closingOps = new HashMap<SwingScilabTab, ClosingOperation>();
@@ -63,7 +71,7 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-                                                ClosingOperation op) {
+            ClosingOperation op) {
         if (tab != null) {
             closingOps.put(tab, op);
         }
@@ -617,10 +625,28 @@ public class ClosingOperationsManager {
      */
     private static final boolean canClose(List<SwingScilabTab> list,
                                           SwingScilabWindow window) {
-        String question = makeQuestion(list);
-        if (question != null) {
-            if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-                return false;
+        CheckExitConfirmation cec = XConfiguration.get(CheckExitConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
+
+        if (cec.checked) {
+            String question = makeQuestion(list);
+            final boolean[] checked = new boolean[1];
+            final Action action = new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    checked[0] = ((JCheckBox) e.getSource()).isSelected();
+                }
+            };
+
+            if (question != null) {
+                if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
+                    if (checked[0]) {
+                        XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
+                    }
+                    return false;
+                }
+            }
+
+            if (checked[0]) {
+                XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
             }
         }
 
@@ -654,10 +680,10 @@ public class ClosingOperationsManager {
             }
         }
         switch (apps.size()) {
-        case 0:
-            return null;
-        case 1:
-            return String.format(EXIT_CONFIRM, apps.get(0));
+            case 0:
+                return null;
+            case 1:
+                return String.format(EXIT_CONFIRM, apps.get(0));
         }
 
         String str = apps.remove(0);
@@ -678,7 +704,7 @@ public class ClosingOperationsManager {
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-                                                 List<SwingScilabTab> list) {
+            List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {
@@ -779,5 +805,18 @@ public class ClosingOperationsManager {
          *            the iterator to update
          */
         public void updateDependencies(final List<SwingScilabTab> list, final ListIterator<SwingScilabTab> it);
+    }
+
+    @XConfAttribute
+    private static class CheckExitConfirmation {
+
+        public boolean checked;
+
+        private CheckExitConfirmation() { }
+
+        @XConfAttribute(attributes = {"state"})
+        private void set(String checked) {
+            this.checked = checked.equals("checked");
+        }
     }
 }

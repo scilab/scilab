@@ -10,50 +10,48 @@
 
   <xsl:template match="display">
     <Title text="Display">
+      <xsl:variable name="enable">
+	<xsl:choose>
+	  <xsl:when test="@adapt-to-display='true'">
+              <xsl:text>false</xsl:text>
+	  </xsl:when>
+	  <xsl:otherwise>
+              <xsl:text>true</xsl:text>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:variable>
       <Grid>
-        <Panel gridx="1" gridy="1" gridwidth="3">
-          <xsl:call-template name="BooleanCheckBox">
-            <xsl:with-param name="text" select="'Wrap lines'"/>
-            <xsl:with-param name="attr-name" select="'wrap-lines'"/>
-          </xsl:call-template>
-        </Panel>
-        <Label gridx="1" gridy="2" weightx="0" text="Lines to display: "/>
-	<Panel gridx="2" gridy="2" gridheight="4" fill="both"/>
+	<Checkbox checked="{@adapt-to-display}" selected-value="true" unselected-value="false" listener="ActionListener" text="Automatically adapt the display to the console" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
+          <actionPerformed choose="adapt-to-display">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </Checkbox>
+        <Label gridx="1" gridy="3" weightx="0" text="Lines to display: " enable="{$enable}"/>
+	<Panel gridx="2" gridy="3" gridheight="4" fill="both"/>
 	<NumericalSpinner gridx="3"
-                          gridy="2"
+                          gridy="3"
 			  weightx="0"
-                          min-value = "25"
-                          increment = "25"
+                          min-value = "0"
+                          increment = "10"
                           length = "4"
                           listener = "ActionListener"
-                          value = "{@lines-to-display}">
+                          value = "{@lines-to-display}"
+			  enable="{$enable}">
           <actionPerformed choose="lines-to-display">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-        <Label gridx="1" gridy="3" weightx="0" text="Columns to display: "/>
-	<NumericalSpinner gridx="3"
-                          gridy="3"
-			  weightx="0"
-                          min-value = "25"
-                          increment = "25"
-                          length = "4"
-                          listener = "ActionListener"
-                          value = "{@columns-to-display}">
-          <actionPerformed choose="columns-to-display">
-            <xsl:call-template name="context"/>
-          </actionPerformed>
-        </NumericalSpinner>
-        <Label gridx="1" gridy="4" weightx="0" text="Tab size: "/>
+        <Label gridx="1" gridy="4" weightx="0" text="Columns to display: " enable="{$enable}"/>
 	<NumericalSpinner gridx="3"
                           gridy="4"
 			  weightx="0"
-                          min-value = "1"
-                          increment = "1"
-                          length = "2"
+                          min-value = "0"
+                          increment = "10"
+                          length = "4"
                           listener = "ActionListener"
-                          value = "{@tab-size}">
-          <actionPerformed choose="tab-size">
+                          value = "{@columns-to-display}"
+			  enable="{$enable}">
+          <actionPerformed choose="columns-to-display">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
@@ -72,27 +70,6 @@
         </NumericalSpinner>
       </Grid>
     </Title>
-    <VSpace height="10"/>
   </xsl:template>
-
-  <xsl:template match="accessibility">
-    <Title text="Display">
-      <VBox>
-	  <HTMLTextArea>
-          <html>
-            To enable keyboard navigation with arrow keys,
-            assign shotcuts to the Cursor Up and Cursor Down actions in the
-            <U>Shortcuts Panel</U> (for Console).
-            <br/>
-            To enable or disable the completion,
-            assign a shortcut action in the <U>Shortcuts
-            panel</U> (for Console). Default shortcut for completion is Tab.
-          </html>
-        </HTMLTextArea>
-        <Glue/>
-      </VBox>
-    </Title>
-  </xsl:template>
-
 </xsl:stylesheet>
 

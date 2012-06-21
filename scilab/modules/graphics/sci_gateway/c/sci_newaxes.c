@@ -32,10 +32,10 @@
 #include "CurrentObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_newaxes( char * fname,unsigned long fname_len )
+int sci_newaxes( char * fname, unsigned long fname_len )
 {
     char *psubwinUID = NULL;
-    int outindex = 0,numrow   = 1,numcol   = 1;
+    int outindex = 0, numrow   = 1, numcol   = 1;
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
@@ -43,11 +43,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
 
     if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
     {
-        setCurrentObject(psubwinUID);
-        sciSetSelectedSubWin(psubwinUID);
-        setCurrentSubWin(psubwinUID);
-
-        CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
+        CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
 
         *hstk(outindex) = getHandle(psubwinUID);
 
@@ -56,7 +52,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     }
     else
     {
-        Scierror(999,_("%s: No more memory.\n"),fname);
+        Scierror(999, _("%s: No more memory.\n"), fname);
     }
     return 0;
 }
