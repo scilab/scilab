@@ -15,6 +15,7 @@
 #include "getScilabPreference.h"
 #include "api_scilab.h"
 #include "setieee.h"
+#include "setlines.h"
 #include "setformat.h"
 #include "stricmp.h"
 #include "TerminateHistoryManager.h"
@@ -25,6 +26,8 @@ void InitializePreferences()
 {
     const ScilabPreferences * prefs = getScilabPreferences();
     int ieee = 0;
+    int lines = 0;
+    int cols = 0;
     int formatWidth = 0;
     int historyLines = 0;
 
@@ -44,6 +47,7 @@ void InitializePreferences()
         setformat(prefs->format, formatWidth);
     }
 
+    // Set history
     if (prefs->historyEnable)
     {
         if (!stricmp(prefs->historyEnable, "true"))
@@ -51,7 +55,7 @@ void InitializePreferences()
             if (prefs->historyFile && prefs->historyLines)
             {
                 InitializeHistoryManager();
-                setFilenameScilabHistory(prefs->historyFile);
+                setFilenameScilabHistory((char*)prefs->historyFile);
                 historyLines = (int)atof(prefs->historyLines);
                 if (historyLines > 0)
                 {
@@ -64,6 +68,19 @@ void InitializePreferences()
             TerminateHistoryManager();
         }
     }
+
+    // Set lines
+    if (prefs->adaptToDisplay && prefs->columnsToDisplay && prefs->linesToDisplay)
+    {
+        if (stricmp(prefs->adaptToDisplay, "true"))
+        {
+            // it is not true so ...
+            lines = (int)atof(prefs->linesToDisplay);
+            cols = (int)atof(prefs->columnsToDisplay);
+            setlines(lines, cols);
+        }
+    }
+
 
     clearScilabPreferences();
 }

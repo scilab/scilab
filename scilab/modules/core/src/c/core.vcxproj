@@ -352,6 +352,7 @@ cd ..
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setgetSCIpath.c" />
     <ClCompile Include="setieee.c" />
+    <ClCompile Include="setlines.c" />
     <ClCompile Include="SetScilabEnvironment.c" />
     <ClCompile Include="stack1.c" />
     <ClCompile Include="stack2.c" />
@@ -378,6 +379,7 @@ cd ..
     <ClInclude Include="..\..\includes\sci_types.h" />
     <ClInclude Include="..\..\includes\setformat.h" />
     <ClInclude Include="..\..\includes\setieee.h" />
+    <ClInclude Include="..\..\includes\setlines.h" />
     <ClInclude Include="backtrace.h" />
     <ClInclude Include="banier.h" />
     <ClInclude Include="..\..\includes\BOOL.h" />
