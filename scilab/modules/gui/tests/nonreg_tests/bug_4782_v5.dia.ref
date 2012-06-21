@@ -23,7 +23,7 @@ disp(h)
 Handle of type "uicontextmenu" with properties:
 ===============================================
 Parent: 
-Children: ["uimenu";"uimenu"]
+Children: ["uimenu","uimenu"]
 // Before this bug fix, uicontextmenus were not be saved
 save(TMPDIR + filesep() + "bug_4782.tmp", h);
 clear h
@@ -34,7 +34,7 @@ disp(h)
 Handle of type "uicontextmenu" with properties:
 ===============================================
 Parent: 
-Children: ["uimenu";"uimenu"]
+Children: ["uimenu","uimenu"]
 // Check that children are saved and loaded in the same order
 if size(h.children,"*")<>2 then bugmes();quit;end
 if get(h.children(1),"label")<>"foo1" then bugmes();quit;end
