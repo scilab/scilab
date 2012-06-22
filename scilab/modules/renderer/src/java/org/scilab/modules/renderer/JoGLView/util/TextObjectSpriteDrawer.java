@@ -145,7 +145,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                     } else {
                         TextEntity textEntity = new TextEntity(text);
                         textEntity.setTextUseFractionalMetrics(fractionalFont);
-                        textEntity.setTextAntiAliased(false);
+                        textEntity.setTextAntiAliased(true);
                         textEntity.setTextColor(textColor);
                         textEntity.setFont(font);
                         entities[column][line] = textEntity;

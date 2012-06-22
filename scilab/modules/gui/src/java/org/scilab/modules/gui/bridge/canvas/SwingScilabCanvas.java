@@ -102,6 +102,13 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         setBackground(Color.white);
     }
 
+    public void addNotify() {
+        drawableComponent.setVisible(true);
+        drawableComponent.setEnabled(true);
+        add(drawableComponent, PanelLayout.GL_CANVAS);
+        super.addNotify();
+    }
+    
     public void removeNotify() {//Thread.dumpStack();
         drawableComponent.setVisible(false);
         drawableComponent.setEnabled(false);
@@ -357,7 +364,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     @Override
     public void display() {
         // TODO Auto-generated method stub
-
     }
     @Override
     public boolean getAutoSwapBufferMode() {

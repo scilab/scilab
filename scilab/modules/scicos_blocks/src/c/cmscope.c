@@ -795,6 +795,11 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row
             setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
         }
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*

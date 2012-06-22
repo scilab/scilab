@@ -28,9 +28,15 @@
 
 #define XCONF "%s/XConfiguration.xml"
 
+#define PRODUCES_ERROR "Produces an error"
+#define PRODUCES_WARNING "Produces a warning"
+#define PRODUCES_INFNAN "Produces Inf or Nan"
+#define SCIENTIFIC_FORMAT "Scientific format"
+
 /*--------------------------------------------------------------------------*/
 static unsigned char isInit = 0;
 static ScilabPreferences scilabPref;
+static char * emptyAttribute = "";
 /*--------------------------------------------------------------------------*/
 static void getPrefs();
 static char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath);
@@ -50,6 +56,10 @@ void initPrefs()
     scilabPref.historySaveAfter = NULL;
     scilabPref.historyFile = NULL;
     scilabPref.historyLines = NULL;
+    scilabPref.historyEnable = NULL;
+    scilabPref.ieee = NULL;
+    scilabPref.format = NULL;
+    scilabPref.formatWidth = NULL;
 }
 /*--------------------------------------------------------------------------*/
 void reloadScilabPreferences()
@@ -62,12 +72,16 @@ void clearScilabPreferences()
 {
     if (isInit == 1)
     {
-        FREE(scilabPref.heapSize);
-        FREE(scilabPref.columnsToDisplay);
-        FREE(scilabPref.linesToDisplay);
-        FREE(scilabPref.historySaveAfter);
-        FREE(scilabPref.historyFile);
-        FREE(scilabPref.historyLines);
+        if (scilabPref.heapSize) FREE((void*)scilabPref.heapSize);
+        if (scilabPref.columnsToDisplay) FREE((void*)scilabPref.columnsToDisplay);
+        if (scilabPref.linesToDisplay) FREE((void*)scilabPref.linesToDisplay);
+        if (scilabPref.historySaveAfter) FREE((void*)scilabPref.historySaveAfter);
+        if (scilabPref.historyFile) FREE((void*)scilabPref.historyFile);
+        if (scilabPref.historyLines) FREE((void*)scilabPref.historyLines);
+        if (scilabPref.historyEnable) FREE((void*)scilabPref.historyEnable);
+        if (scilabPref.ieee) FREE((void*)scilabPref.ieee);
+        if (scilabPref.format) FREE((void*)scilabPref.format);
+        if (scilabPref.formatWidth) FREE((void*)scilabPref.formatWidth);
         initPrefs();
     }
     isInit = 0;
@@ -81,6 +95,7 @@ void getPrefs()
     char * path = NULL;
     BOOL bConvert = FALSE;
     char * shortfilename_xml_conf = NULL;
+    char * attr = NULL;
 
     if (!isInit)
     {
@@ -124,6 +139,39 @@ void getPrefs()
             scilabPref.historySaveAfter = strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));
             scilabPref.historyFile = strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
             scilabPref.historyLines = strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
+            scilabPref.historyEnable = strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
+
+            attr = (char*)getAttribute(doc, xpathCtxt, IEEE_XPATH);
+            if (attr)
+            {
+                if (!stricmp(attr, PRODUCES_ERROR))
+                {
+                    scilabPref.ieee = strdup("0");
+                }
+                else if (!stricmp(attr, PRODUCES_ERROR))
+                {
+                    scilabPref.ieee = strdup("1");
+                }
+                else
+                {
+                    scilabPref.ieee = strdup("2");
+                }
+            }
+
+            attr = (char*)getAttribute(doc, xpathCtxt, FORMAT_XPATH);
+            if (attr)
+            {
+                if (!stricmp(attr, SCIENTIFIC_FORMAT))
+                {
+                    scilabPref.format = strdup("e");
+                }
+                else
+                {
+                    scilabPref.format = strdup("v");
+                }
+            }
+
+            scilabPref.formatWidth = strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
 
             xmlXPathFreeContext(xpathCtxt);
         }
@@ -135,7 +183,7 @@ void getPrefs()
 /*--------------------------------------------------------------------------*/
 char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath)
 {
-    char * value = NULL;
+    char * value = emptyAttribute;
     xmlXPathObjectPtr xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
     if (xpathObj && xpathObj->nodesetval->nodeMax)
     {

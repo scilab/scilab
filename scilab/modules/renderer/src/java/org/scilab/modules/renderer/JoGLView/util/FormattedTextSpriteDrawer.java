@@ -59,7 +59,7 @@ public class FormattedTextSpriteDrawer implements TextureDrawer {
                 textEntity.setText(formattedText.getText());
                 textEntity.setTextColor(ColorFactory.createColor(colorMap, font.getColor()));
                 textEntity.setTextUseFractionalMetrics(font.getFractional());
-                textEntity.setTextAntiAliased(false);
+                textEntity.setTextAntiAliased(true);
 
                 dimension = textEntity.getSize();
             }

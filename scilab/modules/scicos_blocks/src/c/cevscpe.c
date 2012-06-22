@@ -717,6 +717,11 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
             setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
         }
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pSegs, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*

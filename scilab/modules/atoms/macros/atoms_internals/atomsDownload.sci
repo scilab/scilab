@@ -100,6 +100,7 @@ function atomsDownload(url_in,file_out,md5sum)
       end
     elseif MACOSX | getos() == 'Windows' then
       CURL = %T;
+      atomsSetConfig("downloadTool", "curl");
     end
   end
 

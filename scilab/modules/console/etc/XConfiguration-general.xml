@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <general title="General">
   <body>
-    <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
+    <environment fpe="Produces an error" printing-format="Variable format" width="10">
+      <fpe floating-point-exception="Produces an error"/>
+      <fpe floating-point-exception="Produces a warning"/>
+      <fpe floating-point-exception="Produces Inf or NaN"/>
+    </environment>
     <java-heap-memory heap-size="256"/>
   </body>
   <confirmation-dialogs title="Confirmation dialogs"> 
@@ -9,10 +13,18 @@
       <tools>
         <tool state="checked" id="console-exit" name="Console" description="Warn before exiting Scilab"/>
         <tool state="checked" id="delete-history-item" name="Command History" description="Warn before deleting Command History items"/>
-        <tool state="unchecked" id="console-clear" name="Console" description="Warn before clearing the Console"/>
+        <tool state="checked" id="console-clear" name="Console" description="Warn before clearing the Console"/>
       </tools>
     </body>
   </confirmation-dialogs>
+  <desktop-layout title="Desktop layout">
+    <body>
+      <layouts name="Integrated">
+        <layout name="Integrated" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
+        <layout name="Simple" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
+      </layouts>
+    </body>
+  </desktop-layout>
   <shortcuts title="Shortcuts">
     <body>
       <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
@@ -147,7 +159,7 @@
           <action key="" description="Convert quote to double quote" name="scinotes-double-quote"/>
           <action key="" description="Line numbering" name="scinotes-line-numbering"/>
         </action-folder>
-        <action-folder name="Xcos" xconf-uid="xcos">
+        <!--action-folder name="Xcos" xconf-uid="xcos">
           <action key="OSSCKEY S" description="Save diagramm" name="xcos-save"/>
         </action-folder>
         <action-folder name="Variable Browser" xconf-uid="browsevar">
@@ -161,7 +173,7 @@
         </action-folder>
         <action-folder name="File Browser" xconf-uid="filebrowser">
           <action key="OSSCKEY S" description="Save file" name="filebrowser-save"/>
-        </action-folder>
+        </action-folder-->
       </actions>
     </body>
   </shortcuts>

@@ -197,7 +197,7 @@ else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
-doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+doc-web: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\

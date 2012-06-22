@@ -55,6 +55,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -766,7 +767,7 @@ public class CallScilabBridge {
 
             // Add the menu to the tab
             parentTab.getMenuBar().add(menuToAdd);
-	    }*/
+        }*/
     }
 
     /**
@@ -2472,7 +2473,7 @@ public class CallScilabBridge {
      * @return execution status
      */
     public static boolean printFigure(String figID, boolean postScript, boolean displayDialog) {
-        /*// Get the PrinterJob object
+        // Get the PrinterJob object
         PrinterJob printerJob = PrinterJob.getPrinterJob();
 
         boolean userOK = true;
@@ -2483,10 +2484,10 @@ public class CallScilabBridge {
         if (userOK) {
             //If the OS is Windows
             if (isWindowsPlateform()) {
-		Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
-		int figureID = figure.getId();
-                Canvas canvas;
-                canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
+                Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
+                int figureID = figure.getId();
+                SwingScilabCanvas canvas;
+                canvas = ((SwingScilabTab) SwingView.getFromId(figID)).getContentCanvas();
                 ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
                 if (scilabPrint != null) {
                     return true;
@@ -2549,7 +2550,7 @@ public class CallScilabBridge {
                     return false;
                 }
             }
-        }*/
+        }
         return false;
     }
 
@@ -2991,7 +2992,7 @@ public class CallScilabBridge {
      */
     public static void raiseWindow(int id) {
         /*((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
-	  ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();*/
+        ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();*/
     }
 
     /**

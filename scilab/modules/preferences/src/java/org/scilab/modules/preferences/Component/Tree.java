@@ -156,7 +156,7 @@ public class Tree extends Panel implements XComponent, XChooser, TreeSelectionLi
         for (int i = 0; i < ids.length; i++) {
             try {
                 int index = Integer.parseInt(ids[i]);
-                node = (XAdapterNode) node.getChild(index - 1);
+                node = node.getChild(index - 1);
                 if (i < ids.length - 1) {
                     tree.expandRow(index - 1);
                 } else {

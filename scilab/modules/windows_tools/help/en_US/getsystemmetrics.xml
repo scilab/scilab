@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>getsystemmetrics</refname>
     <refpurpose>Retrieves the specified system metric or system configuration
-      setting. (Windows only)
+      setting (Windows only)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>

@@ -7,3 +7,8 @@ EXPORTS
 ;
 getSCIHOME
 getTMPDIR
+setieee
+setformat
+getieee
+getformat
+getformatwidth

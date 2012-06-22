@@ -283,7 +283,6 @@ static BOOL pushData(scicos_block * block, double *data)
  * Graphic
  *
  ****************************************************************************/
-
 static char const* getFigure(scicos_block * block)
 {
     signed int figNum;
@@ -345,6 +344,7 @@ static char const* getFigure(scicos_block * block)
 static char *getAxe(char const* pFigureUID, scicos_block * block)
 {
     char *pAxe;
+    int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
     // fast path for an existing object
@@ -366,6 +366,8 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
 
     if (pAxe != NULL)
     {
+        setGraphicObjectProperty(pAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
+
         getPlot3d(pAxe, block);
     }
 
@@ -417,6 +419,11 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
         setBounds(block, pAxeUID, pPlot3d);
         setPlot3dSettings(pPlot3d);
         setDefaultValues(block, pPlot3d);
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
     }
 
     /*
@@ -445,17 +452,17 @@ static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)
     n = GetInPortSize(block, 1, 2);
 
     gridSize[0] = 1;
-    gridSize[1] = n;
+    gridSize[1] = m;
     gridSize[2] = 1;
-    gridSize[3] = m;
+    gridSize[3] = n;
 
     colormapLen = block->ipar[3];
     if (colormapLen == 1)
     {
-        dataBounds[0] = 0;      // xMin
-        dataBounds[1] = (double)n;  // xMax
-        dataBounds[2] = 0;      // yMin
-        dataBounds[3] = (double)m;  // yMax
+        dataBounds[0] = (double) 0;  // xMin
+        dataBounds[1] = (double) m;  // xMax
+        dataBounds[2] = (double) 0;  // yMin
+        dataBounds[3] = (double) n;  // yMax
     }
     else
     {
@@ -468,8 +475,8 @@ static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)
     dataBounds[4] = (double)block->ipar[0]; // zMin
     dataBounds[5] = (double)block->ipar[1]; // zMax
 
-    rotationAngle[0] = 80;      // alpha
-    rotationAngle[1] = 250;     // theta
+    rotationAngle[0] = 50;      // alpha
+    rotationAngle[1] = 280;     // theta
 
     result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
     result &= setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
@@ -494,6 +501,8 @@ static BOOL setPlot3dSettings(char *pPlot3dUID)
     result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
     result &= setGraphicObjectProperty(pPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
 
+    setGraphicObjectProperty(pPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
+
     return result;
 }
 
@@ -511,7 +520,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
     /*
      * Share the same memory for 0 allocation (z) and incremented index (x and y)
      */
-    values = (double *)CALLOC(n * m, sizeof(double));
+    values = (double *)CALLOC(m * n, sizeof(double));
     if (values == NULL)
     {
         return FALSE;
@@ -521,11 +530,11 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
     len = Max(m, n);
     for (i = 1; i <= len; i++)
     {
-        values[i] = (double)i;
+        values[i] = (double) i;
     }
 
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, n);
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, m);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
 
     FREE(values);
     return result;

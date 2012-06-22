@@ -25,6 +25,7 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "SCIHOME.h"
+#include "expandPathVariable.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "freeArrayOfString.h"
@@ -214,11 +215,23 @@ BOOL isScilabHistoryTruncated(void)
 /*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
 {
+    char * expandedPath = NULL;
+
     if (filename)
     {
         if (ScilabHistory)
         {
-            ScilabHistory->setFilename(filename);
+            expandedPath = expandPathVariable(filename);
+            if (expandedPath)
+            {
+                ScilabHistory->setFilename(expandedPath);
+                FREE(expandedPath);
+            }
+            else
+            {
+                ScilabHistory->setFilename(filename);
+            }
+
             return TRUE;
         }
     }

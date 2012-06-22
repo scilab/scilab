@@ -44,6 +44,7 @@ setStackSize();
 clear setStackSize;
 
 // Special variables definition =======================================
+oldieee=ieee()
 ieee(2);
 %inf = 1/0;
 ieee(0);
@@ -52,6 +53,9 @@ ieee(0);
 %T = %t;
 %F = %f;
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
+
+ieee(oldieee);
+clear oldieee
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;

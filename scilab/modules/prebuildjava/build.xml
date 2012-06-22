@@ -17,16 +17,16 @@ The main idea is to build at once all the var files
 -->
   <property name="target-jar" value="jar"/>
   <property file="../../scilab-lib.properties"/>
-
+  
   <!-- Order matter : fixed order to avoid dependency handling-->
-  <target name="all" depends="localization, history_manager, commons, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, hdf5, graph, xcos, preferences" />
+  <target name="all" depends="localization, commons, history_manager, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, hdf5, graph, xcos, preferences" />
   <target name="clean">
     <antcall target="all">
       <param name="target-jar" value="clean"/>
     </antcall>
   </target>
   <target name="test"/>
-
+  
   <target name="action_binding">
     <ant antfile="../action_binding/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
   </target>

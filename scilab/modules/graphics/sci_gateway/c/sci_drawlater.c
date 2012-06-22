@@ -20,6 +20,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
@@ -27,16 +28,21 @@ int sci_drawlater( char * fname, unsigned long fname_len )
 {
     int iFalse =  (int)FALSE;
     char* pFigureUID = NULL;
+    char* pSubwinUID = NULL;
 
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
     if (Rhs <= 0)
     {
-        pFigureUID = getOrCreateDefaultSubwin();
-        if (pFigureUID != NULL)
+        pSubwinUID = getOrCreateDefaultSubwin();
+        if (pSubwinUID != NULL)
         {
-            setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+            getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, &pFigureUID);
+            if (pFigureUID != NULL)
+            {
+                setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+            }
         }
     }
 

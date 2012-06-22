@@ -57,7 +57,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     allAxes = curFig.children;
     found = %F;
     for kAxes = 1:size(allAxes, "*")
-        if and(allAxes(kAxes).axes_bounds(:)==wrect(:)) then
+        if allAxes(kAxes).type == "Axes" & and(allAxes(kAxes).axes_bounds(:)==wrect(:)) then
             a = sca(allAxes(kAxes));
             found = %T;
             break;

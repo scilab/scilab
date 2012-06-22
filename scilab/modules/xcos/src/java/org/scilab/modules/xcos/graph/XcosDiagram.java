@@ -1842,13 +1842,13 @@ public class XcosDiagram extends ScilabGraph {
     public void postLoad(final File file) {
         final String name = file.getName();
 
-        setModified(false);
         if (XcosFileType.getAvailableSaveFormats().contains(XcosFileType.findFileType(file))) {
             setSavedFile(file);
             Xcos.getInstance().addDiagram(file, this);
         }
         setTitle(name.substring(0, name.lastIndexOf('.')));
         generateUID();
+        setModified(false);
 
         fireEvent(new mxEventObject(mxEvent.ROOT));
 

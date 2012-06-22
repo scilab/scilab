@@ -58,6 +58,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
@@ -83,6 +84,20 @@ public class XConfiguration {
     private static final Set<String> modifiedPaths = new HashSet<String>();
 
     private static Document doc;
+
+    static {
+        addXConfigurationListener(ScilabGeneralPrefs.getInstance());
+
+        try {
+            Class histoprefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.history_manager.HistoryPrefs");
+            Method getinstance = histoprefs.getDeclaredMethod("getInstance");
+            addXConfigurationListener((XConfigurationListener)getinstance.invoke(null));
+        } catch (ClassNotFoundException e) {
+            // Nothing displayed (always occurs in MN mode)
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
 
     /**
      * Get the document in SCIHOME corresponding to the configuration file.

@@ -135,10 +135,10 @@ F=['      double precision function ffun(x)'
    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
    '      return'
    '      end'];
-mputl(F,TMPDIR+'/ffun.f')
+mputl(F,fullfile(TMPDIR,'ffun.f'))
 
 // Fortranコードをコンパイル
-l=ilib_for_link('ffun','ffun.f',[],'f');
+l=ilib_for_link('ffun',fullfile(TMPDIR,'ffun.f'),[],'f');
 
 // インクリメンタルリンクの実行
 link(l,'ffun','f')
@@ -156,10 +156,12 @@ C=['#include <math.h>'
    '  y=*x/(2.0e0*pi);'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
-mputl(C,TMPDIR+'/cfun.c')
+mputl(C,fullfile(TMPDIR,'cfun.c'))
+
 
 // Cコードをコンパイル
-l=ilib_for_link('cfun','cfun.f',[],'c');
+l=ilib_for_link('cfun',fullfile(TMPDIR,'cfun.c'),[],'c');
+
 
 // インクリメンタルリンクの実行
 link(l,'cfun','c')

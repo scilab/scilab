@@ -3,101 +3,46 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 >
 
-  <xsl:template match="history-save">
-    <Title text="Saving">
-      <VBox>
-        <Grid>
-          <Radiobutton value="{@kind}" expected-value="save" gridx="1" gridy="1" weightx="0" anchor="baseline" listener="ActionListener" text="Save after ">
-            <actionPerformed set="kind" value="save">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </Radiobutton>
-	  <xsl:variable name="enable">
-	      <xsl:choose>
-                <xsl:when test="@kind='save'">
-                  <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-              </xsl:choose>
-	  </xsl:variable>
-	  <NumericalSpinner gridx="2"
-			    gridy="1"
-			    weightx="0"
-			    anchor="baseline"
-			    min-value="0"
-			    increment="100"
-			    length="5"
-			    listener="ActionListener"
-			    value="{@after}"
-			    enable="{$enable}">
-	    <actionPerformed choose="after">
-	      <xsl:call-template name="context"/>
-	    </actionPerformed>
-	  </NumericalSpinner>
-	  <Label gridx="3" gridy="1" weightx="0" anchor="baseline" text=" command(s)" enable="{$enable}"/>
-	  <Panel gridx="4" gridy="1"/>
-        </Grid>
-
-        <HBox>
-          <Radiobutton value="{@kind}" expected-value="quit" listener="ActionListener" text="Save history file on quit">
-            <actionPerformed set="kind" value="quit">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </Radiobutton>
-          <Glue/>
-        </HBox>
-        <HBox>
-          <Radiobutton value="{@kind}" expected-value="disable" listener="ActionListener" text="Disable history management">
-            <actionPerformed set="kind" value="disable">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </Radiobutton>
-          <Glue/>
-        </HBox>
-        <VSpace height="20"/>
-        <HBox>
-          <Checkbox listener="ActionListener" checked="{@consecutive}" text="Save consecutive duplicate commands">
-            <actionPerformed choose="consecutive">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </Checkbox>
-          <Glue/>
-        </HBox>
-      </VBox>
-    </Title>
-  </xsl:template>
+  <xsl:template match="history-save"/>
 
   <xsl:template match="history-settings">
-    <Title text="Settings">
-      <Grid>
-        <Label gridx="1" gridy="1" text="History file:"/>
-          <FileSelector gridx="2" gridy="1" weightx="1" anchor="above_baseline"
+    <Title text="History Management Settings">
+        <Grid>
+	  <Checkbox checked="{@enable}" selected-value="true" unselected-value="false" listener="ActionListener" text="Enable history management" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+	    <actionPerformed choose="enable">
+	      <xsl:call-template name="context"/>
+	    </actionPerformed>
+	  </Checkbox>
+	  <Label gridx="1" gridy="2" text="History file:" enable="{@enable}"/>
+	  <Panel gridx="2" gridy="2" gridheight="2" fill="both"/>
+          <FileSelector gridx="3" gridy="2" weightx="1" anchor="above_baseline"
                         listener="EntryListener"
+			enable="{@enable}"
                         href="{@history-file}"
-			mask="*.txt"
-			desc="Text files"
-                        dir-selection="false" >
+			mask="*.*"
+			desc="History files"
+                        dir-selection="false"
+			check-entry="false">
 	    <entryChanged choose="history-file">
               <xsl:call-template name="context"/>
             </entryChanged>
           </FileSelector>
-        <Label gridx="1" gridy="2" text="History lines:"/>
-        <Panel gridx="2" gridy="2" >
-          <xsl:call-template name="Select">
-            <xsl:with-param name="among">
-              <option history-line="250"/>
-              <option history-line="500"/>
-              <option history-line="1000"/>
-              <option history-line="2000"/>
-              <option history-line="4000"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </Panel>
-      </Grid>
+	  <Label gridx="1" gridy="3" text="History lines:" enable="{@enable}"/>
+	  <NumericalSpinner gridx="3"
+                          gridy="3"
+                          weightx="0"
+			  enable="{@enable}"
+                          min-value = "0"
+                          increment = "1000"
+                          length = "4"
+                          listener = "ActionListener"
+                          value = "{@history-lines}">
+          <actionPerformed choose="history-lines">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </NumericalSpinner>
+      </Grid>	  
     </Title>
-    <VSpace height="120"/>
   </xsl:template>
 
 

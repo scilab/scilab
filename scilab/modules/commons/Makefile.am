@@ -22,8 +22,7 @@ libscicommons_la_root_DATA =  license.txt
 libscicommons_la_etcdir = $(mydatadir)/etc
 libscicommons_la_etc_DATA = \
 	etc/commons.quit \
-	etc/commons.start \
-	etc/XConfiguration-general.xsl
+	etc/commons.start
 
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \

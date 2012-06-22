@@ -27,6 +27,7 @@ import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -272,6 +274,39 @@ public final class XConfigManager extends XCommonManager {
             return true;
             }
         **/
+        if (callback.equals("Save Backup")) {
+            String path = getAttribute(action, "path");
+            writeDocument(ScilabCommonsUtils.getCorrectedPath(path), document);
+
+            return true;
+        }
+
+        if (callback.equals("Restore Backup")) {
+            String path = getAttribute(action, "path");
+            try {
+                copyFile(new File(ScilabCommonsUtils.getCorrectedPath(path)), new File(USER_CONFIG_FILE));
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+
+            XConfiguration.invalidate();
+            XConfiguration.addModifiedPath("ALL");
+            reloadTransformer(SCILAB_CONFIG_XSL);
+            document = XConfiguration.createDocument();
+
+            List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+            for (ToolboxInfos info : infos) {
+                String filename = new File(info.getPrefFile()).getName();
+                String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
+                refreshUserCopy(info.getPrefFile(), tbxFile);
+            }
+            readUserDocuments();
+            updated = false;
+            refreshDisplay();
+
+            return true;
+        }
+
         if (callback.equals("Ok")) {
             WriteUserDocuments();
             dialog.dispose();

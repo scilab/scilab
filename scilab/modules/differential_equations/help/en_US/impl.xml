@@ -139,7 +139,7 @@ r = adda(t,y,p)
       If <literal>jac</literal> is a function, its syntax must be as
       follows:
     </para>
-    <programlisting role=""><![CDATA[  
+    <programlisting role="no-scilab-exec"><![CDATA[  
 j = jac(t,y,ydot)
  ]]></programlisting>
     <para>and it must return the Jacobian of

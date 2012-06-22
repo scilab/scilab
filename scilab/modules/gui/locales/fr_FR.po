@@ -1221,6 +1221,9 @@ msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
 
+msgid "Do not show this message again"
+msgstr "Ne plus afficher ce message"
+
 msgid "Exit"
 msgstr "Quitter"
 

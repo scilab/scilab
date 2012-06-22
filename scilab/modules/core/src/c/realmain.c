@@ -11,6 +11,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include "InitializePreferences.h"
 #include "realmain.h"
 #include "MALLOC.h"
 #include "sciprint.h"
@@ -30,7 +32,7 @@ extern void sci_usr1_signal(int n);
 #define snprintf _snprintf
 #endif
 /*--------------------------------------------------------------------------*/
-static int no_startup_flag=0;
+static int no_startup_flag = 0;
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int callScirun(char *startupCommand);
@@ -41,7 +43,7 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     int iExitCode = 0;
     static int initialization = -1;
     int ierr = 0;
-    char *startup = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
+    char *startup = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
     Set_no_startup_flag(no_startup_flag_l);
 
     /* Change the buffering mode of standard streams stdout/stderr */
@@ -56,28 +58,28 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     /* Don't want catch signal under Linux ... */
 #ifdef ENABLESIG
 #ifndef DEBUG
-    signal(SIGINT,sci_clear_and_exit);
+    signal(SIGINT, sci_clear_and_exit);
 #ifdef SIGBUS
-    signal(SIGBUS,sci_clear_and_exit);
+    signal(SIGBUS, sci_clear_and_exit);
 #endif
-    signal(SIGSEGV,sci_clear_and_exit);
+    signal(SIGSEGV, sci_clear_and_exit);
 #if SIGQUIT
-    signal(SIGQUIT,sci_clear_and_exit);
+    signal(SIGQUIT, sci_clear_and_exit);
 #endif
 #ifdef SIGHUP
-    signal(SIGHUP,sci_clear_and_exit);
+    signal(SIGHUP, sci_clear_and_exit);
 #endif
 #ifdef SIGUSR1
-    signal(SIGUSR1,sci_usr1_signal);
+    signal(SIGUSR1, sci_usr1_signal);
 #endif
 #endif
 
 #ifdef _MSC_VER
-    signal(SIGILL,sci_clear_and_exit);
-    signal(SIGFPE,sci_clear_and_exit);
-    signal(SIGTERM,sci_clear_and_exit);
-    signal(SIGBREAK,sci_clear_and_exit);
-    signal(SIGABRT,sci_clear_and_exit);
+    signal(SIGILL, sci_clear_and_exit);
+    signal(SIGFPE, sci_clear_and_exit);
+    signal(SIGTERM, sci_clear_and_exit);
+    signal(SIGBREAK, sci_clear_and_exit);
+    signal(SIGABRT, sci_clear_and_exit);
 #endif
 #endif
 #endif
@@ -92,37 +94,37 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
             switch ( initial_script_type )
             {
                 case SCILAB_SCRIPT :
+                {
+                    char *ext = FindFileExtension(initial_script);
+                    if (ext)
                     {
-                        char *ext = FindFileExtension(initial_script);
-                        if (ext)
+                        if ((strcmp(ext, ".xcos") == 0) || (strcmp(ext, ".zcos") == 0))
                         {
-                            if ((strcmp(ext, ".xcos") == 0) || (strcmp(ext, ".zcos") == 0))
-                            {
-                                snprintf(startup,PATH_MAX,"%s;xcos('%s')",get_sci_data_strings(STARTUP_ID), initial_script);
-                            }
-                            else
-                            {
-                                snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID), initial_script);
-                            }
-
-                            FREE(ext);
-                            ext = NULL;
+                            snprintf(startup, PATH_MAX, "%s;xcos('%s')", get_sci_data_strings(STARTUP_ID), initial_script);
                         }
                         else
                         {
-                            snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID), initial_script);
+                            snprintf(startup, PATH_MAX, "%s;exec('%s',-1)", get_sci_data_strings(STARTUP_ID), initial_script);
                         }
+
+                        FREE(ext);
+                        ext = NULL;
                     }
-                    
-                    break;
+                    else
+                    {
+                        snprintf(startup, PATH_MAX, "%s;exec('%s',-1)", get_sci_data_strings(STARTUP_ID), initial_script);
+                    }
+                }
+
+                break;
                 case SCILAB_CODE :
-                    snprintf(startup,PATH_MAX,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
+                    snprintf(startup, PATH_MAX, "%s;%s;", get_sci_data_strings(STARTUP_ID), initial_script);
                     break;
             }
         }
         else
         {
-            snprintf(startup,PATH_MAX,"%s;",get_sci_data_strings(STARTUP_ID));
+            snprintf(startup, PATH_MAX, "%s;", get_sci_data_strings(STARTUP_ID));
         }
     }
     else
@@ -133,14 +135,14 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
             switch ( initial_script_type )
             {
                 case SCILAB_SCRIPT :
-                    snprintf(startup,PATH_MAX,"exec('%s',-1)",initial_script);
+                    snprintf(startup, PATH_MAX, "exec('%s',-1)", initial_script);
                     break;
                 case SCILAB_CODE :
-                    snprintf(startup,PATH_MAX,"%s;",initial_script);
+                    snprintf(startup, PATH_MAX, "%s;", initial_script);
                     break;
             }
         }
-        else sprintf(startup," ");
+        else sprintf(startup, " ");
     }
 
     startup[PATH_MAX] = '\0'; /* force string to be null-terminated on overflow */
@@ -150,12 +152,14 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     if (ierr > 0) sciquit() ;
     /* execute the initial script and enter scilab */
 
+    InitializePreferences();
+
 #if !defined(_DEBUG) && defined(_MSC_VER)
     /* if scilab crashs by a exception , we try to quit properly */
     /* Windows release mode */
     iExitCode = callScirun(startup);
 #else
-    iExitCode = C2F(scirun)(startup,(long int)strlen(startup));
+    iExitCode = C2F(scirun)(startup, (long int)strlen(startup));
 #endif
 
     FREE(startup);
@@ -167,7 +171,7 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
 /*--------------------------------------------------------------------------*/
 void Set_no_startup_flag(int start)
 {
-    no_startup_flag=start;
+    no_startup_flag = start;
 }
 /*--------------------------------------------------------------------------*/
 int Get_no_startup_flag(void)
@@ -181,18 +185,18 @@ static int callScirun(char *startupCommand)
     int iExitCode = 0;
     _try
     {
-        iExitCode = C2F(scirun)(startupCommand,(long int)strlen(startupCommand));
+        iExitCode = C2F(scirun)(startupCommand, (long int)strlen(startupCommand));
     }
     _except (EXCEPTION_EXECUTE_HANDLER)
     {
         DWORD dwExceptionCode = GetExceptionCode();
-    Rerun:
-        ExceptionMessage(GetExceptionCode(),NULL);
+Rerun:
+        ExceptionMessage(GetExceptionCode(), NULL);
         if (dwExceptionCode != EXCEPTION_ACCESS_VIOLATION)
         {
             _try
             {
-                iExitCode = C2F(scirun)("",(long int)strlen(""));
+                iExitCode = C2F(scirun)("", (long int)strlen(""));
             }
 
             _except (EXCEPTION_EXECUTE_HANDLER)

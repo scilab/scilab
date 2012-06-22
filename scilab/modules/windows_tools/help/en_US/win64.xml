@@ -18,7 +18,7 @@
   </info>
   <refnamediv>
     <refname>win64</refname>
-    <refpurpose>Determine whether Windows x64 version of Scilab</refpurpose>
+    <refpurpose>Determine whether Windows x64 version of Scilab (Windows only)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

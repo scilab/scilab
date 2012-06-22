@@ -7,10 +7,10 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// <-- Non-regression test for bug 3031 -->
+// <-- Non-regression test for bug 3061 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3031
+// http://bugzilla.scilab.org/show_bug.cgi?id=3061
 //
 // <-- Short Description -->
 // The title position is incorrect when the graphic window is splitted

@@ -1103,6 +1103,14 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     /**
+     * Get the canvas
+     * @return the canvas
+     */
+    public SwingScilabCanvas getContentCanvas() {
+        return contentCanvas;
+    }
+
+    /**
      * Set the parent window id for this tab
      * @param id the id of the parent window
      */

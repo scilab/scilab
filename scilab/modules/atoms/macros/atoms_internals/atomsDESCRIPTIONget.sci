@@ -217,8 +217,11 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     categories     = description("categories");
     categories_flat  = description("categories_flat");
 
-    commandToExec = "save(packages_path, ""packages"", ""categories"", ""categories_flat"")";
+    wMode = warning("query");
+    warning("off");
+    commandToExec = "save(packages_path, packages, categories, categories_flat)";
     ierr = execstr(commandToExec, "errcatch");
+    warning(wMode);
     if ierr <> 0 then
       error(msprintf(gettext("%s: save (''%s'') has failed.\n"),"atomsDESCRIPTIONget", packages_path));
     end
