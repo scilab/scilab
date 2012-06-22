@@ -132,7 +132,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         }
 
         Font mantissaFont = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
-        mantissaTextEntity.setTextAntiAliased(false);
+        mantissaTextEntity.setTextAntiAliased(true);
         mantissaTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         mantissaTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         mantissaTextEntity.setFont(mantissaFont);
@@ -143,7 +143,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
          */
         final TextEntity exponentTextEntity = new TextEntity(exponent.toString());
         Font exponentFont = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize() * EXPONENT_SIZE_RATIO);
-        exponentTextEntity.setTextAntiAliased(false);
+        exponentTextEntity.setTextAntiAliased(true);
         exponentTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         exponentTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         exponentTextEntity.setFont(exponentFont);
@@ -185,7 +185,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     private Texture createSimpleSprite(String text, TextureManager textureManager) {
         Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
         final TextEntity textEntity = new TextEntity(text);
-        textEntity.setTextAntiAliased(false);
+        textEntity.setTextAntiAliased(true);
         textEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         textEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         textEntity.setFont(font);
