@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>continue</refname>
-    <refpurpose>ключевое слово для передачи управления к следующей итерации цикла
+    <refpurpose>ключевое слово для передачи управления следующей итерации цикла
     </refpurpose>
   </refnamediv>
   <refsection>
