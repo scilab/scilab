@@ -1197,7 +1197,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 231
-msgid "Backup finsihed..."
+msgid "Backup finished..."
 msgstr ""
 
 #
