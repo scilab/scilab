@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>mcisendstring</refname>
     <refpurpose>sends a command string to an MCI
-      device (Windows only).
+      device (Windows only)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>

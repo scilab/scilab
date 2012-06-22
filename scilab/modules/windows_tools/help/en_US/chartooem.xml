@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>chartooem</refname>
     <refpurpose>translates a string into the OEM-defined
-      character set.(Windows only)
+      character set (Windows only)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>

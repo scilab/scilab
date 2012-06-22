@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>istssession</refname>
-    <refpurpose>Determines if scilab is launched from a ms terminal service session. (Windows only)</refpurpose>
+    <refpurpose>Determines if scilab is launched from a ms terminal service session (Windows only)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
