@@ -92,6 +92,8 @@ public class XConfiguration {
             Class histoprefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.history_manager.HistoryPrefs");
             Method getinstance = histoprefs.getDeclaredMethod("getInstance");
             addXConfigurationListener((XConfigurationListener)getinstance.invoke(null));
+        } catch (ClassNotFoundException e) {
+            // Nothing displayed (always occurs in MN mode)
         } catch (Exception e) {
             System.err.println(e);
         }
