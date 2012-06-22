@@ -13,7 +13,7 @@
 
 package org.scilab.modules.gui.editor;
 
-
+import org.scilab.modules.graphic_objects.graphicObject.*;
 import org.scilab.modules.gui.editor.PolylineHandler;
 
 /**
@@ -56,7 +56,15 @@ public class ScilabClipboard {
     */
     public void paste(String figure, Integer[] position) {
         String polyline = polylineUid;
-        String axesFrom = (new ObjectSearcher()).searchParent(polyline, "Axes");
+
+        if (!canPaste()) {
+            return;
+        }
+
+        String axesFrom = (new ObjectSearcher()).searchParent(polyline, GraphicObjectProperties.__GO_AXES__);
+        if (axesFrom == null) {
+            return;
+        }
 
         if (needDuplication == true ) {
             polyline = PolylineHandler.getInstance().duplicate(polylineUid);
@@ -96,10 +104,11 @@ public class ScilabClipboard {
     * @return True if can be pasted, false otherwise.
     */
     public boolean canPaste() {
-        if (polylineUid != null) {
-            return true;
+        if (!PolylineHandler.getInstance().polylineExists(polylineUid)) {
+            polylineUid = null;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**

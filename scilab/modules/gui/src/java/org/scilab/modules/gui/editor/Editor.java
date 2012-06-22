@@ -174,7 +174,7 @@ public class Editor {
     */
     public void setSelected(String uid) {
 
-        if (selected != null) {
+        if (PolylineHandler.getInstance().polylineExists(selected)) {
             PolylineHandler.getInstance().setColor(selected, oriColor);
         }
 
@@ -200,7 +200,12 @@ public class Editor {
     * @return selected polyline uid or null if there isn't any selected.
     */
     public String getSelected() {
-        return selected;
+        if (PolylineHandler.getInstance().polylineExists(selected)) {
+            return selected;
+        } else {
+            setSelected(null);
+            return null;
+        }
     }
 
     /**
@@ -215,7 +220,7 @@ public class Editor {
     * Implements copy menu item action(Callback).
     */
     public void onClickCopy() {
-        ScilabClipboard.getInstance().copy(selected);
+        ScilabClipboard.getInstance().copy(getSelected());
         ScilabClipboard.getInstance().setCopiedColor(oriColor);
     }
 
@@ -230,19 +235,23 @@ public class Editor {
     * Implements cut menu item action
     */
     public void onClickCut() {
-        String s = selected;
-        setSelected(null);
-        ScilabClipboard.getInstance().cut(s);
-        ScilabClipboard.getInstance().setCopiedColor(oriColor);
+        String s = getSelected();
+        if (s != null) {
+            setSelected(null);
+            ScilabClipboard.getInstance().cut(s);
+            ScilabClipboard.getInstance().setCopiedColor(oriColor);
+        }
     }
 
     /**
     * Implements delete menu item action(Callback).
     */
     public void onClickDelete() {
-        String toDelete = selected;
-        setSelected(null);
-        PolylineHandler.getInstance().delete(toDelete);
+        String toDelete = getSelected();
+        if (toDelete != null) {
+            setSelected(null);
+            PolylineHandler.getInstance().delete(toDelete);
+        }
     }
 
     /**
@@ -260,7 +269,7 @@ public class Editor {
     * Implements hide menu item action(Callback).
     */
     public void onClickHide() {
-        if (selected != null) {
+        if (getSelected() != null) {
             PolylineHandler.getInstance().visible(selected, false);
             setSelected(null);
         }

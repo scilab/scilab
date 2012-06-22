@@ -45,6 +45,21 @@ public class PolylineHandler {
         return instance;
     }
 
+   /**
+    * Checks if the polyline object exists.
+    *
+    * @param uid Polyline unique identifier.
+    * @return True if exists, false otherwise.
+    */
+    public Boolean polylineExists(String uid) {
+        if (uid != null) {
+            if (GraphicController.getController().getObjectFromId(uid) != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
     * Checks if the polyline uses line mode.
     *
@@ -131,8 +146,8 @@ public class PolylineHandler {
         String dup = null;
         dup = GraphicController.getController().cloneObject(uid);
         GraphicController.getController().setGraphicObjectRelationship("", dup);
-        dup = PolylineData.createPolylineData(uid, dup);
-        if (dup == null) {
+        String ret = PolylineData.createPolylineData(uid, dup);
+        if (ret == null) {
             delete(dup);
         }
         return dup;
@@ -217,8 +232,10 @@ public class PolylineHandler {
         } else {
             String[] polylines = (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_POLYLINE__);
 
-            for (Integer i = 0; i < polylines.length; ++i) {
-                GraphicController.getController().setProperty(polylines[i], GraphicObjectProperties.__GO_VISIBLE__, state);
+            if (polylines != null) {
+                for (Integer i = 0; i < polylines.length; ++i) {
+                    GraphicController.getController().setProperty(polylines[i], GraphicObjectProperties.__GO_VISIBLE__, state);
+                }
             }
         }
     }

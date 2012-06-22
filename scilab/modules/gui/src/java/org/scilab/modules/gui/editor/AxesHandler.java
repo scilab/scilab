@@ -83,6 +83,10 @@ public class AxesHandler {
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_VISIBLE__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_BOX_TYPE__, 1);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_FILLED__, true);
     }
 
     /**
