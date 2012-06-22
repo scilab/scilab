@@ -598,6 +598,8 @@ case "$CC" in
     ARCH_CFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
     ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
     ARCH_FFLAGS="-mmacosx-version-min=10.5"
+    ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+
     case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
