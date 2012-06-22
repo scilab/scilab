@@ -45,8 +45,14 @@ for fr_position = 1:demo_fig.userdata.frame_number
 
   if ~isempty(curFrame) then
     set(curFrame, "position", [ this_frame_pos_x this_frame_pos_y this_frame_w this_frame_h ]);
+  end
+  if ~isempty(curTitle) then
     set(curTitle, "position", [ this_frame_pos_x+10 axes_h-(margin_y)-9 this_frame_w-20 18 ]);
+  end
+  if ~isempty(curListbox) then
     set(curListbox, "position", [ this_frame_pos_x+5 this_frame_pos_y+5 this_frame_w-12 this_frame_h-14-10 ]);
+  end
+  if ~isempty(scilabLogo) then
     set(scilabLogo, "position", [ margin_x axes_h-(margin_y+frame_h) frame_w 150]);
   end
 
