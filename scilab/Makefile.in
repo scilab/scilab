@@ -1811,7 +1811,7 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	fi
 @BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
-doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+doc-web: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		for l in $(ALL_LINGUAS_DOC); do \
