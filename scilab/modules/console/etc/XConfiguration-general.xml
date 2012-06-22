@@ -159,7 +159,7 @@
           <action key="" description="Convert quote to double quote" name="scinotes-double-quote"/>
           <action key="" description="Line numbering" name="scinotes-line-numbering"/>
         </action-folder>
-        <action-folder name="Xcos" xconf-uid="xcos">
+        <!--action-folder name="Xcos" xconf-uid="xcos">
           <action key="OSSCKEY S" description="Save diagramm" name="xcos-save"/>
         </action-folder>
         <action-folder name="Variable Browser" xconf-uid="browsevar">
@@ -173,7 +173,7 @@
         </action-folder>
         <action-folder name="File Browser" xconf-uid="filebrowser">
           <action key="OSSCKEY S" description="Save file" name="filebrowser-save"/>
-        </action-folder>
+        </action-folder-->
       </actions>
     </body>
   </shortcuts>
