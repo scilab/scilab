@@ -127,9 +127,9 @@ maxz = max(z);
 
 // Surround the matrix by a very low region to get closed contours, and
 // replace any NaN with low numbers as well.
-zz=[ %nan * ones(1,nz+2);
-        %nan*ones(mz,1), z, %nan*ones(mz,1);
-        %nan*ones(1,nz+2)];
+zz=[ %nan * ones(1,nz+2) + %nan;
+     %nan * ones(mz,1)   + %nan, z, %nan * ones(mz,1)   + %nan;
+     %nan * ones(1,nz+2) + %nan];
 
 kk=find(isnan(zz(:)));
 
@@ -163,12 +163,12 @@ lp=xget('lastpattern');
 if size(nv,'*') > 1 // case where nv is a vector defining the level curve values
     if  size(nv,'*') > lp
         error(msprintf(gettext("%s: Colormap too small"),"contourf"));
-    end 
+    end
 else
     if nv > lp
         error(msprintf(gettext("%s: Colormap too small"),"contourf"));
         return ;
-    end 
+    end
 end
 
 min_nv=min(nv);
