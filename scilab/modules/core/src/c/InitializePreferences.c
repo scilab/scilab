@@ -10,6 +10,8 @@
  *
  */
 
+#include <stdlib.h>
+
 #include "getScilabPreference.h"
 #include "api_scilab.h"
 #include "setieee.h"

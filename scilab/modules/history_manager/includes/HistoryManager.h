@@ -195,7 +195,7 @@ extern "C" {
 
     /**
     */
-    BOOL setSizeMaxScilabHistory(int nbLinesMax);
+    HISTORY_MANAGER_IMPEXP BOOL setSizeMaxScilabHistory(int nbLinesMax);
 
     /**
     */
