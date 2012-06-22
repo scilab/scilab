@@ -62,6 +62,10 @@ public class Editor {
     public void onMouseClick(MouseEvent event) {
         boolean b = ScilabClipboard.getInstance().canPaste();
         paste.setEnabled(b);
+
+        boolean notBlank = AxesHandler.isAxesNotBlank(figureUid);
+        clipboardCopy.setEnabled(notBlank);
+
         menu.show(event.getComponent(), event.getX(), event.getY());
         lastClick[0] = event.getX();
         lastClick[1] = event.getY();
@@ -75,24 +79,24 @@ public class Editor {
     */
     public void init() {
         menu = new JPopupMenu();
+		
 
         copy = new JMenuItem(Messages.gettext("Copy"));
-        copy.setToolTipText(Messages.gettext("Copy selected polyline."));
+        copy.setToolTipText(Messages.gettext("Copy selected curve."));
         cut = new JMenuItem(Messages.gettext("Cut"));
-        cut.setToolTipText(Messages.gettext("Cut selected polyline."));
+        cut.setToolTipText(Messages.gettext("Cut selected curve."));
         paste = new JMenuItem(Messages.gettext("Paste"));
-        paste.setToolTipText(Messages.gettext("Paste copied polyline to this figure."));
+        paste.setToolTipText(Messages.gettext("Paste copied curve to this figure."));
         delete = new JMenuItem(Messages.gettext("Delete"));
-        delete.setToolTipText(Messages.gettext("Delete selected polyline."));
+        delete.setToolTipText(Messages.gettext("Delete selected curve."));
         clear = new JMenuItem(Messages.gettext("Clear"));
         clear.setToolTipText(Messages.gettext("Clear figure."));
         hide = new JMenuItem(Messages.gettext("Hide"));
-        hide.setToolTipText(Messages.gettext("Hide selected polyline."));
-        unhide = new JMenuItem(Messages.gettext("Unhide All"));
-        unhide.setToolTipText(Messages.gettext("Unhide all polylines."));
+        hide.setToolTipText(Messages.gettext("Hide selected curve."));
+        unhide = new JMenuItem(Messages.gettext("Unhide all"));
+        unhide.setToolTipText(Messages.gettext("Unhide all curves."));
         clipboardCopy = new JMenuItem(Messages.gettext("Copy to Clipboard"));
         clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard."));
-
 
 
         copy.addActionListener(new ActionListener() {
@@ -144,6 +148,7 @@ public class Editor {
         });
 
 
+
         menu.add(copy);
         menu.add(cut);
         menu.add(paste);
@@ -156,6 +161,8 @@ public class Editor {
         menu.addSeparator();
         menu.add(clipboardCopy);
     }
+
+
 
     /**
     * Set the current selected polyline, change its color,
@@ -272,6 +279,5 @@ public class Editor {
     public void onClickCCopy() {
         SystemClipboard.copyToSysClipboard(figureUid);
     }
-
 }
 

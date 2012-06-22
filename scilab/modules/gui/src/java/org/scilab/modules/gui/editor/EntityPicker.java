@@ -44,7 +44,8 @@ public class EntityPicker {
     private Double dy;
 
     /**
-    * Picks a polyline at the given position
+    * Picks a polyline at the given position.
+    *
     * @param figureUid 	Figure uid to be check.
     * @param posX 		Position on x axis in pixels.
     * @param posY 		Position on y axis in pixels.
@@ -57,42 +58,51 @@ public class EntityPicker {
         if (axes == null) {
             return null;
         }
-        String polylines[] = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_POLYLINE__);
 
-
-        double[] pos = new double[3];
-        pos[0] = 1.0 * posX;
-        pos[1] = 1.0 * posY;
-        pos[2] = 1.0;
+        double[] pos = {1.0 * posX, 1.0 * posY, 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
         pos[1] += 15.0;
-
         double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
         dy = c2d[1] - c2d2[1];
 
-        long Time = 0;
+        /* Checks if the click is outside canvas drawable area*/
+        if (AxesHandler.isZoomBoxEnabled(axes)) {
+            if (!AxesHandler.isInZoomBoxBounds(axes, c2d[0], c2d[1])) {
+                return null;
+            }
+        }
+
+        String polylines[] = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_POLYLINE__);
+
         if (polylines != null) {
             for (int i = 0; i < polylines.length; ++i) {
                 if (PolylineHandler.getInstance().isVisible(polylines[i])) {
-                    if (isOverLine(polylines[i], c2d[0], c2d[1])) {
-                        return polylines[i];
+
+                    if (PolylineHandler.getInstance().isLineEnabled(polylines[i])) {
+                        if (isOverLine(polylines[i], c2d[0], c2d[1])) {
+                            return polylines[i];
+                        }
+                    }
+                    if (PolylineHandler.getInstance().isMarkEnabled(polylines[i])) {
+                        if (isOverMark(polylines[i], c2d[0], c2d[1])) {
+                            return polylines[i];
+                        }
                     }
                 }
             }
         }
 
-        //
         return null;
     }
 
     /**
-    * Check algorithm linear interpolation for each pair of points
-    * @param uid	Polyline uid to be checked
-    * @param x		position on x axis in view coordinates
-    * @param y		position on y axis in view coordinates
-    * @return		true if x,y belongs or is closest to the polyline
+    * Check algorithm linear interpolation for each pair of points.
+    * @param uid	Polyline uid to be checked.
+    * @param x		position on x axis in view coordinates.
+    * @param y		position on y axis in view coordinates.
+    * @return		true if x,y belongs or is closest to the polyline.
     */
     private boolean isOverLine(String uid, Double x, Double y) {
 
@@ -111,9 +121,8 @@ public class EntityPicker {
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
 		/* Fast bound check*/
-        double dx = x1 - x0;
-        double p1 = x - x0;
-        double p2 = x1 - x;
+        double m = (x1 + x0)/2;
+        double dx = m - x0;
 
         Double ca = (y1 - y0) / (x1 - x0);
 
@@ -121,7 +130,31 @@ public class EntityPicker {
 
         if (y >= (yy - dy)) {
             if (y <= (yy + dy)) {
-                return (true && (Math.abs(p1) + Math.abs(p2) ) <= Math.abs(dx)) ;
+                return (Math.abs(m - x) <= Math.abs(dx));
+            }
+        }
+        return false;
+    }
+
+   /**
+    * Checks if the given point belongs the polyline mark.
+    * @param uid	Polyline uid to be checked.
+    * @param x		position on x axis in view coordinates.
+    * @param y		position on y axis in view coordinates.
+    * @return		True if x,y belongs to the polyline mark.
+    */
+    private boolean isOverMark(String uid, Double x, Double y) {
+
+        double[] datax = (double[])PolylineData.getDataX(uid);
+        double[] datay = (double[])PolylineData.getDataY(uid);
+        Integer size = PolylineHandler.getInstance().getMarkSize(uid);
+        Integer unit = PolylineHandler.getInstance().getMarkSizeUnit(uid);
+        /*dy/15 = 1px unit = 0 -> point, unit = 1 -> tabulated*/
+        double delta = (dy/15)*(size*(0.75 + 0.7*unit) + 1.0 + unit*4.0);
+        
+        for (int i = 0; i < datax.length; ++i) {
+            if ((Math.abs(datax[i] - x) <= delta) && (Math.abs(datay[i] - y) <= delta)) {
+                return true;
             }
         }
         return false;

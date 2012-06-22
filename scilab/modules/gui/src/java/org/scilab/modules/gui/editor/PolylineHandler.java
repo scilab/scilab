@@ -46,13 +46,53 @@ public class PolylineHandler {
     }
 
     /**
-    * Check if the polyline uses mark.
+    * Checks if the polyline uses line mode.
     *
     * @param uid Polyline unique identifier.
-    * @return True if mark is enabled, false otherwise.
+    * @return True if line mode is enabled, false otherwise.
+    */
+    public Boolean isLineEnabled(String uid) {
+        return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_MODE__);
+    }
+
+    /**
+    * Checks if the polyline uses mark mode.
+    *
+    * @param uid Polyline unique identifier.
+    * @return True if mark mode is enabled, false otherwise.
     */
     public Boolean isMarkEnabled(String uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_MODE__);
+    }
+
+    /**
+    * Get the mark style from the given polyline.
+    *
+    * @param uid Polyline unique identifier.
+    * @return Style number.
+    */
+    public Integer getMarkStyle(String uid) {
+        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_STYLE__);
+    }
+
+    /**
+    * Get the mark size from the given polyline.
+    *
+    * @param uid Polyline unique identifier.
+    * @return Mark size.
+    */
+    public Integer getMarkSize(String uid) {
+        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE__);
+    }
+
+    /**
+    * Get the mark size from the given polyline.
+    *
+    * @param uid Polyline unique identifier.
+    * @return Mark size.
+    */
+    public Integer getMarkSizeUnit(String uid) {
+        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
     }
 
     /**

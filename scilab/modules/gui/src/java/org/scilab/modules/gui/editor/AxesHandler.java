@@ -21,6 +21,8 @@ import org.scilab.modules.graphic_objects.graphicObject.*;
 import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.gui.editor.PolylineHandler;
 
+import java.lang.Math;
+
 
 /**
 * Implements all axes manipulation functions for the editor.
@@ -109,42 +111,98 @@ public class AxesHandler {
         Double[] axesTB = (Double[])GraphicController.getController().getProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__);
         Double[] newBounds = {0., 0., 0., 0., 0., 0.};
 
-        if (axesFB[0] < axesTB[0]) {
-            newBounds[0] = axesFB[0];
-        } else {
-            newBounds[0] = axesTB[0];
-        }
-
-        if (axesFB[1] > axesTB[1]) {
-            newBounds[1] = axesFB[1];
-        } else {
-            newBounds[1] = axesTB[1];
-        }
-
-        if (axesFB[2] < axesTB[2]) {
-            newBounds[2] = axesFB[2];
-        } else {
-            newBounds[2] = axesTB[2];
-        }
-
-        if (axesFB[3] > axesTB[3]) {
-            newBounds[3] = axesFB[3];
-        } else {
-            newBounds[3] = axesTB[3];
-        }
-        if (axesFB[4] < axesTB[4]) {
-            newBounds[4] = axesFB[4];
-        } else {
-            newBounds[4] = axesTB[4];
-        }
-
-        if (axesFB[5] > axesTB[5]) {
-            newBounds[5] = axesFB[5];
-        } else {
-            newBounds[5] = axesTB[5];
-        }
+        newBounds[0] = Math.min(axesFB[0], axesTB[0]);
+        newBounds[1] = Math.max(axesFB[1], axesTB[1]);
+        newBounds[2] = Math.min(axesFB[2], axesTB[2]);
+        newBounds[3] = Math.max(axesFB[3], axesTB[3]);
+        newBounds[4] = Math.min(axesFB[4], axesTB[4]);
+        newBounds[5] = Math.max(axesFB[5], axesTB[5]);
 
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__, newBounds);
+    }
+
+    /**
+     * Checks if zoombox is enebled in the given axes.
+     *
+     * @param uid axes unique identifier.
+     * @return True if enabled, false otherwise.
+     */
+    public static Boolean isZoomBoxEnabled(String uid) {
+        return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_ZOOM_ENABLED__);
+    }
+
+    /**
+     * Checks if the given point (x,y) is in zoombox bounds.
+     *
+     * @param uid Axes unique identifier.
+     * @param x position on x axis.
+     * @param y position on y axis.
+     * @return True if the point is within the bounds, false otherwise.
+     */
+    public static Boolean isInZoomBoxBounds(String uid, double x, double y) {
+        Double[] bounds = (Double[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_ZOOM_BOX__);
+
+        if (x >= bounds[0] && x <= bounds[1]) {
+            if (y >= bounds[2] && y <= bounds[3]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the given figure have any object visible.
+     *
+     * @param figure Figure unique identifier.
+     * @return True if there is any object visible, false otherwise.
+     */
+    public static boolean isAxesNotBlank(String figure) {
+		
+        String[] axes = searchAxes(figure);
+        if (axes == null) {
+	        return false;
+		}
+        boolean flag = false;
+        for( Integer j = 0; j < axes.length; j++) {
+
+            Integer childCount = (Integer)GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+            String[] child = (String[])GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN__);
+            for (Integer i = 0; i < childCount; i++) {
+                flag = isBlank(child[i]);
+                if(flag) {
+                    return flag;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the given object is visible or if it has child check its children.
+     *
+     * @param objectID Object unique identifier.
+     * @return True if there is any object visible, false otherwise.
+     */
+	private static boolean isBlank(String objectID) {
+
+        String type = (String)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
+        boolean flag = (Boolean) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__);
+        if(flag) {
+
+            if(type != GraphicObjectProperties.__GO_LABEL__ && type != GraphicObjectProperties.__GO_COMPOUND__) {
+                return flag;
+            } else if(type == GraphicObjectProperties.__GO_COMPOUND__) {
+                Integer childCount = (Integer)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+                String[] child = (String[])GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN__);
+                for(Integer i = 0; i < childCount; i++) {
+                    flag = (Boolean) GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_VISIBLE__);
+                    if(flag) {
+                        return flag;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
 
