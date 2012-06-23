@@ -84,9 +84,6 @@ f.color_map = jetcolormap(32);
         <link linkend="hsvcolormap">hsvcolormap</link>
       </member>
       <member>
-        <link linkend="jetcolormap">jetcolormap</link>
-      </member>
-      <member>
         <link linkend="oceancolormap">oceancolormap</link>
       </member>
       <member>
