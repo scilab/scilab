@@ -466,9 +466,6 @@
   </refsection>
   <refsection>
     <title>Mais Informações</title>
-    <para>Para obter mais informações sobre a sintaxe antiga de plot 2d, veja
-      a documentação <link linkend="plot2d_old_version">plot2d_old_version</link>.
-    </para>
     <para>Por padrão, esboços sucessivos são superpostos. para limpar o esboço
       anterior use 
       <literal>

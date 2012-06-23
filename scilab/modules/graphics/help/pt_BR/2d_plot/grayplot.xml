@@ -51,8 +51,7 @@
             </literal>
             ,... onde <literal>key1</literal>,
             <literal>key2,...</literal> podem ser um dos seguintes: rect, nax,
-            strf ou axesflag e frameflag (ver <literal>plot2d</literal> e
-            <literal>plot2d_old_version</literal>).
+            strf ou axesflag e frameflag (ver <literal>plot2d</literal>).
           </para>
         </listitem>
       </varlistentry>

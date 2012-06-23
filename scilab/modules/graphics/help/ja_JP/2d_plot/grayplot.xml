@@ -52,7 +52,7 @@
             ,... を表します.ただし,<literal>key1</literal>,
             <literal>key2,...</literal> には以下のどれかを指定します: rect, nax, strf
             または axesflag および frameflag (<literal>plot2d</literal> および
-            <literal>plot2d_old_version</literal>参照).
+            参照).
           </para>
         </listitem>
       </varlistentry>

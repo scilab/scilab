@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="grayplot">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -53,8 +53,7 @@
             </literal>
             ,... where <literal>key1</literal>,
             <literal>key2,...</literal> can be one of the following: rect, nax, strf
-            or axesflag and frameflag (see <literal>plot2d</literal> and
-            <literal>plot2d_old_version</literal>).
+            or axesflag and frameflag (see <literal>plot2d</literal>).
           </para>
         </listitem>
       </varlistentry>
