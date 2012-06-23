@@ -24,6 +24,15 @@ function paramfplot2d(f,x,theta,flag,rect)
 //function y=f(x,t),y=abs(cos(1.5*x+4*t)).*sin(x+10*t),endfunction
 //x=linspace(0,20*%pi,500);theta=0:0.05:5;
 [lhs,rhs]=argn(0)
+
+if ~rhs then
+   deff('y=f(x,t)','y=t*sin(x)')
+   x=linspace(0,2*%pi,50);theta=0:0.05:1;
+   clf;
+   paramfplot2d(f,x,theta);
+   return;
+end
+
 if rhs<3 then
   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "paramfplot2d", 3));
 end
