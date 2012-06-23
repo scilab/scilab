@@ -40,10 +40,10 @@
         <term>children: </term>
         <listitem>
           <para>A vector containing the handles of all graphics objects children
-            of the Compound These graphics objects can be of type
+            of the Compound. These graphics objects can be of type
             <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
             <literal>"Polyline"</literal>, <literal>"Patch"</literal>, <literal>"Segs"</literal>,
-            <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,..
+	    <literal>"Arc"</literal>, <literal>"Grayplot"</literal>, ...
           </para>
         </listitem>
       </varlistentry>
