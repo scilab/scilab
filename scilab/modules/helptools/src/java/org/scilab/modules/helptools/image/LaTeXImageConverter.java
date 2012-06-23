@@ -49,7 +49,7 @@ public class LaTeXImageConverter implements ExternalImageConverter {
      */
     public static ExternalImageConverter getInstance() {
         if (instance == null) {
-             instance = new LaTeXImageConverter();
+            instance = new LaTeXImageConverter();
         }
         return instance;
     }
@@ -57,7 +57,7 @@ public class LaTeXImageConverter implements ExternalImageConverter {
     /**
      * {@inheritDoc}
      */
-    public String convertToImage(String latex, Map<String, String> attributes, File imageFile, String imageName) {
+    public String convertToImage(String currentFile, String latex, Map<String, String> attributes, File imageFile, String imageName) {
         TeXIcon icon = null;
         try {
             TeXFormula formula = new TeXFormula(latex);
@@ -110,7 +110,7 @@ public class LaTeXImageConverter implements ExternalImageConverter {
         }
 
         if (ok) {
-            return convertToImage(buffer.toString(), attributes, imageFile, imageName);
+            return convertToImage(latex.getName(), buffer.toString(), attributes, imageFile, imageName);
         }
 
         return null;

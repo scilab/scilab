@@ -14,7 +14,11 @@ package org.scilab.modules.helptools.external;
 
 import org.xml.sax.Attributes;
 
+import org.scilab.modules.helptools.DocbookTagConverter;
+
 public abstract class ExternalXMLHandler {
+
+    private DocbookTagConverter converter;
 
     public abstract StringBuilder startExternalXML(String localName, Attributes attributes);
 
@@ -22,26 +26,34 @@ public abstract class ExternalXMLHandler {
 
     public abstract String getURI();
 
-    public void recreateTag(StringBuilder buf, String localName, Attributes attrs) {
-	if (attrs != null) {
-	    buf.append("<");
-	    buf.append(localName);
-	    int len = attrs.getLength();
-	    for (int i = 0; i < len; i++) {
-		String at = attrs.getLocalName(i);
-		if (at != null && at.length() > 0) {
-		    buf.append(" ");
-		    buf.append(at);
-		    buf.append("=\'");
-		    buf.append(attrs.getValue(i));
-		    buf.append("\'");
-		}
-	    }
-	} else {
-	    buf.append("</");
-	    buf.append(localName);
-	}
+    public DocbookTagConverter getConverter() {
+        return converter;
+    }
 
-	buf.append(">");
+    public void setConverter(DocbookTagConverter converter) {
+        this.converter = converter;
+    }
+
+    public void recreateTag(StringBuilder buf, String localName, Attributes attrs) {
+        if (attrs != null) {
+            buf.append("<");
+            buf.append(localName);
+            int len = attrs.getLength();
+            for (int i = 0; i < len; i++) {
+                String at = attrs.getLocalName(i);
+                if (at != null && at.length() > 0) {
+                    buf.append(" ");
+                    buf.append(at);
+                    buf.append("=\'");
+                    buf.append(attrs.getValue(i));
+                    buf.append("\'");
+                }
+            }
+        } else {
+            buf.append("</");
+            buf.append(localName);
+        }
+
+        buf.append(">");
     }
 }

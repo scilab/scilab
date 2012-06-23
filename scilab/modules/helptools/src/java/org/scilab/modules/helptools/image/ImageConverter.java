@@ -21,6 +21,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +46,7 @@ public final class ImageConverter {
         mimeMap.addMimeTypes("type=image/latex exts=tex,latex");
         mimeMap.addMimeTypes("type=image/mathml exts=mml,mathml");
         mimeMap.addMimeTypes("type=image/svg exts=svg");
+        mimeMap.addMimeTypes("type=image/scilab exts=sce");
     }
 
     /**
@@ -96,14 +99,23 @@ public final class ImageConverter {
      * @param imageFile the filename
      * @return the HTML code to insert the image
      */
-    public static String getImageByCode(String code, Map<String, String> attrs, String mime, File imageFile, String imageName) {
-        ExternalImageConverter conv = externalConverters.get(mime);
-        if (conv != null) {
-            return conv.convertToImage(code, attrs, imageFile, imageName);
-        }
-        System.err.println("Code not handled:\n" + code);
+    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName) {
+        File current = null;
+        try {
+            current = new File(new URI(currentFile));
+        } catch (URISyntaxException e) { }
 
-        return null;
+        if (current == null || current.lastModified() > imageFile.lastModified()) {
+            ExternalImageConverter conv = externalConverters.get(mime);
+            if (conv != null) {
+                return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
+            }
+
+            System.err.println("In file " + currentFile + "invalid code:\n" + code);
+            return null;
+        }
+
+        return "<img src=\'" + imageName + "\'/>";
     }
 
     /**
@@ -171,8 +183,7 @@ public final class ImageConverter {
             dest.transferFrom(src, 0, src.size());
         } catch (IOException e) {
             System.err.println(e);
-        }
-        finally {
+        } finally {
             try {
                 if (src != null) {
                     src.close();

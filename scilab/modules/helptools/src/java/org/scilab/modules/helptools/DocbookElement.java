@@ -15,55 +15,64 @@ package org.scilab.modules.helptools;
 import java.util.Map;
 
 public class DocbookElement {
-	
+
     private Map<String, String> attributes;
     private String name;
     private StringBuilder contents;
-	
+    private String uri;
+
     /**
      * Default constructor
      * @param name the tag name
      * @param attributes the attributes and its values
      */
-    protected DocbookElement(String name, Map attributes) {
-	this.name = name;
-	this.attributes = attributes;
-	contents = new StringBuilder();
+    protected DocbookElement(String name, String uri, Map attributes) {
+        this.name = name;
+        this.attributes = attributes;
+        this.uri = uri;
+        contents = new StringBuilder();
     }
 
     /**
      * @return a new DocbookElement
      */
-    public DocbookElement getNewInstance(String name, Map attributes) {
-	return new DocbookElement(name, attributes);
+    public DocbookElement getNewInstance(String name, String uri, Map attributes) {
+        return new DocbookElement(name, uri, attributes);
     }
 
     /**
      * @return the tag name
      */
     public String getName() {
-	return name;
+        return name;
+    }
+
+    /**
+     * @return the tag uri
+     */
+    public String getURI() {
+        return uri;
     }
 
     /**
      * @return the attributes
      */
     public Map<String, String> getAttributes() {
-	return attributes;
+        return attributes;
     }
-    
+
     /**
      * @return the buffer used to add contents of the tag
      */
     public StringBuilder getStringBuilder() {
-	return contents;
+        return contents;
     }
 
     /**
      * @param the buffer to use
      */
     public void setStringBuilder(StringBuilder buf) {
-	contents = buf;
+        contents = buf;
     }
 
     /**
@@ -80,7 +89,7 @@ public class DocbookElement {
      * @return an object
      */
     public Object get() {
-	return null;
+        return null;
     }
 
     /**
@@ -93,6 +102,6 @@ public class DocbookElement {
      * @return the parent element
      */
     public DocbookElement getParent() {
-	return null;
+        return null;
     }
 }
