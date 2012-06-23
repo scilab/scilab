@@ -215,6 +215,17 @@
       value of <literal>z</literal> on the corners of the grid.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+      z=30+round(theta'*(1+rho^2));
+      f=gcf();
+      f.color_map= hotcolormap(128);
+      graypolarplot(theta,rho,z)
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

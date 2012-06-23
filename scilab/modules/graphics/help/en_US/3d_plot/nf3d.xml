@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>nf3d</refname>
-    <refpurpose> rectangular facets to plot3d parameters</refpurpose>
+    <refpurpose>Rectangular facets to plot3d parameters</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

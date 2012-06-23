@@ -222,6 +222,12 @@
       Enter the command <literal>param3d()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>param3d();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

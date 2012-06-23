@@ -544,12 +544,6 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-    <para>前の例の結果:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch.png"/>
-      </imageobject>
-    </mediaobject>
     <para>頂点と面により一連のパッチをプロットするために
       plot3d関数を使用することもできます.
     </para>
@@ -610,12 +604,6 @@ xtitle('A triangle set of patches - vertex / face mode - 2D');
 a = gca();
 a.view = '2d';
  ]]></programlisting>
-    <para>前の例の結果:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png"/>
-      </imageobject>
-    </mediaobject>
     <para>マニュアルで目盛を設定する方法</para>
     <programlisting role="example"><![CDATA[ 
 plot3d();

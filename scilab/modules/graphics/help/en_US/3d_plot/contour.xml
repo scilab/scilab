@@ -317,6 +317,12 @@ plot2d(x(im)',y(jm)',-9,"000")
       Enter the command <literal>contour()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>contour();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

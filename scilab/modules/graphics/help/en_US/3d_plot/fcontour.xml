@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>fcontour</refname>
     <refpurpose>level curves on a 3D surface defined by a
-      function
+      function (obsolete function)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>

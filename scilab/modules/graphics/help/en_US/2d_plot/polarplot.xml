@@ -267,6 +267,11 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>polarplot();</scilab:image>
+  </refsection>
+  
+  <refsection>
     <title>Example 1</title>
     <programlisting role="example1"><![CDATA[ 
 t= 0:.01:2*%pi;

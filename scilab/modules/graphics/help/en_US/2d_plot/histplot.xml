@@ -97,6 +97,12 @@
       Enter the command <literal>histplot()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>histplot();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <simplelist>

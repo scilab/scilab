@@ -168,6 +168,12 @@
       data files in Scilab and plot the results.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>fec();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -188,7 +194,15 @@ subplot(1,2,2)
   fec(x,y,T,z,strf="040")  // rmq: mesh=%f by default
   xtitle("fec example (without the mesh)")
 show_window()
-
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
+// define a mini triangulation (4 vertices, 2 triangles)
+x = [0 1 0 -1];
+y = [0 0 1  1];
+T = [1 1 2 3 1;
+     2 3 4 1 1];
+z = [0 1 0 -1];  // values of the func at each vertices
 // this example shows the effect of zminmax and uses the
 // previous example data (you have to execute the it before)
 clf()
@@ -197,7 +211,15 @@ colorbar(-0.5,0.5)  // be careful colorbar must be set by hands !
 fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
 xtitle("fec example : using zminmax argument")
 show_window()
-
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
+// define a mini triangulation (4 vertices, 2 triangles)
+x = [0 1 0 -1];
+y = [0 0 1  1];
+T = [1 1 2 3 1;
+     2 3 4 1 1];
+z = [0 1 0 -1];  // values of the func at each vertices
 // this example shows the effect of zminmax and colout. It uses
 // also the data of the first example (you have to execute the it before)
 clf()
@@ -219,6 +241,15 @@ subplot(2,2,4)
   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[0 -1], mesh=%t)
   xtitle("fec example : using zminmax and colout =[0 -1]")
 show_window()
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
+// define a mini triangulation (4 vertices, 2 triangles)
+x = [0 1 0 -1];
+y = [0 0 1  1];
+T = [1 1 2 3 1;
+     2 3 4 1 1];
+z = [0 1 0 -1];  // values of the func at each vertices
 
 // this example shows a feature from colminmax:
 // playing with 2 colormaps for 2 subplots. It

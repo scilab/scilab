@@ -80,6 +80,12 @@
       Enter the command <literal>grayplot()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>grayplot();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

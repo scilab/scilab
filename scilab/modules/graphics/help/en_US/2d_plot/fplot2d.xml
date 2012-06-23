@@ -74,6 +74,12 @@
       Enter the command <literal>fplot2d()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>fplot2d();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

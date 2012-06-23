@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>errbar</refname>
-    <refpurpose> add vertical error bars on a 2D plot</refpurpose>
+    <refpurpose>Add vertical error bars on a 2D plot</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -45,6 +45,12 @@
       Enter the command <literal>errbar()</literal> to see a demo.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>errbar();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

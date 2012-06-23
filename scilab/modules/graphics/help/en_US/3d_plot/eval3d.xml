@@ -55,6 +55,16 @@
       primitive <literal>feval</literal>.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>x=-5:5;y=x;
+      deff('[z]=f(x,y)',['z= x.*y']);
+      z=eval3d(f,x,y);
+      plot3d(x,y,z);
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

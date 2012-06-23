@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>milk_drop</refname>
-    <refpurpose> milk drop 3D function</refpurpose>
+    <refpurpose>Milk drop 3D function</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -47,10 +47,21 @@
       can be used to test functions <literal>eval3d</literal> and <literal>plot3d</literal>.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>x=-2:0.1:2;
+      y=x;
+      z=eval3d(milk_drop,x,y);
+      plot3d(x,y,z)
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-x=-2:0.1:2; y=x;
+x=-2:0.1:2;
+y=x;
 z=eval3d(milk_drop,x,y);
 plot3d(x,y,z)
  ]]></programlisting>

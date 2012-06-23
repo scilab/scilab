@@ -53,6 +53,12 @@
       color. If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>Matplot1();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

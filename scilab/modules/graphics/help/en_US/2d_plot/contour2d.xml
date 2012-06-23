@@ -132,6 +132,12 @@ plot2d(x(im)',y(jm)',-9,"000")
       Use <literal>contour</literal> to draw levels curves on a 3D surface.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11]);</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[

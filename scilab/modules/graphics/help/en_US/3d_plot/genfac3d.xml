@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>genfac3d</refname>
-    <refpurpose> compute facets of a 3D surface</refpurpose>
+    <refpurpose>Compute facets of a 3D surface</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -70,10 +70,18 @@
       <literal>z=f(x,y)</literal> defined by <literal>x</literal>, <literal>y</literal> and <literal>z</literal>.
     </para>
   </refsection>
+  
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>genfac3d();</scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+t=[0:0.3:2*%pi]'; 
+z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d(xx,yy,zz)
  ]]></programlisting>

@@ -99,6 +99,10 @@ _____________
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>Sfgrayplot();</scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // example #1: plot 4 surfaces

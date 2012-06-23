@@ -550,12 +550,6 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-    <para>The result of the preceding example:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch.png"/>
-      </imageobject>
-    </mediaobject>
     <para>We can also use the plot3d function to plot a set of patches using
       vertex and faces.
     </para>
@@ -616,12 +610,6 @@ xtitle('A triangle set of patches - vertex / face mode - 2D');
 a = gca();
 a.view = '2d';
  ]]></programlisting>
-    <para>The result of the preceding example:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png"/>
-      </imageobject>
-    </mediaobject>
     <para> How to set manually some ticks </para>
     <programlisting role="example"><![CDATA[ 
 plot3d();

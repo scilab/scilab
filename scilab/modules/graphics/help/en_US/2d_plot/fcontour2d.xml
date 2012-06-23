@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>fcontour2d</refname>
-    <refpurpose> level curves of a surface defined by a function on a 2D plot</refpurpose>
+    <refpurpose>Level curves of a surface defined by a function on a 2D plot (obsolete function)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

@@ -310,6 +310,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>x=1:0.1:10; // Init.
+      plot(x,sin(x),'r.->')
+      t=0:%pi/20:2*%pi;
+      plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

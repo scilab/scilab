@@ -31,7 +31,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d.png"/>
+            <scilab:image>plot2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -45,7 +45,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d2.png"/>
+            <scilab:image>plot2d2();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -59,7 +59,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d3.png"/>
+            <scilab:image>plot2d3();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -73,7 +73,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d4.png"/>
+            <scilab:image>plot2d4();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -87,7 +87,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot2d.png"/>
+            <scilab:image>fplot2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -101,7 +101,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/champ.png"/>
+            <scilab:image>champ();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -115,7 +115,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/champ1.png"/>
+            <scilab:image>champ1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -129,7 +129,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fchamp.png"/>
+            <scilab:image>fchamp();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -151,7 +151,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fcontour2d.png"/>
+            <scilab:image>fcontour2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -165,7 +165,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/grayplot.png"/>
+            <scilab:image>grayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -179,7 +179,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fgrayplot.png"/>
+            <scilab:image>fgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -193,7 +193,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Sgrayplot.png"/>
+            <scilab:image>Sgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -207,7 +207,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Sfgrayplot.png"/>
+            <scilab:image>Sfgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -221,7 +221,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xgrid.png"/>
+            <scilab:image>xgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -235,7 +235,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/errbar.png"/>
+            <scilab:image>errbar();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -249,7 +249,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/histplot.png"/>
+            <scilab:image>histplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -263,7 +263,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Matplot.png"/>
+            <scilab:image>Matplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -282,7 +282,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot3d.png"/>
+            <scilab:image>plot3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -296,7 +296,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot3d1.png"/>
+            <scilab:image>plot3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -310,7 +310,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot3d.png"/>
+            <scilab:image>fplot3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -324,7 +324,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot3d1.png"/>
+            <scilab:image>fplot3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -338,7 +338,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/param3d.png"/>
+            <scilab:image>param3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -352,7 +352,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/param3d1.png"/>
+            <scilab:image>param3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -366,7 +366,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/contour.png"/>
+            <scilab:image>contour();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -380,7 +380,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fcontour.png"/>
+            <scilab:image>fcontour();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -394,7 +394,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/hist3d.png"/>
+            <scilab:image>hist3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -408,7 +408,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/genfac3d.png"/>
+            <scilab:image>genfac3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -422,7 +422,14 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/eval3dp.png"/>
+            <scilab:image>p1=linspace(0,2*%pi,10);
+              p2=linspace(0,2*%pi,10);
+              deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+              "y=p1.*cos(p1).*cos(p2)";..
+              "z=p1.*sin(p2)"])
+              [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+              plot3d(Xf,Yf,Zf)
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -436,7 +443,14 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/geom3d.png"/>
+            <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+              t=%pi*(-10:10)/10;
+              // 3D plot of the surface
+              fplot3d(t,t,surface,35,45,"X@Y@Z")
+              // now (t,t,sin(t).*cos(t)) is a curve on the surface
+              // which can be drawn using geom3d and xpoly
+              [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -603,7 +617,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xstringb.png"/>
+            <scilab:image>xstringb();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -617,7 +631,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xtitle.png"/>
+            <scilab:image>xtitle();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1096,7 +1110,10 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/bode.png"/>
+            <scilab:image>s=poly(0,'s')
+              h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+              clf();bode(h,0.01,100);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1110,7 +1127,12 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/gainplot.png"/>
+            <scilab:image>s=poly(0,'s')
+              h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+              h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+              clf();gainplot([h1;h2],0.01,100,['h1';'h2'])
+              title('Gainplot');
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1124,7 +1146,15 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/nyquist.png"/>
+            <scilab:image>s=poly(0,'s')
+              h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+              h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+              nyquist(h1)
+              ax=gca();
+              h_h=ax.children($).children(2);
+              tip=datatipCreate(h_h,[1.331,0.684]);
+              datatipSetOrientation(tip,"upper left");
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1138,7 +1168,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/m_circle.png"/>
+            <scilab:image>m_circle();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1152,7 +1182,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/chart.png"/>
+            <scilab:image>chart();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1166,7 +1196,10 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/black.png"/>
+            <scilab:image>s=poly(0,'s');
+              sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+              clf();black(sl,0.01,10);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1180,7 +1213,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/evans.png"/>
+            <scilab:image>evans();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1194,7 +1227,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/sgrid.png"/>
+            <scilab:image>sgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1208,7 +1241,12 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plzr.png"/>
+            <scilab:image>s=poly(0,'s');
+              n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
+              d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
+              h=syslin('c',n./d); 
+              plzr(h);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1222,7 +1260,7 @@
             <emphasis role="bold">Example:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/zgrid.png"/>
+            <scilab:image>zgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
