@@ -54,7 +54,7 @@ public class HelpOnKeywordAction extends DefaultAction {
         int end = getEditor().getTextPane().getSelectionEnd();
         try {
             if (start == end) {
-                String kw = ((ScilabEditorPane) getEditor().getTextPane()).getHelpableKeyword(!isPopup);
+                String kw = getEditor().getTextPane().getHelpableKeyword(!isPopup);
                 if (kw != null) {
                     selection = kw;
                 }
@@ -91,25 +91,25 @@ public class HelpOnKeywordAction extends DefaultAction {
     protected static MenuItem createMenu(final String label1, final String label2, final SciNotes editor, KeyStroke key, final HelpOnKeywordAction hoka) {
         final MenuItem menuitem = createMenu(label1, null, hoka, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String select = editor.getTextPane().getSelectedText();
-                        if (select == null) {
-                            String kw = ((ScilabEditorPane) editor.getTextPane()).getHelpableKeyword(!hoka.isPopup);
-                            if (kw != null) {
-                                menuitem.setText(label1 + SciNotesMessages.QUOTE + kw + SciNotesMessages.QUOTE);
-                                menuitem.setEnabled(true);
-                            } else {
-                                menuitem.setText(label1 + SciNotesMessages.DOTS);
-                                menuitem.setEnabled(false);
-                            }
-                        } else {
-                            menuitem.setText(label2);
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String select = editor.getTextPane().getSelectedText();
+                    if (select == null) {
+                        String kw = editor.getTextPane().getHelpableKeyword(!hoka.isPopup);
+                        if (kw != null) {
+                            menuitem.setText(label1 + SciNotesMessages.QUOTE + kw + SciNotesMessages.QUOTE);
                             menuitem.setEnabled(true);
+                        } else {
+                            menuitem.setText(label1 + SciNotesMessages.DOTS);
+                            menuitem.setEnabled(false);
                         }
+                    } else {
+                        menuitem.setText(label2);
+                        menuitem.setEnabled(true);
                     }
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

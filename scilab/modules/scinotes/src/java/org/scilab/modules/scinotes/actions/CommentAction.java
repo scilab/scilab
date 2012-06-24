@@ -45,7 +45,7 @@ public final class CommentAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
         int pos = sep.getCaretPosition();

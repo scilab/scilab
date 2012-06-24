@@ -356,7 +356,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             int res = 0;
             int sres;
             ScilabDocument doc = (ScilabDocument) getDocument();
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
+            doc.getUndoManager().enableOneShot(true);
             doc.mergeEditsBegin();
             caret.protectHighlights(true);
             for (int i = 0; i < pos.length; i++) {
@@ -371,7 +371,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 }
             }
             doc.mergeEditsEnd();
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(false);
+            doc.getUndoManager().enableOneShot(false);
             caret.protectHighlights(false);
             caret.updateHighlights();
         }

@@ -286,7 +286,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             int y = 0;
             try {
                 Rectangle rect = modelToView(getCaretPosition());
-                y = (int) (rect.height + rect.y + 1);
+                y = rect.height + rect.y + 1;
             } catch (BadLocationException ex) { }
 
             int sheight = height;

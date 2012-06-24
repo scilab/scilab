@@ -47,7 +47,7 @@ public final class CapitalizeAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         String str;
         int start = sep.getSelectionStart();
@@ -63,11 +63,11 @@ public final class CapitalizeAction extends DefaultAction {
                     str = letter.toUpperCase();
                 }
                 doc.mergeEditsBegin();
-                ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
+                doc.getUndoManager().enableOneShot(true);
                 sep.select(start, start + 1);
                 sep.replaceSelection(str);
                 doc.mergeEditsEnd();
-                ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(false);
+                doc.getUndoManager().enableOneShot(false);
             } catch (BadLocationException e) { }
         } else {
             str = sep.getSelectedText();
@@ -121,17 +121,17 @@ public final class CapitalizeAction extends DefaultAction {
     protected static MenuItem createMenu(final String label1, final String label2, final SciNotes editor, KeyStroke key, final CapitalizeAction hoka) {
         final MenuItem menuitem = createMenu(label1, null, hoka, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String select = editor.getTextPane().getSelectedText();
-                        if (select == null) {
-                            menuitem.setText(label2);
-                        } else {
-                            menuitem.setText(label1);
-                        }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String select = editor.getTextPane().getSelectedText();
+                    if (select == null) {
+                        menuitem.setText(label2);
+                    } else {
+                        menuitem.setText(label1);
                     }
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

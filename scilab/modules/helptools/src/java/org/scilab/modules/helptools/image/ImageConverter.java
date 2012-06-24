@@ -126,7 +126,7 @@ public final class ImageConverter {
      * @return the HTML code to insert the image
      */
     public static String generateCode(Image img, String fileName, Map<String, String> attrs) {
-        String style = (String) attrs.get("style");
+        String style = attrs.get("style");
         String top = "";
         boolean display = style != null && style.equals("display");
 
@@ -134,7 +134,7 @@ public final class ImageConverter {
             top = "top:" + img.descent + "px;";
         }
 
-        String alignAttr = (String) attrs.get("align");
+        String alignAttr = attrs.get("align");
         String align = "";
         String div = "div";
         if (alignAttr != null) {

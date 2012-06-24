@@ -635,7 +635,7 @@ public abstract class SciConsole extends JPanel {
             }
 
             /* Update the prompt */
-            ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setFont(font);
+            ((SciPromptView) config.getPromptView()).getPromptUI().setFont(font);
             config.getPromptView().updatePrompt();
             scilabLinesUpdate();
         }
@@ -647,7 +647,7 @@ public abstract class SciConsole extends JPanel {
      */
     public Font getFont() {
         if (sciConsole != null) {
-            return ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).getFont();
+            return ((SciPromptView) config.getPromptView()).getPromptUI().getFont();
         } else {
             return null;
         }
@@ -698,7 +698,7 @@ public abstract class SciConsole extends JPanel {
             }
 
             /* Update the prompt */
-            ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setForeground(color);
+            ((SciPromptView) config.getPromptView()).getPromptUI().setForeground(color);
             config.getPromptView().updatePrompt();
         }
     }
