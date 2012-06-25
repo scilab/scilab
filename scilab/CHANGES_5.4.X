@@ -5,6 +5,8 @@
 Bug Fixes
 =========
 
+* Bug #10904 fixed - Test failed for other languages than en_US.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
