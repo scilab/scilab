@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="csgn">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="csgn">
   <info>
     <pubdate>$LastChangedDate: 07-12-2009 $</pubdate>
   </info>
@@ -67,7 +67,7 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 A = [1 1+%i 0 -1 1-%i -1-%i];
-disp(csgn(A))
+csgn(A)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

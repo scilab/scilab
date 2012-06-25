@@ -2,7 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="asecd" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:id="asecd" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
   </info>
@@ -47,6 +47,17 @@
       <literal>asec(x)*180/%pi</literal>.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=linspace(1,20,200);
+      x=[-x($:-1:1) %nan x];
+      plot(x,asecd(x))
+      
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

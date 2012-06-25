@@ -2,7 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="csc" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:id="csc" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
   </info>
@@ -42,6 +42,15 @@
       and in <literal>]-%inf -1] U [1 %inf[</literal>.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=linspace(0.01,%pi-0.01,200)
+      plot(-x,csc(-x),x,csc(x))
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

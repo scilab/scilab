@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tanh" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:id="tanh" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -28,6 +28,13 @@
       the elements of <literal>t</literal> are the hyperbolic tangents of
       the elements of <literal>x.</literal>
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=-%pi:0.01:%pi;
+      plot(x,tanh(x))
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
