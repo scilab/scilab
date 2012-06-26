@@ -180,7 +180,7 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "getInstalledFontsName")
                         jobjectArray res =  static_cast<jobjectArray>( curEnv->CallObjectMethod( this->instance, jobjectArray_getInstalledFontsNameID ));
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
-}int lenRow;
+}if (res != NULL) { int lenRow;
  lenRow = curEnv->GetArrayLength(res);
 
 char **arrayOfString;
@@ -197,7 +197,10 @@ curEnv->DeleteLocalRef(resString);
 
 curEnv->DeleteLocalRef(res);
 return arrayOfString;
-
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
 }
 
 int XlFontManager::getSizeInstalledFontsName (){
@@ -245,7 +248,7 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "getAvailableFontsName")
                         jobjectArray res =  static_cast<jobjectArray>( curEnv->CallObjectMethod( this->instance, jobjectArray_getAvailableFontsNameID ));
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
-}int lenRow;
+}if (res != NULL) { int lenRow;
  lenRow = curEnv->GetArrayLength(res);
 
 char **arrayOfString;
@@ -262,7 +265,10 @@ curEnv->DeleteLocalRef(resString);
 
 curEnv->DeleteLocalRef(res);
 return arrayOfString;
-
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
 }
 
 bool XlFontManager::isAvailableFontName (char const* fontname){
