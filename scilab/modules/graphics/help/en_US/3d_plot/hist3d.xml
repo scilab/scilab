@@ -23,10 +23,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
-      hist3d(f,&lt;opt_args&gt;)
-      hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
-      hist3d(list(f,x,y),&lt;opt_args&gt;)
+    <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
+      hist3d(mtx,&lt;opt_args&gt;)
+      hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+      hist3d(list(mtx,x,y),&lt;opt_args&gt;)
     </synopsis>
   </refsynopsisdiv>
   <refsection>

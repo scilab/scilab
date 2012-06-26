@@ -15,6 +15,9 @@ Bug Fixes
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
+* Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in 
+                     the parameter section.
+
 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
