@@ -43,7 +43,7 @@
       </tr>
       <tr>
         <td>Ctrl+space or TAB</td>
-        <td>completion : scilab displays a list of all names that start with
+        <td>completion : Scilab displays a list of all names that start with
           somes characters.</td>
       </tr>
       <tr>
@@ -138,7 +138,7 @@
       </tr>
       <tr>
         <td>TAB</td>
-        <td>completion : scilab displays a list of all names that start with
+        <td>completion : Scilab displays a list of all names that start with
           somes characters.</td>
       </tr>
       <tr>

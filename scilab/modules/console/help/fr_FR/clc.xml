@@ -45,7 +45,9 @@
       <literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
     </para>
     <para>
-      Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+      <note>
+	Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+      </note>
     </para>
   </refsection>
   <refsection role="see also">

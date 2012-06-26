@@ -29,7 +29,9 @@
     </para>
     <para>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</para>
     <para>
-      Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.
+      <note>
+	Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.
+      </note>
     </para>
   </refsection>
   <refsection role="see also">

@@ -49,8 +49,10 @@
       行を消去し,カーソルをこの行に移動します.
     </para>
     <para>
-      <literal>clc([nblines])</literal> は,ウインドウモードではない
-      Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.
+      <note>
+	<literal>clc([nblines])</literal> は,ウインドウモードではない
+	Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.
+      </note>
     </para>
   </refsection>
   <refsection role="see also">

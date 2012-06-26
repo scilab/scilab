@@ -66,7 +66,7 @@ ncl = lines()</synopsis>
     results.</para>
     <para><literal>lines(nl)</literal> sets the number of displayed lines
     (before user is asked for more) to <literal>nl</literal>.</para>
-    <para><literal>lines(0)</literal> disables vertical paging</para>
+    <para><literal>lines(0)</literal> disables vertical paging.</para>
     <para><literal>lines(nl,nc)</literal> and <literal>lines([nc,nl])</literal> changes also the size of the output
     to <literal>nc</literal> columns.</para>
     <para>When Scilab is launched without -nw option, the
