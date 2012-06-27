@@ -26,6 +26,8 @@ Bug Fixes
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
+* Bug #9830 fixed - leastsq did not match the information of optim.
+
 * Bug #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
@@ -39,14 +41,14 @@ Bug Fixes
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
-* Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in 
+* Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
                      the parameter section.
 
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
-* Bug #11403 fixed - toprint() did not work and and menu Print too. 
- 
+* Bug #11403 fixed - toprint() did not work and and menu Print too.
+
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================

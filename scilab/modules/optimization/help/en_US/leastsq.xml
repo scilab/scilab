@@ -146,7 +146,7 @@
             integer, number of variables used to approximate the Hessean
             (second derivatives) of <literal>f</literal> when
             <literal>algo</literal><literal>='qn'</literal>. Default value is
-            around 6.
+            10.
           </para>
         </listitem>
       </varlistentry>
