@@ -254,10 +254,7 @@ void Triangulator::removeDuplicateVertices(void)
         points.push_back(sievedPoints[i]);
     }
 
-    /*
-     * Must be updated but seems to cause problems.
-     * To investigate.
-     */
+    /* Must be updated */
     numPoints = (int)points.size();
 
     duplicateFlagArray.clear();
@@ -267,26 +264,21 @@ void Triangulator::removeDuplicateVertices(void)
 
 void Triangulator::fillConvexVerticesList(void)
 {
-    double dp = 0.;
-    std::list<int>::iterator vi, vim1, vip1;
+    std::list<int>::iterator vi;
 
     flagList.resize(vertexIndices.size());
 
     for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
     {
-        getAdjacentVertices(vi, vim1, vip1);
-
-        dp = computeDotProduct(*vim1, *vi, *vip1);
-
-        if (dp >= 0.0)
+        if (isConvex(vi))
         {
             convexList.push_back(*vi);
-            flagList[*vi] = 1;
+            flagList[*vi] = true;
         }
         else
         {
             reflexList.push_back(*vi);
-            flagList[*vi] = 0;
+            flagList[*vi] = false;
         }
     }
 }
@@ -294,14 +286,10 @@ void Triangulator::fillConvexVerticesList(void)
 void Triangulator::fillEarList(void)
 {
     std::list<int>::iterator vi;
-    int res = 0;
+    bool res = false;
 
     for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
     {
-        std::list<int>::iterator vim1, vip1;
-
-        getAdjacentVertices(vi, vim1, vip1);
-
         if (flagList[*vi])
         {
             res = isAnEar(vi);
@@ -338,9 +326,28 @@ void Triangulator::getAdjacentVertices(std::list<int>::iterator vi, std::list<in
     }
 }
 
-int Triangulator::isAnEar(std::list<int>::iterator vertex)
+bool Triangulator::isConvex(std::list<int>::iterator vertex)
 {
-    int isEar = 1;
+    double dp = 0.0;
+    std::list<int>::iterator pred, succ;
+
+    getAdjacentVertices(vertex, pred, succ);
+
+    dp = computeDotProduct(*pred, *vertex, *succ);
+
+    if (dp >= 0.0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Triangulator::isAnEar(std::list<int>::iterator vertex)
+{
+    bool isEar = true;
     std::list<int>::iterator pred, succ;
     std::list<int>::iterator vi;
 
@@ -360,13 +367,13 @@ int Triangulator::isAnEar(std::list<int>::iterator vertex)
         }
         else
         {
-            int res;
+            bool res;
 
             res = pointInTriangle(v0, v1, v2, points[*vi]);
 
-            if (res == 1)
+            if (res)
             {
-                isEar = 0;
+                isEar = false;
                 break;
             }
         }
@@ -381,10 +388,7 @@ int Triangulator::isAnEar(std::list<int>::iterator vertex)
 /* To do: streamline */
 void Triangulator::updateVertex(std::list<int>::iterator vertex)
 {
-    double dp = 0.;
-    int res = 0;
-
-    std::list<int>::iterator pred, succ;
+    bool res = false;
 
     if (flagList[*vertex])
     {
@@ -394,7 +398,7 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
          */
         res = isAnEar(vertex);
 
-        if (res == 0)
+        if (!res)
         {
             earList.remove(*vertex);
             numDelEars++;
@@ -419,13 +423,9 @@ void Triangulator::updateVertex(std::list<int>::iterator vertex)
          * as the reflex vertex list.
          * Also determine whether it has become an ear and update the ear list accordingly.
          */
-        getAdjacentVertices(vertex, pred, succ);
-
-        dp = computeDotProduct(*pred, *vertex, *succ);
-
-        if (dp >= 0.0)
+        if (isConvex(vertex))
         {
-            flagList[*vertex] = 1;
+            flagList[*vertex] = true;
         }
 
         if (flagList[*vertex])
@@ -455,9 +455,6 @@ double Triangulator::computeDotProduct(int im1, int i, int ip1)
     double dp = 0.;
     Vector3d eim1p;
 
-    double n1 = 0.;
-    double n2 = 0.;
-
     Vector3d eim1 = minus(points[i], points[im1]);
     Vector3d ei = minus(points[ip1], points[i]);
 
@@ -473,7 +470,7 @@ double Triangulator::computeDotProduct(int im1, int i, int ip1)
     return dp;
 }
 
-int Triangulator::pointInTriangle(Vector3d A, Vector3d B, Vector3d C, Vector3d P)
+bool Triangulator::pointInTriangle(Vector3d A, Vector3d B, Vector3d C, Vector3d P)
 {
     double dot00 = 0., dot01 = 0., dot02 = 0., dot11 = 0., dot12 = 0.;
     double invDenom = 0.;
@@ -557,7 +554,13 @@ bool Triangulator::compareVertices(Vector3d v0, Vector3d v1)
 
 bool Triangulator::areEqual(double x0, double x1)
 {
-    if (fabs(x0 - x1) <= EPSILON * fabs(x0))
+    double maxAbs = fabs(x0) > fabs(x1) ? fabs(x0) : fabs(x1);
+
+    if (fabs(x0 - x1) <= EPSILON)
+    {
+        return true;
+    }
+    else if (fabs(x0 - x1) <= EPSILON * maxAbs)
     {
         return true;
     }
