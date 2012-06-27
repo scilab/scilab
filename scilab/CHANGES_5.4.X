@@ -24,15 +24,17 @@ Javasci
 Bug Fixes
 =========
 
-* Bug #10150 fixed - Completion help page moved to the console chapter.
+* Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
-* Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
-      	     	     repercuted.
+* Bug #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
                               when executed.
+
+* Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
+                      repercuted.
 
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
