@@ -13,7 +13,7 @@
 
 package org.scilab.modules.gui.editor;
 
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.PolylineHandler;
 
 /**
@@ -56,7 +56,7 @@ public class ScilabClipboard {
     */
     public void paste(String figure, Integer[] position) {
         String polyline = polylineUid;
-
+        /*We store only the uid, so we need check if the object exists*/
         if (!canPaste()) {
             return;
         }

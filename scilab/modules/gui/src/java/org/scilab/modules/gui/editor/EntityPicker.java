@@ -13,12 +13,14 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.util.*;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.CallGraphicController;
 import org.scilab.modules.renderer.CallRenderer;
+
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 
 
 import org.scilab.modules.graphic_objects.PolylineData;
@@ -42,6 +44,9 @@ import java.lang.Math;
 public class EntityPicker {
 
     private Double dy;
+    private boolean needTransform = false;
+    private Axes curAxes = null;
+    private final Double selectionDelta = 7.0;
 
     /**
     * Picks a polyline at the given position.
@@ -59,13 +64,17 @@ public class EntityPicker {
             return null;
         }
 
+        curAxes = AxesHandler.getAxesFromUid(axes);
+
         double[] pos = {1.0 * posX, 1.0 * posY, 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
-        pos[1] += 15.0;
+        pos[1] += selectionDelta;
         double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
         dy = c2d[1] - c2d2[1];
+
+        needTransform = !isInDefaultView(curAxes);
 
         /* Checks if the click is outside canvas drawable area*/
         if (AxesHandler.isZoomBoxEnabled(axes)) {
@@ -110,10 +119,23 @@ public class EntityPicker {
         double[] datay = (double[])PolylineData.getDataY(uid);
         int size = datax.length;
 
+        double[] oldPoint = null;
+        if (needTransform) {
+            oldPoint = transformPoint(curAxes, datax[0], datay[0]);
+        }
 
         for (Integer i = 0; i < (size - 1); ++i) {
-            if (isInRange(datax[i], datax[i + 1], datay[i], datay[i + 1], x, y)) {
-                return true;
+            if (needTransform) {
+                double[] newPoint = transformPoint(curAxes, datax[i+1], datay[i+1]);
+                if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
+                    return true;
+                }
+                oldPoint = newPoint;
+            }
+            else {
+                if (isInRange(datax[i], datax[i + 1], datay[i], datay[i + 1], x, y)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -128,6 +150,7 @@ public class EntityPicker {
 
         Double yy = y0 + ca * (x - x0);
 
+        //if (needTransform)
         if (y >= (yy - dy)) {
             if (y <= (yy + dy)) {
                 return (Math.abs(m - x) <= Math.abs(dx));
@@ -150,14 +173,33 @@ public class EntityPicker {
         Integer size = PolylineHandler.getInstance().getMarkSize(uid);
         Integer unit = PolylineHandler.getInstance().getMarkSizeUnit(uid);
         /*dy/15 = 1px unit = 0 -> point, unit = 1 -> tabulated*/
-        double delta = (dy/15)*(size*(0.75 + 0.7*unit) + 1.0 + unit*4.0);
+        double delta = (dy/selectionDelta)*(size*(0.75 + 0.7*unit) + 1.0 + unit*4.0);
+
         
         for (int i = 0; i < datax.length; ++i) {
-            if ((Math.abs(datax[i] - x) <= delta) && (Math.abs(datay[i] - y) <= delta)) {
-                return true;
+            if (needTransform) {
+                double[] point = transformPoint(curAxes, datax[i], datay[i]);
+                if ((Math.abs(point[0] - x) <= delta) && (Math.abs(point[1] - y) <= delta)) {
+                    return true;
+                }
+            }
+            else {
+                if ((Math.abs(datax[i] - x) <= delta) && (Math.abs(datay[i] - y) <= delta)) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    private boolean isInDefaultView(Axes axes) {
+        Double rot[] = axes.getRotationAngles();
+        return (rot[0] == 0.0 && rot[1] == 270.0);
+    }
+
+    private double[] transformPoint(Axes axes, double x, double y) {
+        double point[] = {x, y, 0.0};
+        return AxesDrawer.compute2dViewCoordinates(axes, point);
     }
 
 }

@@ -13,15 +13,15 @@
 
 package org.scilab.modules.gui.editor;
 
-
+import java.lang.Math;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.axes.Axes;
 
 import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.gui.editor.PolylineHandler;
 
-import java.lang.Math;
+
 
 
 /**
@@ -34,9 +34,17 @@ import java.lang.Math;
 */
 public class AxesHandler {
 
+    public enum axisTo { __X__, __Y__, __Z__ };
+
     private static String[] searchAxes(String uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_AXES__);
     }
+
+
+    public static Axes getAxesFromUid(String uid) {
+        return (Axes)GraphicController.getController().getObjectFromId(uid);
+    }
+
 
     /**
     * Given a mouse coordinate point (x, y) in pixels
@@ -187,7 +195,7 @@ public class AxesHandler {
      * @param objectID Object unique identifier.
      * @return True if there is any object visible, false otherwise.
      */
-	private static boolean isBlank(String objectID) {
+    private static boolean isBlank(String objectID) {
 
         String type = (String)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         boolean flag = (Boolean) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__);
@@ -208,5 +216,6 @@ public class AxesHandler {
         }
         return false;
     }
+
 }
 

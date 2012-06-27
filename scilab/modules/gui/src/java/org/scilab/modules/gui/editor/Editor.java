@@ -13,8 +13,12 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.awt.*;
-import java.awt.event.*;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -22,8 +26,11 @@ import javax.swing.JPopupMenu;
 import org.scilab.modules.gui.editor.ScilabClipboard;
 import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
+import org.scilab.modules.gui.editor.LabelHandler;
+import org.scilab.modules.gui.editor.LegendHandler;
 
 import org.scilab.modules.localization.Messages;
+
 
 
 /**
@@ -42,12 +49,15 @@ import org.scilab.modules.localization.Messages;
 public class Editor {
 
     JPopupMenu menu;
-    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy;
+    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove;
+    JMenu labels, legends;
 
     String selected = null;
     String figureUid = null;
     Integer oriColor = 0;
     Integer[] lastClick = { 0, 0 };
+
+    Component dialogComponent;
 
     public Editor() {
         init();
@@ -69,6 +79,7 @@ public class Editor {
         menu.show(event.getComponent(), event.getX(), event.getY());
         lastClick[0] = event.getX();
         lastClick[1] = event.getY();
+        dialogComponent = (Component)event.getComponent();
     }
 
     /**
@@ -79,7 +90,8 @@ public class Editor {
     */
     public void init() {
         menu = new JPopupMenu();
-		
+        labels = new JMenu(Messages.gettext("Label"));
+        legends = new JMenu(Messages.gettext("Legend"));
 
         copy = new JMenuItem(Messages.gettext("Copy"));
         copy.setToolTipText(Messages.gettext("Copy selected curve."));
@@ -97,7 +109,16 @@ public class Editor {
         unhide.setToolTipText(Messages.gettext("Unhide all curves."));
         clipboardCopy = new JMenuItem(Messages.gettext("Copy to Clipboard"));
         clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard."));
-
+        labelX = new JMenuItem(Messages.gettext("Label X"));
+        labelX.setToolTipText(Messages.gettext("Insert a label in X axis"));
+        labelY = new JMenuItem(Messages.gettext("Label Y"));
+        labelY.setToolTipText(Messages.gettext("Insert a label in Y axis"));
+        labelZ = new JMenuItem(Messages.gettext("Label Z"));
+        labelZ.setToolTipText(Messages.gettext("Insert a label in Z axis"));
+        insert = new JMenuItem(Messages.gettext("Insert"));
+        insert.setToolTipText(Messages.gettext("Insert a legend to current selected item"));
+        remove = new JMenuItem(Messages.gettext("Remove"));
+        remove.setToolTipText(Messages.gettext("Remove a legend of current selected item"));
 
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -147,8 +168,42 @@ public class Editor {
             }
         });
 
+        labelX.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickLabel(AxesHandler.axisTo.__X__);
+            }
+        });
+
+        labelY.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickLabel(AxesHandler.axisTo.__Y__);
+            }
+        });
+
+        labelZ.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickLabel(AxesHandler.axisTo.__Z__);
+            }
+        });
+
+        insert.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickInsert();
+            }
+        });
+
+        remove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickRemove();
+            }
+        });
 
 
+        labels.add(labelX);
+        labels.add(labelY);
+        labels.add(labelZ);
+        legends.add(insert);
+        legends.add(remove);
         menu.add(copy);
         menu.add(cut);
         menu.add(paste);
@@ -160,8 +215,11 @@ public class Editor {
         menu.add(unhide);
         menu.addSeparator();
         menu.add(clipboardCopy);
-    }
+        menu.addSeparator();
+        menu.add(labels);
+        menu.add(legends);
 
+    }
 
 
     /**
@@ -185,13 +243,14 @@ public class Editor {
             cut.setEnabled(true);
             delete.setEnabled(true);
             hide.setEnabled(true);
-
+            legends.setEnabled(true);
             oriColor = PolylineHandler.getInstance().setColor(selected, 12);
         } else {
             copy.setEnabled(false);
             cut.setEnabled(false);
             delete.setEnabled(false);
             hide.setEnabled(false);
+            legends.setEnabled(false);
         }
     }
 
@@ -287,6 +346,61 @@ public class Editor {
     */
     public void onClickCCopy() {
         SystemClipboard.copyToSysClipboard(figureUid);
+    }
+
+    /**
+    * Implements label insert action(Callback).
+    * @param axis axis number.
+    */
+    public void onClickLabel(AxesHandler.axisTo axis) {
+
+        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        if (axes != null) {
+            String text = LabelHandler.getLabelText(axes, axis);
+            String s = (String)JOptionPane.showInputDialog(
+                        dialogComponent,
+                        Messages.gettext("Enter the text"),
+                        Messages.gettext("Set label text"),
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null, /*edit text possibilities*/
+                        text);
+            if (s != null) {
+                String tmp[] = {s};
+                LabelHandler.setLabel(axes, tmp, axis);
+            }
+        }
+    }
+
+    /**
+    * Implements legend insert action(Callback).
+    */
+    public void onClickInsert() {
+
+        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        if (axes != null) {
+            String text = LegendHandler.getLegendText(axes, getSelected());
+            String s = (String)JOptionPane.showInputDialog(
+                        dialogComponent,
+                        Messages.gettext("Enter the text"),
+                        Messages.gettext("Set legend text"),
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        text);
+            if (s != null) {
+                LegendHandler.setLegend(axes, getSelected(), s);
+            }
+        }
+    }
+
+    /**
+    * Implements legend remove action(Callback).
+    */
+    public void onClickRemove() {
+
+        String axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
+        LegendHandler.removeLegend(axesTo, selected);
     }
 }
 
