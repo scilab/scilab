@@ -4,8 +4,8 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>colon (:)</refname>
-    <refpurpose> opérateur "deux points"  </refpurpose>
+    <refname>colon</refname>
+    <refpurpose>(:) opérateur "deux points"  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
