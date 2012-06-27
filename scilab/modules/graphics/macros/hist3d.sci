@@ -19,8 +19,7 @@ if ~isdef('flags','local') then flags = [2 1 4]; end;
 def=list(theta,alpha,leg,flags);
 [lhs,rhs]=argn(0)
 if rhs<=0 then  //demo
-  s_mat=['hist3d(10*rand(10,10));';]
-  execstr(s_mat);
+  exec("SCI/modules/graphics/demos/2d_3d_plots/hist3d.dem.sce", -1);
   return;
 end
 if typeof(f)=='list' then 
