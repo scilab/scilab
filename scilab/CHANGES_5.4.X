@@ -18,6 +18,8 @@ Bug Fixes
 * Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in 
                      the parameter section.
 
+* Bug #11349 fixed - There was an error when path to external editor contained
+                     white spaces.
 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
