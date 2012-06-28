@@ -214,6 +214,10 @@
                     <imagedata align="center" fileref="../../../examples/derivative_diag.png" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
+<scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_DERIV">
