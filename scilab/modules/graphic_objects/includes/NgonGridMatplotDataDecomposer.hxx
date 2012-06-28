@@ -57,9 +57,11 @@ protected :
      * Determines whether a facet is valid.
      * The facet is identified by its lower left-corner (i,j).
      * For a Matplot object, facet (i,j)'s validity depends only on its z coordinate and its (i,j) value,
-     * edge validity being therefore irrelevant.
+     * edge validity being therefore irrelevant. The flag specifying per-node values should be 0,
+     * as Matplot grid values are defined per facet, although it is actually unused.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid value array.
+     * @param[in] a flag indicating whether grid values are defined per node (1) or per facet (0). Unused.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -69,13 +71,14 @@ protected :
      * @param[out] a pointer to the output (i+1,j) to (i+1,j+1) edge validity flag. Always set to 1.
      * @return 1 if the facet is valid, 0 if it is not.
      */
-    virtual int isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
+    virtual int isFacetValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
 
     /**
      * Determines whether the left edge of a facet is valid.
      * For a Matplot object, edge validity is irrelevant, it is therefore always equal to 1.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid value array.
+     * @param[in] a flag indicating whether grid values are defined per node (1) or per facet (0).
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -83,7 +86,7 @@ protected :
      * @param[in] a flag specifying whether logarithmic coordinates are used.
      * @return Always 1.
      */
-    virtual int isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed);
+    virtual int isFacetEdgeValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed);
 
 public :
 

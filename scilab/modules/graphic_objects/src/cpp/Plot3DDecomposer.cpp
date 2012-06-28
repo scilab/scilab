@@ -159,7 +159,8 @@ int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int l
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, numX, numY);
+    /* The per-node value flag is set to 1, as grid values amount to z coordinates and are not relevant anyway. */
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, 1, numX, numY);
 
     return numberIndices;
 }

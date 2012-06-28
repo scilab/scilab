@@ -369,12 +369,16 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, &zShift, z, numX, numY);
+    /*
+     * The per-node value flag is set to 0 as for Matplot objects grid values are specified per-facet.
+     * However, it not used at all when determining facet validity and hence is only informative.
+     */
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, &zShift, z, 0, numX, numY);
 
     return numberIndices;
 }
 
-int NgonGridMatplotDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+int NgonGridMatplotDataDecomposer::isFacetValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
     double zij = 0.;
     int facetValid = 0;
@@ -397,7 +401,7 @@ int NgonGridMatplotDataDecomposer::isFacetValid(double* z, double* values, int n
     return facetValid;
 }
 
-int NgonGridMatplotDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
+int NgonGridMatplotDataDecomposer::isFacetEdgeValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed)
 {
     /* Always considered valid since not used at all to determine facet validity */
     return 1;

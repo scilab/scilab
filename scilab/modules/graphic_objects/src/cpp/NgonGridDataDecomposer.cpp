@@ -178,6 +178,11 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
             xindices[2] = i;
             xindices[3] = i+1;
 
+            /*
+             * If color values are defined per facet, we must duplicate shared vertices in order
+             * to be able to render flat-shading facets, as the renderer uses smooth shading as a default.
+             * Reducing duplication would require being able to enable flat shading at render time.
+             */
             for (int k = 0; k < 4; k++)
             {
                 if (coordinateMask & 0x1)
@@ -412,7 +417,7 @@ int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength,
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, numX, numY);
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, 1, numX, numY);
 
     return numberIndices;
 }
@@ -420,7 +425,7 @@ int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength,
 /*
  * To do: merge with Plot3DDecomposer::fillWireIndices, as these functions perform a lot of redundant work.
  */
-int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY)
+int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int perNodeValues, int numX, int numY)
 {
     int bufferOffset = 0;
 
@@ -484,7 +489,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
         ij = getPointIndex(numX, numY, 0, j);
         ijp1 = getPointIndex(numX, numY, 0, j+1);
 
-        currentEdgeValid = isFacetEdgeValid(z, values, numX, numY, 0, j, logMask & 0x4);
+        currentEdgeValid = isFacetEdgeValid(z, values, perNodeValues, numX, numY, 0, j, logMask & 0x4);
 
         for (int i = 0; i < numX-1; i++)
         {
@@ -498,7 +503,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
             ip1j = getPointIndex(numX, numY, i+1, j);
             ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
 
-            currentFacetValid = isFacetValid(z, values, numX, numY, i, j, logMask & 0x4, currentEdgeValid, &nextEdgeValid);
+            currentFacetValid = isFacetValid(z, values, perNodeValues, numX, numY, i, j, logMask & 0x4, currentEdgeValid, &nextEdgeValid);
 
             if (currentColumnValid && nextColumnValid && (currentFacetValid))
             {
@@ -556,9 +561,9 @@ void NgonGridDataDecomposer::getFacetTriangles(double* x, double* y, double* z, 
     triangleVertexIndices[5] = facetVertexIndices[3];
 }
 
-int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
-    *nextEdgeValid = isFacetEdgeValid(z, values, numX, numY, i+1, j, logUsed);
+    *nextEdgeValid = isFacetEdgeValid(z, values, perNodeValues, numX, numY, i+1, j, logUsed);
 
     if (currentEdgeValid && *nextEdgeValid)
     {
@@ -570,7 +575,7 @@ int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, in
     }
 }
 
-int NgonGridDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
+int NgonGridDataDecomposer::isFacetEdgeValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed)
 {
     double zij = 0.;
     double zijp1 = 0.;
