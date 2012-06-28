@@ -129,11 +129,7 @@
     </para>
     <para>The equation of the output signal is:</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/variable_delay_eq.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>y(t) = y(θ) - u(t - τ(t))</latex>
     </para>
   </refsection>
   <refsection id="Dialogbox_VARIABLE_DELAY">

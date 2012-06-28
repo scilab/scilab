@@ -109,11 +109,12 @@
       system.
     </para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>
+        \begin{matrix}
+        \dot{x} = A \cdot x + B \cdot u \\ 
+        \dot{y} = C \cdot x + D \cdot u
+        \end{matrix}
+      </latex>
     </para>
     <para>
       where <emphasis role="bold">x</emphasis> is the vector of state
@@ -279,11 +280,12 @@
       Kirchhoff's voltage law and Newton's law.
     </para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq2.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{matrix}
+i = i_L = i_C = C \frac{\mathrm{d} v_C }{\mathrm{d} t} \\ 
+Ri_L + L \frac{\mathrm{d} i_L }{\mathrm{d} t} + v_C = u_0(t)
+\end{matrix}
+      ]]></latex>
     </para>
     <para>The R, L and C are the system's resistance, inductance and
       capacitor.
@@ -294,43 +296,53 @@
       <literal>X1</literal> and <literal>X2.</literal>
     </para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq3.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{array}{c}
+\mbox{$x_1 = i_L$}\\
+\mbox{$x_2 = v_C$}\\
+\end{array}
+
+then
+
+\begin{array}{c}
+\mbox{$\dot{x_1} = \frac{\mathrm{d} i_L }{\mathrm{d} t}$}\\
+\mbox{$\dot{x_2} = \frac{\mathrm{d} v_C }{\mathrm{d} t}$}
+\end{array}
+      ]]></latex>
     </para>
     <para>thus</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq4.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>x_1 = i_L = C\frac{\mathrm{d} v_C }{\mathrm{d} t} = C\dot{x_2}</latex>
     </para>
     <para>Rearranging these equations we get:</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq5.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{array}{c}
+\dot{x_1} = -\frac{R}{L} x_1 - \frac{1}{L} x_2 + \frac{1}{L} u_0(t) \\
+\dot{x_2} = \frac{1}{C} x_2
+\end{array}
+      ]]></latex>
     </para>
     <para>These equations can be put into matrix form as follows,</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq6.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{bmatrix}\dot{x_1}\\\dot{x_2}\end{bmatrix}
+=
+\begin{bmatrix}
+-\frac{R}{L} & -\frac{1}{L}\\ 
+-\frac{1}{C} & 0
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
++
+\begin{bmatrix}\frac{1}{L}\\0\end{bmatrix}
+u_0(t)
+      ]]></latex>
     </para>
     <para>The required output equation is</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq1.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+        y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix} + \begin{bmatrix} 0 \end{bmatrix} \cdot u
+      ]]></latex>
     </para>
     <para>The following diagram shows these equations modeled in Xcos where
       R=10Ω, L=5 mΗ and C=0.1µF; the initial states are x1=0 and x2=0.5.
