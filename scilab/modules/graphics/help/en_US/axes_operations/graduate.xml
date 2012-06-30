@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>graduate</refname>
-    <refpurpose> pretty axis graduations</refpurpose>
+    <refpurpose>Pretty axis graduations</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -73,10 +73,12 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 y=(0:0.33:145.78)';
-clf();plot2d1('enn',0,y)
+clf();
+plot2d1('enn',0,y)
 [ymn,ymx,np]=graduate(min(y),max(y))
 rect=[1,ymn,prod(size(y)),ymx];
-clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
+clf();
+plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -114,6 +114,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+      
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

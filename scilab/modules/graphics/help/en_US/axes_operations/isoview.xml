@@ -48,6 +48,15 @@
       the current graphics scale (for instance <literal>strf="x0z"</literal> in <literal>plot2d</literal>).
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      isoview(-1,1,-1,1)
+      plot2d(sin(t),cos(t),1,"001")      
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

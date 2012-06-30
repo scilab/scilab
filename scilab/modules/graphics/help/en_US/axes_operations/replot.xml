@@ -61,6 +61,18 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      xdel(winsid());
+      plot()
+      f=gcf();
+      replot([-1,-1,10,2],f.children(1))
+      replot([-3,-2,8,4],f.children(2)) 
+      
+    </scilab:image>
+  </refsection>
+  
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 backupstyle='?'

@@ -150,6 +150,23 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      t=0:0.1:2*%pi;
+      a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+      a.margins(4)=0.2;
+      
+      plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[1,2 3]);  
+      e=gce();
+      e.children(1).thickness=3;
+      e.children(2).line_style=4;
+      
+      hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+      hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)'],'in_upper_right');
+    </scilab:image>
+  </refsection>
+  
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 t=0:0.1:2*%pi;

@@ -65,7 +65,7 @@ subplot(221);
 plot2d(x-2,sin(x))
 subplot(222);
 plot2d(x-6,[2*cos(x)+.7 2*cos(x)+.9 cos(2*x) .2+sin(3*x)],[-1,-2,-3 -4])
-sda() // return to the  default values of the axes' model
+sda() // return to the default values of the axes' model
 subplot(223);
 plot2d(x-2,sin(x))
 subplot(224);

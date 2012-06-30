@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hsv2rgb">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="hsv2rgb">
   <refnamediv>
     <refname>hsv2rgb</refname>
     <refpurpose> Converts HSV colors to RGB</refpurpose>
@@ -98,6 +95,26 @@
       white component). As value, or brightness, varies from 0 to 1.0, the
       corresponding colors become increasingly brighter. 
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image> 
+      t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+      plot3d1(t,t,z) 
+      f=gcf();f.pixmap='on';
+      for h=0:0.1:1
+      hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+      end
+      for v=0:0.1:1
+      hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+      end
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

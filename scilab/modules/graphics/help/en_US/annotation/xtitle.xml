@@ -71,9 +71,16 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      plot3d() ;
+      xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
+    </scilab:image>
+  </refsection>
+  <refsection>
+    
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-// draw a surface
 plot3d() ;
 // puts the titles
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;

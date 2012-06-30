@@ -69,6 +69,14 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      xlabel(["first line";"second line"])
+      ylabel("A label on y axis", "fontsize", 6)
+    </scilab:image>
+  </refsection>
+  
+  <refsection>
     <title>Examples</title>
     <programlisting role="example">xlabel(["first line";"second line"])
       ylabel("A label on y axis", "fontsize", 6)

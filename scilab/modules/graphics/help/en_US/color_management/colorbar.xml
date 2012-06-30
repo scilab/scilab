@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="colorbar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="colorbar">
   <refnamediv>
     <refname>colorbar</refname>
     <refpurpose>draw a colorbar</refpurpose>
@@ -64,6 +61,62 @@
       For the 2 optional arguments you can use the syntax
       <literal>keyword=value</literal> (see the last example).
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image> 
+      // example 1
+      x = linspace(0,1,81);
+      z = cos(2*%pi*x)'*sin(2*%pi*x);
+      zm = min(z); zM = max(z);
+      clf()
+      xset("colormap",jetcolormap(64))
+      colorbar(zm,zM)
+      Sgrayplot(x,x,z)
+      xtitle("The function cos(2 pi x)sin(2 pi y)")
+      // example 2 
+      x = linspace(0,1,81);
+      z = cos(2*%pi*x)'*sin(2*%pi*x);
+      zm = min(z); zM = max(z);
+      zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
+      zzm = min(zz); zzM = max(zz);
+      clf();
+      xset("colormap",jetcolormap(64))
+      drawlater() ;
+      subplot(2,2,1)
+      colorbar(zm,zM)
+      Sgrayplot(x,x,z, strf="031", rect=[0 0 1 1])
+      xtitle("a Sgrayplot with a colorbar")
+      subplot(2,2,2)
+      colorbar(zm,zM)
+      plot3d1(x,x,z)
+      xtitle("a plot3d1 with a colorbar")
+      subplot(2,2,3)
+      colorbar(zzm,zzM)
+      plot3d1(x,x,zz)
+      xtitle("a plot3d1 with a colorbar")
+      subplot(2,2,4)
+      colorbar(zzm,zzM)
+      Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
+      xtitle("a Sgrayplot with a colorbar")
+      drawnow() ;
+      // example 3
+      x = linspace(0,1,81);
+      zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
+      zzm = min(zz); zzM = max(zz);
+      [xf,yf,zf]=genfac3d(x,x,zz);
+      nb_col = 64;
+      clf()
+      xset("colormap",hotcolormap(nb_col))
+      drawlater() ;
+      colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
+      nbcol = xget("lastpattern")
+      zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
+      plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
+      xtitle("a plot3d with shaded interpolated colors")
+      drawnow() ;
+      show_window()
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

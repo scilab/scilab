@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="colormap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="colormap">
   <refnamediv>
     <refname>colormap</refname>
     <refpurpose> using colormaps</refpurpose>
@@ -112,5 +109,18 @@ f.color_map=get(sdf(),"color_map");
         <link linkend="getcolor">getcolor</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image> 
+      n=64;
+      r=linspace(0,1,n)';
+      g=linspace(1,0,n)';
+      b=ones(r);
+      cmap=[r g b];
+      f=gcf(); f.color_map=cmap;
+      plot3d1()
+      f.color_map=get(sdf(),"color_map");
+    </scilab:image>
   </refsection>
 </refentry>
