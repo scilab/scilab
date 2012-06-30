@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpoly">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xfpoly">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -72,6 +72,18 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=sin(2*%pi*(0:4)/5);
+      y=cos(2*%pi*(0:4)/5);
+      plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
+      xset("color",5);
+      xfpoly(x,y);
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -90,7 +102,6 @@ delete(e);
 // and its contour drawn with the current color
 xfpoly(x,y,3);
 
-xset("default");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

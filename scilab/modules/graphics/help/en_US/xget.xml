@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xget" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xget" xmlns:scilab="http://www.scilab.org" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
       $
@@ -18,7 +18,9 @@
   </info>
   <refnamediv>
     <refname>xget</refname>
-    <refpurpose>get current values of the graphics context. <emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
+    <refpurpose>
+      get current values of the graphics context. <emphasis role="bold">This function is obsolete.</emphasis>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -45,14 +47,17 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><emphasis role="bold">Warning this function is obsolete</emphasis>.
-    Use the Scilab graphic objetcs representation instead (see the <link linkend="set">set</link> and <link linkend="get">get</link> functions as
-    well as the <link linkend="graphics_entities">graphics_entities</link>
-    help page).</para>
+    <para>
+      <emphasis role="bold">Warning this function is obsolete</emphasis>.
+      Use the Scilab graphic objetcs representation instead (see the <link linkend="set">set</link> and <link linkend="get">get</link> functions as
+      well as the <link linkend="graphics_entities">graphics_entities</link>
+      help page).
+    </para>
     <para>This function is used to get values from the graphics context on the
-    topic specified by the string <literal>str</literal>. When called with no
-    argument, a choice menu is created showing the current values and changes
-    can be performed through toggle buttons.</para>
+      topic specified by the string <literal>str</literal>. When called with no
+      argument, a choice menu is created showing the current values and changes
+      can be performed through toggle buttons.
+    </para>
     <variablelist>
       <varlistentry>
         <term>str=xget("auto clear")</term>
@@ -128,7 +133,8 @@
         <term>color=xget("foreground")</term>
         <listitem>
           <para>Get the foreground color of the current Axes object.
-          The result is a colormap index corresponding to the color.</para>
+            The result is a colormap index corresponding to the color.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>

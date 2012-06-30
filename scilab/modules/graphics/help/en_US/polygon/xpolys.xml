@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xpolys">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xpolys">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -62,6 +62,17 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      plot2d(0,0,-1,"012"," ",[0,0,1,1])
+      rand("uniform")
+      xset("color",3)
+      xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -69,7 +80,6 @@ plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
 xset("color",3)
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
-xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

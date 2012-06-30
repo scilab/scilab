@@ -10,13 +10,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xset">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xset">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xset</refname>
-    <refpurpose>set values of the graphics context.<emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
+    <refpurpose>
+      set values of the graphics context.<emphasis role="bold">This function is obsolete.</emphasis>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -45,14 +47,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><emphasis role="bold">Warning this function is obsolete.</emphasis>
-    Use the Scilab graphic objects representation
-    instead (see the
-    <link linkend="set">set</link> and <link linkend="get">get</link>
-    functions as well as the <link linkend="graphics_entities">graphics_entities</link> help
-    page).</para>
-    <para><literal>xset</literal> is used to set default values of the current window
-    graphic context.</para>
+    <para>
+      <emphasis role="bold">Warning this function is obsolete.</emphasis>
+      Use the Scilab graphic objects representation
+      instead (see the
+      <link linkend="set">set</link> and <link linkend="get">get</link>
+      functions as well as the <link linkend="graphics_entities">graphics_entities</link> help
+      page).
+    </para>
+    <para>
+      <literal>xset</literal> is used to set default values of the current window
+      graphic context.
+    </para>
     <para>When called no argument, a choice menu is created showing the current
       values and changes can be performed through toggle buttons.
     </para>
@@ -77,7 +83,8 @@
         <term>xset("background",color)</term>
         <listitem>
           <para>Set the background color of the current Axes object.
-          The <literal>color</literal> argument is the colormap index of the color to use.</para>
+            The <literal>color</literal> argument is the colormap index of the color to use.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -123,7 +130,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xset("default")</term>
         <listitem>
           <para>Reset the graphics context to default values.</para>
         </listitem>
@@ -147,7 +153,8 @@
         <term>xset("foreground",color)</term>
         <listitem>
           <para>Set the foreground color of the current Axes object.
-          The <literal>color</literal> argument is the colormap index of the color to use.</para>
+            The <literal>color</literal> argument is the colormap index of the color to use.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -287,7 +294,8 @@
         <term>xset("wresize",flag)</term>
         <listitem>
           <para>If flag=1 then the graphic is automatically resized to fill the
-        graphics window.</para>
+            graphics window.
+          </para>
           <programlisting role=""><![CDATA[
 xdel();
 xset("wresize",1);
@@ -295,8 +303,9 @@ plot2d();
 xset("wdim",1000,500)
  ]]></programlisting>
           <para>If flag=0 the scale of the graphic is left unchanged when the
-        graphics window is resized. Top left panner or keyboard arrows may be
-        used to scroll over the graphic.</para>
+            graphics window is resized. Top left panner or keyboard arrows may be
+            used to scroll over the graphic.
+          </para>
           <programlisting role=""><![CDATA[
 xdel();
 plot2d();

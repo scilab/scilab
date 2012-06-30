@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polyline_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="polyline_properties">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -385,6 +385,23 @@
       </varlistentry>
     </variablelist>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      a=get("current_axes")
+      a.data_bounds=[-2,-2;2,2];
+      
+      xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+      p=get("hdl");
+      p.foreground=2;
+      p.thickness=3;
+      p.mark_style=9;
+      d=p.data;d(1,:)=[0 0];p.data=d;
+      a.rotation_angles=[0 45];
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

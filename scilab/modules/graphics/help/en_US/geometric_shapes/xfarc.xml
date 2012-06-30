@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfarc">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xfarc">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -52,6 +52,18 @@
     </para>
     <para>If a2 is equal to 360*64, a complete circle will be drawn.</para>
   </refsection>
+  
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      // isoview scaling 
+      plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+      xfarc(-0.5,0.5,1,1,0,90*64)
+      xset("color",2)
+      xfarc(0.5,0.5,1,1,0,360*64)
+    </scilab:image>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

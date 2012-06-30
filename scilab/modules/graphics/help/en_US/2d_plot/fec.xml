@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fec">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fec">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
-fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis>
+      fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,33 +30,41 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>two vectors of size <literal>n</literal>, <literal>(x(i),y(i))</literal> gives the coordinates of 
-                node  <literal>i</literal></para>
+          <para>
+            two vectors of size <literal>n</literal>, <literal>(x(i),y(i))</literal> gives the coordinates of 
+            node  <literal>i</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>func</term>
         <listitem>
-          <para>a vector of size <literal>n</literal> : <literal>func(i)</literal> gives the value at node <literal>i</literal>
-                of the function for which we want the pseudo-color plot.</para>
+          <para>
+            a vector of size <literal>n</literal> : <literal>func(i)</literal> gives the value at node <literal>i</literal>
+            of the function for which we want the pseudo-color plot.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>triangles</term>
         <listitem>
-          <para>is a <literal>[Ntr,5]</literal> matrix. Each line of <literal>triangles</literal> specifies a triangle 
-                of the  mesh <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>. 
-                <literal>node1,node2,node3</literal> are the number of the nodes which constitutes 
-                the triangle. number is the number of the triangle and flag is an integer 
-                not used in the fec function</para>
+          <para>
+            is a <literal>[Ntr,5]</literal> matrix. Each line of <literal>triangles</literal> specifies a triangle 
+            of the  mesh <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>. 
+            <literal>node1,node2,node3</literal> are the number of the nodes which constitutes 
+            the triangle. number is the number of the triangle and flag is an integer 
+            not used in the fec function
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
-          <para>This represents a sequence of statements <literal>key1=value1, key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following: strf, leg, rect, nax, zminmax, colminmax, colout, mesh
-          (see <link linkend="plot2d">plot2d</link> for the 4 first ones).</para>
+          <para>
+            This represents a sequence of statements <literal>key1=value1, key2=value2</literal>,... where <literal>key1</literal>,
+            <literal>key2,...</literal> can be one of the following: strf, leg, rect, nax, zminmax, colminmax, colout, mesh
+            (see <link linkend="plot2d">plot2d</link> for the 4 first ones).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -93,31 +102,35 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
   <refsection>
     <title>Description</title>
     <para>This function is the good one to draw linear triangular finite element solutions 
-       or simply to display a function defined on a triangulation. The color interpolation
-      is done through software computation and so it is not too fast.</para>
-    <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (see the example
-       section).</para>
-    <para>    
-    The <literal>zminmax</literal> argument gives the z values associated with the first and the last 
-    color (of the current colormap). More exactly if the colormap have nc colors and if we note 
-    <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the triangulation where  
-    <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> is filled with the color <emphasis>i</emphasis>). 
-    By default <emphasis>zmin = min(func)</emphasis> and <emphasis>zmax = max(func)</emphasis>. If you want to do 
-    an animation with func values that varie in time, take for zmin and zmax the global 
-    minimum and maximum or something close.
+      or simply to display a function defined on a triangulation. The color interpolation
+      is done through software computation and so it is not too fast.
     </para>
     <para>
-    The <literal>colout</literal> argument lets the user choosing the colors for the 2 extremes
-    regions <emphasis>{func &lt; zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>, <literal>under_min_col</literal> and 
-    <literal>upper_max_col</literal> may be equal (independantly) to:
+      The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (see the example
+      section).
+    </para>
+    <para>    
+      The <literal>zminmax</literal> argument gives the z values associated with the first and the last 
+      color (of the current colormap). More exactly if the colormap have nc colors and if we note 
+      <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the triangulation where  
+      <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> is filled with the color <emphasis>i</emphasis>). 
+      By default <emphasis>zmin = min(func)</emphasis> and <emphasis>zmax = max(func)</emphasis>. If you want to do 
+      an animation with func values that varie in time, take for zmin and zmax the global 
+      minimum and maximum or something close.
+    </para>
+    <para>
+      The <literal>colout</literal> argument lets the user choosing the colors for the 2 extremes
+      regions <emphasis>{func &lt; zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>, <literal>under_min_col</literal> and 
+      <literal>upper_max_col</literal> may be equal (independantly) to:
     </para>
     <variablelist>
       <varlistentry>
         <term>-1</term>
         <listitem>
           <para>in this case the same color than in the neighbouring zone is used (CAUTION: 
-                  you do not see that the corresponding limit is crossed), this is the
-                  default case.</para>
+            you do not see that the corresponding limit is crossed), this is the
+            default case.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -130,23 +143,30 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
         <term>k</term>
         <listitem>
           <para>(k being a valid index to a color of the current colormap) the extreme region
-                  is painting in color k.</para>
+            is painting in color k.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para>If you do not want to use the complete colormap you may use the <literal>colminmax</literal>
-    argument with <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc being the number of colors 
-    of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
-    (by default all the colors of the colormap are used).
+    <para>
+      If you do not want to use the complete colormap you may use the <literal>colminmax</literal>
+      argument with <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc being the number of colors 
+      of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
+      (by default all the colors of the colormap are used).
     </para>
     <para>
-    See the demo files <literal>demos/fec</literal>:</para>
-    <para><literal>fec.ex1</literal> is a simple demo file in which a mesh and a function 
-    on that mesh is completely built in Scilab syntax</para>
-    <para><literal>fec.ex2</literal> is an example for which the mesh and the function value where 
-    computed by an external mesh builder (amdba type mesh) and an external program.
-    A set of macros ( provided in file <literal>macros.sci</literal>) can be used to read the 
-    data files in Scilab and plot the results.</para>
+      See the demo files <literal>demos/fec</literal>:
+    </para>
+    <para>
+      <literal>fec.ex1</literal> is a simple demo file in which a mesh and a function 
+      on that mesh is completely built in Scilab syntax
+    </para>
+    <para>
+      <literal>fec.ex2</literal> is an example for which the mesh and the function value where 
+      computed by an external mesh builder (amdba type mesh) and an external program.
+      A set of macros ( provided in file <literal>macros.sci</literal>) can be used to read the 
+      data files in Scilab and plot the results.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
