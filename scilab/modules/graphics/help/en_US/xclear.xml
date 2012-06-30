@@ -48,6 +48,16 @@
       To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
     </para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d();
+scf();
+plot3d();
+xclear(0); // clear the first graphic
+xclear(); // clear the current figure
+ ]]></programlisting>
+  </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">

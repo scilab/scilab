@@ -40,6 +40,18 @@
       graphics window if no argument is given.
     </para>
   </refsection>
+  
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d();
+scf();
+plot3d();
+xdel(0); // delete the first graphic
+xdel(); // delete the current figure
+ ]]></programlisting>
+  </refsection>
+  
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
