@@ -21,6 +21,7 @@ subdemolist = [                                   ..
     "fplot3d"        , "fplot3d.dem.sce"         ; ..
     "plot3d1"        , "plot3d1.dem.sce"         ; ..
     "fplot3d1"       , "fplot3d1.dem.sce"        ; ..
+    "Matplot1 (mandelbrot)"     , "mandelbrot.dem.sce"      ; ..
     "contour"        , "contour.dem.sce"         ; ..
     "fcontour"       , "fcontour.dem.sce"        ; ..
     "contourf"       , "contourf.dem.sce"        ; ..
