@@ -101,13 +101,11 @@
         delay
       </emphasis>
       gives the value (in time) of the first event. The 
-      <emphasis role="bold">Phase delay</emphasis> known also as <emphasis
-      role="bold">Offset</emphasis> must be less than the <literal>Frequency*(1-(Pulse_Width/100))</literal>.
+      <emphasis role="bold">Phase delay</emphasis> known also as <emphasis role="bold">Offset</emphasis> must be less than the <literal>Frequency*(1-(Pulse_Width/100))</literal>.
       The second parameter of the block gives the <emphasis role="bold">Pulse
         width
       </emphasis>
-      and the fourth parameter gives the <emphasis
-      role="bold">Pulse amplitude</emphasis>.
+      and the fourth parameter gives the <emphasis role="bold">Pulse amplitude</emphasis>.
     </para>
   </refsection>
   <refsection id="Dialogbox_PULSE_SC">

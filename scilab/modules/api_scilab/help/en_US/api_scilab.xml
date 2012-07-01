@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="api_scilab" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>api_scilab</refname>
     <refpurpose>api_scilab is the Scilab interface to read/write data from/to Scilab memory </refpurpose>
@@ -64,7 +61,6 @@
     </itemizedlist>
     <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
   </refsection>
-  
   <refsection>
     <title>History</title>
     <revhistory>
@@ -112,7 +108,6 @@
       </revision>
     </revhistory>
   </refsection>
-  
   <refsection>
     <title>See Also - API_Scilab</title>
     <simplelist type="inline">

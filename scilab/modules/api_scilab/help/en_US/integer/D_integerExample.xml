@@ -27,8 +27,7 @@
     <!--Lib_name: integerExample-->
     <!--Func_list: integerExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int integerExample(char *fname,unsigned long fname_len)
@@ -299,13 +298,11 @@ int integerExample(char *fname,unsigned long fname_len)
     AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
-    <programlisting role="code_scilab">
-      <![CDATA[ 
+    <programlisting role="code_scilab"><![CDATA[ 
 i8_1 = int8(1);
 i8_2 = int8([1,2,3;4,5,6]);
 ui8_1 = uint8(1);
@@ -335,7 +332,6 @@ if integerExample(i8_1) <> i16_1 then pause;end
 if integerExample(i8_2) <> i16_2 then pause;end
 if integerExample(ui8_1) <> ui16_1 then pause;end
 if integerExample(ui8_2) <> ui16_2 then pause;end
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

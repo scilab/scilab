@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xdel">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xdel">
   <refnamediv>
     <refname>xdel</refname>
     <refpurpose> delete a graphics window</refpurpose>
@@ -40,7 +37,6 @@
       graphics window if no argument is given.
     </para>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -51,7 +47,6 @@ xdel(0); // delete the first graphic
 xdel(); // delete the current figure
  ]]></programlisting>
   </refsection>
-  
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">

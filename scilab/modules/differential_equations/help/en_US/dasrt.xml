@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dasrt" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dasrt</refname>
     <refpurpose>DAE solver with zero crossing</refpurpose>
@@ -78,7 +75,7 @@
             a vector with two entries <literal>[times num]</literal>
             <literal>times</literal> is the value of the time at which the
             surface is crossed, <literal>num</literal> is the number of the
-	    crossed surface.
+            crossed surface.
           </para>
         </listitem>
       </varlistentry>
@@ -96,7 +93,8 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para><link linkend="external">external</link> (function or list or string). Computes the value of
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
             <literal>g(t,y,ydot)</literal>. It may be :
           </para>
           <itemizedlist>
@@ -152,7 +150,8 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para>The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
+              <para>
+                The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
                 used.
               </para>
             </listitem>
@@ -162,7 +161,8 @@ integer ires,ipar(*)
       <varlistentry>
         <term>jac</term>
         <listitem>
-          <para><link linkend="external">external</link> (function or list or string). Computes the value of
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
             <literal>dg/dy+cj*dg/dydot</literal> for a given value of parameter
             <literal>cj</literal>.
           </para>
@@ -173,7 +173,7 @@ integer ires,ipar(*)
                 <literal>r=jac(t,y,ydot,cj)</literal> and the
                 <literal>jac</literal> function must return
                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
-		<literal>cj</literal> is a real scalar.
+                <literal>cj</literal> is a real scalar.
               </para>
             </listitem>
             <listitem>
@@ -217,7 +217,8 @@ integer ipar(*)
       <varlistentry>
         <term>surf</term>
         <listitem>
-          <para><link linkend="external">external</link> (function or list or string). Computes the value of
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
             the column vector <literal>surf(t,y)</literal> with
             <literal>ng</literal> components. Each component defines a surface.
             It may be defined by:
@@ -245,7 +246,7 @@ r=surf(t,y,x1,x2,...)
             <listitem>
               <para>A character string.</para>
               <para>It must refer to the name of a Fortran subroutine linked
-		with scilab.
+                with scilab.
               </para>
               <para>In C the calling sequence must be:</para>
               <programlisting role="no-scilab-exec"><![CDATA[
@@ -265,8 +266,8 @@ integer ny,ng
         <term>info</term>
         <listitem>
           <para>
-	    list which contains <literal>7</literal> elements. Default
-	    value is <literal>list([],0,[],[],[],0,0)</literal>.
+            list which contains <literal>7</literal> elements. Default
+            value is <literal>list([],0,[],[],[],0,0)</literal>.
           </para>
           <variablelist>
             <varlistentry>
@@ -297,7 +298,9 @@ integer ny,ng
                   <literal>2</literal> components vector which give the
                   definition <literal>[ml,mu]</literal> of band matrix computed
                   by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
-                    "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>. If <literal>jac</literal> returns a full matrix set
+                    "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
+                  </literal>
+                  .If <literal>jac</literal> returns a full matrix set
                   <literal>info(3)=[]</literal>.
                 </para>
               </listitem>
@@ -347,14 +350,15 @@ integer ny,ng
         <listitem>
           <para>
             real vector which allows to store the <literal>dassl</literal>
-	    context and to resume integration.
+            context and to resume integration.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>real matrix . Each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
+          <para>
+            real matrix . Each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
             <literal>t</literal> is time index for which the solution had been computed.
           </para>
         </listitem>

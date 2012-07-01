@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="fec">
   <refnamediv>
     <refname>fec</refname>
     <refpurpose> pseudo-color plot of a function defined on a triangular mesh</refpurpose>
@@ -168,12 +165,10 @@
       data files in Scilab and plot the results.
     </para>
   </refsection>
-  
   <refsection>
     <title>Sample</title>
     <scilab:image>fec();</scilab:image>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -195,7 +190,6 @@ subplot(1,2,2)
   xtitle("fec example (without the mesh)")
 show_window()
  ]]></programlisting>
-    
     <programlisting role="example"><![CDATA[ 
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
@@ -212,7 +206,6 @@ fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
 xtitle("fec example : using zminmax argument")
 show_window()
  ]]></programlisting>
-    
     <programlisting role="example"><![CDATA[ 
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
@@ -242,7 +235,6 @@ subplot(2,2,4)
   xtitle("fec example : using zminmax and colout =[0 -1]")
 show_window()
  ]]></programlisting>
-    
     <programlisting role="example"><![CDATA[ 
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];

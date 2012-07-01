@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>modulo</refname>
     <refpurpose>対称剰余モジュロm演算</refpurpose>
@@ -40,16 +37,23 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>modulo</literal> は,
-	<literal>i= n (modulo m)</literal>,
-	すなわち, <literal>n</literal>を<literal>m</literal>で
-	割った剰余を計算します(<literal>n</literal> および <literal>m</literal>
-    は整数).</para>
+    <para>
+      <literal>modulo</literal> は,
+      <literal>i= n (modulo m)</literal>,
+      すなわち, <literal>n</literal>を<literal>m</literal>で
+      割った剰余を計算します(<literal>n</literal> および <literal>m</literal>
+      は整数).
+    </para>
     <para>i = n - m .* int (n ./ m). ここで,
-	<literal>n</literal> または <literal>m</literal>が負の場合,
-	答えが負となる可能性があります.</para>
-    <para><literal>pmodulo</literal> は <literal>i = n - m .* floor (n
-    ./ m)</literal>を計算します, 答えは正またはゼロとなります.</para>
+      <literal>n</literal> または <literal>m</literal>が負の場合,
+      答えが負となる可能性があります.
+    </para>
+    <para>
+      <literal>pmodulo</literal> は <literal>i = n - m .* floor (n
+        ./ m)
+      </literal>
+      を計算します, 答えは正またはゼロとなります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

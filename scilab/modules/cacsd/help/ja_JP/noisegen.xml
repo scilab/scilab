@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="noisegen">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>noisegen</refname>
     <refpurpose>ノイズ生成</refpurpose>
@@ -25,14 +22,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	Scilab 関数 <literal>[b]=Noise(t)</literal>を生成します.
-	ただし, <literal>Noise(t)</literal>は区分定数関数です
-	(<literal>[k*pas,(k+1)*pas]</literal>の区間は定数).
-	各一定区間の値は,
-	互いに独立で同一の分布に従う標準偏差 sig のガウス分布
-	によるランダムな値です.
-	関数は,<literal>t&lt;=0</literal>および
-    <literal>t&gt;=Tmax</literal>では一定です.</para>
+      Scilab 関数 <literal>[b]=Noise(t)</literal>を生成します.
+      ただし, <literal>Noise(t)</literal>は区分定数関数です
+      (<literal>[k*pas,(k+1)*pas]</literal>の区間は定数).
+      各一定区間の値は,
+      互いに独立で同一の分布に従う標準偏差 sig のガウス分布
+      によるランダムな値です.
+      関数は,<literal>t&lt;=0</literal>および
+      <literal>t&gt;=Tmax</literal>では一定です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

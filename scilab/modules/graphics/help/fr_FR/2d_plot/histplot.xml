@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="histplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>histplot</refname>
     <refpurpose>dessine un histogramme</refpurpose>
@@ -54,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       Cette fonction dessine un histogramme des données contenues dans le vecteur <literal>data</literal>
+      Cette fonction dessine un histogramme des données contenues dans le vecteur <literal>data</literal>
       en utilisant les classes <literal>x</literal>. Quand le nombre de classes <literal>n</literal> est fourni
       au lieu de <literal>x</literal>, celles-ci sont définies de manière équirépartie et telles que
       <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>

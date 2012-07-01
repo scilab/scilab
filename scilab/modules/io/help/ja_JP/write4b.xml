@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="write4b">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>write4b</refname>
     <refpurpose> fortranファイルバイナリ書き込み</refpurpose>
@@ -35,8 +32,9 @@
         <term>rec</term>
         <listitem>
           <para>正の整数のベクトル. 
-	直接アクセス用に選択されたレコード.
-	このベクトルの大きさは<literal>a</literal>の行の数に等しい必要があります.</para>
+            直接アクセス用に選択されたレコード.
+            このベクトルの大きさは<literal>a</literal>の行の数に等しい必要があります.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,16 +42,17 @@
   <refsection>
     <title>説明</title>
     <para>
-	行列<literal>a</literal> をファイル<literal>'filename'</literal>に
-	バイナリ形式で書き込みます.
-	行列のエントリは8バイトワードで保存されます.
-	</para>
+      行列<literal>a</literal> をファイル<literal>'filename'</literal>に
+      バイナリ形式で書き込みます.
+      行列のエントリは8バイトワードで保存されます.
+    </para>
     <para>
-	直接レコードアクセスの場合,record_lengthを設定するために
-	ファイルは<literal>file</literal>関数によりオープンされている
-	必要があります.
-	<literal>file-name</literal> は<literal>file</literal> 
-	関数の結果である必要があります.</para>
+      直接レコードアクセスの場合,record_lengthを設定するために
+      ファイルは<literal>file</literal>関数によりオープンされている
+      必要があります.
+      <literal>file-name</literal> は<literal>file</literal> 
+      関数の結果である必要があります.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

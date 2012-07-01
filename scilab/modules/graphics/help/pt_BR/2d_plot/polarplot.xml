@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="polarplot" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>polarplot</refname>
     <refpurpose>Esboço de coordenadas polares</refpurpose>
@@ -65,7 +62,7 @@
               <term>-</term>
               <listitem>
                 <para>
-                   Se <literal>style(i)</literal> for negativo, a curva é
+                  Se <literal>style(i)</literal> for negativo, a curva é
                   esboçada utilizando-se a marca com idenfiticador
                   <literal>abs(style(i))+1</literal>; use
                   <literal>xset()</literal> para ver os identificadores das

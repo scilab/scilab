@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cdfchi">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdfchi</refname>
     <refpurpose>累積分布関数:カイ二乗分布</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[P,Q]=cdfchi("PQ",X,Df)
-[X]=cdfchi("X",Df,P,Q);
-[Df]=cdfchi("Df",P,Q,X)</synopsis>
+      [X]=cdfchi("X",Df,P,Q);
+      [Df]=cdfchi("Df",P,Q,X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -56,20 +54,24 @@
   <refsection>
     <title>説明</title>
     <para>
-	カイ二乗分布のパラメータの一つをそれ以外のパラメータの値を
-	指定して計算します.</para>
+      カイ二乗分布のパラメータの一つをそれ以外のパラメータの値を
+      指定して計算します.
+    </para>
     <para>
-    AbramowitzおよびStegunによる, Handbook  of
-    Mathematical Functions   (1966)の式26.4.19が
-	カイ二乗分布を不完全分布に縮減させるために使用されます.</para>
+      AbramowitzおよびStegunによる, Handbook  of
+      Mathematical Functions   (1966)の式26.4.19が
+      カイ二乗分布を不完全分布に縮減させるために使用されます.
+    </para>
     <para>
-	その他のパラメータの計算には,
-	Pの指定された値を出力する値の探索を含みます.
-	この探索は他のパラメータに対するPの単調性に依存します.</para>
+      その他のパラメータの計算には,
+      Pの指定された値を出力する値の探索を含みます.
+      この探索は他のパラメータに対するPの単調性に依存します.
+    </para>
     <para>
-    DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
-	ライブラリ(February, 1994)
-     Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.</para>
+      DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
+      ライブラリ(February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

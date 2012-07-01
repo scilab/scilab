@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cat" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cat</refname>
     <refpurpose>concatenate several arrays</refpurpose>
@@ -45,7 +42,8 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>a scalar, vector, matrix or multi-array, or cell array <literal>y</literal> has the same type
+          <para>
+            a scalar, vector, matrix or multi-array, or cell array <literal>y</literal> has the same type
             as <literal>A1,A2,...,An</literal>.
           </para>
         </listitem>
@@ -58,17 +56,25 @@
       <literal>y=cat(dims,A1,A2,...,An)</literal> : <literal>y</literal> is the result of the
       concatenation of the input arguments <literal>A1,A2,...,An</literal>. 
     </para>
-    <para>If <literal>dims=1</literal>, then the concatenation is done according to the
+    <para>
+      If <literal>dims=1</literal>, then the concatenation is done according to the
       rows
     </para>
-    <para><literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>; <literal>y=cat(1,A1,A2)</literal> =&gt; <literal>y=[1
-      2 3 ; 4 5 6 ;7 8 9; 10 11 12]</literal>.
+    <para>
+      <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>; <literal>y=cat(1,A1,A2)</literal> =&gt; <literal>y=[1
+        2 3 ; 4 5 6 ;7 8 9; 10 11 12]
+      </literal>
+      .
     </para>
-    <para>If <literal>dims=2</literal>, then the concatenation is done according to the columns
+    <para>
+      If <literal>dims=2</literal>, then the concatenation is done according to the columns
       of the input arguments
     </para>
-    <para><literal>A1=[1 2 3;4 5 6]</literal>; <literal>A2=[7 8 9 ;10 11 12]</literal>; <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2
-      3 7 8 9 ; 4 5 6 10 11 12]</literal>.
+    <para>
+      <literal>A1=[1 2 3;4 5 6]</literal>; <literal>A2=[7 8 9 ;10 11 12]</literal>; <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2
+        3 7 8 9 ; 4 5 6 10 11 12]
+      </literal>
+      .
     </para>
   </refsection>
   <refsection>
@@ -91,7 +97,7 @@ dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=c
         <link linkend="permute">permute</link>
       </member>
       <member>
-	<link linkend="matrix">matrix</link>
+        <link linkend="matrix">matrix</link>
       </member>
     </simplelist>
   </refsection>

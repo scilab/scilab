@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_w">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unix_w</refname>
     <refpurpose>exécution d'une commande Unix ou DOS,
@@ -38,7 +35,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       Envoie la chaîne <literal>command-name</literal> à  
+      Envoie la chaîne <literal>command-name</literal> à  
       l'interpréteur de commande (sh sous Unix, ou cmd.com sous Windows). La
       sortie standard et les erreurs sont reportées dans la variable
       <literal>rep</literal>. Les erreurs se produisant dans l'interpréteur de commande

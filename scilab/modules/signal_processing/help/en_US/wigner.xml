@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wigner">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>wigner</refname>
     <refpurpose> 'time-frequency' wigner spectrum</refpurpose>
@@ -41,7 +38,9 @@
       <varlistentry>
         <term>zp</term>
         <listitem>
-          <para>length of FFT's. <literal>%pi/zp</literal> gives the frequency increment.</para>
+          <para>
+            length of FFT's. <literal>%pi/zp</literal> gives the frequency increment.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,7 +48,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    function which computes the 'time-frequency' wigner
-    spectrum of a signal.</para>
+      function which computes the 'time-frequency' wigner
+      spectrum of a signal.
+    </para>
   </refsection>
 </refentry>

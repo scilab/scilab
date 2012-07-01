@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="abcd">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>abcd</refname>
     <refpurpose> 状態空間行列</refpurpose>
@@ -29,7 +26,8 @@
         <term>sl</term>
         <listitem>
           <para>状態空間表現または伝達関数表現の
-	    線形システム (<literal>syslin</literal> リスト) </para>
+            線形システム (<literal>syslin</literal> リスト) 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,14 +41,17 @@
   <refsection>
     <title>説明</title>
     <para>
-      線形システム<literal>Sl</literal>の<literal>A,B,C,D</literal> 行列を返す.</para>
+      線形システム<literal>Sl</literal>の<literal>A,B,C,D</literal> 行列を返す.
+    </para>
     <para>
       ユーティリティ関数.伝達関数行列<literal>Sl</literal>の場合、
-       <literal>tf2ss</literal>により状態空間表現に変換される.</para>
+      <literal>tf2ss</literal>により状態空間表現に変換される.
+    </para>
     <para>
-    行列 <literal>A,B,C,D</literal> は<literal>syslin</literal>リスト
-    <literal>Sl</literal>の <literal>2</literal> から <literal>5</literal>
-    までの要素、すなわち、<literal>[A,B,C,D] = Sl(2:5)</literal>、である.</para>
+      行列 <literal>A,B,C,D</literal> は<literal>syslin</literal>リスト
+      <literal>Sl</literal>の <literal>2</literal> から <literal>5</literal>
+      までの要素、すなわち、<literal>[A,B,C,D] = Sl(2:5)</literal>、である.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

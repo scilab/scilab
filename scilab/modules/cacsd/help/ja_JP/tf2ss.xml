@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tf2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tf2ss</refname>
     <refpurpose> 伝達関数から状態空間表現への変換</refpurpose>
@@ -34,8 +31,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>定数 rtol または要素数2のベクトル <literal>[rtol atol]</literal>となります.
-	</para>
+          <para>
+            定数 rtol または要素数2のベクトル <literal>[rtol atol]</literal>となります.
+          </para>
           <variablelist>
             <varlistentry>
               <term>rtol</term>
@@ -55,7 +53,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト <literal>sl=[A,B,C,D(s)]</literal>)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト <literal>sl=[A,B,C,D(s)]</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,7 +63,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    伝達関数から状態空間表現への変換:</para>
+      伝達関数から状態空間表現への変換:
+    </para>
     <para>
       <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
     </para>

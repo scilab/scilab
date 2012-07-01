@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pinv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pinv</refname>
     <refpurpose>擬似逆行列</refpurpose>
@@ -41,17 +38,22 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>X = pinv(A)</literal> は,
-	<literal>A'</literal>と同じ次元の以下のような
-	行列<literal>X</literal>を出力します:</para>
-    <para><literal>A*X*A = A, X*A*X = X</literal>  そして
-	<literal>A*X</literal> および <literal>X*A</literal>
-	はエルミート行列です.</para>
     <para>
-	計算は特異値分解に基づいており,
-	許容値よりも小さい特異値は 0 として扱われます:
-	この許容誤差は <literal>X=pinv(A,tol)</literal>
-	でアクセスされます.</para>
+      <literal>X= pinv(A)</literal> は,
+      <literal>A'</literal>と同じ次元の以下のような
+      行列<literal>X</literal>を出力します:
+    </para>
+    <para>
+      <literal>A*X*A = A, X*A*X = X</literal>  そして
+      <literal>A*X</literal> および <literal>X*A</literal>
+      はエルミート行列です.
+    </para>
+    <para>
+      計算は特異値分解に基づいており,
+      許容値よりも小さい特異値は 0 として扱われます:
+      この許容誤差は <literal>X=pinv(A,tol)</literal>
+      でアクセスされます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -76,7 +78,9 @@ norm(A*pinv(A)*A-A,1)
   </refsection>
   <refsection>
     <title>使用される関数</title>
-    <para><literal>pinv</literal> 関数は特異値分解に基づいています
- (Scilab関数 <literal>svd</literal>).</para>
+    <para>
+      <literal>pinv</literal> 関数は特異値分解に基づいています
+      (Scilab関数 <literal>svd</literal>).
+    </para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdfpoi">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdfpoi</refname>
     <refpurpose> fonction de répartition de la distribution de Poisson  </refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
-[S]=cdfpoi("S",Xlam,P,Q)
-[Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis>
+      [S]=cdfpoi("S",Xlam,P,Q)
+      [Xlam]=cdfpoi("Xlam",P,Q,S);
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -31,28 +29,28 @@
         <term>P,Q,S,Xlam  </term>
         <listitem>
           <para>4 vecteurs réels de même taille.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P,Q (Q=1-P)  </term>
         <listitem>
           <para>La somme de  0 à S de la densité de Poisson. En entrée : [0,1].
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>S  </term>
         <listitem>
           <para>Borne supérieure de la somme. En entrée : [0, +infini). En recherche : [0,1E300]
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Xlam  </term>
         <listitem>
           <para>Moyenne de la distribution. En entrée : [0, +infini). En recherche : [0,1E300]
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,19 +58,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    Étant donnés les autres, calcule un paramètre de la distribution de Poisson.
-  </para>
+      Étant donnés les autres, calcule un paramètre de la distribution de Poisson.
+    </para>
     <para>
-    La formule  26.4.21 de   Abramowitz  et  Stegun,   Handbook   of
-    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d'une loi gamma incomplète.
-  </para>
+      La formule  26.4.21 de   Abramowitz  et  Stegun,   Handbook   of
+      Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d'une loi gamma incomplète.
+    </para>
     <para>
-  </para>
+    </para>
     <para>
-    Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
-    Functions, Inverses, and Other Parameters (February, 1994)
-    Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.
-  </para>
+      Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+      Functions, Inverses, and Other Parameters (February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

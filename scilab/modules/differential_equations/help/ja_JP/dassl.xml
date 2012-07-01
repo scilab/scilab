@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dassl" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dassl</refname>
     <refpurpose>微分代数方程式</refpurpose>
@@ -140,7 +137,8 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)  
  ]]></programlisting>
-              <para><literal>rpar</literal> と <literal>ipar</literal> 配列は存在しますが,
+              <para>
+                <literal>rpar</literal> と <literal>ipar</literal> 配列は存在しますが,
                 使用できません.
               </para>
             </listitem>

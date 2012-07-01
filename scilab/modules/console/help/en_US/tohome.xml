@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tohome">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tohome</refname>
     <refpurpose>Move the cursor to the upper left corner of the Command Window</refpurpose>
@@ -30,7 +27,7 @@
     <para>You can use the scroll bar to see the history of previous functions.</para>
     <para>
       <note>
-	Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.
+        Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.
       </note>
     </para>
   </refsection>

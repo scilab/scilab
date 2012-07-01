@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="delete">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="delete">
   <refnamediv>
     <refname>delete</refname>
     <refpurpose>
@@ -65,8 +62,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 subplot(211);
 t=1:10;plot2d(t,t.^2),
 subplot(223);
@@ -79,8 +75,7 @@ delete(); //delete the graphics object newly created
 delete(a.children); //delete all children of the current axes
 delete(a); //delete the axes
 delete("all"); //delete all the graphics objects of the figure
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

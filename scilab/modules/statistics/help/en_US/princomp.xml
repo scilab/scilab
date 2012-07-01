@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="princomp">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>princomp</refname>
     <refpurpose>  Principal components analysis</refpurpose>
@@ -29,7 +26,7 @@
         <term>x</term>
         <listitem>
           <para>
-             is a <literal>n</literal>-by-<literal>p</literal>
+            is a <literal>n</literal>-by-<literal>p</literal>
             (<literal>n</literal> individuals, <literal>p</literal>
             variables) real matrix.
           </para>

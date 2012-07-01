@@ -111,8 +111,7 @@
     <!--Lib_name: common_read-->
     <!--Func_list: common_read-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 static int iTab = 0;
 void insert_indent(void)
@@ -702,8 +701,7 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Pointer : 0x%08X\n", pvPtr);
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

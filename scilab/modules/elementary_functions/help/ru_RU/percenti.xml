@@ -10,53 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="percenti" xml:lang="ru"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
- 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="percenti" xml:lang="ru">
   <refnamediv>
     <refname>%i</refname>
- 
     <refpurpose>мнимая единица</refpurpose>
   </refnamediv>
- 
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
- 
     <synopsis>%i</synopsis>
   </refsynopsisdiv>
- 
   <refsection>
     <title>Описание</title>
- 
     <para>
       <literal>%i</literal> -- это мнимая единица, используемая для ввода комплексных чисел.
-     </para>
+    </para>
   </refsection>
- 
   <refsection>
     <title>Пример</title>
- 
     <programlisting role="example">
-1 + %i == complex(1, 1)
-2 + 3 * %i == complex(2, 3)
-</programlisting>
+      1 + %i == complex(1, 1)
+      2 + 3 * %i == complex(2, 3)
+    </programlisting>
   </refsection>
- 
   <refsection role="see also">
     <title>Смотрите также</title>
- 
     <simplelist type="inline">
-      <member><link linkend="complex">complex</link></member>
-      <member><link linkend="imult">imult</link></member>
+      <member>
+        <link linkend="complex">complex</link>
+      </member>
+      <member>
+        <link linkend="imult">imult</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>
- 

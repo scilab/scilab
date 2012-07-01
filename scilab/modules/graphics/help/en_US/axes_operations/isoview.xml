@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isoview">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="isoview">
   <refnamediv>
     <refname>isoview</refname>
     <refpurpose> set scales for isometric plot (do not change the size of the window)  </refpurpose>
@@ -48,7 +45,6 @@
       the current graphics scale (for instance <literal>strf="x0z"</literal> in <literal>plot2d</literal>).
     </para>
   </refsection>
-  
   <refsection>
     <title>Sample</title>
     <scilab:image>
@@ -56,7 +52,6 @@
       plot2d(sin(t),cos(t),1,"001")      
     </scilab:image>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nthroot" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>nthroot</refname>
     <refpurpose>n-ный корень вещественных чисел</refpurpose>
@@ -28,15 +25,15 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-	  <para>вещественный скаляр или вектор/матрица</para>
+          <para>вещественный скаляр или вектор/матрица</para>
         </listitem>
       </varlistentry>
     </variablelist>
-	<variablelist>
+    <variablelist>
       <varlistentry>
         <term>n</term>
         <listitem>
-	  <para>вещественный скаляр</para>
+          <para>вещественный скаляр</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,7 +59,7 @@
       <member>
         <link linkend="hat">крышечка</link>
       </member>
-	  <member>
+      <member>
         <link linkend="sqrt">sqrt</link>
       </member>
       <member>
@@ -71,4 +68,3 @@
     </simplelist>
   </refsection>
 </refentry>
- 

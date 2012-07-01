@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fftw" xml:lang="en">
-  <info>
-    <pubdate>October 2006</pubdate>
-  </info>
   <refnamediv>
     <refname>fftw</refname>
     <refpurpose>Fast fourier transform based on the fftw library</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[y]=fftw(x)
-[y]=fftw(x,sign)
-[y]=fftw(x,sign,dim,incr)
-[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+      [y]=fftw(x,sign)
+      [y]=fftw(x,sign,dim,incr)
+      [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,7 +30,8 @@
         <term>y,x</term>
         <listitem>
           <para>matrix/vector of real/complex data. Input/output data to be
-          transformed.</para>
+            transformed.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -45,7 +44,8 @@
         <term>dim</term>
         <listitem>
           <para>integer. Set the dimension (the length) of the
-          transform.</para>
+            transform.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,15 +59,21 @@
   <refsection>
     <title>Description</title>
     <para>This function realizes direct/inverse Discrete Fourier Transform
-    (DFT) with the help of the FFTW library.</para>
+      (DFT) with the help of the FFTW library.
+    </para>
     <para>One can compute vector, 2D, M-D transform with this function.</para>
-    <para>For more details of fftw syntax see <link linkend="fft">fft</link> scilab function.</para>
-    <para>For more details about FFTW library see FFTW Web site : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
+    <para>
+      For more details of fftw syntax see <link linkend="fft">fft</link> scilab function.
+    </para>
+    <para>
+      For more details about FFTW library see FFTW Web site : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
     </para>
     <para>Remark: fftw function automatically stores his last parameters in
-    memory to re-use it in a second time.</para>
+      memory to re-use it in a second time.
+    </para>
     <para>This improves greatly the time computation when consecutives
-    calls (with same parameters) are performed.</para>
+      calls (with same parameters) are performed.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -117,7 +123,7 @@ b = fftw(y,1,[5 6 4],[1 5 30]);
   <refsection>
     <title>Bibliography</title>
     <para>
-    Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+      Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
     </para>
   </refsection>
 </refentry>

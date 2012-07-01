@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lines" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lines</refname>
     <refpurpose>rows and columns used for display</refpurpose>
@@ -22,9 +19,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>lines(nl)
-lines(nl, nc)
-lines(ncl)
-ncl = lines()</synopsis>
+      lines(nl, nc)
+      lines(ncl)
+      ncl = lines()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -47,7 +45,8 @@ ncl = lines()</synopsis>
         <term>nc</term>
         <listitem>
           <para>An integer, the number of column of output. Used for
-          formatting output</para>
+            formatting output
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,19 +59,32 @@ ncl = lines()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lines</literal> handles Scilab display paging.</para>
-    <para><literal>lines()</literal> returns the vector <literal>[# columns, #
-    rows]</literal> currently used by Scilab for displaying the
-    results.</para>
-    <para><literal>lines(nl)</literal> sets the number of displayed lines
-    (before user is asked for more) to <literal>nl</literal>.</para>
-    <para><literal>lines(0)</literal> disables vertical paging.</para>
-    <para><literal>lines(nl,nc)</literal> and <literal>lines([nc,nl])</literal> changes also the size of the output
-    to <literal>nc</literal> columns.</para>
+    <para>
+      <literal>lines</literal> handles Scilab display paging.
+    </para>
+    <para>
+      <literal>lines()</literal> returns the vector <literal>[# columns, #
+        rows]
+      </literal>
+      currently used by Scilab for displaying the
+      results.
+    </para>
+    <para>
+      <literal>lines(nl)</literal> sets the number of displayed lines
+      (before user is asked for more) to <literal>nl</literal>.
+    </para>
+    <para>
+      <literal>lines(0)</literal> disables vertical paging.
+    </para>
+    <para>
+      <literal>lines(nl,nc)</literal> and <literal>lines([nc,nl])</literal> changes also the size of the output
+      to <literal>nc</literal> columns.
+    </para>
     <para>When Scilab is launched without -nw option, the
-    <literal>lines</literal> parameters are automatically set according to the
-    output window size, these parameters are also automatically modified when
-    the window is resized.</para>
+      <literal>lines</literal> parameters are automatically set according to the
+      output window size, these parameters are also automatically modified when
+      the window is resized.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -94,7 +106,8 @@ ncl = lines()</synopsis>
           <itemizedlist>
             <listitem>lines is set by default to 0. Argument -1 added. See SEP #67 for more information.</listitem>
             <listitem>lines manages a 1x2 vector [nc, nl] as input
-            argument</listitem>
+              argument
+            </listitem>
           </itemizedlist>
         </revdescription>
       </revision>

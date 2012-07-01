@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="integrate" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-08 09:42:14 +0200 (Tue, 08 Apr 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>integrate</refname>
     <refpurpose>求積法による式の積分</refpurpose>

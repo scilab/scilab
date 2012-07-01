@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xrects">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xrects">
   <refnamediv>
     <refname>xrects</refname>
     <refpurpose> draw or fill a set of rectangles</refpurpose>
@@ -64,7 +61,6 @@
     </para>
     <para>WARNING: please note that height is positive downwards.</para>
   </refsection>
-  
   <refsection>
     <title>Sample</title>
     <scilab:image>
@@ -76,7 +72,6 @@
       xnumb(x,15*ones(x),cols)
     </scilab:image>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 

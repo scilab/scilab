@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="driver">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>driver</refname>
     <refpurpose>Select a graphics driver</refpurpose>
@@ -68,28 +65,24 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>Supported vectorial formats</title>
     <para>
       The selected driver can be one of the following vectorial format:
     </para>
     <variablelist>
-      
       <varlistentry>
         <term>Pos or ps</term>
         <listitem>
           <para>output into Postscript format.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>PDF</term>
         <listitem>
           <para>output into PDF format.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>SVG</term>
         <listitem>
@@ -98,43 +91,36 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>Supported bitmap formats</title>
     <para>
       The selected driver can be one of the following vectorial bitmap:
     </para>
     <variablelist>
-      
       <varlistentry>
         <term>GIF</term>
         <listitem>
           <para>output into GIF format.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>PNG</term>
         <listitem>
           <para>output into PNG format.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>JPEG or JPG</term>
         <listitem>
           <para>output into JPEG format.</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>BMP</term>
         <listitem>
           <para>output into BMP format.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>PPM</term>
         <listitem>
@@ -178,7 +164,7 @@ convert -delay 10  img*.gif anim.gif
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>          
+        <revremark>
           <itemizedlist>
             <listitem>Return the previous driver value.</listitem>
             <listitem>Enable off-screen. Scilab exports graphics without opening a new window.</listitem>
@@ -186,7 +172,6 @@ convert -delay 10  img*.gif anim.gif
             <listitem>Support of new vectorial formats: PDF and SVG.</listitem>
             <listitem>The function accepts lower and upper case argument.</listitem>
             <listitem>Fig driver is no longer supported.</listitem>
-            
           </itemizedlist>
         </revremark>
       </revision>

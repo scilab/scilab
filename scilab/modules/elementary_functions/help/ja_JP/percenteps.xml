@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="percenteps" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>%eps</refname>
     <refpurpose>イプシロン (浮動小数点数相対精度)</refpurpose>
@@ -24,18 +21,23 @@
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para><literal>%eps</literal> は定義済みの変数で, <literal>%eps =
-    2^(-52)</literal>です.</para>
+    <para>
+      <literal>%eps</literal> は定義済みの変数で, <literal>%eps =
+        2^(-52)
+      </literal>
+      です.
+    </para>
     <para>計算は厳密でありませんが,指定した精度で行われており,
-    ScilabはIEEE 754規約を使用しています.
+      ScilabはIEEE 754規約を使用しています.
     </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example">%eps
-format(20)
-1 + %eps
-1 + (%eps / 2) == 1</programlisting>
+      format(20)
+      1 + %eps
+      1 + (%eps / 2) == 1
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

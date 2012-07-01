@@ -27,8 +27,7 @@
     <!--Lib_name: booleanExample-->
     <!--Func_list: booleanExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int booleanExample(char *fname,unsigned long fname_len)
@@ -91,13 +90,11 @@ int booleanExample(char *fname,unsigned long fname_len)
     }
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
-    <programlisting role="code_scilab">
-      <![CDATA[ 
+    <programlisting role="code_scilab"><![CDATA[ 
 a = %t;
 b = %f;
 c = [a,b;b,a;a,b;b,a];
@@ -107,7 +104,6 @@ booleanExample(a) == a
 booleanExample(b) == b
 booleanExample(c) == c
 booleanExample(d) == d
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="histplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>histplot</refname>
     <refpurpose>ヒストグラムをプロットする</refpurpose>
@@ -67,7 +64,7 @@
   <refsection>
     <title>説明</title>
     <para>
-       この関数は,クラス<literal>x</literal>を用いて<literal>data</literal>ベクトル
+      この関数は,クラス<literal>x</literal>を用いて<literal>data</literal>ベクトル
       のヒストグラム(柱状グラフ)をプロットします.
       <literal>x</literal>のかわりにクラスの数<literal>n</literal>が指令された場合,
       クラスは等間隔で<emphasis>dx = (x(n+1)-x(1))/n</emphasis>として

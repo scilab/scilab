@@ -52,12 +52,12 @@ int sci_myrhs(char * fname)
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
-        <member>
-            <link linkend="OutputArgument">OutputArgument</link>
-        </member>
-        <member>
-            <link linkend="sciprint">sciprint</link>
-        </member>
+      <member>
+        <link linkend="OutputArgument">OutputArgument</link>
+      </member>
+      <member>
+        <link linkend="sciprint">sciprint</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

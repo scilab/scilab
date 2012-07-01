@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="editvar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>editvar</refname>
     <refpurpose> Scilab変数エディタ</refpurpose>
@@ -36,9 +33,13 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>editvar</literal> は標準のScilab変数エディタです.</para>
-    <para><literal>editvar</literal> は以下の変数型を編集できます: 実数または複素数定数行列 (type 1), 
-    論理値行列 (type 4) 文字列の行列 (type 10). </para>
+    <para>
+      <literal>editvar</literal> は標準のScilab変数エディタです.
+    </para>
+    <para>
+      <literal>editvar</literal> は以下の変数型を編集できます: 実数または複素数定数行列 (type 1), 
+      論理値行列 (type 4) 文字列の行列 (type 10). 
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

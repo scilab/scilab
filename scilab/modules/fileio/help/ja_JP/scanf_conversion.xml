@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scanf_conversion">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scanf_conversion</refname>
     <refpurpose> scanf, sscanf, fscanf 変換指定子</refpurpose>
@@ -22,8 +19,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	formatパラメータの各変換指定子には以下の要素が含まれます:
-  </para>
+      formatパラメータの各変換指定子には以下の要素が含まれます:
+    </para>
     <variablelist>
       <varlistentry>
         <term>+</term>
@@ -51,30 +48,32 @@
       </varlistentry>
     </variablelist>
     <para>
-    変換指定子は以下のような構文となります:
-  </para>
-    <para><literal>[*][width][size]convcode</literal>.
-  </para>
+      変換指定子は以下のような構文となります:
+    </para>
     <para>
-	変換の結果は,代入禁止を * (アスタリスク)で指定しない限り,
-	 v_i 引数に代入されます.
-	代入禁止により入力フィールドをスキップできるようになります.
-	入力フィールドは非空白文字の文字列です.
-	次の不適切な文字まで,またはフィールド幅が指定された場合には
-	これがあふれた場合に拡張されます.
-  </para>
+      <literal>[*][width][size]convcode</literal>.
+    </para>
     <para>
-	変換コードは入力フィールドの解釈の方法を指定します.
-	代入禁止されたフィールドの v_i パラメータを指定する
-	必要はありません.
-	以下の変換コードを使用することが可能です:
-  </para>
+      変換の結果は,代入禁止を * (アスタリスク)で指定しない限り,
+      v_i 引数に代入されます.
+      代入禁止により入力フィールドをスキップできるようになります.
+      入力フィールドは非空白文字の文字列です.
+      次の不適切な文字まで,またはフィールド幅が指定された場合には
+      これがあふれた場合に拡張されます.
+    </para>
+    <para>
+      変換コードは入力フィールドの解釈の方法を指定します.
+      代入禁止されたフィールドの v_i パラメータを指定する
+      必要はありません.
+      以下の変換コードを使用することが可能です:
+    </para>
     <variablelist>
       <varlistentry>
         <term>%</term>
         <listitem>
           <para>
-	ここまでは1個の% (パーセント記号)入力; 代入は行われません.</para>
+            ここまでは1個の% (パーセント記号)入力; 代入は行われません.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -105,12 +104,13 @@
         <term>e,f,g</term>
         <listitem>
           <para>
-	浮動小数点数を入力.
-	次のフィールドは同時に変換され,
-	対応するパラメータは保存されます.これは,
-	float へのポインタである必要があります.
-	浮動小数点数の入力形式は数値の文字列で,以下のオプションの文字を
-	指定できます:</para>
+            浮動小数点数を入力.
+            次のフィールドは同時に変換され,
+            対応するパラメータは保存されます.これは,
+            float へのポインタである必要があります.
+            浮動小数点数の入力形式は数値の文字列で,以下のオプションの文字を
+            指定できます:
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -123,10 +123,11 @@
         <term>+</term>
         <listitem>
           <para>
-	小数点の後に指数フィールドが続く,
-	指数の値とすることができます.
-	指数フィールドは E または e の後に整数(オプションで符号付き)
-	が続く形式となります.</para>
+            小数点の後に指数フィールドが続く,
+            指数の値とすることができます.
+            指数フィールドは E または e の後に整数(オプションで符号付き)
+            が続く形式となります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>

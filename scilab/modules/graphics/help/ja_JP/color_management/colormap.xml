@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colormap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colormap</refname>
     <refpurpose>カラーマップを定義</refpurpose>
@@ -21,28 +18,33 @@
   <refsection>
     <title>説明</title>
     <para>
-    カラーマップ <literal>cmap</literal> はm x 3行列で定義されます.
-	m は色の数です.
-	色番号 i は, それぞれ赤, 緑, 青の彩度(範囲は0から1)を表す 
-	<literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>, 
-	<literal>cmap(i,3)</literal> の組で指定されます.</para>
+      カラーマップ <literal>cmap</literal> はm x 3行列で定義されます.
+      m は色の数です.
+      色番号 i は, それぞれ赤, 緑, 青の彩度(範囲は0から1)を表す 
+      <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>, 
+      <literal>cmap(i,3)</literal> の組で指定されます.
+    </para>
     <para>
-	最初,カラーマップには32種類の色が定義されています.
-	特定の図のカラーマップを <literal>set(f,"color_map",cmap)</literal>
-	により変更することが可能です.
-	ただし,  <literal>f</literal>は図のハンドルです.</para>
+      最初,カラーマップには32種類の色が定義されています.
+      特定の図のカラーマップを <literal>set(f,"color_map",cmap)</literal>
+      により変更することが可能です.
+      ただし,  <literal>f</literal>は図のハンドルです.
+    </para>
     <para>
-	カラーマップの各色は,多くのプロット関数で色を指定するために使用する
-	際に使用されるIDを有しています.
-	このIDを参照するには,関数<link linkend="getcolor">getcolor</link>
-	を使用してください.</para>
+      カラーマップの各色は,多くのプロット関数で色を指定するために使用する
+      際に使用されるIDを有しています.
+      このIDを参照するには,関数<link linkend="getcolor">getcolor</link>
+      を使用してください.
+    </para>
     <para>
-    関数 <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> および
-	 <link linkend="graycolormap">graycolormap</link> は,
-	連続的に変化する色を有するカラーマップを提供します.</para>
+      関数 <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> および
+      <link linkend="graycolormap">graycolormap</link> は,
+      連続的に変化する色を有するカラーマップを提供します.
+    </para>
     <para>
-	デフォルトのカラーマップを<literal>cmap=get(sdf(),"color_map")</literal>
-	により取得できます.</para>
+      デフォルトのカラーマップを<literal>cmap=get(sdf(),"color_map")</literal>
+      により取得できます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

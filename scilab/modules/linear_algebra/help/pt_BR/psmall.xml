@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="psmall" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>psmall</refname>
     <refpurpose>projeção espectral</refpurpose>
@@ -41,7 +38,7 @@
         <term>flag</term>
         <listitem>
           <para>
-             string (<literal>'c'</literal> ou
+            string (<literal>'c'</literal> ou
             <literal>'d'</literal>)
           </para>
         </listitem>

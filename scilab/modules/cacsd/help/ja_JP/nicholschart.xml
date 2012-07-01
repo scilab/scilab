@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nicholschart">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-19 18:44:44 +0200 (jeu, 19 jun 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>nicholschart</refname>
     <refpurpose>ニコルス線図</refpurpose>

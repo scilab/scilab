@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdfbet">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdfbet</refname>
     <refpurpose> fonction de répartition de la distribution Beta  </refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[P,Q]=cdfbet("PQ",X,Y,A,B)
-[X,Y]=cdfbet("XY",A,B,P,Q)
-[A]=cdfbet("A",B,P,Q,X,Y)
-[B]=cdfbet("B",P,Q,X,Y,A)</synopsis>
+      [X,Y]=cdfbet("XY",A,B,P,Q)
+      [A]=cdfbet("A",B,P,Q,X,Y)
+      [B]=cdfbet("B",P,Q,X,Y,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -32,28 +30,28 @@
         <term>P,Q,X,Y,A,B  </term>
         <listitem>
           <para>cinq vecteurs réels de même taille.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P,Q (Q=1-P)  </term>
         <listitem>
           <para>L'intégrale de 0 à X de la distribution beta (En entrée : [0, 1].)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q  </term>
         <listitem>
           <para>1-P
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X,Y (Y=1-X)  </term>
         <listitem>
           <para>Borne supérieure d'intégration  (En entrée : [0,1],  En recherche : [0,1]) A,B : Les deux paramètres de la densité (En entrée: (0,+infini), En recherche : [1D-300,1D300] ) 
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -61,25 +59,25 @@
   <refsection>
     <title>Description</title>
     <para>
-    Étant donnés les autres, calcule un paramètre de la distribution beta 
-    (la distribution Beta est proportionnelle à <literal>t^(A-1) * (1-t)^(B-1)</literal>).
-  </para>
+      Étant donnés les autres, calcule un paramètre de la distribution beta 
+      (la distribution Beta est proportionnelle à <literal>t^(A-1) * (1-t)^(B-1)</literal>).
+    </para>
     <para>
-    La fonction de répartition  (P)  est calculée directement par le code associé à la référence
-  </para>
+      La fonction de répartition  (P)  est calculée directement par le code associé à la référence
+    </para>
     <para>
-    DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant
-    Digit Computation of the Incomplete  Beta  Function Ratios.  ACM
-    Trans. Math.  Softw. 18 (1993), 360-373.
-  </para>
+      DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant
+      Digit Computation of the Incomplete  Beta  Function Ratios.  ACM
+      Trans. Math.  Softw. 18 (1993), 360-373.
+    </para>
     <para>
-    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
-  </para>
+      Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+    </para>
     <para>
-    Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
-    Functions, Inverses, and Other Parameters (February, 1994)
-    Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.
-  </para>
+      Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+      Functions, Inverses, and Other Parameters (February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

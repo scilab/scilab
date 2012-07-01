@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stripblanks">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>stripblanks</refname>
     <refpurpose>Strips / trims leading and trailing
-  blanks (and tabs) of strings</refpurpose>
+      blanks (and tabs) of strings
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,7 +41,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    stripblanks strips / trims leading and trailing blanks (and tabs) of strings</para>
+      stripblanks strips / trims leading and trailing blanks (and tabs) of strings
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

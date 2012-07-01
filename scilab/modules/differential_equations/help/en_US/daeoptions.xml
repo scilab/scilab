@@ -12,10 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="daeoptions" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2012-04-17$
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>daeoptions</refname>
     <refpurpose>set options for dae solver</refpurpose>
@@ -35,11 +31,11 @@
     </para>
     <para>
       <caution>
-	The <literal>dae</literal> function checks if this variable
-	exists and in this case it uses it. For using default values you should
-	clear this variable. Note that <literal>daeoptions</literal> does not
-	create this variable. To create it you must execute the command line
-	displayed by <literal>daeoptions</literal>.
+        The <literal>dae</literal> function checks if this variable
+        exists and in this case it uses it. For using default values you should
+        clear this variable. Note that <literal>daeoptions</literal> does not
+        create this variable. To create it you must execute the command line
+        displayed by <literal>daeoptions</literal>.
       </caution>
     </para>
     <para>
@@ -66,7 +62,8 @@ list([],0,[],[],[],0,0)
       <varlistentry>
         <term>imode</term>
         <listitem>
-          <para>if it is 0 <literal>dae</literal> returns only the user specified time point
+          <para>
+            if it is 0 <literal>dae</literal> returns only the user specified time point
             values, and if it is 1 <literal>dae</literal> returns its intermediate computed
             values.
           </para>
@@ -108,7 +105,9 @@ list([],0,[],[],[],0,0)
         <listitem>
           <para>
             a scalar, must be set to 0 if <emphasis>the solution is known
-              to be non negative</emphasis>.
+              to be non negative
+            </emphasis>
+            .
             In the other case it must be set to 1.
           </para>
         </listitem>

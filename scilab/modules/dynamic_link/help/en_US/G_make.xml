@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="G_make">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>G_make</refname>
     <refpurpose> call make or nmake</refpurpose>
@@ -40,21 +37,26 @@
       <varlistentry>
         <term>Rfiles</term>
         <listitem>
-          <para>vector of character string. <literal>Rfiles</literal> can be used as a first argument when calling <literal>addinter</literal> function.</para>
+          <para>
+            vector of character string. <literal>Rfiles</literal> can be used as a first argument when calling <literal>addinter</literal> function.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>On Unix like systems <literal>G_make</literal> calls the <literal>make</literal> utility for building target <literal>files</literal>
-    and returns the value of <literal>files</literal> in the variable <literal>Rfiles</literal>.
-    On windows platforms, <literal>G_make</literal> calls the <literal>nmake</literal> utility for building target <literal>dllname</literal> and it
-    returns the value of <literal>dllname</literal> in the variable <literal>Rfiles</literal>. 
-    Of course <literal>G_make</literal> will work if apropriate Makefiles are 
-    provided in the current Scilab directory.
+    <para>
+      On Unix like systems <literal>G_make</literal> calls the <literal>make</literal> utility for building target <literal>files</literal>
+      and returns the value of <literal>files</literal> in the variable <literal>Rfiles</literal>.
+      On windows platforms, <literal>G_make</literal> calls the <literal>nmake</literal> utility for building target <literal>dllname</literal> and it
+      returns the value of <literal>dllname</literal> in the variable <literal>Rfiles</literal>. 
+      Of course <literal>G_make</literal> will work if apropriate Makefiles are 
+      provided in the current Scilab directory.
     </para>
-    <para><literal>G_make</literal> can be used to provide OS independent call to addinter.</para>
+    <para>
+      <literal>G_make</literal> can be used to provide OS independent call to addinter.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

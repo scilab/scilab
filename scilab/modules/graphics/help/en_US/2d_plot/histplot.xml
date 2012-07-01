@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="histplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="histplot">
   <refnamediv>
     <refname>histplot</refname>
     <refpurpose>plot a histogram</refpurpose>
@@ -66,7 +63,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       This function plot a histogram of the <literal>data</literal> vector using the
+      This function plot a histogram of the <literal>data</literal> vector using the
       classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
       instead of <literal>x</literal>, the classes are chosen equally spaced and
       <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
@@ -97,12 +94,10 @@
       Enter the command <literal>histplot()</literal> to see a demo.
     </para>
   </refsection>
-  
   <refsection>
     <title>Sample</title>
     <scilab:image>histplot();</scilab:image>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
     <simplelist>

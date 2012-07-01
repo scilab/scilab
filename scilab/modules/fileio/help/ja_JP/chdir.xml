@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="chdir">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>chdir</refname>
     <refpurpose>Scilab カレントディレクトリを変更する</refpurpose>
@@ -14,8 +11,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>b=chdir(path)
-realpath=cd(path)
-cd path</synopsis>
+      realpath=cd(path)
+      cd path
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -42,12 +40,14 @@ cd path</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para>カレントの Scilab ディレクトリを<literal>path</literal>
-	で指定したディレクトリに変更します. 
-	パス変換が実行されるため,例えば,
-    <literal>SCI/modules/core/macros</literal>は unix および windows の両方で
-	有効であることに注意してください.
-	path が空の場合, "home" ディレクトリに変更されます.</para>
+    <para>
+      カレントの Scilab ディレクトリを<literal>path</literal>
+      で指定したディレクトリに変更します. 
+      パス変換が実行されるため,例えば,
+      <literal>SCI/modules/core/macros</literal>は unix および windows の両方で
+      有効であることに注意してください.
+      path が空の場合, "home" ディレクトリに変更されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

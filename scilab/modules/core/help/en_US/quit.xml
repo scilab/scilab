@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>quit</refname>
     <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
@@ -23,7 +20,7 @@
         </term>
         <listitem>
           <para>
-	    then the <literal>quit</literal> command makes Scilab terminate, even
+            then the <literal>quit</literal> command makes Scilab terminate, even
             if the command is called inside a function.
           </para>
         </listitem>
@@ -34,7 +31,7 @@
         </term>
         <listitem>
           <para>
-	    then the <literal>quit</literal> command makes abort of the instructions
+            then the <literal>quit</literal> command makes abort of the instructions
             started at this pause level and terminates the current pause level.
           </para>
         </listitem>

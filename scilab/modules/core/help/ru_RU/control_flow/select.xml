@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="select">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>select</refname>
     <refpurpose>ключевое слово выбора</refpurpose>
@@ -57,7 +54,6 @@
     <para>
       Управляющая инструкция выбора действий по значению переменной <literal>variable</literal>.
     </para>
-    
     <para>
       Примечания:
     </para>
@@ -114,7 +110,6 @@ end
     <para>
       а не:
     </para>
-    
     <programlisting role=""><![CDATA[
 A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
 ]]></programlisting>
@@ -155,4 +150,3 @@ end
     </simplelist>
   </refsection>
 </refentry>
-

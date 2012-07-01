@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dasrt" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dasrt</refname>
     <refpurpose>ゼロ交差するDAE</refpurpose>
@@ -153,7 +150,9 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para><literal>rpar</literal> および <literal>ipar</literal> 配列は存在しますが使用できません.</para>
+              <para>
+                <literal>rpar</literal> および <literal>ipar</literal> 配列は存在しますが使用できません.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -363,7 +362,8 @@ integer ny,ng
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>実数行列. 各列はベクトル<literal>[t;x(t);xdot(t)]</literal>です.
+          <para>
+            実数行列. 各列はベクトル<literal>[t;x(t);xdot(t)]</literal>です.
             ただし <literal>t</literal> は解を計算した時間です.
           </para>
         </listitem>

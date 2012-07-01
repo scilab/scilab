@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="iirgroup">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>iirgroup</refname>
     <refpurpose>IIRフィルタの群遅延Lp最適化</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
-[cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)</synopsis>
+      [cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -19,7 +17,8 @@
         <term>r</term>
         <listitem>
           <para>
-	フィルタの極およびゼロの絶対値のベクトル</para>
+            フィルタの極およびゼロの絶対値のベクトル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -57,7 +56,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	IIRフィルタを群遅延のLp基準に基づき最適化します.
-	(Rabiner &amp; Gold pp270-273).</para>
+      IIRフィルタを群遅延のLp基準に基づき最適化します.
+      (Rabiner &amp; Gold pp270-273).
+    </para>
   </refsection>
 </refentry>

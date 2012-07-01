@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gmres">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gmres</refname>
     <refpurpose> Generalized Minimum RESidual method</refpurpose>
@@ -55,7 +52,7 @@ function y = A ( x )
           <para>
             preconditioner: matrix of size n-by-n or function returning <literal>M*x</literal> (In the first case, default: eye(n,n)). If M is a function, it must have the following header :
           </para>
-		  <programlisting role=""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 function y = M ( x )
  ]]></programlisting>
         </listitem>

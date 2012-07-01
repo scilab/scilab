@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="insertion">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>insertion</refname>
     <refpurpose>  partial variable assignation
@@ -281,23 +278,23 @@
               <para>
                 <literal>lk1 = l(k1)</literal>
               </para>
-	      <para>
-		<literal> ..  = ..  </literal>
+              <para>
+                <literal> ..  = ..  </literal>
               </para>
               <para>
                 <literal>lkn = lkn-1(kn)</literal>
               </para>
-	      <para>
-               <literal>lkn(i) = a</literal>
+              <para>
+                <literal>lkn(i) = a</literal>
               </para>
               <para>
                 <literal>lkn-1(kn) = lkn</literal>
               </para>
-	      <para>
-                 <literal> ..  = ..  </literal>
+              <para>
+                <literal> ..  = ..  </literal>
               </para>
-	      <para>
-                 <literal>l(k1) = lk1</literal>
+              <para>
+                <literal>l(k1) = lk1</literal>
               </para>
               <para>
                 And the <literal>l(k1)...(kn)(i,j)=a</literal> and  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
@@ -306,25 +303,25 @@
               <para>
                 <literal>lk1 = l(k1)</literal>
               </para>
-	      <para>
+              <para>
                 <literal> ..  = ..  </literal>
               </para>
               <para>
                 <literal>lkn = lkn-1(kn)</literal>
-             </para>
-	      <para>
-                 <literal>lkn(i,j) = a</literal>
+              </para>
+              <para>
+                <literal>lkn(i,j) = a</literal>
               </para>
               <para>
                 <literal>lkn-1(kn) = lkn</literal>
-             </para>
-	      <para>
-                 <literal> ..  = ..  </literal>
-             </para>
-	      <para>
-                 <literal>l(k1)= lk1</literal>
               </para>
-       </listitem>
+              <para>
+                <literal> ..  = ..  </literal>
+              </para>
+              <para>
+                <literal>l(k1)= lk1</literal>
+              </para>
+            </listitem>
             <listitem>
               <para>
                 <literal>i</literal> may be :

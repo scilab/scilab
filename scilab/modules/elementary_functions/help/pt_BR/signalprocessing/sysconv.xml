@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sysconv" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sysconv</refname>
     <refpurpose>conversão de sistema</refpurpose>
@@ -28,17 +25,21 @@
       <varlistentry>
         <term>s1,s2</term>
         <listitem>
-          <para>lista (sistemas <literal>syslin</literal> lineares)</para>
+          <para>
+            lista (sistemas <literal>syslin</literal> lineares)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para>Converte <literal>s1</literal> e <literal>s2</literal> para
-    representação comum a fim de que operações de interconexão de sistemas
-    possam ser aplicadas. Função utilitária para peritos. A regra de conversão
-    é dada na seguinte tabela. </para>
+    <para>
+      Converte <literal>s1</literal> e <literal>s2</literal> para
+      representação comum a fim de que operações de interconexão de sistemas
+      possam ser aplicadas. Função utilitária para peritos. A regra de conversão
+      é dada na seguinte tabela. 
+    </para>
     <variablelist>
       <varlistentry>
         <term>"c"</term>
@@ -62,7 +63,8 @@
         <term>[]</term>
         <listitem>
           <para>sistema com domínio de tempo indefinido. Para sistemas mistos,
-          s1 e s2 são postos em representação de estado-espaço.</para>
+            s1 e s2 são postos em representação de estado-espaço.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -91,28 +93,32 @@
         <term>c2e(s,n)</term>
         <listitem>
           <para>o sistema de tempo contínuo s é transformado em um sistema
-          amostrado com período de amostragem n. </para>
+            amostrado com período de amostragem n. 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c(s)</term>
         <listitem>
           <para>conversão para tempo contínuo (domínio de tempo é
-          <literal>"c"</literal>)</para>
+            <literal>"c"</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d(s)</term>
         <listitem>
           <para>conversão para tempo discreto (domínio de tempo é
-          <literal>"d"</literal>)</para>
+            <literal>"d"</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>e(s,n)</term>
         <listitem>
           <para>conversão para sistema amostrado com período
-          <literal>n</literal></para>
+            <literal>n</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

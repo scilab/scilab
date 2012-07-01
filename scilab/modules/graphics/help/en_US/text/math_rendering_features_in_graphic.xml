@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="math_rendering_features_in_graphic" xmlns:scilab="http://www.scilab.org" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="math_rendering_features_in_graphic" xml:lang="en">
   <refnamediv>
     <refname>Math rendering in Scilab graphics</refname>
     <refpurpose>Display mathematical equations in Scilab graphics through the
@@ -40,12 +37,9 @@ a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x
       missing). Few TeX commands, like <literal>\over are supported.</literal>
     </para>
     <para>Since Scilab 5.2.1, greek, cyrillic and complete unicode for latin alphabets characters are handled in the Scilab graphics</para>
-    
     <scilab:image>
       xtitle('$\big\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
     </scilab:image>
-    
-    
     <programlisting role="example"><![CDATA[
 xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
 xtitle('$\big(\bigg)$')
@@ -104,14 +98,12 @@ xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B
       take up to a few seconds to load. However, next uses are much
       faster.
     </para>
-    
     <scilab:image><![CDATA[ 
 str="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
 <mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
 <mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
 xtitle(str)
 ]]></scilab:image>
-    
     <programlisting role="example"><![CDATA[ 
 plot3d();
 a=get("current_axes");

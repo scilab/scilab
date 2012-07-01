@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sci2exp">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>sci2exp</refname>
     <refpurpose>式を文字列に変換</refpurpose>

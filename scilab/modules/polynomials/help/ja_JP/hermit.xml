@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hermit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hermit</refname>
     <refpurpose>エルミート形式</refpurpose>
@@ -48,13 +45,16 @@
   <refsection>
     <title>説明</title>
     <para>
-    エルミート形式: <literal>U</literal> は,
-	<literal>A*U</literal>がエルミート三角形式となるような
-	ユニモジュラ行列です:</para>
+      エルミート形式: <literal>U</literal> は,
+      <literal>A*U</literal>がエルミート三角形式となるような
+      ユニモジュラ行列です:
+    </para>
     <para>
-    出力変数は <literal>Ar=A*U</literal>です.</para>
+      出力変数は <literal>Ar=A*U</literal>です.
+    </para>
     <para>
-    警告: 実験版</para>
+      警告: 実験版
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

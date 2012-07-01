@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="get_function_path">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>get_function_path</refname>
     <refpurpose>ライブラリ関数のソースファイルのパスを取得</refpurpose>
@@ -42,11 +39,12 @@
   <refsection>
     <title>説明</title>
     <para>
-	関数名を指定すると, 
-	その関数が Scilab ライブラリ(lib参照)で定義されている場合,
-	get_function_path は関数ソースファイルの
-	絶対パス名を返します.
-	名前がライブラリ関数に一致しない場合 [] が返されます.</para>
+      関数名を指定すると, 
+      その関数が Scilab ライブラリ(lib参照)で定義されている場合,
+      get_function_path は関数ソースファイルの
+      絶対パス名を返します.
+      名前がライブラリ関数に一致しない場合 [] が返されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

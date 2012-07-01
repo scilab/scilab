@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cdft">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdft</refname>
     <refpurpose>累積分布関数:スチューデントのT分布</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[P,Q]=cdft("PQ",T,Df)
-[T]=cdft("T",Df,P,Q)
-[Df]=cdft("Df",P,Q,T)</synopsis>
+      [T]=cdft("T",Df,P,Q)
+      [Df]=cdft("Df",P,Q,T)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -43,7 +41,8 @@
         <term>T</term>
         <listitem>
           <para>
-	t分布の積分の上限. 入力範囲: ( -無限大, +無限大). 探索範囲: [ -1E150, 1E150 ]</para>
+            t分布の積分の上限. 入力範囲: ( -無限大, +無限大). 探索範囲: [ -1E150, 1E150 ]
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -57,16 +56,19 @@
   <refsection>
     <title>説明</title>
     <para>
-	T分布のパラメータの一つをそれ以外のパラメータの値を
-	指定して計算します.</para>
+      T分布のパラメータの一つをそれ以外のパラメータの値を
+      指定して計算します.
+    </para>
     <para>
-    AbramowitzおよびStegunによるHandbook   of
-    Mathematical Functions  (1966)の式26.5.27が,
-	累積分布関数の計算を不完全ベータ関数の計算に縮減する
-	ために使用されます.</para>
+      AbramowitzおよびStegunによるHandbook   of
+      Mathematical Functions  (1966)の式26.5.27が,
+      累積分布関数の計算を不完全ベータ関数の計算に縮減する
+      ために使用されます.
+    </para>
     <para>
-	その他のパラメータの計算には,
-	Pの指定した値を出力する値の探索も含まれます.
-	この探索は,その他のパラメータに関するPの単調性に依存しています.</para>
+      その他のパラメータの計算には,
+      Pの指定した値を出力する値の探索も含まれます.
+      この探索は,その他のパラメータに関するPの単調性に依存しています.
+    </para>
   </refsection>
 </refentry>

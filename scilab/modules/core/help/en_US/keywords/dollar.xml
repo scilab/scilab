@@ -11,14 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dollar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dollar</refname>
     <refpurpose> ($) last index </refpurpose>
   </refnamediv>
- <refsection>
+  <refsection>
     <title>Description</title>
     <para>
       The <literal>$</literal> symbol denotes the last index (row or column) of the array. It is therefore equal to the number of rows or columns.

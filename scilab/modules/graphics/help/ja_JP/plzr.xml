@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plzr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plzr</refname>
     <refpurpose>極/ゼロ プロット</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>list ( <literal>syslin</literal>)</para>
+          <para>
+            list ( <literal>syslin</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,8 +35,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	線形システム
-    <literal>sl</literal> (<literal>syslin</literal> リスト)の極/ゼロプロットを出力する.
+      線形システム
+      <literal>sl</literal> (<literal>syslin</literal> リスト)の極/ゼロプロットを出力する.
     </para>
   </refsection>
   <refsection>

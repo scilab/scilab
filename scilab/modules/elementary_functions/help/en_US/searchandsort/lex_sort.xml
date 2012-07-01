@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lex_sort" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lex_sort</refname>
     <refpurpose>lexicographic matrix rows sorting</refpurpose>
@@ -21,7 +18,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
-</synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,23 +45,31 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>the <literal>lex_sort</literal> function is now obsolete. It can be
-    replaced by functions <link linkend="gsort">gsort</link> and <link linkend="unique">unique</link>.</para>
-    <para><literal>N=lex_sort(M)</literal> sorts the rows (as a group) of the
-    matrix <literal>M</literal> in ascending order. If required the output
-    argument <literal>k</literal> contains the ordering:
-    <literal>[N,k]=lex_sort(M)</literal> returns <literal>k</literal> such as
-    <literal>N</literal> is uequal to <literal>M(k,:)</literal> .</para>
-    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produces the same
-    result as the following sequence of instructions:</para>
+    <para>
+      the <literal>lex_sort</literal> function is now obsolete. It can be
+      replaced by functions <link linkend="gsort">gsort</link> and <link linkend="unique">unique</link>.
+    </para>
+    <para>
+      <literal>N=lex_sort(M)</literal> sorts the rows (as a group) of the
+      matrix <literal>M</literal> in ascending order. If required the output
+      argument <literal>k</literal> contains the ordering:
+      <literal>[N,k]=lex_sort(M)</literal> returns <literal>k</literal> such as
+      <literal>N</literal> is uequal to <literal>M(k,:)</literal> .
+    </para>
+    <para>
+      <literal>N=lex_sort(M,sel [,'unique'])</literal> produces the same
+      result as the following sequence of instructions:
+    </para>
     <programlisting><![CDATA[ 
 [N,k]=lex_sort(M(:,sel) [,'unique']);
 N=M(k,:)
  ]]></programlisting>
-    <para>The <literal>'unique'</literal> flag has to be given if one wants to
-    retain only unique rows in the result. Note that
-    <literal>lex_sort(M,sel,'unique')</literal> retains only rows such that
-    M(:,sel) are unique.</para>
+    <para>
+      The <literal>'unique'</literal> flag has to be given if one wants to
+      retain only unique rows in the result. Note that
+      <literal>lex_sort(M,sel,'unique')</literal> retains only rows such that
+      M(:,sel) are unique.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

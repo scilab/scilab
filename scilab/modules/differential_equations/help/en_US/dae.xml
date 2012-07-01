@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dae" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2012-04-16$</pubdate>
-  </info>
   <refnamediv>
     <refname>dae</refname>
     <refpurpose>Differential algebraic equations solver</refpurpose>
@@ -53,7 +50,11 @@
         <listitem>
           <para>a real scalar or vector. Gives instants for which you want the
             solution. Note that you can get solution at each dae's step point by
-            setting <literal><link linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>.
+            setting 
+            <literal>
+              <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
+            </literal>
+            .
           </para>
         </listitem>
       </varlistentry>
@@ -61,7 +62,7 @@
         <term>rtol</term>
         <listitem>
           <para>
-	    a real scalar or a column vector of same size as
+            a real scalar or a column vector of same size as
             <literal>x0</literal>, the relative error
             tolerance of solution. If <literal>rtol</literal> is a vector the
             tolerances are specified for each component of the state.
@@ -94,17 +95,17 @@
                   <literal>res</literal> must return the residue
                   <literal>r=g(t,x,xdot)</literal> and error flag
                   <literal>ires</literal>.
-		</para> 
-		<para>
-		  <literal>ires = 0</literal> if
+                </para>
+                <para>
+                  <literal>ires = 0</literal> if
                   <literal>res</literal> succeeds to compute
                   <literal>r</literal>.
-		</para> 
-		<para>
-		  <literal>ires = -1</literal> if residue is
+                </para>
+                <para>
+                  <literal>ires = -1</literal> if residue is
                   locally not defined for <literal>g(t,x,xdot)</literal>.
-		</para> 
-		<para>
+                </para>
+                <para>
                   <literal>ires =-2</literal> if parameters are out of admissible
                   range.
                 </para>
@@ -136,7 +137,7 @@ r=res(t,y,ydot,p1,p2,...)
               <term>a character string</term>
               <listitem>
                 <para>
-		  it must refer to the name of a C or fortran routine,
+                  it must refer to the name of a C or fortran routine,
                   assuming that &lt;<literal>r_name</literal>&gt; is the given name.
                 </para>
                 <itemizedlist>
@@ -159,9 +160,10 @@ r=res(t,y,ydot,p1,p2,...)
                   <listitem>
                     <para>The C calling sequence must be</para>
                     <para>
-		      <literal>C2F(&lt;r_name&gt;)(double *t, double *x, double
-                      *xdot, double *res, integer *ires, double *rpar, integer
-                      *ipar)</literal>
+                      <literal>C2F(&lt;r_name&gt;)(double *t, double *x, double
+                        *xdot, double *res, integer *ires, double *rpar, integer
+                        *ipar)
+                      </literal>
                     </para>
                   </listitem>
                 </itemizedlist>
@@ -186,8 +188,8 @@ r=res(t,y,ydot,p1,p2,...)
                   </listitem>
                   <listitem>
                     <para>
-		      <literal>res</literal> the array of residuals
-		    </para>
+                      <literal>res</literal> the array of residuals
+                    </para>
                   </listitem>
                   <listitem>
                     <para>
@@ -270,7 +272,8 @@ r=jac(t,x,xdot,p1,p2,...)
                     </para>
                     <para>
                       <literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
-                        rpar, ipar)</literal>
+                        rpar, ipar)
+                      </literal>
                     </para>
                     <para>
                       double precision <literal>t, x(*), xdot(*), r(*),
@@ -284,9 +287,10 @@ r=jac(t,x,xdot,p1,p2,...)
                   <listitem>
                     <para>The C calling sequence must be</para>
                     <para>
-		      <literal>C2F(&lt;j_name&gt;)(double *t, double *x, double
-                      *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)</literal>
-		     </para>
+                      <literal>C2F(&lt;j_name&gt;)(double *t, double *x, double
+                        *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)
+                      </literal>
+                    </para>
                   </listitem>
                 </itemizedlist>
                 <para>
@@ -320,7 +324,8 @@ r=jac(t,x,xdot,p1,p2,...)
             <varlistentry>
               <term>a list</term>
               <listitem>
-                <para>This form of <link linkend="external">external</link> is used to pass parameters to the
+                <para>
+                  This form of <link linkend="external">external</link> is used to pass parameters to the
                   function. It must be as follows:
                 </para>
                 <programlisting role="no-scilab-exec"><![CDATA[  
@@ -364,9 +369,10 @@ r=surface(t,x,p1,p2,...)
                   <listitem>
                     <para>The C calling sequence must be</para>
                     <para>
-		      <literal>C2F(&lt;s_name&gt;)(double *t, double *x, double
-                      *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)</literal>
-		    </para>
+                      <literal>C2F(&lt;s_name&gt;)(double *t, double *x, double
+                        *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)
+                      </literal>
+                    </para>
                   </listitem>
                 </itemizedlist>
                 <para>
@@ -405,7 +411,10 @@ r=surface(t,x,p1,p2,...)
         <listitem>
           <para>
             a real matrix. If 
-            <literal><link linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>,
+            <literal>
+              <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
+            </literal>
+            ,
             each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
             <literal>t</literal> is time index for which the solution had been
             computed. Else <literal>y</literal> is the vector

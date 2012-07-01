@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="arhnk">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>arhnk</refname>
     <refpurpose>ハンケルノルム近似</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para><literal>equil1</literal>におけるランク近似の閾値</para>
+          <para>
+            <literal>equil1</literal>におけるランク近似の閾値
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,9 +49,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	行列<literal>[A,B,C,D]</literal>で定義される
-	安定な連続時間線形システム<literal>sl</literal>の最適ハンケルノルム近似
-	<literal>slm</literal>を計算します.</para>
+      行列<literal>[A,B,C,D]</literal>で定義される
+      安定な連続時間線形システム<literal>sl</literal>の最適ハンケルノルム近似
+      <literal>slm</literal>を計算します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

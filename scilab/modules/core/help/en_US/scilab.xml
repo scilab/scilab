@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scilab" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scilab</refname>
     <refpurpose>Main script to start Scilab and miscellaneous
@@ -27,7 +24,8 @@
             function. For multi arguments passing use a quoted, blank separated
             sequence of words like: <literal>scilab -args 'foo1
               foo2'
-            </literal>. Without this option, unknown arguments will not
+            </literal>
+            .Without this option, unknown arguments will not
             be accepted.
           </para>
         </listitem>
@@ -36,7 +34,7 @@
         <term>-display Display</term>
         <listitem>
           <para>
-	    For use under Xwindow systems only to set a specific X server
+            For use under Xwindow systems only to set a specific X server
             display. Default display is unix:0.0.
           </para>
           <para>
@@ -49,8 +47,10 @@
         <term>-debug</term>
         <listitem>
           <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
-          <para>Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
-          gdb.</para>
+          <para>
+            Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
+            gdb.
+          </para>
           <para>Advise: use this option on a Scilab source tree.</para>
         </listitem>
       </varlistentry>
@@ -96,7 +96,9 @@
             file execution) into Scilab. <literal>-e</literal> and
             <literal>-f</literal> options are mutually exclusive.
           </para>
-          <para>Note that several instructions can be used in with <literal>-e</literal>.</para>
+          <para>
+            Note that several instructions can be used in with <literal>-e</literal>.
+          </para>
           <programlisting role="no-scilab-exec">scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting>
         </listitem>
       </varlistentry>
@@ -142,9 +144,9 @@
         <term>-mem N</term>
         <listitem>
           <para>
-	    Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
-	    option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
-	    is set by <literal>scilab.start</literal> script.
+            Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
+            option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
+            is set by <literal>scilab.start</literal> script.
           </para>
         </listitem>
       </varlistentry>
@@ -184,14 +186,15 @@
           <para>If this option is present the ATOMS modules previously installed are not loaded for this session.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>-nw</term>
         <listitem>
           <para>If this option is present, Scilab is started as command line
             with advanced features (graphics...).
           </para>
-          <para>This option may be used with <literal>-f</literal> or <literal>-e</literal> options.</para>
+          <para>
+            This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
+          </para>
           <para>From Scilab 5.2:</para>
           <itemizedlist>
             <listitem>
@@ -214,7 +217,9 @@
           <para>If this option is present, Scilab is started as command line
             without advanced features.
           </para>
-          <para>This option may be used with <literal>-f</literal> or <literal>-e</literal> options.</para>
+          <para>
+            This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
+          </para>
           <para>From Scilab 5.2:</para>
           <itemizedlist>
             <listitem>
@@ -241,8 +246,8 @@
         <listitem>
           <para>This option is reserved for TeXMacs.</para>
           <para>
-	    Please install ATOMS module: <programlisting role="">atomsInstall('texmacs')</programlisting>
-	  </para>
+            Please install ATOMS module: <programlisting role="">atomsInstall('texmacs')</programlisting>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -260,9 +265,9 @@
         <term>SCIVERBOSE</term>
         <listitem>
           <para>
-	    If this variable is present, Scilab startup script will show a startup debug information. 
-	    Mainly used for bug report and debugging purposes.
-	    </para>
+            If this variable is present, Scilab startup script will show a startup debug information. 
+            Mainly used for bug report and debugging purposes.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -270,7 +275,7 @@
         <listitem>
           <para>
             Specify which Java to use. For example, 
-	    <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
+            <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
           </para>
         </listitem>
       </varlistentry>
@@ -284,7 +289,7 @@
         <term>SCI_JAVA_ENABLE_HEADLESS</term>
         <listitem>
           <para>
-	    Enable Java Headless VM (i.e. without GUI features).
+            Enable Java Headless VM (i.e. without GUI features).
           </para>
         </listitem>
       </varlistentry>

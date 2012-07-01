@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="console" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>console</refname>
     <refpurpose>Keyboard Shortcuts in the Console Window</refpurpose>
@@ -44,7 +41,8 @@
       <tr>
         <td>Ctrl+space or TAB</td>
         <td>completion : Scilab displays a list of all names that start with
-          somes characters.</td>
+          somes characters.
+        </td>
       </tr>
       <tr>
         <td>Ctrl + A or HOME</td>
@@ -57,7 +55,8 @@
       <tr>
         <td>Ctrl + C</td>
         <td>interrupts Scilab if nothing selected in the console, else text
-          selected is sent to clipboard.</td>
+          selected is sent to clipboard.
+        </td>
       </tr>
       <tr>
         <td>Ctrl + D or DELETE</td>
@@ -139,7 +138,8 @@
       <tr>
         <td>TAB</td>
         <td>completion : Scilab displays a list of all names that start with
-          somes characters.</td>
+          somes characters.
+        </td>
       </tr>
       <tr>
         <td>Ctrl + A or HOME</td>

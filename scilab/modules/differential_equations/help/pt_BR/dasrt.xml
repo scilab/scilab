@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dasrt" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dasrt</refname>
     <refpurpose>Solucionador de equações diferenciais algébricas com
@@ -155,7 +152,8 @@ subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para>Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
+              <para>
+                Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
                 ser utilizados.
               </para>
             </listitem>
@@ -359,7 +357,8 @@ integer ny,ng
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>matriz de reais . Cada coluna é o vetor <literal>[t;x(t);xdot(t)]</literal> onde
+          <para>
+            matriz de reais . Cada coluna é o vetor <literal>[t;x(t);xdot(t)]</literal> onde
             <literal>t</literal> é o índice do tempo para o qual a solução foi computada
           </para>
         </listitem>

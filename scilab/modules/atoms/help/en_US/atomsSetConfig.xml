@@ -11,238 +11,189 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="atomsSetConfig" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="atomsSetConfig" xml:lang="en">
   <refnamediv>
     <refname>atomsSetConfig</refname>
-
     <refpurpose>Manage ATOMS system parameters</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       result = atomsSetConfig(parameter, value)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>parameter</term>
-
         <listitem>
           <para>single-string matrix</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>value</term>
-
         <listitem>
           <para>single-string matrix</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>result</term>
-
         <listitem>
-           Number of changed parameters
+          Number of changed parameters
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Proxy</title>
-
-    <para><informaltable border="1">
+    <para>
+      <informaltable border="1">
         <tr>
           <th>Parameter</th>
-
           <th>Description</th>
-
           <th>Values</th>
         </tr>
-
         <tr>
           <td>useProxy</td>
-
           <td>Use/Don't use proxies</td>
-
-          <td><emphasis role="strong">True</emphasis>/False</td>
+          <td>
+            <emphasis role="strong">True</emphasis>/False
+          </td>
         </tr>
-
         <tr>
           <td>proxyHost</td>
-
           <td>the hostname (IP or DNS name)</td>
-
-          <td></td>
+          <td/>
         </tr>
-
         <tr>
           <td>proxyPort</td>
-
           <td>the port</td>
-
-          <td></td>
+          <td/>
         </tr>
-
         <tr>
           <td>proxyUser</td>
-
           <td>Specify the username for authentication on a proxy server</td>
-
-          <td></td>
+          <td/>
         </tr>
-
         <tr>
           <td>proxyPassword</td>
-
           <td>Specify the password for authentication on a proxy server</td>
-
-          <td></td>
+          <td/>
         </tr>
-      </informaltable></para>
+      </informaltable>
+    </para>
   </refsection>
-
   <refsection>
     <title>Network</title>
-
-    <para><informaltable border="1">
+    <para>
+      <informaltable border="1">
         <tr>
           <th>Parameter</th>
-
           <th>Description</th>
-
           <th>Values</th>
         </tr>
-
         <tr>
           <td>offline</td>
-
           <td>If set to "True", the system only works with local repositories.
-          The offline mode permits the user to install modules from a local
-          repository or a local package (hard disk, USB keys, ...) even if the
-          network is unreachable. In version prior to 5.4.0, this tag was
-          called offLine.</td>
-
-          <td>True/<emphasis role="strong">False</emphasis></td>
+            The offline mode permits the user to install modules from a local
+            repository or a local package (hard disk, USB keys, ...) even if the
+            network is unreachable. In version prior to 5.4.0, this tag was
+            called offLine.
+          </td>
+          <td>
+            True/<emphasis role="strong">False</emphasis>
+          </td>
         </tr>
-      </informaltable></para>
+      </informaltable>
+    </para>
   </refsection>
-
   <refsection>
     <title>Autoload System</title>
-
-    <para><informaltable border="1">
+    <para>
+      <informaltable border="1">
         <tr>
           <th>Parameter</th>
-
           <th>Description</th>
-
           <th>Values</th>
         </tr>
-
         <tr>
           <td>autoload</td>
-
           <td>Enable/Disable autoload system</td>
-
-          <td><emphasis role="strong">True</emphasis>/False</td>
+          <td>
+            <emphasis role="strong">True</emphasis>/False
+          </td>
         </tr>
-
         <tr>
           <td>autoloadAddAfterInstall</td>
-
           <td>Automatically add a module to the list of module to autoload at
-          Scilab start</td>
-
-          <td><emphasis role="strong">True</emphasis>/False</td>
+            Scilab start
+          </td>
+          <td>
+            <emphasis role="strong">True</emphasis>/False
+          </td>
         </tr>
-      </informaltable></para>
+      </informaltable>
+    </para>
   </refsection>
-
   <refsection>
     <title>Miscellenous</title>
-
-    <para><informaltable border="1">
+    <para>
+      <informaltable border="1">
         <tr>
           <th>Parameter</th>
-
           <th>Description</th>
-
           <th>Values</th>
         </tr>
-
         <tr>
           <td>Verbose</td>
-
           <td>Display or not extra-informations</td>
-
-          <td>True/<emphasis role="strong">False</emphasis></td>
+          <td>
+            True/<emphasis role="strong">False</emphasis>
+          </td>
         </tr>
-
         <tr>
           <td>downloadTool</td>
-
           <td>Set tool used to download</td>
-
           <td>"curl", "wget" or "httpdownload" (Windows only)</td>
         </tr>
-
         <tr>
           <td>downloadTimeout</td>
-
           <td>Set timeout for download</td>
-
           <td>"5" by default</td>
         </tr>
-      </informaltable></para>
+      </informaltable>
+    </para>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>atomsSetConfig</literal> returns the list of modules
-    registered to autoload</para>
+    <para>
+      <literal>atomsSetConfig</literal> returns the list of modules
+      registered to autoload
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">// Display extra-informations
-atomsSetConfig('Verbose','True')
-
-// Disable autoload system
-atomsSetConfig('autoload','False')</programlisting>
+      atomsSetConfig('Verbose','True')
+      
+      // Disable autoload system
+      atomsSetConfig('autoload','False')
+    </programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="atomsGetConfig">atomsGetConfig</link></member>
+      <member>
+        <link linkend="atomsGetConfig">atomsGetConfig</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>History</title>
-
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-
         <revdescription>offLine parameter renamed to offline</revdescription>
       </revision>
     </revhistory>

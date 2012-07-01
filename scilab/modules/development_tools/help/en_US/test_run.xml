@@ -76,7 +76,6 @@
             </varlistentry>
             <varlistentry>
               <term>create_ref</term>
-              
               <listitem>
                 <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
               </listitem>

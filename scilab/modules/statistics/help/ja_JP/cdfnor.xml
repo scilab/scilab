@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cdfnor">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdfnor</refname>
     <refpurpose>累積分布関数: 正規分布</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[P,Q]=cdfnor("PQ",X,Mean,Std)
-[X]=cdfnor("X",Mean,Std,P,Q)
-[Mean]=cdfnor("Mean",Std,P,Q,X)
-[Std]=cdfnor("Std",P,Q,X,Mean)</synopsis>
+      [X]=cdfnor("X",Mean,Std,P,Q)
+      [Mean]=cdfnor("Mean",Std,P,Q,X)
+      [Std]=cdfnor("Std",P,Q,X,Mean)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -63,29 +61,35 @@
   <refsection>
     <title>説明</title>
     <para>
-	正規分布のパラメータの一つをそれ以外のパラメータの値を
-	指定して計算します.</para>
+      正規分布のパラメータの一つをそれ以外のパラメータの値を
+      指定して計算します.
+    </para>
     <para>
-    Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portabel FORTRAN
-    Package of Special Function Routines and Test Drivers"
-    acm Transactions on Mathematical Software. 19, 22-32
-	に基づくANORMを若干修正したものが累積標準正規分布を計算する際に使用されます.</para>
+      Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portabel FORTRAN
+      Package of Special Function Routines and Test Drivers"
+      acm Transactions on Mathematical Software. 19, 22-32
+      に基づくANORMを若干修正したものが累積標準正規分布を計算する際に使用されます.
+    </para>
     <para>
-	Kennedy and Gentle,Statistical  Computing,  Marcel  Dekker, NY,  1980
-	のページ90-95に基づく有理関数が,逆標準正規分布を計算する際の
-	ニュートン反復の初期値として使用されます.
-	このため,パラメータに関する探索は不要です.</para>
+      Kennedy and Gentle,Statistical  Computing,  Marcel  Dekker, NY,  1980
+      のページ90-95に基づく有理関数が,逆標準正規分布を計算する際の
+      ニュートン反復の初期値として使用されます.
+      このため,パラメータに関する探索は不要です.
+    </para>
     <para>
-    X &lt; -15の場合, 逆標準正規分布を求める際の初期値として
-	正規分布の級数展開が使用されます.
-    これは, 26.2.12 of Abramowitz and Stegunの 26.2.12 式によります.</para>
+      X &lt; -15の場合, 逆標準正規分布を求める際の初期値として
+      正規分布の級数展開が使用されます.
+      これは, 26.2.12 of Abramowitz and Stegunの 26.2.12 式によります.
+    </para>
     <para>
-	正規分布密度は,
-    exp( - 0.5 * (( X - MEAN)/SD)**2) に比例します.</para>
+      正規分布密度は,
+      exp( - 0.5 * (( X - MEAN)/SD)**2) に比例します.
+    </para>
     <para>
-    DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
-	ライブラリ(February, 1994)
-     Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.</para>
+      DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
+      ライブラリ(February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

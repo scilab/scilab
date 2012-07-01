@@ -10,12 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="legend_properties" xmlns:scilab="http://www.scilab.org" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
-      $
-    </pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en">
   <refnamediv>
     <refname>legend_properties</refname>
     <refpurpose>description of the Legend entity properties.</refpurpose>
@@ -24,8 +19,7 @@
     <title>Description</title>
     <para>The Legend entity is a leaf of the graphics entities
       hierarchy. This entity defines the parameters for legends drawn
-      below <literal>plot2dx</literal> graphs or created by the <link
-    linkend="captions">captions</link> function. For selected line
+      below <literal>plot2dx</literal> graphs or created by the <link linkend="captions">captions</link> function. For selected line
       plotted, the legend shows a sample of the line type, marker
       symbol, and color.
     </para>
@@ -232,8 +226,6 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
           (y1-as(2)*bnds(2))/(as(2)*bnds(4))];
  
  ]]></programlisting>
-          
-          
         </listitem>
       </varlistentry>
       <varlistentry>

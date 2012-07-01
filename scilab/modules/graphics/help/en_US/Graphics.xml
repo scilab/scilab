@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="Graphics">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="Graphics">
   <refnamediv>
     <refname>Graphics: Getting started</refname>
     <refpurpose> graphics library overview</refpurpose>
@@ -860,8 +857,6 @@
           <para>Export graphics using the BMP format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2emf">xs2emf</link>
@@ -870,8 +865,6 @@
           <para>Export graphics using the EMF format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2eps">xs2eps</link>
@@ -880,9 +873,6 @@
           <para>Export graphics using the EPS format</para>
         </listitem>
       </varlistentry>
-      
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2gif">xs2gif</link>
@@ -891,8 +881,6 @@
           <para>Export graphics using the GIF format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2jpg">xs2jpg</link>
@@ -901,8 +889,6 @@
           <para>Export graphics using the JPG format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2pdf">xs2pdf</link>
@@ -911,8 +897,6 @@
           <para>Export graphics using the PDF format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2png">xs2png</link>
@@ -921,8 +905,6 @@
           <para>Export graphics using the PNG format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2ppm">xs2ppm</link>
@@ -931,8 +913,6 @@
           <para>Export graphics using the PPM format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2ps">xs2ps</link>
@@ -941,8 +921,6 @@
           <para>Export graphics using the PS format</para>
         </listitem>
       </varlistentry>
-      
-      
       <varlistentry>
         <term>
           <link linkend="xs2svg">xs2svg</link>
@@ -951,7 +929,6 @@
           <para>Export graphics using the SVG format</para>
         </listitem>
       </varlistentry>
-      
     </variablelist>
   </refsection>
   <refsection>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="phc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>phc</refname>
     <refpurpose> Markovian表現</refpurpose>
@@ -30,7 +27,8 @@
         <term>r</term>
         <listitem>
           <para>
-	指定する近似モデルの状態量の次元</para>
+            指定する近似モデルの状態量の次元
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,9 +42,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	確率過程の共分散系列から構築されたハンケル行列から
-	主ハンケル要素近似法により
-	Markovian表現の行列<literal>H, F, G</literal>を計算する関数.</para>
+      確率過程の共分散系列から構築されたハンケル行列から
+      主ハンケル要素近似法により
+      Markovian表現の行列<literal>H, F, G</literal>を計算する関数.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
