@@ -8,6 +8,7 @@ Xcos
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
 
+
 Preferences
 ===========
 
@@ -16,6 +17,8 @@ Preferences
 
 Bug Fixes
 =========
+
+* Buf #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
