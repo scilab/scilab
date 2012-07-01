@@ -77,6 +77,13 @@
       character.
     </para>
   </refsection>
+  <!--  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      [fId,fSize]=getfont();
+      xset("font",fId,fSize)
+    </scilab:image>
+  </refsection>-->
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
