@@ -51,10 +51,14 @@
       <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> where 
       <literal>sheetname</literal> is a character string containing the name of the sheet,
       <literal>Text</literal> is a matrix of string which contains the cell's
-      strings and  <literal>Value</literal> is a matrix of numberswhich contains the cell's
+      strings and  <literal>Value</literal> is a matrix of numbers which contains the cell's
       values. 
     </para>
-    <para> Warning only BIFF8 Excel files (last Excel file version) are handled  </para>
+    <para> 
+      <warning>
+	Only BIFF8 Excel files (last Excel file version (2003)) are handled.
+      </warning>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +73,7 @@ s1.text  //get the first sheet text field
 s1(2,:)  //get the 2 row of the sheet
 typeof(s1(2,:))
 
-editvar s1
+disp(s1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -87,7 +91,7 @@ editvar s1
     <title>Used Functions</title>
     <para>
       This function is based on the Scilab functions <literal>xls_open</literal>
-      and  <literal>xls_read</literal>
+      and  <literal>xls_read</literal>.
     </para>
   </refsection>
 </refentry>
