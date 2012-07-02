@@ -17,7 +17,7 @@
   <separator/>
   <!-- Datatips -->
   <button icon="datatips" tooltiptext="toggle datatip mode">
-    <callback instruction="datatipManagerMode([SCILAB_FIGURE_ID],&quot;toggle&quot;);" type="-2"/>
+    <callback instruction="org.scilab.modules.gui.datatip.DatatipActivateCallBack.toggleDatatip" type="3"/>
   </button>
   <separator/>
   <!-- Help -->
