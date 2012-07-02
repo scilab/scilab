@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="write_csv" xml:lang="en">
   <refnamediv>
     <refname>write_csv</refname>
-    <refpurpose>Write comma-separated value file</refpurpose>
+    <refpurpose>writes comma-separated value file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -37,25 +37,25 @@
       <varlistentry>
         <term>sep</term>
         <listitem>
-          <para>column separator mark, by default a tabulation: ascii(9) or
-            "\t".
+	  <para>column separator mark, by default a tabulation: <literal>ascii(9)</literal> or
+	    <literal>"\t"</literal>.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dec</term>
         <listitem>
-          <para>decimal mark '.' or ',' by default a ','</para>
+	  <para>decimal mark <literal>'.'</literal> or <literal>','</literal>. By default: <literal>','</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>write_csv(M, filename) writes matrix M into filename as
-      comma-separated values. The filename input is a string.
+    <para><literal>write_csv(M, filename)</literal> writes matrix <literal>M</literal> into file 
+    <literal>filename</literal> as tab-separated values. The <literal>filename</literal> input is a string.
     </para>
-    <para>if the file 'filename' already exists, it is overwritten.</para>
+    <para>If the file 'filename' already exists, it is overwritten.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
