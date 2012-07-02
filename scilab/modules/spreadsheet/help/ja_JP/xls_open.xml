@@ -80,7 +80,7 @@
       Excelファイルを全て読み込む際には<link linkend="readxls">readxls</link>関数を
       使用することができます.
     </para>
-    <para> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</para>
+    <para><warning>  BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</warning> </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -115,7 +115,7 @@ mclose(fd)
     <title>使用される関数</title>
     <para>
       OLEファイルからスプレッドシートストリームを展開するために
-      ripole-0.1.4 プロシージャ (http://www.pldaniels.com/ripole)  が使用されています.
+      ripole-0.1.4 プロシージャ (<ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>)  が使用されています.
     </para>
   </refsection>
 </refentry>
