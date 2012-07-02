@@ -80,7 +80,6 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * {@inheritDoc}
      */
     public String convertToImage(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
-        code = code.replace("<image>", "").replace("</image>", "");
         return convertToPNG(currentFile, code, imageFile, imageName);
     }
 

@@ -13,6 +13,8 @@
 package org.scilab.modules.helptools.external;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ import org.scilab.modules.helptools.image.ImageConverter;
  */
 public class HTMLScilabHandler extends ExternalXMLHandler {
 
-    private static final String SCILAB = "image";
+    private static final String IMAGE = "image";
     private static final String BASENAME = "_";
 
     private static HTMLScilabHandler instance;
@@ -35,6 +37,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
+    private boolean isLocalized;
 
     /**
      * Constructor
@@ -72,9 +75,15 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
      * {@inheritDoc}
      */
     public StringBuilder startExternalXML(String localName, Attributes attributes) {
-        recreateTag(buffer, localName, attributes);
-        if (SCILAB.equals(localName)) {
+        if (localName.equals("image")) {
+            String v = attributes.getValue("localized");
+            isLocalized = "true".equalsIgnoreCase(v);
+        }
+
+        if (IMAGE.equals(localName)) {
             return buffer;
+        } else {
+            recreateTag(buffer, localName, attributes);
         }
 
         return null;
@@ -84,24 +93,52 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
      * {@inheritDoc}
      */
     public String endExternalXML(String localName) {
-        if (SCILAB.equals(localName)) {
-            recreateTag(buffer, localName, null);
+        if (IMAGE.equals(localName)) {
             String currentFileName = getConverter().getCurrentFileName();
             String baseName = new File(currentFileName).getName();
             int dotpos = baseName.lastIndexOf('.');
             if (dotpos != -1) {
                 baseName = baseName.substring(0, dotpos);
             }
-            File f = new File(outputDir, baseName + BASENAME + (compt++) + ".png");
+            String fileName = baseName + BASENAME + (compt++) + ".png";
+            File f = new File(outputDir, fileName);
             Map<String, String> attributes = new HashMap<String, String>();
 
-            String ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName());
+            String ret;
+            File existing;
+            if (isLocalized || (existing = getExistingFile(outputDir, fileName)) == null) {
+                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName());
+            } else {
+                ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".");
+            }
+
             buffer.setLength(0);
 
             return ret;
         }
 
         recreateTag(buffer, localName, null);
+
+        return null;
+    }
+
+    private static File getExistingFile(String outputDir, String filename) {
+        try {
+            final File outDir = new File(outputDir).getCanonicalFile();
+            FileFilter filter = new FileFilter() {
+                    public boolean accept(File f) {
+                        return f.isDirectory() && !f.equals(outDir);
+                    }
+                };
+            File[] dirs = outDir.getParentFile().listFiles(filter);
+            File im = new File(filename);
+            for (File dir : dirs) {
+                File f = new File(dir, im.getName());
+                if (f.exists() && f.canRead()) {
+                    return f;
+                }
+            }
+        } catch (IOException e) { }
 
         return null;
     }
