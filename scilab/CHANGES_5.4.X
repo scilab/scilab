@@ -1,4 +1,4 @@
-            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
+﻿            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
 
 
@@ -13,6 +13,12 @@ Preferences
 ===========
 
 * Add a function preferences() to open the Preferences window.
+
+
+Javasci
+=======
+
+* Javasci version 1 removed (deprecated in Scilab 5.3.0).
 
 
 Bug Fixes

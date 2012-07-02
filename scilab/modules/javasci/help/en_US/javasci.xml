@@ -82,6 +82,12 @@ class Example1 {
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
+        <revdescription>
+          Javasci v1 is removed.
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>5.4.0</revnumber>
         <revdescription>New methods added:
           <itemizedlist>
             <listitem>Scilab.execException(String)

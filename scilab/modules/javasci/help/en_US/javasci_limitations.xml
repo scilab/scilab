@@ -45,4 +45,15 @@
       </member>
     </simplelist>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>
+          Javasci v1 is removed.
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>
