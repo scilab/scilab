@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_property(char *pobjUID)
+int get_mark_size_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkSize = 0;
     int* piMarkSize = &iMarkSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, &piMarkSize);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
 
     if (piMarkSize == NULL)
     {
@@ -43,6 +43,6 @@ int get_mark_size_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iMarkSize);
+    return sciReturnDouble(_pvCtx, iMarkSize);
 }
 /*------------------------------------------------------------------------*/

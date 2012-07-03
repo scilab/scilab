@@ -32,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_style_property(char * pobjUID)
+int get_rotation_style_property(void* _pvCtx, char * pobjUID)
 {
     int iRotationStyle = 0;
     int *piRotationStyle = &iRotationStyle;
-    getGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, jni_int, &piRotationStyle);
+    getGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, jni_int, (void**)&piRotationStyle);
 
     if ( piRotationStyle == NULL )
     {
@@ -46,11 +46,11 @@ int get_rotation_style_property(char * pobjUID)
 
     if (iRotationStyle == 0)
     {
-        return sciReturnString( "unary" ) ;
+        return sciReturnString(_pvCtx, "unary" ) ;
     }
     else if (iRotationStyle == 1)
     {
-        return sciReturnString( "multiple" ) ;
+        return sciReturnString(_pvCtx, "multiple" ) ;
     }
 
     return -1;

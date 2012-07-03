@@ -76,7 +76,7 @@ int sci_glue( char * fname, unsigned long fname_len )
     for (i = 0 ; i < n ; i++)
     {
         handelsvalue[i] = (unsigned long) (hstk(l1))[i];
-        pobjUID = getObjectFromHandle(handelsvalue[i]);
+        pobjUID = (char*)getObjectFromHandle(handelsvalue[i]);
         if (pobjUID == NULL)
         {
             FREE(handelsvalue);
@@ -84,7 +84,7 @@ int sci_glue( char * fname, unsigned long fname_len )
             return 0;
         }
 
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &pstCurrentParentUID);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstCurrentParentUID);
         if (i == 0)
         {
             pstParentUID = pstCurrentParentUID;

@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_reverse_property(char *pobjUID)
+int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
 {
   char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
   char * axes_reverse[3]  = { NULL, NULL, NULL };
@@ -54,7 +54,7 @@ int get_axes_reverse_property(char *pobjUID)
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-      getGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], jni_bool, &piAxesReverse);
+      getGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], jni_bool, (void **)&piAxesReverse);
 
       if (piAxesReverse == NULL)
       {
@@ -84,7 +84,7 @@ int get_axes_reverse_property(char *pobjUID)
 
   }
 
-  status = sciReturnRowStringVector( axes_reverse, 3 );
+  status = sciReturnRowStringVector(_pvCtx, axes_reverse, 3);
 
   for ( i = 0 ; i < 3 ; i++ )
   {

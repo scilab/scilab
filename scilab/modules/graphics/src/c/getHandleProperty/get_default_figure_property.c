@@ -29,7 +29,7 @@
 #include "HandleManagement.h"
 #include "FigureModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_figure_property(char *pobjUID)
+int get_default_figure_property(void* _pvCtx, char* pobjUID)
 {
     if (pobjUID != NULL)
     {
@@ -37,6 +37,6 @@ int get_default_figure_property(char *pobjUID)
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_figure");
         return -1;
     }
-  return sciReturnHandle( getHandle(getFigureModel()) ) ;
+  return sciReturnHandle(_pvCtx, getHandle(getFigureModel()));
 }
 /*--------------------------------------------------------------------------*/

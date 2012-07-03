@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_info_message_property(char *pobjUID)
+int get_info_message_property(void* _pvCtx, char* pobjUID)
 {
     char *infoMessage = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, jni_string, &infoMessage);
+    getGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, jni_string, (void **)&infoMessage);
 
     if ( infoMessage == NULL )
     {
@@ -43,6 +43,6 @@ int get_info_message_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnString(infoMessage);
+    return sciReturnString(_pvCtx, infoMessage);
 }
 /*------------------------------------------------------------------------*/

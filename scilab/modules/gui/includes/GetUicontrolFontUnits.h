@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the units property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolFontUnits(char *pobjUID);
+GUI_IMPEXP int GetUicontrolFontUnits(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_FONTUNITS_H__ */

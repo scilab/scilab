@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_location_property(char *pobjUID)
+int get_y_location_property(void* _pvCtx, char* pobjUID)
 {
     int iLocation = 0;
     int* piLocation = &iLocation;
@@ -45,7 +45,7 @@ int get_y_location_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, jni_int, &piLocation);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piLocation);
 
     if (piLocation == NULL)
     {
@@ -55,19 +55,19 @@ int get_y_location_property(char *pobjUID)
 
     if (iLocation == 4)
     {
-        return sciReturnString( "left" );
+        return sciReturnString(_pvCtx, "left" );
     }
     else if (iLocation == 5)
     {
-        return sciReturnString( "right" );
+        return sciReturnString(_pvCtx, "right" );
     }
     else if (iLocation == 2)
     {
-        return sciReturnString( "middle" );
+        return sciReturnString(_pvCtx, "middle" );
     }
     else if (iLocation == 3)
     {
-        return sciReturnString( "origin" );
+        return sciReturnString(_pvCtx, "origin" );
     }
     else
     {

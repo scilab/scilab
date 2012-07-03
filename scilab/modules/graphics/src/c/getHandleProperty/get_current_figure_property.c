@@ -33,7 +33,7 @@
 #include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
-int get_current_figure_property(char *pobjUID)
+int get_current_figure_property(void* _pvCtx, char* pobjUID)
 {
     char *pstCurrentFigureId = NULL;
 
@@ -44,7 +44,7 @@ int get_current_figure_property(char *pobjUID)
         return -1;
     }
 
-    pstCurrentFigureId = getCurrentFigure();
+    pstCurrentFigureId = (char*)getCurrentFigure();
 
     if (pstCurrentFigureId == NULL)
     {
@@ -53,6 +53,6 @@ int get_current_figure_property(char *pobjUID)
         setCurrentFigure(pstCurrentFigureId);
     }
 
-    return sciReturnHandle(getHandle(pstCurrentFigureId));
+    return sciReturnHandle(_pvCtx, getHandle(pstCurrentFigureId));
 
 }

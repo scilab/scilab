@@ -30,13 +30,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_clip_box_property(char *pobjUID)
+int get_clip_box_property(void* _pvCtx, char* pobjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
     double* clipBox = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
 
     if (piClipState == NULL)
     {
@@ -48,7 +48,7 @@ int get_clip_box_property(char *pobjUID)
     {
         /* clip state on */
 
-        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
+        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
 
         if (clipBox == NULL)
         {
@@ -56,12 +56,12 @@ int get_clip_box_property(char *pobjUID)
             return -1;
         }
 
-        return sciReturnRowVector(clipBox, 4);
+        return sciReturnRowVector(_pvCtx, clipBox, 4);
     }
     else if (iClipState == 0 || iClipState == 1)
     {
         /* clip state off or clipgrf */
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {

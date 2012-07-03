@@ -71,7 +71,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
         for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
     }
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     // Create compound.
     pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
@@ -85,7 +85,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
         {
             /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
             /* color setting is done now */
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
+            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
                      &foreground,NULL,FALSE,TRUE,&hdl);

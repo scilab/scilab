@@ -35,7 +35,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_style_property(char *pobjUID)
+int get_labels_font_style_property(void* _pvCtx, char* pobjUID)
 {
     int iFontStyle = 0;
     int* piFontStyle = &iFontStyle;
@@ -48,7 +48,7 @@ int get_labels_font_style_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, &piFontStyle);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void **)&piFontStyle);
 
     if (piFontStyle == NULL)
     {
@@ -56,6 +56,6 @@ int get_labels_font_style_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iFontStyle);
+    return sciReturnDouble(_pvCtx, iFontStyle);
 }
 /*------------------------------------------------------------------------*/

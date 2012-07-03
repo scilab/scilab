@@ -14,7 +14,7 @@
 
 #include "SetUicontrolHorizontalAlignment.hxx"
 
-int SetUicontrolHorizontalAlignment(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* HorizontalAlignment can be left, center or right */
 

@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return 0
  */
-GUI_IMPEXP int GetUicontrolStyle(char *pobjUID);
+GUI_IMPEXP int GetUicontrolStyle(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_STYLE_H__ */

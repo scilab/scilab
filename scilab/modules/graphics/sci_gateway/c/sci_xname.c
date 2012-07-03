@@ -38,7 +38,7 @@ int sci_xname(char *fname, unsigned long fname_len)
 
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 
-    pstCurrentFigure = getCurrentFigure();
+    pstCurrentFigure = (char*)getCurrentFigure();
 
     if (pstCurrentFigure == NULL)
     {

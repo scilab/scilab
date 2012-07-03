@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_box_property(char *pobjUID)
+int get_zoom_box_property(void* _pvCtx, char* pobjUID)
 {
     double dblTmp = 0;
     double* zoomBox = NULL;
@@ -45,9 +45,9 @@ int get_zoom_box_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, &zoomEnabled);
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&zoomEnabled);
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_BOX__, jni_double_vector, &zoomBox);
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&zoomBox);
 
     if (zoomEnabled == NULL || zoomBox == NULL)
     {
@@ -63,11 +63,11 @@ int get_zoom_box_property(char *pobjUID)
         dblTmp = zoomBox[2];
         zoomBox[2] = zoomBox[1];
         zoomBox[1] = dblTmp;
-        return sciReturnRowVector(zoomBox, 6);
+        return sciReturnRowVector(_pvCtx, zoomBox, 6);
     }
     else
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 }
 /*------------------------------------------------------------------------*/

@@ -14,7 +14,7 @@
 
 #include "GetUicontrolRelief.hxx"
 
-int GetUicontrolRelief(char *sciObjUID)
+int GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
 {
     char* relief = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolRelief(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(relief);
+        status = sciReturnString(_pvCtx, relief);
         delete[] relief;
         return status;
     }

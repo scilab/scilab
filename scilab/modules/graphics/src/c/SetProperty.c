@@ -708,7 +708,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
     char* type = NULL;
     char* parent = NULL;
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     /* Check that the object is an AXES */
     if (strcmp(type, __GO_AXES__) != 0)
@@ -717,7 +717,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_PARENT__, jni_string, &parent);
+    getGraphicObjectProperty(psubwinobjUID, __GO_PARENT__, jni_string, (void **)&parent);
 
     setGraphicObjectProperty(parent, __GO_SELECTED_CHILD__, psubwinobjUID, jni_string, 1);
 
@@ -759,7 +759,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     char* type = NULL;
     int i = 0, n1 = 0;
 
-    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, (void **)&type);
 
     /*
      * switch over sciGetEntityType replaced by object type string comparisons
@@ -858,7 +858,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
              * Needed in order to set the z coordinate if size == 4
              * Being able to set only the point's x and y coordinates values would avoid doing this.
              */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
             upperLeftPoint[2] = currentUpperLeftPoint[2];
         }
 
@@ -914,7 +914,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         else
         {
             /* Needed in order to set the z coordinate if size == 6 */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
 
             upperLeftPoint[2] = currentUpperLeftPoint[2];
             width = tab[2];
@@ -946,8 +946,8 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             return -1;
         }
 
-        getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, &parentAxes);
-        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+        getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, (void**)&piView);
 
         position[0] = tab[0];
         position[1] = tab[1];
@@ -965,7 +965,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
              * coordinates if required.
              */
             double* currentPosition;
-            getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, &currentPosition);
+            getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
             position[2] = currentPosition[2];
         }
 

@@ -26,7 +26,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int get_surface_color_property(char *pobjUID)
+int get_surface_color_property(void* _pvCtx, char* pobjUID)
 {
   //
   // FIXME
@@ -57,7 +57,7 @@ int get_surface_color_property(char *pobjUID)
     }
     else
     {
-     return sciReturnEmptyMatrix() ;
+     return sciReturnEmptyMatrix(_pvCtx) ;
     }
 
   }

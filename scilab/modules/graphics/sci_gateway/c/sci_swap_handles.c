@@ -58,13 +58,13 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
 
   /* get the two handles and swap them */
   h = (long)*hstk(firstHdlStkIndex);
-  pstHandle_1 = getObjectFromHandle(h);
+  pstHandle_1 = (char*)getObjectFromHandle(h);
 
   h = (long)*hstk(secondHdlStkIndex);
-  pstHandle_2 = getObjectFromHandle(h);
+  pstHandle_2 = (char*)getObjectFromHandle(h);
 
-  getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, &pstParent_1);
-  getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, &pstParent_2);
+  getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, (void **)&pstParent_1);
+  getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, (void **)&pstParent_2);
 
   // Check if objects do not have the same parent
   if (strcmp(pstParent_1, pstParent_2) == 0)

@@ -14,7 +14,7 @@
 
 #include "SetUicontrolMax.hxx"
 
-int SetUicontrolMax(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolMax(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     double maxValue = 0.0;
     BOOL status = FALSE;

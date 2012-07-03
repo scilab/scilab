@@ -23,7 +23,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolUnits(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Units can be points, normalized, inches, centimeters or pixels */
     BOOL status = FALSE;

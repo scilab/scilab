@@ -35,22 +35,22 @@
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-int set_parent_property(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char *figureUID = NULL;
     char *type = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_UICONTROL__) == 0)
     {
         if (valueType == sci_handles)
         {
-            figureUID = getObjectFromHandle(getHandleFromStack(stackPointer));
+            figureUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
         }
         else if (valueType == sci_matrix)
         {
-            figureUID = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+            figureUID = (char*)getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
         }
         else
         {

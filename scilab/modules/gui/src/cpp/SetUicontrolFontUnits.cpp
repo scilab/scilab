@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontUnits.hxx"
 
-int SetUicontrolFontUnits(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be points, normalized, inches, centimeters or pixels */
 

@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the listbox top property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolListboxTop(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolListboxTop(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_LISTBOXTOP_H__ */

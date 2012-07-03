@@ -88,11 +88,11 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     }
     /* NG beg */
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
-    pobjUID = getCurrentObject(); /* the polyline newly created */
+    pobjUID = (char*)getCurrentObject(); /* the polyline newly created */
 
     /*
      * The contour properties set calls below were
@@ -106,7 +106,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
         markMode = 1;
         lineMode = 0;
 
-        getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, &piTmp);
+        getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, (void**)&piTmp);
         setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
     }
     else
@@ -114,11 +114,11 @@ int sci_xpoly( char * fname, unsigned long fname_len )
         markMode = 0;
         lineMode = 1;
 
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, &piTmp);
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, (void**)&piTmp);
         sciSetLineStyle(pobjUID, iTmp);
     }
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piTmp);
     foreground = iTmp;
 
     setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);

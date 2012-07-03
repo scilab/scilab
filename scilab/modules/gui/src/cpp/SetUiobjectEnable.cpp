@@ -14,7 +14,7 @@
 #include "SetUiobjectEnable.hxx"
 
 /* Set the enable property of an uicontrol or uimenu */
-int SetUiobjectEnable(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;

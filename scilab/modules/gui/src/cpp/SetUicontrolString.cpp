@@ -16,7 +16,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolString(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     char* objectStyle = NULL;

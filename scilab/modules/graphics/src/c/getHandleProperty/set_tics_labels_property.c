@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_labels_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int iNbTicksLabels = 0;
@@ -54,7 +54,7 @@ int set_tics_labels_property(char* pobjUID, size_t stackPointer, int valueType, 
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNbTicksLabels);
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void**)&piNbTicksLabels);
 
     if (piNbTicksLabels == NULL)
     {

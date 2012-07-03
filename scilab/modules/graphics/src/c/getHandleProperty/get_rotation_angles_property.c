@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_angles_property(char *pobjUID)
+int get_rotation_angles_property(void* _pvCtx, char* pobjUID)
 {
     double* angles = NULL;
 
@@ -42,7 +42,7 @@ int get_rotation_angles_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, jni_double_vector, &angles);
+    getGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **)&angles);
 
     if (angles == NULL)
     {
@@ -50,6 +50,6 @@ int get_rotation_angles_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVector( angles, 2 );
+    return sciReturnRowVector(_pvCtx, angles, 2);
 }
 /*------------------------------------------------------------------------*/

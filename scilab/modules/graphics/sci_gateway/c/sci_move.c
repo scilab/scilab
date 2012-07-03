@@ -55,7 +55,7 @@ int sci_move( char * fname, unsigned long fname_len )
     }
 
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
-    pobjUID = getObjectFromHandle(getHandleFromStack(l1));
+    pobjUID = (char*)getObjectFromHandle(getHandleFromStack(l1));
 
     if (pobjUID == NULL)
     {

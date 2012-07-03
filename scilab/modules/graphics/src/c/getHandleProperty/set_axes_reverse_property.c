@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_reverse_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_axes_reverse_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
     char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};

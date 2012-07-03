@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arrow_size_property(char *pobjUID)
+int get_arrow_size_property(void* _pvCtx, char* pobjUID)
 {
     double arrowSize = 0.0;
     double* pdblArrowSize = &arrowSize;
@@ -43,7 +43,7 @@ int get_arrow_size_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, jni_double, &pdblArrowSize);
+    getGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, jni_double, (void **)&pdblArrowSize);
 
     if (pdblArrowSize == NULL)
     {
@@ -51,6 +51,6 @@ int get_arrow_size_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(arrowSize);
+    return sciReturnDouble(_pvCtx, arrowSize);
 }
 /*------------------------------------------------------------------------*/

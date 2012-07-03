@@ -52,7 +52,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
     hdl = (unsigned long)*hstk(l1);
 
-    pobjUID = getObjectFromHandle(hdl);
+    pobjUID = (char*)getObjectFromHandle(hdl);
 
     if (pobjUID == NULL)
     {
@@ -60,7 +60,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstObjectType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjectType);
 
     if (pstObjectType != NULL && strcmp(pstObjectType, __GO_COMPOUND__) == 0)
     {
@@ -71,7 +71,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
         getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
 
         // Retrieve Compound Parent.
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &pstParentUID);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
 
         CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, piChildrenCount, &iOne, &outindex);
 

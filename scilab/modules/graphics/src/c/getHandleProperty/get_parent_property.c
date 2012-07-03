@@ -31,21 +31,21 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property(char *pobjUID)
+int get_parent_property(void* _pvCtx, char* pobjUID)
 {
     char* parentID = NULL;
 
     /* All Graphic Objects have the __GO_PARENT__ property */
-    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &parentID);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&parentID);
 
     if (strcmp(parentID, "") == 0)
     {
         /* No parent for this object */
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
-        return sciReturnHandle(getHandle(parentID));
+        return sciReturnHandle(_pvCtx, getHandle(parentID));
     }
 }
 /*------------------------------------------------------------------------*/

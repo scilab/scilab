@@ -26,7 +26,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_thickness_property( char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_thickness_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
     if ( !isParameterDoubleMatrix( valueType ) )

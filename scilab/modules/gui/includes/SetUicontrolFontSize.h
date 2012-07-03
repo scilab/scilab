@@ -29,6 +29,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the size property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolFontSize(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolFontSize(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_FONTSIZE_H__ */

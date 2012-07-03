@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_event_handler_property(char *pobjUID)
+int get_event_handler_property(void* _pvCtx, char* pobjUID)
 {
     char* eventHandler = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, jni_string, &eventHandler);
+    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, jni_string, (void **)&eventHandler);
 
     if ( eventHandler == NULL )
     {
@@ -43,6 +43,6 @@ int get_event_handler_property(char *pobjUID)
         return -1 ;
     }
 
-    return sciReturnString(eventHandler);
+    return sciReturnString(_pvCtx, eventHandler);
 }
 /*------------------------------------------------------------------------*/

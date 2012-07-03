@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_z_ticks_property(char *pobjUID)
+int get_z_ticks_property(void* _pvCtx, char* pobjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
@@ -40,9 +40,9 @@ int get_z_ticks_property(char *pobjUID)
     int* piView = &iView;
 
     /* retrieve number of ticks */
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, (void**)&piNbTicks);
     /* retrieve view: 0 -> 2d // 1 -> 3d */
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
 
 
     if (piNbTicks == NULL)

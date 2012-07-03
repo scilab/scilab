@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_hidden_color_property(char *pobjUID)
+int get_hidden_color_property(void* _pvCtx, char* pobjUID)
 {
     int iHiddenColor = 0;
     int* piHiddenColor = &iHiddenColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_COLOR__, jni_int, &piHiddenColor);
+    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_COLOR__, jni_int, (void **)&piHiddenColor);
 
     if (piHiddenColor == NULL)
     {
@@ -45,6 +45,6 @@ int get_hidden_color_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iHiddenColor);
+    return sciReturnDouble(_pvCtx, iHiddenColor);
 }
 /*------------------------------------------------------------------------*/

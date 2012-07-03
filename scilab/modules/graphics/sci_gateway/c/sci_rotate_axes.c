@@ -24,7 +24,10 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
+#include "CurrentFigure.h"
+#include "HandleManagement.h"
+#include "getPropertyAssignedValue.h"
+#include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
 int sci_rotate_axes(char *fname,unsigned long fname_len)
 {
@@ -41,7 +44,7 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
 
     if(Rhs == 0)
     {
-        pstrUID = getCurrentFigure();
+        pstrUID = (char*)getCurrentFigure();
     }
     else
     {
@@ -60,12 +63,12 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
             return -1;
         }
 
-        pstrUID = getObjectFromHandle(getHandleFromStack(stackPointer));
+        pstrUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
 
-        getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_string, &pstrType);
+        getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_string, (void **)&pstrType);
         if (strcmp(pstrType, __GO_AXES__) == 0)
         {
-            getGraphicObjectProperty(pstrUID, __GO_PARENT__, jni_string, &pstrUID);
+            getGraphicObjectProperty(pstrUID, __GO_PARENT__, jni_string, (void **)&pstrUID);
         }
     }
 

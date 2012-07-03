@@ -54,14 +54,14 @@ int sci_copy(char *fname, unsigned long fname_len)
     }
 
     hdl = (unsigned long) * hstk(l1); /* on recupere le pointeur d'objet par le handle*/
-    pobjUID = getObjectFromHandle(hdl);
+    pobjUID = (char*)getObjectFromHandle(hdl);
     if (pobjUID == NULL)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstType);
 
     if (strcmp(pstType, __GO_TEXT__) != 0 &&
             strcmp(pstType, __GO_ARC__) != 0 &&
@@ -86,14 +86,14 @@ int sci_copy(char *fname, unsigned long fname_len)
     {
         GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l2); /* Gets the command name */
         hdlparent = (unsigned long) * hstk(l2); /* on recupere le pointeur d'objet par le handle*/
-        psubwinparenttargetUID = getObjectFromHandle(hdlparent);
+        psubwinparenttargetUID = (char*)getObjectFromHandle(hdlparent);
         if ( psubwinparenttargetUID == NULL)
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
         // Check Parent is an of type Axes.
-        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_string, &pstType);
+        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_string, (void **)&pstType);
 
         if (strcmp(pstType, __GO_AXES__) != 0)
         {
@@ -105,7 +105,7 @@ int sci_copy(char *fname, unsigned long fname_len)
     else
     {
         /* No destination Axes specified, use the copied object's parent Axes */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &psubwinparenttargetUID);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinparenttargetUID);
     }
 
     numrow   = 1;

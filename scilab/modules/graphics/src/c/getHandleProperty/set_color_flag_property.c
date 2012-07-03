@@ -37,7 +37,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type = NULL;
     int flagcolor = (int) getDoubleFromStack( stackPointer );
@@ -62,7 +62,7 @@ int set_color_flag_property(char* pobjUID, size_t stackPointer, int valueType, i
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_PLOT3D__) == 0)
     {

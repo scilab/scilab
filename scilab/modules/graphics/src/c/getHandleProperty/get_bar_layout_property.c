@@ -26,7 +26,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int get_bar_layout_property(char *pobjUID)
+int get_bar_layout_property(void* _pvCtx, char* pobjUID)
 {
     //
     // FIXME
@@ -37,11 +37,11 @@ int get_bar_layout_property(char *pobjUID)
         if( pPOLYLINE_FEATURE (pobj)->bar_layout == 0 )
         {
             /* 0 grouped; 1 stacked */
-            return sciReturnString( "grouped" ) ;
+            return sciReturnString(_pvCtx, "grouped" ) ;
         }
         else
         {
-            return sciReturnString( "stacked" ) ;
+            return sciReturnString(_pvCtx, "stacked" ) ;
         }
     }
     else

@@ -43,7 +43,7 @@ typedef struct hashtable SetPropertyHashTable ;
  * The sciPointObj is the object to get the property from
  * The return value is 0 if the call was successful and -1 otherwise.
  */
-typedef int (*getPropertyFunc)(char *) ;
+typedef int (*getPropertyFunc)(void*, char *) ;
 
 /**
 * Prototype of functions used to set a specific property of an handle.
@@ -52,7 +52,7 @@ typedef int (*getPropertyFunc)(char *) ;
 * SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
 * an error occurred.
 */
-typedef int (*setPropertyFunc)(char *, size_t, int, int, int ) ;
+typedef int (*setPropertyFunc)(void*, char *, size_t, int, int, int ) ;
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_segment_property(char *pobjUID)
+int get_tics_segment_property(void* _pvCtx, char* pobjUID)
 {
     int iTicksSegment = 0;
     int* piTicksSegment = &iTicksSegment;
@@ -43,7 +43,7 @@ int get_tics_segment_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, jni_bool, &piTicksSegment);
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, jni_bool, (void **)&piTicksSegment);
 
     if (piTicksSegment == NULL)
     {
@@ -53,11 +53,11 @@ int get_tics_segment_property(char *pobjUID)
 
     if (iTicksSegment)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 
 }

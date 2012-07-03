@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the units property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolUnits(char *pobjUID);
+GUI_IMPEXP int GetUicontrolUnits(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_UNITS_H__ */

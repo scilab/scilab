@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_cube_scaling_property(char *pobjUID)
+int get_cube_scaling_property(void* _pvCtx, char* pobjUID)
 {
     int iCubeScaling = 0;
     int* piCubeScaling = &iCubeScaling;
@@ -43,7 +43,7 @@ int get_cube_scaling_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_CUBE_SCALING__, jni_bool, &piCubeScaling);
+    getGraphicObjectProperty(pobjUID, __GO_CUBE_SCALING__, jni_bool, (void **)&piCubeScaling);
 
     if (piCubeScaling == NULL)
     {
@@ -53,11 +53,11 @@ int get_cube_scaling_property(char *pobjUID)
 
     if (iCubeScaling)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

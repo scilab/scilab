@@ -29,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_data_bounds_property(char *pobjUID)
+int get_data_bounds_property(void* _pvCtx, char* pobjUID)
 {
     double* dataBounds = NULL;
     int iView = 0;
     int* piView = &iView;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
     if (dataBounds == NULL)
     {
@@ -43,16 +43,16 @@ int get_data_bounds_property(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
 
     /**DJ.Abdemouche 2003**/
     if (iView == 1)
     {
-      return sciReturnMatrix( dataBounds, 2, 3 );
+      return sciReturnMatrix(_pvCtx, dataBounds, 2, 3);
     }
     else
     {
-      return sciReturnMatrix( dataBounds, 2, 2 );
+      return sciReturnMatrix(_pvCtx, dataBounds, 2, 2);
     }
 
   /*

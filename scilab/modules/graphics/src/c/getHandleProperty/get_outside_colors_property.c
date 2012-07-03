@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_outside_colors_property(char *pobjUID)
+int get_outside_colors_property(void* _pvCtx, char* pobjUID)
 {
     int* colors = NULL;
 #if 0
@@ -40,7 +40,7 @@ int get_outside_colors_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, &colors);
+    getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
 
     if (colors == NULL)
     {
@@ -48,7 +48,6 @@ int get_outside_colors_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVectorFromInt( colors, 2 );
-
+    return sciReturnRowVectorFromInt(_pvCtx, colors, 2);
 }
 /*------------------------------------------------------------------------*/

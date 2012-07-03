@@ -36,7 +36,7 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int N = 0;
@@ -70,7 +70,7 @@ int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
 
     if (piYNumberTicks == NULL)
     {
@@ -104,7 +104,7 @@ int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, 
 
     FREE(coordsVector);
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
     if (iTicksStyle == 0)
     {

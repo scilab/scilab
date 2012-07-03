@@ -14,7 +14,7 @@
 
 #include "GetUicontrolFontName.hxx"
 
-int GetUicontrolFontName(char *sciObjUID)
+int GetUicontrolFontName(void* _pvCtx, char *sciObjUID)
 {
     char* fontName = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolFontName(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(fontName);
+        status = sciReturnString(_pvCtx, fontName);
         delete[] fontName;
         return status;
     }

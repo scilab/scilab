@@ -34,11 +34,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_id_property(char *pobjUID)
+int get_figure_id_property(void* _pvCtx, char* pobjUID)
 {
     int iFigureId = 0;
     int *piFigureId = &iFigureId;
-    getGraphicObjectProperty(pobjUID, __GO_ID__, jni_int, &piFigureId);
+    getGraphicObjectProperty(pobjUID, __GO_ID__, jni_int, (void **)&piFigureId);
 
     if ( piFigureId == NULL )
     {
@@ -46,6 +46,6 @@ int get_figure_id_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnInt(iFigureId);
+    return sciReturnInt(_pvCtx, iFigureId);
 }
 /*------------------------------------------------------------------------*/

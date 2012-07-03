@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tight_limits_property(char *pobjUID)
+int get_tight_limits_property(void* _pvCtx, char* pobjUID)
 {
     int iTightLimits = 0;
     int* piTightLimits = &iTightLimits;
@@ -42,7 +42,7 @@ int get_tight_limits_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
+    getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTightLimits);
 
     if (piTightLimits == NULL)
     {
@@ -52,11 +52,11 @@ int get_tight_limits_property(char *pobjUID)
 
     if (iTightLimits)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 
 }

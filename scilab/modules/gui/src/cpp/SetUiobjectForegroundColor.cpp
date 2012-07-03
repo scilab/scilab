@@ -14,7 +14,7 @@
 
 #include "SetUiobjectForegroundColor.hxx"
 
-int SetUiobjectForegroundColor(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 

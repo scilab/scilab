@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_direction_property(char *pobjUID)
+int get_tics_direction_property(void* _pvCtx, char* pobjUID)
 {
     int iTicksDirection = 0;
     int* piTicksDirection = &iTicksDirection;
@@ -43,7 +43,7 @@ int get_tics_direction_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, &piTicksDirection);
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void**)&piTicksDirection);
 
     if (piTicksDirection == NULL)
     {
@@ -53,19 +53,19 @@ int get_tics_direction_property(char *pobjUID)
 
     if (iTicksDirection == 0)
     {
-        return sciReturnString("top");
+        return sciReturnString(_pvCtx, "top");
     }
     else if (iTicksDirection == 1)
     {
-        return sciReturnString("bottom");
+        return sciReturnString(_pvCtx, "bottom");
     }
     else if (iTicksDirection == 2)
     {
-        return sciReturnString("left");
+        return sciReturnString(_pvCtx, "left");
     }
     else if (iTicksDirection == 3)
     {
-        return sciReturnString("right");
+        return sciReturnString(_pvCtx, "right");
     }
     else
     {

@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_size_property(char *pobjUID)
+int get_axes_size_property(void* _pvCtx, char* pobjUID)
 {
     int* axesSize = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, &axesSize);
+    getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
 
     if ( axesSize == NULL )
     {
@@ -43,6 +43,6 @@ int get_axes_size_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowIntVector(axesSize, 2);
+    return sciReturnRowIntVector(_pvCtx, axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

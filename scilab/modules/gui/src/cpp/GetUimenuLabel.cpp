@@ -14,7 +14,7 @@
 #include "GetUimenuLabel.hxx"
 
 /* Get the label of an uimenu */
-int GetUimenuLabel(char *pobjUID)
+int GetUimenuLabel(void* _pvCtx, char *pobjUID)
 {
     char *label = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUimenuLabel(char *pobjUID)
     }
     else
     {
-        status = sciReturnString(label);
+        status = sciReturnString(_pvCtx, label);
         free(label);
         return status;
     }

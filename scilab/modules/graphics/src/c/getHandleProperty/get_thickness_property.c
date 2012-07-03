@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_thickness_property(char *pobjUID)
+int get_thickness_property(void* _pvCtx, char* pobjUID)
 {
     double lineThickness = 0.0;
     double *pdblLineThickness = &lineThickness;
@@ -45,6 +45,6 @@ int get_thickness_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(lineThickness);
+    return sciReturnDouble(_pvCtx, lineThickness);
 }
 /*------------------------------------------------------------------------*/

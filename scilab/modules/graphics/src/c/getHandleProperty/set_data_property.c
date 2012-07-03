@@ -43,7 +43,7 @@
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setchampdata( char* pobjUID, AssignedList * tlist )
+int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 {
     int nbRow[4];
     int nbCol[4];
@@ -81,7 +81,7 @@ int setchampdata( char* pobjUID, AssignedList * tlist )
 
     if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0 )
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
     /* Update the champ's number of arrows and dimensions then set the coordinates */
@@ -100,7 +100,7 @@ int setchampdata( char* pobjUID, AssignedList * tlist )
 /* F.Leray 29.04.05 */
 /* the grayplot data is now set as a tlist (like for surface and champ objects) */
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setgrayplotdata( char* pobjUID, AssignedList * tlist )
+int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 {
     BOOL result;
 
@@ -134,7 +134,7 @@ int setgrayplotdata( char* pobjUID, AssignedList * tlist )
 
     if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 )
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
     /*
@@ -163,7 +163,7 @@ int setgrayplotdata( char* pobjUID, AssignedList * tlist )
 }
 /*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata( char* pobjUID, AssignedList * tlist )
+int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 {
     char* type;
 
@@ -219,7 +219,7 @@ int set3ddata( char* pobjUID, AssignedList * tlist )
 
     if ( m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 )
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
     /* get color size if exists */
@@ -249,7 +249,7 @@ int set3ddata( char* pobjUID, AssignedList * tlist )
         izcol = 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
@@ -423,11 +423,11 @@ int set3ddata( char* pobjUID, AssignedList * tlist )
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
-int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char* type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_CHAMP__) == 0)
     {
@@ -447,7 +447,7 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
             return SET_PROPERTY_ERROR;
         }
 
-        status = setchampdata( pobjUID, tlist );
+        status = setchampdata(_pvCtx, pobjUID, tlist);
         destroyAssignedList( tlist );
         return status;
     }
@@ -469,7 +469,7 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
             return SET_PROPERTY_ERROR;
         }
 
-        status = setgrayplotdata( pobjUID, tlist );
+        status = setgrayplotdata(_pvCtx, pobjUID, tlist);
         destroyAssignedList( tlist );
         return status;
     }
@@ -506,7 +506,7 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
             return SET_PROPERTY_ERROR;
         }
 
-        status = set3ddata( pobjUID, tlist );
+        status = set3ddata(_pvCtx, pobjUID, tlist);
         destroyAssignedList( tlist );
         return status;
 

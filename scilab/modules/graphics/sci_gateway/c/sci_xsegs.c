@@ -91,11 +91,11 @@ int sci_xsegs(char *fname,unsigned long fname_len)
         }
     }
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     if(mc*nc == 0)
     { /* no color specified, use current color (taken from axes parent) */
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piColor);
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piColor);
 
         style = &color;
         colorFlag = 0;

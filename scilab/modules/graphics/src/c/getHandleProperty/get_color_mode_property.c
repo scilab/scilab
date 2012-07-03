@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_color_mode_property(char *pobjUID)
+int get_color_mode_property(void* _pvCtx, char* pobjUID)
 {
     int iColorMode = 0;
     int* piColorMode = &iColorMode;
@@ -43,7 +43,7 @@ int get_color_mode_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, jni_int, &piColorMode);
+    getGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, jni_int, (void **)&piColorMode);
 
     if (piColorMode == NULL)
     {
@@ -51,6 +51,6 @@ int get_color_mode_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iColorMode);
+    return sciReturnDouble(_pvCtx, iColorMode);
 }
 /*------------------------------------------------------------------------*/

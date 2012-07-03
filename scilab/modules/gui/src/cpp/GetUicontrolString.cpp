@@ -21,7 +21,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolString(char *sciObjUID)
+int GetUicontrolString(void* _pvCtx, char *sciObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
@@ -32,7 +32,7 @@ int GetUicontrolString(char *sciObjUID)
 
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(pstString, 1, iNbStrings);
+        return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
     }
     else
     {
@@ -60,7 +60,7 @@ int GetUicontrolString(char *sciObjUID)
           nbItems = CallScilabBridge::getListBoxNumberOfItems(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           if (nbItems == 0) /* If no Items, the return matrix is an empty string of size 1x1 */
             {
-              return sciReturnString("");
+              return sciReturnString(_pvCtx, "");
             }
           else
             {
@@ -85,7 +85,7 @@ int GetUicontrolString(char *sciObjUID)
           nbItems = CallScilabBridge::getPopupMenuNumberOfItems(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           if (nbItems == 0) /* If no Items, the return matrix is an empty string of size 1x1 */
             {
-              return sciReturnString("");
+              return sciReturnString(_pvCtx, "");
             }
           else
             {

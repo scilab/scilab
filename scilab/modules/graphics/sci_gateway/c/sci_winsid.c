@@ -22,6 +22,7 @@
 #include "Scierror.h"
 #include "returnProperty.h"
 #include "localization.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int sci_winsid(char *fname,unsigned long fname_len)
 {
@@ -32,11 +33,11 @@ int sci_winsid(char *fname,unsigned long fname_len)
   if (nbFigure <= 0)
   {
     /* There is no figure */
-    status = sciReturnEmptyMatrix();
+    status = sciReturnEmptyMatrix(pvApiCtx);
   }
   else
   {
-    int * ids = MALLOC(nbFigure * sizeof(int));
+    int * ids = (int*)MALLOC(nbFigure * sizeof(int));
     if (ids == NULL)
     {
       Scierror(999, _("%s: No more memory.\n"),fname);
@@ -44,7 +45,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
     }
     sciGetFiguresId(ids);
 
-    status = sciReturnRowIntVector(ids, nbFigure);
+    status = sciReturnRowIntVector(pvApiCtx, ids, nbFigure);
     FREE(ids);
   }
   LhsVar(1) = Rhs+1;

@@ -30,7 +30,7 @@
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property(char *pobjUID)
+int get_links_property(void* _pvCtx, char* pobjUID)
 {
     int i = 0;
     long *handles = NULL;
@@ -48,7 +48,7 @@ int get_links_property(char *pobjUID)
     }
 
     if (iLinksCount == 0) {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
     handles = (long *)MALLOC(iLinksCount*sizeof(long));
@@ -75,7 +75,7 @@ int get_links_property(char *pobjUID)
         handles[i] = getHandle(links[i]);
     }
 
-    status = sciReturnRowHandleVector(handles, iLinksCount);
+    status = sciReturnRowHandleVector(_pvCtx, handles, iLinksCount);
 
     FREE(handles);
 

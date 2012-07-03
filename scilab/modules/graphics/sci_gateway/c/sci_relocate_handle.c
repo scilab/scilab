@@ -58,12 +58,12 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   }
 
   parent = (long) *hstk(parentStkIndex);
-  parentID = getObjectFromHandle(parent);
+  parentID = (char*)getObjectFromHandle(parent);
 
   for(i = 0; i < nbHandle; i++)
   {
     children = (long) *hstk( handleStkIndex + i );
-    childrenID = getObjectFromHandle(children);
+    childrenID = (char*)getObjectFromHandle(children);
     setGraphicObjectRelationship(parentID, childrenID);
   }
 

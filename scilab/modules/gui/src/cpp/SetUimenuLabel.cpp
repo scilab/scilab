@@ -14,7 +14,7 @@
 #include "SetUimenuLabel.hxx"
 
 /* Set the label of an uimenu */
-int SetUimenuLabel(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUimenuLabel(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 

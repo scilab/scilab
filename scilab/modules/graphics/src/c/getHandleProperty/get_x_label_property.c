@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_label_property(char *pobjUID)
+int get_x_label_property(void* _pvCtx, char* pobjUID)
 {
 #if 0
     if ( sciGetEntityType(pobj) != SCI_SUBWIN )
@@ -44,7 +44,7 @@ int get_x_label_property(char *pobjUID)
 
     char* labelUID = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LABEL__, jni_string, &labelUID);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelUID);
 
     if (labelUID == NULL)
     {
@@ -52,7 +52,7 @@ int get_x_label_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnHandle(getHandle(labelUID));
+    return sciReturnHandle(_pvCtx, getHandle(labelUID));
 
 #if 0
     return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_x_label ) );

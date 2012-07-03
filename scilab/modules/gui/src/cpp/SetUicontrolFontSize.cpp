@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontSize.hxx"
 
-int SetUicontrolFontSize(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontSize(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     double fontSize = 0.0;
     BOOL status = FALSE;

@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUiobjectCallback(sciPointObj* sciObj)
+int GetUiobjectCallback(void* _pvCtx, sciPointObj* sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
@@ -23,11 +23,11 @@ int GetUiobjectCallback(sciPointObj* sciObj)
 
       if (pUIMENU_FEATURE(sciObj)->callback == NULL) /* Callback not set */
         {
-          return sciReturnString("");
+          return sciReturnString(_pvCtx, "");
         }
       else /* Callback has been set */
         {
-          return sciReturnString(pUIMENU_FEATURE(sciObj)->callback);
+          return sciReturnString(_pvCtx, pUIMENU_FEATURE(sciObj)->callback);
         }
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -36,11 +36,11 @@ int GetUiobjectCallback(sciPointObj* sciObj)
 
       if (pUICONTROL_FEATURE(sciObj)->callback == NULL) /* Callback not set */
         {
-          return sciReturnString("");
+          return sciReturnString(_pvCtx, "");
         }
       else /* Callback has been set */
         {
-          return sciReturnString(pUICONTROL_FEATURE(sciObj)->callback);
+          return sciReturnString(_pvCtx, pUICONTROL_FEATURE(sciObj)->callback);
         }
     }
   else

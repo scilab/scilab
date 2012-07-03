@@ -35,12 +35,12 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_color_property(char *pobjUID)
+int get_labels_font_color_property(void* _pvCtx, char* pobjUID)
 {
     int iFontColor = 0;
     int* piFontColor = &iFontColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, &piFontColor);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, (void **)&piFontColor);
 
     if (piFontColor == NULL)
     {
@@ -48,6 +48,6 @@ int get_labels_font_color_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iFontColor);
+    return sciReturnDouble(_pvCtx, iFontColor);
 }
 /*------------------------------------------------------------------------*/

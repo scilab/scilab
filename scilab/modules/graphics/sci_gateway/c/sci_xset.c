@@ -152,7 +152,7 @@ int sci_xset( char *fname, unsigned long fname_len )
                 xx[i] = *stk(lr + i);
             }
         }
-        subwinUID = getOrCreateDefaultSubwin();
+        subwinUID = (char*)getOrCreateDefaultSubwin();
         setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
         setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
@@ -160,14 +160,14 @@ int sci_xset( char *fname, unsigned long fname_len )
     {
         char *pFigureUID = NULL;
         getOrCreateDefaultSubwin();
-        pFigureUID = getCurrentFigure();
+        pFigureUID = (char*)getCurrentFigure();
         setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, stk(lr), jni_double_vector, *xm * (*xn));
     }
     else if ( strcmp(cstk(l1), "mark size") == 0)
     {
         int markSize = (int) xx[0];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
-        char *subwinUID = getOrCreateDefaultSubwin();
+        char *subwinUID = (char*)getOrCreateDefaultSubwin();
 
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
@@ -184,7 +184,7 @@ int sci_xset( char *fname, unsigned long fname_len )
             return -1;
         }
 
-        subwinUID = getOrCreateDefaultSubwin();
+        subwinUID = (char*)getOrCreateDefaultSubwin();
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
@@ -241,7 +241,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         int piEmptyMatrix[4]    = {1, 0, 0, 0};
 
         // Create new axes and set it in current figure
-        char* pSubWinUID = getCurrentSubWin();
+        char* pSubWinUID = (char*)getCurrentSubWin();
 
         // init variables
         int iZero   = 0;
@@ -257,7 +257,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
 
         // Create figure if it not exist.
-        char* pFigureUID = getCurrentFigure();
+        char* pFigureUID = (char*)getCurrentFigure();
         if (pFigureUID == NULL)
         {
             pFigureUID = createNewFigureWithAxes();
@@ -364,7 +364,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     {
         // Find if window already exists, if not create a new one
         int iID = x[0];
-        char *pFigureUID = getFigureFromIndex(iID);
+        char *pFigureUID = (char*)getFigureFromIndex(iID);
         if (pFigureUID == NULL)
         {
             pFigureUID = createNewFigureWithAxes();
@@ -387,7 +387,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "thickness") == 0)
     {
-        sciSetLineWidth(getOrCreateDefaultSubwin(), x[0]);
+        sciSetLineWidth((char*)getOrCreateDefaultSubwin(), x[0]);
     }
     else if ( strcmp(cstk(l1), "line style") == 0)
     {
@@ -470,7 +470,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if (strcmp(cstk(l1), "line mode") == 0)
     {
-        char *pstSubwinUID = getOrCreateDefaultSubwin();
+        char *pstSubwinUID = (char*)getOrCreateDefaultSubwin();
         int iZero = 0;
         int iOne = 1;
         if (x[0] == 0)

@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_unit_property(char *pobjUID)
+int get_mark_size_unit_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkSizeUnit = 0;
     int* piMarkSizeUnit = &iMarkSizeUnit;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, jni_int, &piMarkSizeUnit);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, jni_int, (void**)&piMarkSizeUnit);
 
     if (piMarkSizeUnit == NULL)
     {
@@ -45,11 +45,11 @@ int get_mark_size_unit_property(char *pobjUID)
 
     if (iMarkSizeUnit == 0)
     {
-        return sciReturnString( "point" );
+        return sciReturnString(_pvCtx, "point" );
     }
     else if(iMarkSizeUnit == 1)
     {
-        return sciReturnString( "tabulated" );
+        return sciReturnString(_pvCtx, "tabulated" );
     }
     else
     {

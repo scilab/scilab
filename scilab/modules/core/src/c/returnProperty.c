@@ -1,5 +1,5 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste SILVY
  * 
  * This file must be used under the terms of the CeCILL.
@@ -19,7 +19,7 @@
 #include <string.h>
 
 /*--------------------------------------------------------------------------*/
-int sciReturnEmptyMatrix( void )
+int sciReturnEmptyMatrix(void* _pvCtx)
 {
   int numRow   = 0 ;
   int numCol   = 0 ;
@@ -28,10 +28,10 @@ int sciReturnEmptyMatrix( void )
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnString( const char * value )
+int sciReturnString(void* _pvCtx, const char * value)
 {
   int numRow   = 1 ;
-  int numCol   = (int)strlen( value );
+  int numCol   = (int)strlen(value);
   int outIndex = 0 ;
   CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
   strncpy(cstk(outIndex),value, numCol);
@@ -39,85 +39,85 @@ int sciReturnString( const char * value )
   return  0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnChar( char value )
+int sciReturnChar(void* _pvCtx, char value)
 {
   int nbRow    = 1 ;
   int nbCol    = 1 ;
   int outIndex = 0 ;
   CreateVar(Rhs+1,STRING_DATATYPE,&nbRow,&nbCol,&outIndex);
-  strncpy(cstk(outIndex), &value , 1 );
+  strncpy(cstk(outIndex), &value , 1);
 
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnDouble( double value )
+int sciReturnDouble(void* _pvCtx, double value)
 {
   int numRow   = 1 ;
   int numCol   = 1 ;
   int outIndex = 0 ;
-  CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &numCol, &outIndex );
+  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &numCol, &outIndex);
   *stk(outIndex) = value ;
 
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnInt( int value )
+int sciReturnInt(void* _pvCtx, int value)
 {
 
   int numRow   = 1 ;
   int numCol   = 1 ;
   int outIndex = 0 ;
-  CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &numRow, &numCol, &outIndex );
+  CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &numRow, &numCol, &outIndex);
   *istk(outIndex) = value ;
 
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnRowVector( const double values[], int nbValues )
+int sciReturnRowVector(void* _pvCtx, const double values[], int nbValues)
 {
   int numRow   = 1        ;
   int outIndex = 0        ;
   int i ;
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
-  for ( i = 0 ; i < nbValues ; i++ )
+  for (i = 0 ; i < nbValues ; i++)
   {
     stk(outIndex)[i] = values[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnRowVectorFromInt( const int values[], int nbValues )
+int sciReturnRowVectorFromInt(void* _pvCtx, const int values[], int nbValues)
 {
   int numRow   = 1        ;
   int outIndex = 0        ;
   int i ;
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
-  for ( i = 0 ; i < nbValues ; i++ )
+  for (i = 0 ; i < nbValues ; i++)
   {
     stk(outIndex)[i] = (double)values[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnRowIntVector( const int values[], int nbValues )
+int sciReturnRowIntVector(void* _pvCtx, const int values[], int nbValues)
 {
   int numRow   = 1        ;
   int outIndex = 0        ;
   int i ;
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&numRow,&nbValues,&outIndex);
-  for ( i = 0 ; i < nbValues ; i++ )
+  for (i = 0 ; i < nbValues ; i++)
   {
     istk(outIndex)[i] = values[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnRowStringVector(char * values[], int nbValues )
+int sciReturnRowStringVector(void* _pvCtx, char * values[], int nbValues)
 {
-  return sciReturnStringMatrix( values, 1, nbValues );
+  return sciReturnStringMatrix(_pvCtx, values, 1, nbValues);
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnHandle( long handle )
+int sciReturnHandle(void* _pvCtx, long handle)
 {
   int numRow   = 1 ;
   int numCol   = 1 ;
@@ -127,57 +127,57 @@ int sciReturnHandle( long handle )
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnRowHandleVector( const long handles[], int nbValues )
+int sciReturnRowHandleVector(void* _pvCtx, const long handles[], int nbValues)
 {
   int numRow   = 1 ;
   int outIndex = 0 ;
   int i ;
-  CreateVar( Rhs+1,GRAPHICAL_HANDLE_DATATYPE, &numRow, &nbValues, &outIndex );
-  for ( i = 0 ; i < nbValues ; i++ )
+  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE, &numRow, &nbValues, &outIndex);
+  for (i = 0 ; i < nbValues ; i++)
   {
     hstk(outIndex)[i] = handles[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnColHandleVector( const long handles[], int nbValues )
+int sciReturnColHandleVector(void* _pvCtx, const long handles[], int nbValues)
 {
   int numCol   = 1 ;
   int outIndex = 0 ;
   int i ;
-  CreateVar( Rhs+1, GRAPHICAL_HANDLE_DATATYPE, &nbValues, &numCol, &outIndex );
-  for ( i = 0 ; i < nbValues ; i++ )
+  CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, &nbValues, &numCol, &outIndex);
+  for (i = 0 ; i < nbValues ; i++)
   {
     hstk(outIndex)[i] = handles[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnMatrix( double values[], int nbRow, int nbCol )
+int sciReturnMatrix(void* _pvCtx, double values[], int nbRow, int nbCol)
 {
   int outIndex = 0 ;
   int i ;
-  CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &outIndex );
-  for  ( i = 0; i < nbRow * nbCol; i++ )
+  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &outIndex);
+  for  (i = 0; i < nbRow * nbCol; i++)
   {
     stk(outIndex)[i] = values[i] ;
   }
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnStringMatrix(char * values[], int nbRow, int nbCol )
+int sciReturnStringMatrix(void* _pvCtx, char * values[], int nbRow, int nbCol)
 {
-  CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, values );
+  CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, values);
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-int sciReturnUserData( const int * userData, int userDataSize )
+int sciReturnUserData(void* _pvCtx, const int * userData, int userDataSize)
 {
   int * data_ptr = NULL ;
-  int data_size = (userDataSize + 1 ) / 2 ;
+  int data_size = (userDataSize + 1) / 2 ;
   SetWorkSize(Rhs+1,&data_size);
   data_ptr = GetRawData(Rhs+1);
-  memcpy( data_ptr, userData, userDataSize * sizeof (int) );
+  memcpy(data_ptr, userData, userDataSize * sizeof (int));
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/

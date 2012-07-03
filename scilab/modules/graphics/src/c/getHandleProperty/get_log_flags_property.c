@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_log_flags_property(char *pobjUID)
+int get_log_flags_property(void* _pvCtx, char* pobjUID)
 {
     int i = 0;
     int iLogFlag = 0;
@@ -45,7 +45,7 @@ int get_log_flags_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)
     {
@@ -55,10 +55,10 @@ int get_log_flags_property(char *pobjUID)
 
     logFlags[0] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[1] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[2] = iLogFlag;
 
     for (i = 0; i < 3; i++)
@@ -75,6 +75,6 @@ int get_log_flags_property(char *pobjUID)
 
     /* 0 terminating character */
     logFlagsString[3] = 0;
-    return sciReturnString( logFlagsString );
+    return sciReturnString(_pvCtx, logFlagsString);
 }
 /*------------------------------------------------------------------------*/

@@ -32,7 +32,7 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-int get_current_axes_property(char *pobjUID)
+int get_current_axes_property(void* _pvCtx, char* pobjUID)
 {
     char *pFigureUID = NULL;
     char *pSubWinUID = NULL;
@@ -44,7 +44,7 @@ int get_current_axes_property(char *pobjUID)
         return -1;
     }
 
-    pSubWinUID = getCurrentSubWin();
+    pSubWinUID = (char*)getCurrentSubWin();
 
     if (pSubWinUID == NULL)
     {
@@ -53,6 +53,6 @@ int get_current_axes_property(char *pobjUID)
     }
 
 
-    return sciReturnHandle(getHandle(getCurrentSubWin())) ;
+    return sciReturnHandle(_pvCtx, getHandle(getCurrentSubWin())) ;
 }
 /*------------------------------------------------------------------------*/

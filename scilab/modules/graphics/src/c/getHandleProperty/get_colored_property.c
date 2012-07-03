@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_colored_property(char *pobjUID)
+int get_colored_property(void* _pvCtx, char* pobjUID)
 {
     int colored = 0;
     int* piColored = &colored;
@@ -43,7 +43,7 @@ int get_colored_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_COLORED__, jni_bool, &piColored);
+    getGraphicObjectProperty(pobjUID, __GO_COLORED__, jni_bool, (void **)&piColored);
 
     if (piColored == NULL)
     {
@@ -53,11 +53,11 @@ int get_colored_property(char *pobjUID)
 
     if (colored)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

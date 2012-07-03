@@ -27,7 +27,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_style_property(char *pobjUID)
+int get_figure_style_property(void* _pvCtx, char* pobjUID)
 {
   //
   // FIXME
@@ -41,7 +41,7 @@ int get_figure_style_property(char *pobjUID)
   }
 #endif
   /* no more old style */
-  sciReturnString("new") ;
+  sciReturnString(_pvCtx, "new") ;
   return 0 ;
 }
 /*------------------------------------------------------------------------*/

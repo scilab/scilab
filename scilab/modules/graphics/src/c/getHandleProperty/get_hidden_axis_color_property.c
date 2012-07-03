@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_hidden_axis_color_property(char *pobjUID)
+int get_hidden_axis_color_property(void* _pvCtx, char* pobjUID)
 {
     int iHiddenAxisColor = 0;
     int* piHiddenAxisColor = &iHiddenAxisColor;
@@ -42,7 +42,7 @@ int get_hidden_axis_color_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, &piHiddenAxisColor);
+    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, (void **)&piHiddenAxisColor);
 
     if (piHiddenAxisColor == NULL)
     {
@@ -50,6 +50,6 @@ int get_hidden_axis_color_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnInt(iHiddenAxisColor);
+    return sciReturnInt(_pvCtx, iHiddenAxisColor);
 }
 /*------------------------------------------------------------------------*/

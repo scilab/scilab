@@ -27,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_grid_position_property(char *pobjUID)
+int get_grid_position_property(void* _pvCtx, char* pobjUID)
 {
     int iGridPosition = 0;
     int* piGridPosition = &iGridPosition;
@@ -40,7 +40,7 @@ int get_grid_position_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, jni_int, &piGridPosition);
+    getGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, jni_int, (void **)&piGridPosition);
 
     if (piGridPosition == NULL)
     {
@@ -50,11 +50,11 @@ int get_grid_position_property(char *pobjUID)
 
     if (iGridPosition)
     {
-        return sciReturnString("foreground");
+        return sciReturnString(_pvCtx, "foreground");
     }
     else
     {
-        return sciReturnString("background");
+        return sciReturnString(_pvCtx, "background");
     }
 }
 /*------------------------------------------------------------------------*/

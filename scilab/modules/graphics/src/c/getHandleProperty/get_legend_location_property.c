@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_legend_location_property(char *pobjUID)
+int get_legend_location_property(void* _pvCtx, char* pobjUID)
 {
     int iLegendLocation = 0;
     int* piLegendLocation = &iLegendLocation;
@@ -45,7 +45,7 @@ int get_legend_location_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, jni_int, &piLegendLocation);
+    getGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, jni_int, (void**)&piLegendLocation);
 
     if (piLegendLocation == NULL)
     {
@@ -55,47 +55,47 @@ int get_legend_location_property(char *pobjUID)
 
     if (iLegendLocation == 0)
     {
-        return sciReturnString("in_upper_right");
+        return sciReturnString(_pvCtx, "in_upper_right");
     }
     else if (iLegendLocation == 1)
     {
-        return sciReturnString("in_upper_left");
+        return sciReturnString(_pvCtx, "in_upper_left");
     }
     else if (iLegendLocation == 2)
     {
-        return sciReturnString("in_lower_right");
+        return sciReturnString(_pvCtx, "in_lower_right");
     }
     else if (iLegendLocation == 3)
     {
-        return sciReturnString("in_lower_left");
+        return sciReturnString(_pvCtx, "in_lower_left");
     }
     else if (iLegendLocation == 4)
     {
-        return sciReturnString("out_upper_right");
+        return sciReturnString(_pvCtx, "out_upper_right");
     }
     else if (iLegendLocation == 5)
     {
-        return sciReturnString("out_upper_left");
+        return sciReturnString(_pvCtx, "out_upper_left");
     }
     else if (iLegendLocation == 6)
     {
-        return sciReturnString("out_lower_right");
+        return sciReturnString(_pvCtx, "out_lower_right");
     }
     else if (iLegendLocation == 7)
     {
-        return sciReturnString("out_lower_left");
+        return sciReturnString(_pvCtx, "out_lower_left");
     }
     else if (iLegendLocation == 8)
     {
-        return sciReturnString("upper_caption");
+        return sciReturnString(_pvCtx, "upper_caption");
     }
     else if (iLegendLocation == 9)
     {
-        return sciReturnString("lower_caption");
+        return sciReturnString(_pvCtx, "lower_caption");
     }
     else if (iLegendLocation == 10)
     {
-        return sciReturnString("by_coordinates");
+        return sciReturnString(_pvCtx, "by_coordinates");
     }
     else
     {

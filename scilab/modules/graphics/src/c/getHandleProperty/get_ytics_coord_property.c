@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ytics_coord_property(char *pobjUID)
+int get_ytics_coord_property(void* _pvCtx, char* pobjUID)
 {
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
@@ -43,7 +43,7 @@ int get_ytics_coord_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &yTicksCoords);
+    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&yTicksCoords);
 
     if (yTicksCoords == NULL)
     {
@@ -51,8 +51,8 @@ int get_ytics_coord_property(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
 
-    return sciReturnRowVector(yTicksCoords, iYNumberTicks);
+    return sciReturnRowVector(_pvCtx, yTicksCoords, iYNumberTicks);
 }
 /*------------------------------------------------------------------------*/

@@ -111,7 +111,7 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
 {
     /* coordinates transformation */
     int i = 0;
-    char * selectedSubwinUID = getOrCreateDefaultSubwin();
+    char * selectedSubwinUID = (char*)getOrCreateDefaultSubwin();
     updateSubwinScale(selectedSubwinUID);
 
     for (i = 0; i < nbCoords; i++)
@@ -140,7 +140,7 @@ void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords
 {
     /* coordinates transformation */
     int i = 0;
-    char * selectedSubwinUID = getOrCreateDefaultSubwin();
+    char * selectedSubwinUID = (char*)getOrCreateDefaultSubwin();
     updateSubwinScale(selectedSubwinUID);
     for (i = 0; i < nbCoords; i++)
     {

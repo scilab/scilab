@@ -38,15 +38,16 @@
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
 #include "freeArrayOfString.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sciGet(char *pobjUID, char *marker);
+int sciGet(void* _pvCtx, char *pobjUID, char *marker);
 
 /*--------------------------------------------------------------------------*/
-int sciGet(char *pobjUID, char *marker)
+int sciGet(void* _pvCtx, char *pobjUID, char *marker)
 {
     /* find the function in the hashtable relative to the property name */
     /* and call it */
-    return callGetProperty(pobjUID, marker);
+    return callGetProperty(_pvCtx, pobjUID, marker);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -85,7 +86,7 @@ int sci_get(char *fname, unsigned long fname_len)
             {
                 if (Rhs == 1)
                 {
-                    if (sciReturnHandle(getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
+                    if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
                         /* An error has occured */
                         PutLhsVar();
@@ -107,7 +108,7 @@ int sci_get(char *fname, unsigned long fname_len)
                         return SET_PROPERTY_ERROR;
                     }
 
-                    status = GetScreenProperty(stkAdr[0]);
+                    status = GetScreenProperty(pvApiCtx,stkAdr[0]);
 
                     if (status != SET_PROPERTY_SUCCEED) /* Return property */
                     {
@@ -186,7 +187,7 @@ int sci_get(char *fname, unsigned long fname_len)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(NULL, cstk(l2)) != 0)
+        if (sciGet(pvApiCtx, NULL, cstk(l2)) != 0)
         {
             /* An error has occured */
             PutLhsVar();
@@ -195,11 +196,11 @@ int sci_get(char *fname, unsigned long fname_len)
     }
     else
     {
-        pobjUID = getObjectFromHandle(hdl);
+        pobjUID = (char*)getObjectFromHandle(hdl);
         if (pobjUID != NULL)
         {
 
-            if (sciGet(pobjUID, cstk(l2)) != 0)
+            if (sciGet(pvApiCtx, pobjUID, cstk(l2)) != 0)
             {
                 /* An error has occured */
                 PutLhsVar();

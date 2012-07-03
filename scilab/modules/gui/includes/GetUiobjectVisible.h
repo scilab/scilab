@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol or uimenu
  * @return true if the status is got without error
  */
-GUI_IMPEXP int GetUiobjectVisible(sciPointObj * pobj);
+GUI_IMPEXP int GetUiobjectVisible(void* _pvCtx, sciPointObj * pobj);
 
 #endif /* !__GETUIOBJECTVISIBLE_H__ */

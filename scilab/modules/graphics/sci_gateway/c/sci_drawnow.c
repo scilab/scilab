@@ -34,10 +34,10 @@ int sci_drawnow(char *fname, unsigned long fname_len)
 
     if (Rhs <= 0)
     {
-        pSubwinUID = getOrCreateDefaultSubwin();
+        pSubwinUID = (char*)getOrCreateDefaultSubwin();
         if (pSubwinUID != NULL)
         {
-            getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, &pFigureUID);
+            getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
             if (pFigureUID != NULL)
             {
                 setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iTrue, jni_bool, 1);

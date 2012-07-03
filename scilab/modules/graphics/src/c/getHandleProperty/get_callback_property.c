@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_callback_property(char *pobjUID)
+int get_callback_property(void* _pvCtx, char* pobjUID)
 {
     char* callback = NULL;
     int status = 0;
@@ -42,7 +42,7 @@ int get_callback_property(char *pobjUID)
     }
     else
     {
-        status = sciReturnString(callback);
+        status = sciReturnString(_pvCtx, callback);
         free(callback);
         return status;
     }

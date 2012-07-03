@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_position_property(char *pobjUID)
+int get_auto_position_property(void* _pvCtx, char* pobjUID)
 {
     int iAutoPosition = 0;
     int* piAutoPosition = &iAutoPosition;
@@ -43,7 +43,7 @@ int get_auto_position_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, jni_bool, &piAutoPosition);
+    getGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, jni_bool, (void **)&piAutoPosition);
 
     if (piAutoPosition == NULL)
     {
@@ -53,11 +53,11 @@ int get_auto_position_property(char *pobjUID)
 
     if (iAutoPosition)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

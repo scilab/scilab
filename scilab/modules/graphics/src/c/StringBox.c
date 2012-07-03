@@ -40,7 +40,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double corners[4][2])
 {
     /* first step, create a text object */
-    char * parentSubwinUID = getCurrentSubWin();
+    char * parentSubwinUID = (char*)getCurrentSubWin();
     char * pTextUID = NULL;
     double * textCorners = NULL;
     int defaultColor = 0; /* color does not matter */
@@ -80,7 +80,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     updateTextBounds(pTextUID);
 
     /* Then get its bounding box */
-    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, &textCorners);
+    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void**)&textCorners);
 
     /*
      * To do: performs a projection/unprojection to obtain the bounding box in object coordinates

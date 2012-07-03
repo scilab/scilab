@@ -34,17 +34,17 @@
 #include "MALLOC.h"             /* MALLOC */
 #include "localization.h"
 #include "stricmp.h"
-
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-static int sciSet(char *pobjUID, char *marker, size_t * value, int valueType, int *numrow, int *numcol);
+static int sciSet(void* _pvCtx, char *pobjUID, char *marker, size_t * value, int valueType, int *numrow, int *numcol);
 
 /*--------------------------------------------------------------------------*/
 /**
  * Sets the value to the object
  */
-static int sciSet(char *pobjUID, char *marker, size_t * value, int valueType, int *numrow, int *numcol)
+static int sciSet(void* _pvCtx, char *pobjUID, char *marker, size_t * value, int valueType, int *numrow, int *numcol)
 {
-    return callSetProperty(pobjUID, *value, valueType, *numrow, *numcol, marker);
+    return callSetProperty(_pvCtx, pobjUID, *value, valueType, *numrow, *numcol, marker);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -121,7 +121,7 @@ int sci_set(char *fname, unsigned long fname_len)
             }
 
             hdl = (long)*hstk(l1);
-            pobjUID = getObjectFromHandle(hdl);
+            pobjUID = (char*)getObjectFromHandle(hdl);
 
             GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
 
@@ -206,7 +206,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
         if (hdl != 0)
         {
-            pobjUID = getObjectFromHandle(hdl);
+            pobjUID = (char*)getObjectFromHandle(hdl);
 
             if (pobjUID == NULL)
             {
@@ -215,7 +215,7 @@ int sci_set(char *fname, unsigned long fname_len)
             }
 
             // Only set the property whitout doing anythig else.
-            setStatus = sciSet(pobjUID, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+            setStatus = sciSet(pvApiCtx, pobjUID, cstk(l2), &l3, valueType, &numrow3, &numcol3);
         }
         else
         {
@@ -258,7 +258,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
                 if (bDoSet)
                 {
-                    sciSet(NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                    sciSet(pvApiCtx, NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
                 }
             }
             else

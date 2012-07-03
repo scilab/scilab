@@ -102,7 +102,7 @@ static char * getZoomedObject(const char * fname)
         return NULL;
     }
 
-    res = getObjectFromHandle(getHandleFromStack(stackPointer));
+    res = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
 
     if (res == NULL)
     {
@@ -110,7 +110,7 @@ static char * getZoomedObject(const char * fname)
         return NULL;
     }
 
-    getGraphicObjectProperty(res, __GO_TYPE__, jni_string, &pstType);
+    getGraphicObjectProperty(res, __GO_TYPE__, jni_string, (void **)&pstType);
 
     if (strcmp(pstType, __GO_FIGURE__) != 0 && strcmp(pstType, __GO_AXES__) != 0)
     {
@@ -138,7 +138,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     if (Rhs == 0)
     {
         /* zoom_rect() */
-        pFigureUID = getCurrentFigure();
+        pFigureUID = (char*)getCurrentFigure();
         if (pFigureUID == NULL)
         {
             pFigureUID = createNewFigureWithAxes();
@@ -166,7 +166,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
                 /* rectangle found */
                 //int status = sciZoom2D(getCurrentSubWin(), rect);
                 int status = 0;
-                pFigureUID = getCurrentFigure();
+                pFigureUID = (char*)getCurrentFigure();
 
                 getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
 

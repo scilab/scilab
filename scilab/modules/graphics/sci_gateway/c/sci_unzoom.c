@@ -49,7 +49,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   CheckLhs(0,1) ;
   if ( Rhs == 0 )
   {
-    objectUID = getCurrentFigure();
+    objectUID = (char*)getCurrentFigure();
     if (objectUID != NULL)
     {
       sciUnzoomFigure(objectUID);
@@ -73,7 +73,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
     /* and copy them into an array of objects */
     for (i = 0; i < nbObjects; i++ )
     {
-      objectUID = getObjectFromHandle(getHandleFromStack(stackPointer + i));
+      objectUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer + i));
       getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_string, (void **) &pstType);
       if ((strcmp(pstType, __GO_FIGURE__) != 0) && (strcmp(pstType, __GO_AXES__) != 0))
       {

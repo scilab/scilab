@@ -14,7 +14,7 @@
 
 #include "SetUicontrolVerticalAlignment.hxx"
 
-int SetUicontrolVerticalAlignment(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* VerticalAlignment can be top, middle or bottom */
 

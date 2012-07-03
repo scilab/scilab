@@ -43,9 +43,9 @@ int sci_uiwait(char *fname, unsigned long fname_len)
             return FALSE;
         }
         hdl = (unsigned long)*hstk(stkAdr);
-        pObjUID = getObjectFromHandle(hdl);
+        pObjUID = (char*)getObjectFromHandle(hdl);
 
-        getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, &pObjType);
+        getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&pObjType);
         if (strcmp(pObjType, __GO_UICONTEXTMENU__) == 0)
         {
             result = uiWaitContextMenu(pObjUID);

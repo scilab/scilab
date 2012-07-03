@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
     BOOL autoTicks = FALSE;
@@ -98,7 +98,7 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
         int iAutoTicks = 0;
         int *piAutoTicks = &iAutoTicks;
 
-        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[0], jni_bool, &piAutoTicks);
+        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[0], jni_bool, (void **)&piAutoTicks);
 
         if (piAutoTicks == NULL)
         {
@@ -108,10 +108,10 @@ int set_auto_ticks_property(char* pobjUID, size_t stackPointer, int valueType, i
 
         autoTicks[0] = iAutoTicks;
 
-        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[1], jni_bool, &piAutoTicks);
+        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[1], jni_bool, (void **)&piAutoTicks);
         autoTicks[1] = iAutoTicks;
 
-        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[2], jni_bool, &piAutoTicks);
+        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[2], jni_bool, (void **)&piAutoTicks);
         autoTicks[2] = iAutoTicks;
 
         for ( i = 0; i < mSize; i++ )

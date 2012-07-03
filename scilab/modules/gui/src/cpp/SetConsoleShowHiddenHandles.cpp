@@ -22,7 +22,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int SetConsoleShowHiddenHandles(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetConsoleShowHiddenHandles(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;

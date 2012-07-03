@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_isoview_property(char *pobjUID)
+int get_isoview_property(void* _pvCtx, char* pobjUID)
 {
     int iIsoview = 0;
     int* piIsoview = &iIsoview;
@@ -42,7 +42,7 @@ int get_isoview_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, &piIsoview);
+    getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
 
     if (piIsoview == NULL)
     {
@@ -52,11 +52,11 @@ int get_isoview_property(char *pobjUID)
 
     if (iIsoview)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

@@ -45,6 +45,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 27
 #define MAXPROPERTYNAMELENGTH 20
@@ -95,7 +96,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         GraphicHandle = getHandle(CreateUIControl(NULL));
 
         /* Set the parent */
-        setCurentFigureAsPushButtonParent(getObjectFromHandle(GraphicHandle));
+        setCurentFigureAsPushButtonParent((char*)getObjectFromHandle(GraphicHandle));
     }
     else if (Rhs == 1)
     {
@@ -117,10 +118,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return FALSE;
             }
-            pParentUID = getObjectFromHandle((long) * hstk(stkAdr));
+            pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
             if (pParentUID != NULL)
             {
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, &parentType);
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
                 if (strcmp(parentType, __GO_UICONTROL__) == 0)  /* Focus management */
                 {
                     GraphicHandle = (long) * hstk(stkAdr);
@@ -133,7 +134,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
                     /* First parameter is the parent */
                     setGraphicObjectRelationship(pParentUID, getObjectFromHandle(GraphicHandle));
-                    setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char *)propertiesNames[1]);
+                    setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char *)propertiesNames[1]);
                     if (setStatus == SET_PROPERTY_ERROR)
                     {
                         Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
@@ -193,7 +194,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                     if (nbRow * nbCol == 1)
                     {
-                        pParentUID = getFigureFromIndex((int)(*stk(stkAdr)));
+                        pParentUID = (char*)getFigureFromIndex((int)(*stk(stkAdr)));
 
                         if (pParentUID == NULL)
                         {
@@ -201,10 +202,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                                      "Frame uicontrol");
                             return FALSE;
                         }
-                        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, &parentType);
+                        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
                         if (strcmp(parentType, __GO_FIGURE__) != 0)
                         {
-                            getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, &parentStyle);
+                            getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
                             if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
                             {
                                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
@@ -238,17 +239,17 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                              "Frame uicontrol");
                     return FALSE;
                 }
-                pParentUID = getObjectFromHandle((long) * hstk(stkAdr));
+                pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
                 if (pParentUID == NULL)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
                     return FALSE;
                 }
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, &parentType);
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
                 if (strcmp(parentType, __GO_FIGURE__) != 0)
                 {
-                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, &parentStyle);
+                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
                     if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
@@ -351,10 +352,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         /* If no parent given then the current figure is the parent */
         if (propertiesValuesIndices[1] == NOT_FOUND)
         {
-            char *graphicObjectUID = getObjectFromHandle(GraphicHandle);
+            char *graphicObjectUID = (char*)getObjectFromHandle(GraphicHandle);
 
             /* Set the parent */
-            char *pstCurrentFigure = getCurrentFigure();
+            char *pstCurrentFigure = (char*)getCurrentFigure();
 
             if (pstCurrentFigure == NULL)
             {
@@ -375,7 +376,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     nbRow = -1;
                     nbCol = -1;
                     setStatus =
-                        callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol,
+                        callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol,
                                         (char *)propertiesNames[inputIndex]);
                 }
                 else            /* All other properties */
@@ -386,7 +387,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         case sci_matrix:
                             GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                             setStatus =
-                                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol,
+                                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol,
                                                 (char *)propertiesNames[inputIndex]);
                             break;
                         case sci_strings:
@@ -395,7 +396,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                             {
                                 GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdrForStrings);
                                 setStatus =
-                                    callSetProperty(getObjectFromHandle(GraphicHandle), (size_t) stkAdrForStrings, sci_strings, nbRow, nbCol,
+                                    callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), (size_t) stkAdrForStrings, sci_strings, nbRow, nbCol,
                                                     (char *)propertiesNames[inputIndex]);
                                 freeArrayOfString(stkAdrForStrings, nbRow * nbCol);
                             }
@@ -403,14 +404,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                             {
                                 GetRhsVar(propertiesValuesIndices[inputIndex], STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
                                 setStatus =
-                                    callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol,
+                                    callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol,
                                                     (char *)propertiesNames[inputIndex]);
                             }
                             break;
                         case sci_handles:
                             GetRhsVar(propertiesValuesIndices[inputIndex], GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                             setStatus =
-                                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
+                                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
                                                 (char *)propertiesNames[inputIndex]);
                             break;
                         default:

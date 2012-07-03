@@ -12,7 +12,7 @@
 
 #include "SetUimenuChecked.hxx"
 
-int SetUimenuChecked(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUimenuChecked(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;

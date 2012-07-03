@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return the string
  */
-GUI_IMPEXP int GetUicontrolString(char *pobjUID);
+GUI_IMPEXP int GetUicontrolString(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_STRING_H__ */

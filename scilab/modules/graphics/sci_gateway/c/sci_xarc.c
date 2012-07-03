@@ -50,9 +50,9 @@ int sci_xarc(char *fname,unsigned long fname_len)
     angle1 = DEG2RAD(*istk(l5) / 64.0); /* convert to radian */
     angle2 = DEG2RAD(*istk(l6) / 64.0);
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
 
     if ( strcmp(fname,"xarc") == 0 )
     {

@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_rotation_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_auto_rotation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;

@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_viewport_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_viewport_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int values[4];
   BOOL status = FALSE;

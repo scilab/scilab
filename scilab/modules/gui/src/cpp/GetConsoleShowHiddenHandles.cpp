@@ -23,7 +23,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int GetConsoleShowHiddenHandles(char *pObjUID)
+int GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
 {
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
@@ -39,10 +39,10 @@ int GetConsoleShowHiddenHandles(char *pObjUID)
 
     if (iShowHiddenHandles == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }

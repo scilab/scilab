@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_anti_aliasing_property(char *pobjUID)
+int get_anti_aliasing_property(void* _pvCtx, char* pobjUID)
 {
     int iAntialiasing = 0;
     int* piAntialiasing = &iAntialiasing;
-    getGraphicObjectProperty(pobjUID, __GO_ANTIALIASING__, jni_int, &piAntialiasing);
+    getGraphicObjectProperty(pobjUID, __GO_ANTIALIASING__, jni_int, (void **)&piAntialiasing);
 
     if ( piAntialiasing == NULL )
     {
@@ -45,19 +45,19 @@ int get_anti_aliasing_property(char *pobjUID)
     switch (iAntialiasing)
     {
         case 0:
-            return sciReturnString("off");
+            return sciReturnString(_pvCtx, "off");
             break;
         case 1:
-            return sciReturnString("2x");
+            return sciReturnString(_pvCtx, "2x");
             break;
         case 2:
-            return sciReturnString("4x");
+            return sciReturnString(_pvCtx, "4x");
             break;
         case 3:
-            return sciReturnString("8x");
+            return sciReturnString(_pvCtx, "8x");
             break;
         case 4:
-            return sciReturnString("16x");
+            return sciReturnString(_pvCtx, "16x");
             break;
         default:
             Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
@@ -65,6 +65,6 @@ int get_anti_aliasing_property(char *pobjUID)
             break;
     }
 
-    return sciReturnString("off");
+    return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

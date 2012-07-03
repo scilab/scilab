@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_style_property(char *pobjUID)
+int get_font_style_property(void* _pvCtx, char* pobjUID)
 {
     int iFontStyle = 0;
     int* piFontStyle = &iFontStyle;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, &piFontStyle);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void **)&piFontStyle);
 
     if (piFontStyle == NULL)
     {
@@ -43,6 +43,6 @@ int get_font_style_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnInt(iFontStyle);
+    return sciReturnInt(_pvCtx, iFontStyle);
 }
 /*------------------------------------------------------------------------*/

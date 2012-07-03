@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_segs_color_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int iNbSegs = 0;
@@ -54,7 +54,7 @@ int set_segs_color_property(char* pobjUID, size_t stackPointer, int valueType, i
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, &piNbSegs);
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
 
     if (piNbSegs == NULL)
     {

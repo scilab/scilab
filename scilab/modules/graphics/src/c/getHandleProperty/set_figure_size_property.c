@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
   BOOL status = FALSE;

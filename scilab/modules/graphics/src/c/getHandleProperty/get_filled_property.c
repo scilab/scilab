@@ -27,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_filled_property(char *pobjUID)
+int get_filled_property(void* _pvCtx, char* pobjUID)
 {
     int iFilled = 0;
     int* piFilled = &iFilled;
@@ -40,7 +40,7 @@ int get_filled_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_FILLED__, jni_bool, &piFilled);
+    getGraphicObjectProperty(pobjUID, __GO_FILLED__, jni_bool, (void **)&piFilled);
 
     if (piFilled == NULL)
     {
@@ -50,11 +50,11 @@ int get_filled_property(char *pobjUID)
 
     if (iFilled)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

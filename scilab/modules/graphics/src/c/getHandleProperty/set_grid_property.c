@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_grid_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
     int i = 0;
@@ -63,7 +63,7 @@ int set_grid_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], jni_int, (void**)&piGridColor);
 
     if (piGridColor == NULL)
     {
@@ -73,10 +73,10 @@ int set_grid_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
 
     gridStyles[0] = iGridColor;
 
-    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[1], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[1], jni_int, (void**)&piGridColor);
     gridStyles[1] = iGridColor;
 
-    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[2], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[2], jni_int, (void**)&piGridColor);
     gridStyles[2] = iGridColor;
 
     for (  i = 0 ; i < nbCol ; i++ )

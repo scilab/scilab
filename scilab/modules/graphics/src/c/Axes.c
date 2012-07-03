@@ -104,7 +104,7 @@ void initSubWinAngles(char * pSubWinUID)
     int iViewType = 0;
     int* piViewType = &iViewType;
     double* rotationAngles = NULL;
-    char* axesModelUID = getAxesModel();
+    char* axesModelUID = (char*)getAxesModel();
 
     getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, (void **) &piViewType);
     setGraphicObjectProperty(pSubWinUID, __GO_VIEW__, &iViewType, jni_int, 1);
@@ -136,12 +136,12 @@ void initSubWinBounds(char * pSubWinUID)
 {
     double* dataBounds = NULL;
     double* realDataBounds = NULL;
-    char* axesModelUID = getAxesModel();
+    char* axesModelUID = (char*)getAxesModel();
 
-    getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
     setGraphicObjectProperty(pSubWinUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
-    getGraphicObjectProperty(axesModelUID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+    getGraphicObjectProperty(axesModelUID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, (void **)&realDataBounds);
     setGraphicObjectProperty(pSubWinUID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
 }
 /*--------------------------------------------------------------------------------*/
@@ -154,9 +154,9 @@ BOOL checkRedrawing( void )
 
     //  nbCheckRedraw++;
     //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
-    char* pstSubWinID = getCurrentSubWin();
+    char* pstSubWinID = (char*)getCurrentSubWin();
 
-    getGraphicObjectProperty(pstSubWinID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+    getGraphicObjectProperty(pstSubWinID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
 
     if (iAutoClear)
     {
