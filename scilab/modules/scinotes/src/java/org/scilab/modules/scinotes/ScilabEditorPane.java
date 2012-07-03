@@ -273,6 +273,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void configurationChanged(SciNotesConfiguration.Conf conf) {
         ((ScilabEditorKit) getEditorKit()).getStylePreferences().configurationChanged(conf);
 
+        if (conf.font) {
+            resetFont();
+        }
+
         if (conf.display) {
             enableHighlightedLine(SciNotesOptions.getSciNotesDisplay().highlightCurrentLine);
             setHighlightedLineColor(SciNotesOptions.getSciNotesDisplay().currentLineColor);
@@ -846,6 +850,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
 
         return 0;
+    }
+
+    public void resetFont() {
+        Font font = ((ScilabEditorKit) getEditorKit()).getStylePreferences().getBaseFont();
+        setFont(font);
+        xln.updateFont(font);
+        repaint();
     }
 
     /**
@@ -1573,5 +1584,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 nav.addEditorPane(this);
             }
         }
+
+        resetFont();
     }
 }

@@ -24,7 +24,10 @@ Javasci
 Bug Fixes
 =========
 
-* Buf #10150 fixed - Completion help page moved to the console chapter.
+* Bug #10150 fixed - Completion help page moved to the console chapter.
+
+* Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
+      	     	     repercuted.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
