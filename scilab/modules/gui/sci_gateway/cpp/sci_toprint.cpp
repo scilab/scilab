@@ -97,7 +97,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     {
                         iRet = booltoBOOL(CallScilabBridge::printFile(getScilabJavaVM(), fullName));
                     }
-                    catch(const GiwsException::JniException & e)
+                    catch (const GiwsException::JniException & e)
                     {
                         FREE(fullName);
                         fullName = NULL;
@@ -144,7 +144,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     return 0;
                 }
 
-                if (getFigureFromIndex((int) num_win) != NULL)
+                if (getFigureFromIndex((int) num_win) == NULL)
                 {
                     Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
                     return 0;
@@ -154,7 +154,7 @@ static int sci_toprint_one_rhs(const char *fname)
                 {
                     iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex((int) num_win), FALSE, FALSE));
                 }
-                catch(const GiwsException::JniException & e)
+                catch (const GiwsException::JniException & e)
                 {
                     Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
                     return 0;
@@ -325,7 +325,7 @@ static int sci_toprint_two_rhs(const char *fname)
                         iRet = booltoBOOL(CallScilabBridge::printString(getScilabJavaVM(), lines, pageHeader));
                     }
 
-                    catch(const GiwsException::JniException & e)
+                    catch (const GiwsException::JniException & e)
                     {
                         freeAllocatedSingleString(pageHeader);
                         if (lines)
@@ -424,7 +424,7 @@ static int sci_toprint_two_rhs(const char *fname)
                                     iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), FALSE, FALSE));
                                 }
                             }
-                            catch(const GiwsException::JniException & e)
+                            catch (const GiwsException::JniException & e)
                             {
                                 Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
                                          e.getJavaExceptionName().c_str());

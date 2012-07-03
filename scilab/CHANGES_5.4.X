@@ -43,6 +43,8 @@ Bug Fixes
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
+* Bug #11403 fixed - toprint() did not work and and menu Print too. 
+ 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================

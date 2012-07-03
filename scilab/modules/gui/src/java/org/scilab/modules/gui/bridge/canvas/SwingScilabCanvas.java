@@ -35,6 +35,7 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.swing.JPanel;
 
 import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -108,7 +109,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         add(drawableComponent, PanelLayout.GL_CANVAS);
         super.addNotify();
     }
-    
+
     public void removeNotify() {//Thread.dumpStack();
         drawableComponent.setVisible(false);
         drawableComponent.setEnabled(false);
@@ -238,6 +239,11 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @return a BufferedImage
      */
     public BufferedImage dumpAsBufferedImage() {
+        Canvas canvas = getRendererCanvas();
+        if (canvas instanceof JoGLCanvas) {
+            return ((JoGLCanvas) canvas).getImage();
+        }
+
         return null;
     }
 
