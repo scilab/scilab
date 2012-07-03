@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -911,17 +912,32 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         if (suppressCom) {
             StringBuffer buf = new StringBuffer(selection.length());
-            int sstart = start;
-            int tok = lexer.getKeyword(start, false);
-            int len = selection.length();
-            while (start < end) {
-                int pos = lexer.start + lexer.yychar() + lexer.yylength();
-                String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
-                if (!ScilabLexerConstants.isComment(tok) || str.equals("\n")) {
+            ScilabLexer.ScilabTokens tokens = ScilabLexer.getScilabTokens(selection);
+            List<Integer> tokType = tokens.getTokenType();
+            List<Integer> tokPos = tokens.getTokenPos();
+            List<String> commands = new ArrayList<String>();
+            int prevPos = 0;
+            for (int i = 0; i < tokType.size(); i++) {
+                String str = selection.substring(prevPos, tokPos.get(i));
+                if ("\n".equals(str)) {
+                    commands.add(buf.toString());
+                    buf.setLength(0);
+                } else if (!ScilabLexerConstants.isComment(tokType.get(i))) {
                     buf.append(str);
                 }
-                start = pos;
-                tok = lexer.getKeyword(start, false);
+                prevPos = tokPos.get(i);
+            }
+
+            if (buf.length() != 0) {
+                commands.add(buf.toString());
+            }
+
+            buf.setLength(0);
+            Pattern pat = Pattern.compile("[ \t]*");
+            for (String command : commands) {
+                if (!pat.matcher(command).matches()) {
+                    buf.append(command).append("\n");
+                }
             }
 
             return buf.toString();

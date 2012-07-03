@@ -26,6 +26,9 @@ Bug Fixes
 
 * Buf #10150 fixed - Completion help page moved to the console chapter.
 
+* Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
+                              when executed.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 

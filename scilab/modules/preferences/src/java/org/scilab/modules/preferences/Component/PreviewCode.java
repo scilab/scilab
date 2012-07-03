@@ -67,7 +67,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
                             + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
                             + "function [a, b] = myfunction(d, e, f)\n"
                             + "\ta = 2.71828 + %pi + f($, :);\n"
-                            + "\tb = cos(a) + cosh(a);\n"
+                            + "\tb = cos(a) + cosh(a) + \"$\\frac12$\";\n"
                             + "\tif d == e then\n"
                             + "\t\tb = 10 - e.field;\n"
                             + "\telse\n"

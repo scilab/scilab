@@ -29,6 +29,7 @@
       <item name="TabulationInComment" color="#90F790" bold="false" italic="true" underline="false" strike-through="false"/>
       <item name="TabulationInString" color="#E9B1B1" bold="false" italic="false" underline="false" strike-through="false"/>
       <item name="LaTeXInComment" color="#8B2252" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="LaTeXInString" color="#8B2252" bold="false" italic="false" underline="false" strike-through="false"/>
       <item name="OpenClose" color="#4A55DB" bold="false" italic="false" underline="false" strike-through="false"/>
     </syntax-highlighting-colors>
   </body>

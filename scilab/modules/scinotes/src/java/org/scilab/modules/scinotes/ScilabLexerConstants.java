@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 34;
+    public static final int NUMBEROFTOKENS = 35;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -153,54 +153,59 @@ public class ScilabLexerConstants {
     public static final int LATEX = 24;
 
     /**
+     * LATEXINSTRING : $\frac\pi\alpha$
+     */
+    public static final int LATEXINSTRING = 25;
+
+    /**
      * VARIABLES : A variable in Scilab
      */
-    public static final int VARIABLES = 25;
+    public static final int VARIABLES = 26;
 
     /**
      * INPUTOUTPUTARGS : A variable as arg in function declaration
      */
-    public static final int INPUTOUTPUTARGS = 26;
+    public static final int INPUTOUTPUTARGS = 27;
 
     /**
      * WHITE_COMMENT : A white char ' ' in comments
      */
-    public static final int WHITE_COMMENT = 27;
+    public static final int WHITE_COMMENT = 28;
 
     /**
      * TAB_COMMENT : A tabulation '\t' in comments
      */
-    public static final int TAB_COMMENT = 28;
+    public static final int TAB_COMMENT = 29;
 
     /**
      * WHITE_STRING : A white char ' ' in strings
      */
-    public static final int WHITE_STRING = 29;
+    public static final int WHITE_STRING = 30;
 
     /**
      * TAB_STRING : A tabulation '\t' in strings
      */
-    public static final int TAB_STRING = 30;
+    public static final int TAB_STRING = 31;
 
     /**
      * ELSEIF : elseif keyword
      */
-    public static final int ELSEIF = 31;
+    public static final int ELSEIF = 32;
 
     /**
      * ERROR : a syntax error for example
      */
-    public static final int ERROR = 32;
+    public static final int ERROR = 33;
 
     /**
      * EOF : End Of File
      */
-    public static final int EOF = 33;
+    public static final int EOF = 34;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap<String, Integer>(27);
+    public static final Map<String, Integer> TOKENS = new HashMap<String, Integer>(28);
 
     private static Map<Integer, String> idTokens;
 
@@ -230,6 +235,7 @@ public class ScilabLexerConstants {
         TOKENS.put("Tabulation", TAB);
         TOKENS.put("TabulationInComment", TAB_COMMENT);
         TOKENS.put("LaTeXInComment", LATEX);
+        TOKENS.put("LaTeXInString", LATEXINSTRING);
         TOKENS.put("TabulationInString", TAB_STRING);
         TOKENS.put("OpenClose", OPENCLOSE);
     }
@@ -265,7 +271,7 @@ public class ScilabLexerConstants {
      * @return true if the keyword is a LaTeX string
      */
     public static boolean isLaTeX(int type) {
-        return type == LATEX;
+        return type == LATEX || type == LATEXINSTRING;
     }
 
     /**
@@ -293,17 +299,17 @@ public class ScilabLexerConstants {
      */
     public static boolean isHelpable(int type) {
         return type == ID
-            || type == COMMANDS
-            || type == MACROS
-            || type == OPERATOR
-            || type == FKEYWORD
-            || type == CKEYWORD
-            || type == OSKEYWORD
-            || type == SKEYWORD
-            || type == ELSEIF
-            || type == CONSTANTES
-            || type == VARIABLES
-            || type == FIELD;
+               || type == COMMANDS
+               || type == MACROS
+               || type == OPERATOR
+               || type == FKEYWORD
+               || type == CKEYWORD
+               || type == OSKEYWORD
+               || type == SKEYWORD
+               || type == ELSEIF
+               || type == CONSTANTES
+               || type == VARIABLES
+               || type == FIELD;
     }
 
     /**
@@ -322,9 +328,9 @@ public class ScilabLexerConstants {
      */
     public static boolean isMatchable(int type) {
         return type == OPENCLOSE
-            || type == FKEYWORD
-            || type == OSKEYWORD
-            || type == ELSEIF;
+               || type == FKEYWORD
+               || type == OSKEYWORD
+               || type == ELSEIF;
     }
 
     /**
@@ -334,9 +340,9 @@ public class ScilabLexerConstants {
      */
     public static boolean isClickable(int type) {
         return type == URL
-            || type == MAIL
-            || type == MACROS
-            || type == MACROINFILE;
+               || type == MAIL
+               || type == MACROS
+               || type == MACROINFILE;
     }
 
     /**

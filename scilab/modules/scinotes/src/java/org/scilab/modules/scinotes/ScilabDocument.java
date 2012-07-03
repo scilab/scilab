@@ -94,19 +94,29 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * Constructor
      */
     public ScilabDocument() {
+        this(true);
+    }
+
+    /**
+     * Constructor
+     */
+    public ScilabDocument(boolean paned) {
         super(new GapContent(GAPBUFFERCAPACITY));
-        setAsynchronousLoadPriority(2);
-
-        autoIndent = SciNotesOptions.getSciNotesDisplay().automaticIndent;
-        encoding = Charset.forName(SciNotesOptions.getSciNotesPreferences().encoding).toString();
-        eolStyle = SciNotesOptions.getSciNotesPreferences().eol;
-
-        undo = new CompoundUndoManager(this);
-        addUndoableEditListener(undo);
-        undoManagerEnabled = true;
-
         contentModified = false;
-        contentModifiedSinceBackup = false;
+
+        if (paned) {
+            setAsynchronousLoadPriority(2);
+
+            autoIndent = SciNotesOptions.getSciNotesDisplay().automaticIndent;
+            encoding = Charset.forName(SciNotesOptions.getSciNotesPreferences().encoding).toString();
+            eolStyle = SciNotesOptions.getSciNotesPreferences().eol;
+
+            undo = new CompoundUndoManager(this);
+            addUndoableEditListener(undo);
+            undoManagerEnabled = true;
+
+            contentModifiedSinceBackup = false;
+        }
     }
 
     /**
@@ -358,7 +368,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void setContentModified(boolean contentModified) {
         this.contentModified = contentModified;
-        if (!contentModified) {
+        if (pane != null && !contentModified) {
             undo.setReference();
             pane.updateTitle();
         } else {
@@ -767,21 +777,24 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             int index = root.getElementIndex(ev.getOffset());
             ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
             boolean broken = line.isBroken();
-            if (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
-                    || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
+            if (pane != null && (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
+                                 || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken()))) {
                 pane.repaint();
             }
         }
 
-        KeywordEvent e = pane.getKeywordEvent();
-        if (ScilabLexerConstants.isLaTeX(e.getType())) {
-            try {
-                int start = e.getStart();
-                int end = start + e.getLength();
-                String exp = getText(start, e.getLength());
-                int height = pane.getScrollPane().getHeight() + pane.getScrollPane().getVerticalScrollBar().getValue();
-                ScilabLaTeXViewer.displayExpressionIfVisible(pane, height, exp, start, end);
-            } catch (BadLocationException ex) { }
+        if (pane != null) {
+            KeywordEvent e = pane.getKeywordEvent();
+
+            if (ScilabLexerConstants.isLaTeX(e.getType())) {
+                try {
+                    int start = e.getStart();
+                    int end = start + e.getLength();
+                    String exp = getText(start, e.getLength());
+                    int height = pane.getScrollPane().getHeight() + pane.getScrollPane().getVerticalScrollBar().getValue();
+                    ScilabLaTeXViewer.displayExpressionIfVisible(pane, height, exp, start, end);
+                } catch (BadLocationException ex) { }
+            }
         }
     }
 
