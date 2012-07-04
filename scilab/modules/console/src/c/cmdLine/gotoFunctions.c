@@ -9,14 +9,14 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
+/* for wcwidth and wcswidth */
+#define _XOPEN_SOURCE
+#include <wchar.h>
+
 #include <termios.h>
 #include <curses.h>
 #include <term.h>
 #include <string.h>
-
-/* for wcwidth and wcswidth */
-#define _XOPEN_SOURCE
-#include <wchar.h>
 
 #include <wctype.h>
 #include "BOOL.h"
