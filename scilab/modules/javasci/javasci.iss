@@ -21,7 +21,6 @@
 Source: modules\{#JAVASCI}\license.txt; DestDir: {app}\modules\{#JAVASCI}; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: bin\{#JAVASCI}.dll; DestDir: {app}\bin; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#JAVASCI}\jar\{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#JAVASCI}\jar\org.scilab.modules.{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.quit; DestDir: {app}\modules\{#JAVASCI}\etc; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
