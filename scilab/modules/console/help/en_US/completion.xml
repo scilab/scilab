@@ -69,13 +69,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>returns words that start with the text you pass as parameter.</para>
-    <para>functions: a string matrix of functions name (C gateways). see 'what'.</para>
-    <para>commands: a string matrix of command words (reserved). see 'what'.</para>
-    <para>variables: a string matrix of variables names. see 'who'.</para>
-    <para>macros: a string matrix of macros names. see 'who'.</para>
-    <para>graphic_properties: a string matrix</para>
-    <para>files: a string matrix </para>
+    <para>Returns words that start with the text you pass as parameter.</para>
+    <para>functions: a string matrix of functions name (C gateways). See <link linkend="what">what</link>.</para>
+    <para>commands: a string matrix of command words (reserved). See <link linkend="what">what</link>.</para>
+    <para>variables: a string matrix of variables names. See <link linkend="who">who</link>.</para>
+    <para>macros: a string matrix of macros names. See <link linkend="who">who</link>.</para>
+    <para>graphic_properties: a string matrix of graphic properties.</para>
+    <para>files: a string matrix of files names.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
