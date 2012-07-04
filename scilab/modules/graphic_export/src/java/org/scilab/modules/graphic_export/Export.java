@@ -235,7 +235,9 @@ public class Export {
             } finally {
                 if (exporter != null) {
                     exporter.dispose();
+                    visitorsToExp.remove(visitor);
                 }
+                DrawerVisitor.changeVisitor(figure, null);
             }
         }
 
