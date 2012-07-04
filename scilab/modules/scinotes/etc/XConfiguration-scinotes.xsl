@@ -401,4 +401,30 @@
       </Grid>
     </Title>
   </xsl:template>
+
+  <xsl:template match="scinotes-header">
+    <Title text="Default header">
+      <Grid>
+        <Checkbox checked="{@enable}" selected-value="true" unselected-value="false" listener="ActionListener" text="Add a default header to new file" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+          <actionPerformed choose="enable">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </Checkbox>
+        <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
+	<TextArea gridx="1" gridy="2" weightx="1" gridwidth="2" weighty="0" anchor="west"
+		  editable="true"
+		  rows="15"
+		  scroll="true"
+		  listener="EntryListener"
+		  enable="{@enable}">
+	  <xsl:attribute name="text">
+	    <xsl:value-of select="string(child::node()[1])" disable-output-escaping="yes"/>
+	  </xsl:attribute>
+	  <entryChanged choose-child="1">
+            <xsl:call-template name="context"/>
+          </entryChanged>
+	</TextArea>
+      </Grid>
+      </Title>
+    </xsl:template> 
 </xsl:stylesheet>

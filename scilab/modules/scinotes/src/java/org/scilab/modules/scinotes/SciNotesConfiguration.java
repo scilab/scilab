@@ -43,6 +43,7 @@ public class SciNotesConfiguration implements XConfigurationListener {
         public boolean systemfont;
         public boolean font;
         public boolean keymap;
+        public boolean header;
 
         public Conf(Set<String> path) {
             if (path.contains("ALL")) {
@@ -53,6 +54,7 @@ public class SciNotesConfiguration implements XConfigurationListener {
                 systemfont = true;
                 font = true;
                 keymap = true;
+                header = true;
             } else {
                 preferences = path.contains(SciNotesOptions.PREFERENCESPATH);
                 display = path.contains(SciNotesOptions.DISPLAYPATH);
@@ -61,11 +63,12 @@ public class SciNotesConfiguration implements XConfigurationListener {
                 systemfont = path.contains(ScilabContext.SYSTEMFONTPATH);
                 font = path.contains(ScilabContext.FONTPATH);
                 keymap = path.contains(SciNotesOptions.KEYMAPPATH);
+                header = path.contains(SciNotesOptions.HEADERPATH);
             }
         }
 
         public boolean changed() {
-            return preferences || display || autosave || colors || systemfont || font || keymap;
+            return preferences || display || autosave || colors || systemfont || font || keymap || header;
         }
     }
 }

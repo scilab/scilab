@@ -491,11 +491,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Init the pane
      */
-    public void init() {
+    public void init(final int pos) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 requestFocus();
-                setCaretPosition(0);
+                setCaretPosition(pos);
             }
         });
     }

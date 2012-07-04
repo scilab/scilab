@@ -13,6 +13,13 @@
 package org.scilab.modules.scinotes;
 
 import java.awt.Color;
+import java.text.DateFormat;
+import java.util.Calendar;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 
@@ -28,11 +35,13 @@ public class SciNotesOptions {
     public static final String PREFERENCESPATH = "//scinotes/body/scinotes-preferences";
     public static final String DISPLAYPATH = "//scinotes/display/body/scinotes-display";
     public static final String AUTOSAVEPATH = "//scinotes/autosave/body/scinotes-autosave";
+    public static final String HEADERPATH = "//scinotes/header/body/scinotes-header";
     public static final String KEYMAPPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"scinotes\"]/action";
 
     private static SciNotesOptions.Preferences prefs;
     private static SciNotesOptions.Display display;
     private static SciNotesOptions.Autosave autosave;
+    private static SciNotesOptions.Header header;
 
     private static Document doc;
 
@@ -178,6 +187,35 @@ public class SciNotesOptions {
         }
     }
 
+    /* scinotes-header */
+    @XConfAttribute
+    public static class Header {
+
+        public String header;
+        public boolean enable;
+
+        @XConfAttribute(tag = "scinotes-header", attributes = {"enable"})
+        private void set(boolean enable) {
+            this.enable = enable;
+            if (enable) {
+                XPathFactory xpathFactory = XPathFactory.newInstance();
+                XPath xp = xpathFactory.newXPath();
+                try {
+                    header = (String) xp.compile("string(" + HEADERPATH + ")").evaluate(doc, XPathConstants.STRING);
+                } catch (XPathExpressionException e) {
+                    System.err.println(e);
+                }
+
+                if (header != null) {
+                    Calendar cal = Calendar.getInstance();
+                    DateFormat dateFormat = DateFormat.getDateInstance();
+                    header = header.replaceAll("\\{\\$current-year\\}", Integer.toString(cal.get(Calendar.YEAR)));
+                    header = header.replaceAll("\\{\\$current-date\\}", dateFormat.format(cal.getTime()));
+                }
+            }
+        }
+    }
+
     public static void invalidate(SciNotesConfiguration.Conf conf) {
         if (conf.preferences) {
             prefs = null;
@@ -189,6 +227,10 @@ public class SciNotesOptions {
         }
         if (conf.autosave) {
             autosave = null;
+            doc = null;
+        }
+        if (conf.header) {
+            header = null;
             doc = null;
         }
     }
@@ -224,5 +266,18 @@ public class SciNotesOptions {
         }
 
         return autosave;
+    }
+
+    public static final SciNotesOptions.Header getSciNotesHeader() {
+        if (header == null) {
+            if (doc == null) {
+                doc = XConfiguration.getXConfigurationDocument();
+            }
+
+            header = XConfiguration.get(SciNotesOptions.Header.class, doc, HEADERPATH)[0];
+        }
+
+
+        return header;
     }
 }

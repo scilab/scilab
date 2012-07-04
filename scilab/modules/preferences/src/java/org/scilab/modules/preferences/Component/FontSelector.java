@@ -228,7 +228,6 @@ public class FontSelector extends Panel implements XComponent, XChooser {
         return new String[] {fontname(), fontface(), fontsize()};
     }
 
-
     public void addActionListener(ActionListener actionListener) {
         this.actionListener = actionListener;
     }

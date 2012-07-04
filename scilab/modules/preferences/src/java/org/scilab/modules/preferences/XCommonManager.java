@@ -528,12 +528,13 @@ public abstract class XCommonManager {
         }
 
         if (!getAttribute(action, "choose").equals(NAV) && enable) {
-            String context = getAttribute(action, "context");
-            Element element = getElementByContext(context);
-
             if (source == null) {
                 return false;
             }
+
+            String context = getAttribute(action, "context");
+            Element element = getElementByContext(context);
+
             if (source instanceof XChooser) {
                 XChooser chooser = (XChooser) source;
                 Object value = chooser.choose();
@@ -561,6 +562,37 @@ public abstract class XCommonManager {
             }
             return true;
         }
+
+        if (!getAttribute(action, "choose-child").equals(NAV) && enable) {
+            if (source == null) {
+                return false;
+            }
+
+            int childNb = Integer.parseInt(getAttribute(action, "choose-child")) - 1;
+            String context = getAttribute(action, "context");
+            Element element = getElementByContext(context);
+            NodeList list = element.getChildNodes();
+            if (element == null || childNb < 0 || childNb >= list.getLength()) {
+                return false;
+            }
+            Node child = list.item(childNb);
+
+            if (source instanceof XChooser) {
+                XChooser chooser = (XChooser) source;
+                Object value = chooser.choose();
+                if (value != null) {
+                    child.setTextContent(value.toString());
+                    XConfiguration.addModifiedPath(getNodePath(element));
+                    refreshDisplay();
+                    updated = true;
+                }
+            } else {
+                System.err.println("@choose-child attribute only valid on choosers " + "(SELECT, COLOR, FILE, ENTRY,...)");
+            }
+
+            return true;
+        }
+
         return false;
     }
 

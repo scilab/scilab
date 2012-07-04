@@ -28,6 +28,9 @@ Bug Fixes
 
 * Bug #9830 fixed - leastsq did not match the information of optim.
 
+* Bug #9884 fixed - Add in prefs the possibility to add a default header on
+      	    	    new files in SciNotes.
+
 * Bug #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.

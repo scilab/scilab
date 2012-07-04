@@ -33,8 +33,9 @@ import javax.swing.border.TitledBorder;
 import org.scilab.modules.preferences.Component.Entry;
 import org.scilab.modules.preferences.Component.FileSelector;
 import org.scilab.modules.preferences.Component.Scroll;
-import org.scilab.modules.preferences.Component.Table;
 import org.scilab.modules.preferences.Component.Select;
+import org.scilab.modules.preferences.Component.Table;
+import org.scilab.modules.preferences.Component.TextArea;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -260,6 +261,11 @@ public class XUpdateVisitor {
 
             if (component instanceof FileSelector) {
                 ((FileSelector) component).addDocumentListener(sentinel);
+                return;
+            }
+
+            if (component instanceof TextArea) {
+                ((TextArea) component).addDocumentListener(sentinel);
                 return;
             }
         }

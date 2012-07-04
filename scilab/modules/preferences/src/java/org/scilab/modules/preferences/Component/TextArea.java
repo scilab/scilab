@@ -13,23 +13,32 @@
 package org.scilab.modules.preferences.Component;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
+import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
 
 import org.w3c.dom.Node;
 
-/** 
+/**
  * Implementation of a TextArea.
  *
  * @author Calixte DENIZET
  *
  */
-public class TextArea extends Panel implements XComponent {
+public class TextArea extends Panel implements XComponent, XChooser, DocumentListener {
 
     /** Universal identifier for serialization.
      *
@@ -37,13 +46,15 @@ public class TextArea extends Panel implements XComponent {
     private static final long serialVersionUID = -7007541669965737408L;
 
     private JTextArea textarea;
+    private JScrollPane scrollPane;
+    private ActionListener actionListener;
 
     /** Define the set of actuators.
      *
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        String [] actuators = {"enable", "text", "columns", "rows", "editable"};
+        String [] actuators = {"enable", "text", "columns", "rows", "editable", "scroll"};
         return actuators;
     }
 
@@ -53,9 +64,12 @@ public class TextArea extends Panel implements XComponent {
      */
     public TextArea(final Node peer) {
         super(peer);
-	textarea = new JTextArea();
-	textarea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-	add(textarea);
+        textarea = new JTextArea();
+        textarea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        scrollPane = new JScrollPane(textarea);
+        add(scrollPane);
+        textarea.setFocusable(true);
+        textarea.setColumns(10);
         refresh(peer);
     }
 
@@ -66,8 +80,9 @@ public class TextArea extends Panel implements XComponent {
     public final void refresh(final Node peer) {
         String text = XCommonManager.getAttribute(peer, "text");
         String columns = XCommonManager.getAttribute(peer, "columns");
-	String rows = XCommonManager.getAttribute(peer, "rows");
-	String editable = XCommonManager.getAttribute(peer, "editable");
+        String rows = XCommonManager.getAttribute(peer, "rows");
+        String editable = XCommonManager.getAttribute(peer, "editable");
+        String scroll = XCommonManager.getAttribute(peer, "scroll");
 
         if (!text.equals(text())) {
             text(text);
@@ -85,8 +100,47 @@ public class TextArea extends Panel implements XComponent {
             editable(editable);
         }
 
+        if (!scroll.equals(scroll())) {
+            scroll(scroll);
+        }
+
         boolean enable = XConfigManager.getBoolean(peer, "enable", true);
         textarea.setEnabled(enable);
+        JScrollBar bar = scrollPane.getVerticalScrollBar();
+        if (bar != null) {
+            bar.setEnabled(enable);
+        }
+
+        bar = scrollPane.getHorizontalScrollBar();
+        if (bar != null) {
+            bar.setEnabled(enable);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void changedUpdate(DocumentEvent e) { }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void insertUpdate(DocumentEvent e) {
+        update();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void removeUpdate(DocumentEvent e) {
+        update();
+    }
+
+    private void update() {
+        if (actionListener != null) {
+            ActionEvent transmit = new ActionEvent(this, 0, "TextArea change", System.currentTimeMillis(), 0);
+            actionListener.actionPerformed(transmit);
+        }
     }
 
     /** Sensor for 'text' attribute.
@@ -140,7 +194,7 @@ public class TextArea extends Panel implements XComponent {
      * @param text : the attribute value.
      */
     public final void editable(final String editable) {
-	textarea.setEditable(editable.equalsIgnoreCase("true"));
+        textarea.setEditable(editable.equalsIgnoreCase("true"));
     }
 
     /** Sensor for 'columns' attribute.
@@ -155,8 +209,33 @@ public class TextArea extends Panel implements XComponent {
      *
      * @param text : the attribute value.
      */
+    public final void scroll(final String scroll) {
+        scrollPane.setVerticalScrollBarPolicy(scroll.equalsIgnoreCase("true") ? ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED : ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(scroll.equalsIgnoreCase("true") ? ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED : ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    }
+
+    /** Sensor for 'columns' attribute.
+     *
+     * @return the attribute value.
+     */
+    public final String scroll() {
+        return Boolean.toString(scrollPane.getVerticalScrollBarPolicy() == ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+    }
+
+    /** Actuator for 'text' attribute.
+     *
+     * @param text : the attribute value.
+     */
     public final void text(final String text) {
         textarea.setText(text);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        this.actionListener = actionListener;
+    }
+
+    public void addDocumentListener(DocumentListener listener) {
+        textarea.getDocument().addDocumentListener(listener);
     }
 
     /** Actual response read by the listener.
