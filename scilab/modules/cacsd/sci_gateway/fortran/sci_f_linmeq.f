@@ -616,13 +616,18 @@ C
                JOB ='X'
             endif
 C
-            if(.NOT.CREATEVAR(NBVARS+1,'d',LDC,N,lCC)) RETURN
-            call DCOPY (N,stk(lC),1,stk(lCC),1)
-            call SB03MD (DICO ,JOB ,FACT ,TRANA ,N ,stk(lA), LDA ,
-     $         stk(lU), LDU ,stk(lCC),LDC ,SCALE ,SEP ,FERR, stk(lWR),
-     $         stk(lWI), istk(lIWORK), stk(lDWORK), NDWORK ,INFO )
-            call DCOPY (N,stk(lCC),1,stk(lC),1)
-
+            if (MC.LT.LDC )THEN
+                if(.NOT.CREATEVAR(NBVARS+1,'d',LDC,N,lCC)) RETURN
+                call DCOPY (N*MC,stk(lC),1,stk(lCC),1)
+                call SB03MD (DICO,JOB,FACT,TRANA,N,stk(lA),LDA,
+     $             stk(lU),LDU,stk(lCC),LDC,SCALE,SEP,FERR,stk(lWR),
+     $             stk(lWI),istk(lIWORK),stk(lDWORK),NDWORK,INFO)
+                call DCOPY (N*MC,stk(lCC),1,stk(lC),1)
+            else
+                call SB03MD (DICO,JOB,FACT,TRANA,N,stk(lA),LDA,
+     $             stk(lU),LDU,stk(lC),LDC,SCALE,SEP,FERR,stk(lWR),
+     $             stk(lWI),istk(lIWORK),stk(lDWORK),NDWORK,INFO)
+            endif
 C
          else
 C
