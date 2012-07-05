@@ -192,7 +192,7 @@ void Objfpoly ( double  * x    ,
 
     int closed = 1; /* we close the polyline by default */
 
-    psubwinUID = (char*)getCurrentSubWin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     checkRedrawing();
 
