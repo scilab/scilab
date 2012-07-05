@@ -1791,10 +1791,21 @@ public class XcosDiagram extends ScilabGraph {
         // using a String filename also works on a non-existing file
         final String filename = writeFile.getName();
 
-        // if the user specify an extension, select it if supported ; append the
-        // extension otherwise
-        final XcosFileType userExtension = XcosFileType.findFileType(filename);
-        if (userExtension == null || !XcosFileType.getAvailableSaveFormats().contains(userExtension)) {
+        /*
+         * Look for the user extension
+         * if it does not exists, append a default one
+         *
+         * if the specified extension is handled, update the save format ;
+         * else append a default extension and use the default format
+         */
+        XcosFileType userExtension = XcosFileType.findFileType(filename);
+        if (userExtension == null) {
+            writeFile = new File(writeFile.getParent(), filename + format.getDottedExtension());
+            userExtension = format;
+        }
+        if (XcosFileType.getAvailableSaveFormats().contains(userExtension)) {
+            format = userExtension;
+        } else {
             writeFile = new File(writeFile.getParent(), filename + format.getDottedExtension());
         }
 
