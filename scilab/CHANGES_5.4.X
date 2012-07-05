@@ -41,6 +41,9 @@ Bug Fixes
 * Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
                       repercuted.
 
+* Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
+                     correctly.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
