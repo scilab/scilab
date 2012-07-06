@@ -92,10 +92,7 @@ GRAPHICS_IMPEXP char * createNewFigureWithAxes()
      * Clone the default axes
      */
     cloneAxesModel(pFigureUID);
-
     setCurrentFigure(pFigureUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pFigureUID, jni_string, 1);
-
     /*
      * Force axes size after window creation ( Java )
      */
@@ -103,6 +100,7 @@ GRAPHICS_IMPEXP char * createNewFigureWithAxes()
     setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, axesSize, jni_int_vector, 2);
 
     // return the reference to the current figure
+    releaseGraphicObjectProperty(__GO_PARENT__, pFigureUID, jni_string, 1);
     return (char*)getCurrentFigure();
 }
 
