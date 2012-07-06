@@ -66,6 +66,8 @@ Bug Fixes
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
+* Bug #11422 fixed - datatips did not work when the figure contained uicontrols.
+
 * Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
                      rather than only the variable "a".
 

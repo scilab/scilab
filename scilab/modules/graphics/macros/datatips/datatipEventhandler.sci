@@ -295,6 +295,9 @@ function ax_handle=getAxes(pt,fig)
   if size(axes,'*')==1 then ax_handle=axes;return,end
   sz=fig.axes_size;
   for k=1:size(axes,'*')
+    if axes(k).type <> "Axes" then // uicontrol
+      continue
+    end
     ax_handle=axes(k);
     xbounds=ax_handle.axes_bounds(:,1)*sz(1);
     ybounds=ax_handle.axes_bounds(:,2)*sz(2);
