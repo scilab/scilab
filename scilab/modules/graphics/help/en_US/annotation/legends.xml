@@ -128,7 +128,7 @@
   </refsection>
   <refsection>
     <title>Sample</title>
-    <scilab:image>
+    <!--<scilab:image>
       subplot(221)
       t=0:0.1:2*%pi;
       plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
@@ -148,7 +148,7 @@
       t=0:0.1:2*%pi;
       plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
       legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
-    </scilab:image>
+    </scilab:image>-->
   </refsection>
   <refsection>
     <title>Examples</title>
