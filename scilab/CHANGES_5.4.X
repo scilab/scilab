@@ -1,4 +1,4 @@
-﻿            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
+            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
 
 
@@ -123,6 +123,8 @@ Bug Fixes
 
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
+
+* Bug #10385 fixed - It was not possible to configure default web browser.
 
 * Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
 
