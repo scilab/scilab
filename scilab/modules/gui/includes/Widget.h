@@ -13,7 +13,6 @@
 #ifndef __WIDGET_H__
 #define __WIDGET_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Request the focus for a Scilab Widget

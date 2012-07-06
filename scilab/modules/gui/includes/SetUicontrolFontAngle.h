@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_FOTNANGLE_H__
 #define __SET_UICONTROL_FONTANGLE_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the font angle of a uicontrol

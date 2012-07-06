@@ -16,7 +16,6 @@
 
 #include <stdlib.h>
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "BOOL.h"
 

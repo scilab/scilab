@@ -13,7 +13,6 @@
 #ifndef __GET_UIMENU_LABEL_H__
 #define __GET_UIMENU_LABEL_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**

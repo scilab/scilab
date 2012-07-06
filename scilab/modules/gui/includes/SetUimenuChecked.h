@@ -13,7 +13,6 @@
 #ifndef __SETUIMENUCHECKED_H__
 #define __SETUIMENUCHECKED_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**

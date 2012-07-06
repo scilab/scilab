@@ -21,24 +21,11 @@
 #include "localization.h"
 #include "stricmp.h"
 #include "stack-c.h"
-#include "sciprint.h"
-#include "ObjectStructure.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
-#include "PushButton.h"         /* setCurentFigureAsPushButtonParent */
-#include "EditBox.h"            /* setCurentFigureAsEditBoxParent */
-#include "Label.h"              /* setCurentFigureAsLabelParent */
-#include "CheckBox.h"           /* setCurentFigureAsCheckBoxParent */
-#include "RadioButton.h"        /* setCurentFigureAsRadioButtonParent */
-#include "Slider.h"             /* setCurentFigureAsSliderParent */
-#include "PopupMenu.h"          /* setCurentFigureAsPopupMenuParent */
-#include "ListBox.h"            /* setCurentFigureAsListBoxParent */
-#include "UiTable.h"            /* setCurentFigureAsUiTableParent */
-#include "UiDisplayTree.h"      /* setCurentFigureAsUiDisplayTreeParent */
 #include "Scierror.h"
 #include "FigureList.h"         /* getFigureFromIndex */
 #include "Widget.h"             /* requestWidgetFocus */
-#include "SetUicontrolPosition.h"
 #include "freeArrayOfString.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -83,8 +70,9 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     int lw = 0;
     char *propertyPart = NULL;
 
-    char *parentType;
-    char *parentStyle;
+    char *parentType = NULL;
+    char *parentStyle = NULL;
+    char const* pstCurrentFigure = NULL;
 
     CheckLhs(0, 1);
 
@@ -95,8 +83,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         /* Create a new pushbutton */
         GraphicHandle = getHandle(CreateUIControl(NULL));
 
-        /* Set the parent */
-        setCurentFigureAsPushButtonParent((char*)getObjectFromHandle(GraphicHandle));
+        /* Set current figure as parent */
+        pstCurrentFigure = getCurrentFigure();
+        if (pstCurrentFigure == NULL)
+        {
+            pstCurrentFigure = createNewFigureWithAxes();
+        }
+        setGraphicObjectRelationship(pstCurrentFigure, (char*)getObjectFromHandle(GraphicHandle));
     }
     else if (Rhs == 1)
     {
@@ -355,7 +348,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             char *graphicObjectUID = (char*)getObjectFromHandle(GraphicHandle);
 
             /* Set the parent */
-            char *pstCurrentFigure = (char*)getCurrentFigure();
+            pstCurrentFigure = (char*)getCurrentFigure();
 
             if (pstCurrentFigure == NULL)
             {

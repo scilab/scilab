@@ -14,7 +14,6 @@
 #ifndef __GETUIOBJECTENABLE_H__
 #define __GETUIOBJECTENABLE_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**

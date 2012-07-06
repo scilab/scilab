@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_HORIZONTALALIGNMENT_H__
 #define __SET_UICONTROL_HORIZONTALALIGNMENT_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the horizontal alignment property of a uicontrol (text...)

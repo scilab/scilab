@@ -19,7 +19,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "MALLOC.h"             /* MALLOC */
-#include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "gw_gui.h"
 #include "localization.h"
@@ -95,7 +94,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return FALSE;
             }
-            pParentUID = (char*)getObjectFromHandle((long)*hstk(stkAdr));
+            pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
             if (pParentUID != NULL)
             {
                 getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
@@ -161,65 +160,65 @@ int sci_uimenu(char *fname, unsigned long fname_len)
         /* Read property value */
         switch (VarType(iPropertyValuePositionIndex))
         {
-        case sci_matrix:
-            if (isUserDataProperty)
-            {
-                nbRow = -1;
-                nbCol = -1;
-                posStackOrAdr = iPropertyValuePositionIndex;
-            }
-            else
-            {
-                GetRhsVar(iPropertyValuePositionIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                posStackOrAdr = stkAdr;
-            }
-            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_matrix, nbRow, nbCol, propertyName);
-            break;
-        case sci_strings:
-            if (isUserDataProperty)
-            {
-                nbRow = -1;
-                nbCol = -1;
-                posStackOrAdr = iPropertyValuePositionIndex;
-            }
-            else
-            {
-                GetRhsVar(iPropertyValuePositionIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                posStackOrAdr = stkAdr;
-            }
-            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_strings, nbRow, nbCol, propertyName);
-            break;
-        case sci_handles:
-            if (isUserDataProperty)
-            {
-                nbRow = -1;
-                nbCol = -1;
-                posStackOrAdr = iPropertyValuePositionIndex;
-            }
-            else
-            {
-                GetRhsVar(iPropertyValuePositionIndex, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                posStackOrAdr = stkAdr;
-            }
-            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_handles, nbRow, nbCol, propertyName);
-            break;
-        case sci_list:
-            if (isUserDataProperty)
-            {
-                nbRow = -1;
-                nbCol = -1;
-                posStackOrAdr = iPropertyValuePositionIndex;
-            }
-            else
-            {
-                GetRhsVar(iPropertyValuePositionIndex, LIST_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                posStackOrAdr = iPropertyValuePositionIndex;
-            }
-            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_list, nbRow, nbCol, propertyName);
-            break;
-        default:
-            setStatus = SET_PROPERTY_ERROR;
-            break;
+            case sci_matrix:
+                if (isUserDataProperty)
+                {
+                    nbRow = -1;
+                    nbCol = -1;
+                    posStackOrAdr = iPropertyValuePositionIndex;
+                }
+                else
+                {
+                    GetRhsVar(iPropertyValuePositionIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                    posStackOrAdr = stkAdr;
+                }
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_matrix, nbRow, nbCol, propertyName);
+                break;
+            case sci_strings:
+                if (isUserDataProperty)
+                {
+                    nbRow = -1;
+                    nbCol = -1;
+                    posStackOrAdr = iPropertyValuePositionIndex;
+                }
+                else
+                {
+                    GetRhsVar(iPropertyValuePositionIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                    posStackOrAdr = stkAdr;
+                }
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_strings, nbRow, nbCol, propertyName);
+                break;
+            case sci_handles:
+                if (isUserDataProperty)
+                {
+                    nbRow = -1;
+                    nbCol = -1;
+                    posStackOrAdr = iPropertyValuePositionIndex;
+                }
+                else
+                {
+                    GetRhsVar(iPropertyValuePositionIndex, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                    posStackOrAdr = stkAdr;
+                }
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_handles, nbRow, nbCol, propertyName);
+                break;
+            case sci_list:
+                if (isUserDataProperty)
+                {
+                    nbRow = -1;
+                    nbCol = -1;
+                    posStackOrAdr = iPropertyValuePositionIndex;
+                }
+                else
+                {
+                    GetRhsVar(iPropertyValuePositionIndex, LIST_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                    posStackOrAdr = iPropertyValuePositionIndex;
+                }
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_list, nbRow, nbCol, propertyName);
+                break;
+            default:
+                setStatus = SET_PROPERTY_ERROR;
+                break;
         }
         if (setStatus == SET_PROPERTY_ERROR)
         {

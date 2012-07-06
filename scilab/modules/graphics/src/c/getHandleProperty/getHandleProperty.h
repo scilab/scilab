@@ -28,7 +28,6 @@
 #include "GetUicontrolPosition.h"
 #include "GetUicontrolBackgroundColor.h"
 #include "GetUiobjectForegroundColor.h"
-#include "GetUiobjectCallback.h"
 #include "GetUicontrolFontWeight.h"
 #include "GetUicontrolFontUnits.h"
 #include "GetUicontrolFontSize.h"

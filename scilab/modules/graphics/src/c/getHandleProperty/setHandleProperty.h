@@ -30,7 +30,6 @@
 #include "SetUicontrolString.h"
 #include "SetUicontrolBackgroundColor.h"
 #include "SetUiobjectForegroundColor.h"
-#include "SetUiobjectCallback.h"
 #include "SetUicontrolFontWeight.h"
 #include "SetUicontrolFontUnits.h"
 #include "SetUicontrolFontSize.h"

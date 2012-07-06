@@ -14,7 +14,7 @@
 #ifndef __GET_UICONTROL_BACKGROUNDCOLOR_H__
 #define __GET_UICONTROL_BACKGROUNDCOLOR_H__
 
-#include "ObjectStructure.h"
+#include "BOOL.h"
 #include "returnProperty.h"
 #include "dynlib_gui.h"
 /**

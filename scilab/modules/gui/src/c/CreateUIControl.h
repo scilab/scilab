@@ -11,7 +11,6 @@
  *
  */
 
-#include "ObjectStructure.h" /* sciPointObj */
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "localization.h"

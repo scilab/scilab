@@ -194,18 +194,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\displayUiTree.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
-    <ClCompile Include="..\cpp\UiDisplayTree.cpp" />
-    <ClCompile Include="..\cpp\UiTable.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
     <ClCompile Include="..\cpp\CallColorChooser.cpp" />
-    <ClCompile Include="..\cpp\CallFigure.cpp" />
     <ClCompile Include="..\cpp\CallFontChooser.cpp" />
     <ClCompile Include="..\cpp\CallHelpBrowser.cpp" />
     <ClCompile Include="..\cpp\CallJuigetfile.cpp" />
@@ -213,17 +209,13 @@
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp" />
     <ClCompile Include="..\cpp\CallMessageBox.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
-    <ClCompile Include="..\cpp\CallWaitBar.cpp" />
-    <ClCompile Include="..\cpp\CheckBox.cpp" />
     <ClCompile Include="checkColorRange.c" />
     <ClCompile Include="..\cpp\ContextMenu.cpp" />
     <ClCompile Include="CreateUIControl.c" />
     <ClCompile Include="CreateUimenu.c" />
     <ClCompile Include="..\cpp\displaytree.cpp" />
     <ClCompile Include="DllmainGUI.c" />
-    <ClCompile Include="..\cpp\EditBox.cpp" />
     <ClCompile Include="..\cpp\exportUserInterface.cpp" />
-    <ClCompile Include="..\cpp\Frame.cpp" />
     <ClCompile Include="getMainWindowTitle.c" />
     <ClCompile Include="..\cpp\GetScreenProperty.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolBackgroundColor.cpp" />
@@ -246,10 +238,8 @@
     <ClCompile Include="..\cpp\GetUicontrolVerticalAlignment.cpp" />
     <ClCompile Include="..\cpp\GetUimenuChecked.cpp" />
     <ClCompile Include="..\cpp\GetUimenuLabel.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectVisible.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_gui.c" />
     <ClCompile Include="iconifyMainWindow.c" />
     <ClCompile Include="InitializeGUI.c" />
@@ -257,13 +247,8 @@
     <ClCompile Include="..\jni\Juigetfile.cpp" />
     <ClCompile Include="..\jni\Jxclick.cpp" />
     <ClCompile Include="..\jni\Jxgetmouse.cpp" />
-    <ClCompile Include="..\cpp\Label.cpp" />
-    <ClCompile Include="..\cpp\ListBox.cpp" />
     <ClCompile Include="..\jni\LookAndFeelManager.cpp" />
     <ClCompile Include="messageboxoptions.c" />
-    <ClCompile Include="..\cpp\PopupMenu.cpp" />
-    <ClCompile Include="..\cpp\PushButton.cpp" />
-    <ClCompile Include="..\cpp\RadioButton.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_about.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c" />
@@ -313,7 +298,6 @@
     <ClCompile Include="..\cpp\SetUicontrolListboxTop.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolMax.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolMin.cpp" />
-    <ClCompile Include="..\cpp\SetUicontrolParent.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolPosition.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolRelief.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolSliderStep.cpp" />
@@ -323,14 +307,10 @@
     <ClCompile Include="..\cpp\SetUicontrolVerticalAlignment.cpp" />
     <ClCompile Include="..\cpp\SetUimenuChecked.cpp" />
     <ClCompile Include="..\cpp\SetUimenuLabel.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectVisible.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
-    <ClCompile Include="..\cpp\Slider.cpp" />
     <ClCompile Include="..\cpp\Toolbar.cpp" />
-    <ClCompile Include="UicontrolStyleToString.c" />
     <ClCompile Include="..\jni\UIElementMapper.cpp" />
     <ClCompile Include="..\cpp\UnitsConversion.cpp" />
     <ClCompile Include="..\cpp\Widget.cpp" />

@@ -14,8 +14,8 @@
 #ifndef __GET_UICONTROL_MIN_H__
 #define __GET_UICONTROL_MIN_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the min property of a uicontrol
