@@ -245,7 +245,7 @@ public class ScilabLexerConstants {
      * @param id the type of a token
      * @return the string representation in config file of this token
      */
-    public static String getStringRep(int id) {
+    public final static String getStringRep(int id) {
         if (idTokens == null) {
             idTokens = new HashMap<Integer, String>(TOKENS.size());
             Iterator<String> iterator = TOKENS.keySet().iterator();
@@ -270,7 +270,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is a LaTeX string
      */
-    public static boolean isLaTeX(int type) {
+    public static final boolean isLaTeX(final int type) {
         return type == LATEX || type == LATEXINSTRING;
     }
 
@@ -279,7 +279,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is a piece of Scilab string
      */
-    public static boolean isString(int type) {
+    public static final boolean isString(final int type) {
         return type == STRING || type == WHITE_STRING || type == TAB_STRING;
     }
 
@@ -288,7 +288,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is a LaTeX string
      */
-    public static boolean isComment(int type) {
+    public static final boolean isComment(final int type) {
         return type == COMMENT || type == AUTHORS || type == URL || type == MAIL || type == LATEX || type == WHITE_COMMENT || type == TAB_COMMENT;
     }
 
@@ -297,7 +297,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is helpable
      */
-    public static boolean isHelpable(int type) {
+    public static final boolean isHelpable(final int type) {
         return type == ID
                || type == COMMANDS
                || type == MACROS
@@ -312,12 +312,30 @@ public class ScilabLexerConstants {
                || type == FIELD;
     }
 
+    public static final boolean isSearchable(final int type) {
+        return type == ID
+               || type == COMMANDS
+               || type == MACROS
+               || type == MACROINFILE
+               || type == INPUTOUTPUTARGS
+               || type == OPERATOR
+               || type == FKEYWORD
+               || type == CKEYWORD
+               || type == OSKEYWORD
+               || type == SKEYWORD
+               || type == ELSEIF
+               || type == NUMBER
+               || type == CONSTANTES
+               || type == VARIABLES
+               || type == FIELD;
+    }
+
     /**
      * Can we open the source file of the keyword with type ?
      * @param type the type of the keyword
      * @return true if the keyword is openable
      */
-    public static boolean isOpenable(int type) {
+    public static final boolean isOpenable(final int type) {
         return type == MACROS || type == MACROINFILE;
     }
 
@@ -326,7 +344,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is a part of a matching block
      */
-    public static boolean isMatchable(int type) {
+    public static final boolean isMatchable(final int type) {
         return type == OPENCLOSE
                || type == FKEYWORD
                || type == OSKEYWORD
@@ -338,7 +356,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is clickable
      */
-    public static boolean isClickable(int type) {
+    public static final boolean isClickable(final int type) {
         return type == URL
                || type == MAIL
                || type == MACROS
@@ -350,7 +368,7 @@ public class ScilabLexerConstants {
      * @param type the type of the keyword
      * @return true if the keyword is a part of a matching block
      */
-    public static boolean isOpenClose(int type) {
+    public static final boolean isOpenClose(final int type) {
         return type == OPENCLOSE;
     }
 }

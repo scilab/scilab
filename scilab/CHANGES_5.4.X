@@ -57,6 +57,9 @@ Bug Fixes
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
+* Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
+                     rather than only the variable "a".
+
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
             ================================================================

@@ -229,6 +229,7 @@ public class SciNotesMessages {
 
     public static final String AUTOSAVE_ERROR = Messages.gettext("Cannot save the file %s... stop the backup process");
     public static final String AUTOSAVE_FINISHED = Messages.gettext("Backup finished...");
+    public static final String OCCURENCES_FOUND = Messages.gettext("%s occurences found.");
 
     /**
      * "Change Colors" message
