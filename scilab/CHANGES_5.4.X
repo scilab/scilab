@@ -33,6 +33,9 @@ Bug Fixes
 
 * Bug #10150 fixed - Completion help page moved to the console chapter.
 
+* Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
+                     button.
+
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
