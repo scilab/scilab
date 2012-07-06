@@ -176,7 +176,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         });
 
-        addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+        addKeywordListener(new KeywordAdapter.MouseOverAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 if (ScilabLexerConstants.isClickable(e.getType())) {
                     if (ctrlHit) {
@@ -212,6 +212,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     } else if (ScilabEditorPane.this.editor != null) {
                         ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
                         infoBarChanged = true;
+                        if (hand) {
+                            setCursor(TEXTCURSOR);
+                            hand = false;
+                        }
                     }
                 } else {
                     if (hand) {
@@ -237,7 +241,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         });
 
-        addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+        addKeywordListener(new KeywordAdapter.MouseClickedAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
                     try {
@@ -399,6 +403,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ctrlHit = false;
         } else if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = true;
+            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         } else {
             ctrlHit = false;
         }
@@ -411,6 +416,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = false;
+            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         }
     }
 

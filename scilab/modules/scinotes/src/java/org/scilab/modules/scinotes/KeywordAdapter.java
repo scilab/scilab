@@ -16,7 +16,7 @@ package org.scilab.modules.scinotes;
  * An adaptater for the interface KeywordListener
  * @author Calixte DENIZET
  */
-public abstract class KeywordAdaptater implements KeywordListener {
+public abstract class KeywordAdapter implements KeywordListener {
 
     private int type;
 
@@ -24,15 +24,15 @@ public abstract class KeywordAdaptater implements KeywordListener {
      * Constructor
      * @param type the type of listener (ONMOUSECLICKED or ONMOUSEOVER)
      */
-    protected KeywordAdaptater(int type) {
-	this.type = type;
+    protected KeywordAdapter(int type) {
+        this.type = type;
     }
 
     /**
      * @return the type of this listener
      */
     public int getType() {
-	return type;
+        return type;
     }
 
     /**
@@ -44,26 +44,26 @@ public abstract class KeywordAdaptater implements KeywordListener {
     /**
      * Class to have a KeywordListener attached to a MouseClicked event
      */
-    public abstract static class MouseClickedAdaptater extends KeywordAdaptater {
-	
-	/**
-	 * Constructor
-	 */
-	public MouseClickedAdaptater() {
-	    super(ONMOUSECLICKED);
-	}
+    public abstract static class MouseClickedAdapter extends KeywordAdapter {
+
+        /**
+         * Constructor
+         */
+        public MouseClickedAdapter() {
+            super(ONMOUSECLICKED);
+        }
     }
-    
+
     /**
      * Class to have a KeywordListener attached to a MouseOver event
      */
-    public abstract static class MouseOverAdaptater extends KeywordAdaptater {
-	
-	/**
-	 * Constructor
-	 */
-	public MouseOverAdaptater() {
-	    super(ONMOUSEOVER);
-	}
+    public abstract static class MouseOverAdapter extends KeywordAdapter {
+
+        /**
+         * Constructor
+         */
+        public MouseOverAdapter() {
+            super(ONMOUSEOVER);
+        }
     }
 }

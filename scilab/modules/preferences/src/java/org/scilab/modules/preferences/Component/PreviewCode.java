@@ -28,7 +28,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
-import org.scilab.modules.scinotes.KeywordAdaptater;
+import org.scilab.modules.scinotes.KeywordAdapter;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabEditorKit;
@@ -86,12 +86,12 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.getCaret().setBlinkRate(500);
         previewEditorPane.getCaret().setVisible(true);
         previewEditorPane.setEditable(false);
-        previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+        previewEditorPane.addKeywordListener(new KeywordAdapter.MouseOverAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
             }
         });
-        previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+        previewEditorPane.addKeywordListener(new KeywordAdapter.MouseClickedAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 PreviewCode.this.keywordClicked(e);
             }
