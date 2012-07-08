@@ -88,6 +88,8 @@ Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: defaul
 ;
 Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default full custom; Flags: fixed;
 ;
+Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: default full custom; Flags: fixed;
+;
 Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
@@ -135,8 +137,6 @@ Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: default f
 Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full custom;
 Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full custom;
 Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full custom;
-;
-Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full custom;
 ;
 ;
 Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom; ExtraDiskSpaceRequired: {#TESTS_SIZE}
