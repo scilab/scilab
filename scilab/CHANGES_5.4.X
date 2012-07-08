@@ -68,6 +68,10 @@ GUI
 * Figure closure can now be managed by the user (confirmation, ...) through the
   'closerequestfcn' property.
 
+* F5 and F6 change the focus of the dock element.
+
+* Improvement in the refresh of the dock elements.
+
 
 Obsolete Functions
 ===================
