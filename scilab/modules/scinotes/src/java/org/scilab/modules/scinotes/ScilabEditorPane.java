@@ -414,7 +414,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e the event
      */
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = false;
             preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         }
