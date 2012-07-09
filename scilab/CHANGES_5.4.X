@@ -44,6 +44,9 @@ Bug Fixes
 * Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
                       repercuted.
 
+* Bug #10915 fixed - It was not possible to select several files when using
+                     button "Open file" in console toolbar.
+
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
 
