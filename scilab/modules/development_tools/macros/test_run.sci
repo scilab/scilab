@@ -402,6 +402,9 @@ function status = test_module(_params)
     end
 
     printf("%s", displayModuleName);
+    if length(displayModuleName) >= 50 then
+      printf(" ");
+    end
     for j = length(displayModuleName):50
       printf(".");
     end
