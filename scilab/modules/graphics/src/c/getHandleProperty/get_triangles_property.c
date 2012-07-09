@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_triangles_property(char *pobjUID)
+int get_triangles_property(void* _pvCtx, char* pobjUID)
 {
     double* triangles = NULL;
     int numTriangles = 0;
@@ -44,7 +44,7 @@ int get_triangles_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, &triangles);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void **)&triangles);
 
     if (triangles == NULL)
     {
@@ -52,8 +52,8 @@ int get_triangles_property(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, &piNumTriangles);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
 
-    return sciReturnMatrix(triangles, numTriangles , 5);
+    return sciReturnMatrix(_pvCtx, triangles, numTriangles , 5);
 }
 /*------------------------------------------------------------------------*/

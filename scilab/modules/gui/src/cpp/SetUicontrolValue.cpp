@@ -16,7 +16,7 @@
 
 #include "SetUicontrolValue.hxx"
 
-int SetUicontrolValue(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     double *value = NULL;
     double* truncatedValue = NULL;

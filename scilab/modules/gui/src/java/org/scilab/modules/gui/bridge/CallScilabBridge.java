@@ -51,8 +51,6 @@ import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -61,7 +59,6 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -267,6 +264,7 @@ public class CallScilabBridge {
      * Create a new Window in Scilab GUIs
      * @return the ID of the window in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newWindow() {
         Window window = ScilabWindow.createWindow();
         return UIElementMapper.add(window);
@@ -276,6 +274,7 @@ public class CallScilabBridge {
      * Create a new Menubar in Scilab GUIs
      * @return the ID of the Menubar in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newMenuBar() {
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
         return UIElementMapper.add(menuBar);
@@ -285,6 +284,7 @@ public class CallScilabBridge {
      * Create a new Menu in Scilab GUIs
      * @return the ID of the menu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newMenu() {
         MenuItem menuItem = ScilabMenuItem.createMenuItem(false);
         return UIElementMapper.add(menuItem);
@@ -294,6 +294,7 @@ public class CallScilabBridge {
      * Create a new ContextMenu in Scilab GUIs
      * @return the ID of the ContextMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newContextMenu() {
         ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
         return UIElementMapper.add(contextMenu);
@@ -321,6 +322,7 @@ public class CallScilabBridge {
      * Create a new MessageBox in Scilab GUIs
      * @return the ID of the MessageBox in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newMessageBox() {
         MessageBox messageBox = ScilabMessageBox.createMessageBox();
         return UIElementMapper.add(messageBox);
@@ -330,6 +332,7 @@ public class CallScilabBridge {
      * Create a new WaitBar in Scilab GUIs
      * @return the ID of the WaitBar in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newWaitBar() {
         WaitBar waitBar = ScilabWaitBar.createWaitBar();
         return UIElementMapper.add(waitBar);
@@ -339,6 +342,7 @@ public class CallScilabBridge {
      * Create a new PushButton in Scilab GUIs
      * @return the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newPushButton() {
         PushButton pushButton = ScilabPushButton.createPushButton();
         int id = UIElementMapper.add(pushButton);
@@ -356,6 +360,7 @@ public class CallScilabBridge {
         return id;
     }
 
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void newPushButton(String UID) {
         PushButton pushButton = ScilabPushButton.createPushButton();
         ((ScilabPushButton) pushButton).setIdentifier(UID);
@@ -376,6 +381,7 @@ public class CallScilabBridge {
      * Create a new EditBox in Scilab GUIs
      * @return the ID of the Edit in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newEditBox() {
         EditBox editBox = ScilabEditBox.createEditBox();
         int id = UIElementMapper.add(editBox);
@@ -397,6 +403,7 @@ public class CallScilabBridge {
      * Create a new Label in Scilab GUIs
      * @return the ID of the Label in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newLabel() {
         Label label = ScilabLabel.createLabel();
         int id = UIElementMapper.add(label);
@@ -418,6 +425,7 @@ public class CallScilabBridge {
      * Create a new CheckBox in Scilab GUIs
      * @return the ID of the CheckBox in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newCheckBox() {
         CheckBox checkBox = ScilabCheckBox.createCheckBox();
         int id = UIElementMapper.add(checkBox);
@@ -439,6 +447,7 @@ public class CallScilabBridge {
      * Create a new RadioButton in Scilab GUIs
      * @return the ID of the RadioButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newRadioButton() {
         RadioButton radioButton = ScilabRadioButton.createRadioButton();
         int id = UIElementMapper.add(radioButton);
@@ -460,6 +469,7 @@ public class CallScilabBridge {
      * Create a new UiTable in Scilab GUIs
      * @return the ID of the UiTable in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newUiTable() {
         UiTable uiTable = ScilabUiTable.createUiTable();
         int id = UIElementMapper.add(uiTable);
@@ -481,6 +491,7 @@ public class CallScilabBridge {
      * Create a new UiDisplayTree in Scilab GUIs
      * @return the ID of the UiDisplayTree in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newUiDisplayTree() {
         UiDisplayTree uiTree = ScilabUiDisplayTree.createUiDisplayTree();
         int id = UIElementMapper.add(uiTree);
@@ -502,6 +513,7 @@ public class CallScilabBridge {
      * Create a new Slider in Scilab GUIs
      * @return the ID of the Slider in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newSlider() {
         Slider slider = ScilabSlider.createSlider();
         int id = UIElementMapper.add(slider);
@@ -531,6 +543,7 @@ public class CallScilabBridge {
      * Create a new ListBox in Scilab GUIs
      * @return the ID of the ListBox in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newListBox() {
         ListBox listBox = ScilabListBox.createListBox();
         int id = UIElementMapper.add(listBox);
@@ -552,6 +565,7 @@ public class CallScilabBridge {
      * Create a new PopupMenu in Scilab GUIs
      * @return the ID of the PopupMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newPopupMenu() {
         PopupMenu popupMenu = ScilabPopupMenu.createPopupMenu();
         int id = UIElementMapper.add(popupMenu);
@@ -607,6 +621,7 @@ public class CallScilabBridge {
      * Destroy a Widget
      * @param id the id of the Widget to destroy
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void destroyWidget(int id) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).destroy();
         UIElementMapper.removeMapping(id);
@@ -616,6 +631,7 @@ public class CallScilabBridge {
      * Destroy a Frame
      * @param id the id of the Frame to destroy
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void destroyFrame(int id) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).destroy();
         UIElementMapper.removeMapping(id);
@@ -627,6 +643,7 @@ public class CallScilabBridge {
      * @param figureIndex index of the figure to create
      * @return id of the window
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int newWindow(int figureIndex) {
         Window newWindow = ScilabWindow.createWindow();
 
@@ -700,6 +717,7 @@ public class CallScilabBridge {
      * @param objID the ID of the Widget in the UIElementMapper
      * @param text the text to set to the widget
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetText(int objID, String text) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
     }
@@ -709,6 +727,7 @@ public class CallScilabBridge {
      * @param objID the ID of the Widget in the UIElementMapper
      * @return the text of the widget
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String getWidgetText(int objID) {
         return ((Widget) UIElementMapper.getCorrespondingUIElement(objID)).getText();
     }
@@ -718,6 +737,7 @@ public class CallScilabBridge {
      * @param objID the ID of the Widget in the UIElementMapper
      * @param text the text to set to the Frame
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameText(int objID, String text) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
     }
@@ -727,6 +747,7 @@ public class CallScilabBridge {
      * @param objID the ID of the Frame in the UIElementMapper
      * @return the text of the Frame
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String getFrameText(int objID) {
         return ((Frame) UIElementMapper.getCorrespondingUIElement(objID)).getText();
     }
@@ -742,6 +763,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the object in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFigureAsParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 
@@ -775,6 +797,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setPushButtonParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
@@ -786,6 +809,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removePushButtonFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
@@ -797,6 +821,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setEditBoxParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -808,6 +833,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeEditBoxFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -819,6 +845,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setLabelParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
@@ -830,6 +857,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeLabelFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
@@ -841,6 +869,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setCheckBoxParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -852,6 +881,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeCheckBoxFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -863,6 +893,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setRadioButtonParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
@@ -874,6 +905,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeRadioButtonFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
@@ -885,6 +917,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTableParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
@@ -896,17 +929,20 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeUiTableFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, uiTable);*/
     }
 
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiDisplayTreeParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.addMember(parentTab, uiTree);*/
     }
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeUiDisplayTreeFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
@@ -918,6 +954,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
@@ -929,6 +966,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the Slider in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeSliderFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
@@ -940,6 +978,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the ListBox in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setListBoxParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -951,6 +990,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the ListBox in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeListBoxFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
@@ -962,6 +1002,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setPopupMenuParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
@@ -973,6 +1014,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removePopupMenuFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
@@ -984,6 +1026,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
@@ -995,6 +1038,7 @@ public class CallScilabBridge {
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void removeFrameFromParent(int figureID, int objID) {
         /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
@@ -1005,6 +1049,7 @@ public class CallScilabBridge {
      * Set root Scilab object (the console tab) as the parent of the menu
      * @param objID the id of the menu
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setRootAsParent(int objID) {
         if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
             // Add the menu to the tab
@@ -1032,6 +1077,7 @@ public class CallScilabBridge {
      * @param menuID the id of the parent menu
      * @param objID the id of the menu
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setMenuAsParent(int menuID, int objID) {
 
         if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof CheckBoxMenuItem) {
@@ -1081,8 +1127,8 @@ public class CallScilabBridge {
      * @param callbackString the text of the callback
      * @param callbackType the type of the callback
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-        // TODO Remove me
         //((Widget) UIElementMapper.getCorrespondingUIElement(objID))
         //.setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
@@ -1093,8 +1139,8 @@ public class CallScilabBridge {
      * @param callbackString the text of the callback
      * @param callbackType the type of the callback
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameCallback(int objID, String callbackString, int callbackType) {
-        // TODO Remove me
         //((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
@@ -1364,6 +1410,7 @@ public class CallScilabBridge {
      * @param green the green value for the color
      * @param blue the blue value for the color
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetBackgroundColor(int id, int red, int green, int blue) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setBackground(getGoodColor(red, green, blue));
     }
@@ -1373,6 +1420,7 @@ public class CallScilabBridge {
      * @param id the id of the widget
      * @return the color [R, G, B]
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getWidgetBackgroundColor(int id) {
         Color tmpColor = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
         int[] color = new int[NB_COLORS];
@@ -1389,6 +1437,7 @@ public class CallScilabBridge {
      * @param green the green value for the color
      * @param blue the blue value for the color
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetForegroundColor(int id, int red, int green, int blue) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setForeground(getGoodColor(red, green, blue));
     }
@@ -1398,6 +1447,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @return the color [R, G, B]
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getWidgetForegroundColor(int id) {
         Color tmpColor = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
         int[] color = new int[NB_COLORS];
@@ -1414,6 +1464,7 @@ public class CallScilabBridge {
      * @param green the green value for the color
      * @param blue the blue value for the color
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameBackgroundColor(int id, int red, int green, int blue) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setBackground(getGoodColor(red, green, blue));
     }
@@ -1423,6 +1474,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the color [R, G, B]
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getFrameBackgroundColor(int id) {
         Color tmpColor = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
         int[] color = new int[NB_COLORS];
@@ -1439,6 +1491,7 @@ public class CallScilabBridge {
      * @param green the green value for the color
      * @param blue the blue value for the color
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameForegroundColor(int id, int red, int green, int blue) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setForeground(getGoodColor(red, green, blue));
     }
@@ -1448,6 +1501,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the color [R, G, B]
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getFrameForegroundColor(int id) {
         Color tmpColor = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
         int[] color = new int[NB_COLORS];
@@ -1468,6 +1522,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param name the name of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetFontName(int id, String name) {
         Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
         font = new Font(name, font.getStyle(), font.getSize());
@@ -1479,6 +1534,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @return the name of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String getWidgetFontName(int id) {
         return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont().getName();
     }
@@ -1488,6 +1544,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param weight the weight of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetFontWeight(int id, String weight) {
         Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
@@ -1513,6 +1570,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param angle the angle of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetFontAngle(int id, String angle) {
         Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
@@ -1538,6 +1596,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param size the size of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetFontSize(int id, int size) {
         Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
         font = new Font(font.getName(), font.getStyle(), size);
@@ -1549,6 +1608,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @return the size of the Widget font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getWidgetFontSize(int id) {
         return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
     }
@@ -1558,6 +1618,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param weight the weight of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameFontWeight(int id, String weight) {
         Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
@@ -1583,6 +1644,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param angle the angle of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameFontAngle(int id, String angle) {
         Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
@@ -1608,6 +1670,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param size the size of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameFontSize(int id, int size) {
         Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
         font = new Font(font.getName(), font.getStyle(), size);
@@ -1619,6 +1682,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the size of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getFrameFontSize(int id) {
         return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
     }
@@ -1628,6 +1692,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param name the name of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameFontName(int id, String name) {
         Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
         font = new Font(name, font.getStyle(), font.getSize());
@@ -1639,6 +1704,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the name of the Frame font
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String getFrameFontName(int id) {
         return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont().getName();
     }
@@ -1657,6 +1723,7 @@ public class CallScilabBridge {
      * @param width the width of the Widget
      * @param height the height of the Widget
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetPosition(int id, int x, int y, int width, int height) {
         /* Dimensions must be set before position beacause of PositionConverter */
         UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
@@ -1668,6 +1735,7 @@ public class CallScilabBridge {
      * @param id the id of the widget
      * @return the position (X-coordinate, Y-coordinate, width, height) of the button
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getWidgetPosition(int id) {
         int[] position = new int[POSITION_SIZE];
 
@@ -1687,6 +1755,7 @@ public class CallScilabBridge {
      * @param width the width of the Frame
      * @param height the height of the Frame
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFramePosition(int id, int x, int y, int width, int height) {
         /* Dimensions must be set before position beacause of PositionConverter */
         UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
@@ -1698,6 +1767,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the position (X-coordinate, Y-coordinate, width, height) of the button
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getFramePosition(int id) {
         int[] position = new int[POSITION_SIZE];
 
@@ -1720,6 +1790,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetHorizontalAlignment(int id, String alignment) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setHorizontalAlignment(alignment);
     }
@@ -1729,6 +1800,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetVerticalAlignment(int id, String alignment) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVerticalAlignment(alignment);
     }
@@ -1744,6 +1816,7 @@ public class CallScilabBridge {
      * @param id the id of the Slider
      * @param space the increment value
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderMinorTickSpacing(int id, int space) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMinorTickSpacing(space);
     }
@@ -1753,6 +1826,7 @@ public class CallScilabBridge {
      * @param id the id of the Slider
      * @param space the increment value
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderMajorTickSpacing(int id, int space) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMajorTickSpacing(space);
     }
@@ -1768,6 +1842,7 @@ public class CallScilabBridge {
      * @param id the id of the Slider
      * @param value the minimum value
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderMinValue(int id, int value) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMinimumValue(value);
     }
@@ -1777,6 +1852,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param value the maximum value
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderMaxValue(int id, int value) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMaximumValue(value);
     }
@@ -1791,6 +1867,7 @@ public class CallScilabBridge {
      * Set the slider orientation to vertical
      * @param id the id of the slider
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderVertical(int id) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setVertical();
     }
@@ -1799,6 +1876,7 @@ public class CallScilabBridge {
      * Set the slider orientation to horizontal
      * @param id the id of the slider
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderHorizontal(int id) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setHorizontal();
     }
@@ -1814,6 +1892,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @param status true if multiple selection is enabled
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setListBoxMultipleSelectionEnabled(int id, boolean status) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setMultipleSelectionEnabled(status);
     }
@@ -1824,6 +1903,7 @@ public class CallScilabBridge {
      * @return the text items
      * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String[] getListBoxAllItemsText(int id) {
         return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getAllItemsText();
     }
@@ -1834,6 +1914,7 @@ public class CallScilabBridge {
      * @return the number of items
      * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getListBoxNumberOfItems(int id) {
         return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getNumberOfItems();
     }
@@ -1844,6 +1925,7 @@ public class CallScilabBridge {
      * @param text the text of the items
      * @see org.scilab.modules.gui.listbox.ListBox#setText(java.lang.String[])
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setListBoxText(int id, String[] text) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
     }
@@ -1853,6 +1935,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @param index the index of the element to be displayed at the top of the ListBox.
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setListBoxListBoxTop(int id, int index) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setListBoxTop(index);
     }
@@ -1862,6 +1945,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @return the index of the element displayed at the top of the ListBox
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getListBoxListBoxTop(int id) {
         return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getListBoxTop();
     }
@@ -1878,6 +1962,7 @@ public class CallScilabBridge {
      * @return the text items
      * @see org.scilab.modules.gui.popupmenu.PopupMenu#getAllItemsText()
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static String[] getPopupMenuAllItemsText(int id) {
         return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getAllItemsText();
     }
@@ -1888,6 +1973,7 @@ public class CallScilabBridge {
      * @return the number of items
      * @see org.scilab.modules.gui.popupmenu.PopupMenu#getNumberOfItems()
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getPopupMenuNumberOfItems(int id) {
         return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getNumberOfItems();
     }
@@ -1898,6 +1984,7 @@ public class CallScilabBridge {
      * @param text the text of the items
      * @see org.scilab.modules.gui.popupmenu.PopupMenu#setText(java.lang.String[])
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setPopupMenuText(int id, String[] text) {
         ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
     }
@@ -1913,6 +2000,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @param indices the indices of the items to be selected
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setListBoxSelectedIndices(int id, int[] indices) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndices(indices);
     }
@@ -1922,6 +2010,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @return the indices of the items selected
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int[] getListBoxSelectedIndices(int id) {
         return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndices();
     }
@@ -1931,6 +2020,7 @@ public class CallScilabBridge {
      * @param id the id of the ListBox
      * @return the number of items selected
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getListBoxSelectionSize(int id) {
         return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
     }
@@ -1940,6 +2030,7 @@ public class CallScilabBridge {
      * @param id the id of the PopupMenu
      * @param index the index of the item to be selected
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setPopupMenuSelectedIndex(int id, int index) {
         ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setUserSelectedIndex(index);
     }
@@ -1949,6 +2040,7 @@ public class CallScilabBridge {
      * @param id the id of the PopupMenu
      * @return the index of the item selected
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getPopupMenuSelectedIndex(int id) {
         return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getUserSelectedIndex();
     }
@@ -1958,6 +2050,7 @@ public class CallScilabBridge {
      * @param id the id of the Slider
      * @return the current value of the Slider
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static int getSliderValue(int id) {
         return ((Slider) UIElementMapper.getCorrespondingUIElement(id)).getValue();
     }
@@ -1967,6 +2060,7 @@ public class CallScilabBridge {
      * @param id the id of the Slider
      * @param value the new value
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setSliderValue(int id, int value) {
         ((Slider) UIElementMapper.getCorrespondingUIElement(id)).setUserValue(value);
     }
@@ -1976,6 +2070,7 @@ public class CallScilabBridge {
      * @param id the id of the RadioButton
      * @param status true to set the RadioButton checked
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setRadioButtonChecked(int id, boolean status) {
         ((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
     }
@@ -1985,6 +2080,7 @@ public class CallScilabBridge {
      * @param id the id of the RadioButton
      * @return true if the RadioButton is checked
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isRadioButtonChecked(int id) {
         return ((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
     }
@@ -1994,6 +2090,7 @@ public class CallScilabBridge {
      * @param id the id of the CheckBox
      * @param status true to set the CheckBox checked
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setCheckBoxChecked(int id, boolean status) {
         ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
     }
@@ -2003,6 +2100,7 @@ public class CallScilabBridge {
      * @param id the id of the CheckBox
      * @return true if the CheckBox is checked
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isCheckBoxChecked(int id) {
         return ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
     }
@@ -2018,6 +2116,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetRelief(int id, String reliefType) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
     }
@@ -2027,6 +2126,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameRelief(int id, String reliefType) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
     }
@@ -2076,6 +2176,7 @@ public class CallScilabBridge {
      * @param figNum the figure
      * @param command the name of the Scilab function to call
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setEventHandler(int figNum, String command) {
         //FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandler(command);
     }
@@ -2085,6 +2186,7 @@ public class CallScilabBridge {
      * @param figNum the figure
      * @param status is true to set the event handler active
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setEventHandlerEnabled(int figNum, boolean status) {
         //FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandlerEnabled(status);
     }
@@ -2100,6 +2202,7 @@ public class CallScilabBridge {
      * @param id the id of the waitBar
      * @param message the message of the waitBar
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWaitBarMessage(int id, String[] message) {
         ((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setMessage(message);
     }
@@ -2109,6 +2212,7 @@ public class CallScilabBridge {
      * @param id the id of the waitBar
      * @param value the value of the waitBar
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWaitBarValue(int id, int value) {
         ((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setValue(value);
     }
@@ -2117,6 +2221,7 @@ public class CallScilabBridge {
      * Destroy a WaitBar
      * @param id the id of the WaitBar to destroy
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void destroyWaitBar(int id) {
         ((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).close();
     }
@@ -2126,6 +2231,7 @@ public class CallScilabBridge {
      * @param id the id of the WaitBar to destroy
      * @param status true if the total progress time in unknown
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWaitBarIndeterminateMode(int id, boolean status) {
         ((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setIndeterminateMode(status);
     }
@@ -2721,6 +2827,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param status the new status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetVisible(int id, boolean status) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
     }
@@ -2730,6 +2837,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param status the new status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameVisible(int id, boolean status) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
     }
@@ -2739,6 +2847,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @return the status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isWidgetVisible(int id) {
         return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
     }
@@ -2748,6 +2857,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isFrameVisible(int id) {
         return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
     }
@@ -2763,6 +2873,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @param status the new status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setWidgetEnable(int id, boolean status) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
     }
@@ -2772,6 +2883,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @param status the new status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setFrameEnable(int id, boolean status) {
         ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
     }
@@ -2781,6 +2893,7 @@ public class CallScilabBridge {
      * @param id the id of the Widget
      * @return the status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isWidgetEnable(int id) {
         return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
     }
@@ -2790,6 +2903,7 @@ public class CallScilabBridge {
      * @param id the id of the Frame
      * @return the status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isFrameEnable(int id) {
         return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
     }
@@ -2805,6 +2919,7 @@ public class CallScilabBridge {
      * @param id the id of the Menu
      * @param status the new status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setMenuChecked(int id, boolean status) {
         if (UIElementMapper.getCorrespondingUIElement(id) instanceof CheckBoxMenuItem) {
             ((CheckBoxMenuItem) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
@@ -2820,6 +2935,7 @@ public class CallScilabBridge {
      * @param id the id of the Menu
      * @return the status
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static boolean isMenuChecked(int id) {
         return ((Menu) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
     }
@@ -3035,22 +3151,23 @@ public class CallScilabBridge {
     /**
      * Sets the column names for the uitable
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTableColnames(int id, String text) {
-        // TODO Remove this method
         //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
     }
 
     /**
      * Sets the row names for the uitable
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTableRownames(int id, String text) {
-        // TODO Remove this method
         //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
     }
 
     /**
      * Sets the data for the uitable
      */
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTableData(int id, String text) {
         ((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
@@ -3060,6 +3177,8 @@ public class CallScilabBridge {
     /* UITABLE BRIDGE */
     /*                */
     /******************/
+
+    // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTreeData(int id, String[] text) {
         ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }

@@ -29,7 +29,7 @@
 #include "setGraphicObjectProperty.h"
 #include "stack-c.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     // Callback must be only one character string
 

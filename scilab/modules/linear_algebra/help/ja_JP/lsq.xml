@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lsq">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lsq</refname>
     <refpurpose>線形最小二乗問題.  </refpurpose>
@@ -41,9 +38,10 @@
         <term>tol</term>
         <listitem>
           <para>Aの実効ランクを定義するために使用される正のスカラー
-	    (Aのピボット操作付きQR分解における最前部にある部分三角行列R11の次数として
-		定義され,条件数の推定値は&lt;= 1/tolとなります.
-		tolのデフォルト値は <literal>sqrt(%eps)</literal>に設定されます )</para>
+            (Aのピボット操作付きQR分解における最前部にある部分三角行列R11の次数として
+            定義され,条件数の推定値は&lt;= 1/tolとなります.
+            tolのデフォルト値は <literal>sqrt(%eps)</literal>に設定されます )
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,15 +54,19 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>X=lsq(A,B)</literal> は方程式 <literal>A*X=B</literal>の
-	最小二乗解の最小ノルムを計算します.
-	一方, <literal>X=A \ B</literal>は
-	各列に最大<literal>rank(A)</literal>個の非ゼロ要素を有する最小二乗解を計算します.</para>
+    <para>
+      <literal>X=lsq(A,B)</literal> は方程式 <literal>A*X=B</literal>の
+      最小二乗解の最小ノルムを計算します.
+      一方, <literal>X=A \ B</literal>は
+      各列に最大<literal>rank(A)</literal>個の非ゼロ要素を有する最小二乗解を計算します.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
-    <para><literal>lsq</literal> 関数はLApack 関数 DGELSY (実行列の場合)および
-	 ZGELSY (複素行列の場合)に基づいています.</para>
+    <para>
+      <literal>lsq</literal> 関数はLApack 関数 DGELSY (実行列の場合)および
+      ZGELSY (複素行列の場合)に基づいています.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

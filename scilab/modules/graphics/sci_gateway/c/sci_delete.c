@@ -67,7 +67,7 @@ int sci_delete(char *fname, unsigned long fname_len)
 
     if (Rhs == 0)               /* Delete current object */
     {
-        pobjUID = getCurrentObject();
+        pobjUID = (char*)getCurrentObject();
         if (pobjUID == NULL)
         {
             //No current object, we can leave
@@ -114,7 +114,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                         return 0;
                     }
 
-                    pFigureUID = getCurrentFigure();
+                    pFigureUID = (char*)getCurrentFigure();
 
                     getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
 
@@ -154,7 +154,7 @@ int sci_delete(char *fname, unsigned long fname_len)
             hdl = (unsigned long) * hstk(l1 + i); /* Puts the value of the Handle to hdl */
         }
 
-        pobjUID = getObjectFromHandle(hdl);
+        pobjUID = (char*)getObjectFromHandle(hdl);
 
         if (pobjUID == NULL)
         {

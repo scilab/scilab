@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_interp_color_vector_property(char *pobjUID)
+int get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
 {
     int* piInterpVector = NULL;
     int iInterpVectorSet = 0;
@@ -47,7 +47,7 @@ int get_interp_color_vector_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, &piInterpVectorSet);
+    getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, (void **)&piInterpVectorSet);
 
     if (piInterpVectorSet == NULL)
     {
@@ -57,14 +57,14 @@ int get_interp_color_vector_property(char *pobjUID)
 
     if (iInterpVectorSet == FALSE)
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
         getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void **) &piInterpVector);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
-        return sciReturnRowVectorFromInt(piInterpVector, iNumElements);
+        return sciReturnRowVectorFromInt(_pvCtx, piInterpVector, iNumElements);
     }
 }
 /*--------------------------------------------------------------------------*/

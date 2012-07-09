@@ -42,7 +42,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     CheckRhs(1,4);
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     switch( Rhs )
     {
@@ -50,7 +50,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
         CheckLength(1,m1*n1,4);
 
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
         if (strcmp(fname,"xrect")==0)
         {
@@ -70,7 +70,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
         break;
     case 4 :
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);
         GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);

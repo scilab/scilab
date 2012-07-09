@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sysconv" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sysconv</refname>
     <refpurpose>system conversion</refpurpose>
@@ -28,17 +25,21 @@
       <varlistentry>
         <term>s1,s2</term>
         <listitem>
-          <para>list (linear <literal>syslin</literal> systems)</para>
+          <para>
+            list (linear <literal>syslin</literal> systems)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Converts <literal>s1</literal> and <literal>s2</literal> into common
-    representation in order that system interconnexion operations can be
-    applied. Utility function for experts. The conversion rules in given in
-    the following table.</para>
+    <para>
+      Converts <literal>s1</literal> and <literal>s2</literal> into common
+      representation in order that system interconnexion operations can be
+      applied. Utility function for experts. The conversion rules in given in
+      the following table.
+    </para>
     <variablelist>
       <varlistentry>
         <term>"c"</term>
@@ -62,8 +63,9 @@
         <term>[]</term>
         <listitem>
           <para>system with undefined time domain For mixed systems
-          <literal>s1</literal> and <literal>s2</literal> are put in
-          state-space representation.</para>
+            <literal>s1</literal> and <literal>s2</literal> are put in
+            state-space representation.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -92,28 +94,32 @@
         <term>c2e(s,n)</term>
         <listitem>
           <para>the continuous-time system s is transformed into a sampled
-          system with sampling period n.</para>
+            system with sampling period n.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c(s)</term>
         <listitem>
           <para>conversion to continuous (time domain is
-          <literal>"c"</literal>)</para>
+            <literal>"c"</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d(s)</term>
         <listitem>
           <para>conversion to discrete (time domain is
-          <literal>"d"</literal>)</para>
+            <literal>"d"</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>e(s,n)</term>
         <listitem>
           <para>conversion to samples system with period
-          <literal>n</literal></para>
+            <literal>n</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

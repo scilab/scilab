@@ -14,7 +14,7 @@
 
 #include "GetUicontrolFontAngle.hxx"
 
-int GetUicontrolFontAngle(char *sciObjUID)
+int GetUicontrolFontAngle(void* _pvCtx, char *sciObjUID)
 {
     char* fontAngle = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolFontAngle(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(fontAngle);
+        status = sciReturnString(_pvCtx, fontAngle);
         delete[] fontAngle;
         return status;
     }

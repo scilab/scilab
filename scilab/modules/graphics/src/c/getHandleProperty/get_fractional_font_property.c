@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_fractional_font_property(char *pobjUID)
+int get_fractional_font_property(void* _pvCtx, char* pobjUID)
 {
     int iFractionalFont = 0;
     int* fractionalFont = &iFractionalFont;
@@ -45,7 +45,7 @@ int get_fractional_font_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_FRACTIONAL__, jni_bool, &fractionalFont);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
 
     if (fractionalFont == NULL)
     {
@@ -55,11 +55,11 @@ int get_fractional_font_property(char *pobjUID)
 
     if (iFractionalFont)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

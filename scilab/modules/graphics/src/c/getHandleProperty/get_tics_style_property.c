@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_style_property(char *pobjUID)
+int get_tics_style_property(void* _pvCtx, char* pobjUID)
 {
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
@@ -44,7 +44,7 @@ int get_tics_style_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
     if (piTicksStyle == NULL)
     {
@@ -70,7 +70,6 @@ int get_tics_style_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnChar(ticksStyle);
-
+    return sciReturnChar(_pvCtx, ticksStyle);
 }
 /*------------------------------------------------------------------------*/

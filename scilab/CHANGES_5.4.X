@@ -1,10 +1,90 @@
 
+
 * Interactive point-and-click curve editor, now the user can select/unselect
   hide/unhide and delete curves, copy, cut and paste selected curves between figures,
   now figures can be copied as an image to system clipboard(only under Windows).
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
+
+
+Xcos
+====
+
+* Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
+                    stopped from user interface.
+
+
+Preferences
+===========
+
+* Add a function preferences() to open the Preferences window.
+
+
+Javasci
+=======
+
+* Javasci version 1 removed (deprecated in Scilab 5.3.0).
+
+
+Bug Fixes
+=========
+
+* Bug #7251 fixed - Fix an error in the qp_solve documentation.
+
+* Bug #9830 fixed - leastsq did not match the information of optim.
+
+* Bug #9884 fixed - Add in prefs the possibility to add a default header on
+                    new files in SciNotes.
+
+* Bug #10150 fixed - Completion help page moved to the console chapter.
+
+* Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
+                     button.
+
+* Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
+
+* Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
+                              when executed.
+
+* Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
+                      repercuted.
+
+* Bug #10915 fixed - It was not possible to select several files when using
+                     button "Open file" in console toolbar.
+
+* Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
+                     correctly.
+
+* Bug #11346 fixed - Add error messages in the cosm function in case of bad
+                     usage.
+
+* Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
+                     the parameter section.
+
+* Bug #11349 fixed - There was an error when path to external editor contained
+                     white spaces.
+                     
+* Bug #11398 fixed - newest() produced an incomprehensible error message when
+                     called with a string vector as second input argument.
+
+* Bug #11403 fixed - toprint() did not work and and menu Print too.
+
+* Bug #11409 fixed - xpoly crashed on polyline allocation.
+
+* Bug #11422 fixed - datatips did not work when the figure contained uicontrols.
+
+* Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
+                     rather than only the variable "a".
+
+
+Known Incompatibilities
+=======================
+
+* In previous versions, the newest() function could be called with a string vector
+  as second (up to last) input argument. In these cases, only the first string of 
+  the vector was taken into account. These calls now return an error. See bug #11398.
+
 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
@@ -86,7 +166,7 @@ GUI
     graphic objects visible.
 
 * Scilab Console and graphic figure menus are now uimenus. They are hidden by
-  default. To see them in the children list, use set(get(0), "ShowHiddenHandles", "on") 
+  default. To see them in the children list, use set(get(0), "ShowHiddenHandles", "on")
 
 * New uicontrols added:
   - 'image' style uicontrol: display, transformation and various other
@@ -119,7 +199,7 @@ Scilab
   Please replace the file descriptor by the corresponding file name.
   This feature will be removed in Scilab 6.0.0
 
-* Update the default size of the Scilab stack to 100 million elements (instead of 
+* Update the default size of the Scilab stack to 100 million elements (instead of
   50M). See stacksize help page for more information.
 
 * Scilab Desktop provides a button in dockbar to get the help about the component.
@@ -176,10 +256,10 @@ Xcos
 
 * Performance improvements on diagram saving/loading.
 
-* A compressed file format is now available (ZCOS) and allows more flexibility on 
+* A compressed file format is now available (ZCOS) and allows more flexibility on
   data format.
 
-* Ports styles and labels are now available to external modules. 
+* Ports styles and labels are now available to external modules.
 
 * New examples are provided in the help pages of the following blocks:
   - ABS_VALUE - Absolute value
@@ -198,7 +278,7 @@ Xcos
 
 * Bug #7539 fixed - Interaction with some blocks was slowed down.
 
-* Bug #7863 fixed - Default path for code generation was SCI instead of pwd() or 
+* Bug #7863 fixed - Default path for code generation was SCI instead of pwd() or
                     TMPDIR.
 
 * Bug #8188 fixed - Xcos to Scilab export took too much time.
@@ -315,7 +395,7 @@ CLI Console (GNU/Linux and Mac OS X only)
             the line.
   - UP or Ctrl+P recalls previous line.
   - DOWN or Ctrl+N recalls next line.
-  - TAB for completion. Scilab displays a list of all names (functions, variables…) that 
+  - TAB for completion. Scilab displays a list of all names (functions, variables) that
     start with the characters already typed by the user.
   - Ctrl + A or HOME moves the cursor to beginning of current line.
   - Ctrl + B or LEFT moves the cursor one character to the left.
@@ -387,6 +467,7 @@ CACSD & Signal Processing
 
 * Bug #10562 fixed - The "CACSD/Robust Control" demo failed.
 
+* Bug #11340 fixed - bode, gainplot, nyquist and plzr without arguments did not show an example.
 
 ATOMS
 =======
@@ -424,16 +505,16 @@ ATOMS
 Call_Scilab
 ===========
 
-* CallScilab.h removed (was deprecated since Scilab 5.2.0). 
+* CallScilab.h removed (was deprecated since Scilab 5.2.0).
   Please use call_scilab.h instead.
 
-* 'int getLastErrorValue(void)' function added. 
+* 'int getLastErrorValue(void)' function added.
   It now returns the last error code generated by Scilab.
 
-* Function 'const char* getLastErrorMessageSingle();' added. 
+* Function 'const char* getLastErrorMessageSingle();' added.
   It now returns the last error message generated by Scilab.
 
-* Deprecated functions in call_scilab.h removed : C2F(readmat), C2F(creadmat), 
+* Deprecated functions in call_scilab.h removed : C2F(readmat), C2F(creadmat),
   C2F(creadbmat), C2F(creadcmat), C2F(readchain), C2F(creadchain),  C2F(creadchains),
   GetLengthStringMatrixByName, C2F(matptr), C2F(cmatptr), C2F(cmatcptr),  C2F(cmatsptr),
   C2F(cmatbptr), getlengthchain
@@ -693,7 +774,7 @@ Bug Fixes
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
 
-* Bug #10588 fixed - Update of waitbar help page to precise that the function returns 
+* Bug #10588 fixed - Update of waitbar help page to precise that the function returns
                      a handle.
 
 * Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.

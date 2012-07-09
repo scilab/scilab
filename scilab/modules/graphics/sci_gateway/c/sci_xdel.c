@@ -57,7 +57,7 @@ int sci_xdel(char *fname,unsigned long fname_len)
     }
     else
     {
-        pstCurrentFigure = getCurrentFigure();
+        pstCurrentFigure = (char*)getCurrentFigure();
         if (pstCurrentFigure != NULL)
         {
             deleteGraphicObject(pstCurrentFigure);

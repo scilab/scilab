@@ -32,14 +32,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_title_property(char *pobjUID)
+int get_title_property(void* _pvCtx, char* pobjUID)
 {
     char* labelUID = NULL;
     long labelHandle = 0;
 
     char* type = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -47,7 +47,7 @@ int get_title_property(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TITLE__, jni_string, &labelUID);
+    getGraphicObjectProperty(pobjUID, __GO_TITLE__, jni_string, (void **)&labelUID);
 
     if (labelUID == NULL)
     {
@@ -57,6 +57,6 @@ int get_title_property(char *pobjUID)
 
     labelHandle = getHandle(labelUID);
 
-    return sciReturnHandle(labelHandle);
+    return sciReturnHandle(_pvCtx, labelHandle);
 }
 /*------------------------------------------------------------------------*/

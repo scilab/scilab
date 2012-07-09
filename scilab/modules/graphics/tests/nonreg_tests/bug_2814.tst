@@ -30,7 +30,7 @@ a=5*ones(51,50);
 Matplot1(a,[-180,-50,180,90]);
 
 drawnow;
-
+sleep(500); //Wait for MVC update
 // check X ticks locations are integers
 for kTick=1:size(ax.x_ticks.locations, "*")
     assert_checkequal(int(ax.x_ticks.locations(kTick)), ax.x_ticks.locations(kTick));

@@ -12,7 +12,7 @@
 
 #include "GetUimenuChecked.hxx"
 
-int GetUimenuChecked(char *pObjUID)
+int GetUimenuChecked(void* _pvCtx, char *pObjUID)
 {
     int checked = 0;
     int *piChecked = &checked;
@@ -28,10 +28,10 @@ int GetUimenuChecked(char *pObjUID)
 
     if (checked == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }

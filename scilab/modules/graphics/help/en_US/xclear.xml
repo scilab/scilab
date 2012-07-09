@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclear">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xclear">
   <refnamediv>
     <refname>xclear</refname>
     <refpurpose> clears a graphics window</refpurpose>
@@ -47,6 +44,16 @@
       Function <literal>xclear</literal> is obsolete.
       To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
     </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d();
+scf();
+plot3d();
+xclear(0); // clear the first graphic
+xclear(); // clear the current figure
+ ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="isfield">
-  <info>
-    <pubdate>2009-03-23</pubdate>
-  </info>
   <refnamediv>
     <refname>isfield</refname>
     <refpurpose>指定したフィールド名が構造体の中にあるかどうか調べる</refpurpose>
@@ -48,8 +45,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    この関数は指定した構造体 "s" がその値によらず,
-	フィールド "field" を有する場合に true を返します.
+      この関数は指定した構造体 "s" がその値によらず,
+      フィールド "field" を有する場合に true を返します.
     </para>
   </refsection>
   <refsection>

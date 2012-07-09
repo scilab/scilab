@@ -279,7 +279,7 @@ int sciInitGraphicContext(sciPointObj * pobj)
      * la colormap des fils est heritee du parent
      */
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
 
 //  switch (sciGetEntityType (pobj))
     {
@@ -391,21 +391,21 @@ int sciInitGraphicContext(sciPointObj * pobj)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_SEGS__) == 0)
         {
             char *parent = NULL;
  
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_CHAMP__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         /*
@@ -415,7 +415,7 @@ int sciInitGraphicContext(sciPointObj * pobj)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
 
             /*
@@ -430,35 +430,35 @@ int sciInitGraphicContext(sciPointObj * pobj)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_AXIS__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_LEGEND__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_TEXT__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
 
@@ -556,7 +556,7 @@ int sciInitFontContext(sciPointObj * pobj)
     /* unknown function initfontname "Win-stand"!! */
     /* static TCHAR inifontname[] = TEXT ("Times New Roman"); */
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
 
 //  switch (sciGetEntityType (pobj))
 
@@ -665,21 +665,21 @@ case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 *
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneFontContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_TEXT__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneFontContext(parent, pobj->UID);
         }
         else if (strcmp(type, __GO_AXIS__) == 0)
         {
             char *parent = NULL;
 
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneFontContext(parent, pobj->UID);
         }
 
@@ -779,8 +779,8 @@ int InitAxesModel()
 
     char *labelUID = NULL;
 
-    char *pfiguremdlUID = getFigureModel();
-    char *paxesmdlUID = getAxesModel();
+    char *pfiguremdlUID = (char*)getFigureModel();
+    char *paxesmdlUID = (char*)getAxesModel();
 
     sciInitGraphicMode(paxesmdlUID);
 
@@ -923,7 +923,7 @@ int InitAxesModel()
         sprintf(labelBuffer, "%.1f", tab[i]);
         stringVector[i] = strdup(labelBuffer);
 
-        if (stringVector == NULL)
+        if (stringVector[i] == NULL)
         {
             return -1;
         }
@@ -948,7 +948,7 @@ int InitAxesModel()
         sprintf(labelBuffer, "%.1f", tabZTicksLocations[i]);
         stringVector[i] = strdup(labelBuffer);
 
-        if (stringVector == NULL)
+        if (stringVector[i] == NULL)
         {
             return -1;
         }
@@ -1005,7 +1005,7 @@ int InitAxesModel()
     setGraphicObjectProperty(paxesmdlUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
     /* visible */
-    getGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, jni_bool, (void**)&piVisible);
     setGraphicObjectProperty(paxesmdlUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* 0: clipping off */
@@ -1051,7 +1051,7 @@ int sciInitGraphicMode(char *pobjUID)
 {
     char *type = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
 //  switch (sciGetEntityType (pobj))
 
@@ -1137,13 +1137,13 @@ int sciInitGraphicMode(char *pobjUID)
         {
             int iTmp = 0;
             int *piTmp = &iTmp;
-            char *paxesmdlUID = getAxesModel();
+            char *paxesmdlUID = (char*)getAxesModel();
 
-            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_CLEAR__, jni_bool, &piTmp);
+            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piTmp);
             autoClear = iTmp;
-            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
             autoScale = iTmp;
-            getGraphicObjectProperty(paxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, &piTmp);
+            getGraphicObjectProperty(paxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piTmp);
             zoom = iTmp;
 
             setGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
@@ -1155,7 +1155,7 @@ int sciInitGraphicMode(char *pobjUID)
              * obsolete ? Not implemented yet within the MVC
              */
 
-            getGraphicObjectProperty(paxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, &piTmp);
+            getGraphicObjectProperty(paxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, (void **)&piTmp);
             xormode = iTmp;
 
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);

@@ -36,10 +36,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_name_property(char *pobjUID)
+int get_figure_name_property(void* _pvCtx, char* pobjUID)
 {
     char* figureName = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **) &figureName);
+    getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **)&figureName);
 
     if ( figureName == NULL )
     {
@@ -47,6 +47,6 @@ int get_figure_name_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnString(strdup(figureName));
+    return sciReturnString(_pvCtx, strdup(figureName));
 }
 /*------------------------------------------------------------------------*/

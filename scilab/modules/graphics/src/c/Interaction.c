@@ -433,7 +433,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     char **pstChildrenUID = NULL;
 
     // Get type
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstType);
 
     // If a Figure, neither the object nor its children are moved.
     if ((strcmp(pstType, __GO_FIGURE__) == 0))
@@ -443,7 +443,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     }
 
     // Iterate on children.
-    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void**)&piChildrenCount);
 
     if (iChildrenCount != 0)
     {
@@ -457,7 +457,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Arc.
     if (strcmp(pstType, __GO_ARC__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
         pdblData[1] += y;
         pdblData[2] += z;
@@ -471,12 +471,12 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         int iNumVPG = 0;
         int* piNumVPG = &iNumVPG;
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNumVPG);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNum);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**)&piNumVPG);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**)&piNum);
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
         for (i = 0; i < iNumVPG * iNum; i++)
         {
@@ -493,8 +493,8 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Fec.
     else if (strcmp(pstType, __GO_FEC__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, &piNum);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, &pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**)&piNum);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void **)&pdblData);
 
         for (i = 0; i < iNum; i++)
         {
@@ -510,11 +510,11 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Grayplot.
     else if (strcmp(pstType, __GO_GRAYPLOT__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
 
         for (i = 0; i < iNumX; i++)
         {
@@ -531,7 +531,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
             double zShift = 0.0;
             double* pdZshift = &zShift;
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, &pdZshift);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, (void**)&pdZshift);
             zShift += z;
             setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, &zShift, jni_double, 1);
         }
@@ -551,16 +551,16 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         int type;
         int* itype = &type;
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_TYPE__, jni_int, &itype);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_TYPE__, jni_int, (void**)&itype);
 
         /* Only type 1 Matplot objects can be moved. */
         if (type == 1)
         {
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
 
             for (i = 0; i < iNumX; i++)
             {
@@ -573,7 +573,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
             }
 
             /* Bounds must be updated. */
-            //getGraphicObjectProperty(pobjUID, __GO_MATPLOT_BOUNDS__, jni_double_vector, &bounds);
+            //getGraphicObjectProperty(pobjUID, __GO_MATPLOT_BOUNDS__, jni_double_vector, (void **)&bounds);
 
             //bounds[0] += x;
             //bounds[1] += x;
@@ -582,7 +582,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
             if (displacementSize == 3)
             {
-                getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, &pdZShift);
+                getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, (void**)&pdZShift);
                 zShift += z;
                 setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, &zShift, jni_double, 1);
             }
@@ -597,10 +597,10 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Polyline.
     else if (strcmp(pstType, __GO_POLYLINE__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNum);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**)&piNum);
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
 
         for (i = 0; i < iNum; i++)
         {
@@ -612,7 +612,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         {
             int zCoordinatesSet = 1;
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
             for (i = 0; i < iNum; i++)
             {
@@ -636,13 +636,13 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Plot3d.
     else if (strcmp(pstType, __GO_PLOT3D__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, &piNumZ);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, (void**)&piNumZ);
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
         for (i = 0; i < iNumX; i++)
         {
@@ -671,10 +671,10 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     {
         int *champDimensions = NULL;
 
-        getGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, &champDimensions);
+        getGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void **)&champDimensions);
 
-        getGraphicObjectProperty(pobjUID, __GO_BASE_X__, jni_double_vector, &pdblData);
-        getGraphicObjectProperty(pobjUID, __GO_BASE_Y__, jni_double_vector, &pdblDataY);
+        getGraphicObjectProperty(pobjUID, __GO_BASE_X__, jni_double_vector, (void **)&pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_BASE_Y__, jni_double_vector, (void **)&pdblDataY);
 
         for (i = 0; i < champDimensions[0]; i++)
         {
@@ -691,7 +691,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
         if (displacementSize == 3)
         {
-            getGraphicObjectProperty(pobjUID, __GO_BASE_Z__, jni_double_vector, &pdblDataZ);
+            getGraphicObjectProperty(pobjUID, __GO_BASE_Z__, jni_double_vector, (void **)&pdblDataZ);
 
             for (i = 0; i < champDimensions[0]*champDimensions[1]; i++)
             {
@@ -705,7 +705,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Label.
     else if (strcmp(pstType, __GO_LABEL__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
         pdblData[1] += y;
         pdblData[2] += z;
@@ -716,7 +716,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Rectangle.
     else if (strcmp(pstType, __GO_RECTANGLE__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
         pdblData[1] += y;
         pdblData[2] += z;
@@ -729,9 +729,9 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     {
         double* pdblDirection = NULL;
 
-        getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, &piNum);
-        getGraphicObjectProperty(pobjUID, __GO_BASE__, jni_double_vector, &pdblData);
-        getGraphicObjectProperty(pobjUID, __GO_DIRECTION__, jni_double_vector, &pdblDirection);
+        getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNum);
+        getGraphicObjectProperty(pobjUID, __GO_BASE__, jni_double_vector, (void **)&pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_DIRECTION__, jni_double_vector, (void **)&pdblDirection);
 
         for (i = 0; i < iNum; i++)
         {
@@ -755,7 +755,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Text.
     else if (strcmp(pstType, __GO_TEXT__) == 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &pdblData);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
         pdblData[1] += y;
         pdblData[2] += z;
@@ -774,11 +774,11 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     Scierror(999, _("This object can not be moved.\n"));
     return -1;
     /*
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
 
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
 
         // X
         for (i = 0 ; i < iNumX ; ++i)
@@ -797,8 +797,8 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         // Z if needed
         if (displacementSize == 3)
         {
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, &piNumZ);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, (void**)&piNumZ);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
             for (i = 0 ; i < iNumZ ; ++i)
             {
                 dataZ[i] += z;

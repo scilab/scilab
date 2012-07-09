@@ -32,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_size_property(char *pobjUID)
+int get_figure_size_property(void* _pvCtx, char* pobjUID)
 {
   double figureSize[2] ;
   int* intSize = NULL;
-  getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, &intSize);
+  getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, (void **)&intSize);
 
   if (intSize == NULL)
   {
@@ -47,6 +47,6 @@ int get_figure_size_property(char *pobjUID)
   figureSize[0] = (double)intSize[0];
   figureSize[1] = (double)intSize[1];
 
-  return sciReturnRowVector(figureSize, 2);
+  return sciReturnRowVector(_pvCtx, figureSize, 2);
 }
 /*------------------------------------------------------------------------*/

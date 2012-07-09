@@ -26,12 +26,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_resizefcn_property(char *pobjUID)
+int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
 {
     char* resizeFcn = NULL;
     char* type = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_FIGURE__) != 0)
     {
@@ -47,6 +47,6 @@ int get_figure_resizefcn_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnString(strdup(resizeFcn));
+    return sciReturnString(_pvCtx, strdup(resizeFcn));
 }
 /*------------------------------------------------------------------------*/

@@ -30,12 +30,12 @@
 #include "getGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_state_property(char *pobjUID)
+int get_zoom_state_property(void* _pvCtx, char* pobjUID)
 {
     int iZoomState = 0;
     int *piZoomState = &iZoomState;
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, &piZoomState);
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomState);
 
     if ( piZoomState == NULL )
     {
@@ -45,8 +45,8 @@ int get_zoom_state_property(char *pobjUID)
 
     if (iZoomState)
     {
-        return sciReturnString( "on" ) ;
+        return sciReturnString(_pvCtx, "on");
     }
-    return sciReturnString( "off" ) ;
+    return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

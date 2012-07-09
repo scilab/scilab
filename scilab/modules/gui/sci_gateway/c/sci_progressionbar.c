@@ -76,7 +76,7 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
         else
         {
             GraphicHandle = (unsigned long)*hstk(handleAdr);
-            pProgressionbarUID = getObjectFromHandle(GraphicHandle);
+            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
 
             setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
@@ -94,7 +94,7 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
             GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRowMessage, &nbColMessage, &messageAdr);
 
             GraphicHandle = (unsigned long)*hstk(handleAdr);
-            pProgressionbarUID = getObjectFromHandle(GraphicHandle);
+            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
 
             setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
             setGraphicObjectProperty(pProgressionbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,

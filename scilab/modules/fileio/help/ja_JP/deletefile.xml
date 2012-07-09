@@ -12,11 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deletefile" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept.
-      2006)$
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>deletefile</refname>
     <refpurpose>ファイルを削除する</refpurpose>
@@ -37,7 +32,7 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>%t または %f</para>
+          <para><literal>%t</literal> または <literal>%f</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -45,16 +40,21 @@
   <refsection>
     <title>説明</title>
     <para>ファイルを削除します.
-      ファイルが削除された場合に %t ,それ以外の場合に
-      %fを返します.
+      ファイルが削除された場合に <literal>%t</literal> ,それ以外の場合に
+      <literal>%f</literal>を返します.
     </para>
   </refsection>
   <refsection>
     <title>例</title>
-    <programlisting role="example">fd = mopen(TMPDIR+'/filetodelete.txt','wt');
-      mclose(fd); 
-      if (fileinfo(TMPDIR+'/filetodelete.txt') &lt;&gt; []) then deletefile(TMPDIR+'/filetodelete.txt'),end;
-      deletefile(TMPDIR+'/notexistingfile')
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/filetodelete.txt','wt');
+mclose(fd); 
+
+if (fileinfo(TMPDIR+'/filetodelete.txt') <> []) then 
+deletefile(TMPDIR+'/filetodelete.txt')
+end
+
+deletefile(TMPDIR+'/notexistingfile')
+    ]]></programlisting>
   </refsection>
 </refentry>

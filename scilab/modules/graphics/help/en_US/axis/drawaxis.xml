@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawaxis">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="drawaxis">
   <refnamediv>
     <refname>drawaxis</refname>
     <refpurpose> draw an axis</refpurpose>
@@ -141,6 +138,31 @@
       this is done if <literal>val</literal> is provided. The size of <literal>val</literal> must 
       match the number of tics.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      plot2d(1:10,1:10,1,"020")
+      drawaxis(x=2:7,y=4,dir='u',tics='v')
+      drawaxis(x=2:7,dir='u',tics='v') 
+      drawaxis(x=2:7,dir='d',tics='v') 
+      
+      drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+      
+      drawaxis(x=4,y=2:7,dir='r',tics='v')
+      drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+      drawaxis(y=2:7,dir='r',tics='v')
+      drawaxis(y=2:7,dir='l',tics='v')
+      
+      drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
+      drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
+      
+      drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+      drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+      
+      drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+      
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

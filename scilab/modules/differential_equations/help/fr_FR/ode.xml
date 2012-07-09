@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode</refname>
     <refpurpose>solveur d'équations différentielles ordinaires</refpurpose>
@@ -49,9 +46,9 @@
         <listitem>
           <para>
             une des chaînes de caractères : <literal>"adams"</literal>,
-	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
-             <literal>"rkf"</literal>, <literal>"fix"</literal>,
-	    <literal>"discrete"</literal>, <literal>"roots"</literal>
+            <literal>"stiff"</literal>, <literal>"rk"</literal>,
+            <literal>"rkf"</literal>, <literal>"fix"</literal>,
+            <literal>"discrete"</literal>, <literal>"roots"</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -167,8 +164,9 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para>Identique à <literal>"rkf"</literal>, mais l'interface est
-simplifiée, i.e.
+          <para>
+            Identique à <literal>"rkf"</literal>, mais l'interface est
+            simplifiée, i.e.
             uniquement <literal>rtol</literal> et <literal>atol</literal> sont
             communiqués au solveur.
           </para>
@@ -180,8 +178,7 @@ simplifiée, i.e.
           <para>Solveur d'EDO avec recherche de racines. Le solveur
             <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une
             variante de <literal>lsoda</literal> permettant la recherche d'une
-            racine d'une fonction vectorielle donnée. Voir <link
-linkend="ode_root">ode_root</link> pour plus de
+            racine d'une fonction vectorielle donnée. Voir <link linkend="ode_root">ode_root</link> pour plus de
             détails.
           </para>
         </listitem>
@@ -189,8 +186,8 @@ linkend="ode_root">ode_root</link> pour plus de
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>Simulation en temps discret. Voir <link
-linkend="ode_discrete">ode_discrete</link> pour plus de
+          <para>
+            Simulation en temps discret. Voir <link linkend="ode_discrete">ode_discrete</link> pour plus de
             détails.
           </para>
         </listitem>

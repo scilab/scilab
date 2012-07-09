@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_visible_property(char *pobjUID)
+int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 {
     char * axes_visible[3]  = { NULL, NULL, NULL };
     char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
@@ -55,7 +55,7 @@ int get_axes_visible_property(char *pobjUID)
 
     for ( i = 0 ; i < 3 ; i++ )
     {
-        getGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], jni_bool, &piAxesVisible);
+        getGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], jni_bool, (void **)&piAxesVisible);
 
         if (piAxesVisible == NULL)
         {
@@ -85,7 +85,7 @@ int get_axes_visible_property(char *pobjUID)
 
     }
 
-    status = sciReturnRowStringVector( axes_visible, 3 );
+    status = sciReturnRowStringVector(_pvCtx, axes_visible, 3);
 
     for ( i = 0 ; i < 3 ; i++ )
     {

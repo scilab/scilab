@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2d">
   <refnamediv>
     <refname>contour2d</refname>
     <refpurpose>level curves of a surface on a 2D
@@ -131,6 +128,10 @@ plot2d(x(im)',y(jm)',-9,"000")
     <para>
       Use <literal>contour</literal> to draw levels curves on a 3D surface.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11]);</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

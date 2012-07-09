@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sqrt" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sqrt</refname>
     <refpurpose>square root</refpurpose>
@@ -28,7 +25,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-	  <para>real or complex scalar or vector/matrix</para>
+          <para>real or complex scalar or vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>

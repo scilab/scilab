@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_box_property(char *pobjUID)
+int get_box_property(void* _pvCtx, char* pobjUID)
 {
     char* type = NULL;
 
@@ -58,19 +58,19 @@ int get_box_property(char *pobjUID)
 
         if (iBoxType == 0)
         {
-            return sciReturnString("off");
+            return sciReturnString(_pvCtx, "off");
         }
         else if (iBoxType == 1)
         {
-            return sciReturnString("on");
+            return sciReturnString(_pvCtx, "on");
         }
         else if (iBoxType == 2)
         {
-            return sciReturnString("hidden_axes");
+            return sciReturnString(_pvCtx, "hidden_axes");
         }
         else if (iBoxType == 3)
         {
-            return sciReturnString("back_half");
+            return sciReturnString(_pvCtx, "back_half");
         }
 
     }
@@ -89,11 +89,11 @@ int get_box_property(char *pobjUID)
 
         if (iBox)
         {
-            return sciReturnString( "on" );
+            return sciReturnString(_pvCtx, "on");
         }
         else
         {
-            return sciReturnString( "off" );
+            return sciReturnString(_pvCtx, "off");
         }
 
     }

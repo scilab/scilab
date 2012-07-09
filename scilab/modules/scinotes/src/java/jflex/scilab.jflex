@@ -3,11 +3,13 @@
 package org.scilab.modules.scinotes;
 
 import java.util.Arrays;
-import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.io.IOException;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
@@ -30,9 +32,9 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     public int start;
     public int end;
     public int beginString;
-    public static Set<String> commands = new HashSet();
-    public static Set<String> macros = new HashSet();
-    public static Set<String> variables = new HashSet();
+    public static Set<String> commands = new HashSet<String>();
+    public static Set<String> macros = new HashSet<String>();
+    public static Set<String> variables = new HashSet<String>();
     public Set<String> infile;
 
     private ScilabDocument doc;
@@ -118,6 +120,48 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
         }
      }
 
+     public static ScilabTokens getScilabTokens(String str) {
+     	 ScilabDocument doc = new ScilabDocument(false);
+	 try {
+	     doc.insertString(0, str, null);
+         } catch (BadLocationException e) { }
+	 return getScilabTokens(doc);
+     }
+
+     public static ScilabTokens getScilabTokens(ScilabDocument doc) {
+     	 ScilabLexer lexer = new ScilabLexer(doc);
+	 lexer.yyreset(new ScilabDocumentReader(doc, 0, doc.getLength()));
+	 ScilabTokens tokens = new ScilabTokens();
+	 int tok = -1;
+	 try {
+	    while (tok != ScilabLexerConstants.EOF) {
+               tok = lexer.yylex();
+    	       tokens.add(tok, lexer.yychar + lexer.yylength());
+	    }
+	 } catch (IOException e) { }
+ 
+	 return tokens;
+     }
+
+     public static class ScilabTokens {
+        private List<Integer> tokenType = new ArrayList<Integer>();
+        private List<Integer> tokenPos = new ArrayList<Integer>();
+
+	ScilabTokens() { }
+
+	void add(final int type, final int pos) {
+	   tokenType.add(type);
+	   tokenPos.add(pos);
+	}
+
+	public final List<Integer> getTokenType() {
+	   return tokenType;
+	}
+
+	public final List<Integer> getTokenPos() {
+	   return tokenPos;
+	}
+     }
 %}
 
 /* main character classes */
@@ -146,7 +190,7 @@ openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Adeline Carnis" | "Adeline CARNIS" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
 
 error = "Scilab Entreprises" | "Scilab Entreprise" | "Scilab Enterprise"
 
@@ -261,7 +305,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                  }
 
   {latexinstring}                {
-                                   return ScilabLexerConstants.LATEX;
+                                   return ScilabLexerConstants.LATEXINSTRING;
                                  }
 
   {quote}                        {
@@ -356,13 +400,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   "\t"                           {
                                    return ScilabLexerConstants.TAB;
                                  }
-  .
-                                 {
+
+  .                              |
+  {eol}				 {
                                    yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
-
-  {eol}                          { }
 }
 
 <FIELD> {
@@ -371,12 +414,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.FIELD;
                                  }
 
-  .                              {
+  .                              |
+  {eol}				 {
                                    yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
-
-  {eol}                          { }
 }
 
 <QSTRING> {
@@ -442,9 +484,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.TAB_COMMENT;
                                  }
 
-  .                              |
-  {eol}                          {
+  .                       	 {
                                    return ScilabLexerConstants.COMMENT;
+                                 }
+
+  {eol}				 {
+  				   yybegin(YYINITIAL);
+                                   return ScilabLexerConstants.DEFAULT;
                                  }
 }
 

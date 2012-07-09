@@ -107,7 +107,7 @@ void clearUserData( sciPointObj * pObj )
 void sciDeleteWindow( int winNum )
 {
   //startGraphicDataWriting();
-  deleteGraphicObject(getFigureFromIndex(winNum));
+  deleteGraphicObject((char*)getFigureFromIndex(winNum));
   //endGraphicDataWriting();
 }
 /*--------------------------------------------------------------------------------*/

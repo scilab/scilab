@@ -253,7 +253,7 @@ int get_labels_arg(char *fname, int pos, rhs_opts opts[], char ** labels)
         {
             /* jb silvy 03/2006 */
             /* do not change the legend if one already exists */
-            char * pSubWinUID = getOrCreateDefaultSubwin();
+            char * pSubWinUID = (char*)getOrCreateDefaultSubwin();
             if (sciGetLegendDefined(pSubWinUID))
             {
                 *labels = NULL;
@@ -273,7 +273,7 @@ int get_labels_arg(char *fname, int pos, rhs_opts opts[], char ** labels)
     {
         /* jb silvy 03/2006 */
         /* do not change the legend if one already exists */
-        char* pSubWinUID = getOrCreateDefaultSubwin();
+        char* pSubWinUID = (char*)getOrCreateDefaultSubwin();
 
         if (sciGetLegendDefined(pSubWinUID))
         {

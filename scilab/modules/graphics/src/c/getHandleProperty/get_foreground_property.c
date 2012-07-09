@@ -31,12 +31,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_foreground_property(char *pobjUID)
+int get_foreground_property(void* _pvCtx, char* pobjUID)
 {
     int iLineColor = 0;
     int *piLineColor = &iLineColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, jni_int, &piLineColor);
+    getGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, jni_int, (void **)&piLineColor);
 
     if (piLineColor == NULL)
     {
@@ -44,6 +44,6 @@ int get_foreground_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iLineColor);
+    return sciReturnDouble(_pvCtx, iLineColor);
 }
 /*------------------------------------------------------------------------*/

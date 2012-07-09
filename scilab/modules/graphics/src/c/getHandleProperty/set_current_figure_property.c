@@ -41,7 +41,7 @@
 
 
 /*------------------------------------------------------------------------*/
-int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     int figNum = -1 ;
     int res = -1 ;
@@ -65,7 +65,7 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     if ( isParameterHandle( valueType ) )
     {
 
-        curFigUID = getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+        curFigUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
 
         if ( curFigUID == NULL )
         {
@@ -89,7 +89,7 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     }
 
     /* Retrieve figure with figNum */
-    pFigureUID = getFigureFromIndex(figNum);
+    pFigureUID = (char*)getFigureFromIndex(figNum);
 
     if (pFigureUID == NULL)
     {

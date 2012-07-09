@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bvode" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bvode</refname>
     <refpurpose>コロケーション法によるODEの境界値問題</refpurpose>
@@ -332,7 +329,8 @@
                   <varlistentry>
                     <term>= 1</term>
                     <listitem>
-                      <para>最初の緩和係数が <literal>ireg</literal> に等しい場合,
+                      <para>
+                        最初の緩和係数が <literal>ireg</literal> に等しい場合,
                         非線形反復は過去の収束結果に基づきません.
                         (別の敏感な非線形問題のみで使用されます)
                       </para>
@@ -532,7 +530,8 @@
                   </mml:math>
                 </imagedata>
               </imageobject>
-            </inlinemediaobject> は厳密解(未知)となります.
+            </inlinemediaobject>
+             は厳密解(未知)となります.
           </para>
         </listitem>
       </varlistentry>
@@ -640,7 +639,7 @@
             </inlinemediaobject>
             
             ただし,
-	    <literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal> の任意の<literal>x</literal>,
+            <literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal> の任意の<literal>x</literal>,
             および <literal>z=z(u(x))</literal> となる任意の<literal>z</literal> とします.
             (以下の説明を参照)
           </para>
@@ -895,9 +894,9 @@ function g=gsub(i,zu,parameters)
             an <link linkend="external">external</link> used to evaluate
             the <literal>i</literal>-th row of the Jacobian of <literal>g(x,u(x))</literal>. Where
             <literal>z(u)</literal> is as for <literal>fsub</literal>, <literal>i</literal> as for 
-	    <literal>gsub</literal> and the <literal>M</literal>-vector <literal>dg</literal> should 
-	    be filled with the partial derivatives of <literal>g</literal>, viz, for a particular call one 
-	    calculates
+            <literal>gsub</literal> and the <literal>M</literal>-vector <literal>dg</literal> should 
+            be filled with the partial derivatives of <literal>g</literal>, viz, for a particular call one 
+            calculates
           </para>
           <informalequation>
             <mediaobject>
@@ -1009,7 +1008,7 @@ function dg=dgsub(i,zu,parameters)
             <link linkend="external">external</link>が使用されます.
             <literal>ipar(9) = 1</literal>の場合のみ, このサブルーチンが
             使用されることに注意してください.
-	    このため，<literal>zu</literal>の<literal>M</literal>個の要素および <literal>dmval</literal> の <literal>N</literal>個の
+            このため，<literal>zu</literal>の<literal>M</literal>個の要素および <literal>dmval</literal> の <literal>N</literal>個の
             要素が<literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal>の範囲の任意の <literal>x</literal> について計算される
             必要があります.
           </para>
@@ -2203,7 +2202,9 @@ scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">固有値問題:</emphasis></para>
+        <para>
+          <emphasis role="bold">固有値問題:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // y''(x)=-la*y(x)
 // BV: y(0)=y'(0); y(1)=0
@@ -2251,7 +2252,9 @@ legend(['y(x)';'y''(x)'])
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">一つ以上の解がある多点境界値問題.</emphasis></para>
+        <para>
+          <emphasis role="bold">一つ以上の解がある多点境界値問題.</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
@@ -2316,7 +2319,9 @@ xtitle(' ','x',' ')
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">多点境界値問題.</emphasis></para>
+        <para>
+          <emphasis role="bold">多点境界値問題.</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]

@@ -14,7 +14,7 @@
 
 #include "SetUicontrolSliderStep.hxx"
 
-int SetUicontrolSliderStep(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 

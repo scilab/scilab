@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cat" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cat</refname>
     <refpurpose>конкатенация нескольких массивов</refpurpose>
@@ -55,7 +52,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>y=cat(dims,A1,A2,...,An) :</literal> <literal>y</literal> является результатом 
+      <literal>y=cat(dims,A1,A2,...,An) :</literal><literal>y</literal> является результатом 
       конкатенации входных аргументов <literal>A1, A2,..., An</literal>.
     </para>
     <para>
@@ -99,4 +96,3 @@ dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=c
     </simplelist>
   </refsection>
 </refentry>
-

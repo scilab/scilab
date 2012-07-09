@@ -3,9 +3,6 @@
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="acoth" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
-  </info>
   <refnamediv>
     <refname>acoth</refname>
     <refpurpose>поэлементный гиперболический арккотангенс.</refpurpose>
@@ -63,4 +60,3 @@ plot(x,acoth(x))
     </para>
   </refsection>
 </refentry>
-

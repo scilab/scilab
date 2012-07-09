@@ -14,8 +14,8 @@
 #ifndef __GETUICONTROLPOSITION_H__
 #define __GETUICONTROLPOSITION_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the position of a uicontrol
@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return the position (x, y, width, height)
  */
-GUI_IMPEXP int GetUicontrolPosition(char *pobjUID);
+GUI_IMPEXP int GetUicontrolPosition(void* _pvCtx, char *pobjUID);
 
 #endif

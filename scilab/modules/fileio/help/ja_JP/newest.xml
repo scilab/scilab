@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="newest">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>newest</refname>
     <refpurpose> ファイルの集合の中で最新のファイルを返す</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>k=newest(paths)
-k=newest(path1,path2,...,pathn)</synopsis>
+      k=newest(path1,path2,...,pathn)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -49,8 +47,9 @@ k=newest(path1,path2,...,pathn)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	パス名の集合を指定すると,最新のファイルの添字を返します.
-	存在しないファイルは最も古いと仮定されます.</para>
+      パス名の集合を指定すると,最新のファイルの添字を返します.
+      存在しないファイルは最も古いと仮定されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -28,7 +28,7 @@
 #include "HandleManagement.h"
 #include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_axes_property(char *pobjUID)
+int get_default_axes_property(void* _pvCtx, char* pobjUID)
 {
 
     if (pobjUID != NULL)
@@ -38,6 +38,6 @@ int get_default_axes_property(char *pobjUID)
         return -1;
     }
 
-  return sciReturnHandle( getHandle( getAxesModel() ) ) ;
+  return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

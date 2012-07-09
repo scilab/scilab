@@ -11,10 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsegs">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xsegs">
   <refnamediv>
     <refname>xsegs</refname>
     <refpurpose>draw unconnected
@@ -69,7 +66,7 @@
     <para>For instance, using matrices of size (2,n), the segments can be defined
       by:
     </para>
-    <programlisting><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2...]
@@ -77,6 +74,24 @@ zv=[zi_1 zi_2 ...; zf_1 zf_2...]
     <para>
       and the segments are <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      a=gca();
+      a.view="3d";
+      f=gcf();
+      f.color_map=rainbowcolormap(120);
+      alpha=2*%pi*(0:119)/40;
+      xv=[sin(alpha)/2;sin(alpha)/3];
+      yv=[cos(alpha)/2;cos(alpha)/3];
+      zv=[alpha/8;alpha/8];
+      xsegs(xv,yv,zv,1:120);
+      a.data_bounds = [min(xv) min(yv) min(zv); ...
+      max(xv) max(yv) max(zv)];
+      e = gce();
+      e.arrow_size = 0.4;
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="macrovar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>macrovar</refname>
     <refpurpose>関数の変数</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>vars</term>
         <listitem>
-          <para>リスト  <literal>list(in,out,nolocal,called,locals)</literal></para>
+          <para>
+            リスト  <literal>list(in,out,nolocal,called,locals)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,16 +41,27 @@
   <refsection>
     <title>説明</title>
     <para>
-	関数で使用される変数の集合のリストを返します.
-    <literal>vars</literal> は5つの文字列の列ベクトルからなる
-	リストです.</para>
-    <para><literal>in</literal> 入力変数 (<literal>vars(1)</literal>)</para>
-    <para><literal>out</literal> 出力変数 (<literal>vars(2)</literal>)</para>
-    <para><literal>nolocal</literal>referenced variables which 
-	関数内で定義されていない関数でない変数を参照 
-	(<literal>vars(3)</literal>)</para>
-    <para><literal>called</literal> コールされた関数の名前 (<literal>vars(4)</literal>)</para>
-    <para><literal>locals</literal> ローカル変数 (<literal>vars(5)</literal>)</para>
+      関数で使用される変数の集合のリストを返します.
+      <literal>vars</literal> は5つの文字列の列ベクトルからなる
+      リストです.
+    </para>
+    <para>
+      <literal>in</literal> 入力変数 (<literal>vars(1)</literal>)
+    </para>
+    <para>
+      <literal>out</literal> 出力変数 (<literal>vars(2)</literal>)
+    </para>
+    <para>
+      <literal>nolocal</literal>referenced variables which 
+      関数内で定義されていない関数でない変数を参照 
+      (<literal>vars(3)</literal>)
+    </para>
+    <para>
+      <literal>called</literal> コールされた関数の名前 (<literal>vars(4)</literal>)
+    </para>
+    <para>
+      <literal>locals</literal> ローカル変数 (<literal>vars(5)</literal>)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     char* type = NULL;
@@ -46,7 +46,7 @@ int set_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRo
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text

@@ -55,15 +55,15 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
         int* piColorMapSize = &iColorMapSize;
         int iForeGround = 0;
         int* piForeGround = &iForeGround;
-        char* psubwinUID = getOrCreateDefaultSubwin();
+        char* psubwinUID = (char*)getOrCreateDefaultSubwin();
         char* pstParentUID = NULL;
 
         //get color map size
-        getGraphicObjectProperty(psubwinUID, __GO_PARENT_FIGURE__, jni_int, &pstParentUID);
-        getGraphicObjectProperty(pstParentUID, __GO_COLORMAP_SIZE__, jni_int, &piColorMapSize);
+        getGraphicObjectProperty(psubwinUID, __GO_PARENT_FIGURE__, jni_int, (void**)&pstParentUID);
+        getGraphicObjectProperty(pstParentUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
 
         //get current foreground color
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeGround);
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
 
         if(iForeGround == -1)
         {

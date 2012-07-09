@@ -28,7 +28,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_text_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     if ( !isParameterStringMatrix( valueType ) )
     {

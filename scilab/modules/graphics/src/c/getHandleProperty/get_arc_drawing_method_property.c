@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arc_drawing_method_property(char *pobjUID)
+int get_arc_drawing_method_property(void* _pvCtx, char* pobjUID)
 {
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
@@ -41,7 +41,7 @@ int get_arc_drawing_method_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, &piArcDrawingMethod);
+    getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     if (piArcDrawingMethod == NULL)
     {
@@ -52,11 +52,11 @@ int get_arc_drawing_method_property(char *pobjUID)
     /* 0: nurbs, 1: lines */
     if (iArcDrawingMethod == 0)
     {
-        return sciReturnString("nurbs");
+        return sciReturnString(_pvCtx, "nurbs");
     }
     else if (iArcDrawingMethod == 1)
     {
-        return sciReturnString("lines");
+        return sciReturnString(_pvCtx, "lines");
     }
     else
     {

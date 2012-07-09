@@ -57,7 +57,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
      */
     public static ExternalImageConverter getInstance() {
         if (instance == null) {
-             instance = new MathMLImageConverter();
+            instance = new MathMLImageConverter();
         }
         return instance;
     }
@@ -65,7 +65,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
     /**
      * {@inheritDoc}
      */
-    public String convertToImage(String mathml, Map<String, String> attributes, File imageFile, String imageName) {
+    public String convertToImage(String currentFile, String mathml, Map<String, String> attributes, File imageFile, String imageName) {
         Document doc = null;
         try {
             doc = MathMLParserSupport.parseString(mathml);
@@ -132,7 +132,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
         int ascent = (int) Math.ceil(jev.getAscentHeight());
         int height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
 
-        if (width <= 0 || height <=0) {
+        if (width <= 0 || height <= 0) {
             return null;
         }
 

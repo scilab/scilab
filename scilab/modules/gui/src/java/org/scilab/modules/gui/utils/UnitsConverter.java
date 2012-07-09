@@ -89,7 +89,7 @@ public final class UnitsConverter {
 
         switch (newUnit) {
             case POINTS:
-                return (double) value;
+                return value;
             case NORMALIZED:
                 if (parentType.equals(__GO_FIGURE__)) { /* Figure */
                     Integer[] parentSize = (Integer[]) GraphicController.getController().getProperty(parentId, __GO_AXES_SIZE__);
@@ -107,13 +107,13 @@ public final class UnitsConverter {
                         refSize = parentSize[3].intValue();
                     }
                 }
-                return ((double) value) / (refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+                return value / (refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
             case INCHES:
-                return ((double) value) / POINT_PER_INCH;
+                return value / POINT_PER_INCH;
             case CENTIMETERS:
-                return ((double) value) * CM_PER_INCH / POINT_PER_INCH;
+                return value * CM_PER_INCH / POINT_PER_INCH;
             case PIXELS:
-                return ((double) value) * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
+                return value * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
             default:
                 return 0.0;
         }

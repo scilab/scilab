@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="squarewave" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>squarewave</refname>
     <refpurpose>формирует меандр с периодом 2*%pi</refpurpose>
@@ -80,4 +77,3 @@ plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
     </simplelist>
   </refsection>
 </refentry>
-

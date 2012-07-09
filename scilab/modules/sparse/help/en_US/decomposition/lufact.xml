@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lufact">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lufact</refname>
     <refpurpose> sparse lu factorization</refpurpose>
@@ -46,28 +43,33 @@
       <varlistentry>
         <term>prec</term>
         <listitem>
-          <para>a vector of size two <literal>prec=[eps,reps]</literal> giving the absolute and relative  thresolds.</para>
+          <para>
+            a vector of size two <literal>prec=[eps,reps]</literal> giving the absolute and relative  thresolds.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[hand,rk]=lufact(A)</literal> performs the lu factorization of sparse matrix <literal>A</literal>.
-    <literal>hand</literal> (no display) is used by <literal>lusolve</literal> (for solving linear
-    system) and <literal>luget</literal> (for retrieving the factors).
-    <literal>hand</literal> should be cleared by the command: <literal>ludel(hand)</literal>;
-  </para>
     <para>
-    The A matrix needs not be full rank but must be square 
-    (since A is assumed sparse one may add zeros if necessary to squaring
-    down A).
-  </para>
+      <literal>[hand,rk]=lufact(A)</literal> performs the lu factorization of sparse matrix <literal>A</literal>.
+      <literal>hand</literal> (no display) is used by <literal>lusolve</literal> (for solving linear
+      system) and <literal>luget</literal> (for retrieving the factors).
+      <literal>hand</literal> should be cleared by the command: <literal>ludel(hand)</literal>;
+    </para>
+    <para>
+      The A matrix needs not be full rank but must be square 
+      (since A is assumed sparse one may add zeros if necessary to squaring
+      down A).
+    </para>
     <variablelist>
       <varlistentry>
         <term>eps :</term>
         <listitem>
-          <para>The absolute magnitude an element must have to be considered as a pivot candidate, except as a last resort.  This number should be set significantly smaller than the smallest diagonal element that is is expected to be placed in the matrix. the default  value is <literal>%eps</literal>.</para>
+          <para>
+            The absolute magnitude an element must have to be considered as a pivot candidate, except as a last resort.  This number should be set significantly smaller than the smallest diagonal element that is is expected to be placed in the matrix. the default  value is <literal>%eps</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>

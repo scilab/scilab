@@ -29,8 +29,11 @@ import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -126,8 +129,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean saveHighlightEnable;
 
     private EventListenerList kwListeners = new EventListenerList();
-    private List<Object> highlightedWords = new ArrayList<Object>();
-    private List<Integer> highlightedWordsBegin = new ArrayList<Integer>();
+    private Map<Integer, Object> highlightedWords = new HashMap<Integer, Object>();
+
+    //private List<Object> highlightedWords = new ArrayList<Object>();
+    //private List<Integer> highlightedWordsBegin = new ArrayList<Integer>();
 
     /**
      * Constructor
@@ -171,7 +176,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         });
 
-        addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+        addKeywordListener(new KeywordAdapter.MouseOverAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 if (ScilabLexerConstants.isClickable(e.getType())) {
                     if (ctrlHit) {
@@ -207,6 +212,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     } else if (ScilabEditorPane.this.editor != null) {
                         ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
                         infoBarChanged = true;
+                        if (hand) {
+                            setCursor(TEXTCURSOR);
+                            hand = false;
+                        }
                     }
                 } else {
                     if (hand) {
@@ -232,7 +241,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         });
 
-        addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+        addKeywordListener(new KeywordAdapter.MouseClickedAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
                     try {
@@ -271,6 +280,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     public void configurationChanged(SciNotesConfiguration.Conf conf) {
         ((ScilabEditorKit) getEditorKit()).getStylePreferences().configurationChanged(conf);
+
+        if (conf.font) {
+            resetFont();
+        }
 
         if (conf.display) {
             enableHighlightedLine(SciNotesOptions.getSciNotesDisplay().highlightCurrentLine);
@@ -356,7 +369,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             int res = 0;
             int sres;
             ScilabDocument doc = (ScilabDocument) getDocument();
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
+            doc.getUndoManager().enableOneShot(true);
             doc.mergeEditsBegin();
             caret.protectHighlights(true);
             for (int i = 0; i < pos.length; i++) {
@@ -371,7 +384,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 }
             }
             doc.mergeEditsEnd();
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(false);
+            doc.getUndoManager().enableOneShot(false);
             caret.protectHighlights(false);
             caret.updateHighlights();
         }
@@ -390,6 +403,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ctrlHit = false;
         } else if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = true;
+            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         } else {
             ctrlHit = false;
         }
@@ -400,8 +414,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e the event
      */
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = false;
+            preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         }
     }
 
@@ -486,11 +501,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Init the pane
      */
-    public void init() {
+    public void init(final int pos) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 requestFocus();
-                setCaretPosition(0);
+                setCaretPosition(pos);
             }
         });
     }
@@ -847,6 +862,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return 0;
     }
 
+    public void resetFont() {
+        Font font = ((ScilabEditorKit) getEditorKit()).getStylePreferences().getBaseFont();
+        setFont(font);
+        xln.updateFont(font);
+        repaint();
+    }
+
     /**
      * Set a new font
      * @param keyword the type of keyword
@@ -911,17 +933,32 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         if (suppressCom) {
             StringBuffer buf = new StringBuffer(selection.length());
-            int sstart = start;
-            int tok = lexer.getKeyword(start, false);
-            int len = selection.length();
-            while (start < end) {
-                int pos = lexer.start + lexer.yychar() + lexer.yylength();
-                String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
-                if (!ScilabLexerConstants.isComment(tok) || str.equals("\n")) {
+            ScilabLexer.ScilabTokens tokens = ScilabLexer.getScilabTokens(selection);
+            List<Integer> tokType = tokens.getTokenType();
+            List<Integer> tokPos = tokens.getTokenPos();
+            List<String> commands = new ArrayList<String>();
+            int prevPos = 0;
+            for (int i = 0; i < tokType.size(); i++) {
+                String str = selection.substring(prevPos, tokPos.get(i));
+                if ("\n".equals(str)) {
+                    commands.add(buf.toString());
+                    buf.setLength(0);
+                } else if (!ScilabLexerConstants.isComment(tokType.get(i))) {
                     buf.append(str);
                 }
-                start = pos;
-                tok = lexer.getKeyword(start, false);
+                prevPos = tokPos.get(i);
+            }
+
+            if (buf.length() != 0) {
+                commands.add(buf.toString());
+            }
+
+            buf.setLength(0);
+            Pattern pat = Pattern.compile("[ \t]*");
+            for (String command : commands) {
+                if (!pat.matcher(command).matches()) {
+                    buf.append(command).append("\n");
+                }
             }
 
             return buf.toString();
@@ -1038,6 +1075,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        boolean search = false;
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
@@ -1045,7 +1083,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (hasFocus()) {
             String str = getSelectedText();
             if (str != null && str.length() != 0) {
-                highlightWords(str, true);
+                int tok = lexer.getKeyword(getSelectionStart(), false);
+                int s = lexer.start + lexer.yychar();
+                if (ScilabLexerConstants.isSearchable(tok) && getSelectionStart() == s && getSelectionEnd() == s + lexer.yylength()) {
+                    highlightWords(tok, SearchManager.generatePattern(str, false, true, false), false);
+                } else {
+                    highlightWords(str, false);
+                }
+
+                if (highlightedWords.size() > 1) {
+                    editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+                    search = true;
+                }
                 removeHighlightOnPosition(getSelectionStart());
             } else {
                 removeHighlightedWords();
@@ -1065,7 +1114,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             matchRL.searchMatchingBlock(false, tok, lexer.start + lexer.yychar() + lexer.yylength());
         }
 
-        if (!readonly && !binary && editor != null) {
+        if (!search && !readonly && !binary && editor != null) {
             editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(pos));
         }
     }
@@ -1431,10 +1480,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param start the beginning of the highlight
      */
     public void removeHighlightOnPosition(int start) {
-        int pos = highlightedWordsBegin.indexOf(start);
-        if (pos != -1) {
-            getHighlighter().removeHighlight(highlightedWords.remove(pos));
-            highlightedWordsBegin.remove(pos);
+        Object h = highlightedWords.get(start);
+        if (h != null) {
+            getHighlighter().removeHighlight(h);
+            highlightedWords.remove(h);
         }
     }
 
@@ -1444,30 +1493,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param exact if true the search is case sensitive
      */
     public void highlightWords(String word, boolean exact) {
-        removeHighlightedWords();
         if (word != null && word.length() != 0) {
-            String text = ((ScilabDocument) getDocument()).getText();
-            if (!exact) {
-                text = text.toLowerCase();
-                word = word.toLowerCase();
-            }
-
-            int pos = text.indexOf(word, 0);
-            int len = word.length();
-            Highlighter highlighter = getHighlighter();
-            List<Rectangle> marks = new ArrayList<Rectangle>();
-            while (pos != -1) {
-                try {
-                    highlightedWords.add(highlighter.addHighlight(pos, pos + len, HIGHLIGHTER));
-                    highlightedWordsBegin.add(pos);
-                    Rectangle r = modelToView(pos);
-                    if (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y) {
-                        marks.add(r);
-                    }
-                } catch (BadLocationException e) { }
-                pos = text.indexOf(word, pos + len);
-            }
-            ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
+            highlightWords(SearchManager.generatePattern(word, exact, false, false), false);
         }
     }
 
@@ -1477,6 +1504,15 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param centered, if true the pane is centered on the first occurence
      */
     public void highlightWords(Pattern pattern, boolean centered) {
+        highlightWords(-1, pattern, centered);
+    }
+
+    /**
+     * Highlight a word according to a pattern in this textpane.
+     * @param pattern the pattern to highlight
+     * @param centered, if true the pane is centered on the first occurence
+     */
+    public void highlightWords(int tok, Pattern pattern, boolean centered) {
         if (pattern != null) {
             removeHighlightedWords();
             int first = -1;
@@ -1484,26 +1520,26 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             Matcher matcher = pattern.matcher(text);
 
             Highlighter highlighter = getHighlighter();
-            List<Rectangle> marks = new ArrayList<Rectangle>();
-            while (matcher.find()) {
-                if (first == -1) {
-                    first = matcher.start();
+            List<Integer[]> positions = SearchManager.findToken((ScilabDocument) getDocument(), tok, lexer, pattern);
+
+            if (positions != null) {
+                List<Rectangle> marks = new ArrayList<Rectangle>();
+
+                for (Integer[] position : positions) {
+                    try {
+                        highlightedWords.put(position[0], highlighter.addHighlight(position[0], position[1], HIGHLIGHTER));
+                        Rectangle r = modelToView(position[0]);
+                        if (r != null && (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y)) {
+                            marks.add(r);
+                        }
+                    } catch (BadLocationException e) { }
                 }
-                try {
-                    int start = matcher.start();
-                    highlightedWords.add(highlighter.addHighlight(start, matcher.end(), HIGHLIGHTER));
-                    highlightedWordsBegin.add(start);
-                    Rectangle r = modelToView(start);
-                    if (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y) {
-                        marks.add(r);
-                    }
-                } catch (BadLocationException e) { }
-            }
 
-            ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
+                ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
 
-            if (centered && first != -1) {
-                scrollTextToPos(first, false, true);
+                if (centered && positions.size() != 0) {
+                    scrollTextToPos(positions.get(0)[0], false, true);
+                }
             }
         }
     }
@@ -1513,11 +1549,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void removeHighlightedWords() {
         Highlighter highlighter = getHighlighter();
-        for (Object obj : highlightedWords) {
+        for (Object obj : highlightedWords.values()) {
             highlighter.removeHighlight(obj);
         }
         highlightedWords.clear();
-        highlightedWordsBegin.clear();
         ((ScilabScrollPane) edComponent.getScrollPane()).removeMarks();
     }
 
@@ -1557,5 +1592,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 nav.addEditorPane(this);
             }
         }
+
+        resetFont();
     }
 }

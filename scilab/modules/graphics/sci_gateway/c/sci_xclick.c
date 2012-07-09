@@ -69,7 +69,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
   // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
   if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
   {
-    char* clickedSubwinUID = getCurrentSubWin();
+    char* clickedSubwinUID = (char*)getCurrentSubWin();
     sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
   }
   else
@@ -111,7 +111,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
   {
     LhsVar(4) = Rhs+4;
     CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
-    getGraphicObjectProperty(pstWindowUID, __GO_ID__, jni_int, &piFigureId);
+    getGraphicObjectProperty(pstWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
     *stk(rep) = (double) iFigureId;
   }
 

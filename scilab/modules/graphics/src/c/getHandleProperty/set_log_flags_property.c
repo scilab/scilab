@@ -120,7 +120,7 @@ char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads,
     return  u_xlabels;
 }
 /*------------------------------------------------------------------------*/
-int set_log_flags_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
     char * flags = NULL;
@@ -171,7 +171,7 @@ int set_log_flags_property(char* pobjUID, size_t stackPointer, int valueType, in
     sciGetLogFlags(pobj, curLogFlags);
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)
     {
@@ -181,10 +181,10 @@ int set_log_flags_property(char* pobjUID, size_t stackPointer, int valueType, in
 
     logFlags[0] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[1] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[2] = iLogFlag;
 
     for (i = 0; i < 3; i++)
@@ -199,7 +199,7 @@ int set_log_flags_property(char* pobjUID, size_t stackPointer, int valueType, in
         }
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
     if (dataBounds == NULL)
     {

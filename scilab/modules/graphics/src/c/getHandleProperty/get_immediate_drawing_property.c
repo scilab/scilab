@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_immediate_drawing_property(char *pobjUID)
+int get_immediate_drawing_property(void* _pvCtx, char* pobjUID)
 {
     int iImmediateDrawing = 0;
     int *piImmediateDrawing = &iImmediateDrawing;
 
-    getGraphicObjectProperty(pobjUID, __GO_IMMEDIATE_DRAWING__, jni_bool, &piImmediateDrawing);
+    getGraphicObjectProperty(pobjUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
 
     if ( piImmediateDrawing == NULL )
     {
@@ -47,11 +47,11 @@ int get_immediate_drawing_property(char *pobjUID)
 
     if (iImmediateDrawing)
     {
-        return sciReturnString( "on" ) ;
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" ) ;
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

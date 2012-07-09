@@ -14,7 +14,7 @@
 
 #include "GetUicontrolPosition.hxx"
 
-int GetUicontrolPosition(char *sciObjUID)
+int GetUicontrolPosition(void* _pvCtx, char *sciObjUID)
 {
   double* position = NULL;
   int status = FALSE;
@@ -28,7 +28,7 @@ int GetUicontrolPosition(char *sciObjUID)
   }
   else
   {
-      status = sciReturnRowVector(position, 4);
+      status = sciReturnRowVector(_pvCtx, position, 4);
       delete[] position;
       return status;
   }

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>odeoptions</refname>
     <refpurpose>set options for ode solvers</refpurpose>
@@ -30,24 +27,24 @@
     </para>
     <para>
       <caution>
-	The <literal>ode</literal> function checks if this variable
-	exists and in this case it uses it. For using default values you should
-	clear this variable. To create it you must execute the instruction 
-	<literal>%ODEOPTIONS=odeoptions()</literal>.
-    </caution>
+        The <literal>ode</literal> function checks if this variable
+        exists and in this case it uses it. For using default values you should
+        clear this variable. To create it you must execute the instruction 
+        <literal>%ODEOPTIONS=odeoptions()</literal>.
+      </caution>
     </para>
     <para>
       The variable <literal>%ODEOPTIONS</literal> is a vector with the
       following elements:
     </para>
-    <para>      
+    <para>
       <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
     </para>
     <para>
       The default value is: <literal>[1,0,0,%inf,0,2,500,12,5,0,-1,-1].</literal>
     </para>
-      <para>The meaning of the elements is described below.</para>
-      <para>
+    <para>The meaning of the elements is described below.</para>
+    <para>
       <itemizedlist>
         <listitem>
           <literal>itask</literal> sets the integration mode:
@@ -83,9 +80,7 @@
               (<literal>"adams"</literal> or <literal>"stiff"</literal>
               only) 
             </listitem>
-            <listitem>1 : user-supplied full jacobian </listitem>
-	    <listitem>2 : internally generated full jacobian </listitem>
-	    <listitem>3: internally generated diagonal jacobian
+            <listitem>1 : user-supplied full jacobian </listitem><listitem>2 : internally generated full jacobian </listitem><listitem>3: internally generated diagonal jacobian
               (<literal>"adams"</literal> or <literal>"stiff"</literal>
               only) 
             </listitem>
@@ -113,18 +108,18 @@
           <literal>ml</literal>,<literal>mu</literal><para> If
             <literal>jactype</literal> equals 4 or 5, <literal>ml</literal>
             and <literal>mu</literal> are the lower and upper
-	      half-bandwidths of the banded jacobian: the band is the <literal>i,j</literal>'s
+            half-bandwidths of the banded jacobian: the band is the <literal>i,j</literal>'s
             with <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
           </para>
           <para>
             If <literal>jactype</literal> equals 4 the jacobian
             function must return a matrix <literal>J</literal> which is <literal>ml+mu+1 x ny</literal> 
-	    (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal> 
-	    such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed 
-	    by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... 
-	    (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of 
-	    <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>, 
-	    <literal>df2/dx2</literal>, etc. 
+            (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal> 
+            such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed 
+            by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... 
+            (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of 
+            <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>, 
+            <literal>df2/dx2</literal>, etc. 
           </para>
         </listitem>
       </itemizedlist>

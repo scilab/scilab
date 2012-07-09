@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chdir">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>chdir</refname>
     <refpurpose>changes Scilab current directory</refpurpose>
@@ -24,7 +21,7 @@
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para>a boolean %t if chdir operation is ok. </para>
+          <para>a boolean  <literal>%t</literal> if <literal>chdir</literal> operation is ok</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,7 +44,7 @@
     <title>Description</title>
     <para>Change the current Scilab directory to those given by
       <literal>path</literal>. Note that path conversion is performed and for example
-      <literal>SCI/modules/core/macros</literal> is a valid pattern for both unix and windows.
+      <literal>SCI/modules/core/macros</literal> is a valid pattern for both Unix and Windows.
       If path is empty change to "home" directory.
     </para>
   </refsection>
@@ -65,6 +62,15 @@ cd SCI
     <simplelist type="inline">
       <member>
         <link linkend="pwd">pwd</link>
+      </member>
+      <member>
+        <link linkend="SCI">SCI</link>
+      </member>
+      <member>
+        <link linkend="SCIHOME">SCIHOME</link>
+      </member>
+      <member>
+        <link linkend="TMPDIR">TMPDIR</link>
       </member>
     </simplelist>
   </refsection>

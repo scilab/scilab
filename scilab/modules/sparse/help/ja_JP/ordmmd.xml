@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ordmmd" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ordmmd</refname>
     <refpurpose>
@@ -63,7 +60,7 @@
         <term>nofsub</term>
         <listitem>
           <para>
-	    double、整数値の1行1列の行列,圧縮記憶方式における非ゼロ要素の数の上限
+            double、整数値の1行1列の行列,圧縮記憶方式における非ゼロ要素の数の上限
           </para>
         </listitem>
       </varlistentry>

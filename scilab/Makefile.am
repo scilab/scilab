@@ -179,6 +179,21 @@ javadoc-all:
 	-sourcepath $$LISTMODULES \
 	$$LISTPKG
 
+doc-fr_FR:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=fr_FR
+
+doc-en_US:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=en_US
+
+doc-pt_BR:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=pt_BR
+
+doc-ru_RU:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ru_RU
+
+doc-ja_JP:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
+
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
@@ -186,7 +201,7 @@ if BUILD_HELP
 		cd $(top_builddir);\
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
+			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
 			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -nouserstartup -e \"$$COMMAND\"";\
 			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \

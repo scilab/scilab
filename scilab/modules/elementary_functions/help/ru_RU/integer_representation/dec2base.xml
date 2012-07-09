@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>dec2base</refname>
     <refpurpose>
@@ -61,7 +56,7 @@
       <literal>d</literal> должна иметь неотрицательные целые числа меньше, чем 2^52, а <literal>base</literal> должна быть целым числом между 2 и 36.
     </para>
     <para>
-       Возвращаемый аргумент <literal>str</literal> является матрицей строк.
+      Возвращаемый аргумент <literal>str</literal> является матрицей строк.
     </para>
     <para>
       <literal>str = dec2base(d, base, n)</literal> формирует представление в виде, по меньшей 
@@ -112,4 +107,3 @@ end
     </revhistory>
   </refsection>
 </refentry>
- 

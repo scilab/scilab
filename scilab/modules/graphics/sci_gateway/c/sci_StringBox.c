@@ -98,7 +98,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     }
 
     /* Get the handle and check that this is a text handle */
-    pTextUID = getObjectFromHandle(getHandleFromStack(stackPointer));
+    pTextUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
 
     if ( pTextUID == NULL )
     {
@@ -106,7 +106,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
       return 0 ;
     }
 
-    getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_string, (void **)&type);
 
 #if 0
     if ( sciGetEntityType( pTextUID ) == SCI_LABEL )
@@ -127,7 +127,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         return 0;
     }
 
-    getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+    getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
 
     updateTextBounds(pTextUID);
 
@@ -140,7 +140,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
 #endif
 
-    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, &textCorners);
+    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
 
     corners[1][0] = textCorners[0];
     corners[1][1] = textCorners[1];
@@ -161,7 +161,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
   }
   else
   {
-    char * parentSubwinUID = getOrCreateDefaultSubwin();
+    char * parentSubwinUID = (char*)getOrCreateDefaultSubwin();
     char ** text = NULL;
     int textNbRow;
     int textNbCol;
@@ -173,8 +173,8 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     double fontSize;
     double *pfontSize = &fontSize;
 
-    getGraphicObjectProperty(parentSubwinUID, __GO_FONT_STYLE__, jni_int, &pfontId);
-    getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, &pfontSize);
+    getGraphicObjectProperty(parentSubwinUID, __GO_FONT_STYLE__, jni_int, (void**)&pfontId);
+    getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
 
     /* Check that first argument is a string */
     if ( VarType(1) != sci_strings )

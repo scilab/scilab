@@ -12,6 +12,9 @@
 
 package org.scilab.modules.scinotes;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
@@ -37,6 +40,49 @@ public class CommentManager {
         this.elem = doc.getDefaultRootElement();
     }
 
+
+    /**
+     * Comment a line
+     * @param line the line number
+     */
+    public void commentLine(int line) {
+        Element startL = elem.getElement(line);
+        int sstart = startL.getStartOffset();
+
+        try {
+            doc.insertString(sstart, COM, null);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    /**
+     * Uncomment a line
+     * @param line the line number
+     * @return true if the line has been uncommented
+     */
+    public boolean uncommentLine(int line) {
+        Element startL = elem.getElement(line);
+        int sstart = startL.getStartOffset();
+        int send = startL.getEndOffset() - 1;
+
+        try {
+            String str = doc.getText(sstart, send - sstart);
+            Pattern pat = Pattern.compile("([ \t]*)//");
+            Matcher matcher = pat.matcher(str);
+            if (matcher.find()) {
+                str = matcher.replaceFirst("$1");
+                doc.replace(sstart, send - sstart, str, null);
+                return true;
+            }
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     /**
      * Comment several lines
      * @param start the beginning position in the doc
@@ -44,27 +90,18 @@ public class CommentManager {
      * @return an array of length 2 containing the new positions
      */
     public int[] commentLines(int start, int end) {
-        Element startL = elem.getElement(elem.getElementIndex(start));
-        int sstart = startL.getStartOffset();
-        int[] ret = new int[]{0, 0};
-        int send = end;
+        int first = elem.getElementIndex(start);
+        int last = elem.getElementIndex(end);
+        int[] ret = new int[] {start, end};
 
-        try {
-            String str = doc.getText(sstart, send - sstart + 1);
-            if (str.charAt(str.length() - 1) == EOL.charAt(0)) {
-                send--;
-                str = str.substring(0, str.length() - 1);
-                ret[1]++;
-            }
-            str = COM + str.replaceAll(EOL, EOL + COM);
-            ret[0] = start + 2;
-            ret[1] += sstart + str.length();
-            doc.replace(sstart, send - sstart + 1, str, null);
-            return ret;
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-            return null;
+        for (int i = first; i <= last; i++) {
+            commentLine(i);
+            ret[1] += 2;
         }
+
+        ret[0] += 2;
+
+        return ret;
     }
 
     /**
@@ -86,27 +123,21 @@ public class CommentManager {
      * @return an array of length 2 containing the new positions
      */
     public int[] uncommentLines(int start, int end) {
-        int sstart = elem.getElement(elem.getElementIndex(start)).getStartOffset();
-        int[] ret = new int[2];
-        ret[0] = start;
+        int first = elem.getElementIndex(start);
+        int last = elem.getElementIndex(end);
+        int[] ret = new int[] {start, end};
 
-        try {
-            String str = doc.getText(sstart, end - sstart + 1);
+        boolean unc = uncommentLine(first);
+        if (unc) {
+            ret[0] -= 2;
+            ret[1] -= 2;
+        }
 
-            str = str.replaceAll(EOL + COM, EOL);
-
-            if (str.charAt(0) == DEMICOM && str.charAt(1) == DEMICOM) {
-                str = str.substring(2);
-                if (start - sstart >= 2) {
-                    ret[0] -= 2;
-                }
+        for (int i = first + 1; i <= last; i++) {
+            unc = uncommentLine(i);
+            if (unc) {
+                ret[1] -= 2;
             }
-            ret[1] = sstart + str.length();
-
-            doc.replace(sstart, end - sstart + 1, str, null);
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-            return null;
         }
 
         return ret;

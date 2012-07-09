@@ -37,9 +37,12 @@
       language and saves this value in Scilab.
     </para>
     <para>You have to restart Scilab, if you want to use menus.</para>
-    <para><literal>setdefaultlanguage('')</literal> resets language to the system value.</para>
-    <para><literal>setdefaultlanguage</literal> is used only Windows. On others operating systems 
-    it returns always <literal>%f</literal>. 
+    <para>
+      <literal>setdefaultlanguage('')</literal> resets language to the system value.
+    </para>
+    <para>
+      <literal>setdefaultlanguage</literal> is used only Windows. On others operating systems 
+      it returns always <literal>%f</literal>. 
     </para>
   </refsection>
   <refsection>

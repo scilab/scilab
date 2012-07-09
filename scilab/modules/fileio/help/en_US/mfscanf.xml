@@ -12,35 +12,35 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mfscanf" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer 26 mar 2008)
-    $</pubdate>
-  </info>
   <refnamediv xml:id="mscanf">
     <refname>mscanf</refname>
     <refpurpose>reads input from the standard input (interface to the C scanf
-    function)</refpurpose>
+      function)
+    </refpurpose>
   </refnamediv>
   <refnamediv>
     <refname>mfscanf</refname>
     <refpurpose>reads input from the stream pointer stream (interface to the C
-    fscanf function)</refpurpose>
+      fscanf function)
+    </refpurpose>
   </refnamediv>
   <refnamediv xml:id="msscanf">
     <refname>msscanf</refname>
     <refpurpose>reads its input from the character string (interface to the C
-    sscanf function)</refpurpose>
+      sscanf function)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[n,v_1,...v_n]=mfscanf([niter,]fd,format)
-L=mfscanf([niter,] fd,format)
-
-[n,v_1,...v_n]=mscanf([niter,] format)
-L=mscanf([niter,]format)
-
-[n,v_1,...v_m]=msscanf([niter,]str,format)
-L=msscanf([niter,] str,format)</synopsis>
+      L=mfscanf([niter,] fd,format)
+      
+      [n,v_1,...v_n]=mscanf([niter,] format)
+      L=mscanf([niter,]format)
+      
+      [n,v_1,...v_m]=msscanf([niter,]str,format)
+      L=msscanf([niter,] str,format)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -49,18 +49,20 @@ L=msscanf([niter,] str,format)</synopsis>
         <term>format</term>
         <listitem>
           <para>a Scilab string describing the format to use to write the
-          remaining operands. The format operand follows, as close as
-          possible, the C printf format operand syntax as described in
-          <link linkend="scanf_conversion">scanf_conversion</link>.</para>
+            remaining operands. The format operand follows, as close as
+            possible, the C printf format operand syntax as described in
+            <link linkend="scanf_conversion">scanf_conversion</link>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fd</term>
         <listitem>
           <para>The fd parameter returned by the function
-          <literal>mopen</literal> is used as a file descriptor (it's a
-          positive integer). The value -1 refers to the last opened
-          file.</para>
+            <literal>mopen</literal> is used as a file descriptor (it's a
+            positive integer). The value -1 refers to the last opened
+            file.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -73,55 +75,69 @@ L=msscanf([niter,] str,format)</synopsis>
         <term>niter</term>
         <listitem>
           <para>an integer, the number of times the format as to be
-          used.</para>
+            used.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>n</term>
         <listitem>
           <para>an integer, the number of data read or -1 if EOL has been
-          encountered before any datum has been read.</para>
+            encountered before any datum has been read.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v_i</term>
         <listitem>
           <para>Each function reads characters, interprets them according to a
-          format, and stores the results in its output arguments. If more than
-          $n$ output arguments are provided, the last ones
-          <literal>v_n+1,...v_m</literal> are set to empty matrices.</para>
+            format, and stores the results in its output arguments. If more than
+            $n$ output arguments are provided, the last ones
+            <literal>v_n+1,...v_m</literal> are set to empty matrices.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>L</term>
         <listitem>
           <para>if all data are homogeneous they are stored in a unique vector
-          which is returned, otherwise subsequences of same data type are
-          stored in matrices and an <literal>mlist</literal> (with type
-          <literal>cblock</literal>) containing all the built matrices is
-          returned.</para>
+            which is returned, otherwise subsequences of same data type are
+            stored in matrices and an <literal>mlist</literal> (with type
+            <literal>cblock</literal>) containing all the built matrices is
+            returned.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>The <literal>mfscanf</literal> function reads characters from the
-    stream <literal>fd</literal>.</para>
-    <para>The <literal>mscanf</literal> function reads characters from Scilab
-    window.</para>
-    <para>The <literal>msscanf</literal> function reads characters from the
-    Scilab string <literal>str</literal>.</para>
-    <para>The <literal>niter</literal> optional argument specifies how many
-    time the format has to used. One iteration produces one line in the output
-    matrix. If <literal>niter==-1</literal> the function iterates up to the
-    end of file. The <literal>niter</literal> default value is 1.</para>
+    <para>
+      The <literal>mfscanf</literal> function reads characters from the
+      stream <literal>fd</literal>.
+    </para>
+    <para>
+      The <literal>mscanf</literal> function reads characters from Scilab
+      window.
+    </para>
+    <para>
+      The <literal>msscanf</literal> function reads characters from the
+      Scilab string <literal>str</literal>.
+    </para>
+    <para>
+      The <literal>niter</literal> optional argument specifies how many
+      time the format has to used. One iteration produces one line in the output
+      matrix. If <literal>niter==-1</literal> the function iterates up to the
+      end of file. The <literal>niter</literal> default value is 1.
+    </para>
     <para>comments about precision :</para>
     <para>mfscanf is based on C function fscanf. If you use '%f', '%g', '%e'
-    as format your data will be cast to float and returned in a scilab
-    variable. </para>
+      as format your data will be cast to float and returned in a scilab
+      variable. 
+    </para>
     <para>This scilab variable is a double then you can have some precision
-    errors. In this case, it is better to use '%lg' format.</para>
+      errors. In this case, it is better to use '%lg' format.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

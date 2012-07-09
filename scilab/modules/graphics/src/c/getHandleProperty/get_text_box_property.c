@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_text_box_property(char *pobjUID)
+int get_text_box_property(void* _pvCtx, char* pobjUID)
 {
     double* size;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX__, jni_double_vector, &size);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX__, jni_double_vector, (void **)&size);
 
     if (size == NULL)
     {
@@ -42,6 +42,6 @@ int get_text_box_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVector(size, 2);
+    return sciReturnRowVector(_pvCtx, size, 2);
 }
 /*------------------------------------------------------------------------*/

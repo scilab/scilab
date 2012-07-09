@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="condestsp">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>condestsp</refname>
     <refpurpose> estimate the condition number of a sparse matrix  </refpurpose>
@@ -62,7 +59,7 @@
  Siam J. Matrix Anal. Appl., vol 21, No 4, pp 1185-1201
  ]]></programlisting>
     <para>
-       Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
+      Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
       we have allways <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
       something superior to <literal>1/2 K1e</literal>
     </para>

@@ -105,21 +105,21 @@ int sci_Legend( char * fname, unsigned long fname_len )
         char* subwinUID;
 
         handlesvalue = (unsigned long) (hstk(l1))[n - 1 - i];
-        pobjUID = getObjectFromHandle(handlesvalue);
+        pobjUID = (char*)getObjectFromHandle(handlesvalue);
 
         /**
          * We get the current pSubwin & pFigure from the first handle's parents.
          */
         if (i == 0)
         {
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, &pFigureUID);
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &psubwinUID);
+            getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&pFigureUID);
+            getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinUID);
         }
 
         /**
          * We check that the pSubwin UID is the same for all given handles.
          */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &subwinUID);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&subwinUID);
 
         if (strcmp(psubwinUID, subwinUID) != 0)
         {
@@ -136,7 +136,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
         }
 
 
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
         if (strcmp(type, __GO_POLYLINE__) != 0)
         {

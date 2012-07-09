@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="full">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>full</refname>
     <refpurpose> 疎行列を通常の行列に変換する</refpurpose>
@@ -41,10 +38,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>X=full(sp)</literal> は疎行列 <literal>sp</literal> を
-	通常の行列表現に変換します.
-	(<literal>sp</literal> が既に通常の行列の場合,<literal>X</literal> は
-    <literal>sp</literal>に等しくなります).</para>
+    <para>
+      <literal>X=full(sp)</literal> は疎行列 <literal>sp</literal> を
+      通常の行列表現に変換します.
+      (<literal>sp</literal> が既に通常の行列の場合,<literal>X</literal> は
+      <literal>sp</literal>に等しくなります).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

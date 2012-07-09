@@ -98,9 +98,9 @@ int sci_xget(char *fname,unsigned long fname_len)
         char *pobjUID = NULL;
         // Force figure creation if none exists.
         getOrCreateDefaultSubwin();
-        pobjUID = getCurrentFigure();
+        pobjUID = (char*)getCurrentFigure();
 
-        get_color_map_property(pobjUID);
+        get_color_map_property(pvApiCtx, pobjUID);
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -109,15 +109,15 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if ( strcmp(cstk(l1),"mark") == 0)
     {
-        char *pobjUID = getOrCreateDefaultSubwin();
+        char *pobjUID = (char*)getOrCreateDefaultSubwin();
         int iMarkStyle = 0;
         int* piMarkStyle = &iMarkStyle;
         int iMarkSize = 0;
         int* piMarkSize = &iMarkSize;
         double pdblResult[2];
 
-        getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, &piMarkStyle);
-        getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, &piMarkSize);
+        getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
+        getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
         pdblResult[0] = iMarkStyle;
         pdblResult[1] = iMarkSize;
 
@@ -129,8 +129,8 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if ( strcmp(cstk(l1),"mark size") == 0)
     {
-        char *pobjUID = getOrCreateDefaultSubwin();
-        get_mark_size_property(pobjUID);
+        char *pobjUID = (char*)getOrCreateDefaultSubwin();
+        get_mark_size_property(pvApiCtx, pobjUID);
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -139,7 +139,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if ( strcmp(cstk(l1),"line style") == 0)
     {
-        get_line_style_property(getOrCreateDefaultSubwin());
+        get_line_style_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -148,9 +148,9 @@ int sci_xget(char *fname,unsigned long fname_len)
     else if(strcmp(cstk(l1),"clipping") == 0)
     {
         double *clipBox = NULL;
-        char* pobjUID = getOrCreateDefaultSubwin();
+        char* pobjUID = (char*)getOrCreateDefaultSubwin();
 
-        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
+        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
 
         createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 4, clipBox);
         LhsVar(1) = Rhs + 1;
@@ -159,15 +159,15 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"font")==0)
     {
-        char *pobjUID = getOrCreateDefaultSubwin();
+        char *pobjUID = (char*)getOrCreateDefaultSubwin();
         double dblFontSize = 0;
         double* pdblFontSize = &dblFontSize;
         int iFontStyle = 0;
         int* piFontStyle = &iFontStyle;
         double pdblResult[2];
 
-        getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, &pdblFontSize);
-        getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, &piFontStyle);
+        getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
+        getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void**)&piFontStyle);
 
         pdblResult[0] = iFontStyle;
         pdblResult[1] = dblFontSize;
@@ -182,7 +182,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     {
         double dblFontSize = 0;
         double* pdblFontSize = &dblFontSize;
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, jni_double, &pdblFontSize);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
 
         createScalarDouble(pvApiCtx, Rhs + 1, dblFontSize);
         LhsVar(1) = Rhs + 1;
@@ -195,7 +195,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int iLineStyle = 0;
         int* piLineStyle = &iLineStyle;
 
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, jni_int, &piLineStyle);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, jni_int, (void**)&piLineStyle);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iLineStyle);
         LhsVar(1) = Rhs + 1;
@@ -205,7 +205,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"hidden3d")==0)
     {
-        get_hidden_color_property(getOrCreateDefaultSubwin());
+        get_hidden_color_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -218,7 +218,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int* piFigureId = &iFigureId;
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_ID__, jni_int, &piFigureId);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_ID__, jni_int, (void**)&piFigureId);
         createScalarDouble(pvApiCtx, Rhs + 1, iFigureId);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -226,7 +226,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"thickness") == 0)
     {
-        get_thickness_property(getOrCreateDefaultSubwin());
+        get_thickness_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -271,7 +271,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         double pdblViewport[2];
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, jni_int_vector, &viewport);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, jni_int_vector, (void **)&viewport);
         pdblViewport[0] = viewport[0];
         pdblViewport[1] = viewport[1];
 
@@ -283,7 +283,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"background") == 0)
     {
-        get_background_property(getOrCreateDefaultSubwin());
+        get_background_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -294,7 +294,7 @@ int sci_xget(char *fname,unsigned long fname_len)
                || strcmp(cstk(l1),"foreground") == 0
                || strcmp(cstk(l1),"pattern") == 0)
     {
-        get_foreground_property(getOrCreateDefaultSubwin());
+        get_foreground_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -307,7 +307,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int* piNumColors = &iNumColors;
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, (void**)&piNumColors);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iNumColors);
 
@@ -321,7 +321,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int iLineMode = 0;
         int* lineMode = &iLineMode;
 
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_MODE__, jni_bool, &lineMode);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_MODE__, jni_bool, (void **)&lineMode);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iLineMode);
 
@@ -336,7 +336,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int *piPixmap = &iPixmap;
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, jni_bool, &piPixmap);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iPixmap);
         LhsVar(1) = Rhs + 1;
@@ -350,7 +350,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int* piNumColors = &iNumColors;
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, (void**)&piNumColors);
 
         /* White is lqst colormap index + 2 */
         createScalarDouble(pvApiCtx, Rhs + 1, iNumColors + 2);
@@ -367,7 +367,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int* piAutoResize =  &iAutoResize;
 
         getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_AUTORESIZE__, jni_bool, &piAutoResize);
+        getGraphicObjectProperty(getCurrentFigure(), __GO_AUTORESIZE__, jni_bool, (void **)&piAutoResize);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iAutoResize);
 
@@ -382,7 +382,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int iClipState = 0;
         int* piClipState = &iClipState;
 
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, &piClipState);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, (void**)&piClipState);
 
         createScalarDouble(pvApiCtx, Rhs + 1, iClipState);
         LhsVar(1) = Rhs + 1;
@@ -395,7 +395,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         int iClipState = 0;
         int* piClipState = &iClipState;
 
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, &piClipState);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, (void**)&piClipState);
 
         /* clip_state : 0 = off, 1 = on */
         if (iClipState == 0)
@@ -431,7 +431,7 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
         int iAutoClear = 0;
         int* piAutoClear = &iAutoClear;
 
-        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
         if (iAutoClear == 1)
         {
             strncpy(str1,"on",2);

@@ -55,8 +55,7 @@
       integer but will neither be used nor returned as an output
       argument.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 #include "api_scilab.h"
 int sci_mysizedouble(char * fname, unsigned long fname_len)
 {
@@ -90,7 +89,6 @@ int sci_mysizedouble(char * fname, unsigned long fname_len)
     ReturnArguments();
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

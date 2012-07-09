@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_resize_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_auto_resize_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL result = FALSE;
     int b =  (int)FALSE;

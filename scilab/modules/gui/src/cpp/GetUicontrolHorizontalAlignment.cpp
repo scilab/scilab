@@ -14,7 +14,7 @@
 
 #include "GetUicontrolHorizontalAlignment.hxx"
 
-int GetUicontrolHorizontalAlignment(char *sciObjUID)
+int GetUicontrolHorizontalAlignment(void* _pvCtx, char *sciObjUID)
 {
     char* alignment = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolHorizontalAlignment(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(alignment);
+        status = sciReturnString(_pvCtx, alignment);
         delete[] alignment;
         return status;
     }

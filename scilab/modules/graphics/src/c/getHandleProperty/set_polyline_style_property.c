@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_polyline_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_polyline_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int value = 0;

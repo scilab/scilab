@@ -29,6 +29,8 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     private static final String SVG = "svg";
     private static final String BASENAME = "Equation_SVG_";
 
+    private static HTMLSVGHandler instance;
+
     private int compt;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
@@ -38,10 +40,18 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
      * Constructor
      * @param baseDir the base directory where to put the generated images
      */
-    public HTMLSVGHandler(String outputDir, String baseDir) {
+    private HTMLSVGHandler(String outputDir, String baseDir) {
         this.outputDir = outputDir + File.separator + baseDir;
         this.baseDir = baseDir + "/";
-     }
+    }
+
+    public static HTMLSVGHandler getInstance(String outputDir, String baseDir) {
+        if (instance == null) {
+            instance = new HTMLSVGHandler(outputDir, baseDir);
+        }
+
+        return instance;
+    }
 
     /**
      * {@inheritDoc}
@@ -71,7 +81,7 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
             File f = new File(outputDir, BASENAME + (compt++) + ".png");
             Map<String, String> attributes = new HashMap();
 
-            String ret = ImageConverter.getImageByCode(buffer.toString(), attributes, "image/svg", f, baseDir + f.getName());
+            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName());
             buffer.setLength(0);
 
             return ret;

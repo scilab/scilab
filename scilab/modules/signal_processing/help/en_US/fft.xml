@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fft">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fft</refname>
     <refpurpose>fast Fourier transform.</refpurpose>
@@ -14,9 +11,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>x=fft(a ,-1) or x=fft(a)
-x=fft(a,1) or x=ifft(a)
-x=fft(a,-1,dim,incr)
-x=fft(a,1,dim,incr)</synopsis>
+      x=fft(a,1) or x=ifft(a)
+      x=fft(a,-1,dim,incr)
+      x=fft(a,1,dim,incr)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -25,14 +23,16 @@ x=fft(a,1,dim,incr)</synopsis>
         <term>x</term>
         <listitem>
           <para>real or complex vector or real or complex matrix (2-dim
-          fft)</para>
+            fft)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
           <para>real or complex vector or real or complex matrix (2-dim
-          fft).</para>
+            fft).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,30 +59,38 @@ x=fft(a,1,dim,incr)</synopsis>
             <varlistentry>
               <term>direct</term>
               <listitem>
-                <para><literal>x=fft(a,-1)</literal> or
-                <literal>x=fft(a)</literal> gives a direct
-                transform.</para>
+                <para>
+                  <literal>x=fft(a,-1)</literal> or
+                  <literal>x=fft(a)</literal> gives a direct
+                  transform.
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>single variate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a vector a single variate direct FFT
-                is computed that is:</para>
+                      <para>
+                        If <literal>a</literal> is a vector a single variate direct FFT
+                        is computed that is:
+                      </para>
                       <para>
                         <latex>
-                    $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
-                  </latex>
+                          $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
+                        </latex>
                       </para>
-                      <para>(the <literal>-1</literal> argument refers to the sign of the
-                exponent..., NOT to "inverse"),</para>
+                      <para>
+                        (the <literal>-1</literal> argument refers to the sign of the
+                        exponent..., NOT to "inverse"),
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>multivariate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a matrix or or
-                      a multidimensional array a multivariate direct
-                      FFT is performed.</para>
+                      <para>
+                        If <literal>a</literal> is a matrix or or
+                        a multidimensional array a multivariate direct
+                        FFT is performed.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -91,15 +99,19 @@ x=fft(a,1,dim,incr)</synopsis>
             <varlistentry>
               <term>inverse</term>
               <listitem>
-                <para><literal>a=fft(x,1)</literal> or
-                <literal>a=ifft(x)</literal>performs the inverse
-                transform normalized by <literal>1/n</literal>.</para>
+                <para>
+                  <literal>a=fft(x,1)</literal> or
+                  <literal>a=ifft(x)</literal>performs the inverse
+                  transform normalized by <literal>1/n</literal>.
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>single variate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a vector a
-                      single variate inverse FFT is computed</para>
+                      <para>
+                        If <literal>a</literal> is a vector a
+                        single variate inverse FFT is computed
+                      </para>
                       <para>
                         <latex>
                           $x(k) = \sum_{m=1}^n {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
@@ -110,8 +122,10 @@ x=fft(a,1,dim,incr)</synopsis>
                   <varlistentry>
                     <term>multivariate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a matrix or or a multidimensionnal
-                array a multivariate inverse FFT is performed.</para>
+                      <para>
+                        If <literal>a</literal> is a matrix or or a multidimensionnal
+                        array a multivariate inverse FFT is performed.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -123,13 +137,16 @@ x=fft(a,1,dim,incr)</synopsis>
       <varlistentry>
         <term>Long syntax for multidimensional FFT</term>
         <listitem>
-          <para><literal>x=fft(a,-1,dim,incr)</literal> allows to perform an
-        multidimensional fft.</para>
+          <para>
+            <literal>x=fft(a,-1,dim,incr)</literal> allows to perform an
+            multidimensional fft.
+          </para>
           <para>If a is a real or complex vector implicitly indexed by
-        <literal>j1,j2,..,jp</literal> i.e. <literal>a(j1,j2,..,jp)</literal> where
-        <literal>j1</literal> lies in <literal>1:dim(1),</literal> <literal>j2</literal> in
-        <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
-        <literal>fft</literal> as follows</para>
+            <literal>j1,j2,..,jp</literal> i.e. <literal>a(j1,j2,..,jp)</literal> where
+            <literal>j1</literal> lies in <literal>1:dim(1),</literal> <literal>j2</literal> in
+            <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
+            <literal>fft</literal> as follows
+          </para>
           <programlisting role=""><![CDATA[ 
 incrk=1; 
 x=a;
@@ -138,12 +155,16 @@ for k=1:p
   incrk=incrk*dim(k) 
 end
  ]]></programlisting>
-          <para>where <literal>dimk</literal> is the dimension of the current variable
-        w.r.t which one is integrating and <literal>incrk</literal> is the increment
-        which separates two successive <literal>jk</literal> elements in
-        <literal>a</literal>.</para>
-          <para>In particular,if <literal>a</literal> is an mxn matrix,
-        <literal>x=fft(a,-1)</literal> is equivalent to the two instructions:</para>
+          <para>
+            where <literal>dimk</literal> is the dimension of the current variable
+            w.r.t which one is integrating and <literal>incrk</literal> is the increment
+            which separates two successive <literal>jk</literal> elements in
+            <literal>a</literal>.
+          </para>
+          <para>
+            In particular,if <literal>a</literal> is an mxn matrix,
+            <literal>x=fft(a,-1)</literal> is equivalent to the two instructions:
+          </para>
           <programlisting role=""><![CDATA[ 
 a1=fft(a,-1,m,1);
 x=fft(a1,-1,n,m);
@@ -154,11 +175,13 @@ x=fft(a1,-1,n,m);
   </refsection>
   <refsection>
     <title>Algorithms</title>
-    <para>If the <literal>fftw</literal> module has been loaded into
-Scilab this function uses that library (http://www.fftw.org/). On the
-other case the fft function is based on the Fortran routines fft842.f
-(Cooley-Tukey algorithm for vectors of size n=2^m) and dfftbi.f (for
-other sizes) .</para>
+    <para>
+      If the <literal>fftw</literal> module has been loaded into
+      Scilab this function uses that library (http://www.fftw.org/). On the
+      other case the fft function is based on the Fortran routines fft842.f
+      (Cooley-Tukey algorithm for vectors of size n=2^m) and dfftbi.f (for
+      other sizes) .
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

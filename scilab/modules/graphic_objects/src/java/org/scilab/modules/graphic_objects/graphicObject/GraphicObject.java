@@ -138,7 +138,7 @@ public abstract class GraphicObject implements Cloneable {
          */
         copy.setSelectedChild("");
 
-        return (GraphicObject) copy;
+        return copy;
     }
 
     abstract public void accept(Visitor visitor) throws ObjectRemovedException;

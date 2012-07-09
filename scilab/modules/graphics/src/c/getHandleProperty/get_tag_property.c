@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tag_property(char *pobjUID)
+int get_tag_property(void* _pvCtx, char* pobjUID)
 {
     char* tag = NULL;
     int status = 0;
@@ -40,7 +40,7 @@ int get_tag_property(char *pobjUID)
     }
     else
     {
-        status = sciReturnString(tag);
+        status = sciReturnString(_pvCtx, tag);
         free(tag);
         return status;
     }

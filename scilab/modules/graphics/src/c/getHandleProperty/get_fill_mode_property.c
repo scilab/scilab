@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_fill_mode_property(char *pobjUID)
+int get_fill_mode_property(void* _pvCtx, char* pobjUID)
 {
     int iFillMode = 0;
     int* piFillMode = &iFillMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, jni_bool, &piFillMode);
+    getGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, jni_bool, (void **)&piFillMode);
 
     if (piFillMode == NULL)
     {
@@ -45,11 +45,11 @@ int get_fill_mode_property(char *pobjUID)
 
     if (iFillMode)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

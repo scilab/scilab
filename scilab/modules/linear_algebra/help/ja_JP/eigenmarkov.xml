@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eigenmarkov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>eigenmarkov</refname>
     <refpurpose>正規化された左および右マルコフ固有ベクトル</refpurpose>
@@ -48,18 +45,19 @@
   <refsection>
     <title>説明</title>
     <para>
-	マルコフ推移行列 P の固有値 1 に関連する
-	正規化された左および右固有ベクトルを返します.
-	この固有値の多重度が m　で, Pが N x N の場合,
-	M は m x N 行列で Q は N x m 行列となります.
-    M(k,:) はk番目のエルゴード集合(再帰的クラス)に関連する
-	確率分布ベクトルです.
-	M(k,x) は　x が k番目の再帰的クラスにない場合には
-	0となります.
-    Q(x,k) はx から始まる k 番目の再帰的クラスに最終的にある確率です.
-	大きな<literal>k</literal>に関して<literal>P^k</literal> が
-	収束する場合(1以外に単位円上に固有値がない),
-	極限は<literal>Q*M</literal>となります(固有投影).</para>
+      マルコフ推移行列 P の固有値 1 に関連する
+      正規化された左および右固有ベクトルを返します.
+      この固有値の多重度が m　で, Pが N x N の場合,
+      M は m x N 行列で Q は N x m 行列となります.
+      M(k,:) はk番目のエルゴード集合(再帰的クラス)に関連する
+      確率分布ベクトルです.
+      M(k,x) は　x が k番目の再帰的クラスにない場合には
+      0となります.
+      Q(x,k) はx から始まる k 番目の再帰的クラスに最終的にある確率です.
+      大きな<literal>k</literal>に関して<literal>P^k</literal> が
+      収束する場合(1以外に単位円上に固有値がない),
+      極限は<literal>Q*M</literal>となります(固有投影).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="chsolve">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>chsolve</refname>
     <refpurpose>疎行列のコレスキーソルバ</refpurpose>
@@ -41,12 +38,14 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sol=chsolve(spcho,rhs)</literal> は,
-	<literal>A</literal>を疎行列の正定対称行列として
-	<literal>rhs=A*sol</literal>の解を計算します.
-	この関数は,Ng-Peyton プログラム (ORNL)に基づいています.
-	<literal>spcho</literal>の変数の詳細な説明については,
-	Fortran プログラムを参照ください.</para>
+    <para>
+      <literal>sol=chsolve(spcho,rhs)</literal> は,
+      <literal>A</literal>を疎行列の正定対称行列として
+      <literal>rhs=A*sol</literal>の解を計算します.
+      この関数は,Ng-Peyton プログラム (ORNL)に基づいています.
+      <literal>spcho</literal>の変数の詳細な説明については,
+      Fortran プログラムを参照ください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

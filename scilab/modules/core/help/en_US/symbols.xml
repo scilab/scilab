@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="symbols">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>symbols</refname>
     <refpurpose> scilab operator names </refpurpose>
@@ -19,7 +16,7 @@
       </tr>
       <tr>
         <td>
-           <literal>',", .'</literal>
+          <literal>',", .'</literal>
         </td>
         <td>
           <link linkend="quote">quote</link>
@@ -27,7 +24,7 @@
       </tr>
       <tr>
         <td>
-           <literal>+</literal>
+          <literal>+</literal>
         </td>
         <td>
           <link linkend="plus">plus</link>
@@ -35,7 +32,7 @@
       </tr>
       <tr>
         <td>
-           <literal>-</literal>
+          <literal>-</literal>
         </td>
         <td>
           <link linkend="minus">minus</link>
@@ -43,7 +40,7 @@
       </tr>
       <tr>
         <td>
-           <literal>*,.*</literal>
+          <literal>*,.*</literal>
         </td>
         <td>
           <link linkend="star">star</link>
@@ -51,7 +48,7 @@
       </tr>
       <tr>
         <td>
-           <literal>/, ./, /.</literal>
+          <literal>/, ./, /.</literal>
         </td>
         <td>
           <link linkend="slash">slash</link>
@@ -59,7 +56,7 @@
       </tr>
       <tr>
         <td>
-           <literal>\,.\ ,\.</literal>
+          <literal>\,.\ ,\.</literal>
         </td>
         <td>
           <link linkend="backslash">backslash</link>
@@ -67,7 +64,7 @@
       </tr>
       <tr>
         <td>
-           <literal>.</literal>
+          <literal>.</literal>
         </td>
         <td>
           <link linkend="dot">dot</link>
@@ -75,7 +72,7 @@
       </tr>
       <tr>
         <td>
-           <literal>=, ==</literal>
+          <literal>=, ==</literal>
         </td>
         <td>
           <link linkend="equal">equal</link>
@@ -83,7 +80,7 @@
       </tr>
       <tr>
         <td>
-           <literal>&lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</literal>
+          <literal>&lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</literal>
         </td>
         <td>
           <link linkend="less">less</link>, <link linkend="greater">greater</link>
@@ -91,7 +88,7 @@
       </tr>
       <tr>
         <td>
-           <literal>~</literal>
+          <literal>~</literal>
         </td>
         <td>
           <link linkend="tilda">tilda</link>
@@ -99,7 +96,7 @@
       </tr>
       <tr>
         <td>
-           <literal>[]</literal>
+          <literal>[]</literal>
         </td>
         <td>
           <link linkend="brackets">brackets</link>
@@ -107,7 +104,7 @@
       </tr>
       <tr>
         <td>
-           <literal>()</literal>
+          <literal>()</literal>
         </td>
         <td>
           <link linkend="parents">parents</link>
@@ -115,7 +112,7 @@
       </tr>
       <tr>
         <td>
-           <literal>%</literal>
+          <literal>%</literal>
         </td>
         <td>
           <link linkend="percent">percent</link>
@@ -123,7 +120,7 @@
       </tr>
       <tr>
         <td>
-           <literal>:</literal>
+          <literal>:</literal>
         </td>
         <td>
           <link linkend="colon">colon</link>
@@ -131,7 +128,7 @@
       </tr>
       <tr>
         <td>
-           <literal>,</literal>
+          <literal>,</literal>
         </td>
         <td>
           <link linkend="comma">comma</link>
@@ -139,7 +136,7 @@
       </tr>
       <tr>
         <td>
-           <literal>;</literal>
+          <literal>;</literal>
         </td>
         <td>
           <link linkend="semicolon">semicolon</link>
@@ -163,7 +160,7 @@
       </tr>
       <tr>
         <td>
-           <literal>|</literal>
+          <literal>|</literal>
         </td>
         <td>
           <link linkend="or_op">or_op</link>
@@ -171,7 +168,7 @@
       </tr>
       <tr>
         <td>
-           <literal>&amp;</literal>
+          <literal>&amp;</literal>
         </td>
         <td>
           <link linkend="and_op">and_op</link>
@@ -179,7 +176,7 @@
       </tr>
       <tr>
         <td>
-           <literal>.*., ./., .\.</literal>
+          <literal>.*., ./., .\.</literal>
         </td>
         <td>
           <link linkend="kron">kron</link>
@@ -187,7 +184,7 @@
       </tr>
       <tr>
         <td>
-           <literal>$</literal>
+          <literal>$</literal>
         </td>
         <td>
           <link linkend="dollar">dollar</link>

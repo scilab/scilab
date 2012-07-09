@@ -8,46 +8,28 @@ you should have received as part of this distribution.  The terms
 are also available at
 http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry version="5.0-subset Scilab" xml:id="xcov" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 24-04-2012 $</pubdate>
-  </info>
-  
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcov" xml:lang="ja">
   <refnamediv>
     <refname>xcov</refname>
-    
     <refpurpose>離散自己/相互共分散を計算する</refpurpose>
   </refnamediv>
-  
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    
     <synopsis>[c [,lagindex]] = xcov(x [,maxlags [,scaling]])
       [c [,lagindex]] = xcov(x,y [,maxlags [,scaling]])
     </synopsis>
   </refsynopsisdiv>
-  
   <refsection>
     <title>パラメータ</title>
-    
     <variablelist>
       <varlistentry>
         <term>x</term>
-        
         <listitem>
           <para>実数または複素浮動小数点数のベクトル.</para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>y</term>
-        
         <listitem>
           <para>
             実数または複素浮動小数点数のベクトル.
@@ -55,10 +37,8 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>maxlags</term>
-        
         <listitem>
           <para>
             スカラーで1より大きな整数値.デフォルト値は<literal>n</literal>.
@@ -67,10 +47,8 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>scaling</term>
-        
         <listitem>
           <para>文字列で,値は以下のどれか:
             <literal>"biased"</literal>, <literal>"unbiased"</literal>,
@@ -79,20 +57,16 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>c</term>
-        
         <listitem>
           <para>実数または浮動小数点数のベクトルで,向きは
             <literal>x</literal>と同じです.
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>lagindex</term>
-        
         <listitem>
           <para>
             行ベクトルで, <literal>c</literal>の値に
@@ -102,14 +76,10 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>説明</title>
-    
     <itemizedlist>
       <listitem>
-        
-        
         <literal>c=xcov(x)</literal>
         
         は,以下の正規化しない離散共分散を計算します:
@@ -133,10 +103,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
         の長さです.
         
       </listitem>
-      
       <listitem>
-        
-        
         <literal>xcov(x,y)</literal>
         
         は以下のように正規化しない離散相互共分散を計算します:
@@ -159,7 +126,6 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
         の長さの大きい方です.
       </listitem>
     </itemizedlist>
-    
     <para>
       <literal>maxlags</literal> 引数が指定された場合,
       <literal>xcov</literal> は <literal>c</literal> を
@@ -169,7 +135,6 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       大きい場合, <literal>c</literal>の先頭と末尾の複数の値は
       ゼロになります.
     </para>
-    
     <para>
       <literal>scaling</literal> 引数は,
       <literal>c</literal>に結果を出力する前に
@@ -178,30 +143,22 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
         <listitem>
           <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
         </listitem>
-        
         <listitem>
           <term>"unbiased"</term>:<literal>c=</literal><latex>$C$</latex><literal>./(n-(-maxlags:maxlags))</literal>.
         </listitem>
-        
         <listitem>
           <term>"coeff"</term>:<literal>c=</literal><latex>$C$</latex><literal>/(norm(x)*norm(y))</literal>.
         </listitem>
       </itemizedlist>
     </para>
   </refsection>
-  
   <refsection>
-    
-    
-    <title>注意</title>
-    
-    <link linkend="corr">corr</link>
+    <title>注意</title><link linkend="corr">corr</link>
     関数は<literal>x</literal>および<literal>y</literal>の
     バイアス付き("biased")共分散を計算し,
     <literal>c</literal>のみを返します.
     共分散の並びは,<latex>$C_k,k \geq 0$</latex>となります.
   </refsection>
-  
   <refsection>
     <refsection>
       <title>手法</title> 
@@ -209,57 +166,44 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       <literal>xcorr(x-mean(x),y-mean(y),...)</literal>により
       <latex>$C$</latex>を計算します.
     </refsection>
-    
     <refsection>
       <title>例</title>
-      
       <programlisting role="example">t = linspace(0, 100, 2000);
         y = 0.8 * sin(t) + 0.8 * sin(2 * t);
         [c, ind] = xcov(y, "biased");
         plot(ind, c)    
       </programlisting>
     </refsection>
-    
     <refsection>
       <title>参照</title>
-      
       <simplelist type="inline">
         <member>
           <link linkend="xcorr">xcorr</link>
         </member>
-        
         <member>
           <link linkend="corr">corr</link>
         </member>
-        
         <member>
           <link linkend="fft">fft</link>
         </member>
       </simplelist>
     </refsection>
-    
     <refsection>
       <title>作者</title>
-      
       <simplelist type="vert">
         <member>Serge Steer, INRIA</member>
       </simplelist>
     </refsection>
-    
     <title>使用される関数</title>
-    
     <para>
       <link linkend="xcorr">xcorr</link>
     </para>
   </refsection>
-  
   <refsection>
     <title>履歴</title>
-    
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        
         <revremark>xcov 追加.</revremark>
       </revision>
     </revhistory>

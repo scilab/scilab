@@ -14,7 +14,6 @@
 #ifndef __GET_UICONTROL_STRING_H__
 #define __GET_UICONTROL_STRING_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**
@@ -23,6 +22,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return the string
  */
-GUI_IMPEXP int GetUicontrolString(char *pobjUID);
+GUI_IMPEXP int GetUicontrolString(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_STRING_H__ */

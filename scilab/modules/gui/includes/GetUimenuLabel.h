@@ -13,7 +13,6 @@
 #ifndef __GET_UIMENU_LABEL_H__
 #define __GET_UIMENU_LABEL_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**
@@ -22,6 +21,6 @@
  * @param pobjUID UID of the uimenu
  * @return the label
  */
-GUI_IMPEXP int GetUimenuLabel(char *pobjUID);
+GUI_IMPEXP int GetUimenuLabel(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UIMENU_LABEL_H__ */

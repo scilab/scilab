@@ -8,6 +8,18 @@
 
 function []=gainplot(varargin)
   rhs=size(varargin)
+
+  if rhs == 0 then
+    s=poly(0,'s');
+    h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+    h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225));
+    gainplot([h1;h2],0.01,100,..
+             ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
+              "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"]);
+    title('Gainplot');
+    return;
+  end
+
   if type(varargin($))==10 then
     comments=varargin($);
     rhs=rhs-1;

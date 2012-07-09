@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_size_property(char *pobjUID)
+int get_font_size_property(void* _pvCtx, char* pobjUID)
 {
     double dblFontSize = 0;
     double* pdblFontSize = &dblFontSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, &pdblFontSize);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
 
     if (pdblFontSize == NULL)
     {
@@ -43,6 +43,6 @@ int get_font_size_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(dblFontSize);
+    return sciReturnDouble(_pvCtx, dblFontSize);
 }
 /*------------------------------------------------------------------------*/

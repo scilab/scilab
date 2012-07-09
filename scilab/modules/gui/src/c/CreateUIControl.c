@@ -15,18 +15,6 @@
 #include <string.h>
 #include "CreateUIControl.h"
 #include "BuildObjects.h"
-#include "ObjectStructure.h"
-#include "PushButton.h"
-#include "EditBox.h"
-#include "Label.h"
-#include "CheckBox.h"
-#include "RadioButton.h"
-#include "Slider.h"
-#include "PopupMenu.h"
-#include "ListBox.h"
-#include "Frame.h"
-#include "UiTable.h"
-#include "UiDisplayTree.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
 #include "createGraphicObject.h"
@@ -36,7 +24,7 @@
 /**CreateUIControl
  * This function creates Uicontrol structure.
  * @param char style[]: the type of the uicontrol object
- * @return  : pointer sciPointObj if ok , NULL if not
+ * @return  : created object UID if ok , NULL if not
  */
 char *CreateUIControl(char *style)
 {

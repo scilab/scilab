@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_shift_property(char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL result = FALSE;
     double* shiftCoordinates = NULL;
@@ -53,7 +53,7 @@ int set_z_shift_property(char * pobjUID, size_t stackPointer, int valueType, int
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piNumElements);
 
     if (piNumElements == NULL)
     {

@@ -152,7 +152,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
     double *piJavaValues = NULL;
     char *pFigureUID = NULL;
-    char *pSubwinUID = getOrCreateDefaultSubwin();
+    char *pSubwinUID = (char*)getOrCreateDefaultSubwin();
     int iView = 0;
     int* piView = &iView;
 
@@ -162,8 +162,8 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
     CheckLhs(1, 2);
     // iView == 1 => 2D
     // else 3D
-    getGraphicObjectProperty(pSubwinUID, __GO_VIEW__, jni_int, &piView);
-    getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, &pFigureUID);
+    getGraphicObjectProperty(pSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
+    getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
 
     if (Rhs == 0)
     {

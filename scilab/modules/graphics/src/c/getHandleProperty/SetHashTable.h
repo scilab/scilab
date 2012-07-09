@@ -39,6 +39,6 @@ GRAPHICS_IMPEXP void destroyScilabSetHashTable( void ) ;
  *         -1 if an error occured in the get function
  *          1 if the property was not found
  */
-GRAPHICS_IMPEXP int callSetProperty(char *pObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
+GRAPHICS_IMPEXP int callSetProperty(void* _pvCtx, char *pObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
 
 #endif /* _SET_HASH_TABLE_H_ */

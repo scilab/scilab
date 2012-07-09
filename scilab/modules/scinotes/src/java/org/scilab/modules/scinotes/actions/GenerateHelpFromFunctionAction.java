@@ -39,25 +39,25 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
      * The help template
      */
     public static final String TEMPLATE = "//\n"
-        + "//\n"
-        + "// Calling Sequence\n"
-        + "// [returnValues] = functionName(argsValues) // \n"
-        + "// Parameters\n"
-        + "// argsValuesOnColumn\n"
-        + "// returnValuesOnColumn\n"
-        + "// \n"
-        + "// Description\n"
-        + "// \n"
-        + "// \n"
-        + "// Examples\n"
-        + "// \n"
-        + "// \n"
-        + "// See Also\n"
-        + "// \n"
-        + "// \n"
-        + "// Authors\n"
-        + "// \n"
-        + "\n";
+                                          + "//\n"
+                                          + "// Calling Sequence\n"
+                                          + "// [returnValues] = functionName(argsValues) // \n"
+                                          + "// Parameters\n"
+                                          + "// argsValuesOnColumn\n"
+                                          + "// returnValuesOnColumn\n"
+                                          + "// \n"
+                                          + "// Description\n"
+                                          + "// \n"
+                                          + "// \n"
+                                          + "// Examples\n"
+                                          + "// \n"
+                                          + "// \n"
+                                          + "// See Also\n"
+                                          + "// \n"
+                                          + "// \n"
+                                          + "// Authors\n"
+                                          + "// \n"
+                                          + "\n";
 
     /**
      * Constructor
@@ -72,7 +72,7 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int pos = sep.getCaretPosition();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         Element root = doc.getDefaultRootElement();
@@ -123,15 +123,15 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         final MenuItem menuitem = createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        Element root = editor.getTextPane().getDocument().getDefaultRootElement();
-                        int pos = editor.getTextPane().getCaretPosition();
-                        ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
-                        menuitem.setEnabled(elem.isFunction());
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    Element root = editor.getTextPane().getDocument().getDefaultRootElement();
+                    int pos = editor.getTextPane().getCaretPosition();
+                    ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+                    menuitem.setEnabled(elem.isFunction());
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

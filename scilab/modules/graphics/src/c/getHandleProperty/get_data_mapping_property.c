@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_data_mapping_property(char *pobjUID)
+int get_data_mapping_property(void* _pvCtx, char* pobjUID)
 {
     int iDataMapping = 0;
     int* piDataMapping = &iDataMapping;
@@ -43,7 +43,7 @@ int get_data_mapping_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, &piDataMapping);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
 
     if (piDataMapping == NULL)
     {
@@ -53,11 +53,11 @@ int get_data_mapping_property(char *pobjUID)
 
     if (iDataMapping == 0)
     {
-        return sciReturnString("scaled");
+        return sciReturnString(_pvCtx, "scaled");
     }
     else if (iDataMapping == 1)
     {
-        return sciReturnString("direct");
+        return sciReturnString(_pvCtx, "direct");
     }
     else
     {

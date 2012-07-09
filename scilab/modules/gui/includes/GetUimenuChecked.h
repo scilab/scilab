@@ -13,7 +13,6 @@
 #ifndef __GETUIMENUCHECKED_H__
 #define __GETUIMENUCHECKED_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**
@@ -22,6 +21,6 @@
  * @param pobjUID UID of the uimenu
  * @return true if the status is got without error
  */
-GUI_IMPEXP int GetUimenuChecked(char *pobjUID);
+GUI_IMPEXP int GetUimenuChecked(void* _pvCtx, char *pobjUID);
 
 #endif /* !__GETUIMENUCHECKED_H__ */

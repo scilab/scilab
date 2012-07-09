@@ -23,7 +23,9 @@ Source: bin\linpack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\linpack_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\eispack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#ELEMFUNCTIONS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#ELEMFUNCTIONS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\license.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;

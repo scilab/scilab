@@ -4,7 +4,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
 <<<<<<< HEAD
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
- * 
+ *
 =======
  *
 >>>>>>> origin/master
@@ -99,11 +99,11 @@ public class SciDockingListener implements DockingListener {
                 int newX = -offsetX;
                 int newY = -offsetY;
                 if (e.getNewDockingPort() instanceof FloatingDockingPort) {
-                    newX += (int) (((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX());
-                    newY += (int) (((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY());
+                    newX += ((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX();
+                    newY += ((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY();
                 } else {
-                    newX += (int) (((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX());
-                    newY += (int) (((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY());
+                    newX += ((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX();
+                    newY += ((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY();
                 }
 
                 SwingScilabWindow newWindow = new SwingScilabWindow();

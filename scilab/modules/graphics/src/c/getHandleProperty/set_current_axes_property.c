@@ -36,7 +36,7 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_axes_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char * curAxesUID   = NULL;
     char * parentFigureUID = NULL;
@@ -55,7 +55,7 @@ int set_current_axes_property(char* pobjUID, size_t stackPointer, int valueType,
         return SET_PROPERTY_ERROR;
     }
 
-    curAxesUID = getObjectFromHandle( getHandleFromStack( stackPointer ) );
+    curAxesUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) );
 
     if ( curAxesUID == NULL)
     {
@@ -63,7 +63,7 @@ int set_current_axes_property(char* pobjUID, size_t stackPointer, int valueType,
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -72,7 +72,7 @@ int set_current_axes_property(char* pobjUID, size_t stackPointer, int valueType,
     }
 
     /* The current Axes' parent Figure's selected child property must be updated */
-    getGraphicObjectProperty(curAxesUID, __GO_PARENT__, jni_string, &parentFigureUID);
+    getGraphicObjectProperty(curAxesUID, __GO_PARENT__, jni_string, (void **)&parentFigureUID);
     setGraphicObjectProperty(parentFigureUID, __GO_SELECTED_CHILD__, curAxesUID, jni_string, 1);
 
     setCurrentSubWin(curAxesUID);

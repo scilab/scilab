@@ -27,8 +27,7 @@
     <!--Lib_name: stringExample-->
     <!--Func_list: stringExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int stringExample(char *fname,unsigned long fname_len)
 {
@@ -101,8 +100,7 @@ int stringExample(char *fname,unsigned long fname_len)
 	}
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

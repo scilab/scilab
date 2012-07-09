@@ -10,12 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
-      $
-    </pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en">
   <refnamediv>
     <refname>legend_properties</refname>
     <refpurpose>description of the Legend entity properties.</refpurpose>
@@ -23,20 +18,19 @@
   <refsection>
     <title>Description</title>
     <para>The Legend entity is a leaf of the graphics entities
-    hierarchy. This entity defines the parameters for legends drawn
-    below <literal>plot2dx</literal> graphs or created by the <link
-    linkend="captions">captions</link> function. For selected line
-    plotted, the legend shows a sample of the line type, marker
-    symbol, and color.
+      hierarchy. This entity defines the parameters for legends drawn
+      below <literal>plot2dx</literal> graphs or created by the <link linkend="captions">captions</link> function. For selected line
+      plotted, the legend shows a sample of the line type, marker
+      symbol, and color.
     </para>
     <variablelist>
       <varlistentry>
         <term>parent:</term>
         <listitem>
           <para>This property contains the handle of the parent. The
-          parent of the legend entity should be of the type
-          <literal>"Compound"</literal>. This Compound entity contains
-          also the remainder of the graph's entities.
+            parent of the legend entity should be of the type
+            <literal>"Compound"</literal>. This Compound entity contains
+            also the remainder of the graph's entities.
           </para>
         </listitem>
       </varlistentry>
@@ -106,12 +100,12 @@
         <term>fractional_font:</term>
         <listitem>
           <para>This property specify whether text is displayed using
-          fractional font sizes. Its value must be either
-          <literal>"on"</literal> or <literal>"off"</literal>. If
-          <literal>"on"</literal> the floating point value of
-          <literal>font_size</literal> is used for display and the
-          font is anti-aliased. If <literal>"off"</literal> only the
-          integer part is used and the font is not smoothed.
+            fractional font sizes. Its value must be either
+            <literal>"on"</literal> or <literal>"off"</literal>. If
+            <literal>"on"</literal> the floating point value of
+            <literal>font_size</literal> is used for display and the
+            font is anti-aliased. If <literal>"off"</literal> only the
+            integer part is used and the font is not smoothed.
           </para>
         </listitem>
       </varlistentry>
@@ -119,7 +113,7 @@
         <term>links:</term>
         <listitem>
           <para>A row array of handles. They refer to the associated
-          polylines.
+            polylines.
           </para>
         </listitem>
       </varlistentry>
@@ -199,7 +193,7 @@
                 <literal>x</literal> and <literal>y</literal>
                 positions are given as fractions of the
                 <literal>axes_bounds</literal>.
-            </para>
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -208,11 +202,11 @@
         <term>position</term>
         <listitem>
           <para>The coordinates of the upper left corner of the
-          legend. The <literal>x</literal> and <literal>y</literal>
-          positions are given as fractions of the
-          <literal>axes_bounds</literal> sizes. This field may be set
-          if <literal>legend_location=="by_coordinates"</literal> or
-          get for the other legend_location settings.
+            legend. The <literal>x</literal> and <literal>y</literal>
+            positions are given as fractions of the
+            <literal>axes_bounds</literal> sizes. This field may be set
+            if <literal>legend_location=="by_coordinates"</literal> or
+            get for the other legend_location settings.
           </para>
           <para>
             The following instructions can be used to transform these
@@ -220,7 +214,7 @@
             coordinates ((<literal>x_user</literal>,
             <literal>y_user</literal>) or conversely.
           </para>
-<programlisting role="user coordinates"><![CDATA[ 
+          <programlisting role="user coordinates"><![CDATA[ 
 as=get(gcf(),"axes_size");//size of the canvas in pixels
 bnds=get(gca(),"axes_bounds");//bounds of the current axes rectangle in figure size ratio.
 //from legend coordinates to user coordinates
@@ -232,8 +226,6 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
           (y1-as(2)*bnds(2))/(as(2)*bnds(4))];
  
  ]]></programlisting>
-          
-  
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_user_data_property(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_user_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
 
     int iUserDataSize = GetDataSize((int)stackPointer) * 2; /* GetDataSize returns the size of the variable in double words */

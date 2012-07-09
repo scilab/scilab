@@ -14,7 +14,7 @@
 
 #include "GetUiobjectForegroundColor.hxx"
 
-int GetUiobjectForegroundColor(char* sciObjUID)
+int GetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID)
 {
     double *tmp = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUiobjectForegroundColor(char* sciObjUID)
     }
     else
     {
-        status = sciReturnRowVector(tmp, 3);
+        status = sciReturnRowVector(_pvCtx, tmp, 3);
         delete[] tmp;
         return status;
     }

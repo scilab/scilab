@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontWeight.hxx"
 
-int SetUicontrolFontWeight(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be light, normal, demi or bold */
 

@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_bounds_property(char *pobjUID)
+int get_axes_bounds_property(void* _pvCtx, char* pobjUID)
 {
     double* axesBounds = NULL;
 
@@ -41,7 +41,7 @@ int get_axes_bounds_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, jni_double_vector, &axesBounds);
+    getGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, jni_double_vector, (void **)&axesBounds);
 
     if (axesBounds == NULL)
     {
@@ -49,6 +49,6 @@ int get_axes_bounds_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVector( axesBounds, 4 );
+    return sciReturnRowVector(_pvCtx, axesBounds, 4);
 }
 /*------------------------------------------------------------------------*/

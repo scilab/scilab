@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sort" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-10 16:45:48 +0200 (jeu., 10 avr. 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>sort</refname>
     <refpurpose>"クイックソート" アルゴリズムによる安定なソート (古い関数, gsort参照)</refpurpose>

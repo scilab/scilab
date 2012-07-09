@@ -1,0 +1,48 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 11422 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=11422
+//
+// <-- Short Description -->
+// datatips do not work when the figure contains uicontrols.
+uicontrol()
+ ans  =
+ 
+Handle of type "uicontrol" with properties:
+===========================================
+Parent: Figure
+Children: []
+BackgroundColor = [0.6,0.6,0.6]
+Enable = "on"
+FontAngle = normal
+FontName = helvetica
+FontSize = 10
+FontUnits = points
+FontWeight = normal
+ForegroundColor = [0,0,0]
+HorizontalAlignment = center
+ListboxTop = []
+Max = 1
+Min = 0
+Position = [20,40,40,20]
+Relief = raised
+SliderStep = [0.01,0.1]
+String = ""
+Style = pushbutton
+Units = pixels
+Value = []
+VerticalAlignment = middle
+Visible = "on"
+Callback = 
+Callback_Type = -1
+Handle_Visible = "on"
+Userdata = []
+Tag = 
+assert_checktrue(execstr("datatipEventhandler(get(gcf(), ""figure_id""), 1 ,1, 1)", "errcatch")==0);

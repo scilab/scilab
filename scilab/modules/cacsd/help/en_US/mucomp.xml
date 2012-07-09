@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mucomp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mucomp</refname>
     <refpurpose> mu (structured singular value) calculation</refpurpose>
@@ -53,7 +50,8 @@
         <term>D, G</term>
         <listitem>
           <para>vectors of length n containing the diagonal entries of the diagonal matrices D and G, respectively, 
-           such that the matrix <literal> Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 </literal> is negative semidefinite.</para>
+            such that the matrix <literal> Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 </literal> is negative semidefinite.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -61,11 +59,13 @@
   <refsection>
     <title>Description</title>
     <para>
-     To compute an upper bound on the structured singular value for a given square complex matrix and given block structure of the uncertainty.</para>
+      To compute an upper bound on the structured singular value for a given square complex matrix and given block structure of the uncertainty.
+    </para>
   </refsection>
   <refsection>
     <title>Reference</title>
     <para>
-    Slicot routine AB13MD.</para>
+      Slicot routine AB13MD.
+    </para>
   </refsection>
 </refentry>

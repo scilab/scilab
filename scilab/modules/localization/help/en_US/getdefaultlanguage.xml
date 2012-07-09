@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getdefaultlanguage">
-  <info>
-    <pubdate>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>getdefaultlanguage</refname>
     <refpurpose>returns the default language used by Scilab</refpurpose>

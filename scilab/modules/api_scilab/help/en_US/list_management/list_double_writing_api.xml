@@ -25,9 +25,9 @@
     <para>Input argument profile:</para>
     <synopsis>SciErr createMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
     <synopsis>SciErr createComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
-      <para>Named variable profile:</para>
-      <synopsis>SciErr createMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
-      <synopsis>SciErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
+    <para>Named variable profile:</para>
+    <synopsis>SciErr createMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+    <synopsis>SciErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -211,8 +211,7 @@
     <!--Lib_name: list_createlist-->
     <!--Func_list: list_createlist-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int list_createlist(char *fname,unsigned long fname_len)
@@ -331,8 +330,7 @@ int list_createlist(char *fname,unsigned long fname_len)
 	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

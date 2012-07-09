@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_clear_property(char *pobjUID)
+int get_auto_clear_property(void* _pvCtx, char* pobjUID)
 {
     int iAutoClear = 0;
     int* piAutoClear = &iAutoClear;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+    getGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
 
     if (piAutoClear == NULL)
     {
@@ -44,11 +44,11 @@ int get_auto_clear_property(char *pobjUID)
 
     if (iAutoClear)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

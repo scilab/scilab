@@ -91,8 +91,7 @@
     <!--Lib_name: list_createlist-->
     <!--Func_list: list_createlist-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int list_createlist(char *fname,unsigned long fname_len)
@@ -211,8 +210,7 @@ int list_createlist(char *fname,unsigned long fname_len)
 	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

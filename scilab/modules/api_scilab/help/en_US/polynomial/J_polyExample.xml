@@ -27,8 +27,7 @@
     <!--Lib_name: polyExample-->
     <!--Func_list: polyExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 int polyExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -159,8 +158,7 @@ int polyExample(char *fname,unsigned long fname_len)
 	}
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

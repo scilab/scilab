@@ -23,7 +23,7 @@ extern "C"
  ** \brief Get the style of an uicontrol object
  */
 
-int GetUicontrolStyle(char *sciObjUID)
+int GetUicontrolStyle(void* _pvCtx, char *sciObjUID)
 {
     char *pstrStyle = NULL;
 
@@ -31,7 +31,7 @@ int GetUicontrolStyle(char *sciObjUID)
 
   if (pstrStyle != NULL)
   {
-      return sciReturnString(pstrStyle);
+      return sciReturnString(_pvCtx, pstrStyle);
   }
   else
   {

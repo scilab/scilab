@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_sub_tics_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int result = 0;
@@ -47,7 +47,7 @@ int set_sub_tics_property(char* pobjUID, size_t stackPointer, int valueType, int
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     /*
      * Type test required as the Axis object stores subticks as a single int

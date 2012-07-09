@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="strrchr">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>strrchr</refname>
     <refpurpose>文字列の中で指定した文字が最後に現れる場所を探す</refpurpose>
@@ -47,8 +44,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>res = strrchr(str1,char)</literal> 
-	文字列strの中で指定した文字が最後に現れる場所を返します.</para>
+    <para>
+      <literal>res = strrchr(str1,char)</literal> 
+      文字列strの中で指定した文字が最後に現れる場所を返します.
+    </para>
     <para> num はstr1と同じ次元で,1文字である必要があります.</para>
   </refsection>
   <refsection>

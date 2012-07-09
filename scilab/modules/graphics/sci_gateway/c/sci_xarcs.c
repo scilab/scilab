@@ -62,7 +62,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
         }
     }
 
-    pstCurrentSubWinUID = getOrCreateDefaultSubwin();
+    pstCurrentSubWinUID = (char*)getOrCreateDefaultSubwin();
 
     if (Rhs == 2)
     {

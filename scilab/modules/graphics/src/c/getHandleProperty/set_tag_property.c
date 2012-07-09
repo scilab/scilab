@@ -27,7 +27,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_tag_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     // Tag must be only one character string
 

@@ -15,7 +15,7 @@
 
 #include "SetUicontrolListboxTop.hxx"
 
-int SetUicontrolListboxTop(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int value = 0;
     int* valueTab;

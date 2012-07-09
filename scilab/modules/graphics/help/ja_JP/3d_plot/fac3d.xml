@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fac3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fac3d</refname>
     <refpurpose>曲面の 3次元プロット (古い関数)  </refpurpose>
@@ -21,13 +18,15 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>fac3d(x,y,z,[theta,alpha,leg,flag,ebox])
-fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
+      fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>
-	これらの関数は古い関数であり,
-    <literal>plot3d</literal> および <literal>plot3d1</literal>で置き換えられています.</para>
+      これらの関数は古い関数であり,
+      <literal>plot3d</literal> および <literal>plot3d1</literal>で置き換えられています.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

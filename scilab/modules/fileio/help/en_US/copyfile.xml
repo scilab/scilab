@@ -12,14 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="copyfile" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept.
-      2006)$
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>copyfile</refname>
-    <refpurpose>Copy file</refpurpose>
+    <refpurpose>copies a file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,14 +24,17 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>copyfile('source','destination') copies the file or directory ,
-      source (and subdirectories) to the file or directory, destination.
+    <para>
+      <literal>copyfile('source','destination')</literal> copies the file or 
+      directory <literal>'source'</literal> (and subdirectories) to the file or
+      directory <literal>'destination'</literal>.
     </para>
-    <para>If source is a directory, destination can not be a file. copyfile
-      replaces existing files without warning.
+    <para>If source is a directory, destination can not be a file. 
+    <literal>copyfile</literal> replaces existing files without warning.
     </para>
-    <para>[status, message] = copyfile('source','destination') copies source
-      to destination, returning the status and a message. 
+    <para>
+      <literal>[status, message] = copyfile('source','destination')</literal>
+      copies source to destination, returning the status and a message. 
     </para>
     <para>Whatever the operating system, if the copy succeeds, the status is 1
       and the message is empty ; if the copy fails, the status is 0 and the

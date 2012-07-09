@@ -59,8 +59,6 @@
 
 #include "MALLOC.h"
 
-#include "CallFigure.h"
-
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -76,7 +74,7 @@ int sciSetLineWidth (char * pobjUID, double linewidth)
 
     if (linewidth < 0)
     {
-        Scierror(999, _("Line width must be greater than %d.\n"),0);
+        Scierror(999, _("Line width must be greater than %d.\n"), 0);
         return -1;
     }
     else
@@ -100,7 +98,7 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     BOOL status = FALSE;
     if (linestyle < 0)
     {
-        Scierror(999, _("The line style must be greater than %d.\n"),0);
+        Scierror(999, _("The line style must be greater than %d.\n"), 0);
         return -1;
     }
     else
@@ -121,7 +119,7 @@ int sciSetMarkSize( char * pobjUID, int marksize )
 {
     if (marksize < 0)
     {
-        Scierror(999, _("The mark size must be greater or equal than %d.\n"),0);
+        Scierror(999, _("The mark size must be greater or equal than %d.\n"), 0);
         return -1;
     }
     else
@@ -165,7 +163,7 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
         return -1;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0]*dimensions[1]);
+    status = setGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0] * dimensions[1]);
 
     if (status == TRUE)
     {
@@ -185,27 +183,27 @@ int sciInitFontStyle( char * pobjUID, int iAttributes )
 #if 0
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_SUBWIN:
-    case SCI_FIGURE:
-    case SCI_LABEL: /* F.Leray 10.06.04 */
-        (sciGetFontContext(pobjUID))->fonttype =iAttributes;
-        break;
-    case SCI_UIMENU:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    default:
-        printSetGetErrorMessage("font_style");
-        return -1;
-        break;
+        case SCI_TEXT:
+        case SCI_LEGEND:
+        case SCI_SUBWIN:
+        case SCI_FIGURE:
+        case SCI_LABEL: /* F.Leray 10.06.04 */
+            (sciGetFontContext(pobjUID))->fonttype = iAttributes;
+            break;
+        case SCI_UIMENU:
+        case SCI_ARC:
+        case SCI_SEGS:
+        case SCI_FEC:
+        case SCI_GRAYPLOT:
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_AGREG:
+        default:
+            printSetGetErrorMessage("font_style");
+            return -1;
+            break;
     }
 #endif
     return 0;
@@ -235,7 +233,7 @@ int sciInitLegendPlace( char * pobjUID, sciLegendPlace place )
     // FIXME
     abort();
 #if 0
-    double position[2]={0.0,0.0};
+    double position[2] = {0.0, 0.0};
 
     if (sciGetEntityType (pobjUID) == SCI_LEGEND)
     {
@@ -278,28 +276,28 @@ int sciInitLegendPos( char * pobjUID, double position[] )
 #if 0
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_LEGEND:
-        pLEGEND_FEATURE (pobjUID)->pos.x = position[0];
-        pLEGEND_FEATURE (pobjUID)->pos.y = position[1];
-        break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL:
-    case SCI_UIMENU:
-    default:
-        Scierror(999, _("You are not using a legend object.\n"));
-        return -1;
-        break;
+        case SCI_LEGEND:
+            pLEGEND_FEATURE (pobjUID)->pos.x = position[0];
+            pLEGEND_FEATURE (pobjUID)->pos.y = position[1];
+            break;
+        case SCI_FIGURE:
+        case SCI_SUBWIN:
+        case SCI_TEXT:
+        case SCI_ARC:
+        case SCI_SEGS:
+        case SCI_FEC:
+        case SCI_GRAYPLOT:
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_AGREG:
+        case SCI_LABEL:
+        case SCI_UIMENU:
+        default:
+            Scierror(999, _("You are not using a legend object.\n"));
+            return -1;
+            break;
     }
 #endif
     return 0;
@@ -314,7 +312,7 @@ int
 sciSetLegendPos (char * pobjUID, double position[])
 {
     double position_old[2] ;
-    sciGetLegendPos((sciPointObj *) pobjUID ,position_old) ;
+    sciGetLegendPos((sciPointObj *) pobjUID , position_old) ;
     if ( position[0] ==  position_old[0] && position[1] == position_old[1] )
     {
         /* nothing to do */
@@ -330,58 +328,61 @@ int sciInitIsClipping( char * pobjUID, int value )
 #if 0
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pSUBWIN_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_ARC:
-        pARC_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pARC_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_POLYLINE:
-        pPOLYLINE_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pPOLYLINE_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_RECTANGLE:
-        pRECTANGLE_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pRECTANGLE_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_SEGS:
-        pSEGS_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pSEGS_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_TEXT:
-        pTEXT_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pTEXT_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_AXES:
-        pAXES_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pAXES_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_SURFACE:
-        pSURFACE_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pSURFACE_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_FEC:
-        pFEC_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pFEC_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_GRAYPLOT:
-        pGRAYPLOT_FEATURE (pobjUID)->isclip = value;
-        if(value>0) pGRAYPLOT_FEATURE (pobjUID)->clip_region_set=1;
-        break;
-    case SCI_LEGEND:
-        pLEGEND_FEATURE(pobjUID)->isclip = value;
-        if(value>0) { pLEGEND_FEATURE (pobjUID)->clip_region_set=1;}
-        break;
-    case SCI_AGREG:
-    case SCI_FIGURE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("clip_state");
-        return -1 ;
-        break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pSUBWIN_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_ARC:
+            pARC_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pARC_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_POLYLINE:
+            pPOLYLINE_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pPOLYLINE_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_RECTANGLE:
+            pRECTANGLE_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pRECTANGLE_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_SEGS:
+            pSEGS_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pSEGS_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_TEXT:
+            pTEXT_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pTEXT_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_AXES:
+            pAXES_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pAXES_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_SURFACE:
+            pSURFACE_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pSURFACE_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_FEC:
+            pFEC_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pFEC_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_GRAYPLOT:
+            pGRAYPLOT_FEATURE (pobjUID)->isclip = value;
+            if (value > 0) pGRAYPLOT_FEATURE (pobjUID)->clip_region_set = 1;
+            break;
+        case SCI_LEGEND:
+            pLEGEND_FEATURE(pobjUID)->isclip = value;
+            if (value > 0)
+            {
+                pLEGEND_FEATURE (pobjUID)->clip_region_set = 1;
+            }
+            break;
+        case SCI_AGREG:
+        case SCI_FIGURE:
+        case SCI_LABEL: /* F.Leray 28.05.04 */
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("clip_state");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -417,49 +418,82 @@ sciSetClipping (char * pobjUID, double pclip[4] )
 
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        for(i=0;i<4;i++) {pSUBWIN_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_ARC:
-        for(i=0;i<4;i++) {pARC_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_POLYLINE:
-        for(i=0;i<4;i++) {pPOLYLINE_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_RECTANGLE:
-        for(i=0;i<4;i++) {pRECTANGLE_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_SEGS:
-        for(i=0;i<4;i++) {pSEGS_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_TEXT:
-        for(i=0;i<4;i++) {pTEXT_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_AXES:
-        for(i=0;i<4;i++) {pAXES_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_SURFACE:
-        for(i=0;i<4;i++) {pSURFACE_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_LEGEND:
-        for(i=0;i<4;i++) {pLEGEND_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_FEC:
-        for(i=0;i<4;i++) {pFEC_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_GRAYPLOT:
-        for(i=0;i<4;i++) {pGRAYPLOT_FEATURE (pobjUID)->clip_region[i] = pclip[i];}
-        break;
-    case SCI_LABEL:
-        return sciSetClipping( pLABEL_FEATURE (pobjUID)->text, pclip ) ;
-        break;
-    case SCI_AGREG:
-    case SCI_FIGURE:
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("clip_box");
-        return -1;
-        break;
+        case SCI_SUBWIN:
+            for (i = 0; i < 4; i++)
+            {
+                pSUBWIN_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_ARC:
+            for (i = 0; i < 4; i++)
+            {
+                pARC_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_POLYLINE:
+            for (i = 0; i < 4; i++)
+            {
+                pPOLYLINE_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_RECTANGLE:
+            for (i = 0; i < 4; i++)
+            {
+                pRECTANGLE_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_SEGS:
+            for (i = 0; i < 4; i++)
+            {
+                pSEGS_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_TEXT:
+            for (i = 0; i < 4; i++)
+            {
+                pTEXT_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_AXES:
+            for (i = 0; i < 4; i++)
+            {
+                pAXES_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_SURFACE:
+            for (i = 0; i < 4; i++)
+            {
+                pSURFACE_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_LEGEND:
+            for (i = 0; i < 4; i++)
+            {
+                pLEGEND_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_FEC:
+            for (i = 0; i < 4; i++)
+            {
+                pFEC_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_GRAYPLOT:
+            for (i = 0; i < 4; i++)
+            {
+                pGRAYPLOT_FEATURE (pobjUID)->clip_region[i] = pclip[i];
+            }
+            break;
+        case SCI_LABEL:
+            return sciSetClipping( pLABEL_FEATURE (pobjUID)->text, pclip ) ;
+            break;
+        case SCI_AGREG:
+        case SCI_FIGURE:
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("clip_box");
+            return -1;
+            break;
     }
 #endif
     return 0;
@@ -471,33 +505,33 @@ int sciInitZooming( char * pobjUID, BOOL value )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_FIGURE:
-        (sciGetGraphicMode (pobjUID))->zooming = value;
-        break;
-    case SCI_SUBWIN:
-        (sciGetGraphicMode (pobjUID))->zooming = value;
-        /* the value is inhirated by the parent */
-        sciSetZooming (sciGetParentFigure (pobjUID), value);
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("zoom");
-        return -1 ;
-        break;
+        case SCI_FIGURE:
+            (sciGetGraphicMode (pobjUID))->zooming = value;
+            break;
+        case SCI_SUBWIN:
+            (sciGetGraphicMode (pobjUID))->zooming = value;
+            /* the value is inhirated by the parent */
+            sciSetZooming (sciGetParentFigure (pobjUID), value);
+            break;
+        case SCI_TEXT:
+        case SCI_LEGEND:
+        case SCI_ARC:
+        case SCI_SEGS:
+        case SCI_FEC:
+        case SCI_GRAYPLOT:
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_AGREG:
+        case SCI_LABEL: /* F.Leray 28.05.04 */
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("zoom");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -527,11 +561,11 @@ sciSetZooming (char * pobjUID, BOOL value)
 int
 sciSetDefaultValues (void)
 {
-// ???
+    // ???
 #if 0
     if ((sciInitGraphicContext (sciGetCurrentFigure()) == -1) ||
-        (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
-        (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
+            (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
+            (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
     {
         Scierror(999, _("Unable to load default values.\n"));
         return -1 ;
@@ -548,53 +582,53 @@ int sciInitVisibility( char * pobjUID, BOOL value )
 
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_FIGURE:
-        pFIGURE_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_LEGEND:
-        pLEGEND_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_ARC:
-        pARC_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_POLYLINE:
-        pPOLYLINE_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_RECTANGLE:
-        pRECTANGLE_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_SURFACE:
-        pSURFACE_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_SEGS:
-        pSEGS_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_FEC:
-        pFEC_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_GRAYPLOT:
-        pGRAYPLOT_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_TEXT:
-        pTEXT_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_AXES:
-        pAXES_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_AGREG:
-        pAGREG_FEATURE (pobjUID)->visible = value;
-        break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-        return sciInitVisibility( pLABEL_FEATURE(pobjUID)->text, value ) ;
-        break;
-    case SCI_UIMENU:
-    case SCI_UICONTROL:
-    default:
-        return -1 ;
-        break;
+        case SCI_FIGURE:
+            pFIGURE_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_LEGEND:
+            pLEGEND_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_ARC:
+            pARC_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_POLYLINE:
+            pPOLYLINE_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_RECTANGLE:
+            pRECTANGLE_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_SURFACE:
+            pSURFACE_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_SEGS:
+            pSEGS_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_FEC:
+            pFEC_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_GRAYPLOT:
+            pGRAYPLOT_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_TEXT:
+            pTEXT_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_AXES:
+            pAXES_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_AGREG:
+            pAGREG_FEATURE (pobjUID)->visible = value;
+            break;
+        case SCI_LABEL: /* F.Leray 28.05.04 */
+            return sciInitVisibility( pLABEL_FEATURE(pobjUID)->text, value ) ;
+            break;
+        case SCI_UIMENU:
+        case SCI_UICONTROL:
+        default:
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -618,15 +652,15 @@ int sciInitNum( char * pobjUID, int value )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_FIGURE:
-        pFIGURE_FEATURE(pobjUID)->number = value;
-        break;
-    default:
-        printSetGetErrorMessage("figure_id");
-        return -1 ;
-        break;
+        case SCI_FIGURE:
+            pFIGURE_FEATURE(pobjUID)->number = value;
+            break;
+        default:
+            printSetGetErrorMessage("figure_id");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -659,7 +693,7 @@ void sciSelectFirstSubwin( char * parentFigure )
     // FIXME
     abort();
 #if 0
-        sciSons * figureSons = sciGetSons ( parentFigure ) ;
+    sciSons * figureSons = sciGetSons ( parentFigure ) ;
     if ( figureSons != (sciSons *) NULL )
     {
         /* look for the first subwindow */
@@ -669,7 +703,7 @@ void sciSelectFirstSubwin( char * parentFigure )
             figureSons = figureSons->pnext;
         }
 
-        if( sciGetEntityType (figureSons->pointobj) == SCI_SUBWIN )
+        if ( sciGetEntityType (figureSons->pointobj) == SCI_SUBWIN )
         {
             /* we found another valid subwindow */
             sciSetSelectedSubWin (figureSons->pointobj);
@@ -708,7 +742,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
     char* type = NULL;
     char* parent = NULL;
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     /* Check that the object is an AXES */
     if (strcmp(type, __GO_AXES__) != 0)
@@ -717,7 +751,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_PARENT__, jni_string, &parent);
+    getGraphicObjectProperty(psubwinobjUID, __GO_PARENT__, jni_string, (void **)&parent);
 
     setGraphicObjectProperty(parent, __GO_SELECTED_CHILD__, psubwinobjUID, jni_string, 1);
 
@@ -744,7 +778,7 @@ sciSetOriginalSubWin (char * pfigure, char * psubwin)
     // FIXME
     abort();
 #if 0
-        pFIGURE_FEATURE(pfigure)->originalsubwin0011 = psubwin;
+    pFIGURE_FEATURE(pfigure)->originalsubwin0011 = psubwin;
 #endif
     return 0;
 }
@@ -759,7 +793,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     char* type = NULL;
     int i = 0, n1 = 0;
 
-    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, (void **)&type);
 
     /*
      * switch over sciGetEntityType replaced by object type string comparisons
@@ -773,7 +807,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
         {
-            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
             return -1;
         }
 
@@ -817,7 +851,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
             if (*numcol == 3)
             {
-                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, &tab[2*n1], jni_double_vector, n1);
+                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
                 zCoordinatesSet = 1;
             }
             else
@@ -840,7 +874,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         if ( size != 5 && size != 4 )
         {
-            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
+            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 4, 5, "z");
             return -1;
         }
 
@@ -858,7 +892,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
              * Needed in order to set the z coordinate if size == 4
              * Being able to set only the point's x and y coordinates values would avoid doing this.
              */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
             upperLeftPoint[2] = currentUpperLeftPoint[2];
         }
 
@@ -867,7 +901,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         /* check that the height and width are positive */
         if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
         {
-            Scierror(999,"Width and height must be positive.\n") ;
+            Scierror(999, "Width and height must be positive.\n") ;
             return -1 ;
         }
 
@@ -890,7 +924,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         if ((size != 7) && (size != 6))
         {
-            Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
+            Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"), 6, 7);
             return -1;
         }
 
@@ -914,7 +948,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         else
         {
             /* Needed in order to set the z coordinate if size == 6 */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
 
             upperLeftPoint[2] = currentUpperLeftPoint[2];
             width = tab[2];
@@ -940,14 +974,14 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         int iView = 0;
         int* piView = &iView;
 
-        if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
+        if ((*numrow * *numcol != 2) && (*numrow * *numcol != 3))
         {
-            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
+            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 2, 3, "z");
             return -1;
         }
 
-        getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, &parentAxes);
-        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+        getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, (void**)&piView);
 
         position[0] = tab[0];
         position[1] = tab[1];
@@ -965,7 +999,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
              * coordinates if required.
              */
             double* currentPosition;
-            getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, &currentPosition);
+            getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
             position[2] = currentPosition[2];
         }
 
@@ -978,9 +1012,9 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         int numArrows = 0;
         double* arrowPoints = NULL;
 
-        if ((*numcol != 3)&&(*numcol != 2))
+        if ((*numcol != 3) && (*numcol != 2))
         {
-            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
             return -1;
         }
 
@@ -991,9 +1025,9 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         }
 
 
-        numArrows = *numrow/2;
+        numArrows = *numrow / 2;
 
-        arrowPoints = (double*) MALLOC(3*numArrows*sizeof(double));
+        arrowPoints = (double*) MALLOC(3 * numArrows * sizeof(double));
 
         if (arrowPoints == NULL)
         {
@@ -1007,39 +1041,39 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
          */
         for (i = 0; i < numArrows; i++)
         {
-            arrowPoints[3*i] = tab[2*i];
-            arrowPoints[3*i+1] = tab[2*numArrows+2*i];
+            arrowPoints[3 * i] = tab[2 * i];
+            arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i];
 
             if (*numcol == 3)
             {
-                arrowPoints[3*i+2] = tab[4*numArrows+2*i];
+                arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i];
             }
             else
             {
-                arrowPoints[3*i+2] = 0.0;
+                arrowPoints[3 * i + 2] = 0.0;
             }
         }
 
         setGraphicObjectProperty(pthis, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
 
-        setGraphicObjectProperty(pthis, __GO_BASE__, arrowPoints, jni_double_vector, 3*numArrows);
+        setGraphicObjectProperty(pthis, __GO_BASE__, arrowPoints, jni_double_vector, 3 * numArrows);
 
         for (i = 0; i < numArrows; i++)
         {
-            arrowPoints[3*i] = tab[2*i+1];
-            arrowPoints[3*i+1] = tab[2*numArrows+2*i+1];
+            arrowPoints[3 * i] = tab[2 * i + 1];
+            arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i + 1];
 
             if (*numcol == 3)
             {
-                arrowPoints[3*i+2] = tab[4*numArrows+2*i+1];
+                arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i + 1];
             }
             else
             {
-                arrowPoints[3*i+2] = 0.0;
+                arrowPoints[3 * i + 2] = 0.0;
             }
         }
 
-        setGraphicObjectProperty(pthis, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3*numArrows);
+        setGraphicObjectProperty(pthis, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3 * numArrows);
 
         FREE(arrowPoints);
 
@@ -1084,7 +1118,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             return -1;
         }
 
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx*ny);
+        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
     }
     else if (strcmp(type, __GO_FEC__) == 0)
     {
@@ -1092,7 +1126,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         int Nnode = 0;
         if (*numcol != 3)
         {
-            Scierror(999, _("Number of columns must be %d.\n"),3);
+            Scierror(999, _("Number of columns must be %d.\n"), 3);
             return -1;
         }
 
@@ -1109,7 +1143,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2*Nnode], jni_double_vector, Nnode);
+        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
     }
     else if (strcmp(type, __GO_FIGURE__) == 0)
     {
@@ -1177,7 +1211,7 @@ int sciSetUsedWindow( int winNum )
     // FIXME
     abort();
 #if 0
-        return 1;
+    return 1;
     /* select or create the window in the driver */
     if ( sciHasFigures() && sciGetNum( sciGetCurrentFigure() ) == winNum )
     {
@@ -1195,35 +1229,35 @@ int sciInitBoxType( char * pobjUID, EAxesBoxType type )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.rect = type ;
-        /* redondant information in scilab :'( */
-        switch ( type )
-        {
-        case BT_OFF:
-            pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 0 ;
-            break ;
-        case BT_ON:
-            pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 4 ;
-            break ;
-        case BT_HIDDEN_AXES:
-            pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 2 ;
-            break ;
-        case BT_BACK_HALF:
-            pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 3 ;
-            break ;
-        }
-        return 0;
-        break;
-    default:
-        printSetGetErrorMessage("box_type");
-        return -1 ;
-        break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->axes.rect = type ;
+            /* redondant information in scilab :'( */
+            switch ( type )
+            {
+                case BT_OFF:
+                    pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 0 ;
+                    break ;
+                case BT_ON:
+                    pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 4 ;
+                    break ;
+                case BT_HIDDEN_AXES:
+                    pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 2 ;
+                    break ;
+                case BT_BACK_HALF:
+                    pSUBWIN_FEATURE(pobjUID)->axes.flag[2] = 3 ;
+                    break ;
+            }
+            return 0;
+            break;
+        default:
+            printSetGetErrorMessage("box_type");
+            return -1 ;
+            break;
     }
 #endif
-        return -1 ;
+    return -1 ;
 }
 
 /* set the property of the axes box  */
@@ -1244,44 +1278,44 @@ int sciInitIsBoxed( char * pobjUID, BOOL isboxed )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->isboxed = isboxed;
-        return 0;
-        break;
-    case SCI_SUBWIN:
-        Scierror(999, _("%s: please use %s instead.\n"),"sciSetIsBoxed","sciSetBoxType");
-        if ( isboxed )
-        {
-            pSUBWIN_FEATURE(pobjUID)->axes.rect = BT_ON ;
-        }
-        else
-        {
-            pSUBWIN_FEATURE(pobjUID)->axes.rect = BT_OFF ;
-        }
-        return 0;
-        break;
-    case SCI_LABEL:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_ARC:
-    case SCI_FIGURE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_LEGEND:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("box_type");
-        return -1;
-        break;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->isboxed = isboxed;
+            return 0;
+            break;
+        case SCI_SUBWIN:
+            Scierror(999, _("%s: please use %s instead.\n"), "sciSetIsBoxed", "sciSetBoxType");
+            if ( isboxed )
+            {
+                pSUBWIN_FEATURE(pobjUID)->axes.rect = BT_ON ;
+            }
+            else
+            {
+                pSUBWIN_FEATURE(pobjUID)->axes.rect = BT_OFF ;
+            }
+            return 0;
+            break;
+        case SCI_LABEL:
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_ARC:
+        case SCI_FIGURE:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_LEGEND:
+        case SCI_SEGS:
+        case SCI_FEC:
+        case SCI_GRAYPLOT:
+        case SCI_AGREG:
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("box_type");
+            return -1;
+            break;
     }
 #endif
-        return -1 ;
+    return -1 ;
 }
 
 /**sciSetIsBoxed
@@ -1306,15 +1340,15 @@ sciInitNbXSubTics(char * pobjUID, int nbsubtics)
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[0] = nbsubtics;
-        break;
-    default:
-        printSetGetErrorMessage("subwin_type required");
-        return -1 ;
-        break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[0] = nbsubtics;
+            break;
+        default:
+            printSetGetErrorMessage("subwin_type required");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -1340,18 +1374,18 @@ sciSetNbXSubTics(char * pobjUID, int nbsubtics)
 int
 sciInitNbYSubTics(char * pobjUID, int nbsubtics)
 {
-// FIXME
+    // FIXME
     abort();
 #if 0
     switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[1] = nbsubtics;
-        break;
-    default:
-        printSetGetErrorMessage("subwin_type required");
-        return -1 ;
-        break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[1] = nbsubtics;
+            break;
+        default:
+            printSetGetErrorMessage("subwin_type required");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -1380,15 +1414,15 @@ sciInitNbZSubTics(char * pobjUID, int nbsubtics)
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[2] = nbsubtics;
-        break;
-    default:
-        printSetGetErrorMessage("subwin_type required");
-        return -1 ;
-        break;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->axes.nbsubtics[2] = nbsubtics;
+            break;
+        default:
+            printSetGetErrorMessage("subwin_type required");
+            return -1 ;
+            break;
     }
 #endif
     return 0 ;
@@ -1418,16 +1452,17 @@ sciSetInterpVector(char * pobjUID, int size, int * value)
     // FIXME
     abort();
 #if 0
-        int i;
+    int i;
 
     FREE(pPOLYLINE_FEATURE(pobjUID)->scvector);
 
-    if((pPOLYLINE_FEATURE(pobjUID)->scvector = MALLOC(size*sizeof(int)))==NULL){
+    if ((pPOLYLINE_FEATURE(pobjUID)->scvector = MALLOC(size * sizeof(int))) == NULL)
+    {
         Scierror(999, _("%s: No more memory.\n"), "sciSetInterpVector") ;
         return -1;
     }
 
-    for(i=0;i<size;i++)
+    for (i = 0; i < size; i++)
         pPOLYLINE_FEATURE(pobjUID)->scvector[i] = value[i];
 #endif
     return 0;
@@ -1438,32 +1473,32 @@ int sciInitAutoRotation( char * pobjUID, BOOL value )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_LABEL:
-        pLABEL_FEATURE(pobjUID)->auto_rotation = value ;
-        return 0;
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_ARC:
-    case SCI_TEXT:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FEC:
-    case SCI_SEGS:
-    case SCI_LEGEND:
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("auto_rotation");
-        return -1 ;
-        break;
+        case SCI_LABEL:
+            pLABEL_FEATURE(pobjUID)->auto_rotation = value ;
+            return 0;
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_ARC:
+        case SCI_TEXT:
+        case SCI_FIGURE:
+        case SCI_SUBWIN:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_FEC:
+        case SCI_SEGS:
+        case SCI_LEGEND:
+        case SCI_GRAYPLOT:
+        case SCI_AGREG:
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("auto_rotation");
+            return -1 ;
+            break;
     }
 #endif
-        return -1;
+    return -1;
 
 }
 
@@ -1486,29 +1521,29 @@ int sciInitAutoPosition( char * pobjUID, BOOL value )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_LABEL:
-        pLABEL_FEATURE(pobjUID)->auto_position = value ;
-        return 0;
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_ARC:
-    case SCI_TEXT:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FEC:
-    case SCI_SEGS:
-    case SCI_LEGEND:
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("auto_position");
-        return -1 ;
-        break;
+        case SCI_LABEL:
+            pLABEL_FEATURE(pobjUID)->auto_position = value ;
+            return 0;
+        case SCI_POLYLINE:
+        case SCI_RECTANGLE:
+        case SCI_ARC:
+        case SCI_TEXT:
+        case SCI_FIGURE:
+        case SCI_SUBWIN:
+        case SCI_SURFACE:
+        case SCI_AXES:
+        case SCI_FEC:
+        case SCI_SEGS:
+        case SCI_LEGEND:
+        case SCI_GRAYPLOT:
+        case SCI_AGREG:
+        case SCI_UIMENU:
+        default:
+            printSetGetErrorMessage("auto_position");
+            return -1 ;
+            break;
     }
 #endif
     return -1 ;
@@ -1562,17 +1597,17 @@ int checkPercent( char * string )
 /*---------------------------------------------------------------------------*/
 int sciInitAutoSize( char * pobjUID, BOOL autoSize )
 {
-// FIXME
+    // FIXME
 #if 0
     switch ( sciGetEntityType (pobjUID) )
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->autoSize = autoSize ;
-        return 0 ;
-    default:
-        printSetGetErrorMessage("text_box_mode");
-        return -1 ;
-        break;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->autoSize = autoSize ;
+            return 0 ;
+        default:
+            printSetGetErrorMessage("text_box_mode");
+            return -1 ;
+            break;
     }
 #endif
     return -1;
@@ -1594,14 +1629,14 @@ int sciInitAlignment( char * pobjUID, sciTextAlignment align )
     // FIXME
     abort();
 #if 0
-        switch (sciGetEntityType (pobjUID))
+    switch (sciGetEntityType (pobjUID))
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->stringsAlign = align ;
-        return 0 ;
-    default:
-        printSetGetErrorMessage("alignment");
-        return -1 ;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->stringsAlign = align ;
+            return 0 ;
+        default:
+            printSetGetErrorMessage("alignment");
+            return -1 ;
     }
 #endif
     return -1 ;
@@ -1622,18 +1657,18 @@ int sciInitUserSize( char * pobjUID, double width, double height )
     // FIXME
     abort();
 #if 0
-        switch( sciGetEntityType( pobjUID ) )
+    switch ( sciGetEntityType( pobjUID ) )
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->userSize[0] = width ;
-        pTEXT_FEATURE(pobjUID)->userSize[1] = height ;
-        return 0 ;
-    default:
-        printSetGetErrorMessage("text_box");
-        return -1 ;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->userSize[0] = width ;
+            pTEXT_FEATURE(pobjUID)->userSize[1] = height ;
+            return 0 ;
+        default:
+            printSetGetErrorMessage("text_box");
+            return -1 ;
     }
 #endif
-        return -1;
+    return -1;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetUserSize( char * pobjUID, double width, double height )
@@ -1654,17 +1689,17 @@ int sciInitCenterPos( char * pobjUID, BOOL newCP )
     // FIXME
     abort();
 #if 0
-        switch( sciGetEntityType( pobjUID ) )
+    switch ( sciGetEntityType( pobjUID ) )
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->centeredPos = newCP ;
-        return 0 ;
-    default:
-        printSetGetErrorMessage("data");
-        return -1 ;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->centeredPos = newCP ;
+            return 0 ;
+        default:
+            printSetGetErrorMessage("data");
+            return -1 ;
     }
 #endif
-        return -1;
+    return -1;
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1687,27 +1722,27 @@ int sciSetViewport( char * pobjUID, const int viewport[4] )
     // FIXME
     abort();
 #if 0
-        switch( sciGetEntityType( pobjUID ) )
+    switch ( sciGetEntityType( pobjUID ) )
     {
-    case SCI_FIGURE:
-        if (isFigureModel(pobjUID))
-        {
-            pFIGURE_FEATURE(pobjUID)->pModelData->viewport[0] = viewport[0];
-            pFIGURE_FEATURE(pobjUID)->pModelData->viewport[1] = viewport[1];
-            pFIGURE_FEATURE(pobjUID)->pModelData->viewport[2] = viewport[2];
-            pFIGURE_FEATURE(pobjUID)->pModelData->viewport[3] = viewport[3];
-        }
-        else
-        {
-            sciSetJavaViewport(pobjUID, viewport);
-        }
-        return 0;
-    default:
-        printSetGetErrorMessage("viewport");
-        return -1 ;
+        case SCI_FIGURE:
+            if (isFigureModel(pobjUID))
+            {
+                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[0] = viewport[0];
+                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[1] = viewport[1];
+                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[2] = viewport[2];
+                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[3] = viewport[3];
+            }
+            else
+            {
+                sciSetJavaViewport(pobjUID, viewport);
+            }
+            return 0;
+        default:
+            printSetGetErrorMessage("viewport");
+            return -1 ;
     }
 #endif
-        return -1;
+    return -1;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -1715,44 +1750,7 @@ int sciInitEventHandler( char * pobjUID, char * name )
 {
     // FIXME
     abort();
-#if 0
-        if( sciGetEntityType( pobjUID ) == SCI_FIGURE)
-    {
-        sciFigure * ppFigure = pFIGURE_FEATURE(pobjUID) ;
-
-        if ( ppFigure == NULL )
-        {
-            Scierror(999, _("%s: No more memory.\n"), "sciInitEventHandler") ;
-            return -1 ;
-        }
-
-        if ( ppFigure->eventHandler != NULL )
-        {
-            FREE(ppFigure->eventHandler);
-        }
-
-        ppFigure->eventHandler = strdup(name);
-
-        /* Java is called to set the listener */
-        if (!isFigureModel(pobjUID))
-        {
-            setFigureEventHandler(sciGetNum(pobjUID), name);
-        }
-
-        if ( strcmp( name, "" ) == 0 )
-        {
-            sciInitIsEventHandlerEnable( pobjUID, FALSE ) ;
-        }
-
-        return 0 ;
-    }
-    else
-    {
-        printSetGetErrorMessage("event_handler");
-        return -1 ;
-    }
-#endif
-        return -1;
+    return -1;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetEventHandler( char * pobjUID, char * name )
@@ -1770,39 +1768,7 @@ int sciInitIsEventHandlerEnable( char * pobjUID, BOOL enable )
 {
     // FIXME
     abort();
-#if 0
-        if(sciGetEntityType( pobjUID ) == SCI_FIGURE)
-    {
-        sciFigure * ppFigure = pFIGURE_FEATURE(pobjUID) ;
-        /*
-        ** If we try to enable an empty Event Handler
-        ** raise a Warning.
-        */
-        if (ppFigure != NULL
-            && ppFigure->eventHandler != NULL
-            && (strcmp(ppFigure->eventHandler, "") != 0 || enable == FALSE))
-        {
-            pFIGURE_FEATURE(pobjUID)->isEventHandlerEnable = enable ;
-
-            /* Java is called to enable or disable the listener */
-            if (!isFigureModel(pobjUID))
-            {
-                setFigureEventHandlerEnabled(sciGetNum(pobjUID), enable);
-            }
-        }
-        else
-        {
-            Scierror(999, _("%s: Can't enable a void event handler.\n"), "sciInitEventHandler") ;
-        }
-        return 0 ;
-    }
-    else
-    {
-        printSetGetErrorMessage("event_handler");
-        return -1 ;
-    }
-#endif
-        return -1;
+    return -1;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetIsEventHandlerEnable( char * pobjUID, BOOL enable )
@@ -1825,24 +1791,24 @@ int sciSetDataBounds( char * pobjUID, double bounds[6] )
     // FIXME
     abort();
 #if 0
-        int i;
-    switch( sciGetEntityType(pobjUID) )
+    int i;
+    switch ( sciGetEntityType(pobjUID) )
     {
-    case SCI_SUBWIN:
-        for ( i = 0 ; i < 6 ; i++ )
-        {
-            pSUBWIN_FEATURE(pobjUID)->SRect[i] = bounds[i] ;
-        }
-        return 0;
-    case SCI_SURFACE:
-        for ( i = 0 ; i < 6 ; i++ )
-        {
-            pSURFACE_FEATURE(pobjUID)->ebox[i] = bounds[i] ;
-        }
-        return 0;
-    default:
-        printSetGetErrorMessage("data_bounds");
-        return -1 ;
+        case SCI_SUBWIN:
+            for ( i = 0 ; i < 6 ; i++ )
+            {
+                pSUBWIN_FEATURE(pobjUID)->SRect[i] = bounds[i] ;
+            }
+            return 0;
+        case SCI_SURFACE:
+            for ( i = 0 ; i < 6 ; i++ )
+            {
+                pSURFACE_FEATURE(pobjUID)->ebox[i] = bounds[i] ;
+            }
+            return 0;
+        default:
+            printSetGetErrorMessage("data_bounds");
+            return -1 ;
 
     }
 #endif
@@ -1854,21 +1820,21 @@ int sciSetDataBounds( char * pobjUID, double bounds[6] )
  */
 int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
 {
-     // FIXME
+    // FIXME
     abort();
 #if 0
-       int i;
-    switch( sciGetEntityType(pobjUID) )
+    int i;
+    switch ( sciGetEntityType(pobjUID) )
     {
-    case SCI_SUBWIN:
-        for ( i = 0 ; i < 6 ; i++ )
-        {
-            pSUBWIN_FEATURE(pobjUID)->FRect[i] = bounds[i] ;
-        }
-        return 0;
-    default:
-        printSetGetErrorMessage("data_bounds");
-        return -1 ;
+        case SCI_SUBWIN:
+            for ( i = 0 ; i < 6 ; i++ )
+            {
+                pSUBWIN_FEATURE(pobjUID)->FRect[i] = bounds[i] ;
+            }
+            return 0;
+        default:
+            printSetGetErrorMessage("data_bounds");
+            return -1 ;
 
     }
 #endif
@@ -1880,20 +1846,20 @@ int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
  */
 int sciInitPixmapMode(char * pobjUID, BOOL onOrOff)
 {
-     // FIXME
+    // FIXME
     abort();
 #if 0
-       switch(sciGetEntityType(pobjUID))
+    switch (sciGetEntityType(pobjUID))
     {
-    case SCI_FIGURE:
-        pFIGURE_FEATURE(pobjUID)->pixmapMode = onOrOff;
-        return 0;
-    default:
-        printSetGetErrorMessage("pixmap");
-        return -1;
+        case SCI_FIGURE:
+            pFIGURE_FEATURE(pobjUID)->pixmapMode = onOrOff;
+            return 0;
+        default:
+            printSetGetErrorMessage("pixmap");
+            return -1;
     }
 #endif
-       return -1;
+    return -1;
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -1914,21 +1880,21 @@ int sciInitTextPos( char * pobjUID, double posX, double posY, double posZ)
     // FIXME
     abort();
 #if 0
-        switch(sciGetEntityType(pobjUID))
+    switch (sciGetEntityType(pobjUID))
     {
-    case SCI_TEXT:
-        pTEXT_FEATURE(pobjUID)->x = posX;
-        pTEXT_FEATURE(pobjUID)->y = posY;
-        pTEXT_FEATURE(pobjUID)->z = posZ;
-        return 0;
-    case SCI_LABEL:
-        return sciInitTextPos(pLABEL_FEATURE(pobjUID)->text, posX, posY, posZ);
-    default:
-        printSetGetErrorMessage("data");
-        return -1;
+        case SCI_TEXT:
+            pTEXT_FEATURE(pobjUID)->x = posX;
+            pTEXT_FEATURE(pobjUID)->y = posY;
+            pTEXT_FEATURE(pobjUID)->z = posZ;
+            return 0;
+        case SCI_LABEL:
+            return sciInitTextPos(pLABEL_FEATURE(pobjUID)->text, posX, posY, posZ);
+        default:
+            printSetGetErrorMessage("data");
+            return -1;
     }
 #endif
-        return -1;
+    return -1;
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -1951,19 +1917,19 @@ int sciInitAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL auto
     // FIXME
     abort();
 #if 0
-        switch(sciGetEntityType(pobjUID))
+    switch (sciGetEntityType(pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[0] = autoTicksX;
-        pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[1] = autoTicksY;
-        pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[2] = autoTicksZ;
-        return 0;
-    default:
-        printSetGetErrorMessage("auto_ticks");
-        return -1;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[0] = autoTicksX;
+            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[1] = autoTicksY;
+            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[2] = autoTicksZ;
+            return 0;
+        default:
+            printSetGetErrorMessage("auto_ticks");
+            return -1;
     }
 #endif
-        return -1;
+    return -1;
 }
 /*----------------------------------------------------------------------------------*/
 int sciSetAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
@@ -1990,40 +1956,40 @@ int sciSetZoomBox(char * pobjUID, const double zoomBox[6])
     // FIXME
     abort();
 #if 0
-        switch(sciGetEntityType(pobjUID))
+    switch (sciGetEntityType(pobjUID))
     {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->ZRect[0] = zoomBox[0];
-        pSUBWIN_FEATURE(pobjUID)->ZRect[1] = zoomBox[1];
-        pSUBWIN_FEATURE(pobjUID)->ZRect[2] = zoomBox[2];
-        pSUBWIN_FEATURE(pobjUID)->ZRect[3] = zoomBox[3];
-        pSUBWIN_FEATURE(pobjUID)->ZRect[4] = zoomBox[4];
-        pSUBWIN_FEATURE(pobjUID)->ZRect[5] = zoomBox[5];
-        return 0;
-    default:
-        printSetGetErrorMessage("zoom_box");
-        return -1;
+        case SCI_SUBWIN:
+            pSUBWIN_FEATURE(pobjUID)->ZRect[0] = zoomBox[0];
+            pSUBWIN_FEATURE(pobjUID)->ZRect[1] = zoomBox[1];
+            pSUBWIN_FEATURE(pobjUID)->ZRect[2] = zoomBox[2];
+            pSUBWIN_FEATURE(pobjUID)->ZRect[3] = zoomBox[3];
+            pSUBWIN_FEATURE(pobjUID)->ZRect[4] = zoomBox[4];
+            pSUBWIN_FEATURE(pobjUID)->ZRect[5] = zoomBox[5];
+            return 0;
+        default:
+            printSetGetErrorMessage("zoom_box");
+            return -1;
     }
 #endif
-        return -1;
+    return -1;
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
 {
-     // FIXME
+    // FIXME
     abort();
 #if 0
-       switch(sciGetEntityType(pobjUID))
+    switch (sciGetEntityType(pobjUID))
     {
-    case SCI_FIGURE:
-        pFIGURE_FEATURE(pobjUID)->auto_redraw = autoRedraw;
-        return 0;
-    default:
-        printSetGetErrorMessage("immediate_drawing");
-        return -1;
+        case SCI_FIGURE:
+            pFIGURE_FEATURE(pobjUID)->auto_redraw = autoRedraw;
+            return 0;
+        default:
+            printSetGetErrorMessage("immediate_drawing");
+            return -1;
     }
 #endif
-       return -1;
+    return -1;
 }
 /*----------------------------------------------------------------------------------*/
 int sciSetImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
@@ -2031,7 +1997,7 @@ int sciSetImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
     // FIXME
     abort();
 #if 0
-        if (sciGetImmediateDrawingMode(pobjUID) == autoRedraw)
+    if (sciGetImmediateDrawingMode(pobjUID) == autoRedraw)
     {
         // nothing to do
         return 1;

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dsimul">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dsimul</refname>
     <refpurpose>離散時間状態空間シミュレーション</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> 離散時間線形システムを含む<literal>syslin</literal> リスト</para>
+          <para>
+             離散時間線形システムを含む<literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para><literal>sl</literal>の出力</para>
+          <para>
+            <literal>sl</literal>の出力
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,13 +49,14 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数. 
-    <literal>[A,B,C,D]=abcd(sl)</literal> および <literal>x0=sl('X0')</literal>の時, 
-	<literal>dsimul</literal> は <literal>y=C*ltitr(A,B,u,x0)+D*u</literal>,
-	すなわち,入力<literal>u</literal>に対する <literal>sl</literal>の時間応答
-	を返します.
-    <literal>sl</literal> は状態空間形式 (<literal>syslin</literal> リスト)であると
-	仮定されます.</para>
+      ユーティリティ関数. 
+      <literal>[A,B,C,D]=abcd(sl)</literal> および <literal>x0=sl('X0')</literal>の時, 
+      <literal>dsimul</literal> は <literal>y=C*ltitr(A,B,u,x0)+D*u</literal>,
+      すなわち,入力<literal>u</literal>に対する <literal>sl</literal>の時間応答
+      を返します.
+      <literal>sl</literal> は状態空間形式 (<literal>syslin</literal> リスト)であると
+      仮定されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -26,7 +26,7 @@
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 
-int get_old_style_property(char *pobjUID)
+int get_old_style_property(void* _pvCtx, char* pobjUID)
 {
     if (pobjUID != NULL)
     {
@@ -36,6 +36,6 @@ int get_old_style_property(char *pobjUID)
     }
 
   /* no more old style */
-  return sciReturnString( "off" ) ;
+  return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

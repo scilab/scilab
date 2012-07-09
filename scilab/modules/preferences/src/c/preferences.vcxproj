@@ -273,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_addModulePreferences.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_preferences.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_preferences.c" />
     <ClCompile Include="..\jni\ScilabPreferences.cpp" />

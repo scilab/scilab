@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bvode" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bvode</refname>
     <refpurpose>задачи граничных значений для ОДУ с помощью метода коллокации
@@ -244,7 +241,7 @@
                     </listitem>
                   </varlistentry>
                   <varlistentry>
-                    <term>= 2 </term>                          
+                    <term>= 2 </term>
                     <listitem>
                       <para>
                         если исходная сетка представлена пользователем как в случае
@@ -520,7 +517,7 @@
                 </imagedata>
               </imageobject>
             </inlinemediaobject>
-             -- точное решение (неизвестное).
+            -- точное решение (неизвестное).
           </para>
         </listitem>
       </varlistentry>
@@ -1421,7 +1418,7 @@ function [dmval,zu]=fsub(x,parameters)
     <para>Первые две задачи взяты из [1] раздела Литература.
     </para>
     <itemizedlist>
-      <listitem> 
+      <listitem>
         <para>
           <emphasis role="bold">Задача 1</emphasis> описывает однородно нагруженную балку переменной жёсткости просто поддерживаемую на обоих концах.
         </para>
@@ -2378,4 +2375,3 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
     </orderedlist>
   </refsection>
 </refentry>
-

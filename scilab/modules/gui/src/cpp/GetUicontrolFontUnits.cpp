@@ -13,7 +13,7 @@
 
 #include "GetUicontrolFontUnits.hxx"
 
-int GetUicontrolFontUnits(char *sciObjUID)
+int GetUicontrolFontUnits(void* _pvCtx, char *sciObjUID)
 {
     char* fontUnits = NULL;
     int status = 0;
@@ -27,7 +27,7 @@ int GetUicontrolFontUnits(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(fontUnits);
+        status = sciReturnString(_pvCtx, fontUnits);
         delete[] fontUnits;
         return status;
     }

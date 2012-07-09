@@ -10,13 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graduate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="graduate">
   <refnamediv>
     <refname>graduate</refname>
-    <refpurpose> pretty axis graduations</refpurpose>
+    <refpurpose>Pretty axis graduations</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -73,10 +70,12 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 y=(0:0.33:145.78)';
-clf();plot2d1('enn',0,y)
+clf();
+plot2d1('enn',0,y)
 [ymn,ymx,np]=graduate(min(y),max(y))
 rect=[1,ymn,prod(size(y)),ymx];
-clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
+clf();
+plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">

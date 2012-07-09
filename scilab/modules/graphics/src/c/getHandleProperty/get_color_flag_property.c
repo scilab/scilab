@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_color_flag_property(char *pobjUID)
+int get_color_flag_property(void* _pvCtx, char* pobjUID)
 {
     int iColorFlag = 0;
     int* piColorFlag = &iColorFlag;
@@ -43,7 +43,7 @@ int get_color_flag_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, jni_int, &piColorFlag);
+    getGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, jni_int, (void **)&piColorFlag);
 
     if (piColorFlag == NULL)
     {
@@ -51,6 +51,6 @@ int get_color_flag_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iColorFlag);
+    return sciReturnDouble(_pvCtx, iColorFlag);
 }
 /*------------------------------------------------------------------------*/

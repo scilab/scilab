@@ -84,7 +84,7 @@ GRAPHICS_IMPEXP char * createNewFigureWithAxes()
     /*
      * Clone the default menus
      */
-    cloneMenus(getFigureModel(), pFigureUID);
+    cloneMenus((char*)getFigureModel(), pFigureUID);
 
     setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
 
@@ -92,18 +92,16 @@ GRAPHICS_IMPEXP char * createNewFigureWithAxes()
      * Clone the default axes
      */
     cloneAxesModel(pFigureUID);
-
     setCurrentFigure(pFigureUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pFigureUID, jni_string, 1);
-
     /*
      * Force axes size after window creation ( Java )
      */
-    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, &axesSize);
+    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
     setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, axesSize, jni_int_vector, 2);
 
     // return the reference to the current figure
-    return getCurrentFigure();
+    releaseGraphicObjectProperty(__GO_PARENT__, pFigureUID, jni_string, 1);
+    return (char*)getCurrentFigure();
 }
 
 /**
@@ -276,20 +274,20 @@ char * allocateText(char * pparentsubwinUID,
     ppText->visible = sciGetVisibility(pparentsubwin);
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, piVisible, jni_bool, 1);
     releaseGraphicObjectProperty(__GO_VISIBLE__, piVisible, jni_bool, 1);
 
     /* Clipping: to be checked for consistency */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
     releaseGraphicObjectProperty(__GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, piClipState, jni_int, 1);
     releaseGraphicObjectProperty(__GO_CLIP_STATE__, piClipState, jni_int, 1);
 
@@ -401,7 +399,7 @@ char * ConstructText(char * pparentsubwinUID, char **text, int nbRow, int nbCol,
     char *parentType = NULL;
     char *pobjUID = NULL;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
@@ -433,7 +431,7 @@ char * ConstructText(char * pparentsubwinUID, char **text, int nbRow, int nbCol,
     setCurrentObject(pobjUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 
-    return getCurrentObject();
+    return (char*)getCurrentObject();
 }
 
 /**ConstructLegend
@@ -467,20 +465,20 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     char *parentType = NULL;
 
     /* Check beforehand whether a Legend object is already present */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_HAS_LEGEND_CHILD__, jni_bool, &piLegendPresent);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_HAS_LEGEND_CHILD__, jni_bool, (void **)&piLegendPresent);
 
     if (iLegendPresent)
     {
         /* Delete it (one Legend object allowed at most) */
         char *legendChildID;
 
-        getGraphicObjectProperty(pparentsubwinUID, __GO_LEGEND_CHILD__, jni_string, &legendChildID);
+        getGraphicObjectProperty(pparentsubwinUID, __GO_LEGEND_CHILD__, jni_string, (void **)&legendChildID);
 
         deleteGraphicObject(legendChildID);
         releaseGraphicObjectProperty(__GO_LEGEND_CHILD__, legendChildID, jni_string, 1);
     }
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
@@ -507,7 +505,7 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     ppLegend->text.isboxed = FALSE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
@@ -530,7 +528,7 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     {
         char * tmpObjUID;
 
-        tmpObjUID = getObjectFromHandle((long)tabofhandles[i]);
+        tmpObjUID = (char*)getObjectFromHandle((long)tabofhandles[i]);
 
         /*
          * Links are ordered from most recent to least recent,
@@ -567,7 +565,7 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     clipState = 0;
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
@@ -592,7 +590,7 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     setCurrentObject(pobjUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 
-    return getCurrentObject();
+    return (char*)getCurrentObject();
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -622,7 +620,7 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -658,7 +656,7 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
     pPOLYLINE_FEATURE(pobj)->callbackevent = 100;
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -676,14 +674,14 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
      * releaseGraphicObjectProperty for any property passed by reference only
      */
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     arrowSizeFactor = 1.0;
@@ -910,7 +908,7 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
     int clipState = 0;
     int *piClipState = &clipState;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -951,11 +949,11 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
     ppArc->isselected = TRUE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_ARC_DRAWING_METHOD__, jni_int, &piArcDrawingMethod);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     setGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
@@ -972,14 +970,14 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /*
@@ -1044,7 +1042,7 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
         return NULL;
     }
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -1084,7 +1082,7 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     pRECTANGLE_FEATURE(pobj)->isselected = TRUE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* Clipping: to be checked */
@@ -1097,14 +1095,14 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     /* Clip state and region */
     /* To be checked for consistency */
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /*
@@ -1221,7 +1219,7 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
         }
     }
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&parentType);
 
     /* test using sciGetEntityType replaced by a test on the type string */
     if (strcmp(parentType, __GO_AXES__) != 0)
@@ -1251,18 +1249,18 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     /* Clip state and region */
     /* To be checked for consistency */
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Visibility */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -1350,7 +1348,7 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     psurf->ebox[5] = ebox[5];
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_HIDDEN_COLOR__, jni_int, &piHiddenColor);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_HIDDEN_COLOR__, jni_int, (void **)&piHiddenColor);
     setGraphicObjectProperty(pobjUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
 
     /*
@@ -1412,7 +1410,7 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
 
     double pdblScale[2];
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &typeParent);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&typeParent);
 
     if (strcmp(typeParent, __GO_AXES__) != 0)
     {
@@ -1521,21 +1519,21 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
 
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piParentVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     /*
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Initializes the default Contour values */
@@ -1564,7 +1562,7 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
     double *clipRegion = NULL;
     double doubleFontSize = 0.;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
@@ -1591,7 +1589,7 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
     clipRegionSet = 0;
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
@@ -1924,7 +1922,7 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     ppSegs->isselected = TRUE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -2108,13 +2106,13 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
     //  }
 
     /* The Compound's parent Axes is considered to be the Compound's first child's own parent */
-    firstMovedObjectUID = getObjectFromHandle((long)handelsvalue[0]);
-    getGraphicObjectProperty(firstMovedObjectUID, __GO_PARENT__, jni_string, &parentAxesUID);
+    firstMovedObjectUID = (char*)getObjectFromHandle((long)handelsvalue[0]);
+    getGraphicObjectProperty(firstMovedObjectUID, __GO_PARENT__, jni_string, (void **)&parentAxesUID);
 
     /* Set the parent-child relationship between the Compound and each aggregated object */
     for (i = 0; i < number; i++)
     {
-        char *movedObjectUID = getObjectFromHandle((long)handelsvalue[i]);
+        char *movedObjectUID = (char*)getObjectFromHandle((long)handelsvalue[i]);
 
         setGraphicObjectRelationship(compoundUID, movedObjectUID);
     }
@@ -2136,7 +2134,7 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
     ppCompound->visible = sciGetVisibility(sciGetParentSubwin(compound));
 #endif
 
-    getGraphicObjectProperty(parentAxesUID, __GO_VISIBLE__, jni_bool, &piParentVisible);
+    getGraphicObjectProperty(parentAxesUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
     setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     releaseGraphicObjectProperty(__GO_PARENT__, parentAxesUID, jni_string, 1);
@@ -2214,8 +2212,8 @@ char *ConstructCompoundSeq(int number)
      * parent Axes in ConstructCompound.
      * To be made consistent.
      */
-    getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
-    getGraphicObjectProperty(parentFigure, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&parentFigure);
+    getGraphicObjectProperty(parentFigure, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     releaseGraphicObjectProperty(__GO_PARENT_FIGURE__, parentFigure, jni_string, 1);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
@@ -2248,24 +2246,24 @@ void ConstructLabel(char * pparentsubwinUID, char const* text, int type)
     int *piAutoPosition = &autoPosition;
     double position[3] = { 1.0, 1.0, 1.0 };
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void**)&parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        releaseGraphicObjectProperty(__GO_PARENT__, parentType, jni_string, 1);
+        releaseGraphicObjectProperty(__GO_PARENT__, (void*)parentType, jni_string, 1);
         return;
     }
-    releaseGraphicObjectProperty(__GO_PARENT__, parentType, jni_string, 1);
+    releaseGraphicObjectProperty(__GO_PARENT__, (void*)parentType, jni_string, 1);
 
     if (type < 1 || type > 4)
     {
         return;
     }
 
-    labelType = labelProperties[type - 1];
+    labelType = (char*)labelProperties[type - 1];
 
-    getGraphicObjectProperty(getAxesModel(), labelType, jni_string, &modelLabelUID);
+    getGraphicObjectProperty(getAxesModel(), labelType, jni_string, (void **)&modelLabelUID);
 
     /* Creates a new Label object with the same properties as the Axes model's corresponding label */
     pobjUID = cloneGraphicObject(modelLabelUID);
@@ -2274,7 +2272,7 @@ void ConstructLabel(char * pparentsubwinUID, char const* text, int type)
     setGraphicObjectProperty(pobjUID, __GO_POSITION__, position, jni_double_vector, 3);
 
     /* Auto position must be reset as setting the position has set it to false */
-    getGraphicObjectProperty(modelLabelUID, __GO_AUTO_POSITION__, jni_bool, &piAutoPosition);
+    getGraphicObjectProperty(modelLabelUID, __GO_AUTO_POSITION__, jni_bool, (void **)&piAutoPosition);
     setGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
 
     /* Attach the cloned label to its parent Axes and set the latter as the label's parent */

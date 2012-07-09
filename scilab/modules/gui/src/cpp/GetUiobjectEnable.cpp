@@ -14,7 +14,7 @@
 
 #include "GetUiobjectEnable.hxx"
 
-int GetUiobjectEnable(char *pObjUID)
+int GetUiobjectEnable(void* _pvCtx, char *pObjUID)
 {
     int enable = 0;
     int* piEnable = &enable;
@@ -29,11 +29,11 @@ int GetUiobjectEnable(char *pObjUID)
 
     if (enable == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

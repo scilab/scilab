@@ -14,7 +14,7 @@
 
 #include "GetUicontrolBackgroundColor.hxx"
 
-int GetUicontrolBackgroundColor(char *sciObjUID)
+int GetUicontrolBackgroundColor(void* _pvCtx, char *sciObjUID)
 {
     double *tmp = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolBackgroundColor(char *sciObjUID)
     }
     else
     {
-        status = sciReturnRowVector(tmp, 3);
+        status = sciReturnRowVector(_pvCtx, tmp, 3);
         delete[] tmp;
         return status;
     }

@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_ticks_property(char *pobjUID)
+int get_y_ticks_property(void* _pvCtx, char* pobjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;

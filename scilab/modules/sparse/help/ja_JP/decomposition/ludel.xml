@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ludel">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ludel</refname>
     <refpurpose>lufactで使用されるユーティリティ関数</refpurpose>
@@ -36,13 +33,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,<literal>lufact</literal>と組み合わせて使用されます.
-	この関数は,<literal>lufact</literal>の結果を保存するために使用される
-	内部メモリ空間を消去します.</para>
+      この関数は,<literal>lufact</literal>と組み合わせて使用されます.
+      この関数は,<literal>lufact</literal>の結果を保存するために使用される
+      内部メモリ空間を消去します.
+    </para>
     <para>
-	一連のコマンド,<literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
-	により線形疎行列システム<literal>A*x = b</literal>を解き,
-	<literal>p</literal>を消去することができます.</para>
+      一連のコマンド,<literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
+      により線形疎行列システム<literal>A*x = b</literal>を解き,
+      <literal>p</literal>を消去することができます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

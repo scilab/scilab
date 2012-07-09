@@ -14,7 +14,7 @@
 
 #include "GetUicontrolValue.hxx"
 
-int GetUicontrolValue(char *sciObjUID)
+int GetUicontrolValue(void* _pvCtx, char *sciObjUID)
 {
     int valueSize = 0;
     int* piValueSize = &valueSize;
@@ -32,7 +32,7 @@ int GetUicontrolValue(char *sciObjUID)
     {
         if (valueSize == 0)
         {
-            return sciReturnEmptyMatrix();
+            return sciReturnEmptyMatrix(_pvCtx);
         }
         else
         {
@@ -45,7 +45,7 @@ int GetUicontrolValue(char *sciObjUID)
             }
             else
             {
-                status = sciReturnRowVector(pdblValue, valueSize);
+                status = sciReturnRowVector(_pvCtx, pdblValue, valueSize);
                 delete[] pdblValue;
                 return status;
             }

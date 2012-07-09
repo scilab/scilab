@@ -95,7 +95,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
         nbLabels--; /* it is not a label text */
     }
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     for ( narg = 1 ; narg <= nbLabels ; narg++)
     {
@@ -112,16 +112,16 @@ int sci_xtitle( char * fname, unsigned long fname_len )
         switch(narg)
         {
             case 1:
-                getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, &modifiedLabel);
+                getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, (void **)&modifiedLabel);
                 break;
             case 2:
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &modifiedLabel);
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
             break;
             case 3:
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &modifiedLabel);
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
                 break;
             case 4:
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &modifiedLabel);
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
                 break;
             default:
                 break;

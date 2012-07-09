@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fec</refname>
     <refpurpose>三角メッシュ上に定義された関数の擬似カラープロット</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
-fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis>
+      fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,37 +27,44 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>大きさ <literal>n</literal>のベクトル, 
-	<literal>(x(i),y(i))</literal> は
-                ノード  <literal>i</literal>の座標を定義します</para>
+          <para>
+            大きさ <literal>n</literal>のベクトル, 
+            <literal>(x(i),y(i))</literal> は
+            ノード  <literal>i</literal>の座標を定義します
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>func</term>
         <listitem>
-          <para>大きさ <literal>n</literal>のベクトル : <literal>func(i)</literal> 
-	は,擬似カラープロットを行う関数のノード <literal>i</literal>における値を定義します.</para>
+          <para>
+            大きさ <literal>n</literal>のベクトル : <literal>func(i)</literal> 
+            は,擬似カラープロットを行う関数のノード <literal>i</literal>における値を定義します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>triangles</term>
         <listitem>
-          <para><literal>[Ntr,5]</literal> 行列.
-	<literal>triangles</literal>の各行は,メッシュの三角形
-	<literal>triangle(j) = [number,node1,node2,node3,flag]</literal>
-	を定義します.
-        <literal>node1,node2,node3</literal> は三角形を構成するノードの番号です.
-	number は三角形の番号で,flag は fec 関数では使用されない整数です.</para>
+          <para>
+            <literal>[Ntr,5]</literal> 行列.
+            <literal>triangles</literal>の各行は,メッシュの三角形
+            <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>
+            を定義します.
+            <literal>node1,node2,node3</literal> は三角形を構成するノードの番号です.
+            number は三角形の番号で,flag は fec 関数では使用されない整数です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
           <para>
-		一連の命令 <literal>key1=value1, key2=value2</literal>,... を
-		表し, この命令には以下のどれかを指定できます:
-		 strf, leg, rect, nax, zminmax, colminmax, colout, mesh
-          (最初の4つについては<link linkend="plot2d">plot2d</link>を参照).</para>
+            一連の命令 <literal>key1=value1, key2=value2</literal>,... を
+            表し, この命令には以下のどれかを指定できます:
+            strf, leg, rect, nax, zminmax, colminmax, colout, mesh
+            (最初の4つについては<link linkend="plot2d">plot2d</link>を参照).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -97,37 +102,41 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
   <refsection>
     <title>説明</title>
     <para>この関数は,線形三角有限要素解を描画する際や単に
-	三角形分割により定義された関数を表示する際に有用です.
-	ソフトウエア計算による色補間が行われるため,極めて高速という
-	わけではありません.</para>
-    <para>関数 <link linkend="colorbar">colorbar</link> は色スケールを
-	参照するためにも使用できます(例の節を参照).</para>
-    <para>    
-    引数<literal>zminmax</literal> は(カレントのカラーマップにおける)最初と
-	最後の色に関連するzの値を指定します.
-	カラーマップが nc 個の色を有し,
-	<emphasis>dz = (zmax-zmin)/nc</emphasis>とすると,
-	<emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis>となる
-	三角形分割された部分は色<emphasis>i</emphasis>で塗りつぶされます.
-	デフォルトでは,<emphasis>zmin = min(func)</emphasis> および
-	 <emphasis>zmax = max(func)</emphasis>となります.
-	時間で変化するう関数の値でアニメーションを行いたい場合,
-	zmin および zmax グローバルな最小値および最大値もしくはそれに近い値
+      三角形分割により定義された関数を表示する際に有用です.
+      ソフトウエア計算による色補間が行われるため,極めて高速という
+      わけではありません.
     </para>
     <para>
-    引数 <literal>colout</literal> により2つの極値領域
-	<emphasis>{func &lt; zmin}</emphasis> および <emphasis>{func &gt; zmax}</emphasis>
-	の色をユーザが選択できるようになります.
-	<literal>under_min_col</literal> および
-    	<literal>upper_max_col</literal> の色は(独立で)以下と同じにすることができます:
+      関数 <link linkend="colorbar">colorbar</link> は色スケールを
+      参照するためにも使用できます(例の節を参照).
+    </para>
+    <para>    
+      引数<literal>zminmax</literal> は(カレントのカラーマップにおける)最初と
+      最後の色に関連するzの値を指定します.
+      カラーマップが nc 個の色を有し,
+      <emphasis>dz = (zmax-zmin)/nc</emphasis>とすると,
+      <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis>となる
+      三角形分割された部分は色<emphasis>i</emphasis>で塗りつぶされます.
+      デフォルトでは,<emphasis>zmin = min(func)</emphasis> および
+      <emphasis>zmax = max(func)</emphasis>となります.
+      時間で変化するう関数の値でアニメーションを行いたい場合,
+      zmin および zmax グローバルな最小値および最大値もしくはそれに近い値
+    </para>
+    <para>
+      引数 <literal>colout</literal> により2つの極値領域
+      <emphasis>{func &lt; zmin}</emphasis> および <emphasis>{func &gt; zmax}</emphasis>
+      の色をユーザが選択できるようになります.
+      <literal>under_min_col</literal> および
+      <literal>upper_max_col</literal> の色は(独立で)以下と同じにすることができます:
     </para>
     <variablelist>
       <varlistentry>
         <term>-1</term>
         <listitem>
           <para>この場合,近いゾーンでは同じ色が使用されます
-		(注意: 対応する極値が交差する場合,判別できません),
-		これがデフォルトです.</para>
+            (注意: 対応する極値が交差する場合,判別できません),
+            これがデフォルトです.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -140,28 +149,33 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
         <term>k</term>
         <listitem>
           <para>(k はカレントのカラーマップへの有効なインデックス)
-	極値領域は色 kで塗られます.</para>
+            極値領域は色 kで塗られます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-	完全なカラーマップを使用したくない場合,
-	<emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis>となるような
-	<literal>colminmax</literal>引数を使用できます
-	(nc はカレントのカラーマップの色の数).
-	この場合,カラーマップの一部 [colmin,colmax]のみが使用されます.
-    (デフォルトではカラーマップの全ての色が使用されます).
+      完全なカラーマップを使用したくない場合,
+      <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis>となるような
+      <literal>colminmax</literal>引数を使用できます
+      (nc はカレントのカラーマップの色の数).
+      この場合,カラーマップの一部 [colmin,colmax]のみが使用されます.
+      (デフォルトではカラーマップの全ての色が使用されます).
     </para>
     <para>
-	以下のデモファイル<literal>demos/fec</literal>を参照ください:</para>
-    <para><literal>fec.ex1</literal> はメッシュおよびメッシュ上の関数
-	に関する簡単なデモファイルで完全に Scilab 構文で構築されています.
-	</para>
-    <para><literal>fec.ex2</literal> は,
-	メッシュおよび関数値が外部のメッシュビルダ(amdba 型のメッシュ)
-	および外部プログラムで計算される例です.
-	( ファイル <literal>macros.sci</literal>で提供される)一連のマクロを
-	Scilabにデータファイルを読み込み,結果をプロットする際に使用することができます.</para>
+      以下のデモファイル<literal>demos/fec</literal>を参照ください:
+    </para>
+    <para>
+      <literal>fec.ex1</literal> はメッシュおよびメッシュ上の関数
+      に関する簡単なデモファイルで完全に Scilab 構文で構築されています.
+    </para>
+    <para>
+      <literal>fec.ex2</literal> は,
+      メッシュおよび関数値が外部のメッシュビルダ(amdba 型のメッシュ)
+      および外部プログラムで計算される例です.
+      ( ファイル <literal>macros.sci</literal>で提供される)一連のマクロを
+      Scilabにデータファイルを読み込み,結果をプロットする際に使用することができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

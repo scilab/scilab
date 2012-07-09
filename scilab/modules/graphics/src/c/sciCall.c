@@ -75,8 +75,8 @@ void Objrect ( double * x         ,
     char* psubwinUID = NULL;
     char* pFigureUID = NULL;
 
-    pFigureUID = getCurrentFigure();
-    psubwinUID = getCurrentSubWin();
+    pFigureUID = (char*)getCurrentFigure();
+    psubwinUID = (char*)getCurrentSubWin();
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
@@ -118,7 +118,7 @@ void Objarc( double * angle1    ,
     char * psubwinUID = NULL;
     char * pobjUID = NULL;
 
-    psubwinUID = getCurrentSubWin();
+    psubwinUID = (char*)getCurrentSubWin();
     checkRedrawing();
     pobjUID = ConstructArc(psubwinUID, *x, *y,
                            *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
@@ -143,8 +143,8 @@ void Objpoly ( double  * x     ,
     char * psubwinUID = NULL;
     char * pobjUID = NULL;
 
-    pfigureUID = getCurrentFigure();
-    psubwinUID = getCurrentSubWin();
+    pfigureUID = (char*)getCurrentFigure();
+    psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
 
@@ -192,7 +192,7 @@ void Objfpoly ( double  * x    ,
 
     int closed = 1; /* we close the polyline by default */
 
-    psubwinUID = getCurrentSubWin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     checkRedrawing();
 
@@ -214,7 +214,7 @@ void Objfpoly ( double  * x    ,
         }
         else if (*style == 0)
         {
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piContourColor);
             pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
                                         1, &contourcolor, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
         }
@@ -222,7 +222,7 @@ void Objfpoly ( double  * x    ,
         {
             /* *style > 0*/
             fillcolor = *style;
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piContourColor);
             pobjUID = ConstructPolyline(psubwinUID, x, y, PD0, closed, n,
                                         1, &contourcolor, &fillcolor, NULL, NULL, NULL, TRUE, TRUE, FALSE, FALSE);
         }
@@ -260,7 +260,7 @@ void Objsegs ( int * style,
     int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
 
     checkRedrawing() ;
-    psubwinUID = getCurrentSubWin();
+    psubwinUID = (char*)getCurrentSubWin();
 
     pobjUID = ConstructSegs(psubwinUID, type,
                             x, y, z, n1, n1, (z == NULL ? 0 : n1), // x, y and z have the same size n1
@@ -306,8 +306,8 @@ void Objstring( char            ** fname      ,
     startGraphicDataWriting();
 #endif
 
-    pfigureUID = getCurrentFigure();
-    psubwinUID = getCurrentSubWin();
+    pfigureUID = (char*)getCurrentFigure();
+    psubwinUID = (char*)getCurrentSubWin();
 
     /* Deactivated (synchronization) */
 #if 0
@@ -506,8 +506,8 @@ void Objplot3d ( char    * fname ,
 #if 0
     startGraphicDataWriting();
 #endif
-    parentFigureUID = getCurrentFigure();
-    psubwinUID = getCurrentSubWin();
+    parentFigureUID = (char*)getCurrentFigure();
+    psubwinUID = (char*)getCurrentSubWin();
     /* Deactivated (synchronization) */
 #if 0
     endGraphicDataWriting();
@@ -546,7 +546,7 @@ void Objplot3d ( char    * fname ,
 
         if (legx != NULL)
         {
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legx, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -556,7 +556,7 @@ void Objplot3d ( char    * fname ,
         legy = strtok((char *)NULL, "@"); /* NULL to begin at the last read character */
         if ( legy != NULL )
         {
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legy, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -566,7 +566,7 @@ void Objplot3d ( char    * fname ,
         legz = strtok((char *)NULL, "@");
         if ( legz != NULL )
         {
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legz, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -598,7 +598,7 @@ void Objplot3d ( char    * fname ,
     }
 #endif
 
-    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 
     if (firstPlot == 0 && (iflag[2] == 0 || iflag[2] == 1))
     {
@@ -628,11 +628,11 @@ void Objplot3d ( char    * fname ,
                 setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
                 labelVisible = 0;
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
             }
             /*else no changes : the axes visible properties are driven by the previous plot */
@@ -651,11 +651,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 0;
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if (iflag[2] == 3)
@@ -672,11 +672,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if (iflag[2] == 4)
@@ -691,11 +691,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
     }
@@ -705,9 +705,9 @@ void Objplot3d ( char    * fname ,
 
     setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
-    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (autoScale)
     {
@@ -929,7 +929,7 @@ void Objplot3d ( char    * fname ,
             return;
         }
 
-        currentSubwinUID = getCurrentSubWin();
+        currentSubwinUID = (char*)getCurrentSubWin();
 
         for (i = 0; i < *n; ++i)
         {
@@ -964,7 +964,7 @@ void Objplot3d ( char    * fname ,
                 int curcolor = 0;
                 int *piCurColor = &curcolor;
 
-                getGraphicObjectProperty(currentSubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
+                getGraphicObjectProperty(currentSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
 
                 pNewPolylineUID = ConstructPolyline(currentSubwinUID,
                                                     &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
@@ -981,7 +981,7 @@ void Objplot3d ( char    * fname ,
             releaseGraphicObjectProperty(__GO_PARENT__, pNewPolylineUID, jni_string, 1);
             pNewPolylineUID = NULL;
 
-            pobjUID = getCurrentObject();
+            pobjUID = (char*)getCurrentObject();
 
             /* Force clipping, 1: CLIPGRF */
             clipState = 1;
@@ -1043,7 +1043,7 @@ void Objdrawaxis ( char     dir    ,
     char* pobjUID = NULL;
     char* psubwinUID = NULL;
 
-    psubwinUID = getCurrentSubWin();
+    psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
 

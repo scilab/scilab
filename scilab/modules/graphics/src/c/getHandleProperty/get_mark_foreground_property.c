@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_foreground_property(char *pobjUID)
+int get_mark_foreground_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkForeground = 0;
     int* piMarkForeground = &iMarkForeground;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, jni_int, &piMarkForeground);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, jni_int, (void**)&piMarkForeground);
 
     if (piMarkForeground == NULL)
     {
@@ -45,6 +45,6 @@ int get_mark_foreground_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iMarkForeground);
+    return sciReturnDouble(_pvCtx, iMarkForeground);
 }
 /*------------------------------------------------------------------------*/

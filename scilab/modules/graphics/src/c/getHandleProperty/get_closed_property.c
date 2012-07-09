@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_closed_property(char *pobjUID)
+int get_closed_property(void* _pvCtx, char* pobjUID)
 {
     int iClosed = 0;
     int* piClosed = &iClosed;
@@ -43,7 +43,7 @@ int get_closed_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_CLOSED__, jni_bool, &piClosed);
+    getGraphicObjectProperty(pobjUID, __GO_CLOSED__, jni_bool, (void **)&piClosed);
 
     if (piClosed == NULL)
     {
@@ -53,11 +53,11 @@ int get_closed_property(char *pobjUID)
 
     if (iClosed)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

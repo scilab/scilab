@@ -44,7 +44,7 @@ int sci_xgrid(char *fname, unsigned long fname_len)
         style = (int)*stk(l1);
     }
 
-    pstObjUID = getOrCreateDefaultSubwin();
+    pstObjUID = (char*)getOrCreateDefaultSubwin();
 
     setGraphicObjectProperty(pstObjUID, __GO_X_AXIS_GRID_COLOR__, &style, jni_int, 1);
     setGraphicObjectProperty(pstObjUID, __GO_Y_AXIS_GRID_COLOR__, &style, jni_int, 1);

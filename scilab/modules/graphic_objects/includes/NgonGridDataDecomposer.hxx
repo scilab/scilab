@@ -25,6 +25,10 @@ extern "C" {
  * as a function of the decomposed NgonGridData object's properties.
  *
  * To do: being able to specify either per-facet or per-vertex colors at execution time.
+ *        Specifying per-facet colors and using flat shading at render time would reduce
+ *        the vertex and color data duplication made necessary by using smooth shading
+ *        when rendering flag-shaded facets (see the vertex and color data fill functions),
+ *        with only a few additional modifications to the aforementioned functions.
  */
 
 class NgonGridDataDecomposer
@@ -146,11 +150,13 @@ protected :
      * @param[in] the grid y-coordinate array.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid value array.
+     * @param[in] a flag indicating whether grid values are defined per node (1) or per facet (0).
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @return the number of indices actually written.
      */
-    int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY);
+    int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int perNodeValues,
+        int numX, int numY);
 
     /**
      * Decomposes facet (i,j) into triangles and outputs the resulting vertex indices, where (i,j) is
@@ -176,6 +182,7 @@ protected :
      * another flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid or not.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid value array.
+     * @param[in] a flag indicating whether grid values are defined per node (1) or per facet (0).
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -185,7 +192,7 @@ protected :
      * @param[out] a pointer to the output flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid.
      * @return 1 if the facet is valid, 0 if it is not.
      */
-    virtual int isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
+    virtual int isFacetValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
 
     /**
      * Determines whether the left edge of a facet is valid.
@@ -194,6 +201,7 @@ protected :
      * on its endpoints' z coordinates.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid value array.
+     * @param[in] a flag indicating whether grid values are defined per node (1) or per facet (0).
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -201,7 +209,7 @@ protected :
      * @param[in] a flag specifying whether logarithmic coordinates are used.
      * @return 1 if the edge valid, 0 if it is not.
      */
-    virtual int isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed);
+    virtual int isFacetEdgeValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed);
 
     /**
      * Returns a 1D vertex index from its x and y indices.

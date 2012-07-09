@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="extraction" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>extraction</refname>
     <refpurpose>matrix and list entry extraction</refpurpose>
@@ -220,37 +215,37 @@
           <para>are interpreted as:</para>
           <para>
             <literal>lk1 = l(k1)</literal>
-	  </para>
+          </para>
           <para>
-	    <literal>.. = .. </literal>
-	  </para>
+            <literal>.. = .. </literal>
+          </para>
           <para>
-	    <literal>lkn = lkn-1(kn)</literal>
-	  </para>
+            <literal>lkn = lkn-1(kn)</literal>
+          </para>
           <para>
-	    <literal>[...] = lkn(i)</literal>.
-	  </para>
-	  <para>
+            <literal>[...] = lkn(i)</literal>.
+          </para>
+          <para>
             And the <literal>l(k1)...(kn)(i,j)</literal> and
           </para>
           <para>
             <literal>l(list(k1,...,kn,list(i,j))</literal> instructions
             are interpreted as:
-	  </para>
+          </para>
           <para>
-	    <literal>lk1 = l(k1)</literal>
-	  </para>
+            <literal>lk1 = l(k1)</literal>
+          </para>
           <para>
-	    <literal>.. = .. </literal>
-	  </para>
+            <literal>.. = .. </literal>
+          </para>
           <para>
-            <literal>lkn = lkn-1(kn)</literal> 
-	  </para>
+            <literal>lkn = lkn-1(kn)</literal>
+          </para>
           <para>
-	    <literal>
+            <literal>
               lkn(i,j)
             </literal>
-	  </para>
+          </para>
           <para> 
             When path points on more than one list component the
             instruction must have as many left hand side arguments as selected

@@ -1098,7 +1098,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
 	int logFlag = 0;
 	int* piLogFlag = &logFlag;
 
-	getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+	getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
 	if(strcmp(type, __GO_AXIS__) != 0)
 	{
@@ -1106,13 +1106,13 @@ int ComputeC_format(char * pobjUID, char * c_format)
 		return -1;
 	}
 
-	getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &parentAxesID);
+	getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxesID);
 
-	getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, &piPos);
-	getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piXy_type);
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void **)&piPos);
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piXy_type);
 
-	getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
-	getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
+	getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
 
 	/* Allocating space before re-copying values to not pollute the good values
 	that will be used inside Axes.c */
@@ -1126,8 +1126,8 @@ int ComputeC_format(char * pobjUID, char * c_format)
 		return -1;
 	}
 
-	getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, &tmpx);
-	getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &tmpy);
+	getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&tmpx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&tmpy);
 
 	for(i=0;i<nx;i++)
 	{
@@ -1144,7 +1144,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
 	{
 		if (pos == 0 || pos == 1)
 		{
-			getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
+			getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
 
 			if(logFlag == 0)
 			{
@@ -1168,7 +1168,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
 		}
 		else if (pos == 2 || pos == 3)
 		{
-			getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
+			getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
 
 			if(logFlag == 0)
 			{
@@ -1297,20 +1297,20 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
   int* piNy = &ny;
   BOOL ishoriz = FALSE;
 
-  getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
-  getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
+  getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+  getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
 
   /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
   ishoriz = (nx > ny)? TRUE : FALSE;
 
   if(ishoriz == TRUE)
   {
-    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, &val);
+    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&val);
     nval = nx;
   }
   else
   {
-    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &val);
+    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&val);
     nval = ny;
   }
 
@@ -1415,7 +1415,7 @@ StringMatrix * computeDefaultTicsLabels( char * pobjUID )
   int* piTmp = &tmp;
   char ticksStyle;
 
-  getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, &c_format);
+  getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
 
   /*
    * If different from the empty string, the format is already specified,
@@ -1427,7 +1427,7 @@ StringMatrix * computeDefaultTicsLabels( char * pobjUID )
       c_format = tempFormat;
   }
 
-  getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piTmp);
+  getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piTmp);
 
   if (tmp == 0)
   {

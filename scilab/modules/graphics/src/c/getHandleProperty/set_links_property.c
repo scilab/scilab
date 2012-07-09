@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     char* type = NULL;
@@ -51,7 +51,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, (void**)&piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -73,16 +73,16 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
 
     status = TRUE;
 
     for (i = 0 ; i < iLinksCount ; i++)
     {
         char* polylineParentAxes;
-        char* polylineObjectUID = getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
+        char* polylineObjectUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, &type);
+        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, (void **)&type);
 
         if (strcmp(type, __GO_POLYLINE__) != 0)
         {
@@ -93,7 +93,7 @@ int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nb
 
         links[i] = polylineObjectUID;
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_PARENT_AXES__, jni_string, &polylineParentAxes);
+        getGraphicObjectProperty(polylineObjectUID, __GO_PARENT_AXES__, jni_string, (void **)&polylineParentAxes);
 
         if (strcmp(polylineParentAxes, parentAxes) != 0)
         {

@@ -19,7 +19,6 @@
 #include "localization.h"
 #include "Toolbar.h"
 #include "FigureList.h"
-#include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
@@ -78,7 +77,7 @@ int sci_toolbar(char *fname, unsigned long l)
         }
         else
         {
-            pParentUID = getFigureFromIndex(figNum);
+            pParentUID = (char*)getFigureFromIndex(figNum);
         }
     }
     else if (GetType(1) == sci_handles)
@@ -90,7 +89,7 @@ int sci_toolbar(char *fname, unsigned long l)
             Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
-        pParentUID = getObjectFromHandle((long)*hstk(stkAdr));
+        pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
 
         if (pParentUID == NULL)
         {

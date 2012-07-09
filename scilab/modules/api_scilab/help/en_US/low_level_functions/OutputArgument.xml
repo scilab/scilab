@@ -41,8 +41,7 @@
       the number of output arguments detected in the calling Scilab
       function.
     </para>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 #include "api_scilab.h"
 #include "sciprint.h"
 
@@ -52,8 +51,7 @@ int sci_mylhs(char * fname)
 
   return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

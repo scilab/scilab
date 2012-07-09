@@ -14,7 +14,7 @@
 
 #include "GetUicontrolVerticalAlignment.hxx"
 
-int GetUicontrolVerticalAlignment(char *sciObjUID)
+int GetUicontrolVerticalAlignment(void* _pvCtx, char *sciObjUID)
 {
     char* alignment = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolVerticalAlignment(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(alignment);
+        status = sciReturnString(_pvCtx, alignment);
         delete[] alignment;
         return status;
     }

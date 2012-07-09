@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontAngle.hxx"
 
-int SetUicontrolFontAngle(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Font angle can be normal, italic or oblique */
 

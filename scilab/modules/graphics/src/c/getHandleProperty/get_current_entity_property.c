@@ -29,7 +29,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int get_current_entity_property(char *pobjUID)
+int get_current_entity_property(void* _pvCtx, char* pobjUID)
 {
     if (pobjUID != NULL)
     {
@@ -40,6 +40,6 @@ int get_current_entity_property(char *pobjUID)
     /* To be sure that there is at least one opened figure */
     getOrCreateDefaultSubwin();
 
-    return sciReturnHandle(getHandle(getCurrentObject()));
+    return sciReturnHandle(_pvCtx, getHandle(getCurrentObject()));
 }
 /*--------------------------------------------------------------------------*/

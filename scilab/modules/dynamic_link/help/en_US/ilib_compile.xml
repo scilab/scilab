@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_compile">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>ilib_compile</refname>
     <refpurpose> ilib_build utility: executes the Makefile produced by ilib_gen_Make</refpurpose>
@@ -41,7 +38,8 @@
         <term>files</term>
         <listitem>
           <para>optional vector of character strings. If files is given the make is performed on each 
-	    target contained in files then a whole make is performed </para>
+            target contained in files then a whole make is performed 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,18 +59,25 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function used by <literal>ilib_build</literal></para>
+      Utility function used by <literal>ilib_build</literal>
+    </para>
     <para>
-    This executes the Makefile produced by <literal>ilib_gen_Make</literal>, compiles
-    the C and fortran files and generates the shared library.</para>
+      This executes the Makefile produced by <literal>ilib_gen_Make</literal>, compiles
+      the C and fortran files and generates the shared library.
+    </para>
     <para>
-    Shared libraries can then be used with the <literal>link</literal> and
-    <literal>addinter</literal> Scilab function for incremental/dynamic link.</para>
+      Shared libraries can then be used with the <literal>link</literal> and
+      <literal>addinter</literal> Scilab function for incremental/dynamic link.
+    </para>
     <para>
       <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
     </para>
-    <para>On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink></para>
-    <para>Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.</para>
+    <para>
+      On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink>
+    </para>
+    <para>
+      Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

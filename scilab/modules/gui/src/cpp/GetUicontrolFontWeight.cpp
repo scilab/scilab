@@ -14,7 +14,7 @@
 
 #include "GetUicontrolFontWeight.hxx"
 
-int GetUicontrolFontWeight(char *sciObjUID)
+int GetUicontrolFontWeight(void* _pvCtx, char *sciObjUID)
 {
     char* fontWeight = NULL;
     int status = 0;
@@ -28,7 +28,7 @@ int GetUicontrolFontWeight(char *sciObjUID)
     }
     else
     {
-        status = sciReturnString(fontWeight);
+        status = sciReturnString(_pvCtx, fontWeight);
         delete[] fontWeight;
         return status;
     }

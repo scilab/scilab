@@ -27,11 +27,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_type_property(char *pobjUID)
+int get_type_property(void* _pvCtx, char* pobjUID)
 {
     char *piResult = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &piResult);
-    return sciReturnString(piResult);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&piResult);
+    return sciReturnString(_pvCtx, piResult);
     //return sciReturnString( sciGetCharEntityType( pobj ) ) ;
 }
 /*------------------------------------------------------------------------*/

@@ -233,8 +233,7 @@
     <!--Lib_name: sparse_writing-->
     <!--Func_list: write_sparse-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int write_sparse(char *fname,unsigned long fname_len)
 {
@@ -255,8 +254,7 @@ int write_sparse(char *fname,unsigned long fname_len)
 	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

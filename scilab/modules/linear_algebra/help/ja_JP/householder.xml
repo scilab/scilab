@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="householder">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>householder</refname>
     <refpurpose>ハウスホルダー直交鏡映行列</refpurpose>
@@ -34,8 +31,10 @@
       <varlistentry>
         <term>w</term>
         <listitem>
-          <para><literal>v</literal>と同じ大きさの実数または複素数の列ベクトル.
-	デフォルト値は<literal>eye(v)</literal></para>
+          <para>
+            <literal>v</literal>と同じ大きさの実数または複素数の列ベクトル.
+            デフォルト値は<literal>eye(v)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,15 +48,18 @@
   <refsection>
     <title>説明</title>
     <para>
-	同じ大きさの列ベクトル
-    <literal>v</literal>, <literal> w</literal> を指定すると, 
-	<literal>householder(v,w)</literal> は,
-	<literal> (eye()-2*u*u')*v</literal>が<literal>w</literal>に比例するような
-	ユニタリ列ベクトル<literal>u</literal>を返します.
-    <literal>(eye()-2*u*u')</literal> はハウスホルダー直交鏡映行列です.</para>
-    <para><literal>w</literal> のデフォルト値は <literal> eye(v)</literal>です. 
-	この場合,ベクトル<literal> (eye()-2*u*u')*v</literal> はベクトル 
-    <literal> eye(v)*norm(v)</literal>です.</para>
+      同じ大きさの列ベクトル
+      <literal>v</literal>, <literal> w</literal> を指定すると, 
+      <literal>householder(v,w)</literal> は,
+      <literal> (eye()-2*u*u')*v</literal>が<literal>w</literal>に比例するような
+      ユニタリ列ベクトル<literal>u</literal>を返します.
+      <literal>(eye()-2*u*u')</literal> はハウスホルダー直交鏡映行列です.
+    </para>
+    <para>
+      <literal>w</literal> のデフォルト値は <literal> eye(v)</literal>です. 
+      この場合,ベクトル<literal> (eye()-2*u*u')*v</literal> はベクトル 
+      <literal> eye(v)*norm(v)</literal>です.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

@@ -45,7 +45,7 @@ public final class CommentAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
         int pos = sep.getCaretPosition();
@@ -54,9 +54,9 @@ public final class CommentAction extends DefaultAction {
 
         doc.mergeEditsBegin();
         if (start == end) {
-            com.commentText(start);
+            com.commentLines(start, start);
         } else {
-            int[] ret = com.commentLines(start, end - 1);
+            int[] ret = com.commentLines(start, end);
             if (ret != null) {
                 if (pos == start) {
                     sep.select(ret[1], ret[0]);

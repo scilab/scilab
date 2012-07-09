@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="startup" xml:lang="fr">
-  <info>
-    <pubdate>January 2008</pubdate>
-  </info>
   <refnamediv>
     <refname>startup</refname>
     <refpurpose>startup file</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Les fichiers de démarrage <link linkend="SCIHOME">SCIHOME</link>/.scilab et
-    <link linkend="SCIHOME">SCIHOME</link>/scilab.ini sont automatiquement executés
-    (s'ils existent) au démarrage de Scilab, ainsi que le fichier
-    <link linkend="SCI">SCI</link>/etc/scilab.start.</para>
+    <para>
+      Les fichiers de démarrage <link linkend="SCIHOME">SCIHOME</link>/.scilab et
+      <link linkend="SCIHOME">SCIHOME</link>/scilab.ini sont automatiquement executés
+      (s'ils existent) au démarrage de Scilab, ainsi que le fichier
+      <link linkend="SCI">SCI</link>/etc/scilab.start.
+    </para>
   </refsection>
   <refsection>
     <title>Remark</title>
     <para>les fichiers de démarrage doivent obligatoirement comporter une
-    nouvelle ligne en fin de fichier pour être pris en compte.</para>
+      nouvelle ligne en fin de fichier pour être pris en compte.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>Voir aussi</title>

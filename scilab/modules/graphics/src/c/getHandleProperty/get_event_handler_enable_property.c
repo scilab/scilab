@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_event_handler_enable_property(char *pobjUID)
+int get_event_handler_enable_property(void* _pvCtx, char* pobjUID)
 {
     int iEventHandlerEnable = 0;
     int *piEventHandlerEnable = &iEventHandlerEnable;
 
-    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, jni_bool, &piEventHandlerEnable);
+    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, jni_bool, (void **)&piEventHandlerEnable);
 
     if ( piEventHandlerEnable == NULL )
     {
@@ -47,9 +47,9 @@ int get_event_handler_enable_property(char *pobjUID)
 
     if (iEventHandlerEnable)
     {
-        return sciReturnString( "on" ) ;
+        return sciReturnString(_pvCtx, "on");
     }
-    return sciReturnString( "off" ) ;
+    return sciReturnString(_pvCtx, "off");
 
 }
 /*------------------------------------------------------------------------*/

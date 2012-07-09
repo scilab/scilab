@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ell1mag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ell1mag</refname>
     <refpurpose>楕円フィルタの振幅</refpurpose>
@@ -17,13 +14,17 @@
       <varlistentry>
         <term>eps</term>
         <listitem>
-          <para>通過域のリップル=<literal>1/(1+eps^2)</literal></para>
+          <para>
+            通過域のリップル=<literal>1/(1+eps^2)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m1</term>
         <listitem>
-          <para>阻止域のリップル=<literal>1/(1+(eps^2)/m1)</literal></para>
+          <para>
+            阻止域のリップル=<literal>1/(1+(eps^2)/m1)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,10 +44,11 @@
   <refsection>
     <title>説明</title>
     <para>
-	楕円フィルタの二乗振幅を得る際に使用される関数.
-	通常は,<literal>m1=eps*eps/(a*a-1)</literal>です. 
-	<literal>s=%sn(z,m1)</literal>として,
-    <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal>を返します.</para>
+      楕円フィルタの二乗振幅を得る際に使用される関数.
+      通常は,<literal>m1=eps*eps/(a*a-1)</literal>です. 
+      <literal>s=%sn(z,m1)</literal>として,
+      <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal>を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode</refname>
     <refpurpose>ordinary differential equation solver</refpurpose>
@@ -67,10 +64,10 @@
         <listitem>
           <para>
             a string, the solver to use. The available solvers are
-	    <literal>"adams"</literal>,
-	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
-             <literal>"rkf"</literal>, <literal>"fix"</literal>,
-	    <literal>"discrete"</literal>, <literal>"roots"</literal>.
+            <literal>"adams"</literal>,
+            <literal>"stiff"</literal>, <literal>"rk"</literal>,
+            <literal>"rkf"</literal>, <literal>"fix"</literal>,
+            <literal>"discrete"</literal>, <literal>"roots"</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -79,7 +76,7 @@
         <listitem>
           <para>
             a real constant or real vector of the same size as
-	    <literal>y</literal>, the relative tolerance.
+            <literal>y</literal>, the relative tolerance.
           </para>
         </listitem>
       </varlistentry>
@@ -88,7 +85,7 @@
         <listitem>
           <para>
             a real constant or real vectors of the same size as
-<literal>y</literal>, the absolute tolerance.
+            <literal>y</literal>, the absolute tolerance.
           </para>
         </listitem>
       </varlistentry>
@@ -96,9 +93,9 @@
         <term>jac</term>
         <listitem>
           <para>
-	    a function, external, string or list, the Jacobian of the
-	    function <literal>f</literal>.
-	  </para>
+            a function, external, string or list, the Jacobian of the
+            function <literal>f</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -181,7 +178,7 @@ ydot = f(t,y)
           where <literal>t</literal> is a real scalar (the time) and
           <literal>y</literal> is a real vector (the state) and
           <literal>ydot</literal> is a real vector (the first order derivative
-dy/dt).
+          dy/dt).
         </para>
       </listitem>
       <listitem>
@@ -200,7 +197,7 @@ fex(n,t,y,ydot)
         <para>
           where <literal>n</literal> is an integer, <literal>t</literal> is
           a double precision scalar, <literal>y</literal> and
-	  <literal>ydot</literal> are double precision
+          <literal>ydot</literal> are double precision
           vectors.
         </para>
         <para>
@@ -273,10 +270,10 @@ fex(int *n,double *t,double *y,double *ydot)
         <para>
           If <literal>jac</literal> is a function the syntax should be
           <literal>J=jac(t,y)</literal> where <literal>t</literal> is a real
-	  scalar (time) and <literal>y</literal> a real vector (state).
-	  The result matrix <literal>J</literal> must evaluate to df/dx i.e. 
+          scalar (time) and <literal>y</literal> a real vector (state).
+          The result matrix <literal>J</literal> must evaluate to df/dx i.e. 
           <literal>J(k,i) = dfk/dxi</literal> where <literal>fk</literal> is the
-	  <literal>k</literal>-th component of <literal>f</literal>.
+          <literal>k</literal>-th component of <literal>f</literal>.
         </para>
       </listitem>
       <listitem>
@@ -385,7 +382,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
         <listitem>
           <para>
             Same solver as <literal>"rkf"</literal>, but the user interface
-	    is very simple,
+            is very simple,
             i.e. only <literal>rtol</literal> and <literal>atol</literal>
             parameters can be passed to the solver. This is the simplest method
             to try.
@@ -399,8 +396,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
             ODE solver with rootfinding capabilities. The
             <literal>lsodar</literal> solver of package ODEPACK is used. It is a
             variant of the <literal>lsoda</literal> solver where it finds the
-            roots of a given vector function. See help on <link
-linkend="ode_root">ode_root</link> for more
+            roots of a given vector function. See help on <link linkend="ode_root">ode_root</link> for more
             details.
           </para>
         </listitem>
@@ -410,7 +406,7 @@ linkend="ode_root">ode_root</link> for more
         <listitem>
           <para>
             Discrete time simulation. See help on
-<link linkend="ode_discrete">ode_discrete</link> for more
+            <link linkend="ode_discrete">ode_discrete</link> for more
             details.
           </para>
         </listitem>

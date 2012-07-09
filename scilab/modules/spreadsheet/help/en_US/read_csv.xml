@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="read_csv" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>read_csv</refname>
-    <refpurpose>Read comma-separated value file</refpurpose>
+    <refpurpose>reads comma-separated value file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -35,9 +32,9 @@
         <term>sep</term>
         <listitem>
           <para>a character string. Field separator used, default value is
-            ",".
+	    <literal>","</literal>.
           </para>
-          <para>ascii(9) or "\t" for a tabulation separator are
+	  <para><literal>ascii(9)</literal> or <literal>"\t"</literal> for a tabulation separator are
             accepted.
           </para>
         </listitem>
@@ -53,12 +50,16 @@
   <refsection>
     <title>Description</title>
     <para>Given an ascii file with delimited fields, for instance created by a
-      spreadsheet using "Text and comma" format, read_csv(fname) returns the
-      corresponding Scilab matrix of strings. Use read_csv(fname,sep) for
+      spreadsheet using "Text and comma" format, <literal>M = read_csv(fname)</literal> returns the
+      corresponding Scilab matrix of strings. Use <literal>M = read_csv(fname,sep)</literal> for
       another choice of separator.
     </para>
-    <para>Note: You may eval all or part of M using function evstr in order to
+    <para>
+      <note>
+      You may evaluate all or part of <literal>M</literal> using function 
+      <literal>evstr</literal> in order to
       convert string variables into numeric variables.
+      </note>
     </para>
   </refsection>
   <refsection>

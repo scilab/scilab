@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_VERTICALALIGNMENT_H__
 #define __SET_UICONTROL_VERTICALALIGNMENT_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the vertical alignment property of a uicontrol (text...)
@@ -26,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the verticalalignment property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolVerticalAlignment(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolVerticalAlignment(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_VERTICALALIGNMENT_H__ */

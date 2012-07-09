@@ -31,12 +31,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_angle_property(char *pobjUID)
+int get_font_angle_property(void* _pvCtx, char* pobjUID)
 {
     double dblFontAngle = 0;
     double* pdblFontAngle = &dblFontAngle;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, jni_double, &pdblFontAngle);
+    getGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, jni_double, (void **)&pdblFontAngle);
 
     if (pdblFontAngle == NULL)
     {
@@ -44,6 +44,6 @@ int get_font_angle_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble( RAD2DEG(dblFontAngle) );
+    return sciReturnDouble(_pvCtx, RAD2DEG(dblFontAngle));
 }
 /*------------------------------------------------------------------------*/

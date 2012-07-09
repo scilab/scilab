@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="seteventhandler" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>seteventhandler</refname>
     <refpurpose>Define um gerenciador de eventos para uma janela
@@ -44,7 +41,7 @@
     <para>A função permite que o usuário defina um gerenciador de eventos
       particular para janela gráfica corrente. <literal>seteventhandler('')
       </literal>
-       remove o gerenciador.
+      remove o gerenciador.
     </para>
     <para>Para mais informações sobre o gerenciador de eventos, veja a página
       <link linkend="eventhandlerfunctions">event handler

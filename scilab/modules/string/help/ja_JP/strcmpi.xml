@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="strcmpi">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>strcmpi</refname>
     <refpurpose>文字列を比較 (大文字小文字に依存)</refpurpose>
@@ -47,12 +44,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>res = strcmpi(string_one,string_two)</literal> は,
-	文字列の間の関係を示す内部的な値を返します.</para>
+    <para>
+      <literal>res = strcmpi(string_one,string_two)</literal> は,
+      文字列の間の関係を示す内部的な値を返します.
+    </para>
     <para>0より大きな値は,一致しない最初の文字について,
-	<literal>string_one</literal> の方が
-    	<literal>string_two</literal> よりも大きな値を有することを
-	示します.</para>
+      <literal>string_one</literal> の方が
+      <literal>string_two</literal> よりも大きな値を有することを
+      示します.
+    </para>
     <para>ゼロより小さい値はその逆を示します.</para>
   </refsection>
   <refsection>

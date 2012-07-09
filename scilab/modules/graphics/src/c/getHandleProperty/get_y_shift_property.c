@@ -31,13 +31,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_shift_property(char *pobjUID)
+int get_y_shift_property(void* _pvCtx, char* pobjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
     int* piValue = &iValue;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, &piValue);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, (void**)&piValue);
 
     if (piValue == NULL)
     {
@@ -47,14 +47,14 @@ int get_y_shift_property(char *pobjUID)
 
     if (iValue == 0)
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, &shiftCoordinates);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piValue);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
-        return sciReturnRowVector(shiftCoordinates, iValue);
+        return sciReturnRowVector(_pvCtx, shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/

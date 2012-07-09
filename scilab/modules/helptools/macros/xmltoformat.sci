@@ -508,7 +508,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        if fileToExec ~= [] then
+            exec(fileToExec, -1);
+	    buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
+        end
 
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
@@ -605,7 +609,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            if fileToExec ~= [] then
+                exec(fileToExec, -1);
+		buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            end
 
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
@@ -726,7 +734,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            if fileToExec ~= [] then
+                exec(fileToExec, -1);
+		buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
+            end
 
              // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then

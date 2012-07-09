@@ -17,7 +17,6 @@
 #include <stddef.h>
 
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the min property of a uicontrol
@@ -29,6 +28,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the min property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolMin(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolMin(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_MIN_H__ */

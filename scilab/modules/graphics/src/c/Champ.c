@@ -101,7 +101,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     flag = 1; /* je le mets � 1 pour voir F.Leray 19.02.04*/
     arsize1 = *arfact;
 
-    psubwinUID = getCurrentSubWin();
+    psubwinUID = (char*)getCurrentSubWin();
 
     /* then modify subwindow if needed */
     checkRedrawing();
@@ -147,7 +147,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 #endif
 
     /* Get segs bounding box */
-    getGraphicObjectProperty(newSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, &boundingBox);
+    getGraphicObjectProperty(newSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
 
     xx[0] = boundingBox[0];
     xx[1] = boundingBox[1];
@@ -177,9 +177,9 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
-    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 
     if (autoScale)
     {
@@ -202,11 +202,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
             case '8':
             case '9':
 
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[1] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[2] = iTmp;
 
                 /* Conversion required by compute_data_bounds2 */
@@ -225,7 +225,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         {
             double* dataBounds;
 
-            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
             drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/

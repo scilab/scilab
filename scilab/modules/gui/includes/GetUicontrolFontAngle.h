@@ -14,7 +14,6 @@
 #ifndef __GET_UICONTROL_FONTANGLE_H__
 #define __GET_UICONTROL_FONTANGLE_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**
@@ -23,6 +22,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the font angle property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolFontAngle(char *pobjUID);
+GUI_IMPEXP int GetUicontrolFontAngle(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_FONTANGLE_H__ */

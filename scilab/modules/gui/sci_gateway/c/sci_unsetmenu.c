@@ -73,7 +73,7 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
 
             GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
 
-            EnableMenu(getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), FALSE);
+            EnableMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), FALSE);
         }
         else if (VarType(1) == sci_strings && VarType(2) == sci_matrix) // Unset a submenu in main window
         {
@@ -146,7 +146,7 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        EnableSubMenu(getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+        EnableSubMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
     }
 
     LhsVar(1) = 0;

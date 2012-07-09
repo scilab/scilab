@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -12,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cell2mat" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cell2mat</refname>
     <refpurpose>converts a cell array into a matrix</refpurpose>
@@ -52,8 +48,8 @@
       All components of <literal>c</literal> must have the same data type (strings or
       doubles or integers or booleans). For each row <literal>i
       </literal>
-       of <literal>c</literal>, <literal>cell2mat</literal>
-       of <literal>c</literal>, <literal>cell2mat</literal>
+      of <literal>c</literal>, <literal>cell2mat</literal>
+      of <literal>c</literal>, <literal>cell2mat</literal>
       concatenates all the components of the <literal>i</literal>th row of
       the cell array <literal>c</literal>.
     </para>

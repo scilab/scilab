@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intg" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intg</refname>
     <refpurpose>intégration numérique adaptative</refpurpose>
@@ -88,13 +85,16 @@
     </para>
     <para>
       Dans le cas Fortran la liste d'appel doit être: <literal>double
-        precision function f(x)</literal>
+        precision function f(x)
+      </literal>
       où <literal>x</literal> est aussi un
       nombre double precision.
     </para>
     <para>
       Dans la cas C la liste d'appel doit être: <literal>double f(double
-        *x)</literal>.
+        *x)
+      </literal>
+      .
     </para>
   </refsection>
   <refsection>

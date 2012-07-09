@@ -138,9 +138,13 @@ void ScilabView::deleteObject(char const* pstId)
     */
     if (m_currentFigure == pstId) // Deleting current figure
     {
+        char* pstrAxesUID = NULL;
+
         if (getNbFigure() != 0)
         {
             m_currentFigure = m_figureList.rbegin()->first;
+            getGraphicObjectProperty(m_currentFigure.c_str(), __GO_SELECTED_CHILD__, jni_string,  (void**)&pstrAxesUID);
+            setCurrentSubWin(pstrAxesUID);
         }
         else
         {

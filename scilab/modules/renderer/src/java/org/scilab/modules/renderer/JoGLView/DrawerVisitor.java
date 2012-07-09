@@ -181,7 +181,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     public static void changeVisitor(Figure figure, DrawerVisitor visitor) {
-        visitorMap.put(figure.getIdentifier(), visitor);
+        if (visitor == null) {
+            visitorMap.remove(figure.getIdentifier());
+        } else {
+            visitorMap.put(figure.getIdentifier(), visitor);
+        }
     }
 
     public void setDrawingTools(DrawingTools drawingTools) {

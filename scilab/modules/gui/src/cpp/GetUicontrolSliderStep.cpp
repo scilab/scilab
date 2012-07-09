@@ -13,7 +13,7 @@
 
 #include "GetUicontrolSliderStep.hxx"
 
-int GetUicontrolSliderStep(char *sciObjUID)
+int GetUicontrolSliderStep(void* _pvCtx, char *sciObjUID)
 {
   double *sliderStep = NULL;
   int status = FALSE;
@@ -22,7 +22,7 @@ int GetUicontrolSliderStep(char *sciObjUID)
 
   if (sliderStep != NULL)
   {
-      status = sciReturnRowVector(sliderStep, 2);
+      status = sciReturnRowVector(_pvCtx, sliderStep, 2);
       delete[] sliderStep;
       return status;
   }

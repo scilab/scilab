@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_position_property(char *pobjUID)
+int get_position_property(void* _pvCtx, char* pobjUID)
 {
     char* type = NULL;
     double* position = NULL;
@@ -73,7 +73,7 @@ int get_position_property(char *pobjUID)
         position[2] = (double) figureSize[0];
         position[3] = (double) figureSize[1];
 
-        return sciReturnRowVector(position, 4);
+        return sciReturnRowVector(_pvCtx, position, 4);
     }
 
     /* Special label and legend case : only 2 values for position */
@@ -89,7 +89,7 @@ int get_position_property(char *pobjUID)
             return -1;
         }
 
-        return sciReturnRowVector(position, 2);
+        return sciReturnRowVector(_pvCtx, position, 2);
     }
 
     /* Generic case : position is a 4 row vector */
@@ -102,7 +102,6 @@ int get_position_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVector(position, 4);
-
+    return sciReturnRowVector(_pvCtx, position, 4);
 }
 /*------------------------------------------------------------------------*/

@@ -39,9 +39,9 @@ int sci_newaxes( char * fname, unsigned long fname_len )
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
-    psubwinUID = getOrCreateDefaultSubwin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
-    if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
+    if ((psubwinUID = (char*)ConstructSubWin (getCurrentFigure())) != NULL)
     {
         CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
 

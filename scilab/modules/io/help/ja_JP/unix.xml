@@ -11,13 +11,10 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="unix">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unix</refname>
     <refpurpose>シェル (sh) コマンドを実行
-  </refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -43,11 +40,12 @@
   <refsection>
     <title>説明</title>
     <para>
-	sh シェルにより実行するために文字列<literal>command-name</literal>を
-	Unixに送信します.
-	シェルコマンドの標準出力と標準エラーが呼び出し側のシェルに書き込まれます.
-	Unixがコールされない場合(十分なシステムメモリが有効でない場合)に -1 または sh
-	のリターンコードが返されます.</para>
+      sh シェルにより実行するために文字列<literal>command-name</literal>を
+      Unixに送信します.
+      シェルコマンドの標準出力と標準エラーが呼び出し側のシェルに書き込まれます.
+      Unixがコールされない場合(十分なシステムメモリが有効でない場合)に -1 または sh
+      のリターンコードが返されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

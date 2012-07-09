@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_style_property(char *pobjUID)
+int get_mark_style_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkStyle = 0;
     int* piMarkStyle = &iMarkStyle;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, &piMarkStyle);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
 
     if (piMarkStyle == NULL)
     {
@@ -43,6 +43,6 @@ int get_mark_style_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iMarkStyle);
+    return sciReturnDouble(_pvCtx, iMarkStyle);
 }
 /*------------------------------------------------------------------------*/

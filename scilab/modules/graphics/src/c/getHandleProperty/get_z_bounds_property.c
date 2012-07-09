@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_z_bounds_property(char *pobjUID)
+int get_z_bounds_property(void* _pvCtx, char* pobjUID)
 {
     double* zBounds = NULL;
 
@@ -43,7 +43,7 @@ int get_z_bounds_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_BOUNDS__, jni_double_vector, &zBounds);
+    getGraphicObjectProperty(pobjUID, __GO_Z_BOUNDS__, jni_double_vector, (void **)&zBounds);
 
     if (zBounds == NULL)
     {
@@ -51,7 +51,6 @@ int get_z_bounds_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnRowVector( zBounds, 2 );
-
+    return sciReturnRowVector(_pvCtx, zBounds, 2);
 }
 /*------------------------------------------------------------------------*/

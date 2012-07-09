@@ -36,7 +36,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int set_labels_font_color_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_labels_font_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int fontColor = 0;

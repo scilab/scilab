@@ -10,7 +10,7 @@ C   task = 1 :      [X] = linmeq(1,A,B,C,flag,trans,schur)
 C   task = 2 :  [X,sep] = linmeq(2,A,C,flag,trans)
 C                   [X] = linmeq(2,A,C,flag,trans)
 C   task = 3 :      [X] = linmeq(3,A,C,flag,trans)
-C         
+C
 C Purpose:
 C   To solve the Sylvester and Lyapunov linear matrix equations
 C
@@ -36,7 +36,7 @@ C                                     - op(C)'*op(C),     (3b)
 C
 C   where op(M) = M, if trans = 0, and op(M) = M', if trans = 1.
 C
-C Input parameters: 
+C Input parameters:
 C   task  - integer option to determine the equation type:
 C           = 1 : solve the Sylvester equation (1a) or (1b);
 C           = 2 : solve the Lyapunov equation (2a) or (2b);
@@ -85,7 +85,7 @@ C                                                    op(B) = B'.
 C           Default:    trans = 0.
 C   schur - (optional) integer specifying whether the Hessenberg-Schur
 C           or Schur method should be used.
-C           Available for task = 1. 
+C           Available for task = 1.
 C           schur = 1 : Hessenberg-Schur method (one matrix is reduced
 C                       to Schur form).
 C           schur = 2 : Schur method (two matrices are reduced to Schur
@@ -98,13 +98,13 @@ C   sep   - (optional) estimator of Sep(op(A),-op(A)') for (2.a) or
 C           Sepd(A,A') for (2.b).
 C
 C Comments:
-C   1. For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur 
+C   1. For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur
 C      method is used, reducing one matrix to Hessenberg form and the
 C      other one to a real Schur form.
 C      Otherwise, both matrices are reduced to real Schur forms.
 C      If one or both matrices are already reduced to Schur/Hessenberg
 C      forms, this could be specified by flag(2) and flag(3).
-C      For general matrices, the Hessenberg-Schur method could be 
+C      For general matrices, the Hessenberg-Schur method could be
 C      significantly more efficient than the Schur method.
 C   2. For equation (3a) or (3b), the computed matrix X is the Cholesky
 C      factor of the solution, i.e., the real solution is op(X)'*op(X),
@@ -113,7 +113,7 @@ C
 C References:
 C   This interface is based on the SLICOT routines:
 C   SB04PD, SB04MD, SB04QD, DTRSYL, SB04PY, SB04ND,  SB04RD, SB03MD, SB03OD
-C   
+C
 C
 C Revisions:
 C   Adapted from the Slicot Matlab Mexfile by S. Steer Oct 2001
@@ -129,35 +129,35 @@ C
 
 
 C .. Parameters ..
-      double precision ONE ,ZERO 
+      double precision ONE ,ZERO
       parameter (ONE =1.0D0,ZERO =0.0D0)
 
 C .. Scalar parameters used by SLICOT subroutines ..
       character DICO ,FACT ,FACTA ,FACTB ,JOB ,SCHU ,TRANA ,TRANB ,ULA ,
-     $   ULB 
-      integer INFO ,ISGN ,LDA ,LDB ,LDC ,LDU ,LDV ,NDWORK ,M ,N ,P 
-      double precision FERR ,SCALE ,SEP ,TOL 
+     $   ULB
+      integer INFO ,ISGN ,LDA ,LDB ,LDC ,LDU ,LDV ,NDWORK ,M ,N ,P
+      double precision FERR ,SCALE ,SEP ,TOL
 
-      integer lA, lB, lC, lDWORK, lU, lV, lWR, lWI
+      integer lA, lB, lC, lCC, lDWORK, lU, lV, lWR, lWI
 C
 C .. Local variables and constant dimension arrays ..
-      logical PERTRB 
+      logical PERTRB
       integer FLAG (3),IB ,IP  ,J ,LDW1 ,LDW2 ,NIWORK ,MC ,MXMN ,
-     $   NC ,NM ,NSCHUR ,TASK ,TRANS 
-      double precision TEMP 
+     $   NC ,NM ,NSCHUR ,TASK ,TRANS
+      double precision TEMP
 C
 C .. External functions ..
       logical lsame, createvar, checkrhs, checklhs, getrhsvar
       logical iscomplex
       external lsame , createvar, checkrhs, checklhs, getrhsvar
-      
+
 C
 C .. External subroutines ..
       external dlacpy ,dlaset ,dswap ,dtrsyl ,sb03md ,sb03od ,sb04md ,
-     $   sb04nd ,sb04pd ,sb04py ,sb04qd ,sb04rd 
+     $   sb04nd ,sb04pd ,sb04py ,sb04qd ,sb04rd
 C
 C ..Intrinsic functions..
-      intrinsic max ,min 
+      intrinsic max ,min
 
 C Check for proper number of arguments.
 
@@ -177,28 +177,28 @@ C   task
          return
       endif
       TASK=istk(ilTASK)
-  
-      if (TASK.LT.1 .OR.TASK.GT.3 )THEN 
+
+      if (TASK.LT.1 .OR.TASK.GT.3 )THEN
          buf='TASK HAS 1, 2, OR 3 THE ONLY ADMISSIBLE VALUES'
          call error(1003)
          return
-      endif 
+      endif
 C
-      if (TASK.EQ.1 )THEN 
-         if (RHS.LT.4 )THEN 
+      if (TASK.EQ.1 )THEN
+         if (RHS.LT.4 )THEN
             buf='TASK=1: LINMEQ REQUIRES AT LEAST 4 INPUT ARGUMENTS'
             call error(1003)
             return
-         endif 
+         endif
          IP =6
-      else 
+      else
          IP =5
-      endif 
+      endif
 C
 C   trans
 C
       TRANS =0
-      if (RHS.GE.IP )THEN 
+      if (RHS.GE.IP )THEN
          if(.not.getrhsvar(IP,'i', Mt, Nt, ilTRANS)) return
          if(Mt*Nt.gt.1) then
             err=1
@@ -206,22 +206,22 @@ C
             return
          endif
          if(Mt*Nt.eq.1) TRANS=istk(ilTRANS)
-      endif 
-      if (TASK.EQ.1 .AND.(TRANS.LT.0 .OR.TRANS.GT.3 ))THEN 
+      endif
+      if (TASK.EQ.1 .AND.(TRANS.LT.0 .OR.TRANS.GT.3 ))THEN
          buf='TRANS HAS 0, 1, 2, OR 3 THE ONLY ADMISSIBLE VALUES'
          call error(1003)
          return
-      elseif (TASK.NE.1 .AND.(TRANS.LT.0 .OR.TRANS.GT.1 ))THEN 
+      elseif (TASK.NE.1 .AND.(TRANS.LT.0 .OR.TRANS.GT.1 ))THEN
          buf='TRANS HAS 0, OR 1 THE ONLY ADMISSIBLE VALUES'
          call error(1003)
          return
-      endif 
+      endif
 C
 C   schur
 C
-      if (TASK.EQ.1 )THEN 
+      if (TASK.EQ.1 )THEN
          NSCHUR =1
-         if (RHS.EQ.IP +1) THEN 
+         if (RHS.EQ.IP +1) THEN
             if(.not.getrhsvar(IP+1,'i', Mt, Nt, ilSCHUR)) return
             if(Mt*Nt.gt.1) then
                err=1
@@ -229,13 +229,13 @@ C
                return
             endif
             if(Mt*Nt.eq.1) NSCHUR=istk(ilSCHUR)
-            if (NSCHUR.LT.1 .OR.NSCHUR.GT.2 )THEN 
+            if (NSCHUR.LT.1 .OR.NSCHUR.GT.2 )THEN
                buf='SCHUR HAS 1, OR 2 THE ONLY ADMISSIBLE VALUES'
                call error(1003)
                return
-            endif 
-         endif 
-      endif 
+            endif
+         endif
+      endif
 C
 C   A(NxN), (B(MxM),) C(NxM), or C(NxN), or op(C)(PxN)
 C
@@ -253,7 +253,7 @@ C
 
       N=MA
 
-      if (TASK.EQ.1) THEN 
+      if (TASK.EQ.1) THEN
          if(.not.getrhsvar(3,'d', MB, NB, lB)) return
          if(iscomplex(3)) then
             err=3
@@ -265,7 +265,7 @@ C
             call error(20)
             return
          endif
- 
+
          M=Mb
          if(.not.getrhsvar(4,'d', MC, NC, lC)) return
          if(iscomplex(4)) then
@@ -288,25 +288,25 @@ C
             call error(52)
             return
          endif
-c         if (TASK.EQ.3 )THEN 
-         if (TRANS.EQ.0 )THEN 
+c         if (TASK.EQ.3 )THEN
+         if (TRANS.EQ.0 )THEN
             P = MC
             if(NC.ne.N) then
                err=3
                call error(89)
                return
             endif
-         else 
+         else
             if(MC.ne.N) then
                err=3
                call error(89)
                return
             endif
             P = NC
-c            endif 
-         endif 
+c            endif
+         endif
          lhsvar(1)=3
-      endif 
+      endif
 C
       if(TASK.eq.1) then
          IP=5
@@ -316,349 +316,358 @@ C
       FLAG (1)=0
       FLAG (2)=0
       FLAG (3)=0
-      if (RHS.GE.IP )THEN 
+      if (RHS.GE.IP )THEN
 C
 C   flag
 C
          if(.not.getrhsvar(IP,'i', Mt, Nt, ilFLAG)) return
-         if (TASK.EQ.1 )THEN 
+         if (TASK.EQ.1 )THEN
             if (MT*NT.GT.3) then
                buf='FLAG MUST BE A VECTOR WITH AT MOST 3 ELEMENTS'
                call error(1003)
                return
             endif
-         else 
+         else
             if (MT*NT.GT.2 ) THEN
                buf='FLAG MUST BE A VECTOR WITH AT MOST 2 ELEMENTS'
                call error(1003)
                return
             endif
-         endif 
+         endif
          DO I=1,MT*NT
             FLAG(I)=istk(ilFLAG-1+i)
          enddo
-      endif 
+      endif
 C
 C Determine the lenghts of working arrays.
 C Use a larger value for NDWORK for enabling calls of block algorithms
 C in DGEES, and possibly in DGEHRD, DGEQRF, DGERQF, SB04PD.
 C
       LDA =MAX (1,N )
-      if (TASK.EQ.1 )THEN 
+      if (TASK.EQ.1 )THEN
          LDB =MAX (1,M )
-         if (NSCHUR.EQ.2 )THEN 
-            if (FLAG (2).EQ.1)THEN 
+         if (NSCHUR.EQ.2 )THEN
+            if (FLAG (2).EQ.1)THEN
                LDW1 =0
                LDW2 =0
-            else 
-               LDW1 =1+2*N 
-               LDW2 =3*N 
-            endif 
+            else
+               LDW1 =1+2*N
+               LDW2 =3*N
+            endif
             IB =0
-            if (FLAG (3).NE.1)THEN 
-               IB =2*M 
+            if (FLAG (3).NE.1)THEN
+               IB =2*M
                if (FLAG (2).EQ.1)IB =IB +1
                LDW2 =MAX (LDW2 ,IB +3*M )
-            endif 
+            endif
             LDW2 =MAX (LDW2 ,IB +2*N )
             NDWORK =MAX (1,LDW1 +LDW2 )
-         else 
-            if (FLAG (2)*FLAG (3).EQ.1)THEN 
+         else
+            if (FLAG (2)*FLAG (3).EQ.1)THEN
                NIWORK =0
-               if (FLAG (1).NE.0)THEN 
-                  NDWORK =2*N 
-               else 
+               if (FLAG (1).NE.0)THEN
+                  NDWORK =2*N
+               else
                   NDWORK =0
-               endif 
-            elseif (FLAG (2)*FLAG (3).EQ.2)THEN 
+               endif
+            elseif (FLAG (2)*FLAG (3).EQ.2)THEN
                MXMN =MAX (M ,N )
-               NIWORK =2*MXMN 
+               NIWORK =2*MXMN
                NDWORK =2*MXMN *(4+2*MXMN )
-            else 
-               NIWORK =4*N 
+            else
+               NIWORK =4*N
                NDWORK =MAX (1,5*M ,N +M )
-               if (FLAG (1).EQ.0)THEN 
+               if (FLAG (1).EQ.0)THEN
                   NDWORK =MAX (NDWORK ,2*N *N +8*N )
-               else 
+               else
                   NDWORK =MAX (NDWORK ,2*N *N +9*N )
-               endif 
-            endif 
-         endif 
-         NM =M 
+               endif
+            endif
+         endif
+         NM =M
 C
-      elseif (TASK.EQ.2 )THEN 
+      elseif (TASK.EQ.2 )THEN
          NDWORK =MAX (1,N *N ,3*N )
-         if (LHS.EQ.2 )THEN 
+         if (LHS.EQ.2 )THEN
             NDWORK =MAX (NDWORK ,2*N *N )
             if (FLAG (1).NE.0)NDWORK =MAX (NDWORK ,2*(N *N +N ))
-         endif 
-         NM =N 
-      endif 
-      if (TASK.NE.3 )THEN 
-         LDC =LDA 
-      else 
-         if (TRANS.EQ.0 )THEN 
+         endif
+         NM =N
+      endif
+      if (TASK.NE.3 )THEN
+         LDC =LDA
+      else
+         if (TRANS.EQ.0 )THEN
             LDC =MAX (1,N ,P )
-         else 
-            LDC =LDA 
-         endif 
+         else
+            LDC =LDA
+         endif
          MXMN =MIN (P ,N )
          NDWORK =MAX (1,4*N +MXMN )
-         NM =N 
-      endif 
+         NM =N
+      endif
 C
 C Allocate variable dimension local arrays.
 C
-      if (TASK.EQ.1 )THEN 
+      if (TASK.EQ.1 )THEN
          if(.NOT.CREATEVAR(NBVARS+1,'d',NDWORK,1,lDWORK)) RETURN
-         if (NSCHUR.EQ.2 )THEN 
-            if (FLAG (2).EQ.1)THEN 
+         if (NSCHUR.EQ.2 )THEN
+            if (FLAG (2).EQ.1)THEN
                FACTA ='S'
                LDU =1
                if(.NOT.CREATEVAR(NBVARS+1,'d',LDU,1,lU)) RETURN
-            else 
+            else
                FACTA ='N'
-               LDU =LDA 
+               LDU =LDA
                if(.NOT.CREATEVAR(NBVARS+1,'d',LDU,N,lU)) RETURN
-            endif 
-            if (FLAG (3).EQ.1)THEN 
+            endif
+            if (FLAG (3).EQ.1)THEN
                FACTB ='S'
                LDV =1
                if(.NOT.CREATEVAR(NBVARS+1,'d',LDV,1,lV)) RETURN
-            else 
+            else
                FACTB ='N'
-               LDV =LDB 
+               LDV =LDB
                if(.NOT.CREATEVAR(NBVARS+1,'d',LDV,M,lV)) RETURN
-            endif 
-         else 
+            endif
+         else
             SCHU ='N'
             if(.NOT.CREATEVAR(NBVARS+1,'i',NIWORK,1,lIWORK)) RETURN
-            if (FLAG (2).EQ.1)THEN 
-               if (FLAG (3).EQ.1)THEN 
+            if (FLAG (2).EQ.1)THEN
+               if (FLAG (3).EQ.1)THEN
                   SCHU ='S'
-               elseif (FLAG (3).EQ.2)THEN 
+               elseif (FLAG (3).EQ.2)THEN
                   SCHU ='A'
-               endif 
-            elseif (FLAG (2).EQ.2.AND. FLAG (3).EQ.1)THEN 
+               endif
+            elseif (FLAG (2).EQ.2.AND. FLAG (3).EQ.1)THEN
                SCHU ='B'
-            endif 
+            endif
 C
-            if (LSAME (SCHU ,'N'))THEN 
-               LDU =LDB 
+            if (LSAME (SCHU ,'N'))THEN
+               LDU =LDB
                if(.NOT.CREATEVAR(NBVARS+1,'d',LDU,M,lU)) RETURN
-            endif 
-         endif 
+            endif
+         endif
 C
-      elseif (TASK.EQ.2 )THEN 
-         LDU =LDA 
+      elseif (TASK.EQ.2 )THEN
+         LDU =LDA
          if(.NOT.CREATEVAR(NBVARS+1,'d',LDU,N,lU)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',NDWORK,1,lDWORK)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',N,1,lWI)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',N,1,lWR)) RETURN
-         if (LHS.EQ.1 )THEN 
+         if (LHS.EQ.1 )THEN
             if(.NOT.CREATEVAR(NBVARS+1,'i',1,1,lIWORK)) RETURN
-         else 
+         else
             if(.NOT.CREATEVAR(NBVARS+1,'i',N*N,1,lIWORK)) RETURN
-         endif 
-      else 
-         LDU =LDA 
+         endif
+      else
+         LDU =LDA
          if(.NOT.CREATEVAR(NBVARS+1,'d',LDU,N,lU)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',NDWORK,1,lDWORK)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',N,1,lWI)) RETURN
          if(.NOT.CREATEVAR(NBVARS+1,'d',N,1,lWR)) RETURN
-      endif 
+      endif
 
 
 C
 C Do the actual computations.
 C
-      if (TASK.EQ.1 )THEN 
+      if (TASK.EQ.1 )THEN
 C
-         if (NSCHUR.EQ.2 )THEN 
-            if (TRANS.EQ.0 )THEN 
+         if (NSCHUR.EQ.2 )THEN
+            if (TRANS.EQ.0 )THEN
                TRANA ='N'
                TRANB ='N'
-            elseif (TRANS.EQ.1 )THEN 
+            elseif (TRANS.EQ.1 )THEN
                TRANA ='T'
                TRANB ='T'
-            elseif (TRANS.EQ.2 )THEN 
+            elseif (TRANS.EQ.2 )THEN
                TRANA ='T'
                TRANB ='N'
-            elseif (TRANS.EQ.3 )THEN 
+            elseif (TRANS.EQ.3 )THEN
                TRANA ='N'
                TRANB ='T'
-            endif 
-            if (FLAG (1).NE.0)THEN 
+            endif
+            if (FLAG (1).NE.0)THEN
                DICO ='D'
-            else 
+            else
                DICO ='C'
-            endif 
+            endif
             ISGN =1
             call SB04PD (DICO ,FACTA ,FACTB ,TRANA ,TRANB ,ISGN ,N ,M ,
      $         stk(lA), LDA ,stk(lU),LDU ,stk(lB),LDB ,stk(lV),LDV ,
      $         stk(lC), LDC ,SCALE ,stk(lDWORK),NDWORK ,INFO )
-         else 
-            if (TRANS.EQ.0 )THEN 
-               if (LSAME (SCHU ,'S'))THEN 
+         else
+            if (TRANS.EQ.0 )THEN
+               if (LSAME (SCHU ,'S'))THEN
                   TRANA ='N'
                   TRANB ='N'
-               else 
+               else
                   ULA ='U'
                   ULB ='U'
-               endif 
-            elseif (TRANS.EQ.1 )THEN 
-               if (LSAME (SCHU ,'S'))THEN 
+               endif
+            elseif (TRANS.EQ.1 )THEN
+               if (LSAME (SCHU ,'S'))THEN
                   TRANA ='T'
                   TRANB ='T'
-               else 
+               else
                   ULA ='L'
                   ULB ='L'
-                  DO 10J =2,N 
+                  DO 10J =2,N
                      call DSWAP (J -1,stk(lA+1-1 +(J-1)*LDA),1,stk(lA+J-
      $                  1 +(1-1)*LDA),LDA )
-   10             CONTINUE 
-                  DO 20J =2,M 
+   10             CONTINUE
+                  DO 20J =2,M
                      call DSWAP (J -1,stk(lB+1-1 +(J-1)*LDB),1,stk(lB+J-
      $                  1 +(1-1)*LDB),LDB )
-   20             CONTINUE 
-               endif 
-            elseif (TRANS.EQ.2 )THEN 
-               if (LSAME (SCHU ,'S'))THEN 
+   20             CONTINUE
+               endif
+            elseif (TRANS.EQ.2 )THEN
+               if (LSAME (SCHU ,'S'))THEN
                   TRANA ='T'
                   TRANB ='N'
-               else 
+               else
                   ULA ='L'
                   ULB ='U'
-                  DO 30J =2,N 
+                  DO 30J =2,N
                      call DSWAP (J -1,stk(lA+1-1 +(J-1)*LDA),1,stk(lA+J-
      $                  1 +(1-1)*LDA),LDA )
-   30             CONTINUE 
-               endif 
-            elseif (TRANS.EQ.3 )THEN 
-               if (LSAME (SCHU ,'S'))THEN 
+   30             CONTINUE
+               endif
+            elseif (TRANS.EQ.3 )THEN
+               if (LSAME (SCHU ,'S'))THEN
                   TRANA ='N'
                   TRANB ='T'
-               else 
+               else
                   ULA ='U'
                   ULB ='L'
-                  DO 40J =2,M 
+                  DO 40J =2,M
                      call DSWAP (J -1,stk(lB+1-1 +(J-1)*LDB),1,stk(lB+J-
      $                  1 +(1-1)*LDB),LDB )
-   40             CONTINUE 
-               endif 
-            endif 
+   40             CONTINUE
+               endif
+            endif
 C
-            if (LSAME (SCHU ,'N'))THEN 
+            if (LSAME (SCHU ,'N'))THEN
 C
-               SCALE =ONE 
-               if (FLAG (1).EQ.0)THEN 
+               SCALE =ONE
+               if (FLAG (1).EQ.0)THEN
                   call SB04MD (N ,M ,stk(lA),LDA ,stk(lB),LDB ,stk(lC),
      $               LDC ,stk(lU),LDU ,istk(lIWORK),stk(lDWORK),NDWORK ,
      $               INFO )
-               else 
+               else
                   call SB04QD (N ,M ,stk(lA),LDA ,stk(lB),LDB ,stk(lC),
      $               LDC ,stk(lU),LDU ,istk(lIWORK),stk(lDWORK),NDWORK ,
      $               INFO )
-               endif 
+               endif
 C
-            elseif (LSAME (SCHU ,'S'))THEN 
+            elseif (LSAME (SCHU ,'S'))THEN
 C
-               if (FLAG (1).EQ.0)THEN 
+               if (FLAG (1).EQ.0)THEN
                   call DTRSYL (TRANA ,TRANB ,1,N ,M ,stk(lA),LDA ,
      $               stk(lB), LDB ,stk(lC),LDC ,SCALE ,INFO )
-               else 
+               else
                   call SB04PY (TRANA ,TRANB ,1,N ,M ,stk(lA),LDA ,
      $               stk(lB), LDB ,stk(lC),LDC ,SCALE ,stk(lDWORK),INFO)
-               endif 
-            else 
-               SCALE =ONE 
-               TOL =ZERO 
+               endif
+            else
+               SCALE =ONE
+               TOL =ZERO
 C
 C              Default tolerance (epsilon_machine) is used.
 C
-               if (FLAG (1).EQ.0)THEN 
+               if (FLAG (1).EQ.0)THEN
                   call SB04ND (SCHU ,ULA ,ULB ,N ,M ,stk(lA),LDA ,
      $               stk(lB), LDB ,stk(lC),LDC ,TOL ,istk(lIWORK),
      $               stk(lDWORK), NDWORK ,INFO )
-               else 
+               else
                   call SB04RD (SCHU ,ULA ,ULB ,N ,M ,stk(lA),LDA ,
      $               stk(lB), LDB ,stk(lC),LDC ,TOL ,istk(lIWORK),
      $               stk(lDWORK), NDWORK ,INFO )
-               endif 
+               endif
 C
-            endif 
-         endif 
+            endif
+         endif
 C
-      else 
+      else
 C
-         if (FLAG (1).EQ.0)THEN 
+         if (FLAG (1).EQ.0)THEN
             DICO ='C'
-         else 
+         else
             DICO ='D'
-         endif 
-         if (FLAG (2).NE.1)THEN 
+         endif
+         if (FLAG (2).NE.1)THEN
             FACT ='N'
-         else 
+         else
             FACT ='F'
             call DLASET ('FULL',N ,N ,ZERO ,ONE ,stk(lU),LDU )
-         endif 
+         endif
 C
-         if (TRANS.EQ.0 )THEN 
+         if (TRANS.EQ.0 )THEN
             TRANA ='N'
-         else 
+         else
             TRANA ='T'
-         endif 
+         endif
 C
-         if (TASK.EQ.2 )THEN 
-            if (LHS.EQ.2 )THEN 
+         if (TASK.EQ.2 )THEN
+            if (LHS.EQ.2 )THEN
                JOB ='B'
-            else 
+            else
                JOB ='X'
-            endif 
+            endif
 C
-            call SB03MD (DICO ,JOB ,FACT ,TRANA ,N ,stk(lA), LDA ,
-     $         stk(lU), LDU ,stk(lC),LDC ,SCALE ,SEP ,FERR, stk(lWR), 
-     $         stk(lWI), istk(lIWORK), stk(lDWORK), NDWORK ,INFO )
+            if (MC.LT.LDC )THEN
+                if(.NOT.CREATEVAR(NBVARS+1,'d',LDC,N,lCC)) RETURN
+                call DCOPY (N*MC,stk(lC),1,stk(lCC),1)
+                call SB03MD (DICO,JOB,FACT,TRANA,N,stk(lA),LDA,
+     $             stk(lU),LDU,stk(lCC),LDC,SCALE,SEP,FERR,stk(lWR),
+     $             stk(lWI),istk(lIWORK),stk(lDWORK),NDWORK,INFO)
+                call DCOPY (N*MC,stk(lCC),1,stk(lC),1)
+            else
+                call SB03MD (DICO,JOB,FACT,TRANA,N,stk(lA),LDA,
+     $             stk(lU),LDU,stk(lC),LDC,SCALE,SEP,FERR,stk(lWR),
+     $             stk(lWI),istk(lIWORK),stk(lDWORK),NDWORK,INFO)
+            endif
 C
-         else 
+         else
 C
             call SB03OD (DICO ,FACT ,TRANA ,N ,P ,stk(lA),LDA ,stk(lU),
      $         LDU ,stk(lC),LDC ,SCALE ,stk(lWR),stk(lWI),stk(lDWORK),
      $         NDWORK ,INFO )
 C
-         endif 
-      endif 
+         endif
+      endif
 C
 C form output
 C
       PERTRB =(TASK.EQ.1 .AND.(INFO.EQ.N +M +1.OR. (FLAG (2)*FLAG (3)
      $     .EQ.1.AND. INFO.EQ.1 ))).OR.
      $     (TASK.EQ.2 .AND.INFO.EQ.N +1).OR.(TASK.EQ.3 .AND.INFO.EQ.1 )
-      if (INFO.EQ.0 .OR.PERTRB )THEN 
-         if (LHS.GE.1 )THEN 
-            if (TASK.EQ.3 )THEN 
+      if (INFO.EQ.0 .OR.PERTRB )THEN
+         if (LHS.GE.1 )THEN
+            if (TASK.EQ.3 )THEN
                if (TRANS.EQ.0 .AND.P.GT.N )call DLACPY ('UPPER',N ,N ,
      $            stk(lC),LDC ,stk(lC),LDA )
                if (N.GT.1 )call DLASET ('LOWER',N -1,N -1,ZERO ,ZERO ,
      $            stk(lC+2-1 +(1-1)*LDC),LDA )
-            endif 
-         endif 
+            endif
+         endif
 C
-         if (TASK.EQ.2 )THEN 
-            if (LHS.GE.2 )THEN 
-               if (N.EQ.ZERO ) SEP =ZERO 
+         if (TASK.EQ.2 )THEN
+            if (LHS.GE.2 )THEN
+               if (N.EQ.ZERO ) SEP =ZERO
                if(.NOT.CREATEVAR(NBVARS+1,'d',1,1,lSEP)) RETURN
                stk(lSEP)=SEP
                LHSVAR(2)=NBVARS
-            endif 
-         endif 
-      endif 
+            endif
+         endif
+      endif
 C
 C Error and warning handling.
 C
-      if (INFO.GT.0 )THEN 
-         if (TASK.EQ.1 )THEN 
-            if (NSCHUR.EQ.2 )THEN 
+      if (INFO.GT.0 )THEN
+         if (TASK.EQ.1 )THEN
+            if (NSCHUR.EQ.2 )THEN
 c     .        messages from SB04PD
                if(INFO.le.M+N) then
 c     .           Failure when computing eigenvalues
@@ -668,8 +677,8 @@ c     .           Equation is singular
                   call error(19)
                endif
                return
-            else 
-               if (LSAME (SCHU ,'N')) THEN 
+            else
+               if (LSAME (SCHU ,'N')) THEN
 c     .           messages from SB04MD or SB04QD
                   if(INFO.le.M) then
 c     .              Failure when computing eigenvalues
@@ -678,22 +687,22 @@ c     .              Failure when computing eigenvalues
 c     .              Equation is singular
                      call error(19)
                   endif
-               else 
+               else
 c     .           Equation is singular
-                  call error(19)                  
-               endif 
+                  call error(19)
+               endif
                return
-            endif 
-         elseif (TASK.EQ.2 )THEN 
+            endif
+         elseif (TASK.EQ.2 )THEN
             if(INFO.le.N) then
 c     .        Failure when computing eigenvalues
                call error(24)
             elseif(INFO.gt.N) then
 c     .        Equation is singular
-               call error(19) 
+               call error(19)
             endif
             return
-         elseif (TASK.EQ.3 )THEN 
+         elseif (TASK.EQ.3 )THEN
             if (INFO.eq.1) then
 c     .        Equation is singular
                call error(19)
@@ -711,55 +720,55 @@ c     .        not a schur form
             elseif (INFO.eq.6) then
 c     .        Failure when computing eigenvalues
                call error(24)
-            endif 
+            endif
             return
          endif
       elseif(INFO.LT.0) then
 c     .  message displayed by slicot or lapack
          buf=' '
          call error(999)
-      endif 
+      endif
 C
-      if ((INFO.EQ.0 .OR.PERTRB ).AND.SCALE.NE.ONE )THEN 
-         if (TASK.LE.2 )THEN 
-            TEMP =SCALE 
-         else 
+      if ((INFO.EQ.0 .OR.PERTRB ).AND.SCALE.NE.ONE )THEN
+         if (TASK.LE.2 )THEN
+            TEMP =SCALE
+         else
             TEMP =SCALE **2
-         endif 
+         endif
          WRITE (tmpbuf ,'
      $      ( '' WARNING: THE RIGHT HAND SIDES WERE '',''SCALED BY'',
-     $       D13.6, '' TO AVOID OVERFLOW. '' )')TEMP 
+     $       D13.6, '' TO AVOID OVERFLOW. '' )')TEMP
          buf = tmpbuf
-      endif 
+      endif
 C
-      if (INFO.NE.0 .AND..NOT.PERTRB )THEN 
+      if (INFO.NE.0 .AND..NOT.PERTRB )THEN
          call error(1004)
-      elseif (SCALE.NE.ONE )THEN 
+      elseif (SCALE.NE.ONE )THEN
          call msgs(1000,0)
-      endif 
-      if (PERTRB )THEN 
+      endif
+      if (PERTRB )THEN
          WRITE (tmpbuf ,'
      $      ( '' WARNING: THE EQUATION IS (ALMOST) '',
      $      ''SINGULAR; PERTURBED VALUES HAVE BEEN USED. '' )')
          buf = tmpbuf
          call msgs(1000,0)
-      endif 
+      endif
 C
-      RETURN 
+      RETURN
 C *** Last line of LINMEQ ***
-      end 
+      end
 
       logical function iscomplex(pos)
       include 'stack.h'
       integer pos
 c
       integer iadr
-c     
+c
       iadr(l)=l+l-1
-c     
+c
       il=iadr(lstk(pos + top - rhs))
       if (istk(il).lt.0)  il=iadr(istk(il+2))
-      
+
       if (istk(il+3).eq.1) then
          iscomplex=.true.
       else

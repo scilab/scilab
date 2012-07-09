@@ -226,7 +226,7 @@ public final class Palette {
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
     public static void loadPal(final String path) {
-        generateAllPaletteImages();
+        loadPal(path, null);
     }
 
     /**

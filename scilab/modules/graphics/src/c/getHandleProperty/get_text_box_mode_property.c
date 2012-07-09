@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_text_box_mode_property(char *pobjUID)
+int get_text_box_mode_property(void* _pvCtx, char* pobjUID)
 {
     int iTextBoxMode = 0;
     int* piTextBoxMode = &iTextBoxMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, jni_int, &piTextBoxMode);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, jni_int, (void**)&piTextBoxMode);
 
     if (piTextBoxMode == NULL)
     {
@@ -47,15 +47,15 @@ int get_text_box_mode_property(char *pobjUID)
 
     if (iTextBoxMode == 0)
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
     else if (iTextBoxMode == 1)
     {
-        return sciReturnString("centered");
+        return sciReturnString(_pvCtx, "centered");
     }
     else if (iTextBoxMode == 2)
     {
-        return sciReturnString("filled");
+        return sciReturnString(_pvCtx, "filled");
     }
     else
     {

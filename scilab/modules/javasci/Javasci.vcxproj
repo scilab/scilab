@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -189,28 +189,10 @@
     <ClCompile Include="src\jni\call_scilab_wrap.c" />
     <ClCompile Include="src\c\DllmainJavasci.c" />
     <ClCompile Include="src\c\javasci2_helper.c" />
-    <ClCompile Include="src\c\javasci_globals.c" />
-    <ClCompile Include="src\c\javasci_SciAbstractArray.c" />
-    <ClCompile Include="src\c\javasci_SciBooleanArray.c" />
-    <ClCompile Include="src\c\javasci_SciComplexArray.c" />
-    <ClCompile Include="src\c\javasci_SciDoubleArray.c" />
-    <ClCompile Include="src\c\javasci_SciIntegerArray.c" />
-    <ClCompile Include="src\c\javasci_Scilab.c" />
-    <ClCompile Include="src\c\javasci_Scilab2.c" />
-    <ClCompile Include="src\c\javasci_SciStringArray.c" />
     <ClCompile Include="src\jni\putLists.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\javasci2_helper.h" />
-    <ClInclude Include="includes\javasci_globals.h" />
-    <ClInclude Include="includes\javasci_SciAbstractArray.h" />
-    <ClInclude Include="includes\javasci_SciBooleanArray.h" />
-    <ClInclude Include="includes\javasci_SciComplexArray.h" />
-    <ClInclude Include="includes\javasci_SciDoubleArray.h" />
-    <ClInclude Include="includes\javasci_SciIntegerArray.h" />
-    <ClInclude Include="includes\javasci_Scilab.h" />
-    <ClInclude Include="includes\javasci_Scilab2.h" />
-    <ClInclude Include="includes\javasci_SciStringArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="javasci.rc" />

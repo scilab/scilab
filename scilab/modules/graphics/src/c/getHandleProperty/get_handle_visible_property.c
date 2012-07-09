@@ -31,12 +31,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_handle_visible_property(char *pobjUID)
+int get_handle_visible_property(void* _pvCtx, char* pobjUID)
 {
     int handleVisible = 0;
     int *piHandleVisible = &handleVisible;
 
-    getGraphicObjectProperty(pobjUID, __GO_HIDDEN__, jni_bool, &piHandleVisible);
+    getGraphicObjectProperty(pobjUID, __GO_HIDDEN__, jni_bool, (void **)&piHandleVisible);
 
     if (piHandleVisible == NULL)
     {
@@ -46,11 +46,11 @@ int get_handle_visible_property(char *pobjUID)
 
     if (1 - handleVisible)      /* Handle visible is equivalent to not hidden */
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

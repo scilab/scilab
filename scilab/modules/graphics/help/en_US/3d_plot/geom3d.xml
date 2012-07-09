@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="geom3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="geom3d">
   <refnamediv>
     <refname>geom3d</refname>
     <refpurpose>projection from 3D on 2D after a 3D
@@ -54,6 +51,17 @@
       plan. Then all the 2D graphics primitives working on <literal>(x,y)</literal>
       can be used for superposition on the 3D plot.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+      t=%pi*(-10:10)/10;
+      // 3D plot of the surface
+      fplot3d(t,t,surface,35,45,"X@Y@Z")
+      // now (t,t,sin(t).*cos(t)) is a curve on the surface
+      // which can be drawn using geom3d and xpoly
+      [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

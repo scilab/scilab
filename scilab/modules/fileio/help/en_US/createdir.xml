@@ -12,30 +12,46 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="createdir">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>createdir</refname>
-    <refpurpose>Make new directory</refpurpose>
+    <refpurpose>makes new directory</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>createdir('dirname')
-      status = createdir('dirname')
+    <synopsis>createdir(dirname)
+      status = createdir(dirname)
     </synopsis>
   </refsynopsisdiv>
+<refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>dirname</term>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>a boolean 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection>
     <title>Description</title>
-    <para>createdir('dirname') creates the directory dirname in the current
-      directory, if dirname is not in the current directory, specify the
-      relative path to the current directory or the full path for dirname.
+    <para>
+      <literal>createdir(dirname)</literal> creates the directory <literal>dirname</literal> in the current
+      directory, if <literal>dirname</literal> is not in the current directory, specify the
+      relative path to the current directory or the full path for <literal>dirname</literal>.
     </para>
-    <para>[status] = createdir('dirname') creates the directory dirname in the
+    <para><literal>[status] = createdir(dirname)</literal> creates the directory <literal>dirname</literal> in the
       existing directory parentdir, returning the status, a message. Here,
-      status is %T for success and %F otherwise.
+      status is <literal>%T</literal> for success and <literal>%F</literal> otherwise.
     </para>
-    <para>createdir is used by mkdir.</para>
+    <para><literal>createdir</literal> is used by <literal>mkdir</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

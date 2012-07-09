@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_VALUE_H__
 #define __SET_UICONTROL_VALUE_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the value property of a uicontrol
@@ -26,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the value property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolValue(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolValue(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_VALUE_H__ */

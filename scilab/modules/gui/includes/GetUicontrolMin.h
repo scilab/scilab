@@ -14,8 +14,8 @@
 #ifndef __GET_UICONTROL_MIN_H__
 #define __GET_UICONTROL_MIN_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the min property of a uicontrol
@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the min property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolMin(char *pobjUID);
+GUI_IMPEXP int GetUicontrolMin(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_MIN_H__ */

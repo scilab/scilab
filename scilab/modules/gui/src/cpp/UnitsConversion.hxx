@@ -17,11 +17,9 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
-#include "ObjectStructure.h"
 #include "getScilabJavaVM.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "HandleManagement.h"
 }

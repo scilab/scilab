@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>modulo</refname>
     <refpurpose>reste arithmétique symétrique modulo m</refpurpose>
@@ -35,14 +32,21 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>modulo</literal> calcule <literal>i= n (modulo m)</literal>
-    c'est à dire le reste de <literal>n</literal> divisé par
-    <literal>m</literal> (<literal>n</literal> et <literal>m</literal> sont
-    entiers).</para>
+    <para>
+      <literal>modulo</literal> calcule <literal>i= n (modulo m)</literal>
+      c'est à dire le reste de <literal>n</literal> divisé par
+      <literal>m</literal> (<literal>n</literal> et <literal>m</literal> sont
+      entiers).
+    </para>
     <para>i = n - m .* int (n ./ m). Ici la réponse peut être négative si
-    <literal>n</literal> et/ou <literal>m</literal> sont négatifs.</para>
-    <para><literal>pmodulo</literal> calcule <literal>i = n - m .* floor (n ./
-    m)</literal>, la réponse est positive ou nulle.</para>
+      <literal>n</literal> et/ou <literal>m</literal> sont négatifs.
+    </para>
+    <para>
+      <literal>pmodulo</literal> calcule <literal>i = n - m .* floor (n ./
+        m)
+      </literal>
+      ,la réponse est positive ou nulle.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

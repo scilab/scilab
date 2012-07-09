@@ -30,7 +30,7 @@
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_entity_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_entity_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* curEntity = NULL ;
 
@@ -47,7 +47,7 @@ int set_current_entity_property(char* pobjUID, size_t stackPointer, int valueTyp
         return SET_PROPERTY_ERROR ;
     }
 
-    curEntity = getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+    curEntity = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
 
     if ( curEntity == NULL )
     {

@@ -31,7 +31,7 @@
 #include "CurrentFigure.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
+#include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
 int sci_show_window( char *fname,unsigned long fname_len )
 {
@@ -60,7 +60,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
                 return -1 ;
             }
 
-            pFigureUID = getObjectFromHandle( getHandleFromStack(stackPointer) );
+            pFigureUID = (char*)getObjectFromHandle( getHandleFromStack(stackPointer) );
 
             if (pFigureUID == NULL)
             {
@@ -87,7 +87,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
                 return -1 ;
             }
             winNum = (int) getDoubleFromStack(stackPointer);
-            pFigureUID = getFigureFromIndex(winNum);
+            pFigureUID = (char*)getFigureFromIndex(winNum);
 
             if (pFigureUID == NULL)
             {
@@ -97,7 +97,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
                     Scierror(999, _("%s: Unable to create requested figure: No more memory.\n"), fname);
                     return -1;
                 }
-                pFigureUID = getCurrentFigure();
+                pFigureUID = (char*)getCurrentFigure();
             }
         }
         else
@@ -111,7 +111,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
         /* Rhs == 0 */
         /* raise current figure */
         getOrCreateDefaultSubwin();
-        pFigureUID = getCurrentFigure();
+        pFigureUID = (char*)getCurrentFigure();
     }
 
     /* Check that the requested figure really exists */

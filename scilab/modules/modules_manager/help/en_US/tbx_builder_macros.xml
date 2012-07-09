@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_builder_macros" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-08-19 17:00:03 +0200 $</pubdate>
-  </info>
   <refnamediv>
     <refname>tbx_builder_macros</refname>
     <refpurpose>Run buildmacros.sce script if it exists (toolbox compilation process)</refpurpose>

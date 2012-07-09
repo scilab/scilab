@@ -31,7 +31,8 @@
           <FileSelector gridx="2" gridy="1" weightx="1" anchor="above_baseline"
                         listener="EntryListener"
                         href="{@cmd}"
-                        dir-selection="false">
+                        dir-selection="false"
+                        check-entry="false">
             <xsl:attribute name="enable">
               <xsl:if test="@scinotes='false' and @external-cmd='true'">
                 <xsl:text>true</xsl:text>
@@ -41,14 +42,24 @@
               <xsl:call-template name="context"/>
             </entryChanged>
           </FileSelector>
-          <Radiobutton value="{@external-cmd}" expected-value="false" listener="ActionListener" text="Scilab command: " gridx="1" gridy="2" fill="none" weightx="0" anchor="west" enable="{$enable}">
+          <Label gridx="2" gridy="2" text="(Don't forget to quote path containing white spaces)">
+            <xsl:attribute name="enable">
+              <xsl:if test="@scinotes='false' and @external-cmd='true'">
+                <xsl:text>true</xsl:text>
+              </xsl:if>
+            </xsl:attribute>
+          </Label>
+          <Panel height="5" gridx="1" gridy="3">
+            <VSpace height="5"/>
+          </Panel>
+          <Radiobutton value="{@external-cmd}" expected-value="false" listener="ActionListener" text="Scilab command: " gridx="1" gridy="4" fill="none" weightx="0" anchor="west" enable="{$enable}">
             <actionPerformed choose="external-cmd">
               <xsl:call-template name="context"/>
             </actionPerformed>
           </Radiobutton>
-          <Entry gridx="2" gridy="2" weightx="1" anchor="above_baseline"
+          <Entry gridx="2" gridy="4" weightx="1" anchor="above_baseline"
                  listener="EntryListener"
-                 text="{@cmd}">
+                 text="{@macro}">
             <xsl:attribute name="enable">
               <xsl:if test="@scinotes='false' and @external-cmd='false'">
                 <xsl:text>true</xsl:text>
@@ -288,13 +299,13 @@
   <xsl:template match="scinotes-autosave">
     <Checkbox checked="{@enable}" selected-value="true" unselected-value="false" listener="ActionListener" text="Enable autosave in Scinotes">
       <actionPerformed choose="enable">
-	<xsl:call-template name="context"/>
+        <xsl:call-template name="context"/>
       </actionPerformed>
-    </Checkbox>   
+    </Checkbox>
     <VSpace height="10"/>
     <Title text="Save options">
       <Grid>
-	<Label gridx="1" gridy="1" weightx="0" anchor="west" text="Save every " enable="{@enable}"/>
+        <Label gridx="1" gridy="1" weightx="0" anchor="west" text="Save every " enable="{@enable}"/>
         <NumericalSpinner gridx="2"
                           gridy="1"
                           weightx="0"
@@ -302,22 +313,22 @@
                           increment = "1"
                           length = "4"
                           listener = "ActionListener"
-			  enable = "{@enable}"
+                          enable = "{@enable}"
                           value = "{@save-every}">
           <actionPerformed choose="save-every">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-	<Label gridx="3" gridy="1" weightx="0" anchor="west" text=" minutes " enable="{@enable}"/>
+        <Label gridx="3" gridy="1" weightx="0" anchor="west" text=" minutes " enable="{@enable}"/>
         <Panel gridx="4" gridy="1" gridheight="1" fill="both"/>
-	</Grid>
+      </Grid>
     </Title>
     <VSpace height="10"/>
     <Title text="Close options">
       <Checkbox checked="{@automatic-delete}" selected-value="true" unselected-value="false" listener="ActionListener" text="Delete automatically saved files" enable="{@enable}">
-	<actionPerformed choose="automatic-delete">
-	  <xsl:call-template name="context"/>
-	</actionPerformed>
+        <actionPerformed choose="automatic-delete">
+          <xsl:call-template name="context"/>
+        </actionPerformed>
       </Checkbox>
     </Title>
     <VSpace height="10"/>
@@ -390,5 +401,30 @@
       </Grid>
     </Title>
   </xsl:template>
-</xsl:stylesheet>
 
+  <xsl:template match="scinotes-header">
+    <Title text="Default header">
+      <Grid>
+        <Checkbox checked="{@enable}" selected-value="true" unselected-value="false" listener="ActionListener" text="Add a default header to new file" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+          <actionPerformed choose="enable">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </Checkbox>
+        <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
+	<TextArea gridx="1" gridy="2" weightx="1" gridwidth="2" weighty="0" anchor="west"
+		  editable="true"
+		  rows="15"
+		  scroll="true"
+		  listener="EntryListener"
+		  enable="{@enable}">
+	  <xsl:attribute name="text">
+	    <xsl:value-of select="string(child::node()[1])" disable-output-escaping="yes"/>
+	  </xsl:attribute>
+	  <entryChanged choose-child="1">
+            <xsl:call-template name="context"/>
+          </entryChanged>
+	</TextArea>
+      </Grid>
+      </Title>
+    </xsl:template> 
+</xsl:stylesheet>

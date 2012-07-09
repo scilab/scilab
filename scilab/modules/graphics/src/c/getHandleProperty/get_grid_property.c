@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_grid_property(char *pobjUID)
+int get_grid_property(void* _pvCtx, char* pobjUID)
 {
     double grid[3];
     int iGridColor = 0;
@@ -47,7 +47,7 @@ int get_grid_property(char *pobjUID)
 #endif
 
     /* need conversion for display in double */
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
 
     if (piGridColor == NULL)
     {
@@ -57,21 +57,21 @@ int get_grid_property(char *pobjUID)
 
     grid[0] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
     grid[1] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
     grid[2] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
 
     if (iView)
     {
-        return sciReturnRowVector( grid, 3 );
+        return sciReturnRowVector(_pvCtx, grid, 3);
     }
     else
     {
-        return sciReturnRowVector( grid, 2 );
+        return sciReturnRowVector(_pvCtx, grid, 2);
     }
 
 }

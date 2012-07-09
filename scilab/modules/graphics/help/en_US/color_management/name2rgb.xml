@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="name2rgb">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="name2rgb">
   <refnamediv>
     <refname>name2rgb</refname>
     <refpurpose> returns the RGB values of a named color</refpurpose>
@@ -53,6 +50,13 @@
     <para>
       The list of all known colors is given by <link linkend="color_list">color_list</link>.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image> 
+      rgb=name2rgb("gold")
+      rgb2name(rgb)
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

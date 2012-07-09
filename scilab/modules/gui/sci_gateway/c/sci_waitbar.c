@@ -119,7 +119,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             }
 
             GraphicHandle = (unsigned long)*hstk(handleAdr);
-            pWaitbarUID = getObjectFromHandle(GraphicHandle);
+            pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
             if (pWaitbarUID == NULL)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
@@ -141,7 +141,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             }
 
             GraphicHandle = (unsigned long)*hstk(handleAdr);
-            pWaitbarUID = getObjectFromHandle(GraphicHandle);
+            pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
             if (pWaitbarUID == NULL)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
@@ -203,7 +203,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
         }
 
         GraphicHandle = (unsigned long)*hstk(handleAdr);
-        pWaitbarUID = getObjectFromHandle(GraphicHandle);
+        pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
         if (pWaitbarUID != NULL)
         {
             iValue = (int)(getDoubleFromStack(fractionAdr) * 100);

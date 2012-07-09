@@ -31,7 +31,7 @@ int geom3d(double *x, double *y, double *z, int n)
     int i = 0;
     double userCoords2d[2];
 
-    char * psubwinUID = getOrCreateDefaultSubwin();
+    char * psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     for (i = 0; i < n; i++)
     {

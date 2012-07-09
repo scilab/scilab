@@ -316,7 +316,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
             if (numberOfLines + scilabHistoryRootNode.getChildAt(sessionIndex).getChildCount() > lineNumber) {
                 /* The line has to be remove in current session */
                 ((DefaultMutableTreeNode) scilabHistoryRootNode.getChildAt(sessionIndex)).remove(lineNumber - numberOfLines);
-                scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryRootNode.getChildAt(sessionIndex));
+                scilabHistoryTreeModel.nodeStructureChanged(scilabHistoryRootNode.getChildAt(sessionIndex));
                 expandAll();
                 break;
             } else {

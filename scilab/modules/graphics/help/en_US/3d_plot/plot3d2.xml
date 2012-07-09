@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot3d2">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="plot3d2">
   <refnamediv>
     <refname>plot3d2</refname>
     <refpurpose>plot surface defined by rectangular
@@ -272,6 +269,22 @@
       <literal>plot3d</literal>, the same properties are editable (see
       <link linkend="surface_properties">surface_properties</link> and <link linkend="axes_properties">axes_properties</link>).
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>u = linspace(-%pi/2,%pi/2,40);
+      v = linspace(0,2*%pi,20);
+      X = cos(u)'*cos(v);
+      Y = cos(u)'*sin(v);
+      Z = sin(u)'*ones(v);
+      plot3d2(X,Y,Z);
+      e=gce();
+      e.color_mode=4; // change color
+      f=e.data;
+      TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,10*(f.z)+1);
+      e.data=TL;
+      e.color_flag=2;
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

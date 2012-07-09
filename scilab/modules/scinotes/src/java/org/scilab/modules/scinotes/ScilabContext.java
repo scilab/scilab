@@ -84,6 +84,13 @@ public class ScilabContext implements ViewFactory {
         this.plain = plain;
     }
 
+    /**
+     * @return the font used to render
+     */
+    public Font getBaseFont() {
+        return baseFont;
+    }
+
     public void configurationChanged(SciNotesConfiguration.Conf conf) {
         boolean modified = false;
         FontInfo[] scinotes = null;

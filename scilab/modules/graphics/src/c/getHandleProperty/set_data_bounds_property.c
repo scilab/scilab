@@ -84,7 +84,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
 }
 
 /*------------------------------------------------------------------------*/
-int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
 
@@ -123,7 +123,7 @@ int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, 
         double* tmpBounds;
 
         /* To get the Z coordinates */
-        getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, &tmpBounds);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&tmpBounds);
 
         if (tmpBounds == NULL)
         {

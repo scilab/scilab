@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="dgettext">
-  <info>
-    <pubdate>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</pubdate>
-  </info>
   <refnamediv>
     <refname>dgettext</refname>
     <refpurpose>получение текста, переведённого на язык текущей локали и определённого региона использования</refpurpose>
@@ -65,4 +62,3 @@ dgettext('scilab','Startup execution:')
     </simplelist>
   </refsection>
 </refentry>
-

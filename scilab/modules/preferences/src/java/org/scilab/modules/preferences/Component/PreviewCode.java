@@ -24,10 +24,11 @@ import javax.swing.text.DefaultCaret;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
-import org.scilab.modules.scinotes.KeywordAdaptater;
+import org.scilab.modules.scinotes.KeywordAdapter;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabEditorKit;
@@ -66,7 +67,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
                             + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
                             + "function [a, b] = myfunction(d, e, f)\n"
                             + "\ta = 2.71828 + %pi + f($, :);\n"
-                            + "\tb = cos(a) + cosh(a);\n"
+                            + "\tb = cos(a) + cosh(a) + \"$\\frac12$\";\n"
                             + "\tif d == e then\n"
                             + "\t\tb = 10 - e.field;\n"
                             + "\telse\n"
@@ -85,12 +86,12 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.getCaret().setBlinkRate(500);
         previewEditorPane.getCaret().setVisible(true);
         previewEditorPane.setEditable(false);
-        previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+        previewEditorPane.addKeywordListener(new KeywordAdapter.MouseOverAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
             }
         });
-        previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+        previewEditorPane.addKeywordListener(new KeywordAdapter.MouseClickedAdapter() {
             public void caughtKeyword(KeywordEvent e) {
                 PreviewCode.this.keywordClicked(e);
             }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="where" xml:lang="pt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>where</refname>
     <refpurpose>retorna a árvore de chamamento de instruções
@@ -38,7 +35,8 @@
       <literal>mac(1)</literal> foi chamada pela linha <literal>linenum(2)</literal> da função <literal>mac(2)</literal>, e assim por
       diante.
     </para>
-    <para><literal>mac(i)</literal> é, em geral o nome de uma função, mas também pode ser <literal>"exec"</literal>
+    <para>
+      <literal>mac(i)</literal> é, em geral o nome de uma função, mas também pode ser <literal>"exec"</literal>
       ou <literal>"execstr"</literal> se a instrução reside em um arquivo executável ou em uma
       instrução execstr.
     </para>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode</refname>
     <refpurpose>常微分方程式ソルバ</refpurpose>
@@ -47,9 +44,9 @@
         <listitem>
           <para>
             以下の文字列のどれか: <literal>"adams"</literal>,
-	    <literal>"stiff"</literal>, <literal>"rk"</literal>,
-             <literal>"rkf"</literal>, <literal>"fix"</literal>,
-	    <literal>"discrete"</literal>, <literal>"roots"</literal>.
+            <literal>"stiff"</literal>, <literal>"rk"</literal>,
+            <literal>"rkf"</literal>, <literal>"fix"</literal>,
+            <literal>"discrete"</literal>, <literal>"roots"</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -161,7 +158,8 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para><literal>"rkf"</literal>と同じソルバですがユーザインターフェイスが非常にシンプルで,
+          <para>
+            <literal>"rkf"</literal>と同じソルバですがユーザインターフェイスが非常にシンプルで,
             <literal>rtol</literal> および <literal>atol</literal>パラメータのみを
             ソルバに指定することが可能です.
             この手法は使用できる中で最も簡単な手法です.
@@ -175,16 +173,16 @@
             <literal>lsodar</literal> ソルバが使用されます. 
             使用されているのは<literal>lsoda</literal> ソルバを改変したもので,
             指定したベクトル関数の根を見つけることができます.
-            詳細は <link
-linkend="ode_root">ode_root</link> のヘルプを参照してください.
+            詳細は <link linkend="ode_root">ode_root</link> のヘルプを参照してください.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>離散時間シミュレーション. 詳細は <link
-linkend="ode_discrete">ode_discrete</link> のヘルプを参照してください.</para>
+          <para>
+            離散時間シミュレーション. 詳細は <link linkend="ode_discrete">ode_discrete</link> のヘルプを参照してください.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -14,8 +14,8 @@
 #ifndef __GET_UICONTROL_FONTSIZE_H__
 #define __GET_UICONTROL_FONTSIZE_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the size of a uicontrol font
@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the size property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolFontSize(char *pobjUID);
+GUI_IMPEXP int GetUicontrolFontSize(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_FONTSIZE_H__ */

@@ -87,6 +87,41 @@ public class SearchManager {
                 }
             }
         }
+
+        return offsetList;
+    }
+
+    /**
+     * FIND AND REPLACE START
+     * @param scilabDocument document
+     * @param word string
+     * @param start int
+     * @param end int
+     * @param caseSensitive boolean
+     * @param wholeWord boolean
+     * @param useRegexp boolean
+     * @return List
+     */
+    public static List<Integer[]> findToken(ScilabDocument scilabDocument, int token, ScilabLexer lexer, Pattern pat) {
+        String fullText = scilabDocument.getText();
+
+        if (fullText.length() == 0) {
+            return null;
+        }
+
+        List<Integer[]> offsetList = new ArrayList<Integer[]>();
+
+        //If we don't give any word to find
+        Matcher matcher = pat.matcher(fullText);
+
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+            if (token == -1 || token == lexer.getKeyword(start, false)) {
+                offsetList.add(new Integer[] {start, end});
+            }
+        }
+
         return offsetList;
     }
 
@@ -136,8 +171,8 @@ public class SearchManager {
      * @return infos with the matching positions
      */
     public static MatchingPositions searchInFiles(final BackgroundSearch bgs, String base, final boolean recursive, final boolean ignoreCR,
-                                                  String filePattern, boolean fileCaseSensitive,
-                                                  String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+            String filePattern, boolean fileCaseSensitive,
+            String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
         final File dir = new File(base);
         Pattern word = null;
         if (wordPattern != null && wordPattern.length() != 0) {
@@ -146,7 +181,7 @@ public class SearchManager {
         filePattern = filePattern.replace(".", "\\.").replace("*", ".*").replace("?", ".?");
         final Pattern file = generatePattern(filePattern, fileCaseSensitive, false, true);
 
-        final boolean[] killed = new boolean[]{false};
+        final boolean[] killed = new boolean[] {false};
         if (bgs == null) {
             return searchInFiles(killed, dir, recursive, ignoreCR, file, word);
         } else {
@@ -190,12 +225,12 @@ public class SearchManager {
             pos = new MatchingPositions(base.getAbsolutePath(), list);
             int occurences = 0;
             File[] files = base.listFiles(new FilenameFilter() {
-                    @Override
-                    public boolean accept(File dir, String name) {
-                        File f = new File(dir, name);
-                        return f.isFile() && f.canRead() && file.matcher(name).matches();
-                    }
-                });
+                @Override
+                public boolean accept(File dir, String name) {
+                    File f = new File(dir, name);
+                    return f.isFile() && f.canRead() && file.matcher(name).matches();
+                }
+            });
             Arrays.sort(files);
 
             if (word != null) {
@@ -220,12 +255,12 @@ public class SearchManager {
 
             if (recursive) {
                 files = base.listFiles(new FilenameFilter() {
-                        @Override
-                        public boolean accept(File dir, String name) {
-                            File d = new File(dir, name);
-                            return d.isDirectory() && d.canRead();
-                        }
-                    });
+                    @Override
+                    public boolean accept(File dir, String name) {
+                        File d = new File(dir, name);
+                        return d.isDirectory() && d.canRead();
+                    }
+                });
                 Arrays.sort(files);
 
                 for (int i = 0; i < files.length && !killed[0]; i++) {
@@ -318,7 +353,7 @@ public class SearchManager {
             return -1;
         }
 
-        int[] count = new int[]{0};
+        int[] count = new int[] {0};
         countFiles(base, pat, count);
 
         return count[0];
@@ -329,17 +364,17 @@ public class SearchManager {
      */
     private static void countFiles(File base, final Pattern pat, final int[] count) {
         File[] files = base.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    File f = new File(dir, name);
-                    if (f.isFile() && f.canRead() && pat.matcher(name).matches()) {
-                        count[0]++;
-                    } else if (f.isDirectory() && f.canRead()) {
-                        countFiles(f, pat, count);
-                    }
-                    return false;
+            @Override
+            public boolean accept(File dir, String name) {
+                File f = new File(dir, name);
+                if (f.isFile() && f.canRead() && pat.matcher(name).matches()) {
+                    count[0]++;
+                } else if (f.isDirectory() && f.canRead()) {
+                    countFiles(f, pat, count);
                 }
-            });
+                return false;
+            }
+        });
     }
 
     /**
@@ -354,7 +389,7 @@ public class SearchManager {
             reader.close();
             int i = 0;
             if (len != -1) {
-                for (;i < len && buffer[i] != '\0'; i++);
+                for (; i < len && buffer[i] != '\0'; i++);
             }
 
             return len != -1 && i != len;
@@ -390,7 +425,7 @@ public class SearchManager {
         public MatchingPositions(String file, List<MatchingPositions> children) {
             this.file = file;
             this.children = children;
-	    setIcon();
+            setIcon();
         }
 
         /**
@@ -414,32 +449,32 @@ public class SearchManager {
                 if (e.getTagName().equals("Position")) {
                     this.children = new ArrayList<MatchingPositions>();
                     for (int i = 0; i < nodeList.getLength(); i++) {
-			if (nodeList.item(i) instanceof Element) {
-			    e = (Element) nodeList.item(i);
-			    this.children.add(new MatchingPositions(e));
-			}
-		    }
-		} else {
+                        if (nodeList.item(i) instanceof Element) {
+                            e = (Element) nodeList.item(i);
+                            this.children.add(new MatchingPositions(e));
+                        }
+                    }
+                } else {
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         if (nodeList.item(i) instanceof Element) {
-			    e = (Element) nodeList.item(i);
-			    this.lines.add(new Line(e));
-			}
-		    }
+                            e = (Element) nodeList.item(i);
+                            this.lines.add(new Line(e));
+                        }
+                    }
                 }
             }
-	    setIcon();
+            setIcon();
         }
 
-	private void setIcon() {
-	    if (children != null) {
+        private void setIcon() {
+            if (children != null) {
                 this.icon = FOLDERIMAGE;
             } else if (file.endsWith(".sce") || file.endsWith(".sci")) {
                 this.icon = SCILABFILEIMAGE;
             } else {
                 this.icon = FILEIMAGE;
             }
-	}
+        }
 
         /**
          * Set this as the root directory

@@ -42,6 +42,7 @@ import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -66,7 +67,7 @@ public final class XConfigManager extends XCommonManager {
     private static final String SCILAB_CONFIG_XSL = System.getenv("SCI") + "/modules/preferences/src/xslt/XConfiguration.xsl";
 
     /** User configuration file.*/
-    private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
+    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
 
     static {
         //ScilabPreferences.addToolboxInfos("MyToolbox", System.getenv("SCI") + "/contrib/toolbox_skeleton/", System.getenv("SCI") + "/contrib/toolbox_skeleton/etc/toolbox_skeleton_preferences.xml");
@@ -87,9 +88,10 @@ public final class XConfigManager extends XCommonManager {
         XWizardManager.active = false;
 
         reloadTransformer(SCILAB_CONFIG_XSL);
+        Frame topWindow = XCommonManager.getTopLevel();
 
         // Set up Swing Side
-        dialog = new JDialog(getTopLevel(), "Scilab Preferences", true);
+        dialog = new JDialog(topWindow, "Scilab Preferences", true);
         topSwing = dialog.getContentPane();
         topSwing.setLayout(new BorderLayout());
         // AWT implies to set layout at construction time.
@@ -127,10 +129,11 @@ public final class XConfigManager extends XCommonManager {
         // Let the show begin!
         if (refreshDisplay()) {
             // Center the dialog on the parent window
-            Frame topWindow = XCommonManager.getTopLevel();
-            int x = topWindow.getX() + (topWindow.getWidth() - dialog.getWidth()) / 2;
-            int y = topWindow.getY() + (topWindow.getHeight() - dialog.getHeight()) / 2;
-            dialog.setLocation(x, y);
+            if (topWindow != null) {
+                int x = topWindow.getX() + (topWindow.getWidth() - dialog.getWidth()) / 2;
+                int y = topWindow.getY() + (topWindow.getHeight() - dialog.getHeight()) / 2;
+                dialog.setLocation(x, y);
+            }
 
             dialog.setVisible(true);
         }
@@ -182,7 +185,7 @@ public final class XConfigManager extends XCommonManager {
         for (ToolboxInfos info: infos) {
             String filename = new File(info.getPrefFile()).getName();
             String tbxTag = info.getName().replace(' ', '_');
-            String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
+            String tbxFile = ScilabConstants.SCIHOME.toString() + "/" + filename;
 
             // the copy is made only if needed
             createUserCopy(info.getPrefFile(), tbxFile);
@@ -216,7 +219,7 @@ public final class XConfigManager extends XCommonManager {
                     Element mytbx = (Element) list.item(0);
                     if (mytbx.hasChildNodes()) {
                         String filename = new File(info.getPrefFile()).getName();
-                        String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
+                        String tbxFile = ScilabConstants.SCIHOME.toString() + "/" + filename;
                         XConfiguration.writeDocument(tbxFile, mytbx.getFirstChild());
                     }
                 }
@@ -297,7 +300,7 @@ public final class XConfigManager extends XCommonManager {
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
             for (ToolboxInfos info : infos) {
                 String filename = new File(info.getPrefFile()).getName();
-                String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
+                String tbxFile = ScilabConstants.SCIHOME.toString() + "/" + filename;
                 refreshUserCopy(info.getPrefFile(), tbxFile);
             }
             readUserDocuments();
@@ -331,7 +334,7 @@ public final class XConfigManager extends XCommonManager {
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
             for (ToolboxInfos info : infos) {
                 String filename = new File(info.getPrefFile()).getName();
-                String tbxFile = ScilabCommons.getSCIHOME() + "/" + filename;
+                String tbxFile = ScilabConstants.SCIHOME.toString() + "/" + filename;
                 refreshUserCopy(info.getPrefFile(), tbxFile);
             }
             readUserDocuments();

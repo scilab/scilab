@@ -2413,6 +2413,7 @@ L30:
                         }
                         if (C2F(coshlt).halt != 0)
                         {
+                            if (C2F(coshlt).halt == 2) *told = *tf; /* end simulation */
                             C2F(coshlt).halt = 0;
                             freeallx;
                             return;
@@ -2741,6 +2742,7 @@ L30:
 
                 if (C2F(coshlt).halt != 0)
                 {
+                    if (C2F(coshlt).halt == 2) *told = *tf; /* end simulation */
                     C2F(coshlt).halt = 0;
                     freeallx;
                     return;

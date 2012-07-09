@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>dec2base</refname>
     <refpurpose>10進数を基底Nの数値（文字列）に変換</refpurpose>
@@ -50,16 +45,19 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>str = dec2base(d, base)</literal> 非負の整数 d を指定した基底<literal>base</literal>に
+    <para>
+      <literal>str = dec2base(d, base)</literal> 非負の整数 d を指定した基底<literal>base</literal>に
       変換します。
     </para>
-    <para><literal>d</literal> は 2^52 未満の非負の整数である必要があり,
+    <para>
+      <literal>d</literal> は 2^52 未満の非負の整数である必要があり,
       <literal>base</literal> は 2 から 36までの整数とする必要があります。
     </para>
     <para>
       返り値 <literal>str</literal> は文字列です。
     </para>
-    <para><literal>str = dec2base(d, base, n)</literal> は少なくとも n桁の
+    <para>
+      <literal>str = dec2base(d, base, n)</literal> は少なくとも n桁の
       表現を出力します。
     </para>
   </refsection>

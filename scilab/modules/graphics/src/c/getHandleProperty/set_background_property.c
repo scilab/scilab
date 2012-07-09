@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_background_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_background_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int value = 0;
   BOOL status = FALSE;

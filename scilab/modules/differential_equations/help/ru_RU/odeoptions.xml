@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>odeoptions</refname>
     <refpurpose>установка опций для программ решения ОДУ</refpurpose>
@@ -50,12 +47,10 @@
         <listitem>
           <literal>itask</literal> устанавливает режим интегрирования:
           <itemizedlist>
-            <listitem>1: нормальное вычисление в определённые моменты времени</listitem>
-            <listitem>
+            <listitem>1: нормальное вычисление в определённые моменты времени</listitem><listitem>
               2 : вычисления в точках сетки (указанных в первой строке вывода функции <literal>ode</literal>)
             </listitem>
-            <listitem>3 : один шаг на одной внутренней точке сетки и возврат</listitem>
-            <listitem>
+            <listitem>3 : один шаг на одной внутренней точке сетки и возврат</listitem><listitem>
               4 : нормальное вычисление без превышения <literal>tcrit</literal>
             </listitem>
             <listitem>
@@ -82,9 +77,7 @@
             <listitem>0: функциональные итерации, матрица Якоби не используется 
               (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
             </listitem>
-            <listitem>1: заданная пользователем полная матрица Якоби</listitem>
-            <listitem>2: внутренне рассчитанная полная матрица Якоби</listitem>
-            <listitem>3: внутренне рассчитанная диагональная матрица Якоби
+            <listitem>1: заданная пользователем полная матрица Якоби</listitem><listitem>2: внутренне рассчитанная полная матрица Якоби</listitem><listitem>3: внутренне рассчитанная диагональная матрица Якоби
               (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
             </listitem>
             <listitem>4: заданная пользователем ленточная матрица Якоби (см.
@@ -106,8 +99,7 @@
           <literal>ixpr</literal> уровень печати, 0 или 1
         </listitem>
         <listitem>
-          <literal>ml</literal>, <literal>mu</literal>
-          <para>
+          <literal>ml</literal>, <literal>mu</literal><para>
             Если <literal>jactype</literal> равен 4 или 5, то <literal>ml</literal>
             и <literal>mu</literal> являются нижней и верхней половинными полосами
             ленточной матрицы Якоби, где лентой являются <literal>i,j</literal> с 
@@ -153,4 +145,3 @@ clear %ODEOPTIONS
     </simplelist>
   </refsection>
 </refentry>
-

@@ -32,7 +32,7 @@ static char *removeEOL(char *_inString);
 static char *convertAnsiToUtf(char *_inString);
 static char *getNextLine(FILE *stream);
 /*--------------------------------------------------------------------------*/
-static const unsigned char UTF8BOM_BYTEORDER_MARK[3] = {0xEF,0xBB,0xBF};
+static const unsigned char UTF8BOM_BYTEORDER_MARK[] = {0xEF, 0xBB, 0xBF, 0x00};
 /*--------------------------------------------------------------------------*/
 char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
@@ -84,7 +84,11 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 strLines = (char **)REALLOC(strLines, nbLines * sizeof(char *));
                 if (strLines == NULL)
                 {
-                    if (Line) {FREE(Line); Line = NULL;}
+                    if (Line)
+                    {
+                        FREE(Line);
+                        Line = NULL;
+                    }
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                     return NULL;
@@ -92,7 +96,11 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                 strLines[nbLines - 1] = convertAnsiToUtf(removeEOL(Line));
 
-                if (Line) {FREE(Line); Line = NULL;}
+                if (Line)
+                {
+                    FREE(Line);
+                    Line = NULL;
+                }
 
                 if (strLines[nbLines - 1] == NULL)
                 {
@@ -104,7 +112,11 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 Line = getNextLine(fa);
             }
 
-            if (Line) {FREE(Line); Line = NULL;}
+            if (Line)
+            {
+                FREE(Line);
+                Line = NULL;
+            }
 
             *nbLinesOut = nbLines;
             *ierr = MGETL_NO_ERROR;
@@ -160,7 +172,11 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                             nbLines++;
                             strLines[nbLines - 1] = convertAnsiToUtf(removeEOL(Line));
 
-                            if (Line) {FREE(Line); Line = NULL;}
+                            if (Line)
+                            {
+                                FREE(Line);
+                                Line = NULL;
+                            }
 
                             if (strLines[nbLines - 1] == NULL)
                             {
@@ -183,9 +199,14 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     {
                         bContinue = FALSE;
                     }
-                } while (bContinue);
+                }
+                while (bContinue);
 
-                if (Line) {FREE(Line); Line = NULL;}
+                if (Line)
+                {
+                    FREE(Line);
+                    Line = NULL;
+                }
 
                 *nbLinesOut = nbLines;
                 if (bEOF)
@@ -198,7 +219,11 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 }
             }
         }
-        if (Line) {FREE(Line); Line = NULL;}
+        if (Line)
+        {
+            FREE(Line);
+            Line = NULL;
+        }
     }
 
     return strLines;
@@ -276,7 +301,7 @@ char *convertAnsiToUtf(char *_inString)
             int len = (int)strlen(_inString);
             int i = 0;
 
-            outString = (char*)MALLOC(((len*3) + 1) * sizeof(char));
+            outString = (char*)MALLOC(((len * 3) + 1) * sizeof(char));
             if (outString == NULL) return NULL;
             strcpy(outString, EMPTYSTR);
 
@@ -288,7 +313,7 @@ char *convertAnsiToUtf(char *_inString)
                 if (_inString[i] < 0) inAnsiChar = 256 + _inString[i];
                 else inAnsiChar = _inString[i];
 
-                if(inAnsiChar < 128)
+                if (inAnsiChar < 128)
                 {
                     outUtfChar = (char *)CALLOC(2, sizeof(char));
                     if (outUtfChar)

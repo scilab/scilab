@@ -14,7 +14,7 @@
 #ifndef __GET_UICONTROL_BACKGROUNDCOLOR_H__
 #define __GET_UICONTROL_BACKGROUNDCOLOR_H__
 
-#include "ObjectStructure.h"
+#include "BOOL.h"
 #include "returnProperty.h"
 #include "dynlib_gui.h"
 /**
@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the color has been correcty got
  */
-GUI_IMPEXP int GetUicontrolBackgroundColor(char *pobjUID);
+GUI_IMPEXP int GetUicontrolBackgroundColor(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_BACKGROUNDCOLOR_H__ */

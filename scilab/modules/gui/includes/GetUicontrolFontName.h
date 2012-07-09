@@ -14,8 +14,8 @@
 #ifndef __GET_UICONTROL_FONTNAME_H__
 #define __GET_UICONTROL_FONTNAME_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the font name property of a uicontrol
@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the font name property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolFontName(char *pobjUID);
+GUI_IMPEXP int GetUicontrolFontName(void* _pvCtx, char *pobjUID);
 
 #endif /* __GET_UICONTROL_FONTNAME_H__ */

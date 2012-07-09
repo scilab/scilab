@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_event_handler_enable_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 	int b =  (int)FALSE;
 	BOOL status = FALSE;

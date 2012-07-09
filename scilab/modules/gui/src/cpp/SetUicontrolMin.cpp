@@ -14,7 +14,7 @@
 
 #include "SetUicontrolMin.hxx"
 
-int SetUicontrolMin(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     double minValue = 0.0;
     BOOL status = FALSE;

@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_polyline_style_property(char *pobjUID)
+int get_polyline_style_property(void* _pvCtx, char* pobjUID)
 {
     int iPolylineStyle = 0;
     int *piPolylineStyle = &iPolylineStyle;
 
-    getGraphicObjectProperty(pobjUID, __GO_POLYLINE_STYLE__, jni_int, &piPolylineStyle);
+    getGraphicObjectProperty(pobjUID, __GO_POLYLINE_STYLE__, jni_int, (void**)&piPolylineStyle);
 
     if (piPolylineStyle == NULL)
     {
@@ -43,6 +43,6 @@ int get_polyline_style_property(char *pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(iPolylineStyle);
+    return sciReturnDouble(_pvCtx, iPolylineStyle);
 }
 /*------------------------------------------------------------------------*/

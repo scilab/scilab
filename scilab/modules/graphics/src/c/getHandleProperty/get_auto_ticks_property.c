@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_ticks_property(char *pobjUID)
+int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 {
   char * auto_ticks[3]  = { NULL, NULL, NULL };
   char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
@@ -56,7 +56,7 @@ int get_auto_ticks_property(char *pobjUID)
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-      getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, &piAutoTicks);
+      getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
 
       if (piAutoTicks == NULL)
       {
@@ -86,7 +86,7 @@ int get_auto_ticks_property(char *pobjUID)
 
   }
 
-  status = sciReturnRowStringVector( auto_ticks, 3 );
+  status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
 
   for ( i = 0 ; i < 3 ; i++ )
   {

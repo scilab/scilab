@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_margins_property(char *pobjUID)
+int get_margins_property(void* _pvCtx, char* pobjUID)
 {
   double* margins = NULL;
 
@@ -41,7 +41,7 @@ int get_margins_property(char *pobjUID)
   }
 #endif
 
-  getGraphicObjectProperty(pobjUID, __GO_MARGINS__, jni_double_vector, &margins);
+  getGraphicObjectProperty(pobjUID, __GO_MARGINS__, jni_double_vector, (void **)&margins);
 
   if (margins == NULL)
   {
@@ -49,7 +49,7 @@ int get_margins_property(char *pobjUID)
     return -1 ;
   }
 
-  return sciReturnRowVector( margins, 4 );
+  return sciReturnRowVector(_pvCtx, margins, 4);
 
 }
 /*------------------------------------------------------------------------*/

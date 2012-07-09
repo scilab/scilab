@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>modulo</refname>
     <refpurpose>симметричный арифметический остаток от деления по модулю m</refpurpose>
@@ -46,7 +43,7 @@
       (<literal>n</literal> и <literal>m</literal> - целые числа).
     </para>
     <para>
-      <literal>i = n - m .* int (n ./ m)</literal>. Здесь ответ может быть 
+      <literal>i= n - m .* int (n ./ m)</literal>. Здесь ответ может быть 
       отрицательным, если <literal>n</literal> или <literal>m</literal> 
       являются отрицательными.
     </para>
@@ -68,4 +65,3 @@ pmodulo(-3,9)
  ]]></programlisting>
   </refsection>
 </refentry>
-

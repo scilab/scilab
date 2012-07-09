@@ -242,6 +242,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      */
     @Override
     public void displayAndWait() {
+        JButton defaultButton = null;
 
         // Set the title & icon
         //setIconImage(imageForIcon); // Not Java 1.5 compatible
@@ -411,6 +412,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 buttons[0] = btnCancel;
                 buttons[1] = btnOK;
             }
+            defaultButton = btnOK;
         } else if (scilabDialogType == X_MDIALOG_TYPE) {
             // Create a MessageBox for Scilab x_mdialog
 
@@ -495,6 +497,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 buttons[0] = btnCancel;
                 buttons[1] = btnOK;
             }
+            defaultButton = btnOK;
         } else if (scilabDialogType == X_CHOOSE_TYPE) {
             // Create a MessageBox for Scilab x_choose
 
@@ -549,6 +552,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 buttons[0] = btnCancel;
                 buttons[1] = btnOK;
             }
+            defaultButton = btnOK;
         } else {
             // Create a MessageBox for Scilab x_message
 
@@ -568,12 +572,16 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 buttons = new Object[1];
                 btnOK.addActionListener(this);
                 buttons[0] = btnOK;
+                defaultButton = btnOK;
                 //messageType = JOptionPane.INFORMATION_MESSAGE;
             } else {
                 buttons = new Object[buttonsLabels.length];
                 for (int buttonNb = 0; buttonNb < buttonsLabels.length; buttonNb++) {
                     JButton currentButton = new JButton(buttonsLabels[buttonNb]);
                     currentButton.addActionListener(this);
+                    if (buttonNb == 0) {
+                        defaultButton = currentButton;
+                    }
                     /* Test added for bug 4347 fix */
                     if (isWindows()) {
                         buttons[buttonNb] = currentButton;
@@ -605,6 +613,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         }
 
         ScilabSwingUtilities.closeOnEscape(this);
+
+        if (defaultButton != null) {
+            getRootPane().setDefaultButton(defaultButton);
+            defaultButton.requestFocusInWindow();
+        }
 
         setVisible(true);
         doLayout();

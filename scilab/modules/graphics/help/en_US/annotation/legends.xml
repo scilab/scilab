@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="legends">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="legends">
   <refnamediv>
     <refname>legends</refname>
     <refpurpose> draw graph legend</refpurpose>
@@ -130,6 +127,30 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <!--<scilab:image>
+      subplot(221)
+      t=0:0.1:2*%pi;
+      plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+      legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
+      
+      subplot(222)
+      xset("line style",2);plot2d(t,cos(t),style=5);
+      xset("line style",4);plot2d(t,sin(t),style=3);
+      legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
+      
+      subplot(223)
+      xset("line style",2);plot2d(t,cos(t),style=5);
+      xset("line style",4);plot2d(t,sin(t),style=3);
+      legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
+      
+      subplot(224)
+      t=0:0.1:2*%pi;
+      plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+      legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
+    </scilab:image>-->
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // Example 1
@@ -141,7 +162,8 @@ scf() ;
 xset("line style",2);plot2d(t,cos(t),style=5);
 xset("line style",4);plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
-
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
 // Example 2
 scf() ;
 subplot(221)

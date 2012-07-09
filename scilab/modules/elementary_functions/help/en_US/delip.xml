@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="delip" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>delip</refname>
     <refpurpose>complete and incomplete elliptic integral of first
@@ -30,7 +27,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-	  <para>real vector/matrix with nonnegative elements</para>
+          <para>real vector/matrix with nonnegative elements</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,7 +39,7 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-	  <para>real or complex number (or vector/matrix) with the same size as
+          <para>real or complex number (or vector/matrix) with the same size as
             <literal>x</literal>
           </para>
         </listitem>
@@ -118,7 +115,9 @@
       Where <literal>x</literal> is real and positive,
       <literal>ck</literal> is in <literal>[-1 1]</literal>.
     </para>
-    <para>If <literal>x</literal>  is less than 1 the result is real.</para>
+    <para>
+      If <literal>x</literal>  is less than 1 the result is real.
+    </para>
     <para>
       When called with <literal>x</literal> a vector/matrix <literal>r</literal>
       is evaluated for each entry of <literal>x</literal>.

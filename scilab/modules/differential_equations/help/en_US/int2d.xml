@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int2d" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int2d</refname>
     <refpurpose>definite 2D integral by quadrature and cubature
@@ -31,7 +28,8 @@
       <varlistentry>
         <term>X</term>
         <listitem>
-          <para>a 3 by <literal>N</literal> array containing the abscissae of the vertices of the
+          <para>
+            a 3 by <literal>N</literal> array containing the abscissae of the vertices of the
             N triangles
           </para>
         </listitem>
@@ -39,7 +37,8 @@
       <varlistentry>
         <term>Y</term>
         <listitem>
-          <para>a 3 by <literal>N</literal> array containing the ordinates of the vertices of the
+          <para>
+            a 3 by <literal>N</literal> array containing the ordinates of the vertices of the
             N triangles
           </para>
         </listitem>
@@ -57,7 +56,7 @@
         <listitem>
           <para>
             a real vector <literal>[tol, iclose, maxtri, mevals, iflag]</literal>.
-	    The default value is <literal>[1.d-10, 1, 50, 4000, 1]</literal>.
+            The default value is <literal>[1.d-10, 1, 50, 4000, 1]</literal>.
           </para>
           <variablelist>
             <varlistentry>
@@ -108,10 +107,10 @@
             <varlistentry>
               <term>iflag</term>
               <listitem>
-                 <para>
-		   if <literal>iflag=0</literal>, <literal>tol</literal> is
+                <para>
+                  if <literal>iflag=0</literal>, <literal>tol</literal> is
                   interpreted as a bound on the relative error; if <literal>iflag=1</literal>, 
-		  the bound is on the absolute error.
+                  the bound is on the absolute error.
                 </para>
               </listitem>
             </varlistentry>

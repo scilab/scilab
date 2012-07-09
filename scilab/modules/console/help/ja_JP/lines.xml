@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lines">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lines</refname>
     <refpurpose>表示に使用される行および列</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>lines([nl [,nc]])
-ncl=lines()</synopsis>
+      ncl=lines()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -48,20 +46,31 @@ ncl=lines()</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>lines</literal> はScilab表示ページ制御を処理します.</para>
-    <para><literal>lines()</literal> は結果の表示用にScilabにより現在使用されている
-	ベクトル <literal>[# columns, # rows]</literal>を返します.</para>
-    <para><literal>lines(nl)</literal> は,(moreとユーザに聞くまでの)表示行の数を
-	<literal>nl</literal>に設定します.</para>
-    <para><literal>lines(0)</literal> は垂直ページ制御を無効にします</para>
-    <para><literal>lines(nl,nc)</literal> は
-	出力の大きさを<literal>nc</literal>列にも変更します.</para>
     <para>
-    Scilabが-nwオプションを指定せずに起動された場合,
-	<literal>lines</literal>パラメータは出力ウインドウの大きさに
-	基づき自動的に設定されます.
-	これらのパラメータはウインドウの大きさが変更された場合にも
-	自動的に修正されます.</para>
+      <literal>lines</literal> はScilab表示ページ制御を処理します.
+    </para>
+    <para>
+      <literal>lines()</literal> は結果の表示用にScilabにより現在使用されている
+      ベクトル <literal>[# columns, # rows]</literal>を返します.
+    </para>
+    <para>
+      <literal>lines(nl)</literal> は,(moreとユーザに聞くまでの)表示行の数を
+      <literal>nl</literal>に設定します.
+    </para>
+    <para>
+      <literal>lines(0)</literal> は垂直ページ制御を無効にします
+    </para>
+    <para>
+      <literal>lines(nl,nc)</literal> は
+      出力の大きさを<literal>nc</literal>列にも変更します.
+    </para>
+    <para>
+      Scilabが-nwオプションを指定せずに起動された場合,
+      <literal>lines</literal>パラメータは出力ウインドウの大きさに
+      基づき自動的に設定されます.
+      これらのパラメータはウインドウの大きさが変更された場合にも
+      自動的に修正されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

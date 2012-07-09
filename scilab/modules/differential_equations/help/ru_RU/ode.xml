@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode</refname>
     <refpurpose>
@@ -318,16 +315,14 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
     <para>
       Необязательные аргументы <literal>w</literal> и
       <literal>iw</literal> являются векторами для хранения информации,
-      возвращаемой подпрограммой интегрирования (см. <link
-      linkend="ode_optional_output">ode_optional_output</link>).
+      возвращаемой подпрограммой интегрирования (см. <link linkend="ode_optional_output">ode_optional_output</link>).
       Когда эти векторы указываются с правой стороны  <literal>ode</literal>,
       интегрирование начинается заново с теми же параметрами, что и до
       остановки.
     </para>
     <para>
       Программам решения ODEPACK можно передать больше опций с помощью
-      переменной  <literal>%ODEOPTIONS</literal>. See <link
-      linkend="odeoptions">odeoptions</link>.
+      переменной  <literal>%ODEOPTIONS</literal>. See <link linkend="odeoptions">odeoptions</link>.
     </para>
   </refsection>
   <refsection>
@@ -419,8 +414,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
         <term>"discrete":</term>
         <listitem>
           <para>
-            Моделирование дискретного времени. См. справку по <link
-linkend="ode_discrete">ode_discrete</link>.
+            Моделирование дискретного времени. См. справку по <link linkend="ode_discrete">ode_discrete</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -598,4 +592,3 @@ y=ode(y0,t0,t,'myode');
     </para>
   </refsection>
 </refentry>
-

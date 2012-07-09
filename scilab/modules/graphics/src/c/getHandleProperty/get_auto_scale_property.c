@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_scale_property(char *pobjUID)
+int get_auto_scale_property(void* _pvCtx, char* pobjUID)
 {
     int iAutoScale = 0;
     int* piAutoScale = &iAutoScale;
@@ -43,7 +43,7 @@ int get_auto_scale_property(char *pobjUID)
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (piAutoScale == NULL)
     {
@@ -53,11 +53,11 @@ int get_auto_scale_property(char *pobjUID)
 
     if (iAutoScale)
     {
-        return sciReturnString( "on" );
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString( "off" );
+        return sciReturnString(_pvCtx, "off");
     }
 
 }

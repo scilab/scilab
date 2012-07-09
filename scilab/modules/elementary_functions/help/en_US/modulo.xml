@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>modulo</refname>
     <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
@@ -42,17 +39,21 @@
     <title>Description</title>
     <para>
       <literal>modulo</literal> computes <literal>i= n (modulo
-      m)</literal> i.e. remainder of <literal>n</literal> divided by
+        m)
+      </literal>
+      i.e. remainder of <literal>n</literal> divided by
       <literal>m</literal> (<literal>n</literal> and <literal>m</literal>
       are integers).
     </para>
     <para>
-      <literal>i = n - m .* int (n ./ m)</literal>. Here the answer may be negative
+      <literal>i= n - m .* int (n ./ m)</literal>. Here the answer may be negative
       if <literal>n</literal> or <literal>m</literal> are negative.
     </para>
     <para>
       <literal>pmodulo</literal> computes <literal>i = n - m .* floor (n
-      ./ m)</literal>, the answer is positive or zero.
+        ./ m)
+      </literal>
+      ,the answer is positive or zero.
     </para>
   </refsection>
   <refsection>

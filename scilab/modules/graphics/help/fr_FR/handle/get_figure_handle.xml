@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_figure_handle">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>get_figure_handle</refname>
     <refpurpose>Retrouve une figure graphique à partir de son identifiant.</refpurpose>
@@ -42,7 +39,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       La function <literal>get_figure_handle</literal> permet de retrouver le handle
+      La function <literal>get_figure_handle</literal> permet de retrouver le handle
       d'une figure graphique à partir de son identifiant. Si une figure avec l'identifiant
       spécifié en argument existe, alors elle est renvoyée par la fonction. Sinon,
       la fonction renvoie une matrice vide.

@@ -28,12 +28,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_callback_type_property(char *pobjUID)
+int get_callback_type_property(void* _pvCtx, char* pobjUID)
 {
     int iCallbackType = 0;
     int *piCallbackType = &iCallbackType;
 
-    getGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, jni_int, &piCallbackType);
+    getGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, jni_int, (void **)&piCallbackType);
 
     if (piCallbackType == NULL)
     {
@@ -41,6 +41,6 @@ int get_callback_type_property(char *pobjUID)
         return FALSE;
     }
 
-    return sciReturnDouble(iCallbackType);
+    return sciReturnDouble(_pvCtx, iCallbackType);
 }
 /*------------------------------------------------------------------------*/

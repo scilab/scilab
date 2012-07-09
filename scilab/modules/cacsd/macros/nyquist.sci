@@ -10,6 +10,22 @@ function nyquist(varargin)
 // Nyquist plot
 //!
   rhs=size(varargin);
+
+  if rhs == 0 then
+    //Hall chart as a grid for nyquist
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+    hallchart(colors=color('light gray')*[1 1])
+    //move the caption in the lower rigth corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_upper_left";
+    return;
+  end
+
   symmetry=%t
   if type(varargin(rhs))==4 then //symmetrization flag
     symmetry=varargin(rhs)

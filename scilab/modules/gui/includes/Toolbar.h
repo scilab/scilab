@@ -13,7 +13,6 @@
 #ifndef __TOOLBAR_H__
 #define __TOOLBAR_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "BOOL.h"
 

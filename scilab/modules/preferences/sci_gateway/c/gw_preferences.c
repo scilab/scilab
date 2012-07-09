@@ -22,10 +22,11 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
     {sci_addModulePreferences, "addModulePreferences"},
-    {sci_removeModulePreferences, "removeModulePreferences"}
+    {sci_removeModulePreferences, "removeModulePreferences"},
+    {sci_preferences, "preferences"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_preferences(void)
@@ -34,7 +35,7 @@ int gw_preferences(void)
 
     if ( getScilabMode() == SCILAB_NWNI)
     {
-        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "preferences");
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "preferences");
         return 0;
     }
 

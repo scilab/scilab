@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="basename" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>basename</refname>
     <refpurpose>strip directory and suffix from filenames</refpurpose>
@@ -33,10 +30,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>flag,flagexpand</term>
+        <term>flag, flagexpand</term>
         <listitem>
-          <para>boolean optional parameters. (default value
-            <literal>%t</literal>).
+          <para>boolean optional parameters. Default value is
+            <literal>%t</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -52,7 +49,7 @@
     <title>Description</title>
     <para>
       <literal>basename</literal> return the basename of the file entries
-      given in files.
+      given in <literal>files</literal>.
     </para>
     <para>
       If <literal>flag</literal> is true the files are first converted to

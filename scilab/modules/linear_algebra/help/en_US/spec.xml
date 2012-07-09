@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="spec" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spec</refname>
     <refpurpose>eigenvalues of matrices and pencils</refpurpose>
@@ -172,7 +169,7 @@
         <term>[al,be,Z] = spec(A,E)</term>
         <listitem>
           <para>
-             returns the matrix <literal>Z</literal> of right
+            returns the matrix <literal>Z</literal> of right
             generalized eigen vectors.
           </para>
         </listitem>

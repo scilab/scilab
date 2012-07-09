@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="aff2ab">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>aff2ab</refname>
     <refpurpose>線形 (アフィン)関数を A,b に変換</refpurpose>
@@ -28,27 +25,35 @@
       <varlistentry>
         <term>afunction</term>
         <listitem>
-          <para>scilab 関数 <literal> Y =fct(X,D) </literal> 
-	ただし, <literal>X, D, Y</literal> は行列の <literal>list</literal></para>
+          <para>
+            scilab 関数 <literal> Y =fct(X,D) </literal> 
+            ただし, <literal>X, D, Y</literal> は行列の <literal>list</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dimX</term>
         <listitem>
-          <para>p x 2 整数行列 (<literal>p</literal> は
-	<literal>X</literal>の行列の数)</para>
+          <para>
+            p x 2 整数行列 (<literal>p</literal> は
+            <literal>X</literal>の行列の数)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>D</term>
         <listitem>
-          <para>実数行列の<literal>list</literal>  (または任意の有効なScilab オブジェクト).</para>
+          <para>
+            実数行列の<literal>list</literal>  (または任意の有効なScilab オブジェクト).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>オプションのパラメータ (<literal>flag='f'</literal> または <literal>flag='sp'</literal>)</para>
+          <para>
+            オプションのパラメータ (<literal>flag='f'</literal> または <literal>flag='sp'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,33 +65,42 @@
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para><literal>A</literal>と同じ行次元を有する実数ベクトル</para>
+          <para>
+            <literal>A</literal>と同じ行次元を有する実数ベクトル
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>aff2ab</literal>  はアフィン関数の(正準形式の)行列表現を返します.</para>
-    <para><literal>afunction</literal> は以下の規定の構文を有する関数です:
-    <literal> Y=afunction(X,D) </literal> 
-	ただし, <literal> X=list(X1,X2,...,Xp) </literal> は
-	p 個の実数行列のリスト,<literal> Y=list(Y1,...,Yq) </literal> は
-	<literal> Xi</literal>に線形に依存するq 個の実数行列のリストです.
-	(オプションの) 入力 <literal> D</literal> は, X の関数として
-	Yを計算するために必要なパラメータを有しています.</para>
-    <para><literal> dimX</literal> は p x 2 行列です: <literal>dimX(i)=[nri,nci]</literal>
-    は行列<literal>Xi</literal>の行と列の実際の数です.
-	これらの次元は,結果の行列<literal>A</literal>の列の次元である
-	<literal>na</literal> を以下のように定義します:
-	 <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.</para>
     <para>
-	オプションのパラメータ <literal>flag='sp'</literal> が指定された場合,
-	結果の行列 <literal>A</literal>は疎行列として返されます.</para>
+      <literal>aff2ab</literal>  はアフィン関数の(正準形式の)行列表現を返します.
+    </para>
     <para>
-	この関数は,未知変数が行列であるような
-	線形方程式のシステムを解くために有用です.
-	</para>
+      <literal>afunction</literal> は以下の規定の構文を有する関数です:
+      <literal> Y=afunction(X,D) </literal> 
+      ただし, <literal> X=list(X1,X2,...,Xp) </literal> は
+      p 個の実数行列のリスト,<literal> Y=list(Y1,...,Yq) </literal> は
+      <literal> Xi</literal>に線形に依存するq 個の実数行列のリストです.
+      (オプションの) 入力 <literal> D</literal> は, X の関数として
+      Yを計算するために必要なパラメータを有しています.
+    </para>
+    <para>
+      <literal> dimX</literal> は p x 2 行列です: <literal>dimX(i)=[nri,nci]</literal>
+      は行列<literal>Xi</literal>の行と列の実際の数です.
+      これらの次元は,結果の行列<literal>A</literal>の列の次元である
+      <literal>na</literal> を以下のように定義します:
+      <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.
+    </para>
+    <para>
+      オプションのパラメータ <literal>flag='sp'</literal> が指定された場合,
+      結果の行列 <literal>A</literal>は疎行列として返されます.
+    </para>
+    <para>
+      この関数は,未知変数が行列であるような
+      線形方程式のシステムを解くために有用です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="numer">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>numer</refname>
     <refpurpose>分子</refpurpose>
@@ -42,11 +39,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数. <literal>num=numer(R)</literal> は,
-	有理関数行列<literal>R</literal>の
-	分子<literal>num</literal>を返します
-	(<literal>R</literal> は定数または多項式行列とすることができます).
-    <literal>numer(R)</literal> は <literal>R(2)</literal>, <literal>R('num')</literal> または <literal>R.num</literal>に等しくなります</para>
+      ユーティリティ関数. <literal>num=numer(R)</literal> は,
+      有理関数行列<literal>R</literal>の
+      分子<literal>num</literal>を返します
+      (<literal>R</literal> は定数または多項式行列とすることができます).
+      <literal>numer(R)</literal> は <literal>R(2)</literal>, <literal>R('num')</literal> または <literal>R.num</literal>に等しくなります
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

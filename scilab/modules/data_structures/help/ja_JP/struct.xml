@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="struct">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>struct</refname>
     <refpurpose>構造体を作成する</refpurpose>
@@ -42,9 +39,10 @@
   <refsection>
     <title>説明</title>
     <para>この関数はフィールド名
-    <literal>fields1</literal>, <literal>field2</literal>, ..., を有し，
-	その値が<literal>value1</literal>, <literal>value2</literal>, ...
-	となる構造体を返します.</para>
+      <literal>fields1</literal>, <literal>field2</literal>, ..., を有し，
+      その値が<literal>value1</literal>, <literal>value2</literal>, ...
+      となる構造体を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -35,12 +35,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type = NULL;
     BOOL status = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_UICONTROL__) == 0 || strcmp(type, __GO_FIGURE__) == 0)
     {
@@ -55,7 +55,7 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         double* currentPosition;
         double labelPosition[3];
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &currentPosition);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
 
         labelPosition[0] = values[0];
         labelPosition[1] = values[1];

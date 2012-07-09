@@ -15,54 +15,54 @@ package org.scilab.modules.helptools;
 import java.util.Map;
 
 public class JavaHelpDocbookElement extends DocbookElement {
-	
+
     private StringBuilder mapIdContents;
     private DocbookElement parent;
-	
+
     /**
      * {@inheritDoc}
      */
-    protected JavaHelpDocbookElement(String name, Map attributes) {
-	super(name, attributes);
-	mapIdContents = new StringBuilder();
+    protected JavaHelpDocbookElement(String name, String uri, Map attributes) {
+        super(name, uri, attributes);
+        mapIdContents = new StringBuilder();
     }
 
     /**
      * {@inheritDoc}
      */
-    public DocbookElement getNewInstance(String name, Map attributes) {
-	return new JavaHelpDocbookElement(name, attributes);
+    public DocbookElement getNewInstance(String name, String uri, Map attributes) {
+        return new JavaHelpDocbookElement(name, uri, attributes);
     }
 
     /**
      * {@inheritDoc}
      */
     public void append(Object obj) {
-	if (obj instanceof String) {
-	    mapIdContents.append((String) obj);
-	} else if (obj instanceof StringBuilder) {
-	    mapIdContents.append((StringBuilder) obj);
-	}
+        if (obj instanceof String) {
+            mapIdContents.append((String) obj);
+        } else if (obj instanceof StringBuilder) {
+            mapIdContents.append((StringBuilder) obj);
+        }
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public Object get() {
-	return mapIdContents;
+        return mapIdContents;
     }
 
     /**
      * {@inheritDoc}
      */
     public void setParent(DocbookElement elem) {
-	parent = elem;
+        parent = elem;
     }
 
     /**
      * {@inheritDoc}
      */
     public DocbookElement getParent() {
-	return parent;
+        return parent;
     }
 }
