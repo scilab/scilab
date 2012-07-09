@@ -60,6 +60,7 @@ import org.w3c.dom.NodeList;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class to retrieve object from the xml configuration file
@@ -74,8 +75,10 @@ public class XConfiguration {
     private static final String SCI = System.getenv("SCI");
     private static final String SCILAB_CONFIG_FILE = SCI + "/modules/preferences/etc/XConfiguration.xml";
 
-    private static final String ERROR_READ = "Could not load file: ";
-    private static final String ERROR_WRITE = "Could not write the file: ";
+    private static final String ERROR_READ = Messages.gettext("Could not load file: ");
+    private static final String ERROR_WRITE = Messages.gettext("Could not write the file: ");
+    private static final String SEVERE_ERROR = Messages.gettext("A severe error occured: cannot load the preferences file.");
+    private static final String PARSING_ERROR = Messages.gettext("An error occured when loading the preferences file, try to reload the default one.");
 
     private static final XPathFactory xpathFactory = XPathFactory.newInstance();
     private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();
@@ -84,6 +87,7 @@ public class XConfiguration {
     private static final Set<String> modifiedPaths = new HashSet<String>();
 
     private static Document doc;
+    private static boolean hasBeenRead;
 
     static {
         addXConfigurationListener(ScilabGeneralPrefs.getInstance());
@@ -105,6 +109,7 @@ public class XConfiguration {
      */
     public static Document getXConfigurationDocument() {
         if (doc == null) {
+            boolean error = false;
             File xml = new File(USER_CONFIG_FILE);
             if (!xml.exists()) {
                 ScilabXMLUtilities.writeDocument(createDocument(), USER_CONFIG_FILE);
@@ -126,13 +131,29 @@ public class XConfiguration {
                     return doc;
                 }
             } catch (ParserConfigurationException pce) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             } catch (SAXException se) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             } catch (IOException ioe) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             }
-            return null;
+
+            if (error) {
+                if (hasBeenRead) {
+                    System.err.println(SEVERE_ERROR);
+                    doc = null;
+                    xml.delete();
+                    return docBuilder.newDocument();
+                }
+
+                hasBeenRead = true;
+                doc = null;
+                xml.delete();
+                System.err.println(PARSING_ERROR);
+                return getXConfigurationDocument();
+            }
+
+            return docBuilder.newDocument();
         }
 
         return doc;
