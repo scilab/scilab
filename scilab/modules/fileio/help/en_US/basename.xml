@@ -30,10 +30,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>flag,flagexpand</term>
+        <term>flag, flagexpand</term>
         <listitem>
-          <para>boolean optional parameters. (default value
-            <literal>%t</literal>).
+          <para>boolean optional parameters. Default value is
+            <literal>%t</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
     <title>Description</title>
     <para>
       <literal>basename</literal> return the basename of the file entries
-      given in files.
+      given in <literal>files</literal>.
     </para>
     <para>
       If <literal>flag</literal> is true the files are first converted to
