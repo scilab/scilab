@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="copyfile" xml:lang="ru">
+  <info>
+    <pubdate>$LastChangedDate$
+    </pubdate>
+  </info>
+  <refnamediv>
+    <refname>copyfile</refname>
+    <refpurpose>копирование файла</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>copyfile('источник,'назначение)
+      [status,message] = copyfile('источник','назначение')
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      <literal>copyfile('источник','назначение')</literal> копирует файл или
+      директорию <literal>'источник'</literal> в файл или директорию
+      <literal>'назначение'</literal> (и поддиректории).
+    </para>
+    <para>
+      Если источник является директорией, то назначение не может быть файлом.
+      <literal>copyfile</literal> замещает существующие файлы без предупреждения.
+    </para>
+    <para>
+      <literal>[status, message] = copyfile('источник','назначение')</literal>
+      копирует <literal>'источник'</literal> в <literal>'назначение'</literal>,
+      возвращая статус <literal>status</literal> и сообщение <literal>message</literal>. 
+    </para>
+    <para>
+      Для любой операционной системы, если копирование завершилось успешно, то
+      статус равен 1, а сообщение пустое; если же копирование завершилось неудачно, то статус равен 0 и сообщение не пустое.
+    </para>
+    <para>
+      Временная отметка у файла назначения такая же, как временная отметка исходного файла.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"> 
+      copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+      [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
+    </programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="movefile">movefile</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+
