@@ -42,8 +42,9 @@ public class MarkerCreate {
     *
     * @param figureUid Figure unique identifier.
     * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
+    * @return Marker handler string.
     */
-    public static void createMarker (String figureUid, Integer[] pixelMouseCoordInt) {
+    public static String createMarker (String figureUid, Integer[] pixelMouseCoordInt) {
 
         axesUid = DatatipCreate.datatipAxesHandler (figureUid, pixelMouseCoordInt);
         pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble (pixelMouseCoordInt);
@@ -52,15 +53,17 @@ public class MarkerCreate {
         markerLabel = setMarkerLabel ();
         markerBounds = DatatipCreate.getDatatipBounds (markerLabel);
         markerPosition = DatatipCreate.setDatatipPosition (graphicCoord);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, markerBounds);
         GraphicController.getController().setGraphicObjectRelationship(axesUid, newMarker);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, markerBounds);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_STRINGS__, markerLabel);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BOX__, true);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_POSITION__, markerPosition);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_LINE_MODE__, true);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_BOX_MODE__, 1);
         GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_FILL_MODE__, true);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BACKGROUND__, 31);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BACKGROUND__, 1);
+        return newMarker;
     }
 
     /**

@@ -221,10 +221,10 @@
     </submenu>
     <separator/>
     <submenu label="&amp;Start datatip manager" icon="datatips">
-      <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"on");' type="0"/>
+      <callback instruction='org.scilab.modules.gui.datatip.DatatipManagerMode.setDatatipManagerModeButtonOn' type="3"/>
     </submenu>
     <submenu label="Stop datatip manager">
-      <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"off");' type="0"/>
+      <callback instruction='org.scilab.modules.gui.datatip.DatatipManagerMode.setDatatipManagerModeButtonOff' type="3"/>
     </submenu>
   </menu>
   

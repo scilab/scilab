@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.graphicObject.*;
 import org.scilab.modules.renderer.CallRenderer;
 
 import java.lang.String;
+import java.text.DecimalFormat;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 
@@ -42,8 +43,9 @@ public class DatatipCreate {
     *
     * @param figureUid Figure unique identifier.
     * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
+    * @return Datatip handler string.
     */
-    public static void createDatatip(String figureUid, Integer[] pixelMouseCoordInt) {
+    public static String createDatatip(String figureUid, Integer[] pixelMouseCoordInt) {
 
         axesUid = datatipAxesHandler(figureUid, pixelMouseCoordInt);
         pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
@@ -52,14 +54,16 @@ public class DatatipCreate {
         datatipLabel = setDatatipLabel(graphicCoord);
         datatipBounds = getDatatipBounds(datatipLabel);
         datatipPosition = setDatatipPosition(graphicCoord);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, datatipBounds);
         GraphicController.getController().setGraphicObjectRelationship(axesUid, newDatatip);
+        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, datatipBounds);
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_TEXT_STRINGS__, datatipLabel);
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_BOX__, true);
+        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_LINE_MODE__, true);
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_FILL_MODE__, true);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_BACKGROUND__, 31);
+        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_BACKGROUND__, 8);
+        return newDatatip;
     }
 
     /**
@@ -122,9 +126,10 @@ public class DatatipCreate {
     */
     public static String[] setDatatipLabel(double[] graphicCoord)
     {
-        String datatipLabelX = String.format("%.5g%n", graphicCoord[0]);
+        DecimalFormat numDecimal = new DecimalFormat("#.#####");
+        String datatipLabelX = numDecimal.format(graphicCoord[0]);
         datatipLabelX = "X:" + datatipLabelX;
-        String datatipLabelY = String.format("%.5g%n", graphicCoord[1]);
+        String datatipLabelY = numDecimal.format(graphicCoord[1]);
         datatipLabelY = "Y:" + datatipLabelY;
         String[] datatipLabel = { datatipLabelX , datatipLabelY };
         return datatipLabel;
