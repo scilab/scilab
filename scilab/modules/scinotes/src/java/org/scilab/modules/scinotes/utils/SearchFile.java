@@ -43,6 +43,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -208,7 +209,7 @@ public class SearchFile extends SwingScilabTab {
     private void saveSearchFile() {
         if (mySearch != null) {
             try {
-                FileWriter fwriter = new FileWriter(ScilabCommons.getSCIHOME() + File.separator + getPersistentId() + ".xml");
+                FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
                 BufferedWriter buffer = new BufferedWriter(fwriter);
                 buffer.append("<SearchResults editor=\"" + editor.getUUID() + "\"");
                 buffer.append(" base=\"" + mySearch.base + "\"");
@@ -233,7 +234,7 @@ public class SearchFile extends SwingScilabTab {
     }
 
     private void restoreSearchFile() {
-        File f = new File(ScilabCommons.getSCIHOME() + File.separator + getPersistentId() + ".xml");
+        File f = new File(ScilabConstants.SCIHOME + File.separator + getPersistentId() + ".xml");
         if (f.exists()) {
             Document doc = ScilabXMLUtilities.readDocument(f.getAbsolutePath());
             if (doc != null) {

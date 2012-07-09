@@ -58,6 +58,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.localization.Messages;
@@ -71,7 +72,7 @@ import org.scilab.modules.localization.Messages;
 public class XConfiguration {
 
     // User configuration file
-    private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
+    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
     private static final String SCI = System.getenv("SCI");
     private static final String SCILAB_CONFIG_FILE = SCI + "/modules/preferences/etc/XConfiguration.xml";
 

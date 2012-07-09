@@ -116,7 +116,7 @@ public final class ScilabCommonsUtils {
                     return path.replaceFirst("SCI", ScilabConstants.SCI.getAbsolutePath());
                 }
             } else if (path.startsWith("SCIHOME" + File.separator) || path.equals("SCIHOME")) {
-                return path.replaceFirst("SCIHOME", ScilabCommons.getSCIHOME());
+                return path.replaceFirst("SCIHOME", ScilabConstants.SCIHOME.toString());
             } else if (path.startsWith("TMPDIR" + File.separator) || path.equals("TMPDIR")) {
                 return path.replaceFirst("TMPDIR", ScilabCommons.getTMPDIR());
             }

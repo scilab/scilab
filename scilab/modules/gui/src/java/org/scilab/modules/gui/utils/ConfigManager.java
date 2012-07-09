@@ -31,6 +31,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
@@ -73,7 +74,7 @@ public final class ConfigManager {
 
     private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 
-    private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/configuration.xml";
+    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/configuration.xml";
 
     private static final int DEFAULT_WIDTH = 650;
     private static final int DEFAULT_HEIGHT = 550;
