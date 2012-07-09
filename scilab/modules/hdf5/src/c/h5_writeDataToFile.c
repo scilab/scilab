@@ -1338,7 +1338,7 @@ int writeInteger64Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCo
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned char *_pucData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger8Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned char *_pucData)
 {
     hsize_t piDims[1] = { _iRows * _iCols };
     herr_t status = 0;
@@ -1410,7 +1410,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char *_pstDatase
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned short *_pusData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger16Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned short *_pusData)
 {
     hsize_t piDims[1] = { _iRows * _iCols };
     herr_t status = 0;
@@ -1482,7 +1482,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char *_pstDatas
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned int *_puiData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger32Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned int *_puiData)
 {
     hsize_t piDims[1] = { _iRows * _iCols };
     herr_t status = 0;
@@ -1554,7 +1554,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char *_pstDatas
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned long long *_pullData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger64Matrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, unsigned long long *_pullData)
 {
     hsize_t piDims[1] = { _iRows * _iCols };
     herr_t status = 0;

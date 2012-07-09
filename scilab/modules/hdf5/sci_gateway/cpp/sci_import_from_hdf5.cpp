@@ -538,7 +538,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             char *pcData = NULL;
 
             pcData = (char *)MALLOC(sizeof(char) * iRows * iCols);
-            iRet = readInterger8Matrix(_iDatasetId, iRows, iCols, pcData);
+            iRet = readInteger8Matrix(_iDatasetId, iRows, iCols, pcData);
             if (iRet)
             {
                 return false;
@@ -559,7 +559,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             unsigned char *pucData = NULL;
 
             pucData = (unsigned char *)MALLOC(sizeof(unsigned char) * iRows * iCols);
-            iRet = readUnsignedInterger8Matrix(_iDatasetId, iRows, iCols, pucData);
+            iRet = readUnsignedInteger8Matrix(_iDatasetId, iRows, iCols, pucData);
             if (iRet)
             {
                 return false;
@@ -580,7 +580,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             short *psData = NULL;
 
             psData = (short *)MALLOC(sizeof(short) * iRows * iCols);
-            iRet = readInterger16Matrix(_iDatasetId, iRows, iCols, psData);
+            iRet = readInteger16Matrix(_iDatasetId, iRows, iCols, psData);
             if (iRet)
             {
                 return false;
@@ -601,7 +601,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             unsigned short *pusData = NULL;
 
             pusData = (unsigned short *)MALLOC(sizeof(unsigned short) * iRows * iCols);
-            iRet = readUnsignedInterger16Matrix(_iDatasetId, iRows, iCols, pusData);
+            iRet = readUnsignedInteger16Matrix(_iDatasetId, iRows, iCols, pusData);
             if (iRet)
             {
                 return false;
@@ -622,7 +622,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             int *piData = NULL;
 
             piData = (int *)MALLOC(sizeof(int) * iRows * iCols);
-            iRet = readInterger32Matrix(_iDatasetId, iRows, iCols, piData);
+            iRet = readInteger32Matrix(_iDatasetId, iRows, iCols, piData);
             if (iRet)
             {
                 return false;
@@ -643,7 +643,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             unsigned int *puiData = NULL;
 
             puiData = (unsigned int *)MALLOC(sizeof(unsigned int) * iRows * iCols);
-            iRet = readUnsignedInterger32Matrix(_iDatasetId, iRows, iCols, puiData);
+            iRet = readUnsignedInteger32Matrix(_iDatasetId, iRows, iCols, puiData);
             if (iRet)
             {
                 return false;
@@ -665,7 +665,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             long long *pllData = NULL;
 
             pllData = (long long *)MALLOC(sizeof(long long) * iRows * iCols);
-            iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pllData);
+            iRet = readInteger64Matrix(_iDatasetId, iRows, iCols, pllData);
             if (iRet)
             {
                 return false;
@@ -690,7 +690,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
             unsigned long long *pullData = NULL;
 
             pullData = (unsigned long long *)MALLOC(sizeof(unsigned long long) * iRows * iCols);
-            iRet = readUnsignedInterger64Matrix(_iDatasetId, iRows, iCols, pullData);
+            iRet = readUnsignedInteger64Matrix(_iDatasetId, iRows, iCols, pullData);
             if (iRet)
             {
                 return false;

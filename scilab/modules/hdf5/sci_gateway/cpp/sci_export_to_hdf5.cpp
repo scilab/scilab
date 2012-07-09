@@ -743,7 +743,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeUnsignedInterger8Matrix(_iH5File, _pstName, iRows, iCols, (unsigned char*)piData);
+            iRet = writeUnsignedInteger8Matrix(_iH5File, _pstName, iRows, iCols, (unsigned char*)piData);
             break;
         case SCI_INT16 :
             sciErr = getMatrixOfInteger16(pvApiCtx, _piVar, &iRows, &iCols, (short**)&piData);
@@ -761,7 +761,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeUnsignedInterger16Matrix(_iH5File, _pstName, iRows, iCols, (unsigned short*)piData);
+            iRet = writeUnsignedInteger16Matrix(_iH5File, _pstName, iRows, iCols, (unsigned short*)piData);
             break;
         case SCI_INT32 :
             sciErr = getMatrixOfInteger32(pvApiCtx, _piVar, &iRows, &iCols, (int**)&piData);
@@ -779,7 +779,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
                 printError(&sciErr, 0);
                 return false;
             }
-            iRet = writeUnsignedInterger32Matrix(_iH5File, _pstName, iRows, iCols, (unsigned int*)piData);
+            iRet = writeUnsignedInteger32Matrix(_iH5File, _pstName, iRows, iCols, (unsigned int*)piData);
             break;
         case SCI_INT64 :
             //sciErr = getMatrixOfInteger64(_piVar, &iRows, &iCols, (long long**)&piData);
@@ -797,7 +797,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
             //	printError(&sciErr, 0);
             //	return false;
             //}
-            //iRet = writeUnsignedInterger64Matrix(_iH5File, _pstName, iRows, iCols, (unsigned long long*)piData);
+            //iRet = writeUnsignedInteger64Matrix(_iH5File, _pstName, iRows, iCols, (unsigned long long*)piData);
             //break;
         default :
             return 1;
