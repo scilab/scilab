@@ -116,7 +116,15 @@ public class XConfiguration {
                 DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
                 docBuilder = factory.newDocumentBuilder();
                 doc = docBuilder.parse(xml);
-                return doc;
+                float version = getDocumentVersion(doc);
+                float defaultVersion = getDocumentVersion(getDefaultDocument());
+                if (defaultVersion != version) {
+                    xml.delete();
+                    doc = null;
+                    return getXConfigurationDocument();
+                } else {
+                    return doc;
+                }
             } catch (ParserConfigurationException pce) {
                 System.err.println(ERROR_READ + USER_CONFIG_FILE);
             } catch (SAXException se) {
@@ -197,13 +205,31 @@ public class XConfiguration {
     }
 
     /**
-     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
-     * @return the built document
+     * Get the document version
+     * @param doc the document
+     * @return the version
      */
-    public static Document createDocument() {
+    private static float getDocumentVersion(Document doc) {
+        if (doc != null) {
+            Element root = doc.getDocumentElement();
+            String version = root.getAttribute("version");
+
+            try {
+                return Float.parseFloat(version);
+            } catch (NumberFormatException e) { }
+        }
+
+        return 0.0f;
+    }
+
+    /**
+     * Get the default document
+     * @return the document
+     */
+    private static Document getDefaultDocument() {
         DocumentBuilder docBuilder;
         DocumentBuilderFactory factory;
-        Document mainDoc;
+        Document mainDoc = null;
 
         try {
             factory = ScilabDocumentBuilderFactory.newInstance();
@@ -220,7 +246,31 @@ public class XConfiguration {
             return null;
         }
 
+        return mainDoc;
+    }
+
+    /**
+     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
+     * @return the built document
+     */
+    public static Document createDocument() {
+        DocumentBuilder docBuilder;
+        DocumentBuilderFactory factory;
+        Document mainDoc = getDefaultDocument();
+        if (mainDoc == null) {
+            return null;
+        }
+
         Element root = mainDoc.getDocumentElement();
+
+        factory = ScilabDocumentBuilderFactory.newInstance();
+
+        try {
+            docBuilder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException pce) {
+            System.err.println("Cannot create a XML DocumentBuilder:\n" + pce);
+            return null;
+        }
 
         List<File> etcs = getEtcDir();
         for (File etc : etcs) {
