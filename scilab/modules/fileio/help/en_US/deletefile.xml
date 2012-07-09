@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deletefile" xml:lang="en">
   <refnamediv>
     <refname>deletefile</refname>
-    <refpurpose>delete a file</refpurpose>
+    <refpurpose>deletes a file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -26,29 +26,34 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>a file name existing or not.</para>
+          <para>a string: a file name existing or not</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>%t or %f</para>
+          <para>a boolean: <literal>%t</literal> or <literal>%f</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>delete a file. if file has been deleted, it will return %t else
-      %f.
+    <para>This function deletes a file. If file has been deleted, it will return <literal>%t</literal> else
+      <literal>%f</literal>.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">fd = mopen(TMPDIR+'/filetodelete.txt','wt');
-      mclose(fd); 
-      if (fileinfo(TMPDIR+'/filetodelete.txt') &lt;&gt; []) then deletefile(TMPDIR+'/filetodelete.txt'),end;
-      deletefile(TMPDIR+'/notexistingfile')
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/filetodelete.txt','wt');
+mclose(fd); 
+
+if (fileinfo(TMPDIR+'/filetodelete.txt') <> []) then 
+deletefile(TMPDIR+'/filetodelete.txt')
+end
+
+deletefile(TMPDIR+'/notexistingfile')
+    ]]></programlisting>
   </refsection>
 </refentry>
