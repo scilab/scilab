@@ -10,7 +10,7 @@
   </display>
   <header title="Header">
     <body>
-      <scinotes-header enable="true"><![CDATA[// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+      <scinotes-header enable="false"><![CDATA[// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) {$current-year} - Scilab Enterprises - Mr Puffin
 //
 // This file must be used under the terms of the CeCILL.
