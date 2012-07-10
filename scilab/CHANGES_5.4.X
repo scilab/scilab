@@ -21,6 +21,12 @@ Javasci
 * Javasci version 1 removed (deprecated in Scilab 5.3.0).
 
 
+Documentation
+=============
+
+* help_from_sci updated to manage recent changes in docbook Scilab files.
+
+
 Bug Fixes
 =========
 
