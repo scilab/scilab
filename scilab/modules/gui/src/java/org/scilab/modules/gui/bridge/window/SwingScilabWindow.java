@@ -22,6 +22,8 @@ import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DefaultDockingStrategy;
+import org.flexdock.docking.drag.effects.EffectsManager;
+import org.flexdock.docking.drag.preview.GhostPreview;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -124,7 +126,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         /* Create automatically a docking port associated to the window */
         sciDockingPort = new DefaultDockingPort();
 
-        //EffectsManager.setPreview(new GhostPreview());
+        EffectsManager.setPreview(new GhostPreview());
 
         /* The docking port is the center of the Layout of the Window */
         super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
