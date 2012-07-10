@@ -42,6 +42,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include"MALLOC.h"
 
 /*help funtion*/
 int getDataSize_(char * uid)
@@ -96,12 +97,127 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	return uidTo;
 	
 }
+
+void translatePolyline(char *uid, double x, double y)
+{
+    double *datax = NULL;
+    double *datay = NULL;
+    int i = 0;
+    if (x != 0.0)
+    {
+        datax = getDataX(uid);
+        if (datax == NULL) return;
+        for (i = 0; i < getDataSize_(uid); ++i)
+        {
+            datax[i]+= x;
+        }
+    }
+    if (y != 0.0)
+    {
+        datay = getDataY(uid);
+        if (datay == NULL) return;
+        for (i = 0; i < getDataSize_(uid); ++i)
+        {
+            datay[i]+= y;
+        }
+    }
+}
+
+void translatePoint(char * uid, int index, double x, double y)
+{
+    double *datax = NULL;
+    double *datay = NULL;
+    int size = getDataSize_(uid);
+
+	if (index >= 0 && index < size) 
+	{
+		datax = getDataX(uid);
+		if (datax == NULL) return;
+		datay = getDataY(uid);
+		if (datay == NULL) return;
+
+		datax[index] += x;
+		datay[index] += y;
+	}
+	/*update*/
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+}
+
+void insertPoint(char * uid, int index, double x, double y)
+{
+    double *curData, *newData;
+	int size = getDataSize_(uid);
+	BOOL result;
+	int i ,j, n[2];
+
+	if (index >= size || index < 0) return;
+
+	curData = getDataX(uid);
+	if (curData == NULL) return;
+
+	newData = MALLOC(sizeof(double)*3*(size+1));
+	if (newData == NULL) return;
+
+	j = 0;
+	for (i = 0; i < size; ++i, ++j)
+	{
+		newData[j] = curData[i];
+		newData[(size+1)+j] = curData[size+i];
+		if (i == index)
+			++j;
+	}
+
+	newData[index+1] = x;
+	newData[size+index+2] = y;
+
+	n[0] = 1; n[1] = size+1;
+	
+	result = setGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, &n, jni_int_vector, 2);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL_COORDINATES__, newData, jni_double_vector, size+1);
+
+	FREE(newData);
+}
+
+void removePoint(char * uid, int index)
+{
+	double *curData, *newData;
+	int size = getDataSize_(uid);
+	BOOL result;
+	int i ,j, n[2];
+
+	if (index >= size || index < 0) return;
+
+	curData = getDataX(uid);
+	if (curData == NULL) return;
+
+	newData = MALLOC(sizeof(double)*3*(size-1));
+	if (newData == NULL) return;
+
+	j = 0;
+	for (i = 0; i < size; ++i, ++j)
+	{
+		newData[j] = curData[i];
+		newData[(size-1)+j] = curData[size+i];
+		if (i == index)
+			--j;
+	}
+
+	n[0] = 1; n[1] = size-1;
+	result = setGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, &n, jni_int_vector, 2);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL_COORDINATES__, newData, jni_double_vector, size-1);
+
+	FREE(newData);
+}
 %}
 
 
 double * getDataX(char * uid);
 double * getDataY(char * uid);
 char * createPolylineData(char * uidFrom, char *uidTo);
+void translatePolyline(char *uid, double x, double y);
+void translatePoint(char * uid, int index, double x, double y);
+void insertPoint(char * uid, int index, double x, double y);
+void removePoint(char * uid, int index);
 
 
 

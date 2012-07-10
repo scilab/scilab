@@ -26,6 +26,8 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.editor.Editor;
+import org.scilab.modules.gui.editor.EditorManager;
+
 import org.scilab.modules.gui.ged.ColorMapHandler;
 import org.scilab.modules.gui.ged.MessagesGED;
 
@@ -187,6 +189,6 @@ public class ColorDialog extends Style {
     * @param scilabColor index of the color map.
     */
     private void setForegroundColor(Integer scilabColor) {
-        Editor.setOriColor(scilabColor);
+        EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
     }
 }

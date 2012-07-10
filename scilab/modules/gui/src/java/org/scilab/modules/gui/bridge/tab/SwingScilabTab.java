@@ -182,7 +182,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** The listener for event handling */
     private ScilabEventListener eventHandler;
-	private EditorEventListener editorEventHandler;
+	private EditorEventListener editorEventHandler = null;
 
     /** A reference to the canvas used for event handling management */
     SwingScilabCanvas contentCanvas;
@@ -1322,6 +1322,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         // without this children canvas are not released.
         Container dummyContainer = new Container();
         this.setContentPane(dummyContainer);
+        if (editorEventHandler != null) {
+            editorEventHandler.onExit();
+        }
     }
 
     /**

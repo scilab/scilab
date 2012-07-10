@@ -67,4 +67,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
 <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
 <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
+<PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="useeditor" />
 </GATEWAY>

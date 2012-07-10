@@ -34,7 +34,11 @@ import org.scilab.modules.gui.editor.PolylineHandler;
 */
 public class LegendHandler {
 
-    private static String searchLegend(String uid) {
+    public static String searchLegend(String uid) {
+
+        if(uid == null) {
+            return null;
+        }
         Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         String[] child = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
         for (Integer i = 0; i < childCount; i++) {
@@ -56,7 +60,7 @@ public class LegendHandler {
 
     public static void setLegend(String axes, String polyline, String text) {
 
-        if (text == null || text == "" || polyline == null) {
+        if (text == null || text == "" || polyline == null || axes == null) {
             return;
         }
         String legend = searchLegend(axes);
@@ -78,9 +82,9 @@ public class LegendHandler {
                     return;
                 }
             }
-			PolylineHandler.getInstance().delete(legend);
+            PolylineHandler.getInstance().delete(legend);
         }
-		legend = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
+        legend = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
         GraphicController.getController().setGraphicObjectRelationship(axes, legend);
 
         links.add(polyline);
@@ -108,7 +112,7 @@ public class LegendHandler {
 
     public static void removeLegend(String axes, String polyline) {
 
-        if (polyline == null) {
+        if (polyline == null || axes == null) {
             return;
         }
         String legend = searchLegend(axes);
@@ -145,7 +149,7 @@ public class LegendHandler {
             GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINE_MODE__, true);
             GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__, textToSet);
             GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINKS__, linksToSet);
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 1);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 0);
         } else {
             PolylineHandler.getInstance().delete(legend);
         }
@@ -161,7 +165,7 @@ public class LegendHandler {
 
     public static String getLegendText(String axes, String polyline) {
 
-        if (polyline != null) {
+        if (polyline != null && axes != null) {
            String legend = searchLegend(axes);
             if (legend == null) {
                 return null;
@@ -177,4 +181,38 @@ public class LegendHandler {
         }
         return null;
     }
+
+    /**
+    * Drag the given legend.
+    *
+    * @param legend  the legend uid.
+    * @param position click position (x,y).
+    * @param nextPosition dragged position (x,y).
+    */
+
+    public static void dragLegend(String legend, Integer[] position, Integer[] nextPosition) {
+
+        ObjectSearcher searcher = new ObjectSearcher();
+        String axes = searcher.searchParent(legend, GraphicObjectProperties.__GO_AXES__);
+        String figure = searcher.searchParent(legend, GraphicObjectProperties.__GO_FIGURE__);
+        Integer[] axesSize = { 0, 0 };
+        Double[] axesBounds = { 0., 0. }, diff = { 0., 0. }, legendPos = { 0., 0. };
+        if(legend == null || axes == null || figure == null) {
+            return;
+        }
+
+        axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
+        axesBounds = (Double[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
+        legendPos = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
+        if ( nextPosition[0] > (axesSize[0] - 10) || nextPosition[1] > (axesSize[1] - 10)) {
+            return;
+        }
+        diff[0] = (nextPosition[0] - position[0]) / (axesBounds[2] * axesSize[0]);
+        diff[1] = (nextPosition[1] - position[1]) / (axesBounds[3] * axesSize[1]);
+        legendPos[0] += diff[0];
+        legendPos[1] += diff[1];
+        GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
+        GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_POSITION__, legendPos);
+    }
+
 }

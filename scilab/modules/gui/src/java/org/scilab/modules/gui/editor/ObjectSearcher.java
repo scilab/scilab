@@ -35,9 +35,9 @@ public class ObjectSearcher {
 
     /**
     * Search for the given object type.
-    * @param rootUid	Root object to search.
-    * @param objType	Object type.
-    * @return 			A vector with the uid of the objects found.
+    * @param rootUid    Root object to search.
+    * @param objType    Object type.
+    * @return             A vector with the uid of the objects found.
     */
     public String[] search( String rootUid, String objType) {
 

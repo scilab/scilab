@@ -27,8 +27,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Legend extends ClippableTextObject {
     /** Legend properties names */
-    private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION };
-
+    private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION , SIZE};
+    
     /** Legend location */
     public enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
                                  OUT_UPPER_RIGHT, OUT_UPPER_LEFT, OUT_LOWER_RIGHT, OUT_LOWER_LEFT,
@@ -68,7 +68,7 @@ public class Legend extends ClippableTextObject {
         }
     }
                                };
-
+    
     /** List of the polylines referred to */
     private ArrayList <String> links;
 
@@ -78,12 +78,16 @@ public class Legend extends ClippableTextObject {
     /** 2D position relative to the parent axes bounds */
     private double[] position;
 
+    /** 2D size relative to the parent axes bounds */
+    private double[] size;
+
     /** Constructor */
     public Legend() {
         super();
         this.links = new ArrayList<String>(0);
         this.legendLocation = LegendLocation.LOWER_CAPTION;
         position = new double[2];
+        size = new double[2];
     }
 
     @Override
@@ -105,6 +109,8 @@ public class Legend extends ClippableTextObject {
             return LegendProperty.LEGENDLOCATION;
         } else if (propertyName.equals(__GO_POSITION__)) {
             return LegendProperty.POSITION;
+        } else if (propertyName.equals(__GO_SIZE__)) {
+            return LegendProperty.SIZE;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -128,8 +134,10 @@ public class Legend extends ClippableTextObject {
             return getValidTextArrayDimensions();
         } else if (property == FormattedText.FormattedTextProperty.TEXT) {
             return getValidTextStrings();
+        } else if (property == LegendProperty.SIZE) {
+            return getSize();
         } else {
-            return super.getProperty(property);
+            return super.getProperty(property);    
         }
     }
 
@@ -189,7 +197,7 @@ public class Legend extends ClippableTextObject {
         ArrayList <String> validLinks = new ArrayList<String>(0);
 
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(i));
+            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
 
             if (object != null) {
                 validLinks.add(links.get(i));
@@ -207,7 +215,7 @@ public class Legend extends ClippableTextObject {
         int numValidLinks = 0;
 
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(i));
+            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
 
             if (object != null) {
                 numValidLinks++;
@@ -255,7 +263,7 @@ public class Legend extends ClippableTextObject {
      * @return the dimensions of the text array
      */
     public Integer[] getValidTextArrayDimensions() {
-        return new Integer[] {getValidLinksCount(), 1};
+        return new Integer[]{getValidLinksCount(), 1};
     }
 
     /**
@@ -271,7 +279,7 @@ public class Legend extends ClippableTextObject {
 
         /* Text strings are stored in reverse order relative to links. */
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(links.size() - i - 1));
+            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(links.size()-i-1));
 
             if (object != null) {
                 validStrings.add(text[i].getText());
@@ -306,6 +314,25 @@ public class Legend extends ClippableTextObject {
     public void setPosition(Double[] position) {
         this.position[0] = position[0];
         this.position[1] = position[1];
+    }
+    
+    /**
+     * @return the size
+     */
+    public Double[] getSize() {
+        Double[] retSize = new Double[2];
+        retSize[0] = size[0];
+        retSize[1] = size[1];
+
+        return retSize;
+    }
+
+        /**
+     * @param size the size to set
+     */
+    public void setSize(Double[] size) {
+        this.size[0] = size[0];
+        this.size[1] = size[1];
     }
 
     /**

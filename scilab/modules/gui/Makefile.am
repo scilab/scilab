@@ -4,7 +4,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# Copyright (C) DIGITEO - 2010 - ClÃ©ment DAVID
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -128,7 +128,8 @@ src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/jni/EditorManager.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -137,7 +138,8 @@ src/jni/Jxgetmouse.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
-src/jni/ScilabDisplayTree.giws.xml
+src/jni/ScilabDisplayTree.giws.xml \
+src/jni/EditorManager.giws.xml
 
 SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 
@@ -187,7 +189,8 @@ sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
 sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
-sci_gateway/cpp/sci_usecanvas.cpp
+sci_gateway/cpp/sci_usecanvas.cpp \
+sci_gateway/cpp/sci_useeditor.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

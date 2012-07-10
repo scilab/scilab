@@ -242,6 +242,10 @@ public class LegendDrawer {
         legendDims[0] = normSpriteWidth + lineWidth + 3.0 * xOffset;
         legendDims[1] = normSpriteHeight + 2.0 * yOffset;
 
+        /* Save the legend box size */
+        Double[] DimsToSet = { legendDims[0], legendDims[1]};
+        legend.setSize(DimsToSet);
+
         axesPos[0] = axesBounds[0];
         axesPos[1] = 1.0 - (axesBounds[1] + axesBounds[3]);
 

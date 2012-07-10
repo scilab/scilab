@@ -226,12 +226,20 @@
     <submenu label="Stop datatip manager">
       <callback instruction='org.scilab.modules.gui.datatip.DatatipManagerMode.setDatatipManagerModeButtonOff' type="3"/>
     </submenu>
-    <separator/>
+
+    <submenu label="Start curve data modify" icon="data_modify">
+      <callback instruction='useeditor([SCILAB_FIGURE_ID], %t);' type="0"/>
+    </submenu>
+    <submenu label="Stop curve data modify">
+      <callback instruction='useeditor([SCILAB_FIGURE_ID], %f);' type="0"/>
+    </submenu>
+
     <submenu label="Scilab Graphic Editor - GED">
       <submenu label="&amp;Quick Editor">
         <callback instruction="org.scilab.modules.gui.ged.StartGED.quickGED" type="3"/>
       </submenu>
     </submenu>
+
   </menu>
   
   <!--

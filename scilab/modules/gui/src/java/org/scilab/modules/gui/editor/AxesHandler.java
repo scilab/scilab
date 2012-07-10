@@ -169,11 +169,11 @@ public class AxesHandler {
      * @return True if there is any object visible, false otherwise.
      */
     public static boolean isAxesNotBlank(String figure) {
-		
+        
         String[] axes = searchAxes(figure);
         if (axes == null) {
-	        return false;
-		}
+            return false;
+        }
         boolean flag = false;
         for( Integer j = 0; j < axes.length; j++) {
 

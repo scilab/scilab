@@ -32,6 +32,8 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.editor.Editor;
+import org.scilab.modules.gui.editor.EditorManager;
+
 import org.scilab.modules.gui.ged.ColorMapHandler;
 import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.ged.MessagesGED;
@@ -316,7 +318,7 @@ public class Style extends BaseProperties {
             cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(), rgbBackgroundColor[1].intValue(), rgbBackgroundColor[2].intValue()));
 
             // Get the current status of the property: Foreground Color
-            Integer scilabForegroundColor = Editor.getOriColor();
+            Integer scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
             Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
             cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(), rgbForegroundColor[1].intValue(), rgbForegroundColor[2].intValue()));
 

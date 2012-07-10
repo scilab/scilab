@@ -16,6 +16,12 @@ package org.scilab.modules.gui.editor;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
+
+import org.scilab.modules.renderer.CallRenderer;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import java.lang.Math;
+
 /**
 * Implements all Label manipulation functions for the editor.
 *
@@ -28,12 +34,12 @@ public class LabelHandler {
 
 
     /**
-    * Set the text of label x, y or z.
-    *
-    * @param axes The axes that will recieve the label.
-    * @param text An array of text to set.
-    * @param axis The axis to set x, y or z.
-    */
+     * Set the text of label x, y or z.
+     *
+     * @param axes The axes that will recieve the label.
+     * @param text An array of text to set.
+     * @param axis The axis to set x, y or z.
+     */
 
     public static void setLabel(String axes, String[] text, AxesHandler.axisTo axis) {
 
@@ -58,12 +64,12 @@ public class LabelHandler {
     }
 
     /**
-    * Get the text of the label x, y or z.
-    *
-    * @param axes The axes where is the label.
-    * @param axis The axis of the label (x, y or z).
-    * @return The text of the label.
-    */
+     * Get the text of the label x, y or z.
+     *
+     * @param axes The axes where is the label.
+     * @param axis The axis of the label (x, y or z).
+     * @return The text of the label.
+     */
 
     public static String getLabelText(String axes, AxesHandler.axisTo axis) {
 

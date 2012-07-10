@@ -44,6 +44,7 @@ import java.lang.Math;
 public class EntityPicker {
 
     private Double dy;
+    private Double dx;
     private boolean needTransform = false;
     private Axes curAxes = null;
     private final Double selectionDelta = 7.0;
@@ -51,10 +52,10 @@ public class EntityPicker {
     /**
     * Picks a polyline at the given position.
     *
-    * @param figureUid 	Figure uid to be check.
-    * @param posX 		Position on x axis in pixels.
-    * @param posY 		Position on y axis in pixels.
-    * @return			Picked polyline uid or null if there isn't any polyline at the given position.
+    * @param figureUid     Figure uid to be check.
+    * @param posX         Position on x axis in pixels.
+    * @param posY         Position on y axis in pixels.
+    * @return            Picked polyline uid or null if there isn't any polyline at the given position.
     */
     public String pick(String figureUid, Integer posX, Integer posY) {
 
@@ -69,9 +70,11 @@ public class EntityPicker {
         double[] pos = {1.0 * posX, 1.0 * posY, 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
+        pos[0] += selectionDelta;
         pos[1] += selectionDelta;
         double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
+        dx = c2d[0] - c2d2[0];
         dy = c2d[1] - c2d2[1];
 
         needTransform = !isInDefaultView(curAxes);
@@ -90,12 +93,12 @@ public class EntityPicker {
                 if (PolylineHandler.getInstance().isVisible(polylines[i])) {
 
                     if (PolylineHandler.getInstance().isLineEnabled(polylines[i])) {
-                        if (isOverLine(polylines[i], c2d[0], c2d[1])) {
+                        if (isOverLine(polylines[i], c2d[0], c2d[1]) != -1) {
                             return polylines[i];
                         }
                     }
                     if (PolylineHandler.getInstance().isMarkEnabled(polylines[i])) {
-                        if (isOverMark(polylines[i], c2d[0], c2d[1])) {
+                        if (isOverMark(polylines[i], c2d[0], c2d[1]) != -1) {
                             return polylines[i];
                         }
                     }
@@ -108,12 +111,12 @@ public class EntityPicker {
 
     /**
     * Check algorithm linear interpolation for each pair of points.
-    * @param uid	Polyline uid to be checked.
-    * @param x		position on x axis in view coordinates.
-    * @param y		position on y axis in view coordinates.
-    * @return		true if x,y belongs or is closest to the polyline.
+    * @param uid    Polyline uid to be checked.
+    * @param x        position on x axis in view coordinates.
+    * @param y        position on y axis in view coordinates.
+    * @return        true if x,y belongs or is closest to the polyline.
     */
-    private boolean isOverLine(String uid, Double x, Double y) {
+    private int isOverLine(String uid, Double x, Double y) {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
@@ -128,21 +131,21 @@ public class EntityPicker {
             if (needTransform) {
                 double[] newPoint = transformPoint(curAxes, datax[i+1], datay[i+1]);
                 if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
-                    return true;
+                    return i;
                 }
                 oldPoint = newPoint;
             }
             else {
                 if (isInRange(datax[i], datax[i + 1], datay[i], datay[i + 1], x, y)) {
-                    return true;
+                    return i;
                 }
             }
         }
-        return false;
+        return -1;
     }
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
-		/* Fast bound check*/
+        /* Fast bound check*/
         double m = (x1 + x0)/2;
         double dx = m - x0;
 
@@ -150,7 +153,6 @@ public class EntityPicker {
 
         Double yy = y0 + ca * (x - x0);
 
-        //if (needTransform)
         if (y >= (yy - dy)) {
             if (y <= (yy + dy)) {
                 return (Math.abs(m - x) <= Math.abs(dx));
@@ -161,46 +163,232 @@ public class EntityPicker {
 
    /**
     * Checks if the given point belongs the polyline mark.
-    * @param uid	Polyline uid to be checked.
-    * @param x		position on x axis in view coordinates.
-    * @param y		position on y axis in view coordinates.
-    * @return		True if x,y belongs to the polyline mark.
+    * @param uid    Polyline uid to be checked.
+    * @param x        position on x axis in view coordinates.
+    * @param y        position on y axis in view coordinates.
+    * @return        True if x,y belongs to the polyline mark.
     */
-    private boolean isOverMark(String uid, Double x, Double y) {
+    private int isOverMark(String uid, Double x, Double y) {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
         Integer size = PolylineHandler.getInstance().getMarkSize(uid);
         Integer unit = PolylineHandler.getInstance().getMarkSizeUnit(uid);
-        /*dy/15 = 1px unit = 0 -> point, unit = 1 -> tabulated*/
-        double delta = (dy/selectionDelta)*(size*(0.75 + 0.7*unit) + 1.0 + unit*4.0);
+
+        int finalSize = (unit == 1) ? (8 + 2*size) : size;
+        finalSize /= 2;
+        double deltax = Math.abs((dx/selectionDelta)*finalSize);
+        double deltay = Math.abs((dy/selectionDelta)*finalSize);
 
         
         for (int i = 0; i < datax.length; ++i) {
             if (needTransform) {
                 double[] point = transformPoint(curAxes, datax[i], datay[i]);
-                if ((Math.abs(point[0] - x) <= delta) && (Math.abs(point[1] - y) <= delta)) {
-                    return true;
+                if ((Math.abs(point[0] - x) <= deltax) && (Math.abs(point[1] - y) <= deltay)) {
+                    return i;
                 }
             }
             else {
-                if ((Math.abs(datax[i] - x) <= delta) && (Math.abs(datay[i] - y) <= delta)) {
-                    return true;
+                if ((Math.abs(datax[i] - x) <= deltax) && (Math.abs(datay[i] - y) <= deltay)) {
+                    return i;
                 }
             }
         }
-        return false;
+        return -1;
+    }
+    
+    
+    public class PickedPoint {
+        public int point;
+        public boolean isSegment;
+        PickedPoint(int p, boolean segment) {
+            point = p;
+            isSegment = segment;
+        }
     }
 
+    /**
+     * Given a polyline uid checks if the given point (px,py) 
+     * belongs or is closer to any polyline point.
+     * 
+     * @return The picked point or PickedPoint.point = -1 otherwise.
+     */
+    public PickedPoint pickPoint(String uid, int px, int py) {
+        
+        PickedPoint point = new PickedPoint(-1, false);
+        Integer[] position = {px, py};
+        String figUid = (new ObjectSearcher()).searchParent(uid, GraphicObjectProperties.__GO_FIGURE__);
+        String axes = AxesHandler.clickedAxes(figUid, position);
+        if (axes == null) {
+            return point;
+        }
+
+        curAxes = AxesHandler.getAxesFromUid(axes);
+
+        double[] pos = {1.0 * px, 1.0 * py, 1.0};
+        double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
+
+        pos[0] += selectionDelta;
+        pos[1] += selectionDelta;
+        double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
+
+        dx = c2d[0] - c2d2[0];
+        dy = c2d[1] - c2d2[1];
+
+        needTransform = !isInDefaultView(curAxes);
+
+        /*try pick a point*/
+        point.point = isOverMark(uid, c2d[0], c2d[1]);
+        if (point.point != -1) {
+            return point;
+        } else {
+            /*try pick a segment*/
+            point.point = isOverLine(uid, c2d[0], c2d[1]);
+            point.isSegment = true;
+            return point;
+        }
+    }
+
+    /**
+     * Checks if the axes is in default view (2d view).
+     * 
+     * @return true if is in default view, false otherwise.
+     */
     private boolean isInDefaultView(Axes axes) {
         Double rot[] = axes.getRotationAngles();
         return (rot[0] == 0.0 && rot[1] == 270.0);
     }
 
+    /**
+     * Project the given point in view plane.
+     * 
+     * @return the projected point.
+     */
     private double[] transformPoint(Axes axes, double x, double y) {
         double point[] = {x, y, 0.0};
         return AxesDrawer.compute2dViewCoordinates(axes, point);
     }
 
+
+    public class LegendInfo {
+        public String legend = null;
+        public String polyline = null;
+        LegendInfo(String legend, String polyline) {
+            this.legend = legend;
+            this.polyline = polyline;
+        }
+    }
+
+    /**
+    * Check if the given position is over a legend object.
+    *
+    * @param axes The uid of axes that was clicked.
+    * @param position The mouse position (x, y).
+    * @return The LegendInfo if picked a legend null otherwise.
+    */
+    public LegendInfo pickLegend(String figure, Integer[] position) {
+
+        String axes = AxesHandler.clickedAxes(figure, position);
+        if (axes == null) {
+            return null;
+        }
+        String legend = LegendHandler.searchLegend(axes);
+        if (legend == null) {
+            return null;
+        }
+
+        String[] links;
+        Integer[] axesSize = {0,0};
+        Double delta;
+        Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension ={ 0., 0. };
+
+        axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
+        axesBounds = (Double[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
+        legendPos = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
+        links = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
+        dPosition[0] = (position[0] - (axesBounds[0] * axesSize[0])) / (axesBounds[2] * axesSize[0]);
+        dPosition[1] = (position[1] - (axesBounds[1] * axesSize[1])) / (axesBounds[3] * axesSize[1]);
+        dimension = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_SIZE__);
+        legendBounds[0] =  legendPos[0];
+        legendBounds[1] = legendPos[1];
+        legendBounds[2] = legendPos[0] + dimension[0];
+        legendBounds[3] = legendPos[1] + dimension[1];
+        delta = dimension[1] / (1.0 * links.length);
+   
+        if (dPosition[0] >= legendBounds[0] && dPosition[0] <= legendBounds[2] && dPosition[1] >= legendBounds[1] && dPosition[1] <= legendBounds[3])
+        {
+            for (Integer i = 0; i < links.length; i++) {
+                if (dPosition[1] >= (legendBounds[1] + i * delta) && dPosition[1] <= (legendBounds[1] + (i+1) * delta)) {
+                    return new LegendInfo(legend, links[links.length - 1 - i]);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Try pick an axis label at the given position.
+     * @param figure The figure uid.
+     * @param pos The position (x, y).
+     * @return The picked axis label or null.
+     */
+    public AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
+        
+        String axes = AxesHandler.clickedAxes(figure, pos);
+        if( axes == null) {
+            return null;
+        }
+        Double[] corners;
+        Double radAngle = 0.;
+        int rotate = 0;
+        double[] point = new double[3];
+        double[] coord;
+        String[] label = {  (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__),
+                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__),
+                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__) };
+        for (Integer i = 0; i < 3; i++) {
+            corners = (Double[])GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_CORNERS__);
+            radAngle = (Double)GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_FONT_ANGLE__);
+            rotate = ((int)((radAngle * 2) / Math.PI))%2;
+            if (rotate == 1) {
+                corners = rotateCorners(corners);
+            }
+            point[0] = pos[0];
+            point[1] = pos[1];
+            point[2] = 1.0;
+            coord = CallRenderer.get2dViewFromPixelCoordinates(axes, point);
+            if ((coord[0] >= corners[0] && coord[0] <= corners[6]) || (coord[0] <= corners[0] && coord[0] >= corners[6])) {
+                if ((coord[1] >= corners[1] && coord[1] <= corners[4]) || (coord[1] <= corners[1] && coord[1] >= corners[4])) {
+                    switch (i) {
+                        case 0:
+                            return AxesHandler.axisTo.__X__;
+                        case 1:
+                            return AxesHandler.axisTo.__Y__;
+                        case 2:
+                            return AxesHandler.axisTo.__Z__;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+    * Rotate the Corners points 90 degrees
+    *
+    * @param vec The corners points vector(should be 4 points x 3 coord, arranged sequentially)
+    */
+    private Double[] rotateCorners(Double[] vec) {
+
+        Integer length = vec.length;
+        Double[] newVec = new Double[length];
+        for (Integer i = 0; i < length - 3; i++) {
+            newVec[i+3] = vec[i];
+        }
+        newVec[0] = vec[length-3];
+        newVec[1] = vec[length-2];
+        newVec[2] = vec[length-1];
+        return newVec;
+   }
 }
 
