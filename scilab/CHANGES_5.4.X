@@ -3487,6 +3487,8 @@ Bug Fixes
 * Bug #8351 fixed - integrate function did not manage properly the optional
                     input arguments.
 
+* Bug #8399 fixed - setlanguage didn't work when only fr_FR.UTF-8 was available.
+
 * Bug #8640 fixed - histplot function failed when the data vector contained
                     the same values.
 
