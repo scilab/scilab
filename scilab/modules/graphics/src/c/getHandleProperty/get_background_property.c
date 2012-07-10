@@ -21,11 +21,10 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -41,7 +40,7 @@ int get_background_property(void* _pvCtx, char* pobjUID)
     if (piBackground == NULL)
     {
         /* This object has not a background color */
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "background");
         return -1;
     }
 

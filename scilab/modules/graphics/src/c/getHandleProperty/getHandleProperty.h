@@ -13,14 +13,12 @@
 /*------------------------------------------------------------------------*/
 /* file: getHandleProperty.h                                              */
 /* desc : contains declarations of functions needed by sci_get            */
-/*        Each function has the same signature int (sciPointObj *) and    */
+/*        Each function has the same signature int (void*, char* ) and    */
 /*        return a value in the scilab console                            */
 /*------------------------------------------------------------------------*/
 
 #ifndef _GET_HANDLE_PROPERTY_H_
 #define _GET_HANDLE_PROPERTY_H_
-
-#include "ObjectStructure.h"
 
 #include "GetUimenuLabel.h"
 #include "GetUicontrolString.h"
