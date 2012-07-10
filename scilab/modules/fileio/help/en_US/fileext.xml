@@ -26,13 +26,13 @@
       <varlistentry>
         <term>fullpath</term>
         <listitem>
-          <para>a character string, the given file path</para>
+          <para>a string matrix, the given file path</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>extension</term>
         <listitem>
-          <para>a character string, the extension part is any or ''</para>
+          <para>a string matrix, the extension part is any or ''</para>
         </listitem>
       </varlistentry>
     </variablelist>
