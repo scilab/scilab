@@ -18,7 +18,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>dirs= dirname(files[,flag [,flagexpand]])</synopsis>
+    <synopsis>dirs = dirname(files[,flag [,flagexpand]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,7 +30,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>flag,flagexpand</term>
+        <term>flag, flagexpand</term>
         <listitem>
           <para>
             オプションの論理値パラメータ. (デフォルト値 <literal>%t</literal>).
@@ -38,7 +38,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>files,dir</term>
+        <term>files, dirs</term>
         <listitem>
           <para>文字列行列.</para>
         </listitem>
@@ -48,11 +48,11 @@
   <refsection>
     <title>説明</title>
     <para>
-      <literal>dirname</literal> は files で指定したファイルエントリの
+      <literal>dirname</literal> は <literal>files</literal> で指定したファイルエントリの
       ディレクトリ名を返します.
     </para>
     <para>
-      <literal>flag</literal> が真の場合, files は
+      <literal>flag</literal> が真の場合, <literal>files</literal> は
       <literal>getos() == 'Windows'</literal>変数で指定した目標型にまず
       変換されます.
       更に, <literal>flagexpand</literal> が真の場合,
@@ -69,9 +69,9 @@
   <refsection>
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
-files=dirname('SCI/modules/fileio/macros/poo.sci')
-files=dirname('SCI/modules\fileio/macros/poo.sci')
-files=dirname('SCI/modules\fileio/macros/poo.sci.k')
+dirs=dirname('SCI/modules/fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
