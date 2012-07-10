@@ -68,6 +68,7 @@ import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.localization.WindowsDefaultLanguage;
 
 /* This class is the common ancestor to both X_manager.
  */
@@ -300,6 +301,7 @@ public abstract class XCommonManager {
             StringBuilder buffer = new StringBuilder("<?xml version='1.0' encoding='utf-8'?>\n");
             buffer.append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n");
             buffer.append("<xsl:param name=\"OS\"/>\n");
+            buffer.append("<xsl:param name=\"SCILAB_LANGUAGE\"/>\n");
             buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
 
             FilenameFilter filter = new FilenameFilter() {
@@ -359,6 +361,11 @@ public abstract class XCommonManager {
             StreamSource source = new StreamSource(new StringReader(createXSLFile()));
             transformer = factory.newTransformer(source);
             transformer.setParameter("OS", OS.getVersionName());
+            if (OS.get() == OS.WINDOWS) {
+                transformer.setParameter("SCILAB_LANGUAGE", WindowsDefaultLanguage.getdefaultlanguage());
+            } else {
+                transformer.setParameter("SCILAB_LANGUAGE", "");
+            }
         } catch (TransformerConfigurationException e1) {
             System.err.println(ERROR_READ + address);
         } catch (TransformerFactoryConfigurationError e1) {

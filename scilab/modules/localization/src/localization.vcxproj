@@ -250,6 +250,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClCompile Include="c\InitializeLocalization.c" />
     <ClCompile Include="c\LanguagePreferences_Windows.c" />
     <ClCompile Include="c\LocaleNameToLCID_Windows.c" />
+    <ClCompile Include="c\setdefaultlanguage.c" />
     <ClCompile Include="jni\LocaleToLCID_wrap.c" />
     <ClCompile Include="jni\Messages_wrap.c" />
     <ClCompile Include="..\sci_gateway\c\sci_dgettext.c" />
@@ -259,6 +260,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClCompile Include="..\sci_gateway\c\sci_setdefaultlanguage.c" />
     <ClCompile Include="..\sci_gateway\c\sci_setlanguage.c" />
     <ClCompile Include="c\setgetlanguage.c" />
+    <ClCompile Include="jni\setdefaultlanguage_wrap.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="localization.rc" />

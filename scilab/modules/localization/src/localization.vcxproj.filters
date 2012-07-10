@@ -150,6 +150,12 @@
     <ClCompile Include="c\setgetlanguage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="c\setdefaultlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\setdefaultlanguage_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="localization.rc">

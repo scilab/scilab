@@ -21,11 +21,13 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+import org.scilab.modules.localization.WindowsDefaultLanguage;
 
 public class ScilabGeneralPrefs implements XConfigurationListener {
 
     private static final String ENV_PATH = "//general/body/environment";
     private static final String FONT_PATH = "//fonts/body/fonts";
+    private static final String LANG_PATH = "//general/body/languages";
     private static final ScilabGeneralPrefs instance = new ScilabGeneralPrefs();
     private static Font desktopFont;
 
@@ -43,6 +45,12 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
             ScilabCommons.setieee(ge.code);
             ScilabCommons.setformat(ge.format, ge.width);
         }
+
+        if (e.getModifiedPaths().contains(LANG_PATH)) {
+            Document doc = XConfiguration.getXConfigurationDocument();
+            Language language = XConfiguration.get(Language.class, doc, LANG_PATH)[0];
+            WindowsDefaultLanguage.setdefaultlanguage(language.lang);
+	}
 
         if (all || e.getModifiedPaths().contains(FONT_PATH)) {
             desktopFont = null;
@@ -95,20 +103,23 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
         private GeneralEnvironment() { }
 
         @XConfAttribute(attributes = {"fpe", "printing-format", "width"})
-        private void set(String fpe, String format, int width) {
-            if (fpe.equals("Produces an error")) {
-                this.code = 0;
-            } else if (fpe.equals("Produces a warning")) {
-                this.code = 1;
-            } else if (fpe.equals("Produces Inf or NaN")) {
-                this.code = 2;
-            }
-            if (format.equals("Scientific format")) {
-                this.format = "e";
-            } else {
-                this.format = "v";
-            }
+        private void set(int fpe, String format, int width) {
+            this.code = fpe;
+            this.format = format;
             this.width = Math.min(Math.max(0, width), 25);
+        }
+    }
+
+    @XConfAttribute
+    private static class Language {
+
+        public String lang;
+
+        private Language() { }
+
+        @XConfAttribute(attributes = {"lang"})
+        private void set(String lang) {
+            this.lang = lang;
         }
     }
 }

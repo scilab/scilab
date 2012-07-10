@@ -79,6 +79,9 @@ Bug Fixes
 * Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
                      rather than only the variable "a".
 
+* Bug #11443 fixed: There was no way to set default language via prefs under
+                    Windows.
+
 
 Known Incompatibilities
 =======================
