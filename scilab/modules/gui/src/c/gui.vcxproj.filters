@@ -397,9 +397,6 @@
     <ClInclude Include="..\cpp\CallColorChooser.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\CallFigure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\CallFigure.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -330,7 +330,6 @@
     <ClInclude Include="..\cpp\CallClipboard.hxx" />
     <ClInclude Include="..\..\includes\CallColorChooser.h" />
     <ClInclude Include="..\cpp\CallColorChooser.hxx" />
-    <ClInclude Include="..\..\includes\CallFigure.h" />
     <ClInclude Include="..\cpp\CallFigure.hxx" />
     <ClInclude Include="..\..\includes\CallFontChooser.h" />
     <ClInclude Include="..\cpp\CallFontChooser.hxx" />
