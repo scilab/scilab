@@ -406,6 +406,10 @@ test_run('boolean','bug_2799','no_check_error_output');
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
  ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+// Run unitary tests of an external module (with his path)
+test_run('SCI/contrib/toolbox_skeleton')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Internal Design</title>
@@ -442,6 +446,9 @@ test_run([],[],['no_check_ref','mode_nw']);
           </para>
           <para>
             <literal>CLI SHELL MODE</literal> tag is added. Replaces <literal>JVM NOT MANDATORY</literal> (still supported)
+          </para>
+          <para>
+            <literal>test_run</literal> can work on an external module.
           </para>
         </revdescription>
       </revision>
