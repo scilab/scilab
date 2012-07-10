@@ -1450,7 +1450,7 @@ SciErr readMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _p
     sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
-    int iNbItem    = NULL;
+    int iNbItem    = 0;
 
     if (_piParent == NULL)
     {
@@ -1665,7 +1665,7 @@ SciErr readMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _
     sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
-    int iNbItem    = NULL;
+    int iNbItem    = 0;
     int* piBool    = NULL;
 
 
@@ -1931,7 +1931,7 @@ SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int
     sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
-    int iNbItem    = NULL;
+    int iNbItem    = 0;
 
     if (_piParent == NULL)
     {
@@ -2031,7 +2031,7 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const ch
     int iNewPos    = Top - Rhs + _iVar;
     int* piEnd    = NULL;
     int* piParent   = NULL;
-    
+
     if(_pstName)
     {
         piParent = getLastNamedListAddress(_pstName, _iItemPos);

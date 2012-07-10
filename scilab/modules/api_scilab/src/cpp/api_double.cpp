@@ -9,7 +9,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 * Please note that piece of code will be rewrited for the Scilab 6 family
-* However, the API (profile of the functions in the header files) will be 
+* However, the API (profile of the functions in the header files) will be
 * still available and supported in Scilab 6.
 */
 
@@ -450,7 +450,7 @@ static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, d
 /*--------------------------------------------------------------------------*/
 int getNamedScalarDouble(void* _pvCtx, const char* _pstName, double* _pdblReal)
 {
-    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, NULL);
+    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, 0);
 }
 /*--------------------------------------------------------------------------*/
 int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdblReal, double* _pdblImg)
