@@ -12,6 +12,8 @@
 
 package org.scilab.modules.commons;
 
+import java.awt.Font;
+
 import org.w3c.dom.Document;
 
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
@@ -23,7 +25,9 @@ import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 public class ScilabGeneralPrefs implements XConfigurationListener {
 
     private static final String ENV_PATH = "//general/body/environment";
+    private static final String FONT_PATH = "//fonts/body/fonts";
     private static final ScilabGeneralPrefs instance = new ScilabGeneralPrefs();
+    private static Font desktopFont;
 
     private ScilabGeneralPrefs() { }
 
@@ -32,11 +36,52 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
     }
 
     public void configurationChanged(XConfigurationEvent e) {
-        if (e.getModifiedPaths().contains(ENV_PATH)) {
+        boolean all = e.getModifiedPaths().contains("ALL");
+        if (all || e.getModifiedPaths().contains(ENV_PATH)) {
             Document doc = XConfiguration.getXConfigurationDocument();
             GeneralEnvironment ge = XConfiguration.get(GeneralEnvironment.class, doc, ENV_PATH)[0];
             ScilabCommons.setieee(ge.code);
             ScilabCommons.setformat(ge.format, ge.width);
+        }
+
+        if (all || e.getModifiedPaths().contains(FONT_PATH)) {
+            desktopFont = null;
+        }
+    }
+
+    public static Font getDesktopFont() {
+        if (desktopFont == null) {
+            Document doc = XConfiguration.getXConfigurationDocument();
+            DesktopFont df = XConfiguration.get(DesktopFont.class, doc, FONT_PATH)[0];
+            desktopFont = df.font;
+        }
+
+        return desktopFont;
+    }
+
+    @XConfAttribute
+    private static class DesktopFont {
+
+        public Font font;
+
+        private DesktopFont() { }
+
+        @XConfAttribute(tag = "fonts", attributes = {"font-face", "font-name", "font-size", "system"})
+        private void set(String fontFace, String fontName, int fontSize, boolean useSystemFont) {
+            if (useSystemFont) {
+                this.font = new Font("monospaced", Font.PLAIN, 13);
+            } else {
+                this.font = new Font(fontName, Font.PLAIN, fontSize);
+                int style = Font.PLAIN;
+                if (fontFace.contains("bold")) {
+                    style = style | Font.BOLD;
+                } else if (fontFace.contains("italic")) {
+                    style = style | Font.ITALIC;
+                }
+                if (style != Font.PLAIN) {
+                    this.font = this.font.deriveFont(style);
+                }
+            }
         }
     }
 
