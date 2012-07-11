@@ -154,7 +154,7 @@ char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xp
 {
     char * value = emptyAttribute;
     xmlXPathObjectPtr xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
-    if (xpathObj && xpathObj->nodesetval->nodeMax)
+    if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)
     {
         value = (char *)((xmlAttrPtr)xpathObj->nodesetval->nodeTab[0])->children->content;
     }
