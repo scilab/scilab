@@ -20,27 +20,30 @@ pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 libscifunctions_manager_la_SOURCES 	= \
     $(FUNCTION_MANAGER_CPP_SOURCES)
 
-libscifunctions_manager_la_CXXFLAGS	= \
-    -I$(top_builddir)/modules/types/includes/ \
+libscifunctions_manager_la_CPPFLAGS	= \
+    -Iincludes/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes \
+	-I$(top_builddir)/modules/api_scilab/includes/ \
+	-I$(top_builddir)/modules/ast/includes/ \
+	-I$(top_builddir)/modules/console/includes/ \
     -I$(top_builddir)/modules/core/includes/ \
+	-I$(top_builddir)/modules/elementary_functions/includes/ \
+	-I$(top_builddir)/modules/fileio/includes/ \
+	-I$(top_builddir)/modules/jvm/includes/ \
+	-I$(top_builddir)/modules/localization/includes/ \
+	-I$(top_builddir)/modules/parse/includes/ \
+	-I$(top_builddir)/modules/operations/includes/ \
+	-I$(top_builddir)/modules/output_stream/includes/ \
+    -I$(top_builddir)/modules/signal_processing/includes/ \
 	-I$(top_builddir)/modules/string/includes/ \
 	-I$(top_builddir)/modules/symbol/includes/ \
-	-I$(top_builddir)/modules/elementary_functions/includes/ \
-	-I$(top_builddir)/modules/operations/includes/ \
 	-I$(top_builddir)/modules/system_env/includes/ \
-	-I$(top_builddir)/modules/api_scilab/includes/ \
-	-I$(top_builddir)/modules/fileio/includes/ \
-	-I$(top_builddir)/modules/ast/includes/ \
-	-I$(top_builddir)/modules/parse/includes/ \
-	-I$(top_builddir)/modules/output_stream/includes/ \
 	-I$(top_builddir)/modules/threads/includes/ \
-	-I$(top_builddir)/modules/console/includes/ \
-    -I$(top_builddir)/modules/signal_processing/includes/ \
-	-I$(top_builddir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    -Iincludes/ \
-	$(XML_FLAGS) \
-    $(EIGEN_CPPFLAGS)
+    -I$(top_builddir)/modules/types/includes/ \
+	$(AM_CPPGFLAGS) \
+    $(EIGEN_CPPFLAGS) \
+	$(XML_FLAGS)
 
 libscifunctions_manager_la_includedir=$(pkgincludedir)
 

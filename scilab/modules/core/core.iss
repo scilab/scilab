@@ -18,6 +18,12 @@
 ;
 #define CORE "core"
 ;
+Source: bin\{#CORE}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
+;
 Source: modules\{#CORE}\jar\org.scilab.modules.{#CORE}.jar;DestDir: {app}\modules\{#CORE}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\{#CORE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;not generated (hardcoded)

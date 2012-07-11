@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 assert_checkequal(pol2str(%z), " +z");
 assert_checkequal(pol2str([%z %z]), [" +z", " +z"]);

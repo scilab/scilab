@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="impl" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>impl</refname>
     <refpurpose>微分代数方程式</refpurpose>
@@ -93,7 +90,7 @@
       <literal>res</literal> が関数の場合, その構文は
       以下のようにする必要があります:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 r = res(t,y,ydot)
  ]]></programlisting>
     <para>
@@ -118,7 +115,7 @@ r = res(t,y,ydot)
     <para>
       <literal>adda</literal> が関数の場合, その構文は以下のようにする必要があります:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 r = adda(t,y,p)
  ]]></programlisting>
     <para>
@@ -142,7 +139,7 @@ r = adda(t,y,p)
     <para>
       <literal>jac</literal> が関数の場合, その構文は以下のようにする必要があります:
     </para>
-    <programlisting role=""><![CDATA[  
+    <programlisting role="no-scilab-exec"><![CDATA[  
 j = jac(t,y,ydot)
  ]]></programlisting>
     <para>これは

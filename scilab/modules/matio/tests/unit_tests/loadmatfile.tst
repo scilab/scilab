@@ -25,42 +25,42 @@ for formatIndex = 1:size(binFormats, "*")
   // TESTS FOR CELL ARRAYS
   //
   if binFormats(formatIndex) <> "-v4" then // Cell arrays can not be stored in Matlab 4 binary files
-    
+
     if or(emptycell <> cell()) then pause, end
     if or(scalarcell <> makecell([1 1], 1.23)) then pause, end
     if or(rowcell <> makecell([1 3], "abc", [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], 1.23)) then pause, end
     if or(colcell <> makecell([3 1], [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], "abc", 1.23)) then pause, end
     if or(arraycell <> makecell([2 3], "a", [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], int8(1), "abc", 1.23, eye(100,100))) then pause, end
     if or(stringcell <> makecell([2 3], "abc", "def", "ghi", "jkl", "mno", "pqr")) then pause, end
-  
+
     clear emptycell scalarcell rowcell colcell arraycell stringcell
   end
-  
+
   //
   // TESTS FOR STRUCTURE ARRAYS
   //
   if binFormats(formatIndex) <> "-v4" then // Struct arrays can not be stored in Matlab 4 binary files
-    
+
     sciemptystruct = struct();
     if or(emptystruct <> sciemptystruct) then pause, end
-    
+
     sciscalarstruct = struct("f1", 10, "ftwo", "Hello", "field3", int8(12));
     if or(scalarstruct <> sciscalarstruct) then pause, end
-    
+
     scirowstruct = struct("field1", 10, "field2", "Hello", "field3", int8(12));
     scirowstruct(1,2).field1 = "test";
     scirowstruct(1,2).field2 = eye(10, 10);
     scirowstruct(1,3).field2 = "a field contents";
     scirowstruct(1,3).field3 = 1.23+4.56*%i;
     if or(rowstruct <> scirowstruct) then pause, end
-    
+
     scicolstruct = struct("name", 10, "phone", "Hello", "address", int8(12));
     scicolstruct(2,1).name = "test";
     scicolstruct(2,1).phone = eye(10, 10);
     scicolstruct(3,1).phone = "a field contents";
     scicolstruct(3,1).address = 1.23+4.56*%i;
     if or(colstruct <> scicolstruct) then pause, end
-    
+
     sciarraystruct = struct("field1", 10, "field2", "Hello", "field3", int8(12));
     sciarraystruct(1,2).field1 = "test";
     sciarraystruct(1,2).field2 = eye(10, 10);
@@ -71,10 +71,10 @@ for formatIndex = 1:size(binFormats, "*")
     sciarraystruct(3,1).phone = "a field contents";
     sciarraystruct(3,1).address = 1.23+4.56*%i;
     if or(arraystruct <> sciarraystruct) then pause, end
-    
+
     clear emptystruct scalarstruct rowstruct colstruct arraystruct
     clear sciemptystruct sciscalarstruct scirowstruct scicolstruct sciarraystruct
-  
+
   end
 
   //
@@ -130,18 +130,18 @@ for formatIndex = 1:size(binFormats, "*")
 
   if or(realscalarsparse <> sparse(1.23)) then pause, end
   //if or(cplxscalarsparse <> sparse(1.23 + 4.56i)) then pause, end
-  
+
   if or(realrowvectorsparse <> sparse([1.23 0 7.89])) then pause, end
   //if or(cplxrowvectorsparse <> sparse([1.23+7.89i 0 7.89+4.56i])) then pause, end
-  
+
   if or(realcolvectorsparse <> sparse([1.23;0;7.89])) then pause, end
   //if or(cplxcolvectorsparse <> sparse([1.23+7.89i;;7.89+4.56i])) then pause, end
-  
+
   if or(realmatrixsparse <> sparse([1.23 0 7.89;0 6.54 -3.21])) then pause, end
   //if or(cplxmatrixsparse <> sparse([1.23+7.89i 0 7.89+4.56i;0 6.54+9.87i 3.21-6.54i])) then pause, end
 end
   if binFormats(formatIndex) <> "-v4" then // Integers can not be stored in Matlab 4 binary files
-    
+
     //
     // TESTS FOR 8-BITS SIGNED INTEGERS
     //
@@ -249,7 +249,7 @@ end
     if or(uint64matrix <> [1 0 7;0 6 0]) then pause, end
 
     clear emptyuint64matrix uint64scalar uint64rowvector uint64colvector uint64atrix
-  
+
     //
     // TESTS FOR ND-ARRAYS
     //

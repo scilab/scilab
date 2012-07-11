@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pl\n"
 
 #, c-format
@@ -87,6 +87,37 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Niezdefiniowana zmienna środowiskowa %s.\n"
 
 #, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
+msgstr ""
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Niezdefiniowana zmienna środowiskowa %s.\n"
 
@@ -113,8 +144,28 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "Nieobsługiwany błąd v2cunit.\n"
 
 #, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

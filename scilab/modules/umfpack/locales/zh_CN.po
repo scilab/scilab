@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-03-04 09:35+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 
 #, c-format
@@ -31,7 +31,7 @@ msgstr "%s：输入参数#%d的值错误：不是一个Cholesky因式分解的�
 msgid ""
 "%s: Wrong value for input argument #%d: Must be symmetric positive definite "
 "matrix."
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：必须是对称正定矩阵。"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -250,7 +250,7 @@ msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr "%s：第二个参数的类型和（或）大小和（或）值不正确。\n"
 
 msgid " For this demo the current stack size is not enough "
-msgstr ""
+msgstr " 对于此演示，当前堆栈大小不足 "
 
 msgid " enter the following at the scilab prompt :          "
 msgstr " 请在Scilab提示窗口中输入下面的内容：          "

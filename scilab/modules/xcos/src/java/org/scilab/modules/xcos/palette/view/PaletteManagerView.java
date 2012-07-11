@@ -23,21 +23,18 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
@@ -47,7 +44,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the default view for the palette
  */
-public class PaletteManagerView extends SwingScilabTab implements Tab {
+public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
     public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
 
@@ -227,52 +224,19 @@ public class PaletteManagerView extends SwingScilabTab implements Tab {
         getInfoBar().setText(info);
     }
 
-    private Window createDefaultWindow() {
-        final Window win;
+    private SwingScilabWindow createDefaultWindow() {
+        final SwingScilabWindow win;
 
-        final Window configuration = WindowsConfigurationManager.createWindow(
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(
                 DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {
-            win = ScilabWindow.createWindow();
+            win = new SwingScilabWindow();
         }
 
         win.addTab(this);
         return win;
     }
 
-    /*
-     * Tab implementation
-     */
-
-    @Override
-    @Deprecated
-    public Window getParentWindow() {
-        return createDefaultWindow();
-    }
-
-    @Override
-    @Deprecated
-    public void addToolBar(ToolBar toolBarToAdd) {
-        setToolBar(toolBarToAdd);
-    }
-
-    @Override
-    @Deprecated
-    public void addMenuBar(MenuBar menuBarToAdd) {
-        setMenuBar(menuBarToAdd);
-    }
-
-    @Override
-    @Deprecated
-    public void addInfoBar(TextBox infoBarToAdd) {
-        setInfoBar(infoBarToAdd);
-    }
-
-    @Override
-    @Deprecated
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
 }

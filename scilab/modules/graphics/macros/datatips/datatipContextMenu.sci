@@ -8,6 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function  datatipContextMenu(ax)
 //datatip utility function
+  f=gcf();
+
   curve_handles=datatipGetEntities(ax);
   [curve,dmin,ptmin,l]=datatipGetNearestEntity(pt,curve_handles)
   if curve<>[]&dmin<10 then
@@ -57,6 +59,7 @@ function  datatipContextMenu(ax)
       datatipRedraw(curve_handles);
     case _("Open curve tip style editor")  then
       datatipsGUI(curve)
+      scf(f);
       //datatipSetStyle(curve);
     end
   end

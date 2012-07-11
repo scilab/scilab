@@ -18,7 +18,7 @@ function demo_plot2d()
   t=(0:0.1:6*%pi);
   plot2d(t',sin(t)');
   xtitle(my_plot_desc,"t","sin(t)");
-  xgrid();
+  xgrid(color("grey"));
 
   // DEMO END
 

@@ -11,20 +11,19 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+extern "C"
+{
+#include "getScilabJavaVM.h"
+#include "MALLOC.h"
+#include "localization.h"
+#include "Scierror.h"
+}
+
 #include "function.hxx"
 #include "action_binding_GiwsExports.hxx"
 #include "action_binding_gw.hxx"
 #include "string.hxx"
 #include "Signal.hxx"
-#include "GiwsException.hxx"
-
-extern "C"
-{
-#include "localization.h"
-#include "Scierror.h"
-#include "MALLOC.h"
-#include "getScilabJavaVM.h"
-}
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -353,6 +353,15 @@
     <ClInclude Include="src\cpp\scilab_sscanf.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\deleteafile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\getshortpathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\readline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fileio.rc">
@@ -360,9 +369,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -372,6 +378,12 @@
     <None Include="locales\fileio.pot" />
     <None Include="System_env_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\fileio.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

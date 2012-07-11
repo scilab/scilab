@@ -6,8 +6,7 @@
 
 SPREADSHEET_C_SOURCES = src/c/xls.c
 
-RIPOLE_SOURCES = \
-src/c/ripole/olestream-unwrap.c \
+RIPOLE_SOURCES = src/c/ripole/olestream-unwrap.c \
 src/c/ripole/pldstr.c \
 src/c/ripole/ole.c \
 src/c/ripole/bytedecoders.c \
@@ -20,24 +19,12 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_xls_read.cpp \
     sci_gateway/cpp/sci_xls_open.cpp
 
-libscispreadsheet_la_CFLAGS= \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/c/ripole \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/io/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes
-
 libscispreadsheet_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/c/ripole \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
@@ -48,21 +35,22 @@ libscispreadsheet_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/types/includes
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la
 
-libscispreadsheet_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscispreadsheet_algo_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(RIPOLE_SOURCES)
 libscispreadsheet_la_SOURCES = $(GATEWAY_CPP_SOURCES)
-libscispreadsheet_algo_la_CFLAGS = $(libscispreadsheet_la_CFLAGS)
 libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SPREADSHEET_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(RIPOLE_SOURCES)
-INCLUDE_FLAGS = $(libscispreadsheet_la_CFLAGS)
+INCLUDE_FLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
 

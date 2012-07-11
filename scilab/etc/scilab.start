@@ -12,6 +12,11 @@
 
 mode(-1);  // silent execution mode
 
+// clean database when restarted ======================================
+//predef("clear"); //unprotect all variables
+clear  // erase all variables
+clearglobal();
+
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
 
 // Default Obsolete Warning policy  ===================================
@@ -29,27 +34,16 @@ PWD = pwd();
 //if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
 if sciargs() <> "-nb" then
     banner();
-    printf("\n\n%s\n", gettext("Startup execution:"));
-    printf(gettext("  loading initial environment") + "\n");
+  printf("\n\n%s\n", gettext("Startup execution:"));
+  printf(gettext("  loading initial environment") + "\n");
 end
-
-// loads modules ======================================================
-//function startModules()
-//    modules    = getmodules();
-//    for i=1:size(modules,"*")
-//        exec("SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start", -1);
-//    end
-//endfunction
-
-//startModules();
-//clear startModules;
 
 // Create some configuration variables ================================
 home = getenv("HOME", SCI);
 if getos() <> "Windows" then
-    if getenv("PRINTERS", "ndef") == "ndef" then
-        setenv("PRINTERS", "lp");
-    end
+  if getenv("PRINTERS", "ndef") == "ndef" then
+    setenv("PRINTERS", "lp");
+  end
 end
 setenv("VERSION", getversion());
 
@@ -63,68 +57,64 @@ if with_module("atoms") then
   clear atomsSystemInit;
 end
 
+// At startup, no interactive vertical paging by default. ==============
+lines(0);
+
 // load contrib menu if present ========================================
 function loadContrib()
-    if isfile(SCI+"/contrib/loader.sce") then
-        global %toolboxes;
-        global %toolboxes_dir;
-        exec(SCI+"/contrib/loader.sce");
-    end
+  if isfile(SCI+"/contrib/loader.sce") then
+    global %toolboxes;
+    global %toolboxes_dir;
+    exec(SCI+"/contrib/loader.sce");
+  end
 endfunction
-
 loadContrib();
 clear loadContrib;
 
 // calling user initialization =========================================
-function startUserConf()
-    if sciargs()<>"-nouserstartup" then
-        startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
-        SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
+if sciargs()<>"-nouserstartup" then
 
-        if SCIHOME <> pwd() then
-            startupfiles = [    startupfiles     ; ..
-                                ".scilab"        ; .. // Working directory startup
-                                "scilab.ini" ]   ;    //  ""         ""    startup
-        end
+  startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
+                   SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
 
-        for i=1:size(startupfiles,"*")
-            if isfile(startupfiles(i)) then
-                exec(startupfiles(i),-1);
-            end
-        end
+  if SCIHOME <> pwd() then
+    startupfiles = [ startupfiles     ; ..
+                     ".scilab"        ; .. // Working directory startup
+                     "scilab.ini" ]   ;    //  ""         ""    startup
+  end
+
+  for i = 1:size(startupfiles, "*")
+    if isfile(startupfiles(i)) then
+      exec(startupfiles(i),-1);
     end
-endfunction
+  end
 
-startUserConf();
-clear startUserConf;
+  clear i;
+  clear startupfiles;
+end
 
 // Menus/toolbar can now be enabled ====================================
 if getscilabmode() == "STD" then
-    setmenu(gettext("&File"));
-    setmenu(gettext("&Edit"));
-    setmenu(gettext("&Preferences"));
-    setmenu(gettext("&Control"));
-    setmenu(gettext("&Applications"));
-
-    if ~with_module("scinotes") then // Desactivate Editor menu
-        unsetmenu(gettext("&Applications"), 1);
-    end
-
-    if ~with_module("xcos") then // Desactivate xcos menu
-        unsetmenu(gettext("&Applications"), 3);
-    end
-
-    if ~with_module("m2sci") then // Desactivate mfile2sci menu
-        unsetmenu(gettext("&Applications"), 5);
-    end
-
-    if ~with_module("atoms") then // Desactivate atoms menu
-        unsetmenu(gettext("&Applications"), 7);
-    end
-
-    setmenu(gettext("&?"));
-    setmenu(gettext("&Toolboxes"));
-    toolbar(-1, "on");
+  setmenu(gettext("&File"));
+  setmenu(gettext("&Edit"));
+  setmenu(gettext("&Preferences"));
+  setmenu(gettext("&Control"));
+  setmenu(gettext("&Applications"));
+  if ~with_module("scinotes") then // Desactivate Editor menu
+    unsetmenu(gettext("&Applications"), 1);
+  end
+  if ~with_module("xcos") then // Desactivate xcos menu
+    unsetmenu(gettext("&Applications"), 3);
+  end
+  if ~with_module("m2sci") then // Desactivate mfile2sci menu
+    unsetmenu(gettext("&Applications"), 5);
+  end
+  if ~with_module("atoms") then // Desactivate atoms menu
+    unsetmenu(gettext("&Applications"), 7);
+  end
+  setmenu(gettext("&?"));
+  setmenu(gettext("&Toolboxes"));
+  toolbar(-1, "on");
 end
 // ====================================================================
 clear ans

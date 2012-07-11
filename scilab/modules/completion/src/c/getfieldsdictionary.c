@@ -18,6 +18,11 @@
 #include "getPartLine.h"
 #include "completion.h"
 #include "freeArrayOfString.h"
+
+#include "getfields.h"
+
+static int isInitialized = 0;
+
 /*--------------------------------------------------------------------------*/
 static int cmpNames(const void *a, const void *b)
 {
@@ -36,9 +41,16 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     int i;
     int last = 0;
     char **pstData = NULL;
+    char **fields = NULL;
     char *var = NULL;
     char *lineBeforePoint = NULL;
     int pos = (int)(strlen(lineBeforeCaret) - strlen(pattern) - 1);
+
+    if (!isInitialized)
+    {
+        initializeFieldsGetter(1);
+        isInitialized = 1;
+    }
 
     if (pos <= 0 || lineBeforeCaret[pos] != '.')
     {
@@ -109,6 +121,14 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
             return NULL;
         }
         FREE(piLen);
+
+	fields = (char**)getFieldsForType(pstData[0], piAddr);
+	if (fields)
+	{
+	    freeArrayOfString(pstData, rc);
+	    pstData = fields;
+	    for (rc = 0; fields[rc]; rc++);
+	}
 
         // We remove all the entries which don't begin with fieldpart
         // and the first entry (and the second if it is a struct)

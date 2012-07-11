@@ -17,6 +17,7 @@
 #include "sci_types.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
+#include "localization.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)            \
     {                                           \

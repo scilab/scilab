@@ -38,7 +38,8 @@ static gw_generic_table Tab[] =
 {NULL,""}, //read4b
 {NULL,""}, //write4b
 {NULL,""}, //save
-{NULL, ""} //load
+{NULL, ""}, //load
+{NULL, ""} //%_load
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)

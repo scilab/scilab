@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-08 14:03+0000\n"
+"PO-Revision-Date: 2012-06-13 19:04+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -113,57 +113,70 @@ msgid ""
 "\n"
 "%s Installing ...\n"
 msgstr ""
+"\n"
+"Instalace %s ...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Loading ...\n"
 msgstr ""
+"\n"
+"Načítání %s ...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Testing ...\n"
 msgstr ""
+"\n"
+"Zkouška %s ...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Removing ...\n"
 msgstr ""
+"\n"
+"Odstraňování %s ...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězce.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
-msgstr ""
+msgstr "%s: Špatná velikost vstupního argumentu %d: Očekáván boolean.\n"
 
 #, c-format
 msgid ""
 "%s: Module %s is already installed. Please remove it before checking it.\n"
 msgstr ""
+"%s: Modul %s je již nainstalován. před kontrolou ho prosím odstraňte.\n"
 
 #, c-format
 msgid "%s: Module %s does not exist in current repositories.\n"
-msgstr ""
+msgstr "%s: Modul %s v současných úložištích neexistuje.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: some unique module names "
 "expected.\n"
 msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Očekáván jistý jedinečný název "
+"modulu.\n"
 
 #, c-format
 msgid ""
 "\n"
 "Number of modules to check: %d\n"
 msgstr ""
+"\n"
+"Počet modulů ke kontrole: %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -175,6 +188,10 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána matice řetězců 1x1 "
 "nebo 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
@@ -214,6 +231,13 @@ msgstr "%s: Soubor '%s' neexistuje, nebo není přístupný pro čtení\n"
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: V balíčku '%s' nelze nalézt soubor DESCRIPTION\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"Možnost offline nastavení ATOMS je nastavena na True. atomsSystemUpdate "
+"nezkontroloval nejnovější aktualizace modulů."
 
 #, c-format
 msgid ""
@@ -286,6 +310,10 @@ msgstr "%s: Soubor '%s' neexistuje, nebo není přístupný pro čtení.\n"
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: Při načítání '%s-%s' se stala chyba:\n"
+
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr "%s: Při uvolňování '%s-%s' z paměti došlo k chybě:\n"
 
 #, c-format
 msgid ""
@@ -455,13 +483,6 @@ msgstr "Instalační adresář"
 msgid "Description"
 msgstr "Popis"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-"Možnost offline nastavení ATOMS je nastavena na True. atomsSystemUpdate "
-"nezkontroloval nejnovější aktualizace modulů."
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: '%s - %s' není nainstalován.\n"
@@ -511,6 +532,9 @@ msgstr "Soubor"
 
 msgid "Installed modules"
 msgstr "Instalované moduly"
+
+msgid "Update List of Packages"
+msgstr "Aktualizovat seznam balíčků"
 
 msgid "Close"
 msgstr "Zavřít"
@@ -668,6 +692,10 @@ msgstr "%s: gzip nenalezen.\n"
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Extrakce souboru DESCRIPTION ('%s') selhala.\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr "%s: uložení ('%s') selhalo.\n"
 
 #, c-format
 msgid ""

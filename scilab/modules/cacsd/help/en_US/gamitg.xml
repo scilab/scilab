@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gamitg">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gamitg</refname>
     <refpurpose>H-infinity gamma iterations for continuous time systems</refpurpose>
@@ -94,5 +91,22 @@ B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
         <link linkend="h_inf">h_inf</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>P. Gahinet</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <literal>Sl</literal> is now checked for
+          continuous time linear dynamical system.  This modification
+          has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

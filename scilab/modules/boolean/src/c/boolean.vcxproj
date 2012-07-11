@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -82,10 +82,20 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
-      <Command>
-      </Command>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
+del *.def &gt;nul
+cd ..
+
+</Command>
     </PreLinkEvent>
     <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -95,8 +105,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Message>
-      </Message>
+      <Message>Make dependencies</Message>
       <Command>
       </Command>
     </PreBuildEvent>
@@ -113,10 +122,20 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
-      <Command>
-      </Command>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
+del *.def &gt;nul
+cd ..
+
+</Command>
     </PreLinkEvent>
     <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -126,8 +145,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Message>
-      </Message>
+      <Message>Make dependencies</Message>
       <Command>
       </Command>
     </PreBuildEvent>
@@ -143,8 +161,21 @@
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <PreLinkEvent />
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
+del *.def &gt;nul
+cd ..
+
+</Command>
+    </PreLinkEvent>
     <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -156,10 +187,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
+      <Message>Make dependencies</Message>
       <Command>
       </Command>
-      <Message>
-      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,8 +206,21 @@
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <PreLinkEvent />
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
+del *.def &gt;nul
+cd ..
+
+</Command>
+    </PreLinkEvent>
     <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -189,10 +232,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
+      <Message>Make dependencies</Message>
       <Command>
       </Command>
-      <Message>
-      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -202,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_boolean.h" />
+    <ClInclude Include="..\..\includes\gw_boolean.h" />
     <ClInclude Include="..\..\includes\vect_and.h" />
     <ClInclude Include="..\..\includes\vect_or.h" />
   </ItemGroup>

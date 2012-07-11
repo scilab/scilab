@@ -1,0 +1,80 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+assert_checkequal(debug(), 0);
+assert_checkequal(debug(0), 0);
+ debug 0
+assert_checkequal(debug(1), 0);
+ debug 1
+ 
+        [cnonan , cnumb] = mythrownan(computed)
+        [enonan , enumb] = mythrownan(expected)
+        if ( and(enonan == cnonan) & and(enumb == cnumb) ) then
+            flag = %t
+        else
+            flag = %f
+        end
+ 
+return!
+ 
+        //
+        //
+        // Copyright (C) 2000 - INRIA - Carlos Klimann
+        // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+        //This  function  returns  in  vector  nonan  the  values
+        //(ignoring the NANs) of a  vector or matrix x and in the
+        //corresponding places of vector  numb the indexes of the
+        //value.
+        //
+        //For  a  vector  or matrix  x,  [nonan,numb]=thrownan(x)
+        //considers x, whatever his dimensions are, like a linear
+        //vector (columns  first).
+        //
+        //
+        [lhs,rhs]=argn(0)
+        if ( rhs<>1 ) then
+            error(msprintf(gettext("%s: Wrong number of input argumen...
+t: %d expected.\n"),"thrownan",1))
+        end
+        numb=find(bool2s(~isnan(x)))
+        nonan=x(~isnan(x))
+ 
+return!
+assert_checkequal(debug(), 1);
+ 
+        [cnonan , cnumb] = mythrownan(computed)
+        [enonan , enumb] = mythrownan(expected)
+        if ( and(enonan == cnonan) & and(enumb == cnumb) ) then
+            flag = %t
+        else
+            flag = %f
+        end
+ 
+return!
+ 
+        //
+        //
+        // Copyright (C) 2000 - INRIA - Carlos Klimann
+        // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+        //This  function  returns  in  vector  nonan  the  values
+        //(ignoring the NANs) of a  vector or matrix x and in the
+        //corresponding places of vector  numb the indexes of the
+        //value.
+        //
+        //For  a  vector  or matrix  x,  [nonan,numb]=thrownan(x)
+        //considers x, whatever his dimensions are, like a linear
+        //vector (columns  first).
+        //
+        //
+        [lhs,rhs]=argn(0)
+        if ( rhs<>1 ) then
+            error(msprintf(gettext("%s: Wrong number of input argumen...
+t: %d expected.\n"),"thrownan",1))
+        end
+        numb=find(bool2s(~isnan(x)))
+        nonan=x(~isnan(x))
+ 
+return!

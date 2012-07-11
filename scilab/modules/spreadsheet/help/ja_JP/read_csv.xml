@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="read_csv" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>read_csv</refname>
     <refpurpose>カンマ区切り形式のファイルを読み込む</refpurpose>
@@ -35,7 +32,10 @@
         <term>sep</term>
         <listitem>
           <para>文字列. 使用するフィールドセパレータ, デフォルト値は
-            ","
+	    <literal>","</literal>
+          </para>
+	  <para><literal>ascii(9)</literal> or <literal>"\t"</literal> for a tabulation separator are
+            accepted.
           </para>
         </listitem>
       </varlistentry>
@@ -52,13 +52,15 @@
     <para>
       例えば表計算ソフトウエアで"テキストおよびカンマ"形式で
       作成した,フィールドのデリミタを有するアスキーファイルを
-      指定すると,read_csv(fname) は対応する
+      指定すると, <literal>M = read_csv(fname)</literal> は対応する
       Scilabの文字列行列を返します.
-      セパレータを変更するには, read_csv(fname,sep) としてください.
+      セパレータを変更するには, <literal>M = read_csv(fname,sep)</literal> としてください.
     </para>
-    <para>注意: 
+    <para>
+      <note>
       文字列変数を数値変数に変換するために
-      関数 evstrによりMの全体あるいは一部を評価することができます.
+      関数 <literal>evstr</literal>により<literal>M</literal>の全体あるいは一部を評価することができます.
+      </note>
     </para>
   </refsection>
   <refsection>

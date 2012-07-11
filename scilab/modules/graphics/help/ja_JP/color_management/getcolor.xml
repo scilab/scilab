@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getcolor">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>getcolor</refname>
     <refpurpose>カレントのカラーマップの色を示すダイアログをオープンする</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>c=getcolor(title,[cini])
-c=getcolor()</synopsis>
+      c=getcolor()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -42,18 +40,21 @@ c=getcolor()</synopsis>
         <term>c</term>
         <listitem>
           <para>選択された色IDまたは
-	選択がキャンセルされた場合に [].</para>
+            選択がキャンセルされた場合に [].
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>getcolor</literal> はカレントのカラーマップのパレットを表示する
-	ウインドウをオープンします.
-	ユーザはそのIDとRGB値を表示するために色をクリックすることができます.
-	<literal>getcolor</literal> は選択された色のID,または
-	"Cancel"ボタンがクリックされたかウインドウがクローズされた場合に []を返します.</para>
+    <para>
+      <literal>getcolor</literal> はカレントのカラーマップのパレットを表示する
+      ウインドウをオープンします.
+      ユーザはそのIDとRGB値を表示するために色をクリックすることができます.
+      <literal>getcolor</literal> は選択された色のID,または
+      "Cancel"ボタンがクリックされたかウインドウがクローズされた場合に []を返します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

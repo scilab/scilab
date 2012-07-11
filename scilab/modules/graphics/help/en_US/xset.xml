@@ -2,22 +2,19 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xset">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xset">
   <refnamediv>
     <refname>xset</refname>
-    <refpurpose>set values of the graphics
-      context. This function is obsolete.
+    <refpurpose>
+      set values of the graphics context.<emphasis role="bold">This function is obsolete.</emphasis>
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -47,7 +44,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Warning this function is obsolete. Use the Scilab graphic objetcs representation
+    <para>
+      <emphasis role="bold">Warning this function is obsolete.</emphasis>
+      Use the Scilab graphic objects representation
       instead (see the
       <link linkend="set">set</link> and <link linkend="get">get</link>
       functions as well as the <link linkend="graphics_entities">graphics_entities</link> help
@@ -66,16 +65,6 @@
     </para>
     <para/>
     <variablelist>
-      <varlistentry>
-        <term>xset("alufunction",number)</term>
-        <listitem>
-          <para>Used to set the logical function for drawing. The logical
-            function used is set by <literal>x1</literal>. Usual values are: 3 for
-            copying (default), 6 for animation and 0 for clearing. See
-            alufunctions for more details.
-          </para>
-        </listitem>
-      </varlistentry>
       <varlistentry>
         <term>xset("auto clear","on"|"off")</term>
         <listitem>
@@ -138,7 +127,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xset("default")</term>
         <listitem>
           <para>Reset the graphics context to default values.</para>
         </listitem>
@@ -305,7 +293,7 @@
           <para>If flag=1 then the graphic is automatically resized to fill the
             graphics window.
           </para>
-          <programlisting role=""><![CDATA[ 
+          <programlisting role=""><![CDATA[
 xdel();
 xset("wresize",1);
 plot2d();
@@ -315,7 +303,7 @@ xset("wdim",1000,500)
             graphics window is resized. Top left panner or keyboard arrows may be
             used to scroll over the graphic.
           </para>
-          <programlisting role=""><![CDATA[ 
+          <programlisting role=""><![CDATA[
 xdel();
 plot2d();
 xset("wresize",0);
@@ -363,5 +351,16 @@ xset("wdim",1000,500)
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          The "alufunction" property is no more supported, this property was no more used for rendering since Scilab 5.0.1.
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

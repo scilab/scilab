@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdfgam">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cdfgam</refname>
     <refpurpose> fonction de répartition de la distribution gamma  </refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[P,Q]=cdfgam("PQ",X,Shape,Scale)
-[X]=cdfgam("X",Shape,Scale,P,Q)
-[Shape]=cdfgam("Shape",Scale,P,Q,X)
-[Scale]=cdfgam("Scale",P,Q,X,Shape)</synopsis>
+      [X]=cdfgam("X",Shape,Scale,P,Q)
+      [Shape]=cdfgam("Shape",Scale,P,Q,X)
+      [Scale]=cdfgam("Scale",P,Q,X,Shape)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -32,35 +30,35 @@
         <term>P,Q,X,Shape,Scale  </term>
         <listitem>
           <para>5 vecteurs réels de même taille.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P,Q (Q=1-P)  </term>
         <listitem>
           <para> L'intégrale de 0 à X de la distribution gamma En entrée : [0,1].
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X  </term>
         <listitem>
           <para> Borne supérieure d'intégration En entrée : [0, +infini). En recherche : [0,1E300]
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Shape  </term>
         <listitem>
           <para> Le paramètre de forme de la distribution En entrée : (0, +infini). En recherche : [1E-300,1E300]
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Scale  </term>
         <listitem>
           <para> le paramètre d'échelle de la distribution En entrée : (0, +infini). En recherche : (1E-300,1E300]
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,29 +66,29 @@
   <refsection>
     <title>Description</title>
     <para>
-    Étant donnés les autres, calcule un paramètre de la distribution gamma.
-  </para>
+      Étant donnés les autres, calcule un paramètre de la distribution gamma.
+    </para>
     <para>
-    La fonction de répartition (P) est calculée directement par
-    le code associé à
-  </para>
+      La fonction de répartition (P) est calculée directement par
+      le code associé à
+    </para>
     <para>
-    DiDinato, A. R. and Morris, A. H. Computation of the  incomplete
-    gamma function  ratios  and their  inverse.   ACM  Trans.  Math.
-    Softw. 12 (1986), 377-393.
-  </para>
+      DiDinato, A. R. and Morris, A. H. Computation of the  incomplete
+      gamma function  ratios  and their  inverse.   ACM  Trans.  Math.
+      Softw. 12 (1986), 377-393.
+    </para>
     <para>
-    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
-  </para>
+      Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+    </para>
     <para>
-    La distribution gamma est proportionnelle à
-    <literal>T**(SHAPE - 1) * EXP(- SCALE * T)</literal>
-  </para>
+      La distribution gamma est proportionnelle à
+      <literal>T**(SHAPE - 1) * EXP(- SCALE * T)</literal>
+    </para>
     <para>
-    Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
-    Functions, Inverses, and Other Parameters (February, 1994)
-    Barry W. Brown, James Lovato and Kathy Russell. The University of
-    Texas.
-  </para>
+      Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+      Functions, Inverses, and Other Parameters (February, 1994)
+      Barry W. Brown, James Lovato and Kathy Russell. The University of
+      Texas.
+    </para>
   </refsection>
 </refentry>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="readxls" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>readxls</refname>
     <refpurpose>lê um arquivo Excel</refpurpose>
@@ -58,8 +55,11 @@
       todas as células <literal>Value</literal> é uma matriz de números que
       contém todos os valores das células.
     </para>
-    <para>AVISO: apenas arquivos Excel BIFF8 (última versão do Excel) são
+    <para>
+      <warning>
+      AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003)) são
       manipulados
+      </warning>
     </para>
   </refsection>
   <refsection>
@@ -75,7 +75,7 @@ s1.text  //obtendo o campo do texto da primeira folha
 s1(2,:)  //obtendo a segunda linha da folha
 typeof(s1(2,:))
 
-editvar s1
+disp(s1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -90,27 +90,10 @@ editvar s1
     </simplelist>
   </refsection>
   <refsection>
-    <title>Autores</title>
-    <variablelist>
-      <varlistentry>
-        <term>Pierrick Mode</term>
-        <listitem>
-          <para>INRIA</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Serge Steer</term>
-        <listitem>
-          <para>INRIA</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
     <title>Funções Utilizadas</title>
     <para>
       Esta função é baseada nas funções Scilab <literal>xls_open</literal>
-      e <literal>xls_read</literal>
+      e <literal>xls_read</literal>.
     </para>
   </refsection>
 </refentry>

@@ -7,20 +7,19 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
     src/cpp/scischur.cpp \
     src/cpp/schurSelect.cpp
 
-LINEAR_ALGEBRA_C_SOURCES = \
-    src/c/schurtable.c \
-    src/c/invert_matrix.c \
-    src/c/lu.c \
-    src/c/qr.c \
-    src/c/hess.c \
-    src/c/eigen.c \
-    src/c/balanc.c \
-    src/c/chol.c \
-    src/c/svd.c \
-    src/c/rcond.c \
-    src/c/det.c \
-    src/c/lsq.c \
-    src/c/issymmetric.c
+LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
+src/c/issymmetric.c \
+src/c/invert_matrix.c \
+src/c/lu.c \
+src/c/qr.c \
+src/c/hess.c \
+src/c/eigen.c \
+src/c/balanc.c \
+src/c/chol.c \
+src/c/svd.c \
+src/c/rcond.c \
+src/c/det.c \
+src/c/lsq.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/intdggbal.f \
@@ -75,9 +74,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_zggev.c \
     sci_gateway/c/sci_zheev.c
 
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/bschur.f
-
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/linear_algebra_gw.cpp \
     sci_gateway/cpp/sci_chol.cpp \
@@ -94,32 +90,25 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_balanc.cpp \
     sci_gateway/cpp/sci_schur.cpp
 
-
-libscilinear_algebra_la_CFLAGS = \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
-
-libscilinear_algebra_la_CPPFLAGS= \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
-    -I$(top_srcdir)/modules/symbol/includes \
-    -I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/modules/system_env/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    $(EIGEN_CPPFLAGS)
+libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/cpp/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/localization/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscilinear_algebra.la
@@ -129,12 +118,11 @@ noinst_LTLIBRARIES = libscilinear_algebra-algo.la libscilinear_algebra.la
 endif
 
 
-libscilinear_algebra_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscilinear_algebra_algo_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(LINEAR_ALGEBRA_CPP_SOURCES)
-libscilinear_algebra_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscilinear_algebra_algo_la_CFLAGS = $(libscilinear_algebra_la_CFLAGS)
+libscilinear_algebra_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscilinear_algebra_algo_la_CPPFLAGS = $(libscilinear_algebra_la_CPPFLAGS)
+
 # For the code check (splint)
 CHECK_SRC= $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
@@ -147,7 +135,7 @@ modulename=linear_algebra
 
 #### linear_algebra : Conf files ####
 libscilinear_algebra_la_rootdir = $(mydatadir)
-libscilinear_algebra_la_root_DATA =  license.txt
+libscilinear_algebra_la_root_DATA =  license.txt 
 
 
 #### linear_algebra : init scripts ####

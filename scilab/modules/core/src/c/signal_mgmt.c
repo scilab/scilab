@@ -41,94 +41,8 @@
 #include "suspendProcess.h"
 #include "sci_mode.h"
 #include "windowsChangeManagement.h"
+#include "backtrace_print.h"
 extern jmp_buf jmp_env;
-
-/*----------------------------------------------------------------------------
- * Print a stack trace
- *----------------------------------------------------------------------------*/
-
-static char *backtrace_print(int niv_debut)
-{
-    size_t ind;
-
-    sci_backtrace_t *tr = NULL;
-
-    char print_buffer[4096];    /* TODO: make it dynamic */
-
-    int size = sizeof(print_buffer);
-
-    char *tmp = print_buffer;
-
-    int ret;
-
-    tr = sci_backtrace_create();
-
-    if (tr != NULL)
-    {
-
-        char s_func_buf[67];
-
-        const char *s_file;
-
-        const char *s_func;
-
-        const char *s_addr;
-
-        const char s_unknown[] = "?";
-
-        const char s_empty[] = "";
-        const char *s_prefix = s_empty;
-
-        size_t nbr = sci_backtrace_size(tr);
-
-        if (nbr > 0)
-        {
-            ret = snprintf(tmp, size, _("\nCall stack:\n"));
-            size -= ret;
-        }
-
-        for (ind = niv_debut; ind < nbr; ind++)
-        {
-
-            s_file = sci_backtrace_file(tr, ind);
-            s_func = sci_backtrace_function(tr, ind);
-            s_addr = sci_backtrace_address(tr, ind);
-
-            if (s_file == NULL)
-            {
-                s_file = s_unknown;
-            }
-            if (s_func == NULL)
-            {
-                strcpy(s_func_buf, "?");
-            }
-            else
-            {
-                s_func_buf[0] = '<';
-                strncpy(s_func_buf + 1, s_func, 64);
-                strcat(s_func_buf, ">");
-            }
-
-            if (s_addr == NULL)
-            {
-                s_addr = s_unknown;
-            }
-
-            ret = snprintf(tmp, size, "%s%4lu: %-16s %-32s (%s)\n", s_prefix, ind - niv_debut + 1, s_addr, s_func_buf, s_file);
-            size -= ret;
-        }
-
-        sci_backtrace_destroy(tr);
-
-        if (nbr > 0)
-        {
-            snprintf(tmp, size, _("End of stack\n\n"));
-        }
-    }
-
-    return strdup(print_buffer);
-
-}
 
 /*----------------------------------------------------------------------------
  * Handle a fatal signal (such as SIGFPE or SIGSEGV)
@@ -140,13 +54,15 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     int ret, i;
 
-    char print_buffer[1024];
+    char print_buffer[2048];
 
     int size = sizeof(print_buffer);
 
     char *tmp = print_buffer;
 
     char stacktrace_hostname[64];
+
+    const char * bt;
 
     gethostname(stacktrace_hostname, sizeof(stacktrace_hostname));
     stacktrace_hostname[sizeof(stacktrace_hostname) - 1] = '\0';
@@ -165,266 +81,276 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
-    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), strsignal(signum), signum);
+    /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
+    char* str;
+    if (signum == 11)
+    {
+        str = "Segmentation fault";
+    }
+    else
+    {
+        str = strsignal(signum);
+    }
+    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
 #else
     ret = snprintf(tmp, size, HOSTFORMAT "Signal: %d\n", stacktrace_hostname, getpid(), signum);
 #endif
-
+    tmp += ret;
     size -= ret;
 
     if (NULL != info)
     {
         switch (signum)
         {
-        case SIGILL:
-            switch (info->si_code)
-            {
+            case SIGILL:
+                switch (info->si_code)
+                {
 #ifdef ILL_ILLOPC
-            case ILL_ILLOPC:
-                si_code_str = "Illegal opcode";
-                break;
+                    case ILL_ILLOPC:
+                        si_code_str = "Illegal opcode";
+                        break;
 #endif
 #ifdef ILL_ILLOPN
-            case ILL_ILLOPN:
-                si_code_str = "Illegal operand";
-                break;
+                    case ILL_ILLOPN:
+                        si_code_str = "Illegal operand";
+                        break;
 #endif
 #ifdef ILL_ILLADR
-            case ILL_ILLADR:
-                si_code_str = "Illegal addressing mode";
-                break;
+                    case ILL_ILLADR:
+                        si_code_str = "Illegal addressing mode";
+                        break;
 #endif
 #ifdef ILL_ILLTRP
-            case ILL_ILLTRP:
-                si_code_str = "Illegal trap";
-                break;
+                    case ILL_ILLTRP:
+                        si_code_str = "Illegal trap";
+                        break;
 #endif
 #ifdef ILL_PRVOPC
-            case ILL_PRVOPC:
-                si_code_str = "Privileged opcode";
-                break;
+                    case ILL_PRVOPC:
+                        si_code_str = "Privileged opcode";
+                        break;
 #endif
 #ifdef ILL_PRVREG
-            case ILL_PRVREG:
-                si_code_str = "Privileged register";
-                break;
+                    case ILL_PRVREG:
+                        si_code_str = "Privileged register";
+                        break;
 #endif
 #ifdef ILL_COPROC
-            case ILL_COPROC:
-                si_code_str = "Coprocessor error";
-                break;
+                    case ILL_COPROC:
+                        si_code_str = "Coprocessor error";
+                        break;
 #endif
 #ifdef ILL_BADSTK
-            case ILL_BADSTK:
-                si_code_str = "Internal stack error";
-                break;
+                    case ILL_BADSTK:
+                        si_code_str = "Internal stack error";
+                        break;
 #endif
-            }
-            break;
-        case SIGFPE:
-            switch (info->si_code)
-            {
-#ifdef FPE_INTDIV
-            case FPE_INTDIV:
-                si_code_str = "Integer divide-by-zero";
+                }
                 break;
+            case SIGFPE:
+                switch (info->si_code)
+                {
+#ifdef FPE_INTDIV
+                    case FPE_INTDIV:
+                        si_code_str = "Integer divide-by-zero";
+                        break;
 #endif
 #ifdef FPE_INTOVF
-            case FPE_INTOVF:
-                si_code_str = "Integer overflow";
-                break;
+                    case FPE_INTOVF:
+                        si_code_str = "Integer overflow";
+                        break;
 #endif
-            case FPE_FLTDIV:
-                si_code_str = "Floating point divide-by-zero";
-                break;
-            case FPE_FLTOVF:
-                si_code_str = "Floating point overflow";
-                break;
-            case FPE_FLTUND:
-                si_code_str = "Floating point underflow";
-                break;
+                    case FPE_FLTDIV:
+                        si_code_str = "Floating point divide-by-zero";
+                        break;
+                    case FPE_FLTOVF:
+                        si_code_str = "Floating point overflow";
+                        break;
+                    case FPE_FLTUND:
+                        si_code_str = "Floating point underflow";
+                        break;
 #ifdef FPE_FLTRES
-            case FPE_FLTRES:
-                si_code_str = "Floating point inexact result";
-                break;
+                    case FPE_FLTRES:
+                        si_code_str = "Floating point inexact result";
+                        break;
 #endif
 #ifdef FBE_FLTINV
-            case FPE_FLTINV:
-                si_code_str = "Invalid floating point operation";
-                break;
+                    case FPE_FLTINV:
+                        si_code_str = "Invalid floating point operation";
+                        break;
 #endif
 #ifdef FPE_FLTSUB
-            case FPE_FLTSUB:
-                si_code_str = "Subscript out of range";
-                break;
+                    case FPE_FLTSUB:
+                        si_code_str = "Subscript out of range";
+                        break;
 #endif
-            }
-            break;
-        case SIGSEGV:
-            switch (info->si_code)
-            {
-#ifdef SEGV_MAPERR
-            case SEGV_MAPERR:
-                si_code_str = "Address not mapped";
+                }
                 break;
+            case SIGSEGV:
+                switch (info->si_code)
+                {
+#ifdef SEGV_MAPERR
+                    case SEGV_MAPERR:
+                        si_code_str = "Address not mapped";
+                        break;
 #endif
 #ifdef SEGV_ACCERR
-            case SEGV_ACCERR:
-                si_code_str = "Invalid permissions";
-                break;
+                    case SEGV_ACCERR:
+                        si_code_str = "Invalid permissions";
+                        break;
 #endif
-            }
-            break;
-        case SIGBUS:
-            switch (info->si_code)
-            {
-#ifdef BUS_ADRALN
-            case BUS_ADRALN:
-                si_code_str = "Invalid address alignment";
+                }
                 break;
+            case SIGBUS:
+                switch (info->si_code)
+                {
+#ifdef BUS_ADRALN
+                    case BUS_ADRALN:
+                        si_code_str = "Invalid address alignment";
+                        break;
 #endif
 #ifdef BUSADRERR
-            case BUS_ADRERR:
-                si_code_str = "Non-existent physical address";
-                break;
+                    case BUS_ADRERR:
+                        si_code_str = "Non-existent physical address";
+                        break;
 #endif
 #ifdef BUS_OBJERR
-            case BUS_OBJERR:
-                si_code_str = "Objet-specific hardware error";
-                break;
+                    case BUS_OBJERR:
+                        si_code_str = "Objet-specific hardware error";
+                        break;
 #endif
-            }
-            break;
-        case SIGTRAP:
-            switch (info->si_code)
-            {
-#ifdef TRAP_BRKPT
-            case TRAP_BRKPT:
-                si_code_str = "Process breakpoint";
+                }
                 break;
+            case SIGTRAP:
+                switch (info->si_code)
+                {
+#ifdef TRAP_BRKPT
+                    case TRAP_BRKPT:
+                        si_code_str = "Process breakpoint";
+                        break;
 #endif
 #ifdef TRAP_TRACE
-            case TRAP_TRACE:
-                si_code_str = "Process trace trap";
-                break;
+                    case TRAP_TRACE:
+                        si_code_str = "Process trace trap";
+                        break;
 #endif
-            }
-            break;
-        case SIGCHLD:
-            switch (info->si_code)
-            {
-#ifdef CLD_EXITED
-            case CLD_EXITED:
-                si_code_str = "Child has exited";
+                }
                 break;
+            case SIGCHLD:
+                switch (info->si_code)
+                {
+#ifdef CLD_EXITED
+                    case CLD_EXITED:
+                        si_code_str = "Child has exited";
+                        break;
 #endif
 #ifdef CLD_KILLED
-            case CLD_KILLED:
-                si_code_str = "Child has terminated abnormally and did not create a core file";
-                break;
+                    case CLD_KILLED:
+                        si_code_str = "Child has terminated abnormally and did not create a core file";
+                        break;
 #endif
 #ifdef CLD_DUMPED
-            case CLD_DUMPED:
-                si_code_str = "Child has terminated abnormally and created a core file";
-                break;
+                    case CLD_DUMPED:
+                        si_code_str = "Child has terminated abnormally and created a core file";
+                        break;
 #endif
 #ifdef CLD_WTRAPPED
-            case CLD_TRAPPED:
-                si_code_str = "Traced child has trapped";
-                break;
+                    case CLD_TRAPPED:
+                        si_code_str = "Traced child has trapped";
+                        break;
 #endif
 #ifdef CLD_STOPPED
-            case CLD_STOPPED:
-                si_code_str = "Child has stopped";
-                break;
+                    case CLD_STOPPED:
+                        si_code_str = "Child has stopped";
+                        break;
 #endif
 #ifdef CLD_CONTINUED
-            case CLD_CONTINUED:
-                si_code_str = "Stopped child has continued";
-                break;
+                    case CLD_CONTINUED:
+                        si_code_str = "Stopped child has continued";
+                        break;
 #endif
-            }
-            break;
-#ifdef SIGPOLL
-        case SIGPOLL:
-            switch (info->si_code)
-            {
-#ifdef POLL_IN
-            case POLL_IN:
-                si_code_str = "Data input available";
+                }
                 break;
+#ifdef SIGPOLL
+            case SIGPOLL:
+                switch (info->si_code)
+                {
+#ifdef POLL_IN
+                    case POLL_IN:
+                        si_code_str = "Data input available";
+                        break;
 #endif
 #ifdef POLL_OUT
-            case POLL_OUT:
-                si_code_str = "Output buffers available";
-                break;
+                    case POLL_OUT:
+                        si_code_str = "Output buffers available";
+                        break;
 #endif
 #ifdef POLL_MSG
-            case POLL_MSG:
-                si_code_str = "Input message available";
-                break;
+                    case POLL_MSG:
+                        si_code_str = "Input message available";
+                        break;
 #endif
 #ifdef POLL_ERR
-            case POLL_ERR:
-                si_code_str = "I/O error";
-                break;
+                    case POLL_ERR:
+                        si_code_str = "I/O error";
+                        break;
 #endif
 #ifdef POLL_PRI
-            case POLL_PRI:
-                si_code_str = "High priority input available";
-                break;
+                    case POLL_PRI:
+                        si_code_str = "High priority input available";
+                        break;
 #endif
 #ifdef POLL_HUP
-            case POLL_HUP:
-                si_code_str = "Device disconnected";
-                break;
+                    case POLL_HUP:
+                        si_code_str = "Device disconnected";
+                        break;
 #endif
-            }
-            break;
-#endif /* SIGPOLL */
-        default:
-            switch (info->si_code)
-            {
-#ifdef SI_ASYNCNL
-            case SI_ASYNCNL:
-                si_code_str = "SI_ASYNCNL";
+                }
                 break;
+#endif /* SIGPOLL */
+            default:
+                switch (info->si_code)
+                {
+#ifdef SI_ASYNCNL
+                    case SI_ASYNCNL:
+                        si_code_str = "SI_ASYNCNL";
+                        break;
 #endif
 #ifdef SI_SIGIO
-            case SI_SIGIO:
-                si_code_str = "Queued SIGIO";
-                break;
+                    case SI_SIGIO:
+                        si_code_str = "Queued SIGIO";
+                        break;
 #endif
 #ifdef SI_ASYNCIO
-            case SI_ASYNCIO:
-                si_code_str = "Asynchronous I/O request completed";
-                break;
+                    case SI_ASYNCIO:
+                        si_code_str = "Asynchronous I/O request completed";
+                        break;
 #endif
 #ifdef SI_MESGQ
-            case SI_MESGQ:
-                si_code_str = "Message queue state changed";
-                break;
+                    case SI_MESGQ:
+                        si_code_str = "Message queue state changed";
+                        break;
 #endif
-            case SI_TIMER:
-                si_code_str = "Timer expiration";
-                break;
-            case SI_QUEUE:
-                si_code_str = "Sigqueue() signal";
-                break;
-            case SI_USER:
-                si_code_str = "User function (kill, sigsend, abort, etc.)";
-                break;
+                    case SI_TIMER:
+                        si_code_str = "Timer expiration";
+                        break;
+                    case SI_QUEUE:
+                        si_code_str = "Sigqueue() signal";
+                        break;
+                    case SI_USER:
+                        si_code_str = "User function (kill, sigsend, abort, etc.)";
+                        break;
 #ifdef SI_KERNEL
-            case SI_KERNEL:
-                si_code_str = "Kernel signal";
-                break;
+                    case SI_KERNEL:
+                        si_code_str = "Kernel signal";
+                        break;
 #endif
 #ifdef SI_UNDEFINED
-            case SI_UNDEFINED:
-                si_code_str = "Undefined code";
-                break;
+                    case SI_UNDEFINED:
+                        si_code_str = "Undefined code";
+                        break;
 #endif
-            }
+                }
         }
 
         /* print signal errno information */
@@ -432,34 +358,36 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
         {
             ret = snprintf(tmp, size, HOSTFORMAT "Associated errno: %s (%d)\n",
                            stacktrace_hostname, getpid(), strerror(info->si_errno), info->si_errno);
+            tmp += ret;
             size -= ret;
         }
 
         ret = snprintf(tmp, size, HOSTFORMAT "Signal code: %s (%d)\n", stacktrace_hostname, getpid(), si_code_str, info->si_code);
+        tmp += ret;
         size -= ret;
 
         switch (signum)
         {
-        case SIGILL:
-        case SIGFPE:
-        case SIGSEGV:
-        case SIGBUS:
+            case SIGILL:
+            case SIGFPE:
+            case SIGSEGV:
+            case SIGBUS:
             {
-                snprintf(tmp, size, HOSTFORMAT "Failing at address: %p\n", stacktrace_hostname, getpid(), info->si_addr);
+                ret = snprintf(tmp, size, HOSTFORMAT "Failing at address: %p\n", stacktrace_hostname, getpid(), info->si_addr);
                 break;
             }
-        case SIGCHLD:
+            case SIGCHLD:
             {
                 snprintf(tmp, size, HOSTFORMAT "Sending PID: %d, Sending UID: %d, Status: %d\n",
                          stacktrace_hostname, getpid(), info->si_pid, info->si_uid, info->si_status);
                 break;
             }
 #ifdef SIGPOLL
-        case SIGPOLL:
+            case SIGPOLL:
             {
 #ifdef HAVE_SIGINFO_T_SI_FD
-                ret = snprintf(tmp, size, HOSTFORMAT "Band event: %ld, File Descriptor : %d\n",
-                               stacktrace_hostname, getpid(), info->si_band, info->si_fd);
+                snprintf(tmp, size, HOSTFORMAT "Band event: %ld, File Descriptor : %d\n",
+                         stacktrace_hostname, getpid(), info->si_band, info->si_fd);
 #elif HAVE_SIGINFO_T_SI_BAND
                 snprintf(tmp, size, HOSTFORMAT "Band event: %ld\n", stacktrace_hostname, getpid(), info->si_band);
 #endif
@@ -472,11 +400,15 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     {
         snprintf(tmp, size, HOSTFORMAT "siginfo is NULL, additional information unavailable\n", stacktrace_hostname, getpid());
     }
+
+    // 4 is to ignore the first 4 functions
+    bt = backtrace_print(4, 1);
     Scierror(42,
              _
-             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with the following\ninformation:\n%s %s\n"),
-             PACKAGE_BUGREPORT, print_buffer, backtrace_print(0));
+             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
+             PACKAGE_BUGREPORT, print_buffer, bt);
 
+    free(bt);
     longjmp(&jmp_env, 1);
 }
 
@@ -512,7 +444,8 @@ void base_error_init(void)
 #endif
     sigemptyset(&act.sa_mask);
 
-    int signals[] = {
+    int signals[] =
+    {
 #ifdef SIGABRT
         SIGABRT,
 #endif

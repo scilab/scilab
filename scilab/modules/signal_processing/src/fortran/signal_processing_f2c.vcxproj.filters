@@ -24,9 +24,6 @@
     <ClCompile Include="amell.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="belan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bounn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="chebc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cheby.c">
@@ -120,13 +114,7 @@
     <ClCompile Include="dgee01.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dpspln.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dsn2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dspln.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dsqrtc.c">
@@ -151,9 +139,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ino.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kaiser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="nstabl.c">
@@ -245,9 +230,6 @@
     <f2c_rule Include="amell.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="belan.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -261,9 +243,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="bounn.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="chebc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cheby.f">
@@ -341,13 +320,7 @@
     <f2c_rule Include="dgee01.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dpspln.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dsn2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dspln.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dsqrtc.f">
@@ -372,9 +345,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ino.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="kaiser.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="nstabl.f">
@@ -463,23 +433,24 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="signal_processing_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

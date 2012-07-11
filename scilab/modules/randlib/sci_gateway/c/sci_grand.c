@@ -20,10 +20,6 @@
 --------------------------------------------------------------------------*/
 #include <string.h>
 #include <math.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "MALLOC.h"
-#endif
 #include "localization.h"
 #include "stack-c.h"
 
@@ -53,7 +49,7 @@ static unsigned long int clcg4_with_gen(void)
 #define NbGenInScilab 6
 
 /*  pointers onto the generators func */
-unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urandc , fsultra};
+unsigned long int (*gen[NbGenInScilab])(void) = { randmt, kiss,  clcg4_with_gen, clcg2 , urandc , fsultra};
 
 /*  names at the scilab level */
 static char *names_gen[NbGenInScilab] = { "mt",  "kiss","clcg4", "clcg2", "urand", "fsultra" };

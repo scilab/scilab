@@ -2,7 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
@@ -12,10 +12,10 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "stripblanks.hxx"
-#include "MALLOC.h"
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "os_wcsdup.h"
 }
 
@@ -60,7 +60,7 @@ String * stripblanks(String *InputStrings, bool bWithTAB)
 
             if(iInputStartIndex <= iInputEndIndex)
             {
-                /*Get the substring without tabs*/ 
+                /*Get the substring without tabs*/
                 wchar_t* pstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex + 1 );
                 /*To add the substring into the output matrix*/
                 pOutputStrings->set(x, pstReplace);

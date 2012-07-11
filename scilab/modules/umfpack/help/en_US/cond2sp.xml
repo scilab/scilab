@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cond2sp">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>cond2sp</refname>
     <refpurpose> computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix  </refpurpose>
@@ -122,6 +119,11 @@ B = A - l0*speye(A)
       For instance, applied 5 such iterations for <literal>(lm,vm)</literal> is done with :
     </para>
     <programlisting role="example"><![CDATA[ 
+
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+[K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
+taucs_chdel(C_ptr)
 l0 = lm ; v0 = vm;  // or l0 = lM ; v0 = vM;  // to polish (lM,vM)
 B = A - l0*speye(A);
 LUp = umf_lufact(B);

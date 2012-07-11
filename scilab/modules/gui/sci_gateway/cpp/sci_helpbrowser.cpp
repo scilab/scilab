@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "loadOnUseClassPath.h"
 #include "CallHelpBrowser.h"
 #include "Scierror.h"

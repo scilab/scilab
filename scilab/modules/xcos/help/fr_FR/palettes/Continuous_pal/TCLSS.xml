@@ -65,6 +65,11 @@
               <xref linkend="Computationalfunction_TCLSS">Fonction de calcul</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_TCLSS">Exemple</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -265,5 +270,17 @@
         <para> SCI/modules/scicos_blocks/src/c/tcslti4.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_TCLSS">
+    <title>Exemple</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TCLSS_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/TCLSS_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

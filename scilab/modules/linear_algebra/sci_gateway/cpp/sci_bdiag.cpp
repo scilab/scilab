@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "core_math.h" /* for Abs  macro */
@@ -53,14 +54,14 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     if(in[0]->isDouble() == false)
     {
         ScierrorW(201, _W("%ls: Wrong type for argument %d: Real or complex matrix expected.\n"), L"bdiag", 1);
-        return types::Function::Error;     
+        return types::Function::Error;
     }
 
     pDblMatrix = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
     if(pDblMatrix->getRows() != pDblMatrix->getCols())
     {
 		ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"bdiag", 1);
-        return types::Function::Error;      
+        return types::Function::Error;
     }
 
     if(in.size() == 2)
@@ -68,7 +69,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
         if(in[1]->isDouble() == false && in[1]->getAs<types::Double>()->isScalar() == false)
         {
             ScierrorW(999, _W("%ls: Wrong type for argument %d: A scalar expected.\n"), L"bdiag", 2);
-            return types::Function::Error;     
+            return types::Function::Error;
         }
 
         pDblScalar = in[1]->getAs<types::Double>();
@@ -87,11 +88,11 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     int const totalSize = pDblMatrix->getSize();
 
     if( C2F(vfinite)(&totalSize, pDblMatrix->getReal()) == false &&
-        (pDblMatrix->isComplex() == false || 
+        (pDblMatrix->isComplex() == false ||
          C2F(vfinite)(&totalSize, pDblMatrix->getImg())))
     {
 		ScierrorW(264, _W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"bdiag", 1);
-        return types::Function::Error;   
+        return types::Function::Error;
     }
 
     if(pDblScalar != NULL)
@@ -124,7 +125,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     if((le && lib && lw) == false)
     {
 		ScierrorW(999, _W("%ls: Allocation failed.\n"), L"bdiag");
-        return types::Function::Error;   
+        return types::Function::Error;
     }
 
     if(pDblMatrix->isComplex())
@@ -144,7 +145,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
         FREE(lib);
         FREE(lw);
 		ScierrorW(24, _W("%ls: Non convergence in QR steps.\n"), L"bdiag");
-        return types::Function::Error;   
+        return types::Function::Error;
     }
     else
     {

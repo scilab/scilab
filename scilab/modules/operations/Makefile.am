@@ -36,13 +36,15 @@ libscioperations_la_CFLAGS = \
 
 libscioperations_la_CXXFLAGS = \
     -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/modules/types/includes \
     -I$(top_srcdir)/modules/symbol/includes \
     -I$(top_srcdir)/modules/ast/includes \
     -I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/elementary_functions/includes \
-    $(EIGEN_CPPFLAGS)
+    $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
 

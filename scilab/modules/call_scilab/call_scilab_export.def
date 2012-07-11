@@ -17,4 +17,6 @@ EXPORTS
 	Call_ScilabOpen
 	getVariableType
 	setCallScilabEngineState
+	getLastErrorMessageSingle 
+	getLastErrorValue
 ; --------------------------------------- 

@@ -94,13 +94,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="createGUID.h">
+    <ClInclude Include="..\..\includes\FocusOnConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\ConvertSlash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_windows_tools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FindFileAssociation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\FocusOnConsole.h">
@@ -109,22 +109,34 @@
     <ClInclude Include="..\..\includes\gw_windows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="httpdownloadfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\InitializeWindows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="registry.h">
+    <ClInclude Include="..\..\includes\MutexClosingScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\TerminateWindows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WinConsole.h">
+    <ClInclude Include="..\..\includes\windows_tools_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\windows_tools_gw.hxx">
+    <ClInclude Include="createGUID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FindFileAssociation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="httpdownloadfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="winopen.h">
@@ -135,7 +147,7 @@
     <None Include="Call_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="localization_Import.def">

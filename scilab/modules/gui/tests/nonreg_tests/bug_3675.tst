@@ -16,6 +16,8 @@
 // <-- Short Description -->
 //    Scilab 5.0.2 has issues when saving/loading gui (uicontrols,figure...)
 
+warning("off");
+
 f=figure();
 
 h = uicontrol(f,"style","listbox", ..

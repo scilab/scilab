@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // =============================================================================
 curprompt = prompt();
 if curprompt <> ascii([45.    45.    62.]) then pause,end

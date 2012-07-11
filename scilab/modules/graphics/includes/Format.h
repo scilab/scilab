@@ -43,31 +43,31 @@ GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *
 /**
  * @TODO add comment
  *
- * @param pobj  
+ * @param pobjUID
  * @param c_format  
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeC_format( sciPointObj * pobj, char * c_format ) ;
+GRAPHICS_IMPEXP int ComputeC_format( char * pobjUID, char * c_format ) ;
 
 /**
  * @TODO add comment
  *
- * @param pobj  
+ * @param pobjUID
  * @param xy_type   
  * @param vector    
  * @param N 
  * @param checkdim  
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim ) ;
+GRAPHICS_IMPEXP int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim ) ;
 
 /**
  * @TODO add comment
  *
- * @param pobj  
+ * @param pobjUID
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj ) ;
+GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels( char * pobjUID ) ;
 
 /**
  * @TODO add comment

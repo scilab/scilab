@@ -9,14 +9,12 @@ src/cpp/checkodeerror.cpp \
 src/cpp/differentialequationfunctions.cpp
 
 
-DIFFERENTIAL_EQUATIONS_C_SOURCES = \
-src/c/dassl.c \
+DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
 src/c/feval.c \
 src/c/arnol.c \
 src/c/rk4.c
 
-DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
-src/fortran/rscar1.f \
+DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/bcomp.f \
 src/fortran/lcomp.f \
 src/fortran/loren.f \
@@ -49,7 +47,6 @@ src/fortran/greatr.f \
 src/fortran/hpdel.f \
 src/fortran/hpins.f \
 src/fortran/svcar1.f \
-src/fortran/daux.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
@@ -97,32 +94,25 @@ sci_gateway/cpp/sci_impl.cpp \
 sci_gateway/cpp/sci_dassl.cpp \
 sci_gateway/cpp/sci_dasrt.cpp
 
-libscidifferential_equations_la_CFLAGS= \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes
-
-libscidifferential_equations_la_CPPFLAGS= \
--I$(srcdir)/includes/ \
+libscidifferential_equations_la_CPPFLAGS= -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/threads/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
--I$(top_srcdir)/modules/types/includes \
-$(EIGEN_CPPFLAGS)
-
+-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidifferential_equations.la
@@ -132,16 +122,14 @@ noinst_LTLIBRARIES = libscidifferential_equations-algo.la libscidifferential_equ
 endif
 
 
-libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
 libscidifferential_equations_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_CFLAGS)
 libscidifferential_equations_algo_la_CPPFLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
-INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la
 

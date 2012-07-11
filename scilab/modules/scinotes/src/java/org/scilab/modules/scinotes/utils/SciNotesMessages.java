@@ -227,6 +227,9 @@ public class SciNotesMessages {
     public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
     public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
 
+    public static final String AUTOSAVE_ERROR = Messages.gettext("Cannot save the file %s... stop the backup process");
+    public static final String AUTOSAVE_FINISHED = Messages.gettext("Backup finished...");
+
     /**
      * "Change Colors" message
      */

@@ -18,7 +18,9 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.helptools.external.HTMLMathMLHandler;
+import org.scilab.modules.helptools.external.HTMLScilabHandler;
 import org.scilab.modules.helptools.external.HTMLSVGHandler;
+import org.scilab.modules.helptools.image.ScilabImageConverter;
 
 /**
  * Class to convert DocBook to HTML
@@ -90,6 +92,7 @@ public final class SciDocMain {
         scimacro = conf.getMacros();
         version = conf.getVersion();
         imagedir = ".";//the path must be relative to outputDirectory
+        String fileToExec = null;
 
         if (!new File(sourceDoc).isFile()) {
             System.err.println("Could not find master document: " + sourceDoc);
@@ -118,9 +121,13 @@ public final class SciDocMain {
                 }
             }
 
-            converter.registerExternalXMLHandler(new HTMLMathMLHandler(outputDirectory, imagedir));
-            converter.registerExternalXMLHandler(new HTMLSVGHandler(outputDirectory, imagedir));
+            converter.registerExternalXMLHandler(HTMLMathMLHandler.getInstance(outputDirectory, imagedir));
+            converter.registerExternalXMLHandler(HTMLSVGHandler.getInstance(outputDirectory, imagedir));
+            converter.registerExternalXMLHandler(HTMLScilabHandler.getInstance(outputDirectory, imagedir));
             converter.convert();
+
+            fileToExec = ScilabImageConverter.getInstance().getFileWithScilabCode();
+
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
@@ -148,7 +155,9 @@ public final class SciDocMain {
                     }
                     ScilabCommonsUtils.copyFile(homepageImage, new File(outputDirectory + "/ban_en_US.png"));
                 }
-                BuildJavaHelp.buildJavaHelp(outputDirectory, language);
+                if (fileToExec == null) {
+                    generateJavahelp(outputDirectory, language);
+                }
             }
 
         } catch (Exception e) {
@@ -156,6 +165,10 @@ public final class SciDocMain {
             e.printStackTrace();
         }
 
-        return outputDirectory;
+        return fileToExec;
+    }
+
+    public static void generateJavahelp(String outputDirectory, String language) {
+        BuildJavaHelp.buildJavaHelp(outputDirectory, language);
     }
 }

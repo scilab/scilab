@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,85 +29,124 @@
 #include "Format.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_xtics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL status = FALSE;
+    int N = 0;
+    double * vector = NULL;
+    char c_format[5];
+    int iXNumberTicks = 0;
+    int* piXNumberTicks = &iXNumberTicks;
+    char** stringVector = NULL;
+    double* coordsVector = NULL;
+    int iTicksStyle = 0;
+    int* piTicksStyle = &iTicksStyle;
+    char ticksStyle = 0;
 
-  int N = 0;
-  double * vector = NULL;
-  char c_format[5];
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "xtics_coord");
-    return SET_PROPERTY_ERROR ;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_AXES )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
-  if ( sciGetEntityType(pobj) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( nbRow != 1 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( nbRow != 1 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "xtics_coord");
-    return SET_PROPERTY_ERROR ;
-  }
+    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&piXNumberTicks);
 
-  if ( pAXES_FEATURE(pobj)->nx == 1 && nbCol != 1 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "xtics_coord");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (piXNumberTicks == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "xtics_coord", 2);
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( iXNumberTicks == 1 && nbCol != 1 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
 
-  /* what follows remains here as it was */
+    if ( iXNumberTicks != 1 && nbCol == 1 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "xtics_coord", 2);
+        return SET_PROPERTY_ERROR;
+    }
 
-  pAXES_FEATURE(pobj)->nx = nbCol ;
+    /* what follows remains here as it was */
+    coordsVector = createCopyDoubleVectorFromStack( stackPointer, nbCol );
 
-  FREE(pAXES_FEATURE(pobj)->vx); pAXES_FEATURE(pobj)->vx = NULL;
+    status = setGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, coordsVector, jni_double_vector, nbCol);
 
-  pAXES_FEATURE(pobj)->vx = createCopyDoubleVectorFromStack( stackPointer, nbCol ) ;
+    if (status == FALSE)
+    {
+        FREE(coordsVector);
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
+        return SET_PROPERTY_ERROR;
+    }
 
+    FREE(coordsVector);
 
-  if (ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 ) != 0)
-	{
-		/* Somthing wrong happened */
-		FREE( vector ) ;
-		return -1;
-	}
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
-  if (ComputeC_format( pobj, c_format ) != 0)
-	{
-		/* Somthing wrong happened */
-		FREE( vector ) ;
-		return -1;
-	}
+    if (iTicksStyle == 0)
+    {
+        ticksStyle = 'v';
+    }
+    else if (iTicksStyle == 1)
+    {
+        ticksStyle = 'r';
+    }
+    else if (iTicksStyle == 2)
+    {
+        ticksStyle = 'i';
+    }
 
-  if( pAXES_FEATURE(pobj)->str != NULL )
-  {
-    destroyStringArray( pAXES_FEATURE(pobj)->str, pAXES_FEATURE(pobj)->nb_tics_labels ) ;
-  }
+    if (ComputeXIntervals( pobjUID, ticksStyle, &vector, &N, 0 ) != 0)
+    {
+        /* Something wrong happened */
+        FREE( vector );
+        return -1;
+    }
 
-  pAXES_FEATURE (pobj)->nb_tics_labels = N;
-  pAXES_FEATURE(pobj)->str = copyFormatedArray( vector, N, c_format, 256 ) ;
+    if (ComputeC_format( pobjUID, c_format ) != 0)
+    {
+        /* Something wrong happened */
+        FREE( vector );
+        return -1;
+    }
 
+    stringVector = copyFormatedArray( vector, N, c_format, 256 );
 
-  FREE( vector ) ;
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
 
-  if ( pAXES_FEATURE(pobj)->str == NULL )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"set_xtics_coord_property");
-    return SET_PROPERTY_ERROR ;
-  }
+    FREE( vector );
 
-  return SET_PROPERTY_SUCCEED ;
+    destroyStringArray(stringVector, N);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
 }
 /*------------------------------------------------------------------------*/

@@ -9,17 +9,18 @@ libscidoublylinkedlist_la_includedir=$(pkgincludedir)
 
 libscidoublylinkedlist_la_include_HEADERS = includes/DoublyLinkedList.h
 
-libscidoublylinkedlist_la_CFLAGS= -I$(srcdir)/src/ -I$(srcdir)/includes/
+libscidoublylinkedlist_la_CPPFLAGS= -I$(srcdir)/src/ \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
-
-libscidoublylinkedlist_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidoublylinkedlist_la_SOURCES = $(DOUBLYLINKEDLIST_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(DOUBLYLINKEDLIST_C_SOURCES)
-INCLUDE_FLAGS = $(libscidoublylinkedlist_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidoublylinkedlist_la_CPPFLAGS)
 
 libscidoublylinkedlist_la_LIBADD = 
 

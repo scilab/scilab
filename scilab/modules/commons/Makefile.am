@@ -22,10 +22,7 @@ libscicommons_la_root_DATA =  license.txt
 libscicommons_la_etcdir = $(mydatadir)/etc
 libscicommons_la_etc_DATA = \
 	etc/commons.quit \
-	etc/commons.start \
-	etc/XConfiguration-general.xsl
-
-include $(top_srcdir)/Makefile.incl.am
+	etc/commons.start
 
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \
@@ -38,13 +35,14 @@ endif
 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
-libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
+libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/
+			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			$(AM_CPPFLAGS)
 
-libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) -Isrc/jni/
-
-libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
 
@@ -54,27 +52,25 @@ if GUI
 pkglib_LTLIBRARIES += libscicommons.la 
 endif
 
-libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(COMMONS_C_SOURCES)
-INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicommons_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabCommons.i
+SWIG_WRAPPERS = src/jni/ScilabCommons.i \
+                src/jni/CommonFileUtils.i
 
-BUILT_SOURCES =
+BUILT_SOURCES=
 if SWIG
-BUILT_SOURCES += swig
+BUILT_SOURCES+=swig
 endif
-
 if GIWS
-BUILT_SOURCES += giws-exception
+BUILT_SOURCES+=giws-exception
 endif
-
 
 #### commons : gateway declaration ####
 libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -83,3 +79,5 @@ libscicommons_la_sci_gateway_DATA =
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

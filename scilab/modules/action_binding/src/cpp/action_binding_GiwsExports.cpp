@@ -11,6 +11,7 @@
 */
 
 #include "action_binding_GiwsExports.hxx"
+#include "Signal.hxx"
 
 using namespace org_scilab_modules_action_binding_utils;
 void Signal_notify(JavaVM * jvm_, char * ID)

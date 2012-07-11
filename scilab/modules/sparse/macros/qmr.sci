@@ -10,7 +10,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-// [x, flag, err, iter, res] = qmr( A, Ap, b, x, M1, M2, max_it, tol )
+// [x, flag, err, iter, res] = qmr( A, Ap, b, x, M1, M1p, M2, M2p, max_it, tol )
 //
 // QMR solves the linear system Ax=b using the 
 // Quasi Minimal Residual method with preconditioning.
@@ -70,225 +70,233 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   case 13 then
     cpt=0;
   else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"qmr",1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d : A real or complex matrix or a sparse matrix or a function expected.\n"),"qmr",1));
   end
 
   // If A is a matrix (dense or sparse)
   if (cpt==1),
-    if (size(A,1) ~= size(A,2)),
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",1));
-    end
-    deff('y=matvec(x)','y=A*x');
-    deff('y=matvecp(x)','y=A''*x');
-    fct=0;
+      if (size(A,1) ~= size(A,2)),
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",1));
+      end
+      fct=0;
+      cptmat = 1;
   end
 
   // If A is a function
   if (cpt==0),
-    if (rhs == 1),
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",1,"A"));
-    end
-    matvec=A;
-    fct=1;
-  end
-  if (rhs >= 2 & fct==1 ),
-    matvecp=varargin(1);
-    if ( type(matvecp) ~= 13 ),
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"),"qmr",2,"A"));
-    end
+      fct = 0;
+      if (rhs >= 2 & fct==0 ),
+          funcorvec=varargin(1);
+          if ((type(funcorvec) ~= 13) & (type(funcorvec) ~=1)),
+              error(msprintf(gettext("%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"),"qmr",2,"A"));
+          // if the following input argument is a matrix
+          elseif (type(funcorvec) == 1) then
+              matvec = A;
+              cptmat = 1;
+          // if the following input argument is a function
+          else
+              matvec = A;
+              matvecp = funcorvec;
+              cptmat = 2;
+              fct = 1;
+              warning(msprintf(gettext("%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more details.\n"),"qmr"));
+          end
+      end
   end
 
   // Parsing right hand side b
   if ( rhs >= fct+2 ),
-    b=varargin(fct+1);
-    if ( size(b,2) ~= 1),
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",3));
-    end
-  else 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Vector expected.\n"),"qmr",3));
+      b=varargin(fct+1);
+      if ( size(b,2) ~= 1),
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",fct+2));
+      end
   end
 
   // Parsing initial vector x
   if ( rhs >= fct+3),
-    x=varargin(fct+2);
-    if (size(x,2) ~= 1),
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",4));
-    end
-    if ( size(x,1) ~= size(b,1)),
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",4,3));
-    end
+      x=varargin(fct+2);
+      if (size(x,2) ~= 1),
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",fct+3));
+      end
+      if ( size(x,1) ~= size(b,1)),
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",fct+3,fct+2));
+      end
+  // By default
   else
-    x=zeros(size(b,1),1);
+      x=zeros(size(b,1),1);
   end
 
   //--------------------------------------------------------
   // Parsing of the preconditioner matrix M1
   //--------------------------------------------------------
-
   if (rhs >=fct+4),
-    Prec_g=varargin(fct+3);
-    select type(Prec_g)
-    case 1 then
-      cpt=1;
-    case 5 then
-      cpt=1;
-    case 13 then
-      cpt=0;
-    end 
-    if ( cpt==1 ),
-	  if (size(Prec_g,1) ~= size(Prec_g,2)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",5));
-      end 
-      if (size(Prec_g,1)~=size(b,1)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",5,3));
-      end 
-      deff('y=precond_g(x)','y=Prec_g \ x');
-      deff('y=precondp_g(x)','y=Prec_g'' \ x');
-    end
-    if ( cpt==0 ),
-      if ( rhs >= fct+5 ),
-	Precp_g=varargin(fct+4);
-	select type(Precp_g)
-	case 1 then
-	  cpt1=1;
-	case 5 then
-	  cpt1=1;
-	case 13 then
-	  cpt1=0;
-	end 
-	if ( cpt1==0 ),
-	  precond_g=Prec_g;
-	  precondp_g=Precp_g;
-	  fct=fct+1;
-	else
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",5,"M1"));
-	end
+      Prec_g=varargin(fct+3);
+      select type(Prec_g)
+      case 1 then
+          cpt=1;
+      case 5 then
+          cpt=1;
+      case 13 then
+          cpt=0;
+      end
+       
+        // if M1 is a matrix
+        if ( cpt==1 ),
+            if (size(Prec_g,1) ~= size(Prec_g,2)),
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",fct+4));
+            end
+            if (size(Prec_g,1)~=size(b,1)),
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",fct+4,fct+2));
+            end
+            cptmatM1 = 1;
+        end
+        
+        // if M1 is a function
+        if ( cpt==0 ),
+            precond_g = Prec_g;
+            cptmatM1 = 1;
+            if ( rhs >= fct+5 & size(getfield(1,macrovar(precond_g)),"*") == 1),
+                Precp_g = varargin(fct+4);
+                if (type(Precp_g) == 13 & size(getfield(1,macrovar(Precp_g)),"*")==1) then
+                    precond_g = Prec_g;
+                    precondp_g = Precp_g;
+                    cptmatM1 = 2;
+                    fct = fct+1;
+                    warning(msprintf(gettext("%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for more details.\n"),"qmr"));
+                end
+            end
+        end
+  // By default
   else
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",5,"M1"));
+      deff('y=precond_g(x)','y=x');
+      deff('y=precondp_g(x)','y=x');
+      cptmatM1 = 2;
   end
-    end
-  else
-    deff('y=precond_g(x)','y=x');
-    deff('y=precondp_g(x)','y=x');
-  end  
   
   //--------------------------------------------------------
-  // Parsing of the preconditioner matrix M1
+  // Parsing of the preconditioner matrix M2
   //--------------------------------------------------------
-
   if (rhs >=fct+5),
-    Prec_d=varargin(fct+4);
-    select type(Prec_d)
-    case 1 then
-      cpt=1;
-    case 5 then
-      cpt=1;
-    case 13 then
-      cpt=0;
-    end 
-    if ( cpt==1 ),
-      if (size(Prec_d,1) ~= size(Prec_d,2)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",6));
-      end 
-      if (size(Prec_d,1)~=size(b,1)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",6,3));
-      end 
-      deff('y=precond_d(x)','y=Prec_d \ x');
-      deff('y=precondp_d(x)','y=Prec_d'' \ x');
-    end
-    if ( cpt==0 ),
-      if ( rhs >= fct+6 ),
-	Precp_d=varargin(fct+5);
-	select type(Precp_d)
-	case 1 then
-	  cpt1=1;
-	case 5 then
-	  cpt1=1;
-	case 13 then
-	  cpt1=0;
-	end 
-	if ( cpt1==0 ),
-	  precond_d=Prec_d;
-	  precondp_d=Precp_d;
-	  fct=fct+1;
-	else
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",6,"M2"));
-
-	end
-  else
-		  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",6,"M2"));
+      Prec_d=varargin(fct+4);
+      select type(Prec_d)
+      case 1 then
+          cpt=1;
+      case 5 then
+          cpt=1;
+      case 13 then
+         cpt=0;
+     end
+      
+      // M2 matrix
+      if ( cpt==1 ),
+          if (size(Prec_d,1) ~= size(Prec_d,2)),
+              error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",fct+5));
+          end
+          if (size(Prec_d,1)~=size(b,1)),
+              error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",fct+5,fct+2));
+          end
+          cptmatM2 = 1;
       end
-    end
-    
+      
+      // M2 function
+      if ( cpt==0 )
+          precond_d = Prec_d;
+          cptmatM2 = 1;
+          if ( rhs >= fct+6 & size(getfield(1,macrovar(precond_d)),"*") == 1),
+              Precp_d=varargin(fct+5);
+              if (type(Precp_d) == 13 & size(getfield(1,macrovar(Precp_d)),"*") == 1) then
+                  precond_d = Prec_d;
+                  precondp_d = Precp_d;
+                  cptmatM2 = 2;
+                  fct = fct+1;
+                  warning(msprintf(gettext("%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for more details.\n"),"qmr"));
+              end
+          end
+      end
+  // By default
   else
-    deff('y=precond_d(x)','y=x');
-    deff('y=precondp_d(x)','y=x');
+      deff('y=precond_d(x)','y=x');
+      deff('y=precondp_d(x)','y=x');
+      cptmatM2 = 2;
   end
 
   //--------------------------------------------------------
   // Parsing of the maximum number of iterations max_it
   //--------------------------------------------------------
-
   if (rhs >= fct+6),
-    max_it=varargin(fct+5);
-    if (size(max_it,1) ~= 1 | size(max_it,2) ~=1),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",7));
+      max_it=varargin(fct+5);
+      if (size(max_it,1) ~= 1 | size(max_it,2) ~=1),
 
-    end 
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",fct+6));
+      end
+  // By default
   else
-    max_it=size(b,1);
+      max_it=size(b,1);
   end
 
   //--------------------------------------------------------
   // Parsing of the error tolerance tol
   //--------------------------------------------------------
-
   if (rhs == fct+7),
-    tol=varargin(fct+6);
-    if (size(tol,1) ~= 1 | size(tol,2) ~=1),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",8));
-	  
-    end
+      tol=varargin(fct+6);
+      if (size(tol,1) ~= 1 | size(tol,2) ~=1),
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",fct+7));
+      end
+  // By default
   else
-    tol=1000*%eps;
+      tol=1000*%eps;
   end
 
   //--------------------------------------------------------
   // test about input arguments number
   //--------------------------------------------------------
-
-  if (rhs > fct+8),
-	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"qmr",2,8));
+  if (rhs > fct+7),
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"qmr",2,fct+7));
   end
 
   // ------------
   // Computations
   // ------------
 
-  // initialization
+// initialization
   i = 0;
   flag = 0;
   bnrm2 = norm( b );
   if  (bnrm2 == 0.0), 
-    bnrm2 = 1.0; 
+      bnrm2 = 1.0; 
   end
 
-  //   r = b - A*x;
-  r = b - matvec(x);
+//   r = b - A*x;
+  if (cptmat == 1) then
+      r = b - matvec(x,"notransp");
+  elseif (cptmat==2) then
+      r = b - matvec(x);
+  end
+
   err = norm( r ) / bnrm2;
   res = err;
   if ( err < tol ), return; end
 
-  // [M1,M2] = lu( M );
-
+// [M1,M2] = lu( M );
   v_tld = r;
-  // y = M1 \ v_tld;
-  y = precond_g(v_tld)
+  
+// y = M1 \ v_tld;
+  if (cptmatM1 == 1) then
+      y = precond_g(v_tld,"notransp");
+  elseif (cptmatM1==2) then
+      y = precond_g(v_tld);
+  end
+
   rho = norm( y );
 
   w_tld = r;
-  //   z = M2' \ w_tld;
-  z = precondp_d(w_tld);
+//   z = M2' \ w_tld;
+  if (cptmatM2 == 1) then
+      z = precond_d(w_tld,"transp");
+  elseif (cptmatM2 == 2) then
+      z = precondp_d(w_tld);
+  end
+
   xi = norm( z );
 
   gam =  1.0;
@@ -296,81 +304,103 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   theta =  0.0;
 
   for i = 1:max_it,                      // begin iteration
+      if ( rho == 0.0 | xi == 0.0 ), iter=i; break; end
+      v = v_tld / rho;
+      y = y / rho;
+      
+      w = w_tld / xi;
+      z = z / xi;
+      
+      delta = z'*y;
+      if ( delta == 0.0 ), iter=i; break; end
+      
+      //    y_tld = M2 \ y;
+      if (cptmatM2 == 1) then
+          y_tld = precond_d(y,"notransp");
+      elseif (cptmatM2 == 2) then
+          y_tld = precondp_d(y);
+      end
 
-    if ( rho == 0.0 | xi == 0.0 ), iter=i; break; end
+      //    z_tld = M1'\ z;
+      if (cptmatM1 == 1) then
+          z_tld = precond_g(z,"transp");
+      elseif (cptmatM1 == 2) then
+          z_tld = precondp_g(z);
+      end
 
-    v = v_tld / rho;
-    y = y / rho;
-
-    w = w_tld / xi;
-    z = z / xi;
-
-    delta = z'*y;
-    if ( delta == 0.0 ), iter=i; break; end
-
-    //    y_tld = M2 \ y;
-    y_tld = precond_d(y);
-    //    z_tld = M1'\ z;
-    z_tld = precondp_g(z);
-
-    if ( i > 1 ),                       // direction vector 
-      p = y_tld - ( xi*delta / ep )*p;
-      q = z_tld - ( rho*delta / ep )*q;
-    else
-      p = y_tld;
-      q = z_tld;
-    end
-
-    //    p_tld = A*p;
-    p_tld = matvec(p);
-
-    ep = q'*p_tld;
-    if ( ep == 0.0 ), iter=i; break; end
-
-    Beta = ep / delta;
-    if ( Beta == 0.0 ), iter=i; break; end
-
-    v_tld = p_tld - Beta*v;
-    //    y =  M1 \ v_tld;
-    y = precond_g(v_tld);
+      if ( i > 1 ),                       // direction vector 
+          p = y_tld - ( xi*delta / ep )*p;
+          q = z_tld - ( rho*delta / ep )*q;
+      else
+          p = y_tld;
+          q = z_tld;
+      end
+      
+      //    p_tld = A*p;
+      if (cptmat == 1) then
+          p_tld = matvec(p,"notransp");
+      elseif (cptmat == 2) then
+          p_tld = matvec(p);
+      end
     
-    rho_1 = rho;
-    rho = norm( y );
-    //    w_tld = ( A'*q ) - ( Beta*w );
-    w_tld = ( matvecp(q) ) - ( Beta*w );
-    //    z =  M2' \ w_tld;
-    z =  precondp_d(w_tld);
+      ep = q'*p_tld;
+      if ( ep == 0.0 ), iter=i; break; end
+      
+      Beta = ep / delta;
+      if ( Beta == 0.0 ), iter=i; break; end
+      
+      v_tld = p_tld - Beta*v;
+      
+      //    y =  M1 \ v_tld;
+      if (cptmatM1 == 1) then
+          y = precond_g(v_tld,"notransp");
+      elseif (cptmatM1==2) then
+          y = precond_g(v_tld);
+      end
+      
+      rho_1 = rho;
+      rho = norm( y );
+      
+      //    w_tld = ( A'*q ) - ( Beta*w );
+      if (cptmat == 1) then
+          w_tld = ( matvec(q,"transp") ) - ( Beta*w );
+      elseif (cptmat == 2) then
+          w_tld = ( matvecp(q) ) - ( Beta*w );
+      end
+      
+      //    z =  M2' \ w_tld;
+      if (cptmatM2 == 1) then
+          z = precond_d(w_tld,"transp");
+      elseif (cptmatM2 == 2) then
+          z = precondp_d(w_tld);
+      end
+      
+      xi = norm( z );
+      gamma_1 = gam;
+      theta_1 = theta;
+      theta = rho / ( gamma_1*Beta );
+      gam = 1.0 / sqrt( 1.0 + (theta^2) );
+      if ( gam == 0.0 ), iter=i; break; end
+      
+      eta = -eta*rho_1*(gam^2) / ( Beta*(gamma_1^2) );
+      
+      if ( i > 1 ),                         // compute adjustment
+          d = eta*p + (( theta_1*gam )^2)*d;
+          s = eta*p_tld + (( theta_1*gam )^2)*s;
+      else
+          d = eta*p;
+          s = eta*p_tld;
+      end
+      x = x + d;                               // update approximation
 
-    xi = norm( z );
-
-    gamma_1 = gam;
-    theta_1 = theta;
-
-    theta = rho / ( gamma_1*Beta );
-    gam = 1.0 / sqrt( 1.0 + (theta^2) );
-    if ( gam == 0.0 ), iter=i; break; end
-
-    eta = -eta*rho_1*(gam^2) / ( Beta*(gamma_1^2) );
-
-    if ( i > 1 ),                         // compute adjustment
-      d = eta*p + (( theta_1*gam )^2)*d;
-      s = eta*p_tld + (( theta_1*gam )^2)*s;
-    else
-      d = eta*p;
-      s = eta*p_tld;
-    end
-
-    x = x + d;                               // update approximation
-
-    r = r - s;                               // update residual
-    err = norm( r ) / bnrm2;               // check convergence
-    res = [res;err];
+      r = r - s;                               // update residual
+      err = norm( r ) / bnrm2;               // check convergence
+      res = [res;err];
     
-    if ( err <= tol ), iter=i; break; end
+      if ( err <= tol ), iter=i; break; end
 
-    if ( i == max_it ), iter=i; end
-    
-  end
+      if ( i == max_it ), iter=i; end
+end
 
   if ( err <= tol ),                        // converged
     flag =  0;
@@ -391,3 +421,28 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   end
 
 endfunction
+
+function y = matvec(x,t)
+    if (t=="notransp") then
+        y = A*x;
+    elseif (t=="transp") then
+        y = A'*x;
+    end
+endfunction
+
+function y = precond_g(x,t)
+    if (t=="notransp") then
+        y = Prec_g*x;
+    elseif (t=="transp") then
+        y = Prec_g'*x;
+    end
+endfunction
+
+function y = precond_d(x,t)
+    if (t=="notransp") then
+        y = Prec_d*x;
+    elseif (t=="transp") then
+        y = Prec_d'*x;
+    end
+endfunction
+

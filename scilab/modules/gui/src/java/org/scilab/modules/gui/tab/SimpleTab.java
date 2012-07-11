@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +17,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -25,6 +26,8 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -151,6 +154,22 @@ public interface SimpleTab {
      */
     void removeMember(RadioButton member);
 
+    int addMember(UiDisplayTree member);
+    void removeMember(UiDisplayTree member);
+
+    /**
+     * We want to be able to add directly a UiTable in a Tab.
+     * @param member the UiTable to add
+     * @return the position of the UiTable in the member list.
+     */
+    int addMember(UiTable member);
+
+    /**
+     * Remove a UiTable from a Tab.
+     * @param member the UiTable to remove
+     */
+    void removeMember(UiTable member);
+
     /**
      * We want to be able to add directly a Slider in a Tab.
      * @param member the Slider to add
@@ -244,7 +263,7 @@ public interface SimpleTab {
     /**
      * Sets the visibility status of an Tab
      * @param newVisibleState the visibility status we want to set for the Tab
-     *                  (true if the Tab is visible, false if not)
+     * 			(true if the Tab is visible, false if not)
      */
     void setVisible(boolean newVisibleState);
 
@@ -263,13 +282,13 @@ public interface SimpleTab {
      * Set the parent window id for this tab
      * @param id the id of the parent window
      */
-    void setParentWindowId(int id);
+    void setParentWindowId(String id);
 
     /**
      * Get the parent window id for this tab
      * @return the id of the parent window
      */
-    int getParentWindowId();
+    String getParentWindowId();
 
     /**
      * Get the MenuBar associated to this tab
@@ -311,7 +330,7 @@ public interface SimpleTab {
      * Set the callback of the tab
      * @param callback the CallBack to set
      */
-    void setCallback(CallBack callback);
+    void setCallback(CommonCallBack callback);
 
     /**
      * Set this tab as the current tab of its parent Window
@@ -355,10 +374,12 @@ public interface SimpleTab {
      */
     void setViewingRegion(int posX, int posY, int width, int height);
 
+
     /**
      * @return size of the axes in pixels
      */
     Size getAxesSize();
+
 
     /**
      * @param newSize set a new axes size

@@ -14,6 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include "InitializeJVM.h"
 #include "loadClasspath.h"
 #include "loadLibrarypath.h"
@@ -54,7 +57,7 @@ BOOL InitializeJVM(void)
 
         if (!createMainScilabObject())
         {
-            char *errorMsg = strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+            char *errorMsg = os_strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 
             if (IsFromJava())
             {

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-03 13:55+0000\n"
+"PO-Revision-Date: 2012-03-19 20:56+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pl\n"
 
 #, c-format
@@ -30,7 +30,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Błąd przedzielania pamięci\n"
+msgstr "%s: Błąd alokacji pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -249,7 +249,7 @@ msgid "Too many variables!\n"
 msgstr "Za dużo zmiennych!\n"
 
 msgid "Problem is singular.\n"
-msgstr "Problem jest pojedynczy.\n"
+msgstr "Zagadnienie jest osobliwe.\n"
 
 msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr ""
@@ -519,7 +519,7 @@ msgstr "System nieobserwowalny.\n"
 
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
-msgstr "%s: problem pojedyńczy lub asymetryczny.\n"
+msgstr "%s: zagadnienie jest osobliwe lub niesymetryczne.\n"
 
 #, c-format
 msgid "Wrong size for argument %d.\n"
@@ -602,7 +602,7 @@ msgstr "Zmienna %s nie jest prawidłową funkcja wymierną.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Zmienna %s nie jest prawidłową reprezentacją funkcji stanu.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Niezdefiniowa funkcja.\n"
 
 msgid "Function name already used.\n"
@@ -990,7 +990,7 @@ msgstr "%s: liczba pod przedziałów przekracza pojemność składowania.\n"
 
 #, c-format
 msgid "%s: The colocation matrix is singular.\n"
-msgstr "%s: Matryca kolokacji jest osobliwa.\n"
+msgstr "%s: Macierz kolokacji jest osobliwa.\n"
 
 msgid "Interface property table is full.\n"
 msgstr "Tabela własności interfejsu jest pełna.\n"
@@ -1094,18 +1094,18 @@ msgstr "Górne %d x %d bloki nie mogą być w formie Schur.\n"
 
 #, c-format
 msgid "The first %d singular values may be incorrect.\n"
-msgstr "Pierwsze pojedyncze wartości mogą być niepoprawne %d.\n"
+msgstr "Pierwszych %d wartości osobliwych mogą być niepoprawne.\n"
 
 msgid "Warning:  Result may be inaccurate.\n"
 msgstr "Ostrzeżenie: Wyniki mogą być niedokładne.\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
-msgstr ""
-"macierz jest zbliżona do liczby pojedynczej lub źle skalowana. rcond = %s\n"
+msgstr "macierz jest prawie osobliwa lub źle uwarunkowana. rcond = %s\n"
 
 msgid "computing least squares solution. (see lsq).\n"
-msgstr "Najmniej rozwiązanych obliczeń kwadratowych. (zobacz lsq).\n"
+msgstr ""
+"rozwiązanie oblicza się metodą najmniejszych kwadratów. (zobacz lsq).\n"
 
 msgid "eigenvectors are badly conditioned.\n"
 msgstr "Wektory eigen są źle uwarunkowane.\n"
@@ -1306,7 +1306,7 @@ msgid "Warning : division by zero...\n"
 msgstr "Ostrzeżenie: dzielenie przez zero\n"
 
 msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "Ostrzeżenie : funkcja osobliwa z 'log' lub 'tan'.\n"
+msgstr "Ostrzeżenie : punkt osobliwy funkcji 'log' lub 'tan'.\n"
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
@@ -1511,15 +1511,18 @@ msgstr "%s: Typ %s nie jest obsługiwany : Zdefiniuj funkcję %s2%s."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany ciąg "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid ""

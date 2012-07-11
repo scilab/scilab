@@ -18,17 +18,17 @@
 
 SciErr printf_info(int _iVar);
 
-int common_function(char *fname,unsigned long fname_len)
+int common_function(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i;
     int *piAddr1    = NULL;
     int iBool       = 0;
 
-    for(i = 0 ; i < InputArgument ; i++)
+    for (i = 0 ; i < nbInputArgument ; i++)
     {
         sciErr = printf_info(i + 1);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             break;
@@ -39,15 +39,15 @@ int common_function(char *fname,unsigned long fname_len)
     //1 for true, 0 for false
     iBool = sciErr.iErr == 0 ? 1 : 0;
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, 1, 1, &iBool);
-    if(sciErr.iErr)
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, 1, 1, &iBool);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }
 SciErr printf_info(int _iVar)
@@ -61,7 +61,7 @@ SciErr printf_info(int _iVar)
     int iComplex    = 0;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         return sciErr;
     }
@@ -69,13 +69,13 @@ SciErr printf_info(int _iVar)
     sciprint("Variable %d information:\n", _iVar);
 
     sciErr = getVarType(pvApiCtx, piAddr, &iType);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         return sciErr;
     }
 
     sciprint("\tType: ");
-    switch(iType)
+    switch (iType)
     {
         case sci_matrix :
             sciprint("double\n");
@@ -100,12 +100,12 @@ SciErr printf_info(int _iVar)
             int iPrec           = 0;
 
             sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 return sciErr;
             }
 
-            if(iPrec > 10)
+            if (iPrec > 10)
             {
                 pstSign = pstUnsigned;
             }
@@ -130,16 +130,16 @@ SciErr printf_info(int _iVar)
             return sciErr;
     }
 
-    if(isVarComplex(pvApiCtx, piAddr))
+    if (isVarComplex(pvApiCtx, piAddr))
     {
         sciprint("\tComplex: Yes\n");
     }
 
     sciprint("\tDimensions: ");
-    if(isVarMatrixType(pvApiCtx, piAddr))
+    if (isVarMatrixType(pvApiCtx, piAddr))
     {
         sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             return sciErr;
         }
@@ -149,7 +149,7 @@ SciErr printf_info(int _iVar)
     else
     {
         sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             return sciErr;
         }

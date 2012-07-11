@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,16 +12,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gmres">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gmres</refname>
     <refpurpose> Generalized Minimum RESidual method</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x,flag,err,iter,res] = gmres(A,b,rstr,tol,maxi,M,x0)</synopsis>
+    <synopsis>[x,flag,err,iter,res] = gmres(A,b,[rstr,[tol,[maxi,[M,[x0]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,8 +27,11 @@
         <term>A</term>
         <listitem>
           <para>
-            n-by-n matrix or function returning <literal>A*x</literal>
+            n-by-n matrix or function returning <literal>A*x</literal>. If <literal>A</literal> is a function, it must have the following header :
           </para>
+          <programlisting role=""><![CDATA[ 
+function y = A ( x )
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,8 +50,11 @@
         <term>M</term>
         <listitem>
           <para>
-            preconditioner: matrix or function returning <literal>M*x</literal> (In the first case, default: eye(n,n))
+            preconditioner: matrix of size n-by-n or function returning <literal>M*x</literal> (In the first case, default: eye(n,n)). If M is a function, it must have the following header :
           </para>
+          <programlisting role=""><![CDATA[ 
+function y = M ( x )
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,7 +155,87 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-// GMRES call x=gmres(A,b);
+	// If A and M are matrices
+A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+[x,flag,err,iter,res] = gmres(A, b)
+
+M = eye(10, 10);
+
+[x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, M, zeros(10, 1))
+
+	// If A is a matrix and M is a function
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+
+function y = Mtimesx(x)
+M = eye(10,10);
+y = M*x;
+endfunction
+
+[x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, Mtimesx, zeros(10, 1))
+
+	// If A is a function and M is a matrix
+	function y = Atimesx(x)
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A * x;
+	 endfunction
+	 
+	 b = ones(10,1);
+	 M = eye(10, 10);
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b)
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, M, zeros(10,1))
+	 
+	 // If A and M are functions
+	 function y = Atimesx(x)
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A * x;
+	 endfunction
+	 
+	 function y = Mtimesx(x)
+M = eye(10,10);
+y = M*x;
+endfunction
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, Mtimesx, zeros(10,1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -22,7 +22,7 @@
 #define STACK3_H
 
 #if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
-    #error Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
+#error Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include "machine.h"
@@ -83,7 +83,7 @@ int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int
 int iAllocComplexMatrixOfPolyToAddress(int _iAddr, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData);
-int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
+int iAllocComplexSparseMatrix(int _iNewVal, int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolData);
 int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow);
@@ -198,4 +198,13 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 *  @return a pointer on the data of a matrix of double.
 */
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
+
+/* functions ONLY for compatibility and/or internal use */
+int C2F(str2name)  (const char *name__, int *id, unsigned long name_len);
+int C2F(objptr)(char *namex, int *lp, int *fin, unsigned long name_len);
+int C2F(creadmat)(char *namex, int *m, int *n, double *scimat, unsigned long name_len);
+int C2F(creadchain)(char *namex,  int *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len);
+int C2F(cmatptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
+
+
 #endif

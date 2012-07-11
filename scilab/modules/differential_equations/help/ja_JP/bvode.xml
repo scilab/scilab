@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bvode" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bvode</refname>
     <refpurpose>コロケーション法によるODEの境界値問題</refpurpose>
@@ -62,8 +71,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x_low</term>，
-        
+        <term>x_low</term>
         <listitem>
           <para>スカラー: 区間の左端</para>
         </listitem>
@@ -321,7 +329,8 @@
                   <varlistentry>
                     <term>= 1</term>
                     <listitem>
-                      <para>最初の緩和係数が ireg に等しい場合,
+                      <para>
+                        最初の緩和係数が <literal>ireg</literal> に等しい場合,
                         非線形反復は過去の収束結果に基づきません.
                         (別の敏感な非線形問題のみで使用されます)
                       </para>
@@ -362,9 +371,9 @@
         <term>ltol</term>
         <listitem>
           <para>
-            次元 <literal>ntol</literal>=ipar(4)の配列.
+            次元 <literal>ntol=ipar(4)</literal>の配列.
             <literal>ltol(j) = l</literal> は,
-            tol 配列の j番目の許容誤差を指定します.これは,
+            <literal> tol</literal> 配列の <literal>j</literal>番目の許容誤差を指定します.これは,
             以下の<literal>l</literal>番目の要素の誤差を制御します.
             <inlinemediaobject>
               <imageobject>
@@ -511,7 +520,18 @@
               </imageobject>
             </inlinemediaobject>
             が近似解ベクトルの場合,
-            u は厳密解(未知)となります.
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                    <mml:semantics>
+                      <mml:mi>u</mml:mi>
+                    </mml:semantics>
+                  </mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>
+             は厳密解(未知)となります.
           </para>
         </listitem>
       </varlistentry>
@@ -523,7 +543,7 @@
             各メッシュに含まれる<literal>x_low</literal> および
             <literal>x_up</literal>以外の点を含みます.
             このコードは,<literal>x_low</literal> および <literal>x_up</literal>
-            以外の全ての周辺条件点(zetaの説明を参照)が
+            以外の全ての周辺条件点(<literal>zeta</literal>の説明を参照)が
             <literal>fixpnt</literal>の中の固定点として
             含まれることを必要とします.
           </para>
@@ -619,28 +639,28 @@
             </inlinemediaobject>
             
             ただし,
-            x_low &lt;= x &lt;= x_up の任意のx,
-            および z=z(u(x)) となる任意のz とします.
+            <literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal> の任意の<literal>x</literal>,
+            および <literal>z=z(u(x))</literal> となる任意の<literal>z</literal> とします.
             (以下の説明を参照)
           </para>
           <para>外部関数は以下のように宣言を必要とします:</para>
           <itemizedlist>
             <listitem>
               <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 subroutine fsub(x,zu,f)
 double precision zu(*), f(*),x 
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>Cの場合,関数プロトタイプを以下のようにします</para>
-              <programlisting><![CDATA[ 
+              <para>Cの場合,関数プロトタイプを以下のようにします:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 void fsub(double *x, double *zu, double *f)
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>そしてScilab上では</para>
-              <programlisting><![CDATA[ 
+              <para>そしてScilab上では:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 function f=fsub(x,zu,parameters)
  ]]></programlisting>
             </listitem>
@@ -652,12 +672,12 @@ function f=fsub(x,zu,parameters)
         <listitem>
           <para>
             <link linkend="external">external</link>は,
-            点xにおけるヤコビアン<literal>f(x,z(u))</literal>の
+            点<literal>x</literal>におけるヤコビアン<literal>f(x,z(u))</literal>の
             評価に使用されます.
             ただし,<literal>z(u(x))</literal>は,
             <literal>fsub</literal>と同様に定義され,
-            (<literal>N</literal>) 行 (<literal>M</literal>列)配列
-            dfには,fの偏微分が代入されます:
+            <literal>N</literal> 行 <literal>M</literal>列配列
+            dfには,<literal>f</literal>の偏微分が代入されます:
           </para>
           <informalequation>
             <mediaobject>
@@ -739,20 +759,20 @@ function f=fsub(x,zu,parameters)
           <itemizedlist>
             <listitem>
               <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 subroutine dfsub(x,zu,df)
 double precision zu(*), df(*),x
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
-              <programlisting><![CDATA[ 
+              <para>Cの場合, 関数プロトタイプを以下のようにします:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 void dfsub(double *x, double *zu, double *df)
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>そして,Scilabにおいては</para>
-              <programlisting><![CDATA[ 
+              <para>そして,Scilabにおいては:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 function df=dfsub(x,zu,parameters)
  ]]></programlisting>
             </listitem>
@@ -841,21 +861,21 @@ function df=dfsub(x,zu,parameters)
           <itemizedlist>
             <listitem>
               <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 subroutine gsub(i,zu,g)
 double precision zu(*), g(*)
 integer i
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
-              <programlisting><![CDATA[ 
+              <para>Cの場合, 関数プロトタイプを以下のようにします:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 void gsub(int *i, double *zu, double *g)
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>そして,Scilabでは</para>
-              <programlisting><![CDATA[ 
+              <para>そして,Scilabでは:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 function g=gsub(i,zu,parameters)
  ]]></programlisting>
               <para>
@@ -872,10 +892,11 @@ function g=gsub(i,zu,parameters)
         <listitem>
           <para>
             an <link linkend="external">external</link> used to evaluate
-            the i-th row of the Jacobian of <literal>g(x,u(x))</literal>. Where
-            <literal>z(u)</literal> is as for fsub, i as for gsub and the
-            M-vector <literal>dg</literal> should be filled with the partial
-            derivatives of g, viz, for a particular call one calculates
+            the <literal>i</literal>-th row of the Jacobian of <literal>g(x,u(x))</literal>. Where
+            <literal>z(u)</literal> is as for <literal>fsub</literal>, <literal>i</literal> as for 
+            <literal>gsub</literal> and the <literal>M</literal>-vector <literal>dg</literal> should 
+            be filled with the partial derivatives of <literal>g</literal>, viz, for a particular call one 
+            calculates
           </para>
           <informalequation>
             <mediaobject>
@@ -957,20 +978,20 @@ function g=gsub(i,zu,parameters)
           <itemizedlist>
             <listitem>
               <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 subroutine dgsub(i,zu,dg)
 double precision zu(*), dg(*)
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
-              <programlisting><![CDATA[ 
+              <para>Cの場合, 関数プロトタイプを以下のようにします:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 void dgsub(int *i, double *zu, double *dg)
  ]]></programlisting>
             </listitem>
             <listitem>
-              <para>And in Scilab </para>
-              <programlisting><![CDATA[ 
+              <para>そして,Scilabでは:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[  
 function dg=dgsub(i,zu,parameters)
  ]]></programlisting>
             </listitem>
@@ -982,33 +1003,33 @@ function dg=dgsub(i,zu,parameters)
         <listitem>
           <para>
             <literal>z(u(x))</literal>および
-            <literal>u(x)</literal>のmj階微分<literal>dmval(u(x))</literal>
+            <literal>u(x)</literal>の<literal>mj</literal>階微分<literal>dmval(u(x))</literal>
             の初期近似値を見積もるために
             <link linkend="external">external</link>が使用されます.
             <literal>ipar(9) = 1</literal>の場合のみ, このサブルーチンが
             使用されることに注意してください.
-            このため，zuの<literal>M</literal>個の要素および dmval の N個の
-            要素がx_low &lt;= x &lt;= x_upの範囲の任意の x について計算される
+            このため，<literal>zu</literal>の<literal>M</literal>個の要素および <literal>dmval</literal> の <literal>N</literal>個の
+            要素が<literal>x_low</literal> &lt;= <literal>x</literal> &lt;= <literal>x_up</literal>の範囲の任意の <literal>x</literal> について計算される
             必要があります.
           </para>
           <para>外部関数は以下のように宣言を必要とします:</para>
           <itemizedlist>
             <listitem>
               <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 subroutine guess(x,zu,dmval)
 double precision x,z(*), dmval(*)
  ]]></programlisting>
             </listitem>
             <listitem>
               <para>Cの場合, 関数プロトタイプを以下のようにします</para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 void fsub(double *x, double *zu, double *dmval)
  ]]></programlisting>
             </listitem>
             <listitem>
               <para>そしてScilab上では, </para>
-              <programlisting><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[  
 function [dmval,zu]=fsub(x,parameters)
  ]]></programlisting>
             </listitem>
@@ -1418,7 +1439,7 @@ function [dmval,zu]=fsub(x,parameters)
     <para>
       外部関数で使用され, <literal>bvode</literal>  により返される
       引数 <literal>zu</literal> は, 
-      指定した <literal>x</literal> に関する z(u(x))の要素により
+      指定した <literal>x</literal> に関する <literal>z(u(x))</literal>の要素により
       構成される列ベクトルです.
     </para>
     <para>
@@ -1775,7 +1796,7 @@ x_low=1;x_up=2; // the x limits
 zeta=[x_low,x_low,x_up,x_up]; //two constraints (on the value of u and its second derivative) on each bound.
 
 //The external functions
-//Theses functions are called by the solver with zu=[u(x);u'(x);u''(x);u'''(x)]
+//These functions are called by the solver with zu=[u(x);u'(x);u''(x);u'''(x)]
 
 // - The function which computes the right hand side of the differential equation
 function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
@@ -1859,8 +1880,8 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
           二次関数として変化する軸対象の外部圧力分布のもとでの
           一定の厚みの薄く浅い球状のキャップの
           微小な有限変形を記述するものです.
-          ここで, phi は変形したシェルの経線角度変化, psi は応力関数です.
-          eps=mu=1e-3の場合,開始点に依存して2つの異なる解が得られる可能性が
+          ここで, <latex>$\varphi$</latex> は変形したシェルの経線角度変化, <latex>$\psi$</latex> は応力関数です.
+          <latex>$\varepsilon=\mu=10^{-3}$</latex>の場合,開始点に依存して2つの異なる解が得られる可能性が
           あります.
         </para>
         <mediaobject>
@@ -2094,7 +2115,7 @@ x_low=0;x_up=1; // the x limits
 zeta=[x_low,x_low, x_up x_up]; //two  constraints on each bound.
 
 //The external functions
-//Theses functions are called by the solver with zu=[u1(x);u1'(x);u2(x);u2'(x)]
+//These functions are called by the solver with zu=[u1(x);u1'(x);u2(x);u2'(x)]
 
 // - The function which computes the right hand side of the differential equation
 function f=fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
@@ -2150,7 +2171,7 @@ nmax=200;
 //    nonlin  collpnt n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
 ipar=[1       k       10 4    nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
 
-ltol=1:4;//set tolerance control on zu(1) zu(2 ) zu(3) and zu(4)
+ltol=1:4;//set tolerance control on zu(1), zu(2), zu(3) and zu(4)
 tol=[1.e-5,1.e-5,1.e-5,1.e-5];//set tolreance values for these four controls
 xpoints=x_low:0.01:x_up;
 
@@ -2181,7 +2202,9 @@ scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para>固有値問題:</para>
+        <para>
+          <emphasis role="bold">固有値問題:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // y''(x)=-la*y(x)
 // BV: y(0)=y'(0); y(1)=0
@@ -2229,7 +2252,9 @@ legend(['y(x)';'y''(x)'])
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para>一つ以上の解がある多点境界値問題.</para>
+        <para>
+          <emphasis role="bold">一つ以上の解がある多点境界値問題.</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
@@ -2294,7 +2319,9 @@ xtitle(' ','x',' ')
  ]]></programlisting>
       </listitem>
       <listitem>
-        <para>多点境界値問題.</para>
+        <para>
+          <emphasis role="bold">多点境界値問題.</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[ 
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]

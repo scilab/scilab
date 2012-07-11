@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Bruno Pincon
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 #include <string.h>
@@ -20,7 +20,7 @@ extern int C2F(dset)();
 /* from dspfit.f */
 extern int C2F(spfit)(double *xp, double *yp, double *wp, int *m, double *x, int *l,double *y, double *d, double *wk, int *ierr);
 /*--------------------------------------------------------------------------*/
-int intlsq_splin(char *fname,unsigned long fname_len)
+int intlsq_splin(char *fname, void *pvApiCtx)
 {
   /*   interface code for [y, d] = lsq_splin(xd, yd [, wd], x)  */
 

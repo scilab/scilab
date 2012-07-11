@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_core(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_debug)(char *fname,unsigned long fname_len);
+C_GATEWAY_PROTOTYPE(C2F(sci_debug));
 int C2F(sci_who)(char *fname,unsigned long fname_len);
 //int C2F(sci_warning)(char *fname,unsigned long fname_len); -> C++
 int C2F(sci_mode)(char *fname,unsigned long fname_len);

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:38+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-04-05 23:42+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: it\n"
 
 #, c-format
@@ -50,8 +50,24 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -66,10 +82,6 @@ msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: L'argomento in ingresso è di tipo sbagliato.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -87,10 +99,6 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
 "scalare.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -374,6 +382,9 @@ msgstr ""
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Consorzio Scilab (DIGITEO)\n"
 
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr ""
+
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr ""
 
@@ -558,33 +569,14 @@ msgstr "Non c'è spazio per allocare lo stack di Scilab.\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"Call stack:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"Fine dello stack\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Ops. Scilab ha rilevato un errore fatale.\n"
-"L'istanza dell'utente probabilmente avrà presto un crash.\n"
-"Se accade segnalare un bug su %s con la seguente\n"
-"informazione:\n"
-"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -963,20 +955,20 @@ msgid "%s argument"
 msgstr "argomento %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "argomento numero %d"
+msgid "argument #%d"
+msgstr ""
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "argomenti %s e %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "argomento %s e argomento %d"
+msgid "%s argument and argument #%d"
+msgstr ""
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "argomenti %d e %d"
+msgid "arguments #%d and #%d"
+msgstr ""
 
 msgid "should be square"
 msgstr "deve essere quadrato/a"
@@ -1099,6 +1091,20 @@ msgid "Scilab Version Info."
 msgstr "Info. sulla versione di Scilab."
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Call stack:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Fine dello stack\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -1152,6 +1158,10 @@ msgstr "Introduzione"
 
 msgid "Getting started with Scilab"
 msgstr "Come iniziare con Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr ""
 
 #, c-format
 msgid "Checking: %s\n"

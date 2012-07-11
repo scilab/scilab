@@ -16,41 +16,41 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int write_string(char *fname,unsigned long fname_len)
+int write_string(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
-	//variable info : matrix of string 2 x 3
-	int iRows		= 2;
-	int iCols		= 3;
-	char** pstData	= NULL;
-	//data to put in the new variable
-	char string11[]	= "may";
-	char string21[]	= "be";
-	char string12[]	= "the";
-	char string22[]	= "with";
-	char string13[]	= "puffin";
-	char string23[]	= "you";
-	//alloc new array
-	pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
-	//copy data address to the "main" array
-	pstData[0]		= string11;
-	pstData[1]		= string21;
-	pstData[2]		= string12;
-	pstData[3]		= string22;
-	pstData[4]		= string13;
-	pstData[5]		= string23;
+    SciErr sciErr;
+    //variable info : matrix of string 2 x 3
+    int iRows		= 2;
+    int iCols		= 3;
+    char** pstData	= NULL;
+    //data to put in the new variable
+    char string11[]	= "may";
+    char string21[]	= "be";
+    char string12[]	= "the";
+    char string22[]	= "with";
+    char string13[]	= "puffin";
+    char string23[]	= "you";
+    //alloc new array
+    pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
+    //copy data address to the "main" array
+    pstData[0]		= string11;
+    pstData[1]		= string21;
+    pstData[2]		= string12;
+    pstData[3]		= string22;
+    pstData[4]		= string13;
+    pstData[5]		= string23;
 
-	//create the variable
-	sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRows, iCols, pstData);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //create the variable
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 1, iRows, iCols, pstData);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//free container
-	free(pstData);
-	//assign allocated variables to Lhs position
-    AssignOutputVariable(1) = InputArgument + 1;
-	return 0;
+    //free container
+    free(pstData);
+    //assign allocated variables to Lhs position
+    AssignOutputVariable(1) = nbInputArgument + 1;
+    return 0;
 }

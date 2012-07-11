@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -34,15 +34,9 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib">
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\lapack.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\LibScilab.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\sci_gateway.cpp">

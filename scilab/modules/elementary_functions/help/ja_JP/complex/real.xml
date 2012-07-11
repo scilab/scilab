@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="real">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>real</refname>
     <refpurpose>実部</refpurpose>
@@ -41,8 +38,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>real(x)</literal> は
-   <literal>x</literal>の実部です. ( 複素数を入力するには<literal>%i</literal> を参照ください).</para>
+    <para>
+      <literal>real(x)</literal> は
+      <literal>x</literal>の実部です. ( 複素数を入力するには<literal>%i</literal> を参照ください).
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

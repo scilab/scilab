@@ -5,7 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Test with 2 input arguments and all output arguments
 A=[10,1;1,10];

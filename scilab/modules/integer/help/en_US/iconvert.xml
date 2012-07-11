@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iconvert">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>iconvert</refname>
-    <refpurpose> conversion to 1 or 8 byte integer representation</refpurpose>
+    <refpurpose> conversion to 1 or 4 byte integer representation</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -34,7 +31,7 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>matrix of integers coded on one, two, four or eight bytes.</para>
+          <para>matrix of integers coded on one, two or four bytes.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,7 +39,7 @@
   <refsection>
     <title>Description</title>
     <para>
-        converts and stores data to one, two, four or eight bytes integers.
+      converts and stores data two one, two or four bytes integers. 
     </para>
     <variablelist>
       <varlistentry>
@@ -87,18 +84,6 @@
           <para>return uint32 numbers in the range [0, 4294967295]</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>itype=8</term>
-        <listitem>
-          <para>return int64 numbers in the range [−(2**63), 2**63 − 1]</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>itype=18</term>
-        <listitem>
-          <para>return uint64 numbers in the range [0, 2**64 − 1]</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -118,14 +103,5 @@ y=iconvert(b,1)
         <link linkend="inttype">inttype</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>6.0.0</revnumber>
-        <revremark>int64 and uint64 added.</revremark>
-      </revision>
-    </revhistory>
   </refsection>
 </refentry>

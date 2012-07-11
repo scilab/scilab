@@ -13,17 +13,17 @@
 package org.scilab.modules.scinotes.utils;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -45,54 +45,47 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-import javax.swing.tree.TreePath;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.text.Element;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.text.Element;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeExpansionEvent;
+import javax.swing.tree.TreePath;
 
 import org.flexdock.docking.event.DockingEvent;
-import org.flexdock.docking.defaults.DockingSplitPane;
-
-import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.SciNotesGUI;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
 
 /**
  *
  * @author Calixte DENIZET
  */
-public final class NavigatorWindow extends SwingScilabTab implements Tab, DocumentListener,
-                                                          TreeExpansionListener {
+public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
+    TreeExpansionListener {
 
     private static final String EMPTY = "";
 
@@ -121,7 +114,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     private JComboBox numType;
     private JScrollPane scrollPane;
 
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
 
     static {
         ScilabTabFactory.getInstance().addTabFactory(CodeNavigatorTabFactory.getInstance());
@@ -198,8 +191,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * Set the parent window
      */
     public void setParentWindow() {
-        this.parentWindow = ScilabWindow.createWindow();
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
+        this.parentWindow = new SwingScilabWindow();
         parentWindow.addTab(this);
         parentWindow.setVisible(true);
     }
@@ -208,7 +200,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * Get the parent window id for this tab
      * @return the id of the parent window
      */
-    public Window getParentWindow() {
+    public SwingScilabWindow getParentWindow() {
         return this.parentWindow;
     }
 
@@ -294,14 +286,14 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         if (win != null && win.getDockingPort() != null) {
-	    Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-	    for (SwingScilabTab tab : set) {
-		if (tab == editor) {
-		    addToolBar(editor.getToolBar());
-		    break;
-		}
-	    }
-	}
+            Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+            for (SwingScilabTab tab : set) {
+                if (tab == editor) {
+                    addToolBar(editor.getToolBar());
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -414,58 +406,58 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         labelNumerotation.setFocusable(false);
 
         lineNumber.addKeyListener(new KeyListener() {
-                public void keyTyped(KeyEvent ke) { }
-                public void keyPressed(KeyEvent ke) { }
+            public void keyTyped(KeyEvent ke) { }
+            public void keyPressed(KeyEvent ke) { }
 
-                public void keyReleased(KeyEvent ke) {
-                    updateCaretPosition();
-                }
-            });
+            public void keyReleased(KeyEvent ke) {
+                updateCaretPosition();
+            }
+        });
 
         lineNumber.addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateCaretPosition();
-                }
+            public void focusGained(FocusEvent e) {
+                updateCaretPosition();
+            }
 
-                public void focusLost(FocusEvent e) {
-                }
-            });
+            public void focusLost(FocusEvent e) {
+            }
+        });
 
         numType.setModel(new DefaultComboBoxModel(new String[] {SciNotesMessages.ABSOLUTE, SciNotesMessages.RELATIVE}));
         numType.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    int i = numType.getSelectedIndex();
-                    if (i == 0 && !isAbsolute) {
-                        lineNumber.setText(EMPTY);
-                        isAbsolute = true;
-                    } else if (i == 1 && isAbsolute) {
-                        lineNumber.setText(EMPTY);
-                        isAbsolute = false;
-                    }
+            public void actionPerformed(ActionEvent evt) {
+                int i = numType.getSelectedIndex();
+                if (i == 0 && !isAbsolute) {
+                    lineNumber.setText(EMPTY);
+                    isAbsolute = true;
+                } else if (i == 1 && isAbsolute) {
+                    lineNumber.setText(EMPTY);
+                    isAbsolute = false;
                 }
-            });
+            }
+        });
 
         labelGotoLine.setText(SciNotesMessages.GO_TO_LINE);
         labelGotoLine.setFocusable(false);
 
         functionNavigator.addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int row = functionNavigator.getRowForLocation(e.getX(), e.getY());
-                    if (e.getClickCount() == 2) {
-                        handleSelectedItem(row);
-                    }
+            public void mousePressed(MouseEvent e) {
+                int row = functionNavigator.getRowForLocation(e.getX(), e.getY());
+                if (e.getClickCount() == 2) {
+                    handleSelectedItem(row);
                 }
-            });
+            }
+        });
 
         functionNavigator.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "toggle");
         functionNavigator.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent e) {
-                    if (e.getKeyChar() == '\n') {
-                        int row = functionNavigator.getMinSelectionRow();
-                        handleSelectedItem(row);
-                    }
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == '\n') {
+                    int row = functionNavigator.getMinSelectionRow();
+                    handleSelectedItem(row);
                 }
-            });
+            }
+        });
         createPopupMenuOnJTree();
 
         scrollPane.setViewportView(functionNavigator);
@@ -477,18 +469,18 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                   .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
                                             .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                      .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                      .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                      .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                                          .addComponent(labelGotoLine)
-                                                                          .addComponent(labelNumerotation))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                                          .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                                                                          .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(labelGotoLine)
+                                                                    .addComponent(labelNumerotation))
+                                                            .addGap(18, 18, 18)
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                                                    .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                             .addContainerGap())
-            );
+                                 );
         layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                                           .addContainerGap()
@@ -497,14 +489,14 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                           .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
                                           .addPreferredGap(ComponentPlacement.RELATED)
                                           .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                    .addComponent(labelGotoLine)
-                                                    .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                  .addComponent(labelGotoLine)
+                                                  .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                           .addGap(4, 4, 4)
                                           .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                    .addComponent(labelNumerotation)
-                                                    .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                  .addComponent(labelNumerotation)
+                                                  .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                           .addContainerGap())
-            );
+                               );
         /* End NetBeans */
 
         List<Component> components = new ArrayList(3);
@@ -518,15 +510,15 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         setMinimumSize(new Dimension(224, 0));
         setPreferredSize(new Dimension(224, 543));
 
-        CallBack callback = new CallBack(null) {
-                public void callBack() {
-                    ClosingOperationsManager.startClosingOperation((SwingScilabTab) NavigatorWindow.this);
-                }
+        CommonCallBack callback = new CommonCallBack(null) {
+            public void callBack() {
+                ClosingOperationsManager.startClosingOperation((SwingScilabTab) NavigatorWindow.this);
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            };
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        };
 
         MenuBar menubar = ScilabMenuBar.createMenuBar();
         Menu fileMenu = ScilabMenu.createMenu();
@@ -534,7 +526,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         fileMenu.setMnemonic('F');
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(callback);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotesGUI.getActionKeyMap().get("ExitAction"));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotes.getActionKeys().get("scinotes-exit"));
         menu.setText(SciNotesMessages.EXIT);
         fileMenu.add(menu);
         menubar.add(fileMenu);
@@ -543,31 +535,31 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         orderMenu.setText(SciNotesMessages.ORDER);
         orderMenu.setMnemonic('O');
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
-                public void callBack() {
-                    doc.setAlphaOrderInTree(true);
-                    updateTree();
-                }
+        menu.setCallback(new CommonCallBack(null) {
+            public void callBack() {
+                doc.setAlphaOrderInTree(true);
+                updateTree();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
         menu.setText(SciNotesMessages.ALPHABETIC_ORDER);
         ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(KeyStroke.getKeyStroke("alt A"));
         orderMenu.add(menu);
 
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
-                public void callBack() {
-                    doc.setAlphaOrderInTree(false);
-                    updateTree();
-                }
+        menu.setCallback(new CommonCallBack(null) {
+            public void callBack() {
+                doc.setAlphaOrderInTree(false);
+                updateTree();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
         ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(KeyStroke.getKeyStroke("alt N"));
         menu.setText(SciNotesMessages.NATURAL_ORDER);
         orderMenu.add(menu);
@@ -691,17 +683,17 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         final JMenuItem natural = new JMenuItem(SciNotesMessages.NATURAL_ORDER);
 
         alpha.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    handleOrder(true);
-                }
-            });
+            public void actionPerformed(ActionEvent actionEvent) {
+                handleOrder(true);
+            }
+        });
         popup.add(alpha);
 
         natural.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    handleOrder(false);
-                }
-            });
+            public void actionPerformed(ActionEvent actionEvent) {
+                handleOrder(false);
+            }
+        });
         popup.add(natural);
         functionNavigator.setComponentPopupMenu(popup);
     }

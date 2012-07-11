@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TMPDIR" xml:lang="ru">
+  <refnamediv>
+    <refname>TMPDIR</refname>
+    <refpurpose>путь до временной директории.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Неизменная переменная <literal>TMPDIR</literal> хранит абсолютный путь до временной
+      директории сессии Scilab. Каждая сессия Scilab имеет свою собственную временную
+      директорию, которая создаётся и на которую ссылается <literal>TMPDIR</literal>
+      во время запуска Scilab. Временная директория удаляется при закрытии Scilab.
+    </para>
+    <para>
+      Временные директории создаются в виде поддиректорий системной временной директории
+      и получают имя <literal>SCI_TMP_</literal>&lt;unique&gt;, где
+      &lt;unique&gt; -- некоторый номер, формируемый при запуске Scilab для того, чтобы
+      имя было уникальным. Под GNU/Linux, UNIX и Mac OS X права доступа к директории ограничены
+      для пользователя Scilab.
+    </para>
+    <para>
+      Неизменная переменная <literal>TMPDIR</literal> не может быть изменена во время работы 
+      Scilab. Однако, под GNU/Linux, UNIX и Mac OS X системная временная директория (обычно 
+      <literal>/tmp</literal>) может быть выбрана через изменение системной переменной 
+      <literal>TMPDIR</literal>.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="SCIHOME">SCIHOME</link>
+      </member>
+    </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="SCI">SCI</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

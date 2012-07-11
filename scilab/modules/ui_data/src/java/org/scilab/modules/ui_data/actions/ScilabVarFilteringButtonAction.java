@@ -15,16 +15,16 @@ package org.scilab.modules.ui_data.actions;
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
-public class ScilabVarFilteringButtonAction extends CallBack {
-	/** Name of the action */
-	public static final String NAME = UiDataMessages.SCILABVAR;
+public class ScilabVarFilteringButtonAction extends CommonCallBack {
+    /** Name of the action */
+    public static final String NAME = UiDataMessages.SCILABVAR;
 
     /**
      * Constructor

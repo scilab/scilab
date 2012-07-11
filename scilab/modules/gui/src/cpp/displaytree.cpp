@@ -16,7 +16,7 @@ extern "C"
 	#include <string.h>
 	#include "sci_types.h"
     #include "stack3.h"
-	#include "stdlib.h"
+	#include <stdlib.h>
 	#include "sciprint.h"
 	#include "MALLOC.h"
 }

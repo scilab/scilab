@@ -19,6 +19,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         loadXcosLibs();
     end
   funcprot(prot);
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // Hook according to SEP066
     if isdef("pre_xcos_simulate") then
@@ -36,7 +37,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  xcos_workspace_init()
+  scicos_workspace_init()
 
 
 //** extract tolerances from scs_m.props.tol

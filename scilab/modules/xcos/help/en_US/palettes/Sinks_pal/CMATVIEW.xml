@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -74,6 +74,11 @@
           <listitem>
             <para>
               <xref linkend="Computationalfunction_CMATVIEW">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_CMATVIEW">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -226,6 +231,18 @@
         <para> SCI/modules/scicos_blocks/src/c/cmatview.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_CMATVIEW">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
   <refsection id="Seealso_CMATVIEW">
     <title>See also</title>

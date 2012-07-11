@@ -26,6 +26,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Few file tools
+ *
  * @author Calixte DENIZET
  */
 public final class FileUtils {
@@ -55,10 +56,12 @@ public final class FileUtils {
         extToIcon.put("sce", SCILABICON);
         extToIcon.put("sci", SCILABICON);
         extToIcon.put("scg", SCILABICON);
-        extToIcon.put("xcos", SCILABICON);
-        extToIcon.put("bin", SCILABICON);
         extToIcon.put("cos", SCILABICON);
         extToIcon.put("cosf", SCILABICON);
+        extToIcon.put("xcos", SCILABICON);
+        extToIcon.put("zcos", SCILABICON);
+        extToIcon.put("bin", SCILABICON);
+        extToIcon.put("sod", SCILABICON);
         extToIcon.put("dem", SCILABICON);
         extToIcon.put("graph", SCILABICON);
         extToIcon.put("sav", SCILABICON);
@@ -75,7 +78,8 @@ public final class FileUtils {
     }
 
     /**
-     * @param f the file
+     * @param f
+     *            the file
      * @return the extension of f
      */
     public static String getFileExtension(File f) {
@@ -91,7 +95,8 @@ public final class FileUtils {
     }
 
     /**
-     * @param file the file to test
+     * @param file
+     *            the file to test
      * @return true if it is a binary file
      */
     public static boolean isBinaryFile(File f) {
@@ -103,7 +108,8 @@ public final class FileUtils {
                 reader.close();
                 int i = 0;
                 if (len != -1) {
-                    for (;i < len && buffer[i] != '\0'; i++);
+                    for (; i < len && buffer[i] != '\0'; i++)
+                        ;
                 }
 
                 return len != -1 && i != len;
@@ -164,7 +170,8 @@ public final class FileUtils {
     }
 
     /**
-     * @param f the file
+     * @param f
+     *            the file
      * @return an icon according to its extension
      */
     public static Icon getIconForFile(File f) {

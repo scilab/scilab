@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xend">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xend</refname>
-    <refpurpose> close a graphics session</refpurpose>
+    <refpurpose>Close a graphics export session</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,8 +22,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>xend</literal> is used to close a graphics session. Under the Postscript,
-      Xfig or Gif drivers <literal>xend</literal> closes the
+      <literal>xend</literal> is used to close a graphics session. When working on the export of a graphic, <literal>xend</literal> closes the
       file which was opened by <literal>xinit</literal>.
     </para>
   </refsection>
@@ -43,6 +39,9 @@ driver("X11")
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="driver">driver</link>
+      </member>
       <member>
         <link linkend="xinit">xinit</link>
       </member>

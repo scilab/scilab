@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="rand" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rand</refname>
     <refpurpose>Случайные числа</refpurpose>
@@ -27,10 +24,10 @@
       r = rand(m1,m2,...,key)
       r = rand(x)
       r = rand(x,key)
- 
+      
       s = rand("seed")
       rand("seed",s)
- 
+      
       rand(key)
       key = rand("info")
     </synopsis>
@@ -93,8 +90,8 @@
         <term>r=rand()</term>
         <listitem>
           <para>
-	    возвращает матрицу чисел двойной точности размером 1 на 1 с одним случайным значением.
-	  </para>
+            возвращает матрицу чисел двойной точности размером 1 на 1 с одним случайным значением.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -134,7 +131,7 @@
         <term>rand("uniform")</term>
         <listitem>
           <para>
-	    устанавливает генератор случайных чисел на генерацию случайных чисел по равновероятному закону. Случайные числа равномерно распределены на интервале
+            устанавливает генератор случайных чисел на генерацию случайных чисел по равновероятному закону. Случайные числа равномерно распределены на интервале
             (0,1).
           </para>
         </listitem>
@@ -232,7 +229,7 @@ r=rand(2,2,2)
     ]]></programlisting>
     <para>
       В следующем примере мы построим на графике распределение случайных равновероятных чисел, полученных <literal>rand</literal>.
-  </para>
+    </para>
     <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"uniform");
     scf();
@@ -262,7 +259,7 @@ r=rand(2,2,2)
     </para>
     <programlisting role="example"><![CDATA[  
 n=getdate("s");
-rand("seed",s);
+rand("seed",n);
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -302,7 +299,7 @@ rand("seed",s);
   <refsection>
     <title>Статистическое качество генератора</title>
     <para>
-	 В функции <link linkend="grand">grand</link> доступны более лучшие генераторы случайных чисел в том смысле, что они имеют как более длинный период, так и более лучшие статистические свойства. В случае, когда качество случайных чисел имеет значение, следует использовать функцию <literal>grand</literal>. Более того, функция <literal>grand</literal> имеет больше возможностей.
+      В функции <link linkend="grand">grand</link> доступны более лучшие генераторы случайных чисел в том смысле, что они имеют как более длинный период, так и более лучшие статистические свойства. В случае, когда качество случайных чисел имеет значение, следует использовать функцию <literal>grand</literal>. Более того, функция <literal>grand</literal> имеет больше возможностей.
     </para>
   </refsection>
   <refsection role="see also">

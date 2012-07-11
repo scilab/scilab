@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -109,8 +109,18 @@ msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: Matrix erwartet.\n"
 
 #, c-format
+msgid "%s: Parent entity for destination should be an axes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr "Dieses Objekt kann nicht gelöscht werden.\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "Ein Label-Objekt kann nicht entfernt werden.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: falscher Wert für %s '%c': '%s', und '%s' erwartet.\n"
@@ -136,14 +146,6 @@ msgstr "%s: jede Handhabung sollte nicht ein zweites Mal erscheinen.\n"
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr "%s: Objekte müssen dieselbe Quelle haben.\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: Handhabung %d kann nicht verbunden werden (ungültige Quelle).\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: Handhabung %d kann nicht verbunden werden (ungültiger Typ).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -246,6 +248,12 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: Vektor der Größe %d oder %d "
@@ -315,10 +323,6 @@ msgstr ""
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' Handhabung existiert oder existiert nicht mehr.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument: '%s' Handhabung erwartet.\n"
 
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
@@ -409,12 +413,17 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: '%s' muß gesetzt sein\n"
 
 #, c-format
-msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
 msgstr ""
-"%s: alter Grafikmodus ist nicht länger verfügbar. Sehen Sie auf der Hilfe-"
-"Seite nach.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -486,43 +495,17 @@ msgstr "Der übergeordnete Prozess muß ein Diagramm sein.\n"
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Der übergeordnete Prozess muß ein Subwin sein.\n"
 
-msgid "No more place to allocates text string, try a shorter string.\n"
-msgstr ""
-"Kein weiterer Speicher, um die Text-Zeichenkette vorzubelegen, versuchen Sie "
-"eine kürzere Zeichenkette.\n"
-
-msgid "Problem with sciInitFontContext\n"
-msgstr "Problem mit dem sciInitFontContext\n"
-
 msgid "Width and height must be positive.\n"
 msgstr "Breite und Höhe muß positiv sein.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "ungültiger Fall, wenn die Achsen erzeugt werden\n"
 
-msgid "This object cannot be cloned.\n"
-msgstr "Diese Objekt kann nicht kopiert werden.\n"
-
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr "Farbmatrix ist NULL:"
-
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s ist nur programmiert, um Stufenkurven zu berechnen und nicht, um diese "
 "anzuzeigen.\n"
-
-#, c-format
-msgid "Entity with type %d cannot be destroyed.\n"
-msgstr "Einheit mit Typ %d kann nicht zerstört werden.\n"
-
-msgid "A Label object cannot be deleted.\n"
-msgstr "Ein Label-Objekt kann nicht entfernt werden.\n"
-
-msgid "This object cannot be deleted.\n"
-msgstr "Dieses Objekt kann nicht gelöscht werden.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -545,9 +528,8 @@ msgstr "Interner Fehler: Schleife im Graduieren1.\n"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Bitte senden Sie einen Fehlerbericht an dev@lists.scilab.org\n"
 
-msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
+msgid "Error: ComputeFormat must be used with AXIS objects\n"
 msgstr ""
-"Fehler: Berechnungsformat muß mit SCI_AXES Objekten verwendet werden.\n"
 
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
@@ -601,47 +583,12 @@ msgstr "Kann die y_Koordinate für diese Art von Objekt nicht berechnen."
 msgid "This object has no %s property.\n"
 msgstr "Dieses Objekt hat keine %s Eigenschaft.\n"
 
-msgid "The parent handle is not or no more valid.\n"
-msgstr ""
-"Die Handhabung des übergeordneten Prozesses ist nicht oder nicht mehr "
-"gültig.\n"
-
-#, c-format
-msgid "Handle number %d is not or no more valid.\n"
-msgstr "Nummer der Handhabung %d ist nicht oder nicht mehr gültig.\n"
-
-#, c-format
-msgid "Handle number %d is not compatible with the parent handle.\n"
-msgstr ""
-"Nummer der Handhabung %d ist nicht mit der Handhabung des übergeordneten "
-"Prozesses kompatibel.\n"
-
-#, c-format
-msgid "Error relocating handle %d."
-msgstr "Fehler beim Neulokalisieren der Handhabung %d."
-
-#, c-format
-msgid "Handle #%d is not compatible with its new parent.\n"
-msgstr ""
-"Handhabung #%d ist nicht kompatibel mit dem neuen übergeordneten Prozess.\n"
-
-#, c-format
-msgid "Object #%d is not correctly placed in the hierarchy.\n"
-msgstr "Objekt #%d ist nicht korrekt in der Rangordnung angeordnet.\n"
-
-#, c-format
-msgid "Handle #%d is not or no more valid.\n"
-msgstr "Handhabung #%d ist nicht oder nicht mehr gültig.\n"
-
-msgid "Default figure cannot be create.\n"
-msgstr "Voreingestelltes Diagramm kann nicht erzeugt werden.\n"
-
-msgid "Default axes cannot be create.\n"
-msgstr "Voreingestellte Achsen können nicht erzeugt werden.\n"
-
 #, c-format
 msgid "Graphic window number %d"
 msgstr "Grafik-Fenster Nummer %d"
+
+msgid "Default axes cannot be created.\n"
+msgstr ""
 
 msgid "This object has not any graphic mode\n"
 msgstr "Diese Objekt hat keinen grafischen Modus\n"
@@ -653,14 +600,6 @@ msgid "This object can not be moved.\n"
 msgstr "Dieses Pbjekt kann nicht bewegt werden.\n"
 
 #, c-format
-msgid "%s: Number of columns must be %d.\n"
-msgstr "%s: Anzahl an Spalten muß %d sein.\n"
-
-#, c-format
-msgid "%s: Object must be a %s.\n"
-msgstr "%s: Objekt muß ein %s sein.\n"
-
-#, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "Linienbreite muß größer als %d sein.\n"
 
@@ -669,33 +608,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "Der Linienstil muß größer als %d sein.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr ""
-"falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Die Markierungsgröße der Einheit muß größer oder gleich %d sein.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "Die Markierungsgröße der Einheit muß größer als %d sein.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "Die Zeichensatzgröße muß größer als %d sein.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "Kann die voreingestellten Werte nicht laden.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"Diagramm könnte kein %% Zeichen enthalten, Ausnahme ein Einzelnes %%d.\n"
-
-msgid "WARNING : The size of the figure may not be as wide as you want.\n"
-msgstr ""
-"Warnung: die Größe des Wertes könnte nicht so groß sein wie gewollt.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Handhabung ist kein SubWindow.\n"
@@ -713,6 +630,9 @@ msgstr "Anzahl der Elemente muß %d sein (%d wenn %s Koordinate).\n"
 msgid "Number of elements must be %d (%d if z coordinate )\n"
 msgstr "Anzahl der Elemente muß sich in %d (%d wenn z Koordinate) befinden\n"
 
+msgid "Number of rows must be a multiple of 2.\n"
+msgstr ""
+
 msgid "Unhandled data field\n"
 msgstr "Nicht unterstütztes Datenfeld\n"
 
@@ -727,6 +647,10 @@ msgstr "%s: verwenden Sie %s anstattdessen.\n"
 #, c-format
 msgid "%s: Can't enable a void event handler.\n"
 msgstr "%s: kann Leer-Ereignis-Steuerungsprogramm nicht aktivieren.\n"
+
+#, c-format
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Eigenschaft '%s' existiert in dieser Handhabung nicht.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -746,8 +670,8 @@ msgid "Unknown property: %s.\n"
 msgstr "Unbekannte Eigenschaft %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "falscher Wert für Eigenschaft '%s': %s oder %s erwartet.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -758,10 +682,6 @@ msgid "Wrong value for '%s' property.\n"
 msgstr "falscher Wert für '%s' Eigenschaft.\n"
 
 #, c-format
-msgid "'%s' property does not exist for this handle.\n"
-msgstr "Eigenschaft '%s' existiert in dieser Handhabung nicht.\n"
-
-#, c-format
 msgid "%s property only exists for %s surfaces.\n"
 msgstr "%s Eigenschaft existiert nur für %s Oberflächen.\n"
 
@@ -770,17 +690,13 @@ msgid "%s: No more memory."
 msgstr "%s: kein weiterer Speicher"
 
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
-msgstr ""
-"Warnung: Verwendung von %s ist abgelehnt und nicht mehr im Benutzerkonto "
-"enthalten, Verwendung von Eigenschaft %s, um die Achsenfarben zu editieren.\n"
-
-#, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "falscher Wert für Eigenschaft '%s': muß sich im Satz {%s} befinden.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "falscher Wert für Eigenschaft '%s': %s oder %s erwartet.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -806,18 +722,6 @@ msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr "falsche Größe für Eigenschaft '%s': %d Elemente erwartet.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr "falscher Wert für '%s' Eigenschaft: kleinere Größen erwartet.\n"
-
-#, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
-msgstr ""
-"Warnung: '%s' Eigenschaft kann nicht modifiziert werden, wenn %s mit anderen "
-"Elementen angedockt ist.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "falschert Typ für '%s' Eigenschaft: ein Integerwert erwartet.\n"
 
@@ -829,6 +733,30 @@ msgstr ""
 "Warnung!!!\n"
 "In EIgenschaft '%s': '%s' ist verworfen, verwenden Sie '%s' anstattdessen.\n"
 
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
 msgid "Children property can not be modified directly.\n"
 msgstr ""
 "Eigenschaft der Untergeordneten können nicht direkt modifizerit werden.\n"
@@ -836,10 +764,6 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "falsche Größe für Eigenschaft '%s': Skalar erwartet.\n"
-
-#, c-format
-msgid "%s: No more memory\n"
-msgstr "%s: kein weiterer Speicher\n"
 
 #, c-format
 msgid ""
@@ -958,21 +882,27 @@ msgstr ""
 "sein.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a valid color index.\n"
-msgstr ""
-"falscher Wert für Eigenschaft '%s': muß ein gültiger Farbindex sein.\n"
-
-#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Sie müssen zuerst ein %s für dieses Objekt spezifizieren.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"Im interpolierten Farbmodus muß die Spaltendimension des Farbvektors die "
-"Anzahl der Punkte die Linie definieren (welche %d oder %d sein muß).\n"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "{0,1} values are equivalent for line_style property."
+msgstr ""
+
+msgid "0 will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use 1 instead."
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1003,9 +933,18 @@ msgstr ""
 "logarithmischen Modus zu wechseln.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr ""
+"falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "falscher Typ für '%s' Eigenschaft: Handhabung '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "Übergeordnete Eigenschaft kann icht direkt modifiziert werden.\n"
@@ -1021,6 +960,10 @@ msgstr "Argument #%d muß %d Elemente haben.\n"
 #, c-format
 msgid "%s cannot be set in this case.\n"
 msgstr "%s kann in diesem Fall nicht gesetzt werden.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -1063,6 +1006,10 @@ msgstr "Unmöglich: %s muß zuerst geleert werden, bevor neu belegt wird."
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: x Vektor ist nicht monoton.\n"
+
+#, c-format
+msgid "%s: y vector is not monotonous.\n"
+msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Scilab Grafik Modul nicht installiert.\n"
@@ -1352,6 +1299,45 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or Scilab function "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Error %d : in plot2d called by contour2d"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr ""
+
 msgid "Delete all datatips"
 msgstr ""
 
@@ -1426,10 +1412,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: graphische Handhabung erwartet\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -1604,11 +1586,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: falscher Typ für Eingangsargument.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
@@ -1702,10 +1679,6 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument %d: eine 'Achsen' Handhabung "
@@ -1718,8 +1691,8 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1794,4 +1767,8 @@ msgstr "%s: falscher Typ an Eingangsargumenten #%d: ein Vektor erwartet.\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value given for %s."
 msgstr ""

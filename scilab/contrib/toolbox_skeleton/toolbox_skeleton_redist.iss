@@ -1,7 +1,6 @@
 ;##############################################################################################################
 ; Inno Setup Install script for Toolbox_skeleton
 ; http://www.jrsoftware.org/isinfo.php
-; Allan CORNET
 ; This file is released under the 3-clause BSD license. See COPYING-BSD.
 ;##############################################################################################################
 ; modify this path where is toolbox_skeleton directory

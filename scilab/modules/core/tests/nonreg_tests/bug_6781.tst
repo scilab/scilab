@@ -7,7 +7,7 @@
 
 // <-- Non-regression test for bug 6781 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- ENGLISH IMPOSED -->
 //
@@ -22,8 +22,10 @@ Dir = TMPDIR + "/bug_6781/";
 mkdir(Dir);
 a = 1;
 b = 2;
+warning("off");
 save(Dir + "a.bin", a);
 save(Dir + "b.bin", b);
+warning("on");
 mputl(["a";"b"], Dir + "names");
 testlib = lib(Dir);
 

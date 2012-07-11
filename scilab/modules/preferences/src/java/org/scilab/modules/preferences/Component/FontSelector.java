@@ -56,7 +56,7 @@ public class FontSelector extends Panel implements XComponent, XChooser {
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        return new String[]{"font-name", "font-face", "font-size", "enable"};
+        return new String[] {"font-name", "font-face", "font-size", "enable"};
     }
 
     /** Constructor.
@@ -74,27 +74,27 @@ public class FontSelector extends Panel implements XComponent, XChooser {
 
         button = new JButton("...");
         button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    JFrame frame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, FontSelector.this);
-                    SwingScilabFontChooser fontChooser = new SwingScilabFontChooser(frame, font, false);
-                    fontChooser.setLocationRelativeTo(frame);
-                    fontChooser.displayAndWait();
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, FontSelector.this);
+                SwingScilabFontChooser fontChooser = new SwingScilabFontChooser(frame, font, false);
+                fontChooser.setLocationRelativeTo(frame);
+                fontChooser.displayAndWait();
 
-                    Font newFont = fontChooser.getSelectedFont();
-                    if (newFont != null && !newFont.equals(font)) {
-                        font = newFont;
-                        setTextField();
-                        if (actionListener != null) {
-                            actionListener.actionPerformed(new ActionEvent(FontSelector.this, 0, "Font Selector Value changed", System.currentTimeMillis(), 0));
-                        }
+                Font newFont = fontChooser.getSelectedFont();
+                if (newFont != null && !newFont.equals(font)) {
+                    font = newFont;
+                    setTextField();
+                    if (actionListener != null) {
+                        actionListener.actionPerformed(new ActionEvent(FontSelector.this, 0, "Font Selector Value changed", System.currentTimeMillis(), 0));
                     }
                 }
-            });
+            }
+        });
 
         layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(textField).addComponent(button));
         layout.setVerticalGroup(layout.createParallelGroup().addComponent(textField).addComponent(button));
 
-	setRequestFocusEnabled(true);
+        setRequestFocusEnabled(true);
         setFocusable(true);
 
         String fontname = XConfigManager.getAttribute(peer , "font-name");
@@ -155,16 +155,16 @@ public class FontSelector extends Panel implements XComponent, XChooser {
      */
     public final String fontface() {
         switch (font.getStyle()) {
-        case Font.PLAIN :
-            return "plain";
-        case Font.BOLD :
-            return "bold";
-        case Font.ITALIC :
-            return "italic";
-        case Font.BOLD | Font.ITALIC :
-            return "bold italic";
-        default :
-            return "plain";
+            case Font.PLAIN :
+                return "plain";
+            case Font.BOLD :
+                return "bold";
+            case Font.ITALIC :
+                return "italic";
+            case Font.BOLD | Font.ITALIC :
+                return "bold italic";
+            default :
+                return "plain";
         }
     }
 
@@ -225,7 +225,7 @@ public class FontSelector extends Panel implements XComponent, XChooser {
      * @return response read by the listener.
      */
     public final Object choose() {
-        return new String[]{fontname(), fontface(), fontsize()};
+        return new String[] {fontname(), fontface(), fontsize()};
     }
 
 
@@ -261,4 +261,3 @@ public class FontSelector extends Panel implements XComponent, XChooser {
         return signature.toString();
     }
 }
-

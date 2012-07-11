@@ -91,6 +91,7 @@
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 /* 68 */                        #include "dynamic_gateways.h" /* xml */
 /* 69 */                        #include "dynamic_gateways.h" /* preferences */
+/* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
 
 
 

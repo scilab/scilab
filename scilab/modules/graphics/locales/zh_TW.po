@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -96,8 +96,18 @@ msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是矩陣.\n"
 
 #, c-format
+msgid "%s: Parent entity for destination should be an axes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 第  #%d 個輸入參數數值錯誤: 應該為 '%s'.\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr ""
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "Label 物件無法被刪除.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: %s '%c' 數值錯誤: 應該為 '%s', '%s' 及 '%s'.\n"
@@ -121,14 +131,6 @@ msgstr "%s: 每一代碼 (handle) 不能出現兩次.\n"
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr "%s: 物件必須有相同的父元素\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: 代碼 （handle)  %d  無法被膠合 (父元素錯誤).\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: 代碼 （handle)  %d  無法被膠合 (型態錯誤).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -211,6 +213,12 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Figure 或 Axes 代�
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為大小為 %d 或 %d 的向量.\n"
 
@@ -267,10 +275,6 @@ msgstr "%s: 無法產生所要求的圖 (figure): 記憶體不夠.\n"
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' 代碼 (handle) 不存在或已刪除.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應該是一 '%s' 代碼 (handle).\n"
 
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
@@ -347,10 +351,17 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' 必須設定\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
-msgstr "%s: 舊的圖形模式不再適用. 請參考 set 的使用手冊.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -407,39 +418,15 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
-msgid "No more place to allocates text string, try a shorter string.\n"
-msgstr ""
-
-msgid "Problem with sciInitFontContext\n"
-msgstr ""
-
 msgid "Width and height must be positive.\n"
 msgstr ""
 
 msgid "Impossible case when building axis\n"
 msgstr ""
 
-msgid "This object cannot be cloned.\n"
-msgstr ""
-
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr ""
-
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s 只用來計算等高線而非顯是它們.\n"
-
-#, c-format
-msgid "Entity with type %d cannot be destroyed.\n"
-msgstr ""
-
-msgid "A Label object cannot be deleted.\n"
-msgstr "Label 物件無法被刪除.\n"
-
-msgid "This object cannot be deleted.\n"
-msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -459,7 +446,7 @@ msgstr ""
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 
-msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
+msgid "Error: ComputeFormat must be used with AXIS objects\n"
 msgstr ""
 
 #, c-format
@@ -509,41 +496,11 @@ msgstr ""
 msgid "This object has no %s property.\n"
 msgstr ""
 
-msgid "The parent handle is not or no more valid.\n"
-msgstr ""
-
-#, c-format
-msgid "Handle number %d is not or no more valid.\n"
-msgstr ""
-
-#, c-format
-msgid "Handle number %d is not compatible with the parent handle.\n"
-msgstr ""
-
-#, c-format
-msgid "Error relocating handle %d."
-msgstr "重新定位 (relocating) 代碼  (handle)  %d 時發生錯誤."
-
-#, c-format
-msgid "Handle #%d is not compatible with its new parent.\n"
-msgstr "代碼  (handle) #%d 與其父元素不相容.\n"
-
-#, c-format
-msgid "Object #%d is not correctly placed in the hierarchy.\n"
-msgstr ""
-
-#, c-format
-msgid "Handle #%d is not or no more valid.\n"
-msgstr ""
-
-msgid "Default figure cannot be create.\n"
-msgstr ""
-
-msgid "Default axes cannot be create.\n"
-msgstr ""
-
 #, c-format
 msgid "Graphic window number %d"
+msgstr ""
+
+msgid "Default axes cannot be created.\n"
 msgstr ""
 
 msgid "This object has not any graphic mode\n"
@@ -556,14 +513,6 @@ msgid "This object can not be moved.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Number of columns must be %d.\n"
-msgstr "%s: 列 (column) 數必須為 %d.\n"
-
-#, c-format
-msgid "%s: Object must be a %s.\n"
-msgstr "%s:  必須為 %s 物件 (Object).\n"
-
-#, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr ""
 
@@ -572,29 +521,10 @@ msgid "The line style must be greater than %d.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "'%s' 屬性錯誤: 應該介於 %d 及 %d 之間.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr ""
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr ""
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr ""
-
 msgid "Unable to load default values.\n"
-msgstr ""
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-
-msgid "WARNING : The size of the figure may not be as wide as you want.\n"
 msgstr ""
 
 msgid "Handle is not a SubWindow.\n"
@@ -610,6 +540,9 @@ msgstr ""
 
 #, c-format
 msgid "Number of elements must be %d (%d if z coordinate )\n"
+msgstr ""
+
+msgid "Number of rows must be a multiple of 2.\n"
 msgstr ""
 
 msgid "Unhandled data field\n"
@@ -628,6 +561,10 @@ msgid "%s: Can't enable a void event handler.\n"
 msgstr "%s: 無法使用一個空事件 (void event) 代碼(handler).\n"
 
 #, c-format
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "此代碼 (handle) 之 '%s' 屬性不存在.\n"
+
+#, c-format
 msgid "%s should be a vector of double.\n"
 msgstr "%s 必須為實數向量.\n"
 
@@ -643,8 +580,8 @@ msgid "Unknown property: %s.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "'%s' 屬性錯誤: 應該為 %s 或 %s.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -655,10 +592,6 @@ msgid "Wrong value for '%s' property.\n"
 msgstr "'%s' 屬性錯誤.\n"
 
 #, c-format
-msgid "'%s' property does not exist for this handle.\n"
-msgstr "此代碼 (handle) 之 '%s' 屬性不存在.\n"
-
-#, c-format
 msgid "%s property only exists for %s surfaces.\n"
 msgstr "%s 屬性只在 %s 面上才有.\n"
 
@@ -667,14 +600,12 @@ msgid "%s: No more memory."
 msgstr "%s: 記憶體空間不足"
 
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
+msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
-msgstr ""
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "'%s' 屬性錯誤: 應該為 %s 或 %s.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -697,16 +628,6 @@ msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr "'%s' 屬性之大小錯誤: 應該為 %d 個元素.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "'%s' 屬性之型態錯誤:應該為一整數.\n"
 
@@ -716,16 +637,36 @@ msgid ""
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
 msgstr ""
 
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
 msgid "Children property can not be modified directly.\n"
 msgstr "子元素的屬性無法直接變動.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "'%s' 屬性之大小錯誤: 應該為一純量.\n"
-
-#, c-format
-msgid "%s: No more memory\n"
-msgstr "%s: 記憶體空間不足\n"
 
 #, c-format
 msgid ""
@@ -827,17 +768,26 @@ msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
 msgstr "'%s' 屬性錯誤: 應該為 -1 或一有效的顏色索引 (index).\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a valid color index.\n"
-msgstr "'%s' 屬性錯誤: 應該為一有效的顏色索引 (index).\n"
-
-#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "{0,1} values are equivalent for line_style property."
+msgstr ""
+
+msgid "0 will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use 1 instead."
 msgstr ""
 
 #, c-format
@@ -867,8 +817,16 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "'%s' 屬性錯誤: 應該介於 %d 及 %d 之間.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr "'%s' 屬性之型態錯誤:應該為 '%s' 代碼 (handle) or '%s' 代碼.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr ""
@@ -884,6 +842,10 @@ msgstr "第 #%d 必須有 %d 個元素.\n"
 #, c-format
 msgid "%s cannot be set in this case.\n"
 msgstr "%s 在此狀況無法設定.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -921,6 +883,10 @@ msgstr ""
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: x 向量不具單調性 (monotonous).\n"
+
+#, c-format
+msgid "%s: y vector is not monotonous.\n"
+msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr ""
@@ -1195,6 +1161,44 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 多個輸入參數的個數錯誤: 應該至少有 %d 個.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or Scilab function "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Error %d : in plot2d called by contour2d"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr ""
+
 msgid "Delete all datatips"
 msgstr ""
 
@@ -1268,10 +1272,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -1444,10 +1444,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 輸入參數型態錯誤.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
 
@@ -1536,10 +1532,6 @@ msgid ""
 msgstr "%s: 輸入參數 '%s' 大小錯誤: 應該為長度為 %d 的向量.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 'Axes' 代碼 (handle).\n"
 
@@ -1548,8 +1540,8 @@ msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一 'Axes' 代碼 (handle).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤.\n"
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1608,4 +1600,8 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一向量.\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value given for %s."
 msgstr ""

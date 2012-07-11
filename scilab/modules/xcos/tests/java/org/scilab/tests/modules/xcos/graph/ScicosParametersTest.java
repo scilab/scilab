@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.testng.annotations.Test;
+import org.junit.*;
 
 /**
  * Test the behavior of the {@link ScicosParameters} class.

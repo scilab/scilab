@@ -218,7 +218,7 @@ int GetNumberOfLines(char *lines)
     int NumberOfLines = 0;
     if (lines)
     {
-        char *buffer = strdup(lines);
+        char *buffer = os_strdup(lines);
         if (buffer)
         {
             int i = 0;

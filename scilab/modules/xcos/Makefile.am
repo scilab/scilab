@@ -34,10 +34,7 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xsl \
 	etc/XConfiguration-xcos.xml
 
-XCOS_C_SOURCES =
-
-XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
-			src/jni/Xcos.cpp \
+XCOS_CXX_SOURCES = 	src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
@@ -56,7 +53,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
-GATEWAY_CPP_SOURCES = \
+GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
@@ -72,37 +69,31 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 
-libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/system_env/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
-
-libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/system_env/includes
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(AM_CPPFLAGS)
 
 # Without the xcos module
-libscixcos_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscixcos-disable.la
@@ -114,16 +105,14 @@ pkglib_LTLIBRARIES += libscixcos.la
 endif
 endif
 
-libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CPP_SOURCES)
-libscixcos_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscixcos_algo_la_CFLAGS = $(libscixcos_la_CFLAGS)
+libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CXX_SOURCES)
+libscixcos_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
+INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 
 
 
@@ -170,6 +159,7 @@ images/blocks/PNP.svg \
 images/blocks/PotentialSensor.svg \
 images/blocks/PRODUCT.svg \
 images/blocks/PuitP.svg \
+images/blocks/PULSE_SC.svg \
 images/blocks/QUANT_f.svg \
 images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
@@ -237,6 +227,7 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
+images/palettes/CONSTRAINT2_c.png \
 images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
@@ -358,6 +349,7 @@ images/palettes/POWBLK_f.png \
 images/palettes/PROD_f.png \
 images/palettes/PRODUCT.png \
 images/palettes/PuitsP.png \
+images/palettes/PULSE_SC.png \
 images/palettes/QUANT_f.png \
 images/palettes/RAMP.png \
 images/palettes/RAND_m.png \
@@ -375,6 +367,7 @@ images/palettes/SAMPHOLD_m.png \
 images/palettes/SampleCLK.png \
 images/palettes/SATURATION.png \
 images/palettes/SAWTOOTH_f.png \
+images/palettes/SCALAR2VECTOR.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
 images/palettes/SELF_SWITCH_off.png \
@@ -408,6 +401,7 @@ images/palettes/TrigFun.png \
 images/palettes/VanneReglante.png \
 images/palettes/VARIABLE_DELAY.png \
 images/palettes/VariableResistor.png \
+images/palettes/VirtualCLK0.png \
 images/palettes/VoltageSensor.png \
 images/palettes/VsourceAC.png \
 images/palettes/VVsourceAC.png \
@@ -418,9 +412,7 @@ images/palettes/ZCROSS_f.png
 
 if XCOS
 if GUI
-if HDF5
 USEANT=1
-endif
 endif
 endif
 

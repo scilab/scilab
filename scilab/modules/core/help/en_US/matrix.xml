@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matrix">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>matrix</refname>
     <refpurpose> reshape a vector or a matrix to a different size matrix</refpurpose>
@@ -51,8 +48,8 @@
       stacking columnwise the entries of <literal>v</literal>.
     </para>
     <para>
-      if one of the dimension m or n is equal to -1 it is automatically
-      assigned to the quotient of size(v,'*') by the other dimension,
+      If one of the dimension <literal>m</literal> or <literal>n</literal> is equal to -1 it is automatically
+      assigned to the quotient of <literal>size(v,'*')</literal> by the other dimension.
     </para>
     <para>
       For a hypermatrix such as

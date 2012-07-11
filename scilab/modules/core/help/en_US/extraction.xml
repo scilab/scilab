@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="extraction" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>extraction</refname>
     <refpurpose>matrix and list entry extraction</refpurpose>
@@ -128,7 +123,7 @@
             </varlistentry>
             <varlistentry>
               <term>
-                the symbol <literal> : </literal>
+                the symbol <literal>: </literal>
               </term>
               <listitem>
                 <para><literal/>
@@ -159,7 +154,7 @@
                     <para>
                       <literal>r=x(:)</literal> builds the column vector
                       <literal>r</literal> formed by the column concatenations
-                      of<literal> x</literal> columns. It is equivalent to
+                      of <literal>x</literal> columns. It is equivalent to
                       <literal>matrix(x,size(x,'*'),1)</literal>.
                     </para>
                   </listitem>
@@ -171,7 +166,7 @@
               <listitem>
                 <para>
                   If an index (<literal>i</literal> or
-                  <literal>j</literal> ) is a vector of booleans it is
+                  <literal>j</literal>) is a vector of booleans it is
                   interpreted as <literal>find(i)</literal> or respectively
                   <literal>find(j)</literal>
                 </para>
@@ -182,7 +177,7 @@
               <listitem>
                 <para>
                   If an index (<literal>i</literal> or
-                  <literal>j</literal> ) is a vector of polynomials or implicit
+                  <literal>j</literal>) is a vector of polynomials or implicit
                   polynomial vector it is interpreted as
                   <literal>horner(i,m)</literal> or respectively
                   <literal>horner(j,n)</literal> where <literal>m</literal> and
@@ -219,26 +214,48 @@
           </para>
           <para>are interpreted as:</para>
           <para>
-            <literal>lk1 = l(k1)</literal><literal> .. = .. </literal><literal>lkn = lkn-1(kn)</literal><literal>[...] = lkn(i)</literal>
+            <literal>lk1 = l(k1)</literal>
+          </para>
+          <para>
+            <literal>.. = .. </literal>
+          </para>
+          <para>
+            <literal>lkn = lkn-1(kn)</literal>
+          </para>
+          <para>
+            <literal>[...] = lkn(i)</literal>.
+          </para>
+          <para>
             And the <literal>l(k1)...(kn)(i,j)</literal> and
           </para>
           <para>
             <literal>l(list(k1,...,kn,list(i,j))</literal> instructions
-            are interpreted as: <literal>lk1 = l(k1)</literal> <literal> .. = ..
-            </literal>
-            <literal>lkn = lkn-1(kn)</literal> <literal>
+            are interpreted as:
+          </para>
+          <para>
+            <literal>lk1 = l(k1)</literal>
+          </para>
+          <para>
+            <literal>.. = .. </literal>
+          </para>
+          <para>
+            <literal>lkn = lkn-1(kn)</literal>
+          </para>
+          <para>
+            <literal>
               lkn(i,j)
             </literal>
-            <literal>i</literal> and <literal>j</literal>,
-            can be: When path points on more than one list component the
+          </para>
+          <para> 
+            When path points on more than one list component the
             instruction must have as many left hand side arguments as selected
             components. But if the extraction syntax is used within a function
             input calling sequence each returned list component is added to the
             function calling sequence.
           </para>
           <para>
-            Note that, <literal> l(list())</literal> is the same as
-            <literal> l</literal>.
+            Note that, <literal>l(list())</literal> is the same as
+            <literal>l</literal>.
           </para>
           <variablelist>
             <varlistentry>
@@ -252,7 +269,7 @@
                     <listitem>
                       <para>
                         <literal>[r1,...rn]=l(i)</literal> extracts the
-                        <literal>i(k)</literal> elements from the list l and store
+                        <literal>i(k)</literal> elements from the list <literal>l</literal> and store
                         them in <literal>rk</literal> variables for
                         <literal>k</literal> from 1 to
                         <literal>size(i,'*')</literal>
@@ -261,7 +278,7 @@
                   </varlistentry>
                   <varlistentry>
                     <term>
-                      the symbol <literal> : </literal>
+                      the symbol <literal>: </literal>
                     </term>
                     <listitem>
                       <para>which stands for "all elements".</para>
@@ -277,7 +294,7 @@
                     </listitem>
                   </varlistentry>
                   <varlistentry>
-                    <term>a polynomial.</term>
+                    <term>a polynomial</term>
                     <listitem>
                       <para>
                         If <literal>i</literal> is a vector of polynomials or
@@ -293,17 +310,17 @@
               </listitem>
             </varlistentry>
             <varlistentry>
-              <term>k1,..kn may be :</term>
+              <term>k1 ... kn may be :</term>
               <listitem>
                 <variablelist>
                   <varlistentry>
-                    <term>real positive scalar,</term>
+                    <term>real positive scalar</term>
                     <listitem>
                       <para/>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
-                    <term>a polynomial,</term>
+                    <term>a polynomial</term>
                     <listitem>
                       <para>
                         interpreted as <literal>horner(ki,m)</literal> where
@@ -384,6 +401,9 @@ dts(2)('b')(1,2)
       </member>
       <member>
         <link linkend="parents">parents</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
       </member>
     </simplelist>
   </refsection>

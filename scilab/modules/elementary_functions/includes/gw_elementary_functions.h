@@ -64,6 +64,7 @@ C_GATEWAY_PROTOTYPE(sci_testmatrix);
 C_GATEWAY_PROTOTYPE(sci_tril);
 C_GATEWAY_PROTOTYPE(sci_triu);
 C_GATEWAY_PROTOTYPE(sci_base2dec);
+C_GATEWAY_PROTOTYPE(sci_dec2base);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

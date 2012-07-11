@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 1312 -->
 //
@@ -47,6 +48,8 @@ h2=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "Units","points",..
     "Userdata","a2",..
     "Value",12);
+Warning: 'radiobutton' 'Value' property should be equal to either 'Min' or 'Max' property value.
+Warning: 'radiobutton' 'Value' property should be equal to either 'Min' or 'Max' property value.
 h3=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Check-Box"")",..
     "fontangle","oblique","fontsize",15,..
@@ -61,6 +64,8 @@ h3=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a3",..
     "Value",12);
+Warning: 'checkbox' 'Value' property should be equal to either 'Min' or 'Max' property value.
+Warning: 'checkbox' 'Value' property should be equal to either 'Min' or 'Max' property value.
 h4=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Edit"")",..
     "fontangle","oblique","fontsize",15,..

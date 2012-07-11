@@ -515,8 +515,11 @@ detect_java_vm() {
                         "ppc"|"powerpc"|"ppc64")
                             proc="ppc"
                             ;;
-                        "s390"|"s390x")
+                        "s390")
                             proc="s390"
+                            ;;
+                        "s390x")
+                            proc="s390x"
                             ;;
                         armv*)
                             proc="arm"
@@ -567,8 +570,7 @@ detect_java_vm() {
         fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
-# Check if the lib exists or not (we should manage system where .so is not the
-# ext for library
+# Check if the lib exists or not
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
     if test ! -f $LIBJAVA; then
         if test $SCIVERBOSE -ne 0; then
@@ -759,6 +761,7 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
         BINPATH=$(dirname $0)
@@ -770,6 +773,14 @@ case $OS in
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
+
+        # When started as an Application, the default path was "/"
+        # It is not really useful. Changing to HOME.
+        # See bugs 8339 and 10575 for rational
+        if test "$(pwd)" == "/"; then
+            cd $HOME
+        fi
+
         ;;
     *)
 esac
@@ -805,65 +816,68 @@ do_help()
 {
     echo "Usage:"
     echo     "scilab <arguments>"
+    echo     "scilab-cli <arguments>"
+    echo     "scilab-adv-cli <arguments>"
     echo     " "
-    echo     "      Possible arguments are:"
-    echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
-    echo     "      -d Display      : equivalent to -display Display."
-    echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-    echo     "                        -e and -f arguments are mutually exclusive."
-    echo     "      -f File         : execute the scilab script given in File argument."
-    echo     "                        -e and -f arguments are mutually exclusive."
-    echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-    echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
-    echo     "      -nb             : do not display the Scilab banner at starting time."
-    echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
-    echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-    echo     "      -noatomsautoload: do not load ATOMS installed module."
-    echo     "      -nw             : start Scilab without dedicated Scilab Window."
-    echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
-    echo     "      -nogui          : See -nwni"
-    echo     "      -args           : accept all extra arguments and make them available through sciargs"
-    echo     "      -version        : print product version and exit."
-    echo     "      -h/--help       : display help about this command."
-    echo     "      --texmacs       : reserved for TeXMacs."
+    echo     "  Possible arguments are:"
+    echo     "  -display Display: for use under Xwindow systems to set a specific X server display."
+    echo     "  -d Display      : equivalent to -display Display."
+    echo     "  -e Instruction  : execute the scilab instruction given in Instruction argument."
+    echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -f File         : execute the scilab script given in File argument."
+    echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
+    echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
+    echo     "  -nb             : do not display the Scilab banner at starting time."
+    echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
+    echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "  -noatomsautoload: do not load ATOMS installed module."
+    echo     "  -nw             : start Scilab without dedicated Scilab Window."
+    echo     "  -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
+    echo     "  -nogui          : See -nwni"
+    echo     "  -nocolor        : Remove the color in the cli and adv-cli modes"
+    echo     "  -args           : accept all extra arguments and make them available through sciargs"
+    echo     "  -version        : print product version and exit."
+    echo     "  -h/--help       : display help about this command."
+    echo     "  --texmacs       : reserved for TeXMacs."
     echo     " "
-    if test $IS_SCILAB_BINARY -eq 0; then
-        echo     "Developer arguments:"
-        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        valgrind (and override the existing valgrind arguments)."
-        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        callgrind (and override the existing callgrind arguments)."
-        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
-        echo     " "
-        echo     "Developer Trace arguments:"
-        echo     "      --parse-file File : Only parse File argument without execution and exit."
-        echo     "      --parse-trace     : Display bison state machine evolution."
-        echo     "      --AST-trace       : Display ASCII-art AST to be human readable."
-        echo     "      --pretty-print    : Display pretty-printed code, standard Scilab syntax."
-        echo     " "
-        echo     "Developer Timer arguments:"
-        echo     "      --AST-timed      : Time each AST node."
-        echo     "      --timed          : Time global execution."
-        echo     " "
-        echo     "Developer Debug arguments:"
-        echo     "      --no-exec        : Only do Lexing/parsing do not execute instructions."
-        echo     "      --context-dump   : Display context status."
-        echo     "      --exec-verbose   : Display command before execute it."
-	    echo     " "
-    fi
+
+    echo     "Developer arguments:"
+    echo     "  -debug          : Start Scilab under gdb (Unix/linux only)."
+    echo     "                    define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+    echo     "  -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+    echo     "  -profiling      : Start Scilab under valgrind (Unix/linux only)."
+    echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                    valgrind (and override the existing valgrind arguments)."
+    echo     "  -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+    echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                    callgrind (and override the existing callgrind arguments)."
+    echo     "  -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+    echo     "  -disable-exception-catching : Disable Scilab exception catching system."
+    echo     " "
+    echo     "  --parse-file File : Only parse File argument without execution and exit."
+    echo     "  --parse-trace     : Display bison state machine evolution."
+    echo     "  --AST-trace       : Display ASCII-art AST to be human readable."
+    echo     "  --pretty-print    : Display pretty-printed code, standard Scilab syntax."
+    echo     " "
+    echo     "Developer Timer arguments:"
+    echo     "  --AST-timed      : Time each AST node."
+    echo     "  --timed          : Time global execution."
+    echo     " "
+    echo     "Developer Debug arguments:"
+    echo     "  --no-exec        : Only do Lexing/parsing do not execute instructions."
+    echo     "  --context-dump   : Display context status."
+    echo     "  --exec-verbose   : Display command before execute it."
+    echo     " "
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
-    echo     "      Several environment variables can be declared."
-    echo     "      SCIVERBOSE               Provides debugging information of the startup"
-    echo     "      JAVA_HOME                Declares which Java Virtual Machine to use"
-    echo     "      SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
-    echo     "      SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+
+    echo     "  Several environment variables can be declared:"
+    echo     "  SCIVERBOSE               Provides debugging information of the startup"
+    echo     "  JAVA_HOME                Declares which Java Virtual Machine to use"
+    echo     "  SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
+    echo     "  SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+    echo     "  SCI_DISABLE_EXCEPTION_CATCHING Disable the catch by Scilab of exception (segfault, ...)"
 
     exit
 }
@@ -905,10 +919,6 @@ do_lib()
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
     MORE_OPT="-nw"
-fi
-
-if test "$SCILAB_MODE" = "nwni"; then
-    MORE_OPT="-nwni"
 fi
 
 # calling Scilab with no argument or special cases of calling Scilab
@@ -965,7 +975,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|-nocolor|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-10-03 14:47+0000\n"
+"PO-Revision-Date: 2012-02-28 19:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
@@ -101,37 +101,6 @@ msgstr "Не вдалося відкрити файл!\n"
 
 msgid "Read error\n"
 msgstr "Помилка читання\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ПОМИЛКА ДІАПАЗОНУ: помилка у scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: неможливо виконати sciDrawObj, pShortDraw дорівнює NULL з "
-"невідомої причини!\n"
-" Ймовірно, вами було знищено об’єкти вікон або батьківські об’єкти кривих.\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: помилка під час спроби виконання malloc — чи достатньо "
-"пам’яті?\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ПОМИЛКА ДІАПАЗОНУ: помилка з невідомим кодом!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Неправильне значення параметра розмірності"
-
-msgid "This scope has the same window id than another."
-msgstr ""
-"Ідентифікатор вікна цієї області збігається з ідентифікатором вікна іншої"
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Не можна використовувати %s для цього типу об’єктів."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
@@ -768,7 +737,7 @@ msgid "&File"
 msgstr "&Файл"
 
 msgid "&Tools"
-msgstr "І&нструменти"
+msgstr "&Інструменти"
 
 msgid "&Edit"
 msgstr "З&міни"

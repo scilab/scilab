@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -60,7 +60,7 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 
 		ptwShortName = (wchar_t*)MALLOC((length + 1)*sizeof(wchar_t));
 
-		if (ptwShortName) 
+		if (ptwShortName)
 		{
 			/* second converts path */
 			if ( GetShortPathNameW(ptwlongpathname, ptwShortName, length) )
@@ -114,7 +114,7 @@ wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
 
         pwstOutput = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
 
-        if(pwstOutput) 
+        if(pwstOutput)
         {
             /* second converts path */
             if(GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))

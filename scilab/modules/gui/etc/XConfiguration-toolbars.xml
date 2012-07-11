@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<toolbar>
+<toolbar title="Toolbar">
   <body>
     <toolbars select="scilab">
       <toolbar title="scilab" position="1" selection="0">

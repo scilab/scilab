@@ -21,4 +21,5 @@ for k=1:size(a.children, "*")
   if a.children(k).type == "Legend" then pause; end
 end
 
+sleep(3000);//Wait for MVC update
 delete(gcf());

@@ -295,9 +295,10 @@ public abstract class ContextUpdate extends BasicBlock {
         public static Map<IOBlocks, List<mxICell>> getAllBlocks(SuperBlock parent) {
             final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(IOBlocks.class);
 
-            final SuperBlockDiagram graph = parent.getChild();
+            SuperBlockDiagram graph = parent.getChild();
             if (graph == null) {
-                parent.createChildDiagram();
+                parent.createChildDiagram(true);
+                graph = parent.getChild();
             }
 
             /* Allocation */
@@ -426,11 +427,16 @@ public abstract class ContextUpdate extends BasicBlock {
 
         LOG_LOCAL.finest("Update the I/O value from the context");
 
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+
         try {
             // Write scs_m
-            new ScilabDirectHandler().writeBlock(this);
+            handler.writeBlock(this);
             // Write context
-            new ScilabDirectHandler().writeContext(context);
+            handler.writeContext(context);
 
             String cmd = ScilabInterpreterManagement.buildCall("blk = xcosBlockEval", getInterfaceFunctionName().toCharArray(),
                          ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
@@ -440,11 +446,13 @@ public abstract class ContextUpdate extends BasicBlock {
             } catch (InterpreterException e) {
                 e.printStackTrace();
             }
-            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
+            BasicBlock modifiedBlock = handler.readBlock();
             updateBlockSettings(modifiedBlock);
 
         } catch (ScicosFormatException e) {
             LOG_LOCAL.severe(e.toString());
+        } finally {
+            handler.release();
         }
     }
 }

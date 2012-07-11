@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
 #include "Scierror.h"

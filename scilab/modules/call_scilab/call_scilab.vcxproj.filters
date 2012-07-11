@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -56,9 +56,6 @@
     <ClInclude Include="includes\call_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\CallScilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\dynlib_call_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,7 +75,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="call_scilab_export.def">
@@ -87,8 +84,8 @@
     <None Include="call_scilab.iss" />
     <None Include="sci_gateway\call_scilab_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="locales\call_scilab.pot">
-      <Filter>localization</Filter>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
 </Project>

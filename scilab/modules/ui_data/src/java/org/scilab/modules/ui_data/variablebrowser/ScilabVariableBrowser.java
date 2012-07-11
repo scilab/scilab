@@ -14,16 +14,13 @@ package org.scilab.modules.ui_data.variablebrowser;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.tabfactory.VariableBrowserTab;
 import org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory;
@@ -37,8 +34,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  */
 public final class ScilabVariableBrowser implements VariableBrowser {
 
-    private static VariableBrowser instance;
-    private static SimpleVariableBrowser browserTab;
+    private static ScilabVariableBrowser instance;
+    private static SwingScilabVariableBrowser browserTab;
 
     static {
         ScilabTabFactory.getInstance().addTabFactory(VariableBrowserTabFactory.getInstance());
@@ -76,9 +73,13 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * @param data : data from scilab (type, name, size, ...)
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, Object[][] data) {
-        VariableBrowser variableBrowser = getVariableBrowser(update);
-        variableBrowser.setData(data);
+    public static VariableBrowser getVariableBrowser(boolean update, final Object[][] data) {
+        final VariableBrowser variableBrowser = getVariableBrowser(update);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                variableBrowser.setData(data);
+            }
+        });
         return variableBrowser;
     }
 

@@ -113,8 +113,7 @@
     <!--Lib_name: read_write_bsparse-->
     <!--Func_list: read_write_bsparse-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int read_write_bsparse(char *fname,unsigned long fname_len)
 {
@@ -185,18 +184,17 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
         iCol += piNbItemRow[i];
     }
 
-    sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
+    sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

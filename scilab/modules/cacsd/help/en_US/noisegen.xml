@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="noisegen">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>noisegen</refname>
     <refpurpose> noise generation</refpurpose>
@@ -25,12 +22,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    generates a Scilab function <literal>[b]=Noise(t)</literal>
-    where <literal>Noise(t)</literal> is a piecewise constant function 
-    ( constant on  <literal>[k*pas,(k+1)*pas]</literal> ). The value on each constant 
-    interval are random values from  i.i.d  Gaussian variables of 
-    standard deviation sig. The function is constant for <literal>t&lt;=0</literal> and 
-    <literal>t&gt;=Tmax</literal>.</para>
+      generates a Scilab function <literal>[b]=Noise(t)</literal>
+      where <literal>Noise(t)</literal> is a piecewise constant function 
+      ( constant on  <literal>[k*pas,(k+1)*pas]</literal> ). The value on each constant 
+      interval are random values from  i.i.d  Gaussian variables of 
+      standard deviation sig. The function is constant for <literal>t&lt;=0</literal> and 
+      <literal>t&gt;=Tmax</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

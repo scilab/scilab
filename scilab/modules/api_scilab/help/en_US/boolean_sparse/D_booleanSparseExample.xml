@@ -27,8 +27,7 @@
     <!--Lib_name: booleanSparseExample-->
     <!--Func_list: booleanSparseExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int booleanSparseExample(char *fname,unsigned long fname_len)
@@ -63,7 +62,7 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 			return iRet;
 		}
 
-		sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+		sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
 		if(sciErr.iErr)
 		{
 			freeAllocatedBooleanSparse(piNbItemRow, piColPos);
@@ -72,12 +71,11 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 		}
 
 		freeAllocatedBooleanSparse(piNbItemRow, piColPos);
-		AssignOutputVariable(1) = InputArgument + 1;
+		AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

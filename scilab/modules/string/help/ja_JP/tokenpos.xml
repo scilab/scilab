@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tokenpos">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>tokenpos</refname>
     <refpurpose>文字列の中のトークンの位置を返す.  </refpurpose>
@@ -41,18 +38,21 @@
         <term>kdf</term>
         <listitem>
           <para>2列の行列で, 最初の列はトークン開始位置のインデックス,
-		2列目はトークンの最後の文字のインデックスを出力します.</para>
+            2列目はトークンの最後の文字のインデックスを出力します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>kdf=tokenpos(str [,delimiter]) </literal> は文字列
-	<literal>str</literal>に含まれるトークンを探します.
-	<literal>delimiter</literal> のデフォルト値は [" ",&lt;Tab&gt;]です.
-	ただし, &lt;Tab&gt; は <literal>ascii(9)</literal>を意味します. 
-	この関数は各トークンが見つかった最初および最後の文字のインデックスを返します.</para>
+    <para>
+      <literal>kdf=tokenpos(str [,delimiter]) </literal> は文字列
+      <literal>str</literal>に含まれるトークンを探します.
+      <literal>delimiter</literal> のデフォルト値は [" ",&lt;Tab&gt;]です.
+      ただし, &lt;Tab&gt; は <literal>ascii(9)</literal>を意味します. 
+      この関数は各トークンが見つかった最初および最後の文字のインデックスを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

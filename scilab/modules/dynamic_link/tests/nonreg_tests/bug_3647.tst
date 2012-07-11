@@ -4,9 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- NOT FIXED -->
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 3647 -->
 //

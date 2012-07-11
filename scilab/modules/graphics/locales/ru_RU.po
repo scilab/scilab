@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-01 04:00+0000\n"
+"PO-Revision-Date: 2012-06-19 15:08+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -109,8 +109,18 @@ msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
 
 #, c-format
+msgid "%s: Parent entity for destination should be an axes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr "Этот объект не удалось удалить.\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "Не удалось удалить метку.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Неверное значение %s «%c»: Ожидалось «%s», «%s» и «%s».\n"
@@ -136,14 +146,6 @@ msgstr "%s: Каждый дескриптор не должен появлять
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr "%s: У объектов должен быть один и тот же предок.\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: Дескриптор %d не может быть связан (недопустимый предок).\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: Дескриптор %d не может быть связан (недопустимый тип).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -245,6 +247,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+"%s: Нельзя запусть rubberbox на трёхмерно изображении с опциями initial_rect "
+"или edition_mode. Смотрите справку для более подробной информации.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался вектор размером %d или "
@@ -317,10 +327,6 @@ msgstr ""
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: Дескриптор «%s» более не существует.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr "%s: Неверный тип входного параметра: ожидался дескриптор «%s».\n"
 
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
@@ -412,12 +418,18 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: «%s» должно быть установлено\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr "%s: Неверное количество входых аргументов: ожидалось %d или %d.\n"
+
+#, c-format
 msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
-"%s: Старый графический режим более недоступен. Смотрите справку по команде "
-"set.\n"
+"%s: Неверный размер входного аргумента №%d: Ожидался %d-элементный вектор.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -486,44 +498,16 @@ msgstr "Предок должен быть «Figure»\n"
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Предок должен быть «Subwin»\n"
 
-msgid "No more place to allocates text string, try a shorter string.\n"
-msgstr ""
-"Недостаточно места для размещения строковой переменной, попробуйте уменьшить "
-"её длину.\n"
-
-msgid "Problem with sciInitFontContext\n"
-msgstr "Проблема с sciInitFontContext\n"
-
 msgid "Width and height must be positive.\n"
 msgstr "Ширина и высота должны быть положительными.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "Не удалось построить оси\n"
 
-msgid "This object cannot be cloned.\n"
-msgstr "Этот объект не может быть клонирован.\n"
-
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr ""
-"Цветовая матрица пуста (NULL): не удалось построить линейную цветовую шкалу "
-"в текущей цветовой палитре"
-
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s создано только для вычисления кривых уровня, а не для их изображения.\n"
-
-#, c-format
-msgid "Entity with type %d cannot be destroyed.\n"
-msgstr "Объект типа %d не может быть уничтожен.\n"
-
-msgid "A Label object cannot be deleted.\n"
-msgstr "Не удалось удалить метку.\n"
-
-msgid "This object cannot be deleted.\n"
-msgstr "Этот объект не удалось удалить.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -550,9 +534,8 @@ msgstr "Внутренняя ошибка: цикл в «graduate1»\n"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Отправляйте отчёты об ошибках на адрес dev@lists.scilab.org\n"
 
-msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
-msgstr ""
-"Ошибка: «ComputeFormat» должен использоваться с объектами «SCI_AXES»\n"
+msgid "Error: ComputeFormat must be used with AXIS objects\n"
+msgstr "Error: ComputeFormat должен быть использован с объектами AXIS\n"
 
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
@@ -606,42 +589,12 @@ msgstr "Невозможно вычислить y_location для данного
 msgid "This object has no %s property.\n"
 msgstr "У этого объекта нет свойства %s.\n"
 
-msgid "The parent handle is not or no more valid.\n"
-msgstr "Дескриптор предка (более) не действителен.\n"
-
-#, c-format
-msgid "Handle number %d is not or no more valid.\n"
-msgstr "Дескриптор номер %d (более) не действителен.\n"
-
-#, c-format
-msgid "Handle number %d is not compatible with the parent handle.\n"
-msgstr "Дескриптор номер %d несовместим с дескриптором предка.\n"
-
-#, c-format
-msgid "Error relocating handle %d."
-msgstr "Ошибка перемещения дескриптора %d."
-
-#, c-format
-msgid "Handle #%d is not compatible with its new parent.\n"
-msgstr "Дескриптор №%d не совместим с его новым предком.\n"
-
-#, c-format
-msgid "Object #%d is not correctly placed in the hierarchy.\n"
-msgstr "Объект ;%d некорректно расположен в иерархии.\n"
-
-#, c-format
-msgid "Handle #%d is not or no more valid.\n"
-msgstr "Дескриптор №%d (более) не действителен.\n"
-
-msgid "Default figure cannot be create.\n"
-msgstr "Графическое окно по умолчанию не может быть создано.\n"
-
-msgid "Default axes cannot be create.\n"
-msgstr "Оси по умолчанию не могут быть созданы.\n"
-
 #, c-format
 msgid "Graphic window number %d"
 msgstr "Графическое окно %d"
+
+msgid "Default axes cannot be created.\n"
+msgstr "Нельзя создать оси по умолчанию.\n"
 
 msgid "This object has not any graphic mode\n"
 msgstr "Этот объект не имеет ни одного графического режима\n"
@@ -653,14 +606,6 @@ msgid "This object can not be moved.\n"
 msgstr "Этот объект не может быть перемещён.\n"
 
 #, c-format
-msgid "%s: Number of columns must be %d.\n"
-msgstr "%s: Количество столбцов должно быть %d.\n"
-
-#, c-format
-msgid "%s: Object must be a %s.\n"
-msgstr "%s: Объект должен быть %s.\n"
-
-#, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "Ширина линии должна быть больше чем %d.\n"
 
@@ -669,34 +614,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "Стиль линии должен быть больше чем %d.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "Неверное значение свойства «%s»: должно быть между %d и %d.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Размер маркера должен быть больше или равен %d.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "Единица размера маркера должна быть больше чем %d.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "Размер шрифта должен быть больше чем %d.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "Невозможно загрузить значения по умолчанию.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"Название графического окна не может содержать ни одного символа %%, исключая "
-"одиночные %%d.\n"
-
-msgid "WARNING : The size of the figure may not be as wide as you want.\n"
-msgstr ""
-"Внимание: размер графического окна не может быть таким широким как "
-"требуется.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Дескриптор на является «SubWindow».\n"
@@ -713,6 +635,9 @@ msgstr "Количество элементов должно быть %d (%d е�
 msgid "Number of elements must be %d (%d if z coordinate )\n"
 msgstr "Количество элементов должно быть %d (%d если координата z).\n"
 
+msgid "Number of rows must be a multiple of 2.\n"
+msgstr "Количество строк должно быть кратно 2.\n"
+
 msgid "Unhandled data field\n"
 msgstr "Необработанное поле данных\n"
 
@@ -727,6 +652,10 @@ msgstr "%s: используйте %s.\n"
 #, c-format
 msgid "%s: Can't enable a void event handler.\n"
 msgstr "%s: Не удалось включить пустой обработчик событий.\n"
+
+#, c-format
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Свойство «%s» не существует для этого дескриптора.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -746,8 +675,8 @@ msgid "Unknown property: %s.\n"
 msgstr "Неизвестное свойство: %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось %s или %s.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -758,10 +687,6 @@ msgid "Wrong value for '%s' property.\n"
 msgstr "Неверное значение свойства «%s».\n"
 
 #, c-format
-msgid "'%s' property does not exist for this handle.\n"
-msgstr "Свойство «%s» не существует для этого дескриптора.\n"
-
-#, c-format
 msgid "%s property only exists for %s surfaces.\n"
 msgstr "свойство %s существует только для поверхностей %s.\n"
 
@@ -770,16 +695,12 @@ msgid "%s: No more memory."
 msgstr "%s: Не осталось доступной памяти."
 
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
-msgstr ""
-"Внимание: использование %s является устаревшим и больше не применяется, "
-"используйте свойство %s для изменения цвета осей.\n"
-
-#, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "Неверное значение свойства «%s»: должно быть из множества {%s}.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось %s или %s.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -802,18 +723,6 @@ msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидалось %d элементов.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr "Неверное значение свойства «%s»:  ожидались меньшие значения.\n"
-
-#, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
-msgstr ""
-"Внимание: свойство «%s» не может быть изменено, если %s закреплён с другими "
-"элементами.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "Неверный тип свойства «%s»:  ожидалось целое число.\n"
 
@@ -825,16 +734,37 @@ msgstr ""
 "Внимание: в свойстве «%s»  значение «%s» является устаревшим, используйте "
 "значение «%s».\n"
 
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидался список из двух элементов.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»:  ожидалась строка или список из двух элементов.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A Real scalar expected.\n"
+msgstr "Неверный тип свойства«%s» : ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A Real scalar expected.\n"
+msgstr "Неверный размер свойства '%s': ожидался вещественный скаляр.\n"
+
 msgid "Children property can not be modified directly.\n"
 msgstr "Свойство потомка не может быть изменено напрямую.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: No more memory\n"
-msgstr "%s: Не осталось доступной памяти\n"
 
 #, c-format
 msgid ""
@@ -950,22 +880,29 @@ msgstr ""
 "цвета.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a valid color index.\n"
-msgstr ""
-"Неверное значение свойства «%s»:должен быть допустимый индекс цвета.\n"
-
-#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Вначале вы должны указать %s для этого объекта.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"В режиме интерполированного цвета количество строк вектора цветов должно "
-"соответствовать количеству точек, определяющих линию (которое должно быть %d "
-"или %d).\n"
+"Количество столбцов в векторе цветов должно совпадать с количеством точек, "
+"определяющих линию (которое должно быть %d или %d).\n"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "ВНИМАНИЕ: %s\n"
+
+msgid "{0,1} values are equivalent for line_style property."
+msgstr "Значения {0,1} эквивалентны для свойства line_style."
+
+msgid "0 will be removed after Scilab 5.4.0."
+msgstr "0 будет удалён после Scilab 5.4.0."
+
+msgid "Please use 1 instead."
+msgstr "Пожалуйста, используйте 1 вместо этого."
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -998,8 +935,17 @@ msgstr ""
 "логарифмического режима.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "Неверное значение свойства «%s»: должно быть между %d и %d.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr "Неверный тип свойства «%s»: ожидался дескриптор «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
+"Неверное значение свойства «%s»: ожидался дескриптор «%s» или «%s».\n"
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "Свойство предка не может быть изменено напрямую.\n"
@@ -1015,6 +961,10 @@ msgstr "Параметр #%d должно иметь %d элементов.\n"
 #, c-format
 msgid "%s cannot be set in this case.\n"
 msgstr "%s не может быть задано в этом случае.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr "Неверный тип для свойства «%s»: ожидалась строка.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -1054,6 +1004,10 @@ msgstr "Ошибка: %s должен быть освобожден прежде
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: немонотонный вектор x.\n"
+
+#, c-format
+msgid "%s: y vector is not monotonous.\n"
+msgstr "%s: вектор y не монотонный.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графический модуль Scilab не установлен.\n"
@@ -1348,6 +1302,52 @@ msgstr "%s: Неверный размер параметра %d: ожидалс�
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался вектор вещественных "
+"чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or Scilab function "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
+"функция Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вещестенный вектор.\n"
+
+#, c-format
+msgid "Error %d : in plot2d called by contour2d"
+msgstr "Ошибка %d : в plot2d, вызванной в contour2d"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d:  ожидалась вещественная матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr "%s: Карта цветов (colormap) слишком мала"
+
 msgid "Delete all datatips"
 msgstr "Удалить все подсказки данных"
 
@@ -1422,12 +1422,6 @@ msgstr "Выбранный файл определяет более чем од�
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался графический дескриптор.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
-"чисел.\n"
 
 #, c-format
 msgid ""
@@ -1624,10 +1618,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Неверный тип входного параметра.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
@@ -1727,10 +1717,6 @@ msgstr ""
 "%s: Неверный размер входного параметра «%s»: ожидался вектором размером %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра %d: ожидался дескриптор «Axes».\n"
@@ -1741,8 +1727,8 @@ msgstr ""
 "%s: Неверный тип входного параметра %d: ожидался дескриптор «Axes».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента: ожидался дескриптор '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1817,3 +1803,7 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: файл %s не существует.\n"
+
+#, c-format
+msgid "%s: Wrong value given for %s."
+msgstr "%s: Для %s дано неверное значение."

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 12:49+0000\n"
+"PO-Revision-Date: 2012-06-20 12:17+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 #, c-format
@@ -1193,8 +1193,12 @@ msgstr ""
 " erreur dans le Jacobien"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Erreur : Impossible de trouver '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Erreur : Impossible de trouver le fichier '%s'.\n"
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr "Erreur : Impossible de trouver le fichier '%s'.\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1347,7 +1351,7 @@ msgstr "Sortie du problème : "
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre d'arguments d'entrée erroné : %d à %d attendus.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "Problème avec le bloc généré à partir des blocs Modelica"
@@ -1386,42 +1390,6 @@ msgstr "Le bloc a un port d'entrée connecté<br />avec un type incompatible :"
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s : Erreur : Un bloc scifunc n'a pas été défini."
-
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1491,32 +1459,8 @@ msgid "Sorry file name not defined in "
 msgstr "Le nom de fichier n'est pas défini dans "
 
 #, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
-msgstr ""
+msgstr "%s : Diagramme vide"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"

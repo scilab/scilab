@@ -191,7 +191,7 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag name */
                             const char *str=(const char*)attrib->children->content;
-                            name = strdup(str);
+                            name = os_strdup(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
                         {
@@ -219,7 +219,7 @@ static BOOL AppendModules(char *xmlfilename)
 
                             ScilabModules->numberofModules=indice+1;
 
-                            ScilabModules->ModuleList[indice]= strdup(name);
+                            ScilabModules->ModuleList[indice]= os_strdup(name);
                             indice++;
                         }
                         else

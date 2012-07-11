@@ -20,10 +20,9 @@
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-SIGNAL_PROCESSING_IMPEXP int sci_conv2(char *fname,unsigned long fname_len);
-
 EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_remez);
 EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_amell);
+EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_conv2);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

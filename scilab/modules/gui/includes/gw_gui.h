@@ -31,8 +31,8 @@ GUI_IMPEXP int sci_getinstalledlookandfeels( char * fname, unsigned long fname_l
 GUI_IMPEXP int sci_setlookandfeel( char * fname, unsigned long fname_len ) ;
 GUI_IMPEXP int sci_ClipBoard(char *fname,unsigned long l);
 GUI_IMPEXP int sci_toolbar(char *fname,unsigned long l);
-GUI_IMPEXP int sci_uicontrol(char *fname,unsigned long l);
-GUI_IMPEXP int sci_uimenu(char *fname,unsigned long l);
+GUI_IMPEXP int sci_uicontrol(char *fname, void *pvApiCtx);
+GUI_IMPEXP int sci_uimenu(char *fname, void *pvApiCtx);
 GUI_IMPEXP int sci_x_choose_modeless(char *fname,unsigned long fname_len);
 GUI_IMPEXP int sci_messagebox(char *fname,unsigned long l);
 GUI_IMPEXP int sci_waitbar(char *fname,unsigned long l);

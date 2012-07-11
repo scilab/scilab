@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 
 if or(lstcat(list(1,2),list(4))<>list(1,2,4))  then pause,end
 if or(lstcat(list(1,2,4),list())<>list(1,2,4))  then pause,end

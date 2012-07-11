@@ -22,20 +22,19 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeSelectionModel;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.event.TreeWillExpandListener;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeSelectionModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 
 /**
  * The table renderer to render the tree in the first column of the JTable
@@ -53,43 +52,43 @@ public class ScilabTreeTableCellRenderer extends JTree implements TableCellRende
         this.table = table;
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
 
-                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                    FileNode fn = (FileNode) value;
-                    super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-                    if (leaf) {
-                        if (fn instanceof ScilabFileBrowserModel.ParentNode) {
-                            this.setLeafIcon(FileUtils.getUpDirIcon());
-                        } else {
-                            this.setLeafIcon(fn.getIcon());
-                        }
-                    } else if (fn.isUserHome()) {
-                        this.setClosedIcon(FileUtils.getClosedUserHomeIcon());
-                        this.setOpenIcon(FileUtils.getOpenUserHomeIcon());
-                    } else if (fn.isSCI()) {
-                        this.setClosedIcon(FileUtils.getSCIIcon());
-                        this.setOpenIcon(FileUtils.getOpenSCIIcon());
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                FileNode fn = (FileNode) value;
+                super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+                if (leaf) {
+                    if (fn instanceof ScilabFileBrowserModel.ParentNode) {
+                        this.setLeafIcon(FileUtils.getUpDirIcon());
                     } else {
-                        this.setClosedIcon(FileUtils.getClosedDirIcon());
-                        this.setOpenIcon(FileUtils.getOpenDirIcon());
+                        this.setLeafIcon(fn.getIcon());
                     }
-
-                    return this;
+                } else if (fn.isUserHome()) {
+                    this.setClosedIcon(FileUtils.getClosedUserHomeIcon());
+                    this.setOpenIcon(FileUtils.getOpenUserHomeIcon());
+                } else if (fn.isSCI()) {
+                    this.setClosedIcon(FileUtils.getSCIIcon());
+                    this.setOpenIcon(FileUtils.getOpenSCIIcon());
+                } else {
+                    this.setClosedIcon(FileUtils.getClosedDirIcon());
+                    this.setOpenIcon(FileUtils.getOpenDirIcon());
                 }
-            };
+
+                return this;
+            }
+        };
 
         /* Force the JTable and JTree to share their row selection models.
            And let the table to handle the selection rather than the tree; */
         setSelectionModel(new DefaultTreeSelectionModel() {
-                    {
-                        ScilabTreeTableCellRenderer.this.table.setSelectionModel(listSelectionModel);
-                    }
+            {
+                ScilabTreeTableCellRenderer.this.table.setSelectionModel(listSelectionModel);
+            }
 
-                public void setSelectionPaths(TreePath[] pPaths) { }
+            public void setSelectionPaths(TreePath[] pPaths) { }
 
-                public void addSelectionPaths(TreePath[] paths) { }
+            public void addSelectionPaths(TreePath[] paths) { }
 
-                public void removeSelectionPaths(TreePath[] paths) { }
-            });
+            public void removeSelectionPaths(TreePath[] paths) { }
+        });
 
         setCellRenderer(renderer);
         setRootVisible(true);
@@ -99,49 +98,49 @@ public class ScilabTreeTableCellRenderer extends JTree implements TableCellRende
         setToggleClickCount(0);
 
         addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int selRow = getRowForLocation(e.getX(), e.getY());
-                    TreePath selPath = getPathForLocation(e.getX(), e.getY());
-                    if (selRow != -1) {
-                        switch (e.getClickCount()) {
-                        case 1 :
-                            /*int sel = SwingScilabTreeTable.this.getSelectedRow();
+            public void mousePressed(MouseEvent e) {
+                int selRow = getRowForLocation(e.getX(), e.getY());
+                TreePath selPath = getPathForLocation(e.getX(), e.getY());
+                if (selRow != -1) {
+                    switch (e.getClickCount()) {
+                    case 1 :
+                        /*int sel = SwingScilabTreeTable.this.getSelectedRow();
                               System.out.println(sel+":::"+selRow+":::"+isEditable());
                               if (sel == selRow) {
                               System.out.println(getCellEditor().getTreeCellEditorComponent(ScilabTreeTableCellRenderer.this, getCellEditor().getCellEditorValue(), true, false, true, selRow));
                               }
                               e.consume();*/
-                            break;
-                        case 2:
-                            ((CallBack) ScilabTreeTableCellRenderer.this.table.getActionMap().get("validate")).callBack();
-                            e.consume();
-                        }
+                        break;
+                    case 2:
+                        ((CommonCallBack) ScilabTreeTableCellRenderer.this.table.getActionMap().get("validate")).callBack();
+                        e.consume();
                     }
                 }
+            }
 
-                public void mouseReleased(MouseEvent e) { }
-            });
+            public void mouseReleased(MouseEvent e) { }
+        });
 
         addTreeWillExpandListener(new TreeWillExpandListener() {
-                public void treeWillCollapse(TreeExpansionEvent event) { }
+            public void treeWillCollapse(TreeExpansionEvent event) { }
 
-                public void treeWillExpand(TreeExpansionEvent event) {
-                    Container win = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, ScilabTreeTableCellRenderer.this.table);
-                    if (win != null) {
-                        win.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    }
+            public void treeWillExpand(TreeExpansionEvent event) {
+                Container win = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, ScilabTreeTableCellRenderer.this.table);
+                if (win != null) {
+                    win.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 }
-            });
+            }
+        });
         addTreeExpansionListener(new TreeExpansionListener() {
-                public void treeCollapsed(TreeExpansionEvent event) { }
+            public void treeCollapsed(TreeExpansionEvent event) { }
 
-                public void treeExpanded(TreeExpansionEvent event) {
-                    Container win = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, ScilabTreeTableCellRenderer.this.table);
-                    if (win != null) {
-                        win.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                    }
+            public void treeExpanded(TreeExpansionEvent event) {
+                Container win = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, ScilabTreeTableCellRenderer.this.table);
+                if (win != null) {
+                    win.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
-            });
+            }
+        });
     }
 
     /**

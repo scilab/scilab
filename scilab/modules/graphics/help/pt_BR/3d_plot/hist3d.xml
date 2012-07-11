@@ -12,19 +12,16 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="hist3d" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>hist3d</refname>
     <refpurpose>representação 3d de um histograma</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
-      hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
+    <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
+      hist3d(mtx,&lt;opt_args&gt;)
+      hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+      hist3d(list(mtx,x,y),&lt;opt_args&gt;)
     </synopsis>
   </refsynopsisdiv>
   <refsection>

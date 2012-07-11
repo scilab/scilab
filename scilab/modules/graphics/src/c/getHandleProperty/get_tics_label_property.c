@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,39 +27,33 @@
 #include "localization.h"
 #include "Format.h"
 #include "MALLOC.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_tics_labels_property( sciPointObj * pobj )
+int get_tics_labels_property(void* _pvCtx, char* pobjUID)
 {
+    char** labels = NULL;
+    int iNumberTicksLabels = 0;
+    int* piNumberTicksLabels = &iNumberTicksLabels;
 
-  if ( sciGetEntityType (pobj) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels") ;
-    return -1 ;
-  }
-
-  if ( pAXES_FEATURE(pobj)->str == NULL )
-  {
-    int status = -1 ;
-
-    /* tics_labels is allocatred here */
-    StringMatrix * tics_labels = computeDefaultTicsLabels( pobj ) ; /* actually it is vector */
-
-    if ( tics_labels == NULL )
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
+    if (piNumberTicksLabels == NULL)
     {
-      Scierror(999, _("%s: No more memory.\n"), "get_tics_labels_property") ;
-      return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        return -1;
     }
 
-    status = sciReturnRowStringVector( getStrMatData( tics_labels ), pAXES_FEATURE (pobj)->nb_tics_labels ) ;
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
-    deleteMatrix( tics_labels ) ;
+    if (labels == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        return -1;
+    }
 
-    return status ;
-  }
-  else
-  {
-    /* str has been previously set once */
-    return sciReturnRowStringVector( pAXES_FEATURE(pobj)->str, pAXES_FEATURE (pobj)->nb_tics_labels ) ;
-  }
+    /* User-specified ticks labels */
+    return sciReturnRowStringVector(_pvCtx, labels, iNumberTicksLabels);
 }
 /*------------------------------------------------------------------------*/

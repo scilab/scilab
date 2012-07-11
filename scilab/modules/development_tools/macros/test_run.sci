@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-// Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
+// Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
@@ -45,6 +45,8 @@ function test_run_result = test_run(varargin)
   params.test_failed_percent    = 0;
   params.test_skipped_percent   = 0;
   params.full_summary           = %t;
+  params.show_diff              = %f;
+  params.show_error             = %f;
 
 // =======================================================
 // Gestion des types de tests à lancer et des options
@@ -100,11 +102,18 @@ function test_run_result = test_run(varargin)
     params.full_summary = assign_option(option_mat, "short_summary", %f, params.full_summary);
     option_mat          = clean_option(option_mat, "short_summary");
 
+    params.show_diff = assign_option(option_mat, "show_diff", %t, params.show_diff);
+    option_mat          = clean_option(option_mat, "show_diff");
+    
+    params.show_error = assign_option(option_mat, "show_error", %t, params.show_error);
+    option_mat          = clean_option(option_mat, "show_error");
+
     if option_mat <> [] then
       printf("\nUnrecognized option(s): \n\n");
       for i=1:size(option_mat, "*")
         printf("  - ""%s""\n", option_mat(i));
       end
+
       return;
     end
   end
@@ -277,13 +286,15 @@ function test_run_result = test_run(varargin)
   
 endfunction
 
+
+
 function status = test_module(_params)
   name = splitModule(_params.moduleName);
   if with_module(name(1)) then
 // It's a scilab internal module
     module.path = pathconvert(SCI + "/modules/" + name(1), %F);
   //no have librarieslist in scilab 6 yet
-  //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
+  //  elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
 // It's an ATOMS module
     //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
   elseif isdir(name(1)) then
@@ -392,6 +403,9 @@ function status = test_module(_params)
     end
 
     printf("%s", displayModuleName);
+    if length(displayModuleName) >= 50 then
+      printf(" ");
+    end
     for j = length(displayModuleName):50
       printf(".");
     end
@@ -446,6 +460,7 @@ function status = test_single(_module, _testPath, _testName)
   execMode      = "";
   platform      = "all";
   language      = "any";
+  //try_catch     = %T; // Scilab 5.4.0
   try_catch     = %f;
   error_output  = "check";
   reference     = "check";
@@ -546,7 +561,7 @@ function status = test_single(_module, _testPath, _testName)
     execMode = "NW";
   end
 
-  if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
+  if (~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) | ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->"))) then
     jvm = %F;
     execMode = "NWNI";
   end
@@ -595,21 +610,18 @@ sciFile = strsubst(sciFile, "-->", "@#>");
 sciFile = strsubst(sciFile, "halt();", "");
 
 // Build test header
-    head = [
-        "// <-- HEADER START -->";
-        "mode(3);" ;
-        "//lines(28,72);";
-        "//lines(0);" ;
-        "function %onprompt" ;
-        "   errmsg = ""<--""+""Error on the test script file""+""-->"";";
-        "   printf(""%s\n"",errmsg);"; 
-        "   lasterror()";  
-        "   exit;"; 
-        "endfunction" ;
-        "function []=bugmes(), printf(''error on test'');endfunction"
-        "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''''',TMPDIR);"
-
-    ]
+head = [
+    "// <-- HEADER START -->";
+    "mode(3);" ;
+    "lines(28,72);";
+    "lines(0);" ;
+    "function %onprompt" ;
+    "   quit;" ;
+    "endfunction" ;
+    "function []=bugmes(), printf(''error on test'');endfunction"
+    "//predef(''all'');";
+    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
+    ];
 
 if xcosNeeded then
   head = [ head ; "loadXcosLibs();"];
@@ -736,6 +748,26 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
+      else // Remove messages due to JOGL2 RC8
+        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
+        txt(toRemove) = [];
+        if isempty(txt) then
+          deletefile(tmp_err);
+        end      
+      end
+    end
+  end
+
+  // Ignore JOGL2 debug message
+  if getos() == "Linux" then
+    tmp_errfile_info = fileinfo(tmp_err);
+    msg = "Info: XInitThreads() called for concurrent Thread support"
+
+    if ~isempty(tmp_errfile_info) then
+      txt = mgetl(tmp_err);
+      txt(txt==msg) = [];
+      if isempty(txt) then
+        deletefile(tmp_err);
       end
     end
   end
@@ -757,7 +789,7 @@ if isfile(tmp_dia) then
   dia = mgetl(tmp_dia);
 else
   status.id = 6;
-  status.message = "failed: the dia file is not correct";
+  status.message = "failed: Cannot find the dia file: " + tmp_dia + "\nCheck if the Scilab used correctly starts";
   status.details = checkthefile(tmp_dia);
   return;
 end
@@ -801,6 +833,9 @@ if grep(dia_tmp,"error on test")<>[] then
   status.id = 2;
   status.message = "failed: one or several tests failed";
   status.details = details;
+  if params.show_error == %t then
+    mprintf("%s\n",dia($-10:$));
+  end
   return;
 end
 
@@ -835,6 +870,10 @@ if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=
   dia(grep(dia, "TMPDIR1")) = [];
   dia(grep(dia, "diary(0)")) = [];
 
+  if getos() == "Darwin" then // TMPDIR is a symblic link
+    dia = strsubst(dia,"/private" + TMPDIR1, "TMPDIR");
+    dia = strsubst(dia,"/private" + TMPDIR, "TMPDIR");
+  end
   dia = strsubst(dia,TMPDIR ,"TMPDIR");
   dia = strsubst(dia,TMPDIR1, "TMPDIR");
 
@@ -961,7 +1000,7 @@ function msg = createthefile ( filename )
 //   Add or create the following file :
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
 // Workaround for bug #4827
-  msg(1) = "   Add or create the following file : "
+  msg(1) = "   Add or create the following file: "
   msg(2) = "   - "+filename
 endfunction
 
@@ -972,9 +1011,14 @@ function msg = comparethefiles ( filename1 , filename2 )
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia
 //   - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
 // Workaround for bug #4827
-  msg(1) = "   Compare the following files :"
+  msg(1) = "   Compare the following files:"
   msg(2) = "   - "+filename1
   msg(3) = "   - "+filename2
+  if params.show_diff == %t then
+    if getos() <> "Windows" then
+      unix("diff -u " +filename1 + " " +filename2);
+    end
+  end
 endfunction
 
 function directories = getDirectories(directory)

@@ -25,7 +25,6 @@ extern "C"
 #include <stdlib.h>
 #include "machine.h"
 #include "charEncoding.h"
-#include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_string.h"
 #include "api_internal_common.h"
@@ -115,7 +114,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 
-    int rhs = _iVar - *getInputArgument(_pvCtx);
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     InternalType** out = pStr->m_pOut;
 

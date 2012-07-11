@@ -14,25 +14,31 @@
 
 package org.scilab.modules.types;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab boolean datatype<br>
  * <br>
- * This class is {@link java.io.Serializable} and any modification could
- * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * This class is {@link java.io.Serializable} and any modification could impact
+ * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
  * boolean [][]a={{true,false,true}, {true,true,true}};<br />
  * ScilabBoolean aMatrix = new ScilabBoolean(a);
  * </code>
+ *
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabBoolean implements ScilabType {
 
     private static final long serialVersionUID = 6511497080095473901L;
     private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
+
+    private static final int VERSION = 0;
 
     /* the boolean data */
     private boolean[][] data;
@@ -49,7 +55,8 @@ public class ScilabBoolean implements ScilabType {
     /**
      * Create an object from an array of array of boolean
      *
-     * @param data the array of boolean
+     * @param data
+     *            the array of boolean
      */
     public ScilabBoolean(boolean[][] data) {
         this.data = data;
@@ -58,7 +65,8 @@ public class ScilabBoolean implements ScilabType {
     /**
      * Create an object from an array of array of boolean
      *
-     * @param data the array of boolean
+     * @param data
+     *            the array of boolean
      */
     public ScilabBoolean(String varName, boolean[][] data, boolean swaped) {
         this.varName = varName;
@@ -69,7 +77,8 @@ public class ScilabBoolean implements ScilabType {
     /**
      * Create a scalar boolean from a boolean
      *
-     * @param value the boolean
+     * @param value
+     *            the boolean
      */
     public ScilabBoolean(boolean value) {
         this.data = new boolean[1][1];
@@ -79,7 +88,8 @@ public class ScilabBoolean implements ScilabType {
     /**
      * Change the value with the provided data
      *
-     * @param data array of boolean
+     * @param data
+     *            array of boolean
      */
     public void setData(boolean[][] data) {
         this.data = data;
@@ -110,6 +120,7 @@ public class ScilabBoolean implements ScilabType {
 
     /**
      * Return the type of Scilab
+     *
      * @return the type of Scilab
      * @since 5.4.0
      */
@@ -154,7 +165,6 @@ public class ScilabBoolean implements ScilabType {
         return (data == null);
     }
 
-
     /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
@@ -172,6 +182,28 @@ public class ScilabBoolean implements ScilabType {
      */
     public Object getSerializedObject() {
         return data;
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        int version = in.readInt();
+        switch (version) {
+            case 0:
+                data = (boolean[][]) in.readObject();
+                varName = (String) in.readObject();
+                swaped = in.readBoolean();
+                break;
+            default:
+                throw new ClassNotFoundException("A class ScilabBoolean with a version " + version + " does not exists");
+        }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(VERSION);
+        out.writeObject(data);
+        out.writeObject(varName);
+        out.writeBoolean(swaped);
     }
 
     /**

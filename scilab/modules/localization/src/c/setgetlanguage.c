@@ -38,6 +38,7 @@
 #endif
 
 #ifdef _MSC_VER
+#include <windows.h>
 #include "getLocaleInfo_Windows.h"
 #endif
 #ifdef __APPLE__
@@ -83,8 +84,8 @@ BOOL setlanguage(wchar_t *lang)
                 if (ret == NULL)
                 {
                     fprintf(stderr,
-                    "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?\n",
-                    lang, ret, setlocale(LC_CTYPE, NULL));
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%ls' %ls %s.\nDid you install the system locales?\n",
+                            lang, ret, setlocale(LC_CTYPE, NULL));
                 }
 
                 //for gettext
@@ -92,18 +93,19 @@ BOOL setlanguage(wchar_t *lang)
                 ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));
                 #else
                 /* Load the user locale from the system */
-                wchar_t *ret = getLocaleUserInfo();
-                #endif
+                char *ret = getLocaleUserInfo();
+#endif
 
-				//				  This stuff causes pb when locales have been compiled
-				if (ret==NULL)
-				{
-					#ifndef _MSC_VER
-					fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s' %s %s.\nDid you install the system locales?",lang,ret,setlocale(LC_MESSAGES,NULL));
-					#else
-					fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
-					#endif
-				}
+                //                This stuff causes pb when locales have been compiled
+                if (ret == NULL)
+                {
+#ifndef _MSC_VER
+                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%ls'\nReturned: %ls\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
+                            ret, setlocale(LC_MESSAGES, NULL));
+#else
+                    fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
+#endif
+                }
 
                 /* change language */
                 if (wcscmp(lang, L"C") == 0 || ret == NULL || wcscmp(ret, L"C") == 0)
@@ -273,7 +275,7 @@ wchar_t *convertlanguagealias(wchar_t *strlanguage)
         }
         else
         {
-            if (wcslen(strlanguage)==5 && strlanguage[2] == L'_')
+            if (wcslen(strlanguage) == 5 && strlanguage[2] == L'_')
             { /* already xx_XX (fr_FR) */
                 return strlanguage;
             }

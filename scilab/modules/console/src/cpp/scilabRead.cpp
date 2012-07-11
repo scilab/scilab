@@ -14,6 +14,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "scilabRead.h"
 #include "SetConsolePrompt.h"
 #include "prompt.h"

@@ -227,7 +227,6 @@
     </ProjectReference>
     <ProjectReference Include="..\c\boolean.vcxproj">
       <Project>{8ab8ecec-8c22-475e-80d0-e14696f5a19b}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

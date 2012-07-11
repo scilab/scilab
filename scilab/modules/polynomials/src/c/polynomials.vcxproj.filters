@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -87,7 +87,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="polynomials_f_Import.def">
@@ -96,7 +96,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
-    <None Include="..\..\locales\polynomials.pot" />
+    <None Include="..\..\locales\polynomials.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc">

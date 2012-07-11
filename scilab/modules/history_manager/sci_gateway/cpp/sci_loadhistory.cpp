@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
@@ -29,7 +30,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
 {
     if(in.size() == 0)
     {
-		char* pstFilename = HistoryManager::getInstance()->getFilename();	
+		char* pstFilename = HistoryManager::getInstance()->getFilename();
         if(pstFilename)
         {
             BOOL bOK = HistoryManager::getInstance()->loadFromFile(pstFilename);
@@ -56,7 +57,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        pwstFilename = expandPathVariableW(in[0]->getAs<types::String>()->get(0));	
+        pwstFilename = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
         if(pwstFilename)
         {
             char* pstFilename = wide_string_to_UTF8(pwstFilename);

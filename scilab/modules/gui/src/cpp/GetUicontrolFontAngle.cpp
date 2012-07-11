@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the font angle of an uicontrol
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,29 +14,22 @@
 
 #include "GetUicontrolFontAngle.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolFontAngle(sciPointObj* sciObj)
+int GetUicontrolFontAngle(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* fontAngle = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTANGLE__), jni_string, (void**) &fontAngle);
+
+    if (fontAngle == NULL)
     {
-      // Get the font angle from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->fontAngle)
-        {
-        case NORMAL_FONT:
-          return sciReturnString("normal");
-        case ITALIC_FONT:
-          return sciReturnString("italic");
-        case OBLIQUE_FONT:
-          return sciReturnString("oblique");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontAngle");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontAngle");
-      return FALSE;
+        status = sciReturnString(_pvCtx, fontAngle);
+        delete[] fontAngle;
+        return status;
     }
 }

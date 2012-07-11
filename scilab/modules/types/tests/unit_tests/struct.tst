@@ -23,12 +23,9 @@ phone_new       = "phone_new";
 // create a one dimensional struct
 st = struct("firstname", firstname, "lastname", lastname, "email", email);
 
-//assert_checkequal(st.firstname, firstname);
-if st.firstname <> firstname then pause end
-//assert_checkequal(st.lastname, lastname);
-if st.lastname <> lastname then pause end
-//assert_checkequal(st.email, email);
-if st.email <> email then pause end
+assert_checkequal(st.firstname, firstname);
+assert_checkequal(st.lastname, lastname);
+assert_checkequal(st.email, email);
 
 //change some values
 st.firstname    = firstname_new;
@@ -38,14 +35,10 @@ st.email        = email_new;
 // add a phone field
 st.phone        = phone_new;
 
-//assert_checkequal(st.firstname, firstname_new);
-if st.firstname <> firstname_new then pause end
-//assert_checkequal(st.lastname, lastname_new);
-if st.lastname <> lastname_new then pause end
-//assert_checkequal(st.email, email_new);
-if st.email <> email_new then pause end
-//assert_checkequal(st.language, language_new);
-if st.phone <> phone_new then pause end
+assert_checkequal(st.firstname, firstname_new);
+assert_checkequal(st.lastname, lastname_new);
+assert_checkequal(st.email, email_new);
+assert_checkequal(st.phone, phone_new);
 clear st;
 
 //create multi-dimentional struct (4x3x2)
@@ -86,12 +79,9 @@ st.firstname    = firstname;
 st.lastname     = lastname;
 st.email        = email;
 
-//assert_checkequal(st.firstname, firstname);
-if st.firstname <> firstname then pause end
-//assert_checkequal(st.lastname, lastname);
-if st.lastname <> lastname then pause end
-//assert_checkequal(st.email, email);
-if st.email <> email then pause end
+assert_checkequal(st.firstname, firstname);
+assert_checkequal(st.lastname, lastname);
+assert_checkequal(st.email, email);
 clear st;
 
 //create multi dimentional struct by insertion
@@ -126,12 +116,9 @@ end
 for i = 1:n1
     for j = i:n2
         for k = 1:n3
-            //assert_checkequal(st(i,j,k).firstname, firstnames(i,j,k));
-            if st(i,j,k).firstname <> firstnames(i,j,k) then pause end
-            //assert_checkequal(st(i,j,k).lastname, lastnames(i,j,k));
-            if st(i,j,k).lastname <> lastnames(i,j,k) then pause end
-            //assert_checkequal(st(i,j,k).email, emails(i,j,k));
-            if st(i,j,k).email <> emails(i,j,k) then pause end
+            assert_checkequal(st(i,j,k).firstname, firstnames(i,j,k));
+            assert_checkequal(st(i,j,k).lastname, lastnames(i,j,k));
+            assert_checkequal(st(i,j,k).email, emails(i,j,k));
         end
     end
 end

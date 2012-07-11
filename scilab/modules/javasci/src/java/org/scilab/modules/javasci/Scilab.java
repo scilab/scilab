@@ -692,9 +692,9 @@ public class Scilab {
                 err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
                 break;
             case sci_uint64:
-//                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
             case sci_int64:
-//                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
+                //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
                 break;
             }
             break;

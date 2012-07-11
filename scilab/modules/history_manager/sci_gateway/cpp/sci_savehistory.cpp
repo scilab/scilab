@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
@@ -54,7 +55,7 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
                 HistoryManager::getInstance()->writeToFile(pstLine);
 			    FREE(pstLine);
 			    pstLine = NULL;
-                
+
             }
 			FREE(pwcsLine);
 			pwcsLine = NULL;

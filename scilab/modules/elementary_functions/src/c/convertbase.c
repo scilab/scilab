@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <math.h>
 #include <stdio.h>
@@ -18,17 +18,17 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "stack-def.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #define char_a 'a'
 #define char_A 'A'
 #define char_z 'z'
 #define char_Z 'Z'
 #define char_zero '0'
 #define char_nine '9'
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static char *convertDec2Base(double dValue, int numberbase,
                              unsigned int nbDigits, error_convertbase *err);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
 {
     double result = 0.;
@@ -81,7 +81,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
 }
 /*--------------------------------------------------------------------------*/
 static char *convertDec2Base(double dValue, int numberbase,
-                            unsigned int nbDigits, error_convertbase *err)
+                             unsigned int nbDigits, error_convertbase *err)
 {
     char symbols[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     long long int iDec = (long long int) dValue;
@@ -90,7 +90,7 @@ static char *convertDec2Base(double dValue, int numberbase,
     *err = ERROR_CONVERTBASE_NOK;
     if (iDec == 0)
     {
-        convertedValue = (char*)MALLOC(sizeof(char));
+        convertedValue = (char*)MALLOC(sizeof(char) * 2);
         if (convertedValue)
         {
             strcpy(convertedValue, "0");
@@ -107,7 +107,7 @@ static char *convertDec2Base(double dValue, int numberbase,
         int count = 0;
         char chResult[bsiz] = "";
         char *pChResult = chResult;
-        while(iDec > 0 && count++ < bsiz)
+        while (iDec > 0 && count++ < bsiz)
         {
             *pChResult = symbols[iDec % numberbase];
             pChResult++;
@@ -119,10 +119,10 @@ static char *convertDec2Base(double dValue, int numberbase,
         {
             size_t j = 0;
             size_t i = strlen(chResult);
-            int t = !(i%2)? 1 : 0;
+            int t = !(i % 2) ? 1 : 0;
             int k = 0;
             strcpy(convertedValue, chResult);
-            for(j = i - 1; j > (i / 2 - t); j--) 
+            for (j = i - 1; j > (i / 2 - t); j--)
             {
                 char ch  = chResult[j];
                 chResult[j] = chResult[k];

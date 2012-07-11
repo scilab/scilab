@@ -29,8 +29,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_ClipBoard(char *fname,unsigned long l)
 {
-    static int l1,n1,m1;
-    char *param1=NULL,*param2=NULL;
+    static int l1 = 0,n1 = 0,m1 = 0;
+    char *param1 = NULL, *param2 = NULL;
 
     Rhs=Max(0,Rhs);
     CheckRhs(0,2);

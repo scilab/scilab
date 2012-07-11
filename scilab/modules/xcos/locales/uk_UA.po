@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-21 17:08+0000\n"
+"PO-Revision-Date: 2012-06-13 21:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: uk\n"
 
 #, c-format
@@ -709,14 +709,8 @@ msgstr "Похибка за часом"
 msgid "Max integration time interval"
 msgstr "Максимальний час інтегрування"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Розв’язувач 0 (CVODE) — 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "Тип розв’язувача"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "максимальний розмір кроку (0 — без обмежень)"
@@ -778,14 +772,20 @@ msgstr "Трасування за виконанням блоків та вик�
 msgid "Debug block calls without trace"
 msgstr "Діагностика викликів блоку без трасування"
 
+msgid "All supported formats"
+msgstr "Всі підтримувані формати"
+
 msgid "Scicos file"
 msgstr "Файл Scicos"
 
 msgid "Xcos file"
 msgstr "Файл Xcos"
 
-msgid "Scilab file"
-msgstr "Файл Scilab"
+msgid "Xcos (zip) file"
+msgstr "файл Xcos (zip)"
+
+msgid "Scilab Open Data file"
+msgstr "файл Scilab Open Data"
 
 msgid "Masked SuperBlock editor"
 msgstr "Замаскований редактор суперблоку"
@@ -1039,12 +1039,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип елемента "
-"керування.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
@@ -1110,14 +1104,6 @@ msgid ""
 msgstr ""
 "%s: блок %s недоступний, будь ласка, додайте замість нього якийсь сумісний "
 "блок."
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: не вдалося імпортувати дані з %s"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: не вдалося експортувати «XX» до %s"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1256,12 +1242,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-"%s: помилкові розмірності вхідних параметрів: розмірності мали бути "
-"однаковими.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."

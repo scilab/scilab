@@ -1,5 +1,5 @@
 ; Definition ANT flags for Scilab
 
 build.debug=@JAVAC_DEBUG@
-library.vendor="The Scilab Consortium - DIGITEO"
+library.vendor="Scilab Enterprises / The Scilab Consortium - DIGITEO"
 

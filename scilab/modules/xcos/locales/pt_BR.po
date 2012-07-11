@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-11 15:33+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2012-04-22 00:43+0000\n"
+"Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -23,7 +23,7 @@ msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Não foi possível ler argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -32,11 +32,11 @@ msgstr "%s: Memória esgotada.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um string.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
-"textos.\n"
+"strings.\n"
 
 #, c-format
 msgid ""
@@ -56,15 +56,15 @@ msgid ""
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 "Não é possível carregar a biblioteca jgraphx.\n"
-"Esperava-se a versão %s; mas obteve-se a %s."
+"Esperava-se a versão %s, mas obteve-se a %s."
 
 #, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
-"Não foi capaz de carregar a biblioteca hdf5-java (jhdf5). \n"
-"Esperava-se a versão %s, mas obteve-se a versão %s ."
+"Não é possível carregar a biblioteca hdf5-java (jhdf5).\n"
+"Esperava-se a versão %s, mas obteve-se a %s."
 
 msgid "Unable to load the native HDF5 library."
 msgstr "Não foi capaz de carregar a biblioteca nativa HDF5"
@@ -78,13 +78,13 @@ msgstr ""
 "Esperava-se a versão %s; mas obteve-se a %s."
 
 msgid "parent diagram not found."
-msgstr ""
+msgstr "diagrama pai não encontrado."
 
 msgid "Preview"
 msgstr "Pré-visualização"
 
 msgid "Error on export"
-msgstr "Erro na exportação"
+msgstr "Erro ao exportar"
 
 msgid "Please specify a valid file format"
 msgstr "Por favor, especifique um formato de arquivo válido"
@@ -104,7 +104,7 @@ msgstr "Incapaz de decodificar \"%s\": dados inválidos"
 
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
-msgstr "Não foi capaz de decodificar \"%s.%s\": campo inválido."
+msgstr "Não foi possível decodificar \"%s.%s\": campo inválido."
 
 msgid "Modelica settings"
 msgstr "Configurações do Modelica"
@@ -116,10 +116,10 @@ msgid "id"
 msgstr "id"
 
 msgid "kind"
-msgstr ""
+msgstr "categoria"
 
 msgid "fixed"
-msgstr ""
+msgstr "fixado"
 
 msgid "initial"
 msgstr "inicial"
@@ -134,7 +134,7 @@ msgid "min"
 msgstr "mín"
 
 msgid "nominal"
-msgstr ""
+msgstr "nominal"
 
 msgid "comment"
 msgstr "comentário"
@@ -143,10 +143,10 @@ msgid "selected"
 msgstr "selecionado"
 
 msgid "Fix derivatives"
-msgstr ""
+msgstr "Fixar derivadas"
 
 msgid "Fix states"
-msgstr ""
+msgstr "Fixar estados"
 
 msgid "Solve"
 msgstr "Resolver"
@@ -167,7 +167,7 @@ msgid "Equations"
 msgstr "Equações"
 
 msgid "Discretes"
-msgstr ""
+msgstr "Discretos"
 
 msgid "Inputs"
 msgstr "Entradas"
@@ -182,7 +182,7 @@ msgid "Initial computing method"
 msgstr "Método de cálculo inicial"
 
 msgid "Parameter embedding"
-msgstr ""
+msgstr "mergulho de parâmetro"
 
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
@@ -198,13 +198,13 @@ msgid "Error"
 msgstr "Erro"
 
 msgid "Unknowns not equals to Equations"
-msgstr ""
+msgstr "Incógnitas diferentes para Equações"
 
 msgid "Unknowns"
-msgstr ""
+msgstr "Incógnitas"
 
 msgid "Reduced"
-msgstr ""
+msgstr "Reduzido"
 
 msgid "Extended"
 msgstr "Estendido"
@@ -213,16 +213,16 @@ msgid "Diff. States"
 msgstr ""
 
 msgid "Fixed parameters"
-msgstr ""
+msgstr "Parâmetros fixados"
 
 msgid "Relaxed parameters"
-msgstr ""
+msgstr "Parâmetros livres"
 
 msgid "Fixed variables"
-msgstr ""
+msgstr "Variáveis fixadas"
 
 msgid "Relaxed variables"
-msgstr ""
+msgstr "Variáveis livres"
 
 msgid "Please take a look into the Scilab console"
 msgstr "Por favor, dê uma olhada no console do Scilab"
@@ -272,7 +272,7 @@ msgid "Open"
 msgstr "Abrir"
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "Abri arquivo no diretório Scilab atual"
 
 msgid "Save"
 msgstr "Salvar"
@@ -558,6 +558,9 @@ msgid ""
 "evaluated once confirmed (i.e. you click on OK and every time the diagram is "
 "loaded)."
 msgstr ""
+"Você pode inserir aqui instruções scilab para definir parâmetros simbólicos "
+"usados nas definições em bloco.<br/>Estas instruções são avaliadas após "
+"confirmadas (i.e. toda vez que clicar em OK o diagrama é carregado)."
 
 msgid "Failed to load Diagram"
 msgstr "Erro ao carregar diagrama"
@@ -707,14 +710,8 @@ msgstr "Tolerância de tempo"
 msgid "Max integration time interval"
 msgstr "Intervalo máximo de tempo de integração"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Solucionador 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "tamanho máximo de passo (0 significa ilimitado)"
@@ -756,7 +753,7 @@ msgstr ""
 "\"scicos_cpr\""
 
 msgid "Generate SuperBlock, please wait"
-msgstr ""
+msgstr "Gerando SuperBloco, aguarde, por favor."
 
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
@@ -776,14 +773,20 @@ msgstr "Rastreio da execução de bloco e chamadas de depuração por bloco"
 msgid "Debug block calls without trace"
 msgstr "Depurar as chamadas de bloco sem rastreio"
 
+msgid "All supported formats"
+msgstr ""
+
 msgid "Scicos file"
 msgstr "Arquivo Scicos"
 
 msgid "Xcos file"
 msgstr "Arquivo Xcos"
 
-msgid "Scilab file"
-msgstr "Arquivo Scilab"
+msgid "Xcos (zip) file"
+msgstr "arquivo Xcos (zip)"
+
+msgid "Scilab Open Data file"
+msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Editor de SuperBloco mascarado"
@@ -851,19 +854,21 @@ msgid "Modelica initialize"
 msgstr "Iniciar Modelica"
 
 msgid "Error: unable to compile this SuperBlock"
-msgstr ""
+msgstr "Erro: incapaz de compilar este SuperBloco"
 
 msgid "Evaluation problem: wrong port number."
-msgstr ""
+msgstr "Problema de avaliação: número de porta errado."
 
 #, c-format
 msgid "Expecting '%d'."
-msgstr ""
+msgstr "Esperando '%d'."
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. "
 "<br/>Please reconnect it.</body></html>"
 msgstr ""
+"<html><body>Erro de compilação: link ignorado pois ele não está conectado. "
+"<br/>Por favor, reconecte-o.</body></html>"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -894,7 +899,7 @@ msgid "Inverted Pendulum"
 msgstr "Pêndulo invertido"
 
 msgid "Lorentz butterfly"
-msgstr ""
+msgstr "borboleta de Lorentz"
 
 msgid "RLC Circuit"
 msgstr "Circuito RLC"
@@ -912,7 +917,7 @@ msgid "OpAmp amplifier"
 msgstr "Amplificador operacional"
 
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "capacitor de integração trocado"
 
 msgid "DC/DC Buck Converter"
 msgstr ""
@@ -948,7 +953,7 @@ msgid "RLC circuit"
 msgstr "Circuito RLC"
 
 msgid "Old Gain Block"
-msgstr ""
+msgstr "Bloco de Ganho Antigo"
 
 msgid "Standard demos"
 msgstr "Demonstrações padrões"
@@ -996,10 +1001,10 @@ msgid "Zero Crossing"
 msgstr "Cruzamento com zero"
 
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "bloco _IF_ Xcos"
 
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "blocos Ir Para/De"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1025,18 +1030,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
+msgstr "%s: Argumento de entrada errado %s: svg, gif ou jpg esperado.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um "
-"manipulador.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1093,21 +1092,15 @@ msgstr "Não é possível abrir %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s: Argumento(s) de entrada errado(s): %d esperado."
 
 #, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr ""
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr ""
+"%s: o bloco %s não está mais disponível, por favor, atualize o diagrama com "
+"um outro compatível."
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1197,6 +1190,8 @@ msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
 msgstr ""
+"%s: Valor errado para argumento de entrada %s: Um formato de arquivo válido "
+"(png, jpg, gif) é esperado.\n"
 
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
@@ -1224,18 +1219,20 @@ msgstr "%s: Incapaz de exportar a paleta para hdf5.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A String expected."
-msgstr ""
+msgstr "%s: tipo errado para argumento %d: uma String é esperada."
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "Função de interface não existe ou não pode ser chamada."
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s é um descritor de blocos inválido."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz %d x %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -1243,20 +1240,16 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "Definição em bloco com função [%s] falhou."
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "Configuração em bloco com função [%s] falhou."
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A Block expected."
-msgstr ""
+msgstr "%s: Tipo errado para argumento #%d: um Bloco é esperado."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "As bibliotecas Scicos não estão carregadas"
@@ -1266,18 +1259,18 @@ msgid "Unable to simulate %s"
 msgstr "Não é possível simular %s"
 
 msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgstr "Erro ocorrido em pre_xcos_simulate: Cancelando simulação."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
-msgstr ""
+msgstr "%s: Erro durante avaliação do bloco de parâmetros.\n"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
-msgstr ""
+msgstr "%s: Erro durante atualização do bloco de parâmetros.\n"
 
 msgid "Simulation problem"
-msgstr ""
+msgstr "Problema de simulação"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "Erro em post_xcos_simulate: terminando simulação."

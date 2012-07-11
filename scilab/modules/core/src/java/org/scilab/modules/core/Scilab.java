@@ -19,7 +19,6 @@ package org.scilab.modules.core;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +30,22 @@ import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
  * Main Class for Scilab
@@ -55,6 +60,8 @@ public class Scilab {
 
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
+
+    private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
     private static final String ENABLE = "true";
@@ -75,7 +82,7 @@ public class Scilab {
      * WARNING : mainView is directly referenced from a JNI even it's private.
      * TODO : Better add getter for this variable.
      */
-    private Window mainView;
+    private SwingScilabWindow mainView;
 
     /**
      * Constructor Scilab Class.
@@ -95,11 +102,11 @@ public class Scilab {
              * Set Java directories to Scilab ones
              */
             if (mode != 1) {
-            /* only modify these properties if Scilab is not called by another application */
-            /* In this case, we let the calling application to use its own properties */
-            System.setProperty("java.io.tmpdir", ScilabConstants.TMPDIR.getCanonicalPath());
-            System.setProperty("user.home", ScilabConstants.SCIHOME.getCanonicalPath());
-          }
+                /* only modify these properties if Scilab is not called by another application */
+                /* In this case, we let the calling application to use its own properties */
+                System.setProperty("java.io.tmpdir", ScilabConstants.TMPDIR.getCanonicalPath());
+                System.setProperty("user.home", ScilabConstants.SCIHOME.getCanonicalPath());
+            }
 
         } catch (Exception e) {
             System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");
@@ -112,6 +119,7 @@ public class Scilab {
          * they must be set before creating GUI
          */
         setJOGLFlags();
+        SwingView.registerSwingView();
 
         /*
          * if not API mode
@@ -174,11 +182,24 @@ public class Scilab {
             // Create a user config file if not already exists
             ConfigManager.createUserCopy();
 
-            WindowsConfigurationManager.restoreUUID(ConsoleTabFactory.NULLUUID);
+            String consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
+            MenuBarBuilder.buildConsoleMenuBar(consoleId);
+
+            ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
+            TextBox infoBar = ScilabTextBox.createTextBox();
+
+            toolBar.setVisible(false); // Enabled in scilab.start
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
             SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-            mainView = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+            consoleTab.setToolBar(toolBar);
+            consoleTab.setInfoBar(infoBar);
+            ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
+            ScilabConsole.getConsole().addToolBar(toolBar);
+            ScilabConsole.getConsole().addInfoBar(infoBar);
+            mainView = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
+        } else {
+            GraphicController.getController().askObject(Type.CONSOLE);
         }
     }
 
@@ -225,27 +246,66 @@ public class Scilab {
      * @return true if the console is closed
      */
     public static boolean canClose() {
+        final Object lock = new Object();
+
         SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    exitCalled = true;
-                    success = ClosingOperationsManager.startClosingOperationOnRoot();
-                    exitCalled = false;
-                    finish = true;
+            @Override
+            public void run() {
+                exitCalled = true;
+                success = ClosingOperationsManager.startClosingOperationOnRoot();
+                exitCalled = false;
+
+                finish = true;
+                synchronized (lock) {
+                    lock.notify();
                 }
-            });
-
-        while (!finish) {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                System.err.println(e);
             }
-        }
+        });
 
+        try {
+            synchronized (lock) {
+                while (!finish) {
+                    lock.wait();
+                }
+            }
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
         finish = false;
 
         return success;
+    }
+
+    /**
+     * Call from forceCloseMainScilabObject (call itself from sci_exit)
+     */
+    public static void forceClose() {
+        final Object lock = new Object();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                exitCalled = true;
+                ClosingOperationsManager.forceClosingOperationOnRoot();
+                exitCalled = false;
+
+                finish = true;
+                synchronized (lock) {
+                    lock.notify();
+                }
+            }
+        });
+
+        try {
+            synchronized (lock) {
+                while (!finish) {
+                    lock.wait();
+                }
+            }
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
+        finish = false;
     }
 
     /**

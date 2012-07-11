@@ -16,16 +16,22 @@
 /*--------------------------------------------------------------------------*/
 void setScilabLines(int nbRows, int nbCols)
 {
-  if (getLinesSize() == 0)
+    if (getLinesSize() == 0)
     {
-      /* The user does not want to be asked for more display */
-      /* Modify only the number of columns used to format displayed data */
-      scilines(getLinesSize(), nbCols);
+        /* The user does not want to be asked for more display */
+        /* Modify only the number of columns used to format displayed data */
+        scilines(getLinesSize(), nbCols);
     }
-  else
+    else
     {
-      /* Modify number of lines and columns used to format displayed data */
-      scilines(nbRows, nbCols);
+        /* Modify number of lines and columns used to format displayed data */
+        scilines(nbRows, nbCols);
     }
+}
+/*--------------------------------------------------------------------------*/
+void forceScilabLines(int nbRows, int nbCols)
+{
+    /* Modify number of lines and columns used to format displayed data */
+    scilines(nbRows, nbCols);
 }
 /*--------------------------------------------------------------------------*/

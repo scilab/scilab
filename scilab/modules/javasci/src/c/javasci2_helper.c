@@ -16,7 +16,6 @@
 #include "javasci2_helper.h"
 #include "api_scilab.h"
 #include "lasterror.h"
-#include "charEncoding.h"
 
 BOOL isComplexVar(char *variableName)
 {
@@ -418,7 +417,7 @@ int putUnsignedInt(char *variableName, unsigned int *variable, int nbRow, int nb
 ////////////////////// long / int64
 #ifdef __SCILAB_INT64__
 
-long long* getLong(char *variableName, int *nbRow, int *nbCol)
+long long *getLong(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;
     long long *matrixOfLong = NULL;
@@ -443,7 +442,7 @@ long long* getLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putLong(char *variableName, long long* variable, int nbRow, int nbCol)
+int putLong(char *variableName, long *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
@@ -456,10 +455,10 @@ int putLong(char *variableName, long long* variable, int nbRow, int nbCol)
     return 0;
 }
 
-unsigned long long* getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
+unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;
-    unsigned long long* matrixOfLong = NULL;
+    long *matrixOfLong = NULL;
 
     sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
@@ -468,7 +467,7 @@ unsigned long long* getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
     }
 
     /* Alloc the memory */
-    matrixOfLong = (unsigned long long*)malloc(((*nbRow) * (*nbCol)) * sizeof(unsigned long long));
+    matrixOfLong = (long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long));
 
     /* Load the matrix */
     sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, matrixOfLong);
@@ -481,7 +480,7 @@ unsigned long long* getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putUnsignedLong(char *variableName, unsigned long long *variable, int nbRow, int nbCol)
+int putUnsignedLong(char *variableName, unsigned long *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
@@ -495,30 +494,6 @@ int putUnsignedLong(char *variableName, unsigned long long *variable, int nbRow,
 }
 
 #endif
-
-/**
- * Call the Scilab function getLastErrorMessage
- * Take the result (a matrix of string) and concatenate into a single string
- * This is way easier to manage in swig.
-*/
-char *getLastErrorMessageSingle(void)
-{
-    int iNbLines, i, nbChar = 0;
-    const char **msgs = getLastErrorMessage();
-    char *concat;
-
-    for (i = 0; i < iNbLines; i++)
-    {
-        nbChar += (int)strlen(msgs[i]);
-    }
-    concat = (char *)malloc((nbChar + 1) * sizeof(char));
-    strcpy(concat, "");
-    for (i = 0; i < iNbLines; i++)
-    {
-        strcat(concat, msgs[i]);
-    }
-    return concat;
-}
 
 char **getString(char *variableName, int *nbRow, int *nbCol)
 {

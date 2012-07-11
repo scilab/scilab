@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getscilabmode">
-  <info>
-    <pubdate>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>getscilabmode</refname>
     <refpurpose>returns scilab mode</refpurpose>
@@ -13,18 +10,18 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>returns scilab mode. 4 modes are possible: STD , API , NW , NWNI .</para>
+    <para>Returns scilab mode. 4 modes are possible: STD, API, NW, NWNI.</para>
     <para>
-      <literal>API</literal> Scilab is launch as an API.
+      <literal>API</literal>: Scilab is launch as an API.
     </para>
     <para>
-      <literal>STD</literal> The standard Scilab (gui, plot ...) 
+      <literal>STD</literal>: the standard Scilab (gui, plot ...).
     </para>
     <para>
-      <literal>NW</literal> Scilab in command line with the plots.
+      <literal>NW</literal>: Scilab in command line with the plots.
     </para>
     <para>
-      <literal>NWNI</literal> Scilab in command line without any graphics.
+      <literal>NWNI</literal>: Scilab in command line without any graphics.
     </para>
   </refsection>
   <refsection>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="schur">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>schur</refname>
     <refpurpose> [ordered] Schur decomposition of matrix and pencils</refpurpose>
@@ -51,7 +48,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string (<literal>'comp[lex]'</literal> / <literal>'r[eal]'</literal> for matrix type, or <literal>'d[isc]'</literal> / <literal>'c[ont]'</literal> for either "discrete time" or "continuous time" eigenspace)</para>
+          <para>
+            character string (<literal>'c'</literal> or <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -228,7 +227,7 @@
                   time" generalized eigenspace).
                 </para>
                 <para>
-                  <literal>[As,Es,Z,dim] = schur(A,E,'d[isc]')</literal>
+                  <literal>[As,Es,Z,dim] = schur(A,E,'d')</literal>
                 </para>
                 <para>
                   returns the real generalized
@@ -311,7 +310,7 @@
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
 [U,T]=schur(A);T
 
-[U,dim,T]=schur(A,'cont');
+[U,dim,T]=schur(A,'c');
 T(1:dim,1:dim)      //stable cont. eigenvalues
 
 function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
@@ -343,7 +342,7 @@ A=coeff(F,0);E=coeff(F,1);
 Q'*F*Z //It is As+%s*Es
 
 
-[As,Es,Z,dim] = schur(A,E,'cont')
+[As,Es,Z,dim] = schur(A,E,'c')
 function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
 

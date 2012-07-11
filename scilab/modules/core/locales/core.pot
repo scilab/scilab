@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -25,31 +25,31 @@ msgstr ""
 #
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 48
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 66
-# File: sci_gateway/c/sci_errclear.c, line: 48
-# File: sci_gateway/c/sci_error.c, line: 175
-# File: sci_gateway/c/sci_error.c, line: 215
-# File: sci_gateway/c/sci_error.c, line: 221
-# File: sci_gateway/c/sci_error.c, line: 277
+# File: sci_gateway/c/sci_errclear.c, line: 47
+# File: sci_gateway/c/sci_error.c, line: 179
+# File: sci_gateway/c/sci_error.c, line: 219
+# File: sci_gateway/c/sci_error.c, line: 225
+# File: sci_gateway/c/sci_error.c, line: 281
 # File: sci_gateway/c/sci_exit.c, line: 76
-# File: sci_gateway/c/sci_funcprot.c, line: 66
+# File: sci_gateway/c/sci_funcprot.c, line: 65
 # File: sci_gateway/c/sci_mode.c, line: 64
 # File: sci_gateway/c/sci_mode.c, line: 70
-# File: sci_gateway/c/sci_newfun.c, line: 116
-# File: sci_gateway/c/sci_predef.c, line: 68
-# File: sci_gateway/c/sci_typename.c, line: 114
+# File: sci_gateway/c/sci_newfun.c, line: 115
+# File: sci_gateway/c/sci_predef.c, line: 67
+# File: sci_gateway/c/sci_typename.c, line: 113
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
-# File: tests/nonreg_tests/bug_6830.c, line: 35
+# File: tests/nonreg_tests/bug_6830.c, line: 36
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
 msgstr ""
 
 #
-# File: includes/stack-c.h, line: 277
+# File: includes/stack-c.h, line: 281
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr ""
@@ -58,7 +58,7 @@ msgstr ""
 # File: sci_gateway/c/sci_clearfun.c, line: 65
 # File: sci_gateway/c/sci_funptr.c, line: 49
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
-# File: sci_gateway/c/sci_getversion.c, line: 212
+# File: sci_gateway/c/sci_getversion.c, line: 211
 # File: sci_gateway/c/sci_readgateway.c, line: 124
 # File: sci_gateway/c/sci_warning.c, line: 130
 # File: sci_gateway/c/sci_with_module.c, line: 47
@@ -67,91 +67,74 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_errclear.c, line: 36
-# File: sci_gateway/c/sci_error.c, line: 75
-# File: sci_gateway/c/sci_error.c, line: 106
-# File: sci_gateway/c/sci_error.c, line: 114
+# File: sci_gateway/c/sci_debug.c, line: 40
+# File: sci_gateway/c/sci_errclear.c, line: 35
+# File: sci_gateway/c/sci_error.c, line: 80
+# File: sci_gateway/c/sci_error.c, line: 111
+# File: sci_gateway/c/sci_error.c, line: 119
 # File: sci_gateway/c/sci_exit.c, line: 47
 # File: sci_gateway/c/sci_exit.c, line: 55
-# File: sci_gateway/c/sci_format.c, line: 85
-# File: sci_gateway/c/sci_format.c, line: 254
-# File: sci_gateway/c/sci_format.c, line: 262
-# File: sci_gateway/c/sci_funcprot.c, line: 53
-# File: sci_gateway/c/sci_funcprot.c, line: 72
-# File: sci_gateway/c/sci_getversion.c, line: 115
-# File: sci_gateway/c/sci_getversion.c, line: 228
-# File: sci_gateway/c/sci_getversion.c, line: 236
-# File: sci_gateway/c/sci_lasterror.c, line: 42
-# File: sci_gateway/c/sci_newfun.c, line: 52
-# File: sci_gateway/c/sci_newfun.c, line: 60
-# File: sci_gateway/c/sci_newfun.c, line: 68
-# File: sci_gateway/c/sci_newfun.c, line: 76
-# File: sci_gateway/c/sci_newfun.c, line: 96
-# File: sci_gateway/c/sci_newfun.c, line: 110
-# File: sci_gateway/c/sci_newfun.c, line: 134
-# File: sci_gateway/c/sci_typename.c, line: 62
-# File: sci_gateway/c/sci_typename.c, line: 71
-# File: sci_gateway/c/sci_typename.c, line: 80
-# File: sci_gateway/c/sci_typename.c, line: 88
-# File: sci_gateway/c/sci_typename.c, line: 108
-# File: sci_gateway/c/sci_typename.c, line: 122
-# File: sci_gateway/c/sci_typename.c, line: 137
-# File: sci_gateway/c/sci_typename.c, line: 149
+# File: sci_gateway/c/sci_format.c, line: 82
+# File: sci_gateway/c/sci_format.c, line: 251
+# File: sci_gateway/c/sci_format.c, line: 259
+# File: sci_gateway/c/sci_funcprot.c, line: 52
+# File: sci_gateway/c/sci_funcprot.c, line: 71
+# File: sci_gateway/c/sci_getversion.c, line: 114
+# File: sci_gateway/c/sci_getversion.c, line: 227
+# File: sci_gateway/c/sci_getversion.c, line: 235
+# File: sci_gateway/c/sci_lasterror.c, line: 41
+# File: sci_gateway/c/sci_newfun.c, line: 51
+# File: sci_gateway/c/sci_newfun.c, line: 59
+# File: sci_gateway/c/sci_newfun.c, line: 67
+# File: sci_gateway/c/sci_newfun.c, line: 75
+# File: sci_gateway/c/sci_newfun.c, line: 95
+# File: sci_gateway/c/sci_newfun.c, line: 109
+# File: sci_gateway/c/sci_newfun.c, line: 133
+# File: sci_gateway/c/sci_typename.c, line: 61
+# File: sci_gateway/c/sci_typename.c, line: 70
+# File: sci_gateway/c/sci_typename.c, line: 79
+# File: sci_gateway/c/sci_typename.c, line: 87
+# File: sci_gateway/c/sci_typename.c, line: 107
+# File: sci_gateway/c/sci_typename.c, line: 121
+# File: sci_gateway/c/sci_typename.c, line: 136
+# File: sci_gateway/c/sci_typename.c, line: 148
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_errclear.c, line: 57
-# File: sci_gateway/c/sci_error.c, line: 188
-# File: sci_gateway/c/sci_error.c, line: 234
-# File: sci_gateway/c/sci_error.c, line: 247
-# File: sci_gateway/c/sci_error.c, line: 290
-# File: sci_gateway/c/sci_format.c, line: 149
-# File: sci_gateway/c/sci_format.c, line: 306
-# File: sci_gateway/c/sci_format.c, line: 364
-# File: sci_gateway/c/sci_format.c, line: 381
+# File: sci_gateway/c/sci_debug.c, line: 46
+# File: sci_gateway/c/sci_debug.c, line: 52
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_errclear.c, line: 72
-# File: sci_gateway/c/sci_funcprot.c, line: 80
+# File: sci_gateway/c/sci_debug.c, line: 58
+# File: sci_gateway/c/sci_debug.c, line: 64
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_error.c, line: 89
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_error.c, line: 132
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_error.c, line: 150
-# File: sci_gateway/c/sci_error.c, line: 181
-# File: sci_gateway/c/sci_error.c, line: 227
-# File: sci_gateway/c/sci_error.c, line: 240
-# File: sci_gateway/c/sci_error.c, line: 283
-# File: sci_gateway/c/sci_error.c, line: 309
-# File: sci_gateway/c/sci_error.c, line: 347
-# File: sci_gateway/c/sci_format.c, line: 130
-# File: sci_gateway/c/sci_format.c, line: 286
-# File: sci_gateway/c/sci_format.c, line: 292
-# File: sci_gateway/c/sci_format.c, line: 346
-# File: sci_gateway/c/sci_format.c, line: 355
-# File: sci_gateway/c/sci_format.c, line: 374
-# File: sci_gateway/c/sci_format.c, line: 387
+# File: sci_gateway/c/sci_debug.c, line: 70
+# File: sci_gateway/c/sci_error.c, line: 154
+# File: sci_gateway/c/sci_error.c, line: 185
+# File: sci_gateway/c/sci_error.c, line: 231
+# File: sci_gateway/c/sci_error.c, line: 244
+# File: sci_gateway/c/sci_error.c, line: 287
+# File: sci_gateway/c/sci_error.c, line: 312
+# File: sci_gateway/c/sci_error.c, line: 350
+# File: sci_gateway/c/sci_format.c, line: 127
+# File: sci_gateway/c/sci_format.c, line: 283
+# File: sci_gateway/c/sci_format.c, line: 289
+# File: sci_gateway/c/sci_format.c, line: 343
+# File: sci_gateway/c/sci_format.c, line: 352
+# File: sci_gateway/c/sci_format.c, line: 371
+# File: sci_gateway/c/sci_format.c, line: 384
 # File: sci_gateway/c/sci_getos.c, line: 49
 # File: sci_gateway/c/sci_getos.c, line: 57
-# File: sci_gateway/c/sci_typename.c, line: 184
+# File: sci_gateway/c/sci_typename.c, line: 183
 # File: src/c/intmacr2tree.c, line: 133
 # File: src/c/intmacr2tree.c, line: 150
 # File: src/c/intmacr2tree.c, line: 155
@@ -200,29 +183,92 @@ msgstr ""
 # File: src/c/stack1.c, line: 2521
 # File: src/c/stack2.c, line: 2085
 # File: src/c/stack2.c, line: 2408
-# File: src/c/storeCommand.c, line: 98
-# File: src/c/storeCommand.c, line: 106
-# File: src/c/storeCommand.c, line: 143
-# File: src/c/storeCommand.c, line: 151
+# File: src/c/storeCommand.c, line: 102
+# File: src/c/storeCommand.c, line: 110
+# File: src/c/storeCommand.c, line: 147
+# File: src/c/storeCommand.c, line: 155
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_error.c, line: 161
-# File: sci_gateway/c/sci_error.c, line: 320
-# File: sci_gateway/c/sci_format.c, line: 230
-# File: sci_gateway/c/sci_format.c, line: 268
-# File: sci_gateway/c/sci_format.c, line: 274
+# File: sci_gateway/c/sci_debug.c, line: 77
+# File: sci_gateway/c/sci_errclear.c, line: 56
+# File: sci_gateway/c/sci_error.c, line: 192
+# File: sci_gateway/c/sci_error.c, line: 238
+# File: sci_gateway/c/sci_error.c, line: 251
+# File: sci_gateway/c/sci_error.c, line: 294
+# File: sci_gateway/c/sci_format.c, line: 146
+# File: sci_gateway/c/sci_format.c, line: 303
+# File: sci_gateway/c/sci_format.c, line: 361
+# File: sci_gateway/c/sci_format.c, line: 378
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_debug.c, line: 87
+# File: sci_gateway/c/sci_exit.c, line: 70
+# File: sci_gateway/c/sci_format.c, line: 65
+# File: sci_gateway/c/sci_format.c, line: 190
+# File: sci_gateway/c/sci_funcprot.c, line: 33
+# File: sci_gateway/c/sci_funcprot.c, line: 92
+# File: sci_gateway/c/sci_getmd5.c, line: 100
+# File: sci_gateway/c/sci_getmd5.c, line: 150
+# File: sci_gateway/c/sci_getversion.c, line: 67
+# File: sci_gateway/c/sci_getversion.c, line: 87
+# File: sci_gateway/c/sci_getversion.c, line: 95
+# File: sci_gateway/c/sci_getversion.c, line: 162
+# File: sci_gateway/c/sci_getversion.c, line: 171
+# File: sci_gateway/c/sci_getversion.c, line: 199
+# File: sci_gateway/c/sci_getversion.c, line: 205
+# File: sci_gateway/c/sci_getversion.c, line: 314
+# File: sci_gateway/c/sci_getversion.c, line: 320
+# File: sci_gateway/c/sci_lasterror.c, line: 74
+# File: sci_gateway/c/sci_newfun.c, line: 139
+# File: sci_gateway/c/sci_predef.c, line: 102
+# File: sci_gateway/c/sci_typename.c, line: 204
+# File: sci_gateway/c/sci_typename.c, line: 224
+# File: tests/nonreg_tests/bug_7974.c, line: 46
+# File: tests/nonreg_tests/bug_7974.c, line: 75
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+# File: sci_gateway/c/sci_funcprot.c, line: 79
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_error.c, line: 94
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_error.c, line: 137
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_error.c, line: 165
+# File: sci_gateway/c/sci_error.c, line: 323
+# File: sci_gateway/c/sci_format.c, line: 227
+# File: sci_gateway/c/sci_format.c, line: 265
+# File: sci_gateway/c/sci_format.c, line: 271
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_error.c, line: 194
-# File: sci_gateway/c/sci_error.c, line: 253
-# File: sci_gateway/c/sci_error.c, line: 259
-# File: sci_gateway/c/sci_error.c, line: 296
+# File: sci_gateway/c/sci_error.c, line: 198
+# File: sci_gateway/c/sci_error.c, line: 257
+# File: sci_gateway/c/sci_error.c, line: 263
+# File: sci_gateway/c/sci_error.c, line: 300
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
@@ -230,80 +276,52 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_exit.c, line: 62
-# File: sci_gateway/c/sci_funcprot.c, line: 60
-# File: sci_gateway/c/sci_newfun.c, line: 88
-# File: sci_gateway/c/sci_typename.c, line: 100
+# File: sci_gateway/c/sci_funcprot.c, line: 59
+# File: sci_gateway/c/sci_newfun.c, line: 87
+# File: sci_gateway/c/sci_typename.c, line: 99
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exit.c, line: 70
-# File: sci_gateway/c/sci_format.c, line: 68
-# File: sci_gateway/c/sci_format.c, line: 193
-# File: sci_gateway/c/sci_funcprot.c, line: 34
-# File: sci_gateway/c/sci_funcprot.c, line: 93
-# File: sci_gateway/c/sci_getmd5.c, line: 100
-# File: sci_gateway/c/sci_getmd5.c, line: 150
-# File: sci_gateway/c/sci_getversion.c, line: 68
-# File: sci_gateway/c/sci_getversion.c, line: 88
-# File: sci_gateway/c/sci_getversion.c, line: 96
-# File: sci_gateway/c/sci_getversion.c, line: 163
-# File: sci_gateway/c/sci_getversion.c, line: 172
-# File: sci_gateway/c/sci_getversion.c, line: 200
-# File: sci_gateway/c/sci_getversion.c, line: 206
-# File: sci_gateway/c/sci_getversion.c, line: 315
-# File: sci_gateway/c/sci_getversion.c, line: 321
-# File: sci_gateway/c/sci_lasterror.c, line: 75
-# File: sci_gateway/c/sci_newfun.c, line: 140
-# File: sci_gateway/c/sci_predef.c, line: 103
-# File: sci_gateway/c/sci_typename.c, line: 205
-# File: sci_gateway/c/sci_typename.c, line: 225
-# File: tests/nonreg_tests/bug_7974.c, line: 47
-# File: tests/nonreg_tests/bug_7974.c, line: 76
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_exit.c, line: 84
-# File: sci_gateway/c/sci_newfun.c, line: 123
+# File: sci_gateway/c/sci_newfun.c, line: 122
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 95
-# File: sci_gateway/c/sci_format.c, line: 124
-# File: sci_gateway/c/sci_format.c, line: 428
+# File: sci_gateway/c/sci_format.c, line: 92
+# File: sci_gateway/c/sci_format.c, line: 121
+# File: sci_gateway/c/sci_format.c, line: 425
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 54
-# File: sci_gateway/c/sci_predef.c, line: 122
+# File: sci_gateway/c/sci_predef.c, line: 121
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 159
-# File: sci_gateway/c/sci_format.c, line: 170
-# File: sci_gateway/c/sci_format.c, line: 314
-# File: sci_gateway/c/sci_format.c, line: 324
-# File: sci_gateway/c/sci_format.c, line: 402
-# File: sci_gateway/c/sci_format.c, line: 416
+# File: sci_gateway/c/sci_format.c, line: 156
+# File: sci_gateway/c/sci_format.c, line: 167
+# File: sci_gateway/c/sci_format.c, line: 311
+# File: sci_gateway/c/sci_format.c, line: 321
+# File: sci_gateway/c/sci_format.c, line: 399
+# File: sci_gateway/c/sci_format.c, line: 413
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 199
-# File: sci_gateway/c/sci_format.c, line: 208
-# File: sci_gateway/c/sci_format.c, line: 218
+# File: sci_gateway/c/sci_format.c, line: 196
+# File: sci_gateway/c/sci_format.c, line: 205
+# File: sci_gateway/c/sci_format.c, line: 215
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 237
+# File: sci_gateway/c/sci_format.c, line: 234
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a scalar integer value "
@@ -311,19 +329,19 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 300
+# File: sci_gateway/c/sci_format.c, line: 297
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 433
+# File: sci_gateway/c/sci_format.c, line: 430
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_funcprot.c, line: 86
+# File: sci_gateway/c/sci_funcprot.c, line: 85
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
 msgstr ""
@@ -337,7 +355,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 105
-# File: tests/nonreg_tests/bug_7974.c, line: 53
+# File: tests/nonreg_tests/bug_7974.c, line: 52
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
@@ -361,37 +379,37 @@ msgid "Warning: Problems with %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 125
-# File: sci_gateway/c/sci_getversion.c, line: 247
-# File: sci_gateway/c/sci_getversion.c, line: 253
-# File: tests/nonreg_tests/bug_7974.c, line: 41
+# File: sci_gateway/c/sci_getversion.c, line: 124
+# File: sci_gateway/c/sci_getversion.c, line: 246
+# File: sci_gateway/c/sci_getversion.c, line: 252
+# File: tests/nonreg_tests/bug_7974.c, line: 40
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 178
-# File: sci_gateway/c/sci_getversion.c, line: 280
+# File: sci_gateway/c/sci_getversion.c, line: 177
+# File: sci_gateway/c/sci_getversion.c, line: 279
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 188
-# File: sci_gateway/c/sci_getversion.c, line: 303
+# File: sci_gateway/c/sci_getversion.c, line: 187
+# File: sci_gateway/c/sci_getversion.c, line: 302
 #, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 297
+# File: sci_gateway/c/sci_getversion.c, line: 296
 # File: sci_gateway/c/sci_who.c, line: 139
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 327
+# File: sci_gateway/c/sci_getversion.c, line: 326
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
 msgstr ""
@@ -435,53 +453,53 @@ msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lasterror.c, line: 54
+# File: sci_gateway/c/sci_lasterror.c, line: 53
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lasterror.c, line: 59
+# File: sci_gateway/c/sci_lasterror.c, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_mode.c, line: 48
-# File: sci_gateway/c/sci_predef.c, line: 60
+# File: sci_gateway/c/sci_predef.c, line: 59
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newfun.c, line: 82
-# File: sci_gateway/c/sci_typename.c, line: 94
+# File: sci_gateway/c/sci_newfun.c, line: 81
+# File: sci_gateway/c/sci_typename.c, line: 93
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newfun.c, line: 102
-# File: sci_gateway/c/sci_typename.c, line: 128
+# File: sci_gateway/c/sci_newfun.c, line: 101
+# File: sci_gateway/c/sci_typename.c, line: 127
 # File: src/c/stack2.c, line: 1382
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newfun.c, line: 168
+# File: sci_gateway/c/sci_newfun.c, line: 167
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newfun.c, line: 174
+# File: sci_gateway/c/sci_newfun.c, line: 173
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_predef.c, line: 129
+# File: sci_gateway/c/sci_predef.c, line: 128
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
@@ -532,19 +550,19 @@ msgid "%s: Unknown error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_typename.c, line: 38
+# File: sci_gateway/c/sci_typename.c, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_typename.c, line: 158
+# File: sci_gateway/c/sci_typename.c, line: 157
 #, c-format
 msgid "%s: '%s' already exists.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_typename.c, line: 176
+# File: sci_gateway/c/sci_typename.c, line: 175
 #, c-format
 msgid "%s: Unknown Error.\n"
 msgstr ""
@@ -659,11 +677,16 @@ msgstr ""
 
 #
 # File: src/c/banier.c, line: 38
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 msgstr ""
 
 #
 # File: src/c/banier.c, line: 39
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr ""
+
+#
+# File: src/c/banier.c, line: 40
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 
@@ -692,12 +715,12 @@ msgid "Error: Not a valid primitive ID %d.\n"
 msgstr ""
 
 #
-# File: src/c/callinterf.c, line: 122
+# File: src/c/callinterf.c, line: 124
 msgid "Aborting current computation\n"
 msgstr ""
 
 #
-# File: src/c/callinterf.c, line: 136
+# File: src/c/callinterf.c, line: 138
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
 msgstr ""
@@ -937,29 +960,15 @@ msgid "No space to allocate Scilab stack.\n"
 msgstr ""
 
 #
-# File: src/c/signal_mgmt.c, line: 76
-#, c-format
-msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-
-#
-# File: src/c/signal_mgmt.c, line: 115
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-
-#
-# File: src/c/signal_mgmt.c, line: 463
+# File: src/c/signal_mgmt.c, line: 408
 #, c-format
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
 
@@ -1494,7 +1503,7 @@ msgstr ""
 #
 # File: src/c/stack2.c, line: 3270
 #, c-format
-msgid "argument number %d"
+msgid "argument #%d"
 msgstr ""
 
 #
@@ -1507,13 +1516,13 @@ msgstr ""
 # File: src/c/stack2.c, line: 3292
 # File: src/c/stack2.c, line: 3301
 #, c-format
-msgid "%s argument and argument %d"
+msgid "%s argument and argument #%d"
 msgstr ""
 
 #
 # File: src/c/stack2.c, line: 3305
 #, c-format
-msgid "arguments %d and %d"
+msgid "arguments #%d and #%d"
 msgstr ""
 
 #
@@ -1643,13 +1652,13 @@ msgid "%s: argument must be a string.\n"
 msgstr ""
 
 #
-# File: src/c/storeCommand.c, line: 205
+# File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - No option.\n"
 msgstr ""
 
 #
-# File: src/c/storeCommand.c, line: 209
+# File: src/c/storeCommand.c, line: 213
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr ""
@@ -1706,81 +1715,95 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 54
+# File: src/cpp/backtrace_print.cpp, line: 63
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+
+#
+# File: src/cpp/backtrace_print.cpp, line: 102
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 43
 msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 55
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 44
 msgid "Empty tab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 104
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 106
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 90
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 92
 msgid "Scilab Console"
 msgstr ""
 
 #
-# File: tests/nonreg_tests/bug_7974.c, line: 69
+# File: tests/nonreg_tests/bug_7974.c, line: 68
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: tests/nonreg_tests/bug_7974.c, line: 84
+# File: tests/nonreg_tests/bug_7974.c, line: 83
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 70
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 71
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 141
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 148
 msgid "&File"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 142
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 149
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 143
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 150
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 144
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 151
 msgid "&Control"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 145
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 147
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 150
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 153
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 156
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 152
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 154
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 157
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 160
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 163
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 158
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 165
 msgid "&?"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 159
+# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 166
 msgid "&Toolboxes"
 msgstr ""
 
@@ -1791,6 +1814,12 @@ msgstr ""
 #
 # File: demos/core.dem.gateway.sce, line: 11
 msgid "Getting started with Scilab"
+msgstr ""
+
+#
+# File: etc/core.start, line: 17
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr ""
 
 #
@@ -1812,25 +1841,19 @@ msgid "%s: File doesn't exist: %s"
 msgstr ""
 
 #
-# File: macros/edit.sci, line: 17
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr ""
-
-#
-# File: macros/edit.sci, line: 23
+# File: macros/edit.sci, line: 18
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/edit.sci, line: 31
+# File: macros/edit.sci, line: 26
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
 
 #
-# File: macros/edit.sci, line: 46
+# File: macros/edit.sci, line: 41
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""

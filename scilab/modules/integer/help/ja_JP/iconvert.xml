@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="iconvert">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>iconvert</refname>
     <refpurpose>1または4バイト整数表現に変換する</refpurpose>
@@ -42,8 +39,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	1, 2 または 4バイト整数に変換し,保存します.
-  </para>
+      1, 2 または 4バイト整数に変換し,保存します.
+    </para>
     <variablelist>
       <varlistentry>
         <term>itype=0</term>

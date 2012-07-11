@@ -37,6 +37,7 @@ import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -46,17 +47,13 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CompileAction;
@@ -119,7 +116,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
-public class XcosTab extends SwingScilabTab implements Tab {
+public class XcosTab extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";
 
@@ -650,52 +647,18 @@ public class XcosTab extends SwingScilabTab implements Tab {
         return viewport.isSelected();
     }
 
-    private Window createDefaultWindow() {
-        final Window win;
+    private SwingScilabWindow createDefaultWindow() {
+        final SwingScilabWindow win;
 
-        final Window configuration = WindowsConfigurationManager.createWindow(DEFAULT_WIN_UUID, false);
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {
-            win = ScilabWindow.createWindow();
+            win = new SwingScilabWindow();
         }
 
         win.addTab(this);
         return win;
-    }
-
-    /*
-     * Tab implementation
-     */
-
-    @Deprecated
-    @Override
-    public void addToolBar(ToolBar toolBarToAdd) {
-        setToolBar(toolBarToAdd);
-    }
-
-    @Deprecated
-    @Override
-    public void addMenuBar(MenuBar menuBarToAdd) {
-        setMenuBar(menuBarToAdd);
-    }
-
-    @Deprecated
-    @Override
-    public void addInfoBar(TextBox infoBarToAdd) {
-        setInfoBar(infoBarToAdd);
-    }
-
-    @Deprecated
-    @Override
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    @Deprecated
-    @Override
-    public Window getParentWindow() {
-        return createDefaultWindow();
     }
 }
 

@@ -5,6 +5,8 @@ package org.scilab.modules.helptools ;
 import java.io.IOException;
 import java.io.StringReader;
 
+@javax.annotation.Generated("JFlex")
+@SuppressWarnings("fallthrough")
 %%
 
 %public

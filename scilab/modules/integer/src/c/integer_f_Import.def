@@ -14,7 +14,6 @@ EXPORTS
   sciuint8_
   scimgeti_
   sciimput_
-  sciiconvert_
   sciint32_
   sciidiag_
   sciitriu_
@@ -29,4 +28,4 @@ EXPORTS
   sciicumprod_
   memused_
   sciiabs_
-  
+  stackconvert_

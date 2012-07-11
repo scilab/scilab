@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fscanf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fscanf</refname>
     <refpurpose>ファイルから読み込みこんだ整形済み入力を変換する</refpurpose>
@@ -43,30 +40,33 @@
   <refsection>
     <title>説明</title>
     <para>
-    fscanf関数は<literal>file</literal>引数で指定したファイルから
-	文字データを読み込み,フォーマットに基づき解釈し,
-	変換された結果を返します.</para>
+      fscanf関数は<literal>file</literal>引数で指定したファイルから
+      文字データを読み込み,フォーマットに基づき解釈し,
+      変換された結果を返します.
+    </para>
     <para>
-	formatパラメータには入力を解釈する際に使用される変換指定子
-	が含まれます.
-  </para>
+      formatパラメータには入力を解釈する際に使用される変換指定子
+      が含まれます.
+    </para>
     <para>
-	formatパラメータには,空白文字(空白,タブ,改行,またはフォームフィード)
-	を含めることができます.
-	この場合,以下の2つの場合を除き,
-	次の非空白文字まで入力が読み込まれます.
-	制御文字にマッチする文字がない限り,
-	末尾の空白文字(改行文字を含む)は読み込まれません.
-  </para>
+      formatパラメータには,空白文字(空白,タブ,改行,またはフォームフィード)
+      を含めることができます.
+      この場合,以下の2つの場合を除き,
+      次の非空白文字まで入力が読み込まれます.
+      制御文字にマッチする文字がない限り,
+      末尾の空白文字(改行文字を含む)は読み込まれません.
+    </para>
     <itemizedlist>
       <listitem>
         <para>%を除く任意の文字 (パーセンス記号),
- 	入力ストリームの次の文字に一致しなければなりません.</para>
+          入力ストリームの次の文字に一致しなければなりません.
+        </para>
       </listitem>
       <listitem>
         <para>
-	変換指定子は,次の入力フィールドの変換を指示します.
-	詳細は <link linkend="scanf_conversion">scanf_conversion</link> 参照ください.</para>
+          変換指定子は,次の入力フィールドの変換を指示します.
+          詳細は <link linkend="scanf_conversion">scanf_conversion</link> 参照ください.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

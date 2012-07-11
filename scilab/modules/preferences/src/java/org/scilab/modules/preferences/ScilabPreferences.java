@@ -12,13 +12,17 @@
 
 package org.scilab.modules.preferences;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.SwingUtilities;
+
+import org.scilab.modules.localization.Messages;
+
 /**
- * Class to get the toolboxes informations
  * @author Calixte DENIZET
  */
 public class ScilabPreferences {
@@ -26,11 +30,30 @@ public class ScilabPreferences {
     private static Map<String, ToolboxInfos> tbxs = new HashMap<String, ToolboxInfos>();
 
     /**
+     * Open the preferences window
+     */
+    public static void openPreferences() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                XConfigManager.openPreferences();
+            }
+        });
+    }
+
+    /**
      * @param name the toolbox name
      * @param path the toolbox path
      * @param prefFile the toolbox preference file path
      */
-    public static void addToolboxInfos(String name, String path, String prefFile) {
+    public static void addToolboxInfos(String name, String path, String prefFile) throws Exception {
+        File f = new File(path);
+        if (!f.exists()) {
+            throw new Exception(Messages.gettext("Invalid path:") + " " + path + ".");
+        }
+        f = new File(prefFile);
+        if (!f.exists()) {
+            throw new Exception(Messages.gettext("Invalid preferences file:") + " " + prefFile + ".");
+        }
         tbxs.put(path, new ToolboxInfos(name, path, prefFile));
     }
 
@@ -94,7 +117,7 @@ public class ScilabPreferences {
          * {@inheritDoc}
          */
         public String toString() {
-            return "Toolbox: " + name + "\nPath: "+ path + "\nPreference file: " + prefFile;
+            return "Toolbox: " + name + "\nPath: " + path + "\nPreference file: " + prefFile;
         }
     }
 }

@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
-# File: sci_gateway/c/sci_lines.c, line: 206
+# File: sci_gateway/c/sci_lines.c, line: 205
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
@@ -42,52 +42,52 @@ msgid "%s: Not implemented in this mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 67
+# File: sci_gateway/c/sci_lines.c, line: 66
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 92
-# File: sci_gateway/c/sci_lines.c, line: 118
-# File: sci_gateway/c/sci_lines.c, line: 136
-# File: sci_gateway/c/sci_lines.c, line: 174
-# File: sci_gateway/c/sci_lines.c, line: 189
-# File: sci_gateway/c/sci_lines.c, line: 232
-# File: sci_gateway/c/sci_lines.c, line: 240
+# File: sci_gateway/c/sci_lines.c, line: 91
+# File: sci_gateway/c/sci_lines.c, line: 117
+# File: sci_gateway/c/sci_lines.c, line: 135
+# File: sci_gateway/c/sci_lines.c, line: 173
+# File: sci_gateway/c/sci_lines.c, line: 188
+# File: sci_gateway/c/sci_lines.c, line: 231
+# File: sci_gateway/c/sci_lines.c, line: 239
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 99
-# File: sci_gateway/c/sci_lines.c, line: 247
-# File: sci_gateway/c/sci_lines.c, line: 253
-# File: sci_gateway/c/sci_lines.c, line: 273
-# File: sci_gateway/c/sci_lines.c, line: 290
+# File: sci_gateway/c/sci_lines.c, line: 98
+# File: sci_gateway/c/sci_lines.c, line: 246
+# File: sci_gateway/c/sci_lines.c, line: 252
+# File: sci_gateway/c/sci_lines.c, line: 272
+# File: sci_gateway/c/sci_lines.c, line: 289
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 107
-# File: sci_gateway/c/sci_lines.c, line: 259
-# File: sci_gateway/c/sci_lines.c, line: 265
+# File: sci_gateway/c/sci_lines.c, line: 106
+# File: sci_gateway/c/sci_lines.c, line: 258
+# File: sci_gateway/c/sci_lines.c, line: 264
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 130
-# File: sci_gateway/c/sci_lines.c, line: 199
+# File: sci_gateway/c/sci_lines.c, line: 129
+# File: sci_gateway/c/sci_lines.c, line: 198
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 153
-# File: sci_gateway/c/sci_lines.c, line: 316
-# File: sci_gateway/c/sci_lines.c, line: 331
+# File: sci_gateway/c/sci_lines.c, line: 152
+# File: sci_gateway/c/sci_lines.c, line: 315
+# File: sci_gateway/c/sci_lines.c, line: 330
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
@@ -111,56 +111,56 @@ msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 
 #
-# File: src/c/more.c, line: 25
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-
-#
-# File: src/c/others/zzledt.c, line: 808
+# File: src/c/cmdLine/autoCompletionCli.c, line: 225
 # File: src/c/windows/TermCompletion.c, line: 60
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 940
+# File: src/c/cmdLine/autoCompletionCli.c, line: 462
 # File: src/c/windows/TermCompletion.c, line: 175
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 968
+# File: src/c/cmdLine/autoCompletionCli.c, line: 496
 # File: src/c/windows/TermCompletion.c, line: 203
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 969
+# File: src/c/cmdLine/autoCompletionCli.c, line: 497
 # File: src/c/windows/TermCompletion.c, line: 204
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 970
+# File: src/c/cmdLine/autoCompletionCli.c, line: 498
 # File: src/c/windows/TermCompletion.c, line: 205
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 971
+# File: src/c/cmdLine/autoCompletionCli.c, line: 499
 # File: src/c/windows/TermCompletion.c, line: 206
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: src/c/others/zzledt.c, line: 972
+# File: src/c/cmdLine/autoCompletionCli.c, line: 501
 # File: src/c/windows/TermCompletion.c, line: 207
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
+msgstr ""
+
+#
+# File: src/c/more.c, line: 25
+msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 
 #
@@ -182,16 +182,16 @@ msgid "No help"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 337
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 429
 msgid "Out of Screen"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 541
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 633
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 604
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 696
 msgid "Could not change the Console Foreground."
 msgstr ""

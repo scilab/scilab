@@ -8,8 +8,6 @@ LIBST_C_SOURCES = libst.c  misc.c
 
 pkglib_LTLIBRARIES = libscilibst.la
 
-libscilibst_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-
 libscilibst_la_SOURCES = $(LIBST_C_SOURCES)
 
 # For the code check (splint)

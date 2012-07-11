@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-08 14:09+0000\n"
+"PO-Revision-Date: 2012-06-13 15:34+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 #, c-format
@@ -420,23 +420,32 @@ msgstr "&Сохранить..."
 msgid "&Export to..."
 msgstr "&Экспортировать..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "&Векторный экспорт"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr "Экспортировать в &векторном формате в ..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr "&PS"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -446,12 +455,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Копировать в буфер обмена"
@@ -474,8 +477,8 @@ msgstr "&Показать/скрыть панель инструментов"
 msgid "&Zoom"
 msgstr "&Увеличить область"
 
-msgid "&UnZoom"
-msgstr "&Исходный масштаб"
+msgid "&Original View"
+msgstr "&Исходный вид"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D &Вращение"
@@ -509,6 +512,18 @@ msgstr "&Включить управление подсказками данны
 
 msgid "Stop datatip manager"
 msgstr "В&ыключить управление подсказками данных"
+
+msgid "&MVC"
+msgstr ""
+
+msgid "&Log View (Trace all View notifications)"
+msgstr ""
+
+msgid "&All Objects View (All objects with properties)"
+msgstr "&Обзор всех объектов (все объекты со свойствами)"
+
+msgid "&Ged-like View (Future ged)"
+msgstr ""
 
 msgid "&?"
 msgstr "&Справка"
@@ -566,6 +581,9 @@ msgstr "&Очистить буфер обмена"
 
 msgid "&Select all"
 msgstr "Вы&делить всё"
+
+msgid "P&references"
+msgstr "Н&астройки"
 
 msgid "&Preferences"
 msgstr "&Настройки"
@@ -709,51 +727,34 @@ msgid "Scilab Demonstrations"
 msgstr "Примеры"
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: Не удалось создать uicontrol типа %s."
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: Не удалось уничтожить этот объект.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Свойство «%s» не существует для этого дескриптора.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "Не существует свойства «%s» для этого объекта.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s: Неверный тип для предка: ожидался дескриптор или 0.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: нельзя добавить меню в консоль в этом режиме.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr "%s: Неверный тип для предка: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
 msgstr ""
-"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s» или «%s».\n"
+"%s: Неверный тип для предка: ожидался дескриптор графического окна или меню "
+"пользовательского интерфейса (uimenu).\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидалось «light», «normal», «demi» или "
-"«bold».\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s», «%s» или "
-"«%s».\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr ""
-"Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s: Неверный тип предка: ожидался Figure или uimenu.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s: Неверное значение для предка: ожидался 0.\n"
 
 #, c-format
 msgid ""
@@ -772,10 +773,6 @@ msgstr ""
 "чисел или строка вида «R|G|B».\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидались числа между 0 и 1.\n"
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
@@ -784,12 +781,8 @@ msgstr ""
 "чисел или строка вида «R|G|B».\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидались числа между 0 и 1.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -800,28 +793,22 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидалась строка.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидалось вещественное число.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "Неверный тип свойства «%s»: ожидалось вещественное число.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидалось вещественное число.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s», «%s» или «%s».\n"
+"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
@@ -829,8 +816,12 @@ msgstr ""
 "Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидалось «%s», «%s», «%s» или «%s».\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -883,6 +874,13 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -891,16 +889,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
-"чисел.\n"
+"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s», «%s» или "
+"«%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -909,10 +902,28 @@ msgstr ""
 "чисел.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
+"чисел.\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 "Неверный размер для свойства «%s»: ожидалась строка или вектор строк.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -934,32 +945,33 @@ msgstr ""
 "Неверный тип свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
+"Предупреждение: свойство '%s' 'Value' должно быть целым числом, значение "
+"будет усечено.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось «%s» или «%s».\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидался список из двух элементов.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалась строка.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: Неверное значение свойства «%s»: ожидалось points, normalized, inches, "
-"centimeters или pixels.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось «%s» или «%s».\n"
 
 msgid "Console Font..."
 msgstr "Цвет шрифта"
@@ -967,9 +979,7 @@ msgstr "Цвет шрифта"
 msgid "Console Background..."
 msgstr "Цвет фона"
 
-msgid "No print service found."
-msgstr "Служба печати не обнаружена."
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -979,6 +989,7 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1139,16 +1150,6 @@ msgstr "Вперёд"
 msgid "Tree Overview"
 msgstr "Обзор информации"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr ""
-"Нажатие левой кнопки мыши - начать выделение области масштабирования; правой "
-"кнопки - отменить."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr ""
-"Нажатие левой кнопки мыши - завершить выделение; правой кнопки - отменить."
-
 msgid "OK"
 msgstr "OK"
 
@@ -1164,6 +1165,7 @@ msgstr "Сохранить и выполнить"
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1172,9 +1174,11 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
 
@@ -1229,6 +1233,7 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 
@@ -1290,6 +1295,9 @@ msgstr "Uicontrols 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "Uicontrols с LaTeX/MathML"
+
+msgid "Show images with uicontrols "
+msgstr "Показать изображения с элементами пользовательского интерфейса "
 
 msgid "<Enter color name here>"
 msgstr "<Введите название цвета здесь>"

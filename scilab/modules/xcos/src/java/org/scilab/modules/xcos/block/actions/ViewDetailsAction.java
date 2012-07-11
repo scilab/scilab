@@ -98,19 +98,27 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
      *            the selected block
      */
     private void viewDetails(BasicBlock data) {
-        /*
-         * Export data
-         */
-        new ScilabDirectHandler().writeBlock(data);
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
 
-        /*
-         * Build and execute the command
-         */
-        final String cmd = "tree_show(scs_m); ";
         try {
+            /*
+             * Export data
+             */
+            handler.writeBlock(data);
+
+            /*
+             * Build and execute the command
+             */
+            final String cmd = "tree_show(" + ScilabDirectHandler.BLK + ");";
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
+
         } catch (InterpreterException e1) {
-            Logger.getLogger(ViewDetailsAction.class.toString()).severe(e1.toString());
+            Logger.getLogger(ViewDetailsAction.class.getName()).severe(e1.toString());
+        } finally {
+            handler.release();
         }
     }
 }

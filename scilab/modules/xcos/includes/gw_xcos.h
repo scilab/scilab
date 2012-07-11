@@ -17,26 +17,26 @@
 #include "dynlib_xcos.h"
 /*--------------------------------------------------------------------------*/
 XCOS_IMPEXP int gw_xcos(void);
+/*--------------------------------------------------------------------------*/
+XCOS_IMPEXP int sci_Xcos(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosNotify(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_warnBlockByUID(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_closeXcosFromScilab(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosDiagramOpen(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosDiagramClose(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalLoad(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalCategoryAdd(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalDelete(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalMove(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalEnable(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalDisable(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosPalGenerateIcon(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosConfigureXmlFile(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosUpdateBlock(char *fname, void *pvApiCtx);
 
-XCOS_IMPEXP int sci_Xcos(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosNotify(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_warnBlockByUID(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_closeXcosFromScilab(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosDiagramToHDF5(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosDiagramOpen(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosDiagramClose(char* fname, void* pvApiCtx);
-
-XCOS_IMPEXP int sci_xcosPalLoad(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalDelete(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalMove(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalEnable(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalDisable(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosConfigureXmlFile(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosAddToolsMenu(char* fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosUpdateBlock(char* fname, void* pvApiCtx);
-
+/*--------------------------------------------------------------------------*/
 /**
 * xcos already started
 * @return 1 if xcos started else 0

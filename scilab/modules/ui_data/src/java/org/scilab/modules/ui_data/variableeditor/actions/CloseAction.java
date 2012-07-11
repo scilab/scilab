@@ -15,20 +15,18 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.ui_data.EditVar;
-import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
 /**
  * CloseAction class
  * @author Calixte DENIZET
  */
-public final class CloseAction extends CallBack {
+public final class CloseAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY Q";
     private static final String CLOSE = "Close";

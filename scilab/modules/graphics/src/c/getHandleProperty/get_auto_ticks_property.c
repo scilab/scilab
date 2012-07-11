@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,52 +27,70 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "os_strdup.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_ticks_property( sciPointObj * pobj )
+int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 {
+  char * auto_ticks[3]  = { NULL, NULL, NULL };
+  char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
+  int iAutoTicks = 0;
+  int* piAutoTicks = &iAutoTicks;
 
-  char * auto_ticks[3]  = { NULL, NULL, NULL } ;
-  int i ;
-  int status = -1 ;
+  int i = 0;
+  int j = 0;
+  int status = -1;
 
+#if 0
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks") ;
-    return -1 ;
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+      return -1;
   }
+#endif
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-    auto_ticks[i] = MALLOC( 4 * sizeof(char) ) ;
-    if ( auto_ticks[i] == NULL )
-    {
-      int j ;
-      for ( j = 0 ; j < i ; j++ )
+      getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
+
+      if (piAutoTicks == NULL)
       {
-        FREE( auto_ticks[j] ) ;
-				Scierror(999, _("%s: No more memory.\n"),"get_auto_ticks_property");
-        return -1 ;
+          Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+          return -1;
       }
-    }
-    if ( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] )
-    {
-      strcpy( auto_ticks[i], "on" ) ;
-    }
-    else
-    {
-      strcpy( auto_ticks[i], "off" ) ;
-    }
+
+      if (iAutoTicks)
+      {
+          auto_ticks[i] = os_strdup("on");
+      }
+      else
+      {
+          auto_ticks[i] = os_strdup("off");
+      }
+
+      if (auto_ticks[i] == NULL)
+      {
+          for ( j = 0 ; j < i ; j++ )
+          {
+              FREE(auto_ticks[j]);
+          }
+
+          Scierror(999, _("%s: No more memory.\n"),"get_auto_ticks_property");
+          return -1;
+      }
+
   }
 
-  status = sciReturnRowStringVector( auto_ticks, 3 ) ;
+  status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-    FREE( auto_ticks[i] ) ;
+      FREE( auto_ticks[i] );
   }
 
   return status ;
-    
 }
 /*------------------------------------------------------------------------*/

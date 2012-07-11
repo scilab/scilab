@@ -99,32 +99,32 @@ public class ExportAction extends DefaultAction {
         fileChooser.setTitle(title);
 
         fileChooser.addPropertyChangeListener(JFileChooser.FILE_FILTER_CHANGED_PROPERTY, new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    Object val = e.getNewValue();
-                    if (val != null && (val instanceof SciFileFilter)) {
-                        String filter = ((SciFileFilter) val).getDescription();
-                        String file = currentFile.getName();
-                        int dotpos = file.lastIndexOf(".");
-                        if (dotpos != -1) {
-                            file = file.substring(0, dotpos);
-                        }
-                        dotpos = filter.lastIndexOf(".");
-                        if (dotpos != -1) {
-                            filter = filter.substring(dotpos, filter.length() - 1);
-                        }
-                        fileChooser.setSelectedFile(new File(file + filter));
+            public void propertyChange(PropertyChangeEvent e) {
+                Object val = e.getNewValue();
+                if (val != null && (val instanceof SciFileFilter)) {
+                    String filter = ((SciFileFilter) val).getDescription();
+                    String file = currentFile.getName();
+                    int dotpos = file.lastIndexOf(".");
+                    if (dotpos != -1) {
+                        file = file.substring(0, dotpos);
                     }
+                    dotpos = filter.lastIndexOf(".");
+                    if (dotpos != -1) {
+                        filter = filter.substring(dotpos, filter.length() - 1);
+                    }
+                    fileChooser.setSelectedFile(new File(file + filter));
                 }
-            });
+            }
+        });
 
         fileChooser.addPropertyChangeListener(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY , new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    Object val = e.getNewValue();
-                    if (val != null && (val instanceof File)) {
-                        currentFile = (File) val;
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                Object val = e.getNewValue();
+                if (val != null && (val instanceof File)) {
+                    currentFile = (File) val;
                 }
-            });
+            }
+        });
 
         String name = getEditor().getTextPane().getName();
         if (name == null) {
@@ -214,7 +214,7 @@ public class ExportAction extends DefaultAction {
 
         if (fileName != null && type != null) {
             getEditor().getTextPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            CodeExporter.convert((ScilabEditorPane) getEditor().getTextPane(), fileName, type, PageSetupAction.getPageFormat());
+            CodeExporter.convert(getEditor().getTextPane(), fileName, type, PageSetupAction.getPageFormat());
             getEditor().getTextPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
     }

@@ -84,6 +84,14 @@ public class DumpAction extends DefaultAction {
             return;
         }
 
-        new ScilabDirectHandler().writeDiagram(graph);
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+        try {
+            handler.writeDiagram(graph);
+        } finally {
+            handler.release();
+        }
     }
 }

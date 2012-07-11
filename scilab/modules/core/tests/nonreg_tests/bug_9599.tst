@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 9599 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- INTERACTIVE TEST -->
 // 

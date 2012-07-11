@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-21 16:15+0000\n"
+"PO-Revision-Date: 2012-04-17 12:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 #, c-format
@@ -43,10 +43,26 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr "%s: Неверный размер аргумента %d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
 "значение.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -59,10 +75,6 @@ msgstr "%s: Неверный тип входного параметра №%d.\n
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Неверный тип входного параметра.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -78,10 +90,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -339,6 +347,9 @@ msgstr "Scilab Enterprises\n"
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Консорциум Scilab (DIGITEO)\n"
 
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Авторское право (c) 2011-2012 (Scilab Enterprises)\n"
+
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Авторское право (c) 1989-2012 (INRIA)\n"
 
@@ -519,32 +530,20 @@ msgstr "Недостаточно места для размещения стек
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"Стек вызовов:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"Конец стека вызовов\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Scilab обнаружил критическую ошибку.\n"
-"Программа вероятно аварийно завершится скоро.\n"
-"Сообщите об ошибке на %s со следующей\n"
-"информацией:\n"
+"Ой. Scilab обнаружил критическую ошибку.\n"
+"Ваша программа, вероятно, скоро рухнет.\n"
+"Пожалуйста, сообщите об ошибке в %s и укажите:\n"
+"* пример кода, который воспроизводит проблему\n"
+"* результат команды [a, b] = getdebuginfo()\n"
+"* следующую информацию:\n"
 "%s %s\n"
 
 #, c-format
@@ -880,23 +879,23 @@ msgstr "четвертый"
 
 #, c-format
 msgid "%s argument"
-msgstr "параметр %s"
+msgstr "%s параметр"
 
 #, c-format
-msgid "argument number %d"
-msgstr "параметр номер %d"
+msgid "argument #%d"
+msgstr "аргумент №%d"
 
 #, c-format
 msgid "%s and %s arguments"
-msgstr "параметры %s и %s"
+msgstr "%s и %s параметры"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "параметр %s и параметр номер %d"
+msgid "%s argument and argument #%d"
+msgstr "%s аргумент и аргумент №%d"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "параметры с номерами %d и %d"
+msgid "arguments #%d and #%d"
+msgstr "аргументы №%d и №%d"
 
 msgid "should be square"
 msgstr "должен быть квадратной матрицей"
@@ -927,11 +926,11 @@ msgstr "%s: %s имеет неправильную длину %d, ожидала
 
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)\n"
+msgstr "%s: %s имеют несовместимые размерности (%dx%d) # (%dx%d)\n"
 
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: размерность %s несовместима.\n"
+msgstr "%s: %s имеют несовместимые размерности.\n"
 
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"
@@ -1019,6 +1018,20 @@ msgid "Scilab Version Info."
 msgstr "О версии Scilab."
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Стек вызовов:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Конец стека вызовов\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -1071,6 +1084,10 @@ msgstr "Введение"
 
 msgid "Getting started with Scilab"
 msgstr "Запуск при запуске Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s: Не удалось найти '%s': проверьте, что макрос был собран.\n"
 
 #, c-format
 msgid "Checking: %s\n"

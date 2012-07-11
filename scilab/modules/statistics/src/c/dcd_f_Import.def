@@ -1,71 +1,17 @@
-LIBRARY    dcd_f.dll
+LIBRARY   dcd_f.dll
 
 
 EXPORTS
+;
 
-	algdiv_
-	alngam_
-	alnrel_
-	apser_
-	basym_
-	bcorr_
-	betaln_
-	bfrac_
-	bgrat_
-	bpser_
-	bratio_
-	brcmp1_
-	brcomp_
-	bup_
-	cdfbet_
-	cdfbin_
-	cdfchi_
-	cdfchn_
-	cdff_
-	cdffnc_
-	cdfgam_
-	cdfnbn_
-	cdfnor_
-	cdfpoi_
-	cdft_
-	cumbet_
-	cumbin_
-	cumchi_
-	cumchn_
-	cumf_
-	cumfnc_
-	cumgam_
-	cumnbn_
-	cumnor_
-	cumpoi_
-	cumt_
-	devlpl_
-	dcddexpm1_
-	dinvnr_
-	dinvr_
-	dstinv_
-	dt1_
-	dzror_
-	dstzr_
-	erf_
-	erfc1_
-	esum_
-	exparg_
-	fpser_
-	gam1_
-	gaminv_
-	gamln_
-	gamln1_
-	gamma_
-	grat1_
-	gratio_
-	gsumln_
-	ipmpar_
-	psi1_
-	rcomp_
-	rexp_
-	rlog_
-	rlog1_
-	spmpar_
-	stvaln_
-
+cdfbet_
+cdfbin_
+cdfchi_
+cdfchn_
+cdff_
+cdffnc_
+cdfgam_
+cdfnbn_
+cdfnor_
+cdfpoi_
+cdft_ 

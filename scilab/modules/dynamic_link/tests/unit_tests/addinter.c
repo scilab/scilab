@@ -4,14 +4,14 @@
 
 static double fun2(double x);
 
-void fun1(double *x,double *y) 
+void fun1(double *x, double *y)
 {
-    *y=fun2(*x)/(*x); 
-} 
+    *y = fun2(*x) / (*x);
+}
 
 static double fun2(double x)
-{ 
-    return( sin(x+1));
+{
+    return( sin(x + 1));
 }
 
 int intfun1(char *fname, int* _piKey) 

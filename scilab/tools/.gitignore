@@ -7,7 +7,7 @@ zip
 swig
 giws
 python
-pstoedit
 curl
 gettext
 diff
+xmlindent

@@ -15,7 +15,7 @@ modulename=xml
 
 #### xml : Conf files ####
 libscixml_la_rootdir = $(mydatadir)
-libscixml_la_root_DATA =  license.txt
+libscixml_la_root_DATA =  license.txt 
 
 
 #### scinotes : init scripts & configuration files ####
@@ -25,11 +25,11 @@ libscixml_la_etc_DATA = etc/xml.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
-XML_JNI_SOURCES =
+XML_JNI_SOURCES = 
 
 XML_C_SOURCES = src/c/XMLMlistsManagement.c
 
-XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
+XML_CXX_SOURCES = src/cpp/VariableScope.cpp \
           src/cpp/XMLObject.cpp \
           src/cpp/XMLDocument.cpp \
           src/cpp/XMLElement.cpp \
@@ -47,7 +47,7 @@ XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
               sci_gateway/cpp/sci_xmlXPath.cpp \
 		      sci_gateway/cpp/sci_extraction.cpp \
 		      sci_gateway/cpp/sci_insertion.cpp \
@@ -81,42 +81,35 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlRemove.cpp \
 		      sci_gateway/cpp/sci_xmlSetAttributes.cpp
 
-libscixml_la_CFLAGS= -I$(srcdir)/includes/ \
-             -I$(top_srcdir)/libs/MALLOC/includes/ \
-             -I$(top_srcdir)/modules/core/includes \
-             -I$(top_srcdir)/modules/api_scilab/includes \
-             -I$(top_srcdir)/modules/output_stream/includes \
-             -I$(top_srcdir)/modules/string/includes \
-             -I$(top_srcdir)/modules/fileio/includes
-
-
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/string/includes \
-    $(XML_FLAGS)
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+    $(XML_FLAGS) \
+    $(AM_CPPFLAGS)
 
 
-pkglib_LTLIBRARIES = libscixml.la
-noinst_LTLIBRARIES = libscixml-algo.la
+pkglib_LTLIBRARIES = libscixml.la 
+noinst_LTLIBRARIES = libscixml-algo.la 
 
-libscixml_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscixml_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CPP_SOURCES)
-libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscixml_algo_la_CFLAGS = $(libscixml_la_CFLAGS)
+libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CXX_SOURCES)
+libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
 libscixml_algo_la_CPPFLAGS = $(libscixml_la_CPPFLAGS)
 
 libscixml_la_LIBADD = libscixml-algo.la
 
 # For the code check (splint)
 CHECK_SRC= $(XML_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscixml_la_CFLAGS)
+INCLUDE_FLAGS = $(libscixml_la_CPPFLAGS)
 
 #### xml : include files ####
 libscixml_la_includedir=$(pkgincludedir)

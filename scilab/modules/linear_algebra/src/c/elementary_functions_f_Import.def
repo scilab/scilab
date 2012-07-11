@@ -1,12 +1,12 @@
-	LIBRARY    elementary_functions_f.dll
+LIBRARY    elementary_functions_f.dll
 
 
 EXPORTS
-;
-;elementary_functions_f
-;
-pythag_
-dset_
-bdiag_
+; --------------------------------------- 
+; elementary_functions_f
+; --------------------------------------- 
 wbdiag_
+bdiag_
 wwrdiv_
+dset_
+pythag_

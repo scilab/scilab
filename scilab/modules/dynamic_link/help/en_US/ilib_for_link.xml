@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_for_link">
-  <info>
-    <pubdate>$LastChangedDate: 2008-01-14 16:52:36 +0100 (Mon, 14 Jan 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>ilib_for_link</refname>
     <refpurpose> utility for shared library management with link</refpurpose>
@@ -117,10 +114,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      This tool is used to create shared libraries and to generate a 
-      loader file which can be used to dynamically load the shared library 
-      into Scilab with the <literal>link</literal> function. New entry points 
-      given by <literal>names</literal> are then accessible through the <literal>call</literal> 
+      This tool is used to create shared libraries and to generate a
+      loader file which can be used to dynamically load the shared library
+      into Scilab with the <literal>link</literal> function. New entry points
+      given by <literal>names</literal> are then accessible through the <literal>call</literal>
       function or with non linear tools <literal>ode</literal>, <literal>optim</literal>,...
     </para>
     <para>
@@ -148,7 +145,7 @@
   </refsection>
   <refsection>
     <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 if haveacompiler() then
 
 chdir(TMPDIR)
@@ -160,14 +157,14 @@ f1=['int ext1c(int *n, double *a, double *b, double *c)'
 
 mputl(f1,'fun1.c')
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
-ilib_for_link('ext1c','fun1.c',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c")
 
-// load the shared library 
+// load the shared library
 
-exec loader.sce 
+exec loader.sce
 
 //using the new primitive
 a=[1,2,3];b=[4,5,6];n=3;
@@ -199,7 +196,7 @@ end
         <link linkend="ilib_gen_loader">ilib_gen_loader</link>
       </member>
       <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
+        <link linkend="ilib_build">ilib_build</link>
       </member>
       <member>
         <link linkend="api_scilab">api_scilab</link>

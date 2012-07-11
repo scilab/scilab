@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="showprofile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>showprofile</refname>
     <refpurpose>Scilab関数の実行プロファイルを展開し,表示する</refpurpose>
@@ -36,19 +33,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	Scilab関数<literal>showprofile</literal>を使用するには,
-	Scilab関数はプロファイル用に設定されている必要があります
-	(exec 参照).</para>
+      Scilab関数<literal>showprofile</literal>を使用するには,
+      Scilab関数はプロファイル用に設定されている必要があります
+      (exec 参照).
+    </para>
     <para>
-	このような関数について,関数が実行された時に
-	システムは各行の実行回数と各行の実行に要したCPU時間を
-	計測します.
-	これらのデータは関数データ構造内に保存されます.
-	<literal>showprofile</literal> 関数は,
-	関数行のテキストと共に
-	プロファイル結果を出力します(<literal>profile</literal>参照).</para>
+      このような関数について,関数が実行された時に
+      システムは各行の実行回数と各行の実行に要したCPU時間を
+      計測します.
+      これらのデータは関数データ構造内に保存されます.
+      <literal>showprofile</literal> 関数は,
+      関数行のテキストと共に
+      プロファイル結果を出力します(<literal>profile</literal>参照).
+    </para>
     <para>
-    関数のテキストは,<literal>fun2string</literal>で再構築されます.</para>
+      関数のテキストは,<literal>fun2string</literal>で再構築されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -54,7 +54,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 
     if (strchr(str, '\n'))
     {
-        char * tok = strdup(str);
+        char * tok = os_strdup(str);
         char * stok = tok;
         std::vector<char *> vector = std::vector<char *>();
 

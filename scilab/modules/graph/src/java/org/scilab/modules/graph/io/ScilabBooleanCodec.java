@@ -64,6 +64,16 @@ public class ScilabBooleanCodec extends ScilabObjectCodec {
         Node node = enc.getDocument().createElement(name);
 
         ScilabBoolean scilabBoolean = (ScilabBoolean) obj;
+
+        if (binary) {
+            int pos = binaryObjects.size();
+            binaryObjects.add(scilabBoolean);
+            mxCodec.setAttribute(node, BINARY, "true");
+            mxCodec.setAttribute(node, POSITION, pos);
+
+            return node;
+        }
+
         mxCodec.setAttribute(node, WIDTH, scilabBoolean.getWidth());
         mxCodec.setAttribute(node, HEIGHT, scilabBoolean.getHeight());
 
@@ -100,13 +110,18 @@ public class ScilabBooleanCodec extends ScilabObjectCodec {
             if (node.getNodeType() != Node.ELEMENT_NODE) {
                 throw new UnrecognizeFormatException();
             }
-            obj = (ScilabBoolean) cloneTemplate(node);
 
-            // attrs = {"as", "height", "width"}
+            // attrs = {"as", "height", "width", "binary", "position"}
             final NamedNodeMap attrs = node.getAttributes();
             if (attrs == null) {
                 throw new UnrecognizeFormatException();
             }
+
+            if (getBooleanAttribute(attrs, BINARY)) {
+                return binaryObjects.get(getIntegerAttribute(attrs, POSITION));
+            }
+
+            obj = (ScilabBoolean) cloneTemplate(node);
 
             final int height = getHeight(attrs);
             final int width = getWidth(attrs);

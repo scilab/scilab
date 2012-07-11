@@ -1,8 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2009 - Allan CORNET
 ; Copyright (C) DIGITEO - 2010 - Pierre MARECHAL
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -37,4 +36,6 @@ Source: modules\{#ATOMS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ATOMS}
 ;
 Source: modules\{#ATOMS}\tests\*.*; DestDir: {app}\modules\{#ATOMS}\tests; Flags: recursesubdirs; Components: {#COMPN_ATOMS} and {#COMPN_TESTS}
 ;
+;--------------------------------------------------------------------------------------------------------------
+#include BinariesSourcePath + "\contrib\external_modules.iss"
 ;--------------------------------------------------------------------------------------------------------------

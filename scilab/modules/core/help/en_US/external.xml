@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="external">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>external</refname>
     <refpurpose> Scilab Object, external function or routine</refpurpose>
@@ -25,7 +22,7 @@
       primitive. Its calling sequence must be: <literal>[f,g,ind]=costfunc(x,ind)</literal> and 
       <literal>optim</literal> (the high-level optimization primitive) is invoked as follows:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 optim(costfunc,...)
  ]]></programlisting>
     <para>
@@ -35,16 +32,16 @@ optim(costfunc,...)
     <para>
       If other values are needed by the external function these variables
       can be defined in its environment. Also, they can be put in a list.
-      For example,the external function
+      For example, the external function
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 [f,g,ind]=costfunc(x,ind,a,b,c) 
  ]]></programlisting>
     <para>
       is valid for <literal>optim</literal> if the external is <literal>list(costfunc,a,b,c)</literal> and
       the call to <literal>optim</literal> is then:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 optim(list(costfunc,a1,b1,c1),....
  ]]></programlisting>
     <para>
@@ -57,7 +54,7 @@ optim(list(costfunc,a1,b1,c1),....
       is also imposed.  
     </para>
     <para>
-      External Fortran or C routines can also be dynamically linked (see <literal>link</literal>)
+      External Fortran or C routines can also be dynamically linked (see <literal>link</literal>).
     </para>
   </refsection>
   <refsection role="see also">

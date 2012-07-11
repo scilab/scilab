@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="axes_properties">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>axes_properties</refname>
     <refpurpose>axesエンティティプロパティの説明</refpurpose>
@@ -972,10 +969,10 @@ a=gca();
 mathml="<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>..
 <mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
 // LaTeX 式のみ
-a.x_ticks.labels=["0";"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6"]);
 
 // 式の混用: MathML と LaTex
-a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
+a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"]);
 
  ]]></programlisting>
   </refsection>

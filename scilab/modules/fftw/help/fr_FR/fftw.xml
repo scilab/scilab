@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fftw" xml:lang="fr">
-  <info>
-    <pubdate>October 2006</pubdate>
-  </info>
   <refnamediv>
     <refname>fftw</refname>
     <refpurpose>transformée de Fourier rapide qui utilise la bibliothèque
-    FFTW</refpurpose>
+      FFTW
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[y]=fftw(x)
-[y]=fftw(x,sign)
-[y]=fftw(x,sign,dim,incr)
-[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+      [y]=fftw(x,sign)
+      [y]=fftw(x,sign,dim,incr)
+      [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -22,28 +21,32 @@
         <term>y,x</term>
         <listitem>
           <para>matrice/vecteur de donnée réelle ou complexe. Données
-          d'entrée/sortie.</para>
+            d'entrée/sortie.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sign</term>
         <listitem>
           <para>entier. 1 ou -1. Choix du type de transformée (inverse ou
-          directe).</para>
+            directe).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dim</term>
         <listitem>
           <para>entier. Donne la dimension (la longueur) de la
-          transformée.</para>
+            transformée.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>incr</term>
         <listitem>
           <para>entier. Donne l'entrelacement (l'écart entre les données
-          consécutives) de la transformée.</para>
+            consécutives) de la transformée.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,18 +54,23 @@
   <refsection>
     <title>Description</title>
     <para>Cette fonction réalise une Transformée de Fourier Discrete (TFD)
-    inverse ou directe au moyen de la bibliothèque FFTW.</para>
+      inverse ou directe au moyen de la bibliothèque FFTW.
+    </para>
     <para>Elle permet le calcul de transformée vectorielle, 2D et M-D.</para>
     <para>Pour plus de détails concernant la syntaxe de l'appel à fftw,
-    consultez la fonction <link linkend="fft">fft</link> de scilab.</para>
+      consultez la fonction <link linkend="fft">fft</link> de scilab.
+    </para>
     <para>Pour plus de détails concernant la bibliothèque FFTW, consultez le site
-    web <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>.</para>
+      web <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>.
+    </para>
     <para>Rmq : La fonction fftw enregistre automatiquement les dernières
-    paramètres utilisés lors d'un appel pour les ré-utiliser une seconde
-    fois.</para>
+      paramètres utilisés lors d'un appel pour les ré-utiliser une seconde
+      fois.
+    </para>
     <para>Cela permet une amélioration significative du temps de calcul
-    lorsque la fonction fftw est appelée consécutivement avec les mêmes
-    paramètres.</para>
+      lorsque la fonction fftw est appelée consécutivement avec les mêmes
+      paramètres.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -112,7 +120,7 @@ b = fftw(y,1,[5 6 4],[1 5 30]);
   <refsection>
     <title>Bibliographie</title>
     <para>
-    Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+      Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
     </para>
   </refsection>
 </refentry>

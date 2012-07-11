@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 function [n,a,b,c,d,e]=Fscanf(str ,f)
      fd = mopen(TMPDIR + '/fscanf.rep', 'w');

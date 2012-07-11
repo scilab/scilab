@@ -65,6 +65,11 @@
               <xref linkend="Computationalfunction_TIME_DELAY">Fonction de calcul</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_TIME_DELAY">Exemple</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -214,5 +219,17 @@
         <para> SCI/modules/scicos_blocks/src/c/time_delay.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_TIME_DELAY">
+    <title>Exemple</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

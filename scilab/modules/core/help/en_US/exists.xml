@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exists" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>exists</refname>
     <refpurpose>checks variable existence</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>exists(name [,where])</synopsis>
+    <synopsis>ve = exists(name [,where])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
+      <varlistentry>
+        <term>ve</term>
+        <listitem>
+          <para>Output result with possible values:
+            <literal>1</literal> if true, 
+            <literal>0</literal> if false
+          </para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>name</term>
         <listitem>
@@ -28,7 +32,7 @@
           <para>an optional character with possible values:
             <literal>'l'</literal> (local), <literal>'n'</literal>
             (nolocal) and <literal>'a'</literal> (all). The default
-            value is <literal>'all'.</literal>
+            value is <literal>'a'</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -46,34 +50,40 @@
       a result which depends on the environment!
     </para>
     <para>
-      <literal>exists(name,'local')</literal> returns <literal>1</literal>
+      <literal>exists(name,'l')</literal> returns <literal>1</literal>
       if the variable named <literal>name</literal> exists in the environment of
       the current function and <literal>0</literal> otherwise.
     </para>
     <para>
-      <literal>exists(name,'nolocal')</literal> returns
+      <literal>exists(name,'n')</literal> returns
       <literal>1</literal> if the variable named <literal>name</literal> exists
       in any level of the calling environment (including the Scilab shell main level) of the current function and
       <literal>0</literal> otherwise.
     </para>
-    <para>Warning: the exists function does not check if a variable exists in
+    <para>
+      Warning: the <literal>exists</literal> function does not check if a variable exists in
       the <link linkend="global">global</link> namespace.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
+exists("myNotLikelyToExistVariable")
+myNotLikelyToExistVariable = 1;
+exists("myNotLikelyToExistVariable")
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","all"));
-    disp(exists("a","local"));
-    disp(exists("a","nolocal"));
+    disp(exists("a","a"));
+    disp(exists("a","l"));
+    disp(exists("a","n"));
   endfunction
   level2()
 endfunction

@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -55,7 +54,7 @@ int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
         FREE(init);
         FREE(relations);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
@@ -63,7 +62,7 @@ int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
         FREE(relations);
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 

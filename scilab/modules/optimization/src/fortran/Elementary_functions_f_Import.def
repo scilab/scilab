@@ -1,0 +1,12 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+dadd_
+dmmul_
+dset_
+entier_
+iset_
+lnblnk_

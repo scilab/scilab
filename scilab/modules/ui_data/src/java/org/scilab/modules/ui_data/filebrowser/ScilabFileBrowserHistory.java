@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -62,80 +62,79 @@ public class ScilabFileBrowserHistory {
 
         final SwingScilabPushButton swingPrevious = (SwingScilabPushButton) previous.getAsSimplePushButton();
         swingPrevious.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (timer == null) {
-                        timer = new Timer();
-                        timer.schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    if (!popup.isVisible() || popup.getInvoker() != next) {
-                                        showPopup(true);
-                                    }
-                                }
-                            }, 1000);
-                    }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (timer == null) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (!popup.isVisible() || popup.getInvoker() != next) {
+                                showPopup(true);
+                            }
+                        }
+                    }, 1000);
                 }
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    if (timer != null) {
-                        timer.cancel();
-                        timer = null;
-                    }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
                 }
+            }
 
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isRightMouseButton(e) && previous.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingPrevious)) {
-                        showPopup(true);
-                    } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && previous.isEnabled()) {
-                        ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position - 1), false);
-                        chDir(history.get(position - 1));
-                        setPositionInHistory(position - 1);
-                    }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e) && previous.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingPrevious)) {
+                    showPopup(true);
+                } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && previous.isEnabled()) {
+                    ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position - 1), false);
+                    setPositionInHistory(position - 1);
                 }
-            });
+            }
+        });
 
         next = ScilabPushButton.createPushButton();
         next.setIcon(NEXTICON);
 
         final SwingScilabPushButton swingNext = (SwingScilabPushButton) next.getAsSimplePushButton();
         swingNext.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (timer == null) {
-                        timer = new Timer();
-                        timer.schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    if (!popup.isVisible() || popup.getInvoker() != next) {
-                                        showPopup(false);
-                                    }
-                                }
-                            }, 1000);
-                    }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (timer == null) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (!popup.isVisible() || popup.getInvoker() != next) {
+                                showPopup(false);
+                            }
+                        }
+                    }, 1000);
                 }
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    if (timer != null) {
-                        timer.cancel();
-                        timer = null;
-                    }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
                 }
+            }
 
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isRightMouseButton(e) && next.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingNext)) {
-                        showPopup(false);
-                    } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && next.isEnabled()) {
-                        ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position + 1), false);
-                        chDir(history.get(position + 1));
-                        setPositionInHistory(position + 1);
-                    }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e) && next.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingNext)) {
+                    showPopup(false);
+                } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && next.isEnabled()) {
+                    ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position + 1), false);
+                    chDir(history.get(position + 1));
+                    setPositionInHistory(position + 1);
                 }
-            });
+            }
+        });
 
         updateButton(0);
     }
@@ -150,28 +149,28 @@ public class ScilabFileBrowserHistory {
             for (int i = position - 1; i >= 0; i--) {
                 JMenuItem item = new JMenuItem(history.get(i));
                 final int j = i;
-                item.addActionListener(new CallBack(null) {
-                        @Override
-                        public void callBack() {
-                            ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
-                            chDir(history.get(j));
-                            setPositionInHistory(j);
-                        }
-                    });
+                item.addActionListener(new CommonCallBack(null) {
+                    @Override
+                    public void callBack() {
+                        ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
+                        chDir(history.get(j));
+                        setPositionInHistory(j);
+                    }
+                });
                 popup.add(item);
             }
         } else {
             for (int i = position + 1; i < history.size(); i++) {
                 JMenuItem item = new JMenuItem(history.get(i));
                 final int j = i;
-                item.addActionListener(new CallBack(null) {
-                        @Override
-                        public void callBack() {
-                            ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
-                            chDir(history.get(j));
-                            setPositionInHistory(j);
-                        }
-                    });
+                item.addActionListener(new CommonCallBack(null) {
+                    @Override
+                    public void callBack() {
+                        ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
+                        chDir(history.get(j));
+                        setPositionInHistory(j);
+                    }
+                });
                 popup.add(item);
             }
         }

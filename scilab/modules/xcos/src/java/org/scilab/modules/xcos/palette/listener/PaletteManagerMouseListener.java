@@ -24,7 +24,7 @@ import javax.swing.tree.TreePath;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -105,7 +105,7 @@ public class PaletteManagerMouseListener implements MouseListener {
             throw new IllegalArgumentException("Invalid node selected");
         }
 
-        create.setCallback(new CallBack(XcosMessages.CREATE) {
+        create.setCallback(new CommonCallBack(XcosMessages.CREATE) {
             @Override
             public void callBack() {
                 Category nonModifiedRoot = currentNode.getParent();
@@ -150,7 +150,7 @@ public class PaletteManagerMouseListener implements MouseListener {
     // CSOFF: IllegalCatch
     private void setupRemove(final JTree paletteTree, final TreePath path, final MenuItem remove) {
         remove.setText(XcosMessages.REMOVE);
-        remove.setCallback(new CallBack(XcosMessages.REMOVE) {
+        remove.setCallback(new CommonCallBack(XcosMessages.REMOVE) {
             @Override
             public void callBack() {
                 if (path == null) {
@@ -161,7 +161,7 @@ public class PaletteManagerMouseListener implements MouseListener {
                     final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
                     PaletteNode.remove(currentNode);
                 } catch (final Exception e) {
-                    Logger.getLogger(PaletteManagerMouseListener.class.toString()).severe(e.toString());
+                    Logger.getLogger(PaletteManagerMouseListener.class.getName()).severe(e.toString());
                 }
             }
         });

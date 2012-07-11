@@ -6,7 +6,7 @@
 ### SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
-src/c/getdate.c
+src/c/getdate.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
 sci_gateway/c/sci_timer.c \
@@ -19,22 +19,19 @@ sci_gateway/c/gw_time.c
 GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/time_gw.cpp \
 						sci_gateway/cpp/sci_tictoc.cpp
 
-libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscitime_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
-
-libscitime_la_CPPFLAGS= \
-    -I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/functions_manager/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ \
+		    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscitime.la
@@ -43,15 +40,14 @@ else
 noinst_LTLIBRARIES = libscitime-algo.la libscitime.la
 endif
 
-libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscitime_algo_la_SOURCES = $(TIME_C_SOURCES)
 libscitime_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
+libscitime_algo_la_CPPFLAGS = $(libscitime_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitime_la_SOURCES)
-INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
+INCLUDE_FLAGS = $(libscitime_la_CPPFLAGS)
 
 libscitime_la_LIBADD = libscitime-algo.la
 

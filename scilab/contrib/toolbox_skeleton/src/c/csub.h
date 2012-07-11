@@ -1,6 +1,4 @@
 /* ==================================================================== */
-/* Allan CORNET */
-/* DIGITEO 2009 */
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
@@ -9,7 +7,7 @@
 
 /**
 * csub function
-* @param[in] a 
+* @param[in] a
 * @param[in] b
 * @param[in,out] c result of a - b
 * @return 0

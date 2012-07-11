@@ -8,18 +8,44 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:43+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-20 12:04+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr ""
 "Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr "%s : Pilote invalide : %s.\n"
+
+#, c-format
+msgid "%s: An error occured: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: Chemin non valide: %s.\n"
 
 #, c-format
 msgid ""
@@ -37,6 +63,15 @@ msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un handle graphique "
 "attendu.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr "%s : L'argument d'entrée n°%d doit être un handle valide.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un handle ''%s'' attendu.\n"
 
 #, c-format
 msgid ""
@@ -67,42 +102,32 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr "%s : %s\n"
 
+msgid "xinit must be called before xend."
+msgstr "xinit doit être appelé avant xend."
+
+msgid "Unable to create export file, permission denied."
+msgstr "Impossible de créer le fichier d'exportation, permission refusée."
+
+msgid "Unable to create export file, invalid file."
+msgstr "Impossible de créer le fichier d'exportation, fichier non valide."
+
+msgid ""
+"Unable to create export file, not enough memory. Decreasing the number of "
+"elements or the size of the figure should fix this error."
+msgstr ""
+"Impossible de créer le fichier d'export, pas assez de mémoire disponible. "
+"Diminuer le nombre d'éléments ou la taille de la figure devrait corriger "
+"cette erreur."
+
+msgid ""
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
+msgstr ""
+"Impossible de créer le fichier d'export, veuillez signaler un bug sur "
+"http://bugzilla.scilab.org."
+
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Le module d'export graphique de Scilab n'est pas installé.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s', "
-"'%s' ou '%s' attendu.\n"
-
-#, c-format
-msgid "%s: %s must be called before any action.\n"
-msgstr "%s : %s doit être appelé avant tout autre action.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments: Function has no input argument with "
-"'%s' or '%s' drivers.\n"
-msgstr ""
-"%s : Nombre erroné d'arguments d'entrée : La fonction n'a pas d'argument "
-"d'entrée avec les drivers '%s' ou '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
-"'%s' drivers.\n"
-msgstr ""
-"%s : Nombre erroné d'arguments d'entrée : Une chaîne de caractères avec les "
-"drivers '%s', '%s', '%s' ou '%s' attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -111,6 +136,12 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"

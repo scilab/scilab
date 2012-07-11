@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="leastsq" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>leastsq</refname>
     <refpurpose>Solves non-linear least squares problems</refpurpose>
@@ -232,7 +229,8 @@
   </refsection>
   <refsection>
     <title>How to provide fun and dfun</title>
-    <para><literal>fun</literal> can be a scilab function (case
+    <para>
+      <literal>fun</literal> can be a scilab function (case
       1) or a fortran or a C routine linked to scilab (case 2). 
     </para>
     <variablelist>
@@ -242,15 +240,15 @@
           <para>
             When <literal>fun</literal> is a Scilab function, its calling
             sequence must be: 
-			    <screen><![CDATA[ 
+            <screen><![CDATA[ 
 y=fun(x)
  ]]></screen>
-		  In the case where the cost function needs extra parameters, 
-		  its header must be:
-			    <screen><![CDATA[ 
+            In the case where the cost function needs extra parameters, 
+            its header must be:
+            <screen><![CDATA[ 
 y=f(x,a1,a2,...)
  ]]></screen>
-			In this case, we provide <literal>fun</literal> as a list, 
+            In this case, we provide <literal>fun</literal> as a list, 
             which contains <literal>list(f,a1,a2,...)</literal>.
           </para>
         </listitem>
@@ -262,19 +260,19 @@ y=f(x,a1,a2,...)
             When <literal>fun</literal> is a Fortran or C
             routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the calling sequence of
             <literal>leastsq</literal>, where <literal>fun_name</literal> is 
-			a 1-by-1 matrix of strings, the name of the routine which must be linked to Scilab (see
+            a 1-by-1 matrix of strings, the name of the routine which must be linked to Scilab (see
             <link linkend="link">link</link>). The header must be, in Fortran:
-
-    <screen><![CDATA[ 
+            
+            <screen><![CDATA[ 
 subroutine fun(m, n, x, params, y)
 integer m,n
 double precision x(n), params(*), y(m)
  ]]></screen>
-and in C:
-		      <screen><![CDATA[ 
+            and in C:
+            <screen><![CDATA[ 
 void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
-
+            
             where <literal>n</literal> is the dimension of vector
             <literal>x</literal>, <literal>m</literal> the dimension of vector
             <literal>y</literal>, with <literal>y=fun(x)</literal>, and
@@ -285,7 +283,7 @@ void fun(int *m, int *n, double *x, double *params, double *y)
             <literal>a2</literal> begin from
             <literal>params(4)</literal> (in fortran), and from
             <literal>params[3]</literal> (in C). 
-			Note that even if <literal>fun</literal> does not need supplementary parameters you
+            Note that even if <literal>fun</literal> does not need supplementary parameters you
             must anyway write the fortran code with a <literal>params</literal>
             argument (which is then unused in the subroutine core).
           </para>
@@ -294,8 +292,8 @@ void fun(int *m, int *n, double *x, double *params, double *y)
     </variablelist>
     <para>
       By default, the algorithm uses a finite difference approximation 
-	  of the Jacobian matrix. 
-	  The Jacobian matrix can be provided by defining the function 
+      of the Jacobian matrix. 
+      The Jacobian matrix can be provided by defining the function 
       <literal>dfun</literal>, where  to the
       optimizer it may be given as a usual scilab function or
       as a fortran or a C routine linked to scilab.
@@ -307,17 +305,17 @@ void fun(int *m, int *n, double *x, double *params, double *y)
           <para>
             when <literal>dfun</literal> is a scilab function, its calling
             sequence must be: 
-    <screen><![CDATA[ 
+            <screen><![CDATA[ 
               y=dfun(x)
  ]]></screen>
-where <literal>y(i,j)=dfi/dxj</literal>.
-If extra parameters are required by <literal>fun</literal>, i.e. if arguments 
-<literal>a1,a2,...</literal> are required, they are passed also to 
-<literal>dfun</literal>, which must have header
-    <screen><![CDATA[ 
+            where <literal>y(i,j)=dfi/dxj</literal>.
+            If extra parameters are required by <literal>fun</literal>, i.e. if arguments 
+            <literal>a1,a2,...</literal> are required, they are passed also to 
+            <literal>dfun</literal>, which must have header
+            <screen><![CDATA[ 
               y=dfun(x,a1,a2,...)
  ]]></screen>
-Note that, even if <literal>dfun</literal>
+            Note that, even if <literal>dfun</literal>
             needs extra parameters, it must appear simply as
             <literal>dfun</literal> in the calling sequence of
             <literal>leastsq</literal>.
@@ -330,18 +328,18 @@ Note that, even if <literal>dfun</literal>
           <para>
             When <literal>dfun</literal> is defined by a Fortran or C
             routine it must be a string, the name of the function linked to 
-			Scilab. 
-			The calling sequences must be, in Fortran:
-    <screen><![CDATA[ 
+            Scilab. 
+            The calling sequences must be, in Fortran:
+            <screen><![CDATA[ 
 subroutine dfun(m, n, x, params, y)
 integer m,n
 double precision x(n), params(*), y(m,n)
  ]]></screen>
-in C:
-    <screen><![CDATA[ 
+            in C:
+            <screen><![CDATA[ 
           void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
-
+            
             In the C case <literal>y(i,j)=dfi/dxj</literal> must be
             stored in <literal>y[m*(j-1)+i-1]</literal>.
           </para>
@@ -366,12 +364,12 @@ in C:
   <refsection>
     <title>Examples</title>
     <para>
- We will show different calling possibilities of leastsq on one (trivial) example
- which is non linear but does not really need to be solved with leastsq (applying
- log linearizes the model and the problem may be solved with linear algebra). 
- In this example we look for the 2 parameters x(1) and x(2) of a simple
- exponential decay model (x(1) being the unknow initial value and x(2) the
- decay constant): 
+      We will show different calling possibilities of leastsq on one (trivial) example
+      which is non linear but does not really need to be solved with leastsq (applying
+      log linearizes the model and the problem may be solved with linear algebra). 
+      In this example we look for the 2 parameters x(1) and x(2) of a simple
+      exponential decay model (x(1) being the unknow initial value and x(2) the
+      decay constant): 
     </para>
     <programlisting role="example"><![CDATA[ 
 
@@ -444,15 +442,15 @@ xsup = [%inf, %inf];
   <refsection>
     <title>Examples with compiled functions</title>
     <para>
-		Now we want to define fun and dfun in Fortran, then in C. 
-          Note that the "compile and link to scilab" method used here
-          is believed to be OS independent (but there are some requirements, 
-          in particular you need a C and a fortran compiler, and they must 
-          be compatible with the ones used to build your scilab binary).
-	    </para>
+      Now we want to define fun and dfun in Fortran, then in C. 
+      Note that the "compile and link to scilab" method used here
+      is believed to be OS independent (but there are some requirements, 
+      in particular you need a C and a fortran compiler, and they must 
+      be compatible with the ones used to build your scilab binary).
+    </para>
     <para>
-		Let us begin by an example with fun and dfun in fortran
-	    </para>
+      Let us begin by an example with fun and dfun in fortran
+    </para>
     <programlisting role="example"><![CDATA[ 
 // 7-1/ Let 's Scilab write the fortran code (in the TMPDIR directory):
 f_code = ["      subroutine myfun(m,n,x,param,f)"
@@ -493,8 +491,8 @@ link(flibname,names,"f")
 [f,xopt, gopt] = leastsq(list("myfun",m,tm,ym,wm),"mydfun",x0) // with Jacobian
  ]]></programlisting>
     <para>
-		Last example: fun and dfun in C.
-	    </para>
+      Last example: fun and dfun in C.
+    </para>
     <programlisting role="example"><![CDATA[ 
 // 8-1/ Let 's Scilab write the C code (in the TMPDIR directory):
 c_code = ["#include <math.h>"

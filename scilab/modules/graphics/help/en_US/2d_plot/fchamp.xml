@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fchamp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="fchamp">
   <refnamediv>
     <refname>fchamp</refname>
     <refpurpose>direction field of a 2D first order
@@ -111,6 +108,10 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>fchamp();</scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 deff("[xdot] = derpol(t,x)",..
@@ -120,6 +121,14 @@ deff("[xdot] = derpol(t,x)",..
 xf= -1:0.1:1;
 yf= -1:0.1:1;
 fchamp(derpol,0,xf,yf)
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
 clf()
 fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
  ]]></programlisting>

@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ierr = execstr("a=zzzzzzz", "errcatch");
 if ierr <> 4 then bugmes();quit;end
 if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end

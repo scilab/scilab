@@ -16,6 +16,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include "gw_xml.h"
 #include "Scierror.h"
 #include "api_scilab.h"

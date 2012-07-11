@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int3d" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int3d</refname>
     <refpurpose>definite 3D integral by quadrature and cubature
@@ -51,27 +48,22 @@
         <listitem>
           <para>external (function or list or string) defining the integrand
             <literal>f(xyz,nf)</literal>, where <literal>xyz</literal> is the
-            vector of a point coordinates and nf the number functions
+            vector of a point coordinates and <literal>nf</literal> is the number functions
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>nf</term>
         <listitem>
-          <para>the number of function to integate (default is 1)</para>
+          <para>the number of functions to integrate (default is 1)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>params</term>
         <listitem>
           <para>
-            real vector <literal>[minpts, maxpts, epsabs,
-              epsrel]
-            </literal>
-            .default value is <literal>[0, 1000, 0.0,
-              1.d-5]
-            </literal>
-            .
+            a real vector <literal>[minpts, maxpts, epsabs, epsrel]</literal>. 
+            The default value is <literal>[0, 1000, 0.0, 1.d-5]</literal>.
           </para>
           <variablelist>
             <varlistentry>
@@ -106,13 +98,13 @@
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>the integral value,or vector of the integral values.</para>
+          <para>the integral value or vector of the integral values.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>Estimates of absolute errors.</para>
+          <para>estimates of absolute errors.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -122,44 +114,43 @@
     <para>The function calculates an approximation to a given vector of
       definite integrals
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
-    <para>where the region of integration is a collection of NUMTET
+    <para>
+      where the region of integration is a collection of <literal>NUMTET</literal>
       tetrahedrons and where
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
     <para>A globally adaptive strategy is applied in order to compute
       approximations <literal>result(k)</literal> hopefully satisfying, for each
-      component of I, the following claim for accuracy:
-      <literal>ABS(I(K)-RESULT(K))&lt;=MAX(EPSABS,EPSREL*ABS(I(K)))</literal>
+      component of  <literal>I</literal>, the following claim for accuracy:
+      <literal>abs(I(k)-result(k))&lt;=max(epsabs,epsrel*abs(I(k)))</literal>
     </para>
     <para>
       <literal>int3d</literal> repeatedly subdivides the tetrahedrons with
       greatest estimated errors and estimates the integrals and the errors over
       the new subtetrahedrons until the error request is met or
-      <literal>MAXPTS</literal> function evaluations have been used.
+      <literal>maxpts</literal> function evaluations have been used.
     </para>
     <para>A 43 point integration rule with all evaluation points inside the
       tetrahedron is applied. The rule has polynomial degree 8.
     </para>
     <para>
-      If the values of the input parameters <literal>EPSABS</literal> or
-      <literal>EPSREL</literal> are selected great enough, an integration rule
+      If the values of the input parameters <literal>epsabs</literal> or
+      <literal>epsrel</literal> are selected great enough, an integration rule
       is applied over each tetrahedron and the results are added up to give the
-      approximations <literal>RESULT(K)</literal>. No further subdivision of the
+      approximations <literal>result(k)</literal>. No further subdivision of the
       tetrahedrons will then be applied.
     </para>
     <para>
       When <literal>int3d</literal> computes estimates to a vector of
       integrals, all components of the vector are given the same treatment. That
-      is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for
-    </para>
-    <para>
+      is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for 
       <literal>j</literal> not equal to <literal>k</literal>, are
       estimated with the same subdivision of the region of integration. For
       integrals with enough similarity, we may save time by applying
@@ -188,7 +179,7 @@ Z=[0;0;0;1];
 // computes the integrand exp(x*x+y*y+z*z) over the 
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-//integration over a cube  -1<;=x<=1;-1<=y<=1;-1<=z<=1
+//integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
 
 //  bottom  -top-     right    -left-   front   -rear- 
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          

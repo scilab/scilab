@@ -5,7 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Maple code used to create reference
 // Digits := 40:
 // writeto("cotd.ref"): interface(prettyprint = 0): 

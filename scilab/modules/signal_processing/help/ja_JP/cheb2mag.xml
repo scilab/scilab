@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cheb2mag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cheb2mag</refname>
-    <refpurpose>2形チェビシェフフィルタの応答</refpurpose>
+    <refpurpose>2型チェビシェフフィルタの応答</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -49,9 +46,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    2形チェビシェフフィルタの二乗振幅応答.</para>
-    <para><literal>omegar</literal> = 阻止域のエッジ, <literal>sample</literal> = 
-	二乗振幅<literal>h2</literal>を取得する周波数のベクトル.</para>
+      2型チェビシェフフィルタの二乗振幅応答.
+    </para>
+    <para>
+      <literal>omegar</literal> = 阻止域のエッジ, <literal>sample</literal> = 
+      二乗振幅<literal>h2</literal>を取得する周波数のベクトル.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if getos() == 'Windows' then
   TMP_OS_DIR = getenv('TMP','err');
@@ -92,7 +92,7 @@ ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
 
 
 // load the shared library 
-exec loader.sce 
+exec loader.sce;
 
 if c_sum(3,5) <> 8 then pause,end
 if c_sub(3,5) <> -2 then pause,end

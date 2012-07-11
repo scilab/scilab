@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getdebuginfo" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>getdebuginfo</refname>
     <refpurpose>get information about Scilab to debug</refpurpose>
@@ -18,11 +13,15 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>getdebuginfo get information about Scilab to debug.</para>
-    <para>dynamic_info = getdebuginfo(); returns information about your
+    <para>
+      <literal>getdebuginfo</literal> gets information about Scilab to debug.
+    </para>
+    <para>
+      <literal>dynamic_info = getdebuginfo();</literal> returns information about your
       system.
     </para>
-    <para>[dynamic_info,static_info] = getdebuginfo(); returns information
+    <para>
+      <literal>[dynamic_info,static_info] = getdebuginfo();</literal> returns information
       about your system and about Scilab.
     </para>
   </refsection>
@@ -31,6 +30,9 @@
     <simplelist type="inline">
       <member>
         <link linkend="getversion">getversion</link>
+      </member>
+      <member>
+        <link linkend="getos">getos</link>
       </member>
     </simplelist>
   </refsection>

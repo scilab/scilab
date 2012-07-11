@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="debug">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>debug</refname>
     <refpurpose>niveau de déboggage</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>debug(level-int)
-      level-int=debug()
+    <synopsis>debug(level_int)
+      level_int=debug()
+      previous_level_int = debug(level_int)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>level-int</term>
+        <term>level_int</term>
         <listitem>
-          <para>entier (entre -1 et 4)</para>
+          <para>valeur entiere (entre -1 et 4)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>previous_level_int</term>
+        <listitem>
+          <para>précédente valeur</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,5 +47,14 @@
         <link linkend="editor">editor</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Historique</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>La valeur précédente est retournée comme argument de sortie lorsque vous définissez une nouvelle valeur.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

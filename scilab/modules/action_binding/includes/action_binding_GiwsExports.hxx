@@ -12,7 +12,7 @@
 
 #ifndef __ACTION_BINDING_GIWSEXPORTS_HXX__
 #define __ACTION_BINDING_GIWSEXPORTS_HXX__
-#include "Signal.hxx"
+#include "getScilabJavaVM.h"
 
 extern "C"
 {

@@ -1,4 +1,4 @@
-	LIBRARY    elementary_functions_f.dll
+LIBRARY    elementary_functions_f.dll
 
 
 EXPORTS

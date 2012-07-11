@@ -12,9 +12,6 @@
  -->
 <!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="javasci_step_by_step" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>javasci - Step by step</refname>
     <refpurpose>How to write an application based on javasci v2</refpurpose>
@@ -158,7 +155,7 @@ $(SCI)/modules/types/jar/org.scilab.modules.types.jar
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-         Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). 
+        Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). 
       </member>
       <member>
         <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>

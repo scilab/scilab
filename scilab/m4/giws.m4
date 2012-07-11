@@ -19,7 +19,7 @@ AC_DEFUN([AC_GIWS], [
 		AC_MSG_ERROR([Giws needs Python])
    fi
 
-## If the user is providing a path to the option
+## If the user is providing a path to the option
 if test "$enable_build_giws" != 'yes' -a "$enable_build_giws" != 'no'; then
 
    AC_MSG_CHECKING([giws])
@@ -63,3 +63,4 @@ fi
 AC_SUBST(GIWS_BIN)
 
 ])
+

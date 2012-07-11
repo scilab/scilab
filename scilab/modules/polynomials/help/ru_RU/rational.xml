@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="rational">
+  <refnamediv>
+    <refname>рациональное число</refname>
+    <refpurpose>объекты Scilab, рациональное число в Scilab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Рациональное число <literal>r</literal> является частным двух полиномов <literal>r=num/den</literal>.
+      Внутреннее представление рационального число является списком.      
+      <literal>r=rlist(num,den,[])</literal> -- это то же самое, что и <literal>r=num/den</literal>.
+      Матрица рациональных чисел может быть определена обычным синтаксисом, 
+      например, <literal>[r11,r12;r21,r22]</literal> является матрицей размером 2x2, где <literal>rij</literal> -- рациональные
+      числа размером 1x1.
+      Матрица рациональных чисел может быть, также определена в виде вышеупомянутого списка,
+      <literal>tlist(['r','num','den','dt'],num,den,[])</literal>, где <literal>num</literal> и <literal>den</literal> матрицы полиномов.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+W=[1/s,1/(s+1)]
+W'*W
+Num=[s,s+2;1,s];Den=[s*s,s;s,s*s];
+rlist(Num,Den,[])
+H=Num./Den
+syslin('c',Num,Den)
+syslin('c',H)
+[Num1,Den1]=simp(Num,Den)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

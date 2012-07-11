@@ -16,85 +16,85 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_double(char *fname,unsigned long fname_len)
+int read_double(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
-	int i;
-	//first variable info : real matrix of double
-	int iType			= 0;
-	int iRows			= 0;
-	int iCols			= 0;
-	int iComplex		= 0;
-	int *piAddr			= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
+    SciErr sciErr;
+    int i;
+    //first variable info : real matrix of double
+    int iType			= 0;
+    int iRows			= 0;
+    int iCols			= 0;
+    int iComplex		= 0;
+    int *piAddr			= NULL;
+    double* pdblReal	= NULL;
+    double* pdblImg		= NULL;
 
-	//check input and output arguments
+    //check input and output arguments
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     /************************
-	*    First variable    *
-	************************/
+    *    First variable    *
+    ************************/
 
-	//get variable address of the first input argument
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //get variable address of the first input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//check type
-	sciErr = getVarType(pvApiCtx, piAddr, &iType);
-	if(sciErr.iErr || iType != sci_matrix)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //check type
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if (sciErr.iErr || iType != sci_matrix)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//get complexity
-	iComplex	= isVarComplex(pvApiCtx, piAddr);
+    //get complexity
+    iComplex	= isVarComplex(pvApiCtx, piAddr);
 
-	//check complexity
-	if(iComplex)
-	{
-		//get size and data from Scilab memory
-		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-	}
-	else
-	{
-		//get size and data from Scilab memory
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-	}
+    //check complexity
+    if (iComplex)
+    {
+        //get size and data from Scilab memory
+        sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+    }
+    else
+    {
+        //get size and data from Scilab memory
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+    }
 
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//Do something with data
-	//if variable is complex, switch real part and imaginary part otherwise multiply by -1
-	if(iComplex)
-	{
-		sciErr = createComplexMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblImg, pdblReal);
-	}
-	else
-	{
-		for(i = 0 ; i < iRows * iCols ; i++)
-		{
-			pdblReal[i] = pdblReal[i] * -1;
-		}
-		sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal);
-	}
+    //Do something with data
+    //if variable is complex, switch real part and imaginary part otherwise multiply by -1
+    if (iComplex)
+    {
+        sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblImg, pdblReal);
+    }
+    else
+    {
+        for (i = 0 ; i < iRows * iCols ; i++)
+        {
+            pdblReal[i] = pdblReal[i] * -1;
+        }
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal);
+    }
 
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-    AssignOutputVariable(1) = InputArgument + 1;
-	return 0;
+    AssignOutputVariable(1) = nbInputArgument + 1;
+    return 0;
 }

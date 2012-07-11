@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_margins">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-06 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>show_margins</refname>
     <refpurpose>display gain and phase margin  and associated crossover frequencies</refpurpose>

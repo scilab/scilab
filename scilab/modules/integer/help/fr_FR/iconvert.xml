@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="iconvert">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>iconvert </refname>
-    <refpurpose> conversion au codage entier à 1, 2, 4 ou 8 octets  </refpurpose>
+    <refpurpose> conversion au codage entier à 1,2 ou 4 octets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -24,9 +21,8 @@
       <varlistentry>
         <term>y  </term>
         <listitem>
-            <para>
-                matrice d'entiers codés sur 1, 2, 4 ou 8 octets.
-            </para>
+          <para>matrice d'entiers codés sur 1,2 ou 4 octets.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -34,7 +30,7 @@
   <refsection>
     <title>Description</title>
     <para>
-        Convertit et stocke sous forme d'entiers à 1, 2, 4 ou 8 octets.
+      Convertit et stocke sous forme d'entiers à 1,2 ou 4 octets.
     </para>
     <variablelist>
       <varlistentry>
@@ -87,21 +83,6 @@
           </para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>itype=8</term>
-        <listitem>
-          <para>renvoie et stocke dans y des entiers int64 dans
-	l'intervalle [−(2**63), 2**63 − 1]
-</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>itype=18</term>
-        <listitem>
-          <para>renvoie et stocke dans y des entiers uint64 dans l'intervalle [0, 2**64 − 1] 
-</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -121,14 +102,5 @@ y=iconvert(b,1)
         <link linkend="inttype">inttype</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>6.0.0</revnumber>
-        <revremark>Ajout de int64 et uint64.</revremark>
-      </revision>
-    </revhistory>
   </refsection>
 </refentry>

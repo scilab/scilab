@@ -12,14 +12,14 @@
 
 #ifndef __GW_STATISTICS__
 #define __GW_STATISTICS__
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_statistics_gw.h"
 #include "dynlib_statistics.h"
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 STATISTICS_IMPEXP int gw_statistics(void);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 
 EXTERN_STATISTICS_GW C_GATEWAY_PROTOTYPE(sci_cdfbet);
 EXTERN_STATISTICS_GW C_GATEWAY_PROTOTYPE(sci_cdfbin);
@@ -33,7 +33,7 @@ EXTERN_STATISTICS_GW C_GATEWAY_PROTOTYPE(sci_cdfnor);
 EXTERN_STATISTICS_GW C_GATEWAY_PROTOTYPE(sci_cdfpoi);
 EXTERN_STATISTICS_GW C_GATEWAY_PROTOTYPE(sci_cdft);
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #endif /*  __GW_STATISTICS__ */
 /*--------------------------------------------------------------------------*/
 

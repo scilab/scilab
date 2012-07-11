@@ -14,12 +14,12 @@
 
 /*
  *  SCILAB INTERFACES FEATURES (Scilab )
- *     
+ *
  *               [x] = umfpack(A,"\",b)     : solve directly A x =b
  *               [x] = umfpack(b,"/",A)     : solve directly x A = b (<=> A'x'=b')
  *          [LU_ptr] = umf_lufact(A)        : factorize A
  *               [x] = umf_lusolve(LU_ptr,b [,flag, A])
- *                                          : solve Ax=b or A'x=b with or without iterative 
+ *                                          : solve Ax=b or A'x=b with or without iterative
  *                                            raffinement given the factorization
  *                     umf_ludel(LU_ptr)    : free the memory used by the factorization
  * [OK,nrow,ncol,lnz,unz,udiag_nz,it] = ...
@@ -33,7 +33,7 @@
  *           [C,p] = taucs_chget(C_ptr)     : getting C and p  (P'AP = C'C)
  *
  *
- *     The corresponding C interfaces names are sci_<scilab_name>  
+ *     The corresponding C interfaces names are sci_<scilab_name>
  *
  ******************************************************************************
  */
@@ -48,7 +48,7 @@
 #include "callFunctionFromGateway.h"
 #include "taucs_scilab.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = 
+static gw_generic_table Tab[] =
 {
   {sci_umfpack, "umfpack"      },
   {sci_umf_lufact, "umf_lufact"   },

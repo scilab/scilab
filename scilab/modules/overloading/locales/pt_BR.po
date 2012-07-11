@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 msgid "Invalid index.\n"
@@ -72,6 +72,10 @@ msgid ""
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um escalar "
 "inteiro positivo ou uma sequência de caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 msgid "A null assignment can have only one non-colon index"
 msgstr "Uma ordem nula pode ter somente um indexamento sem dois pontos"

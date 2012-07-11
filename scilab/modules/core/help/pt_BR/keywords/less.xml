@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="less" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>less</refname>
     <refpurpose>(&lt;) comparação "menor do que"</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="great">
-    <refname>great</refname>
+  <refnamediv xml:id="greater">
+    <refname>greater</refname>
     <refpurpose>(&gt;) comparação "maior do que"</refpurpose>
   </refnamediv>
   <refsection>

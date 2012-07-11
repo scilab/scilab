@@ -18,11 +18,11 @@
 
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 
-int getgrayplotdata (sciPointObj *);
+int getgrayplotdata (char *);
 
 /* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(sciPointObj *pobj);
+int getchampdata(char *pobjUID);
 
-int get3ddata(sciPointObj *pobj);
+int get3ddata(char *pobjUID);
 
 #endif /* _GET_DATA_PROPERTY_H_ */

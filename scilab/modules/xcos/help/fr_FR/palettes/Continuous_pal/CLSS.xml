@@ -90,11 +90,12 @@
     <title>Description</title>
     <para>Ce bloc réalise une représentation d'état linéaire en temps continu</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>
+        \begin{matrix}
+        \dot{x} = A \cdot x + B \cdot u \\ 
+        \dot{y} = C \cdot x + D \cdot u
+        \end{matrix}
+      </latex>
     </para>
     <para>
       où <emphasis role="bold">x</emphasis> est le vecteur  des
@@ -253,11 +254,12 @@
       de Kirchhoff's et de la loi de Newton.
     </para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq2.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{matrix}
+i = i_L = i_C = C \frac{\mathrm{d} v_C }{\mathrm{d} t} \\ 
+Ri_L + L \frac{\mathrm{d} i_L }{\mathrm{d} t} + v_C = u_0(t)
+\end{matrix}
+      ]]></latex>
     </para>
     <para>R, L et C sont les résistance, inductance et capacité du système.</para>
     <para>
@@ -266,43 +268,53 @@
       <literal>X1</literal> et <literal>X2.</literal>
     </para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq3.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{array}{c}
+\mbox{$x_1 = i_L$}\\
+\mbox{$x_2 = v_C$}\\
+\end{array}
+
+then
+
+\begin{array}{c}
+\mbox{$\dot{x_1} = \frac{\mathrm{d} i_L }{\mathrm{d} t}$}\\
+\mbox{$\dot{x_2} = \frac{\mathrm{d} v_C }{\mathrm{d} t}$}
+\end{array}
+      ]]></latex>
     </para>
     <para>thus</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq4.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>x_1 = i_L = C\frac{\mathrm{d} v_C }{\mathrm{d} t} = C\dot{x_2}</latex>
     </para>
     <para>En réarrangeant ces équations on obtient :</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq5.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{array}{c}
+\dot{x_1} = -\frac{R}{L} x_1 - \frac{1}{L} x_2 + \frac{1}{L} u_0(t) \\
+\dot{x_2} = \frac{1}{C} x_2
+\end{array}
+      ]]></latex>
     </para>
     <para>Ces équations peuvent être mises sous forme d'un système matriciel comme suit ,</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq6.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+\begin{bmatrix}\dot{x_1}\\\dot{x_2}\end{bmatrix}
+=
+\begin{bmatrix}
+-\frac{R}{L} & -\frac{1}{L}\\ 
+-\frac{1}{C} & 0
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
++
+\begin{bmatrix}\frac{1}{L}\\0\end{bmatrix}
+u_0(t)
+      ]]></latex>
     </para>
     <para>L'équation de sortie requise est :</para>
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/CLSS_eq1.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex><![CDATA[
+        y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix} + \begin{bmatrix} 0 \end{bmatrix} \cdot u
+      ]]></latex>
     </para>
     <para>Le schéma suivant montre ces équations modéllisées dans Xcos où
       R=10Ω, L=5 mΗ et C=0,1µF; Les états initiaux  sont x1=0 et x2=0,5.

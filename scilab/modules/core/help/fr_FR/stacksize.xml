@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="stacksize">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>stacksize</refname>
     <refpurpose>change la taille de la pile
@@ -60,7 +57,8 @@
       contenant la taille totale de la pile et la taille actuellement
       utilisée.
     </para>
-    <para>Pour les plateformes 64 bit, la taille maximale de la pile est limitée à 268435454.</para>
+    <para>Par défault, la taille de la pile est de 100 000 000.</para>
+    <para>Pour les plateformes 64 bit, la taille maximale de la pile est limitée à 268 435 454.</para>
   </refsection>
   <refsection role="see also">
     <title>Voir aussi</title>

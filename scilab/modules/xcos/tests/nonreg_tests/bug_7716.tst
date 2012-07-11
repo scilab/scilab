@@ -25,14 +25,14 @@ exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_block.sci", -1);
 exec(SCI + "/modules/scicos_blocks/macros/Linear/SUM_f.sci", -1);
 
 scs_m = SUM_f("define");
-export_to_hdf5(TMPDIR + "/sum.h5", "scs_m");
+export_to_hdf5(TMPDIR + "/sum.sod", "scs_m");
 pal = xcosPal("SamplePal");
 blockstyle = struct();
-pal = xcosPalAddBlock(pal, TMPDIR + "/sum.h5", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);
-xcosPalExport(pal, TMPDIR + "/mypal.h5");
+pal = xcosPalAddBlock(pal, TMPDIR + "/sum.sod", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);
+xcosPalExport(pal, TMPDIR + "/mypal.sod");
 
 clear all; // emulate a scilab restart
-xcosPalAdd(TMPDIR + "/mypal.h5");
+xcosPalAdd(TMPDIR + "/mypal.sod");
 
 xcos();
 

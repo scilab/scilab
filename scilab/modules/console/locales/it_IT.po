@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: it\n"
 
 #, c-format
@@ -80,11 +80,6 @@ msgstr ""
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-"[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
-"continuare]"
-
 msgid "File or Directory"
 msgstr "File o Directory"
 
@@ -105,6 +100,11 @@ msgstr "Variabile di Scilab"
 
 msgid "Graphics handle field"
 msgstr "Campo del gestore della grafica"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
+"continuare]"
 
 #, c-format
 msgid ""

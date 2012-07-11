@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.palette;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +28,7 @@ import javax.swing.SwingUtilities;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.localization.Messages;
@@ -32,12 +36,13 @@ import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -221,7 +226,7 @@ public final class Palette {
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
     public static void loadPal(final String path) {
-        loadPal(path, null);
+        generateAllPaletteImages();
     }
 
     /**
@@ -386,20 +391,31 @@ public final class Palette {
      * Generate a palette block image from a block saved instance (need a valid
      * style).
      *
-     * @param blockPath
-     *            the HDF5 block instance
+     * @param blockName
+     *            the block name
      * @param iconPath
      *            the output file path use to save the palette block.
      * @throws IOException
      *             in case of write errors
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String blockPath, final String iconPath) throws IOException {
+    public static void generatePaletteIcon(final String blockName, final String iconPath) throws IOException {
         BasicBlock block;
+
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+
         try {
-            block = new H5RWHandler(blockPath).readBlock();
+            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(blockName, "define"));
+            block = handler.readBlock();
         } catch (ScicosFormatException e) {
             throw new IOException(e);
+        } catch (InterpreterException e) {
+            throw new IOException(e);
+        } finally {
+            handler.release();
         }
 
         generateIcon(block, iconPath);
@@ -418,11 +434,11 @@ public final class Palette {
 
         final XcosDiagram graph = new XcosDiagram();
         graph.installListeners();
-        graph.getModel().beginUpdate();
+
         graph.addCell(block);
-        graph.getModel().endUpdate();
         graph.selectAll();
-        graph.updateCellSize(block);
+
+        BlockPositioning.updateBlockView(block);
 
         /*
          * Render

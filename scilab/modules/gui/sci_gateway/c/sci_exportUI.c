@@ -33,8 +33,8 @@ int sci_exportUI( char * fname, unsigned long fname_len )
 
   if (GetType(1) == sci_handles)
   {
-    int nbRow;
-    int nbCol;
+    int nbRow = 0;
+    int nbCol = 0;
     size_t stackPointer = 0;
     sciPointObj * figure = NULL;
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
@@ -51,8 +51,8 @@ int sci_exportUI( char * fname, unsigned long fname_len )
   }
   else if (GetType(1) == sci_matrix)
   {
-    int nbRow;
-    int nbCol;
+    int nbRow = 0;
+    int nbCol = 0;
     size_t stackPointer = 0;
     GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
     if (nbRow * nbCol != 1)

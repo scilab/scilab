@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # Hook used to indent all xcos files before commiting
 #
@@ -13,171 +13,185 @@ if test -d ".git/rebase-merge"          || \
    test -f ".git/CHERRY_PICK_HEAD"      || \
    test -f ".git/BISECT_LOG"            
 then
-	exit 0
+    exit 0
 fi
 
 #
 # Configuration check
 #
 XMLINDENT="$(git config --get hooks.xmlindent)"
-
 if test ! -x "$XMLINDENT"
 then
-	echo "Unable to find xmlindent executable on the configuration."
-	echo
-	echo "Please configure it with :"
-	echo "  git config --global hooks.xmlindent C:/path/to/xmlindent"
-	echo " or "
-	echo "  git config --global hooks.xmlindent /usr/bin/xmlindent"
-	echo
+    echo "Unable to find xmlindent executable on the configuration."
+    echo
+    echo "Please configure it with :"
+    echo "  git config --global hooks.xmlindent C:/path/to/xmlindent"
+    echo " or "
+    echo "  git config --global hooks.xmlindent /usr/bin/xmlindent"
+    echo
 fi
 
 if test -z "$(git config --get-all xmlindent.ignored)"
 then
-	echo "Unable to find xmlindent ignored list on the configuration, ignored"
-	echo
-	echo "You can configure it with :"
-	echo "  git config --add xmlindent.ignored 'scilab/Visual-Studio-settings/*.xml' "
-	echo "  git config --add xmlindent.ignored 'scilab/checkstyle/*.xml' "
-	echo
-	
-	XMLINDENT_IGNORED=""
+    echo "Unable to find xmlindent ignored list on the configuration, ignored"
+    echo
+    echo "You can configure it with :"
+    echo "  git config --add xmlindent.ignored 'scilab/Visual-Studio-settings/*.xml' "
+    echo "  git config --add xmlindent.ignored 'scilab/checkstyle/*.xml' "
+    echo
+    
+    XMLINDENT_IGNORED=""
 else
-	XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
+    XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
 fi
 
-INDENT="$(git config --get hooks.astyle)"
-if test ! -x "$INDENT"
+ASTYLE="$(git config --get hooks.astyle)"
+if test ! -x "$ASTYLE"
 then
-	echo "Unable to find astyle executable on the configuration."
-	echo
-	echo "Please configure it with :"
-	echo "  git config --global hooks.astyle C:/path/to/astyle"
-	echo " or "
-	echo "  git config --global hooks.astyle /usr/bin/astyle"
-	echo
+    echo "Unable to find astyle executable on the configuration."
+    echo
+    echo "Please configure it with :"
+    echo "  git config --global hooks.astyle C:/path/to/astyle"
+    echo " or "
+    echo "  git config --global hooks.astyle /usr/bin/astyle"
+    echo
 fi
 
 if test -z "$(git config --get-all astyle.ignored)"
 then
-	echo "Unable to find astyle ignored list on the configuration, ignored"
-	echo
-	echo "You can configure it with :"
-	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.hxx' "
-	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.cpp' "
-	echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.c' "
-	echo
-	
-	ASTYLE_IGNORED=""
+    echo "Unable to find astyle ignored list on the configuration, ignored"
+    echo
+    echo "You can configure it with :"
+    echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.hxx' "
+    echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.cpp' "
+    echo "  git config --add astyle.ignored 'scilab/modules/*/src/jni/*.c' "
+    echo "  git config --add astyle.ignored 'scilab/modules/javasci/src/java/org/scilab/modules/javasci/Call_Scilab*.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/renderer/src/java/org/scilab/modules/renderer/FigureScilabCall*.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/SynopsisLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/XML/XMLLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/c/CLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/java/JavaLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/helptools/src/java/org/scilab/modules/helptools/scilab/ScilabLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/FunctionScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/IndentScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
+
+    echo
+    
+    ASTYLE_IGNORED=""
 else
-	ASTYLE_IGNORED="$(find $(git config --get-all astyle.ignored))"
+    ASTYLE_IGNORED="$(find $(git config --get-all astyle.ignored))"
 fi
 
 # indent / format file by type
 #
 indent() {
-	# getting against as the current commit
-	if git rev-parse --verify HEAD >/dev/null 2>&1
-	then
-		local against=HEAD
-	else
-		# Initial commit: diff against an empty tree object
-		local against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
-	fi
+    # getting against as the current commit
+    if git rev-parse --verify HEAD >/dev/null 2>&1
+    then
+        local against=HEAD
+    else
+        # Initial commit: diff against an empty tree object
+        local against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    fi
 
-	# loop on modified files
-	git diff --cached --name-only $against |while read file;
-	do
-		local ext=$(expr "$file" : ".*\(\..*\)")
-		case $ext in
-		.xcos|.xml)
-			__indent_Xml;
-		;;
-		.h|.c|.hxx|.cpp)
-			__indent_C;
-		;;
-		.java)
-			__indent_java;
-		;;
-		esac
-	done
+    # loop on modified files
+    git diff --cached --name-only $against |while read file;
+    do
+        local ext=$(expr "$file" : ".*\(\..*\)")
+        case $ext in
+        .xcos|.xml)
+            __indent_Xml;
+        ;;
+        .h|.c|.hxx|.cpp)
+            __indent_C;
+        ;;
+        .java)
+            __indent_java;
+        ;;
+        esac
+    done
+
+    return 0;
 }
 
 # Indent the file with xmlindent if this is an xcos file
 __indent_Xml() {
 
-	if test ! -x "$XMLINDENT"
-	then
-		return;
-	fi
-	if test ! -f $file
-	then
-		return;
-	fi
+    if test ! -x "$XMLINDENT"
+    then
+        return 1;
+    fi
+    if test ! -f $file
+    then
+        return 2;
+    fi
 
-	# ignored globs
-	if test -n "$XMLINDENT_IGNORED"
-	then
-		echo $XMLINDENT_IGNORED |grep -q $file
-		if test $? -eq 0
-		then
-			echo "Formatting" $file	": ignored"
-			return
-		fi
-	fi
+    # ignored globs
+    if test -n "$XMLINDENT_IGNORED"
+    then
+        echo $XMLINDENT_IGNORED |grep -q $file
+        if test $? -eq 0
+        then
+            echo "Formatting" $file    ": ignored"
+            return 3;
+        fi
+    fi
 
-	echo "Formatting" $file
-	"$XMLINDENT" -i 2 -o "$file" "$file"
-	git add "$file"
+    echo "Formatting" $file
+    "$XMLINDENT" -i 2 -o "$file" "$file" || return 4;
+    git add "$file" || return 5;
 }
 
 # Pre process before the indent
 __pre_indent() {
+    if test ! -x "$ASTYLE"
+    then
+        return 1;
+    fi
+    if test ! -f $file
+    then
+        return 2;
+    fi
 
-	if test ! -x "$ASTYLE"
-	then
-		return;
-	fi
-	if test ! -f $file
-	then
-		return;
-	fi
+    # ignored globs
+    if test -n "$ASTYLE_IGNORED"
+    then
+        echo $ASTYLE_IGNORED |grep -q "$file"
+        if test $? -eq 0
+        then
+            echo "Indenting" $file    ": ignored"
+            return 3;
+        fi
+    fi
 
-	# ignored globs
-	if test -n "$ASTYLE_IGNORED"
-	then
-		echo $ASTYLE_IGNORED |grep -q "$file"
-		if test $? -eq 0
-		then
-			echo "Indenting" $file	": ignored"
-			return
-		fi
-	fi
-
-	echo "Indenting" $file
-
+    echo "Indenting" $file
+    return 0;
 }
 
 # post process after the indent
 __post_indent() {
-	git add "$file"
+    git add "$file"
 }
 
 COMMON_ASTYLE_ARGS="--pad-header -n --pad-oper --indent-col1-comments --indent-switches"
 
 # Indent the file with `astyle' if this is a C/CPP file
 __indent_C() {
-	__pre_indent
-	astyle $COMMON_ASTYLE_ARGS --style=linux --indent=spaces=4 -A1 "$file"
-	__post_indent
+    __pre_indent || return 1
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=linux --indent=spaces=4 -A1 "$file" || return 2
+    __post_indent || return 3
+    return 0
 }
 
 # Indent the file with `astyle' if this is a Java file
 __indent_java() {
-	__pre_indent
-	astyle $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file"
-	__post_indent
-
+    __pre_indent || return 1
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file" || return 2
+    __post_indent || return 3
+    return 0
 }
 
 indent
+

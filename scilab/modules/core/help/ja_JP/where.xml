@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="where">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>where</refname>
     <refpurpose> カレントの命令呼び出しツリーを得る</refpurpose>
@@ -32,14 +29,14 @@
     <title>説明</title>
     <para>
       <literal>linenum</literal> および <literal>mac</literal> を返します.
-      この際,関数 mac(1) の linenum(1) 行目でカレントの命令がコールされ,
-      関数 mac(2) の linenum(2) 行目で mac(1) がコールされ,...,
+      この際,関数 <literal>mac(1)</literal> の <literal>linenum(1)</literal> 行目でカレントの命令がコールされ,
+      関数 <literal>mac(2)</literal> の <literal>linenum(2)</literal> 行目で <literal>mac(1)</literal> がコールされ,...,
       を意味します.
     </para>
     <para>
-      mac(i) は一般には関数名ですが,
-      命令が exec ファイルまたは execstr 命令の中にある場合には,
-      "exec" または "execstr" となる可能性もあります.
+      <literal>mac(i)</literal> は一般には関数名ですが,
+      命令が <literal>exec</literal> ファイルまたは <literal>execstr</literal> 命令の中にある場合には,
+      <literal>"exec"</literal> または <literal>"execstr"</literal> となる可能性もあります.
     </para>
   </refsection>
   <refsection role="see also">

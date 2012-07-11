@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="perms" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>perms</refname>
     <refpurpose>ベクトル要素の全順列</refpurpose>
@@ -41,11 +38,13 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para>長さ <literal>n</literal>のベクトル <literal>x</literal> を指定すると,
-    <literal>perms</literal> は<literal>x</literal>の
-	<literal>n</literal>個の要素の全順列
-	(すなわち,<literal>n!</literal>順列)を返します.
-	<literal>y</literal>の大きさは <literal> n!-by-n</literal> となります.</para>
+    <para>
+      長さ <literal>n</literal>のベクトル <literal>x</literal> を指定すると,
+      <literal>perms</literal> は<literal>x</literal>の
+      <literal>n</literal>個の要素の全順列
+      (すなわち,<literal>n!</literal>順列)を返します.
+      <literal>y</literal>の大きさは <literal> n!-by-n</literal> となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -2,48 +2,39 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- * 
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsSetConfig">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="atomsSetConfig" xml:lang="en">
   <refnamediv>
     <refname>atomsSetConfig</refname>
     <refpurpose>Manage ATOMS system parameters</refpurpose>
   </refnamediv>
-  <!-- ===================================================================== -->
-  <!-- Calling Sequence -->
-  <!-- ===================================================================== -->
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      result = atomsSetConfig(parameter,value)
+      result = atomsSetConfig(parameter, value)
     </synopsis>
   </refsynopsisdiv>
-  <!-- ===================================================================== -->
-  <!-- Parameters -->
-  <!-- ===================================================================== -->
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>parameter</term>
         <listitem>
-          <para>
-            single-string matrix
-          </para>
+          <para>single-string matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value</term>
         <listitem>
-          <para>
-            single-string matrix
-          </para>
+          <para>single-string matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -103,12 +94,12 @@
           <th>Values</th>
         </tr>
         <tr>
-          <td>offLine</td>
-          <td>
-            If set to "True", the system only works with local repositories.
+          <td>offline</td>
+          <td>If set to "True", the system only works with local repositories.
             The offline mode permits the user to install modules from a local
-            repository or a local package (hard disk, USB keys, ...) even if
-            the network is unreachable.
+            repository or a local package (hard disk, USB keys, ...) even if the
+            network is unreachable. In version prior to 5.4.0, this tag was
+            called offLine.
           </td>
           <td>
             True/<emphasis role="strong">False</emphasis>
@@ -135,7 +126,9 @@
         </tr>
         <tr>
           <td>autoloadAddAfterInstall</td>
-          <td>Automatically add a module to the list of module to autoload at Scilab start</td>
+          <td>Automatically add a module to the list of module to autoload at
+            Scilab start
+          </td>
           <td>
             <emphasis role="strong">True</emphasis>/False
           </td>
@@ -159,32 +152,50 @@
             True/<emphasis role="strong">False</emphasis>
           </td>
         </tr>
+        <tr>
+          <td>downloadTool</td>
+          <td>Set tool used to download</td>
+          <td>"curl", "wget" or "httpdownload" (Windows only)</td>
+        </tr>
+        <tr>
+          <td>downloadTimeout</td>
+          <td>Set timeout for download</td>
+          <td>"5" by default</td>
+        </tr>
       </informaltable>
     </para>
   </refsection>
-  <!-- ===================================================================== -->
-  <!-- Description -->
-  <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
     <para>
-      <literal>atomsSetConfig</literal> returns the list of modules registered to autoload
+      <literal>atomsSetConfig</literal> returns the list of modules
+      registered to autoload
     </para>
   </refsection>
-  <!-- ===================================================================== -->
-  <!-- Examples -->
-  <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-// Display extra-informations
-atomsSetConfig('Verbose','True')
-
-// Disable autoload system
-atomsSetConfig('autoload','False')
-]]></programlisting>
+    <programlisting role="example">// Display extra-informations
+      atomsSetConfig('Verbose','True')
+      
+      // Disable autoload system
+      atomsSetConfig('autoload','False')
+    </programlisting>
   </refsection>
-  <!-- ===================================================================== -->
-  <!-- Authors -->
-  <!-- ===================================================================== -->
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsGetConfig">atomsGetConfig</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>offLine parameter renamed to offline</revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>

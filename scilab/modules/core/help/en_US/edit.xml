@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="edit" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>edit</refname>
     <refpurpose>function editing</refpurpose>
@@ -36,35 +31,47 @@
       <varlistentry>
         <term>linenumber</term>
         <listitem>
-          <para>number</para>
+          <para>integer</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>If functionname is the name of a defined scilab function
+    <para>
+      If <literal>functionname</literal> is the name of a defined scilab function
       <literal>edit(functionname)</literal> try to open the associated file
       <literal>functionname.sci</literal>.
     </para>
-    <para>If functionname is the name of a undefined scilab function
-      <literal>edit</literal> create a functionname.sci file in the TMPDIR
-      directory.
-    </para>
-    <para>If functionname is not a valid macro or function name
-      <literal>edit</literal> opens the file with filename equals to functionname.
+    <para>
+      If <literal>functionname</literal> is the name of a undefined scilab function
+      <literal>edit(functionname)</literal> create a <literal>functionname.sci</literal> file in 
+      the current directory.
     </para>
     <para>
-      If linenumber is given, the file is opened at this line relatively to the definition of the macro named as the file itself. If the macro definition is not found, the file is opened at line given by linenumber.
+      If <literal>functionname</literal> is not a valid macro or function name
+      <literal>edit(functionname)</literal> opens the file with file name equals to 
+      <literal>functionname</literal>.
+    </para>
+    <para>
+      If <literal>linenumber</literal> is given, the file is opened at this line relatively to the definition of the macro named as the file itself. If the macro definition is not found, the file is opened at line given by <literal>linenumber</literal>.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-edit('edit')  //opens editor with text of this function
-edit('myfunction')  //opens editor for a new function
-edit('/home/foo/bar.sci') //opens the file bar.sci
-edit('test_run', 123) // opens the file test_run.sci at line 123 relatively to the definition of test_run()
+//open editor with text of this function
+edit('edit')  
+
+//open editor for a new function
+edit('myfunction')  
+
+//open the file bar.sci in TMPDIR directory
+edit(fullfile(TMPDIR+'bar.sci')) 
+
+// open the file test_run.sci at line 123
+// relatively to the definition of test_run()
+edit('test_run', 123) 
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -75,6 +82,9 @@ edit('test_run', 123) // opens the file test_run.sci at line 123 relatively to t
       </member>
       <member>
         <link linkend="names">names</link>
+      </member>
+      <member>
+        <link linkend="editor">editor</link>
       </member>
     </simplelist>
   </refsection>

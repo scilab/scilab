@@ -19,6 +19,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
@@ -75,7 +76,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
                 pS->set(i, pwstLine);
                 FREE(pwstLine);
             }
-            
+
             out.push_back(pS);
             freeArrayOfString(pstLines, nbElements);
         }

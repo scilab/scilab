@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -31,14 +33,90 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Scilab data direct access.
  */
 public class ScilabDirectHandler implements Handler {
+    /**
+     * Context Scilab variable name
+     */
     public static final String CONTEXT = "context";
+    /**
+     * Diagram Scilab variable name
+     */
     public static final String SCS_M = "scs_m";
+    /**
+     * Block Scilab variable name
+     */
     public static final String BLK = "blk";
 
     private static final Logger LOG = Logger.getLogger(ScilabDirectHandler.class.getPackage().getName());
+    private static final ScilabDirectHandler INSTANCE = new ScilabDirectHandler();
 
-    public ScilabDirectHandler() {
+    private final Semaphore lock = new Semaphore(1, true);
+
+    private ScilabDirectHandler() {
     }
+
+    /*
+     * Lock management to avoid multiple actions
+     */
+
+    /**
+     * Get the current instance of a ScilabDirectHandler.
+     *
+     * Please note that after calling {@link #acquire()} and performing action,
+     * you should release the instance using {@link #release()}.
+     *
+     * <p>
+     * It is recommended practice to <em>always</em> immediately follow a call
+     * to {@code getInstance()} with a {@code try} block, most typically in a
+     * before/after construction such as:
+     *
+     * <pre>
+     * class X {
+     *
+     *     // ...
+     *
+     *     public void m() {
+     *         final ScilabDirectHandler handler = ScilabDirectHandler.getInstance();
+     *         try {
+     *             // ... method body
+     *         } finally {
+     *             handler.release();
+     *         }
+     *     }
+     * }
+     * </pre>
+     *
+     * @see #release()
+     * @return the instance or null if another operation is in progress
+     */
+    public static ScilabDirectHandler acquire() {
+        LOG.finest("lock request");
+
+        try {
+            final boolean status = INSTANCE.lock.tryAcquire(0, TimeUnit.SECONDS);
+            if (!status) {
+                return null;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LOG.finest("lock acquired");
+
+        return INSTANCE;
+    }
+
+    /**
+     * Release the instance
+     */
+    public void release() {
+        LOG.finest("lock release");
+
+        INSTANCE.lock.release();
+    }
+
+    /*
+     * Handler implementation
+     */
 
     @Override
     public BasicBlock readBlock() throws ScicosFormatException {
@@ -48,7 +126,7 @@ public class ScilabDirectHandler implements Handler {
     @Override
     public synchronized BasicBlock readBlock(final BasicBlock instance) throws ScicosFormatException {
         LOG.entering("ScilabDirectHandler", "readBlock");
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(null);
 
         LOG.finer("object allocated");
 
@@ -118,7 +196,11 @@ public class ScilabDirectHandler implements Handler {
     }
 
     @Override
-    public synchronized XcosDiagram readDiagram(final XcosDiagram instance) {
+    public XcosDiagram readDiagram(final XcosDiagram instance) {
+        return readDiagram(instance, SCS_M);
+    }
+
+    public synchronized XcosDiagram readDiagram(final XcosDiagram instance, final String variable) {
         LOG.entering("ScilabDirectHandler", "readDiagram");
         final DiagramElement element = new DiagramElement();
 
@@ -133,9 +215,9 @@ public class ScilabDirectHandler implements Handler {
 
         ScilabType data;
         try {
-            data = Scilab.getInCurrentScilabSession(SCS_M);
+            data = Scilab.getInCurrentScilabSession(variable);
         } catch (JavasciException e) {
-            return null;
+            throw new RuntimeException(e);
         }
 
         // fail safely
@@ -173,7 +255,7 @@ public class ScilabDirectHandler implements Handler {
     public void writeBlock(final BasicBlock block) {
         LOG.entering("ScilabDirectHandler", "writeBlock");
 
-        final BlockElement element = new BlockElement();
+        final BlockElement element = new BlockElement(block.getParentDiagram());
         final ScilabType data = element.encode(block, null);
 
         LOG.finer("encoding done");

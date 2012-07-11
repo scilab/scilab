@@ -20,10 +20,10 @@ import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.w3c.dom.Node;
 
 /** Implementation of Radiobutton compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
+ *
+ * @author Pierre GRADIT
+ *
+ */
 public class Radiobutton extends SwingScilabRadioButton implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
@@ -31,19 +31,21 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
      */
     private static final long serialVersionUID = -7007541669965737408L;
 
+    private String expectedValue;
+
     /** Define the set of actuators.
-    *
-    * @return array of actuator names.
-    */
+     *
+     * @return array of actuator names.
+     */
     public final String [] actuators() {
-        String [] actuators = {"enable", "text", "checked"};
+        String [] actuators = {"enable", "text", "checked", "value", "expected-value"};
         return actuators;
     }
 
     /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
+     *
+     * @param peer : associated view DOM node.
+     */
     public Radiobutton(final Node peer) {
         super();
         setOpaque(false);
@@ -51,28 +53,39 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public final void refresh(final Node peer) {
-        String text = XConfigManager.getAttribute(peer , "text");
+        String text = XConfigManager.getAttribute(peer, "text");
         if (!text.equals(text())) {
             text(text);
         }
 
-        String checked = XConfigManager.getAttribute(peer , "checked");
+        String checked = XConfigManager.getAttribute(peer, "checked");
+        if (checked.equals(XConfigManager.NAV)) {
+            expectedValue = XConfigManager.getAttribute(peer, "expected-value");
+            if (XConfigManager.getAttribute(peer, "value").equals(expectedValue)) {
+                checked = "checked";
+            } else {
+                checked = "unchecked";
+            }
+        } else {
+            expectedValue = null;
+        }
+
         if (!checked.equals(checked())) {
             checked(checked);
         }
-        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
-        setEnabled(enable.equals("true"));
 
+        String enable = XConfigManager.getAttribute(peer, "enable", "true");
+        setEnabled(enable.equals("true"));
     }
 
     /** Sensor for 'text' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String text() {
         String text = getText();
         if (text != null) {
@@ -83,11 +96,11 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     }
 
     /** Actuator for 'text' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void text(final String text) {
-	if (text!=XConfigManager.NAV) {
+        if (text != XConfigManager.NAV) {
             setText(text);
         } else {
             setText(null);
@@ -95,9 +108,9 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     }
 
     /** Sensor for 'checked' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String checked() {
         boolean state = isSelected();
         if (state) {
@@ -108,19 +121,23 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     }
 
     /** Actuator for 'checked' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void checked(final String checked) {
-        boolean state =  checked.equals("checked");
+        boolean state = checked.equals("checked");
         setSelected(state);
     }
 
     /** Actual response read by the listener.
-    *
-    * @return response read by the listener.
-    */
+     *
+     * @return response read by the listener.
+     */
     public final Object choose() {
+        if (expectedValue != null) {
+            return expectedValue;
+        }
+
         if (isSelected()) {
             return "checked";
         }
@@ -128,9 +145,9 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     }
 
     /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
+     *
+     * @return equivalent signature.
+     */
     public final String toString() {
         String signature = "RadioButton";
         if (!text().equals(XConfigManager.NAV)) {
@@ -142,4 +159,3 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
         return signature;
     }
 }
-

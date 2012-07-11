@@ -1,125 +1,203 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2012 - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <string.h>
-#include <stdlib.h>
-#include "stack-c.h"
 #include "gw_boolean.h"
-#include "MALLOC.h"
-#include "Scierror.h"
-#include "vect_and.h"
 #include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "vect_and.h"
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : and */
 /*--------------------------------------------------------------------------*/
-int sci_and(char *fname, void* pvApiCtx)
+int sci_and(char *fname, void *pvApiCtx)
 {
-	SciErr sciErr;
-	int iRet        = 0;
-	int iMode       = 0;
+    int m1 = 0, n1 = 0;
+    int opt = 0;
+    int *pBoolValuesOne = NULL;
+    int *pBoolResult = NULL;
 
-	int iRows       = 0;
-	int iCols       = 0;
+    SciErr sciErr;
+    int *piAddressVarOne = NULL;
 
-	int* piAddr1    = NULL;
-	int* piAddr2    = NULL;
+    CheckRhs(1, 2);
+    CheckLhs(1, 1);
 
-	int* piBool1    = NULL;
-	int* piBool3    = NULL;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, strlen(fname));
+        return 0;
+    }
 
-	CheckRhs(1,2);
-	CheckLhs(1,1);
+    if (!isBooleanType(pvApiCtx, piAddressVarOne))
+    {
+        callOverloadFunction(pvApiCtx, 1, fname,  (unsigned int)strlen(fname));
+        return 0;
+    }
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if (Rhs == 2)
+    {
+        int *piAddressVarTwo = NULL;
 
-	if(!isBooleanType(pvApiCtx, piAddr1))
-	{
-		OverLoad(1);
-		return 0;
-	}
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
-	if(Rhs == 2)
-	{
-		sciErr = getProcessMode(pvApiCtx, 2, piAddr1, &iMode);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-	}
+        if (!isScalar(pvApiCtx, piAddressVarTwo))
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
-	sciErr = getMatrixOfBoolean(pvApiCtx, piAddr1, &iRows, &iCols, &piBool1);
-	if(iRet)
-	{
-		return 1;
-	}
+        if (isStringType(pvApiCtx, piAddressVarTwo))
+        {
+            char *pStr = NULL;
+            if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pStr) == 0)
+            {
+                if (pStr)
+                {
+                    size_t len = strlen(pStr);
+                    switch (pStr[0])
+                    {
+                        case 'r':
+                        {
+                            opt = AND_BY_ROWS;
+                        }
+                        break;
+                        case '*':
+                        {
+                            opt = AND_ON_ALL;
+                        }
+                        break;
+                        case 'c':
+                        {
+                            opt = AND_BY_COLUMNS;
+                        }
+                        break;
+                        default:
+                        {
+                            Scierror(44, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                            return 0;
+                        }
+                        break;
+                    }
 
-	switch(iMode)
-	{
-	case BY_ALL :
-		piBool3 = (int*)MALLOC(sizeof(int));
-        memset(piBool3, 0x00, sizeof(int));
-		break;
-	case BY_ROWS :
-		piBool3 = (int*)MALLOC(sizeof(int) * iCols);
-        memset(piBool3, 0x00, sizeof(int)* iCols);
-		break;
-	case BY_COLS :
-		piBool3 = (int*)MALLOC(sizeof(int) * iRows);
-        memset(piBool3, 0x00, sizeof(int) * iRows);
-		break;
-	}
+                    freeAllocatedSingleString(pStr);
+                    pStr = NULL;
 
-	vect_and(piBool1, iRows, iCols, piBool3, iMode);
+                    if (len != 1)
+                    {
+                        Scierror(44, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+        }
+        else
+        {
+            if (isDoubleType(pvApiCtx, piAddressVarTwo))
+            {
+                double dValue = 0.;
+                if (isVarComplex(pvApiCtx, piAddressVarTwo))
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+                    return 0;
+                }
 
-	switch(iMode)
-	{
-	case BY_ALL :
-		iRet = createScalarBoolean(pvApiCtx, Rhs + 1, *piBool3);
-		if(iRet)
-		{
-			return 0;
-		}
-		break;
-	case BY_ROWS :
-		sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, iCols, piBool3);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-		break;
-	case BY_COLS :
-		sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, iRows, 1, piBool3);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-		break;
-	}
+                if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dValue) != 0)
+                {
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
+                }
 
-	if(iRet)
-	{
-		return 1;
-	}
+                opt = (int)dValue;
+                if (dValue != (double)opt)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 2);
+                    return 0;
+                }
 
-	LhsVar(1)= Rhs + 1;
-	PutLhsVar();
-	return 0;
+                if ((opt > AND_BY_COLUMNS) || (opt < AND_BY_ROWS))
+                {
+                    Scierror(44, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+                return 0;
+            }
+        }
+    }
+
+    if ((Rhs == 2) && isEmptyMatrix(pvApiCtx, piAddressVarOne))
+    {
+        createEmptyMatrix(pvApiCtx, Rhs + 1);
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+        return 0;
+    }
+
+    sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarOne, &m1, &n1, &pBoolValuesOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    /* cross variable size checking */
+    if (opt == AND_ON_ALL)
+    {
+        sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, &pBoolResult);
+    }
+    else if (opt == AND_BY_ROWS)
+    {
+        sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, n1, &pBoolResult);
+    }
+    else if (opt == AND_BY_COLUMNS)
+    {
+        sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, 1, &pBoolResult);
+    }
+
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    vect_and(pBoolValuesOne, m1, n1, pBoolResult, opt);
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

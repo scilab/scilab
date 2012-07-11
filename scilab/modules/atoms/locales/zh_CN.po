@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -164,6 +164,10 @@ msgid ""
 msgstr "%s：输入参数 #%d 的大小出错：应该为 1x1 或 1x2 大小的字符矩阵。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
 
@@ -195,6 +199,11 @@ msgstr "%s：文件“%s”不存在或不能被读取\n"
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s：DESCRIPTION 文件不能在包“%s”中找到\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -263,6 +272,10 @@ msgstr "%s：文件“%s”不粗奶或不能被读取。\n"
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: 读取“%s-%s”时出现错误：\n"
+
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -410,11 +423,6 @@ msgstr "安装目录"
 msgid "Description"
 msgstr "描述"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s：“%s - %s”没有安装。\n"
@@ -461,6 +469,9 @@ msgid "File"
 msgstr "文件"
 
 msgid "Installed modules"
+msgstr ""
+
+msgid "Update List of Packages"
 msgstr ""
 
 msgid "Close"
@@ -603,6 +614,10 @@ msgstr ""
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s：解压 DESCRIPTION 文件 （“%s”） 失败。\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr ""
 
 #, c-format
 msgid ""

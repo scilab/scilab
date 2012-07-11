@@ -10,6 +10,10 @@
 *
 */
 extern "C" {
+
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include <stdio.h>
 #include "api_scilab.h"
 #include "gw_parallel.h"
@@ -18,14 +22,12 @@ extern "C" {
 #include "Scierror.h"
 #include "localization.h"
 #include "parameters.h"
-#include "stack-def.h" /* #define nlgh nsiz*4   */
-#include "stack-c.h"  /* #define Nbvars C2F(intersci).nbvars, Top & cie */
 #include "Thread_Wrapper.h" /* locks for concurrency access */
+#include "stack-def.h" /* #define nlgh nsiz*4   */
+#include "stack-c.h"
 
 #ifdef _MSC_VER
-
 #include "mmapWindows.h"
-
 #else
 #include <sys/mman.h>
 #ifndef MAP_ANONYMOUS

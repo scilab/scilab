@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,24 +25,33 @@
 #include "returnProperty.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_user_data_property( sciPointObj * pobj )
+int get_user_data_property(void* _pvCtx, char* pobjUID)
 {
-  /* user_data */
-    int *size_ptr;
-  int **user_data_ptr,*data_ptr;
-  sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
+    int iUserDataSize = 0;
+    int *piUserDataSize = &iUserDataSize;
+    int *piUserData = NULL;
 
-  data_ptr=*user_data_ptr;
+    int status = 0;
 
-  if ( *user_data_ptr == NULL || *size_ptr == 0 )
-  {
-    return sciReturnEmptyMatrix() ;
-  }
-  else
-  {
-    return sciReturnUserData( *user_data_ptr, *size_ptr ) ;
-  }
+    getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
 
+    getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
+
+    if ((piUserData == NULL) || (piUserDataSize == 0))
+    {
+        status = sciReturnEmptyMatrix(_pvCtx);
+    }
+    else
+    {
+        status = sciReturnUserData(_pvCtx, piUserData, iUserDataSize);
+        free(piUserData);
+    }
+
+    return status;
 }
+
 /*------------------------------------------------------------------------*/

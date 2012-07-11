@@ -1,0 +1,10 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+iset_
+dmcopy_
+dset_
+lnblnk_
+mtran_
+entier_

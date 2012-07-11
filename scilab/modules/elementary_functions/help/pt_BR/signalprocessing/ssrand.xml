@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ssrand" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ssrand</refname>
     <refpurpose>gerador de sistema randômico</refpurpose>
@@ -123,7 +120,7 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
 w=ss2ss(Sl,inv(U)); //desfaz a mudança aleatória de base=&gt; forma como acima
 [n,nc,u,sl]=st_ility(Sl);n,nc
-]]> </programlisting>
+]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>Ver Também</title>

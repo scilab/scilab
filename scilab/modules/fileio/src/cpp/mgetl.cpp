@@ -16,6 +16,9 @@
 
 extern "C"
 {
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
 #include "mgetl.h"
 #include "filesmanagement.h"
 #include "mopen.h"

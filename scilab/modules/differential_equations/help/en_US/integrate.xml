@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="integrate" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-08 09:42:14 +0200 (Tue, 08 Apr 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>integrate</refname>
     <refpurpose>integration of an expression by quadrature</refpurpose>
@@ -30,45 +25,45 @@
       <varlistentry>
         <term>expr</term>
         <listitem>
-          <para>Character string defining a Scilab expression.</para>
+          <para>a character string defining a Scilab expression.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>Character string, the integration variable name)</para>
+          <para>a character string, the integration variable name.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x0</term>
         <listitem>
-          <para>real number, the lower bound of integration</para>
+          <para>a real number, the lower bound of integration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x1</term>
         <listitem>
-          <para>vector of real numbers, upper bounds of integration</para>
+          <para>a vector of real numbers, upper bounds of integration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>atol</term>
         <listitem>
-          <para>real number (absolute error bound) Default value: 1.-8</para>
+          <para>a real number (absolute error bound). Default value: 1e-8.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rtol</term>
         <listitem>
-          <para>real number, (relative error bound) Default value:
-            1e-14
+          <para>a real number, (relative error bound). Default value:
+            1e-14.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>vector of real numbers, the integral value for each
+          <para>a vector of real numbers, the integral value for each
             <literal>x1(i)</literal>.
           </para>
         </listitem>
@@ -78,7 +73,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      computes : 
+      <literal>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</literal> computes : 
       <subscript>
         <inlinemediaobject>
           <imageobject>
@@ -119,11 +114,9 @@
           </imageobject>
         </inlinemediaobject>
       </subscript>
-      for
+      for 
       <literal>i=1:size(x1,'*')</literal>
-    </para>
-    <para>
-      Where 
+      where 
       <inlinemediaobject>
         <imageobject>
           <imagedata>
@@ -143,7 +136,7 @@
   </refsection>
   <refsection>
     <title>Restriction</title>
-    <para>the given expression should not use variable names with a leading
+    <para>The given expression should not use variable names with a leading
       <literal>%</literal>.
     </para>
   </refsection>

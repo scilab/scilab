@@ -10,8 +10,9 @@ lines(0);
 s=poly(0,'s');
 
 //MAC-FARLANE PROBLEM for G=1/s^3;
+G=syslin("c",1/s^3);
 
-[P,r]=macglov(1/s^3);clean(P)
+[P,r]=macglov(G);clean(P)
 
 //Optimal controller K:
 
@@ -42,7 +43,7 @@ ga-gamaopt
 
 halt()
 
-[N,M]=lcf(tf2ss(1/s^3)); //Left coprime factorization of G.
+[N,M]=lcf(tf2ss(G)); //Left coprime factorization of G.
 
 nk=hankelsv([N,M]);
 

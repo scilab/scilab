@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-28 01:46+0000\n"
+"PO-Revision-Date: 2012-03-04 06:39+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -104,11 +104,11 @@ msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #
 # File: macros/genlib.sci, line: 23
@@ -123,7 +123,7 @@ msgstr "%s: 拡張子 %s を有するファイルが %s で見つかりません
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #
 # File: macros/genlib.sci, line: 102

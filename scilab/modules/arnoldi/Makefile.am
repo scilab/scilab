@@ -13,23 +13,23 @@ sci_gateway/c/sci_dneupd.c \
 sci_gateway/c/sci_dsaupd.c \
 sci_gateway/c/sci_znaupd.c
 
-libsciarnoldi_la_CFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciarnoldi_la_CPPFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/operations/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes/
-
-libsciarnoldi_la_FFLAGS= -I$(srcdir)/src/arpack/
+				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
-libsciarnoldi_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(ARPACK_LIBS)
+libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
 
 libsciarnoldi_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciarnoldi_la_CPPFLAGS)
 
 #### Target ######
 modulename=arnoldi

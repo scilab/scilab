@@ -2,11 +2,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,131 +18,140 @@
 #include "Scierror.h"
 #include "InitUIMenu.h"
 #include "sci_mode.h"
+#include "FigureList.h"
+#include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
-int sci_unsetmenu(char *fname,unsigned long fname_len)
+int sci_unsetmenu(char *fname, unsigned long fname_len)
 {
-  int nbRow=0, nbCol=0;
-  int menuNameAdr=0;
-  int figureNumberAdr=0;
-  int subMenuIndexAdr=0;
+    int nbRow = 0, nbCol = 0;
+    int menuNameAdr = 0;
+    int figureNumberAdr = 0;
+    int subMenuIndexAdr = 0;
 
-  // Check parameter number
-  CheckRhs(1,3);
-  CheckLhs(1,1);
+    // Check parameter number
+    CheckRhs(1, 3);
+    CheckLhs(1, 1);
 
-  if (Rhs == 1)
+    if (Rhs == 1)
     {
-      // Error message in not in standard mode (we need figure number)
-      if(getScilabMode() != SCILAB_STD)
+        // Error message in not in standard mode (we need figure number)
+        if (getScilabMode() != SCILAB_STD)
         {
-          Scierror(999,_("%s: Figure number must be given when not in '%s' mode.\n"), fname, "STD");
-          return FALSE;
+            Scierror(999, _("%s: Figure number must be given when not in '%s' mode.\n"), fname, "STD");
+            return FALSE;
         }
 
-      // Unset a Menu of Scilab Main Window
-      if (VarType(1) != sci_strings)
+        // Unset a Menu of Scilab Main Window
+        if (VarType(1) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return FALSE;
         }
 
-      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+        GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
 
-      if (nbCol != 1)
+        if (nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"),fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+            return FALSE;
         }
 
-     EnableRootMenu(cstk(menuNameAdr), FALSE);
+        EnableMenu(getConsoleIdentifier(), cstk(menuNameAdr), FALSE);
     }
-  else if (Rhs == 2)
+    else if (Rhs == 2)
     {
-      // Unset a Menu a Scilab Graphic Window
-      if (VarType(1) == sci_matrix && VarType(2) == sci_strings)
+        // Unset a Menu a Scilab Graphic Window
+        if (VarType(1) == sci_matrix && VarType(2) == sci_strings)
         {
-          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
-      
-          if (nbRow*nbCol != 1)
+            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
+
+            if (nbRow * nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 1);
-              return FALSE;
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
+                return FALSE;
             }
-          
-          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
-          
-          EnableFigureMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), FALSE);
+
+            GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+
+            EnableMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), FALSE);
         }
-      else if (VarType(1) == sci_strings && VarType(2) == sci_matrix) // Unset a submenu in main window
+        else if (VarType(1) == sci_strings && VarType(2) == sci_matrix) // Unset a submenu in main window
         {
-          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
-          
-          GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
-      
-          if (nbRow*nbCol != 1)
+            // Error message in not in standard mode (we need figure number)
+            if (getScilabMode() != SCILAB_STD)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 2);
-              return FALSE;
+                Scierror(999, _("%s: Figure number must be given when not in '%s' mode.\n"), fname, "STD");
+                return FALSE;
             }
-          
-          EnableRootSubMenu(cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+
+            GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+
+            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+
+            if (nbRow * nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
+                return FALSE;
+            }
+
+            EnableSubMenu(getConsoleIdentifier(), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong input arguments: '%s' or '%s' expected.\n"),fname, "(button, nsub)", "(gwin, button)");
-          return FALSE;
+            Scierror(999, _("%s: Wrong input arguments: '%s' or '%s' expected.\n"), fname, "(button, nsub)", "(gwin, button)");
+            return FALSE;
         }
     }
-  else // Unset a submenu in graphics window
+    else                        // Unset a submenu in graphics window
     {
-      if (VarType(1) == sci_matrix)
+        if (VarType(1) == sci_matrix)
         {
-          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
-          
-          if (nbRow*nbCol != 1)
+            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
+
+            if (nbRow * nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 1);
-              return FALSE;
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"),fname, 1);
-          return FALSE;
-        }
-      
-      
-      if (VarType(2) == sci_strings)
-        {
-          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
-        }
-      else
-        {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
-          return FALSE;
-        }
-          
-      if (VarType(3) == sci_matrix)
-        {
-          GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
-      
-          if (nbRow*nbCol != 1)
-            {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 3);
-              return FALSE;
-            }
-        }
-      else
-        {
-              Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"),fname, 3);
-              return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
+            return FALSE;
         }
 
-      EnableFigureSubMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+        if (VarType(2) == sci_strings)
+        {
+            GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return FALSE;
+        }
+
+        if (VarType(3) == sci_matrix)
+        {
+            GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+
+            if (nbRow * nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 3);
+                return FALSE;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 3);
+            return FALSE;
+        }
+
+        EnableSubMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
     }
-  
-  LhsVar(1)=0;
-  PutLhsVar();
-  return 0;
+
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/

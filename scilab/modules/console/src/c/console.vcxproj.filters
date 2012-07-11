@@ -133,16 +133,17 @@
     <None Include="..\jni\GuiManagement.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="libjvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\console.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\en_US\console.pot" />
-    <None Include="..\..\console.xml" />
+    <None Include="..\..\locales\console.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\ConsolePrintf.h">
@@ -170,9 +171,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scilines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\zzledt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clc.h">

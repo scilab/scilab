@@ -21,7 +21,7 @@ function result = importXcosDiagram(xcosFile)
 	if(rhs == 1) then 
 		//save hdf5 file with xcos filename, just change extension
 		[path,fname,extension] = fileparts(xcosFile);
-		h5File = TMPDIR + filesep() + fname + ".h5";
+		h5File = TMPDIR + filesep() + fname + ".sod";
 		// open the file to check for permissions
 		[a, err] = mopen(xcosFile, "r");
 		if (err <> 0) then

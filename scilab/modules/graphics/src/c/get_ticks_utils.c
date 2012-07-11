@@ -89,7 +89,7 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
   {
     // if nbtics_x == -1.0 the user whant autoticks
     sciGetAutoTicks(psubwin, autoTicks);
-    sciSetAutoTicks(psubwin, TRUE, autoTicks[1], autoTicks[2]);
+    sciSetAutoTicks((char*)psubwin, TRUE, autoTicks[1], autoTicks[2]);
   }
   else
   {
@@ -112,7 +112,7 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
   {
     // if nbtics_y == -1.0 the user whant autoticks
     sciGetAutoTicks(psubwin, autoTicks);
-    sciSetAutoTicks(psubwin, autoTicks[0], TRUE, autoTicks[2]);
+    sciSetAutoTicks((char*)psubwin, autoTicks[0], TRUE, autoTicks[2]);
   }
   else
   {

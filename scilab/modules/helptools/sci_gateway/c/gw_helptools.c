@@ -11,9 +11,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "BOOL.h"
 #include "gw_helptools.h"
-#include "api_scilab.h"
-#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;

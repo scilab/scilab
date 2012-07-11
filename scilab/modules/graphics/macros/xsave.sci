@@ -18,6 +18,6 @@ function xsave(fil,num)
     if preservecur then old=gcf();end
     f=scf(num);
   end
-  save(fil,f)
+  save(fil,"f")
   if preservecur then scf(old),end
 endfunction

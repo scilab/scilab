@@ -16,10 +16,10 @@ import java.io.File;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
 
@@ -28,7 +28,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * @author Calixte DENIZET
  */
 
-public class ExecuteCommandAction extends CallBack {
+public class ExecuteCommandAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
     private String cmd;
@@ -56,7 +56,7 @@ public class ExecuteCommandAction extends CallBack {
                     String com = String.format(cmd, path);
                     ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(com, true /* display */, true /* store in history */);
                 } catch (NoClassDefFoundError e) {
-                    ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, table), Messages.gettext("Feature not available in this mode..."));
+                    ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), Messages.gettext("Feature not available in this mode..."));
                 }
             }
         }

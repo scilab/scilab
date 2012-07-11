@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_warning)(char *fname,unsigned long fname_len)
 {
-    static int l1 = 0,n1 = 0,m1 = 0;
+    static int n1 = 0,m1 = 0;
 
     CheckRhs(1,1);
     CheckLhs(1,1);

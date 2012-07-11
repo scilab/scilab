@@ -13,6 +13,11 @@
 
 #include "CreateMatlabVariable.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
+#include "localization.h"
+#include "Scierror.h"
+#include "sciprint.h"
+
 
 int CreateHyperMatrixVariable(void* pvApiCtx, int iVar, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
 {

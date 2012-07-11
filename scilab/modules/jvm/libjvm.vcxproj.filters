@@ -152,6 +152,12 @@
     <ClInclude Include="includes\TerminateJVM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\with_java.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\loadOnUseClassPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\libjvm.rc">
@@ -162,7 +168,7 @@
     <None Include="Call_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="string_Import.def">
@@ -176,6 +182,12 @@
     <None Include="Makefile.am" />
     <None Include="locales\jvm.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="locales\jvm.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="Scilab_Windows_Import.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

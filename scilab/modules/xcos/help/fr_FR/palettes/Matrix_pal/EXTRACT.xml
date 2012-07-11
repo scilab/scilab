@@ -72,6 +72,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_EXTRACT">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Seealso_EXTRACT">Voir aussi</xref>
             </para>
           </listitem>
@@ -242,6 +247,18 @@
         <para>SCI/modules/scicos_blocks/src/c/extractz.c</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_EXTRACT">
+    <title>Exemple</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTRACT_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTRACT_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
   <refsection id="Seealso_EXTRACT">
     <title>Voir aussi</title>

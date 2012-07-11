@@ -14,9 +14,6 @@ package org.scilab.modules.xcos.io.scicos;
 
 import static java.util.Arrays.asList;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,18 +40,19 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
-public class BlockElement extends AbstractElement<BasicBlock> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
-    private static final int INTERFUNCTION_INDEX = 3;
+public final class BlockElement extends AbstractElement<BasicBlock> {
+    protected static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
+
+    private static final int INTERFUNCTION_INDEX = DATA_FIELD_NAMES.indexOf("gui");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockModelElement modelElement = new BlockModelElement();
+    private final BlockModelElement modelElement;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockGraphicElement graphicElement = new BlockGraphicElement();
+    private final BlockGraphicElement graphicElement;
 
     /*
      * Decoder state
@@ -67,36 +65,14 @@ public class BlockElement extends AbstractElement<BasicBlock> {
     private int ordering;
 
     /**
-     * The minimal X axis value, used to center block as Scicos did.
-     */
-    private double minX = Double.MAX_VALUE;
-
-    /**
-     * The minimal Y axis value, used to center block as Scicos did.
-     */
-    private double minY = Double.MAX_VALUE;
-
-    /**
      * Default constructor.
      *
      * The state change on each {@link BlockElement} instance so be careful when
      * allocated a new {@link BlockElement}.
      */
-    public BlockElement() {
-    }
-
-    /**
-     * @return the minX
-     */
-    public double getMinX() {
-        return minX;
-    }
-
-    /**
-     * @return the minY
-     */
-    public double getMinY() {
-        return minY;
+    public BlockElement(final XcosDiagram diag) {
+        modelElement = new BlockModelElement(diag);
+        graphicElement = new BlockGraphicElement(diag);
     }
 
     /**
@@ -149,7 +125,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
             // do not use BasicPort#addPort() to avoid the view update
             port.setOrdering(i + 1);
-            block.insert(port, i);
+            block.insert(port, numberOfInputPorts + i);
         }
 
         /*
@@ -173,9 +149,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         block.setOrdering(ordering);
         ordering++;
 
-        minX = Math.min(minX, block.getGeometry().getX());
-        minY = Math.min(minX, block.getGeometry().getY());
-
         block = afterDecode(element, block);
 
         return block;
@@ -194,7 +167,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
          * The double type is used as the default one, generate on empty field.
          */
         if (scilabType instanceof ScilabDouble) {
-            into.generateId();
             return;
         }
 
@@ -203,15 +175,13 @@ public class BlockElement extends AbstractElement<BasicBlock> {
          */
         ScilabList list = (ScilabList) scilabType;
 
-        if (list.size() > 1 && list.get(0) instanceof ScilabString) {
+        if (list.size() > 0 && list.get(0) instanceof ScilabString) {
             String uid = ((ScilabString) list.get(0)).getData()[0][0];
             if (isValidUid(uid)) {
                 into.setId(uid);
                 return;
             }
         }
-
-        into.generateId();
     }
 
     /**
@@ -220,20 +190,19 @@ public class BlockElement extends AbstractElement<BasicBlock> {
      * @return true if the uid is valid, false otherwise
      */
     private boolean isValidUid(String uid) {
-        ByteArrayInputStream str = new ByteArrayInputStream(uid.getBytes());
-        DataInputStream inputStream = new DataInputStream(str);
+        final String[] components = uid.split(":");
 
-        try {
-            inputStream.readInt();
-            char sep1 = inputStream.readChar();
-            inputStream.readLong();
-            char sep2 = inputStream.readChar();
-            inputStream.readInt();
-
-            return inputStream.available() == 0 && sep1 == sep2 && sep1 == ':';
-        } catch (IOException e) {
-            return false;
+        boolean valid = components.length == 3;
+        if (valid) {
+            try {
+                Integer.parseInt(components[0], 16);
+                Long.parseLong(components[1], 16);
+                Integer.parseInt(components[2], 16);
+            } catch (IllegalArgumentException e) {
+                valid = false;
+            }
         }
+        return valid;
     }
 
     /**
@@ -343,7 +312,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         if (graph == null) {
             from.setParentDiagram(Xcos.findParent(from));
             graph = from.getParentDiagram();
-            Logger.getLogger(BlockElement.class.toString()).finest("Parent diagram was null");
+            Logger.getLogger(BlockElement.class.getName()).finest("Parent diagram was null");
         }
         if (graph.getAsComponent() != null) {
             graph.getAsComponent().removeCellOverlays(from);
@@ -401,6 +370,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         final OutputPortElement outElement = new OutputPortElement(data);
         final int numberOfPorts = from.getChildCount();
 
+        // assume the children are sorted by type
         for (int i = 0; i < numberOfPorts; i++) {
             final Object instance = from.getChildAt(i);
 

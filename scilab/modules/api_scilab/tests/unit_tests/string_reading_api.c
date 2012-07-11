@@ -16,109 +16,109 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_string(char *fname,unsigned long fname_len)
+int read_string(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
-	int i,j;
-	int iLen		= 0;
-	//variable info
-	int iRows		= 0;
-	int iCols		= 0;
-	int* piAddr		= NULL;
-	int* piLen		= NULL;
-	char** pstData	= NULL;
-	//output variable
-	int iRowsOut	= 1;
-	int iColsOut	= 1;
-	char* pstOut	= NULL;
-	//check input and output arguments
+    SciErr sciErr;
+    int i, j;
+    int iLen		= 0;
+    //variable info
+    int iRows		= 0;
+    int iCols		= 0;
+    int* piAddr		= NULL;
+    int* piLen		= NULL;
+    char** pstData	= NULL;
+    //output variable
+    int iRowsOut	= 1;
+    int iColsOut	= 1;
+    char* pstOut	= NULL;
+    //check input and output arguments
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-	//get variable address
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//fisrt call to retrieve dimensions
-	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //fisrt call to retrieve dimensions
+    sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 
-	//second call to retrieve length of each string
-	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //second call to retrieve length of each string
+    sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-	}
+    pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+    for (i = 0 ; i < iRows * iCols ; i++)
+    {
+        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+    }
 
-	//third call to retrieve data
-	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //third call to retrieve data
+    sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//computer length of all strings
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		iLen += piLen[i];
-	}
+    //computer length of all strings
+    for (i = 0 ; i < iRows * iCols ; i++)
+    {
+        iLen += piLen[i];
+    }
 
-	//alloc output variable
-	pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
-	//initialize string to 0x00
-	memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
+    //alloc output variable
+    pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+    //initialize string to 0x00
+    memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
 
-	//concat input strings in output string
-	for(i = 0 ; i < iRows ; i++)
-	{
-		for(j = 0 ; j < iCols ; j++)
-		{
-			int iCurLen = strlen(pstOut);
-			if(iCurLen)
-			{
-				strcat(pstOut, " ");
-			}
-			strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
-		}
-	}
+    //concat input strings in output string
+    for (i = 0 ; i < iRows ; i++)
+    {
+        for (j = 0 ; j < iCols ; j++)
+        {
+            int iCurLen = strlen(pstOut);
+            if (iCurLen)
+            {
+                strcat(pstOut, " ");
+            }
+            strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
+        }
+    }
 
-	//create new variable
-	sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRowsOut, iColsOut, &pstOut);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    //create new variable
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 1, iRowsOut, iColsOut, &pstOut);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//free memory
-	free(piLen);
+    //free memory
+    free(piLen);
 
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		free(pstData[i]);
-	}
+    for (i = 0 ; i < iRows * iCols ; i++)
+    {
+        free(pstData[i]);
+    }
 
-	free(pstData);
-	free(pstOut);
-	AssignOutputVariable(1) = InputArgument + 1;
-	return 0;
+    free(pstData);
+    free(pstOut);
+    AssignOutputVariable(1) = nbInputArgument + 1;
+    return 0;
 }

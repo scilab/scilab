@@ -19,7 +19,9 @@ public interface ScilabVariablesHandler {
 
     /**
      * Handle a Scilab variable
-     * @param var the variable
+     *
+     * @param var
+     *            the variable
      */
     public void handle(ScilabType var);
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="minus">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>minus (-)</refname>
     <refpurpose> opérateur de soustraction, changement de signe  </refpurpose>
@@ -44,7 +41,7 @@
     </para>
     <para>
       La soustraction peut être aussi définie pour d'autres types de données via 
-      la surcharge d'opérateurs (voir overloading).
+      la surcharge d'opérateurs (voir <link linkend="overloading">overloading</link>).
     </para>
   </refsection>
   <refsection>
@@ -62,13 +59,16 @@
     <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="overloading">overloading</link>
-      </member>
-      <member>
         <link linkend="addf">addf</link>
       </member>
       <member>
         <link linkend="mtlb_mode">mtlb_mode</link>
+      </member>
+      <member>
+        <link linkend="plus">plus</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
       </member>
     </simplelist>
   </refsection>

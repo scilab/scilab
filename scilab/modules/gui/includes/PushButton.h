@@ -26,9 +26,9 @@ GUI_IMPEXP void createPushButton(sciPointObj* sciObj);
 /**
  * Set the current figure as parent for a Push Button in Scilab GUIs
  *
- * @param sciObj the corresponding Scilab object   
+ * @param sciObjUID the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-GUI_IMPEXP int setCurentFigureAsPushButtonParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsPushButtonParent(char *sciObjUID);
 
 #endif /* __PUSHBUTTON_H__ */

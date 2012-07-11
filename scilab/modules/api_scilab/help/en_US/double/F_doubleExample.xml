@@ -27,8 +27,7 @@
     <!--Lib_name: doubleExample-->
     <!--Func_list: doubleExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int doubleExample(char *fname,unsigned long fname_len)
@@ -50,7 +49,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 
 	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(pvApiCtx, InputArgument + 1);
+		iRet = createEmptyMatrix(pvApiCtx, nbInputArgument + 1);
 		if(iRet)
 		{
 			return iRet;
@@ -73,7 +72,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarComplexDouble(pvApiCtx, InputArgument + 1, dblReal, dblImg);
+				iRet = createScalarComplexDouble(pvApiCtx, nbInputArgument + 1, dblReal, dblImg);
 				if(iRet)
 				{
 					return iRet;
@@ -87,7 +86,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarDouble(pvApiCtx, InputArgument + 1, dblReal);
+				iRet = createScalarDouble(pvApiCtx, nbInputArgument + 1, dblReal);
 				if(iRet)
 				{
 					return iRet;
@@ -110,7 +109,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createComplexMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal, pdblImg);
+				sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal, pdblImg);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -126,7 +125,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal);
+				sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -135,13 +134,12 @@ int doubleExample(char *fname,unsigned long fname_len)
 			}
 		}
 
-        AssignOutputVariable(1) = InputArgument + 1;
+        AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

@@ -1,21 +1,24 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "CreateMatlabVariable.h"
 #include "os_strdup.h"
-
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
+#include "localization.h"
+#include "Scierror.h"
+#include "sciprint.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -37,7 +40,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
   int * cell_entry_addr = NULL;
   int type;
   SciErr _SciErr;
-    
+
   /* Fields of the struct */
   nbFields = 2; /* "st" "dims" */
   nbFields += Mat_VarGetNumberOfFields(matVariable);
@@ -48,7 +51,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
       Scierror(999, _("%s: No more memory.\n"), "CreateStructVariable");
       return FALSE;
     }
-  
+
   fieldNames[0] = os_strdup("st");
   if (fieldNames[0]==NULL)
     {
@@ -61,7 +64,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
       Scierror(999, _("%s: No more memory.\n"), "CreateStructVariable");
       return FALSE;
     }
-  
+
   for (fieldIndex = 1; fieldIndex < nbFields - 1; fieldIndex++)
     {
       fieldMatVar = Mat_VarGetStructField(matVariable, &fieldIndex, BY_INDEX, 0);
@@ -72,7 +75,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
           return FALSE;
         }
     }
-  
+
   /* Returned mlist initialization */
   if (parent==NULL)
     {
@@ -85,7 +88,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
   /* FIRST LIST ENTRY: fieldnames */
   _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, fieldNames); MATIO_ERROR;
-  
+
   /* SECOND LIST ENTRY: Dimensions (int32 type) */
   if (nbFields==2) /* Empty struct must have size 0x0 in Scilab */
     {
@@ -100,7 +103,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
   else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
 /*      type = I_INT32;
-      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, 
+      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,
 				&type, &matVariable->rank, matVariable->dims, matVariable->data,
 				NULL, cell_addr, 2);
 */    }
@@ -133,7 +136,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
       for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
 	  _SciErr = createListInList(pvApiCtx, iVar, cell_addr, fieldIndex+3, prodDims, &cell_entry_addr); MATIO_ERROR;
-          
+
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
               /* Create list entry in the stack */

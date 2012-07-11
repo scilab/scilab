@@ -16,52 +16,54 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_pointer(char *fname,unsigned long fname_len)
+int read_pointer(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
+    SciErr sciErr;
 
-	CheckInputArgument(pvApiCtx, 0, 1);
+    CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-	if(InputArgument == 0)
-	{//create mode
-		double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
-		pdblData[0]			= 1;
-		pdblData[1]			= 3;
-		pdblData[2]			= 2;
-		pdblData[3]			= 4;
-		sciErr = createPointer(pvApiCtx, InputArgument + 1, (void*)pdblData);
-	}
-	else if(InputArgument == 1)
-	{//read mode
-		int iType			= 0;
-		int* piAddr			= NULL;
-		void* pvPtr			= NULL;
-		double* pdblData	= NULL;
-		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-		pdblData = (double*)pvPtr;
-		sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, 2, 2, pdblData);
-	}
-	else
-	{
-		return 0;
-	}
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
-	AssignOutputVariable(1) = InputArgument + 1;
-	return 0;
+    if (nbInputArgument == 0)
+    {
+        //create mode
+        double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
+        pdblData[0]			= 1;
+        pdblData[1]			= 3;
+        pdblData[2]			= 2;
+        pdblData[3]			= 4;
+        sciErr = createPointer(pvApiCtx, nbInputArgument + 1, (void*)pdblData);
+    }
+    else if (nbInputArgument == 1)
+    {
+        //read mode
+        int iType			= 0;
+        int* piAddr			= NULL;
+        void* pvPtr			= NULL;
+        double* pdblData	= NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        pdblData = (double*)pvPtr;
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, 2, 2, pdblData);
+    }
+    else
+    {
+        return 0;
+    }
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    AssignOutputVariable(1) = nbInputArgument + 1;
+    return 0;
 }

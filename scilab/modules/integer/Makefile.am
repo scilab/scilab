@@ -64,7 +64,6 @@ src/fortran/i_l_i.f \
 src/fortran/i_m_i.f \
 src/fortran/intops.f \
 src/fortran/i_prod.f \
-src/fortran/i_convert.f \
 src/fortran/i_q_i.f \
 src/fortran/i_r_i.f \
 src/fortran/i_tril.f \
@@ -86,17 +85,13 @@ src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
-GATEWAY_C_SOURCES = \
-				sci_gateway/c/gw_integer.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
 
 GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/integer_gw.cpp \
 				sci_gateway/cpp/sci_inttype.cpp \
 				sci_gateway/cpp/sci_double.cpp \
 				sci_gateway/cpp/sci_int.cpp
-
-# List of the cpp files
-INTEGER_CPP_SOURCES =
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
@@ -122,23 +117,17 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libsciinteger_la_CFLAGS=  \
-				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
+libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/
-
-libsciinteger_la_CPPFLAGS= \
-			 	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/functions_manager/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes
+				-I$(top_srcdir)/modules/ast/includes/ \
+				-I$(top_srcdir)/modules/symbol/includes/ \
+				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
@@ -148,15 +137,14 @@ noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
 endif
 
 
-libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES)	$(INTEGER_CPP_SOURCES)
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciinteger_algo_la_CFLAGS = $(libsciinteger_la_CFLAGS)
+libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)
-INCLUDE_FLAGS = $(libsciinteger_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
 libsciinteger_la_LIBADD = libsciinteger-algo.la
@@ -169,7 +157,7 @@ modulename=integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
-libsciinteger_la_root_DATA =  license.txt 
+libsciinteger_la_root_DATA =  license.txt
 
 
 #### integer : init scripts ####

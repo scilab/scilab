@@ -18,7 +18,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -43,12 +42,12 @@ int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
         {
             Xcos::closeXcosFromScilab(getScilabJavaVM());
         }
-        catch(GiwsException::JniCallMethodException exception)
+        catch (GiwsException::JniCallMethodException &exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
             return 0;
         }
-        catch(GiwsException::JniException exception)
+        catch (GiwsException::JniException &exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
             return 0;

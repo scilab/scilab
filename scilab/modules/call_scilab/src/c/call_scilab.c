@@ -15,13 +15,11 @@
 #include <stdlib.h>
 #include "BOOL.h"
 #include "call_scilab.h"
-#include "api_scilab.h"
-#include "lasterror.h"          /* clearLastError */
+#include "lasterror.h"          /* clearInternalLastError, getInternalLastErrorValue */
 #include "MALLOC.h"
 #include "sci_mode.h"
 #include "fromc.h"
 #include "LaunchScilabSignal.h"
-#include "localization.h"
 #include "isdir.h"
 #include "sci_path.h"
 #include "scilabDefaults.h"
@@ -30,15 +28,17 @@
 #include "scirun.h"
 #include "sciquit.h"
 #include "storeCommand.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "../../core/src/c/TerminateCore.h"
-#include "os_strdup.h"
+#include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-
+#include "os_strdup.h"
+#include "charEncoding.h"
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"
 #include "getScilabDirectory.h"
+#include <Windows.h>
 #endif
 /*--------------------------------------------------------------------------*/
 static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
@@ -104,16 +104,10 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     static int iflag = -1, ierr = 0;
 
-    if (getScilabMode() != SCILAB_NWNI)
+    setScilabMode(SCILAB_API);
+    if (advancedMode == FALSE)
     {
-        if (advancedMode == FALSE)
-        {
-            DisableInteractiveMode();
-        }
-        else
-        {
-            setScilabMode(SCILAB_API);
-        }
+        DisableInteractiveMode();
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
@@ -156,7 +150,7 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         ScilabStartupUsed = os_strdup(ScilabStartup);
     }
 
-    if (Stacksize == NULL || Stacksize == -1)
+    if (Stacksize == 0 || Stacksize == -1)
     {
         StacksizeUsed = DEFAULTSTACKSIZE;
     }
@@ -185,7 +179,9 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
     sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartupUsed);
 
+#if 0
     ierr = C2F(scirun) (InitStringToScilab, (long int)strlen(InitStringToScilab));
+#endif
 
     if (ScilabStartupUsed)
     {
@@ -224,8 +220,7 @@ BOOL TerminateScilab(char *ScilabQuit)
 
         /* Make sure that the error management is reset. See bug #8830 */
         // /!\ Must call ConfigVariable::clearLastError()
-        //clearLastError();
-
+        //clearInternalLastError();
 
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
@@ -248,7 +243,9 @@ void ScilabDoOneEvent(void)
     {
         if (getScilabMode() != SCILAB_NWNI)
         {
+#if 0
             C2F(scirun) ("quit;", (int)strlen("quit;"));
+#endif
         }
     }
 }
@@ -281,6 +278,7 @@ sci_types getVariableType(char *varName)
 {
     int iSciType = -1;
     SciErr sciErr = getNamedVarType(NULL, (char*)varName, &iSciType);
+
     if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR)
     {
         return -2;
@@ -295,3 +293,23 @@ sci_types getVariableType(char *varName)
 }
 
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Call the Scilab function getLastErrorMessage
+ * Take the result (a matrix of string) and concatenate into a single string
+ * This is way easier to manage in swig.
+*/
+char *getLastErrorMessageSingle(void)
+{
+    return wide_string_to_UTF8(getLastErrorMessage());
+}
+
+/*--------------------------------------------------------------------------*/
+ int getLastErrorValue(void)
+ {
+     /* defined in lasterror.h */
+     // FIXME : Call system_env function
+     //return getInternalLastErrorValue();
+     return 0;
+ }
+ /*--------------------------------------------------------------------------*/

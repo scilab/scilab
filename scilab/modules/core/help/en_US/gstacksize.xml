@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gstacksize">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gstacksize</refname>
     <refpurpose> set/get scilab global stack size</refpurpose>
@@ -35,13 +32,13 @@
   <refsection>
     <title>Description</title>
     <para>
-      Scilab stores global variables in a stack
+      Scilab stores global variables in a stack.
     </para>
     <para>
       <literal>gstacksize(n)</literal> allows the user to increase or decrease the size of
       this stack. The maximum allowed size depends on the amount of
       free memory and swap space available at the time. Note that Scilab can
-      increase automatically the global stacksize when needed
+      increase automatically the global stacksize when needed.
     </para>
     <para>
       <literal>sz=gstacksize()</literal> returns a 2-vector which contains  the current

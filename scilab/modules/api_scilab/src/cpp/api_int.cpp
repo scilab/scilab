@@ -20,16 +20,16 @@ extern "C"
 {
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
 #include "localization.h"
-#include "MALLOC.h"
-#include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_int.h"
 #include "api_internal_common.h"
 }
 
 using namespace types;
+static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData);
+static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData);
+
 
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)
 {
@@ -240,8 +240,8 @@ SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int 
 SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	unsigned int *puiData32	= NULL;
-	int iSize			= _iRows * _iCols;
+	unsigned int *piData32  = NULL;
+	int iSize               = _iRows * _iCols;
 
     if(_iRows == 0 && _iCols == 0)
     {
@@ -254,14 +254,14 @@ SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int 
         return sciErr;
     }
 
-	sciErr = allocMatrixOfUnsignedInteger32(_pvCtx, _iVar, _iRows, _iCols, &puiData32);
+	sciErr = allocMatrixOfUnsignedInteger32(_pvCtx, _iVar, _iRows, _iCols, &piData32);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfUnsignedInteger32");
 		return sciErr;
 	}
 
-	memcpy(puiData32, _puiData32, sizeof(unsigned int) * iSize);
+	memcpy(piData32, _puiData32, sizeof(unsigned int) * iSize);
 	return sciErr;
 }
 
@@ -716,7 +716,7 @@ SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int 
         return sciErr;
     }
 
-    int rhs = _iVar - *getInputArgument(_pvCtx);
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
     out[rhs - 1] = pIT;
     return sciErr;
 }
@@ -781,66 +781,7 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRo
 SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-#if 0
-    int iVarID[nsiz];
-    int iSaveRhs    = Rhs;
-    int iSaveTop    = Top;
-    int *piAddr     = NULL;
-    void *pvData    = NULL;
-
-    int iRate       = (sizeof(double) / (_iPrecision % 10));
-    int iSize       = _iRows * _iCols;
-    int iDouble     = iSize / iRate;
-    int iMod        = (iSize % iRate) == 0 ? 0 : 1;
-    int iTotalSize  = iDouble + iMod;
-
-    //return named empty matrix
-    if(_iRows == 0 && _iCols == 0)
-    {
-        double dblReal = 0;
-        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
-        if (sciErr.iErr)
-        {
-            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
-        }
-        return sciErr;
-    }
-
-    if(!checkNamedVarFormat(_pvCtx, _pstName))
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfInteger");
-        return sciErr;
-    }
-
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
-
-    int iMemSize = iTotalSize + 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
-
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-
-    //write matrix information
-    fillCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _iRows, _iCols, &pvData);
-    //copy data in stack
-    memcpy(pvData, _pvData, (_iPrecision % 10) * iSize);
-
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + 4, iTotalSize);
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
-
-#endif
+    // FIXME
     return sciErr;
 }
 

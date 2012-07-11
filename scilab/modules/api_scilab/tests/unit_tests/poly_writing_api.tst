@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/poly_writing_api"));
 cd(pathconvert(TMPDIR+"/poly_writing_api"));

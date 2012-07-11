@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,9 +27,19 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
+/*
+ * set_labels_font_style_property is apparently duplicate with
+ * set_font_style_property
+ */
+
 /*------------------------------------------------------------------------*/
-int set_labels_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_labels_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+   BOOL status = FALSE;
+   int fontStyle = 0;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -36,6 +47,13 @@ int set_labels_font_style_property( sciPointObj * pobj, size_t stackPointer, int
     return SET_PROPERTY_ERROR ;
   }
 
+  /*
+   * sciSetFontStyle does not check whether the font size is within the correct range
+   * whereas the set_font_style function does. That may cause a problem since set_labels_font_style_property
+   * and set_font_style_property are duplicate.
+   */
+
+#if 0
   if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
   {
     return sciSetFontStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
@@ -45,5 +63,21 @@ int set_labels_font_style_property( sciPointObj * pobj, size_t stackPointer, int
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style") ;
     return SET_PROPERTY_ERROR ;
   }
+#endif
+
+    fontStyle = (int) getDoubleFromStack(stackPointer);
+
+    status = setGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style");
+        return SET_PROPERTY_ERROR;
+    }
+
 }
 /*------------------------------------------------------------------------*/

@@ -68,7 +68,16 @@
     <ClCompile Include="toolsdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\completionDictionary.cpp">
+    <ClCompile Include="..\cpp\FieldsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getfields.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\XMLFieldsGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmacrosdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,7 +118,19 @@
     <ClInclude Include="toolsdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\completionDictionary.h">
+    <ClInclude Include="..\..\includes\getfields.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\FieldsGetter.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\FieldsManager.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\XMLFieldsGetter.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmacrosdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -117,31 +138,19 @@
     <None Include="..\jni\Completion.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\completion.iss" />
     <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\completion.pot" />
+    <None Include="..\..\locales\completion.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\fileio.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\graphics.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="LibScilab.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\MALLOC.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
   </ItemGroup>
 </Project>

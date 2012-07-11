@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="findAC">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findAC</refname>
     <refpurpose> 離散時間システム部分空間の同定</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)
-[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)</synopsis>
+      [A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -48,8 +46,9 @@
         <term>R</term>
         <listitem>
           <para>行列, 
-		findrをコールすることにより計算される結合されたブロックハンケル行列
-		のR因子に関連.</para>
+            findrをコールすることにより計算される結合されたブロックハンケル行列
+            のR因子に関連.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -71,19 +70,20 @@
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    METH = 3.
-  </para>
+            デフォルト:    METH = 3.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>TOL</term>
         <listitem>
           <para>
-	行列ランクの推定に使用される許容誤差.
-	TOL &gt; 0の場合, TOL に指定した値が
-	条件数の逆数の下界として使用されます.
-	デフォルト: prod(size(matrix))*epsilon_machine ただし, epsilon_machine
-	は相対機械精度です.</para>
+            行列ランクの推定に使用される許容誤差.
+            TOL &gt; 0の場合, TOL に指定した値が
+            条件数の逆数の下界として使用されます.
+            デフォルト: prod(size(matrix))*epsilon_machine ただし, epsilon_machine
+            は相対機械精度です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -105,8 +105,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    PRINTW = 0.
-  </para>
+            デフォルト:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -132,30 +132,32 @@
   <refsection>
     <title>説明</title>
     <para>
-	部分空間同定法(MOESP または N4SID)を使用して,
-	離散時間システムのシステム行列 A および C を見つけます.
-	この際,
-	システム次元および結合されたブロックハンケル行列のR因子の関連する部分を
-	指定します.
-  </para>
+      部分空間同定法(MOESP または N4SID)を使用して,
+      離散時間システムのシステム行列 A および C を見つけます.
+      この際,
+      システム次元および結合されたブロックハンケル行列のR因子の関連する部分を
+      指定します.
+    </para>
     <itemizedlist>
       <listitem>
         <para>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  は,
-	システム行列 A および C を計算します.
-	モデル構造は次のようになります:
-	 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,
-	 y(k)   = Cx(k) + Du(k) + e(k)
-	ただし, x(k) および y(k) はそれぞれ長さ N および L のベクトルです.
-	</para>
+          システム行列 A および C を計算します.
+          モデル構造は次のようになります:
+          x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,
+          y(k)   = Cx(k) + Du(k) + e(k)
+          ただし, x(k) および y(k) はそれぞれ長さ N および L のベクトルです.
+        </para>
       </listitem>
       <listitem>
         <para>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)  は長さ4のベクトルRCNDも返します.
-	この中には,ランク決定に使用される行列の条件数が含まれます.</para>
+          この中には,ランク決定に使用される行列の条件数が含まれます.
+        </para>
       </listitem>
     </itemizedlist>
     <para>
-    行列 R は, findR により計算され, 適当な引数 METH および JOBD で定義
-	する必要があります.</para>
+      行列 R は, findR により計算され, 適当な引数 METH および JOBD で定義
+      する必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

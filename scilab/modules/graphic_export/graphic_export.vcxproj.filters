@@ -45,31 +45,7 @@
     <ClCompile Include="src\jni\FileExporter.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\GL2PSConstant.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\GL2PSToJOGL.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GL2PSWrapping.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\JOGLConstant.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\JoGLInterface.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\DllmainGraphics_export.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\gl2ps\gl2ps.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\GL2PSConstant_wrap.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\GL2PSWrapping_wrap.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\gw_graphic_export.c">
@@ -105,18 +81,24 @@
     <ClCompile Include="src\c\xs2file.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_graphic_export.h">
       <Filter>Header Files\h</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\gl2ps\gl2ps.h">
-      <Filter>Header Files\h</Filter>
-    </ClInclude>
     <ClInclude Include="includes\gw_graphic_export.h">
-      <Filter>Header Files\h</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\JoGLInterface.h">
       <Filter>Header Files\h</Filter>
     </ClInclude>
     <ClInclude Include="includes\xs2file.h">
@@ -128,14 +110,8 @@
     <ClInclude Include="src\jni\FileExporter.hxx">
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\GL2PSConstant.hxx">
-      <Filter>Header Files\hxx</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GL2PSWrapping.hxx">
-      <Filter>Header Files\hxx</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\JOGLConstant.hxx">
-      <Filter>Header Files\hxx</Filter>
+    <ClInclude Include="src\jni\Driver.hxx">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -147,10 +123,7 @@
     <None Include="graphics_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="renderer_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="graphic_export.iss" />

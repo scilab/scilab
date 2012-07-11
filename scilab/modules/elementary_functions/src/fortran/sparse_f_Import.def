@@ -1,4 +1,4 @@
-	LIBRARY    sparse_f.dll
+LIBRARY    sparse_f.dll
 
 
 EXPORTS

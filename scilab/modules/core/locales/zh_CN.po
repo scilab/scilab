@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-19 11:34+0000\n"
-"Last-Translator: Wesh <wesh@sina.cn>\n"
+"PO-Revision-Date: 2012-05-30 08:55+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -42,8 +42,24 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr "%s：参数%d的大小错误：应该为实数标量。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s：内存不足。\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -58,10 +74,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s：输入参数的类型错误。\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s：内存不足。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s：第%d个输入参数的大小错误。\n"
 
@@ -73,10 +85,6 @@ msgstr "%s：第%d个输入参数的值错误：应该为大于0的值。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -175,7 +183,7 @@ msgstr "%s：第%d个输入参数的大小错误：应该为布尔值。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为布尔值。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -310,10 +318,13 @@ msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "错误：无法定义环境变量%s。\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab协会 (DIGITEO)\n"
+
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "版权所有 (c) 1989-2012 (INRIA)\n"
@@ -484,31 +495,20 @@ msgstr "无空间用来分配 Scilab 栈。\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"调用堆栈：\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"堆栈结束\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
-"糟糕，Scilab检测到了一个致命错误。\n"
-"您的实例很有可能一会儿会崩溃。\n"
-"请提交%s的bug，附带以下信息：\n"
+"糟糕。Scilab检测到一个致命错误。\n"
+"你的实例可能即将崩溃。\n"
+"请按以下内容提交关于%s的bug：\n"
+"* 可再现此问题的样例代码\n"
+"* 结果之 [a, b] = getdebuginfo()\n"
+"* 一下信息:\n"
 "%s %s\n"
 
 #, c-format
@@ -810,20 +810,20 @@ msgid "%s argument"
 msgstr "参数 %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "参数编号 %d"
+msgid "argument #%d"
+msgstr "第%d个输入参数"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "%s 和 %s 个参数"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "参数 %s 和参数 %d"
+msgid "%s argument and argument #%d"
+msgstr "%s参数和第%d个参数"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "参数 %d 和 %d"
+msgid "arguments #%d and #%d"
+msgstr "第%d和第%d个参数"
 
 msgid "should be square"
 msgstr "应该为方阵"
@@ -945,6 +945,20 @@ msgid "Scilab Version Info."
 msgstr "Scilab版本信息。"
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"调用堆栈：\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"堆栈结束\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -997,6 +1011,10 @@ msgstr "介绍"
 
 msgid "Getting started with Scilab"
 msgstr "开始使用Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s：未能找到‘%s’：请检查宏是否已编译。\n"
 
 #, c-format
 msgid "Checking: %s\n"

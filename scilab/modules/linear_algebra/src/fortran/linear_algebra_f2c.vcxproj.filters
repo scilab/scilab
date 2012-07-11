@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\bschur.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="common_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -188,9 +185,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bschur.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="complexify.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -352,23 +346,24 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\sci_gateway\linear_algebra_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="linear_algebra_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

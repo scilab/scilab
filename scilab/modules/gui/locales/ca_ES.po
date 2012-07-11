@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ca\n"
 
 #, c-format
@@ -450,23 +450,32 @@ msgstr "&Desa..."
 msgid "&Export to..."
 msgstr "&Exporta a..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "Exportació &vectorial"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr ""
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -476,12 +485,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Copia al porta-retalls"
@@ -504,8 +507,8 @@ msgstr "Mostra/Amaga la &barra d'eines"
 msgid "&Zoom"
 msgstr "A&mplia"
 
-msgid "&UnZoom"
-msgstr "R&edueix"
+msgid "&Original View"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "&Rotació 2D/3D"
@@ -539,6 +542,18 @@ msgstr "&Arranca el gestor de datatip"
 
 msgid "Stop datatip manager"
 msgstr "Atura el gestor de datatip"
+
+msgid "&MVC"
+msgstr ""
+
+msgid "&Log View (Trace all View notifications)"
+msgstr ""
+
+msgid "&All Objects View (All objects with properties)"
+msgstr ""
+
+msgid "&Ged-like View (Future ged)"
+msgstr ""
 
 msgid "&?"
 msgstr "&?"
@@ -596,6 +611,9 @@ msgstr "&Buida el porta-retalls"
 
 msgid "&Select all"
 msgstr "&Selecciona-ho tot"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Preferences"
 msgstr "&Preferències"
@@ -739,54 +757,32 @@ msgid "Scilab Demonstrations"
 msgstr "Demostracions d'Scilab"
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: No s'ha pogut crear un uicontrol del tipus %s."
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: No s'ha pogut eliminar aquest objecte.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr ""
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "No existeix la propietat '%s' per a aquest objecte.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
 msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
 msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s', '%s', '%s' o "
-"'%s'.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
 msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser 'light', 'normal', "
-"'demi', 'demi' o 'bold'.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
 msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s', '%s', '%s', "
-"'%s' o '%s'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
 msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr ""
-"%s: El pare és d'un tipus incorrecte: Ha de ser una figura o un uimenu.\n"
 
 #, c-format
 msgid ""
@@ -805,10 +801,6 @@ msgstr ""
 "una cadena de text 'R|G|B'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
@@ -817,14 +809,8 @@ msgstr ""
 "o una cadena de text 'R|G|B'.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser '%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -837,9 +823,9 @@ msgstr ""
 "La propietat '%s' té una mida incorrecta: Ha de ser una cadena de text.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
+"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
@@ -847,23 +833,15 @@ msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser '%s', '%s', '%s', '%s' o "
-"'%s'.\n"
+"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s', '%s', '%s' "
-"o '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser '%s', '%s', '%s' o "
+"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s', '%s', '%s' o "
 "'%s'.\n"
 
 #, c-format
@@ -873,10 +851,14 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s', '%s' o "
-"'%s'.\n"
+"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"La propietat '%s' té una mida incorrecta: Ha de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -932,6 +914,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s', '%s', "
+"'%s', '%s' o '%s'.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -940,17 +930,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s', '%s', "
-"'%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un vector fila de "
-"nombres reals (1 x %d).\n"
+"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s', '%s', '%s', "
+"'%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -959,11 +943,31 @@ msgstr ""
 "nombres reals (1 x %d).\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"La propietat '%s' té una mida incorrecta: Ha de ser un vector fila de "
+"nombres reals (1 x %d).\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 "La propietat '%s' té una mida incorrecta: Ha de ser una cadena de text o un "
 "vector de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"La propietat '%s' té una mida incorrecta: Ha de ser '%s', '%s', '%s', '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"La propietat '%s' és d'un tipus incorrecte: Ha de ser '%s', '%s', '%s', '%s' "
+"o '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -987,9 +991,10 @@ msgstr ""
 "nombres reals o una cadena de text.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
 msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser %s', '%s', o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -997,8 +1002,14 @@ msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser %s', '%s', o '%s'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser '%s' o '%s'.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"La propietat '%s' té una mida incorrecta: Ha de ser %s', '%s', o '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"La propietat '%s' té un valor incorrecte: Ha de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
@@ -1007,17 +1018,8 @@ msgstr ""
 "elements.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser una cadena de text.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: La propietat '%s' té un valor incorrecte: Pot ser punts, normalitzat, "
-"polzades, centímetres o píxels.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser '%s' o '%s'.\n"
 
 msgid "Console Font..."
 msgstr "Tipus de lletra de la consola..."
@@ -1025,15 +1027,14 @@ msgstr "Tipus de lletra de la consola..."
 msgid "Console Background..."
 msgstr "Color de fons de la consola..."
 
-msgid "No print service found."
-msgstr "No s'ha trobat el servei d'impressió."
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1188,17 +1189,6 @@ msgstr "Endavant"
 msgid "Tree Overview"
 msgstr "Vista en arbre"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr ""
-"Feu clic amb el botó de l'esquerra per començar a seleccionar l'àrea "
-"ampliada. Feu clic amb el botó de la dreta per cancel·lar."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr ""
-"Feu clic amb el botó de l'esquerra per acabar la selecció. Feu clic amb el "
-"botó de la dreta per cancel·lar."
-
 msgid "OK"
 msgstr "D'acord"
 
@@ -1214,14 +1204,17 @@ msgstr "Desa i executa"
 msgid "Empty tab"
 msgstr ""
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1276,6 +1269,7 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
+#, c-format
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
 
@@ -1336,6 +1330,9 @@ msgid "Uicontrols 2"
 msgstr ""
 
 msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+msgid "Show images with uicontrols "
 msgstr ""
 
 msgid "<Enter color name here>"

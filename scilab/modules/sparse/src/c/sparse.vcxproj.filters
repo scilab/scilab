@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -171,7 +171,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="sparse_f_Import.def">
@@ -180,15 +180,16 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sparse.iss" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
-    <None Include="..\..\locales\sparse.pot" />
+    <None Include="..\..\locales\sparse.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sparse.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

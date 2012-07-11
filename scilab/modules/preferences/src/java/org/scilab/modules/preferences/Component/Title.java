@@ -21,14 +21,16 @@ import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import org.w3c.dom.Node;
 
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
 
-/** 
+/**
  * Implementation of Title compliant with extended management.
  *
  * @author Pierre GRADIT
@@ -40,13 +42,13 @@ public class Title extends Panel implements XComponent {
      *
      */
     private static final long serialVersionUID = 6183280975436648612L;
-    
+
     /** Define the set of actuators.
     *
     * @return array of actuator names.
     */
     public String[] actuators() {
-        return new String[]{};
+        return new String[] {};
     }
 
     /** Constructor.
@@ -57,11 +59,23 @@ public class Title extends Panel implements XComponent {
         super(peer);
         String text = XConfigManager.getAttribute(peer, "text");
         TitledBorder title = new TitledBorder(text) {
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-		    super.paintBorder(c, g, x, y - TitledBorder.EDGE_SPACING - 1, width, height + 2 * TitledBorder.EDGE_SPACING + 2);
-		}
-	    };
-	title.setTitleFont(title.getTitleFont().deriveFont(Font.BOLD));
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                super.paintBorder(c, g, x, y - TitledBorder.EDGE_SPACING - 1, width, height + 2 * TitledBorder.EDGE_SPACING + 2);
+            }
+        };
+
+        Font font = title.getTitleFont();
+        if (font == null) {
+            font = UIManager.getDefaults().getFont("TitledBorder.font");
+            if (font == null) {
+                JLabel label = new JLabel("a");
+                font = label.getFont();
+                if (font == null) {
+                    font = new Font("Sans Serif", Font.PLAIN, 10);
+                }
+            }
+        }
+        title.setTitleFont(font.deriveFont(Font.BOLD));
         setBorder(title);
         XConfigManager.setDimension(this, peer);
 

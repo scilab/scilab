@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -22,6 +22,7 @@
 #include "dynamic_tclsci.h"
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../jvm/includes/TerminateJVM.h"
+#include "getScilabPreference.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
 #include "../../../windows_tools/includes/MutexClosingScilab.h"
@@ -32,10 +33,12 @@
 #ifndef _MSC_VER
 #include "initConsoleMode.h"
 #endif
+/*--------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
     scilabMode CurrentScilabMode;
 
+    clearScilabPreferences();
     TerminateCorePart1();
 
     CurrentScilabMode = getScilabMode();
@@ -68,7 +71,7 @@ void sciquit(void)
 #ifdef _MSC_VER
     /* bug 3672 */
     /* Create a Mutex (closing scilab)
-     * used by files association 
+     * used by files association
      */
     createMutexClosingScilab();
 #endif
@@ -85,7 +88,7 @@ void sciquit(void)
 
 #ifdef _MSC_VER
     /* close mutex (closing scilab)
-     * used by files association 
+     * used by files association
      */
     terminateMutexClosingScilab();
 #endif

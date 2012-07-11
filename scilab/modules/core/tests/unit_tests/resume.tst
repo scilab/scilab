@@ -4,7 +4,7 @@
 // This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 clear foo
 deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)")

@@ -11,6 +11,9 @@
  *
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable: 4113)
+#endif
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <string.h>
@@ -26,8 +29,7 @@
 #include "sci_contr.h"
 #include "gw_slicot.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __DEF_MXARRAY__
 #define __DEF_MXARRAY__
 typedef int mxArray;

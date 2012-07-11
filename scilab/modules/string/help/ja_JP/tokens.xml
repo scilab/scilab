@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tokens">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>tokens</refname>
     <refpurpose>文字列のトークンを返す.</refpurpose>
@@ -47,10 +44,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>T=tokens(str [,delimiter]) </literal> は,
-	文字列<literal>str</literal>の中に含まれるトークンを探します.
-	<literal>delimiter</literal>のデフォルト値は [" ",&lt;Tab&gt;]です.
-	ただし, &lt;Tab&gt; は <literal>ascii(9)</literal>を意味します.</para>
+    <para>
+      <literal>T=tokens(str [,delimiter]) </literal> は,
+      文字列<literal>str</literal>の中に含まれるトークンを探します.
+      <literal>delimiter</literal>のデフォルト値は [" ",&lt;Tab&gt;]です.
+      ただし, &lt;Tab&gt; は <literal>ascii(9)</literal>を意味します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

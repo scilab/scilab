@@ -8,14 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-03-09 12:10+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2012-05-07 18:55+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: Falscher %d Argumenttyp: Reelle Matrix erwartet.\n"
 
 #, c-format
 msgid ""
@@ -191,37 +199,43 @@ msgstr "Falscher Typ für Eingansgargument #%d: Zeichenkette erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
+"%s: Falsche Anzahl an Eingabeargumenten: Muss zwischen %d und %d sein.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Vektor oder Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
+msgstr "%s: Falscher #%d Eingabeargumenttyp: Feld oder Reelle erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
 msgstr ""
+"%s: Falscher #%d Eingabeargumentwert: Reelle erwartet, aber ein NaN (keine "
+"Zahl) wurde gefunden.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
+"%s: Falsche Größe der Eingabeargumente #%d und #%d: Gleiche Größer "
+"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Vektor erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Falscher #%d Eingabeargumentwert: '%s' oder '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
-msgstr ""
+msgstr "%s: Falscher #%d Eingabeargumentwert: '%s' oder Reelle erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-msgstr ""
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Zwei Reihen erwartet.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: uk\n"
 
 #, c-format
@@ -208,15 +208,6 @@ msgstr "Навігація кодом"
 msgid "Format"
 msgstr "Формат"
 
-msgid "Set Colors ..."
-msgstr "Вказати кольори…"
-
-msgid "Set Font"
-msgstr "Вказати шрифт"
-
-msgid "Reset default font"
-msgstr "Відновити типовий шрифт"
-
 msgid "Shift Right"
 msgstr "Зсунути праворуч"
 
@@ -271,15 +262,6 @@ msgstr ""
 
 msgid "Line Endings"
 msgstr "Завершення рядків"
-
-msgid "Auto-completion on"
-msgstr "Автодоповнення"
-
-msgid "(, [, ..."
-msgstr "(, [, ..."
-
-msgid "if, function, ..."
-msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Нумерація рядків;Вимкнено;Звичайна;Сумісна з Whereami"
@@ -421,6 +403,12 @@ msgstr "Без нумерації рядків"
 
 msgid "Set Colors"
 msgstr "Вказати кольори"
+
+msgid "Set Font"
+msgstr "Вказати шрифт"
+
+msgid "Reset default font"
+msgstr "Відновити типовий шрифт"
 
 msgid "Split horizontally"
 msgstr "Розділити горизонтально"

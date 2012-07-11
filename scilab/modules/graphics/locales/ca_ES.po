@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ca\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -119,9 +119,19 @@ msgstr ""
 "matriu.\n"
 
 #, c-format
+msgid "%s: Parent entity for destination should be an axes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr "No es pot eliminar aquest objecte.\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "No es pot eliminar un objecte Etiqueta.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Valor incorrecte de %s '%c': Ha de ser '%s', '%s' i '%s'.\n"
@@ -149,14 +159,6 @@ msgstr "%s: Cada tractament no hauria d'aparèixer dos cops.\n"
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr "%s: Els objectes han de tenir el mateix pare.\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: No es pot enganxar el tractament %d (el pare és invàlid).\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: No es pot enganxar el tractament %d (el tipus és invàlid).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -263,6 +265,12 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
@@ -331,12 +339,6 @@ msgstr "%s: No s'ha pogut crear la figura: No hi ha més memòria.\n"
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: El tractament '%s' no existeix.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr ""
-"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un tractament "
-"'%s'.\n"
 
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
@@ -431,12 +433,17 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : S'ha d'establir '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
 msgstr ""
-"%s: Ja no està disponible el mode gràfic antic. Aneu a la pàgina d'ajuda de "
-"'set'..\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -511,45 +518,17 @@ msgstr "El pare ha de ser un FIGURE\n"
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El pare ha de ser un SUBWIN\n"
 
-msgid "No more place to allocates text string, try a shorter string.\n"
-msgstr ""
-"No hi ha espai per assignar la cadena de text, proveu amb una cadena més "
-"curta.\n"
-
-msgid "Problem with sciInitFontContext\n"
-msgstr "Hi ha hagut un problema amb sciInitFontContext\n"
-
 msgid "Width and height must be positive.\n"
 msgstr "L'amplada i l'alçada han de ser positives.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "Aquest cas és impossible quan es creen eixos\n"
 
-msgid "This object cannot be cloned.\n"
-msgstr "No es pot clonar aquest objecte.\n"
-
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr ""
-"La matriu de colors és NULL: No es pot crear un escalat lineal de colors en "
-"el mapa de colors actual"
-
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s només es pot utilitzar per calcular corves de nivell, però no per a "
 "mostrar-les.\n"
-
-#, c-format
-msgid "Entity with type %d cannot be destroyed.\n"
-msgstr "No es pot eliminar l'entitat de tipus %d.\n"
-
-msgid "A Label object cannot be deleted.\n"
-msgstr "No es pot eliminar un objecte Etiqueta.\n"
-
-msgid "This object cannot be deleted.\n"
-msgstr "No es pot eliminar aquest objecte.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr "Warning: No es pot utilitzar el Log a l'eix X. xmin és negatiu.\n"
@@ -569,8 +548,8 @@ msgstr "Error intern: Hi ha un bucle a graduate1\n"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Envieu l'error a dev@lists.scilab.org\n"
 
-msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
-msgstr "Error: El ComputeFormat s'ha d'utilitzar amb objectes SCI_AXES\n"
+msgid "Error: ComputeFormat must be used with AXIS objects\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
@@ -624,42 +603,12 @@ msgstr "No es pot calcular la posició y per a aquest tipus d'objecte."
 msgid "This object has no %s property.\n"
 msgstr "Aquest objecte no té la propietat%s.\n"
 
-msgid "The parent handle is not or no more valid.\n"
-msgstr "El tractament pare no és vàlid.\n"
-
-#, c-format
-msgid "Handle number %d is not or no more valid.\n"
-msgstr "El tractament número %d no és vàlid.\n"
-
-#, c-format
-msgid "Handle number %d is not compatible with the parent handle.\n"
-msgstr "El tractament número %d no és compatible amb el tractament pare.\n"
-
-#, c-format
-msgid "Error relocating handle %d."
-msgstr "Error en la reassignació del tractament %d."
-
-#, c-format
-msgid "Handle #%d is not compatible with its new parent.\n"
-msgstr "El tractament #%d no és compatible amb el nou pare.\n"
-
-#, c-format
-msgid "Object #%d is not correctly placed in the hierarchy.\n"
-msgstr "L'objecte #%d no està col·locat correctament a la jerarquia.\n"
-
-#, c-format
-msgid "Handle #%d is not or no more valid.\n"
-msgstr "El tractament #%d no és vàlid.\n"
-
-msgid "Default figure cannot be create.\n"
-msgstr "No es pot crear la figura predeterminada.\n"
-
-msgid "Default axes cannot be create.\n"
-msgstr "No es poden crear els eixos predeterminats.\n"
-
 #, c-format
 msgid "Graphic window number %d"
 msgstr "Finestra gràfica número %d"
+
+msgid "Default axes cannot be created.\n"
+msgstr ""
 
 msgid "This object has not any graphic mode\n"
 msgstr "Aquest no té mode gràfic\n"
@@ -671,14 +620,6 @@ msgid "This object can not be moved.\n"
 msgstr "No es pot moure aquest objecte.\n"
 
 #, c-format
-msgid "%s: Number of columns must be %d.\n"
-msgstr "%s: El nombre de columnes ha de ser %d.\n"
-
-#, c-format
-msgid "%s: Object must be a %s.\n"
-msgstr "%s: L'objecte ha de ser un %s.\n"
-
-#, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "L'ample de línia ha de ser major que %d.\n"
 
@@ -687,31 +628,11 @@ msgid "The line style must be greater than %d.\n"
 msgstr "L'estil de la línia ha de ser major que %d.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre %d i %d.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "La mida de la marca ha de ser igual o major que %d.\n"
 
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "La unitat de la mida de la marca ha de ser major que %d.\n"
-
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "La mida de la lletra ha de ser major que %d.\n"
-
 msgid "Unable to load default values.\n"
 msgstr "No es poden carregar els valors predeterminats.\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr ""
-"El nom de la figura no pot contenir el caràcter %%, excepte un sol %%d.\n"
-
-msgid "WARNING : The size of the figure may not be as wide as you want.\n"
-msgstr "Avís: La mida de la figura pot ser més estreta del que espereu.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "El tractament no és un SubWindow.\n"
@@ -729,6 +650,9 @@ msgstr "El nombre d'elements ha de ser %d (%d en cas de la coordenada %s).\n"
 msgid "Number of elements must be %d (%d if z coordinate )\n"
 msgstr "El nombre d'elements ha de ser %d (%d en cas de la coordenada z)\n"
 
+msgid "Number of rows must be a multiple of 2.\n"
+msgstr ""
+
 msgid "Unhandled data field\n"
 msgstr "Camp de dades no tractat\n"
 
@@ -743,6 +667,10 @@ msgstr "%s: Utilitzeu %s.\n"
 #, c-format
 msgid "%s: Can't enable a void event handler.\n"
 msgstr "%s: No es pot habilitar un tractament d'esdeveniments buit.\n"
+
+#, c-format
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "La propietat '%s' no existeix en aquest tractament.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -762,8 +690,8 @@ msgid "Unknown property: %s.\n"
 msgstr "Propietat desconeguda: %s.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser %s o %s.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -776,10 +704,6 @@ msgid "Wrong value for '%s' property.\n"
 msgstr "La propietat '%s' té un valor incorrecte.\n"
 
 #, c-format
-msgid "'%s' property does not exist for this handle.\n"
-msgstr "La propietat '%s' no existeix en aquest tractament.\n"
-
-#, c-format
 msgid "%s property only exists for %s surfaces.\n"
 msgstr "La propietat %s només existeix per a superfícies %s.\n"
 
@@ -788,16 +712,12 @@ msgid "%s: No more memory."
 msgstr "%s: No hi ha més memòria."
 
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
-msgstr ""
-"Avís: La utilització de %s és obsoleta i ja no es té en compte, utilitzeu la "
-"propietat %s per a editar el color dels eixos.\n"
-
-#, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre {%s}.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser %s o %s.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -827,19 +747,6 @@ msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr "La propietat '%s' té una mida incorrecta: Ha de tenir %d elements.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de tenir valors més petits.\n"
-
-#, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
-msgstr ""
-"Avís: La propietat '%s' no es pot modificar si el %s està enganxat per "
-"altres elements.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "La propietat '%s' és d'un tipus incorrecte: Ha de ser un enter.\n"
 
@@ -851,16 +758,36 @@ msgstr ""
 "Avís !!!\n"
 "A la propietat '%s': '%s' és obsolet. Utilitzeu '%s'.\n"
 
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: A Real scalar expected.\n"
+msgstr ""
+
 msgid "Children property can not be modified directly.\n"
 msgstr "No es pot modificar directament la propietat fill.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un escalar.\n"
-
-#, c-format
-msgid "%s: No more memory\n"
-msgstr "%s: No hi ha més memòria\n"
 
 #, c-format
 msgid ""
@@ -986,23 +913,27 @@ msgstr ""
 "vàlid.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a valid color index.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser un índex de color "
-"vàlid.\n"
-
-#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Primer heu d'especificar un %s per aquest objecte.\n"
 
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
 msgstr ""
-"En el mode de color interpolat, la dimensió de columna del vector de color "
-"ha de coincidir amb el nombre de punts que defineixen la línia (que ha de "
-"ser %d o %d).\n"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "{0,1} values are equivalent for line_style property."
+msgstr ""
+
+msgid "0 will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use 1 instead."
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1037,10 +968,18 @@ msgstr ""
 "positius per canviar al mode logarítmic.\n"
 
 #, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre %d i %d.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser el tractament '%s' o "
 "'%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
 
 msgid "Parent property can not be modified directly.\n"
 msgstr "No es pot modificar directament la propietat pare.\n"
@@ -1057,6 +996,10 @@ msgstr "L'argument #%d ha de tenir%d elements.\n"
 #, c-format
 msgid "%s cannot be set in this case.\n"
 msgstr "No es pot definir el %s per a aquest cas.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -1100,6 +1043,10 @@ msgstr "Impossible: Per poder reaassignar el %s primer s'ha d'alliberar"
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: El vector x no és monòton.\n"
+
+#, c-format
+msgid "%s: y vector is not monotonous.\n"
+msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "El mòdul gràfic de Scilab no està instal·lat.\n"
@@ -1400,6 +1347,46 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or Scilab function "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Error %d : in plot2d called by contour2d"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr ""
+
 msgid "Delete all datatips"
 msgstr "Elimina tots els datatips"
 
@@ -1475,10 +1462,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
 "tractament gràfic.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -1659,12 +1642,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: L'argument d'entrada és d'un tipus incorrecte.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
@@ -1761,10 +1738,6 @@ msgstr ""
 "vectors de mida %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %d és d'un tipus incorrecte: Ha de ser un "
@@ -1777,8 +1750,8 @@ msgstr ""
 "'Axes'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1857,4 +1830,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value given for %s."
 msgstr ""

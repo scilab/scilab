@@ -82,7 +82,7 @@ public final class Modelica {
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         } catch (SAXException e) {
-            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
+            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
         }
     }
 
@@ -129,7 +129,7 @@ public final class Modelica {
         try {
             reader = new InputStreamReader(new FileInputStream(file), Charset.forName(LATIN1_ENCODING));
         } catch (FileNotFoundException e) {
-            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
+            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
             return null;
         }
         return ((JAXBElement<Model>) unmarshaller.unmarshal(reader)).getValue();
@@ -167,9 +167,9 @@ public final class Modelica {
 
             new FileOutputStream(file).write(strw.toString().getBytes());
         } catch (FactoryConfigurationError e) {
-            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
+            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
         } catch (IOException e) {
-            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
+            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
         }
     }
 

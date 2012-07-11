@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * desc : interface for sci_uiwait routine 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +12,8 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
+
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
@@ -19,50 +21,53 @@
 #include "stack-c.h"
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcallbackobject(char *fname,unsigned long fname_len)
+int sci_getcallbackobject(char *fname, unsigned long fname_len)
 {
-  int nbRow = 0, nbCol = 0, stkAdr = 0;
+    int nbRow = 0, nbCol = 0, stkAdr = 0;
 
-  sciPointObj *pObj = NULL;
+    char **pObjUID = NULL;
 
-  CheckRhs(1,1);
-  CheckLhs(0,1);
+    unsigned long graphicHandle = 0;
 
-  if (VarType(1) == sci_matrix)
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
+
+    if (VarType(1) == sci_strings)
     {
-      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-      if (nbRow * nbCol !=1)
+        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &pObjUID);
+        if (nbCol != 1 || nbRow == 0)
         {
-          Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+            return FALSE;
         }
-      pObj = sciGetPointerFromJavaIndex((int) *stk(stkAdr));
     }
-  else
+    else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
-      return FALSE;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return FALSE;
     }
- 
-  /* Create return variable */
-  if (pObj == NULL) /* Non-existing object --> return [] */
-    {
-      nbRow = 0;
-      nbCol = 0;
-      CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-    }
-  else /* Return the handle */
-    {
-      nbRow = 1;
-      nbCol = 1;
-      CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-      *hstk(stkAdr) = sciGetHandle(pObj);
-    }
-      
-  LhsVar(1)=Rhs+1;
 
- PutLhsVar();
+    graphicHandle = getHandle(pObjUID[0]);
 
-  return TRUE;
+    /* Create return variable */
+    if (graphicHandle == 0)     /* Non-existing object --> return [] */
+    {
+        nbRow = 0;
+        nbCol = 0;
+        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+    }
+    else                        /* Return the handle */
+    {
+        nbRow = 1;
+        nbCol = 1;
+        CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+        *hstk(stkAdr) = graphicHandle;
+    }
+
+    LhsVar(1) = Rhs + 1;
+
+    PutLhsVar();
+    return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/

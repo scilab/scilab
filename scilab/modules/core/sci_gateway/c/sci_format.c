@@ -10,6 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_core.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -29,8 +30,6 @@ static int sci_format_norhs(char *fname, void* pvApiCtx);
 static void setVariableFormat(int numberDigits);
 static void set_e_Format(int numberDigits);
 static void getFormat(double *e_mode, double *numberDigits);
-static void setVariableMode(void);
-
 /*--------------------------------------------------------------------------*/
 int C2F(sci_format) (char *fname, void* pvApiCtx)
 {
@@ -441,12 +440,6 @@ static void setVariableFormat(int numberDigits)
 
     //numberDigitsAdjusted = Min(Max(format_MIN, numberDigits), format_MAX);
     //C2F(iop).lct[6] = numberDigitsAdjusted;
-}
-
-/*--------------------------------------------------------------------------*/
-static void setVariableMode(void)
-{
-    //C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
 }
 
 /*--------------------------------------------------------------------------*/

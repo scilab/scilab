@@ -60,26 +60,18 @@
     <None Include="..\jni\InterpreterManagement.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="libjvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Scilab_windows_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\action_binding.iss" />
     <None Include="..\..\sci_gateway\action_binding_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="localization_Import.def">
+    <None Include="..\..\locales\action_binding.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="core_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\MALLOC.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="action_binding.rc">

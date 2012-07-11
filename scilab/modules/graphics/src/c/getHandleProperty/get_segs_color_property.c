@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,38 +27,36 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_segs_color_property( sciPointObj * pobj )
+int get_segs_color_property(void* _pvCtx, char* pobjUID)
 {
-  double * colors = NULL ;
-  int nbSegs = 0 ;
-  int i ;
-  int status = -1 ;
-  if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color") ;
-    return -1 ;
-  }
+    int* segsColors = NULL;
+    int iNbSegs = 0;
+    int *piNbSegs = &iNbSegs;
+    int status = -1;
 
-  /* convert from int array to double one. */
-  nbSegs = pSEGS_FEATURE(pobj)->Nbr1 / 2 ;
-  colors = MALLOC( nbSegs * sizeof(double) ) ;
-  if ( colors == NULL )
-  {
-	  Scierror(999, _("%s: No more memory.\n"),"get_segs_color_property");
-	  return -1 ;
-  }
+#if 0
+    if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color") ;
+        return -1;
+    }
+#endif
 
-  for ( i = 0 ; i  < nbSegs ; i++ )
-  {
-    colors[i] = pSEGS_FEATURE (pobj)->pstyle[i] ;
-  }
+    getGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, jni_int_vector, (void **)&segsColors);
 
-  status = sciReturnRowVector( colors, pSEGS_FEATURE(pobj)->Nbr1 / 2 ) ;
+    if (segsColors == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
+        return -1;
+    }
 
-  FREE( colors ) ;
-
-  return status ;
-
+    /* convert from int array to double one. */
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
+    status = sciReturnRowIntVector(_pvCtx, segsColors, iNbSegs);
+    return status;
 }
 /*------------------------------------------------------------------------*/

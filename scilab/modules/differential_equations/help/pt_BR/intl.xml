@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intl" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intl</refname>
     <refpurpose>integral de Cauchy</refpurpose>
@@ -32,7 +29,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>dois número reais</para>
         </listitem>
@@ -57,7 +54,7 @@
       Se <literal>f</literal> é uma função externa com valores complexos,
       <literal>intl(a,b,z0,r,f)</literal> computa a integral de
       <literal>f(z)dz</literal> ao longo da curva no plano complexo definida por
-      <literal>z0 + r.exp(%i*t)</literal> para <literal>a&lt;=t&lt;=b</literal>
+      <literal>z0 + r.*exp(%i*t)</literal> para <literal>a&lt;=t&lt;=b</literal>
       (parte do círculo com centro <literal>z0</literal> e raio
       <literal>r</literal> com fase entre <literal>a</literal> e
       <literal>b</literal>).

@@ -16,10 +16,11 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/
-int sci_tempname(char *fname,void* pvApiCtx)
+int sci_tempname(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     wchar_t *wcprefix = NULL;
@@ -40,24 +41,25 @@ int sci_tempname(char *fname,void* pvApiCtx)
         int *piAddressVarOne = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(wcprefix);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
         if (!isScalar(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
             return 0;
         }
 
-        if (isStringType(pvApiCtx,piAddressVarOne))
+        if (isStringType(pvApiCtx, piAddressVarOne))
         {
             if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix) != 0)
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
@@ -67,7 +69,7 @@ int sci_tempname(char *fname,void* pvApiCtx)
                 FREE(wcprefix);
                 wcprefix = NULL;
 
-                Scierror(999,_("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
 #endif
@@ -77,7 +79,7 @@ int sci_tempname(char *fname,void* pvApiCtx)
             FREE(wcprefix);
             wcprefix = NULL;
 
-            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
     }
@@ -102,7 +104,7 @@ int sci_tempname(char *fname,void* pvApiCtx)
 
     FREE(wcTempFilename);
     wcTempFilename = NULL;
-    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+    Scierror(999, _("%s: Memory allocation error.\n"), fname);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

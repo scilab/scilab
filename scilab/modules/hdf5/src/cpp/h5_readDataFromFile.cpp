@@ -34,7 +34,7 @@ extern "C"
 //#define TIME_DEBUG
 
 static herr_t find_attr_by_name( hid_t loc_id, const char* name, void* data )
-{ 
+{
     return !strcmp(name, (const char*)data);
 }
 
@@ -258,7 +258,7 @@ int getDatasetPrecision(int _iDatasetId, int* _piPrec)
     {
         iRet = 1;
     }
-    
+
     FREE(pstScilabClass);
     return iRet;
 }
@@ -275,7 +275,7 @@ int getVariableNames(int _iFile, char **pstNameList)
     {
         return 0;
     }
-    
+
     for(i = 0 ; i < iCount ; i++)
     {
         if(DynHDF5::dynH5Gget_objtype_by_idx(_iFile, i) == H5G_DATASET)
@@ -474,7 +474,7 @@ static int readString(int _iDatasetId, char **_pstData)
     {
         return -1;
     }
-    
+
     status = DynHDF5::dynH5Sget_simple_extent_dims (iSpace, dims, NULL);
     if(status < 0)
     {
@@ -570,7 +570,7 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
         return -1;
     }
 
-    
+
     status = DynHDF5::dynH5Sget_simple_extent_dims (memspace, dims, NULL);
     if(status < 0)
     {
@@ -765,7 +765,7 @@ int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _i
     return readCommonPolyMatrix(_iDatasetId, _pstVarname, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
+int readInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
 {
     herr_t status = 0;
     /*
@@ -786,7 +786,7 @@ int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
     return 0;
 }
 
-int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
+int readInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
 {
     herr_t status = 0;
     /*
@@ -807,7 +807,7 @@ int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData
     return 0;
 }
 
-int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
+int readInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 {
     herr_t status = 0;
     /*
@@ -828,7 +828,7 @@ int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
     return 0;
 }
 
-int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData)
+int readInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData)
 {
     herr_t status = 0;
     /*
@@ -849,7 +849,7 @@ int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pl
     return 0;
 }
 
-int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData)
+int readUnsignedInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData)
 {
     herr_t status = 0;
     /*
@@ -870,7 +870,7 @@ int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
     return 0;
 }
 
-int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData)
+int readUnsignedInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData)
 {
     herr_t status = 0;
 
@@ -892,7 +892,7 @@ int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
     return 0;
 }
 
-int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData)
+int readUnsignedInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData)
 {
     herr_t status = 0;
 
@@ -914,7 +914,7 @@ int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
     return 0;
 }
 
-int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData)
+int readUnsignedInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData)
 {
     herr_t status = 0;
 
@@ -953,7 +953,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
 
     //read Row data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
-    status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+    status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
     if(status < 0)
     {
         return -1;
@@ -961,7 +961,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
 
     //read cols data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+    status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
     if(status < 0)
     {
         return -1;
@@ -1016,7 +1016,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
     //read Row data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
-    status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+    status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
     if(status < 0)
     {
         return -1;
@@ -1024,7 +1024,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
     //read cols data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+    status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
     if(status < 0)
     {
         return -1;

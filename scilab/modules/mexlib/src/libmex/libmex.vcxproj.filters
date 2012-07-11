@@ -50,15 +50,4 @@
     </None>
     <None Include="..\..\mexlib.iss" />
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\lapack.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\LibScilab.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-  </ItemGroup>
 </Project>

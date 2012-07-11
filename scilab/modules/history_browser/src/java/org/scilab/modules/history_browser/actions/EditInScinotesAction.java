@@ -15,7 +15,7 @@ package org.scilab.modules.history_browser.actions;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.history_browser.CommandHistory;
@@ -25,7 +25,7 @@ import org.scilab.modules.history_browser.CommandHistoryMessages;
  * Manage Clear Actions
  * @author Vincent COUVERT
  */
-public final class EditInScinotesAction extends CallBack {
+public final class EditInScinotesAction extends CommonCallBack {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -63,8 +63,8 @@ public final class EditInScinotesAction extends CallBack {
 	 * Create a new class instance
 	 * @return the instance
 	 */
-	private static CallBack getCallBack() {
-		CallBack callback = null;
+	private static CommonCallBack getCallBack() {
+	    CommonCallBack callback = null;
 		try {
 			callback = EditInScinotesAction.class.getConstructor().newInstance();
 		} catch (IllegalArgumentException e) {

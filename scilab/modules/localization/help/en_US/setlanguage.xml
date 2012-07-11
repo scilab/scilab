@@ -12,13 +12,10 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setlanguage">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>setlanguage</refname>
-    <refpurpose>Sets the internal LANGUAGE
-      value.
+    <refpurpose>sets the internal LANGUAGE
+      value (for Windows only)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -60,6 +57,9 @@ getlanguage()
     <simplelist type="inline">
       <member>
         <link linkend="getlanguage">getlanguage</link>
+      </member>
+      <member>
+        <link linkend="setdefaultlanguage">setdefaultlanguage</link>
       </member>
     </simplelist>
   </refsection>

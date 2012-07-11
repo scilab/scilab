@@ -145,7 +145,7 @@ extern "C" {
 #define API_ERROR_CREATE_SINGLE_WIDE_STRING                 1020
 #define API_ERROR_CREATE_NAMED_SINGLE_STRING                1021
 #define API_ERROR_CREATE_NAMED_SINGLE_WIDE_STRING           1022
- 
+
  /*list errors 1501 - 1599*/
 #define API_ERROR_LIST_ITEM_NUMBER                          1501
 #define API_ERROR_INVALID_LIST_TYPE                         1502

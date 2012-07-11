@@ -8,50 +8,51 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:43+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-04-28 01:56+0000\n"
+"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
-msgstr ""
+msgstr "%s : argumento lnksz deve ser duplo ou inteiro.\n"
 
 #, c-format
 msgid "%s : lnktyp argument must be double or integer.\n"
-msgstr ""
+msgstr "%s : argumento lnktyp deve ser duplo ou inteiro.\n"
 
 #, c-format
 msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
-msgstr ""
+msgstr "%s : dimensão inconsistente entre lnksz e lnktyp.\n"
 
 #, c-format
 msgid "%s : bad dimension for lnksz argument.\n"
-msgstr ""
+msgstr "%s : dimensão ruim para argumento lnksz.\n"
 
 #, c-format
 msgid "%s : bad dimension for lnktyp argument.\n"
-msgstr ""
+msgstr "%s : dimensão ruim para argumento lnktyp.\n"
 
 #, c-format
 msgid "%s : lnksz and lnktyp argument must have the same length.\n"
-msgstr ""
+msgstr "%s : argumentos lnksz e lnktyp devem ter o mesmo comprimento.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
-msgstr ""
+msgstr "%s: Não há mais memória livre.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr ""
+msgstr "%s : Primeiro argumento deve ser uma lista do tipo scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
 msgstr ""
+"%s : Primeiro argumento deve ser uma lista válida do tipo scicos_block.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -59,41 +60,43 @@ msgstr ""
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
-msgstr ""
+msgstr "%s: Segundo argumento deve ser um escalar.\n"
 
 #, c-format
 msgid "%s : Third argument must be scalar.\n"
-msgstr ""
+msgstr "%s: Terceiro argumento deve ser um escalar.\n"
 
 #, c-format
 msgid "%s: scicosim is not running.\n"
-msgstr ""
+msgstr "%s: scicosim não está em execução.\n"
 
 #, c-format
 msgid "%s : First argument must be a string.\n"
-msgstr ""
+msgstr "%s: Primeiro argumento deve ser uma string.\n"
 
 #, c-format
 msgid ""
 "%s : First argument must be a matrix or an hypermatrix\n"
 "of real, complex or integer numbers.\n"
 msgstr ""
+"%s: Primeiro argumento deve ser uma matriz ou hipermatriz\n"
+"de números inteiros, reais ou complexos.\n"
 
 #, c-format
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
-msgstr ""
+msgstr "%s: Somente hipermatriz com 3 dimensões é permitido.\n"
 
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
-msgstr ""
+msgstr "%s: Segundo argumento deve ser um escalar.\n"
 
 #, c-format
 msgid "%s : Second argument must be a real.\n"
-msgstr ""
+msgstr "%s: Segundo argumento deve ser um real.\n"
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
-msgstr ""
+msgstr "%s: Primeiro e segundo argumentos devem ter tamanhos iguais.\n"
 
 msgid ""
 "\n"
@@ -109,75 +112,81 @@ msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
+"Uso : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
 
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
-msgstr ""
+msgstr "- myvar : um int32 ou matriz double ou uma Tlist.\n"
 
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
-msgstr ""
+msgstr "- [\"str1\";\"str2\",...] é uma matriz de strings\n"
 
 msgid "  that must be informed with the following values :\n"
-msgstr ""
+msgstr "  que deve ser informado(a) com os seguintes valores:\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
-msgstr ""
+msgstr "%s: Não há mais memória.\n"
 
 #, c-format
 msgid "%s : Undefined field in string matrix position : %d.\n"
-msgstr ""
+msgstr "%s: Campo indefinido na matriz de strings na posição: %d.\n"
 
 #, c-format
 msgid "%s : Error.\n"
-msgstr ""
+msgstr "%s: Erro.\n"
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
-msgstr ""
+msgstr "%s: Primeiro argumento deve ser uma lista Typed.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos model.\n"
-msgstr ""
+msgstr "%s: Primeiro argumento deve ser um modelo scicos.\n"
 
 #, c-format
 msgid "%s : unknown block : %s\n"
-msgstr ""
+msgstr "%s : bloco desconhecido : %s\n"
 
 #, c-format
 msgid "%s : type 1 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s : função tipo 1 não permitida para blocos scilab\n"
 
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s : função tipo 2 não permitida para blocos scilab\n"
 
 #, c-format
 msgid "%s : Undefined Function type\n"
-msgstr ""
+msgstr "%s: Tipo Função Indefinida\n"
 
 #, c-format
 msgid "%s : Function not found\n"
-msgstr ""
+msgstr "%s: Função não encontrada\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
 msgstr ""
+"%s : Tamanho Indeterminado. in(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
-msgstr ""
+msgstr "%s: Erro de alocação.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
 msgstr ""
+"%s : Tamanho Indeterminado. in2(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
+"%s : Tipo Indeterminado. intyp(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
 msgstr ""
+"%s : Tamanho Indeterminado. out(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
@@ -197,31 +206,31 @@ msgstr ""
 
 #, c-format
 msgid "%s : Third argument must be a scalar.\n"
-msgstr ""
+msgstr "%s: Terceiro argumetno deve ser um escalar.\n"
 
 #, c-format
 msgid "%s : Fourth argument must be a Tlist.\n"
-msgstr ""
+msgstr "%s: Quarto argumento deve ser uma Tlist.\n"
 
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
-msgstr ""
+msgstr "%s: Segundo elemento de sim deve ser uma lista.\n"
 
 #, c-format
 msgid "%s : sim.opar must be a list.\n"
-msgstr ""
+msgstr "%s : sim.opar deve ser uma lista.\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
-msgstr ""
+msgstr "%s : Parâmetro sim.nb do lado direito incompatível.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have at least four elements.\n"
-msgstr ""
+msgstr "%s: Sexto argumento deve ter no mínimo quatro elementos.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have a maximum of seven elements.\n"
-msgstr ""
+msgstr "%s: Sexto argumento deve ter no máximo sete elementos.\n"
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
@@ -229,53 +238,57 @@ msgstr ""
 
 #, c-format
 msgid "%s : error\n"
-msgstr ""
+msgstr "%s: erro\n"
 
 #, c-format
 msgid ""
 "%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
 msgstr ""
+"%s : erro. Tipo %d de matriz de escalar double ainda não é suportada para "
+"outtb.\n"
 
 #, c-format
 msgid ""
 "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
+"%s : erro. Tipo %d de matriz de escalar int ainda não é suportada para "
+"outtb.\n"
 
 #, c-format
 msgid "%s : error. Type %d not yet supported for outtb.\n"
-msgstr ""
+msgstr "%s : erro. Tipo %d ainda não é suportado para outtb.\n"
 
 msgid "scheduling problem"
-msgstr ""
+msgstr "problema de agendamento"
 
 msgid "input to zero-crossing stuck on zero"
 msgstr ""
 
 msgid "event conflict"
-msgstr ""
+msgstr "conflito de evento"
 
 msgid "algebraic loop detected"
-msgstr ""
+msgstr "laço algébrico detectado"
 
 msgid "cannot allocate memory"
-msgstr ""
+msgstr "Não é possível alocar memória"
 
 #, c-format
 msgid "the block %d has been called with input out of its domain"
-msgstr ""
+msgstr "o bloco %d foi chamado com entrada fora do seu domínio"
 
 msgid "singularity in a block"
-msgstr ""
+msgstr "singularidade em um bloco"
 
 msgid "block produces an internal error"
-msgstr ""
+msgstr "o bloco produz um erro interno"
 
 msgid "initial conditions not converging"
-msgstr ""
+msgstr "condições iniciais não convergindo"
 
 #, c-format
 msgid "cannot allocate memory in block=%d"
-msgstr ""
+msgstr "não é possível alocar memória no bloco=%d"
 
 msgid "sliding mode condition, cannot integrate"
 msgstr ""
@@ -289,9 +302,13 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
+"Você mudou um parâmetro no seu modelo, mas o modelo foi compilado para usar "
+"um arquivo XML contendo valores iniciais e parâmetros. Assim, você deve "
+"recompilar seu diagrama Scicos ou reinicializar a interface para gerar o "
+"arquivo XML com novos parâmetros."
 
 msgid "Undefined data type."
-msgstr ""
+msgstr "Tipo de dado indefinido."
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -299,9 +316,13 @@ msgid ""
 "relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
 "model. This will be corrected in the next version"
 msgstr ""
+"O número de parâmetros fornecido pelos Scicos é diferente do esperado pelo "
+"código gerado pelo compilador Modelica. Você deve ter perdido um parâmetro "
+"ao usar a propriedade FIXED (i.e. fixed=false) em um modelo Modelica. Isto "
+"será corrigido na próxima versão."
 
 msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
-msgstr ""
+msgstr "IDA_MEM_NULL: O argumento ida_mem era NULL"
 
 msgid ""
 "IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
@@ -311,7 +332,7 @@ msgid ""
 msgstr ""
 
 msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
-msgstr ""
+msgstr "IDA_NO_MALLOC: indicando que ida_mem não foi alocado."
 
 msgid ""
 "IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
@@ -322,6 +343,8 @@ msgid ""
 "IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
 "user for some internal step."
 msgstr ""
+"IDA_TOO_MUCH_ACC: O solucionador poderá não satisfazer a precisão exigida "
+"pelo usuário para algum passo interno."
 
 msgid ""
 "IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
@@ -333,14 +356,20 @@ msgid ""
 "iterations. or IDA_solve->Convergence test failures occurred too many times "
 "(= MXNCF = 10) during one internal step. "
 msgstr ""
+"IDA_CONV_FAIL: IDACalcIC->Falha em obter convergência das iterações de "
+"Newton. Ou IDA_solve->Falhas no teste de convergência ocorreram muitas vezes "
+"(= MXNCF = 10) durante um passo interno. "
 
 msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
 msgstr ""
+"IDA_LINIT_FAIL: A rotina de inicialização do solucionador linear falhou."
 
 msgid ""
 "IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
 "error."
 msgstr ""
+"IDA_LSETUP_FAIL: A rotina de ajuste do solucionador linear teve um erro não "
+"recuperável."
 
 msgid ""
 "IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
@@ -428,6 +457,9 @@ msgid ""
 "Modelica model, you can try with the initialization GUI to try with other "
 "nonlinear solvers."
 msgstr ""
+"IDACalc não pode encontrar a condição inicial neste ponto. Se você está "
+"usando um modelo Modelica, você pode tentar com a inicialização GUI para "
+"tentar com outros solucionadores não lineares."
 
 msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
 msgstr ""
@@ -977,7 +1009,11 @@ msgstr ""
 " erro no Jacobiano"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1149,42 +1185,6 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Erro: Um bloco scifunc não foi definido."
 
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
-
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
@@ -1235,49 +1235,26 @@ msgid "Evaluation problem: Unknown block"
 msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr ""
+msgstr "Desculpe-me. Somente linguagens C ou FORTRAN são suportadas"
 
 msgid "Sorry file name not defined in "
-msgstr ""
-
-#, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
+msgstr "Desculpe-me. Nome de arquivo não definido em "
 
 #, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
-msgstr ""
+msgstr "%s: Diagrama vazio"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""
+"O nome da variável %s não pode ser usado como um parâmetro de bloco: ignorado"
 
 msgid "scs_show active..."
-msgstr ""
+msgstr "scs_show ativo..."
 
 #, c-format
 msgid "Scilab Graphics of %s"
-msgstr ""
+msgstr "Gráficos Scilab de %s"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -1285,11 +1262,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr ""
+msgstr "%s: dimensão inválida para '%s', esperando por %s"
 
 #, c-format
 msgid "%s: incorrect type for '%s', getting %s"
-msgstr ""
+msgstr "%s: tipo incorreto para '%s', obtendo %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

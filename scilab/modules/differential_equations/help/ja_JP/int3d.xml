@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int3d" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int3d</refname>
     <refpurpose>求積法および立体求積法により3次元積分を定義</refpurpose>
@@ -119,12 +116,12 @@
     <para>
       この関数は指定したベクトルの定積分に関する近似値を計算します.
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
     <para>ただし,積分区間は  NUMTET個の4面体で以下のように定義されます</para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
@@ -186,7 +183,7 @@ Z=[0;0;0;1];
 // computes the integrand exp(x*x+y*y+z*z) over the 
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-//integration over a cube  -1<;=x<=1;-1<=y<=1;-1<=z<=1
+//integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
 
 //  bottom  -top-     right    -left-   front   -rear- 
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          

@@ -13,27 +13,22 @@
 
 #include "GetUicontrolSliderStep.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolSliderStep(sciPointObj* sciObj)
+int GetUicontrolSliderStep(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
-    {
-      if (pUICONTROL_FEATURE(sciObj)->sliderStep == NULL) /* No user defined value */
-        {
-          double sliderStep[2];
-          sliderStep[0] = 0.01 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min);
-          sliderStep[1] = 0.1 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min);
-          return sciReturnMatrix(sliderStep, 1, 2);
-        }
-      else
-        {
-          return sciReturnMatrix(pUICONTROL_FEATURE(sciObj)->sliderStep, 1, 2);
-        }
-    }
+  double *sliderStep = NULL;
+  int status = FALSE;
+
+  getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), jni_double_vector, (void**) &sliderStep);
+
+  if (sliderStep != NULL)
+  {
+      status = sciReturnRowVector(_pvCtx, sliderStep, 2);
+      delete[] sliderStep;
+      return status;
+  }
   else
-    {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "SliderStep");
+  {
+      Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "SliderStep");
       return FALSE;
-    }
+  }
 }

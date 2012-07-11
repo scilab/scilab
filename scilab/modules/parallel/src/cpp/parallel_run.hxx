@@ -302,14 +302,18 @@ namespace
             }
             if (dynamic_scheduling)
             {
+#ifdef _OPENMP
 #pragma omp parallel for private(i) schedule(dynamic, chunk_size)
-                for(i=0; i < n; ++i)
+#endif
+                for(i=0; i < (signed int)n; ++i)
                 {
                     callF(pvApiCtx, i);
                 }
             } else {
+#ifdef _OPENMP
 #pragma omp parallel for private(i)  schedule(static, chunk_size)
-                for(i=0; i < n; ++i)
+#endif
+                for(i=0; i < (signed int)n; ++i)
                 {
                     callF(pvApiCtx, i);
                 }

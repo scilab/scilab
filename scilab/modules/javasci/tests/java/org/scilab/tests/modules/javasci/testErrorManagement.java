@@ -11,8 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.types.ScilabDouble;
@@ -24,21 +24,21 @@ import org.scilab.modules.javasci.JavasciException.ScilabErrorException;
 public class testErrorManagement {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assertTrue(sci.open());
     }
 
 
-    @Test(sequential = true)
+    @Test()
     public void getLastErrorCodeTest() throws NullPointerException, JavasciException {
         assertEquals(sci.getLastErrorCode(), 0); // No error
         sci.close();
@@ -51,7 +51,7 @@ public class testErrorManagement {
         sci.exec("errclear();");
     }
 
-    @Test(sequential = true)
+    @Test()
     public void getLastErrorMessageTest() throws NullPointerException, JavasciException {
         sci.exec("errclear();"); // No error by default
         assertTrue(sci.getLastErrorMessage().equals(""));
@@ -70,7 +70,7 @@ public class testErrorManagement {
         assertEquals(sci.getLastErrorMessage().length(), 0);
     }
 
-    @Test(sequential = true)
+    @Test()
     public void getLastErrorMessageWithExceptionNonErrorTest() throws NullPointerException, JavasciException {
         sci.execException("errclear();"); // No error by default
         assertTrue(sci.getLastErrorMessage().equals(""));
@@ -79,7 +79,7 @@ public class testErrorManagement {
         sci.execException("errclear();");
     }
 
-    @Test(sequential = true)
+    @Test()
     public void getLastErrorMessageWithExceptionNonError2Test() throws NullPointerException, JavasciException {
         sci.execException("errclear();"); // No error by default
         assertTrue(sci.getLastErrorMessage().equals(""));
@@ -87,14 +87,14 @@ public class testErrorManagement {
         sci.execException("a=rand(10,10);");//no error
         assertEquals(sci.getLastErrorMessage().length(), 0);
     }
-    
-    
-    @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
+
+
+    @Test( expected = ScilabErrorException.class)
     public void getLastErrorMessageWithExceptionWithErrorTest() throws NullPointerException, ScilabErrorException {
         sci.execException("a+b"); //undefined a & b
     }
 
-    @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
+    @Test( expected = ScilabErrorException.class)
     public void getLastErrorMessageWithExceptionWithError2Test() throws NullPointerException, ScilabErrorException {
         sci.execException("a+b*"); //undefined a & b
     }
@@ -102,7 +102,7 @@ public class testErrorManagement {
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
     }

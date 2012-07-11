@@ -1,25 +1,28 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET 
- * Copyright (C) 2009 - DIGITEO - Allan CORNET 
- * 
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#if _MSC_VER
+#include <windows.h>
+#endif
 #include "gw_sound.h"
+#include "os_strdup.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "BOOL.h"
-#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BEEP_ON "on"
 #define BEEP_OFF "off"
@@ -80,7 +83,7 @@ int sci_beep(char *fname, void* pvApiCtx)
 			return 0;
 		}
 
-		if ( (m1 != n1) && (n1 != 1) ) 
+		if ( (m1 != n1) && (n1 != 1) )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
@@ -150,7 +153,7 @@ int sci_beep(char *fname, void* pvApiCtx)
 void doBeep(void)
 {
 #ifdef _MSC_VER
-	MessageBeep((UINT)-1);
+	MessageBeep(0xFFFFFFFF);
 #else
 	puts("\a");
 #endif

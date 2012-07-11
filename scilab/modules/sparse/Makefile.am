@@ -152,11 +152,15 @@ sci_gateway/fortran/sci_f_fadj2sp.f \
 sci_gateway/fortran/sci_f_sfinit.f \
 sci_gateway/fortran/sci_f_ta2lpd.f
 
-libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/elementary_functions/includes \
-				-I$(top_srcdir)/modules/operations/includes
+libscisparse_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/operations/includes/ \
+				$(AM_CPPFLAGS)
+
 #-Isrc/c/
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscisparse.la
@@ -166,16 +170,14 @@ noinst_LTLIBRARIES = libscisparse-algo.la libscisparse.la
 endif
 
 
-libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisparse_algo_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES)
 libscisparse_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscisparse_algo_la_CFLAGS = $(libscisparse_la_CFLAGS)
+libscisparse_algo_la_CPPFLAGS = $(libscisparse_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscisparse_la_CFLAGS)
-
+INCLUDE_FLAGS = $(libscisparse_la_CPPFLAGS)
 
 libscisparse_la_LIBADD = libscisparse-algo.la
 
@@ -185,7 +187,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA =  license.txt
+libscisparse_la_root_DATA =  license.txt 
 
 
 #### sparse : init scripts ####

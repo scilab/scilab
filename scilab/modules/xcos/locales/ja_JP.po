@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-28 02:07+0000\n"
+"PO-Revision-Date: 2012-05-15 14:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -77,7 +77,7 @@ msgid ""
 msgstr "Batikライブラリを読み込めません."
 
 msgid "parent diagram not found."
-msgstr ""
+msgstr "親ダイアグラムが見つかりません."
 
 msgid "Preview"
 msgstr "プレビュー"
@@ -685,14 +685,8 @@ msgstr "時間の誤差"
 msgid "Max integration time interval"
 msgstr "最大積分時間間隔"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "ソルバ 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "ソルバーの種類"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "最大反復サイズ(0は制限なし)"
@@ -750,14 +744,20 @@ msgstr "ブロック毎の実行トレースとデバッグブロックコール
 msgid "Debug block calls without trace"
 msgstr "トレースなしのデバッグブロックコール"
 
+msgid "All supported formats"
+msgstr ""
+
 msgid "Scicos file"
 msgstr "Scicosファイル"
 
 msgid "Xcos file"
 msgstr "Xcosファイル"
 
-msgid "Scilab file"
-msgstr "Scilabファイル"
+msgid "Xcos (zip) file"
+msgstr "Xcos (zip) ファイル"
+
+msgid "Scilab Open Data file"
+msgstr "Scilab オープンデータファイル"
 
 msgid "Masked SuperBlock editor"
 msgstr "マスクされたスーパーブロックエディタ"
@@ -998,10 +998,6 @@ msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ハンドル型を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
@@ -1056,14 +1052,6 @@ msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr "%s: ブロック %s は利用できなくなりました, ダイアグラムを同等なブロックに更新してください."
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s:  %s からデータをインポートできません"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: 'XX' を %s にエキスポートできません"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1173,10 +1161,6 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."

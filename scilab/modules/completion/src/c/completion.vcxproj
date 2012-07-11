@@ -80,18 +80,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../operations/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -107,18 +108,19 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../operations/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -132,7 +134,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../operations/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -141,11 +143,12 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -164,7 +167,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../operations/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -173,11 +176,12 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -190,7 +194,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\completionDictionary.cpp" />
+    <ClCompile Include="..\cpp\FieldsManager.cpp" />
+    <ClCompile Include="..\cpp\getfields.cpp" />
+    <ClCompile Include="..\cpp\XMLFieldsGetter.cpp" />
     <ClCompile Include="completeLine.c" />
     <ClCompile Include="completeLine_wrap_java.c" />
     <ClCompile Include="completion.c" />
@@ -201,6 +207,7 @@
     <ClCompile Include="getCommonPart.c" />
     <ClCompile Include="getfieldsdictionary.c" />
     <ClCompile Include="getfilesdictionary.c" />
+    <ClCompile Include="getmacrosdictionary.c" />
     <ClCompile Include="getPartLine.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_completion.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_completion.c" />
@@ -208,7 +215,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\completeLine.h" />
-    <ClInclude Include="..\cpp\completionDictionary.h" />
+    <ClInclude Include="..\..\includes\getfields.h" />
+    <ClInclude Include="..\cpp\FieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\FieldsManager.hxx" />
+    <ClInclude Include="..\cpp\XMLFieldsGetter.hxx" />
     <ClInclude Include="completeLine_wrap_java.h" />
     <ClInclude Include="..\..\includes\completion.h" />
     <ClInclude Include="completion_generic.h" />
@@ -217,6 +227,7 @@
     <ClInclude Include="..\..\includes\getCommonPart.h" />
     <ClInclude Include="..\..\includes\getfieldsdictionary.h" />
     <ClInclude Include="getfilesdictionary.h" />
+    <ClInclude Include="..\..\includes\getmacrosdictionary.h" />
     <ClInclude Include="..\..\includes\getPartLine.h" />
     <ClInclude Include="..\..\includes\gw_completion.h" />
     <ClInclude Include="toolsdictionary.h" />
@@ -224,19 +235,13 @@
   <ItemGroup>
     <None Include="..\..\locales\completion.pot" />
     <None Include="..\jni\Completion.i" />
-    <None Include="LibScilab_Import.def" />
+    <None Include="core_import.def" />
     <None Include="..\..\completion.iss" />
     <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\fileio.lib" />
-    <Library Include="..\..\..\..\bin\graphics.lib" />
-    <Library Include="LibScilab.lib" />
-    <Library Include="..\..\..\..\bin\MALLOC.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
@@ -270,8 +275,8 @@
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+    <ProjectReference Include="..\..\..\xml\xml.vcxproj">
+      <Project>{ef5402da-29fd-4f1b-b98b-d284d4e27c15}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

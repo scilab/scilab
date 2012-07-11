@@ -30,7 +30,7 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_printsetupbox(char *fname, unsigned long l)
 {
-    static int n1;
+    static int n1 = 0;
     int *paramoutINT = new int[1];
 
     CheckRhs(0, 0);

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="frfit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>frfit</refname>
     <refpurpose>周波数応答フィッティング</refpurpose>
@@ -10,9 +7,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>sys=frfit(w,fresp,order)
-[num,den]=frfit(w,fresp,order)
-sys=frfit(w,fresp,order,weight)
-[num,den]=frfit(w,fresp,order,weight)</synopsis>
+      [num,den]=frfit(w,fresp,order)
+      sys=frfit(w,fresp,order,weight)
+      [num,den]=frfit(w,fresp,order,weight)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -26,19 +24,25 @@ sys=frfit(w,fresp,order,weight)
       <varlistentry>
         <term>fresp</term>
         <listitem>
-          <para>周波数応答の複素ベクトル (<literal>w</literal>と同じ大きさ)</para>
+          <para>
+            周波数応答の複素ベクトル (<literal>w</literal>と同じ大きさ)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>order</term>
         <listitem>
-          <para>整数 (指定する次数, <literal>den</literal>の次数)</para>
+          <para>
+            整数 (指定する次数, <literal>den</literal>の次数)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>weight</term>
         <listitem>
-          <para>正の実数ベクトル (デフォルト値: <literal>ones(w)</literal>).</para>
+          <para>
+            正の実数ベクトル (デフォルト値: <literal>ones(w)</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,12 +55,14 @@ sys=frfit(w,fresp,order,weight)
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sys=frfit(w,fresp,order,weight)</literal> は,
-	周波数応答<literal>G(w(i))</literal>が<literal>fresp(i)</literal>に一致する,
-	すなわち,<literal>freq(num,den,%i*w)</literal>が<literal>fresp</literal>に
-	近くなるような,指定した次数<literal>order</literal>の
-	双安定の伝達関数 <literal>G(s)=sys=num/den</literal>を返します.
-    <literal>weight(i)</literal>は<literal>w(i)</literal>に関する重みです.</para>
+    <para>
+      <literal>sys=frfit(w,fresp,order,weight)</literal> は,
+      周波数応答<literal>G(w(i))</literal>が<literal>fresp(i)</literal>に一致する,
+      すなわち,<literal>freq(num,den,%i*w)</literal>が<literal>fresp</literal>に
+      近くなるような,指定した次数<literal>order</literal>の
+      双安定の伝達関数 <literal>G(s)=sys=num/den</literal>を返します.
+      <literal>weight(i)</literal>は<literal>w(i)</literal>に関する重みです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

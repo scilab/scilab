@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <Dbghelp.h>
 #include "dllinfo.h"
+#include "MALLOC.h"
+
 /*---------------------------------------------------------------------------*/
 #pragma comment(lib,"Dbghelp.lib")
 /*---------------------------------------------------------------------------*/

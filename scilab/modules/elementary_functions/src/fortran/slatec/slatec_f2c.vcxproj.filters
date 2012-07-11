@@ -16,6 +16,9 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{7dd1223c-31ad-4a51-a8be-fe39aaa3d3cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{40bb1e28-08a9-4709-8544-1d4e4d6f98aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="balanc.c">
@@ -70,9 +73,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dbesk1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dbesks.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dbesy.c">
@@ -338,9 +338,6 @@
     <f2c_rule Include="dbesk1.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dbesks.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dbesy.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -553,7 +550,17 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

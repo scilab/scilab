@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy 
-* 
+* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -28,16 +28,18 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Call rubber box on a figure
- * @param pFigure figure on which to apply the rubber box
- * @param isClick specify whether the rubber box is selected by mouse click
- *        or a sequence of press/release.
- * @param intialRect if not null, specify the initial rectangle to use
- * @param[out] endRect array containing the coordinates of two opposite corners of
- *                     the rubber box
- * @param[out] usedButton Scilab code of the button used to terminate the rubber box
+ * Start interactive zoom on given figure
  */
-RENDERER_IMPEXP void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
+RENDERER_IMPEXP void startInteractiveZoom(char *pstObjUID);
+
+/**
+ * Call rubber box on a figure
+ * @param pstObjUID figure UID on which to apply the rubber box
+ * @param intialRect if not null, specify the initial rectangle to use
+ * @return [usedButton x y z l L h]
+ */
+RENDERER_IMPEXP double *javaClickRubberBox(char *pstObjUID, double *initialRect, int iRectSize);
+    RENDERER_IMPEXP double *javaDragRubberBox(char *pstObjUID);
 
 /**
  * Perform an interactive zoom of the figure using a rectangular selection.

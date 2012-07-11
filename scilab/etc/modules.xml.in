@@ -14,7 +14,6 @@
 <modules>
     <module name="core" activate="yes"/>
     <module name="types" activate="yes"/>
-    <module name="double" activate="yes"/>
     <module name="elementary_functions" activate="yes"/>
     <module name="boolean" activate="yes"/>
     <module name="integer" activate="yes"/>

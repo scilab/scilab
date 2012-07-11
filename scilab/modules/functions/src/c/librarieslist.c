@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,6 @@
 #include "stackinfo.h"
 #include "MALLOC.h"
 #include "os_strdup.h"
-#include "call_scilab.h"
 /*--------------------------------------------------------------------------*/
 static int getnumberoflibraries(void);
 /*--------------------------------------------------------------------------*/
@@ -40,10 +39,10 @@ char **getlibrarieslist(int *sizearray)
 			for (j=1;j<Lused+1;++j)
 			{
 				char *NameVariable = getLocalNamefromId(j);
-				if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
+				if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable)))
 				{
 					int *header = istk( iadr(*Lstk(fin)));
-					if ( (header) && (header[0] == sci_lib ) ) 
+					if ( (header) && (header[0] == sci_lib ) )
 					{
 						librarieslist[i] = os_strdup(NameVariable);
 						i++;
@@ -78,10 +77,10 @@ static int getnumberoflibraries(void)
 	{
 		int lw = 0; int fin = 0;
 		char *NameVariable = getLocalNamefromId(j);
-		
-		if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
+
+		if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable)))
 		{
-			int *header = istk( iadr(*Lstk(fin)));  
+			int *header = istk( iadr(*Lstk(fin)));
 			if ( (header) && (header[0] == sci_lib ) )  nbrlibraries++;
 		}
 		if (NameVariable) {FREE(NameVariable);NameVariable = NULL;}

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="feval" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>feval</refname>
     <refpurpose>関数(または外部ルーチン)を評価する</refpurpose>
@@ -89,7 +86,7 @@ feval(1:10,1:5,'parab')   //See ffeval.f file
 feval(1:10,'parab')
 // For dynamic link (see example ftest in ffeval.f)
 // you can use the link command (the parameters depend on the machine):
-// unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest') 
+// unix('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest') 
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

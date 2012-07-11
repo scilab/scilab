@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="brackets">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>brackets</refname>
     <refpurpose>([,]) left and right brackets</refpurpose>
@@ -20,7 +17,7 @@
         <term>a11,a12,...  </term>
         <listitem>
           <para>
-            any matrix (real, polynomial, rational,<literal>syslin</literal> list ...) with appropriate dimensions
+            any matrix (real, polynomial, rational, <literal>syslin</literal> list ...) with appropriate dimensions
           </para>
         </listitem>
       </varlistentry>
@@ -37,7 +34,7 @@
     <para>
       Left and right brackets are used to note vector and matrix concatenation.
       These symbols are also used to denote a multiple left-hand-side for a function 
-      call
+      call.
     </para>
     <para>
       Inside concatenation brackets, blank or comma characters mean 
@@ -68,6 +65,9 @@ s=poly(0,'s');[1/s,2/s]
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="parents">parents</link>
+      </member>
       <member>
         <link linkend="comma">comma</link>
       </member>

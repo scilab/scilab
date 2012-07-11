@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="power">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>power</refname>
-    <refpurpose> power operation (^,.^)   </refpurpose>
+    <refpurpose>(^,.^) power operation</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,28 +33,26 @@
     <itemizedlist>
       <listitem>
         <para>
-          <literal>"(A:square)^(b:scalar)"</literal>If <literal>A</literal> is a square matrix and <literal>b</literal> is a scalar then  <literal>A^b</literal> is the matrix <literal>A</literal> to the power <literal>b</literal>.
+          If <literal>A</literal> is a square matrix and <literal>b</literal> is a scalar then  <literal>A^b</literal> is the matrix <literal>A</literal> to the power <literal>b</literal>.
         </para>
       </listitem>
       <listitem>
         <para>
-          <literal>"(A:matrix).^(b:scalar)"</literal>If <literal>b</literal> is a scalar and <literal>A</literal> a matrix then
+          If <literal>b</literal> is a scalar and <literal>A</literal> a matrix then
           <literal>A.^b</literal>  is the matrix formed by the element of
-          <literal>A</literal> to the power <literal>b</literal> (elementwise power). If
+          <literal>A</literal> to the power <literal>b</literal> (element-wise power). If
           <literal>A</literal> is a vector and <literal>b</literal> is a scalar then
           <literal>A^b</literal> and <literal>A.^b</literal> performs the same operation
-          (i.e elementwise power). 
+          (i.e. element-wise power). 
         </para>
       </listitem>
       <listitem>
         <para>
-          <literal>"(A:scalar).^(b:matrix)"</literal>
           If <literal>A</literal> is a scalar  and <literal>b</literal> is a matrix (or vector) <literal>A^b</literal> and <literal>A.^b</literal> are the matrices (or vectors) formed by  <literal> a^(b(i,j))</literal>.
         </para>
       </listitem>
       <listitem>
         <para>
-          <literal>"(A:matrix).^(b:matrix)"</literal>
           If <literal>A</literal> and <literal>b</literal>  are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
         </para>
       </listitem>
@@ -94,6 +89,9 @@ s^(1:10)
     <simplelist type="inline">
       <member>
         <link linkend="exp">exp</link>
+      </member>
+      <member>
+        <link linkend="hat">hat</link>
       </member>
     </simplelist>
   </refsection>

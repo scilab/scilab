@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-10 16:19+0000\n"
+"PO-Revision-Date: 2012-05-17 16:09+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 #, c-format
@@ -101,6 +101,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась структура данных %s.\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr "%s : Неверный тип входного аргумента №%d: ожидалась система armax.\n"
 
 #, c-format
 msgid ""
@@ -851,7 +855,7 @@ msgstr ""
 "система.\n"
 
 msgid "Phase ()"
-msgstr ""
+msgstr "Фаза ()"
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

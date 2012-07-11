@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="comp" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>comp</refname>
     <refpurpose>scilab function compilation</refpurpose>
@@ -40,16 +35,18 @@
     </para>
     <para>The online definition as well as the short syntax of the commands
       <literal>exec</literal> and <literal>deff</literal> generate compiled
-      functions. So comp has to be used in very particular cases. To produce
+      functions. So <literal>comp</literal> has to be used in very particular cases. To produce
       uncompiled functions one must use <link linkend="exec">exec</link> or
       <link linkend="deff">deff</link> with the option <literal>"n"</literal>.
     </para>
-    <para>The value opt==2 causes the function to be compiled "for profiling".
+    <para>
+      The value <literal>opt==2</literal> causes the function to be compiled "for profiling".
       Note that now it is possible to add profiling instruction after
       compilation using the <link linkend="add_profiling">add_profiling</link> function.
     </para>
-    <para>The obsolete opt==1 option was specific to code analysis purposes and
-      is now ignored, i.e treated as opt==0.
+    <para>
+      The obsolete <literal>opt==1</literal> option was specific to code analysis purposes and
+      is now ignored, i.e treated as <literal>opt==0</literal>.
     </para>
     <para>Note: the compilation takes part "in place", i.e the original
       function is modified and no new object is created.

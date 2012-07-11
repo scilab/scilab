@@ -39,7 +39,6 @@ scicos_blocks
 spreadsheet
 shell
 console
-completion
 history_manager
 matio
 m2sci
@@ -72,3 +71,4 @@ intersci
 graph
 commons
 types
+preferences

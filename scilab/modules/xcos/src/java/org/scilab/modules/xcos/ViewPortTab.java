@@ -5,23 +5,18 @@ import java.util.ListIterator;
 import java.util.UUID;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
 
-public final class ViewPortTab extends SwingScilabTab implements Tab {
+public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-viewport-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-viewport-default-tab";
 
@@ -151,52 +146,19 @@ public final class ViewPortTab extends SwingScilabTab implements Tab {
         setContentPane(outline);
     }
 
-    private Window createDefaultWindow() {
-        final Window win;
+    private SwingScilabWindow createDefaultWindow() {
+        final SwingScilabWindow win;
 
-        final Window configuration = WindowsConfigurationManager.createWindow(
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(
                 DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {
-            win = ScilabWindow.createWindow();
+            win = new SwingScilabWindow();
         }
 
         win.addTab(this);
         return win;
     }
 
-    /*
-     * Implement Tab
-     */
-
-    @Deprecated
-    @Override
-    public void addToolBar(ToolBar toolBarToAdd) {
-        // no toolbar
-    }
-
-    @Deprecated
-    @Override
-    public void addMenuBar(MenuBar menuBarToAdd) {
-        // no menubar
-    }
-
-    @Deprecated
-    @Override
-    public void addInfoBar(TextBox infoBarToAdd) {
-        // no infobar
-    }
-
-    @Deprecated
-    @Override
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    @Deprecated
-    @Override
-    public Window getParentWindow() {
-        return createDefaultWindow();
-    }
 }

@@ -20,6 +20,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "mput.h"
 #include "localization.h"
 #include "Scierror.h"

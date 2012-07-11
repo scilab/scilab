@@ -11,20 +11,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mean">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mean</refname>
     <refpurpose>ベクトル/行列の要素の平均 (行平均, 列平均)
-  </refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>y=mean(x)
-y=mean(x,'r')
-y=mean(x,'c')
-y=mean(x,'m')</synopsis>
+      y=mean(x,'r')
+      y=mean(x,'c')
+      y=mean(x,'m')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -45,16 +43,26 @@ y=mean(x,'m')</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>x</literal>がベクトルまたは行列の場合, <literal>y=mean(x)</literal> は,
-    <literal>x</literal>の全ての要素の平均をスカラー<literal>y</literal>に返します.</para>
-    <para><literal>y=mean(x,'r')</literal> (または等価的に, <literal>y=mean(x,1)</literal>)
-    は行単位の平均です. 行ベクトルを返します: <literal>y(j)=
-    mean(x(:,j))</literal></para>
-    <para><literal>y=mean(x,'c')</literal> (または等価的に,<literal>y=mean(x,2)</literal>)
-    は列単位の平均ですn. 列ベクトルを返します: <literal>y(i)=
-    mean(x(i,:))</literal></para>
-    <para><literal>y=mean(x,'m')</literal> は,
-	xの最初の1でない次元に沿った平均です(Matlabとの互換用).</para>
+    <para>
+      <literal>x</literal>がベクトルまたは行列の場合, <literal>y=mean(x)</literal> は,
+      <literal>x</literal>の全ての要素の平均をスカラー<literal>y</literal>に返します.
+    </para>
+    <para>
+      <literal>y=mean(x,'r')</literal> (または等価的に, <literal>y=mean(x,1)</literal>)
+      は行単位の平均です. 行ベクトルを返します: <literal>y(j)=
+        mean(x(:,j))
+      </literal>
+    </para>
+    <para>
+      <literal>y=mean(x,'c')</literal> (または等価的に,<literal>y=mean(x,2)</literal>)
+      は列単位の平均ですn. 列ベクトルを返します: <literal>y(i)=
+        mean(x(i,:))
+      </literal>
+    </para>
+    <para>
+      <literal>y=mean(x,'m')</literal> は,
+      xの最初の1でない次元に沿った平均です(Matlabとの互換用).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,6 +19,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -26,49 +29,72 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetUicontrolPosition.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    char* type = NULL;
+    BOOL status = FALSE;
 
-  if(sciGetEntityType(pobj) == SCI_UICONTROL || sciGetEntityType(pobj) == SCI_FIGURE)
-  {
-    SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
-    return SET_PROPERTY_SUCCEED ;
-  }
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "position");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( sciGetAutoPosition( pobj ) )
-  {
-    sciSetAutoPosition( pobj, FALSE ) ;
-  }
-
-  if ( sciGetEntityType(pobj)== SCI_UIMENU )
-  {
-    pUIMENU_FEATURE(pobj)->MenuPosition = (int) getDoubleFromStack( stackPointer ) ;
-    return SET_PROPERTY_SUCCEED ;
-  }
-  else if( sciGetEntityType(pobj) == SCI_LABEL )
-  {
-    double * values = getDoubleMatrixFromStack( stackPointer ) ;
-    double curPos[3];
-    sciGetTextPos(pobj, curPos);
-    return sciSetTextPos( pobj, values[0], values[1], curPos[2] ) ;
-  }
-  else if ( sciGetEntityType(pobj) == SCI_LEGEND )
+    if (strcmp(type, __GO_UICONTROL__) == 0 || strcmp(type, __GO_FIGURE__) == 0)
     {
-      double * values = getDoubleMatrixFromStack( stackPointer ) ;
-      return sciSetLegendPos( pobj, values ) ;
+        return SetUicontrolPosition(pobjUID, stackPointer, valueType, nbRow, nbCol);
     }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"position");
 
-  }
-  return SET_PROPERTY_ERROR ;
+    /* Type test required since a position set requires a 3-element, and 2-element vector
+    for respectively the Label and Legend */
+    if (strcmp(type, __GO_LABEL__) == 0)
+    {
+        double* values = getDoubleMatrixFromStack( stackPointer );
+        double* currentPosition;
+        double labelPosition[3];
+
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
+
+        labelPosition[0] = values[0];
+        labelPosition[1] = values[1];
+        labelPosition[2] = currentPosition[2];
+
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, labelPosition, jni_double_vector, 3);
+
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+            return SET_PROPERTY_ERROR;
+        }
+
+    }
+    else if (strcmp(type, __GO_LEGEND__) == 0)
+    {
+        double * values = getDoubleMatrixFromStack( stackPointer );
+
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
+
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+            return SET_PROPERTY_ERROR;
+        }
+
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

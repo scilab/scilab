@@ -47,7 +47,9 @@ public class RemoveAnchorAction extends DefaultAction {
         ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(sep.getCaretPosition()));
         line.setAnchor(null);
         sep.getXln().repaint();
-        getEditor().getNavigator().update();
+        if (getEditor().getNavigator() != null) {
+            getEditor().getNavigator().update();
+        }
     }
 
     /**

@@ -16,6 +16,9 @@
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
+#include "MALLOC.h"
+#include "localization.h"
+#include "Scierror.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \

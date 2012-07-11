@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="funptr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>funptr</refname>
     <refpurpose>プリミティブのコーディング ( 上級者向け )  </refpurpose>
@@ -31,15 +28,16 @@
   <refsection>
     <title>説明</title>
     <para>
-	プリミティブ<literal>'name'</literal>の
-	内部的なルーチン番号<literal>numptr</literal>を取得するためのユーティリティ関数(上級者専用).
-	<literal>numptr</literal> は,インターフェイス番号 <literal>fun</literal>および
-	そのインターフェイス内のプリミティブのルーチン番号 <literal>fin</literal>により
-	<literal>numptr = 1000*fun + fin</literal> (fin &lt; 1000) のように計算されます.
-	<literal>numptr</literal> により, インターフェイス番号 <literal>fun = floor(numptr/1000)</literal>
-	を得ることができます.
-	この番号は,参照渡しの引数を有する動的インターフェイスにリンクする際に有用です
-	(以下の例を参照).</para>
+      プリミティブ<literal>'name'</literal>の
+      内部的なルーチン番号<literal>numptr</literal>を取得するためのユーティリティ関数(上級者専用).
+      <literal>numptr</literal> は,インターフェイス番号 <literal>fun</literal>および
+      そのインターフェイス内のプリミティブのルーチン番号 <literal>fin</literal>により
+      <literal>numptr = 1000*fun + fin</literal> (fin &lt; 1000) のように計算されます.
+      <literal>numptr</literal> により, インターフェイス番号 <literal>fun = floor(numptr/1000)</literal>
+      を得ることができます.
+      この番号は,参照渡しの引数を有する動的インターフェイスにリンクする際に有用です
+      (以下の例を参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

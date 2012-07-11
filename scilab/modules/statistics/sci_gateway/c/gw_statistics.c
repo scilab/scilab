@@ -16,7 +16,7 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
-{ 
+{
 	{NULL, ""}, //cdfbet
 	{NULL, ""}, //cdfbin
 	{NULL, ""}, //cdfchi
@@ -31,6 +31,6 @@ static gw_generic_table Tab[] =
 };
 /*--------------------------------------------------------------------------*/
 int gw_statistics()
-{  
+{
 	return 0;
 }

@@ -13,6 +13,10 @@
 
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
+#include "MALLOC.h"
+#include "localization.h"
+#include "Scierror.h"
+#include "sciprint.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \

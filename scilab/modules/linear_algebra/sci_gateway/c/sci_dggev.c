@@ -14,7 +14,7 @@
 #include "vfinite.h"
 #include "do_error_number.h"
 #include "MALLOC.h"
-#include "msgs.h"
+//#include "msgs.h"
 #include "assembleEigenvectors.h"
 #include "gw_linear_algebra.h"
 
@@ -189,7 +189,8 @@ int sci_dggev(char *fname, unsigned long fname_len)
     {
         if (INFO <= iColsA)
         {
-            C2F(msgs) (&ONE, &INFO);
+            //YaSp
+            //C2F(msgs) (&ONE, &INFO);
         }
         else
         {

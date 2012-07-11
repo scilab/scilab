@@ -13,7 +13,7 @@
 #include "elementary_functions.h"
 #include "do_error_number.h"
 #include "MALLOC.h"
-#include "msgs.h"
+//#include "msgs.h"
 #include "vfinite.h"
 #include "assembleEigenvectors.h"
 #include "gw_linear_algebra.h"
@@ -307,7 +307,8 @@ static int intzggev_complex(char *fname)
     {
         if (INFO <= iColsA)
         {
-            C2F(msgs) (&ONE, &INFO);
+            //YaSp
+            //C2F(msgs) (&ONE, &INFO);
         }
         else
         {
@@ -564,7 +565,8 @@ static int intzggev_real(char *fname)
     {
         if (INFO <= iColsA)
         {
-            C2F(msgs) (&ONE, &INFO);
+            //YaSp
+            //C2F(msgs) (&ONE, &INFO);
         }
         else
         {

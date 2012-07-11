@@ -15,19 +15,14 @@ package org.scilab.modules.ui_data.filebrowser.actions;
 import java.io.File;
 import java.lang.reflect.Method;
 
-import javax.swing.JTree;
-import javax.swing.tree.TreePath;
-
-import org.scilab.modules.ui_data.FileBrowser;
-import org.scilab.modules.ui_data.filebrowser.ScilabFileBrowserModel;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
-import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Action to open the file in SciNotes
  * @author Calixte DENIZET
  */
-public class OpenFileInSciNotesAction extends CallBack {
+public class OpenFileInSciNotesAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
 
@@ -66,12 +61,12 @@ public class OpenFileInSciNotesAction extends CallBack {
                 File f = new File(path);
                 if (f.exists() && f.canRead() && f.isFile()) {
                     Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                try {
-                                    scin.invoke(null, new Object[]{path});
-                                } catch (Exception e) { e.printStackTrace(); }
-                            }
-                        });
+                        public void run() {
+                            try {
+                                scin.invoke(null, new Object[]{path});
+                            } catch (Exception e) { e.printStackTrace(); }
+                        }
+                    });
                     try {
                         t.start();
                     } catch (Exception e) { }

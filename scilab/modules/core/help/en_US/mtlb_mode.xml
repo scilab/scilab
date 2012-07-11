@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_mode">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mtlb_mode</refname>
     <refpurpose> switch Matlab like operations</refpurpose>
@@ -19,7 +16,7 @@
       <varlistentry>
         <term>mmode</term>
         <listitem>
-          <para>boolean</para>
+          <para>a boolean</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -35,7 +32,7 @@
         <term>Scilab</term>
         <listitem>
           <para/>
-          <programlisting role=""><![CDATA[ 
+          <programlisting role="no-scilab-exec"><![CDATA[ 
 a+[] -->a
 a-[] -->a
 []+a -->a
@@ -46,7 +43,7 @@ a-[] -->a
       <varlistentry>
         <term>Matlab</term>
         <listitem>
-          <programlisting role=""><![CDATA[ 
+          <programlisting role="no-scilab-exec"><![CDATA[ 
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
@@ -56,11 +53,11 @@ a-[] -->[]
       </varlistentry>
     </variablelist>
     <para>
-      <literal> mtlb_mode(%t)</literal>  switches to Matlab evaluation mode for additions and
-      subtractions. <literal> mtlb_mode(%f)</literal>  switches back to Scilab mode.
+      <literal>mtlb_mode(%t)</literal>  switches to Matlab evaluation mode for additions and
+      substractions. <literal>mtlb_mode(%f)</literal>  switches back to Scilab mode.
     </para>
     <para>
-      <literal> mtlb_mode()</literal> return the current mmode' value
+      <literal> mtlb_mode()</literal> return the current value of <literal>mmode</literal>.
     </para>
   </refsection>
   <refsection role="see also">

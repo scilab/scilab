@@ -20,6 +20,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "os_wcsdup.h"
 #include "tokens.h"
 #include "core_math.h"

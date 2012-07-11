@@ -5,6 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+//
 
 //insertion
 v=[1 2 3];

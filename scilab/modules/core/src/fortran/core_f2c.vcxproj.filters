@@ -16,15 +16,15 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{c0aad241-eb42-4258-bad3-febf3b991256}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{8e4c35c7-b5c1-4f00-a18a-ffe8699da3d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allops.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="allowptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="atome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="basnms.c">
@@ -37,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="btofm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="chkvar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clause.c">
@@ -174,25 +171,10 @@
     <ClCompile Include="itosci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lst2vars.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="majmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matz.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matzs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="misops.c">
@@ -309,9 +291,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_debug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -339,22 +318,19 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lines.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_predef.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\withf2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -373,9 +349,6 @@
     <f2c_rule Include="allowptr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="atome.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="basnms.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -386,9 +359,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="btofm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="chkvar.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="clause.f">
@@ -523,25 +493,10 @@
     <f2c_rule Include="itosci.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="logops.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lst2vars.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="macro.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="majmin.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matc.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matz.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matzs.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="misops.f">
@@ -658,9 +613,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_debug.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -688,16 +640,10 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lines.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_predef.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f">
@@ -709,10 +655,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\sci_gateway\core_gateway.xml" />
-    <None Include="..\..\sci_gateway\fundef" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="boolean_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="console_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="data_structures_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="data_structures_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="double_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="fftw_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="fileio_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="integer_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="integer_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="io_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Output_stream_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="string_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="string_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

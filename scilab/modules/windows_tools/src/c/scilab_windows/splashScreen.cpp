@@ -83,6 +83,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     char *ScilabDirectory = NULL;
     char *ImageFilename = NULL;
     wchar_t *wImageFilename = NULL;
+
     size_t len = 0;
     Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 
@@ -120,7 +121,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     wndcls.hCursor = LoadCursor(NULL, IDC_APPSTARTING);
     wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wndcls.lpszClassName = SPLASH_WINDOW_CLASSNAME;
-    wndcls.hIcon = LoadIcon(wndcls.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+    wndcls.hIcon = LoadIcon(wndcls.hInstance, (char*)MAKEINTRESOURCE(IDI_APPLICATION));
 
     if (!RegisterClass(&wndcls))
     {

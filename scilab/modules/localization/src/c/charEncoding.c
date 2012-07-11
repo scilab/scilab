@@ -26,6 +26,8 @@
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
+#include <Windows.h>
+
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
 	char *buf = NULL;

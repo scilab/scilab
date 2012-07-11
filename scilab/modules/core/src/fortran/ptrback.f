@@ -11,6 +11,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C     just for dealing with lists 
       include 'stack.h'
       integer topk ,il
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ptkeep/
+cDEC$ ENDIF            
       common / ptkeep / lwk
       lwk= lstk(topk)
       lstk(topk) = il 
@@ -20,6 +23,9 @@ C     just for dealing with lists
       subroutine ptrback(topk)
       integer topk 
       include 'stack.h'
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ptkeep/
+cDEC$ ENDIF            
       common / ptkeep / lwk
       lstk(topk)=lwk
       return 

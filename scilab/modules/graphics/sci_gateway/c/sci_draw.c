@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,18 +18,17 @@
 #include "stack-c.h"
 #include "gw_graphics.h"
 #include "HandleManagement.h"
-#include "CurrentObjectsManagement.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )
-{ 
+{
 
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 
+#if 0
   if (Rhs == 0)
   {
     sciDrawSingleObj(sciGetCurrentObj()) ;
@@ -44,7 +43,7 @@ int sci_draw( char * fname, unsigned long fname_len )
     size_t stackPointer = 0;
     int i;
 
-    GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer ); 
+    GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
 
     nbObjects = nbRow * nbCol;
 
@@ -64,11 +63,12 @@ int sci_draw( char * fname, unsigned long fname_len )
         return 0;
       }
     }
-      
+
     sciDrawSetOfObj(drawnObjects, nbObjects);
 
     FREE(drawnObjects);
   }
+#endif
 
   LhsVar(1) = 0;
   PutLhsVar();

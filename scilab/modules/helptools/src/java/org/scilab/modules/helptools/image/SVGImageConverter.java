@@ -50,7 +50,7 @@ public class SVGImageConverter implements ExternalImageConverter {
      */
     public static ExternalImageConverter getInstance() {
         if (instance == null) {
-             instance = new SVGImageConverter();
+            instance = new SVGImageConverter();
         }
 
         return instance;
@@ -59,7 +59,7 @@ public class SVGImageConverter implements ExternalImageConverter {
     /**
      * {@inheritDoc}
      */
-    public String convertToImage(String svg, Map<String, String> attributes, File imageFile, String imageName) {
+    public String convertToImage(String currentFile, String svg, Map<String, String> attributes, File imageFile, String imageName) {
         return convertToPNG(new TranscoderInput(new StringReader(svg)), imageFile, imageName);
     }
 

@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
 # Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
-#
+# 
 # This file is distributed under the same license as the Scilab package.
 
 include $(top_srcdir)/Makefile.incl.am
@@ -15,8 +15,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 		    sci_gateway/c/sci_matfile_listvar.c \
 		    sci_gateway/c/sci_matfile_varreadnext.c \
 		    sci_gateway/c/sci_matfile_varwrite.c
-
-GATEWAY_CPP_SOURCES = 
 
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
@@ -38,41 +36,36 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/GetStructVariable.c \
 		  src/c/GetSparseVariable.c
 
-libscimatio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(MATIO_LIBS)
+libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
 
 else
 
-MATIO_C_SOURCES 	= src/nomatio/nomatio.c
-GATEWAY_CPP_SOURCES 	= src/nomatio/nomatio_gw.cpp
+MATIO_C_SOURCES = src/nomatio/nomatio.c
+GATEWAY_CPP_SOURCES	= src/nomatio/nomatio_gw.cpp
 
 endif
 
-libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/matio/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			$(MATIO_CFLAGS)
-
 libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/functions_manager/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes
+			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			$(MATIO_CFLAGS) \
+			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la
 
 libscimatio_algo_la_SOURCES = $(MATIO_C_SOURCES)
 libscimatio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscimatio_algo_la_CFLAGS = $(libscimatio_la_CFLAGS)
+libscimatio_algo_la_CPPFLAGS = $(libscimatio_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscimatio_la_SOURCES)
-INCLUDE_FLAGS = $(libscimatio_la_CFLAGS) $(libscimatio_la_CPPFLAGS)
+INCLUDE_FLAGS = $(libscimatio_la_CPPFLAGS)
 
 #### Target ######
 modulename=matio

@@ -29,14 +29,15 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -55,6 +56,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WebBrowser;
@@ -107,7 +109,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private int elementId;
 
     private Icon messageIcon; // = new
-                              // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
@@ -163,13 +165,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private Object[] objs;
     private Object[] buttons;
     private boolean modal = true;
+    private JCheckBox checkbox;
 
     /**
      * Default constructor
      */
     public SwingScilabMessageBox() {
-        super(new JFrame());
-        ((JFrame) getOwner()).setIconImage(imageForIcon); // Java 1.5 compatible
+        super();
+        setIconImage(imageForIcon);
     }
 
     /**
@@ -223,6 +226,17 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     }
 
     /**
+     * Set a checkbox in the messagebox
+     * @param message text of the checkbox
+     * @param action the associated action
+     * @param checked if true the checkbox is checked
+     */
+    public void setCheckbox(String message, Action action) {
+        checkbox = new JCheckBox(action);
+        checkbox.setText(message);
+    }
+
+    /**
      * DefaultValues
      * Display this MessageBox and wait for user selection
      */
@@ -245,7 +259,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         HTMLEditorKit editorKit = (HTMLEditorKit) messageLabel.getEditorKit();
         StyleSheet styles = editorKit.getStyleSheet();
         String css = "body {font-family:\"" + labelFont.getName()
-            + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
+                     + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
         styles.addRule(css);
         editorKit.setStyleSheet(styles);
         messageLabel.setEditorKit(editorKit);
@@ -254,13 +268,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
         /* Add a link to make HTML links active */
         messageLabel.addHyperlinkListener(new HyperlinkListener() {
-                @Override
-                public void hyperlinkUpdate(HyperlinkEvent e) {
-                    if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        WebBrowser.openUrl(e.getURL(), e.getDescription());
-                    }
+            @Override
+            public void hyperlinkUpdate(HyperlinkEvent e) {
+                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    WebBrowser.openUrl(e.getURL(), e.getDescription());
                 }
-            });
+            }
+        });
 
         JScrollPane messageScrollPane = new JScrollPane(messageLabel);
         int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
@@ -343,7 +357,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     // Select this button if default selection is a non existing button
                     // And this button is the last of the line
                     if (buttonNumber == (buttonsPerLines.get(lineNumber) - 1)
-                        && defaultSelectedButtons[lineNumber] > (buttonsPerLines.get(lineNumber) - 1)) {
+                            && defaultSelectedButtons[lineNumber] > (buttonsPerLines.get(lineNumber) - 1)) {
                         button.setSelected(true);
                     }
                     // Add the button to the group (for toggle)
@@ -540,10 +554,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
             // All objects in the MessageBox:
             //  - Message
-            objs = new Object[1];
+            int nb = checkbox == null ? 1 : 2;
+            objs = new Object[nb];
 
             // Add the message
             objs[0] = messageScrollPane;
+            if (nb == 2) {
+                objs[1] = checkbox;
+            }
 
             // And now the buttons
             if (buttonsLabels == null) {
@@ -763,35 +781,35 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         listBox.setModel(new DefaultListModel());
         listBox.addMouseListener(new MouseListener() {
 
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                    if (arg0.getClickCount() == 2) {
-                        selectedItem = listBox.getSelectedIndex() + 1;
-                        // Notify btnOK for not modal Dialogs
-                        synchronized (btnOK) {
-                            btnOK.notify();
-                        }
-                        dispose();
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                if (arg0.getClickCount() == 2) {
+                    selectedItem = listBox.getSelectedIndex() + 1;
+                    // Notify btnOK for not modal Dialogs
+                    synchronized (btnOK) {
+                        btnOK.notify();
                     }
+                    dispose();
                 }
+            }
 
-                @Override
-                public void mouseEntered(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseEntered(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mouseExited(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseExited(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mousePressed(MouseEvent arg0) {
-                }
+            @Override
+            public void mousePressed(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseReleased(MouseEvent arg0) {
+            }
 
-            });
+        });
         ((DefaultListModel) listBox.getModel()).clear();
         for (int i = 0; i < listboxItems.length; i++) {
             ((DefaultListModel) listBox.getModel()).addElement(listboxItems[i]);
@@ -871,6 +889,18 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
     /**
      * Set the component used to set the location of the MessageBox (default is Scilab Console)
+     * @param parent the parent
+     */
+    public void setParentForLocation(SimpleTab parent) {
+        if (parent != null) {
+            parentWindow = (Component) parent;
+        } else {
+            parentWindow = null;
+        }
+    }
+
+    /**
+     * Set the component used to set the location of the MessageBox (default is Scilab Console)
      * @param parent
      */
     public void setParentForLocation(Component parent) {
@@ -881,7 +911,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the component used to set the location of the MessageBox (default is Scilab Console)
      * @param parent
      */
-    @Override
     public void setParentForLocation(Tab parent) {
         setParentForLocation((Component) parent.getAsSimpleTab());
     }

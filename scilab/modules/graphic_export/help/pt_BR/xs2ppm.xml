@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2ppm" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xs2ppm</refname>
     <refpurpose>envia gráficos para um arquivo em sintaxe PPM</refpurpose>
@@ -82,9 +79,6 @@ xs2ppm(0,(foo.ppm');
       </member>
       <member>
         <link linkend="xs2ps">xs2ps</link>
-      </member>
-      <member>
-        <link linkend="xs2fig">xs2fig</link>
       </member>
       <member>
         <link linkend="xs2emf">xs2emf</link>

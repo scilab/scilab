@@ -11,7 +11,7 @@
 //
 // <-- Short Description -->
 // The nearfloat function does not work properly for near denormalized numbers.
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // Test at vmin, the smallest normal
 // x = 2.2250738585072013D-308;

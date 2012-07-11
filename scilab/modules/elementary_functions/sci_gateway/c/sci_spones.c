@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "Scierror.h"
 
-#define _NEW_TONIO_
+//#define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspones) (char *fname,int *id);
 /*--------------------------------------------------------------------------*/

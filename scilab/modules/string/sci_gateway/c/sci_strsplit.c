@@ -17,6 +17,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "strsplitfunction.h"
 /*----------------------------------------------------------------------------*/

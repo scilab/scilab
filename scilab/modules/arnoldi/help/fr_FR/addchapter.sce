@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("ARnoldi PACKage",SCI+"/modules/arnoldi/help/fr_FR",%T);
+add_help_chapter("ARnoldi PACKage (binding de ARPACK)",SCI+"/modules/arnoldi/help/fr_FR",%T);
 

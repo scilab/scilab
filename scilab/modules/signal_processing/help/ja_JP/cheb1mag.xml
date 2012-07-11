@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cheb1mag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cheb1mag</refname>
-    <refpurpose>1形チェビシェフフィルタの応答</refpurpose>
+    <refpurpose>1型チェビシェフフィルタの応答</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -35,7 +32,9 @@
       <varlistentry>
         <term>sample</term>
         <listitem>
-          <para><literal>cheb1mag</literal>を評価する周波数のベクトル</para>
+          <para>
+            <literal>cheb1mag</literal>を評価する周波数のベクトル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,12 +48,19 @@
   <refsection>
     <title>説明</title>
     <para>
-    1形チェビシェフフィルタの二乗振幅応答.</para>
-    <para><literal>omegac</literal>=通過域のエッジ.</para>
-    <para><literal>epsilon</literal>は
-	<literal>1/(1+epsilon^2)</literal>=通過域のリップル,となるような
-		値です.</para>
-    <para><literal>sample</literal>は二乗振幅応答を求める周波数のベクトルです.</para>
+      1型チェビシェフフィルタの二乗振幅応答.
+    </para>
+    <para>
+      <literal>omegac</literal>=通過域のエッジ.
+    </para>
+    <para>
+      <literal>epsilon</literal>は
+      <literal>1/(1+epsilon^2)</literal>=通過域のリップル,となるような
+      値です.
+    </para>
+    <para>
+      <literal>sample</literal>は二乗振幅応答を求める周波数のベクトルです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

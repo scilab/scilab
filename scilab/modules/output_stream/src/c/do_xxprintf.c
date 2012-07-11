@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA
-* Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
+* Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -542,6 +542,11 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
             }
             else
             {
+                if ((int)strlen(sval) > MAX_SPRINTF_SIZE) /* over sprintf_limit */
+                {
+                    Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Buffer too small."));
+                    return DO_XXPRINTF_RET_BUG;
+                }
                 call_printf(xxprintf,target,p,sval,asterisk,asterisk_count,conversion_type,dval );
             }
 

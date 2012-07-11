@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intc</refname>
     <refpurpose> Cauchy integral</refpurpose>
@@ -26,7 +23,7 @@
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>two complex numbers</para>
         </listitem>
@@ -42,7 +39,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      If <literal>f</literal> is  a complex-valued function,<literal> intc(a,b,f) </literal>
+      If <literal>f</literal> is  a complex-valued function, <literal> intc(a,b,f) </literal>
       computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the  
       straight line <literal>a b</literal> of the complex plane.
     </para>

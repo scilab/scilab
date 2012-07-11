@@ -1,0 +1,74 @@
+# Chinese (Simplified) translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2012-06-05 02:12+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15435)\n"
+
+msgid "Double"
+msgstr "双精度"
+
+msgid "Polynomial"
+msgstr "多项式"
+
+msgid "Boolean"
+msgstr "布尔"
+
+msgid "Sparse"
+msgstr "稀疏"
+
+msgid "Boolean Sparse"
+msgstr "布尔稀疏"
+
+msgid "Matlab Sparse"
+msgstr "Matlab稀疏"
+
+msgid "Integer"
+msgstr "整数"
+
+msgid "Graphic handle"
+msgstr ""
+
+msgid "String"
+msgstr "字符串"
+
+msgid "User function"
+msgstr "用户函数"
+
+msgid "Compiled function"
+msgstr "已编译函数"
+
+msgid "Function library"
+msgstr "函数库"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Pointer"
+msgstr "指针"
+
+msgid "Implicit polynomial"
+msgstr "隐式多项式"
+
+msgid "Intrinsic function"
+msgstr "内置函数"
+
+msgid "Unknown datatype"
+msgstr "未知数据类型"

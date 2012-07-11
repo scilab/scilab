@@ -8,39 +8,39 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2010-08-15 18:52+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-05-30 09:55+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
+msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为实矩阵。\n"
 
 #, c-format
 msgid ""
@@ -49,7 +49,7 @@ msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 msgid "File"
 msgstr "文件"
@@ -61,28 +61,28 @@ msgid "Open"
 msgstr "打开"
 
 msgid "Open recent"
-msgstr ""
+msgstr "打开最近"
 
 msgid "Working directories;Add a directory;Remove last directory"
-msgstr ""
+msgstr "工作目录；添加目录；删除最后一个目录"
 
 msgid "Open file in ..."
-msgstr ""
+msgstr "打开文件从..."
 
 msgid "Save file in ..."
-msgstr ""
+msgstr "保存文件到..."
 
 msgid "Reload"
-msgstr ""
+msgstr "重新加载"
 
 msgid "Restore opened files on start-up"
-msgstr ""
+msgstr "启动时恢复打开的文件"
 
 msgid "Open function source file"
-msgstr ""
+msgstr "打开函数源文件"
 
 msgid "Open URL"
-msgstr ""
+msgstr "打开URL"
 
 msgid "Save"
 msgstr "保存"
@@ -91,13 +91,13 @@ msgid "Save as"
 msgstr "另存为"
 
 msgid "Save All"
-msgstr ""
+msgstr "保存全部"
 
 msgid "Overwrite"
-msgstr ""
+msgstr "覆盖"
 
 msgid "Export"
-msgstr ""
+msgstr "导出"
 
 msgid "Page Setup"
 msgstr "页面设置"
@@ -136,7 +136,7 @@ msgid "Copy"
 msgstr "复制"
 
 msgid "Copy as HTML with line number"
-msgstr ""
+msgstr "复制为带行号HTML"
 
 msgid "Paste"
 msgstr "粘贴"
@@ -145,19 +145,19 @@ msgid "Delete"
 msgstr "删除"
 
 msgid "Columns actions"
-msgstr ""
+msgstr "列操作"
 
 msgid "Paste Column"
-msgstr ""
+msgstr "粘贴列"
 
 msgid "Repeat on the Column"
-msgstr ""
+msgstr "重复列"
 
 msgid "Select All"
 msgstr "全选"
 
 msgid "Select current block"
-msgstr ""
+msgstr "选择当前区块"
 
 msgid "Search"
 msgstr "搜索"
@@ -166,67 +166,58 @@ msgid "Find/Replace"
 msgstr "查找/替换"
 
 msgid "Find Next"
-msgstr ""
+msgstr "查找下一个"
 
 msgid "Find Previous"
-msgstr ""
+msgstr "查找上一个(E)"
 
 msgid "Incremental Search"
-msgstr ""
+msgstr "增量查找"
 
 msgid "Find files"
-msgstr ""
+msgstr "查找文件"
 
 msgid "Find word in files"
-msgstr ""
+msgstr "文件中查找词"
 
 msgid "Set anchor"
-msgstr ""
+msgstr "设置锚点"
 
 msgid "Go to next anchor"
-msgstr ""
+msgstr "转到下一个锚点"
 
 msgid "Go to previous anchor"
-msgstr ""
+msgstr "转到上一个锚点"
 
 msgid "Remove anchor"
-msgstr ""
+msgstr "移除锚点"
 
 msgid "Code Navigator"
-msgstr ""
+msgstr "代码导航器"
 
 msgid "Format"
-msgstr ""
-
-msgid "Set Colors ..."
-msgstr ""
-
-msgid "Set Font"
-msgstr "设置字体"
-
-msgid "Reset default font"
-msgstr "重置缺省字体"
+msgstr "格式化"
 
 msgid "Shift Right"
-msgstr ""
+msgstr "右移"
 
 msgid "Shift Left"
-msgstr ""
+msgstr "左移"
 
 msgid "Configure Tabulation"
-msgstr ""
+msgstr "配置制表符"
 
 msgid "Horizontal wrapping"
-msgstr ""
+msgstr "水平包绕"
 
 msgid "Correct Indentation"
 msgstr "纠正缩进"
 
 msgid "Remove trailing spaces"
-msgstr ""
+msgstr "删除行尾空格"
 
 msgid "Generate comments for help_from_sci"
-msgstr ""
+msgstr "为help_from_sci生成注释"
 
 msgid "Comment Selection"
 msgstr "注释选区"
@@ -235,157 +226,148 @@ msgid "Uncomment Selection"
 msgstr "取消选区注释"
 
 msgid "Change the case"
-msgstr ""
+msgstr "更改大小写"
 
 msgid "Make Selection Lowercase"
-msgstr ""
+msgstr "小写化所选内容"
 
 msgid "Make Selection Uppercase"
-msgstr ""
+msgstr "大写化所选内容"
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr ""
+msgstr "首字母大写化所选内容；首字母大写化字符"
 
 msgid "Single to double quote strings"
-msgstr ""
+msgstr "字符串单引号转为双引号"
 
 msgid "Options"
 msgstr "选项"
 
 msgid "Current file encoding"
-msgstr ""
+msgstr "当前文件编码"
 
 msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
+msgstr "SciNotes文件默认编码；UTF-8；Windows 1252 (ANSI)；ISO-8859-1"
 
 msgid "Line Endings"
-msgstr ""
-
-msgid "Auto-completion on"
-msgstr ""
-
-msgid "(, [, ..."
-msgstr ""
-
-msgid "if, function, ..."
-msgstr ""
+msgstr "行结束符"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr ""
+msgstr "行号；关；普通；Whereami兼容"
 
 msgid "Highlight current line"
 msgstr "高亮显示当前行"
 
 msgid "Enable Auto Reformat"
-msgstr ""
+msgstr "启用自动重新格式化"
 
 msgid "Suppress comments when executing selection"
-msgstr ""
+msgstr "执行所选内容时不显示注释"
 
 msgid "Window"
-msgstr ""
+msgstr "窗口"
 
 msgid "Copy tab in new window"
-msgstr ""
+msgstr "将标签页复制到新窗口"
 
 msgid "Detach tab in new window"
-msgstr ""
+msgstr "将标签页分离到新窗口"
 
 msgid "Copy selection in a new tab"
-msgstr ""
+msgstr "将所选内容复制到新标签页"
 
 msgid "Split View;Off;Horizontally;Vertically"
-msgstr ""
+msgstr "分割视图；关闭；水平；垂直"
 
 msgid "Execute"
 msgstr "执行"
 
 msgid "... file with no echo"
-msgstr ""
+msgstr "....文件带回显"
 
 msgid "... file with echo"
-msgstr ""
+msgstr "....文件不回显"
 
 msgid "... the selection with echo;... until the caret, with echo"
-msgstr ""
+msgstr "...所选内容带回显；...直到插入符（^），带回显"
 
 msgid "Save and execute"
-msgstr ""
+msgstr "保存并执行"
 
 msgid "Save and execute all files"
-msgstr ""
+msgstr "保存并执行所有文件"
 
 msgid "?"
 msgstr "？"
 
 msgid "SciNotes help"
-msgstr ""
+msgstr "SciNotes帮助"
 
 msgid "Help on ;Help on selection"
-msgstr ""
+msgstr "帮助关于；所选内容帮助"
 
 msgid "About"
 msgstr "关于"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr ""
+msgstr "执行所选内容带回显；执行直到插入符（^），带回显"
 
 msgid "Complete"
-msgstr ""
+msgstr "补全"
 
 msgid "Graphics handle field"
-msgstr ""
+msgstr "图形句柄域"
 
 msgid "No help"
-msgstr ""
+msgstr "无帮助"
 
 msgid "SciNotes"
-msgstr ""
+msgstr "SciNotes"
 
 msgid "Error while reading the String"
-msgstr ""
+msgstr "读取字符串时出错"
 
 msgid "Source of '"
-msgstr ""
+msgstr "来源之‘"
 
 msgid "Recent Files"
 msgstr "最近的文件"
 
 msgid "The file could not be created, check the path"
-msgstr ""
+msgstr "不能创建此文件，请检查文件路径"
 
 msgid "The file is not writable so it is opened in read-only mode"
-msgstr ""
+msgstr "此文件不可写，故以只读模式打开"
 
 msgid "You do not have the permissions to write this file"
-msgstr ""
+msgstr "您没有权限写此文件"
 
 msgid "You do not have the permissions to read this file"
-msgstr ""
+msgstr "您没有权限读此文件"
 
 msgid "An error occured when exporting the code using FOP"
-msgstr ""
+msgstr "使用FOP导出代码时发生错误"
 
 msgid "An error occured when printing"
-msgstr ""
+msgstr "打印出错"
 
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 msgid "Help on typing"
-msgstr ""
+msgstr "即时输入帮助"
 
 msgid "Generate help from function"
-msgstr ""
+msgstr "从函数生成帮助"
 
 msgid "Clone tab in a new window"
-msgstr ""
+msgstr "克隆标签页到新窗口"
 
 msgid "Clone and close tab in a new window"
-msgstr ""
+msgstr "克隆"
 
 msgid "Remove trailing whitespaces"
-msgstr ""
+msgstr "删除行尾空白"
 
 msgid "Goto line"
 msgstr "转到行"
@@ -400,25 +382,31 @@ msgid "Word Wrap"
 msgstr "文字换行"
 
 msgid "Whereami Line Numbering"
-msgstr ""
+msgstr "Whereami行号"
 
 msgid "Normal Line Numbering"
-msgstr ""
+msgstr "普通行号"
 
 msgid "No Line Numbering"
-msgstr ""
+msgstr "无行号"
 
 msgid "Set Colors"
 msgstr "设置颜色"
 
+msgid "Set Font"
+msgstr "设置字体"
+
+msgid "Reset default font"
+msgstr "重置缺省字体"
+
 msgid "Split horizontally"
-msgstr ""
+msgstr "水平分割"
 
 msgid "Split vertically"
-msgstr ""
+msgstr "垂直分割"
 
 msgid "No split"
-msgstr ""
+msgstr "不分割"
 
 msgid "Document"
 msgstr "文档"
@@ -430,46 +418,46 @@ msgid "Scilab"
 msgstr "Scilab"
 
 msgid "Encoding"
-msgstr ""
+msgstr "编码"
 
 msgid "Colorize"
 msgstr "加彩色"
 
 msgid "Auto (Default)"
-msgstr ""
+msgstr "自动（默认）"
 
 msgid "Windows/DOS (CR + LF)"
-msgstr ""
+msgstr "Windows/DOS (CR + LF)"
 
 msgid "Mac Classic (CR)"
-msgstr ""
+msgstr "Mac Classic (CR)"
 
 msgid "Unix (LF)"
-msgstr ""
+msgstr "Unix (LF)"
 
 msgid "Load Into Scilab"
 msgstr "载入Scilab"
 
 msgid "Evaluate Selection"
-msgstr "执行选择部分"
+msgstr "执行所选命令"
 
 msgid "Evaluate from beginning..."
-msgstr ""
+msgstr "从头开始运行..."
 
 msgid "Execute File Into Scilab"
-msgstr ""
+msgstr "载入Scilab执行"
 
 msgid "Help on the current keyword"
-msgstr ""
+msgstr "当前关键字帮助"
 
 msgid "Help on the selected text"
-msgstr ""
+msgstr "所选文本帮助"
 
 msgid "Help on selected text or keyword"
-msgstr ""
+msgstr "所选文本或关键字帮助"
 
 msgid "Help about '"
-msgstr ""
+msgstr "帮助之‘"
 
 msgid "Find:"
 msgstr "查找:"
@@ -505,10 +493,10 @@ msgid "Case sensitive"
 msgstr "区分大小写"
 
 msgid "Circular search"
-msgstr ""
+msgstr "循环搜索"
 
 msgid "Restart the search from the beginning"
-msgstr ""
+msgstr "从头开始搜索"
 
 msgid "Whole word"
 msgstr "全词匹配"
@@ -527,16 +515,16 @@ msgid "Invalid regular expression : %s"
 msgstr "不正确的正则表达式：%s"
 
 msgid "You have passed the end of the document"
-msgstr ""
+msgstr "已到文档末尾"
 
 msgid "You have passed the beginning of the document"
-msgstr ""
+msgstr "已到文档开头"
 
 msgid "You have reached the end of the document"
 msgstr "已经到达文档尾部"
 
 msgid "You have reached the beginning of the document"
-msgstr ""
+msgstr "已到文档开头"
 
 #, c-format
 msgid "String %s not found"
@@ -547,6 +535,8 @@ msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
+"文件%s不存在\n"
+"您想创建它吗？"
 
 msgid "close this tab"
 msgstr "关闭这个标签页"
@@ -568,10 +558,10 @@ msgstr ""
 " 覆盖？"
 
 msgid "Warning: the file has been modified by another program !"
-msgstr ""
+msgstr "警告：此文件已被其他程序修改"
 
 msgid "Ignore"
-msgstr ""
+msgstr "忽略"
 
 msgid "Replace File?"
 msgstr "替换文件？"
@@ -586,7 +576,7 @@ msgid "Ok"
 msgstr "确定"
 
 msgid "Apply & Reindent"
-msgstr ""
+msgstr "应用&重新缩进"
 
 msgid "Cancel"
 msgstr "取消"
@@ -602,284 +592,286 @@ msgstr "上一个标签"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
+msgstr "在Scilab中执行文件前您需要先保存修改。"
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
+"文件太长，“载入Scilab执行”可能会更好。\n"
+"你确定要继续？"
 
 msgid "Enter line number"
 msgstr "输入行号"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr ""
+msgstr "此文件是二进制文件，保存会导致文件损坏。"
 
 msgid "Loading"
-msgstr ""
+msgstr "加载中"
 
 msgid "Colorization canceled"
-msgstr ""
+msgstr "着色已撤销"
 
 msgid "Binary file: read-only mode"
-msgstr ""
+msgstr "二进制文件：只读模式"
 
 msgid "Read-only mode"
-msgstr ""
+msgstr "只读模式"
 
 msgid "Press CTRL and move the mouse over the link to activate it"
-msgstr ""
+msgstr "按住CTRL键并将鼠标移动到链接上激活"
 
 msgid "Open in the navigator the URL "
-msgstr ""
+msgstr "在导航器中打开URL "
 
 msgid "Mail to "
-msgstr ""
+msgstr "邮寄至 "
 
 msgid "Open the source of the macro "
-msgstr ""
+msgstr "打开宏代码 "
 
 msgid "Show the definition of the macro "
-msgstr ""
+msgstr "显示宏定义 "
 
 #, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr ""
+msgstr "行%s，列%s。行%s处函数‘%s’。"
 
 msgid "Unknown function"
-msgstr ""
+msgstr "未知函数"
 
 #, c-format
 msgid "Line %s, Column %s."
-msgstr ""
+msgstr "行%s，列%s。"
 
 msgid "Copyright (c)"
 msgstr "版权所有 (c)"
 
 msgid "SciNotes error"
-msgstr ""
+msgstr "SciNotes错误"
 
 msgid "The file could not be saved."
-msgstr ""
+msgstr "不能保存此文件"
 
 msgid "The file could not be converted."
-msgstr ""
+msgstr "不能转换此文件"
 
 #, c-format
 msgid "%s is a directory."
 msgstr "%s 是目录。"
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr ""
+msgstr "你的修改会丢失，仍然要改变编码？"
 
 msgid "Continue ?"
-msgstr ""
+msgstr "继续？"
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
-msgstr ""
+msgstr "不能加载“scinotesConfiguration.xml”"
 
 msgid "Could not find the console nor the InterpreterManagement."
-msgstr ""
+msgstr "找不到控制台，也找不到InterpreterManagement。"
 
 msgid "Could not find the temporary file."
-msgstr ""
+msgstr "找不到临时文件"
 
 msgid "No text selected."
-msgstr ""
+msgstr "没有选择文本"
 
 msgid "No text to execute."
-msgstr ""
+msgstr "没有文本要执行"
 
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr ""
+msgstr "文件编码实际是%s，并会已%s编码保存。继续？"
 
 msgid "Encoding problems"
-msgstr ""
+msgstr "编码问题"
 
 msgid "Cannot guess the file encoding."
-msgstr ""
+msgstr "不能猜出文件编码"
 
 msgid "Change Colors"
-msgstr ""
+msgstr "更改颜色"
 
 msgid "Cursor Color"
-msgstr ""
+msgstr "指针颜色"
 
 msgid "Background Color"
-msgstr ""
+msgstr "背景色"
 
 msgid "Change Color"
-msgstr ""
+msgstr "更改颜色"
 
 msgid "Italic"
-msgstr ""
+msgstr "斜体"
 
 msgid "Strike Through"
-msgstr ""
+msgstr "删除线"
 
 msgid "Preview"
-msgstr ""
+msgstr "预览"
 
 msgid "Underline"
-msgstr ""
+msgstr "下划线"
 
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 msgid "Color"
-msgstr ""
+msgstr "颜色"
 
 msgid "Bold"
-msgstr ""
+msgstr "粗体"
 
 msgid "Absolute"
-msgstr ""
+msgstr "绝对"
 
 msgid "Relative"
-msgstr ""
+msgstr "相对"
 
 msgid "Go to line: "
-msgstr ""
+msgstr "转到行： "
 
 msgid "Numeration"
-msgstr ""
+msgstr "计数方式"
 
 msgid "Alphabetic order"
-msgstr ""
+msgstr "字母顺序"
 
 msgid "Natural order"
-msgstr ""
+msgstr "自然顺序"
 
 msgid "Order"
-msgstr ""
+msgstr "顺序"
 
 msgid "Functions"
-msgstr ""
+msgstr "函数"
 
 msgid "Anchors"
-msgstr ""
+msgstr "锚点"
 
 msgid "Anchor's name: "
-msgstr ""
+msgstr "锚点名 "
 
 msgid "Set an anchor"
-msgstr ""
+msgstr "设置锚点"
 
 msgid "Anchor: "
-msgstr ""
+msgstr "锚点 "
 
 msgid "Open source file of the function:"
-msgstr ""
+msgstr "打开函数源文件："
 
 msgid "Open source"
-msgstr ""
+msgstr "开放源码"
 
 msgid "Are you sure that you want to close SciNotes ?"
-msgstr ""
+msgstr "你确定要关闭SciNotes？"
 
 msgid "Restore files from your last SciNotes session ?"
-msgstr ""
+msgstr "从最后一次SciNotes会话恢复文件？"
 
 msgid "Restore the last sessions"
-msgstr ""
+msgstr "恢复最后一次会话"
 
 msgid "Tab style"
-msgstr ""
+msgstr "制表符样式"
 
 msgid "Use spaces"
-msgstr ""
+msgstr "使用空格"
 
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 msgid "Tab representation"
-msgstr ""
+msgstr "制表符表示法"
 
 msgid "Horizontal rule"
-msgstr ""
+msgstr "水平线"
 
 msgid "Vertical rule"
-msgstr ""
+msgstr "垂直线"
 
 msgid "Double chevrons"
-msgstr ""
+msgstr "双V符号（»）"
 
 msgid "Copy full path"
-msgstr ""
+msgstr "复制完整路径"
 
 msgid "Exact"
-msgstr ""
+msgstr "精确"
 
 msgid "Search Files..."
-msgstr ""
+msgstr "搜索文件..."
 
 msgid "Search in Files..."
-msgstr ""
+msgstr "文件中搜索..."
 
 #, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
-msgstr ""
+msgstr "<html>%s <i>(%s匹配)</i></html>"
 
 #, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
-msgstr ""
+msgstr "<html>%s <i>(%s匹配)</i></html>"
 
 #, c-format
 msgid "Elapsed time: %s sec."
-msgstr ""
+msgstr "运行时间：%s秒"
 
 msgid "Base directory:"
-msgstr ""
+msgstr "基目录："
 
 msgid "Recursive"
-msgstr ""
+msgstr "递归"
 
 msgid "File pattern"
-msgstr ""
+msgstr "文件模式"
 
 msgid "(* for any string and ? for any character)"
-msgstr ""
+msgstr "（*号通配任意字符串，?号通配任意字符）"
 
 msgid "(~ for user home dir. and SCI for Scilab base dir.)"
-msgstr ""
+msgstr "~代表用户主目录，SCI代表Scilab基目录"
 
 msgid "Word pattern"
-msgstr ""
+msgstr "单词模式"
 
 msgid "Read file line by line"
-msgstr ""
+msgstr "逐行读取文件"
 
 msgid "Choose..."
-msgstr ""
+msgstr "选择..."
 
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 msgid "Regex"
-msgstr ""
+msgstr "正则表达式"
 
 msgid "Word"
-msgstr ""
+msgstr "词"
 
 msgid "Case-sensitivity (Word)"
-msgstr ""
+msgstr "大小写敏感（词）"
 
 msgid "Case-sensitivity (File name)"
-msgstr ""
+msgstr "大小写敏感（文件名）"
 
 msgid "Recursive search"
-msgstr ""
+msgstr "递归搜索"
 
 msgid "Line by line"
-msgstr ""
+msgstr "逐行"
 
 msgid "Regular expression (Word)"
-msgstr ""
+msgstr "正则表达式（词）"
 
 msgid "Choose the search base directory"
-msgstr ""
+msgstr "选择搜索基目录"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

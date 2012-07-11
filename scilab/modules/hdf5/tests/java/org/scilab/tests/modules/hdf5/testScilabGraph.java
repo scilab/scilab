@@ -11,7 +11,7 @@ package org.scilab.tests.modules.hdf5;
  *
  */
 
-import org.testng.annotations.*;
+import org.junit.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -38,17 +38,18 @@ public class testScilabGraph {
         /* PROFILES */
         ScilabList PROFILES = new ScilabList();
         PROFILES.add(new ScilabDouble(1.2));
-        double [][]profilesArc = {{0,0},
-                                  {0.1, 0.48},
-                                  {0.2, 0.8533333},
-                                  {0.3, 1.12},
-                                  {0.4, 1.28},
-                                  {0.5, 1.3333333}, 
-                                  {0.6, 1.28},
-                                  {0.7, 1.12}, 
-                                  {0.8, 0.8533333},
-                                  {0.9, 0.48},
-                                  {1,0}};
+        double [][]profilesArc = {{0, 0},
+            {0.1, 0.48},
+            {0.2, 0.8533333},
+            {0.3, 1.12},
+            {0.4, 1.28},
+            {0.5, 1.3333333},
+            {0.6, 1.28},
+            {0.7, 1.12},
+            {0.8, 0.8533333},
+            {0.9, 0.48},
+            {1, 0}
+        };
         PROFILES.add(new ScilabDouble(profilesArc));
 
         /*
@@ -64,7 +65,7 @@ public class testScilabGraph {
         ScilabMList EDGEDATA = new ScilabMList(edgeDataTypes);
 
 
-        /* 
+        /*
          * NODEDEFAULTS
          */
         String[] nodeDefaultsTypes = {"nodedefs", "type", "diam", "border", "colors", "font"};
@@ -72,20 +73,20 @@ public class testScilabGraph {
         NODEDEFAULTS.add(new ScilabDouble(0));
         NODEDEFAULTS.add(new ScilabDouble(15));
         NODEDEFAULTS.add(new ScilabDouble(1));
-        double[][] nodeDefaultColor = {{-1}, {-2}};
+        double[][] nodeDefaultColor = {{ -1}, { -2}};
         NODEDEFAULTS.add(new ScilabDouble(nodeDefaultColor));
-        double [][]nodeDefaultFont = {{3}, {8}, {-1}};
+        double [][]nodeDefaultFont = {{3}, {8}, { -1}};
         NODEDEFAULTS.add(new ScilabDouble(nodeDefaultFont));
 
 
-        /* 
+        /*
          * EDGEDEFAULTS
          */
         String[] edgeDefaultsTypes = {"edgedefs", "width", "foreground", "font", "profile_index"};
         ScilabTList EDGEDEFAULTS = new ScilabTList(edgeDefaultsTypes);
         EDGEDEFAULTS.add(new ScilabDouble(1));
         EDGEDEFAULTS.add(new ScilabDouble(-1));
-        double [][]edgeDefaultFont = {{3}, {8}, {-1}};
+        double [][]edgeDefaultFont = {{3}, {8}, { -1}};
         EDGEDEFAULTS.add(new ScilabDouble(edgeDefaultFont));
         EDGEDEFAULTS.add(new ScilabDouble(2));
 
@@ -104,7 +105,7 @@ public class testScilabGraph {
         NODEGRAPHIC.add(new ScilabDouble(nodesY));
         NODEGRAPHIC.add(new ScilabDouble(zeros(1, 5)));
         //NODEGRAPHIC.add(new ScilabDouble(zeros(1, 5)));
-        double[][] nodeDiams = {{15,20,25,30,35}};
+        double[][] nodeDiams = {{15, 20, 25, 30, 35}};
         NODEGRAPHIC.add(new ScilabDouble(nodeDiams));
         NODEGRAPHIC.add(new ScilabDouble(zeros(1, 5)));
         NODEGRAPHIC.add(new ScilabDouble(zeros(2, 5)));
@@ -112,8 +113,8 @@ public class testScilabGraph {
         NODEGRAPHIC.add(new ScilabString("center"));
 
 
-        /* 
-         * EDGEGRAPHIC 
+        /*
+         * EDGEGRAPHIC
          */
         String[] edgeGraphicTypes = {"egraphic", "display", "defaults", "profiles", "name", "width", "foreground", "font", "profile_index", "displaymode"};
         ScilabMList EDGEGRAPHIC = new ScilabMList(edgeGraphicTypes);
@@ -122,14 +123,14 @@ public class testScilabGraph {
         EDGEGRAPHIC.add(PROFILES);
         String [][]edgesNames = {{"1->2", "2->3", "3->4", "4->1", "5->1", "5->2", "5->3", "5->4"}};
         EDGEGRAPHIC.add(new ScilabString(edgesNames));
-        EDGEGRAPHIC.add(new ScilabDouble(zeros(1,8)));
-        EDGEGRAPHIC.add(new ScilabDouble(zeros(1,8)));
-        EDGEGRAPHIC.add(new ScilabDouble(zeros(3,8)));
-        EDGEGRAPHIC.add(new ScilabDouble(zeros(1,8)));
+        EDGEGRAPHIC.add(new ScilabDouble(zeros(1, 8)));
+        EDGEGRAPHIC.add(new ScilabDouble(zeros(1, 8)));
+        EDGEGRAPHIC.add(new ScilabDouble(zeros(3, 8)));
+        EDGEGRAPHIC.add(new ScilabDouble(zeros(1, 8)));
         EDGEGRAPHIC.add(new ScilabString("tangeant"));
 
 
-        /* 
+        /*
          * NODES
          */
         String[] nodesTypes = {"nodes", "number", "graphics", "data"};
@@ -139,7 +140,7 @@ public class testScilabGraph {
         NODES.add(NODEDATA);
 
 
-        /* 
+        /*
          * EDGES
          */
         String[] edgesTypes = {"edges", "tail", "head", "graphics", "data"};
@@ -152,10 +153,10 @@ public class testScilabGraph {
         EDGES.add(EDGEDATA);
 
 
-        /* 
+        /*
          * GRAPH
          */
-        String fileName = tempDir + "/fakeGraph.h5";
+        String fileName = tempDir + "/fakeGraph.sod";
         String[] graphTypes = {"graph", "version", "name", "directed", "nodes", "edges"};
         ScilabTList graph = new ScilabTList(graphTypes);
         graph.add(new ScilabString("5.2"));
@@ -168,7 +169,7 @@ public class testScilabGraph {
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "FakeGraph", graph);
         H5Write.closeFile(fileId);
-    
+
         ScilabTList data = new ScilabTList();
         fileId = H5Read.openFile(fileName);
         H5Read.readDataFromFile(fileId, data);

@@ -13,9 +13,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="size" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>size</refname>
     <refpurpose>size of objects</refpurpose>
@@ -132,9 +129,10 @@
             syntax <literal>[nr, nc] = size(x)</literal> is also valid (with
             <literal>(nr, nc) = (y(1), y(2))</literal>). If <literal>x</literal>
             is a linear system in state-space form, then <literal>[nr, nc, nx] = 
-            size(x)</literal>
+              size(x)
+            </literal>
             returns in addition the dimension <literal>nx</literal> of matrix 
-	    <literal>x</literal>.
+            <literal>x</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -148,7 +146,7 @@
       
       x = ssrand(3, 2, 4);
       [ny, nu] = size(x)
-      [ny, nu] =s ize(ss2tf(x))
+      [ny, nu] = size(ss2tf(x))
       [ny, nu, nx] = size(x)
       
       // Returns the number of rows

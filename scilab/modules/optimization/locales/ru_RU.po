@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-11 12:28+0000\n"
+"PO-Revision-Date: 2012-04-08 14:44+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 #, c-format
@@ -237,7 +237,7 @@ msgid "Defining Rosenbrock Post Office function...\n"
 msgstr "Определение функции почтампта Розенброка...\n"
 
 msgid "Illustrates Box' algorithm on Box problem A.\n"
-msgstr ""
+msgstr "Иллюстрирует алгоритм Бокса на задаче Бокса A.\n"
 
 msgid "A new method of constrained optimization \n"
 msgstr "Новый метод оптимизации в заданных пределах \n"
@@ -253,10 +253,10 @@ msgstr "Идёт поиск (пожалуйста, подождите)...\n"
 
 #, c-format
 msgid "Relative error on x = %e\n"
-msgstr ""
+msgstr "Относительная ошибка по x = %e\n"
 
 msgid "Illustrates Box' algorithm on Box problem B.\n"
-msgstr ""
+msgstr "Иллюстрирует алгоритм Бокса на задаче Бокса B.\n"
 
 msgid "Problem B\n"
 msgstr "Задача B\n"
@@ -267,11 +267,12 @@ msgstr "ожидается, что f = %f\n"
 
 #, c-format
 msgid "Relative error on f = %e\n"
-msgstr ""
+msgstr "Относительная ошибка по f = %e\n"
 
 msgid ""
 "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
+"Иллюстрирует чувствительномсь алгоритма Нельдера-Мида к размерности\n"
 
 msgid ""
 "Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
@@ -313,7 +314,7 @@ msgid "Defining Rosenbrock function ...\n"
 msgstr "Определение функции Розенброка ...\n"
 
 msgid "Illustrates the 1st counter example given by Han et al.\n"
-msgstr ""
+msgstr "Иллюстрирует пример 1-го счётчика, данный Ханном с соавторами.\n"
 
 msgid "Defining Han function...\n"
 msgstr "Определение функции Хэна...\n"
@@ -334,7 +335,7 @@ msgid "Plotting contour (please wait)...\n"
 msgstr "Построение контура (пожалуйста, подождите)...\n"
 
 msgid "Illustrates the 2nd counter example given by Han et al.\n"
-msgstr ""
+msgstr "Иллюстрирует пример 2-го счётчика, данный Ханном с соавторами.\n"
 
 msgid "Creating nmplot object ...\n"
 msgstr "Создание объекта nmplot ...\n"
@@ -353,10 +354,10 @@ msgid "Creating object ...\n"
 msgstr "Создание объекта ...\n"
 
 msgid "Plot contour (please wait) ...\n"
-msgstr ""
+msgstr "Построение контуров (пожалуйста, подождите) ...\n"
 
 msgid "Function Value Average"
-msgstr ""
+msgstr "Среднее значение функции"
 
 msgid "Iterations"
 msgstr "Итерации"
@@ -430,7 +431,7 @@ msgid "fminsearch"
 msgstr "fminsearch"
 
 msgid "Genetic algorithms"
-msgstr ""
+msgstr "Генетические алгоритмы"
 
 msgid "Simulated Annealing"
 msgstr "Имитационный отжиг"

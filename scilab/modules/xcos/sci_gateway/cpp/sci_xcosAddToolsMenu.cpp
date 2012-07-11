@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -27,7 +26,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos;
 
-int sci_xcosAddToolsMenu(char *fname, void* pvApiCtx)
+int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
@@ -53,7 +52,7 @@ int sci_xcosAddToolsMenu(char *fname, void* pvApiCtx)
         FREE(label);
         FREE(callback);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
@@ -61,7 +60,7 @@ int sci_xcosAddToolsMenu(char *fname, void* pvApiCtx)
         FREE(callback);
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 

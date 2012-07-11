@@ -47,7 +47,7 @@ char **getVideoAdapters(int *returnedNbAdapters)
                 else
                 {
                     EnumDisplaySettings(displayDevice.DeviceName, ENUM_CURRENT_SETTINGS, &devMode);
-                    StringNames[(int)deviceNum] = strdup(displayDevice.DeviceString);
+                    StringNames[(int)deviceNum] = os_strdup(displayDevice.DeviceString);
                     ++deviceNum;
                 }
                 ++i;

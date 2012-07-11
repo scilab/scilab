@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: it\n"
 
 #, c-format
@@ -175,14 +175,6 @@ msgstr "%02d-%02d-%04d"
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr ""
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr ""
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"

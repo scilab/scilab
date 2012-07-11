@@ -38,8 +38,7 @@
   <PRIMITIVE gatewayId="57" primitiveId="7" primitiveName="xs2pdf" />
   <PRIMITIVE gatewayId="57" primitiveId="8" primitiveName="xs2svg" />
   <PRIMITIVE gatewayId="57" primitiveId="9" primitiveName="xs2ps" />
-
-
-
-
+  <PRIMITIVE gatewayId="57" primitiveId="10" primitiveName="driver" />
+  <PRIMITIVE gatewayId="57" primitiveId="11" primitiveName="xinit" />
+  <PRIMITIVE gatewayId="57" primitiveId="12" primitiveName="xend" />
 </GATEWAY>

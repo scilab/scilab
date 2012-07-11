@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>modulo</refname>
     <refpurpose>Resto aritmético simétrico da divisão de n por m</refpurpose>
@@ -34,20 +31,28 @@
         <term>n,m</term>
         <listitem>
           <para>inteiros ou vetores ou matrizes de inteiros de ordens
-          iguais</para>
+            iguais
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para><literal>modulo</literal> computa <literal>i= n (modulo m)</literal>
-    i.e. resto da divisão de <literal>m</literal> (<literal>n</literal> e
-    <literal>m</literal> inteiros).</para>
+    <para>
+      <literal>modulo</literal> computa <literal>i= n (modulo m)</literal>
+      i.e. resto da divisão de <literal>m</literal> (<literal>n</literal> e
+      <literal>m</literal> inteiros).
+    </para>
     <para>i = n - m .* int (n ./ m). Aqui, a resposta pode ser negativa se
-    <literal>n</literal> ou <literal>m</literal> são negativos.</para>
-    <para><literal>pmodulo</literal> computa <literal>i = n - m .* floor (n ./
-    m)</literal>, a resposta é positiva ou zero.</para>
+      <literal>n</literal> ou <literal>m</literal> são negativos.
+    </para>
+    <para>
+      <literal>pmodulo</literal> computa <literal>i = n - m .* floor (n ./
+        m)
+      </literal>
+      ,a resposta é positiva ou zero.
+    </para>
   </refsection>
   <refsection>
     <title>Exemplos</title>

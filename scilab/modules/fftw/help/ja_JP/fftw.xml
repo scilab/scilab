@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fftw" xml:lang="ja">
-  <info>
-    <pubdate>October 2006</pubdate>
-  </info>
   <refnamediv>
     <refname>fftw</refname>
     <refpurpose>fftwライブラリに基づく高速フーリエ変換</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[y]=fftw(x)
-[y]=fftw(x,sign)
-[y]=fftw(x,sign,dim,incr)
-[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+      [y]=fftw(x,sign)
+      [y]=fftw(x,sign,dim,incr)
+      [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -57,17 +55,21 @@
   <refsection>
     <title>説明</title>
     <para>この関数は, FFTWライブラリにより順方向/逆方向の離散フーリエ変換 (DFT)
-	 を行います.</para>
+      を行います.
+    </para>
     <para>この関数によりベクトル, 2次元, 多次元変換を計算できます.</para>
     <para>fftw 構文の詳細については,
-	 <link linkend="fft">fft</link> scilab 関数を参照ください.</para>
+      <link linkend="fft">fft</link> scilab 関数を参照ください.
+    </para>
     <para>FFTWライブラリの詳細については,FFTW Web サイトを参照ください
       : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
     </para>
     <para>注意: fftw 関数は,再利用するために
-	最新のパラメータを自動的にメモリに保存します.</para>
+      最新のパラメータを自動的にメモリに保存します.
+    </para>
     <para>これにより，連続的なコールを行った場合の
-	所要時間が大幅に改善されます.</para>
+      所要時間が大幅に改善されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -117,7 +119,7 @@ b = fftw(y,1,[5 6 4],[1 5 30]);
   <refsection>
     <title>参考文献</title>
     <para>
-    Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+      Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
     </para>
   </refsection>
 </refentry>

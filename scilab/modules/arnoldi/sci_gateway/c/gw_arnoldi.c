@@ -19,7 +19,7 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = 
+static gw_generic_table Tab[] =
 {
   {sci_dsaupd,"dsaupd"},
   {sci_dnaupd,"dnaupd"},

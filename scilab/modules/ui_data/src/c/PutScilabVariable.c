@@ -15,9 +15,7 @@
 #include "ui_data.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
 #include "os_strdup.h"
-#endif
 
 
 void putScilabVariable(char * name, char ** lines, int rows, int cols)
@@ -50,5 +48,5 @@ char * getUnnamedVariable(void)
     }
     while (isNamedVarExist(NULL, buffer));
 
-    return strdup(buffer);
+    return os_strdup(buffer);
 }

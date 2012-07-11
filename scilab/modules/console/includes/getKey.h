@@ -19,7 +19,6 @@
 #define SEND_MULTI_COMMAND 2
 #define DO_NOT_SEND_COMMAND 3
 
-#ifndef _MSC_VER
 /**
  * Wait for user user input and Manage all the command line.
  * Function is left when the user press enter.
@@ -42,5 +41,4 @@ int getTokenInteruptExecution();
 
 int getTokenInteruptExecution(void);
 
-#endif /* !_MSC_VER */
 #endif /* !GET_KEY_H_ */

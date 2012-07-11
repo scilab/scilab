@@ -19,7 +19,7 @@
 f13 = scf(13);
 plot(1:5);
 
-save(TMPDIR + "/save.scg", f13);
+save(TMPDIR + "/save.scg", "f13");
 
 f6 = scf(6);
 xload(TMPDIR + "/save.scg");

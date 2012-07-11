@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xls_open">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xls_open</refname>
-    <refpurpose>Open an Excel file for reading</refpurpose>
+    <refpurpose>opens an Excel file for reading</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,7 +33,7 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>a number, the logical unit on the Excel stream.
+          <para>a number: the logical unit on the Excel stream.
           </para>
         </listitem>
       </varlistentry>
@@ -84,7 +81,11 @@
       The <link linkend="readxls">readxls</link> function can be used to read all an Excel file
       in one function with a single function call.
     </para>
-    <para> Warning only BIFF8 Excel files (last Excel file version (2003)) are handled  </para>
+    <para> 
+      <warning>
+	Only BIFF8 Excel files (last Excel file version (2003)) are handled.
+      </warning>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -117,7 +118,7 @@ mclose(fd)
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para>The ripole-0.1.4 procedure (http://www.pldaniels.com/ripole)  is used
+    <para>The ripole-0.1.4 procedure (<ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>)  is used
       to extract the spreadsheet stream out of the ole file. 
     </para>
   </refsection>

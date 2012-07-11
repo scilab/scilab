@@ -61,44 +61,94 @@
         <term>options</term>
         <listitem>
           <para>A string array</para>
-          <itemizedlist>
-            <listitem>
-              <para>no_check_ref: does not check if the .dia and .dia.ref are equal</para>
-            </listitem>
-            <listitem>
-              <para>no_check_error_output: The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
-            </listitem>
-            <listitem>
-              <para>create_ref: create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
-            </listitem>
-            <listitem>
-              <para>list: does not perform the tests but displays a list of available tests</para>
-            </listitem>
-            <listitem>
-              <para>help: display some examples about how to use this command</para>
-            </listitem>
-            <listitem>
-              <para>mode_nw: add the "-nw" option to the launch</para>
-            </listitem>
-            <listitem>
-              <para>mode_nwni: add the "-nwni" option to the launch</para>
-            </listitem>
-            <listitem>
-              <para>nonreg_test: runs only the non-regression tests, skipping unit tests</para>
-            </listitem>
-            <listitem>
-              <para>unit_test: runs only the unit tests, skipping non-regression tests</para>
-            </listitem>
-            <listitem>
-              <para>skip_tests</para>
-            </listitem>
-            <listitem>
-              <para>enable_lt: Enable long-time execution tests</para>
-            </listitem>
-            <listitem>
-              <para>short_summary: Does not display statistics nor execution time after execution (only number of executed, passed, failed and skipped tests will be displayed on a single line).</para>
-            </listitem>
-          </itemizedlist>
+          <variablelist>
+            <varlistentry>
+              <term>no_check_ref</term>
+              <listitem>
+                <para>does not check if the .dia and .dia.ref are equal</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>no_check_error_output</term>
+              <listitem>
+                <para>The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>create_ref</term>
+              <listitem>
+                <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>show_error</term>
+              <listitem>
+                <para>If an error occurs, show the last 10 lines of the execution</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>show_diff</term>
+              <listitem>
+                <para>
+                  If a difference is found, show the result of the command <literal>diff -u</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>list</term>
+              <listitem>
+                <para>Does not perform the tests but displays a list of available tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>help</term>
+              <listitem>
+                <para>display some examples about how to use this command</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mode_nw</term>
+              <listitem>
+                <para>Add the "-nw" option to the launch</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mode_nwni</term>
+              <listitem>
+                <para>Add the "-nwni" option to the launch</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nonreg_test</term>
+              <listitem>
+                <para>runs only the non-regression tests, skipping unit tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>unit_test</term>
+              <listitem>
+                <para>Runs only the unit tests, skipping non-regression tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>skip_tests</term>
+              <listitem>
+                <para>Skip the tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>enable_lt</term>
+              <listitem>
+                <para>Enable long-time execution tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>short_summary</term>
+              <listitem>
+                <para>Does not display statistics nor execution time after execution (only number of executed, passed, failed and skipped tests will be displayed on a single line).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -189,8 +239,9 @@
       </listitem>
       <listitem>
         <para>
-          &lt;-- JVM NOT MANDATORY --&gt;
-          This test will be executed with the nwni mode by default.
+          &lt;-- CLI SHELL MODE --&gt;
+          (was: &lt;-- JVM NOT MANDATORY --&gt;)
+          This test will be executed with scilab-cli (nwni mode) by default.
         </para>
       </listitem>
       <listitem>
@@ -386,6 +437,12 @@ test_run([],[],['no_check_ref','mode_nw']);
               Returns %f if any error has been detected
             </listitem>
           </itemizedlist>
+          <para>
+            <literal>show_diff</literal> and <literal>show_error</literal> added as new options
+          </para>
+          <para>
+            <literal>CLI SHELL MODE</literal> tag is added. Replaces <literal>JVM NOT MANDATORY</literal> (still supported)
+          </para>
         </revdescription>
       </revision>
     </revhistory>

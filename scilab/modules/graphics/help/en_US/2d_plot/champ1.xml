@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="champ1">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="champ1">
   <refnamediv>
     <refname>champ1</refname>
     <refpurpose>2D vector field plot with colored
@@ -98,6 +95,10 @@
     <para>
       Enter the command <literal>champ1()</literal> to see a demo.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>champ1();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

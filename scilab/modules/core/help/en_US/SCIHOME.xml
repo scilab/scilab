@@ -14,13 +14,14 @@
   <refnamediv>
     <refname>SCIHOME</refname>
     <refpurpose>contains the path to preferences, history files of your Scilab
-    session.</refpurpose>
+      session.
+    </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
       The <literal>SCIHOME</literal> contains the path to preferences, history files
-    of your Scilab session.
+      of your Scilab session.
     </para>
     <para>
       <literal>SCIHOME</literal> definition:
@@ -36,8 +37,12 @@
       based on Windows %HOMEPATH% environment variable.
     </para>
     <para>
-      On Linux/Unix/MacOS:
+      On GNU/Linux or Unix:
       /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+    </para>
+    <para>
+      On Mac OS X:
+      /Users/lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
     </para>
     <para>
       &lt;User&gt; is your current login name
@@ -45,6 +50,13 @@
     <para>
       &lt;Scilab-Version&gt; is current version of Scilab used.
     </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+disp(SCIHOME);
+isdir(SCIHOME)
+ ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

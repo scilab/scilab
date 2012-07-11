@@ -11,6 +11,7 @@
  *
  */
 #include <stdio.h>
+#include <stdlib.h> /* _MAX_ENV */
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"

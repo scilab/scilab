@@ -10,22 +10,26 @@
 ##
 ##
 
-SYMBOL_CPP_SOURCES 		= src/cpp/symbol.cpp \
+SYMBOL_CXX_SOURCES 		= src/cpp/symbol.cpp \
 				src/cpp/context.cpp \
 				src/cpp/table.cpp
 
 pkglib_LTLIBRARIES 		= libscisymbol.la
 
-libscisymbol_la_SOURCES 	= $(SYMBOL_CPP_SOURCES)
+libscisymbol_la_SOURCES 	= $(SYMBOL_CXX_SOURCES)
 
-libscisymbol_la_CXXFLAGS	= -I includes/ \
-				-I $(top_builddir)/modules/types/includes \
-				-I $(top_builddir)/modules/functions_manager/includes \
-				-I $(top_builddir)/modules/elementary_functions/includes \
-				-I $(top_builddir)/modules/operations/includes \
-				-I $(top_builddir)/modules/ast/includes \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes \
-				-I src/cpp
+libscisymbol_la_CPPFLAGS = \
+	-I includes/ \
+	-I src/cpp \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes \
+	-I$(top_srcdir)/libs/MALLOC/includes \
+	-I $(top_builddir)/modules/types/includes \
+	-I $(top_builddir)/modules/functions_manager/includes \
+	-I $(top_builddir)/modules/elementary_functions/includes \
+	-I $(top_builddir)/modules/operations/includes \
+	-I $(top_builddir)/modules/ast/includes \
+	-I $(top_builddir)/modules/localization/includes \
+	$(AM_CPPFLAGS)
 
 
 libscisymbol_la_LIBADD =
@@ -33,6 +37,9 @@ libscisymbol_la_LIBADD =
 libscisymbol_la_includedir=$(pkgincludedir)/Symbol
 
 libscisymbol_la_include_HEADERS = includes/symbol.hxx
+
+# For the code check (splint)
+INCLUDE_FLAGS = $(libscisymbol_la_CPPFLAGS)
 
 ####################
 ## Automated test ##
@@ -70,3 +77,4 @@ testHeap_SOURCES 	= src/cpp/test-heap.cpp
 testHeap_CXXFLAGS 	= $(check_INCLUDES)
 testHeap_LDADD		= $(check_LDADD)
 
+include $(top_srcdir)/Makefile.incl.am

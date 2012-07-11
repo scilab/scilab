@@ -10,8 +10,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_elementary_functions.h"
 #include "api_scilab.h"
+#include "localization.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "basic_functions.h"

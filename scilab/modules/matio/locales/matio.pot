@@ -14,21 +14,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
-# File: sci_gateway/c/sci_matfile_close.c, line: 55
+# File: sci_gateway/c/sci_matfile_close.c, line: 54
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 60
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 57
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 61
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 60
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_close.c, line: 62
+# File: sci_gateway/c/sci_matfile_close.c, line: 61
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 67
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 64
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 68
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 67
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
@@ -43,41 +43,41 @@ msgstr ""
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 88
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 95
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 102
-# File: src/c/CreateBooleanVariable.c, line: 41
-# File: src/c/CreateBooleanVariable.c, line: 65
-# File: src/c/CreateCharVariable.c, line: 45
-# File: src/c/CreateCharVariable.c, line: 55
-# File: src/c/CreateHyperMatrixVariable.c, line: 91
-# File: src/c/CreateHyperMatrixVariable.c, line: 111
-# File: src/c/CreateHyperMatrixVariable.c, line: 132
-# File: src/c/CreateHyperMatrixVariable.c, line: 153
-# File: src/c/CreateHyperMatrixVariable.c, line: 174
-# File: src/c/CreateHyperMatrixVariable.c, line: 194
-# File: src/c/CreateHyperMatrixVariable.c, line: 214
-# File: src/c/CreateHyperMatrixVariable.c, line: 235
-# File: src/c/CreateIntegerVariable.c, line: 51
-# File: src/c/CreateIntegerVariable.c, line: 71
-# File: src/c/CreateIntegerVariable.c, line: 91
-# File: src/c/CreateIntegerVariable.c, line: 112
-# File: src/c/CreateIntegerVariable.c, line: 133
-# File: src/c/CreateIntegerVariable.c, line: 153
-# File: src/c/CreateIntegerVariable.c, line: 173
-# File: src/c/CreateIntegerVariable.c, line: 194
-# File: src/c/CreateSparseVariable.c, line: 46
-# File: src/c/CreateSparseVariable.c, line: 56
-# File: src/c/CreateSparseVariable.c, line: 70
-# File: src/c/CreateSparseVariable.c, line: 103
-# File: src/c/CreateSparseVariable.c, line: 123
-# File: src/c/CreateSparseVariable.c, line: 131
-# File: src/c/CreateSparseVariable.c, line: 140
-# File: src/c/CreateSparseVariable.c, line: 149
-# File: src/c/CreateSparseVariable.c, line: 159
-# File: src/c/CreateStructVariable.c, line: 51
-# File: src/c/CreateStructVariable.c, line: 58
-# File: src/c/CreateStructVariable.c, line: 64
-# File: src/c/CreateStructVariable.c, line: 74
+# File: src/c/CreateBooleanVariable.c, line: 44
+# File: src/c/CreateBooleanVariable.c, line: 68
+# File: src/c/CreateCharVariable.c, line: 48
+# File: src/c/CreateCharVariable.c, line: 58
+# File: src/c/CreateHyperMatrixVariable.c, line: 95
+# File: src/c/CreateHyperMatrixVariable.c, line: 115
+# File: src/c/CreateHyperMatrixVariable.c, line: 136
+# File: src/c/CreateHyperMatrixVariable.c, line: 157
+# File: src/c/CreateHyperMatrixVariable.c, line: 178
+# File: src/c/CreateHyperMatrixVariable.c, line: 198
+# File: src/c/CreateHyperMatrixVariable.c, line: 218
+# File: src/c/CreateHyperMatrixVariable.c, line: 239
+# File: src/c/CreateIntegerVariable.c, line: 55
+# File: src/c/CreateIntegerVariable.c, line: 75
+# File: src/c/CreateIntegerVariable.c, line: 95
+# File: src/c/CreateIntegerVariable.c, line: 116
+# File: src/c/CreateIntegerVariable.c, line: 137
+# File: src/c/CreateIntegerVariable.c, line: 157
+# File: src/c/CreateIntegerVariable.c, line: 177
+# File: src/c/CreateIntegerVariable.c, line: 198
+# File: src/c/CreateSparseVariable.c, line: 51
+# File: src/c/CreateSparseVariable.c, line: 61
+# File: src/c/CreateSparseVariable.c, line: 75
+# File: src/c/CreateSparseVariable.c, line: 108
+# File: src/c/CreateSparseVariable.c, line: 128
+# File: src/c/CreateSparseVariable.c, line: 136
+# File: src/c/CreateSparseVariable.c, line: 145
+# File: src/c/CreateSparseVariable.c, line: 154
+# File: src/c/CreateSparseVariable.c, line: 164
+# File: src/c/CreateStructVariable.c, line: 54
+# File: src/c/CreateStructVariable.c, line: 61
+# File: src/c/CreateStructVariable.c, line: 67
+# File: src/c/CreateStructVariable.c, line: 77
 # File: src/c/GetCellVariable.c, line: 75
-# File: src/c/GetCharVariable.c, line: 74
+# File: src/c/GetCharVariable.c, line: 76
 # File: src/c/GetDoubleVariable.c, line: 55
 # File: src/c/GetIntegerVariable.c, line: 61
 # File: src/c/GetSparseVariable.c, line: 55
@@ -112,7 +112,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 87
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 86
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 85
 #, c-format
 msgid "%s: Wrong size for second input argument: Single string expected.\n"
 msgstr ""
@@ -125,7 +125,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 115
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 95
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 94
 #, c-format
 msgid "%s: Wrong type for second input argument: Single string expected.\n"
 msgstr ""
@@ -137,19 +137,19 @@ msgid "%s: Invalid file identifier.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 115
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 114
 #, c-format
 msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 124
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 123
 #, c-format
 msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
 msgstr ""
 
 #
-# File: src/c/CreateCharVariable.c, line: 107
+# File: src/c/CreateCharVariable.c, line: 110
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr ""
@@ -162,13 +162,13 @@ msgid "%s: Wrong type for first input argument: Mlist expected.\n"
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 157
+# File: src/c/GetCharVariable.c, line: 159
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 172
+# File: src/c/GetCharVariable.c, line: 174
 #, c-format
 msgid ""
 "%s: Column array of strings with different lengths saving is not "
@@ -176,13 +176,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 206
+# File: src/c/GetCharVariable.c, line: 208
 #, c-format
 msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 217
+# File: src/c/GetCharVariable.c, line: 219
 #, c-format
 msgid "%s: Wrong type for first input argument: String matrix expected.\n"
 msgstr ""

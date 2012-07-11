@@ -38,7 +38,7 @@ function demo_colormap()
 	text_font_size       = 12;      // Text font size
 	
 	// Figure creation
-	// ========================================================================= 
+	// =========================================================================
 	
 	axes_w       = 3*margin_x + frame_w + plot_w;    // axes width
 	axes_h       = 2*margin_y + max(frame_h,plot_h); // axes height
@@ -321,8 +321,6 @@ function demo_colormap()
 	// =========================================================================
 	
 	drawlater();
-	
-	newaxes();
 	my_plot_axes = gca();
 	
 	my_plot_axes.x_label.text       = "";

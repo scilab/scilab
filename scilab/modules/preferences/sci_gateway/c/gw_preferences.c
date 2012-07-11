@@ -12,15 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_preferences.h"
 #include "callFunctionFromGateway.h"
-#include "loadOnUseClassPath.h"
-#include "api_scilab.h"
-
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-    {NULL, "addModulePreferences"}, //addModulePreferences
-    {NULL, ""} //removeModulePreferences
-};
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 int gw_preferences(void)
 {

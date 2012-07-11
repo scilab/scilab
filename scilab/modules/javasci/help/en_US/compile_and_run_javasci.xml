@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="compile_and_run_javasci_v2" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>Compile and run with javasci v2</refname>
     <refpurpose>How to compile a Java application using Javasci v2</refpurpose>
@@ -203,18 +200,6 @@ class BasicExample {
       </member>
       <member>
         <link linkend="javasci_faq_v2">Javasci FAQ</link>
-      </member>
-      <member>
-        <link linkend="SciDouble">SciDouble</link>
-      </member>
-      <member>
-        <link linkend="SciDoubleArray">SciDoubleArray</link>
-      </member>
-      <member>
-        <link linkend="SciString">SciString</link>
-      </member>
-      <member>
-        <link linkend="SciStringArray">SciStringArray</link>
       </member>
     </simplelist>
   </refsection>

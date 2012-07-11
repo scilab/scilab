@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which

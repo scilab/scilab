@@ -1,11 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,27 +19,42 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_grid_position_property( sciPointObj * pobj )
+int get_grid_position_property(void* _pvCtx, char* pobjUID)
 {
-	
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
-    return -1;
-  }
-  if ( sciGetGridFront(pobj) )
-  {
-    return sciReturnString( "foreground" ) ;
-  }
-  else
-  {
-    return sciReturnString( "background" ) ;
-  }
+    int iGridPosition = 0;
+    int* piGridPosition = &iGridPosition;
+
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
+        return -1;
+    }
+#endif
+
+    getGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, jni_int, (void **)&piGridPosition);
+
+    if (piGridPosition == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
+        return -1;
+    }
+
+    if (iGridPosition)
+    {
+        return sciReturnString(_pvCtx, "foreground");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "background");
+    }
 }
 /*------------------------------------------------------------------------*/

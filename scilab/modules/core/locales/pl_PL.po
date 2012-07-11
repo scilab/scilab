@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-03 14:44+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2012-04-05 23:53+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pl\n"
 
 #, c-format
@@ -48,8 +48,24 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Brak pamięci.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Błąd alokacji pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -66,10 +82,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Nieprawidłowy typ argumentu wejściowego.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Brak pamięci.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
@@ -84,10 +96,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano skalara.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Błąd alokacji pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -355,6 +363,9 @@ msgstr ""
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab Consortium (DIGITEO)\n"
 
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr ""
+
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr ""
 
@@ -536,26 +547,12 @@ msgstr "Brak pamięci dla stosu programu Scilab.\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"Stos wywołań:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"Koniec stosu\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
 
@@ -907,20 +904,20 @@ msgid "%s argument"
 msgstr "parametr %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "parametr numer %d"
+msgid "argument #%d"
+msgstr ""
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "parametry %s i %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "parametr %s i parametr %d"
+msgid "%s argument and argument #%d"
+msgstr ""
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "parametry %d i %d"
+msgid "arguments #%d and #%d"
+msgstr ""
 
 msgid "should be square"
 msgstr "powinno być kwadratem"
@@ -1040,6 +1037,20 @@ msgid "Scilab Version Info."
 msgstr "Informacja o wersji Scilab."
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Stos wywołań:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Koniec stosu\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -1096,6 +1107,10 @@ msgstr "Wprowadzenie"
 
 msgid "Getting started with Scilab"
 msgstr "Jak zacząć ze Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr ""
 
 #, c-format
 msgid "Checking: %s\n"

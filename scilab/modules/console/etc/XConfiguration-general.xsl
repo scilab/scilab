@@ -10,14 +10,14 @@
   <xsl:template match="environment">
     <Title text="Environment">
       <Grid>
-        <Label gridx="1" gridy="1" weightx="0" text="Floating point exception: "/>
+        <Label gridx="1" gridy="1" weightx="0" text="Floating point exception (ieee): "/>
         <Panel gridx="2" gridy="1" weightx="1"/>
         <Panel gridx="3" gridy="1" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
-              <option floating-point-exception="Produces an error"/>
-              <option floating-point-exception="Produces a warning"/>
-              <option floating-point-exception="Produces Inf or Nan"/>
+              <xsl:for-each select="fpe">
+                <option fpe="{@floating-point-exception}"/>
+              </xsl:for-each>
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
@@ -26,13 +26,8 @@
         <Panel gridx="3" gridy="2" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
-              <option printing-format="short"/>
-              <option printing-format="long"/>
-              <option printing-format="short e"/>
-              <option printing-format="long e"/>
-              <option printing-format="short g"/>
-              <option printing-format="long g"/>
-              <option printing-format="variable format"/>
+              <option printing-format="Scientific format"/>
+              <option printing-format="Variable format"/>
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
@@ -41,7 +36,8 @@
         <NumericalSpinner gridx="3"
                           gridy="3"
                           weightx="0"
-                          min-value = "1"
+                          min-value = "2"
+			  max-value = "25"
                           increment = "1"
                           length = "3"
                           listener = "ActionListener"
@@ -61,7 +57,7 @@
       <Grid>
         <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
         <Panel gridx="2" gridy="1" weightx="1"/>
-        <NumericalSpinner min-value = "128"
+        <NumericalSpinner min-value = "0"
                           increment = "128"
                           length = "6"
                           listener = "ActionListener"
@@ -71,96 +67,59 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
+        <Label text="(This requires a restart of Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+	<Panel gridx="2" gridy="2" weightx="1" fill="both"/>	
       </Grid>
     </Title>
 
   </xsl:template>
 
   <xsl:template match="tools">
-    <VBox>
-      <VSpace height="1"/>
-      <HBox>
-        <HSpace width="200"/>
-        <VBox>
-          <HBox>&lt;HTML&gt;&lt;I&gt;The following dialog boxes
-          require user confirmation.
-          </HBox>
-          <HBox>&lt;HTML&gt;&lt;I&gt;Select a check
-          box if you want that dialog box to appear.
-          </HBox>
-        </VBox>
-      </HBox>
+    <Title text="Confirmation dialogs">
+      <Grid>
+        <xsl:for-each select="tool">
+          <Checkbox
+              gridy    = "{position() + 1}"
+              gridx    = "1"
+              listener = "ActionListener"
+              checked  = "{@state}"
+              text     = "{@description}">
+            <actionPerformed choose="state">
+              <xsl:call-template name="context"/>
+            </actionPerformed>
+          </Checkbox>
+        </xsl:for-each>
+      </Grid>
+    </Title>
+  </xsl:template>
 
-      <Title text="Confirmation dialogs">
-        <Grid>
-          <Label gridy="1" gridx="1" text="&lt;HTML&gt;&lt;B&gt;Dialog box description"/>
-          <Label gridy="1" gridx="2" text="&lt;HTML&gt;&lt;B&gt;Tool"/>
-          <Icon  gridy="1" gridx="3" listener="MouseListener">
-            <xsl:attribute name="src">
-              <xsl:choose>
-                <xsl:when test="@order='ascending'">
-                  <xsl:text>go-up.png</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:text>go-down.png</xsl:text>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:attribute>
-            <mouseClicked set="order">
-              <xsl:attribute name="value">
-                <xsl:choose>
-                  <xsl:when test="@order='ascending'">
-                    <xsl:text>descending</xsl:text>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:text>ascending</xsl:text>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:attribute>
-              <xsl:call-template name="context"/>
-            </mouseClicked>
-          </Icon>
-          <xsl:for-each select="tool">
-            <xsl:sort order="{@order}" select="@name"/>
-            <Checkbox
-                gridy    = "{position() + 1}"
-                gridx    = "1"
-                listener = "ActionListener"
-                checked  = "{@state}"
-                text     = "{@description}"
-                >
-              <actionPerformed choose="state">
-                <xsl:call-template name="context"/>
-              </actionPerformed>
-            </Checkbox>
-            <Label
-                gridy    = "{position() + 1}"
-                gridx    = "2"
-                text     = "{@name}"/>
-          </xsl:for-each>
-        </Grid>
-      </Title>
-      <Glue/>
-      <HBox>
-        <Glue/>
-        <Button text="Select All" listener="ActionListener">
-          <xsl:for-each select="tool">
-            <actionPerformed set="state" value="checked">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </xsl:for-each>
-        </Button>
-        <Glue/>
-        <Button text="Clear All" listener="ActionListener">
-          <xsl:for-each select="tool">
-            <actionPerformed set="state" value="unchecked">
-              <xsl:call-template name="context"/>
-            </actionPerformed>
-          </xsl:for-each>
-        </Button>
-        <Glue/>
-      </HBox>
-    </VBox>
+  <xsl:template match="layouts">
+    <xsl:variable name="name" select="@name"/>
+    <Title text="Desktop Layout">
+      <Grid>
+        <Label gridx="1" gridy="1" weightx="0" text="Select a layout"/>
+        <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
+        <Panel gridx="3" gridy="1">
+          <xsl:call-template name="Select">
+            <xsl:with-param name="among">
+              <xsl:for-each select="layout">
+                <option name="{@name}"/>
+              </xsl:for-each>
+            </xsl:with-param>
+          </xsl:call-template>
+        </Panel>
+	<Label text="(modify the layout requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+	<Panel gridx="1" gridy="3">
+	  <VSpace height="10"/>
+	</Panel>
+        <Image gridx="1" gridy="4" gridwidth="3">
+          <xsl:attribute name="url">
+            <xsl:value-of select="layout[@name=$name]/@image"/>
+          </xsl:attribute>
+        </Image>
+	
+      </Grid>
+    </Title>
   </xsl:template>
 
   <xsl:template match="actions">

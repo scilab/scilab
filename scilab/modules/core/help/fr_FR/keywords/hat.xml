@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hat (^)</refname>
     <refpurpose> élévation à la puissance  </refpurpose>
@@ -31,7 +28,7 @@
         Notez que <literal>123.^b</literal> est interprété comme <literal>(123).^b</literal>. Dans un tel cas le point fait partie de l'opérateur et non pas du nombre.
       </para>
       <para>
-        Étant donnés deux nombres réels ou complexes <literal>x1</literal> et  <literal>x2</literal> la valeur de 
+        Étant donnés deux nombres réels ou complexes <literal>x1</literal> et <literal>x2</literal> la valeur de 
         <literal>x1^x2</literal> est la "valeur principale" déterminée par 
         <literal>x1^x2 = exp(x2*log(x1))</literal>.
       </para>
@@ -56,6 +53,9 @@ s=poly(0,"s");
       </member>
       <member>
         <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="log">log</link>
       </member>
     </simplelist>
   </refsection>

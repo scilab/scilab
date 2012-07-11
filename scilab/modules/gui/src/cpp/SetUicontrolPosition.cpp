@@ -1,154 +1,100 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Sets the position of an uicontrol object 
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ * Sets the position of an uicontrol object
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetUicontrolPosition.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  // Position can be [x, y, width, height]
-  // or "x|y|width|height"
+    // Position can be [x, y, width, height] or "x|y|width|height"
 
-  int xInt = 0, yInt = 0, widthInt = 0, heightInt, nbvalues = 0;
+    double *position = NULL;
+    int nbValues = 0;
+    BOOL status = FALSE;
+    char* type = NULL;
 
-  double * allValues = NULL;
-  
-  float xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
-
-  int * returnValues = NULL;
-
-  sciPointObj *parent = NULL;
-
-  int status = 0;
-  
-  if (stackPointer == -1) /* Default values setting */
+    if (valueType == sci_strings)
     {
-      xInt = 20;
-      yInt = 40;
-      widthInt = 40;
-      heightInt = 20;
-    }
-  else
-    {
-      if (valueType == sci_strings)
+        if (nbCol != 1)
         {
-          if(nbCol != 1)
-            {
-              Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
-              return SET_PROPERTY_ERROR;
-            }
-          
-          nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &yDouble, &widthDouble, &heightDouble);
-          
-          if (nbvalues != 4)
-            {
-              Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
-              return SET_PROPERTY_ERROR;
-            }
-          
-          xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
-          yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
-          widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
-          heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
-          
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            return SET_PROPERTY_ERROR;
         }
-      else if (valueType == sci_matrix)
+
+        position = new double[4];
+        nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf|%lf", &position[0], &position[1], &position[2], &position[3]);
+
+        if (nbValues != 4)
         {
-          if(nbCol != 4 || nbRow != 1)
-            {
-              Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
-              return SET_PROPERTY_ERROR;
-            }
-          
-          allValues = getDoubleMatrixFromStack(stackPointer);
-          xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
-          yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
-          widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
-          heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
-          
-        }
-      else
-        {
-          Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
-          return SET_PROPERTY_ERROR;
+            Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            return SET_PROPERTY_ERROR;
         }
     }
-
-  if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+    else if (valueType == sci_matrix)
     {
-      parent = sciGetParent(sciObj);
-      if (parent != NULL && sciGetEntityType(parent)==SCI_UICONTROL)
+        if (nbCol != 4 || nbRow != 1)
         {
-          /* Parent is a frame and position is relative to parent */
-           returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
-                                                             pUICONTROL_FEATURE(parent)->hashMapIndex);
-           xInt = returnValues[0] + xInt;
-           yInt = returnValues[1] + yInt;
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            return SET_PROPERTY_ERROR;
         }
 
-      CallScilabBridge::setFramePosition(getScilabJavaVM(), 
-                                         pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                         xInt, 
-                                         yInt, 
-                                         widthInt, 
-                                         heightInt);
+        position = getDoubleMatrixFromStack(stackPointer);
+
     }
-  else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
-  {
-    /* disable protection since this function will call Java */
-    disableFigureSynchronization(sciObj);
-    status = sciSetDimension(sciObj, widthInt, heightInt) ;
-    enableFigureSynchronization(sciObj);
-    return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & status);
-    //return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & sciSetWindowDim(sciObj, widthInt, heightInt));
-  }
-  else /* All other uicontrol styles */
+    else
     {
-
-      parent = sciGetParent(sciObj);
-      if (parent != NULL && sciGetEntityType(parent)==SCI_UICONTROL)
-        {
-          /* Parent is a frame and position is relative to parent */
-           returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
-                                                             pUICONTROL_FEATURE(parent)->hashMapIndex);
-           xInt = returnValues[0] + xInt;
-           yInt = returnValues[1] + yInt;
-		   delete [] returnValues;
-        }
-
-      CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
-                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt, 
-                                          yInt, 
-                                          widthInt, 
-                                          heightInt);
-      
-      /* Special case for Sliders: set orientation */
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
-        {
-          if (widthInt > heightInt) /* Horizontal ScrollBar */
-            {
-              CallScilabBridge::setSliderHorizontal(getScilabJavaVM(), 
-                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-            }
-          else /* Vertical ScrollBar */
-            {
-              CallScilabBridge::setSliderVertical(getScilabJavaVM(), 
-                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-            }
-        }
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+        return SET_PROPERTY_ERROR;
     }
-  return SET_PROPERTY_SUCCEED;
+
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**)&type);
+
+    /* Figure position set as an uicontrol one */
+    if (strcmp(type, __GO_FIGURE__) == 0)
+    {
+        int figurePosition[2];
+        int figureSize[2];
+
+        figurePosition[0] = (int) position[0];
+        figurePosition[1] = (int) position[1];
+        figureSize[0] = (int) position[2];
+        figureSize[1] = (int) position[3];
+
+        status = setGraphicObjectProperty(sciObjUID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
+        if (status == FALSE)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+            return SET_PROPERTY_ERROR;
+        }
+        status = setGraphicObjectProperty(sciObjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
+    }
+    else
+    {
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), position, jni_double_vector, 4);
+    }
+
+    if (valueType == sci_strings)
+    {
+        delete[] position;
+    }
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+        return SET_PROPERTY_ERROR;
+    }
 }
-

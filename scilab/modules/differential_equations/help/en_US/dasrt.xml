@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dasrt" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dasrt</refname>
     <refpurpose>DAE solver with zero crossing</refpurpose>
@@ -35,19 +32,19 @@
             or the matrix <literal>[y0 ydot0]</literal>.
             <literal>g(t,y0,ydot0)</literal> must be equal to zero. If you only
             know an estimate of <literal>ydot0</literal> set
-            <literal>info(7)=1</literal>
+            <literal>info(7)=1</literal>.
           </para>
           <variablelist>
             <varlistentry>
               <term>y0</term>
               <listitem>
-                <para>real column vector of initial conditions.</para>
+                <para>a real column vector of initial conditions.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>ydot0</term>
               <listitem>
-                <para>real column vector of the time derivative of
+                <para>a real column vector of the time derivative of
                   <literal>y</literal> at <literal>t0</literal> (may be an
                   estimate).
                 </para>
@@ -59,13 +56,13 @@
       <varlistentry>
         <term>t0</term>
         <listitem>
-          <para>real number is the initial instant.</para>
+          <para>a real number, it is the initial instant.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real scalar or vector. Gives instants for which you want the
+          <para>a real scalar or vector. Gives instants for which you want the
             solution. Note that you can get solution at each dassl's step point
             by setting <literal>info(2)=1</literal>.
           </para>
@@ -78,15 +75,15 @@
             a vector with two entries <literal>[times num]</literal>
             <literal>times</literal> is the value of the time at which the
             surface is crossed, <literal>num</literal> is the number of the
-            crossed surface
+            crossed surface.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>real scalars or column vectors of same size as
-            <literal>y</literal>. <literal>atol,rtol</literal> give respectively
+            <literal>y</literal>. <literal>atol, rtol</literal> give respectively
             absolute and relative error tolerances of solution. If vectors the
             tolerances are specified for each component of
             <literal>y</literal>.
@@ -96,8 +93,9 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>external (function or list or string). Computes the value of
-            <literal>g(t,y,ydot)</literal>.It may be :
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
+            <literal>g(t,y,ydot)</literal>. It may be :
           </para>
           <itemizedlist>
             <listitem>
@@ -118,13 +116,13 @@
               <para>This form allows to pass parameters other than t,y,ydot to
                 the function. It must be as follows:
               </para>
-              <programlisting role=""><![CDATA[  
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
               <para>where the calling sequence of the function
                 <literal>res</literal> is now
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -138,21 +136,22 @@ r=res(t,y,ydot,x1,x2,...)
             </listitem>
             <listitem>
               <para>A string.</para>
-              <para>it must refer to the name of a C or fortran subroutine
+              <para>It must refer to the name of a C or Fortran subroutine
                 linked with Scilab.
               </para>
               <para>In C The calling sequence must be:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[]) 
  ]]></programlisting>
               <para>In Fortran it must be:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para>The rpar and ipar arrays must be present but cannot be
+              <para>
+                The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
                 used.
               </para>
             </listitem>
@@ -162,9 +161,10 @@ integer ires,ipar(*)
       <varlistentry>
         <term>jac</term>
         <listitem>
-          <para>external (function or list or string). Computes the value of
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
             <literal>dg/dy+cj*dg/dydot</literal> for a given value of parameter
-            <literal>cj</literal>
+            <literal>cj</literal>.
           </para>
           <itemizedlist>
             <listitem>
@@ -173,19 +173,19 @@ integer ires,ipar(*)
                 <literal>r=jac(t,y,ydot,cj)</literal> and the
                 <literal>jac</literal> function must return
                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
-                <literal>cj</literal> is a real scalar
+                <literal>cj</literal> is a real scalar.
               </para>
             </listitem>
             <listitem>
               <para>A list.</para>
-              <para>it must be as follows</para>
-              <programlisting role=""><![CDATA[ 
+              <para>It must be as follows</para>
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
               <para>where the calling sequence of the function
                 <literal>jac</literal> is now
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -196,16 +196,16 @@ r=jac(t,y,ydot,cj,x1,x2,...)
             </listitem>
             <listitem>
               <para>A character string.</para>
-              <para>it must refer to the name of a fortran subroutine linked
+              <para>It must refer to the name of a Fortran subroutine linked
                 with scilab
               </para>
               <para>In C The calling sequence must be:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
               <para>In Fortran it must be:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -217,7 +217,8 @@ integer ipar(*)
       <varlistentry>
         <term>surf</term>
         <listitem>
-          <para>external (function or list or string). Computes the value of
+          <para>
+            <link linkend="external">external</link> (function or list or string). Computes the value of
             the column vector <literal>surf(t,y)</literal> with
             <literal>ng</literal> components. Each component defines a surface.
             It may be defined by:
@@ -231,28 +232,28 @@ integer ipar(*)
             </listitem>
             <listitem>
               <para>A list.</para>
-              <para>it must be as follows</para>
-              <programlisting role=""><![CDATA[ 
+              <para>It must be as follows</para>
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(surf,x1,x2,...)
  ]]></programlisting>
               <para>where the calling sequence of the function
                 <literal>surf</literal> is now
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
             </listitem>
             <listitem>
               <para>A character string.</para>
-              <para>it must refer to the name of a fortran subroutine linked
-                with scilab
+              <para>It must refer to the name of a Fortran subroutine linked
+                with scilab.
               </para>
-              <para>In C The calling sequence must be:</para>
-              <programlisting role=""><![CDATA[
+              <para>In C the calling sequence must be:</para>
+              <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
               <para>In Fortran it must be:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
@@ -265,8 +266,8 @@ integer ny,ng
         <term>info</term>
         <listitem>
           <para>
-            list which contains <literal>7</literal> elements, default
-            value is list([],0,[],[],[],0,0)
+            list which contains <literal>7</literal> elements. Default
+            value is <literal>list([],0,[],[],[],0,0)</literal>.
           </para>
           <variablelist>
             <varlistentry>
@@ -299,8 +300,7 @@ integer ny,ng
                   by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
                     "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
                   </literal>
-                  .If
-                  <literal>jac</literal> returns a full matrix set
+                  .If <literal>jac</literal> returns a full matrix set
                   <literal>info(3)=[]</literal>.
                 </para>
               </listitem>
@@ -317,7 +317,7 @@ integer ny,ng
               <term>info(5)</term>
               <listitem>
                 <para>real scalar which gives the initial step size. Set
-                  <literal>info(4)=[]</literal> if not specified.
+                  <literal>info(5)=[]</literal> if not specified.
                 </para>
               </listitem>
             </varlistentry>
@@ -350,15 +350,16 @@ integer ny,ng
         <listitem>
           <para>
             real vector which allows to store the <literal>dassl</literal>
-            context and to resume integration
+            context and to resume integration.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>real matrix . Each column is the vector [t;x(t);xdot(t)] where
-            t is time index for which the solution had been computed
+          <para>
+            real matrix . Each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
+            <literal>t</literal> is time index for which the solution had been computed.
           </para>
         </listitem>
       </varlistentry>
@@ -366,15 +367,15 @@ integer ny,ng
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Solution of the implicit differential equation</para>
-    <programlisting role=""><![CDATA[ 
+    <para>Solution of the implicit differential equation.</para>
+    <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
  ]]></programlisting>
     <para>Returns the surface crossing instants and the number of the surface
       reached in <literal>nn</literal>.
     </para>
-    <para>Detailed examples can be found in SCIDIR/tests/dassldasrt.tst</para>
+    <para>Detailed examples can be found in SCIDIR/tests/unit_tests/dassldasrt.tst</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -414,14 +415,5 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
         <link linkend="external">external</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>6.0.0</revnumber>
-        <revremark>Prototype of C calling sequence for surf function was wrong.</revremark>
-      </revision>
-    </revhistory>
   </refsection>
 </refentry>

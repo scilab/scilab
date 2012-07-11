@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: de\n"
 
 #, c-format
@@ -183,6 +183,10 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
 "%s: Die Konfigurationsdatei ('%s') ist in Zeile %d nicht korrekt "
@@ -224,6 +228,11 @@ msgstr ""
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: DESCRIPTION Datei kann nicht im Paket '%s' gefunden werden\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -303,6 +312,10 @@ msgstr ""
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: Beim Laden von '%s-%s' ist ein Fehler aufgetreten:\n"
+
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -479,11 +492,6 @@ msgstr "Installationsverzeichnis"
 msgid "Description"
 msgstr "Beschreibung"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: '%s - %s' ist nicht installiert.\n"
@@ -533,6 +541,9 @@ msgstr "Datei"
 
 msgid "Installed modules"
 msgstr "installierte Module"
+
+msgid "Update List of Packages"
+msgstr ""
 
 msgid "Close"
 msgstr "Schließen"
@@ -695,6 +706,10 @@ msgstr ""
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Auspacken der Beschreibungsdatei ('%s') ist fehlgeschlagen.\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr ""
 
 #, c-format
 msgid ""

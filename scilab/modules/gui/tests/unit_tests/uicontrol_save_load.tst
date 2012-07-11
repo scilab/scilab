@@ -42,7 +42,7 @@ h.user_data = list("hello", "Scilab", 5);
 h.tag = "My uimenu tag"; // Default is ""
 
 // Save figure contents
-save(TMPDIR + "/uicontrol.scg", h);
+save(TMPDIR + "/uicontrol.scg", "h");
 
 hsaved = h;
 clear h;

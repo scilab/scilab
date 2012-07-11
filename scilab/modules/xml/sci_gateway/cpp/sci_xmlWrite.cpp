@@ -49,7 +49,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -73,7 +73,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -99,7 +99,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
 
             if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(999, gettext("%s: No more memory.\n"), fname);
                 return 0;
             }
 
@@ -121,7 +121,6 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
                 Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
                 return 0;
             }
-            expandedPath = strdup((const char *)document->URL);
 
             if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
@@ -138,12 +137,14 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                FREE(expandedPath);
+                Scierror(999, gettext("%s: Can not read input argument #%d.\n"), fname, 3);
                 return 0;
             }
 
             if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
+                FREE(expandedPath);
                 Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                 return 0;
             }
@@ -158,7 +159,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
             Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
             return 0;
         }
-        expandedPath = strdup((const char *)document->URL);
+        expandedPath = os_strdup((const char *)document->URL);
     }
 
     xmlThrDefIndentTreeOutput(1);

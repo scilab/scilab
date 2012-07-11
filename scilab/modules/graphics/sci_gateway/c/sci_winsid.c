@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,12 +18,13 @@
 #include "stack-c.h"
 #include "gw_graphics.h"
 #include "MALLOC.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "Scierror.h"
 #include "returnProperty.h"
 #include "localization.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_winsid(char *fname,unsigned long fname_len)
+int sci_winsid(char *fname, void *pvApiCtx)
 {
   int status = 0;
   int nbFigure = sciGetNbFigure();
@@ -32,11 +33,11 @@ int sci_winsid(char *fname,unsigned long fname_len)
   if (nbFigure <= 0)
   {
     /* There is no figure */
-    status = sciReturnEmptyMatrix();
+    status = sciReturnEmptyMatrix(pvApiCtx);
   }
   else
   {
-    int * ids = MALLOC(nbFigure * sizeof(int));
+    int * ids = (int*)MALLOC(nbFigure * sizeof(int));
     if (ids == NULL)
     {
       Scierror(999, _("%s: No more memory.\n"),fname);
@@ -44,7 +45,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
     }
     sciGetFiguresId(ids);
 
-    status = sciReturnRowIntVector(ids, nbFigure);
+    status = sciReturnRowIntVector(pvApiCtx, ids, nbFigure);
     FREE(ids);
   }
   LhsVar(1) = Rhs+1;

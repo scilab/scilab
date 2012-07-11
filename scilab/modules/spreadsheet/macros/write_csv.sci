@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -51,7 +51,7 @@ function write_csv(var, fname, sep, dec)
   end
 
   if dec <> ['.',','] then 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), 'write_csv', 3, '.', ','));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), 'write_csv', 4, '.', ','));
   end
 
   if type(var) == 1 then

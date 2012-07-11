@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dassl" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dassl</refname>
     <refpurpose>Equação diferencial algébrica</refpurpose>
@@ -72,10 +69,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>escalares reais ou vetores colunas com o mesmo tamanho que
-            <literal>y</literal>. <literal>atol,rtol</literal> fornecem
+            <literal>y</literal>. <literal>atol, rtol</literal> fornecem
             respectivamente as tolerâncias de erros absolutos e relativos da
             solução. Se forem vetores, as tolerâncias são especificadas para
             cada elemento de <literal>y</literal>.
@@ -108,13 +105,13 @@
               <para>Esta forma permite passar outros parâmetros além de
                 t,y,ydot à função. Deve ser como segue:
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
               <para>Onde a seqüência de chamamento da função
                 <literal>res</literal> é agora
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -129,17 +126,18 @@ r=res(t,y,ydot,x1,x2,...)
                 Scilab.
               </para>
               <para>Em C a seqüência de chamamento:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Em Fortran deve ser:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*) 
  ]]></programlisting>
-              <para>Os arrays rpar e ipar devem estar presentes, mas não podem
+              <para>
+                Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
                 ser utilizados.
               </para>
             </listitem>
@@ -166,13 +164,13 @@ integer ires,ipar(*)
             <listitem>
               <para>Uma lista</para>
               <para>Deve ser como segue</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(jac,x1,x2,...)
  ]]></programlisting>
               <para>Onde a seqüência de chamamento da função
                 <literal>jac</literal> é agora
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -187,12 +185,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                 ligada ao Scilab
               </para>
               <para>Em C, a seqüência de chamamento deve ser</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 void jac(double *t, double y[], double yd[], 
          double pd[], double *cj, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Em Fortran deve ser</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -307,7 +305,7 @@ integer ipar(*)
     <para>A função dassl integra a equação alegébrica-diferencial e retorna a
       evolução de<literal> y </literal>em pontos de tempo dados.
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 g(t,y,ydot)=0
 y(t0)=y0  e   ydot(t0)=ydot0
  ]]></programlisting>
@@ -335,8 +333,8 @@ y=dassl([y0,yd0],0,t,chemres);
 
 info=list([],0,[],[],[],0,0);
 info(2)=1;
-y=dassl([y0,yd0],0,4d10,chemres,info);
-y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+y1=dassl([y0,yd0],0,4d10,chemres,info);
+y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
  
 //utilizando um argumento extra para parâmetros
 //-----------------------------------
@@ -351,7 +349,7 @@ function pd=chemjac(x,y,yd,cj, a,b,c)
          a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
          1    , 1                  , 1       ]
 endfunction
-y=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
+y3=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
 
 //utilizando código c
 //------------
@@ -379,16 +377,16 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[7] = -1.0e4*y[1];'
          '   pd[8] =  1.0;'
          ' }'];
-mputl([rescode;jaccode],TMPDIR+'/mycode.c') //create the C file
+mputl([rescode;jaccode],fullfile(TMPDIR,'mycode.c')) //create the C file
 
 // - compilando-o
-ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
+ilib_for_link(['chemres','chemjac'],fullfile(TMPDIR,'mycode.c'),[],'c','',fullfile(TMPDIR,'loader.sce'));//compilando
 
 // - ligando-o com o Scilab
-exec(TMPDIR+'/loader.sce') //linking incremental
+exec(fullfile(TMPDIR,'loader.sce')) //linking incremental
 
 // - chamada a dassl
-y=dassl([y0,yd0],0,t,'chemres','chemjac');
+y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
   </refsection>
   <refsection>

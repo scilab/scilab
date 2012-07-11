@@ -26,6 +26,7 @@ extern "C"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "UicontrolStyleToString.h"
+#include "stricmp.h"
 }
 
 #endif /* __SET_UICONTROL_UNITS_HXX__ */

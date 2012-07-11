@@ -66,7 +66,6 @@ Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\LibScilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libxml2.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -76,8 +75,7 @@ Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\MALLOC.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-
+;
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

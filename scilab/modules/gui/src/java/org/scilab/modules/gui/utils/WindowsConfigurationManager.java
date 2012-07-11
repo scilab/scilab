@@ -15,6 +15,7 @@ package org.scilab.modules.gui.utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,25 +28,20 @@ import java.util.UUID;
 import javax.swing.SwingUtilities;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.state.LayoutNode;
 import org.flexdock.perspective.persist.xml.LayoutNodeSerializer;
 import org.flexdock.perspective.persist.xml.PersistenceConstants;
-
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
+import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.commons.xml.XConfigurationEvent;
+import org.scilab.modules.commons.xml.XConfigurationListener;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -53,6 +49,9 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -60,12 +59,14 @@ import org.scilab.modules.gui.window.Window;
  *
  * @author Calixte DENIZET
  */
-public class WindowsConfigurationManager {
+public class WindowsConfigurationManager implements XConfigurationListener {
 
     private static final int DEFAULTX = 0;
     private static final int DEFAULTY = 0;
     private static final int DEFAULTHEIGHT = 500;
     private static final int DEFAULTWIDTH = 500;
+
+    private static final String LAYOUT_PATH = "//general/desktop-layout/body/layouts";
 
     private static final String SCI = "SCI";
     private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
@@ -79,7 +80,29 @@ public class WindowsConfigurationManager {
     private static boolean oneTry;
     private static Document doc;
 
+    private static boolean mustInvalidate;
+
     static {
+        new WindowsConfigurationManager();
+        Runnable runnable = new Runnable() {
+            public void run() {
+                if (mustInvalidate) {
+                    File f = new File(USER_WINDOWS_CONFIG_FILE);
+                    if (f.exists() && f.isFile()) {
+                        f.delete();
+                    }
+                }
+            }
+        };
+
+        try {
+            Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
+            Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
+            registerFinalHook.invoke(null, runnable);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
         defaultWinAttributes.put("x", new Integer(DEFAULTX));
         defaultWinAttributes.put("y", new Integer(DEFAULTY));
         defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
@@ -91,12 +114,35 @@ public class WindowsConfigurationManager {
           }, java.awt.AWTEvent.FOCUS_EVENT_MASK);*/
     }
 
+    private WindowsConfigurationManager() {
+        XConfiguration.addXConfigurationListener(this);
+    }
+
+    public void configurationChanged(XConfigurationEvent e) {
+        if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
+            mustInvalidate = true;
+        }
+    }
+
+    public static String getLayoutFilePath() {
+        try {
+            Document doc = XConfiguration.getXConfigurationDocument();
+            XPath xp = XPathFactory.newInstance().newXPath();
+            NodeList nodes = (NodeList) xp.compile(LAYOUT_PATH + "/layout[@name=../@name]/@path").evaluate(doc, XPathConstants.NODESET);
+            if (nodes != null && nodes.getLength() > 0) {
+                return nodes.item(0).getNodeValue().replace("$SCI", System.getenv(SCI));
+            }
+        } catch (Exception e) { }
+
+        return WINDOWS_CONFIG_FILE;
+    }
+
     /**
      * Create a copy of windows configuration file in the user directory
      */
     public static void createUserCopy() {
         if (isCopyNeeded()) {
-            ScilabCommonsUtils.copyFile(new File(WINDOWS_CONFIG_FILE), new File(USER_WINDOWS_CONFIG_FILE));
+            ScilabCommonsUtils.copyFile(new File(getLayoutFilePath()), new File(USER_WINDOWS_CONFIG_FILE));
             doc = null;
         }
     }
@@ -111,7 +157,7 @@ public class WindowsConfigurationManager {
         }
 
         if (doc == null && !oneTry) {
-            System.err.println("Try to reload the default configuration file: " + WINDOWS_CONFIG_FILE);
+            System.err.println("Try to reload the default configuration file.");
             File f = new File(USER_WINDOWS_CONFIG_FILE);
             if (f.exists() && f.isFile()) {
                 f.delete();
@@ -184,11 +230,12 @@ public class WindowsConfigurationManager {
         readDocument();
 
         Element root = doc.getDocumentElement();
-        Element win = createNode(root, "Window", new Object[]{"uuid", window.getUUID(),
-                                                              "x", (int) window.getLocation().getX(),
-                                                              "y", (int) window.getLocation().getY(),
-                                                              "width", (int) window.getSize().getWidth(),
-                                                              "height", (int) window.getSize().getHeight()});
+        Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
+                                 "x", (int) window.getLocation().getX(),
+                                 "y", (int) window.getLocation().getY(),
+                                 "width", (int) window.getSize().getWidth(),
+                                 "height", (int) window.getSize().getHeight()
+                                                              });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -212,7 +259,7 @@ public class WindowsConfigurationManager {
      *            new uuid otherwise
      * @return the window
      */
-    public static Window createWindow(final String uuid, final boolean preserveUUID) {
+    public static SwingScilabWindow createWindow(final String uuid, final boolean preserveUUID) {
         readDocument();
 
         final Element root = doc.getDocumentElement();
@@ -241,8 +288,7 @@ public class WindowsConfigurationManager {
             attrs.putAll(defaultWinAttributes);
         }
 
-        Window w = ScilabWindow.createWindow();
-        final SwingScilabWindow window = (SwingScilabWindow) w.getAsSimpleWindow();
+        SwingScilabWindow window = new SwingScilabWindow();
 
         final String localUUID;
         if (preserveUUID) {
@@ -251,7 +297,6 @@ public class WindowsConfigurationManager {
             localUUID = UUID.randomUUID().toString();
         }
         window.setUUID(localUUID);
-        UIElementMapper.add(w);
 
         if (containsX) {
             window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
@@ -259,7 +304,7 @@ public class WindowsConfigurationManager {
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
 
-        return w;
+        return window;
     }
 
     /**
@@ -277,7 +322,7 @@ public class WindowsConfigurationManager {
         final boolean nullUUID = uuid.equals(NULLUUID);
 
         // create the window and preserve the uuid if not null
-        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID).getAsSimpleWindow();
+        final SwingScilabWindow window = createWindow(uuid, !nullUUID);
         if (window == null) {
             return null;
         }
@@ -290,12 +335,12 @@ public class WindowsConfigurationManager {
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
                 SwingScilabTab defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
-                defaultTab.setParentWindowId(window.getElementId());
+                defaultTab.setParentWindowId(window.getId());
                 DockingManager.dock(defaultTab, window.getDockingPort());
             }
 
             for (SwingScilabTab tab : (Set<SwingScilabTab>) window.getDockingPort().getDockables()) {
-                tab.setParentWindowId(window.getElementId());
+                tab.setParentWindowId(window.getId());
             }
 
             SwingScilabTab[] tabs = new SwingScilabTab[window.getNbDockedObjects()];
@@ -334,45 +379,42 @@ public class WindowsConfigurationManager {
 
             // Return only when the window is displayable
             while (!window.isDisplayable()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    System.err.println(e);
-                }
+                Thread.yield();
             }
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            final Thread t = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        while (currentlyRestored.size() != 0) {
-                                            try {
-                                                Thread.sleep(10);
-                                            } catch (InterruptedException e) {
-                                            }
+                    @Override
+                    public void run() {
+                        final Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                synchronized (currentlyRestored) {
+                                    while (currentlyRestored.size() > 0) {
+                                        try {
+                                            currentlyRestored.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
                                         }
-
-                                        // Be sure that te main tab or one of its subcomponent
-                                        // will have the focus on start-up
-                                        Component owner = null;
-                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                            mainTab.requestFocus();
-                                            try {
-                                                Thread.sleep(100);
-                                            } catch (InterruptedException e) {
-                                            }
-                                            owner = window.getFocusOwner();
-                                        }
-                                        ActiveDockableTracker.requestDockableActivation(mainTab);
-                                        window.toFront();
                                     }
-                                });
-                            t.start();
-                        }
-                    });
+                                }
+
+                                // Be sure that te main tab or one of its subcomponent
+                                // will have the focus on start-up
+                                Component owner = null;
+                                while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                    mainTab.requestFocus();
+                                    Thread.yield();
+
+                                    owner = window.getFocusOwner();
+                                }
+                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                                window.toFront();
+                            }
+                        });
+                        t.start();
+                    }
+                });
             }
         }
 
@@ -398,7 +440,12 @@ public class WindowsConfigurationManager {
      * @param tab the tab
      */
     public static final void restorationFinished(SwingScilabTab tab) {
-        currentlyRestored.remove(tab.getPersistentId());
+        synchronized (currentlyRestored) {
+            currentlyRestored.remove(tab.getPersistentId());
+
+            // notify after remove
+            currentlyRestored.notify();
+        }
     }
 
     /**
@@ -667,6 +714,11 @@ public class WindowsConfigurationManager {
         }
 
         Element dp = (Element) win.getFirstChild();
+        if (dp == null) {
+            win.getParentNode().removeChild(win);
+            return;
+        }
+
         Element e = validateDockingPortNode(winuuid, dp);
         if (e == null) {
             win.removeChild(dp);
@@ -805,12 +857,13 @@ public class WindowsConfigurationManager {
 
         Dimension dim = tab.getSize();
 
-        createNode(root, app, new Object[]{"winuuid", winuuid,
-                                           "uuid", uuid,
-                                           "load", factory.getPackage(uuid),
-                                           "factory", factory.getClassName(uuid),
-                                           "width", (int) dim.getWidth(),
-                                           "height", (int) dim.getHeight()});
+        createNode(root, app, new Object[] {"winuuid", winuuid,
+                                            "uuid", uuid,
+                                            "load", factory.getPackage(uuid),
+                                            "factory", factory.getClassName(uuid),
+                                            "width", (int) dim.getWidth(),
+                                            "height", (int) dim.getHeight()
+                                           });
         writeDocument();
     }
 

@@ -125,7 +125,7 @@ function demo_pend3d1()
 
   step=10;
   for k=1:step:(size(x1,2)-step)
-  
+    sleep(10)
     if ~is_handle_valid(my_handle) then
       break;
     end
@@ -134,12 +134,12 @@ function demo_pend3d1()
       p1.data = [p1.data
         x1(:,k:(k+step-1))'];
     end
-    
+
     if is_handle_valid(p1s) then
       p1s.data = [p1s.data
         x1s(:,k:(k+step-1))'];
     end
-    
+
     if is_handle_valid(p2) then
       p2.data = [p2.data
          x2(:,k:(k+step-1))'];
@@ -149,6 +149,6 @@ function demo_pend3d1()
 endfunction
 
 demo_pend3d1();
-clear demo_pend3d1; 
+clear demo_pend3d1;
 
 

@@ -38,14 +38,12 @@ public class ConnectionHandler extends mxConnectionHandler {
 
     /**
      * Default constructor.
-     * 
+     *
      * @param graphComponent
      *            the component
      */
     public ConnectionHandler(GraphComponent graphComponent) {
         super(graphComponent);
-
-        getMarker().setHotspot(1.0);
 
         /*
          * Same default settings as mxConnectionHandler plus get first free
@@ -94,10 +92,8 @@ public class ConnectionHandler extends mxConnectionHandler {
             // Overrides to use marker color only in highlight mode or for
             // target selection
             @Override
-            protected Color getMarkerColor(MouseEvent e, mxCellState state,
-                    boolean isValid) {
-                return (isHighlighting() || isConnecting()) ? super
-                        .getMarkerColor(e, state, isValid) : null;
+            protected Color getMarkerColor(MouseEvent e, mxCellState state, boolean isValid) {
+                return (isHighlighting() || isConnecting()) ? super.getMarkerColor(e, state, isValid) : null;
             }
 
             // Overrides to use hotspot only for source selection otherwise
@@ -120,14 +116,22 @@ public class ConnectionHandler extends mxConnectionHandler {
                 for (int i = 0; i < block.getChildCount(); i++) {
                     final Object cell = block.getChildAt(i);
 
-                    final String err = validateConnection(source.getCell(),
-                            cell);
+                    final String err = validateConnection(source.getCell(), cell);
                     if (err == null) {
                         return cell;
                     }
                 }
 
                 return o;
+            }
+
+            @Override
+            public void reset() {
+                if (markedState != null) {
+                    this.graphComponent.getGraph().addSelectionCell(markedState.getCell());
+                }
+
+                super.reset();
             }
         };
     }
@@ -144,7 +148,7 @@ public class ConnectionHandler extends mxConnectionHandler {
     /**
      * Enable or disable the reset handler which reset any action on graph
      * modification.
-     * 
+     *
      * @param status
      *            the enable status
      */
@@ -164,17 +168,15 @@ public class ConnectionHandler extends mxConnectionHandler {
 
     /**
      * Handle first release and click on the empty background during connection.
-     * 
+     *
      * @param e
      *            the event
      * @see com.mxgraph.swing.handler.mxConnectionHandler#mouseReleased(java.awt.event.MouseEvent)
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        final boolean isEventValid = error != null && error.isEmpty()
-                && !e.isConsumed();
-        final boolean hasValidState = first != null
-                && connectPreview.isActive() && !marker.hasValidState();
+        final boolean isEventValid = error != null && error.isEmpty() && !e.isConsumed();
+        final boolean hasValidState = first != null && connectPreview.isActive() && !marker.hasValidState();
 
         if (isEventValid && hasValidState) {
             final mxGraph graph = graphComponent.getGraph();
@@ -195,8 +197,7 @@ public class ConnectionHandler extends mxConnectionHandler {
             // extracted from mxConnectPreview#transformScreenPoint
             final mxPoint tr = graph.getView().getTranslate();
             final double scale = graph.getView().getScale();
-            points.add(new mxPoint(graph.snap(x / scale - tr.getX()), graph
-                    .snap(y / scale - tr.getY())));
+            points.add(new mxPoint(graph.snap(x / scale - tr.getX()), graph.snap(y / scale - tr.getY())));
 
             // update the preview and set the flag
             connectPreview.update(e, null, x, y);
@@ -212,7 +213,7 @@ public class ConnectionHandler extends mxConnectionHandler {
     /**
      * Only chain up when the multi point link feature is disable, drag
      * otherwise.
-     * 
+     *
      * @param e
      *            the event
      * @see com.mxgraph.swing.handler.mxConnectionHandler#mouseMoved(java.awt.event.MouseEvent)
@@ -228,9 +229,9 @@ public class ConnectionHandler extends mxConnectionHandler {
 
     /**
      * Only chain up when multi point link feature is disable.
-     * 
+     *
      * This will not update the first point on multi point link creation.
-     * 
+     *
      * @param e
      *            the mouse event
      * @param state

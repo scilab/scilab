@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="strchr">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>strchr</refname>
     <refpurpose>文字列の中で指定した文字が最初に現れる位置を探す</refpurpose>
@@ -47,9 +44,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>res = strchr(haystack,char)</literal> は,
-	文字列haystackの中で指定した文字(char)が最初に現れる位置を返します.
-	</para>
+    <para>
+      <literal>res = strchr(haystack,char)</literal> は,
+      文字列haystackの中で指定した文字(char)が最初に現れる位置を返します.
+    </para>
     <para>charはhaystackと同じ次元を有し,1文字のみである必要があります.</para>
   </refsection>
   <refsection>

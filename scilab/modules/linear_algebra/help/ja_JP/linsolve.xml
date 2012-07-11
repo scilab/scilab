@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="linsolve">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>linsolve</refname>
     <refpurpose>線形方程式ソルバ</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>A</term>
         <listitem>
-          <para>a <literal>na x ma</literal> 実数行列 (疎行列の場合もあり)</para>
+          <para>
+            a <literal>na x ma</literal> 実数行列 (疎行列の場合もあり)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para><literal>na x 1</literal>ベクトル (<literal>A</literal>の行と同じ次元)</para>
+          <para>
+            <literal>na x 1</literal>ベクトル (<literal>A</literal>の行と同じ次元)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,22 +47,29 @@
       <varlistentry>
         <term>kerA</term>
         <listitem>
-          <para><literal>ma x k</literal> 実数行列</para>
+          <para>
+            <literal>ma x k</literal> 実数行列
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>linsolve</literal>  は,
-	<literal> A*x+b=0</literal>の解を全て計算します.</para>
-    <para><literal>x0</literal> は特解 (存在する場合),
-	<literal> kerA </literal> は<literal>A</literal>のヌル空間です.
-	任意の<literal>w</literal>について<literal>x=x0+kerA*w</literal>は,
-	<literal> A*x+b=0</literal>を満たします.</para>
     <para>
-    互換性のある <literal>x0</literal> がエントリに指定された場合, <literal>x0</literal>が返されます. 
-	そうでない場合,<literal>x0</literal>と互換性のあるもの(存在する場合)が返されます.</para>
+      <literal>linsolve</literal>  は,
+      <literal> A*x+b=0</literal>の解を全て計算します.
+    </para>
+    <para>
+      <literal>x0</literal> は特解 (存在する場合),
+      <literal> kerA </literal> は<literal>A</literal>のヌル空間です.
+      任意の<literal>w</literal>について<literal>x=x0+kerA*w</literal>は,
+      <literal> A*x+b=0</literal>を満たします.
+    </para>
+    <para>
+      互換性のある <literal>x0</literal> がエントリに指定された場合, <literal>x0</literal>が返されます. 
+      そうでない場合,<literal>x0</literal>と互換性のあるもの(存在する場合)が返されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -74,7 +82,7 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
 // Benchmark with other linear sparse solver:
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);

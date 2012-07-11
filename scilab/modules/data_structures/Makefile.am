@@ -19,30 +19,29 @@ src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
-sci_gateway/c/sci_mlist.c \
 sci_gateway/c/sci_definedfields.c \
 sci_gateway/c/sci_getfield.c \
 sci_gateway/c/sci_setfield.c \
 sci_gateway/c/sci_lstcat.c \
-sci_gateway/c/sci_list.c \
 sci_gateway/c/gw_data_structures1.c \
 sci_gateway/c/gw_data_structures2.c \
 sci_gateway/c/sci_lstsize.c \
-sci_gateway/c/sci_rlist.c \
-sci_gateway/c/sci_tlist.c
+sci_gateway/c/sci_rlist.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_definedfields.f \
 sci_gateway/fortran/sci_f_lstsize.f \
 sci_gateway/fortran/sci_f_lstcat.f \
 sci_gateway/fortran/sci_f_list.f
 
-libscidata_structures_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscidata_structures_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
@@ -51,11 +50,10 @@ else
 noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
 endif
 
-libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES)
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidata_structures_algo_la_CFLAGS = $(libscidata_structures_la_CFLAGS)
+libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES)

@@ -16,7 +16,7 @@ if UMFPACK
 noinst_LTLIBRARIES = libsciumfpack-algo.la
 endif
 
-libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -58,34 +58,36 @@ libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 
 libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
 libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
-libsciumfpack_algo_la_CFLAGS = $(libsciumfpack_la_CFLAGS)
+libsciumfpack_algo_la_CPPFLAGS = $(libsciumfpack_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciumfpack_la_SOURCES)
-INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
 
 libsciumfpack_la_LIBADD =  libsciumfpack-algo.la
 
-libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
+libsciumfpack_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/mexlib/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/system_env/includes
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/mexlib/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/ \
+			$(AM_CPPFLAGS)
 
 else
 
 UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
 
 libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
-
-libsciumfpack_la_CFLAGS= -I$(top_srcdir)/modules/api_scilab/includes \
+libsciumfpack_la_CPPFLAGS= -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/umfpack/includes/ \
--I$(top_srcdir)/modules/output_stream/includes
-
-libsciumfpack_la_CPPFLAGS=-I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+$(AM_CPPFLAGS)
 endif
 
 include $(top_srcdir)/Makefile.incl.am

@@ -794,21 +794,6 @@
     <ClCompile Include="scicosexit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scoGetProperty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoMemoryScope.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoMisc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoSetProperty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoWindowScope.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="selector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -986,6 +971,9 @@
     <ClCompile Include="zcross2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\scoUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\AfficheBlock.hxx">
@@ -1000,45 +988,36 @@
     <ClInclude Include="..\..\includes\scicos_block4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoBase.h">
+    <ClInclude Include="dmmul.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoGetProperty.h">
+    <ClInclude Include="matz_cath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoMemoryScope.h">
+    <ClInclude Include="matz_catv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoMisc.h">
+    <ClInclude Include="scicos_evalhermite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoSetProperty.h">
+    <ClInclude Include="scicos_indexfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoWindowScope.h">
+    <ClInclude Include="..\..\includes\dynlib_scicos_blocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\scoUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="fileio_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="graphics_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Linear_algebra_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="Render_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="scicos_blocks_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Scicos_Import.def">
@@ -1058,9 +1037,5 @@
     <ResourceCompile Include="scicos_blocks.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

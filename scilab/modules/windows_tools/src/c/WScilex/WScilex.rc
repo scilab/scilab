@@ -108,6 +108,8 @@ IDI_ICON_SAV                ICON                    "..\\resources\\sav.ico"
 IDI_ICON_SCE                ICON                    "..\\resources\\sce.ico"
 IDI_ICON_SCI                ICON                    "..\\resources\\sci.ico"
 IDI_ICON_TST                ICON                    "..\\resources\\tst.ico"
+IDI_ICON_SOD                ICON                    "..\\resources\\sod.ico"
+IDI_ICON_ZCOS               ICON                    "..\\resources\\zcos.ico"
 
 #endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////

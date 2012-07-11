@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 
@@ -45,7 +46,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     double v        = 0;
     double eps      = 0;
     double eps1     = 0;
-    
+
     double lambda   = 0.950l;
     double alpha    = 0.990l;
     double beta     = 0.01l;
@@ -106,7 +107,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
                 dTheta = new types::Double(1, dimension);
                 dTheta->set(current->get());
             }
-            break;       
+            break;
             case 1:  /* p: 3n x 3n real ranged matrix */
             {
                 if (current->getRows() != dimension || current->getCols() != dimension)
@@ -212,7 +213,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     memset(work,0x00,(2 * order + 2) * sizeof(double));
     /* (tip: bound variables to determine required memory: nk1 <= ordre + 1) */
 
-    for (int i = 1 ; i < u_length ; ++i) 
+    for (int i = 1 ; i < u_length ; ++i)
     {
         C2F(rpem)(  dTheta->get(), dP->get(), &order, &(u[i-1]), &(y[i]), &lambda, &kappa, &c,
                     &istab2, &v, &eps, &eps1, //output
@@ -230,7 +231,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     FREE(f);
 
     /*** output formatting ***/
-  
+
     types::List* resultList = new types::List();
     resultList->append(dTheta);
 
@@ -241,7 +242,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
 
     out.push_back(resultList);
 
-    if (_iRetCount == 2) 
+    if (_iRetCount == 2)
     {
         types::Double* dV = new types::Double(1, 1);
         dV->set(&v);

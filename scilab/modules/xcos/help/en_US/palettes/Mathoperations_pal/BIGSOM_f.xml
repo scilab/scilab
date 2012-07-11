@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -80,6 +80,11 @@
               <xref linkend="Computationalfunction_BIGSOM_f">Computational
                 function
               </xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_BIGSOM_f">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -257,6 +262,18 @@
         <para>SCI/modules/scicos_blocks/src/c/sum.c (Type 2)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_BIGSOM_f">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/BIGSOM_f_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/mathoperations_pal/BIGSOM_f_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
   <refsection id="Seealso_BIGSOM_f">
     <title>See also</title>

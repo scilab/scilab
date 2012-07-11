@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,6 +19,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -25,57 +28,64 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    char* type = NULL;
+    BOOL result = FALSE;
+    double* pnoeud = NULL;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "triangles");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if (sciGetEntityType (pobj) != SCI_FEC )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( nbCol != 5 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: Must have %d columns.\n"), "triangles", 5);
-    return SET_PROPERTY_ERROR ;
-  }
-
-  
-  
-  if ( nbRow != pFEC_FEATURE (pobj)->Ntr )
-  {
-    /* need to realocate */
-    double * pnoeud ;
-
-    pnoeud = createCopyDoubleVectorFromStack( stackPointer, nbRow * 5 ) ;
-
-    if ( pnoeud == NULL )
+    if ( !isParameterDoubleMatrix( valueType ) )
     {
-      Scierror(999, _("%s: No more memory.\n"),"set_triangles_property");
-      return SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "triangles");
+        return SET_PROPERTY_ERROR;
     }
 
-    /* allocation ok we can change the pnoeud */
-    FREE( pFEC_FEATURE(pobj)->pnoeud ) ;
-    
-    pFEC_FEATURE(pobj)->pnoeud = pnoeud;
+#if 0
+    if (sciGetEntityType (pobj) != SCI_FEC )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
-  }
-  else
-  {
-    copyDoubleVectorFromStack( stackPointer, pFEC_FEATURE(pobj)->pnoeud, nbRow * 5 ) ;
-  }
+    /*
+     * Discriminating between a failed allocation and the non-existing property case
+     * is not done for now.
+     * To be implemented/corrected.
+     */
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-  return SET_PROPERTY_SUCCEED ;
+    if (strcmp(type, __GO_FEC__) != 0)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        return SET_PROPERTY_ERROR;
+    }
 
+    if ( nbCol != 5 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Must have %d columns.\n"), "triangles", 5);
+        return SET_PROPERTY_ERROR;
+    }
+
+    /* Resizes the triangle array if required */
+    result  = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
+
+    if (result == FALSE)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"set_triangles_property");
+        return SET_PROPERTY_ERROR;
+    }
+
+    pnoeud = getDoubleMatrixFromStack(stackPointer);
+
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

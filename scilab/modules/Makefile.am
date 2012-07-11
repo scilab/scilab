@@ -36,7 +36,6 @@ call_scilab \
 api_scilab \
 data_structures \
 differential_equations \
-double \
 elementary_functions \
 integer \
 intersci \
@@ -63,6 +62,7 @@ tclsci \
 commons \
 jvm \
 action_binding \
+graphic_objects \
 renderer \
 graphic_export \
 gui \
@@ -100,7 +100,6 @@ preferences \
 xml \
 types
 
-
 if XCOS
 SUBDIRS += scicos_blocks
 endif
@@ -124,7 +123,7 @@ pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 #libscilab_cli_la_SOURCES =
 
-libscilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
 #libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -140,18 +139,16 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/graphic_objects/libscigraphic_objects.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
-
-if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
 # HDF5 is here because it needs the JVM (see bug #5481)
-endif
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -160,16 +157,15 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+	$(top_builddir)/modules/graphic_objects/libscigraphic_objects-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
 	$(top_builddir)/modules/commons/libscicommons-disable.la \
 	$(top_builddir)/modules/helptools/libscihelptools-disable.la
 
-if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
 # HDF5 is here because it needs the JVM (see bug #5481)
-endif
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
@@ -177,12 +173,11 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/parameters/libsciparameters.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
@@ -215,14 +210,14 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/types/libscitypes.la
+	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
@@ -232,10 +227,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
+	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-        $(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/preferences/libscipreferences.la
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # Core modules
@@ -256,8 +250,9 @@ libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/ty
 
 libscilab_cli_la_SOURCES =
 
-libscilab_cli_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
+.NOTPARALLEL: libscilab-cli.la libscilab.la

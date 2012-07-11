@@ -2,9 +2,9 @@
 
 
 EXPORTS
-getScilabMode
-getWarningMode
 setLastError
 isPromptShow
 getPromptMode
 getSilentError
+getScilabMode
+getWarningMode

@@ -154,7 +154,6 @@ static char **getMonths(void)
 }
 
 /*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
 static char *ASCIItimeShort(const struct tm *timeptr)
 {
 #define FORMAT_TIME_SHORT "%.2d/%.2d/%.4d %.2d:%.2d:%.2d"
@@ -165,8 +164,9 @@ static char *ASCIItimeShort(const struct tm *timeptr)
     if (result)
     {
         sprintf(result, FORMAT_TIME_SHORT,
-                timeptr->tm_mday, timeptr->tm_mon, 1900 + timeptr->tm_year, timeptr->tm_hour, timeptr->tm_min, timeptr->tm_sec);
+                timeptr->tm_mday, timeptr->tm_mon + 1 , 1900 + timeptr->tm_year, timeptr->tm_hour, timeptr->tm_min, timeptr->tm_sec);
     }
 
     return result;
 }
+/*------------------------------------------------------------------------*/

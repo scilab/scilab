@@ -14,7 +14,6 @@
 
 /* Indicate to setAttr and initConsoleMode what mode to set */
 
-#include "dynlib_console.h"
 /* set Canonic mode */
 #define         CANON 1
 

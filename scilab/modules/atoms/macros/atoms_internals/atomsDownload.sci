@@ -100,6 +100,7 @@ function atomsDownload(url_in,file_out,md5sum)
       end
     elseif MACOSX | getos() == 'Windows' then
       CURL = %T;
+      atomsSetConfig("downloadTool", "curl");
     end
   end
 
@@ -206,7 +207,7 @@ function atomsDownload(url_in,file_out,md5sum)
       mprintf(gettext("%s: The following file hasn''t been downloaded:\n"), "atomsDownload");
       mprintf(gettext("\t - URL      : ''%s''\n"), url_in);
       mprintf(gettext("\t - Local location : ''%s''\n"), file_out);
-      if isdef(err) then
+      if isdef('err') then
         error(strcat(err, ascii(10)));
       end
     end

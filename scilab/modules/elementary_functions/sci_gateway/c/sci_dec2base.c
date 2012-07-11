@@ -25,7 +25,6 @@ int sci_dec2base(char *fname, unsigned long fname_len)
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
     int m = 0, n = 0;
-    int i = 0;
 
     double *dValues = NULL;
     char **convertedValues = NULL;
@@ -52,8 +51,8 @@ int sci_dec2base(char *fname, unsigned long fname_len)
 
         if (!isDoubleType(pvApiCtx, piAddressVarThree))
         {
-             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 3);
-             return 0;
+            Scierror(999,_("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 3);
+            return 0;
         }
 
         if (!isScalar(pvApiCtx, piAddressVarThree))
@@ -142,6 +141,12 @@ int sci_dec2base(char *fname, unsigned long fname_len)
     }
 
     if (!isDoubleType(pvApiCtx, piAddressVarOne))
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"), fname, 1);
+        return 0;
+    }
+
+    if (isVarComplex(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"), fname, 1);
         return 0;

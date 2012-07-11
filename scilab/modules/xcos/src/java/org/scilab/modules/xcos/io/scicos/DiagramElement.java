@@ -33,12 +33,15 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -48,19 +51,21 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.util.mxPoint;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
-public class DiagramElement extends AbstractElement<XcosDiagram> {
-    private static final List<String> MINIMAL_BASE_FIELD_NAMES = asList("diagram", "props", "objs");
-    private static final List<String> BASE_FIELD_NAMES = asList("diagram", "props", "objs", "version", "contrib");
+public final class DiagramElement extends AbstractElement<XcosDiagram> {
+    protected static final List<String> DATA_FIELD_NAMES = asList("diagram", "props", "objs");
+    protected static final List<String> DATA_FIELD_NAMES_FULL = asList("diagram", "props", "objs", "version", "contrib");
     private static final List<String> VERSIONS = asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 
-    private static final int OBJS_INDEX = 2;
-    private static final int VERSION_INDEX = 3;
+    private static final int OBJS_INDEX = DATA_FIELD_NAMES_FULL.indexOf("objs");
+    private static final int VERSION_INDEX = DATA_FIELD_NAMES_FULL.indexOf("version");
 
     private static final double H_MARGIN = 40.0;
     private static final double V_MARGIN = 40.0;
@@ -95,14 +100,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     private ScilabMList base;
 
-    /** Map from index to blocks */
-    private final Map<Integer, BasicBlock> blocks;
+    private double minimalYaxisValue = Double.POSITIVE_INFINITY;
+    private double minimalXaxisValue = Double.POSITIVE_INFINITY;
 
     /**
      * Default constructor
      */
     public DiagramElement() {
-        blocks = new HashMap<Integer, BasicBlock>();
     }
 
     /**
@@ -185,6 +189,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     @Override
     public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
         into.setChildrenParentDiagram();
+
         return super.afterDecode(element, into);
     }
 
@@ -208,6 +213,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Decode the objs attributes
         decodeObjs(diag);
+        // Update the objs properties if applicable
+        updateObjs(diag);
     }
 
     /**
@@ -218,13 +225,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      * @throws ScicosFormatException
      *             on error
      */
-    private void decodeObjs(XcosDiagram diag) throws ScicosFormatException {
+    private void decodeObjs(final XcosDiagram diag) throws ScicosFormatException {
         final int nbOfObjs = ((ScilabList) base.get(OBJS_INDEX)).size();
-        final BlockElement blockElement = new BlockElement();
+        final HashMap<Integer, BasicBlock> blocks = new HashMap<Integer, BasicBlock>(nbOfObjs, 1.0f);
+
+        final BlockElement blockElement = new BlockElement(diag);
         final LinkElement linkElement = new LinkElement(blocks);
         final LabelElement labelElement = new LabelElement();
-
-        double minimalYaxisValue = 0.0;
 
         /*
          * Decode blocks
@@ -241,10 +248,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
                 BlockPositioning.updateBlockView(block);
 
                 minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+                minimalXaxisValue = Math.min(minimalXaxisValue, ((mxCell) cell).getGeometry().getX());
             } else if (labelElement.canDecode(data)) {
                 cell = labelElement.decode(data, null);
 
                 minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+                minimalXaxisValue = Math.min(minimalXaxisValue, ((mxCell) cell).getGeometry().getX());
             }
 
             if (cell != null) {
@@ -263,32 +272,109 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
                 BasicLink link = linkElement.decode(data, null);
                 cell = link;
 
-                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+                final List<mxPoint> points = ((mxCell) cell).getGeometry().getPoints();
+                for (final mxPoint p : points) {
+                    minimalYaxisValue = Math.min(minimalYaxisValue, p.getY());
+                    minimalXaxisValue = Math.min(minimalXaxisValue, p.getX());
+                }
             }
 
             if (cell != null) {
                 diag.addCell(cell);
             }
         }
+    }
 
-        /*
-         * Perform post-calculus
-         */
+    /**
+     * Update the diagram object after decode
+     *
+     * @param diag
+     *            the diagram to update
+     */
+    private void updateObjs(final XcosDiagram diag) {
+        final mxGraphModel model = (mxGraphModel) diag.getModel();
 
-        // Translate the y axis for blocks and links
         final double minY = -minimalYaxisValue + V_MARGIN;
-        mxGraphModel.filterDescendants(diag.getModel(), new mxGraphModel.Filter() {
-            @Override
-            public boolean filter(Object cell) {
-                mxGeometry geom = ((mxICell) cell).getGeometry();
-                if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
-                    geom.translate(H_MARGIN, minY);
-                }
+        final double minX = -minimalXaxisValue + H_MARGIN;
+        for (final Object cell : model.getCells().values()) {
+            updateMinimalSize(cell, model);
+            translate(cell, model, minX, minY);
+            updateLabels(cell, model);
+        }
+    }
 
-                // never store the cell
-                return false;
+    // update the cell size to be at least selectable
+    private static final void updateMinimalSize(final Object cell, final mxIGraphModel model) {
+        if (!(cell instanceof BasicBlock)) {
+            return;
+        }
+
+        final double min = 7.0;
+
+        final mxGeometry geom = model.getGeometry(cell);
+        if (geom == null) {
+            return;
+        }
+
+        final double dx;
+        if (geom.getWidth() < min) {
+            dx = (geom.getWidth() - min) / 2;
+            geom.setWidth(min);
+        } else {
+            dx = 0.0;
+        }
+        final double dy;
+        if (geom.getHeight() < min) {
+            dy = (geom.getHeight() - min) / 2;
+            geom.setHeight(min);
+        } else {
+            dy = 0.0;
+        }
+
+        geom.translate(dx, dy);
+    }
+
+    // Translate the y axis for blocks and links
+    private static final void translate(final Object cell, final mxIGraphModel model, final double minX, final double minY) {
+        if (cell instanceof BasicPort) {
+            return;
+        }
+
+        final mxGeometry geom = model.getGeometry(cell);
+        if (geom != null) {
+            geom.translate(minX, minY);
+        }
+    }
+
+    // update the labels of ports for SuperBlock
+    private static final void updateLabels(final Object cell, final mxIGraphModel model) {
+        if (!(cell instanceof SuperBlock)) {
+            return;
+        }
+        final SuperBlock parent = (SuperBlock) cell;
+
+        // Assume that the children are sorted after decode
+        // blk.sortChildren();
+        final Map<IOBlocks, List<mxICell>> ports = IOBlocks.getAllPorts(parent);
+        final Map<IOBlocks, List<mxICell>> blocks = IOBlocks.getAllBlocks(parent);
+
+        for (final IOBlocks io : IOBlocks.values()) {
+            final List<mxICell> port = ports.get(io);
+            final List<mxICell> block = blocks.get(io);
+
+            final int len = Math.min(port.size(), block.size());
+            for (int i = 0; i < len; i++) {
+                final mxICell p = port.get(i);
+                final mxICell b = block.get(i);
+
+                // if the I/O block has a port child and a label child,
+                // update
+                if (b.getChildCount() > 1) {
+                    final Object value = b.getChildAt(b.getChildCount() - 1).getValue();
+                    p.setValue(value);
+                }
             }
-        });
+        }
     }
 
     /**
@@ -308,8 +394,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     private void validate(boolean checkVersion) throws ScicosFormatException {
 
         // Have we enough fields ?
-        if (base.size() < MINIMAL_BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        if (base.size() < DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
         }
 
         int field = 0;
@@ -320,19 +406,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Check the first field
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
         String[] header = ((ScilabString) base.get(field)).getData()[0];
 
         // Check the number of fields
-        if (header.length < MINIMAL_BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        if (header.length < DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
         }
 
         // Check the first fields values
-        for (int i = 0; i < MINIMAL_BASE_FIELD_NAMES.size(); i++) {
-            if (!header[i].equals(MINIMAL_BASE_FIELD_NAMES.get(i))) {
-                throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
+        for (int i = 0; i < DATA_FIELD_NAMES.size(); i++) {
+            if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
+                throw new WrongStructureException(DATA_FIELD_NAMES);
             }
         }
 
@@ -343,13 +429,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         // the second field must contain list of props
         field++;
         if (!(base.get(field) instanceof ScilabTList)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the third field must contains lists of blocks and links
         field++;
         if (!(base.get(field) instanceof ScilabList)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the last field must contain the scicos version used
@@ -361,7 +447,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         }
 
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         /*
@@ -396,12 +482,17 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
          * Checking header
          */
         final String type = ((ScilabString) base.get(0)).getData()[0][0];
-        final boolean typeIsValid = type.equals(MINIMAL_BASE_FIELD_NAMES.get(0));
+        final boolean typeIsValid = type.equals(DATA_FIELD_NAMES.get(0));
 
         /*
          * Check the version if applicable
          */
-        final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
+        final String scicosVersion;
+        if (base.size() > VERSION_INDEX) {
+            scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
+        } else {
+            scicosVersion = "";
+        }
         final boolean versionIsValid = VERSIONS.contains(scicosVersion);
         return typeIsValid && versionIsValid;
     }
@@ -459,7 +550,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList data = new ScilabMList(BASE_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList data = new ScilabMList(DATA_FIELD_NAMES_FULL.toArray(new String[0]));
         data.add(allocatePropsField()); // props
         data.add(new ScilabList()); // objs
         data.add(new ScilabString(VERSIONS.get(0))); // official version
@@ -517,7 +608,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      *            the objs field number
      */
     private void fillObjs(XcosDiagram from, int field) {
-        final BlockElement blockElement = new BlockElement();
+        final BlockElement blockElement = new BlockElement(from);
         final LinkElement linkElement = new LinkElement(null);
         final ScilabList data = (ScilabList) base.get(field);
 
@@ -591,7 +682,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Use a predictable block and links order when debug is enable
          */
-        if (Logger.getLogger(BlockElement.class.toString()).isLoggable(Level.FINE)) {
+        if (Logger.getLogger(BlockElement.class.getName()).isLoggable(Level.FINE)) {
             Collections.sort(blockList);
             Collections.sort(linkList, new Comparator<BasicLink>() {
                 @Override
@@ -625,6 +716,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
             if (link != null) {
                 data.add(link);
             } else {
+                data.add(new ScilabMList(new String[] { "Deleted" }));
                 from.warnCellByUID(linkList.get(i).getId(), XcosMessages.LINK_NOT_CONNECTED);
             }
         }

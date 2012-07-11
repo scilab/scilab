@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,21 +26,27 @@
 #include "Scierror.h"
 #include "localization.h"
 
-/*------------------------------------------------------------------------*/
-int get_zoom_state_property( sciPointObj * pobj )
-{
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
-    return -1 ;
-  }
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
-  if ( sciGetZooming( pobj ) )
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else {
-    return sciReturnString( "off" ) ;
-  }
+/*------------------------------------------------------------------------*/
+int get_zoom_state_property(void* _pvCtx, char* pobjUID)
+{
+    int iZoomState = 0;
+    int *piZoomState = &iZoomState;
+
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomState);
+
+    if ( piZoomState == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
+        return -1 ;
+    }
+
+    if (iZoomState)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

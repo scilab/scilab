@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-15 14:52+0000\n"
+"PO-Revision-Date: 2012-05-26 08:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -399,14 +399,9 @@ msgid "&Export to..."
 msgstr "エクスポート(&E)..."
 
 #
-# File: scilab_fake_localization_file.c, line: 6
-msgid "&BMP"
-msgstr "BMP(&B)"
-
-#
-# File: scilab_fake_localization_file.c, line: 7
-msgid "&GIF"
-msgstr "GIF(&G)"
+# File: scilab_fake_localization_file.c, line: 9
+msgid "P&NG"
+msgstr "PNG(&N)"
 
 #
 # File: scilab_fake_localization_file.c, line: 8
@@ -414,17 +409,35 @@ msgid "&JPG"
 msgstr "JPG(&J)"
 
 #
-# File: scilab_fake_localization_file.c, line: 9
-msgid "P&NG"
-msgstr "PNG(&N)"
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&GIF"
+msgstr "GIF(&G)"
 
 #
 # File: scilab_fake_localization_file.c, line: 10
 msgid "&PPM"
 msgstr "PPM(&P)"
 
-msgid "&Vectorial export"
-msgstr "ベクトル形式でエクスポート(&V)"
+#
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&BMP"
+msgstr "BMP(&B)"
+
+msgid "&Vectorial export to..."
+msgstr "ベクトルでエクスポート (&V)"
+
+#
+# File: scilab_fake_localization_file.c, line: 15
+msgid "&PDF"
+msgstr "PDF(&P)"
+
+msgid "&PS"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 16
+msgid "&SVG"
+msgstr "SVG(&S)"
 
 #
 # File: scilab_fake_localization_file.c, line: 12
@@ -440,16 +453,6 @@ msgstr "EPS(&E)"
 # File: scilab_fake_localization_file.c, line: 14
 msgid "&FIG"
 msgstr "FIG(&F)"
-
-#
-# File: scilab_fake_localization_file.c, line: 15
-msgid "&PDF"
-msgstr "PDF(&P)"
-
-#
-# File: scilab_fake_localization_file.c, line: 16
-msgid "&SVG"
-msgstr "SVG(&S)"
 
 #
 # File: scilab_fake_localization_file.c, line: 17
@@ -490,10 +493,8 @@ msgstr "ツールバーの表示/非表示"
 msgid "&Zoom"
 msgstr "ズーム(&Z)"
 
-#
-# File: scilab_fake_localization_file.c, line: 24
-msgid "&UnZoom"
-msgstr "ズームしない(&U)"
+msgid "&Original View"
+msgstr "オリジナルビュー (&O)"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D回転(&R)"
@@ -539,6 +540,18 @@ msgstr "データティップマネージャを開始 (&S)"
 
 msgid "Stop datatip manager"
 msgstr "データティップマネージャを停止"
+
+msgid "&MVC"
+msgstr "&MVC"
+
+msgid "&Log View (Trace all View notifications)"
+msgstr "ログビュー (&L) (ビュー通知を全てトレース)"
+
+msgid "&All Objects View (All objects with properties)"
+msgstr "全てのオブジェクトビュー (&A) (プロパティ付きの全オブジェクト)"
+
+msgid "&Ged-like View (Future ged)"
+msgstr "ゲドライクビュー(&G) (未来ged)"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
@@ -633,6 +646,9 @@ msgstr "クリップボードを空(&E)"
 # File: scilab_fake_localization_file.c, line: 56
 msgid "&Select all"
 msgstr "全て選択(&S)"
+
+msgid "P&references"
+msgstr "プリファレンス(&r)"
 
 msgid "&Preferences"
 msgstr "設定(&P)"
@@ -817,47 +833,32 @@ msgid "Scilab Demonstrations"
 msgstr "Scilab デモ(&D)"
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: %s 型のuicontrol を作成できませんでした."
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: このオブジェクトを破棄できませんでした.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "このハンドルには '%s' プロパティが存在しません.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "このオブジェクトに '%s'プロパティはありません.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s: parentの型が間違っています: ハンドルまたは0を指定してください.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの値が間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: このモードではメニューをコンソールに追加できません.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr ""
-"'%s' プロパティの値が間違っています:  'light', 'normal', 'demi' または 'bold' を指定してください.\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr "%s: parentの型が間違っています: ハンドルを指定してください.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"'%s' プロパティの値が間違っています: '%s', '%s', '%s', '%s', '%s'または '%s' を指定してください.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr "%s: parentの型が間違っています: Figureまたはuimenuハンドルを指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "'%s' プロパティの値が間違っています: '%s', '%s'または '%s' を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s 親の型が間違っています: Figure または uimenu を指定してください.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s: parentの値が間違っています: 0を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -872,22 +873,14 @@ msgid ""
 msgstr "'%s' プロパティの値が間違っています:1 x 3実数ベクトルまたは 'R|G|B'文字列を指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "'%s' プロパティの値が間違っています: 0 と 1 の間の数を指定してください.\n"
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr "'%s'プロパティの型が間違っています: 1 x 3 の実数ベクトルまたは文字列 'R|G|B' を指定してください.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "''%s'プロパティの大きさが間違っています: '%s', '%s' または '%s'  を指定してください.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "'%s'プロパティの型が間違っています: '%s', '%s' または  '%s' を指定してください.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "'%s' プロパティの値が間違っています: 0 と 1 の間の数を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -898,34 +891,33 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "'%s' プロパティの大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています: 実数を指定してください.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "'%s' プロパティの値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 実数を指定してください.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの型が間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています: '%s', '%s', '%s'または '%s'を指定してください.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "'%s' プロパティの値が間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "'%s' プロパティの値が間違っています: '%s', '%s', '%s'または '%s'を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティの型が間違っています: '%s', '%s', '%s'または '%s'を指定してください.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "'%s'プロパティの型が間違っています: '%s', '%s' または  '%s' を指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "''%s'プロパティの大きさが間違っています: '%s', '%s' または '%s'  を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -969,6 +961,13 @@ msgstr "'%s' プロパティの型が間違っています: 文字列または1 
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"'%s' プロパティの型が間違っています: %s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -976,23 +975,33 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"'%s' プロパティの型が間違っています: %s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています:1 x %d 実数行ベクトルを指定してください.\n"
+"'%s' プロパティの値が間違っています: '%s', '%s', '%s', '%s', '%s'または '%s' を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr "'%s' プロパティの型が間違っています:1 x %d 実数行ベクトルを指定してください.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています:1 x %d 実数行ベクトルを指定してください.\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr "'%s' プロパティの大きさが間違っています:文字列または文字列ベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "'%s' プロパティの型が間違っています: '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -1010,32 +1019,30 @@ msgid ""
 msgstr "'%s'プロパティの型が間違っています: 実数行ベクトルまたは文字列を指定してください.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "'%s'プロパティの大きさが間違っています: '%s', '%s', または '%s' を指定してください.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr "警告: '%s' 'Value' プロパティは整数である必要があり, 値は丸められます.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "'%s'プロパティの型が間違っています: '%s', '%s', または '%s' を指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "'%s'プロパティの大きさが間違っています: '%s', '%s', または '%s' を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "'%s' プロパティの値が間違っています: '%s', '%s'または '%s' を指定してください.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr "'%s'プロパティの大きさが間違っています: 2要素のリストを指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "'%s'プロパティの値が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: '%s'プロパティの値が間違っています: points, normalized, inches, centimeters または "
-"pixels　を指定してください.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2181
@@ -1047,9 +1054,7 @@ msgstr "コンソール フォント..."
 msgid "Console Background..."
 msgstr "バックグランド・コンソール..."
 
-msgid "No print service found."
-msgstr "印刷サービスがみつかりません."
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1058,6 +1063,7 @@ msgstr ""
 "警告: 設定ファイルの制限のため, Scilab は uicontrolとグラフィックスが利用できないモードに変更されました.詳細な情報については %s "
 "と入力ください."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "いくつかのケースでは, %s は問題を修正します"
 
@@ -1227,17 +1233,6 @@ msgstr "進む"
 msgid "Tree Overview"
 msgstr "ツリー概要"
 
-#
-# File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 59
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr "左クリックでズームエリアの選択開始、右クリックでキャンセル。"
-
-#
-# File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 90
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "左クリックで選択終了、右クリックでキャンセル。"
-
 msgid "OK"
 msgstr "OK"
 
@@ -1255,6 +1250,7 @@ msgstr "保存して実行"
 msgid "Empty tab"
 msgstr "空のタブ"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1262,9 +1258,11 @@ msgstr ""
 "uuid %s のタブは回復できません.\n"
 "前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "%s を閉じても良ろしいですか?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "%s と %s を閉じても宜しいですか?"
 
@@ -1319,6 +1317,7 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
+#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
@@ -1421,6 +1420,9 @@ msgstr "UIコントロール 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "LaTeX/MathULサポート付きのUIコントロール"
+
+msgid "Show images with uicontrols "
+msgstr "uicontrols付きの画像を表示 "
 
 msgid "<Enter color name here>"
 msgstr "<色名をここに入力してください>"

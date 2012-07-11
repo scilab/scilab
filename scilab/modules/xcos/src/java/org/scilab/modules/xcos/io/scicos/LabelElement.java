@@ -27,18 +27,17 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 /**
  * Perform label transformation between Xcos and Scicos.
  */
-public class LabelElement extends AbstractElement<TextBlock> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Text",
-            "graphics", "model", "void", "gui");
+public final class LabelElement extends AbstractElement<TextBlock> {
+    protected static final List<String> DATA_FIELD_NAMES = asList("Text", "graphics", "model", "void", "gui");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockModelElement modelElement = new BlockModelElement();
+    private final BlockModelElement modelElement = new BlockModelElement(null);
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockGraphicElement graphicElement = new BlockGraphicElement();
+    private final BlockGraphicElement graphicElement = new BlockGraphicElement(null, 1.0);
 
     /**
      * Default constructor
@@ -48,7 +47,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 
     /**
      * Decode the element into the block.
-     * 
+     *
      * @param element
      *            The current Scilab data
      * @param into
@@ -60,8 +59,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
      *      java.lang.Object)
      */
     @Override
-    public TextBlock decode(ScilabType element, TextBlock into)
-            throws ScicosFormatException {
+    public TextBlock decode(ScilabType element, TextBlock into) throws ScicosFormatException {
         TextBlock block = into;
         data = (ScilabMList) element;
 
@@ -94,8 +92,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
         if (isEmptyField(block.getRealParameters())) {
             block.setValue("");
         } else {
-            final String text = ((ScilabString) block.getRealParameters())
-                    .getData()[0][0];
+            final String text = ((ScilabString) block.getRealParameters()).getData()[0][0];
             block.setValue(text);
         }
 
@@ -106,11 +103,11 @@ public class LabelElement extends AbstractElement<TextBlock> {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -174,8 +171,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 
         // the last field must contain a gui name
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabString) && isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
@@ -185,7 +181,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 
     /**
      * Test if the current implementation can be used to decode the element.
-     * 
+     *
      * @param element
      *            the element to test
      * @return true when the implementation is the right one, false otherwise.
@@ -201,7 +197,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 
     /**
      * Not implemented yet
-     * 
+     *
      * @param from
      *            not used
      * @param element

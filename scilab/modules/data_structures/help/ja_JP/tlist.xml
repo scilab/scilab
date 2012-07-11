@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tlist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tlist</refname>
     <refpurpose> Scilab オブジェクトおよび型付のリスト定義.  </refpurpose>
@@ -100,7 +97,7 @@
     </para>
     <para>
       有理行列 <literal>H</literal> は<literal>型付リスト</literal>
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal>
+      <literal>H=rlist(Num,Den,[])</literal>
       により表されます.
       ただし,<literal>Num</literal> および <literal>Den</literal>
       は多項式行列です.

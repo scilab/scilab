@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_history_browser.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "CommandHistory_Wrap.h"
 /*--------------------------------------------------------------------------*/
 int sci_browsehistory(char *fname, unsigned long fname_len)

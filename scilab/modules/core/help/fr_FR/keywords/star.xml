@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="star" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>star (*)</refname>
     <refpurpose>opérateur de multiplication</refpurpose>
@@ -20,22 +17,28 @@
       <literal>*</literal>.
     </para>
     <para>
-      <literal>A*.B</literal> est un opérateur dont la signification n'est
-      pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
-      <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal>
+      Le produit de Kronecker se note <literal>x.*.y</literal>
     </para>
     <para>
-      Le produit de Kronecker se note <literal>x.*.y</literal>
+      <literal>A*.B</literal> est un opérateur dont la signification n'est
+      pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
+      <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal> ou <literal>/</literal>.
     </para>
   </refsection>
   <refsection role="see also">
     <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
+        <link linkend="dot">dot</link>
+      </member>
+      <member>
         <link linkend="slash">slash</link>
       </member>
       <member>
         <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
       </member>
     </simplelist>
   </refsection>

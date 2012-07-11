@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tlist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tlist</refname>
     <refpurpose> Scilab object and typed list definition.  </refpurpose>
@@ -96,7 +93,7 @@
     </para>
     <para>
       A rational matrix <literal>H</literal> is represented by the <literal>typed-list</literal>
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> where <literal>Num</literal> and <literal>Den</literal> are two
+      <literal>H=rlist(Num,Den,[])</literal> where <literal>Num</literal> and <literal>Den</literal> are two
       polynomial matrices and a  (e.g. continuous time) linear system with
       transfer matrix <literal>H</literal> maybe created by <literal>syslin('c',H)</literal>.
     </para>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="derivat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>derivat</refname>
     <refpurpose> dérivée d'une matrice de polynômes  </refpurpose>
@@ -18,7 +15,7 @@
         <term>p  </term>
         <listitem>
           <para>polynôme, matrice de polynômes ou de fractions rationnelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -26,9 +23,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calcule la dérivée des polynômes ou fractions rationnelles contenus dans les termes de
-    la matrice p.
-  </para>
+      Calcule la dérivée des polynômes ou fractions rationnelles contenus dans les termes de
+      la matrice p.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

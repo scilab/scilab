@@ -11,31 +11,34 @@
 ##
 ##
 
-FLEX_SCANSCILAB_CPP	= src/cpp/scanscilab.cpp
-BISON_PARSESCILAB_CPP = src/cpp/parsescilab.cpp
+FLEX_SCANSCILAB_CXX	= src/cpp/scanscilab.cpp
+BISON_PARSESCILAB_CXX = src/cpp/parsescilab.cpp
 
-PARSE_CPP_SOURCES 	= $(BISON_PARSESCILAB_CPP) \
-			$(FLEX_SCANSCILAB_CPP) \
+PARSE_CXX_SOURCES 	= $(BISON_PARSESCILAB_CXX) \
+			$(FLEX_SCANSCILAB_CXX) \
 			src/cpp/parser.cpp \
 			src/cpp/printerror.cpp
 
 pkglib_LTLIBRARIES = libsciparse.la
 
-libsciparse_la_SOURCES 	= $(PARSE_CPP_SOURCES)
+libsciparse_la_SOURCES 	= $(PARSE_CXX_SOURCES)
 
-libsciparse_la_CPPFLAGS = -I$(top_builddir)/modules/core/includes \
-			-I$(top_builddir)/modules/ast/includes \
-			-I$(top_builddir)/modules/symbol/includes \
-			-I$(top_builddir)/modules/types/includes \
-			-I$(top_builddir)/modules/output_stream/includes \
-			-I$(top_builddir)/modules/string/includes \
-			-I$(top_builddir)/modules/system_env/includes \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes \
-			-Iincludes \
-			-Isrc/cpp
+libsciparse_la_CPPFLAGS = \
+	-Iincludes \
+	-Isrc/cpp \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes \
+	-I$(top_builddir)/modules/core/includes \
+	-I$(top_builddir)/modules/ast/includes \
+	-I$(top_builddir)/modules/localization/includes \
+	-I$(top_builddir)/modules/symbol/includes \
+	-I$(top_builddir)/modules/types/includes \
+	-I$(top_builddir)/modules/output_stream/includes \
+	-I$(top_builddir)/modules/string/includes \
+	-I$(top_builddir)/modules/system_env/includes \
+	$(AM_CPPFLAGS)
 
 include $(top_srcdir)/Makefile.incl.am
-
 
 if BUILD_PARSER
 

@@ -11,8 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -22,20 +22,20 @@ import org.scilab.modules.types.ScilabTypeEnum;
 public class testTypes {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void getVariableTypeTest() throws NullPointerException, JavasciException {
 
         sci.exec("a = 2*%pi");
@@ -97,18 +97,23 @@ public class testTypes {
 
     }
 
-    @Test(sequential = true, expectedExceptions = UndefinedVariableException.class)
+    @Test( expected = UndefinedVariableException.class)
     public void failGetVariableTypeTest() throws NullPointerException, IllegalArgumentException, JavasciException {
         sci.getVariableType("nonexistingvariable");
 
     }
 
+    @Test( expected = UndefinedVariableException.class)
+    public void failGetVariableType2Test() throws NullPointerException, IllegalArgumentException, JavasciException {
+        sci.getVariableTypeInCurrentScilabSession("nonexistingvariable");
+
+    }
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

@@ -92,7 +92,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    prefix = strdup(fname);
+    prefix = os_strdup(fname);
     underscore = strchr(prefix, '_');
     *underscore = '\0';
     format = (char *)MALLOC(sizeof(char *) * (strlen(prefix) + strlen("_xmlFormat") + 1));

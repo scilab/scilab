@@ -11,9 +11,6 @@
     *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="analyze">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>analyze</refname>
     <refpurpose> frequency plot of a sound  signal</refpurpose>
@@ -32,9 +29,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Make a frequency plot of the signal <literal>w</literal> with sampling rate <literal>rate</literal>.
-    The data must be at least <literal>points</literal> long.
-    The maximal frequency plotted will be <literal>fmax</literal>, the minimal <literal>fmin</literal>.</para>
+      Make a frequency plot of the signal <literal>w</literal> with sampling rate <literal>rate</literal>.
+      The data must be at least <literal>points</literal> long.
+      The maximal frequency plotted will be <literal>fmax</literal>, the minimal <literal>fmin</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

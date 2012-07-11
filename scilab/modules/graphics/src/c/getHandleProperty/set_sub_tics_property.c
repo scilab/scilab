@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,6 +19,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -26,51 +29,104 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL status = FALSE;
+    int result = 0;
+    char* type = NULL;
+    char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "sub_tics");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if (sciGetEntityType (pobj) == SCI_AXES)
-  {
-    pAXES_FEATURE(pobj)->subint= (int) getDoubleFromStack( stackPointer ) ;
-  }
-  else if ( sciGetEntityType(pobj) == SCI_SUBWIN ) 
-  {
-    int i ;
-    double * values = getDoubleMatrixFromStack( stackPointer ) ;
-    sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
-    if ( (nbCol != 3 ) && (nbCol != 2) )
+    if ( !isParameterDoubleMatrix( valueType ) )
     {
-      Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "sub_tics", 2, 3);
-      return  SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "sub_tics");
+        return SET_PROPERTY_ERROR ;
     }
-    ppSubWin->flagNax = TRUE;
-    for ( i = 0; i < nbCol ; i++ )
-    {
-      int  nbTicks ;
 
-      nbTicks = (int) values[i] ;
-      if( nbTicks >= 0 )
-      {
-        ppSubWin->axes.nbsubtics[i] = nbTicks ;
-      } 
-      else
-      {
-        ppSubWin->axes.nbsubtics[i] = 0 ;
-      }
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+
+    /*
+     * Type test required as the Axis object stores subticks as a single int
+     * whereas Axes maintain a 3-element int vector.
+     */
+    if (strcmp(type, __GO_AXIS__) == 0)
+    {
+        int nbTicks = (int) getDoubleFromStack(stackPointer);
+
+        status =  setGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, &nbTicks, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_tics");
+            return SET_PROPERTY_ERROR;
+        }
     }
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
+    else if (strcmp(type, __GO_AXES__) == 0)
+    {
+        int autoSubticks;
+        int i;
+        double * values = getDoubleMatrixFromStack( stackPointer );
+
+        result = SET_PROPERTY_SUCCEED;
+
+        if ( (nbCol != 3 ) && (nbCol != 2) )
+        {
+            Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "sub_tics", 2, 3);
+            return SET_PROPERTY_ERROR;
+        }
+
+        /*
+         * The AUTO_SUBTICKS property is shared by the 3 axes for now.
+         * To be modified.
+         */
+        autoSubticks = 0;
+        status = setGraphicObjectProperty(pobjUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+
+        if (status == FALSE)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            return SET_PROPERTY_ERROR;
+        }
+
+        for ( i = 0; i < nbCol ; i++ )
+        {
+            int nbTicks;
+
+            nbTicks = (int) values[i];
+
+            if( nbTicks < 0 )
+            {
+                nbTicks = 0;
+            }
+
+            status = setGraphicObjectProperty(pobjUID, axisSubticksPropertiesNames[i], &nbTicks, jni_int, 1);
+
+            if (status == FALSE)
+            {
+                result = SET_PROPERTY_ERROR;
+            }
+        }
+
+        if (result == SET_PROPERTY_ERROR)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+        }
+
+        return result;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+        return SET_PROPERTY_ERROR;
+    }
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

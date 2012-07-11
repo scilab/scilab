@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="grayplot" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>grayplot</refname>
     <refpurpose>esboço 2d de uma superfície utilizando-se cores</refpurpose>
@@ -51,8 +48,7 @@
             </literal>
             ,... onde <literal>key1</literal>,
             <literal>key2,...</literal> podem ser um dos seguintes: rect, nax,
-            strf ou axesflag e frameflag (ver <literal>plot2d</literal> e
-            <literal>plot2d_old_version</literal>).
+            strf ou axesflag e frameflag (ver <literal>plot2d</literal>).
           </para>
         </listitem>
       </varlistentry>

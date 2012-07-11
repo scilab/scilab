@@ -2,18 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polyline_properties">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="polyline_properties">
   <refnamediv>
     <refname>polyline_properties</refname>
     <refpurpose>description of the Polyline
@@ -100,7 +97,7 @@
         <listitem>
           <para>
             The <literal>line_style</literal> property value should be an integer in
-            [0 8]. 0 and 1 stands for solid, the other value stands for a selection of
+            [1 8]. 1 stands for solid, the other value stands for a selection of
             dashes (see <link linkend="axes_properties">getlinestyle</link>).
           </para>
         </listitem>
@@ -386,6 +383,21 @@
     </variablelist>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      a=get("current_axes")
+      a.data_bounds=[-2,-2;2,2];
+      
+      xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+      p=get("hdl");
+      p.foreground=2;
+      p.thickness=3;
+      p.mark_style=9;
+      d=p.data;d(1,:)=[0 0];p.data=d;
+      a.rotation_angles=[0 45];
+    </scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 a=get("current_axes")//get the handle of the newly created axes
@@ -433,5 +445,14 @@ p.line_style=4;
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

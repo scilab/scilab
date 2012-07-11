@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-#
+# 
 # This file is distributed under the same license as the Scilab package.
 
 
@@ -8,24 +8,25 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_sound.c \
 sci_gateway/c/sci_beep.c \
 sci_gateway/c/sci_PlaySound.c
 
-libscisound_la_CFLAGS=  -I$(srcdir)/includes/ \
+libscisound_la_CPPFLAGS=  -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/string/includes
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/string/includes \
+			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscisound.la
 
-libscisound_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscisound_la_SOURCES)
-INCLUDE_FLAGS = $(libscisound_la_CFLAGS)
+INCLUDE_FLAGS = $(libscisound_la_CPPFLAGS)
 
 
 #### Target ######

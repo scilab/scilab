@@ -13,9 +13,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="editvar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>editvar</refname>
     <refpurpose> Scilab variable editor</refpurpose>
@@ -37,58 +34,181 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>editvar</literal> is the Scilab variable editor.</para>
-    <para><literal>editvar</literal> can be started by calling it on the name of the variable or by double-clicking on the name of the variable from the <link linkend="browsevar">browsevar component</link>.</para>
-    <para><literal>editvar</literal> has numerous features: 
-<itemizedlist><listitem><para>
-Matrix visualisation
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_default.png"/></imageobject></inlinemediaobject></para><para/>
-
-</para></listitem><listitem><para>
-Undo/redo capabilities
-</para></listitem><listitem><para>
-Cell editing
-</para></listitem><listitem><para>
-Expression evaluation. Please note that editvar will not store the expression. Only the value.
-<para/>
-<para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_modify.png"/></imageobject></inlinemediaobject></para><para/>
-<para/>
-</para></listitem><listitem><para>
-Advanced selection of elements (available with the CTRL key)
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_adv_selection.png"/></imageobject></inlinemediaobject></para><para/>
-</para></listitem><listitem><para>
-Plotting
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_plot.png"/></imageobject></inlinemediaobject></para><para/>
-</para></listitem><listitem><para>
-Plotting of a subset
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_subplot.png"/></imageobject></inlinemediaobject></para><para/>
-</para></listitem><listitem><para>
-Variable format (short, shortE, long or longE formats)
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_format.png"/></imageobject></inlinemediaobject></para><para/>
-</para></listitem><listitem><para>
-Column / lines management (insert, delete, copy and paste, ... )
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_column.png"/></imageobject></inlinemediaobject></para><para/>
-<para/>
-</para></listitem><listitem><para>
-Full copy and paste between <ulink url="http://www.libreoffice.org/">Libreoffice</ulink>/Openoffice or Microsoft Excel and Scilab (both ways)
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_libreoffice.png"/></imageobject></inlinemediaobject></para><para/>
-<para/>
-</para></listitem><listitem><para>
-Renaming or copy of a variable
-<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_variable_selection.png"/></imageobject></inlinemediaobject></para><para/>
-</para></listitem></itemizedlist>
-</para>
-    <para><literal>editvar</literal> can edit the following variable types:
-
-<itemizedlist><listitem><para>
-Real or complex constant matrix (type 1)
-</para></listitem><listitem><para><link linkend="matrices">Boolean matrix</link> (type 4)
-</para></listitem><listitem><para><link linkend="sparse">Sparse matrix</link> (type 5)
-</para></listitem><listitem><para><link linkend="sparse">Boolean sparse matrix</link> (type 6)
-</para></listitem><listitem><para><link linkend="int8">Integer matrix</link>: 8, 16 &amp; 32 bytes (type 8)
-</para></listitem><listitem><para><link linkend="strings">Matrix of strings</link> (type 10)
-</para></listitem></itemizedlist>
-</para>
+    <para>
+      <literal>editvar</literal> is the Scilab variable editor.
+    </para>
+    <para>
+      <literal>editvar</literal> can be started by calling it on the name of the variable or by double-clicking on the name of the variable from the <link linkend="browsevar">browsevar component</link>.
+    </para>
+    <para>
+      <literal>editvar</literal> has numerous features: 
+      <itemizedlist>
+        <listitem><para>
+            Matrix visualisation
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_default.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+            
+          </para>
+        </listitem>
+        <listitem><para>
+            Undo/redo capabilities
+          </para>
+        </listitem>
+        <listitem><para>
+            Cell editing
+          </para>
+        </listitem>
+        <listitem><para>
+            Expression evaluation. Please note that editvar will not store the expression. Only the value.
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_modify.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Advanced selection of elements (available with the CTRL key)
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_adv_selection.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Plotting
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_plot.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Plotting of a subset
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_subplot.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Variable format (short, shortE, long or longE formats)
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_format.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Column / lines management (insert, delete, copy and paste, ... )
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_column.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Full copy and paste between <ulink url="http://www.libreoffice.org/">Libreoffice</ulink>/Openoffice or Microsoft Excel and Scilab (both ways)
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_libreoffice.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Renaming or copy of a variable
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/editvar_variable_selection.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      <literal>editvar</literal> can edit the following variable types:
+      
+      <itemizedlist>
+        <listitem><para>
+            Real or complex constant matrix (type 1)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link linkend="matrices">Boolean matrix</link> (type 4)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link linkend="sparse">Sparse matrix</link> (type 5)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link linkend="sparse">Boolean sparse matrix</link> (type 6)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link linkend="int8">Integer matrix</link>: 8, 16 &amp; 32 bytes (type 8)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link linkend="strings">Matrix of strings</link> (type 10)
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // to check that bvode works
 function df=dfsub(x,z)
     df=[0,0,-6/x**2,-6/x]

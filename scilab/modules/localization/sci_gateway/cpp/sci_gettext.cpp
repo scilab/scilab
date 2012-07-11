@@ -21,6 +21,7 @@ extern "C"
 {
 #include <string.h>
 #include <stdlib.h>
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "os_wcsdup.h"

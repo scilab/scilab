@@ -36,13 +36,4 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-  </ItemGroup>
 </Project>

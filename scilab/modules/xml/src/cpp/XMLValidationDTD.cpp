@@ -26,151 +26,151 @@ extern "C"
 namespace org_modules_xml
 {
 
-    XMLValidationDTD::XMLValidationDTD(const char *path, std::string * error):XMLValidation()
+XMLValidationDTD::XMLValidationDTD(const char *path, std::string * error): XMLValidation()
+{
+    internalValidate = false;
+    char *expandedPath = expandPathVariable(const_cast<char *>(path));
+    if (expandedPath)
     {
-        internalValidate = false;
-        char *expandedPath = expandPathVariable(const_cast<char *>(path));
-        if (expandedPath)
+        validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
+        FREE(expandedPath);
+        if (!validationFile)
         {
-            validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
-            FREE(expandedPath);
-            if (!validationFile)
+            if (errorBuffer)
             {
-                if (errorBuffer)
-                {
-                    delete errorBuffer;
-                }
-                errorBuffer = new std::string(gettext("Cannot parse the DTD"));
+                delete errorBuffer;
+            }
+            errorBuffer = new std::string(gettext("Cannot parse the DTD"));
 
-                *error = *errorBuffer;
-            }
-            else
-            {
-                openValidationFiles.push_back(this);
-            }
+            *error = *errorBuffer;
         }
         else
         {
-            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
+            openValidationFiles.push_back(this);
         }
-
-        scope->registerPointers(validationFile, this);
-        id = scope->getVariableId(*this);
     }
-
-    XMLValidationDTD::XMLValidationDTD():XMLValidation()
+    else
     {
-        validationFile = 0;
-        internalValidate = true;
-        id = scope->getVariableId(*this);
-        openValidationFiles.push_back(this);
+        *error = std::string(gettext("Invalid file name: ")) + std::string(path);
     }
 
-    XMLValidationDTD::~XMLValidationDTD()
+    scope->registerPointers(validationFile, this);
+    id = scope->getVariableId(*this);
+}
+
+XMLValidationDTD::XMLValidationDTD(): XMLValidation()
+{
+    validationFile = 0;
+    internalValidate = true;
+    id = scope->getVariableId(*this);
+    openValidationFiles.push_back(this);
+}
+
+XMLValidationDTD::~XMLValidationDTD()
+{
+    scope->unregisterPointer(validationFile);
+    scope->removeId(id);
+
+    if (validationFile)
     {
-        scope->unregisterPointer(validationFile);
-        scope->removeId(id);
-
-        if (validationFile)
-        {
-            xmlFreeDtd(getValidationFile < xmlDtd > ());
-        }
-
-        if (validationFile || internalValidate)
-        {
-            openValidationFiles.remove(this);
-            if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
-            {
-                resetScope();
-            }
-        }
-
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-
-            errorBuffer = 0;
-        }
+        xmlFreeDtd(getValidationFile < xmlDtd > ());
     }
 
-    bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) const
+    if (validationFile || internalValidate)
     {
-        bool ret;
-        xmlValidCtxt *vctxt = xmlNewValidCtxt();
-
-        if (errorBuffer)
+        openValidationFiles.remove(this);
+        if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
         {
-            delete errorBuffer;
+            resetScope();
         }
-        errorBuffer = new std::string("");
-
-        if (!vctxt)
-        {
-            errorBuffer->append(gettext("Cannot create a valid context"));
-            *error = *errorBuffer;
-            return false;
-        }
-
-        vctxt->error = (xmlValidityErrorFunc) XMLValidation::errorFunction;
-
-        ret = xmlValidateDtd(vctxt, doc.getRealDocument(), getValidationFile < xmlDtd > ()) == 1;
-
-        vctxt->error = 0;
-        xmlFreeValidCtxt(vctxt);
-
-        if (!ret)
-        {
-            *error = *errorBuffer;
-        }
-
-        return ret;
     }
 
-    bool XMLValidationDTD::validate(xmlTextReader * reader, std::string * error) const
+    if (errorBuffer)
     {
-        int last;
-        int valid;
+        delete errorBuffer;
 
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-        }
-        errorBuffer = new std::string("");
-
-        if (!internalValidate)
-        {
-            errorBuffer->append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
-            *error = *errorBuffer;
-            return false;
-        }
-
-        xmlTextReaderSetParserProp(reader, XML_PARSER_VALIDATE, 1);
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorFunction, 0);
-        while ((last = xmlTextReaderRead(reader)) == 1) ;
-        valid = xmlTextReaderIsValid(reader);
-
-        xmlTextReaderSetErrorHandler(reader, 0, 0);
-        xmlFreeTextReader(reader);
-
-        if (last == -1 || valid != 1)
-        {
-            *error = *errorBuffer;
-            return false;
-        }
-
-        return true;
+        errorBuffer = 0;
     }
+}
 
-    const std::string XMLValidationDTD::toString() const
+bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) const
+{
+    bool ret;
+    xmlValidCtxt *vctxt = xmlNewValidCtxt();
+
+    if (errorBuffer)
     {
-        std::ostringstream oss;
-        xmlDtd *dtd = getValidationFile < xmlDtd > ();
-
-        oss << "XML DTD" << std::endl;
-        oss << "name: " << (dtd->name ? (const char *)dtd->name : "") << std::endl;
-        oss << "external ID: " << (dtd->ExternalID ? (const char *)dtd->ExternalID : "") << std::endl;
-        oss << "system ID: " << (dtd->SystemID ? (const char *)dtd->SystemID : "");
-
-        return oss.str();
+        delete errorBuffer;
     }
+    errorBuffer = new std::string("");
+
+    if (!vctxt)
+    {
+        errorBuffer->append(gettext("Cannot create a valid context"));
+        *error = *errorBuffer;
+        return false;
+    }
+
+    vctxt->error = (xmlValidityErrorFunc) XMLValidation::errorFunction;
+
+    ret = xmlValidateDtd(vctxt, doc.getRealDocument(), getValidationFile < xmlDtd > ()) == 1;
+
+    vctxt->error = 0;
+    xmlFreeValidCtxt(vctxt);
+
+    if (!ret)
+    {
+        *error = *errorBuffer;
+    }
+
+    return ret;
+}
+
+bool XMLValidationDTD::validate(xmlTextReader * reader, std::string * error) const
+{
+    int last;
+    int valid;
+
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string("");
+
+    if (!internalValidate)
+    {
+        errorBuffer->append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
+        *error = *errorBuffer;
+        return false;
+    }
+
+    xmlTextReaderSetParserProp(reader, XML_PARSER_VALIDATE, 1);
+    xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
+    while ((last = xmlTextReaderRead(reader)) == 1) ;
+    valid = xmlTextReaderIsValid(reader);
+
+    xmlTextReaderSetErrorHandler(reader, 0, 0);
+    xmlFreeTextReader(reader);
+
+    if (last == -1 || valid != 1)
+    {
+        *error = *errorBuffer;
+        return false;
+    }
+
+    return true;
+}
+
+const std::string XMLValidationDTD::toString() const
+{
+    std::ostringstream oss;
+    xmlDtd *dtd = getValidationFile < xmlDtd > ();
+
+    oss << "XML DTD" << std::endl;
+    oss << "name: " << (dtd->name ? (const char *)dtd->name : "") << std::endl;
+    oss << "external ID: " << (dtd->ExternalID ? (const char *)dtd->ExternalID : "") << std::endl;
+    oss << "system ID: " << (dtd->SystemID ? (const char *)dtd->SystemID : "");
+
+    return oss.str();
+}
 }

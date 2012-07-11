@@ -39,40 +39,28 @@ sci_gateway/fortran/sci_f_gamma.f \
 sci_gateway/fortran/sci_f_calerf.f
 
 # Includes need for the compilation
-libscispecial_functions_la_FFLAGS= -I$(srcdir)/includes/
-
-# Includes need for the compilation
 libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
-
-# Includes need for the compilation
-libscispecial_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/core/src/c/ \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/system_env/includes/
+$(AM_CPPFLAGS)
 
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 noinst_LTLIBRARIES = libscispecial_functions-algo.la
 
-libscispecial_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES) $(SPECIAL_FUNCTIONS_CPP_SOURCES)
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
-libscispecial_functions_algo_la_CFLAGS = $(libscispecial_functions_la_CFLAGS)
+libscispecial_functions_algo_la_CPPFLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SPECIAL_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscispecial_functions_la_CFLAGS)
+INCLUDE_FLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
 libscispecial_functions_la_LIBADD = libscispecial_functions-algo.la
 

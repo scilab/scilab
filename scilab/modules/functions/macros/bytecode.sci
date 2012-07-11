@@ -19,7 +19,10 @@ function x=bytecode(f)
     mclose(u)
     load(TMPDIR+'/%fun.bin')
   elseif type(f)==13 then //function to bytecode
+     warnMode = warning("query");
+     warning("off");
      save(TMPDIR+'/%fun.bin',f)
+     warning(warnMode);
      I=fileinfo(TMPDIR+'/%fun.bin');
      u=mopen(TMPDIR+'/%fun.bin','rb');
      mgeti(1+nsiz,'i',u);

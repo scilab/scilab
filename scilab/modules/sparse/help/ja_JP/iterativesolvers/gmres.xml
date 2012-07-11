@@ -11,16 +11,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gmres">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gmres</refname>
     <refpurpose> Generalized Minimum RESidual 法</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>[x,flag,err,iter,res] = gmres(A,b,rstr,tol,maxi,M,x0)</synopsis>
+    <synopsis>[x,flag,err,iter,res] = gmres(A,b,[rstr,[tol,[maxi,[M,[x0]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,8 +26,12 @@
         <term>A</term>
         <listitem>
           <para>
-            n行n列行列または<literal>A*x</literal>を返す関数
+            n行n列行列または<literal>A*x</literal>を返す関数.
+            <literal>A</literal>が関数の場合,以下のようなヘッダを有すること:
           </para>
+          <programlisting role=""><![CDATA[ 
+function y = A ( x )
+]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,15 +43,20 @@
       <varlistentry>
         <term>x0</term>
         <listitem>
-          <para>ベクトル初期推定値(デフォルト: zeros(n,1))</para>
+          <para>初期推定値ベクトル(デフォルト: zeros(n,1))</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>M</term>
         <listitem>
           <para>
-            プリコンディショナ: 行列（デフォルト: eye(n,n)）または <literal>M*x</literal>を返す関数
+            プリコンディショナ: n行n列行列（デフォルト: eye(n,n)）または
+            <literal>M*x</literal>を返す関数.
+            M が関数の場合,以下のようなヘッダを有すること:
           </para>
+          <programlisting role=""><![CDATA[ 
+function y = M ( x )
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -153,8 +159,88 @@
   </refsection>
   <refsection>
     <title>例</title>
-    <programlisting role="example"><![CDATA[ 
-// GMRES call x=gmres(A,b);
+    <programlisting role="example"><![CDATA[
+	// A および M が行列の場合
+A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+[x,flag,err,iter,res] = gmres(A, b)
+
+M = eye(10, 10);
+
+[x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, M, zeros(10, 1))
+
+	// Aが行列, Mが関数の場合
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+
+function y = Mtimesx(x)
+M = eye(10,10);
+y = M*x;
+endfunction
+
+[x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, Mtimesx, zeros(10, 1))
+
+	// A が関数, M が行列の場合
+	function y = Atimesx(x)
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A * x;
+	 endfunction
+	 
+	 b = ones(10,1);
+	 M = eye(10, 10);
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b)
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, M, zeros(10,1))
+	 
+	 // A および M が関数
+	 function y = Atimesx(x)
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A * x;
+	 endfunction
+	 
+	 function y = Mtimesx(x)
+M = eye(10,10);
+y = M*x;
+endfunction
+	 
+	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, Mtimesx, zeros(10,1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

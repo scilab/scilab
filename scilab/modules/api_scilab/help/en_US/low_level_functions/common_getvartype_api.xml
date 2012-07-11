@@ -55,10 +55,10 @@
         <term>_piType</term>
         <listitem>
           <para>
-            Scilab type of the variable (sci_matrix, sci_strings, sci_ints, ...). 
+            Scilab type of the variable (sci_matrix, sci_strings, sci_ints, ...).
           </para>
           <para>
-            Note that the list of the different variable types is available as an enum in stack-c.h.
+            Note that the list of the different variable types is available as an enum in <link linkend="sci_types">sci_types.h</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -82,8 +82,7 @@
     <!--Lib_name: common_function-->
     <!--Func_list: common_function-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -94,7 +93,7 @@ int common_function(char *fname,unsigned long fname_len)
     int *piAddr1    = NULL;
     int iBool       = 0;
 
-    for(i = 0 ; i < InputArgument ; i++)
+    for(i = 0 ; i < nbInputArgument ; i++)
     {
         sciErr = printf_info(i + 1);
         if(sciErr.iErr)
@@ -108,7 +107,7 @@ int common_function(char *fname,unsigned long fname_len)
     //1 for true, 0 for false
     iBool = sciErr.iErr == 0 ? 1 : 0;
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, 1, 1, &iBool);
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, 1, 1, &iBool);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -116,7 +115,7 @@ int common_function(char *fname,unsigned long fname_len)
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }
 SciErr printf_info(int _iVar)
@@ -227,8 +226,7 @@ SciErr printf_info(int _iVar)
     }
     return sciErr;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
@@ -241,5 +239,13 @@ l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 common_function(l(1:$))
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sci_types">sci_types</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

@@ -13,6 +13,7 @@
 #include "configvariable.hxx"
 
 extern "C" {
+#include "MALLOC.h"
 #include "grand.h"
 #include "clcg4.h"
 #include "others_generators.h"
@@ -21,7 +22,7 @@ extern "C" {
 #define NbGenInScilab 6
 /*--------------------------------------------------------------------------*/
 // clcg4 must be called with the virtual generator number
-unsigned int clcg4_with_gen(void)
+unsigned long int clcg4_with_gen(void)
 {
     int current_clcg4 = ConfigVariable::getCurrentClcg4();
     return clcg4(current_clcg4);
@@ -30,7 +31,7 @@ unsigned int clcg4_with_gen(void)
 double C2F(ranf)(void)
 {
     //  pointers onto the generators func
-    unsigned int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -50,7 +51,7 @@ double C2F(ranf)(void)
 double ignlgi(void)
 {
     //  pointers onto the generators func
-    unsigned int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 

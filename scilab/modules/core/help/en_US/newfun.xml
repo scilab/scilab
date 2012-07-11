@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="newfun" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>newfun</refname>
     <refpurpose>add a name in the table of functions</refpurpose>
@@ -17,13 +14,13 @@
       <varlistentry>
         <term>function_name</term>
         <listitem>
-          <para>A character string, giving a valid variable name.</para>
+          <para>a character string, giving a valid function name</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>function_ptr</term>
         <listitem>
-          <para>a positive number with integer value (see below).</para>
+          <para>a positive number with integer value (see below)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,13 +35,13 @@
     <para>
       <literal>function_ptr</literal> is an integer
       <literal>1000*fun+fin</literal> where <literal>fun</literal> and
-      <literal>fin</literal> is the internal coding of the primitive
+      <literal>fin</literal> are the internal coding of the primitive
       <literal>function_name</literal>. 
     </para>
     <para>This function may be useful to associate a primitive to a
       gateway called in <literal>"gw_user.c"</literal>
       (<literal>fun=14</literal>). Note however that the <link linkend="ilib_build">ilib_build</link> function is a more easy way
-      to extend Scilab with new functions based on C C++ or Fortran
+      to extend Scilab with new functions based on C, C++ or Fortran
       code.
     </para>
     <para>This function may also be used to add an alias or to rename
@@ -62,7 +59,12 @@
      newfun("abs_bis",absptr) // create an alias of the abs function
      abs_bis(-1+%i)
      clearfun("abs") // remove abs as a known function
-     function y=abs(x),y=abs_bis(real(x)),endfunction //redefine abs
+     
+      //redefine abs
+      function y=abs(x)
+	y=abs_bis(real(x));
+      endfunction
+      
      abs(-1+%i)
   ]]></programlisting>
   </refsection>

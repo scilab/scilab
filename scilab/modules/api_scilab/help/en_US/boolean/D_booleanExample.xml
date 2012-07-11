@@ -27,8 +27,7 @@
     <!--Lib_name: booleanExample-->
     <!--Func_list: booleanExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int booleanExample(char *fname,unsigned long fname_len)
@@ -57,7 +56,7 @@ int booleanExample(char *fname,unsigned long fname_len)
             {
                 return 0;
             }
-            iRet = createScalarBoolean(pvApiCtx, InputArgument + 1, iBool);
+            iRet = createScalarBoolean(pvApiCtx, nbInputArgument + 1, iBool);
             if(iRet)
             {
                 return 0;
@@ -76,14 +75,14 @@ int booleanExample(char *fname,unsigned long fname_len)
                 return 0;
             }
 
-            sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, iRows, iCols, piBool);
+            sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, iRows, iCols, piBool);
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
         }
-        AssignOutputVariable(1) = InputArgument + 1;
+        AssignOutputVariable(1) = nbInputArgument + 1;
     }
     else
     {
@@ -91,13 +90,11 @@ int booleanExample(char *fname,unsigned long fname_len)
     }
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
-    <programlisting role="code_scilab">
-      <![CDATA[ 
+    <programlisting role="code_scilab"><![CDATA[ 
 a = %t;
 b = %f;
 c = [a,b;b,a;a,b;b,a];
@@ -107,7 +104,6 @@ booleanExample(a) == a
 booleanExample(b) == b
 booleanExample(c) == c
 booleanExample(d) == d
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

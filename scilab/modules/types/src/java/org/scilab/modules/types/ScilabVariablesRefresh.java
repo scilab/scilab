@@ -29,7 +29,8 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
     /**
      * Constructor
      */
-    private ScilabVariablesRefresh() { }
+    private ScilabVariablesRefresh() {
+    }
 
     /**
      * {@inheritDoc}
@@ -49,6 +50,7 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
 
     /**
      * Get the id to use to send data from C/C++ to this Java handler
+     *
      * @return the handler id
      */
     public static final int getScilabVariablesRefreshId() {
@@ -61,8 +63,10 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
     }
 
     /**
-     * Get all the listened variables from the different listeners
-     * This function is used from C++ to retrieve exactly what is needed and should not be used from Java.
+     * Get all the listened variables from the different listeners This function
+     * is used from C++ to retrieve exactly what is needed and should not be
+     * used from Java.
+     *
      * @return all the listened variables
      */
     public static final String[] getAllListenedVariables() {
@@ -82,7 +86,9 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
 
     /**
      * Add a new ScilabVariablesListener
-     * @param listener the listener to add
+     *
+     * @param listener
+     *            the listener to add
      */
     public static final void addScilabVariablesListener(ScilabVariablesListener listener) {
         eventListeners.add(ScilabVariablesListener.class, listener);
@@ -90,7 +96,9 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
 
     /**
      * Remove a ScilabVariablesListener
-     * @param listener the listener to remove
+     *
+     * @param listener
+     *            the listener to remove
      */
     public static final void removeScilabVariablesListener(ScilabVariablesListener listener) {
         eventListeners.remove(ScilabVariablesListener.class, listener);

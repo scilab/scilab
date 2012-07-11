@@ -39,7 +39,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/sciprint_full.c \
 	src/c/errmds.c \
 	src/c/error.c \
-	src/c/error_internal.c \
 	src/c/do_xxprintf.c \
 	src/c/set_xxprintf.c
 
@@ -68,34 +67,25 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_FORTRAN_SOURCES =
 
-libscioutput_stream_la_CFLAGS=  \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/console/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/operations/includes
-
-libscioutput_stream_la_CPPFLAGS=  \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(srcdir)/src/cpp/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/console/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    $(EIGEN_CPPFLAGS)
+libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/core/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/functions_manager/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/console/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/localization/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -104,16 +94,14 @@ else
 noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
 endif
 
-libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
 libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscioutput_stream_algo_la_CFLAGS = $(libscioutput_stream_la_CFLAGS)
 libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
-INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
+CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
+INCLUDE_FLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
 libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la
 

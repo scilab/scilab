@@ -5,11 +5,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,15 +18,15 @@
 /*------------------------------------------------------------------------
  *    Graphic library
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
- *    jpc@cermics.enpc.fr 
+ *    jpc@cermics.enpc.fr
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
- * Axis drawing for 2d plots (format selection) 
- * 
- * void  ChoixFormatE(fmt, desres, xmin, xmax, xpas) : find a format 
- * void  ChoixFormatE1(fmt, desres, xx, nx)          : find a format 
- * int   C2F(graduate)(xmi,xma,xi,xa,np1,np2,kminr,kmaxr,ar) 
- *                : change [xmi,xmax] for pretty graduation 
+ * Axis drawing for 2d plots (format selection)
+ *
+ * void  ChoixFormatE(fmt, desres, xmin, xmax, xpas) : find a format
+ * void  ChoixFormatE1(fmt, desres, xx, nx)          : find a format
+ * int   C2F(graduate)(xmi,xma,xi,xa,np1,np2,kminr,kmaxr,ar)
+ *                : change [xmi,xmax] for pretty graduation
  *--------------------------------------------------------------------------*/
 
 #if defined(__linux__)
@@ -40,10 +41,12 @@
 #include "GetProperty.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
 #include <machine.h>
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 #define MAX(A,B) ((A<B)?B:A)
 
@@ -58,10 +61,10 @@ static double width[18] = {1,2,2,5,2,2,2,5,5,5,5,5,5,10,10,10,10,10};
 
 extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 
-static void FormatPrec (char *fmt, int *desres, double xmin, double xmax, 
+static void FormatPrec (char *fmt, int *desres, double xmin, double xmax,
 				double xpas);
 static void FormatPrec1 (char *fmt, int *desres, double *xx, int nx);
-static int Fsepare (char *fmt, int dec, int *l, double xmin, double xmax, 
+static int Fsepare (char *fmt, int dec, int *l, double xmin, double xmax,
 			    double xpas);
 static int Fsepare1 (char *fmt, int dec, int *l, double *xx, int nx);
 static void graduate1 (double *xmi,double * xma,double * xi,double * xa,
@@ -86,8 +89,8 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
 
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
-  char c;
-  int des,len = 0;
+  char c = 0;
+  int des = 0,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -98,7 +101,7 @@ void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
       c='f';
       strcpy(fmt,"%.*f");
     }
-  else 
+  else
     {
       for ( des = 0 ; des < 5 ; des++)
 	{
@@ -112,8 +115,8 @@ void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 }
 
 /*
- *  checks if given format gives enough precision 
- *  if not increase it (i.e increase desres) 
+ *  checks if given format gives enough precision
+ *  if not increase it (i.e increase desres)
  */
 
 static void FormatPrec(char *fmt, int *desres, double xmin, double xmax, double xpas)
@@ -135,9 +138,9 @@ static void FormatPrec(char *fmt, int *desres, double xmin, double xmax, double 
 }
 
 /*
- *  checks if format fmt gives different values for numbers 
+ *  checks if format fmt gives different values for numbers
  *  from xmin to xmax with step xpas. It also returns in variable l
- *  the string length that will result in using the format 
+ *  the string length that will result in using the format
  */
 
 static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double xpas)
@@ -150,7 +153,7 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
   if (strcmp("%.*f",fmt)==0 && (Abs(xmax)> 1.e+10 || Abs(xmin) > 1.e+10))
     return(0);
   sprintf(buf1,fmt,dec,xmin);
-  while ( x < xmax ) 
+  while ( x < xmax )
     { x += xpas;
       strcpy(buf2,buf1);
       sprintf(buf1,fmt,dec,x);
@@ -162,8 +165,8 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
 
 void ChoixFormatE1(char *fmt, double *xx, int nx)
 {
-  char c;
-  int des,len = 0;
+  char c = 0;
+  int des = 0,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -174,7 +177,7 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
       c='f';
       strcpy(fmt,"%.*f");
     }
-  else 
+  else
     {
       for ( des = 0 ; des < 5 ; des++)
 	{
@@ -189,19 +192,19 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
 
 
 /*----------------------------------------------------------
- *  checks if format fmt gives different values for numbers 
+ *  checks if format fmt gives different values for numbers
  *  from xmin to xmax with step xpas. It also returns in variable l
- *  the string length that will result in using the format 
+ *  the string length that will result in using the format
  *------------------------------------------------------*/
 
 static void FormatPrec1(char *fmt, int *desres, double *xx, int nx)
 {
   char buf1[100],buf2[100];
-  double xpas;
-  int i=0;
+  double xpas = 0.;
+  int i = 0;
   while ( i < nx-1 && *desres  < 10 )
     {
-      double x1,x2;
+      double x1 = 0., x2 = 0.;
       sprintf(buf1,fmt,*desres,xx[i]);
       sprintf(buf2,fmt,*desres,xx[i+1]);
       sscanf(buf1,"%lf",&x1);
@@ -238,41 +241,41 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
 /*----------------------------------------------------
  * int C2F(graduate)(xmi,xma,xi,xa,np1,np2,kminr,kmaxr,ar)
  * (xgraduate at Scilab level)
- * Rescale an interval so as to find a pretty graduation 
+ * Rescale an interval so as to find a pretty graduation
  * for [xmi,xma] given seeks (xi,xa,np1,np2)
- * such that  xi <= xmi <= xmax <= xa 
+ * such that  xi <= xmi <= xmax <= xa
  * with xi et xa  numbers of type  kminr 10^ar and kmaxr 10^ar.
  * then the interval [xi,xa] can be splited in *np2 sub-intervals
- *  ( kminr-kmaxr can be divided by *np2 ) 
+ *  ( kminr-kmaxr can be divided by *np2 )
  *  x_i= (kminr + i*(kmaxr-kminr)/ (*np2))*10^ar;
  * i=0:(*np2)
- * ecah of the  np2 intervals can in turn be splited in np1 ungraduated 
- * subintervals 
+ * ecah of the  np2 intervals can in turn be splited in np1 ungraduated
+ * subintervals
  * [np1,np2] follow the nax parameters of plot2d.
- *  
- *  We also want to keep np2 small ( *np2 <=10 ) 
- *  and we want [xi,xa] to be as close as possible to the interval  
+ *
+ *  We also want to keep np2 small ( *np2 <=10 )
+ *  and we want [xi,xa] to be as close as possible to the interval
  *  [xmi,xma]
  *---------------------------------------------------- */
 
 int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar)
 {
-  if ( *xmi > *xma) 
+  if ( *xmi > *xma)
     {
       double xma1=*xmi, xmi1=*xma;
       graduate1(&xmi1,&xma1,xi,xa,np1,np2,kminr,kmaxr,ar,0);
     }
-  else 
+  else
     graduate1(xmi,xma,xi,xa,np1,np2,kminr,kmaxr,ar,0);
   return(0);
 }
 
 static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar, int count)
 {
-  int npr,b,i,dx,dxmi,dxma;
+  int npr = 0,b = 0,i = 0,dx = 0,dxmi = 0, dxma = 0;
   /* fprintf(stderr,"[%20.10f,%20.10f]\n",*xmi,*xma); */
-  /* 
-   * 
+  /*
+   *
    */
   dx   = ( (*xma) != (*xmi) ) ? (int) ceil(log10(Abs((*xma)-(*xmi)))) :0;
   dxmi = (*xmi != 0 ) ? (int) ceil(log10(Abs((*xmi)))) : 0;
@@ -288,21 +291,21 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
   /* fprintf(stderr,"choix de b=%d",b); */
   if ( b >= 10 )
     {
-      double xmi1,xma1;
-      int iexp ;
+      double xmi1 = 0., xma1 = 0.;
+      int iexp = 0;
       /* fprintf(stderr,"je ne peux decomposer les 2 nombres sont identiques\n"); */
-      /* 
-	a la precision donnee les deux nombre ne peuvent etre decomposer 
+      /*
+	a la precision donnee les deux nombre ne peuvent etre decomposer
 	kmin,kmax devrait sinon depasser maxint
-	on les ecarte de ce qu'il faut pour pouvoir 
-	les separer. 
+	on les ecarte de ce qu'il faut pour pouvoir
+	les separer.
 	Attention : il faut faire attention de bien choisir iexp
-	pour ne pas boucler la dedans 
+	pour ne pas boucler la dedans
 	*/
-      iexp = 9 - dxmi -1; 
+      iexp = 9 - dxmi -1;
       xmi1 = *xmi-exp10((double) - iexp);
       xma1 = *xmi+exp10((double) - iexp);
-      if ( count > 1 ) 
+      if ( count > 1 )
 	{
 	  sciprint(_("Internal Error: Loop in graduate1\n"));
 	  sciprint(_("Please send a Bug report to dev@lists.scilab.org\n"));
@@ -310,7 +313,7 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
       graduate1(&xmi1,&xma1,xi,xa,np1,np2,kminr,kmaxr,ar,count+1);
       return;
     }
-  while ( b >= 1 ) 
+  while ( b >= 1 )
     {
       /* fprintf(stderr,"\tAppel avec b=%d\n",b); */
       gradua(xmi,xma,kminr,kmaxr,ar,&npr,&b) ;
@@ -319,35 +322,35 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
       /** fprintf(stderr,"\tRes=[%20.10f,%20.10f]-->[%d,%d,10^%d,%d]\n",*xi,*xa
 	      ,*kminr,*kmaxr,*ar,npr); */
       *np2= npr;
-      if ( *np2 <= 20 ) 
+      if ( *np2 <= 20 )
 	break;
       else
 	b--;
     }
-  /* 
-    on veut essayer de ne pas depasser 10 intervalles ( *np2 <= 10) 
+  /*
+    on veut essayer de ne pas depasser 10 intervalles ( *np2 <= 10)
     pour les intervalle ou on ecrit un nombre,
-    or on peut en avoir jusqu'a 20. On regarde si le nombre d'intervalle 
-    est divisible. on aura alors une graduation en np2 pour l'ecriture 
+    or on peut en avoir jusqu'a 20. On regarde si le nombre d'intervalle
+    est divisible. on aura alors une graduation en np2 pour l'ecriture
     des nombres et une sous graduation np1 juste avec des tirets.
     */
   *np1= 2 ;
   if ( *np2 <= 10 ) return ;
-  /* le nombre est > 10 : s'il est impair on rajoute 1 
+  /* le nombre est > 10 : s'il est impair on rajoute 1
      pour diviser par deux */
-  if ( *np2 % 2 == 1 ) 
+  if ( *np2 % 2 == 1 )
     {
-      int step ; 
+      int step ;
       step = (*kmaxr-*kminr)/(*np2);
       (*np2)++;
       *kmaxr += step;
       *xa =  (*kmaxr)*exp10((double) *ar);
     }
-  /* On recherche des diviseurs a nouveaux pour diminuer le nombre 
+  /* On recherche des diviseurs a nouveaux pour diminuer le nombre
      d'intervalles */
   for ( i=2 ; i <=10 ; i++)
     {
-      if ( *np2 % i == 0)       
+      if ( *np2 % i == 0)
 	{
 	  *np1=i,*np2 /= i;
 	  return;
@@ -357,15 +360,15 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
 }
 
 /*
- *  renvoit kminr,kmaxr et ar tels que 
- *  [kminr*10^ar,kmaxr*10^ar] contient [xmi,xma] 
- *  b est un parametre de decompSup,decompInf 
+ *  renvoit kminr,kmaxr et ar tels que
+ *  [kminr*10^ar,kmaxr*10^ar] contient [xmi,xma]
+ *  b est un parametre de decompSup,decompInf
  *  on doit avoir a l'appel xmi < xma.
- *  le choix se fait entre deux intervalles possibles 
- *  on choisit celui qui est le plus proche de [xmi,xma] 
- *  a condition que (kmaxr-kminr) <= 20 
- *  pour b=1 on sait que (kmaxr-kminr ) <= 20 
- *  20 intervalles au plus ( que l'on obtient si xmin et xmax sont 
+ *  le choix se fait entre deux intervalles possibles
+ *  on choisit celui qui est le plus proche de [xmi,xma]
+ *  a condition que (kmaxr-kminr) <= 20
+ *  pour b=1 on sait que (kmaxr-kminr ) <= 20
+ *  20 intervalles au plus ( que l'on obtient si xmin et xmax sont
  *  de signe opposes sinon c'est 10 )
  */
 
@@ -375,10 +378,10 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
 
 static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, int *npr, int *b)
 {
-  double x0=*xmi,x1=*xma,loc;
-  int x0k,x0a;
-  int x1k,x1a;
-  int kmin1,kmax1,a1,np1,kmin2,kmax2,a2,np2,kmin,kmax,a,np;
+  double x0 = *xmi, x1 = *xma, loc = 0.;
+  int x0k = 0, x0a = 0;
+  int x1k = 0, x1a = 0;
+  int kmin1 = 0,kmax1 = 0,a1 = 0,np1 = 0,kmin2 = 0,kmax2 = 0,a2 = 0,np2 = 0,kmin = 0,kmax = 0,a = 0,np = 0;
   decompInf(x0,&x0k,&x0a,*b);
   decompSup(x1,&x1k,&x1a,*b);
   /** special cases **/
@@ -392,9 +395,9 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
   np1= ( np1 < 0 ) ? DMAX : np1;
   if ( np1 > 10 )
     {
-      if  ((np1 % 2) == 0) 
+      if  ((np1 % 2) == 0)
 	np1 /=2;
-      else 
+      else
 	{
 	  np1++; np1 /= 2;
 	  kmax1++;
@@ -407,11 +410,11 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
   kmax2=(int) loc ;
   np2 = Abs(kmax2-kmin2);
   np2= ( np2 < 0 ) ? DMAX : np2;
-  if ( np2 > 10 ) 
+  if ( np2 > 10 )
     {
       if ( np2 % 2 == 0)
 	np2 /=2;
-      else 
+      else
 	{
 	  np2++;
 	  kmin2--;
@@ -421,22 +424,22 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
   /* fprintf(stderr,"[%d,%d].10^%d=%d\n",kmin2,kmax2,a2,np2);  */
   if ( np1*exp10((double)a1) < np2*exp10((double) a2) )
     {
-      if ( np1 <= 20 ) 
+      if ( np1 <= 20 )
 	{
 	  kmin=kmin1;	  kmax=kmax1;	  np=np1;	  a=a1;
 	}
-      else 
+      else
 	{
 	  kmin=kmin2;	  kmax=kmax2;	  np=np2;	  a=a2;
 	}
     }
-  else 
+  else
     {
-      if ( np2 <= 20 ) 
+      if ( np2 <= 20 )
 	{
 	  kmin=kmin2;	  kmax=kmax2;	  np=np2;	  a=a2;
 	}
-      else 
+      else
 	{
 	  kmin=kmin1;	  kmax=kmax1;	  np=np1;	  a=a1;
 	}
@@ -445,9 +448,9 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
   *kmaxr=kmax;
   *ar=a;
   *npr=np;
-  if ( kmin==kmax ) 
+  if ( kmin==kmax )
     {
-      /* 
+      /*
        * a la precision demandee les deux [xi,xa] est reduit a un point
        * on elargit l'intervalle
        */
@@ -458,32 +461,32 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
 }
 
 /*
- * soit x > 0 reel fixe et b entier fixe : alors il existe un unique couple 
- * (k,a) dans NxZ avec k dans [10^(b-1)+1,10^b] tel que 
- * (k-1)*10^a < x <= k 10^a 
- * donne par  a = ceil(log10(x))-b et k=ceil(x/10^a) 
+ * soit x > 0 reel fixe et b entier fixe : alors il existe un unique couple
+ * (k,a) dans NxZ avec k dans [10^(b-1)+1,10^b] tel que
+ * (k-1)*10^a < x <= k 10^a
+ * donne par  a = ceil(log10(x))-b et k=ceil(x/10^a)
  * decompSup renvoit xk=k et xa=a
- * si x < 0 alors decompSup(x,xk,xa,b) 
- *    s'obtient par decompInf(-x,xk,xa,b) et xk=-xk 
- * Remarque : la taille de l'entier k obtenu est controle par b 
+ * si x < 0 alors decompSup(x,xk,xa,b)
+ *    s'obtient par decompInf(-x,xk,xa,b) et xk=-xk
+ * Remarque : la taille de l'entier k obtenu est controle par b
  * il faut choisir b < 10 pour ne pas depasser dans k l'entier maximum
  */
 
 static void decompSup(double x, int *xk, int *xa, int b)
 {
-  if ( x == 0.0 ) 
-    { 
+  if ( x == 0.0 )
+    {
       *xk=0 ; *xa= 1; /* jpc */
     }
-  else 
+  else
     {
-      if ( x > 0 ) 
+      if ( x > 0 )
 	{
 	  double xd;
-	  static double epsilon; 
-	  static int first=0; 
+	  static double epsilon;
+	  static int first=0;
 	  if ( first == 0) { epsilon = 10.0*F2C(dlamch)("e",1L); first++ ;}
-	  /* if x is very near (k+1)10^a (epsilon machine) 
+	  /* if x is very near (k+1)10^a (epsilon machine)
 	   * we increment xk
 	   */
 	  *xa = (int) ceil(log10(x)) - b ;
@@ -491,56 +494,56 @@ static void decompSup(double x, int *xk, int *xa, int b)
 	  xd = (*xk-1)*exp10((double) *xa);
 	  if ( Abs((x-xd)/x) < epsilon ) *xk -= 1;
 	}
-      else 
+      else
 	{
 	  decompInf(-x,xk,xa,b);
 	  *xk = -(*xk);
 	}
     }
 }
- 
+
 
 /*
- * soit x > 0 alors il existe un unique couple 
- * (k,a) dans NxZ avec k in [10^(b-1),10^b-1] tel que 
- * (k)*10^a <= x < (k+1) 10^a 
- * donne par 
- * a = floor(log10(x))-b+1 et k = floor(x/10^a) 
+ * soit x > 0 alors il existe un unique couple
+ * (k,a) dans NxZ avec k in [10^(b-1),10^b-1] tel que
+ * (k)*10^a <= x < (k+1) 10^a
+ * donne par
+ * a = floor(log10(x))-b+1 et k = floor(x/10^a)
  * decompInf renvoit xk=k et xa=a
- * si x < 0 alors decompInf(x,xk,xa,b) 
- *    s'obtient par decompSup(-x,xk,xa,b) et xk=-xk 
+ * si x < 0 alors decompInf(x,xk,xa,b)
+ *    s'obtient par decompSup(-x,xk,xa,b) et xk=-xk
  */
 
 static void decompInf(double x, int *xk, int *xa, int b)
 {
-  if ( x == 0.0 ) 
-    { 
+  if ( x == 0.0 )
+    {
       *xk=0 ; *xa= 1; /* jpc */
     }
-  else 
+  else
     {
-      if ( x > 0 ) 
+      if ( x > 0 )
 	{
 	  double xup;
-	  static double epsilon; 
-	  static int first=0; 
+	  static double epsilon;
+	  static int first=0;
 	  if ( first == 0) { epsilon = 10.0*F2C(dlamch)("e",1L); first++ ;}
 	  *xa = (int) floor(log10(x)) -b +1 ;
 	  *xk = (int) floor(x/exp10((double) *xa));
-	  /* if x is very near (k+1)10^a (epsilon machine) 
+	  /* if x is very near (k+1)10^a (epsilon machine)
 	   * we increment xk
 	   */
 	  xup = (*xk+1)*exp10((double) *xa);
 	  if ( Abs((x-xup)/x) < epsilon ) *xk += 1;
 	}
-      else 
+      else
 	{
 	  decompSup(-x,xk,xa,b);
 	  *xk = -(*xk);
 	}
     }
 }
- 
+
 
 
 
@@ -549,11 +552,11 @@ static void decompInf(double x, int *xk, int *xa, int b)
 void flexpo1(double *x, double *f, double *sg, double *scale)
 {
   /*    x = sg*f*scale, sg=+-1; scale=10^n; 10 <= f < 100  */
-  double xa, k, un=1;
-  *sg=un;  xa=*x;
+  double xa = 0., k = 0., un = 1.;
+  *sg = un;  xa = *x;
   if (xa<0) {xa=-xa;*sg=-1;}
   *f=xa;*scale=un;
-  if (xa<10) 
+  if (xa<10)
     {
       for (k=0;++k;)
 	{
@@ -563,7 +566,7 @@ void flexpo1(double *x, double *f, double *sg, double *scale)
 	}
       return;
     }
-  if (xa>100) 
+  if (xa>100)
     {
       for (k=0;++k;)
 	{
@@ -578,10 +581,10 @@ void flexpo1(double *x, double *f, double *sg, double *scale)
 
 void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale)
 {
-  double fmin, fmax, sgmin, sgmax, sclmax,sclmin, arguc, arguf, scl;
+  double fmin = 0., fmax = 0., sgmin = 0., sgmax = 0., sclmax = 0.,sclmin = 0., arguc = 0., arguf = 0., scl = 0.;
   flexpo1(xminv,&fmin,&sgmin,&sclmin);
   flexpo1(xmaxv,&fmax,&sgmax,&sclmax);
-    if ( Abs(*xmaxv) > Abs(*xminv)) 
+    if ( Abs(*xmaxv) > Abs(*xminv))
     {scl=sclmax;}
   else
     {scl=sclmin;}
@@ -591,9 +594,9 @@ void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *sc
 
 int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidth,int *tst0,double * scal)
 {
-  int i1;
-  static double f,x,sg,scale;
-  static int k, w;
+  int i1 = 0;
+  static double f = 0., x = 0., sg = 0., scale = 0.;
+  static int k = 0, w = 0;
 
   *tst0 = *xmin == 0;
   x = *xmax - *xmin;
@@ -620,7 +623,7 @@ int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidt
   i1 = *nticks - 1;
   for (k = 0; k < i1; ++k) {
     grads[k + 1] = grads[k] + *thewidth * scale;
-    if ( grads[k+1] == 0.0 ) { *tst0 = 1 ; } 
+    if ( grads[k+1] == 0.0 ) { *tst0 = 1 ; }
   }
   return 0;
 }
@@ -628,9 +631,9 @@ int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidt
 
 int gradu2(double *xmax,double  *thewidth,double  *scal)
 {
-  
-  static double f,x,sg,scale;
-  static int k, w;
+
+  static double f = 0, x = 0, sg = 0, scale = 0;
+  static int k = 0, w = 0;
 
   x = *xmax;
   flexpo1(&x, &f, &sg, &scale);
@@ -645,15 +648,15 @@ int gradu2(double *xmax,double  *thewidth,double  *scal)
 
 void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, int *tst0,double *scal)
 {
-  double span,width2,low,up;
-  double nup,nlow;
-  int res,k;
+  double span = 0., width2 = 0., low = 0., up = 0.;
+  double nup = 0., nlow = 0.;
+  int res = 0, k = 0;
   span  = *xmaxv - *xminv ;
   res   = gradu2( &span, thewidth, scal ) ;
   width2 = (*thewidth) * (*scal) ;
-  
-  
-  
+
+
+
   /* nlow= round(*xminv/ width2); */
 	/* Don't use round because the (int) cast may overflow */
 	nlow = floor(*xminv / width2 + 0.5);
@@ -663,7 +666,7 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   up = nup * width2;
 
   if ( low > *xminv )
-  { 
+  {
     nlow = floor( *xminv / width2 ) ;
     low  = nlow * width2 ;
   }
@@ -673,7 +676,7 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
     nup = ceil( *xmaxv / width2);
     up = nup * width2 ;
   }
-  
+
   if ( *nticks > 0 )
   {
     width2 = ( up - low ) / ( *nticks - 1 ) ;
@@ -693,9 +696,9 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
 
 int agrandir(double *xmin,double * xmax,double * xlow,double * xup)
 {
-  int i1;
-  static double work[20], thewidth, scal;
-  static int i, j, s, nticks, tst0;
+  int i1 = 0;
+  static double work[20], thewidth = 0., scal = 0.;
+  static int i = 0, j = 0, s = 0, nticks = 0, tst0 = 0;
 
   for (s = 0; s <= 100; ++s) {
     i1 = s;
@@ -722,7 +725,7 @@ int agrandir(double *xmin,double * xmax,double * xlow,double * xup)
  */
 void correctBounds( double min, double max, double * lBound, double * uBound )
 {
-  double offset ;
+  double offset = 0.;
 
   if ( Abs(min) < 10.0 && Abs(max) < 10.0 )
   {
@@ -739,7 +742,7 @@ void correctBounds( double min, double max, double * lBound, double * uBound )
   /* first try to just get the closest int */
   *lBound = floor( min ) ;
   *uBound = ceil(  max ) ;
-  
+
 
   /* check if it is enough */
   if (  min - *lBound < 0.2 )
@@ -761,14 +764,15 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
  *   If xminv<0 and xmaxv>0 one of the ticks is at zero.        */
 
 {
-  double d1, d2;  int i1;
-  static double xmin, xmax, work[20], xlow, thewidth, xup, scale, scal;
-  static int k, tst0;
-  
+  double d1 = 0., d2 = 0.;
+  int i1 = 0;
+  static double xmin = 0., xmax = 0., work[20], xlow = 0., thewidth = 0., xup = 0., scale = 0., scal = 0.;
+  static int k = 0, tst0 = 0;
+
   /* check if the two bounds are not too close for a correct display */
   if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) )
   {
-    correctBounds( *xminv, *xmaxv, &xmin, &xmax ) ;    
+    correctBounds( *xminv, *xmaxv, &xmin, &xmax ) ;
     /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
@@ -808,21 +812,21 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
     C2F(theticks)(&d1, &d2, grads, ngrads);
     return 0;
   }
-  
+
   newbnds(xminv, xmaxv, &xmin, &xmax, &scale);
   agrandir(&xmin, &xmax, &xlow, &xup);
-  
+
 
   gradu(&xlow, &xup, grads, ngrads, &thewidth, &tst0, &scal);
-  
+
   i1 = *ngrads;
   for (k = 0; k < i1; ++k)
   {
     grads[k] = scale * grads[k];
   }
-    
+
   return 0;
-} 
+}
 
 /* /\* */
 /* link ./theticks.o theticks C */
@@ -832,17 +836,17 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
 /* [1,40],3,'d',[1,1],4,'i'); */
 /* grads=grads(1:ngrads); */
 /* endfunction */
- 
+
 /* *\/ */
 
 
-/* I encapsulate C2F(theticks) routine inside TheTicks (this one) because 
+/* I encapsulate C2F(theticks) routine inside TheTicks (this one) because
    we need to perform a test if the returned grads is a single scalar */
 /* the boolean compNgrads tell wether the number of grads is fixed
    or if it needs to be computed */
 int TheTicks( double * xminv ,
-              double * xmaxv , 
-              double * grads , 
+              double * xmaxv ,
+              double * grads ,
               int    * ngrads,
               int      compNgrads )
 {
@@ -858,16 +862,16 @@ int TheTicks( double * xminv ,
   C2F(theticks)(xminv, xmaxv, grads, ngrads);
 
   if(*ngrads == 1 && !compNgrads)
-    { 
-      /* unfortunately there is only 1 graduation (normally this case 
+    {
+      /* unfortunately there is only 1 graduation (normally this case
 	 happens when handling small intervals with huge numbers (i.e. [10^60 10^60+1]) */
       /* What I do is to enlarge this interval */
-      
+
       tmp = grads[0];
       grads[0] = (1-epsilon)*tmp;
       grads[1] = tmp;
       grads[2] = (1+epsilon)*tmp;
-      
+
       *ngrads = 3;
       return 1 ;
     }
@@ -877,19 +881,19 @@ int TheTicks( double * xminv ,
       grads[0] = (1-epsilon)*tmp;
       grads[1] = tmp;
       grads[2] = (1+epsilon)*tmp;
-      
+
       *ngrads = 3;
       return 2 ;
     }
-  
+
   return 0;
 }
 
 /* Returns 0 if 2 consecutive grads at least are equal */
 int GradEqual(const double grads[],const int *ngrads)
 {
-  int i;
-  const double *g = grads; 
+  int i = 0;
+  const double *g = grads;
   for( i= 0 ; i < (*ngrads) -1 ; i++)
     {
       if (*g == *(g+1)) return 0;
@@ -902,18 +906,18 @@ int GradEqual(const double grads[],const int *ngrads)
 elements on step backward */
 static void removeIndex( double * changedArray, int size, int ind )
 {
-  int i ;
+  int i  = 0;
   for ( i = ind + 1 ; i < size ; i++ )
   {
     changedArray[i-1] = changedArray[i] ;
-  } 
+  }
 }
 /*--------------------------------------------------------------------------*/
 /* remove in the ticks array the indices i such as removedTicks[i] */
 /* is true. The value nbtics is an in-out variable */
 static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTicks )
 {
-  int i ;
+  int i  = 0;
   for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
   {
     if ( removedTicks[i] )
@@ -927,8 +931,8 @@ static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTick
 /* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
 static void GradFixedlog( double minVal, double maxVal, double * outTicks, int nbGrads )
 {
-  int initSize ;
-  int i ;
+  int initSize  = 0;
+  int i = 0;
 
   /* intialize the array as usual */
   double tempTicks[20];
@@ -939,7 +943,7 @@ static void GradFixedlog( double minVal, double maxVal, double * outTicks, int n
     /* we create a smaller vector from a bigger one */
     int nbRemove = initSize - nbGrads ;
 
-    BOOL * removedTicks ;
+    BOOL * removedTicks = NULL;
     if( ( removedTicks = MALLOC( initSize * sizeof(BOOL) ) ) == NULL )
     {
       return ;
@@ -977,9 +981,9 @@ int GradLog( double   _min   ,
             int    * n_grads,
             int      compNgrads )
 {
-  int i;
-  int log_min, log_max;
-  int size;
+  int i = 0;
+  int log_min = 0, log_max = 0;
+  int size = 0;
 
   if ( compNgrads )
   {
@@ -1017,10 +1021,10 @@ int GradLog( double   _min   ,
     for(j=val-1;j>1;j--)
       if(val%j == 0){
         old_pas = pas;
-        pas=j; 
+        pas=j;
         passed = 1;
 
-        if((MAX_LOG_TICKS * pas)<=val){ 
+        if((MAX_LOG_TICKS * pas)<=val){
           if(old_pas != 0) {pas = old_pas; }
           break;
         }
@@ -1067,222 +1071,256 @@ int sciGetLogExponent( double minBound, double maxBound, double * expMin, double
   return -1 ;
 }
 /*--------------------------------------------------------------------------*/
-int ComputeC_format(sciPointObj * pobj, char * c_format)
+/*
+ * This function has been adapted to the MVC framework (property get calls)
+ * in order to be able to provide a valid format string when computing
+ * default labels for the Axis object. The algorithm is left untouched.
+ * Its code ought to be put within the Java part of the Model.
+ */
+int ComputeC_format(char * pobjUID, char * c_format)
 {
-	int i,j;
-	char pos;
-	char xy_type;
+	int i = 0, j = 0;
+	int pos = 0;
+	int* piPos = &pos;
+    int xy_type = 0;
+	int* piXy_type = &xy_type;
+	int nx = 0;
+	int* piNx = &nx;
+	int ny = 0;
+	int* piNy = &ny;
 	double *x = NULL;
 	double *y = NULL;
-	int *nx = NULL;
-	int *ny = NULL;
-	sciPointObj * psubwin = sciGetParentSubwin(pobj);
+	double* tmpx = NULL;
+	double* tmpy = NULL;
+    char* type = NULL;
 	int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
+	char* parentAxesID = NULL;
+	int logFlag = 0;
+	int* piLogFlag = &logFlag;
 
+	getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-	if(sciGetEntityType(pobj) != SCI_AXES){
-		Scierror(999, _("Error: ComputeFormat must be used with SCI_AXES objects\n"));
+	if(strcmp(type, __GO_AXIS__) != 0)
+	{
+		Scierror(999, _("Error: ComputeFormat must be used with AXIS objects\n"));
 		return -1;
 	}
 
-	pos = pAXES_FEATURE(pobj)->dir;
-	xy_type = pAXES_FEATURE (pobj)->tics;
-	/* Allocating space before re-copying values to not polluate the good values 
+	getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxesID);
+
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void **)&piPos);
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piXy_type);
+
+	getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
+
+	/* Allocating space before re-copying values to not pollute the good values
 	that will be used inside Axes.c */
-	if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+	if((x=MALLOC(nx*sizeof(double)))==NULL){
 		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
-	if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+	if((y=MALLOC(ny*sizeof(double)))==NULL){
 		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
-	if((nx=MALLOC(sizeof(int)))==NULL){
-		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
-		return -1;
-	}  
+	getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&tmpx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&tmpy);
 
-	if((ny=MALLOC(sizeof(int)))==NULL){
-		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
-		return -1;
+	for(i=0;i<nx;i++)
+	{
+		x[i] = tmpx[i];
 	}
 
-	nx[0] = pAXES_FEATURE (pobj)->nx;
-	for(i=0;i<(*nx);i++) { x[i] = pAXES_FEATURE(pobj)->vx[i]; }
-
-	ny[0] = pAXES_FEATURE (pobj)->ny;
-	for(i=0;i<(*ny);i++) { y[i] = pAXES_FEATURE(pobj)->vy[i]; }
+	for(i=0;i<ny;i++)
+	{
+		y[i] = tmpy[i];
+	}
 
 	/* Algo. here */
-	if(xy_type == 'i') {  
-		switch ( pos ) {
-			case 'u' : case 'd' :  
-				if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
-				{
-					while (x[3]>10) { x[3]=floor(x[3]/2); }
-				}
-				else
-				{
-					if(x[3] > 12)
-					{ /* F.Leray arbitrary value=12 for the moment */
-						x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
-						for(j=x3-1;j>1;j--)
-						{
-							if(x3%j == 0){
-								x[3]=j; 
-								xpassed = 1;
-							}
-						}
-						if(xpassed != 1) { x[3] = 1; }
-					}
-				}
+	if (xy_type == 2)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
 
-				break;
-			case 'r' : case 'l' :
-				if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-				{
-					while (y[3]>10) { y[3]=floor(y[3]/2); }
-				}
-				else
-				{
-					if(y[3] > 12){
-						y3=(int)y[3];
-						for(j=y3-1;j>1;j--)
-						{
-							if(y3%j == 0){
-								y[3]=j;
-								ypassed = 1;
-							}
+			if(logFlag == 0)
+			{
+				while (x[3]>10) { x[3]=floor(x[3]/2); }
+			}
+			else
+			{
+				if(x[3] > 12)
+				{ /* F.Leray arbitrary value=12 for the moment */
+					x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+					for(j=x3-1;j>1;j--)
+					{
+						if(x3%j == 0){
+							x[3]=j;
+							xpassed = 1;
 						}
-						if(ypassed != 1) { y[3] = 1; }
 					}
+					if(xpassed != 1) { x[3] = 1; }
 				}
-				break;
+			}
+		}
+		else if (pos == 2 || pos == 3)
+		{
+			getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
+
+			if(logFlag == 0)
+			{
+				while (y[3]>10) { y[3]=floor(y[3]/2); }
+			}
+			else
+			{
+				if(y[3] > 12){
+					y3=(int)y[3];
+					for(j=y3-1;j>1;j--)
+					{
+						if(y3%j == 0){
+							y[3]=j;
+							ypassed = 1;
+						}
+					}
+					if(ypassed != 1) { y[3] = 1; }
+				}
+			}
 		}
 	}
 
 
 	/** Real to Pixel values **/
-	switch ( xy_type ) 
+	if (xy_type == 0)
 	{
-	case 'v' :
-		Nx= *nx;
-		Ny= *ny;
-		break;
-	case 'r' :
-		switch ( pos ) {
-			case 'u' : case 'd' :
-				Nx = (int) x[2]+1;
-				break;
-			case 'r' : case 'l' :
-				Ny = (int) y[2]+1;
-				break;
+		Nx = nx;
+		Ny = ny;
+	}
+	else if (xy_type == 1)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			Nx = (int) x[2]+1;
 		}
-		break;
-	case 'i' : 
-		switch ( pos ) {
-			case 'u' : case 'd' :
-				Nx = (int) x[3]+1;
-				break; 
-			case 'r' : case 'l' :
-				Ny = (int) y[3]+1;
-				break;
+		else if (pos == 2 || pos == 3)
+		{
+			Ny = (int) y[2]+1;
 		}
-		break;
-	default: 
+	}
+	else if (xy_type == 2)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			Nx = (int) x[3]+1;
+		}
+		else if (pos == 2 || pos == 3)
+		{
+			Ny = (int) y[3]+1;
+		}
+	}
+	else
+	{
 		Scierror(999, _("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
 		FREE(x); x = NULL;
 		FREE(y); y = NULL;
-		FREE(nx); nx = NULL;
-		FREE(ny); ny = NULL;
 		return -1;
 	}
 
-	switch (pos) 
+	if (pos == 0 || pos == 1)
 	{
-	case 'u' : 
-	case 'd' :
 		/** Horizontal axes **/
 		/** compute a format **/
-		switch (xy_type )
+		if (xy_type == 0)
 		{
-		case 'v' :
 			ChoixFormatE1(c_format,x,Nx);
-			break;
-		case 'r' :
-			ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);
-			break;
-		case 'i' : 
-			ChoixFormatE (c_format,
-										(x[0] * exp10(x[2])),
-										(x[1] * exp10(x[2])),
-										((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]);
-			break; /* Adding F.Leray 06.05.04 */
 		}
-		break;
+		else if (xy_type == 1)
+		{
+			ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);
+		}
+		else if (xy_type == 2)
+		{
+			ChoixFormatE (c_format,
+				(x[0] * exp10(x[2])),
+				(x[1] * exp10(x[2])),
+				((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]);
+			/* Adding F.Leray 06.05.04 */
+		}
 		/** the horizontal segment **/
-	case 'r' : 
-	case 'l' :
-
+	}
+	else if (pos == 2 || pos == 3)
+	{
 		/** Vertical axes **/
-		switch (xy_type ) {
-			case 'v' :
-				ChoixFormatE1(c_format,y,Ny);
-				break;
-			case 'r' : 
-				ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);
-				break;
-			case 'i' : 
-				ChoixFormatE (c_format,
-											(y[0] * exp10(y[2])),
-											(y[1] * exp10(y[2])),
-											((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
-				break; /* Adding F.Leray 06.05.04 */
+		if (xy_type == 0)
+		{
+			ChoixFormatE1(c_format,y,Ny);
+		}
+		else if (xy_type == 1)
+		{
+			ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);
+		}
+		else if (xy_type == 2)
+		{
+			ChoixFormatE (c_format,
+				(y[0] * exp10(y[2])),
+				(y[1] * exp10(y[2])),
+				((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
+				/* Adding F.Leray 06.05.04 */
 		}
 		/** the vertical segment **/
-		break;
 	}
 
 	/* c_format should be filled now */
 
 	FREE(x); x = NULL;
 	FREE(y); y = NULL;
-	FREE(nx); nx = NULL;
-	FREE(ny); ny = NULL;
 
 	return 0;
-
 }
 /*--------------------------------------------------------------------------*/
-int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
+/*
+ * This function has been updated for the MVC (property get calls).
+ * Its code ought to be put within the Java part of the Model.
+ */
+int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim )
 {
-  int i;
-  sciAxes * ppaxes = pAXES_FEATURE (pobj);
-  double * val = NULL; /* reprensents ppaxes->x or ppaxes->y */
-  int nval;
+  int i = 0;
+  double * val = NULL; /* represents the x or y ticks coordinates */
+  int nval = 0;
 
-  int n;
+  int n = 0;
+  int nx = 0;
+  int* piNx = &nx;
+  int ny = 0;
+  int* piNy = &ny;
+  BOOL ishoriz = FALSE;
+
+  getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+  getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
 
   /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
-  BOOL ishoriz = (ppaxes->nx > ppaxes->ny)? TRUE : FALSE; 
+  ishoriz = (nx > ny)? TRUE : FALSE;
 
-  if(ishoriz == TRUE){
-    val  = ppaxes->vx;
-    nval = ppaxes->nx; 
+  if(ishoriz == TRUE)
+  {
+    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&val);
+    nval = nx;
   }
-  else{
-    val  = ppaxes->vy;
-    nval = ppaxes->ny;
+  else
+  {
+    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&val);
+    nval = ny;
   }
 
   if(xy_type == 'v')
   {
     *N = n = nval;
 
-    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL)
+    {
+      Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1295,19 +1333,22 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     *N = n = (int)val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
 
-    if(checkdim){
+    if(checkdim)
+    {
       if(nval != 3)
         sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
 
-      if(nval < 3){
+      if(nval < 3)
+      {
         Scierror(999, _("%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
         *vector = (double *) NULL;
         return -1;
       }
     }
 
-    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL)
+    {
+      Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1356,62 +1397,90 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 /*--------------------------------------------------------------------------*/
 /**
  * Compute the default labels of an axis from the positions of the ticks.
- * @param[in/out] pobj the axis object
+ * @param[in/out] pobjUID the axis object UID
  * @return a string matrix containing the labels.
  *         Actually it is a row vector.
  */
-StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
+StringMatrix * computeDefaultTicsLabels( char * pobjUID )
 {
   StringMatrix * ticsLabels = NULL   ;
   int            nbTics     = 0      ;
-	char           tempFormat[5]       ;
+  char           tempFormat[5]       ;
   char         * c_format   = NULL   ;
   double       * vector     = NULL   ; /* position of labels */
   char           curLabelBuffer[257] ;
-  int            i                   ;
+  int            i = 0;
 
-  if ( pAXES_FEATURE(pobj)->format == NULL )
+  int tmp = 0;
+  int* piTmp = &tmp;
+  char ticksStyle;
+
+  getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
+
+  /*
+   * If different from the empty string, the format is already specified,
+   * if equal, it needs to be computed.
+   */
+  if (strcmp(c_format, "") == 0)
   {
-    /* we need to compute c_format */
-    ComputeC_format( pobj, tempFormat ) ;
-		c_format = tempFormat;
+      ComputeC_format( pobjUID, tempFormat );
+      c_format = tempFormat;
   }
-  else
+
+  getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piTmp);
+
+  if (tmp == 0)
   {
-		/* the format is already specified */
-		c_format = pAXES_FEATURE(pobj)->format;
+    ticksStyle = 'v';
+  }
+  else if (tmp == 1)
+  {
+    ticksStyle = 'r';
+  }
+  else if (tmp == 2)
+  {
+    ticksStyle = 'i';
   }
 
   /* vector is allocated here */
-  if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
+  if ( ComputeXIntervals( pobjUID, ticksStyle, &vector, &nbTics, 1 ) != 0 )
   {
-    Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
-    return 0;
+      Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
+      return 0;
   }
 
   /* create a vector of strings */
-  ticsLabels = newMatrix( 1, nbTics ) ;
+  ticsLabels = newMatrix( 1, nbTics );
 
   if ( curLabelBuffer == NULL )
   {
-	  Scierror(999, _("%s: No more memory.\n"),"computeDefaultTicsLabels");
-	  return NULL ;
+      Scierror(999, _("%s: No more memory.\n"),"computeDefaultTicsLabels");
+      return NULL ;
   }
 
   for( i = 0 ; i < nbTics ; i++ )
   {
-    sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
-                                                 /* That's why it is first stored in a big array */
-    copyStrMatElement(ticsLabels, 0, i, curLabelBuffer) ;
+      sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
+                                                   /* That's why it is first stored in a big array */
+      copyStrMatElement(ticsLabels, 0, i, curLabelBuffer);
   }
-  FREE(vector) ;
+
+  FREE(vector);
   vector = NULL;
 
   /* I recompute the nb_tics_labels */
   /* Why ??? jb Silvy */
+  /*
+   * This was required as the number of labels
+   * was -1, before this function's execution.
+   * It is now set within the MVC, when setting
+   * the labels.
+   */
+#if 0
   pAXES_FEATURE (pobj)->nb_tics_labels = nbTics;
+#endif
 
-  return ticsLabels ;
+  return ticsLabels;
 
 }
 /*--------------------------------------------------------------------------*/
@@ -1465,13 +1534,13 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
   strncpy( res, buffer, resLength ) ;
 
   FREE( buffer ) ;
-  
+
   return res ;
 }
 /*--------------------------------------------------------------------------*/
 char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize )
 {
-  int i ;
+  int i = 0;
   char ** res = MALLOC( nbStrings * sizeof(char *) ) ;
 
   if ( res == NULL )
@@ -1489,7 +1558,7 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
 }
 /*--------------------------------------------------------------------------*/
 /**************************************************
-* Global values which are set at this level and 
+* Global values which are set at this level and
 * not redirected to each driver
 **************************************************/
 

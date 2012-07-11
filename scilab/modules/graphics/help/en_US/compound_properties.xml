@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Compound_properties">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="Compound_properties">
   <refnamediv>
     <refname>Compound_properties</refname>
     <refpurpose>description of the Compound
@@ -40,10 +37,10 @@
         <term>children: </term>
         <listitem>
           <para>A vector containing the handles of all graphics objects children
-            of the Compound These graphics objects can be of type
+            of the Compound. These graphics objects can be of type
             <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
             <literal>"Polyline"</literal>, <literal>"Patch"</literal>, <literal>"Segs"</literal>,
-            <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,..
+            <literal>"Arc"</literal>, <literal>"Grayplot"</literal>, ...
           </para>
         </listitem>
       </varlistentry>

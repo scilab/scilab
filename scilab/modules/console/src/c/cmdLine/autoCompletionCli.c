@@ -412,8 +412,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
         }
 
         numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
-            sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
-            sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
+                          sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
+                          sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
 
         if (numberWordFound > 0)
         {
@@ -478,7 +478,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     int sizecommonsDictionary = 0;
 
                     char **commonsDictionary = concatenateStrings(&sizecommonsDictionary, commonFunctions,
-                                                                  commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
+                                               commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
 
                     if (sizecommonsDictionary > 0)
                     {

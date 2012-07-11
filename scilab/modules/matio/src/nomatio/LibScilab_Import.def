@@ -1,5 +1,0 @@
-LIBRARY    LibScilab.dll
-
-
-EXPORTS
- Scierror

@@ -14,11 +14,13 @@ package org.scilab.modules.ui_data.filebrowser;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
-import java.awt.Toolkit;
 import java.awt.KeyboardFocusManager;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AWTEventListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -26,15 +28,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JRootPane;
-import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -44,7 +40,7 @@ import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -54,10 +50,10 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
 public class ScilabFileSelectorComboBox extends JComboBox implements DocumentListener {
 
     private static final FileFilter DIRFILTER = new FileFilter() {
-            public boolean accept(File f) {
-                return f.isDirectory();
-            }
-        };
+        public boolean accept(File f) {
+            return f.isDirectory();
+        }
+    };
 
     private static boolean isWindows = (OS.get() == OS.WINDOWS);
 
@@ -68,7 +64,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
     private boolean disableUpdateCombo;
     private boolean disableShowPopup;
     private boolean isValidate;
-    private CallBack validation;
+    private CommonCallBack validation;
     private SwingScilabTreeTable stt;
     private Color defaultFg;
 
@@ -85,47 +81,47 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
         defaultFg = textComponent.getForeground();
 
         getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
-                public void keyReleased(KeyEvent e) {
-                    int code = e.getKeyCode();
-                    if (code != KeyEvent.VK_ESCAPE && code != KeyEvent.VK_ENTER) {
-                        showPopup();
-                    } else if (code == KeyEvent.VK_ENTER) {
-                        if (!isValidate) {
-                            updateComboBoxLater();
-                            if (!currentSet.isEmpty()) {
-                                showPopup();
-                            }
-                        } else {
-                            isValidate = false;
+            public void keyReleased(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code != KeyEvent.VK_ESCAPE && code != KeyEvent.VK_ENTER) {
+                    showPopup();
+                } else if (code == KeyEvent.VK_ENTER) {
+                    if (!isValidate) {
+                        updateComboBoxLater();
+                        if (!currentSet.isEmpty()) {
+                            showPopup();
                         }
+                    } else {
+                        isValidate = false;
                     }
                 }
+            }
 
-                public void keyPressed(KeyEvent e) {
-                    int code = e.getKeyCode();
-                    if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_PAGE_DOWN
+            public void keyPressed(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_PAGE_DOWN
                         || code == KeyEvent.VK_UP || code == KeyEvent.VK_KP_UP || code == KeyEvent.VK_PAGE_UP
                         || code == KeyEvent.VK_END || code == KeyEvent.VK_BEGIN) {
-                        disableUpdateCombo = true;
-                    } else {
-                        disableUpdateCombo = false;
-                    }
+                    disableUpdateCombo = true;
+                } else {
+                    disableUpdateCombo = false;
                 }
-            });
+            }
+        });
 
         /* Workaround to override the default behaviour of TAB key */
         Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener() {
-                public void eventDispatched(AWTEvent e) {
-                    KeyEvent ke = (KeyEvent) e;
-                    if (ke.getKeyCode() == KeyEvent.VK_TAB && ke.getID() == KeyEvent.KEY_RELEASED && ke.getSource() == textComponent) {
-                        updateComboBoxLater();
-                        String cp = getCommonPart();
-                        getEditor().setItem(cp);
-                        showPopup();
-                        ke.consume();
-                    }
+            public void eventDispatched(AWTEvent e) {
+                KeyEvent ke = (KeyEvent) e;
+                if (ke.getKeyCode() == KeyEvent.VK_TAB && ke.getID() == KeyEvent.KEY_RELEASED && ke.getSource() == textComponent) {
+                    updateComboBoxLater();
+                    String cp = getCommonPart();
+                    getEditor().setItem(cp);
+                    showPopup();
+                    ke.consume();
                 }
-            }, AWTEvent.KEY_EVENT_MASK);
+            }
+        }, AWTEvent.KEY_EVENT_MASK);
 
         setEditable(true);
 
@@ -143,18 +139,18 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
      * Set the action as CallBack
      * @param validation the action to use when a path is validated
      */
-    public void setAction(CallBack validation) {
+    public void setAction(CommonCallBack validation) {
         this.validation = validation;
         textComponent.addKeyListener(new KeyAdapter() {
-                public void keyPressed(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        isValidate = true;
-                        ScilabFileSelectorComboBox.this.validation.callBack();
-                        hidePopup();
-                        e.consume();
-                    }
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    isValidate = true;
+                    ScilabFileSelectorComboBox.this.validation.callBack();
+                    hidePopup();
+                    e.consume();
                 }
-            });
+            }
+        });
     }
 
     /**
@@ -422,13 +418,13 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
         final boolean b = disableShowPopup;
         textComponent.getDocument().removeDocumentListener(this);
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    if (!disableUpdateCombo) {
-                        updateComboBoxLater(b);
-                    }
-                    textComponent.getDocument().addDocumentListener(ScilabFileSelectorComboBox.this);
+            public void run() {
+                if (!disableUpdateCombo) {
+                    updateComboBoxLater(b);
                 }
-            });
+                textComponent.getDocument().addDocumentListener(ScilabFileSelectorComboBox.this);
+            }
+        });
     }
 
     /**
@@ -467,18 +463,18 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
 
             if (isWindows) {
                 set = new TreeSet<String>(new Comparator<String>() {
-                        public int compare(String s1, String s2) {
-                            int diff = s1.compareToIgnoreCase(s2);
-                            if (diff == 0) {
-                                diff = s1.compareTo(s2);
-                            }
-                            return diff;
+                    public int compare(String s1, String s2) {
+                        int diff = s1.compareToIgnoreCase(s2);
+                        if (diff == 0) {
+                            diff = s1.compareTo(s2);
                         }
+                        return diff;
+                    }
 
-                        public boolean equals(Object obj) {
-                            return false;
-                        }
-                    });
+                    public boolean equals(Object obj) {
+                        return false;
+                    }
+                });
             } else {
                 set = new TreeSet<String>();
             }
@@ -545,10 +541,10 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
 
         item = new JMenuItem(UiDataMessages.CLEAR);
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    textComponent.setText("");
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                textComponent.setText("");
+            }
+        });
         popup.add(item);
 
         return popup;

@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,25 +17,29 @@
 /* desc : interface for addcb routine                                     */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "Interaction.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_addcb(char *fname,unsigned long fname_len)
-{  
-  unsigned long hdl;
-  int m1, n1, l1,m2, n2, l2;
-  sciPointObj *pobj;
+{
+// ???
+    abort();
+#if 0
+  unsigned long hdl = 0;
+  int m1 = 0, n1 = 0, l1 = 0,m2 = 0, n2 = 0, l2 = 0;
+  sciPointObj *pobj = NULL;
 
   CheckRhs(2,3);
   CheckLhs(0,1);
 
   /*  set or create a graphic window*/
-  switch(VarType(1)) 
+  switch(VarType(1))
   {
   case sci_matrix: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
     CheckRhs(3,3);
@@ -50,7 +54,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
     GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1); /* Gets the command name    */
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2); /* Gets the mouse event */
     break;
-  default: 
+  default:
     Scierror(999,_("%s: Wrong type for input argument #%d: Scalar or string expected.\n"),fname,1);
     return 0;
     break;
@@ -65,7 +69,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
 
   LhsVar(1) = 0;
   PutLhsVar();
-
+#endif
   return 0;
 }
 /*--------------------------------------------------------------------------*/

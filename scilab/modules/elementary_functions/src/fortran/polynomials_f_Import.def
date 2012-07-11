@@ -1,0 +1,6 @@
+LIBRARY    polynomials_f.dll
+
+
+EXPORTS
+dmpcle_
+huge_

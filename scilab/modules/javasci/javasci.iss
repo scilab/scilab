@@ -30,14 +30,16 @@ Source: modules\{#JAVASCI}\etc\{#JAVASCI}.start; DestDir: {app}\modules\{#JAVASC
 Source: modules\{#JAVASCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#JAVASCI}\macros\buildmacros.bat; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#JAVASCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#JAVASCI}\macros\*.sci; DestDir: {app}\modules\{#JAVASCI}\macros; Components: {#COMPN_JAVASCI}
-;Source: modules\{#JAVASCI}\macros\lib; DestDir: {app}\modules\{#JAVASCI}\macros; Components: {#COMPN_JAVASCI}
+;Source: modules\{#JAVASCI}\macros\*.bin; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#JAVASCI}\macros\*.sci; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#JAVASCI}\macros\lib; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#JAVASCI}\macros\names; DestDir: {app}\modules\{#JAVASCI}\macros; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#JAVASCI}\includes\*.h; DestDir: {app}\modules\{#JAVASCI}\includes; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JAVASCI}\src\java\javasci\*.*; DestDir: {app}\modules\{#JAVASCI}\src\java\javasci; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#JAVASCI}\javadoc\*.*; DestDir: {app}\modules\{#JAVASCI}\javadoc; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\javadoc\*.*; DestDir: {app}\modules\{#JAVASCI}\javadoc; Flags: recursesubdirs; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JAVASCI}\examples\*.*; DestDir: {app}\modules\{#JAVASCI}\examples; Flags: recursesubdirs; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

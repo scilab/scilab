@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -29,7 +29,7 @@ msgstr ""
 # File: macros/atomsAutoloadAdd.sci, line: 36
 # File: macros/atomsAutoloadDel.sci, line: 35
 # File: macros/atomsCategoryList.sci, line: 29
-# File: macros/atomsGetConfig.sci, line: 27
+# File: macros/atomsGetConfig.sci, line: 20
 # File: macros/atomsIsInstalled.sci, line: 38
 # File: macros/atomsRepositoryAdd.sci, line: 37
 # File: macros/atomsRepositoryDel.sci, line: 33
@@ -71,8 +71,8 @@ msgstr ""
 # File: macros/atomsRemove.sci, line: 46
 # File: macros/atomsRepositoryAdd.sci, line: 44
 # File: macros/atomsRepositoryDel.sci, line: 40
-# File: macros/atomsSetConfig.sci, line: 39
-# File: macros/atomsSetConfig.sci, line: 43
+# File: macros/atomsSetConfig.sci, line: 34
+# File: macros/atomsSetConfig.sci, line: 38
 # File: macros/atomsShow.sci, line: 35
 # File: macros/atomsTest.sci, line: 39
 # File: macros/atomsTest.sci, line: 47
@@ -121,7 +121,7 @@ msgstr ""
 # File: macros/atomsAutoloadAdd.sci, line: 78
 # File: macros/atomsAutoloadList.sci, line: 46
 # File: macros/atomsCategoryList.sci, line: 36
-# File: macros/atomsGetConfig.sci, line: 34
+# File: macros/atomsGetConfig.sci, line: 26
 # File: macros/atomsGetInstalled.sci, line: 46
 # File: macros/atomsInstall.sci, line: 97
 # File: macros/atomsIsInstalled.sci, line: 76
@@ -318,7 +318,7 @@ msgstr ""
 #
 # File: macros/atomsAutoloadList.sci, line: 27
 # File: macros/atomsGetInstalled.sci, line: 35
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 24
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 25
 # File: macros/atoms_internals/atomsGetMRVersion.sci, line: 25
 # File: macros/atoms_internals/atomsToremoveList.sci, line: 25
 # File: macros/atoms_internals/atomsToremoveProcess.sci, line: 24
@@ -329,7 +329,7 @@ msgstr ""
 #
 # File: macros/atomsAutoloadList.sci, line: 50
 # File: macros/atomsCategoryList.sci, line: 43
-# File: macros/atomsGetConfig.sci, line: 41
+# File: macros/atomsGetConfig.sci, line: 32
 # File: macros/atomsRepositoryList.sci, line: 43
 # File: macros/atomsSearch.sci, line: 46
 # File: macros/atoms_internals/atomsAutoloadLoad.sci, line: 35
@@ -469,7 +469,7 @@ msgstr ""
 # File: macros/atomsDepTreeShow.sci, line: 38
 # File: macros/atomsGetLoadedPath.sci, line: 21
 # File: macros/atomsIsLoaded.sci, line: 41
-# File: macros/atomsSetConfig.sci, line: 32
+# File: macros/atomsSetConfig.sci, line: 27
 # File: macros/atomsShow.sci, line: 28
 # File: macros/atoms_internals/atomsAutoloadCheck.sci, line: 29
 # File: macros/atoms_internals/atomsAutoloadLoad.sci, line: 24
@@ -516,7 +516,13 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsGetConfig.sci, line: 91
+# File: macros/atomsGetConfig.sci, line: 43
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#
+# File: macros/atomsGetConfig.sci, line: 97
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
@@ -568,19 +574,27 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 161
+# File: macros/atomsInstall.sci, line: 160
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 168
+# File: macros/atomsInstall.sci, line: 170
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 280
+# File: macros/atomsInstall.sci, line: 238
+# File: macros/atomsSystemUpdate.sci, line: 24
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+
+#
+# File: macros/atomsInstall.sci, line: 286
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 42
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 48
 #, c-format
@@ -590,15 +604,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 311
-# File: macros/atomsInstall.sci, line: 428
+# File: macros/atomsInstall.sci, line: 317
+# File: macros/atomsInstall.sci, line: 434
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 351
-# File: macros/atomsInstall.sci, line: 380
+# File: macros/atomsInstall.sci, line: 357
+# File: macros/atomsInstall.sci, line: 386
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr ""
@@ -693,6 +707,12 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 344
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
+msgstr ""
+
+#
+# File: macros/atomsQuit.sci, line: 41
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
 msgstr ""
 
 #
@@ -824,7 +844,7 @@ msgid "config file saved to %s"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 50
+# File: macros/atomsSetConfig.sci, line: 45
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 59
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 63
 # File: macros/atoms_internals/atomsInstallUnregister.sci, line: 51
@@ -836,14 +856,14 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 72
+# File: macros/atomsSetConfig.sci, line: 73
 #, c-format
 msgid ""
 "%s: Wrong value for input configuration argument: True or False expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 80
+# File: macros/atomsSetConfig.sci, line: 83
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
@@ -939,13 +959,6 @@ msgid "Description"
 msgstr ""
 
 #
-# File: macros/atomsSystemUpdate.sci, line: 25
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
-#
 # File: macros/atomsTest.sci, line: 76
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
@@ -970,8 +983,8 @@ msgid "%s: '%s' isn't installed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 23
-# File: macros/atoms_gui/atomsGui.sci, line: 25
+# File: macros/atoms_gui/atomsGui.sci, line: 90
+# File: macros/atoms_gui/atomsGui.sci, line: 92
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 83
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 97
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 112
@@ -979,85 +992,90 @@ msgid "ATOMS error"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 23
+# File: macros/atoms_gui/atomsGui.sci, line: 90
 msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 25
+# File: macros/atoms_gui/atomsGui.sci, line: 92
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 61
+# File: macros/atoms_gui/atomsGui.sci, line: 128
 msgid "ATOMS"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 70
+# File: macros/atoms_gui/atomsGui.sci, line: 138
 msgid "&File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 71
+# File: macros/atoms_gui/atomsGui.sci, line: 139
 msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 72
+# File: macros/atoms_gui/atomsGui.sci, line: 140
 msgid "&Edit"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 73
+# File: macros/atoms_gui/atomsGui.sci, line: 141
 msgid "&?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 82
+# File: macros/atoms_gui/atomsGui.sci, line: 150
 msgid "File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 87
+# File: macros/atoms_gui/atomsGui.sci, line: 155
 msgid "Installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 94
+# File: macros/atoms_gui/atomsGui.sci, line: 162
+msgid "Update List of Packages"
+msgstr ""
+
+#
+# File: macros/atoms_gui/atomsGui.sci, line: 171
 msgid "Close"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 101
+# File: macros/atoms_gui/atomsGui.sci, line: 178
 msgid "?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 106
+# File: macros/atoms_gui/atomsGui.sci, line: 183
 msgid "Atoms Help..."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 184
-# File: macros/atoms_gui/atomsGui.sci, line: 258
+# File: macros/atoms_gui/atomsGui.sci, line: 261
+# File: macros/atoms_gui/atomsGui.sci, line: 335
 msgid "List of installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 211
+# File: macros/atoms_gui/atomsGui.sci, line: 288
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 221
+# File: macros/atoms_gui/atomsGui.sci, line: 298
 msgid "Install"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 231
+# File: macros/atoms_gui/atomsGui.sci, line: 308
 msgid "Update"
 msgstr ""
 
@@ -1241,7 +1259,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 28
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 29
 # File: macros/atoms_internals/atomsGetVersions.sci, line: 42
 # File: macros/atoms_internals/atomsGetVersions.sci, line: 46
 #, c-format
@@ -1249,21 +1267,27 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 96
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 139
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 106
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 149
 #, c-format
 msgid "%s: gzip not found.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 115
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 158
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 223
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
 msgstr ""
 
 #

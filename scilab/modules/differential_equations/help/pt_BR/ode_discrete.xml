@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode_discrete" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode_discrete</refname>
     <refpurpose>solucionador de equações diferenciais ordinárias, simulação de
@@ -71,7 +68,7 @@
       <literal>k0</literal>.
     </para>
     <para>Outros argumentos e opções são os mesmos que para
-      <literal>ode</literal>, veja a página de ajuda de ode.
+      <literal>ode</literal>, veja a página de ajuda de <link linkend="ode">ode</link>.
     </para>
   </refsection>
   <refsection>

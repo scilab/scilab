@@ -46,7 +46,7 @@
 /*  the kiss 's state  (any int in [0,2^32-1] are OK ?) */
 static unsigned int z=362436069, w=521288629, jsr=123456789, jcong=380116160;
 
-unsigned int kiss()
+unsigned long int kiss(void)
 {
     return ( KISS );
 }

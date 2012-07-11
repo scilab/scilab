@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode_root" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode_root</refname>
     <refpurpose>ordinary differential equation solver with root
@@ -23,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>y,rd[,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+    <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -31,31 +28,31 @@
       <varlistentry>
         <term>y0</term>
         <listitem>
-          <para>real vector or matrix (initial conditions).</para>
+          <para>a real vector or matrix (initial conditions).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t0</term>
         <listitem>
-          <para>real scalar (initial time).</para>
+          <para>a real scalar (initial time).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real vector (times at which the solution is computed).</para>
+          <para>a real vector (times at which the solution is computed).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>external i.e. function or character string or list.</para>
+          <para>an external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
-          <para>real constants or real vectors of the same size as
+          <para>a real constants or real vectors of the same size as
             <literal>y</literal>.
           </para>
         </listitem>
@@ -63,25 +60,25 @@
       <varlistentry>
         <term>jac</term>
         <listitem>
-          <para>external i.e. function or character string or list.</para>
+          <para>an external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
-          <para>real vectors.</para>
+          <para>a real vectors.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ng</term>
         <listitem>
-          <para>integer.</para>
+          <para>an integer.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>g</term>
         <listitem>
-          <para>external i.e. function or character string or list.</para>
+          <para>an external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -104,7 +101,7 @@
       If <literal>g</literal> is a function the syntax should be as
       follows:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 z = g(t,y)
  ]]></programlisting>
     <para>
@@ -117,7 +114,7 @@ z = g(t,y)
       <literal>ng</literal> is the number of constraints and
       <literal>gout</literal> is the value of <literal>g</literal> (output of
       the program). If <literal>g</literal> is a list the same conventions as
-      for <literal>f</literal> apply (see ode help).
+      for <literal>f</literal> apply (see <link linkend="ode">ode</link> help).
     </para>
     <para>
       Ouput <literal>rd</literal> is a <literal>1 x k</literal> vector.
@@ -128,7 +125,7 @@ z = g(t,y)
       traversed.
     </para>
     <para>Other arguments and other options are the same as for
-      <literal>ode</literal>, see the ode help.
+      <literal>ode</literal>, see the <link linkend="ode">ode</link> help.
     </para>
   </refsection>
   <refsection>

@@ -72,6 +72,149 @@ void visitprivate(const AssignExp  &e)
             return;
         }
 
+        const CellCallExp *pCell = dynamic_cast<const CellCallExp*>(&e.left_exp_get());
+        if(pCell)
+        {
+            InternalType *pIT;
+            bool bRet           = true;
+            bool bNew           = false;
+
+            //retrieve variable
+            pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
+            if(pVar == NULL)
+            {//manage a.b{1} = x
+                pCell->name_get().accept(*this);
+
+                if(result_get() != NULL && result_get()->isCell())
+                {
+                    pIT = result_get();
+                }
+                else
+                {//never append ?
+                    std::wostringstream os;
+                    os << _W("Unable to extract left part expression.\n");
+                    //os << ((Location)e.left_exp_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
+                }
+                //reset result
+                result_set(NULL);
+            }
+            else
+            {
+                pIT = symbol::Context::getInstance()->get(pVar->name_get());
+            }
+
+            /*getting what to assign*/
+            e.right_exp_get().accept(*this);
+            InternalType* pITR = result_get();
+
+            if(pITR == NULL)
+            {// if the right hand is NULL.
+                std::wostringstream os;
+                os << _W("Unable to extract right part expression.\n");
+                throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
+            }
+
+            //reset result
+            result_set(NULL);
+
+            if(pIT == NULL)
+            {//Var doesn't exist, create it with good dimensions
+                bNew = true;
+            }
+            else
+            {
+                if(pIT->isRef(1) == true)
+                {
+                    pIT = pIT->clone();
+                    bNew = true;
+                }
+            }
+
+            InternalType *pOut	= NULL;
+            typed_list *pArgs = GetArgumentList(pCell->args_get());
+
+            //fisrt extract implicit list
+            if(pITR->isImplicitList())
+            {
+                InternalType *pIL = ((InternalType*)result_get())->getAs<ImplicitList>()->extractFullMatrix();
+                if(result_get()->isDeletable())
+                {
+                    delete result_get();
+                }
+                result_set(pIL);
+            }
+            else if(result_get()->isContainer() && result_get()->isDeletable() == false)
+            {
+                InternalType* pIL = result_get()->clone();
+                result_set(pIL);
+            }
+
+
+            if(pIT == NULL)
+            {//call static insert function
+                pOut = Cell::insertNewCell(pArgs, result_get());
+            }
+            else
+            {//call type insert function
+                pOut = pIT->getAs<Cell>()->insertCell(pArgs, result_get());
+
+                if(pOut && pOut != pIT)
+                {
+                    //variable change
+                    pIT->DecreaseRef();
+                    if(pIT->isDeletable())
+                    {
+                        delete pIT;
+                    }
+                    bNew = true;
+                }
+            }
+
+
+            if(pOut != NULL)
+            {
+                if(bNew)
+                {
+                    symbol::Context::getInstance()->put(pVar->name_get(), *pOut);
+                }
+
+                if(e.is_verbose() && ConfigVariable::isPromptShow())
+                {
+                    std::wostringstream ostr;
+                    if(pVar)
+                    {
+                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
+                    }
+                    else
+                    {
+                        ostr << L"???" << L"  = " << std::endl;
+                    }
+                    ostr << std::endl;
+                    VariableToString(pOut);
+                }
+            }
+            else
+            {
+                //manage error
+                std::wostringstream os;
+                os << _W("Invalid Index.\n");
+                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+            }
+//            delete piMaxDim;
+//            delete[] piDimSize;
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
+            return;
+        }
+
         const CallExp *pCall = dynamic_cast<const CallExp*>(&e.left_exp_get());
         if(pCall)
         {//x(?) = ?
@@ -548,137 +691,6 @@ void visitprivate(const AssignExp  &e)
             return;
         }
         
-        const CellCallExp *pCell = dynamic_cast<const CellCallExp*>(&e.left_exp_get());
-        if(pCell)
-        {
-            InternalType *pIT;
-            bool bRet           = true;
-            bool bNew           = false;
-
-            //retrieve variable
-            pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
-            if(pVar == NULL)
-            {//manage a.b{1} = x
-                pCell->name_get().accept(*this);
-
-                if(result_get() != NULL && result_get()->isCell())
-                {
-                    pIT = result_get();
-                }
-                else
-                {//never append ?
-                    std::wostringstream os;
-                    os << _W("Unable to extract left part expression.\n");
-                    //os << ((Location)e.left_exp_get().location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
-                }
-                //reset result
-                result_set(NULL);
-            }
-            else
-            {
-                pIT = symbol::Context::getInstance()->get(pVar->name_get());
-            }
-
-            /*getting what to assign*/
-            e.right_exp_get().accept(*this);
-            if(pIT == NULL)
-            {//Var doesn't exist, create it with good dimensions
-                bNew = true;
-            }
-            else
-            {
-                if(pIT->isRef(1) == true)
-                {
-                    pIT = pIT->clone();
-                    bNew = true;
-                }
-            }
-
-            InternalType *pOut	= NULL;
-            typed_list *pArgs = GetArgumentList(pCall->args_get());
-
-            //fisrt extract implicit list
-            if(result_get()->isImplicitList())
-            {
-                InternalType *pIL = ((InternalType*)result_get())->getAs<ImplicitList>()->extractFullMatrix();
-                if(result_get()->isDeletable())
-                {
-                    delete result_get();
-                }
-                result_set(pIL);
-            }
-            else if(result_get()->isContainer() && result_get()->isDeletable() == false)
-            {
-                InternalType* pIL = result_get()->clone();
-                result_set(pIL);
-            }
-
-
-            if(pIT == NULL)
-            {//call static insert function
-                pOut = Cell::insertNewCell(pArgs, result_get());
-            }
-            else
-            {//call type insert function
-                pOut = pIT->getAs<Cell>()->insertCell(pArgs, result_get());
-
-                if(pOut && pOut != pIT)
-                {
-                    //variable change
-                    pIT->DecreaseRef();
-                    if(pIT->isDeletable())
-                    {
-                        delete pIT;
-                    }
-                    bNew = true;
-                }
-            }
-
-
-            if(pOut != NULL)
-            {
-                if(bNew)
-                {
-                    symbol::Context::getInstance()->put(pVar->name_get(), *pOut);
-                }
-
-                if(e.is_verbose() && ConfigVariable::isPromptShow())
-                {
-                    std::wostringstream ostr;
-                    if(pVar)
-                    {
-                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
-                    }
-                    else
-                    {
-                        ostr << L"???" << L"  = " << std::endl;
-                    }
-                    ostr << std::endl;
-                    VariableToString(pOut);
-                }
-            }
-            else
-            {
-                //manage error
-                std::wostringstream os;
-                os << _W("Invalid Index.\n");
-                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
-            }
-//            delete piMaxDim;
-//            delete[] piDimSize;
-            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
-            {
-                if((*pArgs)[iArg]->isDeletable())
-                {
-                    delete (*pArgs)[iArg];
-                }
-            }
-            delete pArgs;
-            return;
-        }
-       
         const FieldExp *pField = dynamic_cast<const FieldExp*>(&e.left_exp_get());
         if(pField)
         {//a.b = x

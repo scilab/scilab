@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode_discrete" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode_discrete</refname>
     <refpurpose>ordinary differential equation solver, discrete time
@@ -31,31 +28,31 @@
       <varlistentry>
         <term>y0</term>
         <listitem>
-          <para>real vector or matrix (initial conditions).</para>
+          <para>a real vector or matrix (initial conditions).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t0</term>
         <listitem>
-          <para>real scalar (initial time).</para>
+          <para>a real scalar (initial time).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>external i.e. function or character string or list.</para>
+          <para>an external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k0</term>
         <listitem>
-          <para>integer (initial time).</para>
+          <para>an integer (initial time).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>kvect</term>
         <listitem>
-          <para>integer vector.</para>
+          <para>an integer vector.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -71,7 +68,7 @@
       <literal>k0</literal>.
     </para>
     <para>Other arguments and other options are the same as for
-      <literal>ode</literal>, see the ode help.
+      <literal>ode</literal>, see the see <link linkend="ode">ode</link> help.
     </para>
   </refsection>
   <refsection>

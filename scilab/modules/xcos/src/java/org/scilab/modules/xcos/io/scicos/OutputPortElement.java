@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
-import static java.util.Arrays.asList;
-
 import java.util.List;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -29,24 +27,27 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Perform an output port transformation between Scicos and Xcos.
- * 
+ *
  * On this element we doesn't validate the Scicos values has they have been
  * already checked on the {@link BlockElement}.
  */
-public class OutputPortElement extends AbstractElement<OutputPort> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block",
-            "graphics", "model", "gui", "doc");
+public final class OutputPortElement extends AbstractElement<OutputPort> {
+    protected static final List<String> DATA_FIELD_NAMES = BlockElement.DATA_FIELD_NAMES;
 
-    private static final int GRAPHICS_INDEX = 1;
-    private static final int MODEL_INDEX = 2;
+    protected static final List<String> GRAPHICS_DATA_FIELD_NAMES_FULL = BlockGraphicElement.DATA_FIELD_NAMES_FULL;
+    protected static final List<String> MODEL_DATA_FIELD_NAMES = BlockModelElement.DATA_FIELD_NAMES;
 
-    private static final int GRAPHICS_POUT_INDEX = 7;
-    private static final int GRAPHICS_OUTIMPL_INDEX = 13;
-    private static final int GRAPHICS_OUTSTYLE_INDEX = 15;
+    private static final int GRAPHICS_INDEX = DATA_FIELD_NAMES.indexOf("graphics");
+    private static final int MODEL_INDEX = DATA_FIELD_NAMES.indexOf("model");
 
-    private static final int MODEL_OUT_DATALINE_INDEX = 5;
-    private static final int MODEL_OUT_DATACOL_INDEX = 6;
-    private static final int MODEL_OUT_DATATYPE_INDEX = 7;
+    private static final int GRAPHICS_POUT_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("pout");
+    private static final int GRAPHICS_OUTIMPL_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_implicit");
+    private static final int GRAPHICS_OUTSTYLE_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_style");
+    private static final int GRAPHICS_OUTLABEL_INDEX = GRAPHICS_DATA_FIELD_NAMES_FULL.indexOf("out_label");
+
+    private static final int MODEL_OUT_DATALINE_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("out");
+    private static final int MODEL_OUT_DATACOL_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("out2");;
+    private static final int MODEL_OUT_DATATYPE_INDEX = MODEL_DATA_FIELD_NAMES.indexOf("outtyp");;
 
     private static final String EXPLICIT = "E";
     private static final String IMPLICIT = "I";
@@ -61,7 +62,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Default constructor
-     * 
+     *
      * @param element
      *            the Scicos block parameters used by this element.
      */
@@ -80,7 +81,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Decode Scicos element into the block.
-     * 
+     *
      * @param element
      *            the scicos element
      * @param into
@@ -92,8 +93,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
      *      java.lang.Object)
      */
     @Override
-    public OutputPort decode(ScilabType element, OutputPort into)
-            throws ScicosFormatException {
+    public OutputPort decode(ScilabType element, OutputPort into) throws ScicosFormatException {
 
         OutputPort port;
         data = (ScilabMList) element;
@@ -115,7 +115,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Allocate a port according to the explicit/implicit values.
-     * 
+     *
      * @return a new typed port
      */
     private OutputPort allocatePort() {
@@ -145,14 +145,12 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
             return new ExplicitOutputPort();
         }
 
-        final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit
-                .getWidth();
+        final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit.getWidth();
         final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
         final String[][] outimpl = outImplicit.getData();
 
         // can we safely access the indexed data ?
-        final boolean isSet = indexes[0] < outimpl.length
-                && indexes[1] < outimpl[indexes[0]].length;
+        final boolean isSet = canGet(outImplicit, indexes);
 
         /*
          * when the type is set, create a new port instance; create an explicit
@@ -172,17 +170,14 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Fill the port with the parameters from the model structure.
-     * 
+     *
      * @param port
      *            the target instance
      */
     private void decodeModel(OutputPort port) {
-        ScilabDouble dataLines = (ScilabDouble) model
-                .get(MODEL_OUT_DATALINE_INDEX);
-        ScilabDouble dataColumns = (ScilabDouble) model
-                .get(MODEL_OUT_DATACOL_INDEX);
-        ScilabDouble dataType = (ScilabDouble) model
-                .get(MODEL_OUT_DATATYPE_INDEX);
+        ScilabDouble dataLines = (ScilabDouble) model.get(MODEL_OUT_DATALINE_INDEX);
+        ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
+        ScilabDouble dataType = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
 
         // The number of row of the port
         int nbLines;
@@ -222,32 +217,52 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Fill the port with the parameters from the graphics structure.
-     * 
+     *
      * @param port
      *            the target instance
      */
     private void decodeGraphics(OutputPort port) {
         // protection against previously stored blocks
-        if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX
-                || graphics.get(GRAPHICS_OUTSTYLE_INDEX).isEmpty()) {
+        if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX || isEmptyField(graphics.get(GRAPHICS_OUTSTYLE_INDEX))) {
             return;
         }
 
-        final ScilabString styles = (ScilabString) graphics
-                .get(GRAPHICS_OUTSTYLE_INDEX);
-        if (styles.getData() != null && 0 < styles.getHeight()
-                && alreadyDecodedCount < styles.getWidth()) {
+        final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
+
+        boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
+        int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+
+        if (canGet(styles, indexes)) {
             final String style;
 
-            style = styles.getData()[0][alreadyDecodedCount];
-            port.setStyle(new StyleMap(port.getStyle()).putAll(style)
-                    .toString());
+            style = styles.getData()[indexes[0]][indexes[1]];
+            port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+        }
+
+        // protection against previously stored blocks
+        if (graphics.size() <= GRAPHICS_OUTLABEL_INDEX || isEmptyField(graphics.get(GRAPHICS_OUTLABEL_INDEX))) {
+            return;
+        }
+
+        final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
+
+        isColumnDominant = labels.getHeight() >= labels.getWidth();
+        indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+
+        if (canGet(styles, indexes)) {
+            final String label = labels.getData()[indexes[0]][indexes[1]];
+
+            if (label != null) {
+                port.setValue(label);
+            } else {
+                port.setValue("");
+            }
         }
     }
 
     /**
      * Test if the current instance can be used to decode the element
-     * 
+     *
      * @param element
      *            the current element
      * @return true, if the element can be decoded, false otherwise
@@ -258,13 +273,12 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
         data = (ScilabMList) element;
 
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
-        return type.equals(DATA_FIELD_NAMES.get(0))
-                && getNumberOfOutputPort() > alreadyDecodedCount;
+        return type.equals(DATA_FIELD_NAMES.get(0)) && getNumberOfOutputPort() > alreadyDecodedCount;
     }
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -296,14 +310,14 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Encode the data into the model fields.
-     * 
+     *
      * This method fills :
      * <ul>
      * <li>Block.model.out</li>
      * <li>Block.model.out2</li>
      * <li>Block.model.outtyp</li>
      * </ul>
-     * 
+     *
      * @param from
      *            the source data
      */
@@ -336,13 +350,13 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
     /**
      * Encode the data into the graphic fields.
-     * 
+     *
      * This method fills :
      * <ul>
      * <li>Block.graphics.pout</li>
      * <li>Block.graphics.out_implicit</li>
      * </ul>
-     * 
+     *
      * @param from
      *            the source data
      */
@@ -357,8 +371,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
         values = sciValues.getRealPart();
         if (from.getEdgeCount() == 1) {
             // only set on valid connection
-            values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0))
-                    .getOrdering();
+            values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
         } else {
             values[alreadyDecodedCount][0] = 0.0;
         }
@@ -372,6 +385,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
         sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
         strings = sciStrings.getData();
         strings[alreadyDecodedCount][0] = from.getStyle();
+
+        // out_label
+        sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
+        strings = sciStrings.getData();
+        if (from.getValue() != null) {
+            strings[alreadyDecodedCount][0] = from.getValue().toString();
+        } else {
+            strings[alreadyDecodedCount][0] = "";
+        }
     }
 
     /**

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="close">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>close</refname>
     <refpurpose> close a figure</refpurpose>
@@ -21,8 +18,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      This routine close a tksci figure (toplevel window). If a handle is 
-      given, the figure corresponding to this handle is closed. 
+      This routine close a tksci figure (toplevel window). If a handle is
+      given, the figure corresponding to this handle is closed.
       Otherwise, the current (active) figure is closed.
     </para>
   </refsection>
@@ -55,6 +52,12 @@ close(h);
       </member>
       <member>
         <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="xdel">xdel</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
       </member>
     </simplelist>
   </refsection>

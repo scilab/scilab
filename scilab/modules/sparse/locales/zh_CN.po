@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 
 #, c-format
@@ -315,8 +315,8 @@ msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Transpose of the function %s "
-"expected.\n"
+"%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
+"matrix or a function expected.\n"
 msgstr ""
 
 #, c-format
@@ -326,8 +326,22 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为向量。\n"
+msgid ""
+"%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
+"details.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
+"more details.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
+"more details.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

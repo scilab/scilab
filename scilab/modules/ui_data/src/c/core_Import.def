@@ -1,0 +1,16 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+com_
+getGlobalSizefromId
+getGlobalNamefromId
+getLocalSizefromId
+getLocalNamefromId 
+getgvariablesinfo_
+getvariablesinfo_
+freeArrayOfString
+gettype_
+vstk_

@@ -93,16 +93,22 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
         graph.info(XcosMessages.GENERATING_C_CODE);
 
         final SuperBlock block = (SuperBlock) selectedObj;
+
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return;
+        }
+
         try {
             /*
              * Export data
              */
-            new ScilabDirectHandler().writeBlock(block);
+            handler.writeBlock(block);
 
             /*
              * Prepare command and callback
              */
-            String cmd = buildCall("xcosCodeGeneration");
+            String cmd = buildCall("blk = xcosCodeGeneration", ScilabDirectHandler.BLK.toCharArray());
 
             final ActionListener callback = new ActionListener() {
                 @Override
@@ -121,7 +127,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
                      * Update
                      */
                     parent.getModel().beginUpdate();
-                    doAction(block);
+                    doAction(block, handler);
                     parent.getModel().endUpdate();
 
                     parent.getView().clear(block, true, false);
@@ -139,6 +145,8 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
         } catch (InterpreterException ex) {
             Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
             graph.info(XcosMessages.EMPTY_INFO);
+
+            handler.release();
         }
     }
 
@@ -149,25 +157,31 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      *
      * @param block
      *            The block we are working on
+     * @param handler
+     *            the handler used to read/write data to/from Scilab
      */
-    private static void doAction(final SuperBlock block) {
+    private static void doAction(final SuperBlock block, final ScilabDirectHandler handler) {
         try {
-            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
-            if (modifiedBlock == null) {
-                return;
+            try {
+                final BasicBlock modifiedBlock = handler.readBlock();
+                if (modifiedBlock == null) {
+                    return;
+                }
+
+                block.updateBlockSettings(modifiedBlock);
+                block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+                block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+                block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+                block.setChild(null);
+
+                block.setStyle(block.getStyle() + ";blockWithLabel");
+                block.setValue(block.getSimulationFunctionName());
+                BlockPositioning.updateBlockView(block);
+            } catch (ScicosFormatException e) {
+                Logger.getLogger(CodeGenerationAction.class.getName()).severe(e.toString());
             }
-
-            block.updateBlockSettings(modifiedBlock);
-            block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-            block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-            block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-            block.setChild(null);
-
-            block.setStyle(block.getStyle() + ";blockWithLabel");
-            block.setValue(block.getSimulationFunctionName());
-            BlockPositioning.updateBlockView(block);
-        } catch (ScicosFormatException e) {
-            Logger.getLogger(CodeGenerationAction.class.getName()).severe(e.toString());
+        } finally {
+            handler.release();
         }
     }
 }

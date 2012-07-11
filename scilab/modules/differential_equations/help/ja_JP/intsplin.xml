@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intsplin" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intsplin</refname>
     <refpurpose>スプライン補間による実験データの積分</refpurpose>
@@ -27,7 +24,9 @@
       <varlistentry>
         <term>s</term>
         <listitem>
-          <para>y座標データのベクトル</para>
+          <para>
+            <literal>y</literal>座標データのベクトル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,7 +40,9 @@
   <refsection>
     <title>説明</title>
     <para>計算 :</para>
-    <para>ただし,fは一連の実験値により記述される関数です:</para>
+    <para>
+      ただし,<literal>f</literal>は一連の実験値により記述される関数です:
+    </para>
     <para>
       <literal>s(i)=f(x(i))</literal> および <literal>x0=x(1)</literal>,
       <literal>x1=x(n)</literal>

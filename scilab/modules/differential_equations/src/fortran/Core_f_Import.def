@@ -1,0 +1,17 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+
+stackg_
+isbyref_
+funs_
+ref2val_
+allowptr_
+btof_
+btofm_
+ftob_
+extlarg_

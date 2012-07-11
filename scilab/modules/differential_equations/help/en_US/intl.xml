@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intl" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intl</refname>
     <refpurpose>Cauchy integral</refpurpose>
@@ -28,11 +25,11 @@
       <varlistentry>
         <term>z0</term>
         <listitem>
-          <para>complex number</para>
+          <para>a complex number</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>two real numbers</para>
         </listitem>
@@ -57,7 +54,7 @@
       If <literal>f</literal> is a complex-valued function,
       <literal>intl(a,b,z0,r,f)</literal> computes the integral of
       <literal>f(z)dz</literal> along the curve in the complex plane defined by
-      <literal>z0 + r.exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
+      <literal>z0 + r.*exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
       .(part of the circle with center <literal>z0</literal> and radius
       <literal>r</literal> with phase between <literal>a</literal> and
       <literal>b</literal>).

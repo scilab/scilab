@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Matplot1" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>Matplot1</refname>
     <refpurpose>Esboço 2d de matrizes utilizando cores</refpurpose>
@@ -85,6 +82,7 @@ for k=-n:n,
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //enviando o buffer duplo para a tela
+  sleep(8);
 end
 f.pixmap='off';
  ]]></programlisting>

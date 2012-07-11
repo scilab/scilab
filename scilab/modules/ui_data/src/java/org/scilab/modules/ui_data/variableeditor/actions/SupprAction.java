@@ -14,11 +14,11 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.util.Vector;
 
-import javax.swing.KeyStroke;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
@@ -28,7 +28,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * SupprAction class
  * @author Calixte DENIZET
  */
-public final class SupprAction extends CallBack {
+public final class SupprAction extends CommonCallBack {
 
     private static final String KEY = "DELETE";
     private static final String SUPPR = "Suppr";

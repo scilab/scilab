@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -122,6 +122,9 @@ msgstr ""
 
 msgid "Generating loader.sce...\n"
 msgstr "Gerando loader.sce...\n"
+
+msgid "Generating unloader.sce...\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"

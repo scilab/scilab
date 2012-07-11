@@ -96,17 +96,21 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="elementary_functions_f_Import.def">
+    <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="locales\fftw.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="scilab_windows_Import.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="locales\fftw.pot" />
   </ItemGroup>
 </Project>

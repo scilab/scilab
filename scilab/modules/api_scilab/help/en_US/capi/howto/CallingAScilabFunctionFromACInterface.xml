@@ -175,24 +175,9 @@ int sci_call_scifunc(char *fname)
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="CheckLhs">CheckLhs</link>
-      </member>
-      <member>
-        <link linkend="CheckRhs">CheckRhs</link>
-      </member>
-      <member>
-        <link linkend="LhsVar">LhsVar</link>
-      </member>
-      <member>
         <link linkend="Scierror">Scierror</link>
       </member>
       <!--<member><link linkend="Scifunction">Scifunction</link></member>-->
-      <member>
-        <link linkend="Rhs">Rhs</link>
-      </member>
-      <member>
-        <link linkend="Lhs">Lhs</link>
-      </member>
       <member>
         <link linkend="sci_types">sci_types</link>
       </member>

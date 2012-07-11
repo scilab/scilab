@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +34,9 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -53,384 +55,411 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
+public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
 
-        private static final long serialVersionUID = 7177323379068859441L;
+    private static final long serialVersionUID = 7177323379068859441L;
 
-        private static final String DOLLAR = "$";
+    private static final String DOLLAR = "$";
 
-        private ScilabJTextPane label;
+    private String uid;
 
-        private String horizontalAlignment = "left"; /* Horizontal alignment property */
+    private ScilabJTextPane label;
 
-        private String verticalAlignment = "middle"; /* Vertical alignment property */
+    private String horizontalAlignment = "left"; /* Horizontal alignment property */
 
-        private JPanel alignmentPanel; /* Used for alignment */
+    private String verticalAlignment = "middle"; /* Vertical alignment property */
 
-        private String labelText = ""; /* Used to save user given text */
+    private JPanel alignmentPanel; /* Used for alignment */
 
-        /**
-         * Constructor
-         */
-        public SwingScilabLabel() {
-                super();
-                getViewport().add(getAlignmentPanel());
-                setBorder(BorderFactory.createEmptyBorder());
-                setViewportBorder(BorderFactory.createEmptyBorder());
-                setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    private String labelText = ""; /* Used to save user given text */
 
-                // Initialize display
-                setAlignment();
+    /**
+     * Constructor
+     */
+    public SwingScilabLabel() {
+        super();
+        getViewport().add(getAlignmentPanel());
+        setBorder(BorderFactory.createEmptyBorder());
+        setViewportBorder(BorderFactory.createEmptyBorder());
+        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        // Initialize display
+        setAlignment();
+    }
+
+    /**
+     * Apply a new font for the label.
+     * @param font new font to use.
+     */
+    public void setFont(Font font) {
+        getLabel().setFont(font); // Set font so that getFont can be used direclty
+
+        // Set the properties to the text (only for text label not for HTML or MATHML)
+        if ((labelText != null) && !(labelText.startsWith(DOLLAR) && labelText.endsWith(DOLLAR))
+                && !(labelText.startsWith("<") && labelText.endsWith(">"))) {
+            // Now set the stylesheet because of text/html contents
+            StyleSheet styleSheet = ((HTMLDocument) getLabel().getDocument()).getStyleSheet();
+            styleSheet.addRule("body {font-family:" + font.getName() + ";}");
+            styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
+            if (font.isBold()) {
+                styleSheet.addRule("body {font-weight:bold;}");
+            } else {
+                styleSheet.addRule("body {font-weight:normal;}");
+            }
+            if (font.isItalic()) {
+                styleSheet.addRule("body {font-style:italic;}");
+            } else {
+                styleSheet.addRule("body {font-style:normal;}");
+            }
         }
+    }
 
-        /**
-         * Apply a new font for the label.
-         * @param font new font to use.
-         */
-        public void setFont(Font font) {
-                getLabel().setFont(font); // Set font so that getFont can be used direclty
+    /**
+     * To get the Font of the element.
+     * @return font the Font
+     */
+    public Font getFont() {
+        return getLabel().getFont();
+    }
 
-                // Set the properties to the text (only for text label not for HTML or MATHML)
-                if ((labelText != null) && !(labelText.startsWith(DOLLAR) && labelText.endsWith(DOLLAR))
-                                && !(labelText.startsWith("<") && labelText.endsWith(">"))) {
-                        // Now set the stylesheet because of text/html contents
-                        StyleSheet styleSheet = ((HTMLDocument) getLabel().getDocument()).getStyleSheet();
-                        styleSheet.addRule("body {font-family:" + font.getName() + ";}");
-                        styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
-                        if (font.isBold()) {
-                                styleSheet.addRule("body {font-weight:bold;}");
-                        } else {
-                                styleSheet.addRule("body {font-weight:normal;}");
-                        }
-                        if (font.isItalic()) {
-                                styleSheet.addRule("body {font-style:italic;}");
-                        } else {
-                                styleSheet.addRule("body {font-style:normal;}");
-                        }
+    /**
+     * To get the Foreground color of the element.
+     * @return color the Color
+     */
+    public Color getForeground() {
+        return getLabel().getForeground();
+    }
+
+    /**
+     * To set the Foreground color of the element.
+     * @param color the Color
+     */
+    public void setForeground(Color color) {
+        getLabel().setForeground(color);
+    }
+
+    /**
+     * To set the Background color of the element.
+     * @param color the Color
+     */
+    public void setBackground(Color color) {
+        getAlignmentPanel().setBackground(color);
+        getLabel().setBackground(color);
+    }
+
+    /**
+     * To get the Background color of the element.
+     * @return color the Color
+     */
+    public Color getBackground() {
+        return getLabel().getBackground();
+    }
+
+    /**
+     * Draws a swing Scilab PushButton
+     * @see org.scilab.modules.gui.uielement.UIElement#draw()
+     */
+    public void draw() {
+        this.setVisible(true);
+        this.doLayout();
+    }
+
+    /**
+     * Sets the visibility status of an UIElement
+     * @param newVisibleState the visibility status we want to set for the UIElement
+     *                      (true if the UIElement is visible, false if not)
+     */
+    public void setVisible(boolean newVisibleState) {
+        super.setVisible(newVisibleState);
+        getLabel().setVisible(newVisibleState);
+    }
+
+    /**
+     * Sets the enable status of an UIElement
+     * @param newEnableState the enable status we want to set for the UIElement
+     *                      (true if the UIElement is enabled, false if not)
+     */
+    public void setEnabled(boolean newEnableState) {
+        super.setEnabled(newEnableState);
+        getLabel().setEnabled(newEnableState);
+    }
+
+    /**
+     * Gets the dimensions (width and height) of a swing Scilab element
+     * @return the dimensions of the element
+     * @see org.scilab.modules.gui.uielement.UIElement#getDims()
+     */
+    public Size getDims() {
+        return new Size(getWidth(), getHeight());
+    }
+
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * @return the position of the element
+     * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
+     */
+    public Position getPosition() {
+        return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
+    }
+
+    /**
+     * Sets the dimensions (width and height) of a swing Scilab element
+     * @param newSize the dimensions to set to the element
+     * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+        setSize(newSize.getWidth(), newSize.getHeight());
+    }
+
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * @param newPosition the position to set to the element
+     * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+        Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+        setLocation(javaPosition.getX(), javaPosition.getY());
+    }
+
+    /**
+     * Add a callback to the Label
+     * @param callback the callback to set.
+     */
+    public void setCallback(CommonCallBack callback) {
+        // Nothing to do...
+    }
+
+    /**
+     * Setter for MenuBar
+     * @param menuBarToAdd the MenuBar associated to the Label.
+     */
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Setter for ToolBar
+     * @param toolBarToAdd the ToolBar associated to the Label.
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Getter for MenuBar
+     * @return MenuBar: the MenuBar associated to the Label.
+     */
+    public MenuBar getMenuBar() {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Getter for ToolBar
+     * @return ToolBar: the ToolBar associated to the Label.
+     */
+    public ToolBar getToolBar() {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Set the horizontal alignment for the Label text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setHorizontalAlignment(String alignment) {
+        horizontalAlignment = alignment;
+        setAlignment();
+    }
+
+    /**
+     * Set the vertical alignment for the Label text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setVerticalAlignment(String alignment) {
+        verticalAlignment = alignment;
+        setAlignment();
+    }
+
+    /**
+     * Set the Relief of the Label
+     * @param reliefType the type of the relief to set (See ScilabRelief.java)
+     */
+    public void setRelief(String reliefType) {
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    }
+
+    /**
+     * Destroy the Label
+     */
+    public void destroy() {
+        ScilabSwingUtilities.removeFromParent(this);
+    }
+
+    /**
+     * Setter for InfoBar
+     * @param infoBarToAdd the InfoBar associated to the Label.
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Getter for InfoBar
+     * @return the InfoBar associated to the Label.
+     */
+    public TextBox getInfoBar() {
+        /* Unimplemented for Labels */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Create/Return the label Java object
+     * @return the label
+     */
+    private JTextPane getLabel() {
+        if (label == null) {
+            label = new ScilabJTextPane();
+            label.setContentType("text/html");
+            label.setOpaque(false);
+            label.setBorder(null);
+            label.setEditable(false);
+            ((HTMLEditorKit) label.getEditorKit()).setAutoFormSubmission(false);
+            /* Add a listener to make hyperlinks active */
+            label.addHyperlinkListener(new HyperlinkListener() {
+                public void hyperlinkUpdate(HyperlinkEvent event) {
+                    if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                        WebBrowser.openUrl(event.getURL(), event.getDescription());
+                    }
                 }
+            });
+        }
+        return label;
+
+    }
+
+    /**
+     * get the text displayed in the label
+     * @return the label
+     * @see org.scilab.modules.gui.text.SimpleText#getText()
+     */
+    public String getText() {
+        return labelText;
+    }
+
+    /**
+     * Set the text displayed in the label
+     * @param newText the text
+     * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
+     */
+    public void setText(String newText) {
+        // Save the data given by the user so that it can be retrieved
+        // (Java adds HTML tags in the getlabel().getText() returned value)
+        labelText = newText;
+        getLabel().setText(newText);
+    }
+
+    /**
+     * Set alignment of the text component
+     */
+    private void setAlignment() {
+
+        getAlignmentPanel().remove(getLabel());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+
+        switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
+        case SwingConstants.LEFT:
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTHWEST;
+                break;
+            case SwingConstants.CENTER:
+                gbc.anchor = GridBagConstraints.WEST;
+                break;
+            default: // SwingConstants.BOTTOM
+                gbc.anchor = GridBagConstraints.SOUTHWEST;
+                break;
+            }
+            break;
+        case SwingConstants.CENTER:
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTH;
+                break;
+            case SwingConstants.CENTER:
+                gbc.anchor = GridBagConstraints.CENTER;
+                break;
+            default: // SwingConstants.BOTTOM
+                gbc.anchor = GridBagConstraints.SOUTH;
+                break;
+            }
+            break;
+        default: // SwingConstants.RIGHT
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTHEAST;
+                break;
+            case SwingConstants.CENTER:
+                gbc.anchor = GridBagConstraints.EAST;
+                break;
+            default: // SwingConstants.BOTTOM
+                gbc.anchor = GridBagConstraints.SOUTHEAST;
+                break;
+            }
+            break;
         }
 
-        /**
-         * To get the Font of the element.
-         * @return font the Font
-         */
-        public Font getFont() {
-                return getLabel().getFont();
+        getAlignmentPanel().add(getLabel(), gbc);
+
+    }
+
+    /**
+     * Get/Create the panel used for alignment management
+     * @return the panel
+     */
+    private JPanel getAlignmentPanel() {
+        if (alignmentPanel == null) {
+            alignmentPanel = new JPanel(new GridBagLayout());
         }
 
-        /**
-         * To get the Foreground color of the element.
-         * @return color the Color
-         */
-        public Color getForeground() {
-                return getLabel().getForeground();
-        }
+        return alignmentPanel;
+    }
 
-        /**
-         * To set the Foreground color of the element.
-         * @param color the Color
-         */
-        public void setForeground(Color color) {
-                getLabel().setForeground(color);
-        }
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
 
-        /**
-         * To set the Background color of the element.
-         * @param color the Color
-         */
-        public void setBackground(Color color) {
-                getAlignmentPanel().setBackground(color);
-                getLabel().setBackground(color);
-        }
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
 
-        /**
-         * To get the Background color of the element.
-         * @return color the Color
-         */
-        public Color getBackground() {
-                return getLabel().getBackground();
-        }
-
-        /**
-         * Draws a swing Scilab PushButton
-         * @see org.scilab.modules.gui.uielement.UIElement#draw()
-         */
-        public void draw() {
-                this.setVisible(true);
-                this.doLayout();
-        }
-
-        /**
-         * Sets the visibility status of an UIElement
-         * @param newVisibleState the visibility status we want to set for the UIElement
-         *                      (true if the UIElement is visible, false if not)
-         */
-        public void setVisible(boolean newVisibleState) {
-                super.setVisible(newVisibleState);
-                getLabel().setVisible(newVisibleState);
-        }
-
-        /**
-         * Sets the enable status of an UIElement
-         * @param newEnableState the enable status we want to set for the UIElement
-         *                      (true if the UIElement is enabled, false if not)
-         */
-        public void setEnabled(boolean newEnableState) {
-                super.setEnabled(newEnableState);
-                getLabel().setEnabled(newEnableState);
-        }
-
-        /**
-         * Gets the dimensions (width and height) of a swing Scilab element
-         * @return the dimensions of the element
-         * @see org.scilab.modules.gui.uielement.UIElement#getDims()
-         */
-        public Size getDims() {
-                return new Size(getWidth(), getHeight());
-        }
-
-        /**
-         * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
-         * @return the position of the element
-         * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
-         */
-        public Position getPosition() {
-                return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
-        }
-
-        /**
-         * Sets the dimensions (width and height) of a swing Scilab element
-         * @param newSize the dimensions to set to the element
-         * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-         */
-        public void setDims(Size newSize) {
-                setSize(newSize.getWidth(), newSize.getHeight());
-        }
-
-        /**
-         * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
-         * @param newPosition the position to set to the element
-         * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-         */
-        public void setPosition(Position newPosition) {
-                Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
-                setLocation(javaPosition.getX(), javaPosition.getY());
-        }
-
-        /**
-         * Add a callback to the Label
-         * @param callback the callback to set.
-         */
-        public void setCallback(CallBack callback) {
-                // Nothing to do...
-        }
-
-        /**
-         * Setter for MenuBar
-         * @param menuBarToAdd the MenuBar associated to the Label.
-         */
-        public void addMenuBar(MenuBar menuBarToAdd) {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Setter for ToolBar
-         * @param toolBarToAdd the ToolBar associated to the Label.
-         */
-        public void addToolBar(ToolBar toolBarToAdd) {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Getter for MenuBar
-         * @return MenuBar: the MenuBar associated to the Label.
-         */
-        public MenuBar getMenuBar() {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Getter for ToolBar
-         * @return ToolBar: the ToolBar associated to the Label.
-         */
-        public ToolBar getToolBar() {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Set the horizontal alignment for the Label text
-         * @param alignment the value for the alignment (See ScilabAlignment.java)
-         */
-        public void setHorizontalAlignment(String alignment) {
-                horizontalAlignment = alignment;
-                setAlignment();
-        }
-
-        /**
-         * Set the vertical alignment for the Label text
-         * @param alignment the value for the alignment (See ScilabAlignment.java)
-         */
-        public void setVerticalAlignment(String alignment) {
-                verticalAlignment = alignment;
-                setAlignment();
-        }
-
-        /**
-         * Set the Relief of the Label
-         * @param reliefType the type of the relief to set (See ScilabRelief.java)
-         */
-        public void setRelief(String reliefType) {
-                setBorder(ScilabRelief.getBorderFromRelief(reliefType));
-        }
-
-        /**
-         * Destroy the Label
-         */
-        public void destroy() {
-                ScilabSwingUtilities.removeFromParent(this);
-        }
-
-        /**
-         * Setter for InfoBar
-         * @param infoBarToAdd the InfoBar associated to the Label.
-         */
-        public void addInfoBar(TextBox infoBarToAdd) {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Getter for InfoBar
-         * @return the InfoBar associated to the Label.
-         */
-        public TextBox getInfoBar() {
-                /* Unimplemented for Labels */
-                throw new UnsupportedOperationException();
-        }
-
-        /**
-         * Create/Return the label Java object
-         * @return the label
-         */
-        private JTextPane getLabel() {
-                if (label == null) {
-                        label = new ScilabJTextPane();
-                        label.setContentType("text/html");
-                        label.setOpaque(false);
-                        label.setBorder(null);
-                        label.setEditable(false);
-                        ((HTMLEditorKit) label.getEditorKit()).setAutoFormSubmission(false);
-                        /* Add a listener to make hyperlinks active */
-                        label.addHyperlinkListener(new HyperlinkListener() {
-                                public void hyperlinkUpdate(HyperlinkEvent event) {
-                                        if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                                                WebBrowser.openUrl(event.getURL(), event.getDescription());
-                                        }
-                                }
-                        });
-                }
-                return label;
-
-        }
-
-        /**
-         * get the text displayed in the label
-         * @return the label
-         * @see org.scilab.modules.gui.text.SimpleText#getText()
-         */
-        public String getText() {
-                return labelText;
-        }
-
-        /**
-         * Set the text displayed in the label
-         * @param newText the text
-         * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
-         */
-        public void setText(String newText) {
-                // Save the data given by the user so that it can be retrieved
-                // (Java adds HTML tags in the getlabel().getText() returned value)
-                labelText = newText;
-                getLabel().setText(newText);
-        }
-
-        /**
-         * Set alignment of the text component
-         */
-        private void setAlignment() {
-
-                getAlignmentPanel().remove(getLabel());
-
-                GridBagConstraints gbc = new GridBagConstraints();
-
-                gbc.gridx = 0;
-                gbc.gridy = 0;
-                gbc.weightx = 1;
-                gbc.weighty = 1;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
-
-                switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
-                case SwingConstants.LEFT:
-                        switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                        case SwingConstants.TOP:
-                                gbc.anchor = GridBagConstraints.NORTHWEST;
-                                break;
-                        case SwingConstants.CENTER:
-                                gbc.anchor = GridBagConstraints.WEST;
-                                break;
-                        default: // SwingConstants.BOTTOM
-                                gbc.anchor = GridBagConstraints.SOUTHWEST;
-                                break;
-                        }
-                        break;
-                case SwingConstants.CENTER:
-                        switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                        case SwingConstants.TOP:
-                                gbc.anchor = GridBagConstraints.NORTH;
-                                break;
-                        case SwingConstants.CENTER:
-                                gbc.anchor = GridBagConstraints.CENTER;
-                                break;
-                        default: // SwingConstants.BOTTOM
-                                gbc.anchor = GridBagConstraints.SOUTH;
-                                break;
-                        }
-                        break;
-                default: // SwingConstants.RIGHT
-                        switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                        case SwingConstants.TOP:
-                                gbc.anchor = GridBagConstraints.NORTHEAST;
-                                break;
-                        case SwingConstants.CENTER:
-                                gbc.anchor = GridBagConstraints.EAST;
-                                break;
-                        default: // SwingConstants.BOTTOM
-                                gbc.anchor = GridBagConstraints.SOUTHEAST;
-                                break;
-                        }
-                        break;
-                }
-
-                getAlignmentPanel().add(getLabel(), gbc);
-
-        }
-
-        /**
-         * Get/Create the panel used for alignment management
-         * @return the panel
-         */
-        private JPanel getAlignmentPanel() {
-                if (alignmentPanel == null) {
-                        alignmentPanel = new JPanel(new GridBagLayout());
-                }
-
-                return alignmentPanel;
-        }
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingViewWidget.update(this, property, value);
+    }
 
     /**
      * Inner class to handle the case where the label is in LaTeX or in MathML

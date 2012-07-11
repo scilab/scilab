@@ -103,16 +103,10 @@
     <para>A l'instant t, le bloc sort l'entrée retardée u(θ) où θ
       est le temps de simulation courant t moins le paramètre de retard τ.
     </para>
-    []
-    
     <para>L'équation du signal de sortie est :</para>
     e est
     <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/variable_delay_eq.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+      <latex>y(t) = y(θ) - u(t - τ(t))</latex>
     </para>
   </refsection>
   <refsection id="Dialogbox_VARIABLE_DELAY">

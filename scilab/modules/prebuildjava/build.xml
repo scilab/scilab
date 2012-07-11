@@ -3,28 +3,29 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Sylvestre LEDRU
  * Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <project default="all" name="build-all-jar">
-  <!-- Call World 
+  <!-- Call World
 The main idea is to build at once all the var files
 -->
   <property name="target-jar" value="jar"/>
   <property file="../../scilab-lib.properties"/>
   
   <!-- Order matter : fixed order to avoid dependency handling-->
-  <target name="all" depends="localization, history_manager, commons, jvm, action_binding, renderer, completion, console, graphic_export, gui, core, helptools, types, scinotes, ui_data, preferences, history_browser, javasci, hdf5, graph, xcos" />
+  <target name="all" depends="localization, commons, history_manager, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, hdf5, graph, xcos, preferences" />
   <target name="clean">
     <antcall target="all">
       <param name="target-jar" value="clean"/>
     </antcall>
   </target>
+  <target name="test"/>
   
   <target name="action_binding">
     <ant antfile="../action_binding/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
@@ -46,6 +47,9 @@ The main idea is to build at once all the var files
   </target>
   <target name="graphic_export">
     <ant antfile="../graphic_export/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="graphic_objects">
+    <ant antfile="../graphic_objects/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
   </target>
   <target name="gui">
     <ant antfile="../gui/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
@@ -86,11 +90,11 @@ The main idea is to build at once all the var files
   <target name="ui_data">
     <ant antfile="../ui_data/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
   </target>
-  <target name="preferences">
-    <ant antfile="../preferences/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-  </target>
   <target name="xcos" if="build_xcos" depends="hdf5, javasci">
     <ant antfile="../xcos/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="preferences">
+    <ant antfile="../preferences/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
   </target>
 </project>
 

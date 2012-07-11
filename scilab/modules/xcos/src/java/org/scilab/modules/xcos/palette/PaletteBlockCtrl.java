@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
@@ -143,7 +144,7 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.addCell(block);
             INTERNAL_GRAPH.selectAll();
 
-            INTERNAL_GRAPH.updateCellSize(block, false);
+            BlockPositioning.updateBlockView(block);
 
             mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
             transfer = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
@@ -162,13 +163,21 @@ public final class PaletteBlockCtrl {
     protected BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
+
             // Load the block with a reference instance
+            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+            if (handler == null) {
+                return null;
+            }
+
             try {
                 synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-                block = new ScilabDirectHandler().readBlock();
+                block = handler.readBlock();
             } catch (InterpreterException e1) {
                 LOG.severe(e1.toString());
                 block = null;
+            } finally {
+                handler.release();
             }
 
             // invalid block case

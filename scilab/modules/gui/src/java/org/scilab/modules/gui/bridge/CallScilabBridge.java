@@ -3,7 +3,7 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
- * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,10 +48,18 @@ import javax.swing.text.Document;
 
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.console.SciConsole;
-import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingView;
+import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -64,15 +72,12 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.fontchooser.FontChooser;
 import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
-import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -100,17 +105,19 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.ConfigManager;// Deprecated by next line
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uitable.ScilabUiTable;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.utils.BarUpdater;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
@@ -119,8 +126,6 @@ import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -160,11 +165,6 @@ public class CallScilabBridge {
     private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
 
     private static final String FIGURE_TITLE = "Graphic window number ";
-
-    private static final String SCIDIR = System.getenv("SCI");
-
-    private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
-    private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 
     private static final String CONSOLE = "Console";
 
@@ -356,6 +356,22 @@ public class CallScilabBridge {
         return id;
     }
 
+    public static void newPushButton(String UID) {
+        PushButton pushButton = ScilabPushButton.createPushButton();
+        ((ScilabPushButton) pushButton).setIdentifier(UID);
+        int id = UIElementMapper.add(pushButton);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.RAISED);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) BUTTON_RED_BACKGROUND, (int) BUTTON_GREEN_BACKGROUND, (int) BUTTON_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+    }
     /**
      * Create a new EditBox in Scilab GUIs
      * @return the ID of the Edit in the UIElementMapper
@@ -426,6 +442,48 @@ public class CallScilabBridge {
     public static int newRadioButton() {
         RadioButton radioButton = ScilabRadioButton.createRadioButton();
         int id = UIElementMapper.add(radioButton);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiTable in Scilab GUIs
+     * @return the ID of the UiTable in the UIElementMapper
+     */
+    public static int newUiTable() {
+        UiTable uiTable = ScilabUiTable.createUiTable();
+        int id = UIElementMapper.add(uiTable);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiDisplayTree in Scilab GUIs
+     * @return the ID of the UiDisplayTree in the UIElementMapper
+     */
+    public static int newUiDisplayTree() {
+        UiDisplayTree uiTree = ScilabUiDisplayTree.createUiDisplayTree();
+        int id = UIElementMapper.add(uiTree);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -537,11 +595,12 @@ public class CallScilabBridge {
     /**
      * Create a new ContextMenu in Scilab GUIs
      * and wait for a user answer
-     * @param id the id of the Context Menu
+     * @param uicontextmenuUID the id of the Context Menu
      * @return the item of the menu selected
      */
-    public static String displayAndWaitContextMenu(int id) {
-        return ((ContextMenu) UIElementMapper.getCorrespondingUIElement(id)).getAsSimpleContextMenu().displayAndWait();
+    public static String displayAndWaitContextMenu(String uicontextmenuUID) {
+        SwingViewObject uicontextmenu = SwingView.getFromId(uicontextmenuUID);
+        return ((SwingScilabContextMenu) uicontextmenu).displayAndWait();
     }
 
     /**
@@ -573,9 +632,9 @@ public class CallScilabBridge {
 
         newWindow.setTitle(FIGURE_TITLE + figureIndex);
         /* MENUBAR */
-        MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
+        MenuBar menuBar = null; //MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
         /* TOOLBAR */
-        ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
+        ToolBar toolBar = null; //ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
 
         TextBox infoBar = ScilabTextBox.createTextBox();
 
@@ -598,7 +657,7 @@ public class CallScilabBridge {
             +      "  end;"
             +      "  delete(get_figure_handle(" + figureIndex + "));"
             +      "end;";
-        graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
+        //graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
@@ -606,9 +665,9 @@ public class CallScilabBridge {
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
-        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+        //        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
         //associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
-        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
+        //        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
         // don't draw now, figure will show itself when all its parameters will be set
 
         return 0;
@@ -684,7 +743,7 @@ public class CallScilabBridge {
      * @param objID the ID of the object in the UIElementMapper
      */
     public static void setFigureAsParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 
         if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
             // Add the menu to the tab
@@ -708,7 +767,7 @@ public class CallScilabBridge {
 
             // Add the menu to the tab
             parentTab.getMenuBar().add(menuToAdd);
-        }
+        }*/
     }
 
     /**
@@ -717,9 +776,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setPushButtonParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, pushButton);
+        ScilabBridge.addMember(parentTab, pushButton);*/
     }
 
     /**
@@ -728,9 +787,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void removePushButtonFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, pushButton);
+        ScilabBridge.removeMember(parentTab, pushButton);*/
     }
 
     /**
@@ -739,9 +798,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setEditBoxParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, editBox);
+        ScilabBridge.addMember(parentTab, editBox);*/
     }
 
     /**
@@ -750,9 +809,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void removeEditBoxFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, editBox);
+        ScilabBridge.removeMember(parentTab, editBox);*/
     }
 
     /**
@@ -761,9 +820,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setLabelParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, label);
+        ScilabBridge.addMember(parentTab, label);*/
     }
 
     /**
@@ -772,9 +831,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void removeLabelFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, label);
+        ScilabBridge.removeMember(parentTab, label);*/
     }
 
     /**
@@ -783,9 +842,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setCheckBoxParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, checkBox);
+        ScilabBridge.addMember(parentTab, checkBox);*/
     }
 
     /**
@@ -794,9 +853,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void removeCheckBoxFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, checkBox);
+        ScilabBridge.removeMember(parentTab, checkBox);*/
     }
 
     /**
@@ -805,9 +864,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setRadioButtonParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, radioButton);
+        ScilabBridge.addMember(parentTab, radioButton);*/
     }
 
     /**
@@ -816,9 +875,42 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void removeRadioButtonFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, radioButton);
+        ScilabBridge.removeMember(parentTab, radioButton);*/
+    }
+
+    /**
+     * Set a figure as parent for a UiTable
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void setUiTableParent(int figureID, int objID) {
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTable);*/
+    }
+
+    /**
+     * Remove a UiTable from its parent figure
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void removeUiTableFromParent(int figureID, int objID) {
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTable);*/
+    }
+
+    public static void setUiDisplayTreeParent(int figureID, int objID) {
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTree);*/
+    }
+    public static void removeUiDisplayTreeFromParent(int figureID, int objID) {
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTree);*/
     }
 
     /**
@@ -827,9 +919,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PushButton in the UIElementMapper
      */
     public static void setSliderParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, slider);
+        ScilabBridge.addMember(parentTab, slider);*/
     }
 
     /**
@@ -838,9 +930,9 @@ public class CallScilabBridge {
      * @param objID the ID of the Slider in the UIElementMapper
      */
     public static void removeSliderFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, slider);
+        ScilabBridge.removeMember(parentTab, slider);*/
     }
 
     /**
@@ -849,9 +941,9 @@ public class CallScilabBridge {
      * @param objID the ID of the ListBox in the UIElementMapper
      */
     public static void setListBoxParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, listBox);
+        ScilabBridge.addMember(parentTab, listBox);*/
     }
 
     /**
@@ -860,9 +952,9 @@ public class CallScilabBridge {
      * @param objID the ID of the ListBox in the UIElementMapper
      */
     public static void removeListBoxFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, listBox);
+        ScilabBridge.removeMember(parentTab, listBox);*/
     }
 
     /**
@@ -871,9 +963,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
     public static void setPopupMenuParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, popupMenu);
+        ScilabBridge.addMember(parentTab, popupMenu);*/
     }
 
     /**
@@ -882,9 +974,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
     public static void removePopupMenuFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, popupMenu);
+        ScilabBridge.removeMember(parentTab, popupMenu);*/
     }
 
     /**
@@ -893,9 +985,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
     public static void setFrameParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, frame);
+        ScilabBridge.addMember(parentTab, frame);*/
     }
 
     /**
@@ -904,9 +996,9 @@ public class CallScilabBridge {
      * @param objID the ID of the PopupMenu in the UIElementMapper
      */
     public static void removeFrameFromParent(int figureID, int objID) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        /*Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, frame);
+        ScilabBridge.removeMember(parentTab, frame);*/
     }
 
     /**
@@ -990,8 +1082,9 @@ public class CallScilabBridge {
      * @param callbackType the type of the callback
      */
     public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(objID))
-            .setCallback(CallBack.createCallback(callbackString, callbackType, objID));
+        // TODO Remove me
+        //((Widget) UIElementMapper.getCorrespondingUIElement(objID))
+        //.setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
     /**
@@ -1001,7 +1094,8 @@ public class CallScilabBridge {
      * @param callbackType the type of the callback
      */
     public static void setFrameCallback(int objID, String callbackString, int callbackType) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType, objID));
+        // TODO Remove me
+        //((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
     /************************/
@@ -1011,60 +1105,29 @@ public class CallScilabBridge {
     /************************/
 
     /**
-     * Disable a menu of a Scilab figure giving its name
-     * @param figureID the id of the figure
+     * Enable/Disable a menu of a Scilab figure or console giving its name
+     * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      * @param status true to set the menu enabled
      */
-    public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+    public static void setMenuEnabled(String parentUID, String menuName, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
     }
 
     /**
-     * Disable a MenuItem of a Scilab figure giving its parent name and position
-     * @param figureID the id of the figure
+     * Disable a MenuItem of a Scilab figure or console giving its parent name and position
+     * @param parentUID the UID of the figure or console
      * @param parentMenuName the name of the parent menu
      * @param menuItemPosition the name of the parent menu
      * @param status true to set the menu enabled
      */
-    public static void setFigureSubMenuEnabled(int figureID, String parentMenuName, int menuItemPosition, boolean status) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
-        }
-    }
-
-    /**
-     * Disable a menu of a Scilab root window giving its name
-     * @param menuName the name of the menu
-     * @param status true to set the menu enabled
-     */
-    public static void setRootMenuEnabled(String menuName, boolean status) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
-        }
-    }
-
-    /**
-     * Disable a MenuItem of a Scilab root window giving its parent name and position
-     * @param parentMenuName the name of the parent menu
-     * @param menuItemPosition the name of the parent menu
-     * @param status true to set the menu enabled
-     */
-    public static void setRootSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+    public static void setSubMenuEnabled(String parentUID, String parentMenuName, int menuItemPosition, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
     }
 
@@ -1075,28 +1138,14 @@ public class CallScilabBridge {
     /****************/
 
     /**
-     * Delete a menu of a Scilab figure giving its name
-     * @param figureID the id of the figure
+     * Delete a menu of a Scilab figure or console giving its name
+     * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      */
-    public static void removeFigureMenu(int figureID, String menuName) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
-        }
-    }
-
-    /**
-     * Delete a menu of a Scilab root window giving its name
-     * @param menuName the name of the menu
-     */
-    public static void removeRootMenu(String menuName) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab Console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
+    public static void removeMenu(String parentUID, String menuName) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
     }
 
@@ -1114,10 +1163,9 @@ public class CallScilabBridge {
      * @return the ID of the File Chooser in the UIElementMapper
      */
 
-    public static int newExportFileChooser(int figureId) {
+    public static int newExportFileChooser(String figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
-        //return UIElementMapper.add(fileChooser);
     }
 
 
@@ -1991,35 +2039,29 @@ public class CallScilabBridge {
 
     /**
      * Set the visibility of a Toolbar
-     * @param figNum the parentfigure
+     * @param parentUID the parent (figure or console) UID
      * @param status true to set the Toolbar visible
      */
-    public static void setToolbarVisible(int figNum, boolean status) {
-        if (figNum == -1) {
-            if (ScilabConsole.isExistingConsole()) {
-                ScilabConsole.getConsole().getToolBar().setVisible(status);
-            }
-        } else {
-            ((ScilabRendererProperties) FigureMapper
-             .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
+    public static void setToolbarVisible(String parentUID, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) {
+            parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
+            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
+                                  parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
         }
     }
 
     /**
      * Get the visibility of a Toolbar
-     * @param figNum the parentfigure
+     * @param parentUID the parent (figure or console) UID
      * @return true to set the Toolbar visible
      */
-    public static boolean isToolbarVisible(int figNum) {
-        if (figNum == -1) {
-           if (ScilabConsole.isExistingConsole()) {
-               return ScilabConsole.getConsole().getToolBar().isVisible();
-           } else {
-               return false;
-           }
+    public static boolean isToolbarVisible(String parentUID) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) {
+            return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
         } else {
-            return ((ScilabRendererProperties) FigureMapper
-                    .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
+            return false;
         }
     }
 
@@ -2035,7 +2077,7 @@ public class CallScilabBridge {
      * @param command the name of the Scilab function to call
      */
     public static void setEventHandler(int figNum, String command) {
-        FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandler(command);
+        //FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandler(command);
     }
 
     /**
@@ -2044,7 +2086,7 @@ public class CallScilabBridge {
      * @param status is true to set the event handler active
      */
     public static void setEventHandlerEnabled(int figNum, boolean status) {
-        FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandlerEnabled(status);
+        //FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandlerEnabled(status);
     }
 
     /******************/
@@ -2130,10 +2172,10 @@ public class CallScilabBridge {
      * @param xmlID the xml id
      */
     public static void openHelp(String xmlID) {
-	HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
-	if (helpBrowser != null) {
-	    helpBrowser.searchKeywork(xmlID);
-	}
+        HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
+        if (helpBrowser != null) {
+            helpBrowser.searchKeywork(xmlID);
+        }
     }
 
     /**
@@ -2419,7 +2461,7 @@ public class CallScilabBridge {
      * @param figID the ID of the figure to print
      * @return execution status
      */
-    public static boolean printFigure(int figID) {
+    public static boolean printFigure(String figID) {
         return printFigure(figID, true, true);
     }
 
@@ -2430,8 +2472,7 @@ public class CallScilabBridge {
      * @param displayDialog true to display a print setup dialog
      * @return execution status
      */
-    public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
-        final int figureID = figID;
+    public static boolean printFigure(String figID, boolean postScript, boolean displayDialog) {
         // Get the PrinterJob object
         PrinterJob printerJob = PrinterJob.getPrinterJob();
 
@@ -2443,8 +2484,10 @@ public class CallScilabBridge {
         if (userOK) {
             //If the OS is Windows
             if (isWindowsPlateform()) {
-                Canvas canvas;
-                canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
+                Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
+                int figureID = figure.getId();
+                SwingScilabCanvas canvas;
+                canvas = ((SwingScilabTab) SwingView.getFromId(figID)).getContentCanvas();
                 ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
                 if (scilabPrint != null) {
                     return true;
@@ -2454,24 +2497,23 @@ public class CallScilabBridge {
 
                 //If the OS is Linux
             } else {
-                int exportRendererMode = ExportRenderer.PS_EXPORT;
                 DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
                 String fileExtension = ".ps";
 
                 try {
-                    String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
-                    /** Export image to PostScript */
+                    String tmpPrinterFile = File.createTempFile("scilabfigure", "").getAbsolutePath();
+                    // Export image to PostScript
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
-                        FileExporter.fileExport(figureID,
+                        FileExporter.fileExport(figID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
+                                                "PS", 1, 0); // 1 is the quality. Useless in this context
                     } else {
-                        FileExporter.fileExport(figureID,
+                        FileExporter.fileExport(figID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
+                                                "PS", 1, 1); // 1 is the quality. Useless in this context
                     }
 
-                    /** Read file */
+                    // Read file
                     FileInputStream psStream = null;
 
                     try {
@@ -2485,7 +2527,7 @@ public class CallScilabBridge {
                     PrintService printService = printerJob.getPrintService();
 
                     if (printService == null) {
-                        /* Could not find the print service */
+                        // Could not find the print service
                         MessageBox messageBox = ScilabMessageBox.createMessageBox();
                         messageBox.setMessage(Messages.gettext("No print service found."));
                         messageBox.setModal(true);
@@ -2864,7 +2906,7 @@ public class CallScilabBridge {
          */
         @Override
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[]{DataFlavor.imageFlavor};
+            return new DataFlavor[] {DataFlavor.imageFlavor};
         }
 
         /**
@@ -2931,19 +2973,17 @@ public class CallScilabBridge {
     }
 
     /**
-     * Give the focus to a Widget
-     * @param id the id of the Widget
+     * Give the focus to a uicontrol
+     * @param uicontrolUID the uicontrolUID of the Widget
      */
-    public static void requestWidgetFocus(int id) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
-    }
+    public static void requestFocus(String uicontrolUID) {
+        SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
+        if (uicontrol instanceof SwingScilabFrame) {
+            ((SwingScilabFrame) uicontrol).requestFocus();
+        } else {
+            ((Widget) uicontrol).requestFocus();
+        }
 
-    /**
-     * Give the focus to a Frame
-     * @param id the id of the Frame
-     */
-    public static void requestFrameFocus(int id) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
     }
 
     /**
@@ -2951,8 +2991,8 @@ public class CallScilabBridge {
      * @param id the id of the figure
      */
     public static void raiseWindow(int id) {
-        ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
-        ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
+        /*((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
+        ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();*/
     }
 
     /**
@@ -2984,5 +3024,43 @@ public class CallScilabBridge {
      */
     public static void scilabAboutBox() {
         ScilabAboutBox.displayAndWait();
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+
+    /**
+     * Sets the column names for the uitable
+     */
+    public static void setUiTableColnames(int id, String text) {
+        // TODO Remove this method
+        //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
+    }
+
+    /**
+     * Sets the row names for the uitable
+     */
+    public static void setUiTableRownames(int id, String text) {
+        // TODO Remove this method
+        //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
+    }
+
+    /**
+     * Sets the data for the uitable
+     */
+    public static void setUiTableData(int id, String text) {
+        ((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+    public static void setUiTreeData(int id, String[] text) {
+        ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 }

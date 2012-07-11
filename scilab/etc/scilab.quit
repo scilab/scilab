@@ -13,11 +13,25 @@
 // This file contains scilab command to be executed at the end 
 // of a scilab session
 // ====================================================================
-// starts modules .quit
-modules = getmodules();
-WITH_DEMOS = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
+function scilabQuit()
+
+  // ATOMS ===============================================================
+  if with_module("atoms") then
+    if sciargs() <> "-noatomsautoload" then
+      //atomsQuit();
+    end
+  end
+
+  // starts modules .quit
+  modules = getmodules();
+
+  WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
  
-for i=1:size(modules,"*")
+  for i=1:size(modules,"*")
     exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".quit",-1);
-end  
+  end  
+endfunction
+// ====================================================================
+scilabQuit();
+clear scilabQuit;
 // ====================================================================

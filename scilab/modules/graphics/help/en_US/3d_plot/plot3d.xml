@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="plot3d" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="plot3d" xml:lang="en">
   <refnamediv>
     <refname>plot3d</refname>
     <refpurpose>3D plot of a surface</refpurpose>
@@ -346,6 +343,10 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>plot3d();</scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 // simple plot using z=f(x,y)
@@ -535,12 +536,6 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-    <para>The result of the preceding example:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch.png"/>
-      </imageobject>
-    </mediaobject>
     <para>We can also use the plot3d function to plot a set of patches using
       vertex and faces.
     </para>
@@ -601,12 +596,6 @@ xtitle('A triangle set of patches - vertex / face mode - 2D');
 a = gca();
 a.view = '2d';
  ]]></programlisting>
-    <para>The result of the preceding example:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png"/>
-      </imageobject>
-    </mediaobject>
     <para> How to set manually some ticks </para>
     <programlisting role="example"><![CDATA[
 plot3d();

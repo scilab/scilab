@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:51+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-02-28 12:13+0000\n"
+"Last-Translator: Daniel Dietrich <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: de\n"
 
 #, c-format
@@ -52,10 +52,10 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
 
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -161,14 +161,6 @@ msgstr "%02d-%02d-%04d"
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr ""
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr ""
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"

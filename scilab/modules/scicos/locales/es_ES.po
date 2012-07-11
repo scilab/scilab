@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: es\n"
 
 #, c-format
@@ -1005,8 +1005,12 @@ msgstr ""
 " error en el Jacobiano"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Error: no se encontró '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1190,42 +1194,6 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Error: No se definió un bloque scifunc."
 
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
-
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
@@ -1282,31 +1250,7 @@ msgid "Sorry file name not defined in "
 msgstr "Disculpe el nombre de archivo no está definido en "
 
 #, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #, c-format

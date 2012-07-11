@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -13,135 +14,143 @@
 // This function has an impact on the following files :
 //  -> ATOMSDIR/config
 
-function nbChanges = atomsSetConfig(field,value)
+function nbChanges = atomsSetConfig(field, value)
 
-    rhs                = argn(2);
-    nbChanges          = 0;
-    systemUpdateNeeded = %F;
+  rhs        = argn(2);
+  nbChanges      = 0;
+  systemUpdateNeeded = %F;
 
-    // Load Atoms Internals lib if it's not already loaded
-    // =========================================================================
-    if ~ exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
+  // Check number of input arguments
+  // =========================================================================
+
+  if rhs <> 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "atomsSetConfig", 2));
+  end
+
+  // Check input parameters type
+  // =========================================================================
+
+  if type(field) <> 10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "atomsSetConfig", 1));
+  end
+
+  if type(value) <> 10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "atomsSetConfig", 2));
+  end
+
+  // field and value must have the same size
+  // =========================================================================
+
+  if or( size(field) <> size(value) ) then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "atomsSetConfig", 1, 2));
+  end
+  i=1;
+  for element = field(:)
+    if strcmpi("verbose",element) == 0 then
+      field(i) = convstr(part(element,1),'u') + part(element,2:length(element));
+    else
+      field(i) = convstr(part(element,1),'l') + part(element,2:length(element));
+    end
+    element = field(i);
+
+    if element == "offLine" then
+      // Prior to version 5.4.0, offline was called Offline
+      element = "offline"
     end
 
-    // Check number of input arguments
-    // =========================================================================
+    if element == "useProxy" ..
+      | element == "offline" ..
+      | element == "autoload" ..
+      | element == "autoloadAddAfterInstall" ..
+      | element == "Verbose" ..
+      then
+      select value(i)
+        case "True" then,
+        case "False" then,
+        case "true" then value(i)="True",
+        case "false" then value(i)="False",
+      else
+        error(msprintf(gettext("%s: Wrong value for input configuration argument: True or False expected.\n"), value(i)));
+      end
+    elseif element == "proxyHost" ..
+      | element == "proxyPort" ..
+      | element == "proxyUser" ..
+      | element == "proxyPassword" ..
+      | element == "downloadTool" ..
+      | element == "downloadTimeout" ..
+      then continue;
+    else
+      error(msprintf(gettext("%s: Wrong key for input configuration argument.\n"), element));
+    end
+    i = i + 1;
+  end
 
-    if rhs <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsSetConfig",2));
+  // Load Atoms Internals lib if it's not already loaded
+  // =========================================================================
+  if ~ exists("atomsinternalslib") then
+    load("SCI/modules/atoms/macros/atoms_internals/lib");
+  end
+
+  // Define the path of the file that will record the change
+  // =========================================================================
+  atoms_directory =  atomsPath("system", "user");
+
+  // Does the atoms_directory exist, if not create it
+  // =========================================================================
+
+  if ~ isdir(atoms_directory) then
+    mkdir(atoms_directory);
+  end
+
+  // Get the current config struct
+  // =========================================================================
+
+  config_struct = atomsGetConfig();
+
+  // Loop on field
+  // =========================================================================
+
+  for i=1:size(field, "*")
+
+    if (~isfield(config_struct, field(i))) | (config_struct(field(i)) <> value(i)) then
+      nbChanges = nbChanges + 1;
+    else
+      continue;
     end
 
-    // Check input parameters type
-    // =========================================================================
-
-    if type(field) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsSetConfig",1));
+    if field(i) == "offline" then
+      systemUpdateNeeded = %T;
     end
 
-    if type(value) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsSetConfig",2));
-    end
+    config_struct(field(i)) = value(i);
+  end
 
-    // field and value must have the same size
-    // =========================================================================
+  // Shortcut
+  // =========================================================================
+  if nbChanges == 0 then
+    return;
+  end
 
-    if or( size(field) <> size(value) ) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsSetConfig",1,2));
-    end
-    i=1;
-    for element = field(:)
-        if strcmpi("verbose",element) == 0 then
-            field(i)=convstr(part(element,1),'u')+part(element,2:length(element));
-        else
-            field(i)=convstr(part(element,1),'l')+part(element,2:length(element));
-        end
-        element=field(i);   
+  // Apply Changes
+  // =========================================================================
 
-        if element == "useProxy"..
-            | element == "offLine"..
-            | element == "autoload"..
-            | element == "autoloadAddAfterInstall"..
-            | element == "Verbose"..
-        then
-            select value(i)
-            case "True" then,
-            case "False" then,
-            case "true" then value(i)="True",
-            case "false" then value(i)="False",
-            else error(msprintf(gettext("%s: Wrong value for input configuration argument: True or False expected.\n"),value(i)));
-            end
-        elseif element == "proxyHost"..
-            | element == "proxyPort"..
-            | element == "proxyUser"..
-            | element == "proxyPassword"..
-            | element == "downloadTool"..
-            then continue;
-        else error(msprintf(gettext("%s: Wrong key for input configuration argument.\n"),element));
-        end
-        i=i+1;
-    end
+  config_fields    = getfield(1, config_struct);
+  config_fields(1:2) = [];
+  config_fields    = gsort(config_fields);
 
-    // Define the path of the file that will record the change
-    // =========================================================================
-    atoms_directory =  atomsPath("system","user");
+  config_str = [];
 
-    // Does the atoms_directory exist, if not create it
-    // =========================================================================
+  for i=1:size(config_fields, "*")
+    config_str = [ config_str ; config_fields(i) + " = " + config_struct(config_fields(i)) ];
+  end
 
-    if ~ isdir(atoms_directory) then
-        mkdir(atoms_directory);
-    end
+  mputl(config_str, atoms_directory + "config");
 
-    // Get the current config struct
-    // =========================================================================
+  // SystemUpdate
+  // =========================================================================
 
-    config_struct = atomsGetConfig();
-
-    // Loop on field
-    // =========================================================================
-
-    for i=1:size(field,"*")
-
-        if (~isfield(config_struct,field(i))) | (config_struct(field(i))<> value(i)) then
-            nbChanges = nbChanges + 1;
-        else
-            continue;
-        end
-
-        if field(i) == "offLine" then
-            systemUpdateNeeded = %T;
-        end
-
-        config_struct(field(i)) = value(i);
-    end
-
-    // Shortcut
-    // =========================================================================
-    if nbChanges == 0 then
-        return;
-    end
-
-    // Apply Changes
-    // =========================================================================
-
-    config_fields      = getfield(1,config_struct);
-    config_fields(1:2) = [];
-    config_fields      = gsort(config_fields);
-
-    config_str = [];
-
-    for i=1:size(config_fields,"*")
-        config_str = [ config_str ; config_fields(i) + " = " + config_struct(config_fields(i)) ];
-    end
-
-    mputl(config_str,atoms_directory+"config");
-
-    // SystemUpdate
-    // =========================================================================
-
-    if systemUpdateNeeded then
-        atomsSystemUpdate();
-    end
+  if systemUpdateNeeded then
+    atomsSystemUpdate();
+  end
 
 endfunction

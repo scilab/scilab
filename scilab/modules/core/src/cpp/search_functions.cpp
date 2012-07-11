@@ -9,6 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
 
 #include <cstdlib>
 #include <algorithm>

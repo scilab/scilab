@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "MALLOC.h"
 #include "fscanfMat.h"
 #include "charEncoding.h"
 #include "BOOL.h"
@@ -244,7 +245,7 @@ static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 
         if ((ierr == EOF) || (ierr == 0))
         {
-            char *str = strdup(line);
+            char *str = os_strdup(line);
             if (str)
             {
                 ierr = sscanf(line, "%4s", str);
@@ -351,7 +352,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                 }
                 else
                 {
-                    char *str = strdup(splittedStr[i]);
+                    char *str = os_strdup(splittedStr[i]);
                     strcpy(str, "");
 
                     ierr = sscanf(splittedStr[i], "%4s", str);
@@ -425,7 +426,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
                 retstr = (char **) MALLOC(sizeof(char *));
                 if (retstr)
                 {
-                    retstr[0] = strdup(str);
+                    retstr[0] = os_strdup(str);
                     *toks = 1;
                 }
             }
@@ -565,7 +566,7 @@ static double *getDoubleValuesInLine(char *line,
                 }
                 else
                 {
-                    char *str = strdup(line);
+                    char *str = os_strdup(line);
                     strcpy(str, "");
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))

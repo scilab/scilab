@@ -10,13 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="genfac3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="genfac3d">
   <refnamediv>
     <refname>genfac3d</refname>
-    <refpurpose> compute facets of a 3D surface</refpurpose>
+    <refpurpose>Compute facets of a 3D surface</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -71,9 +68,14 @@
     </para>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>genfac3d();</scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+t=[0:0.3:2*%pi]'; 
+z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d(xx,yy,zz)
  ]]></programlisting>

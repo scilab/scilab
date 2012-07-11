@@ -1,29 +1,33 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Get the min property of an uicontrol 
- * 
+ * Copyright (C) 2011-2012 - DIGITEO - Vincent COUVERT
+ * Get the max property of an uicontrol
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUicontrolMin.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolMin(sciPointObj* sciObj)
+int GetUicontrolMin(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    double minValue = 0;
+    double* pdblMinValue = &minValue;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), jni_double, (void**) &pdblMinValue);
+
+    if (pdblMinValue == NULL)
     {
-      return sciReturnDouble(pUICONTROL_FEATURE(sciObj)->min);
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Min");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Min");
-      return FALSE;
+        return sciReturnDouble(_pvCtx, minValue);
     }
 }

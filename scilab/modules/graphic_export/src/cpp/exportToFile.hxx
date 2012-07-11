@@ -38,12 +38,8 @@ typedef enum
 typedef enum
 {
   EXPORT_SUCCESS = 0,
-  EXPORT_UNKNOWN_GLEXCEPTION_ERROR = 1,
-  EXPORT_IOEXCEPTION_ERROR = 2,
-  EXPORT_INVALID_FILE = 3,
-  EXPORT_GL2PS_ERROR = 4,
-  EXPORT_GL2PS_OVERFLOW = 5,
-  EXPORT_GL2PS_UNINITIALIZED = 6
+  EXPORT_IOEXCEPTION_ERROR = 1,
+  EXPORT_INVALID_FILE = 2,
 } ExportError;
 
 typedef enum
@@ -52,7 +48,7 @@ typedef enum
   EXPORT_LANDSCAPE = 1
 } ExportOrientation;
 
-char * exportToFile(sciPointObj * pFigure,
+char * exportToFile(char * figureUID,
 		    const char * fileName,
 		    ExportFileType fileType,
 		    const float jpegCompressionQuality,

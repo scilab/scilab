@@ -13,14 +13,17 @@
 
 package org.scilab.modules.types;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * This class provides a representation on the Scilab List datatype<br>
  * <br>
- * This class is {@link java.io.Serializable} and any modification could
- * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * This class is {@link java.io.Serializable} and any modification could impact
+ * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -28,12 +31,15 @@ import java.util.Collection;
  * data.add(new ScilabString("hello"));<br />
  * data.add(new ScilabDouble(2));<br />
  * </code>
+ *
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 
     private static final long serialVersionUID = 6884293176289980909L;
     private static final ScilabTypeEnum type = ScilabTypeEnum.sci_list;
+
+    private static final int VERSION = 0;
 
     private String varName;
 
@@ -49,9 +55,9 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * the order that they are returned by the specified collection's iterator.
      *
      * @param c
-     *                  the collection whose elements are to be placed into this list.
+     *            the collection whose elements are to be placed into this list.
      */
-    public ScilabList(Collection< ? extends ScilabType> c) {
+    public ScilabList(Collection <? extends ScilabType > c) {
         super(c);
     }
 
@@ -85,7 +91,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * @see org.scilab.modules.types.ScilabType#getHeight()
      */
     @Override
-        public int getHeight() {
+    public int getHeight() {
         if (isEmpty()) {
             return 0;
         }
@@ -94,11 +100,12 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 
     /**
      * Return the type of Scilab
+     *
      * @return the type of Scilab
      * @since 5.4.0
      */
     @Override
-        public ScilabTypeEnum getType() {
+    public ScilabTypeEnum getType() {
         return type;
     }
 
@@ -107,7 +114,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * @see org.scilab.modules.types.ScilabType#getWidth()
      */
     @Override
-        public int getWidth() {
+    public int getWidth() {
         if (isEmpty()) {
             return 0;
         }
@@ -115,10 +122,11 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     }
 
     /**
-     * Get a serialized list;
-     * The format is the following:
-     *   i) returned[0] is an array of integers containing the Scilab type (ScilabTypeEunm) of the different elements of the list.
-     *   ii) returned[i] for i&gt;=1 contains the serialized form of each items.
+     * Get a serialized list; The format is the following: i) returned[0] is an
+     * array of integers containing the Scilab type (ScilabTypeEunm) of the
+     * different elements of the list. ii) returned[i] for i&gt;=1 contains the
+     * serialized form of each items.
+     *
      * @return a serialized SiclabList/
      */
     public Object[] getSerializedObject() {
@@ -135,6 +143,34 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
         return items;
     }
 
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        int version = in.readInt();
+        switch (version) {
+            case 0:
+                int size = in.readInt();
+                ensureCapacity(size + 1);
+                ArrayList list = (ArrayList) this;
+                for (int i = 0; i < size; i++) {
+                    list.add(in.readObject());
+                }
+                varName = (String) in.readObject();
+                break;
+            default:
+                throw new ClassNotFoundException("A class ScilabList with a version " + version + " does not exists");
+        }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(VERSION);
+        out.writeInt(size());
+        for (Object var : (ArrayList) this) {
+            out.writeObject(var);
+        }
+        out.writeObject(varName);
+    }
+
     /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
@@ -143,8 +179,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * @see java.util.AbstractCollection#toString()
      */
     @Override
-        public String toString() {
-
+    public String toString() {
         StringBuffer result = new StringBuffer();
         if (isEmpty()) {
             result.append("list()");

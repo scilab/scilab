@@ -18,6 +18,7 @@
 extern "C"
 {
 #include <math.h>
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "core_math.h"
@@ -73,7 +74,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     types::Double *pDblAppro            = NULL;
     design_type iAppro;
-    
+
     types::Double *pDblCutOff           = NULL;
 
     types::Double *pDblDeltaP           = NULL;
@@ -176,7 +177,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //call math function
     C2F(syredi)(&iMaxDeg, (int*)&iType, (int*)&iAppro, pDblCutOff->get(), &dblDeltaP,
-        &dblDeltaS, &iZeroCount, &iDegCount, &dblFact, 
+        &dblDeltaS, &iZeroCount, &iDegCount, &dblFact,
         pDblOut[0]->get(), pDblOut[1]->get(), pDblOut[2]->get(), pDblOut[3]->get(),
         pDblOut[4]->get(), pDblOut[5]->get(), pDblOut[6]->get(), pDblOut[7]->get(),
         pDblOut[8]->get(), &iErr, pDblOut[9]->get(), pDblOut[10]->get(), pDblOut[11]->get(),

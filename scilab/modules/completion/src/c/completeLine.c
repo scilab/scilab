@@ -13,6 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <ctype.h>
 #include "completeLine.h"
 #include "MALLOC.h"
 #include "os_strdup.h"

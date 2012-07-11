@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-08 14:04+0000\n"
+"PO-Revision-Date: 2012-04-17 18:29+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -41,9 +41,25 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr "%s: Špatná velikost argumentu %d: Očekáván reálný skalár.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Žádná další paměť.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -59,10 +75,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Špatný typ vstupního argumentu.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Žádná další paměť.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
@@ -75,10 +87,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -326,10 +334,13 @@ msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "Chyba: Nelze určit proměnnou prostředí %s.\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Konsorcium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Autorská práva (c) 2011-2012 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Všechna práva vyhrazena (c) 1989-2012 (INRIA)\n"
@@ -511,32 +522,20 @@ msgstr "Žádné místo pro přidělení zásobníku Scilab.\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"Zásobník volání:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"Konec zásobníku\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
 "Jejda. Scilab zjistil závažnou chybu.\n"
-"Vaše instance pravděpodobně brzo spadne.\n"
-"Prosíme, nahlaste chybu na %s s následujícími\n"
-"informacemi:\n"
+"Vaše instance pravděpodobně brzy spadne.\n"
+"Prosím nahlaste tuto chybu na %s spolu s:\n"
+"* ukázkou kódu, který chybu znovu způsobí\n"
+"* výsledkem [a, b] = getdebuginfo()\n"
+"* následujícími informacemi:\n"
 "%s %s\n"
 
 #, c-format
@@ -863,20 +862,20 @@ msgid "%s argument"
 msgstr "Argument %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "argument číslo %d"
+msgid "argument #%d"
+msgstr "argument #%d"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "Argumenty %s a %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "Argument %s a argument %d"
+msgid "%s argument and argument #%d"
+msgstr "%s argument a argument #%d"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "argumenty %d a %d"
+msgid "arguments #%d and #%d"
+msgstr "argumenty #%d a #%d"
 
 msgid "should be square"
 msgstr "měl by být čtverec"
@@ -998,6 +997,20 @@ msgid "Scilab Version Info."
 msgstr "Informace o Verzi Scilab."
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Zásobník volání:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Konec zásobníku\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -1050,6 +1063,10 @@ msgstr "Úvod"
 
 msgid "Getting started with Scilab"
 msgstr "Začínáme se Scilabem"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s: Nelze nalézt '%s': Zkontrolujte, zda byla makra sestavena.\n"
 
 #, c-format
 msgid "Checking: %s\n"

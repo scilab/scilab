@@ -15,7 +15,6 @@
 #include <wchar.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "MALLOC.h"
 #include "BOOL.h"
 
 #ifdef __cplusplus

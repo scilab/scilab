@@ -1,147 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<general>
+<general title="General">
   <body>
-    <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
-    <java-heap-memory heap-size="128"/>
+    <environment fpe="Produces an error" printing-format="Variable format" width="10">
+      <fpe floating-point-exception="Produces an error"/>
+      <fpe floating-point-exception="Produces a warning"/>
+      <fpe floating-point-exception="Produces Inf or NaN"/>
+    </environment>
+    <java-heap-memory heap-size="256"/>
   </body>
-  <confirmation-dialogs>
+  <confirmation-dialogs title="Confirmation dialogs"> 
     <body>
-      <tools order="ascending">
-        <tool state="checked" name="Scinotes" description="Prompt"/>
-        <tool state="unchecked" name="Console" description="Warn before clearing the Console"/>
-        <tool state="checked" name="Command History" description="Warn before deleting Command History items"/>
+      <tools>
+        <tool state="checked" id="console-exit" name="Console" description="Warn before exiting Scilab"/>
+        <tool state="checked" id="delete-history-item" name="Command History" description="Warn before deleting Command History items"/>
+        <tool state="checked" id="console-clear" name="Console" description="Warn before clearing the Console"/>
       </tools>
     </body>
   </confirmation-dialogs>
-  <shortcuts>
+  <desktop-layout title="Desktop layout">
+    <body>
+      <layouts name="Integrated">
+        <layout name="Integrated" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
+        <layout name="Simple" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
+      </layouts>
+    </body>
+  </desktop-layout>
+  <shortcuts title="Shortcuts">
     <body>
       <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
-        <action-folder name="Console">
-          <action key="Ctrl+E" description="Execute" name="console-execute"/>
-          <action key="Ctrl+O" description="Open a file" name="console-open"/>
-          <action key="Ctrl+L" description="Load environment" name="console-load"/>
-	  <action key="Ctrl+S" description="Save environment" name="console-save"/>
-	  <action key="" description="Change current directory" name="console-change-cwd"/>
-	  <action key="" description="Display current directory" name="console-display-cwd"/>
-	  <action key="" description="Page setup" name="console-page-setup"/>
-	  <action key="Ctrl+P" description="Print" name="console-print"/>
-	  <action key="Ctrl+Q" description="Quit" name="console-quit"/>
-	  <action key="Ctrl+X" description="Edit" name="console-edit"/>
-	  <action key="Ctrl+C" description="Copy" name="console-copy"/>
-	  <action key="Ctrl+V" description="Paste" name="console-paste"/>
-	  <action key="" description="Empty clipboard" name="console-empty-clipboard"/>
-	  <action key="Ctrl+A" description="Select all" name="console-select-all"/>
-	  <action key="" description="Preferences" name="console-prefs"/>
-	  <action key="" description="Show/Hide toolbar" name="console-sh-toolbar"/>
-	  <action key="" description="Clear history" name="console-clear-history"/>
-	  <action key="" description="Clear console" name="console-clear"/>
+        <action-folder name="Console" xconf-uid="console">
+          <action key="OSSCKEY X" description="Cut or interrupt" name="console-cut-or-interrupt"/>
+          <action key="OSSCKEY C" description="Copy or interrupt" name="console-copy-or-interrupt"/>
+          <action key="OSSCKEY S" description="Select all" name="console-select-all"/>
+          <action key="OSSCKEY A" description="Line beginning" name="console-line-begin"/>
+          <action key="OSSCKEY E" description="Line end" name="console-line-end"/>
+          <action key="OSSCKEY B" description="Previous char" name="console-prev-char"/>
+          <action key="OSSCKEY F" description="Next char" name="console-next-char"/>
+          <action key="OSSCKEY D" description="Delete next char" name="console-del-next-char"/>
+          <action key="OSSCKEY H" description="Delete previous char" name="console-del-prev-char"/>
+          <action key="OSSCKEY K" description="Delete end of line" name="console-del-end-line"/>
+          <action key="OSSCKEY U" description="Delete whole line" name="console-del-whole-line"/>
+          <action key="OSSCKEY ESCAPE" description="Delete whole line" name="console-del-whole-line"/>
+          <action key="OSSCKEY W" description="Delete last word" name="console-del-last-word"/>
+          <action key="OSSCKEY X" description="Delete last word" name="console-del-last-word"/>
+          <action key="PAGE_UP" description="Previous console page" name="console-prev-page"/>
+          <action key="PAGE_DOWN" description="Next console page" name="console-next-page"/>
+          <action key="ENTER" description="Validate input" name="console-enter"/>
+          <action key="F2" description="Clear console" name="console-clear"/>
+          <action key="F12" description="Console box" name="console-box"/>
+          <action key="OSSCKEY SPACE" description="Completion" name="console-completion"/>
+          <action key="TAB" description="Completion" name="console-completion"/>
+          <action key="UP" description="Previous history line" name="console-prev-history"/>
+          <action key="DOWN" description="Next history line" name="console-next-history"/>
+          <action key="OSSCKEY N" description="Previous history line" name="console-prev-history"/>
+          <action key="OSSCKEY P" description="Next history line" name="console-next-history"/>
+          <action key="F1" description="Help Browser" name="console-help-browser"/>
+          <!--action key="OSSCKEY V" description="Paste" name="console-paste"/>
+          <action key="OSSCKEY O" description="Open a file" name="console-open"/>
+          <action key="OSSCKEY L" description="Load environment" name="console-load"/>
+          <action key="OSSCKEY S" description="Save environment" name="console-save"/>
+          <action key="OSSCKEY Q" description="Quit" name="console-quit"/>
+          <action key="" description="Execute" name="console-execute"/>
+          <action key="" description="Empty clipboard" name="console-empty-clipboard"/>
+          <action key="" description="Change current directory" name="console-change-cwd"/>
+          <action key="" description="Display current directory" name="console-display-cwd"/>
+          <action key="" description="Page setup" name="console-page-setup"/>
+          <action key="" description="Print" name="console-print"/>
+          <action key="" description="Preferences" name="console-prefs"/>
+          <action key="" description="Show/Hide toolbar" name="console-sh-toolbar"/>
+          <action key="" description="Clear history" name="console-clear-history"/>
 	  <action key="" description="Resume" name="console-resume"/>
-	  <action key="" description="Abort" name="console-abort"/>
-	  <action key="" description="Interrupt" name="console-interrupt"/>
-	  <action key="" description="Launch SciNotes" name="console-scinotes"/>
-	  <action key="" description="Launch Xcos" name="console-xcos"/>
-	  <action key="" description="Matlab to Scilab Translator" name="console-matsci-translator"/>
-	  <action key="" description="Module manager" name="console-atoms"/>
-	  <action key="" description="Variable Browser" name="console-variable-browser"/>
-	  <action key="" description="Command History" name="console-history-browser"/>
-	  <action key="" description="File Browser" name="console-file-browser"/>
-	  <action key="F1" description="Help Browser" name="console-help-browser"/>
-	  <action key="" description="Demonstrations" name="console-demos"/>
-	  <action key="" description="Open Scilab website" name="console-scilab-website"/>
-	  <action key="" description="Open Online Help" name="console-help-website"/>
-	  <action key="" description="Open Scilab wiki" name="console-wiki-website"/>
-	  <action key="" description="Open ATOM website" name="console-atom-website"/>
-	  <action key="" description="Open File Exchange website" name="console-fileex-website"/>
-	  <action key="" description="Open Mailing lists" name="console-ml-website"/>
-	  <action key="" description="Open Forge website" name="console-forge-website"/>
-	  <action key="" description="Open Bugzilla" name="console-bugzilla-website"/>
-	  <action key="Shift+F1" description="About Scilab" name="console-about"/>
+          <action key="" description="Abort" name="console-abort"/>
+          <action key="" description="Interrupt" name="console-interrupt"/>
+          <action key="" description="Launch SciNotes" name="console-scinotes"/>
+          <action key="" description="Launch Xcos" name="console-xcos"/>
+          <action key="" description="Matlab to Scilab Translator" name="console-matsci-translator"/>
+          <action key="" description="Module manager" name="console-atoms"/>
+          <action key="" description="Variable Browser" name="console-variable-browser"/>
+          <action key="" description="Command History" name="console-history-browser"/>
+          <action key="" description="File Browser" name="console-file-browser"/>
+          <action key="" description="Demonstrations" name="console-demos"/>
+          <action key="" description="Open Scilab website" name="console-scilab-website"/>
+          <action key="" description="Open Online Help" name="console-help-website"/>
+          <action key="" description="Open Scilab wiki" name="console-wiki-website"/>
+          <action key="" description="Open ATOM website" name="console-atom-website"/>
+          <action key="" description="Open File Exchange website" name="console-fileex-website"/>
+          <action key="" description="Open Mailing lists" name="console-ml-website"/>
+          <action key="" description="Open Forge website" name="console-forge-website"/>
+          <action key="" description="Open Bugzilla" name="console-bugzilla-website"/>
+          <action key="Shift F1" description="About Scilab" name="console-about"/-->
         </action-folder>
-        <action-folder name="Scinotes">
-	  <action key="Ctrl+H" description="Auto complete (, [,..." name="scinotes-autocomplete-openers"/>
-	  <action key="Ctrl+Shift+H" description="Auto complete keyword" name="scinotes-autocomplete-keyword"/>
-	  <action key="Ctrl+Shift+G" description="Generate Help prototype" name="scinotes-help-prototype"/>
-	  <action key="TAB" description="Tabify" name="scinotes-tabify"/>
-	  <action key="Shift+TAB" description="Untabify" name="scinotes-untabify"/>
-	  <action key="Ctrl+I" description="Indent" name="scinotes-indent"/>
-	  <action key="Ctrl+D" description="Comment" name="scinotes-comment"/>
-	  <action key="Ctrl+Shift+D" description="Uncomment" name="scinotes-uncomment"/>
-	  <action key="Ctrl+Shift+W" description="Remove trailing whites" name="scinotes-remove-whites"/>
-	  <action key="Ctrl+A" description="Select all" name="scinotes-select-all"/>
-	  <action key="Ctrl+B" description="Select block" name="scinotes-select-block"/>
-	  <action key="Ctrl+Shift+T" description="Open current tab in a new window" name="scinotes-clone-current"/>
-	  <action key="Ctrl+Shiftf+X" description="Export current tab in a new window" name="scinotes-export-current"/>
-	  <action key="Ctrl+C" description="Copy" name="scinotes-copy"/>
-	  <action key="Ctrl+X" description="Cut" name="scinotes-cut"/>
-	  <action key="Ctrl+V" description="Paste" name="scinotes-paste"/>
-	  <action key="Ctrl+Shift+V" description="Paste a column" name="scinotes-paste-column"/>
- 	  <action key="Ctrl+Shift+Z" description="Repeat selection on column" name="scinotes-repeat-column"/>
-	  <action key="Ctrl+Z" description="Undo" name="scinotes-undo"/>
-	  <action key="Ctrl+Y" description="Redo" name="scinotes-redo"/>
-	  <action key="Ctrl+Shift+C" description="Copy as HTML with line number" name="scinotes-copy-with-lines"/>
- 	  <action key="Ctrl+N" description="New" name="scinotes-new"/>
-	  <action key="Ctrl+O" description="Open" name="scinotes-open"/>
-	  <action key="Ctrl+U" description="Open URL" name="scinotes-open-url"/>
-	  <action key="Ctrl+Shift+O" description="Open source" name="scinotes-open-source"/>
- 	  <action key="Ctrl+S" description="Save" name="scinotes-save"/>
-	  <action key="Ctrl+Shift+S" description="Save as" name="scinotes-save-as"/>
-	  <action key="Ctrl+Shift+R" description="Reload" name="scinotes-reload"/>
-	  <action key="Ctrl+Shift+P" description="Print preview" name="scinotes-print-preview"/>
- 	  <action key="Ctrl+P" description="Print" name="scinotes-print"/>
-	  <action key="Ctrl+W" description="Close" name="scinotes-close"/>
-	  <action key="Ctrl+Q" description="Exit" name="scinotes-exit"/>
-	  <action key="Ctrl+J" description="To lower case" name="scinotes-tolowercase"/>
- 	  <action key="Ctrl+Shiftf+J" description="To upper case" name="scinotes-touppercase"/>
-	  <action key="Ctrl+Shift+A" description="Capitalize" name="scinotes-capitalize"/>
-	  <action key="Ctrl+F1" description="Help on keyword" name="scinotes-help-keyword"/>
-	  <action key="Ctrl+L" description="Load in Scilab" name="scinotes-load-scilab"/>
- 	  <action key="Ctrl+Shift+E" description="Execute in Scilab" name="scinotes-execute-scilab"/>
-	  <action key="Ctrl+E" description="Evalute selection" name="scinotes-evaluate"/>
-	  <action key="F5" description="Save and execute" name="scinotes-save-execute"/>
-	  <action key="Ctrl+F5" description="Save and execute all" name="scinotes-save-execute-all"/>
- 	  <action key="Ctrl+F" description="Find" name="scinotes-find"/>
-	  <action key="Ctrl+K" description="Find next" name="scinotes-find-next"/>
-	  <action key="Ctrl+Shift+K" description="Find previous" name="scinotes-find-previous"/>
-	  <action key="F3" description="Incremental search" name="scinotes-incremental-search"/>
- 	  <action key="Ctrl+M" description="Set anchor" name="scinotes-set-anchor"/>
-	  <action key="Ctrl+Shift+M" description="Remove anchor" name="scinotes-remove-anchor"/>
-	  <action key="Ctrl+Shift+LESS" description="Go to next anchor" name="scinotes-next-anchor"/>
-	  <action key="Ctrl+LESS" description="Go to previous anchor" name="scinotes-previous-anchor"/>
- 	  <action key="Ctrl+G" description="Start Code Navigator" name="scinotes-code-navigator"/>
-	  <action key="Ctrl+Shift+F" description="Search word in file" name="scinotes-word-file"/>
-	  <action key="Ctrl+Shift+B" description="Search files" name="scinotes-search-files"/>
-	  <action key="Ctrl+SPACE" description="Keyword cmppletion" name="scinotes-completion"/>
- 	  <action key="F1" description="Help" name="scinotes-help"/>
-	  <action key="Shift+F1" description="About" name="scinotes-about"/>
-	  <action key="Ctrl+PAGE_DOWN" description="Next tab" name="scinotes-next-tab"/>
-	  <action key="Ctrl+PAGE_UP" description="Previous tab" name="scinotes-previous-tab"/>
- 	  <action key="DELETE" description="Delete" name="scinotes-delete"/>
-	  <action key="Ctrl+DOWN" description="Next paragraph" name="scinotes-next-paragraph"/>
-	  <action key="Ctrl+UP" description="Previous paragraph" name="scinotes-previous-paragraph"/>
-	  <action key="" description="Save all" name="scinotes-save-all"/>
- 	  <action key="" description="Overwrite" name="scinotes-overwrite"/>
-	  <action key="" description="Page setup" name="scinotes-page-setup"/>
-	  <action key="" description="Close all" name="scinotes-close-all"/>
-	  <action key="" description="Close all but" name="scinotes-close-all-but"/>
-	  <action key="" description="Convert quote to double quote" name="scinotes-double-quote"/>
-	  <action key="" description="Line numbering" name="scinotes-line-numbering"/>
-	  <action key="" description="Split view" name="scinotes-split-view"/>
+        <action-folder name="Scinotes" xconf-uid="scinotes">
+          <action key="OSSCKEY H" description="Auto complete (, [,..." name="scinotes-autocomplete-openers"/>
+          <action key="OSSCKEY Shift H" description="Auto complete keyword" name="scinotes-autocomplete-keyword"/>
+          <action key="OSSCKEY Shift G" description="Generate Help prototype" name="scinotes-help-prototype"/>
+          <action key="TAB" description="Tabify" name="scinotes-tabify"/>
+          <action key="Shift TAB" description="Untabify" name="scinotes-untabify"/>
+          <action key="OSSCKEY I" description="Indent" name="scinotes-indent"/>
+          <action key="OSSCKEY D" description="Comment" name="scinotes-comment"/>
+          <action key="OSSCKEY Shift D" description="Uncomment" name="scinotes-uncomment"/>
+          <action key="OSSCKEY Shift W" description="Remove trailing whites" name="scinotes-remove-whites"/>
+          <action key="OSSCKEY A" description="Select all" name="scinotes-select-all"/>
+          <action key="OSSCKEY B" description="Select block" name="scinotes-select-block"/>
+          <action key="OSSCKEY Shift T" description="Open current tab in a new window" name="scinotes-clone-current"/>
+          <action key="OSSCKEY Shift X" description="Export current tab in a new window" name="scinotes-export-current"/>
+          <action key="OSSCKEY C" description="Copy" name="scinotes-copy"/>
+          <action key="OSSCKEY X" description="Cut" name="scinotes-cut"/>
+          <action key="OSSCKEY V" description="Paste" name="scinotes-paste"/>
+          <action key="OSSCKEY Shift V" description="Paste a column" name="scinotes-paste-column"/>
+          <action key="OSSCKEY Shift Z" description="Repeat selection on column" name="scinotes-repeat-column"/>
+          <action key="OSSCKEY Z" description="Undo" name="scinotes-undo"/>
+          <action key="OSSCKEY Y" description="Redo" name="scinotes-redo"/>
+          <action key="OSSCKEY Shift C" description="Copy as HTML with line number" name="scinotes-copy-with-lines"/>
+          <action key="OSSCKEY N" description="New" name="scinotes-new"/>
+          <action key="OSSCKEY O" description="Open" name="scinotes-open"/>
+          <action key="OSSCKEY U" description="Open URL" name="scinotes-open-url"/>
+          <action key="OSSCKEY Shift O" description="Open source" name="scinotes-open-source"/>
+          <action key="OSSCKEY S" description="Save" name="scinotes-save"/>
+          <action key="OSSCKEY Shift S" description="Save as" name="scinotes-save-as"/>
+          <action key="OSSCKEY Shift R" description="Reload" name="scinotes-reload"/>
+          <action key="OSSCKEY Shift P" description="Print preview" name="scinotes-print-preview"/>
+          <action key="OSSCKEY P" description="Print" name="scinotes-print"/>
+          <action key="OSSCKEY W" description="Close" name="scinotes-close"/>
+          <action key="OSSCKEY Q" description="Exit" name="scinotes-exit"/>
+          <action key="OSSCKEY J" description="To lower case" name="scinotes-tolowercase"/>
+          <action key="OSSCKEY Shift J" description="To upper case" name="scinotes-touppercase"/>
+          <action key="OSSCKEY Shift A" description="Capitalize" name="scinotes-capitalize"/>
+          <action key="OSSCKEY F1" description="Help on keyword" name="scinotes-help-keyword"/>
+          <action key="OSSCKEY L" description="Load in Scilab" name="scinotes-load-scilab"/>
+          <action key="OSSCKEY Shift E" description="Execute in Scilab" name="scinotes-execute-scilab"/>
+          <action key="OSSCKEY E" description="Evalute selection" name="scinotes-evaluate-selection"/>
+          <action key="F5" description="Save and execute" name="scinotes-save-execute"/>
+          <action key="OSSCKEY F5" description="Save and execute all" name="scinotes-save-execute-all"/>
+          <action key="OSSCKEY F" description="Find" name="scinotes-find"/>
+          <action key="OSSCKEY K" description="Find next" name="scinotes-find-next"/>
+          <action key="OSSCKEY Shift K" description="Find previous" name="scinotes-find-previous"/>
+          <action key="F3" description="Incremental search" name="scinotes-incremental-search"/>
+          <action key="OSSCKEY M" description="Set anchor" name="scinotes-set-anchor"/>
+          <action key="OSSCKEY Shift M" description="Remove anchor" name="scinotes-remove-anchor"/>
+          <action key="OSSCKEY Shift LESS" description="Go to next anchor" name="scinotes-next-anchor"/>
+          <action key="OSSCKEY LESS" description="Go to previous anchor" name="scinotes-previous-anchor"/>
+          <action key="OSSCKEY G" description="Start Code Navigator" name="scinotes-code-navigator"/>
+          <action key="OSSCKEY Shift F" description="Search word in file" name="scinotes-word-file"/>
+          <action key="OSSCKEY Shift B" description="Search files" name="scinotes-search-files"/>
+          <action key="OSSCKEY SPACE" description="Keyword cmppletion" name="scinotes-completion"/>
+          <action key="F1" description="Help" name="scinotes-help"/>
+          <action key="Shift F1" description="About" name="scinotes-about"/>
+          <action key="OSSCKEY PAGE_DOWN" description="Next tab" name="scinotes-next-tab"/>
+          <action key="OSSCKEY PAGE_UP" description="Previous tab" name="scinotes-previous-tab"/>
+          <action key="DELETE" description="Delete" name="scinotes-delete"/>
+          <action key="OSSCKEY DOWN" description="Next paragraph" name="scinotes-next-paragraph"/>
+          <action key="OSSCKEY UP" description="Previous paragraph" name="scinotes-previous-paragraph"/>
+          <action key="" description="Save all" name="scinotes-save-all"/>
+          <action key="" description="Overwrite" name="scinotes-overwrite"/>
+          <action key="" description="Page setup" name="scinotes-page-setup"/>
+          <action key="" description="Close all" name="scinotes-close-all"/>
+          <action key="" description="Close all but" name="scinotes-close-all-but"/>
+          <action key="" description="Convert quote to double quote" name="scinotes-double-quote"/>
+          <action key="" description="Line numbering" name="scinotes-line-numbering"/>
         </action-folder>
-        <action-folder name="Xcos">
-	  <action key="Ctrl+S" description="Save diagramm" name="xcos-save"/>
+        <!--action-folder name="Xcos" xconf-uid="xcos">
+          <action key="OSSCKEY S" description="Save diagramm" name="xcos-save"/>
         </action-folder>
-        <action-folder name="Variable Browser">
-	  <action key="Ctrl+S" description="Save" name="variablebrowser-save"/>
+        <action-folder name="Variable Browser" xconf-uid="browsevar">
+          <action key="OSSCKEY S" description="Save" name="variablebrowser-save"/>
         </action-folder>
-        <action-folder name="Variable Editor">
-	  <action key="Ctrl+S" description="Save variable" name="editvar-save"/>
+        <action-folder name="Variable Editor" xconf-uid="editvar">
+          <action key="OSSCKEY S" description="Save variable" name="editvar-save"/>
         </action-folder>
-        <action-folder name="History Browser">
-	  <action key="Ctrl+S" description="Save history" name="historybrowser-save"/>
+        <action-folder name="History Browser" xconf-uid="historybrowser">
+          <action key="OSSCKEY S" description="Save history" name="historybrowser-save"/>
         </action-folder>
-        <action-folder name="File Browser">
-	  <action key="Ctrl+S" description="Save file" name="filebrowser-save"/>
-        </action-folder>
+        <action-folder name="File Browser" xconf-uid="filebrowser">
+          <action key="OSSCKEY S" description="Save file" name="filebrowser-save"/>
+        </action-folder-->
       </actions>
     </body>
   </shortcuts>

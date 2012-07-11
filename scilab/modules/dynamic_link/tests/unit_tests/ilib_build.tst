@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 TMP_OS_DIR=TMPDIR;
 
@@ -60,7 +60,7 @@ files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
 
 // load the shared library 
-exec loader.sce
+exec loader.sce;
 
 chdir(cur_dir);
 

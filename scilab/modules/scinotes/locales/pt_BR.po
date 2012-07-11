@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -200,15 +200,6 @@ msgstr "Navegador de código"
 msgid "Format"
 msgstr ""
 
-msgid "Set Colors ..."
-msgstr "Definir cores..."
-
-msgid "Set Font"
-msgstr "Configurar fonte"
-
-msgid "Reset default font"
-msgstr "Redefinir a fonte padrão"
-
 msgid "Shift Right"
 msgstr "Deslocar para a direita"
 
@@ -264,15 +255,6 @@ msgstr ""
 
 msgid "Line Endings"
 msgstr "Finais de linhas"
-
-msgid "Auto-completion on"
-msgstr ""
-
-msgid "(, [, ..."
-msgstr ""
-
-msgid "if, function, ..."
-msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeração de linha;Nenhuma;Normal;Compatível com whereami"
@@ -415,6 +397,12 @@ msgstr "Sem numeração de linha"
 
 msgid "Set Colors"
 msgstr "Configurar cores"
+
+msgid "Set Font"
+msgstr "Configurar fonte"
+
+msgid "Reset default font"
+msgstr "Redefinir a fonte padrão"
 
 msgid "Split horizontally"
 msgstr "Dividir horizontalmente"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:36+0000\n"
-"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"PO-Revision-Date: 2012-04-19 17:54+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ca\n"
 
 #, c-format
@@ -253,10 +253,10 @@ msgid "Scilab spreadsheet module not installed.\n"
 msgstr "El mòdul de fulla de càlcul del Scilab no està instal·lat.\n"
 
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Full de càlcul"
 
 msgid "Read a xls file"
-msgstr ""
+msgstr "Llegeix un fitxer xls"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

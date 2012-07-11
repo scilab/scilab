@@ -1,0 +1,8 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+com_
+callFunctionFromGateway
+;

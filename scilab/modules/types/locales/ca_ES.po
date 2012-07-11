@@ -1,0 +1,74 @@
+# Catalan translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2012-04-19 18:10+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15435)\n"
+
+msgid "Double"
+msgstr "Doble"
+
+msgid "Polynomial"
+msgstr "Polinomi"
+
+msgid "Boolean"
+msgstr "Booleà"
+
+msgid "Sparse"
+msgstr "Matriu dispersa"
+
+msgid "Boolean Sparse"
+msgstr "Dispersa matriu booleana"
+
+msgid "Matlab Sparse"
+msgstr "Matriu dispersa de Matlab"
+
+msgid "Integer"
+msgstr "Enter"
+
+msgid "Graphic handle"
+msgstr ""
+
+msgid "String"
+msgstr "Cadena"
+
+msgid "User function"
+msgstr "Funció de l'usuari"
+
+msgid "Compiled function"
+msgstr "Funció compilada"
+
+msgid "Function library"
+msgstr "Funció de biblioteca"
+
+msgid "List"
+msgstr "Llista"
+
+msgid "Tlist"
+msgstr "Llista T"
+
+msgid "Mlist"
+msgstr "Llista M"
+
+msgid "Pointer"
+msgstr "Punter"
+
+msgid "Implicit polynomial"
+msgstr "Polinomi implícit"
+
+msgid "Intrinsic function"
+msgstr "Funció intrínseca"
+
+msgid "Unknown datatype"
+msgstr "Tipus de dades desconegut"

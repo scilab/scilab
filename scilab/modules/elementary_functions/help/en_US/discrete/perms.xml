@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="perms" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>perms</refname>
     <refpurpose>all permutations of vector components</refpurpose>
@@ -41,11 +38,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Given a vector <literal>x</literal> of length <literal>n</literal>,
-    <literal>perms</literal> returns all the permutations of the
-    <literal>n</literal> components of <literal>x</literal> (i.e
-    <literal>n!</literal> permutations). The size of <literal>y</literal>
-    is <literal> n!-by-n.</literal></para>
+    <para>
+      Given a vector <literal>x</literal> of length <literal>n</literal>,
+      <literal>perms</literal> returns all the permutations of the
+      <literal>n</literal> components of <literal>x</literal> (i.e
+      <literal>n!</literal> permutations). The size of <literal>y</literal>
+      is <literal> n!-by-n.</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

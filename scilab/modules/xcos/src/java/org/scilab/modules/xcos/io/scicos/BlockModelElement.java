@@ -25,6 +25,7 @@ import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -34,37 +35,39 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 
 /**
  * Protected class which decode model fields of a block.
- * 
+ *
  * This class is intentionally package-protected to prevent external use.
  */
 // CSOFF: ClassDataAbstractionCoupling
-class BlockModelElement extends BlockPartsElement {
-    private static final List<String> DATA_FIELD_NAMES = asList("model", "sim",
-            "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
-            "state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype",
-            "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
+final class BlockModelElement extends BlockPartsElement {
+    static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate",
+            "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
 
-    private static final int CTRL_PORT_INDEX = 8;
-    private static final int CMD_PORT_INDEX = 9;
-    private static final int STATE_INDEX = 10;
-    private static final int FIRING_INDEX = 17;
-    private static final int DEPENDU_INDEX = 18;
+    private static final int CTRL_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtin");
+    private static final int CMD_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtout");
+    private static final int STATE_INDEX = DATA_FIELD_NAMES.indexOf("state");
+    private static final int FIRING_INDEX = DATA_FIELD_NAMES.indexOf("firing");
+    private static final int DEPENDU_INDEX = DATA_FIELD_NAMES.indexOf("dep_ut");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
+    /** In-progress decoded diagram */
+    private final XcosDiagram diag;
+
     /**
      * Default constructor
      */
-    public BlockModelElement() {
+    public BlockModelElement(final XcosDiagram diag) {
+        this.diag = diag;
     }
 
     /**
      * Decode Scicos element into the block.
-     * 
+     *
      * This decode method doesn't coverage Port management because we need
      * graphics informations to handle it.
-     * 
+     *
      * @param element
      *            the scicos element
      * @param into
@@ -76,8 +79,7 @@ class BlockModelElement extends BlockPartsElement {
      *      java.lang.Object)
      */
     @Override
-    public BasicBlock decode(ScilabType element, BasicBlock into)
-            throws ScicosFormatException {
+    public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
 
         if (into == null) {
             throw new IllegalArgumentException();
@@ -106,7 +108,7 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Fill the simulation data into the block
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -117,11 +119,8 @@ class BlockModelElement extends BlockPartsElement {
         if (data.get(1) instanceof ScilabString) {
             functionName = ((ScilabString) data.get(1)).getData()[0][0];
         } else if ((data.get(1) instanceof ScilabList)) {
-            functionName = ((ScilabString) ((ScilabList) data.get(1)).get(0))
-                    .getData()[0][0];
-            functionType = SimulationFunctionType
-                    .convertScilabValue((int) ((ScilabDouble) ((ScilabList) data
-                            .get(1)).get(1)).getRealPart()[0][0]);
+            functionName = ((ScilabString) ((ScilabList) data.get(1)).get(0)).getData()[0][0];
+            functionType = SimulationFunctionType.convertScilabValue((int) ((ScilabDouble) ((ScilabList) data.get(1)).get(1)).getRealPart()[0][0]);
         }
 
         into.setSimulationFunctionName(functionName);
@@ -130,42 +129,44 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Fill the block with the control and command ports
-     * 
+     *
      * @param into
      *            the target instance
      */
     private void fillControlCommandPorts(BasicBlock into) {
-        ScilabDouble dataNbControlPort = (ScilabDouble) data
-                .get(CTRL_PORT_INDEX);
-        ScilabDouble dataNbCommandPort = (ScilabDouble) data
-                .get(CMD_PORT_INDEX);
+        ScilabDouble dataNbControlPort = (ScilabDouble) data.get(CTRL_PORT_INDEX);
+        ScilabDouble dataNbCommandPort = (ScilabDouble) data.get(CMD_PORT_INDEX);
 
         if (dataNbControlPort.getRealPart() != null) {
+            final int baseIndex = into.getChildCount();
+
             int nbControlPort = dataNbControlPort.getHeight();
             for (int i = 0; i < nbControlPort; i++) {
                 final BasicPort port = new ControlPort();
 
                 // do not use BasicPort#addPort() to avoid the view update
                 port.setOrdering(i + 1);
-                into.insert(port, i);
+                into.insert(port, baseIndex + i);
             }
         }
 
         if (dataNbCommandPort.getRealPart() != null) {
+            final int baseIndex = into.getChildCount();
+
             int nbCommandPort = dataNbCommandPort.getHeight();
             for (int i = 0; i < nbCommandPort; i++) {
                 final BasicPort port = new CommandPort();
 
                 // do not use BasicPort#addPort() to avoid the view update
                 port.setOrdering(i + 1);
-                into.insert(port, i);
+                into.insert(port, baseIndex + i);
             }
         }
     }
 
     /**
      * Fill the block with the first raw parameters
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -201,7 +202,7 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Fill the block with the firing parameters
-     * 
+     *
      * @param into
      *            the target instance
      */
@@ -220,17 +221,14 @@ class BlockModelElement extends BlockPartsElement {
         final ScilabDouble firing = (ScilabDouble) data.get(FIRING_INDEX);
 
         if (!isEmptyField(firing)) {
-            final List<CommandPort> allCommandPorts = BasicBlockInfo
-                    .getAllTypedPorts(into, false, CommandPort.class);
+            final List<CommandPort> allCommandPorts = BasicBlockInfo.getAllTypedPorts(into, false, CommandPort.class);
 
-            final boolean isColumnDominant = firing.getHeight() >= firing
-                    .getWidth();
+            final boolean isColumnDominant = firing.getHeight() >= firing.getWidth();
             final double[][] values = firing.getRealPart();
             final int[] indexes = { 0, 0 };
 
             for (int i = 0; i < allCommandPorts.size(); i++) {
-                allCommandPorts.get(i).setInitialState(
-                        values[indexes[0]][indexes[1]]);
+                allCommandPorts.get(i).setInitialState(values[indexes[0]][indexes[1]]);
                 incrementIndexes(indexes, isColumnDominant);
             }
         }
@@ -238,29 +236,25 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Fill the block with the second raw parameters
-     * 
+     *
      * @param into
      *            the target instance
      * @throws WrongStructureException
      *             on wrong value
      */
-    private void fillSecondRawParameters(BasicBlock into)
-            throws WrongStructureException {
+    private void fillSecondRawParameters(BasicBlock into) throws WrongStructureException {
         // dep-ut
         int field = DEPENDU_INDEX;
-        final boolean[][] dependsOn = ((ScilabBoolean) data.get(field))
-                .getData();
+        final boolean[][] dependsOn = ((ScilabBoolean) data.get(field)).getData();
 
         if (dependsOn.length == 1 && dependsOn[0].length == 2) {
             into.setDependsOnU(dependsOn[0][0]);
             into.setDependsOnT(dependsOn[0][1]);
-        } else if (dependsOn.length == 2 && dependsOn[0].length == 1
-                && dependsOn[1].length == 1) {
+        } else if (dependsOn.length == 2 && dependsOn[0].length == 1 && dependsOn[1].length == 1) {
             into.setDependsOnU(dependsOn[0][0]);
             into.setDependsOnT(dependsOn[1][0]);
         } else {
-            throw new WrongStructureException(
-                    ((ScilabString) data.get(0)).getData()[0][DEPENDU_INDEX]);
+            throw new WrongStructureException(((ScilabString) data.get(0)).getData()[0][DEPENDU_INDEX]);
         }
 
         // label
@@ -282,11 +276,11 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -332,8 +326,7 @@ class BlockModelElement extends BlockPartsElement {
 
         // sim : String or list(String, int)
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && !(data.get(field) instanceof ScilabList)) {
+        if (!(data.get(field) instanceof ScilabString) && !(data.get(field) instanceof ScilabList)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -394,39 +387,33 @@ class BlockModelElement extends BlockPartsElement {
         // dstate
         // TODO: the ScilabString value is undocumented
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabString)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabString)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // odstate
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabList)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabList)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // rpar
         // SuperBlocks store all "included" data in rpar field.
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabMList)
-                && !(data.get(field) instanceof ScilabString)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabMList) && !(data.get(field) instanceof ScilabString)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // ipar
         // !! WARNING !! scifunc_block_m ipar = list(...)
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabList)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabList)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // opar
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabList)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabList)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -438,8 +425,7 @@ class BlockModelElement extends BlockPartsElement {
 
         // firing
         field++;
-        if (!(data.get(field) instanceof ScilabDouble)
-                && !(data.get(field) instanceof ScilabBoolean)) {
+        if (!(data.get(field) instanceof ScilabDouble) && !(data.get(field) instanceof ScilabBoolean)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -469,8 +455,7 @@ class BlockModelElement extends BlockPartsElement {
 
         // equations
         field++;
-        if (!(data.get(field) instanceof ScilabTList)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabTList) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
@@ -482,7 +467,7 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Check if the element can be decoded.
-     * 
+     *
      * @param element
      *            the Scicos element
      * @return true, if the Scicos types match.
@@ -498,7 +483,7 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -518,8 +503,7 @@ class BlockModelElement extends BlockPartsElement {
         if (data == null) {
             data = allocateElement();
         } else {
-            throw new IllegalArgumentException(
-                    "The element parameter must be null.");
+            throw new IllegalArgumentException("The element parameter must be null.");
         }
 
         data = (ScilabMList) beforeEncode(from, data);
@@ -545,12 +529,10 @@ class BlockModelElement extends BlockPartsElement {
          * Event ports
          */
         field++; // evtin
-        final List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(
-                from, false, ControlPort.class);
+        final List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class);
         data.set(field, BasicBlockInfo.getAllPortsDataLines(ctrlPorts));
         field++; // evtout
-        final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(
-                from, false, CommandPort.class);
+        final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class);
         data.set(field, BasicBlockInfo.getAllPortsDataLines(cmdPorts));
 
         /*
@@ -598,8 +580,7 @@ class BlockModelElement extends BlockPartsElement {
         data.set(field, property);
 
         field++; // dep_ut
-        boolean[][] dependsOnUandT = { { from.isDependsOnU(),
-                from.isDependsOnT() } };
+        boolean[][] dependsOnUandT = { { from.isDependsOnU(), from.isDependsOnT() } };
         data.set(field, new ScilabBoolean(dependsOnUandT));
 
         field++; // label
@@ -636,12 +617,11 @@ class BlockModelElement extends BlockPartsElement {
 
     /**
      * Allocate a new element
-     * 
+     *
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList element = new ScilabMList(
-                DATA_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
         element.add(new ScilabList()); // sim
         addSizedPortVector(element, ScilabDouble.class, getInSize()); // in
         addSizedPortVector(element, ScilabDouble.class, getInSize()); // in2

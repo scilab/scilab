@@ -285,13 +285,35 @@ public class ScicosParameters implements Serializable, Cloneable {
     }
 
     /**
-     * @return solver
+     * <ul>
+     * <li>0 : Lsodar : Method: BDF, Nonlinear solver= NEWTON (not available
+     * yet)
+     * <li>1 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
+     * <li>2 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
+     * <li>3 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= NEWTON
+     * <li>4 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= FUNCTIONAL
+     * <li>5 : DOPRI5 : Method: Runge-Kutta 4(5) (not available yet)
+     * <li>100 : Sundials/IDA
+     *
+     *
+     * @return solver value
      */
     public double getSolver() {
         return solver;
     }
 
     /**
+     * <ul>
+     * <li>0 : Lsodar : Method: BDF, Nonlinear solver= NEWTON (not available
+     * yet)
+     * <li>1 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
+     * <li>2 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
+     * <li>3 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= NEWTON
+     * <li>4 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= FUNCTIONAL
+     * <li>5 : DOPRI5 : Method: Runge-Kutta 4(5) (not available yet)
+     * <li>100 : Sundials/IDA
+     *
+     *
      * @param solver
      *            set solver
      * @throws PropertyVetoException

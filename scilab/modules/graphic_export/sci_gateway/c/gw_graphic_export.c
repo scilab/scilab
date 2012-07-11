@@ -3,30 +3,24 @@
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
  *
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include <string.h>
-#include "gw_graphic_export.h"
-#include "sci_mode.h"
-#include "api_scilab.h"
-#include "MALLOC.h"
-#include "callFunctionFromGateway.h"
-#include "localization.h"
-#include "Scierror.h"
 #include "BOOL.h"
-#include "loadOnUseClassPath.h"
+#include "gw_graphic_export.h"
+#include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 static BOOL loadedDepVectorialExport = FALSE;
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = 
+static gw_generic_table Tab[] =
 {
   {sci_xs2bmp,"xs2bmp"},
   {sci_xs2gif,"xs2gif"},
@@ -40,7 +34,7 @@ static gw_generic_table Tab[] =
 };
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
-{  
+{
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

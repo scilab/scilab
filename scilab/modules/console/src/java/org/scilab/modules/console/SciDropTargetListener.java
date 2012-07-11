@@ -32,138 +32,138 @@ import java.util.StringTokenizer;
  */
 public class SciDropTargetListener implements DropTargetListener {
 
-		private SciConsole associatedConsole;
+    private SciConsole associatedConsole;
 
-		/**
-		 * Constructor
-		 * @param sciConsole console object associated to this listener
-		 */
-		public SciDropTargetListener(SciConsole sciConsole) {
-			super();
-			associatedConsole = sciConsole;
-		}
+    /**
+     * Constructor
+     * @param sciConsole console object associated to this listener
+     */
+    public SciDropTargetListener(SciConsole sciConsole) {
+        super();
+        associatedConsole = sciConsole;
+    }
 
-		/**
-		 * Drop handling
-		 * @param dtde the drop event
-		 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
-		 */
-		public void drop(DropTargetDropEvent dtde) {
+    /**
+     * Drop handling
+     * @param dtde the drop event
+     * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
+     */
+    public void drop(DropTargetDropEvent dtde) {
 
-			dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
+        dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 
-			Transferable transferable = dtde.getTransferable();
+        Transferable transferable = dtde.getTransferable();
 
-		    // New dataflavor created for tests about the type of the object dropped
-	        DataFlavor uriListFlavor = null;
-			try {
-				uriListFlavor = new DataFlavor("text/uri-list;class=java.lang.String");
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-				dtde.rejectDrop();
-				dtde.dropComplete(false);
-			}
+        // New dataflavor created for tests about the type of the object dropped
+        DataFlavor uriListFlavor = null;
+        try {
+            uriListFlavor = new DataFlavor("text/uri-list;class=java.lang.String");
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+            dtde.rejectDrop();
+            dtde.dropComplete(false);
+        }
 
-			try {
+        try {
 
-				if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-					List<File> data = (List<File>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
-					// Send file names to Scilab
+            if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+                List<File> data = (List<File>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+                // Send file names to Scilab
 
-					String[] fileNames = new String[data.size()];
-					for (int i = 0; i < data.size(); i++) {
-						File tmpfile = (File) data.get(i);
-						fileNames[i] = tmpfile.toString();
-					}
-					DropFiles.dropFiles(fileNames);
+                String[] fileNames = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    File tmpfile = data.get(i);
+                    fileNames[i] = tmpfile.toString();
+                }
+                DropFiles.dropFiles(fileNames);
 
-					// Crappy method to make Scilab parser execute the commands stored by dropFiles
-					((SciOutputView) associatedConsole.getConfiguration().getOutputView())
-												.getConsole().sendCommandsToScilab("", false, false);
-				} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
+                // Crappy method to make Scilab parser execute the commands stored by dropFiles
+                ((SciOutputView) associatedConsole.getConfiguration().getOutputView())
+                .getConsole().sendCommandsToScilab("", false, false);
+            } else if (transferable.isDataFlavorSupported(uriListFlavor)) {
 
-					// --- FILE(S) DROP ---
+                // --- FILE(S) DROP ---
 
-					String data = (String) transferable.getTransferData(uriListFlavor);
+                String data = (String) transferable.getTransferData(uriListFlavor);
 
-		            // Get file names as a list
-		            List<String> listOfFiles = new ArrayList<String>(1);
-					for (StringTokenizer st = new StringTokenizer(data, "\r\n"); st.hasMoreTokens();) {
-					      String s = st.nextToken();
-					      // Have to test length because of last token which length is 1 and has to be ignored
-					      if (s.length() > 1) {
-					    	  listOfFiles.add(s);
-					      }
-				    }
+                // Get file names as a list
+                List<String> listOfFiles = new ArrayList<String>(1);
+                for (StringTokenizer st = new StringTokenizer(data, "\r\n"); st.hasMoreTokens();) {
+                    String s = st.nextToken();
+                    // Have to test length because of last token which length is 1 and has to be ignored
+                    if (s.length() > 1) {
+                        listOfFiles.add(s);
+                    }
+                }
 
-					// Send file names to Scilab
-					String[] fileNames = new String[listOfFiles.size()];
-					for (int i = 0; i < listOfFiles.size(); i++) {
-						fileNames[i] = listOfFiles.get(i);
-					}
-					DropFiles.dropFiles(fileNames);
+                // Send file names to Scilab
+                String[] fileNames = new String[listOfFiles.size()];
+                for (int i = 0; i < listOfFiles.size(); i++) {
+                    fileNames[i] = listOfFiles.get(i);
+                }
+                DropFiles.dropFiles(fileNames);
 
-					// Crappy method to make Scilab parser execute the commands stored by dropFiles
-					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).setCmdBuffer("", false);
+                // Crappy method to make Scilab parser execute the commands stored by dropFiles
+                ((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).setCmdBuffer("", false);
 
-				} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            } else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 
-					// --- TEXT DROP ---
+                // --- TEXT DROP ---
 
-					String dropContents = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+                String dropContents = (String) transferable.getTransferData(DataFlavor.stringFlavor);
 
-					// Send text to the console and remove prompts in text if there are
-					//associatedConsole.sendCommandsToScilab(dropContents, true);
-					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).append(dropContents);
-				}
+                // Send text to the console and remove prompts in text if there are
+                //associatedConsole.sendCommandsToScilab(dropContents, true);
+                ((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).append(dropContents);
+            }
 
-				// If we made it this far, everything worked.
-		        dtde.dropComplete(true);
+            // If we made it this far, everything worked.
+            dtde.dropComplete(true);
 
-			} catch (UnsupportedFlavorException e) {
-				e.printStackTrace();
-				dtde.rejectDrop();
-				dtde.dropComplete(false);
-			} catch (IOException e) {
-				e.printStackTrace();
-				dtde.rejectDrop();
-				dtde.dropComplete(false);
-			}
-		}
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+            dtde.rejectDrop();
+            dtde.dropComplete(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            dtde.rejectDrop();
+            dtde.dropComplete(false);
+        }
+    }
 
-		/**
-		 * Drag beginning handling
-		 * @param dtde the drop event
-		 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
-		 */
-		public void dragEnter(DropTargetDragEvent dtde) {
-			// Nothing to do in Scilab Console
-		}
+    /**
+     * Drag beginning handling
+     * @param dtde the drop event
+     * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
+     */
+    public void dragEnter(DropTargetDragEvent dtde) {
+        // Nothing to do in Scilab Console
+    }
 
-		/**
-		 * Drag end handling
-		 * @param dtde the drop event
-		 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
-		 */
-		public void dragExit(DropTargetEvent dtde) {
-			// Nothing to do in Scilab Console
-		}
+    /**
+     * Drag end handling
+     * @param dtde the drop event
+     * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
+     */
+    public void dragExit(DropTargetEvent dtde) {
+        // Nothing to do in Scilab Console
+    }
 
-		/**
-		 * Drag over this object handling
-		 * @param dtde the drop event
-		 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
-		 */
-		public void dragOver(DropTargetDragEvent dtde) {
-			// Nothing to do in Scilab Console
-		}
+    /**
+     * Drag over this object handling
+     * @param dtde the drop event
+     * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
+     */
+    public void dragOver(DropTargetDragEvent dtde) {
+        // Nothing to do in Scilab Console
+    }
 
-		/**
-		 * Drag action change handling
-		 * @param dtde the drop event
-		 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
-		 */
-		public void dropActionChanged(DropTargetDragEvent dtde) {
-			// Nothing to do in Scilab Console
-		}
-	};
+    /**
+     * Drag action change handling
+     * @param dtde the drop event
+     * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
+     */
+    public void dropActionChanged(DropTargetDragEvent dtde) {
+        // Nothing to do in Scilab Console
+    }
+};

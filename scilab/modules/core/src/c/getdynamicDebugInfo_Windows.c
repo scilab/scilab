@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -166,7 +166,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
     if (str_info)
     {
         SYSTEM_INFO siSysInfo;
-        GetSystemInfo(&siSysInfo); 
+        GetSystemInfo(&siSysInfo);
         sprintf(str_info,"Number of processors: %d",  siSysInfo.dwNumberOfProcessors);
         outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
     }
@@ -255,6 +255,38 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
     }
 
     /*
+    sciErr = getNamedVarType(pvApiCtx, "TMPDIR", &iType);
+    if ((sciErr.iErr == 0) && (iType == sci_strings))
+    {
+        wchar_t * TMPDIR_value = NULL;
+        int TMPDIR_length = 0;
+        int m = 0, n = 0;
+
+        sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+        if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+        {
+            TMPDIR_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(TMPDIR_length + 1));
+            if (TMPDIR_value)
+            {
+                sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+                if(sciErr.iErr == 0)
+                {
+                    char *utfstr = wide_string_to_UTF8(TMPDIR_value);
+                    if (utfstr)
+                    {
+                        str_info = (char*)MALLOC( sizeof(char)*(strlen("TMPDIR") + strlen("%s : %s") + strlen(utfstr) + 1) );
+                        sprintf(str_info,"%s: %s", "TMPDIR", utfstr);
+                        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                        FREE(utfstr);
+                        utfstr = NULL;
+                    }
+                }
+                FREE(TMPDIR_value);
+                TMPDIR_value = NULL;
+            }
+        }
+    }
+
     sciErr = getNamedVarType(pvApiCtx, "WSCI", &iType);
     if ((sciErr.iErr == 0) && (iType == sci_strings))
     {

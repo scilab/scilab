@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tlist" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tlist</refname>
     <refpurpose>objeto do Scilab e definição de listas com tipos ("typed
@@ -100,7 +97,7 @@
     <para>
       Uma matriz de razões de polinômios <literal>H</literal> é
       representada por um <literal>typed-list</literal>
-      <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> onde
+      <literal>H=rlist(Num,Den,[])</literal> onde
       <literal>Num</literal> e <literal>Den</literal> são duas matrizes de
       polinômios e um sistema linear (ex.: de tempo contínuo) com matriz de
       transferência <literal>H</literal> possivelmente criada por

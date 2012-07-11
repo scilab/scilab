@@ -381,7 +381,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
              */
             childGraph.installListeners();
             childGraph.installSuperBlockListeners();
-            superBlock.syncParameters();
+            superBlock.invalidateRpar();
 
             Xcos.getInstance().addDiagram(parentGraph.getSavedFile(), childGraph);
         } finally {

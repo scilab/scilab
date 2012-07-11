@@ -53,6 +53,7 @@ Building gateway...
    ilib_gen_Make: Copy libskeleton_c.c to TMPDIR
    ilib_gen_Make: Copy sci_csub.c to TMPDIR
    ilib_gen_Make: Copy sci_csum.c to TMPDIR
+   ilib_gen_Make: Copy sci_foo.c to TMPDIR
    ilib_gen_Make: Copy sci_multiplybypi.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
@@ -81,6 +82,7 @@ Building the master document:
 
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
 Generating loader.sce...
+Generating unloader.sce...
 Generating cleaner.sce...
 exec("TMPDIR/toolbox_skeleton/loader.sce");
 Start Toolbox skeleton

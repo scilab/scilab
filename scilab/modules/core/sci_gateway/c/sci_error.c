@@ -151,7 +151,6 @@ static int error_one_rhs_string(void *_pvCtx,
         int m = 0;
         int n = 0;
         char **pStrs = NULL;
-        char *concatenatedString = NULL;
 
         if (getAllocatedMatrixOfString(_pvCtx, _piAddressOne, &m, &n, &pStrs) != 0)
         {
@@ -159,7 +158,7 @@ static int error_one_rhs_string(void *_pvCtx,
             return 0;
         }
 
-        setErrorMessage(fname, defaultErrorCode, defaultErrorPosition, pStrs, m * n);
+        setErrorMessage(fname, defaultErrorCode, defaultErrorPosition, (const char **)pStrs, m * n);
 
         freeAllocatedMatrixOfString(m, n, pStrs);
         pStrs = NULL;
@@ -310,7 +309,6 @@ static int error_two_rhs_number_string(void *_pvCtx,
         int m = 0;
         int n = 0;
         char **pStrs = NULL;
-        char *concatenatedString = NULL;
 
         if (getAllocatedMatrixOfString(_pvCtx, _piAddressString, &m, &n, &pStrs) != 0)
         {
@@ -318,7 +316,7 @@ static int error_two_rhs_number_string(void *_pvCtx,
             return 0;
         }
 
-        setErrorMessage(fname, iErrorCode, defaultErrorPosition, pStrs, m * n);
+        setErrorMessage(fname, iErrorCode, defaultErrorPosition, (const char**)pStrs, m * n);
 
         freeAllocatedMatrixOfString(m, n, pStrs);
         pStrs = NULL;

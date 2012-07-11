@@ -127,6 +127,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     FREE(pStVarOne[i]);
                 }
+                FREE(pStVarOne);
                 FREE(lenStVarOne);
                 return 0;
             }

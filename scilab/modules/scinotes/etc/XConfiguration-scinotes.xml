@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<scinotes>
+<scinotes title="SciNotes">
   <body>
-    <scinotes-preferences restart-reopen="true" reload-unedited="true" add-line-termination="true" number-of-entries="5" encoding="utf-8" eol="Unix(LF)"/>
+    <scinotes-preferences restart-reopen="true" add-line-termination="true" number-of-recently-open="5" encoding="utf-8" eol="Unix (LF)" scinotes="true" cmd="" macro="" external-cmd="true"/>
   </body>
-  <display>
+  <display title="Display">
     <body>
-      <scinotes-display highlight-current-line="true" current-line-color="#facade" show-line-numbers="true" wrap-lines="true"/>
+      <scinotes-display highlight-current-line="false" current-line-color="#FACADE" show-line-numbers="true" wrap-lines="true" keywords-colorization="true" highlight-brackets="true" brackets-color="#E40087" brackets-highlightment="Framed" brackets-onmouseover="true" highlight-keywords="true" keywords-color="#FFF3D2" keywords-highlightment="Filled" keywords-onmouseover="true" whereami="false" tab-size="4" tab-representation="chevrons" use-spaces="true" indent-size="4" automatic-indent="true" auto-complete-openers="true" auto-complete-keywords="true"/>
     </body>
   </display>
-  <syntax>
+  <autosave title="Autosave">
     <body>
-      <scinotes-syntax highlight="true" hightlight-brackets="true" tab-size="4" use-spaces="true" indent-size="4" automatic-indent="true"/>
-    </body>
-  </syntax>
-  <autosave>
-    <body>
-      <scinotes-autosave enable="true" save-every="5" save-untitled="true" automatic-delete="true" append-flag="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
+      <scinotes-autosave enable="true" save-every="5" automatic-delete="true" append-filename="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
     </body>
   </autosave>
 </scinotes>

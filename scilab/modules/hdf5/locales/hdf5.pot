@@ -14,65 +14,74 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 80
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 99
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 102
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 113
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 134
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 117
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 138
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 838
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 149
+#, c-format
+msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 174
+#, c-format
+msgid "%s: Variable '%s' already exists in file '%s'."
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 204
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 210
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 928
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 851
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 87
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 82
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 115
+# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 52
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 84
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 852
-#, c-format
-msgid "%s: Type: %dx%d\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 111
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 93
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 94
 #, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 235
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 251
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 283
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 21
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 27
-# File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 34
-msgid "HDF5 is not installed"
 msgstr ""

@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_write_bsparse(char *fname,unsigned long fname_len)
+int read_write_bsparse(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i                   = 0;
@@ -41,7 +41,7 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
 
     //get variable address of the first input argument
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -49,7 +49,7 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
 
     //get size and data from Scilab memory
     sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -61,22 +61,22 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
     piNewRow = (int*)MALLOC(sizeof(int) * iRows);
     piNewCol = (int*)MALLOC(sizeof(int) * iNewItem);
 
-    for(i = 0 ; i < iRows ; i++)
+    for (i = 0 ; i < iRows ; i++)
     {
         piNewRow[i] = iCols - piNbItemRow[i];
-        for(j = 0 ; j < iCols ; j++)
+        for (j = 0 ; j < iCols ; j++)
         {
             int iFind = 0;
-            for(k = 0 ; k < piNbItemRow[i] ; k++)
+            for (k = 0 ; k < piNbItemRow[i] ; k++)
             {
-                if(piColPos[iCol + k] == (j + 1))
+                if (piColPos[iCol + k] == (j + 1))
                 {
                     iFind = 1;
                     break;
                 }
             }
 
-            if(iFind == 0)
+            if (iFind == 0)
             {
                 piNewCol[iNewCol++] = (j + 1);
             }
@@ -85,13 +85,13 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
         iCol += piNbItemRow[i];
     }
 
-    sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
-    if(sciErr.iErr)
+    sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }

@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 8050 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO TRY CATCH --> 
 // 

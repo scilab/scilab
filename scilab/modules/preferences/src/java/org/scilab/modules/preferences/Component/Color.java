@@ -15,12 +15,15 @@
 package org.scilab.modules.preferences.Component;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import org.w3c.dom.Node;
 
@@ -52,8 +55,8 @@ public class Color extends JButton implements XComponent, XChooser {
      * Define the set of actuators.
      * @return array of actuator names.
      */
-    public final String [] actuators() {
-        String [] actuators = {"enable", "color"};
+    public final String[] actuators() {
+        String[] actuators = {"enable", "color"};
         return actuators;
     }
 
@@ -63,44 +66,46 @@ public class Color extends JButton implements XComponent, XChooser {
      */
     public Color(final Node peer) {
         super(new Icon() {
-                public final int getIconHeight() {
-                    return ICONDIM;
-                }
+            public final int getIconHeight() {
+                return ICONDIM;
+            }
 
-                public final int getIconWidth() {
-                    return ICONDIM * 2;
-                }
+            public final int getIconWidth() {
+                return ICONDIM * 2;
+            }
 
-                public void paintIcon(Component c, Graphics g, int x, int y) {
-                    if (c.isEnabled()) {
-                        g.setColor(c.getForeground());
-                        g.fillRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
-                        g.setColor(java.awt.Color.BLACK);
-                        g.drawRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
-                    } else {
-                        java.awt.Color color = c.getForeground();
-                        float hsb[] = new float[3];
-                        java.awt.Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
-                        g.setColor(java.awt.Color.getHSBColor(hsb[0], hsb[1] * 0.2f, hsb[2] * 0.95f));
-                        g.fillRect(x, y, getIconWidth(), getIconHeight());
-                    }
+            public void paintIcon(Component c, Graphics g, int x, int y) {
+                if (c.isEnabled()) {
+                    g.setColor(c.getForeground());
+                    g.fillRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
+                    g.setColor(java.awt.Color.BLACK);
+                    g.drawRect(x, y, getIconWidth() - 1, getIconHeight() - 1);
+                } else {
+                    java.awt.Color color = c.getForeground();
+                    float hsb[] = new float[3];
+                    java.awt.Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
+                    g.setColor(java.awt.Color.getHSBColor(hsb[0], hsb[1] * 0.2f, hsb[2] * 0.95f));
+                    g.fillRect(x, y, getIconWidth(), getIconHeight());
                 }
-            });
+            }
+        });
 
         String color = XCommonManager.getAttribute(peer , "color", "000000");
         color(color);
         setOpaque(true);
         addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    java.awt.Color jColor = XCommonManager.getColor(color());
-                    ActionEvent transmit  = new ActionEvent(Color.this, e.getID(), "Color change", e.getWhen() + 1, e.getModifiers());
-                    colorChooser = new SwingScilabColorChooser(jColor);
-                    colorChooser.displayAndWait();
-                    if (actionListener != null) {
-                        actionListener.actionPerformed(transmit);
-                    }
+            public void actionPerformed(ActionEvent e) {
+                java.awt.Color jColor = XCommonManager.getColor(color());
+                ActionEvent transmit  = new ActionEvent(Color.this, e.getID(), "Color change", e.getWhen() + 1, e.getModifiers());
+                colorChooser = new SwingScilabColorChooser(jColor);
+                JFrame frame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, Color.this);
+                colorChooser.setLocationRelativeTo(frame);
+                colorChooser.displayAndWait();
+                if (actionListener != null) {
+                    actionListener.actionPerformed(transmit);
                 }
-            });
+            }
+        });
 
         setRequestFocusEnabled(true);
         setFocusable(true);
@@ -137,7 +142,7 @@ public class Color extends JButton implements XComponent, XChooser {
      * @param text : the attribute value.
      */
     public final void color(final String color) {
-        java.awt.Color jColor= XCommonManager.getColor(color);
+        java.awt.Color jColor = XCommonManager.getColor(color);
         setForeground(jColor);
     }
 

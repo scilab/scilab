@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bloc2ss" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bloc2ss</refname>
     <refpurpose>ブロックを状態空間表現に変換b</refpurpose>
@@ -155,12 +152,11 @@ l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
  ]]></programlisting>
     <para>With</para>
     <programlisting role="example"><![CDATA[ 
+A=[0,1;0,0];
+B=[1;1];
+C=[1,1];
+D=poly(0,'s');
 P=syslin('c',A,B,C,D);
-P11=P(1,1); 
-P12=P(1,2);
-P21=P(2,1); 
-P22=P(2,2);
-K=syslin('c',Ak,Bk,Ck,Dk);
  ]]></programlisting>
     <para>
       <literal>bloc2exp(syst)</literal> は,

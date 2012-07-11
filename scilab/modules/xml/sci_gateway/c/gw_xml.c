@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,14 +13,11 @@
 #include "gw_xml.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
-#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /*  interface function */
 /*--------------------------------------------------------------------------*/
 /*
-static gw_generic_table Tab[] =
-{
+static gw_generic_table Tab[] = {
     {sci_xmlRead, "xmlRead"},
     {sci_xmlDelete, "xmlDelete"},
     {sci_xmlDump, "xmlDump"},
@@ -104,20 +101,7 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_xml(void)
 {
-    Rhs = Max(0, Rhs);
-
-    /*
-    if(pvApiCtx == NULL)
-    {
-        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-    }
-
-    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-
-    */
     return 0;
 }
-/*--------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------*/

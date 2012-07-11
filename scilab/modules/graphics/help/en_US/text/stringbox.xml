@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stringbox">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="stringbox">
   <refnamediv>
     <refname>stringbox</refname>
     <refpurpose>Compute the bounding rectangle of a text
@@ -89,7 +86,19 @@
       left point without rotation, the following vertex are given clockwise in
       the resulting matrix.
     </para>
-    <para>The result migth not be very accurate with PostScript driver.</para>
+    <para>The result might not be very accurate with PostScript driver.</para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      axes = gca() ;
+      axes.axes_visible = 'on' ;
+      axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+      xtitle( 'stringbox', 'X', 'Y' )  ;
+      stringbox( axes.x_label )
+      str = [ "Scilab", "is" , "not", "Skylab" ] ;
+      xstring( 4, 9, str ) ;
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

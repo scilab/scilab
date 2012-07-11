@@ -169,7 +169,7 @@
       error(errmsg,123456789)
       end
       y = x
-      endfunction   
+      endfunction    
     </programlisting>
     <para>Our task is to check the error messages produced by this function.
       The two following tests pass: the error message is the expected one. We
@@ -184,7 +184,7 @@
       assert_checkerror ( "y = f()"      , lcl1 , [] , "f" , 1);
       
       lcl2 = "%s: Wrong type for argument %d: Matrix expected.\n";
-      assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);   
+      assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);    
     </programlisting>
     <para>On the other hand, if we make the assumption that the current locale
       language is english, we could as well use the following statement. But
@@ -196,14 +196,14 @@
     <programlisting role="example">lcl1="%s: Wrong number of input argument: %d expected.\n";
       assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
       
-      lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
-      assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);   
+      lcl2 = "%s: Wrong type for argument %d: Matrix expected.\n";
+      assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);    
     </programlisting>
     <para>The two following tests fail.</para>
     <programlisting role="example">assert_checkerror ( "y = f()" , "oups" );
       
       msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
-      assert_checkerror ( "y = f()" , msg1 , 12 );
+      assert_checkerror ( "y = f()" , msg1 , 12 );    
     </programlisting>
     <para>When errmsg is given as output argument, no error is generated, as
       in the following example. Notice the content of the
@@ -214,7 +214,7 @@
       [flag, errmsg] = assert_checkerror ( "y = f()" , msg1 )
       
       // A test which fail: flag is %f, errmsg is not empty
-      [flag, errmsg] = assert_checkerror ( "y = f()" , "oups" )
+      [flag, errmsg] = assert_checkerror ( "y = f()" , "oups" )    
     </programlisting>
     <para>The messages in the two following tests are localized, so that they
       can work whatever the current language is. Instead of using the extra
@@ -225,7 +225,7 @@
       assert_checkerror ( "y = f()"      , msg1 );
       
       msg2 = msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"), "f", 1);
-      assert_checkerror ( "y = f(""a"")" , msg2 );   
+      assert_checkerror ( "y = f(""a"")" , msg2 );
     </programlisting>
     <para>It may happen that we want to just test the error number, but not
       the error message. The following script just checks that the generated
@@ -239,8 +239,7 @@
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
+        <revdescription>Function introduced</revdescription>
       </revision>
     </revhistory>
   </refsection>

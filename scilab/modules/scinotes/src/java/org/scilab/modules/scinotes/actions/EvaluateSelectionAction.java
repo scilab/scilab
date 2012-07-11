@@ -52,7 +52,7 @@ public final class EvaluateSelectionAction extends DefaultAction {
      */
     public void doAction() {
         /* Will do the job as if it was copy / paste in scilab Console */
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         String selection = sep.getCodeToExecute();
         if (selection.compareTo("") != 0) {
             StringTokenizer tokens = new StringTokenizer(selection, "\n");
@@ -82,17 +82,17 @@ public final class EvaluateSelectionAction extends DefaultAction {
             ((JMenuItem) menuitem.getAsSimpleMenuItem()).setEnabled(false);
         }
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String select = editor.getTextPane().getSelectedText();
-                        if (select == null) {
-                            menuitem.setText(label2);
-                        } else {
-                            menuitem.setText(label1);
-                        }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String select = editor.getTextPane().getSelectedText();
+                    if (select == null) {
+                        menuitem.setText(label2);
+                    } else {
+                        menuitem.setText(label1);
                     }
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

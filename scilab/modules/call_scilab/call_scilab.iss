@@ -25,7 +25,6 @@ Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODU
 ;
 ;Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\includes\{#MODULE_CALL_SCILAB}.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#MODULE_CALL_SCILAB}\includes\CallScilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\includes\dynlib_{#MODULE_CALL_SCILAB}.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\{#MODULE_CALL_SCILAB}_gateway.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}

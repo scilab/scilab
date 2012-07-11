@@ -1,0 +1,18 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+scirun_
+settmpdir_
+InitializeLaunchScilabSignal
+ReleaseLaunchScilabSignal
+TerminateCorePart2
+ExitScilab
+callFunctionFromGateway
+putlhsvar_
+intersci_
+createvarfromptr_
+checklhs_
+checkrhs_
+com_
+freeArrayOfString

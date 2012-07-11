@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <unistd.h>
+#else
+#include <windows.h>
 #endif
 #include <stdlib.h>
 #include <string.h>
@@ -23,6 +25,8 @@
 #include "PATH_MAX.h"
 #include "getshortpathname.h"
 #include "FileExist.h"
+#include "MALLOC.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 char *createtempfilename(const char *prefix, BOOL bShortFormat)
 {
@@ -43,7 +47,7 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
         sprintf(TempFileName, "%s/%sXXXXXX",TmpDir, prefix);
         int fd = mkstemp(TempFileName);
         if (fd != -1) close(fd);
-        tempfilename = strdup(TempFileName);
+        tempfilename = os_strdup(TempFileName);
      }
 #endif
     return tempfilename;

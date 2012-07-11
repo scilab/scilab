@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,16 +25,16 @@
 /*--------------------------------------------------------------------------*/
 int sci_is_handle_valid(char *fname,unsigned long fname_len)
 {
-  
+
   /* Call isValid = is_handle_valid(h) with h a matrix of handle */
   /* and isValid a matrix of boolean */
 
-  int nbCol;
-  int nbRow;
-  int nbHandle;
-  int handleStackPointer;
-  int resultStackPointer;
-  int i;
+  int nbCol = 0;
+  int nbRow = 0;
+  int nbHandle = 0;
+  int handleStackPointer = 0;
+  int resultStackPointer = 0;
+  int i = 0;
 
   CheckRhs(1,1);
   CheckLhs(0,1);
@@ -51,11 +51,11 @@ int sci_is_handle_valid(char *fname,unsigned long fname_len)
 
   /* create output matrix */
   CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &resultStackPointer)
-  
+
   /* Check each handle */
   for (i = 0; i < nbHandle; i++)
   {
-    *istk(resultStackPointer + i) = (int) isHandleValid(getHandleFromStack(handleStackPointer + i));
+      *istk(resultStackPointer + i) =  (getObjectFromHandle(getHandleFromStack(handleStackPointer + i)) != NULL ? TRUE : FALSE);
   }
 
   LhsVar(1) = Rhs + 1;

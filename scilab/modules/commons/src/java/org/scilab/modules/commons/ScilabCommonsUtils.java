@@ -100,6 +100,32 @@ public final class ScilabCommonsUtils {
     }
 
     /**
+     * Replace ~ by user home, SCI by Scilab main directory, ...
+     * @param baseDir the base directory
+     * @return correct base directory
+     */
+    public static String getCorrectedPath(String path) {
+        path = path.trim();
+        if (path != null && !path.isEmpty()) {
+            if (path.startsWith("~" + File.separator) || path.equals("~")) {
+                return path.replaceFirst("~", ScilabConstants.USERHOME);
+            } else if (path.startsWith("SCI" + File.separator) || path.equals("SCI")) {
+                try {
+                    return path.replaceFirst("SCI", ScilabConstants.SCI.getCanonicalPath());
+                } catch (IOException e) {
+                    return path.replaceFirst("SCI", ScilabConstants.SCI.getAbsolutePath());
+                }
+            } else if (path.startsWith("SCIHOME" + File.separator) || path.equals("SCIHOME")) {
+                return path.replaceFirst("SCIHOME", ScilabCommons.getSCIHOME());
+            } else if (path.startsWith("TMPDIR" + File.separator) || path.equals("TMPDIR")) {
+                return path.replaceFirst("TMPDIR", ScilabCommons.getTMPDIR());
+            }
+        }
+
+        return path;
+    }
+
+    /**
      * Load on use
      * @param str the action
      */

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1310,28 +1310,28 @@ msgid "%s: error %d. A type of a scilab object has changed.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 456
+# File: src/c/scicos.c, line: 483
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 461
+# File: src/c/scicos.c, line: 488
 msgid "type 2 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 484
-# File: src/c/scicos.c, line: 2810
+# File: src/c/scicos.c, line: 511
+# File: src/c/scicos.c, line: 3275
 msgid "Undefined Function type\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 501
+# File: src/c/scicos.c, line: 531
 msgid "Function not found\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 817
+# File: src/c/scicos.c, line: 907
 #, c-format
 msgid ""
 "\n"
@@ -1340,7 +1340,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 823
+# File: src/c/scicos.c, line: 916
 #, c-format
 msgid ""
 "\n"
@@ -1349,7 +1349,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 828
+# File: src/c/scicos.c, line: 924
 #, c-format
 msgid ""
 "\n"
@@ -1358,19 +1358,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1386
+# File: src/c/scicos.c, line: 1588
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1424
+# File: src/c/scicos.c, line: 1650
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1429
+# File: src/c/scicos.c, line: 1657
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -1378,59 +1378,59 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1459
-# File: src/c/scicos.c, line: 2256
+# File: src/c/scicos.c, line: 1696
+# File: src/c/scicos.c, line: 2635
 #, c-format
 msgid "root found at t=: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1559
-# File: src/c/scicos.c, line: 2386
+# File: src/c/scicos.c, line: 1818
+# File: src/c/scicos.c, line: 2791
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1562
+# File: src/c/scicos.c, line: 1823
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1565
+# File: src/c/scicos.c, line: 1826
 msgid "**mod**\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1571
+# File: src/c/scicos.c, line: 1832
 msgid "End of activation\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2118
+# File: src/c/scicos.c, line: 2449
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2121
+# File: src/c/scicos.c, line: 2453
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2188
+# File: src/c/scicos.c, line: 2533
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2215
+# File: src/c/scicos.c, line: 2582
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2220
+# File: src/c/scicos.c, line: 2589
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
@@ -1438,46 +1438,46 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2391
+# File: src/c/scicos.c, line: 2797
 msgid "End of activation"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2480
+# File: src/c/scicos.c, line: 2895
 #, c-format
 msgid "block %d is called "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2481
+# File: src/c/scicos.c, line: 2896
 #, c-format
 msgid "with flag %d "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2482
+# File: src/c/scicos.c, line: 2897
 #, c-format
 msgid "at time %f \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2485
+# File: src/c/scicos.c, line: 2901
 msgid "Entering the block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2836
+# File: src/c/scicos.c, line: 3308
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2881
+# File: src/c/scicos.c, line: 3359
 msgid "Error in the Debug block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2904
+# File: src/c/scicos.c, line: 3385
 #, c-format
 msgid ""
 "\n"
@@ -1485,7 +1485,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2934
+# File: src/c/scicos.c, line: 3417
 #, c-format
 msgid ""
 "\n"
@@ -1493,7 +1493,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3023
+# File: src/c/scicos.c, line: 3524
 #, c-format
 msgid ""
 "\n"
@@ -1501,7 +1501,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3057
+# File: src/c/scicos.c, line: 3568
 #, c-format
 msgid ""
 "\n"
@@ -1509,41 +1509,41 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3058
+# File: src/c/scicos.c, line: 3569
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3059
+# File: src/c/scicos.c, line: 3570
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4738
+# File: src/c/scicos.c, line: 5466
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4813
-# File: src/c/scicos.c, line: 4897
+# File: src/c/scicos.c, line: 5558
+# File: src/c/scicos.c, line: 5666
 #, c-format
-msgid "Error: cannot find '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4918
+# File: src/c/scicos.c, line: 5695
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 5046
+# File: src/c/scicos.c, line: 5832
 #, c-format
 msgid ""
 "\n"
@@ -1551,7 +1551,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 5141
+# File: src/c/scicos.c, line: 5959
 #, c-format
 msgid ""
 "\n"
@@ -1559,7 +1559,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 5142
+# File: src/c/scicos.c, line: 5960
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -1671,12 +1671,12 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 201
+# File: macros/scicos_auto/scicos_simulate.sci, line: 194
 msgid "Can't convert old diagram (problem in version)"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 242
+# File: macros/scicos_auto/scicos_simulate.sci, line: 235
 #, c-format
 msgid ""
 "Warning the variable %s do not match any context variable name\n"
@@ -1684,48 +1684,48 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 248
+# File: macros/scicos_auto/scicos_simulate.sci, line: 241
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 268
+# File: macros/scicos_auto/scicos_simulate.sci, line: 261
 #, c-format
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 277
+# File: macros/scicos_auto/scicos_simulate.sci, line: 270
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 282
+# File: macros/scicos_auto/scicos_simulate.sci, line: 275
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 306
+# File: macros/scicos_auto/scicos_simulate.sci, line: 299
 msgid "Simulation parameters not set:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 311
+# File: macros/scicos_auto/scicos_simulate.sci, line: 304
 msgid "Initialisation problem:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 328
+# File: macros/scicos_auto/scicos_simulate.sci, line: 321
 msgid "Simulation problem: "
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 359
+# File: macros/scicos_auto/scicos_simulate.sci, line: 352
 msgid "End problem: "
 msgstr ""
 
@@ -1797,60 +1797,6 @@ msgstr ""
 # File: macros/scicos_scicos/build_block.sci, line: 35
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 61
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 66
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 77
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 101
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 107
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 128
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 141
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 199
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/c_pass1.sci, line: 255
-#, c-format
-msgid "%s: build the modelica meta-block failed"
 msgstr ""
 
 #
@@ -1942,45 +1888,9 @@ msgid "Sorry file name not defined in "
 msgstr ""
 
 #
-# File: macros/scicos_scicos/scicos_flat.sci, line: 118
-#, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 163
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 170
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 264
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 317
+# File: macros/scicos_scicos/scicos_flat.sci, line: 315
 #, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 380
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#
-# File: macros/scicos_scicos/scicos_flat.sci, line: 391
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #

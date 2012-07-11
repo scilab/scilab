@@ -17,7 +17,7 @@
 currentPath = SCI + "/modules/xcos/tests/unit_tests/block_tests/ESELECT_f/";
 
 // Import the reference data (A_ref)
-ierr = import_from_hdf5(currentPath + "sinus_ref.h5");
+ierr = import_from_hdf5(currentPath + "sinus_ref.sod");
 if ierr <> %t then pause; end
 
 // Import the diagram structure

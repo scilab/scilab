@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-15 14:49+0000\n"
+"PO-Revision-Date: 2012-04-24 14:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -44,8 +44,24 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -60,10 +76,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 入力引数の型が間違っています.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
@@ -75,10 +87,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -329,12 +337,15 @@ msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "エラー: 環境変数 %s を定義できません.\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab エンタープライズ\n"
 
 #
 # File: src/c/banier.c, line: 36
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab コンソーシアム (DIGITEO)\n"
+
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Copyright (c) 1989-2012 (INRIA)\n"
@@ -537,31 +548,21 @@ msgstr "Scilabスタックを確保するためのメモリが不足していま
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-"\n"
-"コールスタック:\n"
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-"スタックの終端\n"
-"\n"
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
 "致命的なエラーがScilabにより検出されました.\n"
-"インスタンスが間もなく破壊される可能性があります.\n"
-"以下の条件を付けてバグ報告を %s に行ってください: %s %s\n"
+"このインスタンスはもうすぐクラッシュすると思われます.\n"
+"以下のバグレポート %s に送信してください:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
+"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -904,23 +905,21 @@ msgstr "第4"
 msgid "%s argument"
 msgstr "引数 %s"
 
-#
-# File: src/c/stack2.c, line: 2856
 #, c-format
-msgid "argument number %d"
-msgstr "引数番号 %d"
+msgid "argument #%d"
+msgstr "引数 #%d"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "引数 %s  および %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "%s 引数および引数 %d"
+msgid "%s argument and argument #%d"
+msgstr "%s 引数および引数 #%d"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "引数 %d および　%d"
+msgid "arguments #%d and #%d"
+msgstr "引数 #%d および #%d"
 
 msgid "should be square"
 msgstr "正方行列としてください"
@@ -1069,6 +1068,20 @@ msgid "Scilab Version Info."
 msgstr "Scilabバージョン情報."
 
 msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"コールスタック:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"スタックの終端\n"
+"\n"
+
+msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
@@ -1143,6 +1156,10 @@ msgstr "導入"
 
 msgid "Getting started with Scilab"
 msgstr "Scilab入門"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
 
 #, c-format
 msgid "Checking: %s\n"

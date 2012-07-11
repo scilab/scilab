@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hat</refname>
     <refpurpose> (^) exponentiation</refpurpose>
@@ -32,11 +29,11 @@
       element-wise, with the usual meaning.
     </para>
     <para>
-      For square <literal>A</literal> matrices the exponentiation is done in the matrix sense.
+      For square <literal>A</literal> matrix the exponentiation is done in the matrix sense.
     </para>
     <para>
       For boolean, polynomial and rational matrices, the exponent must be an
-      integer
+      integer.
     </para>
     <refsection>
       <title>Remarks </title>
@@ -45,7 +42,7 @@
         cases dot is part of the operator, not of the number.
       </para>
       <para>
-        For two real or complex numbers <literal>x1</literal> et
+        For two real or complex numbers <literal>x1</literal> and
         <literal>x2</literal> the value of  <literal>x1^x2</literal> is the "principal value"
         determined by <literal>x1^x2 = exp(x2*log(x1))</literal>.
       </para>
@@ -69,7 +66,7 @@ s=poly(0,"s");
         <link linkend="exp">exp</link>
       </member>
       <member>
-        <link linkend="inv">inv</link>
+        <link linkend="log">log</link>
       </member>
     </simplelist>
   </refsection>

@@ -13,25 +13,31 @@
 
 package org.scilab.modules.types;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab String datatype<br>
  * <br>
- * This class is {@link java.io.Serializable} and any modification could
- * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * This class is {@link java.io.Serializable} and any modification could impact
+ * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
  * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<br />
  * ScilabString aMatrix = new ScilabString(a);
  * </code>
+ *
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabString implements ScilabType {
 
     private static final long serialVersionUID = 359802519980180085L;
     private static final ScilabTypeEnum type = ScilabTypeEnum.sci_strings;
+
+    private static final int VERSION = 0;
 
     private String[][] data;
     private String varName;
@@ -47,7 +53,8 @@ public class ScilabString implements ScilabType {
     /**
      * Constructor with data.
      *
-     * @param data the associated data.
+     * @param data
+     *            the associated data.
      */
     public ScilabString(String[][] data) {
         this.data = data;
@@ -56,7 +63,8 @@ public class ScilabString implements ScilabType {
     /**
      * Constructor with data.
      *
-     * @param data the associated data.
+     * @param data
+     *            the associated data.
      */
     public ScilabString(String varName, String[][] data, boolean swaped) {
         this.varName = varName;
@@ -67,7 +75,8 @@ public class ScilabString implements ScilabType {
     /**
      * Constructor with vector data.
      *
-     * @param data the column vector data
+     * @param data
+     *            the column vector data
      */
     public ScilabString(String[] data) {
         if (data == null || data.length == 0) {
@@ -84,7 +93,8 @@ public class ScilabString implements ScilabType {
     /**
      * Constructor with a unique value
      *
-     * @param string the value
+     * @param string
+     *            the value
      */
     public ScilabString(String string) {
         if (string == null) {
@@ -97,7 +107,8 @@ public class ScilabString implements ScilabType {
     /**
      * Set the values.
      *
-     * @param data the values
+     * @param data
+     *            the values
      */
     public void setData(String[][] data) {
         this.data = data;
@@ -105,6 +116,7 @@ public class ScilabString implements ScilabType {
 
     /**
      * Return the type of Scilab
+     *
      * @return the type of Scilab
      * @since 5.4.0
      */
@@ -160,6 +172,7 @@ public class ScilabString implements ScilabType {
 
     /**
      * Check the emptiness of the associated data.
+     *
      * @return true, if the associated data array is empty.
      */
     @Override
@@ -173,7 +186,7 @@ public class ScilabString implements ScilabType {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ScilabString) {
-            return Arrays.deepEquals(this.getData(), ((ScilabString)obj).getData());
+            return Arrays.deepEquals(this.getData(), ((ScilabString) obj).getData());
         } else {
             return false;
         }
@@ -186,6 +199,28 @@ public class ScilabString implements ScilabType {
         return data;
     }
 
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        int version = in.readInt();
+        switch (version) {
+            case 0:
+                data = (String[][]) in.readObject();
+                varName = (String) in.readObject();
+                swaped = in.readBoolean();
+                break;
+            default:
+                throw new ClassNotFoundException("A class ScilabString with a version " + version + " does not exists");
+        }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(VERSION);
+        out.writeObject(data);
+        out.writeObject(varName);
+        out.writeBoolean(swaped);
+    }
+
     /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
@@ -195,18 +230,16 @@ public class ScilabString implements ScilabType {
      */
     @Override
     public String toString() {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         if (isEmpty()) {
-            result.append("[]");
-            return result.toString();
+            return "[]";
         }
 
         result.append("[");
         for (int i = 0; i < getHeight(); ++i) {
             for (int j = 0; j < getWidth(); ++j) {
-
                 result.append('"');
-                result.append(getData()[i][j].replaceAll("\"", "\"\"").replaceAll("\'", "\'\'"));
+                result.append(data[i][j].replaceAll("[\"\']", "\"\""));
                 result.append('"');
 
                 if (j != getWidth() - 1) {

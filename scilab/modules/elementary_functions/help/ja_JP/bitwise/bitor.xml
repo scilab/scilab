@@ -13,9 +13,6 @@
  * 
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitor" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bitor</refname>
     <refpurpose>ビット単位の論理和(OR)</refpurpose>
@@ -102,7 +99,7 @@ z = bitor(x, y)
 // The types of x and y cannot be mixed (error).
 x = [0 1 0 1];
 y = uint8([0 0 1 1]);
-z = bitor(x, y)
+// z = bitor(x, y)
 
 //  13 is (01101)_2
 //  27 is (11011)_2

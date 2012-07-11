@@ -10,13 +10,20 @@
 
 previous_dir = pwd();
 cd(get_absolute_file_path("build_primitives.sce"));
+file_path = pwd();
+mkdir(TMPDIR + "/completion");
+cd(TMPDIR + "/completion");
 
-ilib_name  = "completion_c";
-files      = ["sci_completeline.c"    , ..
-              "sci_getpartlevel.c"    , ..
-              "sci_getfilepartlevel.c", ..
-              "sci_getcommonpart.c"   , ..
-	      "sci_getfields.c" ];
+ilib_name   = "completion_c";
+files       = [ "sci_completeline.c"    , ..
+                "sci_getpartlevel.c"    , ..
+                "sci_getfilepartlevel.c", ..
+                "sci_getcommonpart.c"   , ..
+                "sci_getfields.c" ];
+
+for i = 1 : size(files, "*")
+    copyfile(file_path + "/" + files(i), TMPDIR + "/completion");
+end
 
 if getos() == "Windows" then
     libs   = SCI   + "/bin/scicompletion";

@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,26 +26,30 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_surface_mode_property( sciPointObj * pobj )
+int get_surface_mode_property(void* _pvCtx, char* pobjUID)
 {
-  if ( (sciGetEntityType(pobj) == SCI_PLOT3D ) ||
-       (sciGetEntityType(pobj) == SCI_FAC3D  ) ||
-       (sciGetEntityType(pobj) == SCI_SURFACE)   )
+    int iSurfaceMode = 0;
+    int *piSurfaceMode = &iSurfaceMode;
+
+  getGraphicObjectProperty(pobjUID, __GO_SURFACE_MODE__, jni_bool, (void **)&piSurfaceMode);
+
+  if (piSurfaceMode == NULL)
   {
-    if ( sciGetIsLine( pobj ) )
-    {
-      return sciReturnString( "on" ) ;
-    }
-    else
-    {
-      return sciReturnString( "off" ) ;
-    }
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_mode");
+      return -1;
+  }
+
+  if (iSurfaceMode)
+  {
+      return sciReturnString(_pvCtx, "on");
   }
   else
   {
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_mode") ;
-    return -1;
+      return sciReturnString(_pvCtx, "off");
   }
 }
 /*------------------------------------------------------------------------*/

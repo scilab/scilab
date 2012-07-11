@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="inttrap" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>inttrap</refname>
     <refpurpose>integration of experimental data by trapezoidal
@@ -31,7 +28,7 @@
         <term>x</term>
         <listitem>
           <para>vector of increasing x coordinate data. Default value is
-            <literal>1:size(y,'*')</literal>
+            <literal>1:size(s,'*')</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -51,13 +48,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>computes :</para>
-    <para>Where f is a function described by a set of experimental
-      value:
-    </para>
+    <para>Computes:</para>
     <para>
       <literal>s(i)=f(x(i))</literal> and <literal>x0=x(1)</literal>,
       <literal>x1=x(n)</literal>
+    </para>
+    <para>
+      where <literal>f</literal> is a function described by a set of experimental values.
     </para>
     <para>Between mesh points function is interpolated linearly.</para>
   </refsection>

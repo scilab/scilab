@@ -10,20 +10,20 @@
  *
  */
 
-#include "ObjectStructure.h" /* sciPointObj */
-#include "MALLOC.h" /* MALLOC */
+#include "ObjectStructure.h"    /* sciPointObj */
+#include "MALLOC.h"             /* MALLOC */
 #include "sciprint.h"
 #include "localization.h"
-#include "ObjectSelection.h" /* sciInitSelectedSons... */
-#include "HandleManagement.h" /* sciGetRelationship... */
-#include "SetProperty.h" /* sciInitVisibility... */
-#include "GetProperty.h" /* sciGetPointerToUserData */
+#include "ObjectSelection.h"    /* sciInitSelectedSons... */
+#include "HandleManagement.h"   /* sciGetRelationship... */
+#include "SetProperty.h"        /* sciInitVisibility... */
+#include "GetProperty.h"        /* sciGetPointerToUserData */
 #include "InitUIMenu.h"
 #include "BuildObjects.h"
 
 /**
  * CreateUimenu
  * This function creates Uimenu structure.
- * @return pointer sciPointObj if ok , NULL if not
+ * @return created uimenu UID
  */
-sciPointObj * CreateUimenu(void);
+char *CreateUimenu(void);

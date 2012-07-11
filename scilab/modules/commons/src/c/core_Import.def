@@ -1,0 +1,12 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+setieee
+setformat
+getieee
+getformat
+getformatwidth

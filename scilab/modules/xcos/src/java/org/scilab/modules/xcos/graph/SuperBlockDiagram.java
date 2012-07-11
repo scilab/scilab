@@ -16,7 +16,6 @@ package org.scilab.modules.xcos.graph;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
@@ -35,7 +34,6 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -127,51 +125,6 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
         System.arraycopy(parent, 0, full, 0, parent.length);
         System.arraycopy(current, 0, full, parent.length, current.length);
         return full;
-    }
-
-    /**
-     * Listener for SuperBlock diagram events.
-     */
-    private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
-        private static GenericSuperBlockListener instance;
-
-        /**
-         * Reduce constructor visibility
-         */
-        private GenericSuperBlockListener() {
-            super();
-        }
-
-        /**
-         * Mono-threaded singleton implementation getter
-         *
-         * @return The unique instance
-         */
-        public static GenericSuperBlockListener getInstance() {
-            if (instance == null) {
-                instance = new GenericSuperBlockListener();
-            }
-            return instance;
-        }
-
-        /**
-         * Update the IOPorts colors and values.
-         *
-         * @param arg0
-         *            the source
-         * @param arg1
-         *            the event data
-         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
-         *      com.mxgraph.util.mxEventObject)
-         */
-        @Override
-        public void invoke(Object arg0, mxEventObject arg1) {
-            final SuperBlockDiagram graph = ((SuperBlockDiagram) arg0);
-            final SuperBlock block = graph.getContainer();
-            if (block != null) {
-                block.updateExportedPort();
-            }
-        }
     }
 
     /**
@@ -342,6 +295,96 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     }
 
     /**
+     * Listener for SuperBlock diagram events.
+     */
+    private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
+        private static GenericSuperBlockListener instance;
+
+        /**
+         * Reduce constructor visibility
+         */
+        private GenericSuperBlockListener() {
+            super();
+        }
+
+        /**
+         * Mono-threaded singleton implementation getter
+         *
+         * @return The unique instance
+         */
+        public static GenericSuperBlockListener getInstance() {
+            if (instance == null) {
+                instance = new GenericSuperBlockListener();
+            }
+            return instance;
+        }
+
+        /**
+         * Update the IOPorts colors and values.
+         *
+         * @param arg0
+         *            the source
+         * @param arg1
+         *            the event data
+         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         *      com.mxgraph.util.mxEventObject)
+         */
+        @Override
+        public void invoke(Object arg0, mxEventObject arg1) {
+            final SuperBlockDiagram graph = ((SuperBlockDiagram) arg0);
+            final SuperBlock block = graph.getContainer();
+            if (block != null) {
+                block.updateExportedPort();
+            }
+        }
+    }
+
+    /**
+     * Listener for SuperBlock diagram events.
+     */
+    private static final class ContentChangedListener implements mxIEventListener, Serializable {
+        private static ContentChangedListener instance;
+
+        /**
+         * Reduce constructor visibility
+         */
+        private ContentChangedListener() {
+            super();
+        }
+
+        /**
+         * Mono-threaded singleton implementation getter
+         *
+         * @return The unique instance
+         */
+        public static ContentChangedListener getInstance() {
+            if (instance == null) {
+                instance = new ContentChangedListener();
+            }
+            return instance;
+        }
+
+        /**
+         * Update the IOPorts colors and values.
+         *
+         * @param arg0
+         *            the source
+         * @param arg1
+         *            the event data
+         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         *      com.mxgraph.util.mxEventObject)
+         */
+        @Override
+        public void invoke(Object arg0, mxEventObject arg1) {
+            final SuperBlockDiagram graph = ((SuperBlockDiagram) arg0);
+            final SuperBlock block = graph.getContainer();
+            if (block != null) {
+                block.invalidateRpar();
+            }
+        }
+    }
+
+    /**
      * Update the diagram labels
      */
     private static final class LabelBlockListener implements mxIEventListener, Serializable {
@@ -385,14 +428,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                     return;
                 }
 
-                List<mxICell> tmp = IOBlocks.getPorts(container, block.getClass());
-                BasicPort[] ports = new BasicPort[tmp.size()];
-                Arrays.sort(tmp.toArray(ports), new Comparator<BasicPort>() {
-                    @Override
-                    public int compare(BasicPort o1, BasicPort o2) {
-                        return o1.getOrdering() - o2.getOrdering();
-                    }
-                });
+                container.sortChildren();
+                final List<mxICell> ports = IOBlocks.getPorts(container, block.getClass());
 
                 XcosDiagram graph = container.getParentDiagram();
                 if (graph == null) {
@@ -401,8 +438,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                     Logger.getLogger(SuperBlockDiagram.class.getName()).finest(PARENT_DIAGRAM_WAS_NULL);
                 }
 
-                if (index > 0 && index <= ports.length) {
-                    container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
+                if (index > 0 && index <= ports.size()) {
+                    container.getParentDiagram().cellLabelChanged(ports.get(index - 1), value, false);
                 }
             }
         }
@@ -414,11 +451,17 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     public void installSuperBlockListeners() {
         removeListener(GenericSuperBlockListener.getInstance());
         removeListener(LabelBlockListener.getInstance());
+        removeListener(ContentChangedListener.getInstance());
 
-        addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
-        addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
+        addListener(mxEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
+        addListener(mxEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
         addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
         addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
+
+        addListener(mxEvent.CELLS_ADDED, ContentChangedListener.getInstance());
+        addListener(mxEvent.CELLS_MOVED, ContentChangedListener.getInstance());
+        addListener(mxEvent.CELLS_REMOVED, ContentChangedListener.getInstance());
+        addListener(mxEvent.CELLS_RESIZED, ContentChangedListener.getInstance());
     }
 
     /**

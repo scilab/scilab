@@ -42,9 +42,6 @@
     <ClCompile Include="dhetr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dlslv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="domout.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -112,12 +109,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rtitr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scaleg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scapol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_arl2.c">
@@ -216,6 +207,9 @@
     <ClCompile Include="wesidu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scapol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="arl2.f">
@@ -237,9 +231,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dhetr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dlslv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="domout.f">
@@ -309,9 +300,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="rtitr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scaleg.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="scapol.f">
@@ -427,7 +415,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Output_stream_f_Import.def">
@@ -447,10 +435,14 @@
     </None>
     <None Include="..\..\sci_gateway\cacsd_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="eispack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

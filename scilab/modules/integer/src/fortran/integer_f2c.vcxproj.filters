@@ -36,9 +36,6 @@
     <ClCompile Include="i_c_i.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="i_convert.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="i_cumprod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -174,9 +171,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_i_triu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_iconvert.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_int16.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,9 +219,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="i_c_i.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="i_convert.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="i_cumprod.f">
@@ -365,9 +356,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_i_triu.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_iconvert.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_int16.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -403,10 +391,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="Elementary_functions_f_Import.def">
@@ -421,13 +405,19 @@
     <None Include="Integer_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="String_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -1,0 +1,5 @@
+LIBRARY    core_f.dll
+
+
+EXPORTS
+inisci_

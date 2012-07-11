@@ -72,7 +72,8 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //gsort
 	{NULL, ""}, //isequalbitwise
     {NULL, ""}, //rat
-    {NULL, ""} //base2dec
+    {NULL, ""}, //base2dec
+    {NULL, ""} //dec2base
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

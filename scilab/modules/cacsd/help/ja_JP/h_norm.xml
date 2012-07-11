@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="h_norm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>h_norm</refname>
     <refpurpose> H無限大ノルム</refpurpose>
@@ -28,19 +25,25 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>状態空間システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            状態空間システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rerr</term>
         <listitem>
-          <para>最大相対誤差, デフォルト値 <literal>1e-8</literal></para>
+          <para>
+            最大相対誤差, デフォルト値 <literal>1e-8</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>hinfnorm</term>
         <listitem>
-          <para><literal>Sl</literal>のH無限大ノルム</para>
+          <para>
+            <literal>Sl</literal>のH無限大ノルム
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,9 +57,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	状態空間システムのH無限大ノルム
-	(最大特異値の全周波数における最大値)
-	を出力します.</para>
+      状態空間システムのH無限大ノルム
+      (最大特異値の全周波数における最大値)
+      を出力します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

@@ -38,7 +38,7 @@ int sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath
 		interrupt_setup ();
 	}
 	/* take commands from stdin */
-	return realmain(*nos,path,pathtype,memory);
+	return 0;//realmain(*nos,path,pathtype,memory);
 }
 /*--------------------------------------------------------------------------*/
 /* Set up to catch interrupts */

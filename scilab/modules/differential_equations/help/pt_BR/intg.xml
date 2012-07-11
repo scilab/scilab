@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intg" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intg</refname>
     <refpurpose>integral definida</refpurpose>
@@ -27,7 +24,7 @@
     <title>Parâmetros</title>
     <variablelist>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>números reais</para>
         </listitem>
@@ -48,7 +45,7 @@
         <term>ea</term>
         <listitem>
           <para>erro absoluto requerido no resultado. Valor padrão:
-            1.d-14
+            1.d-14.
           </para>
         </listitem>
       </varlistentry>
@@ -56,7 +53,7 @@
         <term>er</term>
         <listitem>
           <para>erro relativo requerido no resultado. Valor padrão:
-            1.d-8
+            1.d-8.
           </para>
         </listitem>
       </varlistentry>
@@ -133,10 +130,11 @@ F=['      double precision function ffun(x)'
    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
    '      return'
    '      end'];
-mputl(F,TMPDIR+'/ffun.f')
+mputl(F,fullfile(TMPDIR,'ffun.f'))
+
 
 // compile o código FORTRAN
-l=ilib_for_link('ffun','ffun.f',[],'f');
+l=ilib_for_link('ffun',fullfile(TMPDIR,'ffun.f'),[],'f');
 
 // linking incremental
 link(l,'ffun','f')
@@ -154,10 +152,10 @@ C=['#include <math.h>'
    '  y=*x/(2.0e0*pi);'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
-mputl(C,TMPDIR+'/cfun.c')
+mputl(C,fullfile(TMPDIR,'cfun.c'))
 
 // compile o código C
-l=ilib_for_link('cfun','cfun.c',[],'c');
+l=ilib_for_link('cfun',fullfile(TMPDIR,'cfun.c'),[],'c');
 
 // linking incremental
 link(l,'cfun','c')

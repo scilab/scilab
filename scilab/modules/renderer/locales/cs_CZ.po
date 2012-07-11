@@ -14,14 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není víc paměti.\n"
-
-msgid "Unable to render polyline, memory full.\n"
-msgstr "Nemohu vykreslit polyčáru, paměť je plná.\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #, c-format
 msgid ""
@@ -32,12 +25,3 @@ msgstr ""
 "Varování!!!\n"
 "Scilab našel kritickou chybu (%s).\n"
 "Uložte Vaše data a restartujte Scilab.\n"
-
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr ""
-"Kliknutím na osy objektu započnete rotaci. Klikněte pravým tlačítkem myši "
-"nebo Esc pro zrušení."
-
-msgid "Click or press ESCAPE to terminate rotation."
-msgstr "Klikněte nebo klávesou Esc rotaci ukončíte."

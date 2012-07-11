@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+x = linspace(0,1,100)';
+y = x.^3;
+clf();
+plot(x,x.^2,'r');
+e = gce();
+e = e.children;
+datatipCreate(e(1),50);
+datatipCreate(e(1),60);
+datatipCreate(e(1),70);
+datatipCreate(e(1),80);
+a = gca();
+
+
+// Get the last datatip.
+lastTip = a.children(1).children(4).children(2).text;
+// Delete the second datatip.
+datatipRemove(e(1), 2);
+// Check the new size.
+assert_checkequal(length(a.children(1).children), 3);
+// Check that the last datatip is the drop to the third position.
+assert_checkequal(lastTip, a.children(1).children(3).children(2).text);

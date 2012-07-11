@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_preferences.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -26,7 +25,7 @@ extern "C"
 using namespace org_scilab_modules_preferences;
 
 /*--------------------------------------------------------------------------*/
-int sci_removeModulePreferences(char * fname, void* pvApiCtx)
+int sci_removeModulePreferences(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = 0;

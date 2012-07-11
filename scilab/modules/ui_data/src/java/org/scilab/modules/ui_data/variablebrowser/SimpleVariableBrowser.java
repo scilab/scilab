@@ -11,13 +11,10 @@
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
-import org.scilab.modules.gui.tab.Tab;
-
-
 /**
  * Interface for Variable browser.
  */
-public interface SimpleVariableBrowser extends Tab {
+public interface SimpleVariableBrowser {
 
 	/**
 	 * Set columns title

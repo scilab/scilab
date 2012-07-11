@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dot" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dot (.)</refname>
     <refpurpose>point</refpurpose>
@@ -11,6 +8,7 @@
     <title>Séquence d'appel</title>
     <synopsis>123.33
       a.*b
+      
       [123,..
       456]
     </synopsis>
@@ -21,8 +19,7 @@
       <varlistentry>
         <term>.</term>
         <listitem>
-          <para>Le point est utilisé dans la notation décimale : 3.25 et
-            0.001
+          <para>Le point est utilisé dans la notation décimale : 3.25 et 0.001.
           </para>
         </listitem>
       </varlistentry>
@@ -30,13 +27,15 @@
         <term>.&lt;op&gt;</term>
         <listitem>
           <para>Il est aussi utilisé en conjonction avec d'autres opérateurs
-            (* / \ ^ ') pour en former de nouveaux. Les opérations
-            multiplicatives "élément par élément" sont obtenues avec .* , .^ ,
-            ./ , .\ ou .'. Par exemple, C = A ./ B est la matrice dont les
-            éléments sont c(i,j) = a(i,j)/b(i,j). Le produit de Kronecker est
-            noté .*. . Notez que lorsqu'un point suit un nombre entier il est
-            considéré comme en faisant partie. Ainsi 2.*x est évalué comme 2.0*x
-            et 2 .*x est évalué comme (2).*x
+            (<literal>* / \ ^ '</literal>) pour en former de nouveaux. Les opérations
+            multiplicatives "élément par élément" sont obtenues avec <literal>.* , .^ ,
+              ./ , .\ ou .'
+            </literal>
+            .Par exemple, <literal>C = A ./ B</literal> est la matrice dont les
+            éléments sont <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Le produit de Kronecker est
+            noté <literal>.*.</literal>. Notez que lorsqu'un point suit un nombre entier il est
+            considéré comme en faisant partie. Ainsi <literal>2.*x</literal> est évalué comme <literal>2.0*x</literal>
+            et <literal>2 .*x</literal> est évalué comme <literal>(2).*x</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -52,7 +51,9 @@
             lignes physiques. Les points de suite peuvent ainsi être utilisés
             pour couper une ligne logique à n'importe quel endroit.
           </para>
-          <para>La fonction foo suivante :</para>
+          <para>
+            La fonction <literal>foo</literal> suivante :
+          </para>
           <programlisting role=""><![CDATA[ 
 function foo
   a=1

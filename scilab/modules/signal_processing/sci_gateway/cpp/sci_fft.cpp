@@ -17,6 +17,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "elem_common.h"
@@ -78,9 +79,9 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         }
 
         iDimLength = (int)in[2]->getAs<types::Double>()->get(0);
-        iDimCount = 3; //any value > 2 (used as a flag) 
+        iDimCount = 3; //any value > 2 (used as a flag)
 
-    case 2 : 
+    case 2 :
         //check third input parameter : way
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
         {
@@ -239,7 +240,7 @@ int maxfactor(int n)
         m++;
         nfac[m - 1] = 4;
     }
-    
+
     for (j = 3, jj = 9 ; jj <= k ; j += 2, jj = j*j)
     {
         if(k % jj != 0)
@@ -268,7 +269,7 @@ int maxfactor(int n)
             nfac[m - 1] = 2;
             k /= 4;
         }
-        
+
         kt = m;
         for (j = 2 ; j <= k ; j = ((j + 1) / 2) * 2 + 1)
         {

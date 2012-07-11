@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,26 +26,40 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_clip_state_property( sciPointObj * pobj )
+int get_clip_state_property(void* _pvCtx, char* pobjUID)
 {
-  if ( sciGetIsClipping (pobj) == 0 )
-  {
-    return sciReturnString( "clipgrf" ) ;
-  }
-  else if ( sciGetIsClipping (pobj) > 0 )
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else if (sciGetIsClipping (pobj) == -1)
-  {   
-    return sciReturnString( "off" ) ;
-  }
-	else
-	{
-		/* An error occured while getting clip state */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
-		return -1;
-	}
+    int iClipState = 0;
+    int* piClipState = &iClipState;
+
+    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
+
+    if (piClipState == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
+        return -1;
+    }
+
+    if (iClipState == 0)
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
+    else if (iClipState == 1)
+    {
+        return sciReturnString(_pvCtx, "clipgrf");
+    }
+    else if (iClipState == 2)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
+        return -1;
+    }
+
 }
 /*------------------------------------------------------------------------*/

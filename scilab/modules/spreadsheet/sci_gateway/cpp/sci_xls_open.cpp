@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -138,16 +139,16 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     free(tmp);
     free(filename_in);
 
-    if(result != OLE_OK) 
+    if(result != OLE_OK)
     {
-        if(result == OLEER_NO_INPUT_FILE) 
+        if(result == OLEER_NO_INPUT_FILE)
         {
             ScierrorW(999,_W("%ls: The file %ls does not exist.\n"), L"xls_open", filename_IN);
         }
-        else if(result == OLEER_NOT_OLE_FILE || 
-                result == OLEER_INSANE_OLE_FILE || 
-                result == OLEER_LOADFAT_BAD_BOUNDARY || 
-                result == OLEER_MINIFAT_READ_FAIL || 
+        else if(result == OLEER_NOT_OLE_FILE ||
+                result == OLEER_INSANE_OLE_FILE ||
+                result == OLEER_LOADFAT_BAD_BOUNDARY ||
+                result == OLEER_MINIFAT_READ_FAIL ||
                 result == OLEER_PROPERTIES_READ_FAIL)
         {
             ScierrorW(999,_W("%ls: File %ls is not an ole2 file.\n"), L"xls_open", filename_IN);
@@ -264,7 +265,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         out.push_back(types::Double::Empty());
     }
 
-    if(nsheets) 
+    if(nsheets)
     {
         /* Create a typed list to return the properties */
         types::String* pStrSheets = new types::String(1, nsheets);

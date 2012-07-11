@@ -51,7 +51,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
@@ -59,6 +59,9 @@
     <None Include="sci_gateway\sound_gateway.xml" />
     <None Include="locales\sound.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="scilab_windows_Import.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

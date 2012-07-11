@@ -14,15 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體空間不足.\n"
-
-msgid "Unable to render polyline, memory full.\n"
-msgstr "記憶體空間已湡,無法渲染多邊線 polyline.\n"
 
 #, c-format
 msgid ""
@@ -33,10 +26,3 @@ msgstr ""
 "警告 !!!\n"
 "Scilab 發生一個嚴重的錯誤(%s).\n"
 "請儲存您的資料並且重新啟動 Scilab.\n"
-
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr "點擊 Axes 物件上開始旋轉. 按滑鼠右鍵或鍵盤 ESC 鍵取消."
-
-msgid "Click or press ESCAPE to terminate rotation."
-msgstr "點擊或按下 ESC 鍵可中止旋轉."

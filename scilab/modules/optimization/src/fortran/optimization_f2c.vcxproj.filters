@@ -120,22 +120,13 @@
     <ClCompile Include="fmuls1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fpq2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fprf2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="frdf1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fremf1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fremf2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fretc1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fuclid.c">
@@ -419,22 +410,13 @@
     <f2c_rule Include="fmuls1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="fpq2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="fprf2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="frdf1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="fremf1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="fremf2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="fretc1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="fuclid.f">
@@ -619,11 +601,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\optimization_gateway.xml" />
     <None Include="Elementary_functions_Import.def">
@@ -632,7 +609,7 @@
     <None Include="io_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Optimization_Import.def">
@@ -642,6 +619,18 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="String_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="optimization_f.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

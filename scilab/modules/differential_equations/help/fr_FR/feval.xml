@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="feval" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>feval</refname>
     <refpurpose>évaluation multiple d'une fonction</refpurpose>
@@ -58,10 +55,11 @@
       </varlistentry>
     </variablelist>
     <para>
-      <literal>f</literal> est un "external" (fonction ou routine Fortran
+      <literal>f</literal> est un <link linkend="external">"external"</link> (fonction 
+      ou routine Fortran
       ou C) acceptant un ou deux arguments d'entrée supposés réels. Le résultat
       renvoyé par <literal>f</literal> peut par contre être réel ou complexe.
-      Dans le cas d'un appel Fortran ou C, la fonction <literal> 'f' </literal>
+      Dans le cas d'un appel Fortran ou C, la fonction <literal>f</literal>
       doit être définie dans la fonction <literal>fevaltable.c</literal> (voir dans
       le dossier <literal>SCI/modules/differential_equations/src/c</literal>)
     </para>
@@ -77,6 +75,7 @@ feval(1:10,1:5,'parab')   // voir le fichier ffeval.f
 feval(1:10,'parab')
 // Pour le lien dynamique (voir l'exemple ftest dans ffeval.f)
 // on peut utiliser la commande "link" 
+// unix('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest') 
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="param3d_properties">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="param3d_properties">
   <refnamediv>
     <refname>param3d_properties</refname>
     <refpurpose>description of the 3D curves
@@ -62,7 +59,7 @@
         <term>line_style: </term>
         <listitem>
           <para>This field selects the type of line to be used to draw lines . Its
-            value should be an integer in [0 6]. 0 stands for solid, the other
+            value should be an integer in [1 6]. 1 stands for solid, the other
             values stand for a selection of dashes (see
             <link linkend="getlinestyle">getlinestyle</link>).
           </para>
@@ -280,5 +277,14 @@
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

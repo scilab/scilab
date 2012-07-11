@@ -66,9 +66,8 @@ int sci_javaclasspath(char *fname, void* pvApiCtx)
         {
             char **pStVarOne = NULL;
             int *lenStVarOne = NULL;
-            static int n1=0,m1=0;
-            int i=0;
-            char **classPaths=NULL;
+            static int n1 = 0,m1 = 0;
+            int i = 0;
 
             /* get dimensions */
             sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);

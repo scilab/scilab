@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,37 +30,30 @@
 #include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 
-GRAPHICS_IMPEXP sciPointObj *CloneText (sciPointObj * pthis); /* CLONE */
-GRAPHICS_IMPEXP sciPointObj *sciCloneObj (sciPointObj * pobj); /* CLONE */
-
-GRAPHICS_IMPEXP sciPointObj *CloneRectangle (sciPointObj * pthis);
-GRAPHICS_IMPEXP sciPointObj *ClonePolyline (sciPointObj * pthis);
-GRAPHICS_IMPEXP sciPointObj *CloneArc (sciPointObj * pthis);
-
-GRAPHICS_IMPEXP sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
-
 /*--------------------------------------------------------------------------*/
 /**
- * copy the graphicontext of an object to another
- * @param pObjSource the object from which the GC is taken
- * @param pObjDest the object in which the GC is paste
- * @return 0 if the copy is ok, -1 otherwise.
+ * copy the ContouredObject properties of a source object to a destination object
+ * The previous (non-MVC) implementation always returned 0, even if it was specified
+ * that it could return -1 in the return comment.
+ * @param sourceIdentifier the source object's MVC identifier
+ * @param destIdentifier the destination object's MVC identifier
+ * @return always 0, the copy is considered to be always correct
  */
-GRAPHICS_IMPEXP int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier);
 /*--------------------------------------------------------------------------*/
 /**
  * copy the fontContext of an object to another.
- * @param pObjSource the object from which the FC is taken
- * @param pObjDest the object in which the FC is paste
- * @return 0 if the copy is ok, -1 otherwise.
+ * @param sourceIdentifier the source object's MVC identifier
+ * @param destIdentifier the destination object's MVC identifier
+ * @return always 0, the copy is considered to be always correct
  */
-GRAPHICS_IMPEXP int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+GRAPHICS_IMPEXP int cloneFontContext(char* sourceIdentifier, char* destIdentifier);
 /*--------------------------------------------------------------------------*/
 /**
- * copy the user data of an object to an other.
- * @return 0 if the copy is ok, -1 otherwise.
+ * Clones a polyline
+ * @param sourceIdentifier the source polyline's identifier
+ * @return the identifier of the cloned polyline.
  */
-int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
-/*--------------------------------------------------------------------------*/
+GRAPHICS_IMPEXP char* clonePolyline(char* sourceIdentifier);
 
 #endif /* __SCI_CLONE__ */

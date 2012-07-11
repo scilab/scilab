@@ -85,7 +85,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private int width = -1;
     private boolean isLatex;
 
-    private PlainView plainView;
     private List<KeyStroke> keysForHistory;
 
     /**
@@ -95,29 +94,29 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         super();
 
         setEditorKit(new StyledEditorKit() {
-                public ViewFactory getViewFactory() {
-                    return SciInputCommandView.this;
-                }
-            });
+            public ViewFactory getViewFactory() {
+                return SciInputCommandView.this;
+            }
+        });
 
         setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
 
         // Input command line is not editable when created
         this.setEditable(false);
         ScilabCaret caret = new ScilabCaret(this) {
-                public void mousePressed(MouseEvent e) {
-                    ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
-                    super.mousePressed(e);
-                }
-            };
+            public void mousePressed(MouseEvent e) {
+                ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+                super.mousePressed(e);
+            }
+        };
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
         setFocusTraversalPolicy(new java.awt.DefaultFocusTraversalPolicy() {
-                public java.awt.Component getComponentAfter(java.awt.Container aContainer, java.awt.Component aComponent) {
-                    return SciInputCommandView.this;
-                }
-            });
+            public java.awt.Component getComponentAfter(java.awt.Container aContainer, java.awt.Component aComponent) {
+                return SciInputCommandView.this;
+            }
+        });
         setFocusCycleRoot(true);
     }
 
@@ -168,8 +167,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         try {
             if (concurrentThread == null) {
                 concurrentThread = Thread.currentThread();
-            }
-            else {
+            } else {
                 concurrentThread.interrupt();
             }
             command = queue.take();
@@ -215,56 +213,56 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // BUG 2510 fix: automatic validation of pasted lines
         this.getDocument().addDocumentListener(new DocumentListener() {
-                public void changedUpdate(DocumentEvent e) {
-                    // Nothing to do in Scilab
-                }
+            public void changedUpdate(DocumentEvent e) {
+                // Nothing to do in Scilab
+            }
 
-                public void insertUpdate(DocumentEvent e) {
-                    // Validates commands if followed by a carriage return
-                    final String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                    if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
-                        EventQueue.invokeLater(new Runnable() {
-                                public void run() {
-                                    console.sendCommandsToScilab(wholeTxt, true, true);
-                                };
-                            });
-                    }
+            public void insertUpdate(DocumentEvent e) {
+                // Validates commands if followed by a carriage return
+                final String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+                    EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            console.sendCommandsToScilab(wholeTxt, true, true);
+                        };
+                    });
                 }
+            }
 
-                public void removeUpdate(DocumentEvent e) {
-                    // Nothing to do in Scilab
-                }
-            });
+            public void removeUpdate(DocumentEvent e) {
+                // Nothing to do in Scilab
+            }
+        });
 
         this.addKeyListener(new KeyListener() {
-                public void keyPressed (KeyEvent e) {
-                    if (keysForHistory == null) {
-                        getKeysForHistory();
-                    }
+            public void keyPressed (KeyEvent e) {
+                if (keysForHistory == null) {
+                    getKeysForHistory();
+                }
 
-                    // key char is equal to 65535 when the hit key is only shift, meta, alt,...
-                    if (e.getKeyChar() != 65535 && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT && !keysForHistory.contains(KeyStroke.getKeyStrokeForEvent(e))) {
-                        if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                            console.getConfiguration().getHistoryManager().setInHistory(false);
-                        }
+                // key char is equal to 65535 when the hit key is only shift, meta, alt,...
+                if (e.getKeyChar() != 65535 && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT && !keysForHistory.contains(KeyStroke.getKeyStrokeForEvent(e))) {
+                    if (console.getConfiguration().getHistoryManager().isInHistory()) {
+                        console.getConfiguration().getHistoryManager().setInHistory(false);
                     }
+                }
 
-                    if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+                if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
                         && e.getKeyCode() == KeyEvent.VK_DELETE
-                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
-                        // Fix for bug 7238
-                        e.setKeyCode(KeyEvent.VK_DECIMAL);
-                    }
+                && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                    // Fix for bug 7238
+                    e.setKeyCode(KeyEvent.VK_DECIMAL);
                 }
+            }
 
-                public void keyReleased (KeyEvent e) {
-                    // Nothing to do in Scilab
-                }
+            public void keyReleased (KeyEvent e) {
+                // Nothing to do in Scilab
+            }
 
-                public void keyTyped (KeyEvent e) {
-                    // Nothing to do in Scilab
-                }
-            });
+            public void keyTyped (KeyEvent e) {
+                // Nothing to do in Scilab
+            }
+        });
     }
 
     /**
@@ -288,7 +286,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             int y = 0;
             try {
                 Rectangle rect = modelToView(getCaretPosition());
-                y = (int) (rect.height + rect.y + 1);
+                y = rect.height + rect.y + 1;
             } catch (BadLocationException ex) { }
 
             int sheight = height;

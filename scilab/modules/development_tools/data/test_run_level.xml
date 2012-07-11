@@ -13,14 +13,27 @@
 
 <tests>
   <level severity="1">
-    <module name="core">
-      <test>clear</test>
-      <test>colon</test>
-      <test>type</test>
-    </module>
     
     <module name="string">
       <test>evstr</test>
+      <test>emptystr</test>
+    </module>
+    
+    <module name="core">
+      <test>clear</test>
+      <test>colon</test>
+      <test>matelm</test>
+      <test>matops</test>
+      <test>inf_nan</test>
+    </module>
+    
+    <module name="development_tools">
+      <test>test_run_nojvm</test>
+    </module>
+    
+    <module name="linear_algebra">
+      <test>spec</test>
+      <test>norm</test>
     </module>
     
     <module name="data_structures">
@@ -57,8 +70,6 @@
       <test>floor</test>
       <test>fix</test>
       <test>complex</test>
-      <!--      <test>sin</test> Fails -->
-      <!--      <test>cos</test> Fails -->
       <test>tand</test>
       <test>abs</test>
       <test>isempty</test>
@@ -72,6 +83,7 @@
       <test>sparse</test>
       <test>rational</test>
     </module>
+    
     
     <!-- 
 Randomly fail ...

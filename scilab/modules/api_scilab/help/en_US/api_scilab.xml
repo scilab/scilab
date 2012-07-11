@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="api_scilab" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>api_scilab</refname>
     <refpurpose>api_scilab is the Scilab interface to read/write data from/to Scilab memory </refpurpose>
@@ -65,6 +62,53 @@
     <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
   </refsection>
   <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Add some functions/macros in replacement of stack functions/macros
+          <itemizedlist>
+            <listitem>nbInputArgument
+              <para>
+                Replaces <literal>Rhs</literal>
+              </para>
+            </listitem>
+            <listitem>nbOutputArgument
+              <para>
+                Replaces <literal>Lhs</literal>
+              </para>
+            </listitem>
+            <listitem>AssignOutputVariable
+              <para>
+                Replaces <literal>LhsVar</literal>
+              </para>
+            </listitem>
+            <listitem>ReturnArguments
+              <para>
+                Replaces <literal>PutLhsVar</literal>
+              </para>
+            </listitem>
+            <listitem>CheckInputArgument
+              <para>
+                Replaces <literal>CheckRhs</literal>
+              </para>
+            </listitem>
+            <listitem>CheckOutputArgument
+              <para>
+                Replaces <literal>CheckLhs</literal>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para>
+            Add functions to identify list datatypes:
+            <literal>isListType</literal>, <literal>isNamedListType</literal>, <literal>isTListType</literal>, <literal>isNamedTListType</literal>, <literal>isMListType</literal>,
+            <literal>isNamedMListType</literal>
+          </para>
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  <refsection>
     <title>See Also - API_Scilab</title>
     <simplelist type="inline">
       <member>
@@ -74,10 +118,10 @@
         <link linkend="boolean_writing_API">boolean writing API</link>,
       </member>
       <member>
-        <link linkend="bsparse_reading_API">bsparse reading API</link>,
+        <link linkend="bsparse_reading_API">boolean sparse reading API</link>,
       </member>
       <member>
-        <link linkend="bsparse_writing_API">bsparse writing API</link>,
+        <link linkend="bsparse_writing_API">boolean sparse writing API</link>,
       </member>
       <member>
         <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
@@ -148,10 +192,10 @@
         <link linkend="list_boolean_writing_API">list boolean writing API</link>
       </member>
       <member>
-        <link linkend="list_bsparse_reading_API">list bsparse reading API</link>
+        <link linkend="list_bsparse_reading_API">list boolean sparse reading API</link>
       </member>
       <member>
-        <link linkend="list_bsparse_writing_API">list bsparse writing API</link>
+        <link linkend="list_bsparse_writing_API">list boolean sparse writing API</link>
       </member>
       <member>
         <link linkend="list_createlist_API">list_createlist API</link>

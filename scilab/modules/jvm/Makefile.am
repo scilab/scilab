@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-#
+# 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at
+# are also available at    
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -22,30 +22,29 @@ libscijvm_la_root_DATA =  license.txt
 libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
-libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+
+
+
+libscijvm_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
-			$(XML_FLAGS) \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/call_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/
-
-libscijvm_la_CPPFLAGS=-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/call_scilab/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes
+			-I$(top_srcdir)/modules/fileio/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+			-I$(top_srcdir)/modules/preferences/includes/ \
+			$(XML_FLAGS) \
+			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscijvm-disable.la
 
@@ -55,9 +54,10 @@ pkglib_LTLIBRARIES += libscijvm.la
 noinst_LTLIBRARIES = libscijvm-algo.la
 endif
 
-libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS)
+libscijvm_la_LDFLAGS = -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) $(AM_LDFLAGS)
 
-if IS_MACOSX
+# FIXME: This a platform specific flag, this should be done on configure.ac
+if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
@@ -110,12 +110,7 @@ src/c/getJvmOptions.c
 JVM_DISABLE_C_SOURCES = src/nojvm/nojvm.c
 JVM_DISABLE_CPP_SOURCES = src/nojvm/nojvm_gw.cpp
 libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCES)
-libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/call_scilab/includes \
-			-I$(srcdir)/src/c \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-            -I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+
 libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
@@ -126,11 +121,11 @@ libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 
 libscijvm_algo_la_SOURCES = $(JVM_C_SOURCES)
 libscijvm_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscijvm_algo_la_CFLAGS = $(libscijvm_la_CFLAGS)
+libscijvm_algo_la_CPPFLAGS = $(libscijvm_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscijvm_la_SOURCES)
-INCLUDE_FLAGS = $(libscijvm_la_CFLAGS)
+INCLUDE_FLAGS = $(libscijvm_la_CPPFLAGS)
 
 
 include $(top_srcdir)/Makefile.incl.am

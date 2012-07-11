@@ -11,21 +11,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="waitbar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>waitbar</refname>
     <refpurpose> Draw a waitbar</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>winId=waitbar(x)
-      winId=waitbar(x,mes)
-      winId=waitbar(mes)
-      waitbar(x,winId)
-      waitbar(mes,winId)
-      waitbar(x,mes,winId)
+    <synopsis>winH=waitbar(x)
+      winH=waitbar(x,mes)
+      winH=waitbar(mes)
+      waitbar(x,winH)
+      waitbar(mes,winH)
+      waitbar(x,mes,winH)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -44,9 +41,9 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>winId</term>
+        <term>winH</term>
         <listitem>
-          <para>integer greater than 0, window identificator.</para>
+          <para>Handle of the waitbar.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,31 +51,31 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>waitbar(x)</literal> create a new waitbar displaying a fraction x, return window identificator.
+      <literal>waitbar(x)</literal> create a new waitbar displaying a fraction x, return handle of the waitbar.
     </para>
     <para>
-      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction x and message mes, return window identificator.
+      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction x and message mes, return handle of the waitbar.
     </para>
     <para>
-      <literal>waitbar(mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.
+      <literal>waitbar(mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return handle of the waitbar.
     </para>
     <para>
-      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.
+      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return handle of the waitbar.
     </para>
     <para>
-      <literal>waitbar(x,winId)</literal>, <literal>waitbar(mes,winId)</literal> and <literal>waitbar(x,mes,winId)</literal> update waitbar with window identificator winId.
+      <literal>waitbar(x,winH)</literal>, <literal>waitbar(mes,winH)</literal> and <literal>waitbar(x,mes,winH)</literal> update waitbar with handle <literal>winH</literal>.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-winId=waitbar('This is an example');
+winH=waitbar('This is an example');
 realtimeinit(0.3);
 for j=0:0.1:1,
   realtime(3*j);
-  waitbar(j,winId);
+  waitbar(j,winH);
 end
-winclose(winId);
+winclose(winH);
  ]]></programlisting>
   </refsection>
 </refentry>

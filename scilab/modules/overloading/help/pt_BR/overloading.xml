@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
- * 
+ * Copyright (C) INRIA
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="overloading" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>overloading</refname>
     <refpurpose>capacidades de overloading ("sobrecarga") de exibições,
@@ -26,7 +21,7 @@
     <title>Descrição</title>
     <para>No Scilab, exibições, funções e operadores de variáveis podem ser
       definidos para novos objetos utilizando funções (codificadas no Scilab ou
-      primitivas). 
+      primitivas).
     </para>
     <variablelist>
       <varlistentry>
@@ -57,21 +52,21 @@
     </variablelist>
     <para>para operadores binários:
       <literal>%&lt;tipo_do_primeiro_operando&gt;_&lt;código_do_
-        operador&gt;_&lt;tipo_do_segundo_operando&gt;
+        operador&gt;_&lt;tipo_do_segundo_operando&gt; 
       </literal>
     </para>
     <para>para operadores unários:
       <literal>%&lt;tipo_do_operando&gt;_&lt;código_do_operador&gt;</literal>
     </para>
     <para>Operadores de extração e inserção que são n-nários são descritos
-      abaixo. 
+      abaixo.
     </para>
     <para>
       <literal>&lt;tipo_do_operando&gt;</literal>,
       <literal>&lt;tipo_do_primeiro_operando&gt;</literal>,
       <literal>&lt;tipo_do_segundo_operando&gt;</literal> são seqüências de
       caracteres associadas a cada tipo de dado como descrito na tabela
-      seguinte: 
+      seguinte:
     </para>
     <informaltable border="1">
       <tr>
@@ -173,27 +168,37 @@
     </informaltable>
     <para>
       <literal>&lt;código_do_operador&gt;</literal> é um único caractere
-      associado a cada operador como descrito na tabela seguinte: 
+      associado a cada operador como descrito na tabela seguinte:
     </para>
     <informaltable border="1">
       <tr>
-        <td>operador</td>
-        <td>código "char"</td>
-        <td>operador</td>
-        <td>código "char"</td>
+        <td>
+          <literal>op</literal>
+        </td>
+        <td>char code</td>
       </tr>
       <tr>
         <td>
           <literal>'</literal>
         </td>
         <td>t</td>
-        <td>+</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>+</literal>
+        </td>
         <td>a</td>
       </tr>
       <tr>
-        <td>-</td>
+        <td>
+          <literal>-</literal>
+        </td>
         <td>s</td>
-        <td>*</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>*</literal>
+        </td>
         <td>m</td>
       </tr>
       <tr>
@@ -201,7 +206,11 @@
           <literal>/</literal>
         </td>
         <td>r</td>
-        <td>\</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>\</literal>
+        </td>
         <td>l</td>
       </tr>
       <tr>
@@ -209,19 +218,35 @@
           <literal>^</literal>
         </td>
         <td>p</td>
-        <td>.*</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>.*</literal>
+        </td>
         <td>x</td>
       </tr>
       <tr>
-        <td>./</td>
+        <td>
+          <literal>./</literal>
+        </td>
         <td>d</td>
-        <td>.\</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>.\</literal>
+        </td>
         <td>q</td>
       </tr>
       <tr>
-        <td>.*.</td>
+        <td>
+          <literal>.*.</literal>
+        </td>
         <td>k</td>
-        <td>./.</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>./.</literal>
+        </td>
         <td>y</td>
       </tr>
       <tr>
@@ -229,13 +254,23 @@
           <literal>.\.</literal>
         </td>
         <td>z</td>
-        <td>:</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>:</literal>
+        </td>
         <td>b</td>
       </tr>
       <tr>
-        <td>*.</td>
+        <td>
+          <literal>*.</literal>
+        </td>
         <td>u</td>
-        <td>/.</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>/.</literal>
+        </td>
         <td>v</td>
       </tr>
       <tr>
@@ -243,57 +278,101 @@
           <literal>\.</literal>
         </td>
         <td>w</td>
-        <td>[a,b]</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>[a,b]</literal>
+        </td>
         <td>c</td>
       </tr>
       <tr>
-        <td>[a;b]</td>
+        <td>
+          <literal>[a;b]</literal>
+        </td>
         <td>f</td>
-        <td>() extraction</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>() extraction</literal>
+        </td>
         <td>e</td>
       </tr>
       <tr>
-        <td>() insertion</td>
+        <td>
+          <literal>() insertion</literal>
+        </td>
         <td>i</td>
-        <td>==</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>==</literal>
+        </td>
         <td>o</td>
       </tr>
       <tr>
-        <td>&lt;&gt;</td>
+        <td>
+          <literal>&lt;&gt;</literal>
+        </td>
         <td>n</td>
-        <td>|</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>|</literal>
+        </td>
         <td>g</td>
       </tr>
       <tr>
-        <td>&amp;</td>
+        <td>
+          <literal>&amp;</literal>
+        </td>
         <td>h</td>
+      </tr>
+      <tr>
         <td>
           <literal>.^</literal>
         </td>
         <td>j</td>
       </tr>
       <tr>
-        <td>~</td>
-        <td>5</td>
-        <td>.'</td>
+        <td>
+          <literal>.'</literal>
+        </td>
         <td>0</td>
       </tr>
       <tr>
-        <td>&lt;</td>
+        <td>
+          <literal>&lt;</literal>
+        </td>
         <td>1</td>
-        <td>&gt;</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>&gt;</literal>
+        </td>
         <td>2</td>
       </tr>
       <tr>
-        <td>&lt;=</td>
+        <td>
+          <literal>&lt;=</literal>
+        </td>
         <td>3</td>
-        <td>&gt;=</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>&gt;=</literal>
+        </td>
         <td>4</td>
       </tr>
       <tr>
-        <td/>
-        <td/>
-        <td>iext</td>
+        <td>
+          <literal>~</literal>
+        </td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>iext</literal>
+        </td>
         <td>6</td>
       </tr>
     </informaltable>
@@ -306,15 +385,13 @@
       seqüência de chamamento:
       <literal>[x1,..,xm]=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal>
     </para>
-    <para/>
     <para>A função de sobrecarga associada à sintaxe de inserção
       <literal>a(i1,...,in)=b</literal> tem a segunite seqüência de
       chamamento:<literal>
-        a=%&lt;tipo_de_b&gt;_i_&lt;tipo_de_a&gt;(i1,...,in,b,a)
+        a=%&lt;tipo_de_b&gt;_i_&lt;tipo_de_a&gt;(i1,...,in,b,a) 
       </literal>
       .
     </para>
-    <para/>
     <para>
       O código "char" <literal>6</literal> pode ser usado para alguns
       algoritmos de inserção complexos como <literal>x.b(2)=33</literal> onde o
@@ -333,11 +410,11 @@
           <para>algumas funções primitivas básicas também podem ser
             sobrecarregadas para novos tipo de dados. Quando tal função não é
             definida para tipos de dados particulares, a função <literal>
-              %&lt;tipo_de_um_argumento&gt;_&lt;nome_da_função&gt;
+              %&lt;tipo_de_um_argumento&gt;_&lt;nome_da_função&gt; 
             </literal>
             é
             chamada. O usuário pode adicionar a esta função chamada a definição
-            associada aos tipos de dados de entrada. 
+            associada aos tipos de dados de entrada.
           </para>
         </listitem>
       </varlistentry>
@@ -345,19 +422,33 @@
   </refsection>
   <refsection>
     <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
-//EXIBIÇÃO
-deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
-tlist('tab',['a','b'],['x';'y'],rand(2,2))
-
-//OPERADOR
-deff('x=%c_a_s(a,b)','x=a+string(b)')
-'s'+1
-
-//FUNÇÃO
-deff('x=%c_sin(a)','x=''sin(''+a+'')''')
-sin('2*x')
- ]]></programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//EXIBIÇÃO
+      function [] = %tab_p(l)
+      disp([[' '; l(3)] [l(2); string(l(4))]])
+      endfunction
+      
+      tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2))
+    </programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//OPERADOR
+      function x = %c_a_s(a, b)
+      x = a + string(b);
+      endfunction
+      
+      's' + 1
+    </programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//FUNÇÃO
+      function x = %c_sin(a)
+      x = 'sin(' + a + ')'
+      endfunction
+      
+      sin('2 * x')
+    </programlisting>
   </refsection>
   <refsection>
     <title>Ver Também</title>

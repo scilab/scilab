@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-11-08 14:54+0000\n"
-"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"PO-Revision-Date: 2012-03-09 22:37+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pl\n"
 
 #, c-format
@@ -55,11 +55,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Błąd przedzielania pamięci\n"
+msgstr "%s: Błąd alokacji pamięci.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
-msgstr "%s : Drugi parametr ma być skalarem.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Third argument must be scalar.\n"
@@ -1063,8 +1063,12 @@ msgstr ""
 " błąd w Jakobianie"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Błąd: nie może znaleźć '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1234,42 +1238,6 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Błąd: blok scifunc nie został zdefiniowany."
 
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
-
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
@@ -1326,31 +1294,7 @@ msgid "Sorry file name not defined in "
 msgstr "Przepraszamy, nazwa pliku nie jest zdefiniowana w "
 
 #, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #, c-format

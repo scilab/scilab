@@ -22,6 +22,7 @@ extern "C"
 #include "IsAScalar.h"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
+#include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
@@ -29,7 +30,7 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_printfigure(char *fname, unsigned long l)
 {
-    static int l1, n1, m1;
+    static int l1 = 0, n1 = 0, m1 = 0;
     int num_win = -2;
     int *status = NULL;
 
@@ -57,7 +58,7 @@ int sci_printfigure(char *fname, unsigned long l)
 
                 try
                 {
-                    status[0] = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, true, true); /* postscript mode and display dialog */
+                    status[0] = (int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), true, true); /* postscript mode and display dialog */
                 }
                 catch(const GiwsException::JniException & e)
                 {

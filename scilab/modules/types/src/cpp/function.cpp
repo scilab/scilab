@@ -19,7 +19,6 @@ extern "C"
 {
 #include "core_math.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_path.h"
@@ -335,6 +334,8 @@ namespace types
             os_swprintf(pwstPathToLib, iPathToLibLen, L"%ls%ls%ls/%ls%ls", pwstScilabPath, pwstModulesPath, m_wstModule.c_str(), pwstLTDir, m_wstLibName.c_str());
             char* pstPathToLib = wide_string_to_UTF8(pwstPathToLib);
             m_hLib = LoadDynLibrary(pstPathToLib);
+
+            FREE(pwstPathToLib);
 
             if(m_hLib == NULL)
             {

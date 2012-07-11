@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="edit" xml:lang="ru">
+  <refnamediv>
+    <refname>edit</refname>
+    <refpurpose>функция редактирования</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>edit(functionname[,linenumber])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>functionname</term>
+        <listitem>
+          <para>имя функции, символьная строка</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>linenumber</term>
+        <listitem>
+          <para>номер строки, целое число</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Если <literal>functionname</literal> является именем определённой Scilab-функции,
+      то <literal>edit(functionname)</literal> пытается открыть соответствующий файл 
+      <literal>functionname.sci</literal>.
+    </para>
+    <para>
+      Если <literal>functionname</literal> является именем неопределённой Scilab-функции, то 
+      <literal>edit(functionname)</literal> создаёт файл <literal>functionname.sci</literal> в 
+      текущей директории.
+    </para>
+    <para>
+      Если <literal>functionname</literal> является некорректным макросом или функцией, то 
+      <literal>edit(functionname)</literal> открывает файл с именем 
+      <literal>functionname</literal>.
+    </para>
+    <para>
+      Если задан номер строки <literal>linenumber</literal>, то файл открывается на этой строке относительно определения макроса с тем же именем, что и файл. Если определение макроса не найдено, то файл открывается на строке с номером <literal>linenumber</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+//открыть редактор с текстом этой функции
+edit('edit')  
+
+//открыть редактор для новой функции
+edit('myfunction')  
+
+//открыть файл bar.sci в директории TMPDIR
+edit(fullfile(TMPDIR+'bar.sci')) 
+
+// открыть файл test_run.sci на строке 123
+// относительно определения test_run()
+edit('test_run', 123) 
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="manedit">manedit</link>
+      </member>
+      <member>
+        <link linkend="names">имена</link>
+      </member>
+      <member>
+        <link linkend="editor">editor</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

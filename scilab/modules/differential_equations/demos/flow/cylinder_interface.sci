@@ -604,6 +604,7 @@ function start_simu()
   traj_handle=curAxe.children(1).children(5);
   traj_handle.data=[x(1),y(1),z(1)];
   for k=2:size(x,'*')
+    sleep(10)
     if execstr('fin=my_figure_handle.user_data','errcatch')<>0|fin then break,end
     traj_handle.data=[traj_handle.data;[x(k),y(k),z(k)]];
   end

@@ -12,6 +12,9 @@
 
 package org.scilab.modules.types;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,16 +22,19 @@ import java.util.List;
 /**
  * This class provides a representation on the Scilab Boolean Sparse datatype<br>
  * <br>
- * This class is {@link java.io.Serializable} and any modification could
- * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * This class is {@link java.io.Serializable} and any modification could impact
+ * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * //TODO Sly : ajouter de la doc
+ *
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabBooleanSparse implements ScilabType {
 
     private static final long serialVersionUID = 879625048944109684L;
     private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean_sparse;
+
+    private static final int VERSION = 0;
 
     private int rows;
     private int cols;
@@ -40,30 +46,39 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Default constructor
      */
-    public ScilabBooleanSparse() { }
+    public ScilabBooleanSparse() {
+    }
 
     /**
      * Constructor with a unique value.
-     * @param data the unique value
+     *
+     * @param data
+     *            the unique value
      */
     public ScilabBooleanSparse(boolean data) {
         if (data) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[] {1};
-            colPos = new int[] {0};
+            nbItemRow = new int[] { 1 };
+            colPos = new int[] { 0 };
         }
     }
 
     /**
      * Constructor
      *
-     * @param rows the number of rows
-     * @param cols the number of cols
-     * @param nbItem the number of true items
-     * @param nbItemRow contains the number of true in each rows
-     * @param colPos the column position of each true
-     * @param check if true the parameters validity is checked
+     * @param rows
+     *            the number of rows
+     * @param cols
+     *            the number of cols
+     * @param nbItem
+     *            the number of true items
+     * @param nbItemRow
+     *            contains the number of true in each rows
+     * @param colPos
+     *            the column position of each true
+     * @param check
+     *            if true the parameters validity is checked
      */
     public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, boolean check) throws ScilabSparseException {
         this(rows, cols, nbItem, nbItemRow, colPos);
@@ -75,11 +90,16 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Constructor
      *
-     * @param rows the number of rows
-     * @param cols the number of cols
-     * @param nbItem the number of true items
-     * @param nbItemRow contains the number of true in each rows
-     * @param colPos the column position of each true
+     * @param rows
+     *            the number of rows
+     * @param cols
+     *            the number of cols
+     * @param nbItem
+     *            the number of true items
+     * @param nbItemRow
+     *            contains the number of true in each rows
+     * @param colPos
+     *            the column position of each true
      */
     public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos) {
         this.rows = rows;
@@ -92,7 +112,8 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Constructor with a matrix of real data.
      *
-     * @param data the data
+     * @param data
+     *            the data
      */
     public ScilabBooleanSparse(boolean[][] data) {
         if (data.length != 0 && data[0].length != 0) {
@@ -122,12 +143,18 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Constructor
      *
-     * @param varName the variable name
-     * @param rows the number of rows
-     * @param cols the number of cols
-     * @param nbItem the number of true items
-     * @param nbItemRow contains the number of true in each rows
-     * @param colPos the column position of each true
+     * @param varName
+     *            the variable name
+     * @param rows
+     *            the number of rows
+     * @param cols
+     *            the number of cols
+     * @param nbItem
+     *            the number of true items
+     * @param nbItemRow
+     *            contains the number of true in each rows
+     * @param colPos
+     *            the column position of each true
      */
     public ScilabBooleanSparse(String varName, int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos) {
         this(rows, cols, nbItem, nbItemRow, colPos);
@@ -136,6 +163,7 @@ public class ScilabBooleanSparse implements ScilabType {
 
     /**
      * Return the type of Scilab
+     *
      * @return the type of Scilab
      * @since 5.4.0
      */
@@ -146,6 +174,7 @@ public class ScilabBooleanSparse implements ScilabType {
 
     /**
      * Check the emptiness of the associated data.
+     *
      * @return true, if the associated data array is empty.
      */
     @Override
@@ -165,7 +194,8 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param nbItem the real part.
+     * @param nbItem
+     *            the real part.
      */
     public void setNbNonNullItems(int nbItem) {
         this.nbItem = nbItem;
@@ -183,7 +213,8 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param nbItemRow the real part.
+     * @param nbItemRow
+     *            the real part.
      */
     public void setNbItemRow(int[] nbItemRow) {
         this.nbItemRow = nbItemRow;
@@ -214,7 +245,8 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param colPos the real part.
+     * @param colPos
+     *            the real part.
      */
     public void setColPos(int[] colPos) {
         this.colPos = colPos;
@@ -263,7 +295,6 @@ public class ScilabBooleanSparse implements ScilabType {
         return new boolean[0];
     }
 
-
     /**
      * @return the height of the data matrix
      * @see org.scilab.modules.types.ScilabType#getHeight()
@@ -289,9 +320,8 @@ public class ScilabBooleanSparse implements ScilabType {
     public boolean equals(Object obj) {
         if (obj instanceof ScilabBooleanSparse) {
             ScilabBooleanSparse sciSparse = (ScilabBooleanSparse) obj;
-            return this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                   ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
-                   Arrays.equals(this.getColPos(), sciSparse.getColPos());
+            return this.getNbNonNullItems() == sciSparse.getNbNonNullItems() && ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow())
+                   && Arrays.equals(this.getColPos(), sciSparse.getColPos());
         } else {
             return false;
         }
@@ -301,7 +331,35 @@ public class ScilabBooleanSparse implements ScilabType {
      * {@inheritDoc}
      */
     public Object getSerializedObject() {
-        return new Object[]{new int[]{rows, cols}, nbItemRow, getScilabColPos()};
+        return new Object[] { new int[] { rows, cols }, nbItemRow, getScilabColPos() };
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        int version = in.readInt();
+        switch (version) {
+            case 0:
+                rows = in.readInt();
+                cols = in.readInt();
+                nbItem = in.readInt();
+                nbItemRow = (int[]) in.readObject();
+                colPos = (int[]) in.readObject();
+                varName = (String) in.readObject();
+                break;
+            default:
+                throw new ClassNotFoundException("A class ScilabBooleanSparse with a version " + version + " does not exists");
+        }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(VERSION);
+        out.writeInt(rows);
+        out.writeInt(cols);
+        out.writeInt(nbItem);
+        out.writeObject(nbItemRow);
+        out.writeObject(colPos);
+        out.writeObject(varName);
     }
 
     /**

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="linsolve">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>linsolve</refname>
     <refpurpose> solveur d'équation linéaire  </refpurpose>
@@ -83,7 +80,7 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
 
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);

@@ -13,13 +13,10 @@ function subdemolist = demo_gateway()
                  _("Wheel simulation")   ,"wheel/wheel.dem.gateway.sce"   ;
                  _("Bike simulation")    ,"bike/bike.dem.gateway.sce"     ;
                  _("ODE''S")             ,"ode/ode.dem.gateway.sce"       ;
-                 _("DAE''S")             ,"dae/dae.dem.gateway.sce"       ];
+                 _("DAE''S")             ,"dae/dae.dem.gateway.sce"       ;
+                 _("Flow simulation")    ,"flow/flow.dem.gateway.sce"     ;
+                 _("Levitron")           ,"levitron/levitron.dem.sce"     ];
 
-  if ~ usecanvas() then
-    subdemolist = [ subdemolist                               ; ..
-                 _("Flow simulation")    ,"flow/flow.dem.gateway.sce" ; ..
-                 _("Levitron")           ,"levitron/levitron.dem.sce" ];
-  end
 
   subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction

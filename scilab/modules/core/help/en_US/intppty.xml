@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intppty">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intppty</refname>
     <refpurpose> set interface argument passing properties</refpurpose>
@@ -19,13 +16,17 @@
       <varlistentry>
         <term>fun</term>
         <listitem>
-          <para>integer an interface number (see funptr)</para>
+          <para>
+            integer, an interface number (see <link linkend="funptr">funptr</link>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>funs</term>
         <listitem>
-          <para>integer vector, vector of interface number (see funptr)</para>
+          <para>
+            integer vector, vector of interface number (see <link linkend="funptr">funptr</link>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,12 +41,12 @@
       In the first and default way, the arguments are passed by value.
       With the following syntax:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 foo(A,1+2)
  ]]></programlisting>
     <para>
       the argument associated with <literal>A</literal> will be passed by value (a copy
-      of <literal>A</literal> is made before <literal>foo</literal> is called, and
+      of <literal>A</literal> is made before <literal>foo</literal> is called), and
       the argument associated with <literal>1+2</literal> will be passed by value.
     </para>
     <para>
@@ -56,7 +57,7 @@ foo(A,1+2)
       interface with number <literal>fun</literal> can handle arguments passed by
       reference. With the following syntax:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 foo(A,1+2)
  ]]></programlisting>
     <para>
@@ -77,8 +78,7 @@ foo(A,1+2)
       arguments passed by reference.
     </para>
     <para>
-      This function may be useful for dynamically loaded interface (see
-      addinter).
+      This function may be useful for dynamically loaded interface (see <link linkend="addinter">addinter</link>).
     </para>
   </refsection>
   <refsection role="see also">

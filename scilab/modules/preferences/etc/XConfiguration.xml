@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<interface path="1/" width="700" height="500">
+<interface path="1/" width="800" height="550">
   <general/>
+  <preference/>
   <fonts/>
   <colors/>
   <console/>
   <command-history/>
   <scinotes/>
-  <variables/>
-  <xcos/>
-  <toolbar/>
-  <toolboxes/>
 </interface>

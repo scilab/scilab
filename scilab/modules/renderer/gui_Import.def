@@ -1,9 +1,0 @@
-LIBRARY    scigui.dll
-
-
-EXPORTS
-;--------------------------
-; gui
-;--------------------------
-newFigure
-

@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -83,7 +83,7 @@ int sci_dgettext(char *fname, void* pvApiCtx)
             {
                 if (strcmp(stringsToTranslate[i], "") == 0)
                 {
-                    TranslatedStrings[i] = strdup("");
+                    TranslatedStrings[i] = os_strdup("");
                 }
                 else
                 {
@@ -148,50 +148,50 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
 
             tmpStr1 = strsub((char*)pStr, "\\n", "\n"); /* linefeed */
             tmpStr2 = strsub(tmpStr1, "\\t", "\t"); /* horizontal tab */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
             tmpStr1 = strsub(tmpStr2, "\\r", "\r"); /* carriage return */
-            if (tmpStr2) 
+            if (tmpStr2)
             {
                 FREE(tmpStr2);
                 tmpStr2 = NULL;
             }
 
             tmpStr2 = strsub(tmpStr1, "\\v", "\v"); /* vertical tab */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
             tmpStr1 = strsub(tmpStr2, "\\f", "\f"); /* form feed */
-            if (tmpStr2) 
+            if (tmpStr2)
             {
-                FREE(tmpStr2); 
+                FREE(tmpStr2);
                 tmpStr2 = NULL;
             }
 
             tmpStr2 = strsub(tmpStr1, "\\\\", "\\"); /* backslash */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
             tmpStr1 = strsub(tmpStr2, "\\\"", "\""); /* double quote */
-            if (tmpStr2) 
+            if (tmpStr2)
             {
                 FREE(tmpStr2);
                 tmpStr2 = NULL;
             }
 
             revertStrsub = TRUE;
-            tmpStr = strdup(tmpStr1);
-            if (tmpStr1) 
+            tmpStr = os_strdup(tmpStr1);
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
@@ -200,11 +200,11 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
         else
         {
             revertStrsub = FALSE;
-            tmpStr = strdup(pStr);
+            tmpStr = os_strdup(pStr);
         }
 
-        TranslatedString = strdup(dgettext(domain, tmpStr));
-        if (tmpStr) 
+        TranslatedString = os_strdup(dgettext(domain, tmpStr));
+        if (tmpStr)
         {
             FREE(tmpStr);
             tmpStr = NULL;
@@ -219,49 +219,49 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
             tmpStr1 = strsub(TranslatedString, "\\", "\\\\"); /* backslash */
 
             tmpStr2 = strsub(tmpStr1, "\f", "\\f"); /* form feed */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
             tmpStr1 = strsub(tmpStr2, "\n", "\\n"); /* linefeed */
-            if (tmpStr2) 
+            if (tmpStr2)
             {
                 FREE(tmpStr2);
                 tmpStr2 = NULL;
             }
 
             tmpStr2 = strsub(tmpStr1, "\t", "\\t"); /* horizontal tab */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
             tmpStr1 = strsub(tmpStr2, "\r", "\\r"); /* carriage return */
-            if (tmpStr2) 
+            if (tmpStr2)
             {
                 FREE(tmpStr2);
                 tmpStr2 = NULL;
             }
 
             tmpStr2 = strsub(tmpStr1, "\v", "\\v"); /* vertical tab */
-            if (tmpStr1) 
+            if (tmpStr1)
             {
                 FREE(tmpStr1);
                 tmpStr1 = NULL;
             }
 
-            if (TranslatedString) 
+            if (TranslatedString)
             {
                 FREE(TranslatedString);
                 TranslatedString = NULL;
             }
 
-            TranslatedString = strdup(tmpStr2);
+            TranslatedString = os_strdup(tmpStr2);
 
-            if (tmpStr2) 
+            if (tmpStr2)
             {
                 FREE(tmpStr2);
                 tmpStr2 = NULL;

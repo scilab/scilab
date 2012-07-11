@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-19 15:46+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-20 12:13+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 #, c-format
@@ -448,23 +448,32 @@ msgstr "&Enregistrer..."
 msgid "&Export to..."
 msgstr "&Exporter vers..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "Export &Vectoriel"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr "Export &vectoriel vers..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr "&PS"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -473,13 +482,7 @@ msgid "&EPS"
 msgstr "&EPS"
 
 msgid "&FIG"
-msgstr "&GIF"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
+msgstr "&FIG"
 
 msgid "&Copy to clipboard"
 msgstr "&Copier dans le presse-papier"
@@ -502,8 +505,8 @@ msgstr "Afficher/Masquer la barre d'ou&tils"
 msgid "&Zoom"
 msgstr "&Zoomer"
 
-msgid "&UnZoom"
-msgstr "&Dézoomer"
+msgid "&Original View"
+msgstr "Vue &Originale"
 
 msgid "2D/3D &Rotation"
 msgstr "&Rotation 2D/3D"
@@ -537,6 +540,18 @@ msgstr "Démarrer le gestionnaire de datatips"
 
 msgid "Stop datatip manager"
 msgstr "Arrêter le gestionnaire de datatips"
+
+msgid "&MVC"
+msgstr "&MVC"
+
+msgid "&Log View (Trace all View notifications)"
+msgstr "Vue &log(Trace de toutes les notifications aux vues)"
+
+msgid "&All Objects View (All objects with properties)"
+msgstr "&Voir toutes les objets (Tous les objets avec leurs propriétés)"
+
+msgid "&Ged-like View (Future ged)"
+msgstr "Vue &Ged (Futur GED)"
 
 msgid "&?"
 msgstr "&?"
@@ -594,6 +609,9 @@ msgstr "&Vider le presse-papier"
 
 msgid "&Select all"
 msgstr "&Sélectionner tout"
+
+msgid "P&references"
+msgstr "P&références"
 
 msgid "&Preferences"
 msgstr "&Préférences"
@@ -737,51 +755,32 @@ msgid "Scilab Demonstrations"
 msgstr "Démonstrations"
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s : Impossible de créer un uicontrol de type %s."
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s : Impossible de détruire cet objet.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "La propriété '%s' n'existe pas pour ce handle.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "Pas de propriété '%s' pour cet objet.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Valeur erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s : Type erroné du parent : Un handle ou 0 attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' "
-"attendu.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s : Impossible d'ajouter un menu dans la console dans ce mode.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : 'light', 'normal', 'demi' ou 'bold' "
-"attendu.\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr "%s : Type erroné du parent : Un handle attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : '%s', '%s', '%s', '%s', '%s' ou '%s' "
-"attendu.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr "%s : Type erroné du parent : Une figure ou un uimenu attendu.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Valeur erronée de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s : Type erroné de parent : Une figure ou un uimenu attendu.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s : Valeur erronée du parent : 0 attendu.\n"
 
 #, c-format
 msgid ""
@@ -800,11 +799,6 @@ msgstr ""
 "chaîne de caractères 'R|G|B' attendu.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : Les chiffres entre 0 et 1 attendus.\n"
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
@@ -813,13 +807,9 @@ msgstr ""
 "chaîne de caractères 'R|G|B' attendu.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Type erroné de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
+"Valeur erronée de la propriété '%s' : Les chiffres entre 0 et 1 attendus.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -832,30 +822,23 @@ msgstr ""
 "Dimension erronée de la propriété '%s' : Une chaîne de caractères attendue.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "Dimension erronée de la propriété '%s' : Un réel attendu.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Valeur erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "Type erroné de la propriété '%s' : Un réel attendu.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Dimension erronée de la propriété '%s' : Un réel attendu.\n"
+
+#, c-format
 msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' "
+"Valeur erronée de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' "
 "attendu.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Type erroné de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' attendu.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
@@ -863,9 +846,13 @@ msgstr ""
 "Valeur erronée de la propriété '%s' : '%s', '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Type erroné de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Type erroné de la propriété '%s' : '%s', '%s', '%s' ou '%s' attendu.\n"
+"Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -920,6 +907,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Type erroné de la propriété '%s' : '%s', '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -928,16 +923,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Type erroné de la propriété '%s' : '%s', '%s', '%s', '%s', '%s' ou '%s' "
-"attendu.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : Un vecteur réel de taille 1 x %d "
+"Valeur erronée de la propriété '%s' : '%s', '%s', '%s', '%s', '%s' ou '%s' "
 "attendu.\n"
 
 #, c-format
@@ -947,11 +936,30 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Dimension erronée de la propriété '%s' : Un vecteur réel de taille 1 x %d "
+"attendu.\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Une chaîne de caractères ou un "
 "vecteur de chaîne de caractères attendu.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Dimension erronée de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Type erroné de la propriété '%s' : '%s', '%s', '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -974,17 +982,25 @@ msgstr ""
 "de caractères attendu.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
 msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
+"Attention : La propriété  'Value' pour un uicontrol de type '%s' doit être "
+"un entier, la valeur sera tronquée.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "Type erroné de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Valeur erronée de la propriété '%s' : '%s' ou '%s' attendu.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"Dimension erronée de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Valeur erronée de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
@@ -993,17 +1009,8 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : Une chaîne de caractères attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s : Valeur erronée de la propriété '%s' : points, normalisé, pouces, "
-"centimètres ou pixels attendu.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Valeur erronée de la propriété '%s' : '%s' ou '%s' attendu.\n"
 
 msgid "Console Font..."
 msgstr "Police de la console..."
@@ -1011,9 +1018,7 @@ msgstr "Police de la console..."
 msgid "Console Background..."
 msgstr "Arrière-plan de la console..."
 
-msgid "No print service found."
-msgstr "Aucun service d'impression n'a été trouvé."
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1023,6 +1028,7 @@ msgstr ""
 "sous un mode dans lequel mixer des uicontrols et des graphiques n''est pas "
 "possible. Taper %s pour plus d''informations."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Dans certains cas, %s corrige le problème."
 
@@ -1183,15 +1189,6 @@ msgstr "Suivant"
 msgid "Tree Overview"
 msgstr "Aperçu de l'arbre"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr ""
-"Clic gauche pour commencer la sélection de la zone de zoom. Clic droit pour "
-"annuler."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "Clic gauche pour terminer la sélection. Clic droit pour annuler."
-
 msgid "OK"
 msgstr "Ok"
 
@@ -1207,6 +1204,7 @@ msgstr "Enregistrer et exécuter"
 msgid "Empty tab"
 msgstr "Onglet vide"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1215,11 +1213,16 @@ msgstr ""
 "Veuillez signaler un bug avec le message précédent et en joignant le fichier "
 "%s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
+
+msgid "Do not show this message again"
+msgstr "Ne plus afficher ce message"
 
 msgid "Exit"
 msgstr "Quitter"
@@ -1272,6 +1275,7 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
 
@@ -1333,6 +1337,9 @@ msgstr "Uicontrols 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "Uicontrols avec LaTeX/MathML"
+
+msgid "Show images with uicontrols "
+msgstr "Afficher des images avec des uicontrols "
 
 msgid "<Enter color name here>"
 msgstr "<Entrer le nom de la couleur ici>"

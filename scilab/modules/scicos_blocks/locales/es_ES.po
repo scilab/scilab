@@ -9,12 +9,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-12-29 08:37+0000\n"
-"Last-Translator: Fitoschido <fitoschido@gmail.com>\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: es\n"
 
 msgid "overflow error"
@@ -97,34 +97,6 @@ msgstr "¡No se pudo abrir el archivo!\n"
 
 msgid "Read error\n"
 msgstr "Error de lectura\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERROR DE ENTORNO : Error en scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERROR DE ENTORNO : ¡sciDrawObj no pudo ejecutarse, pShortDraw es NULL por un "
-"motivo desconocidp!\n"
-" Tal vez haya destruido la ventana o alguna de las curvas padre\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "ERROR DE ENTORNO : Error en malloc - Revise la memoria\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERROR DE ENTORNO : ¡Código de error desconocido!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr ""
-
-msgid "This scope has the same window id than another."
-msgstr ""
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-03 14:36+0000\n"
+"PO-Revision-Date: 2012-03-08 09:52+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -72,6 +72,47 @@ msgstr "розріджена матриця з булівських значен
 
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути вказано не більше %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість виведених параметрів: мало бути виведено принаймні "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість виведених параметрів: мало бути виведено не більше "
+"%d.\n"
 
 #, c-format
 msgid "%s: matrix argument excepted"

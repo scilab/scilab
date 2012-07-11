@@ -41,16 +41,16 @@ import com.mxgraph.util.mxPoint;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: FanOutComplexity
-public class LinkElement extends AbstractElement<BasicLink> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
+public final class LinkElement extends AbstractElement<BasicLink> {
+    protected static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
 
-    private static final int XX_INDEX = 1;
-    private static final int YY_INDEX = 2;
-    private static final int CT_INDEX = 5;
-    private static final int FROM_INDEX = 6;
-    private static final int TO_INDEX = 7;
+    private static final int XX_INDEX = DATA_FIELD_NAMES.indexOf("xx");
+    private static final int YY_INDEX = DATA_FIELD_NAMES.indexOf("yy");
+    private static final int CT_INDEX = DATA_FIELD_NAMES.indexOf("ct");
+    private static final int FROM_INDEX = DATA_FIELD_NAMES.indexOf("from");
+    private static final int TO_INDEX = DATA_FIELD_NAMES.indexOf("to");
 
-    private static final Logger LOG = Logger.getLogger(LinkElement.class.toString());
+    private static final Logger LOG = Logger.getLogger(LinkElement.class.getName());
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
@@ -171,14 +171,10 @@ public class LinkElement extends AbstractElement<BasicLink> {
          */
         for (int i = min; i < max; i++) {
             double x = xAxis[indexes[0]][indexes[1]];
-            double y = -yAxis[indexes[0]][indexes[1]];
+            double y = yAxis[indexes[0]][indexes[1]];
 
-            // Center links
-            x = x + ((start.getGeometry().getX() + end.getGeometry().getX()) / 2.0);
-            y = y + ((start.getGeometry().getY() + end.getGeometry().getY()) / 2.0);
-
-            // offset the axis
-            y = y + start.getGeometry().getHeight();
+            // invert the y-axis value
+            y = -y;
 
             points.add(new mxPoint(x, y));
 
@@ -195,7 +191,11 @@ public class LinkElement extends AbstractElement<BasicLink> {
      *            the link instance
      */
     // CSOFF: JavaNCSS
-    private void searchForPorts(BasicLink link) {
+    private void searchForPorts(final BasicLink link) {
+
+        /*
+         * Retrieve data from encoded instance
+         */
         final ScilabDouble from = (ScilabDouble) data.get(FROM_INDEX);
         final ScilabDouble to = (ScilabDouble) data.get(TO_INDEX);
 
@@ -219,7 +219,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
             LOG.severe(data.toString());
             return;
         }
-        int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
+        final int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
         if (endPortIndex == 0) {
             LOG.severe("Link has an invalid end port");
             LOG.severe(data.toString());
@@ -232,6 +232,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
         if (canGet(from, indexes)) {
             startPortIsStart = fromReal[indexes[0]][indexes[1]] == 0.0;
         } else {
+            // fallback start value
             startPortIsStart = true;
         }
 
@@ -239,45 +240,106 @@ public class LinkElement extends AbstractElement<BasicLink> {
         if (canGet(to, indexes)) {
             endPortIsStart = toReal[indexes[0]][indexes[1]] == 0.0;
         } else {
+            // fallback end value
             endPortIsStart = false;
         }
 
-        Class <? extends BasicPort > startKlass = LinkPortMap.getPortClass(link.getClass(), startPortIsStart);
-        Class <? extends BasicPort > endKlass = LinkPortMap.getPortClass(link.getClass(), endPortIsStart);
+        final List<BasicPort> startPorts = BasicBlockInfo.getAllPortsAtPosition(startBlock, startPortIndex);
+        final List<BasicPort> endPorts = BasicBlockInfo.getAllPortsAtPosition(endBlock, endPortIndex);
 
-        start = null;
-        end = null;
-        try {
-            start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass).get(startPortIndex - 1);
-            end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(endPortIndex - 1);
-        } catch (java.lang.IndexOutOfBoundsException e) {
+        /*
+         * Get the ordered ports, this is the normal case.
+         */
+        lookForOrderedPorts(link, startPorts, startPortIsStart, endPorts, endPortIsStart);
+
+        /*
+         * Fallback to handle an inverted link.
+         */
+        if (start == null || end == null) {
             // implicit links can be inverted but this is exceptional so trace
             // them
             if (LOG.isLoggable(Level.FINEST)) {
-                final Class <? extends BasicPort > current;
                 final BasicBlock block;
                 final int index;
                 if (start == null) {
-                    current = startKlass;
                     block = startBlock;
                     index = startPortIndex;
                 } else {
-                    current = endKlass;
                     block = endBlock;
                     index = endPortIndex;
                 }
 
                 if (block != null) {
-                    LOG.warning("Unable to get " + block.getSimulationFunctionName() + '.' + current.getSimpleName() + "[" + index + "]");
+                    LOG.warning("Unable to get " + block.getSimulationFunctionName() + "[" + index + "]" + block.toString());
                 } else {
                     return;
                 }
             }
 
-            startKlass = LinkPortMap.getPortClass(link.getClass(), !startPortIsStart);
-            start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass).get(startPortIndex - 1);
-            endKlass = LinkPortMap.getPortClass(link.getClass(), !endPortIsStart);
-            end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(endPortIndex - 1);
+            /*
+             * Look for inverted ports in all cases (check inverted first).
+             */
+            lookForOrderedPorts(link, startPorts, !startPortIsStart, endPorts, !endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+            lookForOrderedPorts(link, startPorts, startPortIsStart, endPorts, !endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+            lookForOrderedPorts(link, startPorts, !startPortIsStart, endPorts, endPortIsStart);
+            if (start != null && end != null) {
+                return;
+            }
+        }
+    }
+
+    /**
+     * Look for the ordered ports.
+     *
+     * This method assume that the startPorts and endPorts are sorted according
+     * to {@link BasicBlock#sortChildren()} and have the right ordering.
+     *
+     * @param link
+     *            the link to connect
+     * @param startPorts
+     *            the possible starts
+     * @param startIsStart
+     *            boolean to indicate the link direction (from start ? )
+     * @param endPorts
+     *            the possible ends
+     * @param endIsStart
+     *            boolean to indicate the link direction (from end ? )
+     */
+    private void lookForOrderedPorts(final BasicLink link, final List<BasicPort> startPorts, final boolean startIsStart, final List<BasicPort> endPorts,
+                                     final boolean endIsStart) {
+        Class <? extends BasicPort > startKlass = LinkPortMap.getPortClass(link.getClass(), startIsStart);
+        Class <? extends BasicPort > endKlass = LinkPortMap.getPortClass(link.getClass(), endIsStart);
+
+        /*
+         * Clear the state
+         */
+        start = null;
+        end = null;
+
+        /*
+         * Iterate over start
+         */
+        for (BasicPort p : startPorts) {
+            if (startKlass.isInstance(p)) {
+                start = p;
+                break;
+            }
+        }
+
+        /*
+         * Iterate over end
+         */
+        for (BasicPort p : endPorts) {
+            if (endKlass.isInstance(p)) {
+                end = p;
+                break;
+            }
         }
     }
 

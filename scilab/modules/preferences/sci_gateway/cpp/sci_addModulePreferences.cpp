@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_preferences.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -28,7 +27,7 @@ extern "C"
 using namespace org_scilab_modules_preferences;
 
 /*--------------------------------------------------------------------------*/
-int sci_addModulePreferences(char * fname, void* pvApiCtx)
+int sci_addModulePreferences(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = 0;
@@ -63,9 +62,9 @@ int sci_addModulePreferences(char * fname, void* pvApiCtx)
                 }
             }
             return 0;
-	}
-	
-	getAllocatedSingleString(pvApiCtx, addr, array[i]);
+        }
+
+        getAllocatedSingleString(pvApiCtx, addr, array[i]);
     }
 
     expTbxPath = expandPathVariable(const_cast<char *>(tbxPath));
@@ -77,8 +76,18 @@ int sci_addModulePreferences(char * fname, void* pvApiCtx)
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
-        error = true;
+        Scierror(999, _("%s: %s"), fname, e.getJavaDescription().c_str());
+        for (int i = 0; i < Rhs; i++)
+        {
+            if (array[i])
+            {
+                freeAllocatedSingleString(*(array[i]));
+            }
+        }
+        FREE(expTbxPath);
+        FREE(expTbxPrefFile);
+
+        return 0;
     }
 
     for (int i = 0; i < Rhs; i++)
@@ -91,11 +100,8 @@ int sci_addModulePreferences(char * fname, void* pvApiCtx)
     FREE(expTbxPath);
     FREE(expTbxPrefFile);
 
-    if (!error)
-    {
-        LhsVar(1) = 0;
-        PutLhsVar();
-    }
+    LhsVar(1) = 0;
+    PutLhsVar();
 
     return 0;
 }

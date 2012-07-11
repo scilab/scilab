@@ -1,67 +1,39 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the callback string of an uicontrol or uimenu
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUiobjectEnable.hxx"
 
-extern "C"
+int GetUiobjectEnable(void* _pvCtx, char *pObjUID)
 {
-#include "os_strdup.h"
-}
+    int enable = 0;
+    int* piEnable = &enable;
 
-using namespace org_scilab_modules_gui_bridge;
+    getGraphicObjectProperty(pObjUID, const_cast<char*>(__GO_UI_ENABLE__), jni_bool, (void**) &piEnable);
 
-int GetUiobjectEnable(sciPointObj* sciObj)
-{
-  if (sciGetEntityType( sciObj ) == SCI_UIMENU)
+    if (piEnable == NULL)
     {
-      if (CallScilabBridge::isWidgetEnable(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex))
-        {
-          return sciReturnString(os_strdup("on"));
-        }
-      else
-        {
-          return sciReturnString(os_strdup("off"));
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Enable");
+        return FALSE;
     }
-  else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
+
+    if (enable == TRUE)
     {
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME)
-        {
-          if (CallScilabBridge::isFrameEnable(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
-            {
-              return sciReturnString(os_strdup("on"));
-            }
-          else
-            {
-              return sciReturnString(os_strdup("off"));
-            }
-        }
-      else
-        {
-          if (CallScilabBridge::isWidgetEnable(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
-            {
-              return sciReturnString(os_strdup("on"));
-            }
-          else
-            {
-              return sciReturnString(os_strdup("off"));
-            }
-        }
+        return sciReturnString(_pvCtx, "on");
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Enable");
-      return FALSE;
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

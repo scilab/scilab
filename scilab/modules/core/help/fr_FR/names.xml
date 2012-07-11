@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="names">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>names</refname>
     <refpurpose> syntaxe des noms de variables dans Scilab  </refpurpose>
@@ -10,20 +7,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Les noms de variables et de fonctions doivent commencer par une lettre de l'alphabet ou l'un des caractères "spéciaux" suivants : '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
-  </para>
+      Les noms de variables et de fonctions doivent commencer par une lettre de l'alphabet ou l'un des caractères "spéciaux" suivants : '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+    </para>
     <para>
-  </para>
+    </para>
     <para>
-    Les caractères suivants peuvent être des lettres ou des chiffres, ou bien des caractères spéciaux tels que '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
-  </para>
+      Les caractères suivants peuvent être des lettres ou des chiffres, ou bien des caractères spéciaux tels que '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+    </para>
     <para>
-  </para>
+    </para>
     <para>
-    Le nombre de caractères des noms de variables n'est pas limité mais seuls les 24 premiers sont pris en compte. La différence entre minuscules et majuscules est prise en compte.
-  </para>
+      Le nombre de caractères des noms de variables n'est pas limité mais seuls les 24 premiers sont pris en compte. La différence entre minuscules et majuscules est prise en compte.
+    </para>
     <para>
-  </para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

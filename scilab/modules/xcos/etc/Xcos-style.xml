@@ -168,6 +168,9 @@
   <add as="STEP_FUNCTION" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
   </add>
+  <add as="PULSE_SC" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PULSE_SC.svg"/>
+  </add>
   <add as="CLOCK_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
@@ -395,8 +398,11 @@
     <remove as="image"/>
     <add as="fontSize" value="20"/>
   </add>
-  <add as="CONSTRAINT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="=0 ?"/>
+  <add as="CONSTRAINT_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x == %s"/>
+  </add>
+  <add as="CONSTRAINT2_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
   </add>
   <!-- MODELICA -->
   <add as="MBLOCK" extend="blockWithLabel">
@@ -586,13 +592,14 @@
   <add as="CLKFROM" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
-    <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="From %s"/>
   </add>
   <add as="CLKGOTO" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="To %s"/>
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
@@ -710,6 +717,9 @@
     <add as="verticalAlign" value="top"/>
     <add as="displayedLabel" value="DEMUX"/>
     <add as="spacing" value="2"/>
+  </add>
+  <add as="SCALAR2VECTOR" extend="blockWithLabel">
+    <add as="displayedLabel" value="SCALAR2VECTOR"/>
   </add>
   <!-- COMMONLY USED BLOCKS -->
   <add as="OUT_f" extend="blockWithLabel">
@@ -915,6 +925,7 @@
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
+  <add as="VirtualCLK0" extend="CLOCK_f"/>
   <add as="CLKSPLIT_f" extend="Split"/>
   <add as="IMPSPLIT_f" extend="Split"/>
   <add as="CLKSOM_f" extend="CLKSOMV_f"/>

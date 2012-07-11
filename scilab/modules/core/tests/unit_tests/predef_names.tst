@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 variables_names_1 = predef('names');
 assert_checkequal(size(grep(variables_names_1,'SCI'), '*') <> [], %t);

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="predef">
+  <refnamediv>
+    <refname>predef</refname>
+    <refpurpose>защита переменных</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>n = predef()
+      oldnew = predef(n)
+      oldnew = predef('all')
+      oldnew = predef('clear')
+      variables_name = predef('names')
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Специальная функция, используемая для определения "самых старых" переменных в качестве 
+      "защищённых". Защищённые переменные нельзя уничтожить. Они не сохраняются командой  
+      <literal>'save'</literal>. "Самые старые" -- это те, которые появляются в конце перечисления 
+      <literal>who('get')</literal>.
+    </para>
+    <para>
+      <literal>predef()</literal> получает количество защищённых переменных.
+    </para>
+    <para>
+      <literal>predef('a[ll]')</literal> устанавливает все переменные защищёнными, она также 
+      возвращает старое и новое значение количества защищённых переменных.
+    </para>
+    <para>
+      <literal>predef('c[lear]')</literal> снимает защиту со всех, кроме последних 7 переменных. 
+      Она также возвращает старое и новое значение количества защищённых переменных.
+    </para>
+    <para>
+      <literal>predef(n)</literal> устанавливает <literal>max(n,7)</literal> последних переменных в 
+      качестве защищённых. Она также возвращает старое и новое значение количества защищённых 
+      переменных.
+    </para>
+    <para>
+      <literal>predef('names')</literal> возвращает вектор строк с именами защищённых переменных.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примечания</title>
+    <para>
+      Переменная <literal>ans</literal>, создаваемая автоматически, когда выражение не 
+      присваивается, никогда не защищается командой <literal>predef('all')</literal>.
+    </para>
+    <para>
+      Количество защищённых переменных устанавливается в файле запуска 
+      <literal>SCI/etc/scilab.start</literal>. Пользователь может в установить свои собственные 
+      защищённые переменные в пользовательских файлах запуска
+      <literal>SCIHOME/.scilab</literal> и <literal>SCIHOME/scilab.ini</literal>
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clear">clear</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="ans">ans</link>
+      </member>
+      <member>
+        <link linkend="startup">файл запуска</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -13,8 +13,8 @@
 
 #ifdef _MSC_VER
 #include <windows.h>
-#include <stdio.h>
 #endif
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "intersci.h"
@@ -35,26 +35,28 @@ static void SciEnv();
 #endif
 
 int main(argc, argv)
-     unsigned int argc;
-     char **argv;
+unsigned int argc;
+char **argv;
 {
     int InterFace = 0;
+
+    fprintf(stderr, "WARNING: This program is deprecated and will be removed with Scilab 6.0.0. Please use SWIG ( http://www.swig.org/ ) instead.\n\n");
 
 #ifdef _MSC_VER
     SciEnv();
 #endif
     switch (argc)
     {
-    case 2:
-        InterFace = 0;
-        break;
-    case 3:
-        InterFace = atoi(argv[2]);
-        break;
-    default:
-        printf("usage:  intersci <interface file> <interface number>\n");
-        exit(1);
-        break;
+        case 2:
+            InterFace = 0;
+            break;
+        case 3:
+            InterFace = atoi(argv[2]);
+            break;
+        default:
+            printf("usage:  intersci <interface file> <interface number>\n");
+            exit(1);
+            break;
     }
     basfun = BasfunAlloc();
     if (basfun == 0)
@@ -74,7 +76,7 @@ int main(argc, argv)
 }
 
 void ISCIReadFile(file)
-     char *file;
+char *file;
 {
     FILE *fin, *fout, *foutv;
     char filout[MAXNAM];
@@ -124,8 +126,8 @@ void ISCIReadFile(file)
 }
 
 void WriteMain(f, file)
-     FILE *f;
-     char *file;
+FILE *f;
+char *file;
 {
     int i;
 
@@ -147,7 +149,7 @@ void WriteMain(f, file)
 }
 
 void WriteAddInter(file)
-     char *file;
+char *file;
 {
     FILE *fout;
     int i;
@@ -187,7 +189,7 @@ void Copyright()
 **********************************************************/
 
 int ReadFunction(f)
-     FILE *f;
+FILE *f;
 {
     int i, j, l, type, ftype;
     char s[MAXLINE];
@@ -295,82 +297,82 @@ int ReadFunction(f)
                 variables[i]->type = type;
                 switch (type)
                 {
-                case SCALAR:
-                case ANY:
-                case SCIMPOINTER:
-                case SCISMPOINTER:
-                case SCILPOINTER:
-                case SCIBPOINTER:
-                case SCIOPOINTER:
-                    break;
-                case COLUMN:
-                case ROW:
-                case STRING:
-                case WORK:
-                case VECTOR:
-                    if (nwords != 3)
-                    {
-                        printf("bad type specification for variable \"%s\"\n", words[0]);
-                        printf("only %d argument given and %d are expected\n", nwords, 3);
+                    case SCALAR:
+                    case ANY:
+                    case SCIMPOINTER:
+                    case SCISMPOINTER:
+                    case SCILPOINTER:
+                    case SCIBPOINTER:
+                    case SCIOPOINTER:
+                        break;
+                    case COLUMN:
+                    case ROW:
+                    case STRING:
+                    case WORK:
+                    case VECTOR:
+                        if (nwords != 3)
+                        {
+                            printf("bad type specification for variable \"%s\"\n", words[0]);
+                            printf("only %d argument given and %d are expected\n", nwords, 3);
+                            exit(1);
+                        }
+                        variables[i]->el[0] = GetVar(words[2], 1);
+                        break;
+                    case LIST:
+                    case TLIST:
+                        if (nwords != 3)
+                        {
+                            printf("bad type specification for variable \"%s\"\n", words[0]);
+                            printf("only %d argument given and %d are expected\n", nwords, 3);
+                            exit(1);
+                        }
+                        ReadListFile(words[2], words[0], i);
+                        break;
+                    case POLYNOM:
+                    case MATRIX:
+                    case BMATRIX:
+                    case STRINGMAT:
+                        if (nwords != 4)
+                        {
+                            printf("bad type specification for variable \"%s\"\n", words[0]);
+                            printf("%d argument given and %d are expected\n", nwords, 4);
+                            exit(1);
+                        }
+                        variables[i]->el[0] = GetVar(words[2], 1);
+                        variables[i]->el[1] = GetVar(words[3], 1);
+                        break;
+                    case IMATRIX:
+                        if (nwords != 5)
+                        {
+                            printf("bad type specification for variable \"%s\"\n", words[0]);
+                            printf("%d argument given and %d are expected\n", nwords, 5);
+                            exit(1);
+                        }
+                        variables[i]->el[0] = GetVar(words[2], 1);
+                        variables[i]->el[1] = GetVar(words[3], 1);
+                        variables[i]->el[2] = GetVar(words[4], 1);
+                        break;
+                    case SPARSE:
+                        if (nwords != 6)
+                        {
+                            printf("bad type specification for variable \"%s\"\n", words[0]);
+                            printf("%d argument given and %d are expected\n", nwords, 6);
+                            printf("name sparse m n nel it\n");
+                            exit(1);
+                        }
+                        variables[i]->el[0] = GetVar(words[2], 1);
+                        variables[i]->el[1] = GetVar(words[3], 1);
+                        variables[i]->el[2] = GetVar(words[4], 1);
+                        variables[i]->el[3] = GetVar(words[5], 1);
+                        break;
+                    case SEQUENCE:
+                        printf("variable \"%s\" cannot have type \"SEQUENCE\"\n", words[0]);
                         exit(1);
-                    }
-                    variables[i]->el[0] = GetVar(words[2], 1);
-                    break;
-                case LIST:
-                case TLIST:
-                    if (nwords != 3)
-                    {
-                        printf("bad type specification for variable \"%s\"\n", words[0]);
-                        printf("only %d argument given and %d are expected\n", nwords, 3);
+                        break;
+                    case EMPTY:
+                        printf("variable \"%s\" cannot have type \"EMPTY\"\n", words[0]);
                         exit(1);
-                    }
-                    ReadListFile(words[2], words[0], i);
-                    break;
-                case POLYNOM:
-                case MATRIX:
-                case BMATRIX:
-                case STRINGMAT:
-                    if (nwords != 4)
-                    {
-                        printf("bad type specification for variable \"%s\"\n", words[0]);
-                        printf("%d argument given and %d are expected\n", nwords, 4);
-                        exit(1);
-                    }
-                    variables[i]->el[0] = GetVar(words[2], 1);
-                    variables[i]->el[1] = GetVar(words[3], 1);
-                    break;
-                case IMATRIX:
-                    if (nwords != 5)
-                    {
-                        printf("bad type specification for variable \"%s\"\n", words[0]);
-                        printf("%d argument given and %d are expected\n", nwords, 5);
-                        exit(1);
-                    }
-                    variables[i]->el[0] = GetVar(words[2], 1);
-                    variables[i]->el[1] = GetVar(words[3], 1);
-                    variables[i]->el[2] = GetVar(words[4], 1);
-                    break;
-                case SPARSE:
-                    if (nwords != 6)
-                    {
-                        printf("bad type specification for variable \"%s\"\n", words[0]);
-                        printf("%d argument given and %d are expected\n", nwords, 6);
-                        printf("name sparse m n nel it\n");
-                        exit(1);
-                    }
-                    variables[i]->el[0] = GetVar(words[2], 1);
-                    variables[i]->el[1] = GetVar(words[3], 1);
-                    variables[i]->el[2] = GetVar(words[4], 1);
-                    variables[i]->el[3] = GetVar(words[5], 1);
-                    break;
-                case SEQUENCE:
-                    printf("variable \"%s\" cannot have type \"SEQUENCE\"\n", words[0]);
-                    exit(1);
-                    break;
-                case EMPTY:
-                    printf("variable \"%s\" cannot have type \"EMPTY\"\n", words[0]);
-                    exit(1);
-                    break;
+                        break;
                 }
             }
         }
@@ -418,45 +420,45 @@ int ReadFunction(f)
                     strcpy((char *)(variables[ivar - 1]->fexternal), words[1]);
                     switch (variables[ivar - 1]->type)
                     {
-                    case COLUMN:
-                    case POLYNOM:
-                    case ROW:
-                    case STRING:
-                    case VECTOR:
-                        sprintf(str, "ne%d", ivar);
-                        AddForName(variables[ivar - 1]->el[0], str);
-                        break;
-                    case SPARSE:
-                        sprintf(str, "me%d", ivar);
-                        AddForName(variables[ivar - 1]->el[0], str);
-                        sprintf(str, "ne%d", ivar);
-                        AddForName(variables[ivar - 1]->el[1], str);
-                        sprintf(str, "nel%d", ivar);
-                        AddForName(variables[ivar - 1]->el[2], str);
-                        sprintf(str, "it%d", ivar);
-                        AddForName(variables[ivar - 1]->el[3], str);
-                        break;
-                    case IMATRIX:
-                        sprintf(str, "me%d", ivar);
-                        AddForName(variables[ivar - 1]->el[0], str);
-                        sprintf(str, "ne%d", ivar);
-                        AddForName(variables[ivar - 1]->el[1], str);
-                        sprintf(str, "it%d", ivar);
-                        AddForName(variables[ivar - 1]->el[2], str);
-                        break;
-                    case MATRIX:
-                    case BMATRIX:
-                    case STRINGMAT:
-                        sprintf(str, "me%d", ivar);
-                        AddForName(variables[ivar - 1]->el[0], str);
-                        sprintf(str, "ne%d", ivar);
-                        AddForName(variables[ivar - 1]->el[1], str);
-                        break;
-                    default:
-                        printf("FORTRAN argument \"%s\" with external type \"%s\"\n", variables[ivar - 1]->name, words[1]);
-                        printf("  cannot have a variable type of \"%s\"\n", SGetSciType(variables[ivar - 1]->type));
-                        exit(1);
-                        break;
+                        case COLUMN:
+                        case POLYNOM:
+                        case ROW:
+                        case STRING:
+                        case VECTOR:
+                            sprintf(str, "ne%d", ivar);
+                            AddForName(variables[ivar - 1]->el[0], str);
+                            break;
+                        case SPARSE:
+                            sprintf(str, "me%d", ivar);
+                            AddForName(variables[ivar - 1]->el[0], str);
+                            sprintf(str, "ne%d", ivar);
+                            AddForName(variables[ivar - 1]->el[1], str);
+                            sprintf(str, "nel%d", ivar);
+                            AddForName(variables[ivar - 1]->el[2], str);
+                            sprintf(str, "it%d", ivar);
+                            AddForName(variables[ivar - 1]->el[3], str);
+                            break;
+                        case IMATRIX:
+                            sprintf(str, "me%d", ivar);
+                            AddForName(variables[ivar - 1]->el[0], str);
+                            sprintf(str, "ne%d", ivar);
+                            AddForName(variables[ivar - 1]->el[1], str);
+                            sprintf(str, "it%d", ivar);
+                            AddForName(variables[ivar - 1]->el[2], str);
+                            break;
+                        case MATRIX:
+                        case BMATRIX:
+                        case STRINGMAT:
+                            sprintf(str, "me%d", ivar);
+                            AddForName(variables[ivar - 1]->el[0], str);
+                            sprintf(str, "ne%d", ivar);
+                            AddForName(variables[ivar - 1]->el[1], str);
+                            break;
+                        default:
+                            printf("FORTRAN argument \"%s\" with external type \"%s\"\n", variables[ivar - 1]->name, words[1]);
+                            printf("  cannot have a variable type of \"%s\"\n", SGetSciType(variables[ivar - 1]->type));
+                            exit(1);
+                            break;
                     }
                 }
             }
@@ -477,28 +479,28 @@ int ReadFunction(f)
             variables[i]->type = type;
             switch (type)
             {
-            case LIST:
-            case TLIST:
-            case SEQUENCE:
-                l = nwords - 2;
-                if (l > MAXEL)
-                {
-                    printf("list or sequence too long for output variable \"out\"\n");
-                    printf("  augment constant \"MAXEL\" and recompile intersci\n");
+                case LIST:
+                case TLIST:
+                case SEQUENCE:
+                    l = nwords - 2;
+                    if (l > MAXEL)
+                    {
+                        printf("list or sequence too long for output variable \"out\"\n");
+                        printf("  augment constant \"MAXEL\" and recompile intersci\n");
+                        exit(1);
+                    }
+                    for (j = 0; j < l; j++)
+                        variables[i]->el[j] = GetExistVar(words[j + 2]);
+                    variables[i]->length = l;
+                    break;
+                case EMPTY:
+                    break;
+                default:
+                    printf("output variable \"out\" of SCILAB function\n");
+                    printf("  must have type \"LIST\", \"TLIST\", \"SEQUENCE\" or\n");
+                    printf("  \"EMPTY\"\n");
                     exit(1);
-                }
-                for (j = 0; j < l; j++)
-                    variables[i]->el[j] = GetExistVar(words[j + 2]);
-                variables[i]->length = l;
-                break;
-            case EMPTY:
-                break;
-            default:
-                printf("output variable \"out\" of SCILAB function\n");
-                printf("  must have type \"LIST\", \"TLIST\", \"SEQUENCE\" or\n");
-                printf("  \"EMPTY\"\n");
-                exit(1);
-                break;
+                    break;
             }
             out1 = 0;
         }
@@ -655,9 +657,9 @@ int ParseLine(char *s, char *words[])
 }
 
 void ReadListFile(listname, varlistname, ivar)
-     char *listname;
-     char *varlistname;
-     IVAR ivar;
+char *listname;
+char *varlistname;
+IVAR ivar;
 {
     FILE *fin;
     char filin[MAXNAM];
@@ -682,10 +684,10 @@ void ReadListFile(listname, varlistname, ivar)
 }
 
 int ReadListElement(f, varlistname, iivar, nel)
-     FILE *f;
-     char *varlistname;
-     int nel;
-     IVAR iivar;
+FILE *f;
+char *varlistname;
+int nel;
+IVAR iivar;
 {
     char s[MAXLINE];
     char *words[MAXLINE];
@@ -700,164 +702,164 @@ int ReadListElement(f, varlistname, iivar, nel)
         nline++;
         switch (nline)
         {
-        case 1:
-            break;
-        case 2:
-            /* SCILAB variable description */
-            nwords = ParseLine(s, words);
-            sprintf(str, "%s(%s)", words[0], varlistname);
-            ivar = GetVar(str, 0);
-            i = ivar - 1;
-            if (nwords == 1)
-            {
-                printf("type missing for variable \"%s\"\n", words[0]);
-                exit(1);
-            }
-            type = GetBasType(words[1]);
-            variables[i]->type = type;
-            variables[i]->list_name = (char *)malloc((unsigned)(strlen(varlistname) + 1));
-            strcpy(variables[i]->list_name, varlistname);
-            variables[i]->list_el = nel + 1;
-            sprintf(str, "stk(l%de%d)", iivar + 1, nel + 1);
-            AddForName(ivar, str);
-            switch (type)
-            {
-            case SCALAR:
-            case ANY:
+            case 1:
                 break;
-            case COLUMN:
-            case ROW:
-            case STRING:
-            case VECTOR:
-                if (nwords != 3)
+            case 2:
+                /* SCILAB variable description */
+                nwords = ParseLine(s, words);
+                sprintf(str, "%s(%s)", words[0], varlistname);
+                ivar = GetVar(str, 0);
+                i = ivar - 1;
+                if (nwords == 1)
                 {
-                    printf("bad type for variable \"%s\"\n", words[0]);
+                    printf("type missing for variable \"%s\"\n", words[0]);
                     exit(1);
                 }
-                if (isdigit(words[2][0]))
+                type = GetBasType(words[1]);
+                variables[i]->type = type;
+                variables[i]->list_name = (char *)malloc((unsigned)(strlen(varlistname) + 1));
+                strcpy(variables[i]->list_name, varlistname);
+                variables[i]->list_el = nel + 1;
+                sprintf(str, "stk(l%de%d)", iivar + 1, nel + 1);
+                AddForName(ivar, str);
+                switch (type)
                 {
-                    variables[i]->el[0] = GetVar(words[2], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[2], varlistname);
-                    variables[i]->el[0] = GetVar(str, 0);
+                    case SCALAR:
+                    case ANY:
+                        break;
+                    case COLUMN:
+                    case ROW:
+                    case STRING:
+                    case VECTOR:
+                        if (nwords != 3)
+                        {
+                            printf("bad type for variable \"%s\"\n", words[0]);
+                            exit(1);
+                        }
+                        if (isdigit(words[2][0]))
+                        {
+                            variables[i]->el[0] = GetVar(words[2], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[2], varlistname);
+                            variables[i]->el[0] = GetVar(str, 0);
+                        }
+                        break;
+                    case POLYNOM:
+                    case MATRIX:
+                    case BMATRIX:
+                    case STRINGMAT:
+                        if (nwords != 4)
+                        {
+                            printf("bad type for variable \"%s\"\n", words[0]);
+                            exit(1);
+                        }
+                        if (isdigit(words[2][0]))
+                        {
+                            variables[i]->el[0] = GetVar(words[2], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[2], varlistname);
+                            variables[i]->el[0] = GetVar(str, 0);
+                        }
+                        if (isdigit(words[3][0]))
+                        {
+                            variables[i]->el[1] = GetVar(words[3], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[3], varlistname);
+                            variables[i]->el[1] = GetVar(str, 0);
+                        }
+                        break;
+                    case IMATRIX:
+                        if (nwords != 6)
+                        {
+                            printf("bad type for variable \"%s\"\n", words[0]);
+                            exit(1);
+                        }
+                        if (isdigit(words[2][0]))
+                        {
+                            variables[i]->el[0] = GetVar(words[2], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[2], varlistname);
+                            variables[i]->el[0] = GetVar(str, 0);
+                        }
+                        if (isdigit(words[3][0]))
+                        {
+                            variables[i]->el[1] = GetVar(words[3], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[3], varlistname);
+                            variables[i]->el[1] = GetVar(str, 0);
+                        }
+                        sprintf(str, "%s(%s)", words[4], varlistname);
+                        variables[i]->el[2] = GetVar(str, 0);
+                        break;
+                    case SPARSE:
+                        if (nwords != 6)
+                        {
+                            printf("bad type for variable \"%s\"\n", words[0]);
+                            exit(1);
+                        }
+                        if (isdigit(words[2][0]))
+                        {
+                            variables[i]->el[0] = GetVar(words[2], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[2], varlistname);
+                            variables[i]->el[0] = GetVar(str, 0);
+                        }
+                        if (isdigit(words[3][0]))
+                        {
+                            variables[i]->el[1] = GetVar(words[3], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[3], varlistname);
+                            variables[i]->el[1] = GetVar(str, 0);
+                        }
+                        if (isdigit(words[4][0]))
+                        {
+                            variables[i]->el[2] = GetVar(words[4], 0);
+                        }
+                        else
+                        {
+                            sprintf(str, "%s(%s)", words[4], varlistname);
+                            variables[i]->el[2] = GetVar(str, 0);
+                        }
+                        sprintf(str, "%s(%s)", words[5], varlistname);
+                        variables[i]->el[3] = GetVar(str, 0);
+                        break;
+                    case WORK:
+                    case SEQUENCE:
+                    case EMPTY:
+                    case LIST:
+                    case TLIST:
+                        printf("variable \"%s\" cannot have type \"%s\"\n", words[0], SGetSciType(type));
+                        exit(1);
+                    default:
+                        printf("variable \"%s\" has unknown type \"%s\"\n", words[0], SGetSciType(type));
                 }
                 break;
-            case POLYNOM:
-            case MATRIX:
-            case BMATRIX:
-            case STRINGMAT:
-                if (nwords != 4)
-                {
-                    printf("bad type for variable \"%s\"\n", words[0]);
-                    exit(1);
-                }
-                if (isdigit(words[2][0]))
-                {
-                    variables[i]->el[0] = GetVar(words[2], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[2], varlistname);
-                    variables[i]->el[0] = GetVar(str, 0);
-                }
-                if (isdigit(words[3][0]))
-                {
-                    variables[i]->el[1] = GetVar(words[3], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[3], varlistname);
-                    variables[i]->el[1] = GetVar(str, 0);
-                }
-                break;
-            case IMATRIX:
-                if (nwords != 6)
-                {
-                    printf("bad type for variable \"%s\"\n", words[0]);
-                    exit(1);
-                }
-                if (isdigit(words[2][0]))
-                {
-                    variables[i]->el[0] = GetVar(words[2], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[2], varlistname);
-                    variables[i]->el[0] = GetVar(str, 0);
-                }
-                if (isdigit(words[3][0]))
-                {
-                    variables[i]->el[1] = GetVar(words[3], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[3], varlistname);
-                    variables[i]->el[1] = GetVar(str, 0);
-                }
-                sprintf(str, "%s(%s)", words[4], varlistname);
-                variables[i]->el[2] = GetVar(str, 0);
-                break;
-            case SPARSE:
-                if (nwords != 6)
-                {
-                    printf("bad type for variable \"%s\"\n", words[0]);
-                    exit(1);
-                }
-                if (isdigit(words[2][0]))
-                {
-                    variables[i]->el[0] = GetVar(words[2], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[2], varlistname);
-                    variables[i]->el[0] = GetVar(str, 0);
-                }
-                if (isdigit(words[3][0]))
-                {
-                    variables[i]->el[1] = GetVar(words[3], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[3], varlistname);
-                    variables[i]->el[1] = GetVar(str, 0);
-                }
-                if (isdigit(words[4][0]))
-                {
-                    variables[i]->el[2] = GetVar(words[4], 0);
-                }
-                else
-                {
-                    sprintf(str, "%s(%s)", words[4], varlistname);
-                    variables[i]->el[2] = GetVar(str, 0);
-                }
-                sprintf(str, "%s(%s)", words[5], varlistname);
-                variables[i]->el[3] = GetVar(str, 0);
-                break;
-            case WORK:
-            case SEQUENCE:
-            case EMPTY:
-            case LIST:
-            case TLIST:
-                printf("variable \"%s\" cannot have type \"%s\"\n", words[0], SGetSciType(type));
-                exit(1);
             default:
-                printf("variable \"%s\" has unknown type \"%s\"\n", words[0], SGetSciType(type));
-            }
-            break;
-        default:
-            /* end of description */
-            if (s[0] == '*')
-            {
-                return (1);
-            }
-            else
-            {
-                printf("bad description file for list or tlist \"%s\"\n", varlistname);
-                exit(1);
-            }
-            break;
+                /* end of description */
+                if (s[0] == '*')
+                {
+                    return (1);
+                }
+                else
+                {
+                    printf("bad description file for list or tlist \"%s\"\n", varlistname);
+                    exit(1);
+                }
+                break;
         }
     }
     return (0);
@@ -875,8 +877,8 @@ p corresponds to the present slot of var structure:
 */
 
 IVAR GetVar(name, p)
-     char *name;
-     int p;
+char *name;
+int p;
 {
     int i;
     VARPTR var;
@@ -960,7 +962,7 @@ it's done without aby checks
 */
 
 int CreatePredefVar(name)
-     char *name;
+char *name;
 {
     VARPTR var;
 
@@ -980,7 +982,7 @@ int CreatePredefVar(name)
 which is created and "nVariable" is incremented */
 
 IVAR GetOutVar(name)
-     char *name;
+char *name;
 {
     VARPTR var;
 
@@ -1041,8 +1043,8 @@ IVAR GetExistOutVar()
 ***************************/
 
 void AddForName(ivar, name)
-     IVAR ivar;
-     char *name;
+IVAR ivar;
+char *name;
 {
     VARPTR var;
     int l;
@@ -1061,8 +1063,8 @@ void AddForName(ivar, name)
 }
 
 void AddForName1(ivar, name)
-     IVAR ivar;
-     char *name;
+IVAR ivar;
+char *name;
 {
     VARPTR var;
     int l;
@@ -1100,8 +1102,8 @@ void ForNameClean()
 }
 
 void ChangeForName(ivar, name)
-     IVAR ivar;
-     char *name;
+IVAR ivar;
+char *name;
 {
     VARPTR var;
     int l;
@@ -1131,57 +1133,80 @@ static struct btype
 SType[] =
 {
     {
-    "any", ANY},
+        "any", ANY
+    },
     {
-    "bmatrix", BMATRIX},
+        "bmatrix", BMATRIX
+    },
     {
-    "bpointer", SCIBPOINTER},
+        "bpointer", SCIBPOINTER
+    },
     {
-    "column", COLUMN},
+        "column", COLUMN
+    },
     {
-    "empty", EMPTY},
+        "empty", EMPTY
+    },
     {
-    "imatrix", IMATRIX},
+        "imatrix", IMATRIX
+    },
     {
-    "list", LIST},
+        "list", LIST
+    },
     {
-    "lpointer", SCILPOINTER},
+        "lpointer", SCILPOINTER
+    },
     {
-    "matrix", MATRIX},
+        "matrix", MATRIX
+    },
     {
-    "mpointer", SCIMPOINTER},
+        "mpointer", SCIMPOINTER
+    },
     {
-    "opointer", SCIOPOINTER},
+        "opointer", SCIOPOINTER
+    },
     {
-    "polynom", POLYNOM},
+        "polynom", POLYNOM
+    },
     {
-    "row", ROW},
+        "row", ROW
+    },
     {
-    "scalar", SCALAR},
+        "scalar", SCALAR
+    },
     {
-    "sequence", SEQUENCE},
+        "sequence", SEQUENCE
+    },
     {
-    "smpointer", SCISMPOINTER},
+        "smpointer", SCISMPOINTER
+    },
     {
-    "sparse", SPARSE},
+        "sparse", SPARSE
+    },
     {
-    "string", STRING},
+        "string", STRING
+    },
     {
-    "stringmat", STRINGMAT},
+        "stringmat", STRINGMAT
+    },
     {
-    "tlist", TLIST},
+        "tlist", TLIST
+    },
     {
-    "vector", VECTOR},
+        "vector", VECTOR
+    },
     {
-    "work", WORK},
+        "work", WORK
+    },
     {
-    (char *)0, -1}
+        (char *)0, -1
+    }
 };
 
 /* Type Scilab:  renvoit un codage du type en nombre entier etant donne une chaine */
 
 int GetBasType(sname)
-     char *sname;
+char *sname;
 {
     int i = 0;
 
@@ -1209,7 +1234,7 @@ int GetBasType(sname)
 /* Type Scilab :  Renvoit la description (string) d'un type a partir de son code */
 
 char *SGetSciType(type)
-     int type;
+int type;
 {
     int i = 0;
 
@@ -1233,31 +1258,44 @@ static struct ftype
 FType[] =
 {
     {
-    "Cstringv", CSTRINGV},
+        "Cstringv", CSTRINGV
+    },
     {
-    "bpointer", BPOINTER},
+        "bpointer", BPOINTER
+    },
     {
-    "char", CHAR},
+        "char", CHAR
+    },
     {
-    "double", DOUBLE},
+        "double", DOUBLE
+    },
     {
-    "int", INT},
+        "int", INT
+    },
     {
-    "integer", INT},
+        "integer", INT
+    },
     {
-    "lpointer", LPOINTER},
+        "lpointer", LPOINTER
+    },
     {
-    "mpointer", MPOINTER},
+        "mpointer", MPOINTER
+    },
     {
-    "opointer", OPOINTER},
+        "opointer", OPOINTER
+    },
     {
-    "predef", PREDEF},
+        "predef", PREDEF
+    },
     {
-    "real", REAL},
+        "real", REAL
+    },
     {
-    "smpointer", SMPOINTER},
+        "smpointer", SMPOINTER
+    },
     {
-    (char *)0, -1}
+        (char *)0, -1
+    }
 };
 
 /* Type Fortran:  renvoit un codage du type en nombre entier etant donne une chaine */
@@ -1385,13 +1423,13 @@ void WriteFunctionCode(FILE * f)
     {
         switch (variables[i]->type)
         {
-        case LIST:
-        case TLIST:
-            WriteListAnalysis(f, i);
-            break;
-        default:
-            WriteArgCheck(f, i);
-            break;
+            case LIST:
+            case TLIST:
+                WriteListAnalysis(f, i);
+                break;
+            default:
+                WriteArgCheck(f, i);
+                break;
         }
     }
 
@@ -1410,7 +1448,7 @@ void WriteFunctionCode(FILE * f)
 }
 
 void WriteInfoCode(f)
-     FILE *f;
+FILE *f;
 {
     int i, iout;
     IVAR ivar;
@@ -1421,38 +1459,38 @@ void WriteInfoCode(f)
 
     switch (vout->type)
     {
-    case LIST:
-    case TLIST:
-        /* loop on output variables */
-        printf("list(");
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
-            printf("%s", var->name);
-            if (i != vout->length - 1)
-                printf(",");
-            else
-                printf(")");
-        }
-        break;
-    case SEQUENCE:
-        /* loop on output variables */
-        printf("[");
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
-            printf("%s", var->name);
-            if (i != vout->length - 1)
-                printf(",");
-            else
-                printf("]");
-        }
-        break;
-    case EMPTY:
-        printf("[]\n");
-        break;
+        case LIST:
+        case TLIST:
+            /* loop on output variables */
+            printf("list(");
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                printf("%s", var->name);
+                if (i != vout->length - 1)
+                    printf(",");
+                else
+                    printf(")");
+            }
+            break;
+        case SEQUENCE:
+            /* loop on output variables */
+            printf("[");
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                printf("%s", var->name);
+                if (i != vout->length - 1)
+                    printf(",");
+                else
+                    printf("]");
+            }
+            break;
+        case EMPTY:
+            printf("[]\n");
+            break;
     }
 
     printf("=%s(", basfun->name);
@@ -1471,8 +1509,8 @@ sequence ( data on the stack )
 */
 
 void WriteArgCheck(f, i)
-     FILE *f;
-     int i;
+FILE *f;
+int i;
 {
     int i1;
     char str[MAXNAM];
@@ -1498,59 +1536,59 @@ void WriteArgCheck(f, i)
         Fprintf(f, indent++, "if(rhs .le. %d) then\n", i1 - 1);
         switch (var->opt_type)
         {
-        case NAME:
-            AddDeclare(DEC_LOGICAL, "optvarget");
-            Fprintf(f, indent, "if (.not.optvarget(fname,topk,%d,'%s       ')) return\n", i1, var->opt_name);
-            break;
-        case VALUE:
-            switch (var->type)
-            {
-            case SCALAR:
-                AddDeclare(DEC_LOGICAL, "cremat");
-                Fprintf(f, indent, "top = top+1\n");
-                Fprintf(f, indent, "rhs = rhs+1\n");
-                Fprintf(f, indent, "if(.not.cremat(fname,top,0,1,1,lr%d,lc%d)) return\n", i1, i1);
-                Fprintf(f, indent, "stk(lr%d)= %s\n", i1, var->opt_name);
+            case NAME:
+                AddDeclare(DEC_LOGICAL, "optvarget");
+                Fprintf(f, indent, "if (.not.optvarget(fname,topk,%d,'%s       ')) return\n", i1, var->opt_name);
                 break;
-            case SCISMPOINTER:
-            case SCILPOINTER:
-            case SCIBPOINTER:
-            case SCIOPOINTER:
-            case SCIMPOINTER:
-                sprintf(buf, "cre%s", SGetSciType(var->type));
-                AddDeclare(DEC_LOGICAL, buf);
-                Fprintf(f, indent, "top = top+1\n");
-                Fprintf(f, indent, "rhs = rhs+1\n");
-                Fprintf(f, indent, "if(.not.cre%s(fname,top,lwv)) return\n", SGetSciType(var->type));
+            case VALUE:
+                switch (var->type)
+                {
+                    case SCALAR:
+                        AddDeclare(DEC_LOGICAL, "cremat");
+                        Fprintf(f, indent, "top = top+1\n");
+                        Fprintf(f, indent, "rhs = rhs+1\n");
+                        Fprintf(f, indent, "if(.not.cremat(fname,top,0,1,1,lr%d,lc%d)) return\n", i1, i1);
+                        Fprintf(f, indent, "stk(lr%d)= %s\n", i1, var->opt_name);
+                        break;
+                    case SCISMPOINTER:
+                    case SCILPOINTER:
+                    case SCIBPOINTER:
+                    case SCIOPOINTER:
+                    case SCIMPOINTER:
+                        sprintf(buf, "cre%s", SGetSciType(var->type));
+                        AddDeclare(DEC_LOGICAL, buf);
+                        Fprintf(f, indent, "top = top+1\n");
+                        Fprintf(f, indent, "rhs = rhs+1\n");
+                        Fprintf(f, indent, "if(.not.cre%s(fname,top,lwv)) return\n", SGetSciType(var->type));
+                        break;
+                    case MATRIX:
+                        OptvarGetSize(var->opt_name, size, data);
+                        AddDeclare(DEC_LOGICAL, "cremat");
+                        Fprintf(f, indent, "top = top+1\n");
+                        Fprintf(f, indent, "rhs = rhs+1\n");
+                        sprintf(str, "dat%d %s", i1, data);
+                        AddDeclare(DEC_DATA, str);
+                        sprintf(str, "dat%d(%s)", i1, size);
+                        AddDeclare(DEC_DOUBLE, str);
+                        Fprintf(f, indent, "m%d = 1\n", i1);
+                        Fprintf(f, indent, "n%d = %s\n", i1, size);
+                        Fprintf(f, indent, "if(.not.cremat(fname,top,0,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1);
+                        Fprintf(f, indent, "call dcopy(%s,dat%d,1,stk(lr%d),1)\n", size, i1, i1);
+                        break;
+                    case STRING:
+                        AddDeclare(DEC_LOGICAL, "cresmat2");
+                        Fprintf(f, indent, "top = top+1\n");
+                        Fprintf(f, indent, "rhs = rhs+1\n");
+                        Fprintf(f, indent, "nlr%d = %d\n", i1, strlen(var->opt_name));
+                        Fprintf(f, indent, "if(.not.cresmat2(fname,top,nlr%d,lr%d)) return\n", i1, i1, i1);
+                        Fprintf(f, indent, "call cvstr(nlr%d,istk(lr%d),'%s',0)\n", i1, i1, var->opt_name);
+                        break;
+                    default:
+                        printf("Optional variable with value must be \"SCALAR\" or \"STRING\"\n");
+                        exit(1);
+                        break;
+                }
                 break;
-            case MATRIX:
-                OptvarGetSize(var->opt_name, size, data);
-                AddDeclare(DEC_LOGICAL, "cremat");
-                Fprintf(f, indent, "top = top+1\n");
-                Fprintf(f, indent, "rhs = rhs+1\n");
-                sprintf(str, "dat%d %s", i1, data);
-                AddDeclare(DEC_DATA, str);
-                sprintf(str, "dat%d(%s)", i1, size);
-                AddDeclare(DEC_DOUBLE, str);
-                Fprintf(f, indent, "m%d = 1\n", i1);
-                Fprintf(f, indent, "n%d = %s\n", i1, size);
-                Fprintf(f, indent, "if(.not.cremat(fname,top,0,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1);
-                Fprintf(f, indent, "call dcopy(%s,dat%d,1,stk(lr%d),1)\n", size, i1, i1);
-                break;
-            case STRING:
-                AddDeclare(DEC_LOGICAL, "cresmat2");
-                Fprintf(f, indent, "top = top+1\n");
-                Fprintf(f, indent, "rhs = rhs+1\n");
-                Fprintf(f, indent, "nlr%d = %d\n", i1, strlen(var->opt_name));
-                Fprintf(f, indent, "if(.not.cresmat2(fname,top,nlr%d,lr%d)) return\n", i1, i1, i1);
-                Fprintf(f, indent, "call cvstr(nlr%d,istk(lr%d),'%s',0)\n", i1, i1, var->opt_name);
-                break;
-            default:
-                printf("Optional variable with value must be \"SCALAR\" or \"STRING\"\n");
-                exit(1);
-                break;
-            }
-            break;
         }
         Fprintf(f, --indent, "endif\n");
     }
@@ -1558,137 +1596,137 @@ void WriteArgCheck(f, i)
     /* size checking */
     switch (var->type)
     {
-    case BMATRIX:
-        AddDeclare(DEC_LOGICAL, "getbmat");
-        Fprintf(f, indent, "if(.not.getbmat(fname,top,top-rhs+%d,m%d,n%d,lr%d)) return\n", i1, i1, i1, i1);
-        /* square matrix */
-        if (var->el[0] == var->el[1])
-        {
+        case BMATRIX:
+            AddDeclare(DEC_LOGICAL, "getbmat");
+            Fprintf(f, indent, "if(.not.getbmat(fname,top,top-rhs+%d,m%d,n%d,lr%d)) return\n", i1, i1, i1, i1);
             /* square matrix */
-            AddDeclare(DEC_LOGICAL, "checkval");
-            Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
-        }
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        sprintf(str, "n%d", i1);
-        Check(f, str, var, i1, 1);
-        break;
-    case MATRIX:
-    case IMATRIX:
-        AddDeclare(DEC_LOGICAL, "getmat");
-        Fprintf(f, indent, "if(.not.getmat(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
-        /* square matrix */
-        if (var->el[0] == var->el[1])
-        {
+            if (var->el[0] == var->el[1])
+            {
+                /* square matrix */
+                AddDeclare(DEC_LOGICAL, "checkval");
+                Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
+            }
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            sprintf(str, "n%d", i1);
+            Check(f, str, var, i1, 1);
+            break;
+        case MATRIX:
+        case IMATRIX:
+            AddDeclare(DEC_LOGICAL, "getmat");
+            Fprintf(f, indent, "if(.not.getmat(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
             /* square matrix */
-            AddDeclare(DEC_LOGICAL, "checkval");
-            Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
-        }
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        sprintf(str, "n%d", i1);
-        Check(f, str, var, i1, 1);
-        sprintf(str, "it%d", i1);
-        if (var->type == IMATRIX)
+            if (var->el[0] == var->el[1])
+            {
+                /* square matrix */
+                AddDeclare(DEC_LOGICAL, "checkval");
+                Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
+            }
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            sprintf(str, "n%d", i1);
+            Check(f, str, var, i1, 1);
+            sprintf(str, "it%d", i1);
+            if (var->type == IMATRIX)
+                AddForName1(var->el[2], str);
+            break;
+        case SPARSE:
+            AddDeclare(DEC_LOGICAL, "getsparse");
+            Fprintf(f, indent, "if(.not.getsparse(fname,top,top-rhs+%d,it%d,m%d,n%d,nel%d,mnel%d,icol%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1, i1,
+                    i1, i1);
+            /* square matrix */
+            if (var->el[0] == var->el[1])
+            {
+                /* square matrix */
+                AddDeclare(DEC_LOGICAL, "checkval");
+                Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
+            }
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            sprintf(str, "n%d", i1);
+            Check(f, str, var, i1, 1);
+            sprintf(str, "nel%d", i1);
             AddForName1(var->el[2], str);
-        break;
-    case SPARSE:
-        AddDeclare(DEC_LOGICAL, "getsparse");
-        Fprintf(f, indent, "if(.not.getsparse(fname,top,top-rhs+%d,it%d,m%d,n%d,nel%d,mnel%d,icol%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1, i1,
-                i1, i1);
-        /* square matrix */
-        if (var->el[0] == var->el[1])
-        {
+            sprintf(str, "it%d", i1);
+            AddForName1(var->el[3], str);
+            break;
+        case STRINGMAT:
+            AddDeclare(DEC_LOGICAL, "getsmat");
+            Fprintf(f, indent, "if(.not.getsmat(fname,top,top-rhs+%d,m%d,n%d,1,1,lr%d,nlr%d)) return\n", i1, i1, i1, i1, i1);
             /* square matrix */
+            if (var->el[0] == var->el[1])
+            {
+                /* square matrix */
+                AddDeclare(DEC_LOGICAL, "checkval");
+                Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
+            }
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            strcpy(str1, variables[var->el[0] - 1]->name);
+            sprintf(str, "n%d", i1);
+            Check(f, str, var, i1, 1);
+            break;
+        case ROW:
+            AddDeclare(DEC_LOGICAL, "getvectrow");
+            Fprintf(f, indent, "if(.not.getvectrow(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
+            sprintf(str, "n%d", i1);
+            Check(f, str, var, i1, 0);
+            break;
+        case COLUMN:
+            AddDeclare(DEC_LOGICAL, "getvectcol");
+            Fprintf(f, indent, "if(.not.getvectcol(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            break;
+        case VECTOR:
+            AddDeclare(DEC_LOGICAL, "getvect");
+            Fprintf(f, indent, "if(.not.getvect(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
+            sprintf(str, "n%d*m%d", i1, i1);
+            Check(f, str, var, i1, 0);
+            AddForName1(var->el[0], str);
+            break;
+        case POLYNOM:
+            AddDeclare(DEC_LOGICAL, "getonepoly");
+            sprintf(str, "namelr%d*4", i1);
+            AddDeclare(DEC_CHAR, str);
+            Fprintf(f, indent, "if(.not.getonepoly(fname,top,top-rhs+%d,it%d,m%d,namelr%d,namellr%d,lr%d,lc%d)\n", i1, i1, i1, i1, i1, i1, i1);
             AddDeclare(DEC_LOGICAL, "checkval");
-            Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
-        }
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        sprintf(str, "n%d", i1);
-        Check(f, str, var, i1, 1);
-        sprintf(str, "nel%d", i1);
-        AddForName1(var->el[2], str);
-        sprintf(str, "it%d", i1);
-        AddForName1(var->el[3], str);
-        break;
-    case STRINGMAT:
-        AddDeclare(DEC_LOGICAL, "getsmat");
-        Fprintf(f, indent, "if(.not.getsmat(fname,top,top-rhs+%d,m%d,n%d,1,1,lr%d,nlr%d)) return\n", i1, i1, i1, i1, i1);
-        /* square matrix */
-        if (var->el[0] == var->el[1])
-        {
-            /* square matrix */
+            sprintf(str, "m%d", i1);
+            Check(f, str, var, i1, 0);
+            AddForName(var->el[0], str);
+            break;
+        case SCALAR:
+            AddDeclare(DEC_LOGICAL, "getscalar");
+            Fprintf(f, indent, "if(.not.getscalar(fname,top,top-rhs+%d,lr%d)) return\n", i1, i1);
+            break;
+        case SCIMPOINTER:
+        case SCISMPOINTER:
+        case SCILPOINTER:
+        case SCIBPOINTER:
+        case SCIOPOINTER:
+            sprintf(buf, "get%s", SGetSciType(var->type));
+            AddDeclare(DEC_LOGICAL, buf);
+            Fprintf(f, indent, "if(.not.get%s(fname,top,top-rhs+%d,lr%d)) return\n", SGetSciType(var->type), i1, i1);
+            break;
+        case STRING:
+            AddDeclare(DEC_LOGICAL, "getsmat");
+            Fprintf(f, indent, "if(.not.getsmat(fname,top,top-rhs+%d,m%d,n%d,1,1,lr%d,nlr%d)) return\n", i1, i1, i1, i1, i1, i1, 11);
             AddDeclare(DEC_LOGICAL, "checkval");
-            Fprintf(f, indent, "if(.not.checkval(fname,m%d,n%d)) return\n", i1, i1);
-        }
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        strcpy(str1, variables[var->el[0] - 1]->name);
-        sprintf(str, "n%d", i1);
-        Check(f, str, var, i1, 1);
-        break;
-    case ROW:
-        AddDeclare(DEC_LOGICAL, "getvectrow");
-        Fprintf(f, indent, "if(.not.getvectrow(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
-        sprintf(str, "n%d", i1);
-        Check(f, str, var, i1, 0);
-        break;
-    case COLUMN:
-        AddDeclare(DEC_LOGICAL, "getvectcol");
-        Fprintf(f, indent, "if(.not.getvectcol(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        break;
-    case VECTOR:
-        AddDeclare(DEC_LOGICAL, "getvect");
-        Fprintf(f, indent, "if(.not.getvect(fname,top,top-rhs+%d,it%d,m%d,n%d,lr%d,lc%d)) return\n", i1, i1, i1, i1, i1, i1);
-        sprintf(str, "n%d*m%d", i1, i1);
-        Check(f, str, var, i1, 0);
-        AddForName1(var->el[0], str);
-        break;
-    case POLYNOM:
-        AddDeclare(DEC_LOGICAL, "getonepoly");
-        sprintf(str, "namelr%d*4", i1);
-        AddDeclare(DEC_CHAR, str);
-        Fprintf(f, indent, "if(.not.getonepoly(fname,top,top-rhs+%d,it%d,m%d,namelr%d,namellr%d,lr%d,lc%d)\n", i1, i1, i1, i1, i1, i1, i1);
-        AddDeclare(DEC_LOGICAL, "checkval");
-        sprintf(str, "m%d", i1);
-        Check(f, str, var, i1, 0);
-        AddForName(var->el[0], str);
-        break;
-    case SCALAR:
-        AddDeclare(DEC_LOGICAL, "getscalar");
-        Fprintf(f, indent, "if(.not.getscalar(fname,top,top-rhs+%d,lr%d)) return\n", i1, i1);
-        break;
-    case SCIMPOINTER:
-    case SCISMPOINTER:
-    case SCILPOINTER:
-    case SCIBPOINTER:
-    case SCIOPOINTER:
-        sprintf(buf, "get%s", SGetSciType(var->type));
-        AddDeclare(DEC_LOGICAL, buf);
-        Fprintf(f, indent, "if(.not.get%s(fname,top,top-rhs+%d,lr%d)) return\n", SGetSciType(var->type), i1, i1);
-        break;
-    case STRING:
-        AddDeclare(DEC_LOGICAL, "getsmat");
-        Fprintf(f, indent, "if(.not.getsmat(fname,top,top-rhs+%d,m%d,n%d,1,1,lr%d,nlr%d)) return\n", i1, i1, i1, i1, i1, i1, 11);
-        AddDeclare(DEC_LOGICAL, "checkval");
-        Fprintf(f, indent, "if(.not.checkval(fname,m%d*n%d,1)) return\n", i1, i1);
-        sprintf(str, "nlr%d", i1);
-        Check(f, str, var, i1, 0);
-        break;
-    case ANY:
-    case LIST:
-    case TLIST:
-        break;
-    default:
-        printf("unknown variable type %d\n", var->type);
+            Fprintf(f, indent, "if(.not.checkval(fname,m%d*n%d,1)) return\n", i1, i1);
+            sprintf(str, "nlr%d", i1);
+            Check(f, str, var, i1, 0);
+            break;
+        case ANY:
+        case LIST:
+        case TLIST:
+            break;
+        default:
+            printf("unknown variable type %d\n", var->type);
     }
 }
 
 void OptvarGetSize(optvar, size, data)
-     char *optvar, *size, *data;
+char *optvar, *size, *data;
 {
     int i, j = 0, ok = 0;
 
@@ -1714,10 +1752,10 @@ Check for fixed sized dimensions
 */
 
 void Check(f, str, var, i1, nel)
-     FILE *f;
-     char *str;
-     int i1, nel;
-     VARPTR var;
+FILE *f;
+char *str;
+int i1, nel;
+VARPTR var;
 {
     char str1[MAXNAM];
 
@@ -1735,7 +1773,7 @@ void Check(f, str, var, i1, nel)
 }
 
 void WriteCrossCheck(f)
-     FILE *f;
+FILE *f;
 {
     int i, j;
     char *n1, *n2;
@@ -1771,7 +1809,7 @@ void WriteCrossCheck(f)
 }
 
 void WriteEqualCheck(f)
-     FILE *f;
+FILE *f;
 {
     /* FCprintf(f,"c    \n");
      * FCprintf(f,"c       cross equal output variable checking\n");
@@ -1779,7 +1817,7 @@ void WriteEqualCheck(f)
 }
 
 void WriteFortranCall(f)
-     FILE *f;
+FILE *f;
 {
     int i, j, ind;
     IVAR ivar, iivar;
@@ -1860,11 +1898,11 @@ the part of the caing sequence is adde to the buffer call
 */
 
 void WriteCallConvertion(f, ivar, farg, barg, call)
-     FILE *f;
-     IVAR ivar;
-     char *farg;
-     char *barg;
-     char *call;
+FILE *f;
+IVAR ivar;
+char *farg;
+char *barg;
+char *call;
 {
     VARPTR var = variables[ivar - 1];
     char str[MAXNAM];
@@ -1872,205 +1910,205 @@ void WriteCallConvertion(f, ivar, farg, barg, call)
 
     switch (var->type)
     {
-    case POLYNOM:
-    case ROW:
-    case VECTOR:
-    case SCALAR:
-    case COLUMN:
-    case IMATRIX:
-    case MATRIX:
-    case SPARSE:
-        switch (var->type)
-        {
         case POLYNOM:
-            sprintf(str1, "n%s", barg);
-            break;
-        case COLUMN:
-            sprintf(str1, "m%s", barg);
-            break;
-        case VECTOR:
-            sprintf(str1, "m%s*n%s", barg, barg);
-            break;
-        case SCALAR:
-            sprintf(str1, "1");
-            break;
         case ROW:
-            sprintf(str1, "n%s", barg);
-            break;
-        case SPARSE:
-            sprintf(str1, "nel%s", barg);
-            break;
+        case VECTOR:
+        case SCALAR:
+        case COLUMN:
         case IMATRIX:
         case MATRIX:
+        case SPARSE:
+            switch (var->type)
+            {
+                case POLYNOM:
+                    sprintf(str1, "n%s", barg);
+                    break;
+                case COLUMN:
+                    sprintf(str1, "m%s", barg);
+                    break;
+                case VECTOR:
+                    sprintf(str1, "m%s*n%s", barg, barg);
+                    break;
+                case SCALAR:
+                    sprintf(str1, "1");
+                    break;
+                case ROW:
+                    sprintf(str1, "n%s", barg);
+                    break;
+                case SPARSE:
+                    sprintf(str1, "nel%s", barg);
+                    break;
+                case IMATRIX:
+                case MATRIX:
+                    sprintf(str1, "n%s*m%s", barg, barg);
+                    break;
+            }
+            switch (var->for_type)
+            {
+                case CHAR:
+                case CSTRINGV:
+                    printf("incompatibility between the variable type and the FORTRAN type for variable \"%s\"\n", var->name);
+                    exit(1);
+                case INT:
+                    Fprintf(f, indent, "call entier(%s,stk(lr%s),istk(iadr(lr%s)))\n", str1, barg, barg);
+                    if (var->type == IMATRIX || var->type == SPARSE)
+                    {
+                        Fprintf(f, indent++, "if (it%s.eq.1) then\n", barg);
+                        Fprintf(f, indent, "call entier(%s,stk(lc%s),istk(iadr(lc%s)))\n", str1, barg, barg);
+                        Fprintf(f, --indent, "endif\n");
+                        if (var->type == SPARSE)
+                            sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),istk(iadr(lr%s)),istk(iadr(lc%s))", barg, barg, barg, barg, barg, barg,
+                                    barg, barg);
+                        else
+                            sprintf(str, "istk(iadr(lr%s)),istk(iadr(lc%s)),it%s", barg, barg, barg);
+                        ChangeForName(ivar, str);
+                        strcat(call, str);
+                        strcat(call, ",");
+                    }
+                    else
+                    {
+                        sprintf(str, "istk(iadr(lr%s))", barg);
+                        ChangeForName(ivar, str);
+                        strcat(call, str);
+                        strcat(call, ",");
+                    }
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "call simple(%s,stk(lr%s),stk(lr%s))\n", str1, barg, barg, barg);
+                    if (var->type == IMATRIX || var->type == SPARSE)
+                    {
+                        Fprintf(f, indent++, "if (it%s.eq.1) then\n", barg);
+                        Fprintf(f, indent, "call simple(%s,stk(lc%s),stk(lc%s))\n", str1, barg, barg);
+                        Fprintf(f, --indent, "endif\n");
+                        if (var->type == SPARSE)
+                            sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),stk(lr%s),stk(lc%s),", barg, barg, barg, barg, barg, barg, barg, barg);
+                        else
+                            sprintf(str, "stk(lr%s),stk(lc%s),it%s,", barg, barg, barg);
+                        strcat(call, str);
+                    }
+                    else
+                    {
+                        sprintf(str, "stk(lr%s),", barg);
+                        strcat(call, str);
+                    }
+                    break;
+                case DOUBLE:
+                    if (var->type == IMATRIX)
+                    {
+                        sprintf(str, "stk(lr%s),stk(lc%s),it%s,", barg, barg, barg);
+                        strcat(call, str);
+                    }
+                    else if (var->type == SPARSE)
+                    {
+                        sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),stk(lr%s),stk(lc%s),", barg, barg, barg, barg, barg, barg, barg, barg);
+                        strcat(call, str);
+                    }
+                    else
+                    {
+                        sprintf(str, "stk(lr%s),", barg);
+                        strcat(call, str);
+                    }
+                    break;
+            }
+            break;
+        case BMATRIX:
             sprintf(str1, "n%s*m%s", barg, barg);
+            if (var->for_type != INT)
+            {
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
+            }
+            sprintf(str, "istk(lr%s)", barg);
+            ChangeForName(ivar, str);
+            strcat(call, str);
+            strcat(call, ",");
             break;
-        }
-        switch (var->for_type)
-        {
-        case CHAR:
-        case CSTRINGV:
-            printf("incompatibility between the variable type and the FORTRAN type for variable \"%s\"\n", var->name);
-            exit(1);
-        case INT:
-            Fprintf(f, indent, "call entier(%s,stk(lr%s),istk(iadr(lr%s)))\n", str1, barg, barg);
-            if (var->type == IMATRIX || var->type == SPARSE)
+        case SCIMPOINTER:
+            if (var->for_type != MPOINTER)
             {
-                Fprintf(f, indent++, "if (it%s.eq.1) then\n", barg);
-                Fprintf(f, indent, "call entier(%s,stk(lc%s),istk(iadr(lc%s)))\n", str1, barg, barg);
-                Fprintf(f, --indent, "endif\n");
-                if (var->type == SPARSE)
-                    sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),istk(iadr(lr%s)),istk(iadr(lc%s))", barg, barg, barg, barg, barg, barg,
-                            barg, barg);
-                else
-                    sprintf(str, "istk(iadr(lr%s)),istk(iadr(lc%s)),it%s", barg, barg, barg);
-                ChangeForName(ivar, str);
-                strcat(call, str);
-                strcat(call, ",");
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
             }
-            else
-            {
-                sprintf(str, "istk(iadr(lr%s))", barg);
-                ChangeForName(ivar, str);
-                strcat(call, str);
-                strcat(call, ",");
-            }
+            sprintf(str, "stk(lr%s),", barg);
+            strcat(call, str);
             break;
-        case REAL:
-            Fprintf(f, indent, "call simple(%s,stk(lr%s),stk(lr%s))\n", str1, barg, barg, barg);
-            if (var->type == IMATRIX || var->type == SPARSE)
+        case SCISMPOINTER:
+            if (var->for_type != SMPOINTER)
             {
-                Fprintf(f, indent++, "if (it%s.eq.1) then\n", barg);
-                Fprintf(f, indent, "call simple(%s,stk(lc%s),stk(lc%s))\n", str1, barg, barg);
-                Fprintf(f, --indent, "endif\n");
-                if (var->type == SPARSE)
-                    sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),stk(lr%s),stk(lc%s),", barg, barg, barg, barg, barg, barg, barg, barg);
-                else
-                    sprintf(str, "stk(lr%s),stk(lc%s),it%s,", barg, barg, barg);
-                strcat(call, str);
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
             }
-            else
-            {
-                sprintf(str, "stk(lr%s),", barg);
-                strcat(call, str);
-            }
+            sprintf(str, "stk(lr%s),", barg);
+            strcat(call, str);
             break;
-        case DOUBLE:
-            if (var->type == IMATRIX)
+        case SCILPOINTER:
+            if (var->for_type != LPOINTER)
             {
-                sprintf(str, "stk(lr%s),stk(lc%s),it%s,", barg, barg, barg);
-                strcat(call, str);
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
             }
-            else if (var->type == SPARSE)
-            {
-                sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),stk(lr%s),stk(lc%s),", barg, barg, barg, barg, barg, barg, barg, barg);
-                strcat(call, str);
-            }
-            else
-            {
-                sprintf(str, "stk(lr%s),", barg);
-                strcat(call, str);
-            }
+            sprintf(str, "stk(lr%s),", barg);
+            strcat(call, str);
             break;
-        }
-        break;
-    case BMATRIX:
-        sprintf(str1, "n%s*m%s", barg, barg);
-        if (var->for_type != INT)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
+        case SCIBPOINTER:
+            if (var->for_type != BPOINTER)
+            {
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
+            }
+            sprintf(str, "stk(lr%s),", barg);
+            strcat(call, str);
+            break;
+        case SCIOPOINTER:
+            if (var->for_type != OPOINTER)
+            {
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(var->type), SGetForType(var->for_type), var->name);
+                exit(1);
+            }
+            sprintf(str, "stk(lr%s),", barg);
+            strcat(call, str);
+            break;
+        case STRINGMAT:
+            if (var->for_type != CSTRINGV)
+            {
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(STRINGMAT), SGetForType(var->for_type), var->name);
+                exit(1);
+            }
+            AddDeclare(DEC_LOGICAL, "crestringv");
+            Fprintf(f, indent, "if(.not.crestringv(fname,top+%d,lr%s-5-m%s*n%s,lw%s)) return\n", icre++, barg, barg, barg, farg);
+            sprintf(str, "stk(lw%s),", farg);
+            strcat(call, str);
+            break;
+        case LIST:
+        case TLIST:
+        case SEQUENCE:
+            printf("a FORTRAN argument cannot have a variable type of \"LIST\"\n");
+            printf("  \"TLIST\" or \"SEQUENCE\"\n");
             exit(1);
-        }
-        sprintf(str, "istk(lr%s)", barg);
-        ChangeForName(ivar, str);
-        strcat(call, str);
-        strcat(call, ",");
-        break;
-    case SCIMPOINTER:
-        if (var->for_type != MPOINTER)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        sprintf(str, "stk(lr%s),", barg);
-        strcat(call, str);
-        break;
-    case SCISMPOINTER:
-        if (var->for_type != SMPOINTER)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        sprintf(str, "stk(lr%s),", barg);
-        strcat(call, str);
-        break;
-    case SCILPOINTER:
-        if (var->for_type != LPOINTER)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        sprintf(str, "stk(lr%s),", barg);
-        strcat(call, str);
-        break;
-    case SCIBPOINTER:
-        if (var->for_type != BPOINTER)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        sprintf(str, "stk(lr%s),", barg);
-        strcat(call, str);
-        break;
-    case SCIOPOINTER:
-        if (var->for_type != OPOINTER)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(var->type), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        sprintf(str, "stk(lr%s),", barg);
-        strcat(call, str);
-        break;
-    case STRINGMAT:
-        if (var->for_type != CSTRINGV)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(STRINGMAT), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        AddDeclare(DEC_LOGICAL, "crestringv");
-        Fprintf(f, indent, "if(.not.crestringv(fname,top+%d,lr%s-5-m%s*n%s,lw%s)) return\n", icre++, barg, barg, barg, farg);
-        sprintf(str, "stk(lw%s),", farg);
-        strcat(call, str);
-        break;
-    case LIST:
-    case TLIST:
-    case SEQUENCE:
-        printf("a FORTRAN argument cannot have a variable type of \"LIST\"\n");
-        printf("  \"TLIST\" or \"SEQUENCE\"\n");
-        exit(1);
-        break;
-    case STRING:
-        if (var->for_type != CHAR)
-        {
-            printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
-                   SGetSciType(STRING), SGetForType(var->for_type), var->name);
-            exit(1);
-        }
-        AddDeclare(DEC_LOGICAL, "bufstore");
-        Fprintf(f, indent, "if(.not.bufstore(fname,lbuf,lbufi%s,lbuff%s,lr%s,nlr%s)) return\n", farg, farg, barg, barg);
-        sprintf(str, "buf(lbufi%s:lbuff%s),", farg, farg);
-        strcat(call, str);
-        break;
-    case ANY:
-        sprintf(str, "istk(il%s),", barg);
-        strcat(call, str);
-        break;
+            break;
+        case STRING:
+            if (var->for_type != CHAR)
+            {
+                printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
+                       SGetSciType(STRING), SGetForType(var->for_type), var->name);
+                exit(1);
+            }
+            AddDeclare(DEC_LOGICAL, "bufstore");
+            Fprintf(f, indent, "if(.not.bufstore(fname,lbuf,lbufi%s,lbuff%s,lr%s,nlr%s)) return\n", farg, farg, barg, barg);
+            sprintf(str, "buf(lbufi%s:lbuff%s),", farg, farg);
+            strcat(call, str);
+            break;
+        case ANY:
+            sprintf(str, "istk(il%s),", barg);
+            strcat(call, str);
+            break;
     }
 }
 
@@ -2081,10 +2119,10 @@ working or output variables
 */
 
 void WriteCallRest(f, ivar, farg, call)
-     FILE *f;
-     IVAR ivar;
-     int farg;
-     char *call;
+FILE *f;
+IVAR ivar;
+int farg;
+char *call;
 {
     VARPTR var = variables[ivar - 1];
     char str[MAXNAM];
@@ -2095,233 +2133,233 @@ void WriteCallRest(f, ivar, farg, call)
 
     switch (var->type)
     {
-    case 0:
-        /* FORTRAN argument is the dimension of an output variable with EXTERNAL type */
-        if (var->nfor_name == 0 && var->for_type != PREDEF)
-        {
-            printf("dimension variable \"%s\" is not defined\n", var->name);
-            exit(1);
-        }
-        switch (var->for_type)
-        {
-        case PREDEF:
-            if (strcmp(var->name, "rhs") == 0)
-                sprintf(str, "rhsk");
-            else
-                sprintf(str, "%s", var->name);
-            strcat(call, str);
-            strcat(call, ",");
-            break;
         case 0:
-        case INT:
-            sprintf(str, "%s", var->for_name[0]);
-            if (~isdigit(str[0]))
+            /* FORTRAN argument is the dimension of an output variable with EXTERNAL type */
+            if (var->nfor_name == 0 && var->for_type != PREDEF)
             {
+                printf("dimension variable \"%s\" is not defined\n", var->name);
+                exit(1);
+            }
+            switch (var->for_type)
+            {
+                case PREDEF:
+                    if (strcmp(var->name, "rhs") == 0)
+                        sprintf(str, "rhsk");
+                    else
+                        sprintf(str, "%s", var->name);
+                    strcat(call, str);
+                    strcat(call, ",");
+                    break;
+                case 0:
+                case INT:
+                    sprintf(str, "%s", var->for_name[0]);
+                    if (~isdigit(str[0]))
+                    {
+                        strcat(call, str);
+                        strcat(call, ",");
+                    }
+                    else
+                    {
+                        Fprintf(f, indent, "locd%d= int(%s)\n", farg, var->for_name[0]);
+                        sprintf(str, "locd%d,", farg);
+                        strcat(call, str);
+                        sprintf(str, "locd%d", farg);
+                        AddDeclare(DEC_INT, str);
+                    }
+                    break;
+                case DOUBLE:
+                    Fprintf(f, indent, "locd%d= dble(%s)\n", farg, var->for_name[0]);
+                    sprintf(str, "locd%d,", farg);
+                    strcat(call, str);
+                    sprintf(str, "locd%d", farg);
+                    AddDeclare(DEC_DOUBLE, str);
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "locr%d=real(%s)\n", farg, var->for_name[0]);
+                    sprintf(str, "locr%d,", farg);
+                    strcat(call, str);
+                    sprintf(str, "locr%d", farg);
+                    AddDeclare(DEC_REAL, str);
+                    break;
+                case CHAR:
+                case CSTRINGV:
+                    printf("a dimension variable cannot have FORTRAN type \"%s\"\n", SGetForType(var->for_type));
+                    exit(1);
+                    break;
+            }
+            break;
+            /* working or output argument (always double reservation!) */
+        case COLUMN:
+        case ROW:
+        case WORK:
+        case POLYNOM:
+        case VECTOR:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            if (var->for_type == EXTERNAL)
+                strcpy(str1, "1");
+            else
+                strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            AddDeclare(DEC_LOGICAL, "cremat");
+            Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,1,lw%d,loc%d)) return\n", icre++, str1, farg, farg);
+            sprintf(str, "stk(lw%d),", farg);
+            strcat(call, str);
+            break;
+        case SPARSE:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            WriteCallRestCheck(f, var, farg, "mm", 1, 0);
+            if (var->for_type == EXTERNAL)
+            {
+                strcpy(str1, "1");
+                strcpy(str2, "1");
+                Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,%s,lw%d,lwc%d)) return\n", icre++, str1, str2, farg, farg);
+                AddDeclare(DEC_LOGICAL, "cremat");
+                sprintf(str, "stk(lw%d),", farg);
                 strcat(call, str);
-                strcat(call, ",");
             }
             else
             {
-                Fprintf(f, indent, "locd%d= int(%s)\n", farg, var->for_name[0]);
-                sprintf(str, "locd%d,", farg);
+                sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+                sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+                sprintf(str4, "%s", Forname2Int(variables[var->el[3] - 1]->for_name[0]));
+                AddDeclare(DEC_LOGICAL, "cresparse");
+                Fprintf(f, indent, "if(.not.cresparse(fname,top+%d,%s,%s,%s,%s,mnel%d,icol%d,lw%d,lwc%d)) return\n", icre++, str4, str1, str2, str3, farg,
+                        farg, farg, farg);
+                sprintf(str, "%s,%s,%s,%s,istk(mnel%d),istk(icol%d),stk(lw%d),stk(lwc%d),", str4, str1, str2, str3, farg, farg, farg, farg);
                 strcat(call, str);
-                sprintf(str, "locd%d", farg);
-                AddDeclare(DEC_INT, str);
             }
             break;
-        case DOUBLE:
-            Fprintf(f, indent, "locd%d= dble(%s)\n", farg, var->for_name[0]);
-            sprintf(str, "locd%d,", farg);
+        case IMATRIX:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            WriteCallRestCheck(f, var, farg, "mm", 1, 0);
+            if (var->for_type == EXTERNAL)
+            {
+                strcpy(str1, "1");
+                strcpy(str2, "1");
+                strcpy(str3, "1");
+            }
+            else
+            {
+                sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+                sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            };
+            AddDeclare(DEC_LOGICAL, "cremat");
+            Fprintf(f, indent, "if(.not.cremat(fname,top+%d,%s,%s,%s,lw%d,lwc%d)) return\n", icre++, str3, str1, str2, farg, farg);
+            sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            sprintf(str, "stk(lw%d),stk(lwc%d),%s,", farg, farg, str3);
             strcat(call, str);
-            sprintf(str, "locd%d", farg);
-            AddDeclare(DEC_DOUBLE, str);
             break;
-        case REAL:
-            Fprintf(f, indent, "locr%d=real(%s)\n", farg, var->for_name[0]);
-            sprintf(str, "locr%d,", farg);
+        case MATRIX:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            WriteCallRestCheck(f, var, farg, "mm", 1, 0);
+            if (var->for_type == EXTERNAL)
+            {
+                strcpy(str1, "1");
+                strcpy(str2, "1");
+            }
+            else
+            {
+                sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            };
+            AddDeclare(DEC_LOGICAL, "cremat");
+            Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,%s,lw%d,lwc%d)) return\n", icre++, str1, str2, farg, farg);
+            sprintf(str, "stk(lw%d),", farg);
             strcat(call, str);
-            sprintf(str, "locr%d", farg);
-            AddDeclare(DEC_REAL, str);
             break;
-        case CHAR:
-        case CSTRINGV:
-            printf("a dimension variable cannot have FORTRAN type \"%s\"\n", SGetForType(var->for_type));
+        case BMATRIX:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            WriteCallRestCheck(f, var, farg, "mm", 1, 0);
+            if (var->for_type == EXTERNAL)
+            {
+                strcpy(str1, "1");
+                strcpy(str2, "1");
+            }
+            else
+            {
+                sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            };
+            AddDeclare(DEC_LOGICAL, "crebmat");
+            Fprintf(f, indent, "if(.not.crebmat(fname,top+%d,%s,%s,lw%d)) return\n", icre++, str1, str2, farg);
+            sprintf(str, "istk(lw%d),", farg);
+            strcat(call, str);
+            break;
+        case SCIMPOINTER:
+        case SCISMPOINTER:
+        case SCILPOINTER:
+        case SCIBPOINTER:
+        case SCIOPOINTER:
+            sprintf(buf, "cre%s", SGetSciType(var->type));
+            AddDeclare(DEC_LOGICAL, buf);
+            Fprintf(f, indent, "if(.not.cre%s(fname,top+%d,lw%d)) return\n", SGetSciType(var->type), icre++, farg);
+            sprintf(str, "stk(lw%d),", farg);
+            strcat(call, str);
+            break;
+        case STRINGMAT:
+            if (var->for_type == EXTERNAL || var->for_type == CSTRINGV)
+            {
+                /* for external or cstringv parameters, unknown formal dimensions
+                 * can be used */
+                WriteCallRestCheck(f, var, farg, "mm", 0, 1);
+                WriteCallRestCheck(f, var, farg, "nn", 1, 1);
+                sprintf(str, "mm%d", farg);
+                AddForName1(var->el[0], str);
+                sprintf(str, "nn%d", farg);
+                AddForName1(var->el[1], str);
+                AddDeclare(DEC_LOGICAL, "crepointer");
+                Fprintf(f, indent, "if(.not.crepointer(fname,top+%d,lw%d)) return\n", icre++, farg);
+                sprintf(str, "stk(lw%d),", farg);
+                strcat(call, str);
+            }
+            else
+            {
+                /** XXXX dimensions should be specifief **/
+                fprintf(stderr, "WARNING : your code contains a specification\n");
+                fprintf(stderr, " not fully implemented in intersci\n");
+                WriteCallRestCheck(f, var, farg, "mm", 0, 0);
+                WriteCallRestCheck(f, var, farg, "nn", 1, 0);
+                AddDeclare(DEC_LOGICAL, "cresmatafaire");
+                Fprintf(f, indent, "if(.not.cresmatafaire(fname,top+%d,lw%d)) return\n", icre++, farg);
+                sprintf(str, "stk(lw%d),", farg);
+                strcat(call, str);
+            }
+            break;
+        case SCALAR:
+            AddDeclare(DEC_LOGICAL, "cremat");
+            Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,1,1,lw%d,loc%d)) return\n", icre++, farg, farg);
+            sprintf(str, "stk(lw%d),", farg);
+            strcat(call, str);
+            break;
+        case STRING:
+            WriteCallRestCheck(f, var, farg, "nn", 0, 0);
+            if (var->for_type == EXTERNAL)
+            {
+                AddDeclare(DEC_LOGICAL, "crepointer");
+                Fprintf(f, indent, "if(.not.crepointer(fname,top+%d,lw%d)) return\n", icre++, farg);
+                sprintf(str, "stk(lw%d),", farg);
+                strcat(call, str);
+            }
+            else
+            {
+                strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                AddDeclare(DEC_LOGICAL, "cresmat2");
+                Fprintf(f, indent, "if(.not.cresmat2(fname,top+%d,%s,lr%d)) return\n", icre++, str1, farg);
+                AddDeclare(DEC_LOGICAL, "bufstore");
+                Fprintf(f, indent, "if(.not.bufstore(fname,lbuf,lbufi%d,lbuff%d,lr%d,%s)) return\n", farg, farg, farg, str1);
+                sprintf(str, "buf(lbufi%d:lbuff%d),", farg, farg);
+                strcat(call, str);
+            }
+            break;
+        case LIST:
+        case TLIST:
+        case SEQUENCE:
+        case ANY:
+            printf("work or output FORTRAN argument cannot have\n");
+            printf("  type \"ANY\", \"LIST\", \"TLIST\" or \"SEQUENCE\"\n");
             exit(1);
             break;
-        }
-        break;
-        /* working or output argument (always double reservation!) */
-    case COLUMN:
-    case ROW:
-    case WORK:
-    case POLYNOM:
-    case VECTOR:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        if (var->for_type == EXTERNAL)
-            strcpy(str1, "1");
-        else
-            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        AddDeclare(DEC_LOGICAL, "cremat");
-        Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,1,lw%d,loc%d)) return\n", icre++, str1, farg, farg);
-        sprintf(str, "stk(lw%d),", farg);
-        strcat(call, str);
-        break;
-    case SPARSE:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        WriteCallRestCheck(f, var, farg, "mm", 1, 0);
-        if (var->for_type == EXTERNAL)
-        {
-            strcpy(str1, "1");
-            strcpy(str2, "1");
-            Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,%s,lw%d,lwc%d)) return\n", icre++, str1, str2, farg, farg);
-            AddDeclare(DEC_LOGICAL, "cremat");
-            sprintf(str, "stk(lw%d),", farg);
-            strcat(call, str);
-        }
-        else
-        {
-            sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-            sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-            sprintf(str4, "%s", Forname2Int(variables[var->el[3] - 1]->for_name[0]));
-            AddDeclare(DEC_LOGICAL, "cresparse");
-            Fprintf(f, indent, "if(.not.cresparse(fname,top+%d,%s,%s,%s,%s,mnel%d,icol%d,lw%d,lwc%d)) return\n", icre++, str4, str1, str2, str3, farg,
-                    farg, farg, farg);
-            sprintf(str, "%s,%s,%s,%s,istk(mnel%d),istk(icol%d),stk(lw%d),stk(lwc%d),", str4, str1, str2, str3, farg, farg, farg, farg);
-            strcat(call, str);
-        }
-        break;
-    case IMATRIX:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        WriteCallRestCheck(f, var, farg, "mm", 1, 0);
-        if (var->for_type == EXTERNAL)
-        {
-            strcpy(str1, "1");
-            strcpy(str2, "1");
-            strcpy(str3, "1");
-        }
-        else
-        {
-            sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-            sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        };
-        AddDeclare(DEC_LOGICAL, "cremat");
-        Fprintf(f, indent, "if(.not.cremat(fname,top+%d,%s,%s,%s,lw%d,lwc%d)) return\n", icre++, str3, str1, str2, farg, farg);
-        sprintf(str3, "%s", Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        sprintf(str, "stk(lw%d),stk(lwc%d),%s,", farg, farg, str3);
-        strcat(call, str);
-        break;
-    case MATRIX:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        WriteCallRestCheck(f, var, farg, "mm", 1, 0);
-        if (var->for_type == EXTERNAL)
-        {
-            strcpy(str1, "1");
-            strcpy(str2, "1");
-        }
-        else
-        {
-            sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        };
-        AddDeclare(DEC_LOGICAL, "cremat");
-        Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,%s,lw%d,lwc%d)) return\n", icre++, str1, str2, farg, farg);
-        sprintf(str, "stk(lw%d),", farg);
-        strcat(call, str);
-        break;
-    case BMATRIX:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        WriteCallRestCheck(f, var, farg, "mm", 1, 0);
-        if (var->for_type == EXTERNAL)
-        {
-            strcpy(str1, "1");
-            strcpy(str2, "1");
-        }
-        else
-        {
-            sprintf(str1, "%s", Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            sprintf(str2, "%s", Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        };
-        AddDeclare(DEC_LOGICAL, "crebmat");
-        Fprintf(f, indent, "if(.not.crebmat(fname,top+%d,%s,%s,lw%d)) return\n", icre++, str1, str2, farg);
-        sprintf(str, "istk(lw%d),", farg);
-        strcat(call, str);
-        break;
-    case SCIMPOINTER:
-    case SCISMPOINTER:
-    case SCILPOINTER:
-    case SCIBPOINTER:
-    case SCIOPOINTER:
-        sprintf(buf, "cre%s", SGetSciType(var->type));
-        AddDeclare(DEC_LOGICAL, buf);
-        Fprintf(f, indent, "if(.not.cre%s(fname,top+%d,lw%d)) return\n", SGetSciType(var->type), icre++, farg);
-        sprintf(str, "stk(lw%d),", farg);
-        strcat(call, str);
-        break;
-    case STRINGMAT:
-        if (var->for_type == EXTERNAL || var->for_type == CSTRINGV)
-        {
-            /* for external or cstringv parameters, unknown formal dimensions
-             * can be used */
-            WriteCallRestCheck(f, var, farg, "mm", 0, 1);
-            WriteCallRestCheck(f, var, farg, "nn", 1, 1);
-            sprintf(str, "mm%d", farg);
-            AddForName1(var->el[0], str);
-            sprintf(str, "nn%d", farg);
-            AddForName1(var->el[1], str);
-            AddDeclare(DEC_LOGICAL, "crepointer");
-            Fprintf(f, indent, "if(.not.crepointer(fname,top+%d,lw%d)) return\n", icre++, farg);
-            sprintf(str, "stk(lw%d),", farg);
-            strcat(call, str);
-        }
-        else
-        {
-            /** XXXX dimensions should be specifief **/
-            fprintf(stderr, "WARNING : your code contains a specification\n");
-            fprintf(stderr, " not fully implemented in intersci\n");
-            WriteCallRestCheck(f, var, farg, "mm", 0, 0);
-            WriteCallRestCheck(f, var, farg, "nn", 1, 0);
-            AddDeclare(DEC_LOGICAL, "cresmatafaire");
-            Fprintf(f, indent, "if(.not.cresmatafaire(fname,top+%d,lw%d)) return\n", icre++, farg);
-            sprintf(str, "stk(lw%d),", farg);
-            strcat(call, str);
-        }
-        break;
-    case SCALAR:
-        AddDeclare(DEC_LOGICAL, "cremat");
-        Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,1,1,lw%d,loc%d)) return\n", icre++, farg, farg);
-        sprintf(str, "stk(lw%d),", farg);
-        strcat(call, str);
-        break;
-    case STRING:
-        WriteCallRestCheck(f, var, farg, "nn", 0, 0);
-        if (var->for_type == EXTERNAL)
-        {
-            AddDeclare(DEC_LOGICAL, "crepointer");
-            Fprintf(f, indent, "if(.not.crepointer(fname,top+%d,lw%d)) return\n", icre++, farg);
-            sprintf(str, "stk(lw%d),", farg);
-            strcat(call, str);
-        }
-        else
-        {
-            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            AddDeclare(DEC_LOGICAL, "cresmat2");
-            Fprintf(f, indent, "if(.not.cresmat2(fname,top+%d,%s,lr%d)) return\n", icre++, str1, farg);
-            AddDeclare(DEC_LOGICAL, "bufstore");
-            Fprintf(f, indent, "if(.not.bufstore(fname,lbuf,lbufi%d,lbuff%d,lr%d,%s)) return\n", farg, farg, farg, str1);
-            sprintf(str, "buf(lbufi%d:lbuff%d),", farg, farg);
-            strcat(call, str);
-        }
-        break;
-    case LIST:
-    case TLIST:
-    case SEQUENCE:
-    case ANY:
-        printf("work or output FORTRAN argument cannot have\n");
-        printf("  type \"ANY\", \"LIST\", \"TLIST\" or \"SEQUENCE\"\n");
-        exit(1);
-        break;
     }
 }
 
@@ -2333,10 +2371,10 @@ the interfaced function and returned
 to the interface */
 
 void WriteCallRestCheck(f, var, farg, name, iel, flag)
-     VARPTR var;
-     FILE *f;
-     char *name;
-     int iel, farg, flag;
+VARPTR var;
+FILE *f;
+char *name;
+int iel, farg, flag;
 {
     char sdim[MAXNAM];
     char str[MAXNAM];
@@ -2379,7 +2417,7 @@ void WriteCallRestCheck(f, var, farg, name, iel, flag)
 }
 
 void WriteOutput(f)
-     FILE *f;
+FILE *f;
 {
     IVAR iout, ivar;
     VARPTR var, vout;
@@ -2394,64 +2432,64 @@ void WriteOutput(f)
 
     switch (vout->type)
     {
-    case LIST:
-    case TLIST:
-        FCprintf(f, "c       Creation of output %s\n", SGetSciType(vout->type));
-        Fprintf(f, indent, "top=topl+1\n");
-        Fprintf(f, indent, "call cre%s(top,%d,lw)\n", SGetSciType(vout->type), vout->length);
-        /* loop on output variables */
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
+        case LIST:
+        case TLIST:
+            FCprintf(f, "c       Creation of output %s\n", SGetSciType(vout->type));
+            Fprintf(f, indent, "top=topl+1\n");
+            Fprintf(f, indent, "call cre%s(top,%d,lw)\n", SGetSciType(vout->type), vout->length);
+            /* loop on output variables */
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                FCprintf(f, "c    \n");
+                FCprintf(f, "c       Element %d: %s\n", i + 1, var->name);
+                WriteVariable(f, var, ivar, 1, i + 1);
+            }
             FCprintf(f, "c    \n");
-            FCprintf(f, "c       Element %d: %s\n", i + 1, var->name);
-            WriteVariable(f, var, ivar, 1, i + 1);
-        }
-        FCprintf(f, "c    \n");
-        FCprintf(f, "c     Putting in order the stack\n");
-        Fprintf(f, indent, "call copyobj(fname,topl+1,topk+1)\n");
-        Fprintf(f, indent, "top=topk+1\n");
-        Fprintf(f, indent, "return\n");
-        break;
-    case SEQUENCE:
-        /* loop on output variables */
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
-            FCprintf(f, "c    \n");
-            Fprintf(f, indent++, "if(lhs .ge. %d) then\n", i + 1);
-            FCprintf(f, "c       --------------output variable: %s\n", var->name);
-            Fprintf(f, indent, "top=topl+%d\n", i + 1);
-            WriteVariable(f, var, ivar, 0, 0);
-            Fprintf(f, --indent, "endif\n");
-        }
-        FCprintf(f, "c     Putting in order the stack\n");
-        for (i = 0; i < vout->length; i++)
-        {
-            Fprintf(f, indent++, "if(lhs .ge. %d) then\n", i + 1);
-            Fprintf(f, indent, "call copyobj(fname,topl+%d,topk+%d)\n", i + 1, i + 1);
-            Fprintf(f, --indent, "endif\n");
-        }
-        Fprintf(f, indent, "top=topk+lhs\n");
-        Fprintf(f, indent, "return\n");
-        break;
-    case EMPTY:
-        FCprintf(f, "c       no output variable\n");
-        Fprintf(f, indent, "top=topk+1\n");
-        Fprintf(f, indent, "call objvide(fname,top)\n");
-        Fprintf(f, indent, "return\n");
-        break;
+            FCprintf(f, "c     Putting in order the stack\n");
+            Fprintf(f, indent, "call copyobj(fname,topl+1,topk+1)\n");
+            Fprintf(f, indent, "top=topk+1\n");
+            Fprintf(f, indent, "return\n");
+            break;
+        case SEQUENCE:
+            /* loop on output variables */
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                FCprintf(f, "c    \n");
+                Fprintf(f, indent++, "if(lhs .ge. %d) then\n", i + 1);
+                FCprintf(f, "c       --------------output variable: %s\n", var->name);
+                Fprintf(f, indent, "top=topl+%d\n", i + 1);
+                WriteVariable(f, var, ivar, 0, 0);
+                Fprintf(f, --indent, "endif\n");
+            }
+            FCprintf(f, "c     Putting in order the stack\n");
+            for (i = 0; i < vout->length; i++)
+            {
+                Fprintf(f, indent++, "if(lhs .ge. %d) then\n", i + 1);
+                Fprintf(f, indent, "call copyobj(fname,topl+%d,topk+%d)\n", i + 1, i + 1);
+                Fprintf(f, --indent, "endif\n");
+            }
+            Fprintf(f, indent, "top=topk+lhs\n");
+            Fprintf(f, indent, "return\n");
+            break;
+        case EMPTY:
+            FCprintf(f, "c       no output variable\n");
+            Fprintf(f, indent, "top=topk+1\n");
+            Fprintf(f, indent, "call objvide(fname,top)\n");
+            Fprintf(f, indent, "return\n");
+            break;
     }
     Fprintf(f, indent, "end\n");
     FCprintf(f, "c\n");
 }
 
 void WriteVariableOutput(f, var, barg, farg, convert, insidelist, nel)
-     FILE *f;
-     VARPTR var;
-     int barg, farg, insidelist, convert, nel;
+FILE *f;
+VARPTR var;
+int barg, farg, insidelist, convert, nel;
 {
     char strR[MAXNAM];
     char str[MAXNAM];
@@ -2502,7 +2540,7 @@ void WriteVariableOutput(f, var, barg, farg, convert, insidelist, nel)
             sprintf(str, "lr%de%d", bargt, nel1);
             sprintf(strc, "lc%de%d", bargt, nel1);
             sprintf(strit, "it%de%d", bargt, nel1);
-                                                 /** sept97 itr->it **/
+            /** sept97 itr->it **/
         }
     }
     else
@@ -2520,268 +2558,268 @@ void WriteVariableOutput(f, var, barg, farg, convert, insidelist, nel)
             sprintf(str, "lr%d", barg);
             sprintf(strc, "lc%d", barg);
             sprintf(strit, "it%d", farg);
-                                        /** Mars 1997 itr -> it **/
+            /** Mars 1997 itr -> it **/
         }
     }
     switch (var->type)
     {
-    case COLUMN:
-    case ROW:
-    case VECTOR:
-    case MATRIX:
-    case SCALAR:
-        switch (var->type)
-        {
         case COLUMN:
-            strcpy(str2, "1");
-            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            break;
         case ROW:
         case VECTOR:
-            strcpy(str1, "1");
-            strcpy(str2, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            break;
         case MATRIX:
+        case SCALAR:
+            switch (var->type)
+            {
+                case COLUMN:
+                    strcpy(str2, "1");
+                    strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    break;
+                case ROW:
+                case VECTOR:
+                    strcpy(str1, "1");
+                    strcpy(str2, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    break;
+                case MATRIX:
+                    strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+                    break;
+                case SCALAR:
+                    strcpy(str1, "1");
+                    strcpy(str2, "1");
+                    break;
+            }
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcremat");
+                Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,0,%s,%s,lrs,lcs)) return\n", nel, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cremat");
+                Fprintf(f, indent, "if(.not.cremat(fname,top,0,%s,%s,lrs,lcs)) return\n", str1, str2);
+            }
+            if (barg != 0 && var->type != SCALAR)
+            {
+                sprintf(str1, "n%d", barg);
+                sprintf(str2, "m%d", barg);
+            }
+            switch (var->for_type)
+            {
+                case INT:
+                    Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str1, str2, str);
+                    break;
+                case DOUBLE:
+                    Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lrs),1)\n", str1, str2, str);
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lrs),-1)\n", str1, str2, str);
+                    break;
+            }
+            break;
+        case BMATRIX:
             strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
             strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcrebmat");
+                Fprintf(f, indent, "if(.not.listcrebmat(fname,top,%d,lw,%s,%s,lrs)) return\n", nel, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "crebmat");
+                Fprintf(f, indent, "if(.not.crebmat(fname,top,%s,%s,lrs)) return\n", str1, str2);
+            }
+            if (barg != 0 && var->type != SCALAR)
+            {
+                sprintf(str1, "n%d", barg);
+                sprintf(str2, "m%d", barg);
+            }
+            Fprintf(f, indent, "call icopy(%s*%s,istk(%s),1,istk(lrs),1)\n", str1, str2, str);
             break;
-        case SCALAR:
-            strcpy(str1, "1");
-            strcpy(str2, "1");
-            break;
-        }
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcremat");
-            Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,0,%s,%s,lrs,lcs)) return\n", nel, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cremat");
-            Fprintf(f, indent, "if(.not.cremat(fname,top,0,%s,%s,lrs,lcs)) return\n", str1, str2);
-        }
-        if (barg != 0 && var->type != SCALAR)
-        {
-            sprintf(str1, "n%d", barg);
-            sprintf(str2, "m%d", barg);
-        }
-        switch (var->for_type)
-        {
-        case INT:
-            Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str1, str2, str);
-            break;
-        case DOUBLE:
-            Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lrs),1)\n", str1, str2, str);
-            break;
-        case REAL:
-            Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lrs),-1)\n", str1, str2, str);
-            break;
-        }
-        break;
-    case BMATRIX:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcrebmat");
-            Fprintf(f, indent, "if(.not.listcrebmat(fname,top,%d,lw,%s,%s,lrs)) return\n", nel, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "crebmat");
-            Fprintf(f, indent, "if(.not.crebmat(fname,top,%s,%s,lrs)) return\n", str1, str2);
-        }
-        if (barg != 0 && var->type != SCALAR)
-        {
-            sprintf(str1, "n%d", barg);
-            sprintf(str2, "m%d", barg);
-        }
-        Fprintf(f, indent, "call icopy(%s*%s,istk(%s),1,istk(lrs),1)\n", str1, str2, str);
-        break;
-    case SPARSE:
-        /* Sparse matrix */
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        strcpy(str4, Forname2Int(variables[var->el[3] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcresparse");
-            Fprintf(f, indent, "if(.not.listcresparse(fname,top,%d,lw,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", nel, str4, str1, str2, str3);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cresparse");
-            Fprintf(f, indent, "if(.not.cresparse(fname,top,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", str4, str1, str2, str3);
-        }
-        if (barg != 0 && var->type != SCALAR)
-        {
-            sprintf(str1, "m%d", barg);
-            sprintf(str2, "n%d", barg);
-            sprintf(str3, "nel%d", barg);
-            sprintf(str4, "it%d", barg);
-        }
+        case SPARSE:
+            /* Sparse matrix */
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            strcpy(str4, Forname2Int(variables[var->el[3] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcresparse");
+                Fprintf(f, indent, "if(.not.listcresparse(fname,top,%d,lw,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", nel, str4, str1, str2, str3);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cresparse");
+                Fprintf(f, indent, "if(.not.cresparse(fname,top,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", str4, str1, str2, str3);
+            }
+            if (barg != 0 && var->type != SCALAR)
+            {
+                sprintf(str1, "m%d", barg);
+                sprintf(str2, "n%d", barg);
+                sprintf(str3, "nel%d", barg);
+                sprintf(str4, "it%d", barg);
+            }
 
-        Fprintf(f, indent, "call icopy(%s,istk(mnel%s),1,istk(mnels),1)\n", str1, strR);
-        Fprintf(f, indent, "call icopy(%s,istk(icol%s),1,istk(icols),1)\n", str3, strR);
-        switch (var->for_type)
-        {
-        case INT:
-            Fprintf(f, indent, "call int2db(%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str3, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
-            Fprintf(f, indent, "call int2db(%s,istk(iadr(%s)),-1,stk(lcs),-1)\n", str3, strc);
-            Fprintf(f, indent--, "endif\n");
+            Fprintf(f, indent, "call icopy(%s,istk(mnel%s),1,istk(mnels),1)\n", str1, strR);
+            Fprintf(f, indent, "call icopy(%s,istk(icol%s),1,istk(icols),1)\n", str3, strR);
+            switch (var->for_type)
+            {
+                case INT:
+                    Fprintf(f, indent, "call int2db(%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str3, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
+                    Fprintf(f, indent, "call int2db(%s,istk(iadr(%s)),-1,stk(lcs),-1)\n", str3, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+                case DOUBLE:
+                    Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lrs),1)\n", str3, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
+                    Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lcs),1)\n", str3, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n", str3, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
+                    Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lcs),-1)\n", str3, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+            }
             break;
-        case DOUBLE:
-            Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lrs),1)\n", str3, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
-            Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lcs),1)\n", str3, strc);
-            Fprintf(f, indent--, "endif\n");
+        case IMATRIX:
+            /* Imaginary matrix */
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcremat");
+                Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,%s,%s,%s,lrs,lcs)) return\n", nel, str3, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cremat");
+                Fprintf(f, indent, "if(.not.cremat(fname,top,%s,%s,%s,lrs,lcs)) return\n", str3, str1, str2);
+            }
+            if (barg != 0 && var->type != SCALAR)
+            {
+                sprintf(str1, "m%d", barg);
+                sprintf(str2, "n%d", barg);
+                sprintf(str3, "it%d", barg);
+            }
+            switch (var->for_type)
+            {
+                case INT:
+                    Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str1, str2, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
+                    Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lcs),-1)\n", str1, str2, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+                case DOUBLE:
+                    Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lrs),1)\n", str1, str2, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
+                    Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lcs),1)\n", str1, str2, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lrs),-1)\n", str1, str2, str);
+                    Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
+                    Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lcs),-1)\n", str1, str2, strc);
+                    Fprintf(f, indent--, "endif\n");
+                    break;
+            }
             break;
-        case REAL:
-            Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n", str3, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str4);
-            Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lcs),-1)\n", str3, strc);
-            Fprintf(f, indent--, "endif\n");
+        case POLYNOM:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcreopoly");
+                Fprintf(f, indent, "if(.not.listcreopoly(fname,top,%d,lw,0,%s,name%s,namel%s,lrs,lcs)) return\n", nel, str1, str, str);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "creonepoly");
+                Fprintf(f, indent, "if(.not.creonepoly(fname,top,0,%s,name%s,namel%s,lrs,lcs)) return\n", str1, str, str);
+            }
+            switch (var->for_type)
+            {
+                case INT:
+                    Fprintf(f, indent, "call int2db(%s,stk(%s),-1,stk(lrs),-1)\n", str1, str);
+                    break;
+                case DOUBLE:
+                    Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lrs),1)\n", str1, str);
+                    break;
+                case REAL:
+                    Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n", str1, str);
+                    break;
+            }
             break;
-        }
-        break;
-    case IMATRIX:
-        /* Imaginary matrix */
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcremat");
-            Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,%s,%s,%s,lrs,lcs)) return\n", nel, str3, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cremat");
-            Fprintf(f, indent, "if(.not.cremat(fname,top,%s,%s,%s,lrs,lcs)) return\n", str3, str1, str2);
-        }
-        if (barg != 0 && var->type != SCALAR)
-        {
-            sprintf(str1, "m%d", barg);
-            sprintf(str2, "n%d", barg);
-            sprintf(str3, "it%d", barg);
-        }
-        switch (var->for_type)
-        {
-        case INT:
-            Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lrs),-1)\n", str1, str2, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
-            Fprintf(f, indent, "call int2db(%s*%s,istk(iadr(%s)),-1,stk(lcs),-1)\n", str1, str2, strc);
-            Fprintf(f, indent--, "endif\n");
-            break;
-        case DOUBLE:
-            Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lrs),1)\n", str1, str2, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
-            Fprintf(f, indent, "call dcopy(%s*%s,stk(%s),1,stk(lcs),1)\n", str1, str2, strc);
-            Fprintf(f, indent--, "endif\n");
-            break;
-        case REAL:
-            Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lrs),-1)\n", str1, str2, str);
-            Fprintf(f, indent++, "if (%s.eq.1) then\n", str3);
-            Fprintf(f, indent, "call rea2db(%s*%s,stk(%s),-1,stk(lcs),-1)\n", str1, str2, strc);
-            Fprintf(f, indent--, "endif\n");
-            break;
-        }
-        break;
-    case POLYNOM:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcreopoly");
-            Fprintf(f, indent, "if(.not.listcreopoly(fname,top,%d,lw,0,%s,name%s,namel%s,lrs,lcs)) return\n", nel, str1, str, str);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "creonepoly");
-            Fprintf(f, indent, "if(.not.creonepoly(fname,top,0,%s,name%s,namel%s,lrs,lcs)) return\n", str1, str, str);
-        }
-        switch (var->for_type)
-        {
-        case INT:
-            Fprintf(f, indent, "call int2db(%s,stk(%s),-1,stk(lrs),-1)\n", str1, str);
-            break;
-        case DOUBLE:
-            Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lrs),1)\n", str1, str);
-            break;
-        case REAL:
-            Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n", str1, str);
-            break;
-        }
-        break;
-    case STRING:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        if (barg != 0)
-        {
-            sprintf(str1, "nlr%d", barg);
-        }
+        case STRING:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            if (barg != 0)
+            {
+                sprintf(str1, "nlr%d", barg);
+            }
 
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcrestring");
-            Fprintf(f, indent, "if(.not.listcrestring(fname,top,%d,lw,%s,ilrs)) return\n", nel, str1);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cresmat2");
-            Fprintf(f, indent, "if(.not.cresmat2(fname,top,%s,ilrs)) return\n", str1);
-        }
-        Fprintf(f, indent, "call cvstr(%s,istk(ilrs),buf(lbufi%d:lbuff%d),0)\n", str1, farg, farg);
-        break;
-    case SCISMPOINTER:
-    case SCIMPOINTER:
-    case SCILPOINTER:
-    case SCIBPOINTER:
-    case SCIOPOINTER:
-        if (insidelist != 0)
-        {
-            printf(" %s in output list : not implemented ;", SGetSciType(var->type));
-        }
-        else
-        {
-            sprintf(buf, "cre%s", SGetSciType(var->type));
-            AddDeclare(DEC_LOGICAL, buf);
-            Fprintf(f, indent, "if(.not.cre%s(fname,top,lrs)) return\n", SGetSciType(var->type));
-            Fprintf(f, indent, "stk(lrs)=stk(%s)\n", str);
-        }
-        break;
-    case STRINGMAT:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        sprintf(str, "lw%d", farg);
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "lcrestringmatfromC");
-            Fprintf(f, indent, "if(.not.lcrestringmatfromC(fname,top,%d,lw,%s,%s,%s)) return\n", nel, str, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "crestringmatfromC");
-            Fprintf(f, indent, "if(.not.crestringmatfromC(fname,top,%s,%s,%s)) return\n", str, str1, str2);
-        }
-        break;
-    case WORK:
-    case LIST:
-    case TLIST:
-    case SEQUENCE:
-    case ANY:
-        printf("output variable \"%s\" cannot have type\n", var->name);
-        printf("  \"WORK\", \"LIST\", \"TLIST\", \"SEQUENCE\" or \"ANY\"\n");
-        exit(1);
-        break;
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcrestring");
+                Fprintf(f, indent, "if(.not.listcrestring(fname,top,%d,lw,%s,ilrs)) return\n", nel, str1);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cresmat2");
+                Fprintf(f, indent, "if(.not.cresmat2(fname,top,%s,ilrs)) return\n", str1);
+            }
+            Fprintf(f, indent, "call cvstr(%s,istk(ilrs),buf(lbufi%d:lbuff%d),0)\n", str1, farg, farg);
+            break;
+        case SCISMPOINTER:
+        case SCIMPOINTER:
+        case SCILPOINTER:
+        case SCIBPOINTER:
+        case SCIOPOINTER:
+            if (insidelist != 0)
+            {
+                printf(" %s in output list : not implemented ;", SGetSciType(var->type));
+            }
+            else
+            {
+                sprintf(buf, "cre%s", SGetSciType(var->type));
+                AddDeclare(DEC_LOGICAL, buf);
+                Fprintf(f, indent, "if(.not.cre%s(fname,top,lrs)) return\n", SGetSciType(var->type));
+                Fprintf(f, indent, "stk(lrs)=stk(%s)\n", str);
+            }
+            break;
+        case STRINGMAT:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            sprintf(str, "lw%d", farg);
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "lcrestringmatfromC");
+                Fprintf(f, indent, "if(.not.lcrestringmatfromC(fname,top,%d,lw,%s,%s,%s)) return\n", nel, str, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "crestringmatfromC");
+                Fprintf(f, indent, "if(.not.crestringmatfromC(fname,top,%s,%s,%s)) return\n", str, str1, str2);
+            }
+            break;
+        case WORK:
+        case LIST:
+        case TLIST:
+        case SEQUENCE:
+        case ANY:
+            printf("output variable \"%s\" cannot have type\n", var->name);
+            printf("  \"WORK\", \"LIST\", \"TLIST\", \"SEQUENCE\" or \"ANY\"\n");
+            exit(1);
+            break;
     }
 }
 
 void WriteExternalVariableOutput(f, var, farg, insidelist, nel)
-     FILE *f;
-     VARPTR var;
-     int farg;
-     int insidelist, nel;
+FILE *f;
+VARPTR var;
+int farg;
+int insidelist, nel;
 {
     char str[MAXNAM];
     char str1[MAXNAM];
@@ -2791,155 +2829,155 @@ void WriteExternalVariableOutput(f, var, farg, insidelist, nel)
 
     switch (var->type)
     {
-    case COLUMN:
-    case ROW:
-    case VECTOR:
-    case MATRIX:
-    case SCALAR:
-        switch (var->type)
-        {
         case COLUMN:
-            strcpy(str2, "1");
-            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            break;
         case ROW:
         case VECTOR:
-            strcpy(str1, "1");
-            strcpy(str2, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-            break;
         case MATRIX:
+        case SCALAR:
+            switch (var->type)
+            {
+                case COLUMN:
+                    strcpy(str2, "1");
+                    strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    break;
+                case ROW:
+                case VECTOR:
+                    strcpy(str1, "1");
+                    strcpy(str2, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    break;
+                case MATRIX:
+                    strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+                    strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+                    break;
+                case SCALAR:
+                    strcpy(str1, "1");
+                    strcpy(str2, "1");
+                    break;
+            }
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcremat");
+                Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,0,%s,%s,lrs,lcs)) return\n", nel, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cremat");
+                Fprintf(f, indent, "if(.not.cremat(fname,top,0,%s,%s,lrs,lcs)) return\n", str1, str2);
+            }
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lrs))\n", var->fexternal, str1, str2, str);
+            break;
+        case IMATRIX:
             strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
             strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcremat");
+                Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,%s,%s,%s,lrs,lcs)) return\n", nel, str3, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cremat");
+                Fprintf(f, indent, "if(.not.cremat(fname,top,%s,%s,%s,lrs,lcs)) return\n", str3, str1, str2);
+            }
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lrs))\n", var->fexternal, str1, str2, str);
+            sprintf(str, "lwc%d", farg);
+            Fprintf(f, indent++, "if  (%s.eq.1) then\n", str3);
+            Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lcs))\n", var->fexternal, str1, str2, str);
+            Fprintf(f, --indent, "endif\n");
             break;
-        case SCALAR:
-            strcpy(str1, "1");
-            strcpy(str2, "1");
+        case SPARSE:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
+            strcpy(str4, Forname2Int(variables[var->el[3] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcresparse");
+                Fprintf(f, indent, "if(.not.listcresparse(fname,top,%d,lw,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", nel, str4, str1, str2, str3);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "cresparse");
+                Fprintf(f, indent, "if(.not.cresparse(fname,top,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", str4, str1, str2, str3);
+            }
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(stk(%s),istk(mnels),istk(icols),stk(lrs),stk(lcs))\n", var->fexternal, str);
             break;
-        }
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcremat");
-            Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,0,%s,%s,lrs,lcs)) return\n", nel, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cremat");
-            Fprintf(f, indent, "if(.not.cremat(fname,top,0,%s,%s,lrs,lcs)) return\n", str1, str2);
-        }
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lrs))\n", var->fexternal, str1, str2, str);
-        break;
-    case IMATRIX:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcremat");
-            Fprintf(f, indent, "if(.not.listcremat(fname,top,%d,lw,%s,%s,%s,lrs,lcs)) return\n", nel, str3, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cremat");
-            Fprintf(f, indent, "if(.not.cremat(fname,top,%s,%s,%s,lrs,lcs)) return\n", str3, str1, str2);
-        }
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lrs))\n", var->fexternal, str1, str2, str);
-        sprintf(str, "lwc%d", farg);
-        Fprintf(f, indent++, "if  (%s.eq.1) then\n", str3);
-        Fprintf(f, indent, "call %s(%s*%s,stk(%s),stk(lcs))\n", var->fexternal, str1, str2, str);
-        Fprintf(f, --indent, "endif\n");
-        break;
-    case SPARSE:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        strcpy(str3, Forname2Int(variables[var->el[2] - 1]->for_name[0]));
-        strcpy(str4, Forname2Int(variables[var->el[3] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcresparse");
-            Fprintf(f, indent, "if(.not.listcresparse(fname,top,%d,lw,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", nel, str4, str1, str2, str3);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "cresparse");
-            Fprintf(f, indent, "if(.not.cresparse(fname,top,%s,%s,%s,%s,mnels,icols,lrs,lcs)) return\n", str4, str1, str2, str3);
-        }
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(stk(%s),istk(mnels),istk(icols),stk(lrs),stk(lcs))\n", var->fexternal, str);
-        break;
-    case BMATRIX:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcrebmat");
-            Fprintf(f, indent, "if(.not.listcrebmat(fname,top,%d,lw,%s,%s,lrs)) return\n", nel, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "crebmat");
-            Fprintf(f, indent, "if(.not.crebmat(fname,top,%s,%s,lrs)) return\n", str1, str2);
-        }
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(%s*%s,istk(%s),istk(lrs))\n", var->fexternal, str1, str2, str);
-        break;
-    case POLYNOM:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, variables[var->el[1] - 1]->name);
-        Fprintf(f, indent, "err=sadr(ilw+10)+%s-lstk(bot)\n", str1);
-        Fprintf(f, indent, "if(err .gt. 0) then\n");
-        Fprintf(f, indent, "call error(17)\n");
-        Fprintf(f, indent, "return\n");
-        Fprintf(f, indent, "endif\n");
-        Fprintf(f, indent, "istk(ilw)=1\n");
-        Fprintf(f, indent, "istk(ilw+1)=1\n");
-        Fprintf(f, indent, "istk(ilw+2)=1\n");
-        Fprintf(f, indent, "istk(ilw+3)=0\n");
-        Fprintf(f, indent, "call cvstr(4,'%s    ',istk(ilw+4),0)\n", str2);
-        /* str2 comes from SCILAB input ??? */
-        Fprintf(f, indent, "istk(ilw+8)=1\n");
-        Fprintf(f, indent, "istk(ilw+9)=1+%s\n", str1);
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "lw=sadr(ilw+10)\n");
-        Fprintf(f, indent, "call %s(%s,stk(%s),stk(lw))\n", var->fexternal, str1, str);
-        Fprintf(f, indent, "lw=lw+%s\n", str1);
-        break;
-    case STRING:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        if (insidelist != 0)
-        {
-            AddDeclare(DEC_LOGICAL, "listcrestring");
-            Fprintf(f, indent, "if(.not.listcrestring(fname,top,%d,lw,%s,ilrs)) return\n", nel, str1, str2);
-        }
-        else
-        {
-            AddDeclare(DEC_LOGICAL, "crestring");
-            Fprintf(f, indent, "if(.not.crestring(fname,top,%s,ilrs)) return\n", str1);
-        }
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(%s,stk(%s),istk(ilrs))\n", var->fexternal, str1, str);
-        break;
-    case STRINGMAT:
-        strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
-        strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
-        sprintf(str, "lw%d", farg);
-        Fprintf(f, indent, "call %s(stk(%s),istk(ilw),%s,%s,lstk(bot)-sadr(ilw),ierr)\n", var->fexternal, str, str1, str2);
-        Fprintf(f, indent, "if(ierr .gt. 0) then\n");
-        Fprintf(f, indent, "buf='not enough memory'\n");
-        Fprintf(f, indent, "call error(1000)\n");
-        Fprintf(f, indent, "return\n");
-        Fprintf(f, indent, "endif\n");
-        sprintf(str, "istk(ilw+4+%s*%s)-1", str1, str2);
-        Fprintf(f, indent, "lw=sadr(ilw+5+%s*%s+%s)\n", str1, str2, str);
-        break;
+        case BMATRIX:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcrebmat");
+                Fprintf(f, indent, "if(.not.listcrebmat(fname,top,%d,lw,%s,%s,lrs)) return\n", nel, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "crebmat");
+                Fprintf(f, indent, "if(.not.crebmat(fname,top,%s,%s,lrs)) return\n", str1, str2);
+            }
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(%s*%s,istk(%s),istk(lrs))\n", var->fexternal, str1, str2, str);
+            break;
+        case POLYNOM:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, variables[var->el[1] - 1]->name);
+            Fprintf(f, indent, "err=sadr(ilw+10)+%s-lstk(bot)\n", str1);
+            Fprintf(f, indent, "if(err .gt. 0) then\n");
+            Fprintf(f, indent, "call error(17)\n");
+            Fprintf(f, indent, "return\n");
+            Fprintf(f, indent, "endif\n");
+            Fprintf(f, indent, "istk(ilw)=1\n");
+            Fprintf(f, indent, "istk(ilw+1)=1\n");
+            Fprintf(f, indent, "istk(ilw+2)=1\n");
+            Fprintf(f, indent, "istk(ilw+3)=0\n");
+            Fprintf(f, indent, "call cvstr(4,'%s    ',istk(ilw+4),0)\n", str2);
+            /* str2 comes from SCILAB input ??? */
+            Fprintf(f, indent, "istk(ilw+8)=1\n");
+            Fprintf(f, indent, "istk(ilw+9)=1+%s\n", str1);
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "lw=sadr(ilw+10)\n");
+            Fprintf(f, indent, "call %s(%s,stk(%s),stk(lw))\n", var->fexternal, str1, str);
+            Fprintf(f, indent, "lw=lw+%s\n", str1);
+            break;
+        case STRING:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            if (insidelist != 0)
+            {
+                AddDeclare(DEC_LOGICAL, "listcrestring");
+                Fprintf(f, indent, "if(.not.listcrestring(fname,top,%d,lw,%s,ilrs)) return\n", nel, str1, str2);
+            }
+            else
+            {
+                AddDeclare(DEC_LOGICAL, "crestring");
+                Fprintf(f, indent, "if(.not.crestring(fname,top,%s,ilrs)) return\n", str1);
+            }
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(%s,stk(%s),istk(ilrs))\n", var->fexternal, str1, str);
+            break;
+        case STRINGMAT:
+            strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            strcpy(str2, Forname2Int(variables[var->el[1] - 1]->for_name[0]));
+            sprintf(str, "lw%d", farg);
+            Fprintf(f, indent, "call %s(stk(%s),istk(ilw),%s,%s,lstk(bot)-sadr(ilw),ierr)\n", var->fexternal, str, str1, str2);
+            Fprintf(f, indent, "if(ierr .gt. 0) then\n");
+            Fprintf(f, indent, "buf='not enough memory'\n");
+            Fprintf(f, indent, "call error(1000)\n");
+            Fprintf(f, indent, "return\n");
+            Fprintf(f, indent, "endif\n");
+            sprintf(str, "istk(ilw+4+%s*%s)-1", str1, str2);
+            Fprintf(f, indent, "lw=sadr(ilw+5+%s*%s+%s)\n", str1, str2, str);
+            break;
     }
 }
 
 void WriteListAnalysis(f, i)
 /* is nearly a copy of WriteArgCheck */
-     FILE *f;
-     int i;
+FILE *f;
+int i;
 {
     int k, i1, iel;
     char str1[MAXNAM], str[MAXNAM];
@@ -2960,130 +2998,130 @@ void WriteListAnalysis(f, i)
             AddDeclare(DEC_LOGICAL, "getilist");
             switch (var->type)
             {
-            case SPARSE:
-                AddDeclare(DEC_LOGICAL, "getlistsparse");
-                Fprintf(f, indent, "if(.not.getlistsparse(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,nel%s,mnel%s,icol%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1, str1, str1, str1);
-                if (var->el[0] == var->el[1])
-                {
+                case SPARSE:
+                    AddDeclare(DEC_LOGICAL, "getlistsparse");
+                    Fprintf(f, indent, "if(.not.getlistsparse(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,nel%s,mnel%s,icol%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1, str1, str1, str1);
+                    if (var->el[0] == var->el[1])
+                    {
+                        /* square matrix */
+                        AddDeclare(DEC_LOGICAL, "checkval");
+                        Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
+                    }
+                    sprintf(str, "m%s", str1);
+                    AddForName1(var->el[0], str);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[1], str);
+                    sprintf(str, "nel%s", str1);
+                    AddForName1(var->el[2], str);
+                    sprintf(str, "it%s", str1);
+                    AddForName1(var->el[3], str);
+                    break;
+                case IMATRIX:
+                    AddDeclare(DEC_LOGICAL, "getlistmat");
+                    Fprintf(f, indent, "if(.not.getlistmat(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1);
+                    if (var->el[0] == var->el[1])
+                    {
+                        /* square matrix */
+                        AddDeclare(DEC_LOGICAL, "checkval");
+                        Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
+                    }
+                    sprintf(str, "m%s", str1);
+                    AddForName1(var->el[0], str);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[1], str);
+                    sprintf(str, "it%s", str1);
+                    AddForName1(var->el[2], str);
+                    break;
+                case MATRIX:
+                    AddDeclare(DEC_LOGICAL, "getlistmat");
+                    Fprintf(f, indent, "if(.not.getlistmat(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1);
+                    if (var->el[0] == var->el[1])
+                    {
+                        /* square matrix */
+                        AddDeclare(DEC_LOGICAL, "checkval");
+                        Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
+                    }
+                    sprintf(str, "m%s", str1);
+                    AddForName1(var->el[0], str);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[1], str);
+                    break;
+                case BMATRIX:
+                    AddDeclare(DEC_LOGICAL, "getlistbmat");
+                    Fprintf(f, indent, "if(.not.getlistbmat(fname,topk,top-rhs+%d,%d,m%s,n%s,lr%s)) return\n", i1, iel, str1, str1, str1, str1, str1);
+                    if (var->el[0] == var->el[1])
+                    {
+                        /* square matrix */
+                        AddDeclare(DEC_LOGICAL, "checkval");
+                        Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
+                    }
+                    sprintf(str, "m%s", str1);
+                    AddForName1(var->el[0], str);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[1], str);
+                    break;
+                case STRINGMAT:
+                    AddDeclare(DEC_LOGICAL, "getlistsimat");
+                    Fprintf(f, indent, "if(.not.getlistsimat(fname,topk,top-rhs+%d,%d,m%s,n%s,1,1,lr%s,nlr%s)) return\n",
+                            i1, iel, str1, str1, str1, str1);
                     /* square matrix */
+                    if (var->el[0] == var->el[1])
+                    {
+                        /* square matrix */
+                        AddDeclare(DEC_LOGICAL, "checkval");
+                        Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
+                    }
+                    sprintf(str, "m%s", str1);
+                    AddForName1(var->el[0], str);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[1], str);
+                    break;
+                case ROW:
+                    AddDeclare(DEC_LOGICAL, "getlistvectrow");
+                    Fprintf(f, indent, "if(.not.getlistvectrow(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[0], str);
+                    break;
+                case COLUMN:
+                    AddDeclare(DEC_LOGICAL, "getlistvectcol");
+                    Fprintf(f, indent, "if(.not.getlistvectcol(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1);
+                    sprintf(str, "n%s", str1);
+                    AddForName1(var->el[0], str);
+                    break;
+                case VECTOR:
+                    AddDeclare(DEC_LOGICAL, "getlistvect");
+                    Fprintf(f, indent, "if(.not.getlistvect(fname,top,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
+                            i1, iel, str1, str1, str1, str1, str1);
+                    sprintf(str, "n%s*m%s", str1, str1);
+                    AddForName1(var->el[0], str);
+                    break;
+                case POLYNOM:
+                    AddDeclare(DEC_LOGICAL, "getlistpoly");
+                    Fprintf(f, indent, "if(.not.getlistpoly(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,name%s,\n", i1, iel, str1, str1, str1, str1);
+                    Fprintf(f, indent, "$     namel%s,ilp%s,lr%s,lc%s)\n", str1, str1, str1, str1);
                     AddDeclare(DEC_LOGICAL, "checkval");
                     Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                }
-                sprintf(str, "m%s", str1);
-                AddForName1(var->el[0], str);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[1], str);
-                sprintf(str, "nel%s", str1);
-                AddForName1(var->el[2], str);
-                sprintf(str, "it%s", str1);
-                AddForName1(var->el[3], str);
-                break;
-            case IMATRIX:
-                AddDeclare(DEC_LOGICAL, "getlistmat");
-                Fprintf(f, indent, "if(.not.getlistmat(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1);
-                if (var->el[0] == var->el[1])
-                {
-                    /* square matrix */
+                    break;
+                case SCALAR:
+                    AddDeclare(DEC_LOGICAL, "getlistscalar");
+                    Fprintf(f, indent, "if(.not.getlistscalar(fname,topk,top-rhs+%d,%d,lr%s)) return\n", i1, iel, str1);
+                    break;
+                case STRING:
+                    AddDeclare(DEC_LOGICAL, "getlistsmat");
+                    Fprintf(f, indent, "if(.not.getlistsmat(fname,topk,top-rhs+%d,%d,m%s,n%s,1,1,lr%s,nlr%s)) return\n", i1, iel, str1, str1, str1, str1);
                     AddDeclare(DEC_LOGICAL, "checkval");
-                    Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                }
-                sprintf(str, "m%s", str1);
-                AddForName1(var->el[0], str);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[1], str);
-                sprintf(str, "it%s", str1);
-                AddForName1(var->el[2], str);
-                break;
-            case MATRIX:
-                AddDeclare(DEC_LOGICAL, "getlistmat");
-                Fprintf(f, indent, "if(.not.getlistmat(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1);
-                if (var->el[0] == var->el[1])
-                {
-                    /* square matrix */
-                    AddDeclare(DEC_LOGICAL, "checkval");
-                    Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                }
-                sprintf(str, "m%s", str1);
-                AddForName1(var->el[0], str);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[1], str);
-                break;
-            case BMATRIX:
-                AddDeclare(DEC_LOGICAL, "getlistbmat");
-                Fprintf(f, indent, "if(.not.getlistbmat(fname,topk,top-rhs+%d,%d,m%s,n%s,lr%s)) return\n", i1, iel, str1, str1, str1, str1, str1);
-                if (var->el[0] == var->el[1])
-                {
-                    /* square matrix */
-                    AddDeclare(DEC_LOGICAL, "checkval");
-                    Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                }
-                sprintf(str, "m%s", str1);
-                AddForName1(var->el[0], str);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[1], str);
-                break;
-            case STRINGMAT:
-                AddDeclare(DEC_LOGICAL, "getlistsimat");
-                Fprintf(f, indent, "if(.not.getlistsimat(fname,topk,top-rhs+%d,%d,m%s,n%s,1,1,lr%s,nlr%s)) return\n",
-                        i1, iel, str1, str1, str1, str1);
-                /* square matrix */
-                if (var->el[0] == var->el[1])
-                {
-                    /* square matrix */
-                    AddDeclare(DEC_LOGICAL, "checkval");
-                    Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                }
-                sprintf(str, "m%s", str1);
-                AddForName1(var->el[0], str);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[1], str);
-                break;
-            case ROW:
-                AddDeclare(DEC_LOGICAL, "getlistvectrow");
-                Fprintf(f, indent, "if(.not.getlistvectrow(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[0], str);
-                break;
-            case COLUMN:
-                AddDeclare(DEC_LOGICAL, "getlistvectcol");
-                Fprintf(f, indent, "if(.not.getlistvectcol(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1);
-                sprintf(str, "n%s", str1);
-                AddForName1(var->el[0], str);
-                break;
-            case VECTOR:
-                AddDeclare(DEC_LOGICAL, "getlistvect");
-                Fprintf(f, indent, "if(.not.getlistvect(fname,top,top-rhs+%d,%d,it%s,m%s,n%s,lr%s,lc%s)) return\n",
-                        i1, iel, str1, str1, str1, str1, str1);
-                sprintf(str, "n%s*m%s", str1, str1);
-                AddForName1(var->el[0], str);
-                break;
-            case POLYNOM:
-                AddDeclare(DEC_LOGICAL, "getlistpoly");
-                Fprintf(f, indent, "if(.not.getlistpoly(fname,topk,top-rhs+%d,%d,it%s,m%s,n%s,name%s,\n", i1, iel, str1, str1, str1, str1);
-                Fprintf(f, indent, "$     namel%s,ilp%s,lr%s,lc%s)\n", str1, str1, str1, str1);
-                AddDeclare(DEC_LOGICAL, "checkval");
-                Fprintf(f, indent, "if(.not.checkval(fname,m%s,n%s)) return\n", str1, str1);
-                break;
-            case SCALAR:
-                AddDeclare(DEC_LOGICAL, "getlistscalar");
-                Fprintf(f, indent, "if(.not.getlistscalar(fname,topk,top-rhs+%d,%d,lr%s)) return\n", i1, iel, str1);
-                break;
-            case STRING:
-                AddDeclare(DEC_LOGICAL, "getlistsmat");
-                Fprintf(f, indent, "if(.not.getlistsmat(fname,topk,top-rhs+%d,%d,m%s,n%s,1,1,lr%s,nlr%s)) return\n", i1, iel, str1, str1, str1, str1);
-                AddDeclare(DEC_LOGICAL, "checkval");
-                Fprintf(f, indent, "if(.not.checkval(fname,m%s*n%s,1)) return\n", str1, str1);
-                sprintf(str, "n%s", str1);
-                strcpy(str1, variables[var->el[0] - 1]->name);
-                AddForName1(var->el[0], str);
-                break;
-            case ANY:
-                break;
+                    Fprintf(f, indent, "if(.not.checkval(fname,m%s*n%s,1)) return\n", str1, str1);
+                    sprintf(str, "n%s", str1);
+                    strcpy(str1, variables[var->el[0] - 1]->name);
+                    AddForName1(var->el[0], str);
+                    break;
+                case ANY:
+                    break;
             }
         }
     }
@@ -3097,10 +3135,10 @@ void WriteListAnalysis(f, i)
 ***********************************************/
 
 void WriteVariable(f, var, ivar, insidelist, nel)
-     FILE *f;
-     VARPTR var;
-     IVAR ivar;
-     int insidelist;
+FILE *f;
+VARPTR var;
+IVAR ivar;
+int insidelist;
 {
     IVAR ivar2, barg, farg;
     VARPTR var2;
@@ -3201,7 +3239,7 @@ void WriteVariable(f, var, ivar, insidelist, nel)
 }
 
 int GetNumberInScilabCall(ivar)
-     int ivar;
+int ivar;
 {
     int j;
 
@@ -3217,7 +3255,7 @@ int GetNumberInScilabCall(ivar)
 }
 
 int GetNumberInFortranCall(ivar)
-     int ivar;
+int ivar;
 {
     int j;
 
@@ -3235,7 +3273,7 @@ int GetNumberInFortranCall(ivar)
 char unknown[] = "ukn";
 
 char *Forname2Int(str)
-     char *str;
+char *str;
 {
     int l;
     char *p;
@@ -3260,8 +3298,8 @@ char *Forname2Int(str)
 }
 
 void GenFundef(file, interf)
-     char *file;
-     int interf;
+char *file;
+int interf;
 {
     FILE *fout;
     char filout[MAXNAM];
@@ -3299,19 +3337,26 @@ static struct Declare
 } Init[] =
 {
     {
-    DEC_CHAR, "char", (char **)0, 0},
+        DEC_CHAR, "char", (char **)0, 0
+    },
     {
-    DEC_INT, "integer", (char **)0, 0},
+        DEC_INT, "integer", (char **)0, 0
+    },
     {
-    DEC_DOUBLE, "double precision", (char **)0, 0},
+        DEC_DOUBLE, "double precision", (char **)0, 0
+    },
     {
-    DEC_REAL, "real", (char **)0, 0},
+        DEC_REAL, "real", (char **)0, 0
+    },
     {
-    DEC_LOGICAL, "logical", (char **)0, 0},
+        DEC_LOGICAL, "logical", (char **)0, 0
+    },
     {
-    DEC_DATA, "data", (char **)0, 0},
+        DEC_DATA, "data", (char **)0, 0
+    },
     {
-    -1, "void", (char **)0, 0}
+        -1, "void", (char **)0, 0
+    }
 };
 
 void InitDeclare()
@@ -3347,8 +3392,8 @@ void ResetDeclare()
 }
 
 int CheckDeclare(type, declaration)
-     int type;
-     char *declaration;
+int type;
+char *declaration;
 {
     int j = 0;
 
@@ -3371,8 +3416,8 @@ int CheckDeclare(type, declaration)
 }
 
 void AddDeclare(type, declaration)
-     int type;
-     char *declaration;
+int type;
+char *declaration;
 {
     int j = 0;
 
@@ -3410,7 +3455,7 @@ void AddDeclare(type, declaration)
 }
 
 void WriteDeclaration(f)
-     FILE *f;
+FILE *f;
 {
     int j = 0;
     int i;
@@ -3470,8 +3515,8 @@ void Fprintf(FILE * f, int indent, char *format, ...)
 }
 
 void white(f, ind)
-     FILE *f;
-     int ind;
+FILE *f;
+int ind;
 {
     int i;
 

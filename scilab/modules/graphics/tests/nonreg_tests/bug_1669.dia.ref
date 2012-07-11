@@ -14,7 +14,7 @@
 // Difference in line style between windows and Linux
 xrect (0, 1, 1, 1);
 hr1 = gce ();
-hr1.line_style = 0;
+hr1.line_style = 1;
 xrect (0, 1, 0.9, 0.9);
 hr2 = gce ();
 hr2.line_style = 1;

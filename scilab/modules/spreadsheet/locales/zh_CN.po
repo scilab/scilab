@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2008-07-24 15:03+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-03-04 09:48+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 
 #, c-format
@@ -216,27 +216,27 @@ msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab spreadsheet 模块没有安装。\n"
 
 msgid "Spreadsheet"
-msgstr ""
+msgstr "电子表格"
 
 msgid "Read a xls file"
-msgstr ""
+msgstr "读取一个xls文件"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
-msgstr ""
+msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"

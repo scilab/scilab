@@ -113,8 +113,7 @@
     <!--Lib_name: string_reading-->
     <!--Func_list: read_string-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int read_string(char *fname,unsigned long fname_len)
 {
@@ -202,7 +201,7 @@ int read_string(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRowsOut, iColsOut, &pstOut);
+	sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 1, iRowsOut, iColsOut, &pstOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -219,11 +218,10 @@ int read_string(char *fname,unsigned long fname_len)
 
 	free(pstData);
 	free(pstOut);
-	AssignOutputVariable(1) = InputArgument + 1;
+	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

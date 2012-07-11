@@ -40,8 +40,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
   int m3n = 0, n3n = 0, l3n = 0, m3l = 0, n3l = 0, l3l = 0;
 
-  int izcol,  isfac;
-  double *zcol=NULL;
+  int izcol = 0,  isfac = 0;
+  double *zcol = NULL;
 
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
   {-1,"ebox","?",0,0,0},
@@ -159,7 +159,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 		PutLhsVar();
 		return 0;
 	}
-  SciWin() ;
+
+  getOrCreateDefaultSubwin();
 
   /******************** 24/015/2002 ********************/
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,7 @@
 extern "C"
 {
 #ifndef _MSC_VER
-#include <stdint.h> 
+#include <stdint.h>
 #else
 #define int32_t long
 #define uint32_t unsigned long
@@ -29,10 +29,11 @@ extern "C"
 #include "../../../libs/libst/misc.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "MALLOC.h"
 }
 /*--------------------------------------------------------------------------*/
 /* =================================================
-* reads data and store them without type conversion 
+* reads data and store them without type conversion
 * =================================================*/
 /*--------------------------------------------------------------------------*/
 #define MGET_CHAR_NC(Type)				        \
@@ -74,7 +75,7 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
-{  
+{
     char c1;
     char c2;
     int i;
@@ -141,16 +142,16 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
   }
 /*--------------------------------------------------------------------------*/
 #define MGET_GEN(NumType,cf)  MGET_GEN_NC(NumType,cf); CONVGD(NumType);
-#define MGET_CHAR(NumType)    MGET_CHAR_NC(NumType);   CONVGD(NumType); 
+#define MGET_CHAR(NumType)    MGET_CHAR_NC(NumType);   CONVGD(NumType);
 /*--------------------------------------------------------------------------*/
 /* reads data and store them in double  */
 void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr)
-{  
+{
 	char c1,c2;
 	int i,items=n;
 	*ierr=0;
-	c1 = ( strlen(type) > 1) ? type[1] : ' '; 
-	c2 = ( strlen(type) > 2) ? type[2] : ' '; 
+	c1 = ( strlen(type) > 1) ? type[1] : ' ';
+	c2 = ( strlen(type) > 2) ? type[2] : ' ';
 	switch ( type[0] )
 	{
 	case 'i' : MGET_GEN(int,c1);    break;
@@ -174,7 +175,7 @@ void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 		*ierr=1;
 		return ;
 	}
-	if ( items != n ) 
+	if ( items != n )
 	{
 		*ierr = -(items) -1 ;
 		/** sciprint("Read %d out of\n",items,n); **/
@@ -183,9 +184,9 @@ void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 }
 /*--------------------------------------------------------------------------*/
 void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
-{  
+{
     *ierr=0;
-    if(strlen(type) == 0) 
+    if(strlen(type) == 0)
     {
         sciprintW(_W("%ls: Wrong size for input argument #%d: Non-empty string expected.\n"), L"mget", 4, type);
         *ierr=2;
@@ -193,7 +194,7 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
     }
 
     File* pFile = FileManager::getFile(*fd);
-    if(pFile && pFile->getFiledesc()) 
+    if(pFile && pFile->getFiledesc())
     {
         mget2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
         if(*ierr > 0)
@@ -201,7 +202,7 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
             sciprintW(_W("%ls: Wrong value for input argument #%d: Format not recognized.\n"), L"mget", 4);
         }
     }
-    else 
+    else
     {
         sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mget", *fd);
         *ierr=3;

@@ -178,9 +178,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="libScilab_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

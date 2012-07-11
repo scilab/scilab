@@ -58,10 +58,8 @@ public class Select extends JComboBox implements XComponent, XChooser {
         for (int i = 0; i < nodelist.getLength(); i++) {
             Node node = nodelist.item(i);
             if (node.getNodeName().equals("option")) {
-                String value = XConfigManager.getAttribute(node , "value");
-                String selected = XConfigManager.getAttribute(
-                        node ,
-                        "selected");
+                String value = XConfigManager.getAttribute(node, "value");
+                String selected = XConfigManager.getAttribute(node, "selected");
                 addItem(value);
                 if (selected.equals("selected")) {
                     select = index;
@@ -69,8 +67,12 @@ public class Select extends JComboBox implements XComponent, XChooser {
                 index += 1;
             }
         }
-        setSelectedIndex(select);
+
+        if (select < getItemCount()) {
+            setSelectedIndex(select);
+        }
     }
+
     /** Refresh the component by the use of actuators.
     *
     * @param peer the corresponding view DOM node
@@ -82,18 +84,18 @@ public class Select extends JComboBox implements XComponent, XChooser {
         for (int i = 0; i < nodelist.getLength(); i++) {
             Node node = nodelist.item(i);
             if (node.getNodeName().equals("option")) {
-                String selected = XConfigManager.getAttribute(node ,"selected");
+                String selected = XConfigManager.getAttribute(node , "selected");
                 if (selected.equals("selected")) {
                     select = index;
                 }
                 index += 1;
             }
         }
-        if (select != getSelectedIndex()) {
+        if (select != getSelectedIndex() && select < getItemCount()) {
             setEnabled(false);
             setSelectedIndex(select);
         }
-        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
+        String enable = XConfigManager.getAttribute(peer , "enable", "true");
         setEnabled(enable.equals("true"));
     }
 

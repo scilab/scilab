@@ -10,6 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "core_math.h"
 #include "gw_signal.h"
 #include "MALLOC.h"
@@ -18,7 +19,7 @@
 #include "Scierror.h"
 #include "conv2.h"
 /*--------------------------------------------------------------------------*/
-int sci_conv2(char *fname, unsigned long fname_len)
+int sci_conv2(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr = NULL;

@@ -12,9 +12,6 @@
  -->
 <!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="javasci" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>javasci</refname>
     <refpurpose>Call Scilab engine from a Java application</refpurpose>
@@ -66,18 +63,6 @@ class Example1 {
 
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Example of Javasci v1 (deprecated)</title>
-    <programlisting role="java"><![CDATA[
-// A simple Java example with javasci v1
-// Filename: DisplayPI.java
-import javasci.Scilab;
-public class DisplayPI {
-        public static void main(String []args) {
-               Scilab.Exec("disp(%pi);");
-        }
-} ]]></programlisting>
-  </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -95,6 +80,12 @@ public class DisplayPI {
   <refsection>
     <title>History</title>
     <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>
+          Javasci v1 is removed.
+        </revdescription>
+      </revision>
       <revision>
         <revnumber>5.4.0</revnumber>
         <revdescription>New methods added:

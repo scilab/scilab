@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ilib_build" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>ilib_build</refname>
     <refpurpose>utility for shared library management</refpurpose>
@@ -118,13 +113,13 @@
   </refsection>
   <refsection>
     <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 //Here with give a complete example on adding new primitive to Scilab
 //create the procedure files
 
 cd TMPDIR;
 mkdir('example_ilib_build_c');
-cd('example_ilib_build_c'); 
+cd('example_ilib_build_c');
 
 f1=['extern double fun2();'
     'void fun1(double *x, double *y)'
@@ -139,14 +134,13 @@ mputl(f2,TMPDIR + '/example_ilib_build_c/fun2.c');
 
 //creating the interface file
 i=['#include <stdlib.h>'
-   '#include <stack-c.h>'
    '#include <api_scilab.h>'
    '#include <Scierror.h>'
    '#include <localization.h>'
    ''
    'extern int fun1 ( double *x, double *y);'
    ''
-   'int sci_fun1(char *fname)' 
+   'int sci_fun1(char *fname)'
    '{'
    '  int iType1 = 0;'
    '  SciErr sciErr;'
@@ -162,7 +156,7 @@ i=['#include <stdlib.h>'
    '  {'
    '    printError(&sciErr, 0);'
    '    return 0;'
-   '  }' 
+   '  }'
    ''
    '  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);'
    '  if(sciErr.iErr)'
@@ -190,26 +184,26 @@ i=['#include <stdlib.h>'
    '}'];
 mputl(i,TMPDIR + '/example_ilib_build_c/sci_fun1.c');
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
 files=['fun1.c','fun2.c','sci_fun1.c'];
 ilib_build('build_c',['fun1','sci_fun1'],files,[]);
 
-// load the shared library 
+// load the shared library
 
-exec loader.sce; 
+exec loader.sce;
 
 //using the new primitive
-fun1(33) 
+fun1(33)
 ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples (C code - previous Scilab API &lt; 5.2)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 cd TMPDIR;
 mkdir('example_ilib_build_c_old');
-cd('example_ilib_build_c_old'); 
+cd('example_ilib_build_c_old');
 
 //Here with give a complete example on adding new primitive to Scilab
 //create the procedure files
@@ -235,7 +229,7 @@ i=['#include ""stack-c.h""'
    '#endif'
    ''
    'extern int fun1 ( double *x, double *y);'
-   'int intfun1(char *fname)' 
+   'int intfun1(char *fname)'
    '{'
    '  int m1,n1,l1;'
    '  CheckRhs(1,1);'
@@ -247,15 +241,15 @@ i=['#include ""stack-c.h""'
    '}'];
 mputl(i,'intfun1.c')
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
 files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('ilib_c_old',['scifun1','intfun1'],files,[]);
 
-// load the shared library 
+// load the shared library
 
-exec loader.sce 
+exec loader.sce
 
 //using the new primitive
 scifun1(33)
@@ -263,15 +257,14 @@ scifun1(33)
   </refsection>
   <refsection>
     <title>Examples (C++ code)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 cd TMPDIR;
 mkdir('example_ilib_build_cpp');
 cd('example_ilib_build_cpp');
- 
+
 i=['#include <string>'
    'extern ""C"" {'
-   '#include <stdlib.h>'   
-   '#include <stack-c.h>'
+   '#include <stdlib.h>'
    '#include <api_scilab.h>'
    '#include <localization.h>'
    '#include <Scierror.h>'
@@ -379,16 +372,16 @@ i=['#include <string>'
    ''
    ' std::string myMessage(pStVarOne);'
    ' std::string search(pStVarTwo);'
-   
+
    ' delete pStVarTwo;'
    ' delete pStVarOne;'
-   
+
    ' double dOut = 0.0;'
    ''
    ' if (myMessage.find(search) != std::string::npos) {'
    '     dOut = myMessage.find(search); /* The actual operation */'
    ' } else {'
-   '     dOut = -1; /* Substring not found */' 
+   '     dOut = -1; /* Substring not found */'
    ' }'
 
    ' m_out = 1;'
@@ -407,13 +400,13 @@ i=['#include <string>'
 
 mputl(i,TMPDIR + '/example_ilib_build_cpp/sci_cppfind.cxx');
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
 files = ['sci_cppfind.cxx'];
 ilib_build('ilib_build_cpp',['cppfind','sci_cppfind'],files,[]);
 
-// load the shared library 
+// load the shared library
 
 exec loader.sce;
 
@@ -425,7 +418,7 @@ if cppfind("my very long string","short") <> -1 pause, end
   </refsection>
   <refsection>
     <title>Examples (C++ code - previous Scilab API &lt; 5.2)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 cd TMPDIR;
 mkdir('example_ilib_build_cpp_old');
 cd('example_ilib_build_cpp_old');
@@ -459,7 +452,7 @@ i=['#include <string>'
    '  if (myMessage.find(search) != std::string::npos) {'
    '    position[0] = myMessage.find(search); /* The actual operation */'
    '  } else {'
-   '    position[0] = -1; /* Substring not found */' 
+   '    position[0] = -1; /* Substring not found */'
    '  }'
    '  CreateVarFromPtr(Rhs+1,""d"",&m3,&n3,&position); /* Create the output argument */'
    '  LhsVar(1) = Rhs+1;'
@@ -470,15 +463,15 @@ i=['#include <string>'
 
 mputl(i,'sci_cppfind.cxx');
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
 
 files=['sci_cppfind.cxx'];
 ilib_build('foo_old',['cppfind','sci_cppfind'],files,[]);
 
-// load the shared library 
+// load the shared library
 
-exec loader.sce 
+exec loader.sce
 
 // Small test to see if the function is actually working.
 if cppfind("my very long string","long") <> 8 pause, end
@@ -488,7 +481,7 @@ if cppfind("my very long string","short") <> -1 pause, end
   </refsection>
   <refsection>
     <title>Examples (Fortran 90 code)</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 cd TMPDIR;
 mkdir('example_ilib_build_f90');
 cd('example_ilib_build_f90');
@@ -501,7 +494,7 @@ sourcecode=['subroutine incrdoublef90(x,y)'
             'end subroutine incrdoublef90'];
 mputl(sourcecode,'incrdoublef90.f90');
 libpath=ilib_for_link('incrdoublef90','incrdoublef90.f90',[],'f');
-exec loader.sce 
+exec loader.sce
 n=1.;
 m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
 if abs(m-2.)>%eps then pause,end
@@ -512,13 +505,13 @@ if abs(m-3.)>%eps then pause,end
   </refsection>
   <refsection>
     <title>Example: How to use cflags arguments</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 cd TMPDIR;
 mkdir('example_ilib_build_cflag');
 cd('example_ilib_build_cflag');
 
-csource = ['#include <stdlib.h>'   
-   '#include <stack-c.h>'
+csource = ['#include <stdlib.h>'
+   '#include <api_scilab.h>'
    '#include <sciprint.h>'
    ''
    'int sci_examplecflag(char *fname)'
@@ -527,25 +520,25 @@ csource = ['#include <stdlib.h>'
    '#ifdef __MYDEF_FOR_THIS_FUNCTION__'
    'sciprint(""__MYDEF_FOR_THIS_FUNCTION__ detected !!!\n"");'
    '#else'
-   'sciprint(""__MYDEF_FOR_THIS_FUNCTION__ not detected !!!\n"");'   
+   'sciprint(""__MYDEF_FOR_THIS_FUNCTION__ not detected !!!\n"");'
    '#endif'
    ''
    ' LhsVar(1) = 0;'
    ' return 0;'
    '}'];
-   
+
 mputl(csource, TMPDIR + '/example_ilib_build_cflag/sci_cflags.c');
 
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated.) 
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.)
 
 files=['sci_cflags.c'];
 
 // here we uses cflags argument and we define __MYDEF_FOR_THIS_FUNCTION__
 ilib_build('gw_c_flags',['examplecflag','sci_examplecflag'], files, [], [], '', '-D__MYDEF_FOR_THIS_FUNCTION__');
 
-// load the shared library 
-exec loader.sce; 
+// load the shared library
+exec loader.sce;
 
 //using the new primitive
 examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ detected !!!
@@ -555,7 +548,7 @@ exec cleaner.sce;
 
 // and now
 ilib_build('gw_c_flags',['examplecflag','sci_examplecflag'], files, []);
-exec loader.sce; 
+exec loader.sce;
 examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ not detected !!!
 
 

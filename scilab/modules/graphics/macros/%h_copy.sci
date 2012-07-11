@@ -8,7 +8,7 @@
 
 
 function h=%h_copy(h,ax)
-  save(TMPDIR+'/ghdlcopy',h)
+  save(TMPDIR+'/ghdlcopy','h')
   if argn(2)<2 then 
     load(TMPDIR+'/ghdlcopy')
   else

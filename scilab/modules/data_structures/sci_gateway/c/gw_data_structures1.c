@@ -20,13 +20,13 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{sci_scilist, "list"},
-	{sci_scitlist, "tlist"},
+	{NULL, ""}, // list => Moved to type module
+	{NULL, ""}, // tlist => Moved to type module
 	{sci_rlist, "rlist"},
 	{sci_lsslist, "lsslist"},
 	{sci_glist, "glist"},
 	{sci_lstcat, "lstcat"},
-	{sci_scimlist, "mlist"},
+	{NULL, ""}, // mlist => Moved to type module
 	{sci_definedfields, "definedfields"},
 	{sci_lstsize, "lstsize"}
 };

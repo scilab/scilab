@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="syslin" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>syslin</refname>
     <refpurpose>線形システムを定義する</refpurpose>
@@ -125,8 +122,8 @@ sl=syslin(dom,H)
  ]]></programlisting>
     <para>
       <literal>syslin</literal> の出力は以下の形式のリストとなります :
-      <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> または
-      <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.
+      <literal>sl=rlist(N,D,dom)</literal> または
+      <literal>sl=rlist(H(2),H(3),dom)</literal>.
     </para>
     <para>
       <literal>syslin</literal> で定義された線形システムは

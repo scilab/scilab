@@ -28,7 +28,6 @@ extern "C"
 #include "api_internal_boolean.h"
 #include "api_internal_common.h"
 #include "localization.h"
-#include "MALLOC.h"
 }
 
 using namespace std;
@@ -92,7 +91,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 		return sciErr;
 	}
 
-	int rhs = _iVar - *getInputArgument(_pvCtx);
+	int rhs = _iVar - *getNbInputArgument(_pvCtx);
 	out[rhs - 1] = pBool;
 	*_piBool = pBool->get();
 	if(*_piBool == NULL)

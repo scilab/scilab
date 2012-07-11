@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>clc</refname>
     <refpurpose>Efface la fenêtre de commande</refpurpose>
@@ -45,7 +42,9 @@
       <literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
     </para>
     <para>
-      Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+      <note>
+        Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+      </note>
     </para>
   </refsection>
   <refsection role="see also">

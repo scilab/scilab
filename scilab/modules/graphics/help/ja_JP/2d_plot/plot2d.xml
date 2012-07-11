@@ -638,10 +638,6 @@
   </refsection>
   <refsection>
     <title>その他の情報</title>
-    <para>
-      plot2d の古い構文に関するより詳細な情報を得るには, <link linkend="plot2d_old_version">plot2d_old_version</link> のヘルプドキュメントを
-      参照してください.
-    </para>
     <para>デフォルトで, 連続プロットは重ね書きされます. 前のプロットを
       消去するには,
       <literal>

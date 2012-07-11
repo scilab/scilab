@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dasrt" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dasrt</refname>
     <refpurpose>ゼロ交差するDAE</refpurpose>
@@ -82,11 +79,11 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>atol,rtol</term>
+        <term>atol, rtol</term>
         <listitem>
           <para>
             実数スカラーまたは<literal>y</literal>と同じ大きさの列ベクトル.
-            <literal>atol,rtol</literal> はそれぞれ絶対および相対許容誤差を指定します.
+            <literal>atol, rtol</literal> はそれぞれ絶対および相対許容誤差を指定します.
             ベクトルの場合,<literal>y</literal>の各要素毎に許容誤差が指定されます.
           </para>
         </listitem>
@@ -118,14 +115,14 @@
                 関数にt,y,ydot以外のパラメータを指定する際に使用されます.
                 以下のような形式とします:
               </para>
-              <programlisting role=""><![CDATA[  
+              <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
               <para>
                 ただし,ここで関数<literal>res</literal>の呼び出し手順は
                 以下のようになります
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -143,17 +140,19 @@ r=res(t,y,ydot,x1,x2,...)
                 ScilabにリンクされるCまたはFortranサブルーチンの名前を指します.
               </para>
               <para>Cの場合, 呼出し手順は以下のようにします:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[]) 
  ]]></programlisting>
               <para>Fortranの場合, 呼出し手順は以下のようにします:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-              <para>rpar および ipar 配列は存在しますが使用できません.</para>
+              <para>
+                <literal>rpar</literal> および <literal>ipar</literal> 配列は存在しますが使用できません.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -179,14 +178,14 @@ integer ires,ipar(*)
             <listitem>
               <para>リスト.</para>
               <para>以下のようにする必要があります</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
               <para>
                 ただし,この場合の関数<literal>jac</literal>の呼び出し手順は
                 以下のようになります
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
               <para>
@@ -202,12 +201,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                 必要があります
               </para>
               <para>Cの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
               <para>Fortranの場合, 呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -235,14 +234,14 @@ integer ipar(*)
             <listitem>
               <para>リスト.</para>
               <para>以下のようになります</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 list(surf,x1,x2,...)
  ]]></programlisting>
               <para>
                 ただし,この場合の関数<literal>surf</literal>の
                 呼び出し手順は以下のようになります
               </para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
             </listitem>
@@ -250,11 +249,11 @@ r=surf(t,y,x1,x2,...)
               <para>文字列.</para>
               <para>ScilabにリンクされるCまたはFortranサブルーチンの名前を指します</para>
               <para>Cの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[
+              <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
               <para>Fortranの場合,呼び出し手順は次のようになります:</para>
-              <programlisting role=""><![CDATA[ 
+              <programlisting role="no-scilab-exec"><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
@@ -363,8 +362,9 @@ integer ny,ng
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>実数行列. 各列はベクトル[t;x(t);xdot(t)]です.
-            ただし t は解を計算した時間です.
+          <para>
+            実数行列. 各列はベクトル<literal>[t;x(t);xdot(t)]</literal>です.
+            ただし <literal>t</literal> は解を計算した時間です.
           </para>
         </listitem>
       </varlistentry>
@@ -373,7 +373,7 @@ integer ny,ng
   <refsection>
     <title>説明</title>
     <para>陰的な微分方程式を解きます.</para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
  ]]></programlisting>
@@ -381,7 +381,7 @@ y(t0)=y0  and   ydot(t0)=ydot0
       面を横切る時間および
       到達した面の数を<literal>nn</literal>に返します.
     </para>
-    <para>詳細な例は SCIDIR/tests/dassldasrt.tst で見つけることができます</para>
+    <para>詳細な例は SCIDIR/tests/unit_tests/dassldasrt.tst で見つけることができます</para>
   </refsection>
   <refsection>
     <title>例</title>

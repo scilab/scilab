@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,49 +28,69 @@
 #include "MALLOC.h"
 #include "SetPropertyStatus.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int set_z_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL result = FALSE;
+    double* shiftCoordinates = NULL;
+    int nbElement = nbRow * nbCol;
+    int iNumElements = 0;
+    int* piNumElements = &iNumElements;
 
-  int nbElement = nbRow * nbCol ;
-
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_shift");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( sciGetEntityType(pobj) != SCI_POLYLINE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( nbRow > 1 && nbCol > 1 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "z_shift", "0x0, 1xn, nx1");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( nbElement != 0 && nbElement != pPOLYLINE_FEATURE (pobj)->n1 ) /* we can specify [] (null vector) to reset to default */
-  {
-    Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "z_shift", 0, pPOLYLINE_FEATURE (pobj)->n1);
-    return SET_PROPERTY_ERROR ;
-  }
-
-  FREE( pPOLYLINE_FEATURE (pobj)->z_shift ) ;
-  pPOLYLINE_FEATURE(pobj)->z_shift = NULL;
-
-  if( nbElement != 0 )
-  {
-    pPOLYLINE_FEATURE(pobj)->y_shift = createCopyDoubleVectorFromStack( stackPointer, nbElement ) ;
-
-    if ( pPOLYLINE_FEATURE (pobj)->y_shift == NULL )
+    if ( !isParameterDoubleMatrix( valueType ) )
     {
-      Scierror(999, _("%s: No more memory.\n"),"set_z_shift_property");
-      return SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_shift");
+        return SET_PROPERTY_ERROR;
     }
-  }
-  return SET_PROPERTY_SUCCEED ;
+
+    if ( nbRow > 1 && nbCol > 1 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "z_shift", "0x0, 1xn, nx1");
+        return SET_PROPERTY_ERROR;
+    }
+
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piNumElements);
+
+    if (piNumElements == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
+        return SET_PROPERTY_ERROR;
+    }
+
+    if ( nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
+    {
+        Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "z_shift", 0, iNumElements);
+        return SET_PROPERTY_ERROR;
+    }
+
+    if( nbElement != 0 )
+    {
+        shiftCoordinates = (double*) getDoubleMatrixFromStack(stackPointer);
+
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
+
+        /* The FALSE value is used for now to identify a failed memory allocation */
+        if (result == FALSE)
+        {
+            Scierror(999, _("%s: No more memory.\n"),"set_z_shift_property");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    else
+    {
+        /*
+         * Setting the shift flag to 0 directly in the model
+         * when filling the shift coordinates array (0-element case)
+         * would probably be better.
+         */
+        int shiftSet = 0;
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, &shiftSet, jni_double_vector, 1);
+    }
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

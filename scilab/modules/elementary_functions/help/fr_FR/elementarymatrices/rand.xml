@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="rand" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rand</refname>
     <refpurpose>Générateur de nombres pseudo-aléatoires</refpurpose>
@@ -280,7 +277,7 @@ r=rand(2,2,2)
     </para>
     <programlisting role="example"><![CDATA[  
 n=getdate("s");
-rand("seed",s);
+rand("seed",n);
  ]]></programlisting>
   </refsection>
   <refsection>

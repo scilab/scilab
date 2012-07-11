@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -29,43 +28,46 @@ using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
 int sci_warnBlockByUID(char *fname, void* pvApiCtx)
 {
-	int i;
+    int i;
 
-	CheckRhs(2,2);
-	CheckLhs(0,1);
+    CheckRhs(2, 2);
+    CheckLhs(0, 1);
 
-	char** path = NULL;
-	int pathLength = 0;
+    char** path = NULL;
+    int pathLength = 0;
 
-	char* msg;
+    char* msg;
 
-	/** read UID **/
+    /** read UID **/
     if (readVectorString(pvApiCtx, 1, &path, &pathLength, fname))
     {
         return 0;
     }
 
-	/* read msg */
-    if (readSingleString(pvApiCtx, 2, &msg, fname)) {
-    	for (i=0; i<pathLength; i++) {
-    		FREE(path[i]);
-    	}
-    	FREE(path);
-		return 0;
-	}
+    /* read msg */
+    if (readSingleString(pvApiCtx, 2, &msg, fname))
+    {
+        for (i = 0; i < pathLength; i++)
+        {
+            FREE(path[i]);
+        }
+        FREE(path);
+        return 0;
+    }
 
     /* call the implementation */
-	Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
+    Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
 
-	for (i=0; i<pathLength; i++) {
-		FREE(path[i]);
-	}
-	FREE(path);
-	freeAllocatedSingleString(msg);
+    for (i = 0; i < pathLength; i++)
+    {
+        FREE(path[i]);
+    }
+    FREE(path);
+    freeAllocatedSingleString(msg);
 
     LhsVar(1) = 0;
     PutLhsVar();
 
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

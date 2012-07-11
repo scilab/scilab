@@ -21,40 +21,46 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 }
+/*--------------------------------------------------------------------------*/
+static wchar_t *line = L"        ___________________________________________        ";
+/*--------------------------------------------------------------------------*/
+static void centerPrint(wchar_t *str);
 
 void banner(void)
 {
-    int i;
-    wchar_t *line = L"        ___________________________________________        ";
-    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(SCI_VERSION_WIDE_STRING)/2)));
+    scilabForcedWriteW(line);
+    scilabForcedWriteW(L"\n");
+
+    centerPrint(SCI_VERSION_WIDE_STRING);
+    scilabForcedWriteW(L"\n\n");
+
+    centerPrint(_W("Scilab Enterprises\n"));
+    centerPrint(_W("Consortium Scilab (DIGITEO)\n"));
+    centerPrint(_W("Copyright (c) 2011-2012 (Scilab Enterprises)\n"));
+    centerPrint(_W("Copyright (c) 1989-2012 (INRIA)\n"));
+    centerPrint(_W("Copyright (c) 1989-2007 (ENPC)\n"));
 
     scilabForcedWriteW(line);
     scilabForcedWriteW(L"\n");
+
+    scilabForcedWriteW(L"\n");
+    centerPrint(L"-*- THIS IS YaSp -*-");
+    scilabForcedWriteW(L"\n");
+
+    scilabForcedWriteW(line);
+    scilabForcedWriteW(L"\n");
+}
+
+/*--------------------------------------------------------------------------*/
+static void centerPrint(wchar_t *str)
+{
+    int i = 0;
+    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(str)/2)));
 
     /* To center the version name */
     for(i = 0 ; i < startVersion ; i++ )
     {
         scilabForcedWriteW(L" ");
     }
-
-    scilabForcedWriteW(SCI_VERSION_WIDE_STRING);
-    scilabForcedWriteW(L"\n\n");
-
-    scilabForcedWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));
-
-    scilabForcedWriteW(_W("               Copyright (c) 1989-2011 (INRIA)\n"));
-    scilabForcedWriteW(_W("               Copyright (c) 1989-2007 (ENPC)\n"));
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
-    scilabForcedWriteW(L"\n");
-    scilabForcedWriteW(L"                     -*- THIS IS YaSp -*-\n");
-    scilabForcedWriteW(L"\n");
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
-
-#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
-    scilabForcedWriteW(L"\n\n");
-    scilabForcedWriteW(_W("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
-    scilabForcedWriteW(L"   ");
-#endif
+    scilabForcedWriteW(str);
 }

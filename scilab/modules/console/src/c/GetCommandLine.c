@@ -28,9 +28,10 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "storeCommand.h"       /* for ismenu() */
+#if !defined(_MSC_VER)
 #include "getKey.h"
+#endif
 #include "initConsoleMode.h"
-#include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "os_strdup.h"
@@ -126,6 +127,7 @@ static void getCommandLine(void)
     {
         /* Call Term Management for NW and NWNI to get a string */
         __CommandLine = getCmdLine();
+
     }
 }
 
@@ -148,7 +150,7 @@ static void initAll(void)
 {
     /* Set console mode to raw */
 #ifndef _MSC_VER
-    if (getScilabMode() != SCILAB_STD)
+    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
     {
         initConsoleMode(RAW);
     }
@@ -199,12 +201,18 @@ static void *watchGetCommandLine(void *in)
 
 /***********************************************************************/
 /*
- * Old zzledt... Called by Fortran...
- * @TODO rename that function !!!
+ * Previously called zzledt... Called by Fortran...
+ * Now renamed to EventLoopPrompt
  * @TODO remove unused arg buf_size, menusflag, modex & dummy1
  */
-void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *menusflag, int *modex, long int dummy1)
+void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 {
+
+    if (getScilabMode() == SCILAB_API)
+    {
+        return;
+    }
+
     if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
     {
         initialJavaHooks = TRUE;
@@ -222,14 +230,14 @@ void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *men
 #endif
     {
         /* remove newline character if there */
-        if (buffer[*len_line - 1] == '\n')
+        if (__CommandLine != NULL)
         {
             /* read a line into the buffer, but not too
              * big */
-            *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-            *len_line = (int)strlen(buffer);
+            *eof = (fgets(__CommandLine, *buf_size, stdin) == NULL);
+            *len_line = (int)strlen(__CommandLine);
             /* remove newline character if there */
-            if (buffer[*len_line - 1] == '\n')
+            if (__CommandLine[*len_line - 1] == '\n')
             {
                 (*len_line)--;
             }

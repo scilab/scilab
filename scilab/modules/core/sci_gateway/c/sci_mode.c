@@ -14,7 +14,7 @@
 #include "mode_exec.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "msgs.h"
+//#include "msgs.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_mode)(char *fname,unsigned long fname_len)
 {
@@ -55,7 +55,8 @@ int C2F(sci_mode)(char *fname,unsigned long fname_len)
 				{
 					int code_message = 26;
 					int val_message = 0;
-					C2F(msgs)(&code_message, &val_message);
+                    //YaSp
+					//C2F(msgs)(&code_message, &val_message);
 				}
 				LhsVar(1) = 0;
 			}

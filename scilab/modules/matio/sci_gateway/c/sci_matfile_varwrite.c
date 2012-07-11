@@ -13,8 +13,6 @@
 
 #include "gw_matio.h"
 #include "GetMatlabVariable.h"
-
-#include "os_strdup.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \

@@ -11,17 +11,18 @@
 
 /* for wcwidth and wcswidth */
 #define _XOPEN_SOURCE
+#include <wchar.h>
 
 #include <termios.h>
-#include <wchar.h>
-#include <string.h>
 #include <curses.h>
 #include <term.h>
+#include <string.h>
+
 #include <wctype.h>
-#include "gotoFunctions.h"
-#include "cliPrompt.h"
 #include "BOOL.h"
 #include "termcapManagement.h"
+#include "cliPrompt.h"
+#include "gotoFunctions.h"
 
 /*
  * Return the cursor position of the cursor in the line.
@@ -93,7 +94,7 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
         while (sizeOfWChar)
         {
             if ((widthOfStringInTerm && !(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1)    // if last column of the terminal is reached...
-                || CommandLine[*cursorLocation] == L'\n')   // ... or if the cursor will go to the next line.
+                    || CommandLine[*cursorLocation] == L'\n')   // ... or if the cursor will go to the next line.
             {
                 /* move the cursor down. */
                 setStringCapacities("do");
@@ -175,7 +176,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
         while (sizeOfWChar)     /* While we are not at the beginning of the character... */
         {
             if ((nbrCol && !(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1) // if last column of the terminal is reached...
-                || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
+                    || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
             {
                 setStringCapacities("up");
                 while (nbrCol)
@@ -229,21 +230,21 @@ static BOOL isAWideCharToJump(wchar_t wideCharToTest)
     /* List of characters for cursor moving word by word. */
     switch (wideCharToTest)
     {
-    case L' ':
-    case L'\t':
-    case L'\n':
-    case L'[':
-    case L']':
-    case L'{':
-    case L'}':
-    case L'(':
-    case L')':
-    case L'.':
-    case L',':
-    case L';':
-        return TRUE;
-    default:
-        return FALSE;
+        case L' ':
+        case L'\t':
+        case L'\n':
+        case L'[':
+        case L']':
+        case L'{':
+        case L'}':
+        case L'(':
+        case L')':
+        case L'.':
+        case L',':
+        case L';':
+            return TRUE;
+        default:
+            return FALSE;
     }
 }
 

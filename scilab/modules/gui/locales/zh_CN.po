@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 10:13+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-05-30 10:07+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: \n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -276,7 +276,7 @@ msgstr "不能得到目前的界面风格"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid ""
@@ -290,7 +290,7 @@ msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -302,12 +302,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为一个1xn或mx1数组。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -319,7 +319,7 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid ""
@@ -357,23 +357,32 @@ msgstr "保存(&S)..."
 msgid "&Export to..."
 msgstr "导出到...(&E)"
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "导出为矢量图(&V)"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr ""
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -383,12 +392,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "复制到剪切板(&C)"
@@ -411,8 +414,8 @@ msgstr "显示/隐藏工具栏(&T)"
 msgid "&Zoom"
 msgstr "缩放(&Z)"
 
-msgid "&UnZoom"
-msgstr "取消缩放(l &U)"
+msgid "&Original View"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
@@ -447,6 +450,18 @@ msgstr ""
 msgid "Stop datatip manager"
 msgstr ""
 
+msgid "&MVC"
+msgstr ""
+
+msgid "&Log View (Trace all View notifications)"
+msgstr ""
+
+msgid "&All Objects View (All objects with properties)"
+msgstr ""
+
+msgid "&Ged-like View (Future ged)"
+msgstr ""
+
 msgid "&?"
 msgstr "&?"
 
@@ -460,13 +475,13 @@ msgid "&Close"
 msgstr "关闭(&C)"
 
 msgid "&Incremental Search"
-msgstr ""
+msgstr "增量搜索（I）"
 
 msgid "In&crease font size"
-msgstr ""
+msgstr "增大字体（C）"
 
 msgid "&Decrease font size"
-msgstr ""
+msgstr "缩小字体（D）"
 
 msgid "&Execute..."
 msgstr "执行...(&E)"
@@ -503,6 +518,9 @@ msgstr "清空剪切板(&E)"
 
 msgid "&Select all"
 msgstr "全选(&S)"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Preferences"
 msgstr "首选项(&P)"
@@ -541,7 +559,7 @@ msgid "&Applications"
 msgstr "应用程序(&A)"
 
 msgid "&SciNotes"
-msgstr ""
+msgstr "SciNotes（S）"
 
 msgid "&Xcos"
 msgstr "Xcos(&X)"
@@ -550,16 +568,16 @@ msgid "&Matlab to Scilab translator"
 msgstr "Matlab到Scilab转换器(&M)"
 
 msgid "M&odule manager - ATOMS"
-msgstr ""
+msgstr "模块管理器（M）- ATOMS"
 
 msgid "&Variable Browser"
-msgstr ""
+msgstr "变量浏览器（V）"
 
 msgid "&Command History"
-msgstr ""
+msgstr "命令历史（C）"
 
 msgid "&File Browser"
-msgstr ""
+msgstr "文件浏览器（F）"
 
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
@@ -574,22 +592,22 @@ msgid "Scilab &Web Site"
 msgstr "Scilab网站(&W)"
 
 msgid "Scilab &Online Help"
-msgstr ""
+msgstr "Scilab在线帮助（O）"
 
 msgid "Scilab &Wiki"
-msgstr ""
+msgstr "Scilab百科（W）"
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Scilab &ATOMS网页"
 
 msgid "&File Exchange"
-msgstr ""
+msgstr "文件交换（F）"
 
 msgid "&Mailing Lists"
-msgstr ""
+msgstr "邮件列表（M）"
 
 msgid "Mailing Lists &Archives"
-msgstr ""
+msgstr "邮件列表存档（A）"
 
 msgid "&Forge"
 msgstr ""
@@ -598,7 +616,7 @@ msgid "&Bugs And Requests"
 msgstr "错误和新功能需求数据库(&B)"
 
 msgid "&Scilab Enterprises"
-msgstr ""
+msgstr "&Scilab Enterprises"
 
 msgid "Rotate"
 msgstr "旋转"
@@ -637,7 +655,7 @@ msgid "Print..."
 msgstr "打印..."
 
 msgid "Module manager - ATOMS"
-msgstr ""
+msgstr "模块管理器 - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
@@ -646,45 +664,32 @@ msgid "Scilab Demonstrations"
 msgstr ""
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s：无法创建类型为%s的uicontrol。"
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: 无法析构此对象。\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr ""
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "该对象无'%s'属性。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr "属性'%s'的值错误：应该为'light'、'normal'、'demi'或'bold'。\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s：父对象类型错误：应该为Figure或者Unimenu类型。\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -699,22 +704,14 @@ msgid ""
 msgstr "属性'%s'的值错误：应该为 1x3 的实数行向量或一个 'R|G|B' 字符串。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr "属性'%s'的类型错误：应该为 1x3 的实数行向量或一个 'R|G|B' 字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -725,34 +722,33 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个实数。\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数。\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "属性'%s'的大小错误：应该为一个实数。\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'或'%s'。\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -796,28 +792,44 @@ msgstr "属性'%s'的类型错误：应该为一个字符串或者 1x%d 的实�
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个 1x%d 的实数行向量。\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个 1x%d 的实数行向量。\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "属性'%s'的大小错误：应该为一个 1x%d 的实数行向量。\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个字符串或者一个字符串向量。\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "属性'%s'的类型错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -835,30 +847,30 @@ msgid ""
 msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个字符串。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "属性'%s'的类型错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'或'%s'。\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr "属性'%s'的大小错误：应该为一个具有两个元素的列表（list）。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "属性'%s'的值错误：应该为一个实数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr "%s：属性'%s'的值错误：应该为points、normalized、inches、centimeters或pixels。\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "属性'%s'的值错误：应该为'%s'或'%s'。\n"
 
 msgid "Console Font..."
 msgstr "控制台字体..."
@@ -866,15 +878,14 @@ msgstr "控制台字体..."
 msgid "Console Background..."
 msgstr "控制台背景..."
 
-msgid "No print service found."
-msgstr "没有发现打印服务"
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -906,7 +917,7 @@ msgid "Help about a selected text"
 msgstr "选定文字的帮助"
 
 msgid "Help about '"
-msgstr ""
+msgstr "帮助之‘"
 
 msgid "Evaluate selection with echo"
 msgstr ""
@@ -915,10 +926,10 @@ msgid "Evaluate selection with no echo"
 msgstr ""
 
 msgid "Windows BMP image"
-msgstr "Windows BMP 图像"
+msgstr "Windows BMP图像"
 
 msgid "GIF image"
-msgstr "GIF 图像"
+msgstr "GIF图像"
 
 msgid "JPEG image"
 msgstr "JPEG图像"
@@ -977,22 +988,22 @@ msgid ""
 msgstr "'。"
 
 msgid "Font Chooser"
-msgstr ""
+msgstr "字体选择器"
 
 msgid "Font"
-msgstr ""
+msgstr "字体"
 
 msgid "Attributes"
-msgstr ""
+msgstr "属性"
 
 msgid "Bold"
-msgstr ""
+msgstr "加粗"
 
 msgid "Italic"
-msgstr ""
+msgstr "倾斜"
 
 msgid "Monospaced"
-msgstr ""
+msgstr "等宽"
 
 msgid "SciNotes compatible"
 msgstr ""
@@ -1019,20 +1030,13 @@ msgid "Edit in the Scilab Text Editor"
 msgstr "在Scilab文本编辑器中编辑"
 
 msgid "Back"
-msgstr ""
+msgstr "后退"
 
 msgid "Forward"
-msgstr ""
+msgstr "前进"
 
 msgid "Tree Overview"
 msgstr ""
-
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr "左击开始缩放区域的选择。右击取消选择。"
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "点击鼠标左键终止选择，点击右键取消。"
 
 msgid "OK"
 msgstr "确认"
@@ -1047,21 +1051,24 @@ msgid "Save and execute"
 msgstr "保存并执行"
 
 msgid "Empty tab"
-msgstr ""
+msgstr "空标签"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
 msgid "Exit"
-msgstr ""
+msgstr "退出"
 
 msgid "An error occured: "
 msgstr ""
@@ -1073,7 +1080,7 @@ msgid "Scilab SCE files"
 msgstr ""
 
 msgid "Scilab binary files"
-msgstr ""
+msgstr "Scilab二进制文件"
 
 msgid "All Scilab files"
 msgstr "所有Scilab文件"
@@ -1085,7 +1092,7 @@ msgid "Scicos files"
 msgstr "Scicos文件"
 
 msgid "Test files"
-msgstr ""
+msgstr "测试文件"
 
 msgid "Scilab Start files"
 msgstr ""
@@ -1097,20 +1104,21 @@ msgid "Scilab Demo files"
 msgstr ""
 
 msgid "All PDF files"
-msgstr ""
+msgstr "所有PDF文件"
 
 msgid "All Postscript files"
-msgstr ""
+msgstr "所有Postscript文件"
 
 msgid "All Encapsulated PS files"
 msgstr ""
 
 msgid "All PNG image files"
-msgstr ""
+msgstr "所有PNG图像文件"
 
 msgid "All RTF (Rich Text Format) files"
-msgstr ""
+msgstr "所有RTF (Rich Text Format) 文件"
 
+#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
@@ -1124,7 +1132,7 @@ msgid "Acknowledgements"
 msgstr "致谢"
 
 msgid "Could not open: "
-msgstr ""
+msgstr "不能代开： "
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -1162,7 +1170,7 @@ msgid "GUI"
 msgstr "GUI"
 
 msgid "Dialogs"
-msgstr ""
+msgstr "对话框"
 
 msgid "Uicontrols 1"
 msgstr ""
@@ -1171,6 +1179,9 @@ msgid "Uicontrols 2"
 msgstr ""
 
 msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+msgid "Show images with uicontrols "
 msgstr ""
 
 msgid "<Enter color name here>"
@@ -1187,17 +1198,17 @@ msgstr "没有选中颜色"
 
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "所选颜色是：%s。"
 
 msgid "Selected colors"
-msgstr ""
+msgstr "所选颜色"
 
 #, c-format
 msgid "You clicked on menu '%s'."
 msgstr "你点击了菜单'%s'."
 
 msgid "Selected menu"
-msgstr ""
+msgstr "所选菜单"
 
 msgid "checked"
 msgstr "已选"
@@ -1217,10 +1228,10 @@ msgstr ""
 
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "你选择了’%s‘。"
 
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "弹出菜单选择"
 
 msgid "Do you really want to quit Scilab?"
 msgstr "你真的要退出Scilab么？"
@@ -1232,13 +1243,13 @@ msgid "Uicontrols demo"
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "应用程序"
 
 msgid "Exit figure"
 msgstr "退出Figure"
 
 msgid "Scilab Graphics"
-msgstr ""
+msgstr "Scilab图形"
 
 msgid "Launch plot3d"
 msgstr "运行plot3d"
@@ -1250,16 +1261,16 @@ msgid "Menu"
 msgstr "菜单"
 
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "子菜单1"
 
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "子菜单2"
 
 msgid "Sub-menu 2-1"
 msgstr ""
 
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "子菜单2-2"
 
 msgid "Colors list edition"
 msgstr ""
@@ -1283,7 +1294,7 @@ msgid "Display selection"
 msgstr ""
 
 msgid "Slider demo"
-msgstr ""
+msgstr "滑动条演示"
 
 msgid "item1|item2|item3|item4"
 msgstr ""

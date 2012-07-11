@@ -113,8 +113,7 @@
     <!--Lib_name: poly_reading-->
     <!--Func_list: read_poly-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int read_poly(char *fname,unsigned long fname_len)
 {
@@ -238,7 +237,7 @@ int read_poly(char *fname,unsigned long fname_len)
 		}
 	}
 
-	sciErr = createComplexMatrixOfPoly(pvApiCtx, InputArgument + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+	sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -256,11 +255,10 @@ int read_poly(char *fname,unsigned long fname_len)
 	free(pdblReal);
 	free(pdblImg);
 	//assign allocated variables to Lhs position
-	AssignOutputVariable(1) = InputArgument + 1;
+	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

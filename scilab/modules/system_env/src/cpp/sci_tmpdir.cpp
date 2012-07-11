@@ -32,6 +32,7 @@ extern "C"
 #include <errno.h>
 #include "removedir.h"
 #include "os_swprintf.h"
+#include "os_strdup.h"
 }
 
 char* getTMPDIR(void)
@@ -211,7 +212,7 @@ char* computeTMPDIR()
     }
 
     /* XXXXXX will be randomized by mkdtemp */
-    char *env_dir_strdup = strdup(env_dir); /* Copy to avoid to have the same buffer as input and output for sprintf */
+    char *env_dir_strdup = os_strdup(env_dir); /* Copy to avoid to have the same buffer as input and output for sprintf */
     sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int) getpid());
     free(env_dir_strdup);
 

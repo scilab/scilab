@@ -89,8 +89,8 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
@@ -100,8 +100,8 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../bin/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>scilocalization.lib;core.lib</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -132,8 +132,8 @@ cd .. &gt;nul
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
@@ -143,8 +143,8 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../bin/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>scilocalization.lib;core.lib</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -179,8 +179,8 @@ cd .. &gt;nul
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
@@ -190,8 +190,8 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../bin/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>scilocalization.lib;core.lib</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -232,8 +232,8 @@ cd .. &gt;nul
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
@@ -243,8 +243,8 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../bin/$(ProjectName).dll</OutputFile>
+      <AdditionalDependencies>scilocalization.lib;core.lib</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -305,17 +305,13 @@ cd .. &gt;nul
     <ResourceCompile Include="src\c\api_scilab.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def" />
+    <None Include="core_import.def" />
     <None Include="locales\api_scilab.pot" />
     <None Include="Localization_Import.def" />
     <None Include="api_scilab_export.def" />
     <None Include="api_scilab_header.def" />
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
-    <Library Include="..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

@@ -25,7 +25,7 @@
       <varlistentry>
         <term>language</term>
         <listitem>
-          <para>with language='fr', 'en', 'ru_RU', 'zh_TW', ...</para>
+          <para>a string, can have following values: 'fr', 'en', 'ru_RU', 'zh_TW', ...</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -34,12 +34,15 @@
     <title>Description</title>
     <para>
       <literal>setdefaultlanguage(language)</literal> changes current
-      language and save this value in scilab.
+      language and saves this value in Scilab.
     </para>
-    <para>You need to restart scilab, if you want to use menus.</para>
-    <para>setdefaultlanguage('') resets language to the system value.</para>
-    <para>setdefaultlanguage is used only Windows. On others operating systems
-      , it returns always %f. 
+    <para>You have to restart Scilab, if you want to use menus.</para>
+    <para>
+      <literal>setdefaultlanguage('')</literal> resets language to the system value.
+    </para>
+    <para>
+      <literal>setdefaultlanguage</literal> is used only Windows. On others operating systems 
+      it returns always <literal>%f</literal>. 
     </para>
   </refsection>
   <refsection>
@@ -47,11 +50,11 @@
     <programlisting role="example"><![CDATA[ 
 setdefaultlanguage('en_US')
 
-// restart scilab
+// restart Scilab
 getlanguage()
 setdefaultlanguage('fr_FR')
 
-// restart scilab
+// restart Scilab
 getlanguage()
 setdefaultlanguage('')
 

@@ -73,8 +73,7 @@ STATISTICS_FORTRAN_SOURCES = \
     src/dcdflib/bup.f \
     src/dcdflib/cdfbet.f
 
-GATEWAY_C_SOURCES = \
-	sci_gateway/c/gw_statistics.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
 	sci_gateway/c/sci_cdfchi.c \
 	sci_gateway/c/sci_cdft.c \
 	sci_gateway/c/sci_cdfgam.c \
@@ -87,41 +86,34 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfnbn.c \
 	sci_gateway/c/sci_cdfnor.c
 
-GATEWAY_CPP_SOURCES =
-
-libscistatistics_la_CFLAGS= \
-	-I$(srcdir)/includes/ \
-    -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/output_stream/includes
-
-libscistatistics_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+libscistatistics_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+$(AM_CPPFLAGS)
 
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
 
 
-libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscistatistics_algo_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES)
-libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscistatistics_algo_la_CFLAGS = $(libscistatistics_la_CFLAGS)
+libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscistatistics_algo_la_CPPFLAGS = $(libscistatistics_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
+INCLUDE_FLAGS = $(libscistatistics_la_CPPFLAGS)
 
-libscistatistics_la_LIBADD = libscistatistics-algo.la
+libscistatistics_la_LIBADD = libscistatistics-algo.la 
 
 #### Target ######
 modulename=statistics
@@ -129,7 +121,7 @@ modulename=statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(mydatadir)
-libscistatistics_la_root_DATA =  license.txt
+libscistatistics_la_root_DATA =  license.txt 
 
 
 #### statistics : init scripts ####

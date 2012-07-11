@@ -20,7 +20,6 @@ extern "C"
     /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "charEncoding.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
 #include "sci_path.h"
@@ -59,6 +58,7 @@ extern "C"
         std::string outputDirectoryTMP;
         std::string language;
         std::string styleSheet; /* the CSS */
+        char * fileToExec = NULL;
         SciErr sciErr;
         int *piAddr = NULL;
         int iRet = 0;
@@ -211,8 +211,16 @@ extern "C"
         else                    /* Scilab help */
         {
             /* Update the path with the localization */
-            outputDirectoryTMP =
-                std::string("/modules/helptools/") + std::string(exportFormat) + std::string("/scilab_") + language + std::string("_help/");
+            if (exportFormat != "jar-only")
+            {
+                outputDirectoryTMP =
+                    std::string("/modules/helptools/") + std::string(exportFormat) + std::string("/scilab_") + language + std::string("_help/");
+            }
+            else
+            {
+                outputDirectoryTMP =
+                    std::string("/modules/helptools/") + std::string("javaHelp") + std::string("/scilab_") + language + std::string("_help/");
+            }
 
             outputDirectory = SciPath + outputDirectoryTMP;
         }
@@ -234,7 +242,7 @@ extern "C"
                     doc->setWorkingLanguage((char *)language.c_str());
                     doc->setExportFormat((char *)exportFormat.c_str());
                     doc->setIsToolbox(Rhs == 4);
-                    doc->process((char *)masterXML.c_str(), (char *)styleSheet.c_str());
+                    fileToExec = doc->process((char *)masterXML.c_str(), (char *)styleSheet.c_str());
                 }
                 else
                 {
@@ -246,6 +254,10 @@ extern "C"
                     delete doc;
                 }
 
+            }
+            else if (exportFormat == "jar-only")
+            {
+                org_scilab_modules_helptools::SciDocMain::generateJavahelp(getScilabJavaVM(), (char *)outputDirectory.c_str(), (char *)language.c_str());
             }
             else
             {
@@ -269,7 +281,7 @@ extern "C"
 
             }
         }
-        catch(GiwsException::JniException ex)
+        catch (GiwsException::JniException ex)
         {
             Scierror(999, _("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999, _("%s: Execution Java stack: %s.\n"), fname, ex.getJavaStackTrace().c_str());
@@ -279,8 +291,19 @@ extern "C"
             return FALSE;
         }
 
-        LhsVar(1) = 0;
+        if (fileToExec)
+        {
+            createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &fileToExec);
+            delete [] fileToExec;
+        }
+        else
+        {
+            createEmptyMatrix(pvApiCtx, Rhs + 1);
+        }
+
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
+
         return 0;
     }
     /*--------------------------------------------------------------------------*/

@@ -49,6 +49,32 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_history_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_history_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\HistoryFile.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\HistoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\HistoryManager.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\HistorySearch.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitializeHistoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\TerminateHistoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\jni\HistoryManagement.i">
       <Filter>Swig Files</Filter>
     </None>
@@ -58,10 +84,7 @@
     <None Include="History_browser_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="jvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="localization_Import.def">
@@ -73,7 +96,9 @@
     <None Include="..\..\history_manager.iss" />
     <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\history_manager.pot" />
+    <None Include="..\..\locales\history_manager.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_manager.rc">

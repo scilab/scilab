@@ -18,6 +18,9 @@ c     following common defines the initial database of type names
       integer maxtyp,nmmax
       parameter (maxtyp=50,nmmax=200)
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /typnams/
+cDEC$ ENDIF      
       common /typnams/ tp,ptr,ln,namrec,ptmax
       integer name(*)
       integer iadr,sadr
@@ -69,6 +72,9 @@ c     following common defines the initial database of type names
       integer maxtyp,nmmax
       parameter (maxtyp=50,nmmax=200)
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /typnams/
+cDEC$ ENDIF      
       common /typnams/ tp,ptr,ln,namrec,ptmax
       character*15 nam1
 c

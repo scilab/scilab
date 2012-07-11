@@ -29,19 +29,22 @@ libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
 libscisystem_env_la_CPPFLAGS = \
 	-I includes/ \
 	-I src/cpp \
-	-I $(top_srcdir)/modules/symbol/includes \
-	-I $(top_srcdir)/modules/types/includes \
-	-I $(top_srcdir)/modules/io/includes \
-	-I $(top_srcdir)/modules/fileio/includes \
-	-I $(top_srcdir)/modules/string/includes \
-	-I $(top_srcdir)/modules/threads/includes \
-	-I $(top_srcdir)/modules/ast/includes \
-    -I $(top_srcdir)/libs/dynamiclibrary/includes \
-	-I $(top_srcdir)/modules/operations/includes \
-	-I $(top_srcdir)/modules/elementary_functions/includes \
-	-I $(top_srcdir)/modules/differential_equations/includes \
-	-I $(top_srcdir)/modules/api_scilab/includes \
-	-I $(top_srcdir)/modules/output_stream/includes
+    -I $(top_srcdir)/libs/dynamiclibrary/includes/ \
+    -I $(top_srcdir)/libs/MALLOC/includes/ \
+	-I $(top_srcdir)/modules/api_scilab/includes/ \
+	-I $(top_srcdir)/modules/ast/includes/ \
+	-I $(top_srcdir)/modules/symbol/includes/ \
+	-I $(top_srcdir)/modules/types/includes/ \
+	-I $(top_srcdir)/modules/io/includes/ \
+	-I $(top_srcdir)/modules/fileio/includes/ \
+	-I $(top_srcdir)/modules/string/includes/ \
+	-I $(top_srcdir)/modules/threads/includes/ \
+	-I $(top_srcdir)/modules/operations/includes/ \
+	-I $(top_srcdir)/modules/elementary_functions/includes/ \
+	-I $(top_srcdir)/modules/differential_equations/includes/ \
+	-I $(top_srcdir)/modules/output_stream/includes/ \
+	-I $(top_srcdir)/modules/localization/includes/ \
+	$(AM_CPPFLAGS)
 
 
 libscisystem_env_la_includedir=$(pkgincludedir)/system_env

@@ -8,11 +8,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function startModule()
+
 // =============================================================================
 // Load functions libraries
 // =============================================================================
-if ~isfile('SCI/modules/core/macros/lib') then
+  if ~isfile('SCI/modules/core/macros/lib') then
     error(msprintf(gettext("%s: Could not find ''%s'': Please check that macros have been built.\n"), ..
-        "core.start", "SCI/modules/core/macros/lib"));
-end
-load('SCI/modules/core/macros/lib');
+          "startModule", "SCI/modules/core/macros/lib"));
+  end
+  load('SCI/modules/core/macros/lib');
+endfunction
+
+startModule();
+clear startModule;

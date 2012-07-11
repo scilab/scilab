@@ -3,13 +3,13 @@
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 /*--------------------------------------------------------------------------*/ 
 #include "dynhdf5.hxx"
@@ -40,7 +40,7 @@ int createHDF5File(char *name)
     int ierr = 0;
 
     //H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
-    
+
     /* TO DO : remove when HDF5 will be fixed ... */
     /* HDF5 does not manage no ANSI characters */
     /* UGLY workaround :( */
@@ -50,24 +50,28 @@ int createHDF5File(char *name)
     currentpath = scigetcwd(&ierr);
 
     //prevent error msg to change directory to ""
-    if(strcmp(pathdest, "") != 0)
+    if (strcmp(pathdest, "") != 0)
     {
         scichdir(pathdest);
     }
 
+    FREE(pathdest);
     /*bug 5629 : to prevent replace directory by file*/
-    if(isdir(filename))
+    if (isdir(filename))
     {
+        FREE(filename);
+        FREE(currentpath);
         return -2;
     }
 
-    if(FileExist(filename))
+    if (FileExist(filename))
     {
         deleteafile(filename);
     }
     /*
     * Create a new file using the default properties.
     */
+
     file = DynHDF5::dynH5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
 
     scichdir(currentpath);
@@ -111,14 +115,47 @@ int openHDF5File(char *name)
 
     return file;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+int isHDF5File(char* _pstFilename)
+{
+    int iRet = 0;
+    char *pathdest = getPathFilename(_pstFilename);
+    char *currentpath = NULL;
+    char *filename = getFilenameWithExtension(_pstFilename);
+    int ierr = 0;
+
+    /* TO DO : remove when HDF5 will be fixed ... */
+    /* HDF5 does not manage no ANSI characters */
+    /* UGLY workaround :( */
+    /* We split path, move in this path, open file */
+    /* and return in previous place */
+    /* see BUG 6440 */
+    currentpath = scigetcwd(&ierr);
+    {
+
+        //prevent error msg to change directory to ""
+        if (strcmp(pathdest, "") != 0)
+        {
+            scichdir(pathdest);
+        }
+        FREE(pathdest);
+
+        iRet = H5Fis_hdf5(filename);
+        FREE(filename);
+    }
+    scichdir(currentpath);
+    FREE(currentpath);
+
+    return iRet > 0 ? 1 : 0;
+}
+
 void closeHDF5File(int file)
 {
     herr_t status					= 0;
 
     //	H5Fflush(file, H5F_SCOPE_GLOBAL);
     status =  DynHDF5::dynH5Fclose(file);
-    if(status < 0)
+    if (status < 0)
     {
         fprintf(stderr, "%s", "failed to close file");
     }

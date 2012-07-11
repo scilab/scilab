@@ -72,40 +72,30 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -118,31 +108,22 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -151,41 +132,28 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -197,40 +165,28 @@
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -238,11 +194,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
+    <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
     <ClCompile Include="..\cpp\CallColorChooser.cpp" />
-    <ClCompile Include="..\cpp\CallFigure.cpp" />
     <ClCompile Include="..\cpp\CallFontChooser.cpp" />
     <ClCompile Include="..\cpp\CallHelpBrowser.cpp" />
     <ClCompile Include="..\cpp\CallJuigetfile.cpp" />
@@ -250,22 +209,13 @@
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp" />
     <ClCompile Include="..\cpp\CallMessageBox.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
-    <ClCompile Include="..\cpp\CallWaitBar.cpp" />
-    <ClCompile Include="..\cpp\CheckBox.cpp" />
     <ClCompile Include="checkColorRange.c" />
     <ClCompile Include="..\cpp\ContextMenu.cpp" />
-    <ClCompile Include="CreateUIContextMenu.c" />
     <ClCompile Include="CreateUIControl.c" />
     <ClCompile Include="CreateUimenu.c" />
-    <ClCompile Include="..\cpp\DestroyJavaUiobject.cpp" />
-    <ClCompile Include="..\cpp\DestroyUicontrol.cpp" />
-    <ClCompile Include="..\cpp\DestroyUimenu.cpp" />
-    <ClCompile Include="..\cpp\DestroyWaitBar.cpp" />
     <ClCompile Include="..\cpp\displaytree.cpp" />
     <ClCompile Include="DllmainGUI.c" />
-    <ClCompile Include="..\cpp\EditBox.cpp" />
     <ClCompile Include="..\cpp\exportUserInterface.cpp" />
-    <ClCompile Include="..\cpp\Frame.cpp" />
     <ClCompile Include="getMainWindowTitle.c" />
     <ClCompile Include="..\cpp\GetScreenProperty.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolBackgroundColor.cpp" />
@@ -288,28 +238,18 @@
     <ClCompile Include="..\cpp\GetUicontrolVerticalAlignment.cpp" />
     <ClCompile Include="..\cpp\GetUimenuChecked.cpp" />
     <ClCompile Include="..\cpp\GetUimenuLabel.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectTag.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectVisible.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\gui_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_gui.c" />
     <ClCompile Include="iconifyMainWindow.c" />
     <ClCompile Include="InitializeGUI.c" />
-    <ClCompile Include="InitProgressionBar.c" />
     <ClCompile Include="..\cpp\InitUIMenu.cpp" />
-    <ClCompile Include="InitWaitBar.c" />
     <ClCompile Include="..\jni\Juigetfile.cpp" />
     <ClCompile Include="..\jni\Jxclick.cpp" />
     <ClCompile Include="..\jni\Jxgetmouse.cpp" />
-    <ClCompile Include="..\cpp\Label.cpp" />
-    <ClCompile Include="..\cpp\ListBox.cpp" />
     <ClCompile Include="..\jni\LookAndFeelManager.cpp" />
     <ClCompile Include="messageboxoptions.c" />
-    <ClCompile Include="..\cpp\PopupMenu.cpp" />
-    <ClCompile Include="..\cpp\PushButton.cpp" />
-    <ClCompile Include="..\cpp\RadioButton.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_about.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c" />
@@ -347,6 +287,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_x_dialog.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c" />
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp" />
+    <ClCompile Include="ScilabTermination.c" />
     <ClCompile Include="setMainWindowTitle.c" />
     <ClCompile Include="..\cpp\SetUicontrolBackgroundColor.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolFontAngle.cpp" />
@@ -358,7 +299,6 @@
     <ClCompile Include="..\cpp\SetUicontrolListboxTop.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolMax.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolMin.cpp" />
-    <ClCompile Include="..\cpp\SetUicontrolParent.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolPosition.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolRelief.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolSliderStep.cpp" />
@@ -368,32 +308,200 @@
     <ClCompile Include="..\cpp\SetUicontrolVerticalAlignment.cpp" />
     <ClCompile Include="..\cpp\SetUimenuChecked.cpp" />
     <ClCompile Include="..\cpp\SetUimenuLabel.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectTag.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectVisible.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
-    <ClCompile Include="..\cpp\Slider.cpp" />
     <ClCompile Include="..\cpp\Toolbar.cpp" />
-    <ClCompile Include="UicontrolStyleToString.c" />
     <ClCompile Include="..\jni\UIElementMapper.cpp" />
     <ClCompile Include="..\cpp\UnitsConversion.cpp" />
     <ClCompile Include="..\cpp\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\CallClipboard.h" />
+    <ClInclude Include="..\..\includes\CallJuigetfile.h" />
+    <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
+    <ClInclude Include="..\..\includes\GetConsoleShowHiddenHandles.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectEnable.h" />
+    <ClInclude Include="..\..\includes\SetConsoleShowHiddenHandles.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectEnable.h" />
+    <ClInclude Include="..\..\includes\UiDisplayTree.h" />
+    <ClInclude Include="..\..\includes\UiTable.h" />
+    <ClInclude Include="..\jni\SwingView.hxx" />
+    <ClInclude Include="buildMainWindowTitle.h" />
+    <ClInclude Include="..\cpp\CallClipboard.hxx" />
+    <ClInclude Include="..\..\includes\CallColorChooser.h" />
+    <ClInclude Include="..\cpp\CallColorChooser.hxx" />
+    <ClInclude Include="..\..\includes\CallFigure.h" />
+    <ClInclude Include="..\cpp\CallFigure.hxx" />
+    <ClInclude Include="..\..\includes\CallFontChooser.h" />
+    <ClInclude Include="..\cpp\CallFontChooser.hxx" />
+    <ClInclude Include="..\..\includes\CallHelpBrowser.h" />
+    <ClInclude Include="..\cpp\CallHelpBrowser.hxx" />
+    <ClInclude Include="..\..\includes\CallJxclick.h" />
+    <ClInclude Include="..\cpp\CallJxclick.hxx" />
+    <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
+    <ClInclude Include="..\cpp\CallJxgetmouse.hxx" />
+    <ClInclude Include="..\cpp\CallMainWindow.hxx" />
+    <ClInclude Include="..\..\includes\CallMessageBox.h" />
+    <ClInclude Include="..\cpp\CallMessageBox.hxx" />
+    <ClInclude Include="..\jni\CallScilabBridge.hxx" />
+    <ClInclude Include="..\..\includes\CallWaitBar.h" />
+    <ClInclude Include="..\cpp\CallWaitBar.hxx" />
+    <ClInclude Include="..\..\includes\CheckBox.h" />
+    <ClInclude Include="..\cpp\CheckBox.hxx" />
+    <ClInclude Include="..\..\includes\ContextMenu.h" />
+    <ClInclude Include="..\cpp\ContextMenu.hxx" />
+    <ClInclude Include="checkColorRange.h" />
+    <ClInclude Include="CreateUIControl.h" />
+    <ClInclude Include="CreateUimenu.h" />
+    <ClInclude Include="..\cpp\displaytree.hxx" />
+    <ClInclude Include="..\..\includes\dynlib_gui.h" />
+    <ClInclude Include="..\..\includes\EditBox.h" />
+    <ClInclude Include="..\cpp\EditBox.hxx" />
+    <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
+    <ClInclude Include="..\..\includes\Frame.h" />
+    <ClInclude Include="..\cpp\Frame.hxx" />
+    <ClInclude Include="getMainWindowTitle.h" />
+    <ClInclude Include="..\..\includes\GetScreenProperty.h" />
+    <ClInclude Include="..\cpp\GetScreenProperty.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolBackgroundColor.h" />
+    <ClInclude Include="..\cpp\GetUicontrolBackgroundColor.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolFontAngle.h" />
+    <ClInclude Include="..\cpp\GetUicontrolFontAngle.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolFontName.h" />
+    <ClInclude Include="..\cpp\GetUicontrolFontName.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolFontSize.h" />
+    <ClInclude Include="..\cpp\GetUicontrolFontSize.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolFontUnits.h" />
+    <ClInclude Include="..\cpp\GetUicontrolFontUnits.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolFontWeight.h" />
+    <ClInclude Include="..\cpp\GetUicontrolFontWeight.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolHorizontalAlignment.h" />
+    <ClInclude Include="..\cpp\GetUicontrolHorizontalAlignment.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolListboxTop.h" />
+    <ClInclude Include="..\cpp\GetUicontrolListboxTop.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolMax.h" />
+    <ClInclude Include="..\cpp\GetUicontrolMax.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolMin.h" />
+    <ClInclude Include="..\cpp\GetUicontrolMin.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolPosition.h" />
+    <ClInclude Include="..\cpp\GetUicontrolPosition.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolRelief.h" />
+    <ClInclude Include="..\cpp\GetUicontrolRelief.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolSliderStep.h" />
+    <ClInclude Include="..\cpp\GetUicontrolSliderStep.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolString.h" />
+    <ClInclude Include="..\cpp\GetUicontrolString.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolStyle.h" />
+    <ClInclude Include="..\cpp\GetUicontrolStyle.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolUnits.h" />
+    <ClInclude Include="..\cpp\GetUicontrolUnits.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolValue.h" />
+    <ClInclude Include="..\cpp\GetUicontrolValue.hxx" />
+    <ClInclude Include="..\..\includes\GetUicontrolVerticalAlignment.h" />
+    <ClInclude Include="..\cpp\GetUicontrolVerticalAlignment.hxx" />
+    <ClInclude Include="..\..\includes\GetUimenuChecked.h" />
+    <ClInclude Include="..\cpp\GetUimenuChecked.hxx" />
+    <ClInclude Include="..\..\includes\GetUimenuLabel.h" />
+    <ClInclude Include="..\cpp\GetUimenuLabel.hxx" />
+    <ClInclude Include="..\..\includes\GetUiobjectCallback.h" />
+    <ClInclude Include="..\cpp\GetUiobjectCallback.hxx" />
+    <ClInclude Include="..\cpp\GetUiobjectEnable.hxx" />
+    <ClInclude Include="..\..\includes\GetUiobjectForegroundColor.h" />
+    <ClInclude Include="..\cpp\GetUiobjectForegroundColor.hxx" />
+    <ClInclude Include="..\..\includes\GetUiobjectVisible.h" />
+    <ClInclude Include="..\cpp\GetUiobjectVisible.hxx" />
+    <ClInclude Include="..\..\includes\GraphicWindow.h" />
+    <ClInclude Include="..\..\includes\gw_gui.h" />
+    <ClInclude Include="iconifyMainWindow.h" />
+    <ClInclude Include="..\..\includes\InitializeGUI.h" />
+    <ClInclude Include="..\..\includes\InitUIMenu.h" />
+    <ClInclude Include="..\cpp\InitUIMenu.hxx" />
+    <ClInclude Include="..\jni\Jxclick.hxx" />
+    <ClInclude Include="..\jni\Jxgetmouse.hxx" />
+    <ClInclude Include="..\..\includes\Label.h" />
+    <ClInclude Include="..\cpp\Label.hxx" />
+    <ClInclude Include="..\..\includes\ListBox.h" />
+    <ClInclude Include="..\cpp\ListBox.hxx" />
+    <ClInclude Include="..\jni\LookAndFeelManager.hxx" />
+    <ClInclude Include="messageboxoptions.h" />
+    <ClInclude Include="..\..\includes\PopupMenu.h" />
+    <ClInclude Include="..\cpp\PopupMenu.hxx" />
+    <ClInclude Include="..\..\includes\PushButton.h" />
+    <ClInclude Include="..\cpp\PushButton.hxx" />
+    <ClInclude Include="..\..\includes\RadioButton.h" />
+    <ClInclude Include="..\cpp\RadioButton.hxx" />
+    <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
+    <ClInclude Include="ScilabTermination.h" />
+    <ClInclude Include="setMainWindowTitle.h" />
+    <ClInclude Include="..\..\includes\SetUicontrolBackgroundColor.h" />
+    <ClInclude Include="..\cpp\SetUicontrolBackgroundColor.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolFontAngle.h" />
+    <ClInclude Include="..\cpp\SetUicontrolFontAngle.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolFontName.h" />
+    <ClInclude Include="..\cpp\SetUicontrolFontName.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolFontSize.h" />
+    <ClInclude Include="..\cpp\SetUicontrolFontSize.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolFontUnits.h" />
+    <ClInclude Include="..\cpp\SetUicontrolFontUnits.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolFontWeight.h" />
+    <ClInclude Include="..\cpp\SetUicontrolFontWeight.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolHorizontalAlignment.h" />
+    <ClInclude Include="..\cpp\SetUicontrolHorizontalAlignment.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolListboxTop.h" />
+    <ClInclude Include="..\cpp\SetUicontrolListboxTop.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolMax.h" />
+    <ClInclude Include="..\cpp\SetUicontrolMax.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolMin.h" />
+    <ClInclude Include="..\cpp\SetUicontrolMin.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolParent.h" />
+    <ClInclude Include="..\cpp\SetUicontrolParent.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolPosition.h" />
+    <ClInclude Include="..\cpp\SetUicontrolPosition.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolRelief.h" />
+    <ClInclude Include="..\cpp\SetUicontrolRelief.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolSliderStep.h" />
+    <ClInclude Include="..\cpp\SetUicontrolSliderStep.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolString.h" />
+    <ClInclude Include="..\cpp\SetUicontrolString.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolUnits.h" />
+    <ClInclude Include="..\cpp\SetUicontrolUnits.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolValue.h" />
+    <ClInclude Include="..\cpp\SetUicontrolValue.hxx" />
+    <ClInclude Include="..\..\includes\SetUicontrolVerticalAlignment.h" />
+    <ClInclude Include="..\cpp\SetUicontrolVerticalAlignment.hxx" />
+    <ClInclude Include="..\..\includes\SetUimenuChecked.h" />
+    <ClInclude Include="..\cpp\SetUimenuChecked.hxx" />
+    <ClInclude Include="..\..\includes\SetUimenuLabel.h" />
+    <ClInclude Include="..\cpp\SetUimenuLabel.hxx" />
+    <ClInclude Include="..\..\includes\SetUiobjectCallback.h" />
+    <ClInclude Include="..\cpp\SetUiobjectCallback.hxx" />
+    <ClInclude Include="..\cpp\SetUiobjectEnable.hxx" />
+    <ClInclude Include="..\..\includes\SetUiobjectForegroundColor.h" />
+    <ClInclude Include="..\cpp\SetUiobjectForegroundColor.hxx" />
+    <ClInclude Include="..\..\includes\SetUiobjectVisible.h" />
+    <ClInclude Include="..\cpp\SetUiobjectVisible.hxx" />
+    <ClInclude Include="setVisibleMainWindow.h" />
+    <ClInclude Include="..\..\includes\Slider.h" />
+    <ClInclude Include="..\cpp\Slider.hxx" />
+    <ClInclude Include="..\..\includes\TerminateGui.h" />
+    <ClInclude Include="..\..\includes\Toolbar.h" />
+    <ClInclude Include="..\cpp\Toolbar.hxx" />
+    <ClInclude Include="UicontrolStyleToString.h" />
+    <ClInclude Include="..\jni\UIElementMapper.hxx" />
+    <ClInclude Include="..\cpp\UnitsConversion.hxx" />
+    <ClInclude Include="..\..\includes\Widget.h" />
+    <ClInclude Include="..\cpp\Widget.hxx" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\locales\gui.pot" />
-    <None Include="LibScilab_Import.def" />
+    <None Include="core_import.def" />
     <None Include="..\..\gui.iss" />
     <None Include="..\..\sci_gateway\gui_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gui.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
@@ -409,7 +517,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
@@ -425,6 +532,9 @@
     <ProjectReference Include="..\..\..\graphics\graphics.vcxproj">
       <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
@@ -450,10 +560,6 @@
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\tclsci\tclsci.vcxproj">
-      <Project>{c456d5b8-8a32-496a-a2ee-164b0d734126}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -462,93 +568,6 @@
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\includes\CallClipboard.h" />
-    <ClInclude Include="..\..\includes\CallColorChooser.h" />
-    <ClInclude Include="..\..\includes\CallFigure.h" />
-    <ClInclude Include="..\..\includes\CallFontChooser.h" />
-    <ClInclude Include="..\..\includes\CallHelpBrowser.h" />
-    <ClInclude Include="..\..\includes\CallJuigetfile.h" />
-    <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
-    <ClInclude Include="..\..\includes\CallJxclick.h" />
-    <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
-    <ClInclude Include="..\..\includes\CallMessageBox.h" />
-    <ClInclude Include="..\..\includes\CallWaitBar.h" />
-    <ClInclude Include="..\..\includes\CheckBox.h" />
-    <ClInclude Include="..\..\includes\ContextMenu.h" />
-    <ClInclude Include="..\..\includes\DestroyJavaUiobject.h" />
-    <ClInclude Include="..\..\includes\DestroyUicontrol.h" />
-    <ClInclude Include="..\..\includes\DestroyUimenu.h" />
-    <ClInclude Include="..\..\includes\DestroyWaitBar.h" />
-    <ClInclude Include="..\..\includes\dynlib_gui.h" />
-    <ClInclude Include="..\..\includes\EditBox.h" />
-    <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
-    <ClInclude Include="..\..\includes\Frame.h" />
-    <ClInclude Include="..\..\includes\GetScreenProperty.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolBackgroundColor.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolFontAngle.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolFontName.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolFontSize.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolFontUnits.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolFontWeight.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolHorizontalAlignment.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolListboxTop.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolMax.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolMin.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolPosition.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolRelief.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolSliderStep.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolString.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolStyle.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolUnits.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolValue.h" />
-    <ClInclude Include="..\..\includes\GetUicontrolVerticalAlignment.h" />
-    <ClInclude Include="..\..\includes\GetUimenuChecked.h" />
-    <ClInclude Include="..\..\includes\GetUimenuLabel.h" />
-    <ClInclude Include="..\..\includes\GetUiobjectCallback.h" />
-    <ClInclude Include="..\..\includes\GetUiobjectEnable.h" />
-    <ClInclude Include="..\..\includes\GetUiobjectForegroundColor.h" />
-    <ClInclude Include="..\..\includes\GetUiobjectTag.h" />
-    <ClInclude Include="..\..\includes\GetUiobjectVisible.h" />
-    <ClInclude Include="..\..\includes\GraphicWindow.h" />
-    <ClInclude Include="..\..\includes\gui_gw.hxx" />
-    <ClInclude Include="..\..\includes\gw_gui.h" />
-    <ClInclude Include="..\..\includes\InitializeGUI.h" />
-    <ClInclude Include="..\..\includes\InitUIMenu.h" />
-    <ClInclude Include="..\..\includes\Label.h" />
-    <ClInclude Include="..\..\includes\ListBox.h" />
-    <ClInclude Include="..\..\includes\PopupMenu.h" />
-    <ClInclude Include="..\..\includes\PushButton.h" />
-    <ClInclude Include="..\..\includes\RadioButton.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolBackgroundColor.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolFontAngle.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolFontName.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolFontSize.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolFontUnits.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolFontWeight.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolHorizontalAlignment.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolListboxTop.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolMax.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolMin.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolParent.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolPosition.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolRelief.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolSliderStep.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolString.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolUnits.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolValue.h" />
-    <ClInclude Include="..\..\includes\SetUicontrolVerticalAlignment.h" />
-    <ClInclude Include="..\..\includes\SetUimenuChecked.h" />
-    <ClInclude Include="..\..\includes\SetUimenuLabel.h" />
-    <ClInclude Include="..\..\includes\SetUiobjectCallback.h" />
-    <ClInclude Include="..\..\includes\SetUiobjectEnable.h" />
-    <ClInclude Include="..\..\includes\SetUiobjectForegroundColor.h" />
-    <ClInclude Include="..\..\includes\SetUiobjectTag.h" />
-    <ClInclude Include="..\..\includes\SetUiobjectVisible.h" />
-    <ClInclude Include="..\..\includes\Slider.h" />
-    <ClInclude Include="..\..\includes\Toolbar.h" />
-    <ClInclude Include="..\..\includes\Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

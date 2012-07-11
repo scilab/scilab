@@ -11,127 +11,62 @@
  *
  -->
 <Setting version="0.02">
-        <!-- Scilab configuration -->
-        <Profile name="scilab">
-                <!-- Welcome line -->
-                <WelcomeLine useCache="true" value=""/>
-
-                <!-- GUI Part -->
-                <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
-                <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
-                <LastOpenedDirectory useCache="true" value=""/>
-                <InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
-                <BackgroundColor useCache="true" value="#FFFFFF"/>
-                <ForegroundColor useCache="true" value="#000000"/>
-                <ScrollableUnitIncrement useCache="true" value="20"/>
-                <ScrollableBlockIncrement useCache="true" value="20"/>
-                <VerticalWrapAllowed useCache="true" value="false"/>
-                <HorizontalWrapAllowed useCache="true" value="false"/>
-                <FontName useCache="true" value="Monospaced"/>
-                <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-                <FontSize useCache="true" value="13"/>
-
-                <MainWindowPosition useCache="true" x="0" y="0"/>
-                <MainWindowSize useCache="true" width="650" height="550"/>
-
-                <!-- Help part -->
-                <HelpFontSize useCache="true" value="2"/>
-
-                <!-- Core part -->
-                <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-                <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-                <InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
-                <GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
-                <CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
-                <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
-                <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
-                <MaxOutputSize useCache="true" value="10000"/>
-
-                <!-- Key mapping -->
-                <KeyMapping>
-                        <Key name="VK_F1" mask="" action="HELP"/>
-                        <Key name="VK_F2" mask="" action="CLEARCONSOLE"/>
-                        <Key name="VK_F12" mask="" action="CONSOLEBOX"/>
-                        <Key name="VK_ENTER" mask="" action="VALIDATE"/>
-                        <Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
-                        <Key name="VK_TAB" mask="" action="COMPLETION"/>
-                        <Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
-                        <Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
-                        <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
-                        <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
-                        <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_COPY"/>
-                        <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
-                        <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
-                        <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
-                        <Key name="VK_H" mask="CTRL_MASK" action="DEL_PREVIOUS_CHAR"/>
-                        <Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
-                        <Key name="VK_N" mask="CTRL_MASK" action="NEXT_HISTORY_LINE"/>
-                        <Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
-                        <Key name="VK_S" mask="CTRL_MASK" action="SELECTALL"/>
-                        <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
-                        <Key name="VK_ESCAPE" mask="" action="DEL_WHOLE_LINE"/>
-                        <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
-                        <Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
-                        <Key name="VK_PAGE_UP" mask="" action="PAGEUP"/>
-                        <Key name="VK_PAGE_DOWN" mask="" action="PAGEDOWN"/>
-                </KeyMapping>
-
-                <!-- Key mapping -->
-                <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
-                <ActionMapping>
-                        <Action name="SELECTALL" className="org.scilab.modules.console.SelectAllAction"/>
-                        <Action name="CLEARCONSOLE" className="org.scilab.modules.console.ClearConsoleAction"/>
-                        <Action name="CONSOLEBOX" className="org.scilab.modules.console.ConsoleboxAction"/>
-                        <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
-                        <Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
-                        <Action name="COMPLETION" className="org.scilab.modules.console.CompletionAction"/>
-                        <Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
-                        <Action name="PREVIOUS_HISTORY_LINE" className="org.scilab.modules.console.GetPreviousAction"/>
-                        <Action name="NEXT_HISTORY_LINE" className="org.scilab.modules.console.GetNextAction"/>
-                        <Action name="LINE_END" className="org.scilab.modules.console.LineEndAction"/>
-                        <Action name="PREVIOUS_CHAR" className="org.scilab.modules.console.PreviousCharAction"/>
-                        <Action name="NEXT_CHAR" className="org.scilab.modules.console.NextCharAction"/>
-                        <Action name="DEL_PREVIOUS_CHAR" className="org.scilab.modules.console.DelPreviousCharAction"/>
-                        <Action name="DEL_NEXT_CHAR" className="org.scilab.modules.console.DelNextCharAction"/>
-                        <Action name="DEL_LAST_WORD" className="org.scilab.modules.console.DelLastWordAction"/>
-                        <Action name="DEL_END_OF_LINE" className="org.scilab.modules.console.DelEndOfLineAction"/>
-                        <Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
-                        <Action name="INTERRUPT_SCILAB_WORK_OR_CUT" className="org.scilab.modules.console.InterruptScilabWorkOrCut"/>
-                        <Action name="INTERRUPT_SCILAB_WORK_OR_COPY" className="org.scilab.modules.console.InterruptScilabWorkOrCopy"/>
-                        <Action name="PAGEUP" className="org.scilab.modules.console.PageUpAction"/>
-                        <Action name="PAGEDOWN" className="org.scilab.modules.console.PageDownAction"/>
-                </ActionMapping>
-
-        </Profile>
-
-        <!-- Scilab configuration under MacOSX -->
-        <Profile name="macosx">
-                <!-- Key mapping -->
-                <KeyMapping>
-                        <Key name="VK_F1" mask="" action="HELP"/>
-                        <Key name="VK_F2" mask="" action="CLEARCONSOLE"/>
-                        <Key name="VK_F12" mask="" action="CONSOLEBOX"/>
-                        <Key name="VK_ENTER" mask="" action="VALIDATE"/>
-                        <Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
-                        <Key name="VK_TAB" mask="" action="COMPLETION"/>
-                        <Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
-                        <Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
-                        <Key name="VK_A" mask="META_MASK" action="LINE_BEGINNING"/>
-                        <Key name="VK_B" mask="META_MASK" action="PREVIOUS_CHAR"/>
-                        <Key name="VK_C" mask="META_MASK" action="INTERRUPT_SCILAB_WORK_OR_COPY"/>
-                        <Key name="VK_D" mask="META_MASK" action="DEL_NEXT_CHAR"/>
-                        <Key name="VK_E" mask="META_MASK" action="LINE_END"/>
-                        <Key name="VK_F" mask="META_MASK" action="NEXT_CHAR"/>
-                        <Key name="VK_H" mask="META_MASK" action="DEL_PREVIOUS_CHAR"/>
-                        <Key name="VK_K" mask="META_MASK" action="DEL_END_OF_LINE"/>
-                        <Key name="VK_N" mask="META_MASK" action="NEXT_HISTORY_LINE"/>
-                        <Key name="VK_P" mask="META_MASK" action="PREVIOUS_HISTORY_LINE"/>
-                        <Key name="VK_S" mask="META_MASK" action="SELECTALL"/>
-                        <Key name="VK_U" mask="META_MASK" action="DEL_WHOLE_LINE"/>
-                        <Key name="VK_ESCAPE" mask="" action="DEL_WHOLE_LINE"/>
-                        <Key name="VK_W" mask="META_MASK" action="DEL_LAST_WORD"/>
-                        <Key name="VK_X" mask="META_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
-                </KeyMapping>
-        </Profile>
-
+  <!-- Scilab configuration -->
+  <Profile name="scilab">
+    <!-- Welcome line -->
+    <WelcomeLine useCache="true" value=""/>
+    
+    <!-- GUI Part -->
+    <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
+    <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
+    <LastOpenedDirectory useCache="true" value=""/>
+    <InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
+    <BackgroundColor useCache="true" value="#FFFFFF"/>
+    <ForegroundColor useCache="true" value="#000000"/>
+    <ScrollableUnitIncrement useCache="true" value="20"/>
+    <ScrollableBlockIncrement useCache="true" value="20"/>
+    <VerticalWrapAllowed useCache="true" value="false"/>
+    <HorizontalWrapAllowed useCache="true" value="false"/>
+    <FontName useCache="true" value="Monospaced"/>
+    <FontStyle useCache="true" value="0"/>
+     <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+    <FontSize useCache="true" value="13"/>
+    
+    <MainWindowPosition useCache="true" x="0" y="0"/>
+    <MainWindowSize useCache="true" width="650" height="550"/>
+    
+    <!-- Help part -->
+    <HelpFontSize useCache="true" value="2"/>
+    
+    <!-- Core part -->
+    <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+    <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+    <InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
+    <GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
+    <CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
+    <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
+    <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
+    <MaxOutputSize useCache="true" value="10000"/>
+    
+    <!-- Key mapping -->
+    <KeyMapping>
+      <Key name="VK_F1" mask="" action="HELP"/>
+    </KeyMapping>
+    
+    <!-- Key mapping -->
+    <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
+    <ActionMapping>
+      <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
+    </ActionMapping>
+    
+  </Profile>
+  
+  <!-- Scilab configuration under MacOSX -->
+  <Profile name="macosx">
+    <!-- Key mapping -->
+    <KeyMapping>
+      <Key name="VK_F1" mask="" action="HELP"/>
+    </KeyMapping>
+  </Profile>
+  
 </Setting>

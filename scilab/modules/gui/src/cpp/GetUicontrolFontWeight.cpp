@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the font weight of an uicontrol 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,31 +14,22 @@
 
 #include "GetUicontrolFontWeight.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolFontWeight(sciPointObj* sciObj)
+int GetUicontrolFontWeight(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* fontWeight = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTWEIGHT__), jni_string, (void**) &fontWeight);
+
+    if (fontWeight == NULL)
     {
-      // Get the font weight from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->fontWeight)
-        {
-        case LIGHT_FONT:
-          return sciReturnString("light");
-        case NORMAL_FONT:
-          return sciReturnString("normal");
-        case DEMI_FONT:
-          return sciReturnString("demi");
-        case BOLD_FONT:
-          return sciReturnString("bold");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' expected.\n")), "FontWeight");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontWeight");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontWeight");
-      return FALSE;
+        status = sciReturnString(_pvCtx, fontWeight);
+        delete[] fontWeight;
+        return status;
     }
 }

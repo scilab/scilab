@@ -50,7 +50,7 @@ import org.scilab.modules.preferences.Component.Table;
  **/
 public class XSentinel implements MouseListener, ActionListener, TableModelListener, KeyListener, DocumentListener {
 
-    private static final Set<String> LAYOUT = new TreeSet<String>(Arrays.asList(new String[]{"listener", "gridx", "gridy", "gridwidth", "gridheight", "weightx", "weighty", "anchor", "ipadx", "ipday", "insets", "fill", "border-side", "fixed-height", "fixed-width"}));
+    private static final Set<String> LAYOUT = new TreeSet<String>(Arrays.asList(new String[] {"listener", "gridx", "gridy", "gridwidth", "gridheight", "weightx", "weighty", "anchor", "ipadx", "ipday", "insets", "fill", "border-side", "fixed-height", "fixed-width"}));
 
     /** Associated DOM Node.
      * TODO Add accessors for this attribute. */
@@ -156,7 +156,7 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         return false;
     }
 
-//
+    //
     /** Returns the first event node of the given type.
      *
      * @param node : the node to browse.
@@ -180,7 +180,7 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         long when = e.getWhen();
         if (when != timestamp) {
             Node[] action = getEventNodes(peer, "mouseClicked");
-            triggerEventNodes((Component) e.getSource(),action) ;
+            triggerEventNodes((Component) e.getSource(), action) ;
             timestamp = when;
         }
     }
@@ -205,7 +205,7 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
             if (actions.length == 0) {
                 actions = getEventNodes(peer, e.getActionCommand());
             }
-	    if (actions.length != 0) {
+            if (actions.length != 0) {
                 triggerEventNodes((Component) e.getSource(), actions);
                 timestamp = when;
             }
@@ -217,32 +217,31 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
     }
 
     /** Mouse listener callback. @param e : event*/
-    public void keyPressed(final KeyEvent e) {
+    public void keyPressed(final KeyEvent e) { }
 
-    }
     /** Mouse listener callback. @param e : event*/
-    public void keyReleased(final KeyEvent e) {
-    }
+    public void keyReleased(final KeyEvent e) { }
+
     /** Mouse listener callback. @param e : event*/
     public void keyTyped(final KeyEvent e) {
-	long when = e.getWhen();
+        long when = e.getWhen();
         if (when != timestamp) {
             Node[] action = getEventNodes(peer, "keyTyped");
-            triggerEventNodes((Component) e.getSource(),action) ;
+            triggerEventNodes((Component) e.getSource(), action) ;
             timestamp = when;
         }
     }
-    
+
     public void changedUpdate(DocumentEvent e) { }
- 
+
     public void insertUpdate(DocumentEvent e) {
-	Node[] action = getEventNodes(peer, "entryChanged");
-	triggerEventNodes((Component) xComponent, action) ;
+        Node[] action = getEventNodes(peer, "entryChanged");
+        triggerEventNodes((Component) xComponent, action) ;
     }
 
     public void removeUpdate(DocumentEvent e) {
-	Node[] action = getEventNodes(peer, "entryChanged");
-	triggerEventNodes((Component) xComponent, action) ;
+        Node[] action = getEventNodes(peer, "entryChanged");
+        triggerEventNodes((Component) xComponent, action) ;
     }
 
     /** Table listener callback. @param e : event*/

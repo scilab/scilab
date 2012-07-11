@@ -16,7 +16,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ./license.txt
 //
@@ -170,19 +170,12 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   end
 
 // Define Scicos data tables ===========================================
-if ( ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
   [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
   // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
 
-
-  //** load palettes
-  //----------------
-  exec(loadpallibs,-1)
 
   //** redefine some  functions
   prot = funcprot();funcprot(0);

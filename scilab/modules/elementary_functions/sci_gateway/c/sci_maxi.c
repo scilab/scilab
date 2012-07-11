@@ -10,6 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_elementary_functions.h"
 #include "MALLOC.h"
 #include "basic_functions.h"

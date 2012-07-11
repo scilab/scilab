@@ -22,9 +22,11 @@ libsciast_la_SOURCES = \
 	src/cpp/shortcutvisitor.cpp \
 	src/cpp/scilabexception.cpp
 
-libsciast_la_CXXFLAGS = \
+libsciast_la_CPPFLAGS = \
 	-Iincludes \
 	-Isrc/cpp \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes \
     -I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
@@ -35,8 +37,9 @@ libsciast_la_CXXFLAGS = \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    $(EIGEN_CPPFLAGS)
+	-I$(top_srcdir)/modules/localization/includes \
+    $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 
 libsciast_la_includedir=$(pkgincludedir)

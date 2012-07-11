@@ -8,29 +8,29 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2010-10-09 18:24+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2012-05-07 18:46+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s: Kein weiterer Speicher verfügbar.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Speicherreservierungsfehler.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
+msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: This feature is only used on Windows.\n"
@@ -50,7 +50,7 @@ msgstr "Starten Sie Scilab, um dies auf Menüs anzuwenden.\n"
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
 msgstr ""
-"%s: falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
+"%s: Falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Unsupported language '%s'.\n"

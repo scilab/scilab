@@ -11,8 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -28,41 +28,41 @@ import org.scilab.modules.types.ScilabTypeEnum;
 public class testBug6651 {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void nonRegBug6651() throws NullPointerException, JavasciException {
-        double[][] a={{1,2,3},{4,5,6},{7,8,9},{10,11,12}};
+        double[][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
 
-        ScilabDouble A=new ScilabDouble(a);
-        sci.put("a",A);
+        ScilabDouble A = new ScilabDouble(a);
+        sci.put("a", A);
         assertTrue(sci.exec("b = a;"));
 
-        ScilabDouble B=(ScilabDouble)sci.get("b");
+        ScilabDouble B = (ScilabDouble)sci.get("b");
         assertTrue(B.equals(A));
 
         assertTrue(sci.exec("c = a;"));
-        ScilabDouble C=(ScilabDouble)sci.get("c");
+        ScilabDouble C = (ScilabDouble)sci.get("c");
         assertTrue(C.equals(A));
     }
 
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

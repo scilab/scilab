@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="stacksize">
+  <refnamediv>
+    <refname>stacksize</refname>
+    <refpurpose>установка размера стека Scilab'а</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>
+      stacksize(n)
+      stacksize('max')
+      stacksize('min')
+      sz=stacksize()
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>
+            целое число, требуемый размер стека, число двойной точности (double)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz</term>
+        <listitem>
+          <para>
+            двухэлементный вектор [общий используемый]
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Scilab хранит "обычные" переменные в стеке <literal>stk</literal> (для глобальных переменных см.  <link linkend="gstacksize">gstacksize</link>).
+    </para>
+    <para>
+      <literal>stacksize(n)</literal> позволяет пользователю увеличить или уменьшить размер стека. 
+      Максимально допустимый размер зависит от количества свободной памяти и пространства подкачки, 
+      доступных в данный момент.
+    </para>
+    <para>
+      <literal>stacksize('max')</literal> позволяет пользователю увеличить размер стека до 
+      максимума.
+    </para>
+    <para>
+      <literal>stacksize('min')</literal> позволяет пользователю уменьшить размер стека до минимума
+    </para>
+    <para>
+      Эта функция с аргументом <literal>n</literal> может теперь использоваться где угодно.
+    </para>
+    <para>
+      <literal>sz=stacksize()</literal> возвращает двухэлементный вектор, который содержит текущие общий размер и использованный размер стека.
+    </para>
+    <para>
+      По умолчанию размер стека равен 100 000 000.
+    </para>
+    <para>
+      На 64-битных платформах максимальный размер стека имеет предел в 268 435 454.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="gstacksize">gstacksize</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

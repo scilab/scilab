@@ -100,17 +100,17 @@ public final class ScilabSwingUtilities {
         final Component componentF = component;
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        componentF.setVisible(false);
-                        Container parent = componentF.getParent();
-                        if (parent != null) {
-                            parent.remove(componentF);
-                            // repaint to see the changes
-                            //parent.repaint();
-                        }
+                @Override
+                public void run() {
+                    componentF.setVisible(false);
+                    Container parent = componentF.getParent();
+                    if (parent != null) {
+                        parent.remove(componentF);
+                        // repaint to see the changes
+                        //parent.repaint();
                     }
-                });
+                }
+            });
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -222,7 +222,7 @@ public final class ScilabSwingUtilities {
 
     /**
      * Look for the icon associated with the name.
-     * 
+     *
      * @param icon
      *            the name to look for
      * @return the image icon path
@@ -233,7 +233,7 @@ public final class ScilabSwingUtilities {
 
     /**
      * Look for the icon associated with the name for a specific module.
-     * 
+     *
      * @param name
      *            the name to look for
      * @param size
@@ -311,16 +311,20 @@ public final class ScilabSwingUtilities {
          * Linux specific path
          */
         switch (OS.get()) {
-        case UNIX:
-            THEME_BASENAME.add("~/.icons");
-            THEME_BASENAME.add("/usr/share/icons");
-            THEME_BASENAME.add("/usr/share/pixmaps");
+            case UNIX:
+                THEME_BASENAME.add("~/.icons");
+                THEME_BASENAME.add("/usr/share/icons");
+                THEME_BASENAME.add("/usr/share/pixmaps");
 
-            THEME_BASENAME.add(SCI + "/../icons");
-            break;
+                THEME_BASENAME.add(SCI + "/../icons");
+                break;
 
-        default:
-            break;
+            case MAC:
+                THEME_BASENAME.add(SCI + "/../icons");
+                break;
+
+            default:
+                break;
         }
 
         /*
@@ -451,16 +455,16 @@ public final class ScilabSwingUtilities {
         KeyStroke ctrlw = ScilabKeyStroke.getKeyStroke("OSSCKEY W");
 
         ActionListener listener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    WindowListener[] listeners = window.getWindowListeners();
-                    for (int i = 0; i < listeners.length; i++) {
-                        listeners[i].windowClosing(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
-                    }
-                    window.setVisible(false);
-                    window.dispose();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WindowListener[] listeners = window.getWindowListeners();
+                for (int i = 0; i < listeners.length; i++) {
+                    listeners[i].windowClosing(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
                 }
-            };
+                window.setVisible(false);
+                window.dispose();
+            }
+        };
         if (window instanceof JFrame) {
             ((JFrame) window).getRootPane().registerKeyboardAction(listener, esc, JComponent.WHEN_IN_FOCUSED_WINDOW);
             ((JFrame) window).getRootPane().registerKeyboardAction(listener, ctrlw, JComponent.WHEN_IN_FOCUSED_WINDOW);

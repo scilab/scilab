@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,55 +27,83 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL status = FALSE;
+    int ticksDirection = 0;
+    int yNumberTicks = 0;
+    int *piYNumberTicks = &yNumberTicks;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_direction");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( sciGetEntityType(pobj) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( pAXES_FEATURE (pobj)->ny == 1 )
-  { 
-    if( isStringParamEqual( stackPointer, "top" ) )
+    if ( !isParameterStringMatrix( valueType ) )
     {
-      pAXES_FEATURE (pobj)->dir = 'u' ;
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_direction");
+        return SET_PROPERTY_ERROR;
     }
-    else if ( isStringParamEqual( stackPointer, "bottom" ) )
+
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_AXES )
     {
-      pAXES_FEATURE (pobj)->dir = 'd' ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
+
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **) &piYNumberTicks);
+
+    if (piYNumberTicks == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        return SET_PROPERTY_ERROR;
+    }
+
+    if (yNumberTicks == 1)
+    {
+        if( isStringParamEqual( stackPointer, "top" ) )
+        {
+            ticksDirection = 0;
+        }
+        else if ( isStringParamEqual( stackPointer, "bottom" ) )
+        {
+            ticksDirection = 1;
+        }
+        else
+        {
+            Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'top'", "'bottom'");
+            return SET_PROPERTY_ERROR;
+        }
     }
     else
     {
-      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'top'", "'bottom'");
-      return SET_PROPERTY_ERROR ;
+        if( isStringParamEqual( stackPointer, "left" ) )
+        {
+            ticksDirection = 2;
+        }
+        else if ( isStringParamEqual( stackPointer, "right" ) )
+        {
+            ticksDirection = 3;
+        }
+        else
+        {
+            Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'left'", "'right'");
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-  } 
-  else
-  {
-    if( isStringParamEqual( stackPointer, "right" ) )
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
+
+    if (status == TRUE)
     {
-      pAXES_FEATURE (pobj)->dir = 'r' ;
-    }
-    else if ( isStringParamEqual( stackPointer, "left" ) )
-    {
-      pAXES_FEATURE (pobj)->dir = 'l' ;
+        return SET_PROPERTY_SUCCEED;
     }
     else
     {
-      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'left'", "'right'");
-      return SET_PROPERTY_ERROR ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        return SET_PROPERTY_ERROR;
     }
-  }
-  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

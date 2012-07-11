@@ -16,11 +16,11 @@
 /*
 * 1 : First version
 * 2 : Shortcut functions added
-* 3 : Add some functions/macros in replacement of stack functions/macros : 
-        - Rhs -> InputArgument
-        - Lhs -> OutputArgument
+* 3 : Add some functions/macros in replacement of stack functions/macros :
+        - Rhs -> nbInputArgument
+        - Lhs -> nbOutputArgument
         - LhsVar -> AssignOutputVariable
-        - PutLhsVar -> UpdateStack
+        - PutLhsVar -> ReturnArguments
         - CheckRhs -> CheckInputArgument
         - CheckLhs -> CheckOutputArgument
 */

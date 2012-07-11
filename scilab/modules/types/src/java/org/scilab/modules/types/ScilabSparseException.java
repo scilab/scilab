@@ -19,7 +19,9 @@ public class ScilabSparseException extends Exception {
 
     /**
      * Constructor
-     * @param msg the error message
+     *
+     * @param msg
+     *            the error message
      */
     public ScilabSparseException(String msg) {
         super(msg);

@@ -105,6 +105,10 @@ static void initial_c1_local(void)
 #define sadr(l) (((l)/2)+1)
 #define cadr(l) ((l)+(l)+(l)+(l)-3)
 
+/* Top is a variable used in Windows.h */
+#ifdef Top
+#undef Top
+#endif
 #define Top C2F(vstk).top
 #define Fin C2F(com).fin
 #define Rhs C2F(com).rhs

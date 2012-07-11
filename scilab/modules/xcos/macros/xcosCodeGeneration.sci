@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,36 +11,30 @@
 //
 //
 
-function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
-    // This will create a scs_m variable.
-    status = import_from_hdf5(hdf5FileToLoad);
-    if ~status then
-        error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
-    end
-
+function blk = xcosCodeGeneration(blk)
     // define scicos variables
     %scicos_prob = %f
     %scicos_debug_gr = %f
     needcompile = 4;
 
-    ierr = execstr("[ok, XX] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');
+    ierr = execstr("[ok, XX] = do_compile_superblock42(blk, [], [], %f); ", 'errcatch');
     if ierr <> 0 then
         [msg, err] = lasterror();
         disp(msg);
-        deletefile(hdf5FileToSave);
-        return;
+        
+        // push blk error
+        blk = [];
+        blk = resume(blk)
     end
 
-    if ok then
-        status = export_to_hdf5(hdf5FileToSave, "XX");
-        if ~status then
-            error(msprintf(gettext("%s: Unable to export ''XX'' to %s"), "xcosCodeGeneration", hdf5FileToSave));
-        end
-    else
-        deletefile(hdf5FileToSave);
+    if ~ok then
+        // push blk error
+        blk = [];
+        blk = resume(blk)
     end
     
-    // push the interface function on the upper scope
-    execstr(XX.gui + "=resume("+ XX.gui +")");
+    blk = XX;
+    // push the results (and interface function) on the upper scope
+    execstr("[blk, " + XX.gui + "]=resume(blk, "+ XX.gui +")");
 endfunction
 

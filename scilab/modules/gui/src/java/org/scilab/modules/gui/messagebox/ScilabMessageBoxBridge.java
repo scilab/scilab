@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 
 /**
@@ -203,8 +204,8 @@ public class ScilabMessageBoxBridge {
 	 * @param messageBox the MessageBox we want to set the parent of
 	 * @param parent the tab to be set as parent
 	 */
-	public static void setParentForLocation(MessageBox messageBox, Tab parent) {
-		messageBox.getAsSimpleMessageBox().setParentForLocation(parent);
+	public static void setParentForLocation(MessageBox messageBox, SimpleTab parent) {
+		//messageBox.getAsSimpleMessageBox().setParentForLocation(parent);
 	}
 
 }

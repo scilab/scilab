@@ -23,9 +23,10 @@
 #include "machine.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
 static int normalizePath(char *path);
-
+#endif
 /*--------------------------------------------------------------------------*/
 char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 {
@@ -139,11 +140,11 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
 }
 
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c)
 {
     return (c == '/' || c == '\\');
 }
-
 /*--------------------------------------------------------------------------*/
 static int normalizePath(char *path)
 {
@@ -236,5 +237,5 @@ static int normalizePath(char *path)
         }
     }
 }
-
+#endif
 /*--------------------------------------------------------------------------*/

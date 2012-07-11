@@ -36,14 +36,14 @@ extern "C"
         CheckOutputArgument(pvApiCtx, 2, 2);
 
         // create results on stack
-        sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, 0, 0, &dOut);
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, 0, 0, &dOut);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
-        sciErr = createMatrixOfString(pvApiCtx, InputArgument + 2, 0, 0, &cOut);
+        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 2, 0, 0, &cOut);
 
         if (sciErr.iErr)
         {
@@ -51,8 +51,8 @@ extern "C"
             return 0;
         }
 
-        AssignOutputVariable(1) = InputArgument + 1;
-        AssignOutputVariable(2) = InputArgument + 2;
+        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(2) = nbInputArgument + 2;
 
         return 0;
     }

@@ -13,11 +13,10 @@
 ;
 ;-------------------------------------------------------------------------------
 
-Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon
+Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon
 ;
-Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}"
-
-Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\YaSp.exe;WorkingDir: "{app}"
+Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}"
+Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\YaSp.exe;WorkingDir: "{userdocs}"
 ;
 Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}"; Components: {#COMPN_CHM};
 ;

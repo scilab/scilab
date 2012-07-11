@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 function r=dummy_arg(n)
   r= parallel_concurrency();
 endfunction;

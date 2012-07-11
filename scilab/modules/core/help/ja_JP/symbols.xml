@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="symbols">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>symbols</refname>
     <refpurpose> scilab 演算子の名前 </refpurpose>
@@ -20,95 +17,141 @@
       </tr>
       <tr>
         <td> ',", .'</td>
-        <td>quote</td>
+        <td>
+          <link linkend="quote">quote</link>
+        </td>
       </tr>
       <tr>
         <td> +</td>
-        <td>plus</td>
+        <td>
+          <link linkend="plus">plus</link>
+        </td>
       </tr>
       <tr>
         <td> -</td>
-        <td>minus</td>
+        <td>
+          <link linkend="minus">minus</link>
+        </td>
       </tr>
       <tr>
         <td> *,.*</td>
-        <td>star</td>
+        <td>
+          <link linkend="star">star</link>
+        </td>
       </tr>
       <tr>
         <td> /, ./, /.</td>
-        <td>slash</td>
+        <td>
+          <link linkend="slash">slash</link>
+        </td>
       </tr>
       <tr>
         <td> \,.\ ,\. </td>
-        <td>backslash</td>
+        <td>
+          <link linkend="backslash">backslash</link>
+        </td>
       </tr>
       <tr>
         <td> .</td>
-        <td>dot</td>
+        <td>
+          <link linkend="dot">dot</link>
+        </td>
       </tr>
       <tr>
         <td> =, ==</td>
-        <td>equal</td>
+        <td>
+          <link linkend="equal">equal</link>
+        </td>
       </tr>
       <tr>
         <td> &lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
-        <td>less</td>
+        <td>
+          <link linkend="less">less</link>, <link linkend="greater">greater</link>
+        </td>
       </tr>
       <tr>
         <td> ~</td>
-        <td>tilda</td>
+        <td>
+          <link linkend="tilda">tilda</link>
+        </td>
       </tr>
       <tr>
-        <td> [</td>
-        <td>left</td>
-      </tr>
-      <tr>
-        <td> ]</td>
-        <td>right</td>
+        <td> []</td>
+        <td>
+          <link linkend="brackets">brackets</link>
+        </td>
       </tr>
       <tr>
         <td> ()</td>
-        <td>parents</td>
+        <td>
+          <link linkend="parents">parents</link>
+        </td>
       </tr>
       <tr>
         <td> %</td>
-        <td>percent</td>
+        <td>
+          <link linkend="percent">percent</link>
+        </td>
       </tr>
       <tr>
         <td> :</td>
-        <td>colon</td>
+        <td>
+          <link linkend="colon">colon</link>
+        </td>
       </tr>
       <tr>
         <td> ,</td>
-        <td>comma</td>
+        <td>
+          <link linkend="comma">comma</link>
+        </td>
       </tr>
       <tr>
         <td> ;</td>
-        <td>semicolon</td>
+        <td>
+          <link linkend="semicolon">semicolon</link>
+        </td>
       </tr>
       <tr>
         <td>
           <literal>^</literal>
         </td>
-        <td>hat</td>
+        <td>
+          <link linkend="hat">hat</link>
+        </td>
       </tr>
       <tr>
         <td>
           <literal>.^</literal>
         </td>
-        <td>power</td>
+        <td>
+          <link linkend="power">power</link>
+        </td>
       </tr>
       <tr>
         <td> |</td>
-        <td>or_op</td>
+        <td>
+          <link linkend="or_op">or_op</link>
+        </td>
       </tr>
       <tr>
         <td> &amp;</td>
-        <td>and_op</td>
+        <td>
+          <link linkend="and_op">and_op</link>
+        </td>
       </tr>
       <tr>
         <td> .*., ./., .\.</td>
-        <td>kron</td>
+        <td>
+          <link linkend="kron">kron</link>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <literal>$</literal>
+        </td>
+        <td>
+          <link linkend="dollar">dollar</link>
+        </td>
       </tr>
     </informaltable>
   </refsection>

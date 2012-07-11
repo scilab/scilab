@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-23 12:38+0000\n"
+"PO-Revision-Date: 2012-06-20 12:33+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 #, c-format
@@ -83,6 +83,42 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "% s: Variable d'environnement %s non définie.\n"
 
 #, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s : La fonction %s est obsolète.\n"
+
+msgid "Warning"
+msgstr "Attention"
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr "%s : Veuillez consulter help('load') pour les raisons de ce choix.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+"%s : Scilab 6 ne prendra pas en charge le format de fichier utilisé.\n"
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+"%s : Veuillez mettre entre guillemets la déclaration de variable. Par "
+"exemple, save('myData.sod',a) devient save('myData.sod','a').\n"
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
+msgstr "%s : Veuillez consulter help('save') pour les raisons de ce choix.\n"
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Variable d'environnement %s non définie.\n"
 
@@ -109,8 +145,28 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "Erreur non gérée par v2cunit.\n"
 
 #, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s : Entité %s invalide\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s : La légende ne correspond pas au contexte actuel. Ignoré\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr "%s : La variable '%s' n'existe pas dans '%s'.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s : Nombre erroné de l'argument d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

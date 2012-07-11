@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "fileinfo.h"
 #include "localization.h"
 #include "Scierror.h"

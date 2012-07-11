@@ -1,0 +1,33 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+; core
+vstk_
+stack_
+com_
+iop_
+cha1_
+recu_
+errgst_
+;
+vstk_
+stack_
+com_
+iop_
+cha1_
+recu_
+errgst_
+cremat_
+namstr_
+checklhs_
+checkrhs_
+getsmat_
+checkval_
+objvide_
+;
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+;
+adre_
+intersci_
+;

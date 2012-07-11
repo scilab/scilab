@@ -18,8 +18,12 @@
 #include <string>
 #include <stdlib.h>
 #include "parse.hxx"
+
+extern "C"
+{
 #include "charEncoding.h"
 #include "MALLOC.h"
+}
 
 #ifdef _MSC_VER
 #if PARSE_EXPORTS

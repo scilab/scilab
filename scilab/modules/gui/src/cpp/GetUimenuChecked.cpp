@@ -1,41 +1,37 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * 
+ * Copyright (C) 2009-2011 - DIGITEO - Vincent COUVERT
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUimenuChecked.hxx"
 
-extern "C"
+int GetUimenuChecked(void* _pvCtx, char *pObjUID)
 {
-#include "os_strdup.h"
-}
+    int checked = 0;
+    int *piChecked = &checked;
 
-using namespace org_scilab_modules_gui_bridge;
+    getGraphicObjectProperty(pObjUID, const_cast < char *>(__GO_UI_CHECKED__), jni_bool, (void **)&piChecked);
 
-int GetUimenuChecked(sciPointObj* sciObj)
-{
-  if (sciGetEntityType( sciObj ) == SCI_UIMENU)
+    if (piChecked == NULL)
     {
-      if (CallScilabBridge::isMenuChecked(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex))
-        {
-          return sciReturnString(os_strdup("on"));
-        }
-      else
-        {
-          return sciReturnString(os_strdup("off"));
-        }
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "Checked");
+
+        return FALSE;
     }
-  else
+
+    if (checked == TRUE)
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Checked");
-      return FALSE;
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
     }
 }
-

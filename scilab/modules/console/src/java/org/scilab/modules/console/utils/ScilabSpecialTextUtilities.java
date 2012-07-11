@@ -98,14 +98,14 @@ public final class ScilabSpecialTextUtilities {
         if (!loadedLaTeX) {
             if (loadJLM == null) {
                 loadJLM = new Thread(new Runnable() {
-                        /* Create a thread in the background to avoid a lag in the loading of jar */
-                        public void run() {
-                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
-                            LaTeXCompiler.compilePartial("", 0);
-                            loadedLaTeX = true;
-                            loadJLM = null;
-                        }
-                    });
+                    /* Create a thread in the background to avoid a lag in the loading of jar */
+                    public void run() {
+                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        LaTeXCompiler.compilePartial("", 0);
+                        loadedLaTeX = true;
+                        loadJLM = null;
+                    }
+                });
                 loadJLM.setPriority(Thread.MIN_PRIORITY);
                 loadJLM.start();
             }
@@ -122,12 +122,23 @@ public final class ScilabSpecialTextUtilities {
      * @return the Icon
      */
     public static Icon compileMathMLExpression(String exp, int fontSize) {
+        return compileMathMLExpression(exp, fontSize, Color.BLACK);
+    }
+
+    /**
+     * Load, if necessary the jeuclid package, and compile a LaTeX expression.
+     * @param exp the expression to compile
+     * @param fontSize the size of the font
+     * @param fontColor the color of the font
+     * @return the Icon
+     */
+    public static Icon compileMathMLExpression(String exp, int fontSize, Color fontColor) {
         if (!loadedMathML) {
             LoadClassPath.loadOnUse("graphics_mathml_textrendering");
             loadedMathML = true;
         }
 
-        return MathMLCompiler.compile(exp, fontSize);
+        return MathMLCompiler.compile(exp, fontSize, fontColor);
     }
 
     /**
@@ -137,11 +148,11 @@ public final class ScilabSpecialTextUtilities {
     private static void setIcon(JComponent component, Icon icon) throws InvocationTargetException {
         try {
             Class clazz = component.getClass();
-            Method method = clazz.getMethod("getIcon", new Class[]{});
-            Object obj = method.invoke(component, new Object[]{});
+            Method method = clazz.getMethod("getIcon", new Class[] {});
+            Object obj = method.invoke(component, new Object[] {});
             if (icon != null || (obj != null && (obj instanceof SpecialIcon))) {
-                method = clazz.getMethod("setIcon", new Class[]{Icon.class});
-                method.invoke(component, new Object[]{icon});
+                method = clazz.getMethod("setIcon", new Class[] {Icon.class});
+                method.invoke(component, new Object[] {icon});
             }
         } catch (NoSuchMethodException e) {
             throw new InvocationTargetException(e, "No valid method setIcon");
@@ -203,9 +214,10 @@ public final class ScilabSpecialTextUtilities {
          * @param fontSize the size of the font
          * @return the Icon
          */
-        static Icon compile(String str, int fontSize) {
+        static Icon compile(String str, int fontSize, Color fontColor) {
             LayoutContextImpl parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
             parameters.setParameter(Parameter.MATHSIZE, fontSize);
+            parameters.setParameter(Parameter.MATHCOLOR, fontColor);
             Document doc = null;
             try {
                 doc = MathMLParserSupport.parseString(str);
@@ -223,7 +235,7 @@ public final class ScilabSpecialTextUtilities {
             int ascent = (int) Math.ceil(jev.getAscentHeight());
             int height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
 
-            if (width <= 0 || height <=0) {
+            if (width <= 0 || height <= 0) {
                 return null;
             }
 

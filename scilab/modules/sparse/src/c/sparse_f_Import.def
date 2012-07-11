@@ -2,9 +2,9 @@ LIBRARY    sparse_f.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; sparse_f
-; --------------------------------------- 
+; ---------------------------------------
 scita2lpd_
 wspt_
 dspt_
@@ -28,4 +28,4 @@ intspcompa_
 intspget_
 intspmatrix_
 intspmax_
-intsymfcti_ 
+intsymfcti_

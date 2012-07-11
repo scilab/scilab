@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-09 15:35+0000\n"
+"PO-Revision-Date: 2012-04-24 14:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -97,8 +97,20 @@ msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
+msgid "%s: Parent entity for destination should be an axes.\n"
+msgstr "%s: 出力先の親エンティティは軸(axes)である必要があります.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
+
+#
+# File: src/c/DestroyObjects.c, line: 207
+msgid "This object cannot be deleted.\n"
+msgstr "このオブジェクトは削除することができません。\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "ラベルオブジェクトは削除できません.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%:  %s '%c' の値が間違っています: '%s', '%s' および '%s' を指定してください.\n"
@@ -122,14 +134,6 @@ msgstr "%s: 各ハンドルを重複して指定することはできません.\
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr "%s: オブジェクトの親は同一である必要があります.\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: ハンドル %d を接続できません (親が無効)\n"
-
-#, c-format
-msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: ハンドル %d を接続できません (型が無効)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -212,6 +216,12 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 図または軸ハ�
 
 #, c-format
 msgid ""
+"%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
+"option. See help for more information.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: サイズ %d または%d のベクトルを指定してください．\n"
 
@@ -268,10 +278,6 @@ msgstr "%s: 指定された図を作成できません: メモリ不足です.\n
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' ハンドルは存在しないか、なくなりました.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr "%s: 入力引数の型が間違っています: '%s' ハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
@@ -348,10 +354,17 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' を設定してください\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
-msgstr "%s: 古いグラフィックモードはもはや利用できません. set のヘルプページを参照ください.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -422,49 +435,15 @@ msgstr "親は、FIGUREである必要があります\n"
 msgid "The parent has to be a SUBWIN\n"
 msgstr "親は、SUBWINである必要があります\n"
 
-#
-# File: src/c/BuildObjects.c, line: 793
-msgid "No more place to allocates text string, try a shorter string.\n"
-msgstr "テキスト文字列を割り当てることが出来ません、短い文字列を試してください。\n"
-
-#
-# File: src/c/BuildObjects.c, line: 850
-msgid "Problem with sciInitFontContext\n"
-msgstr "sciInitFontContext の問題\n"
-
 msgid "Width and height must be positive.\n"
 msgstr "幅と高さは正とする必要があります.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "軸が構築できない場合がありました\n"
 
-msgid "This object cannot be cloned.\n"
-msgstr "このオブジェクトを複製できませんでした.\n"
-
-#
-# File: src/c/ColorMapManagement.c, line: 41
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr "カラー行列はNULLです: 現在の色付けで直線的に色を描くことができません"
-
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s はレベル曲線の計算にのみ使用され,表示しません.\n"
-
-#
-# File: src/c/DestroyObjects.c, line: 160
-#, c-format
-msgid "Entity with type %d cannot be destroyed.\n"
-msgstr "タイプ %d をもつ実体は破棄できません。\n"
-
-msgid "A Label object cannot be deleted.\n"
-msgstr "ラベルオブジェクトは削除できません.\n"
-
-#
-# File: src/c/DestroyObjects.c, line: 207
-msgid "This object cannot be deleted.\n"
-msgstr "このオブジェクトは削除することができません。\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr "警告: xminが負のため、X軸を対数軸とすることができません.\n"
@@ -490,10 +469,8 @@ msgstr "内部エラー: 累進 1 のループ\n"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "どうぞ、dev@lists.scilab.org にバグレポートを送ってください。\n"
 
-#
-# File: src/c/Format.c, line: 1060
-msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
-msgstr "エラー: ComputeFormat は、SCI_AXES オブジェクトで使われなくてはいけません\n"
+msgid "Error: ComputeFormat must be used with AXIS objects\n"
+msgstr "エラー: ComputeFormat には AXISオブジェクトを指定して使用する必要があります\n"
 
 #
 # File: src/c/Format.c, line: 1171
@@ -560,59 +537,14 @@ msgstr "このオブジェクト種類の y_location を計算できません。
 msgid "This object has no %s property.\n"
 msgstr "このオブジェクトは %s プロパティを持っていません。\n"
 
-msgid "The parent handle is not or no more valid.\n"
-msgstr "親ハンドルが存在しないか、もはや有効ではありません.\n"
-
-#, c-format
-msgid "Handle number %d is not or no more valid.\n"
-msgstr "ハンドル番号 %d が存在しないか、もはや有効ではありません.\n"
-
-#
-# File: src/c/HandleManagement.c, line: 627
-#, c-format
-msgid "Handle number %d is not compatible with the parent handle.\n"
-msgstr "ハンドル番号 %d は親ハンドルと互換性がありません。\n"
-
-#
-# File: src/c/HandleManagement.c, line: 658
-#, c-format
-msgid "Error relocating handle %d."
-msgstr "ハンドル %d 再配置のエラー"
-
-#
-# File: src/c/HandleManagement.c, line: 695
-# File: src/c/HandleManagement.c, line: 701
-#, c-format
-msgid "Handle #%d is not compatible with its new parent.\n"
-msgstr "ハンドル #%d は新しい親と互換性がありません。\n"
-
-#
-# File: src/c/HandleManagement.c, line: 711
-# File: src/c/HandleManagement.c, line: 716
-#, c-format
-msgid "Object #%d is not correctly placed in the hierarchy.\n"
-msgstr "階層で、オブジェクト #%d は正確に配置されません。\n"
-
-#, c-format
-msgid "Handle #%d is not or no more valid.\n"
-msgstr "ハンドル #%d は存在しないか、もはや有効ではありません.\n"
-
-msgid "Default figure cannot be create.\n"
-msgstr "デフォルトの図を作成できません.\n"
-
-#
-# File: src/c/InitObjects.c, line: 165
-# File: src/c/InitObjects.c, line: 172
-# File: src/c/InitObjects.c, line: 188
-# File: src/c/InitObjects.c, line: 204
-msgid "Default axes cannot be create.\n"
-msgstr "デフォルトの軸を作成できません。\n"
-
 #
 # File: src/c/InitObjects.c, line: 472
 #, c-format
 msgid "Graphic window number %d"
 msgstr "グラフィック・ウインドウ番号 %d"
+
+msgid "Default axes cannot be created.\n"
+msgstr "デフォルトの軸(axes)を作成できません.\n"
 
 #
 # File: src/c/InitObjects.c, line: 828
@@ -634,18 +566,6 @@ msgstr "いかなるコールバックも、この実体に関係がありませ
 msgid "This object can not be moved.\n"
 msgstr "このオブジェクトは、動かすことができません。\n"
 
-#
-# File: src/c/SetProperty.c, line: 186
-#, c-format
-msgid "%s: Number of columns must be %d.\n"
-msgstr "%s: 列数は %d である必要があります。\n"
-
-#
-# File: src/c/SetProperty.c, line: 192
-#, c-format
-msgid "%s: Object must be a %s.\n"
-msgstr "%s: オブジェクトは、%s でなくてはなりません。\n"
-
 #, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "線幅は %d 以上とする必要があります.\n"
@@ -657,34 +577,13 @@ msgid "The line style must be greater than %d.\n"
 msgstr "線スタイルは、%d 以上必要です。\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "プロパティ '%s' の値が間違っています:  %d および %d の間とする必要があります.\n"
-
-#, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "記号の大きさは %d 以上とする必要があります.\n"
-
-#, c-format
-msgid "The mark size unit must be greater than %d.\n"
-msgstr "記号の大きさの単位は %d より大きい必要があります.\n"
-
-#
-# File: src/c/SetProperty.c, line: 931
-#, c-format
-msgid "The font size must be greater than %d.\n"
-msgstr "フォントサイズは %d 以上必要です。\n"
 
 #
 # File: src/c/SetProperty.c, line: 1652
 msgid "Unable to load default values.\n"
 msgstr "標準値をロードできません。\n"
-
-#, c-format
-msgid "Figure name may not contains any %% character, except a single %%d.\n"
-msgstr "図の名前には %%d 以外の %% 文字を含めることはできません.\n"
-
-msgid "WARNING : The size of the figure may not be as wide as you want.\n"
-msgstr "警告: 図の大きさを指定幅にすることができない可能性があります.\n"
 
 #
 # File: src/c/SetProperty.c, line: 2154
@@ -702,6 +601,9 @@ msgstr "要素の数は %d  (%d : %s 座標の場合)にしてください.\n"
 #, c-format
 msgid "Number of elements must be %d (%d if z coordinate )\n"
 msgstr "要素の数は %d  (%d : z座標の場合)にしてください.\n"
+
+msgid "Number of rows must be a multiple of 2.\n"
+msgstr "行数は2の倍数とする必要があります.\n"
 
 msgid "Unhandled data field\n"
 msgstr "未処理のデータフィールド\n"
@@ -721,39 +623,6 @@ msgstr "%s: どうぞ代わりに %s を使ってください。\n"
 #, c-format
 msgid "%s: Can't enable a void event handler.\n"
 msgstr "%s: VOIDイベントハンドラは使えません。\n"
-
-#, c-format
-msgid "%s should be a vector of double.\n"
-msgstr "%s は倍精度実数のベクトルとする必要があります.\n"
-
-#
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 47
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 63
-msgid "Ticks location and label vectors must have the same size.\n"
-msgstr "印場所とラベル・ベクトルは、同じサイズを持っていなくてはいけません。\n"
-
-#, c-format
-msgid "%s should be a string vector.\n"
-msgstr "%s は文字列ベクトルとしてください.\n"
-
-#
-# File: src/c/getHandleProperty/GetHashTable.c, line: 248
-# File: src/c/getHandleProperty/SetHashTable.c, line: 246
-#, c-format
-msgid "Unknown property: %s.\n"
-msgstr "未知のプロパティ: %s\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "'%s' プロパティの値が間違っています: %s または %s を指定してください.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: String expected.\n"
-msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property.\n"
-msgstr "'%s' プロパティの値が間違っています\n"
 
 #
 # File: src/c/getHandleProperty/get_alignment_property.c, line: 46
@@ -913,6 +782,39 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr "'%s' プロパティはこのハンドルにありません。\n"
 
 #, c-format
+msgid "%s should be a vector of double.\n"
+msgstr "%s は倍精度実数のベクトルとする必要があります.\n"
+
+#
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 47
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 63
+msgid "Ticks location and label vectors must have the same size.\n"
+msgstr "印場所とラベル・ベクトルは、同じサイズを持っていなくてはいけません。\n"
+
+#, c-format
+msgid "%s should be a string vector.\n"
+msgstr "%s は文字列ベクトルとしてください.\n"
+
+#
+# File: src/c/getHandleProperty/GetHashTable.c, line: 248
+# File: src/c/getHandleProperty/SetHashTable.c, line: 246
+#, c-format
+msgid "Unknown property: %s.\n"
+msgstr "未知のプロパティ: %s\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property.\n"
+msgstr "'%s' プロパティの値が間違っています\n"
+
+#, c-format
 msgid "%s property only exists for %s surfaces.\n"
 msgstr "%s プロパティは %s 曲面専用です.\n"
 
@@ -921,14 +823,12 @@ msgid "%s: No more memory."
 msgstr "%s: メモリ不足です."
 
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
-msgstr "警告 : %s の使用は廃止されており、無視されます. 軸の色を編集する際には%s プロパティを指定してください.\n"
-
-#, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' プロパティの値が間違っています: 集合 {%s}の値を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s or %s expected.\n"
+msgstr "'%s' プロパティの値が間違っています: %s または %s を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
@@ -951,16 +851,6 @@ msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr "'%s' プロパティの大きさが間違っています: %d個の要素を指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr "'%s' プロパティの値が間違っています: より小さな値を指定してください.\n"
-
-#, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
-msgstr "警告: '%s'プロパティは %s が他の要素と結合している場合には修正できません.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 整数を指定してください.\n"
 
@@ -972,16 +862,36 @@ msgstr ""
 "警告 !!!\n"
 "'%s' プロパティ:において  '%s' は廃止されています. 代わりに '%s' を使用してください.\n"
 
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr "'%s'プロパティの大きさが間違っています: 2要素のリストを指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgstr "プロパティ'%s' の型が間違っています: 文字列または2要素のリストを指定してください.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A Real scalar expected.\n"
+msgstr "プロパティ'%s' の型が間違っています: 実スカラーを指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A Real scalar expected.\n"
+msgstr "プロパティ'%s' の大きさが間違っています: 実スカラーを指定してください.\n"
+
 msgid "Children property can not be modified directly.\n"
 msgstr "子のプロパティは直接修正できません.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "'%s' プロパティの大きさが間違っています: スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: No more memory\n"
-msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid ""
@@ -1221,23 +1131,28 @@ msgstr "プロパティ '%s' で不正な値:  %d と %d の間の整数を想�
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
 msgstr "プロパティ '%s' で不正な値: -1 または 適切なカラーインデックスでなくてはなりません。\n"
 
-#
-# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
-#, c-format
-msgid "Wrong value for '%s' property: Must be a valid color index.\n"
-msgstr "プロパティ '%s' で不正な値: 適切なカラーインデックスでなくてはなりません。\n"
-
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "このオブジェクトには %s  を指定する必要があります.\n"
 
-#
-# File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 57
 #, c-format
 msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
-msgstr "手を加えられた色モードで、色ベクトルの列次元は、線を定義している点の数と調和しなくてはいけません(%d または %d です)。\n"
+"The number of column of the color vector must match the number of points "
+"defining the line (which must be %d or %d).\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
+
+msgid "{0,1} values are equivalent for line_style property."
+msgstr "{0,1} の値は line_styleプロパティとして等価です."
+
+msgid "0 will be removed after Scilab 5.4.0."
+msgstr "0 は Scilab 5.4.0以降削除されます."
+
+msgid "Please use 1 instead."
+msgstr "代わりに1を使用してください."
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1273,12 +1188,20 @@ msgid ""
 "logarithmic mode.\n"
 msgstr "エラー: %s 軸のdata_boundsは、対数のモードに変えるとき、厳密でなくてはいけません。\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr "プロパティ '%s' の値が間違っています:  %d および %d の間とする必要があります.\n"
+
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 38
 # File: src/c/getHandleProperty/set_parent_property.c, line: 50
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr "プロパティ '%s' で不正な型: '%s' ハンドル または '%s' ハンドルを想定します。\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' ハンドルを指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 60
@@ -1305,6 +1228,10 @@ msgstr "引数 #%d は、%d 要素を持っていなくてはいけません。\
 #, c-format
 msgid "%s cannot be set in this case.\n"
 msgstr "%s は、この場合セットすることができません。\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: src/c/getHandleProperty/set_dimension_property.c, line: 41
@@ -1375,6 +1302,10 @@ msgstr "不可能です: %s は、再配置する前に自由にされなくて�
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: x ベクトルは単調ではありません。\n"
+
+#, c-format
+msgid "%s: y vector is not monotonous.\n"
+msgstr "%s: ベクトルy は単調ではありません.\n"
 
 #
 # File: src/nographics/nographics.c, line: 23
@@ -1709,6 +1640,44 @@ msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d に�
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or Scilab function "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数ベクトルを指定してください.\n"
+
+#, c-format
+msgid "Error %d : in plot2d called by contour2d"
+msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Colormap too small"
+msgstr "%s: カラーマップが小さすぎます"
+
 msgid "Delete all datatips"
 msgstr "データtipsを全て削除"
 
@@ -1784,10 +1753,6 @@ msgstr "選択されたファイルでは複数の関数が定義されていま
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1981,10 +1946,6 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 入力引数の型が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
 
@@ -2101,10 +2062,6 @@ msgid ""
 msgstr "%s: 入力引数'%s'の大きさが間違っています: 大きさ%d のベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 入力引数 %d の型が間違っています: '軸'のハンドルを指定してください.\n"
 
@@ -2113,8 +2070,8 @@ msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr "%s: 入力引数 %d の大きさが正しくありません: 'Axes' ハンドルを1つ指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr "%s: 入力引数の型が間違っています: ハンドル'%s'を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2174,3 +2131,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ベクトルを指�
 #, c-format
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: Wrong value given for %s."
+msgstr "%s: %s に指定された値が間違っています."

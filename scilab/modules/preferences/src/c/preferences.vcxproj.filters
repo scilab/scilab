@@ -23,10 +23,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\preferences.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
@@ -42,9 +39,6 @@
     <ClCompile Include="DllmainPreferences.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\ScilabPreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,15 +51,24 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getScilabPreference.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_preferences.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\jni\ScilabPreferences.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_preferences_scilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\gw_preferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getScilabPreference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

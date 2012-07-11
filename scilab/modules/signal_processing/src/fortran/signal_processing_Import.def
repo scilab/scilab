@@ -2,14 +2,16 @@ LIBRARY    signal_processing.dll
 
 
 EXPORTS
+; imports required by f2c solution
+corrname_
 corrtyp_
 corradr_
 iercorr_
 rem001_
 oops_
-corrname_
 tg02bd_
+;
 setdgetx_
-setdgety_ 
 dgety_
-dgetx_
+dgetx_ 
+setdgety_

@@ -14,68 +14,68 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
-# File: sci_gateway/c/sci_conv2.c, line: 39
-# File: sci_gateway/c/sci_conv2.c, line: 100
-# File: sci_gateway/c/sci_conv2.c, line: 109
-# File: sci_gateway/c/sci_conv2.c, line: 127
-# File: sci_gateway/c/sci_conv2.c, line: 138
-# File: sci_gateway/c/sci_conv2.c, line: 157
-# File: sci_gateway/c/sci_conv2.c, line: 166
-# File: sci_gateway/c/sci_conv2.c, line: 184
-# File: sci_gateway/c/sci_conv2.c, line: 195
-# File: sci_gateway/c/sci_conv2.c, line: 215
-# File: sci_gateway/c/sci_conv2.c, line: 224
-# File: sci_gateway/c/sci_conv2.c, line: 242
-# File: sci_gateway/c/sci_conv2.c, line: 253
-# File: sci_gateway/c/sci_conv2.c, line: 354
-# File: sci_gateway/c/sci_conv2.c, line: 363
-# File: sci_gateway/c/sci_conv2.c, line: 381
-# File: sci_gateway/c/sci_conv2.c, line: 392
-# File: sci_gateway/c/sci_conv2.c, line: 403
-# File: sci_gateway/c/sci_conv2.c, line: 412
-# File: sci_gateway/c/sci_conv2.c, line: 430
-# File: sci_gateway/c/sci_conv2.c, line: 441
+# File: sci_gateway/c/sci_conv2.c, line: 38
+# File: sci_gateway/c/sci_conv2.c, line: 99
+# File: sci_gateway/c/sci_conv2.c, line: 108
+# File: sci_gateway/c/sci_conv2.c, line: 126
+# File: sci_gateway/c/sci_conv2.c, line: 137
+# File: sci_gateway/c/sci_conv2.c, line: 156
+# File: sci_gateway/c/sci_conv2.c, line: 165
+# File: sci_gateway/c/sci_conv2.c, line: 183
+# File: sci_gateway/c/sci_conv2.c, line: 194
+# File: sci_gateway/c/sci_conv2.c, line: 214
+# File: sci_gateway/c/sci_conv2.c, line: 223
+# File: sci_gateway/c/sci_conv2.c, line: 241
+# File: sci_gateway/c/sci_conv2.c, line: 252
+# File: sci_gateway/c/sci_conv2.c, line: 353
+# File: sci_gateway/c/sci_conv2.c, line: 362
+# File: sci_gateway/c/sci_conv2.c, line: 380
+# File: sci_gateway/c/sci_conv2.c, line: 391
+# File: sci_gateway/c/sci_conv2.c, line: 402
+# File: sci_gateway/c/sci_conv2.c, line: 411
+# File: sci_gateway/c/sci_conv2.c, line: 429
+# File: sci_gateway/c/sci_conv2.c, line: 440
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 64
-# File: sci_gateway/c/sci_conv2.c, line: 76
+# File: sci_gateway/c/sci_conv2.c, line: 63
+# File: sci_gateway/c/sci_conv2.c, line: 75
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 115
-# File: sci_gateway/c/sci_conv2.c, line: 204
+# File: sci_gateway/c/sci_conv2.c, line: 114
+# File: sci_gateway/c/sci_conv2.c, line: 203
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 146
-# File: sci_gateway/c/sci_conv2.c, line: 172
+# File: sci_gateway/c/sci_conv2.c, line: 145
+# File: sci_gateway/c/sci_conv2.c, line: 171
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 230
-# File: sci_gateway/c/sci_conv2.c, line: 369
-# File: sci_gateway/c/sci_conv2.c, line: 418
+# File: sci_gateway/c/sci_conv2.c, line: 229
+# File: sci_gateway/c/sci_conv2.c, line: 368
+# File: sci_gateway/c/sci_conv2.c, line: 417
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 313
-# File: sci_gateway/c/sci_conv2.c, line: 327
-# File: sci_gateway/c/sci_conv2.c, line: 335
-# File: sci_gateway/c/sci_conv2.c, line: 497
-# File: sci_gateway/c/sci_conv2.c, line: 510
+# File: sci_gateway/c/sci_conv2.c, line: 312
+# File: sci_gateway/c/sci_conv2.c, line: 326
+# File: sci_gateway/c/sci_conv2.c, line: 334
+# File: sci_gateway/c/sci_conv2.c, line: 496
+# File: sci_gateway/c/sci_conv2.c, line: 509
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -296,6 +296,8 @@ msgstr ""
 # File: macros/trans.sci, line: 53
 # File: macros/wfir.sci, line: 50
 # File: macros/window.sci, line: 25
+# File: macros/xcorr.sci, line: 14
+# File: macros/xcov.sci, line: 14
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -417,13 +419,6 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/convol2d.sci, line: 24
-# File: macros/convol2d.sci, line: 27
-#, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr ""
-
-#
 # File: macros/cspect.sci, line: 67
 # File: macros/pspect.sci, line: 75
 #, c-format
@@ -462,6 +457,51 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/hank.sci, line: 24
+# File: macros/lattn.sci, line: 47
+# File: macros/levin.sci, line: 48
+# File: macros/srfaur.sci, line: 36
+# File: macros/yulewalk.sci, line: 36
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 28
+# File: macros/hank.sci, line: 40
+# File: macros/wfir.sci, line: 53
+# File: macros/window.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 32
+# File: macros/hank.sci, line: 44
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 36
+# File: macros/hank.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 53
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 60
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
 # File: macros/iir.sci, line: 38
 # File: macros/trans.sci, line: 21
 #, c-format
@@ -484,15 +524,6 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in the interval "
 "[%s, %s].\n"
-msgstr ""
-
-#
-# File: macros/lattn.sci, line: 47
-# File: macros/levin.sci, line: 48
-# File: macros/srfaur.sci, line: 36
-# File: macros/yulewalk.sci, line: 36
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
@@ -535,13 +566,6 @@ msgstr ""
 # File: macros/trans.sci, line: 65
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-
-#
-# File: macros/wfir.sci, line: 53
-# File: macros/window.sci, line: 28
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
@@ -755,6 +779,39 @@ msgstr ""
 # File: macros/window.sci, line: 58
 #, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 24
+# File: macros/xcorr.sci, line: 46
+# File: macros/xcorr.sci, line: 55
+# File: macros/xcov.sci, line: 24
+# File: macros/xcov.sci, line: 46
+# File: macros/xcov.sci, line: 56
+# File: macros/xcov.sci, line: 60
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 35
+# File: macros/xcorr.sci, line: 60
+# File: macros/xcov.sci, line: 35
+# File: macros/xcov.sci, line: 66
+#, c-format
+msgid "%s: Wrong type for argument #%d: an integer expected.\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 39
+# File: macros/xcorr.sci, line: 64
+# File: macros/xcov.sci, line: 39
+# File: macros/xcov.sci, line: 70
+#, c-format
+msgid ""
+"%s: Wrong value for argument #%d: the expected value must be greater than "
+"%d.\n"
 msgstr ""
 
 #

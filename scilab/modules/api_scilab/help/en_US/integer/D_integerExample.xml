@@ -27,8 +27,7 @@
     <!--Lib_name: integerExample-->
     <!--Func_list: integerExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int integerExample(char *fname,unsigned long fname_len)
@@ -71,7 +70,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarInteger8(pvApiCtx, InputArgument + 1, cData);
+				iRet = createScalarInteger8(pvApiCtx, nbInputArgument + 1, cData);
 				if(iRet)
 				{
 					return iRet;
@@ -90,7 +89,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfInteger8(pvApiCtx, InputArgument + 1, iRows, iCols, pcData);
+				sciErr = createMatrixOfInteger8(pvApiCtx, nbInputArgument + 1, iRows, iCols, pcData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -108,7 +107,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarInteger16(pvApiCtx, InputArgument + 1, sData);
+				iRet = createScalarInteger16(pvApiCtx, nbInputArgument + 1, sData);
 				if(iRet)
 				{
 					return iRet;
@@ -127,7 +126,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfInteger16(pvApiCtx, InputArgument + 1, iRows, iCols, psData);
+				sciErr = createMatrixOfInteger16(pvApiCtx, nbInputArgument + 1, iRows, iCols, psData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -145,7 +144,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarInteger32(pvApiCtx, InputArgument + 1, iData);
+				iRet = createScalarInteger32(pvApiCtx, nbInputArgument + 1, iData);
 				if(iRet)
 				{
 					return iRet;
@@ -164,7 +163,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfInteger32(pvApiCtx, InputArgument + 1, iRows, iCols, piData);
+				sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 1, iRows, iCols, piData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -185,7 +184,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarUnsignedInteger8(pvApiCtx, InputArgument + 1, ucData);
+				iRet = createScalarUnsignedInteger8(pvApiCtx, nbInputArgument + 1, ucData);
 				if(iRet)
 				{
 					return iRet;
@@ -204,7 +203,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, InputArgument + 1, iRows, iCols, pucData);
+				sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, nbInputArgument + 1, iRows, iCols, pucData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -223,7 +222,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarUnsignedInteger16(pvApiCtx, InputArgument + 1, usData);
+				iRet = createScalarUnsignedInteger16(pvApiCtx, nbInputArgument + 1, usData);
 				if(iRet)
 				{
 					return iRet;
@@ -242,7 +241,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, InputArgument + 1, iRows, iCols, pusData);
+				sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, nbInputArgument + 1, iRows, iCols, pusData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -260,7 +259,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarUnsignedInteger32(pvApiCtx, InputArgument + 1, uiData);
+				iRet = createScalarUnsignedInteger32(pvApiCtx, nbInputArgument + 1, uiData);
 				if(iRet)
 				{
 					return iRet;
@@ -279,7 +278,7 @@ int integerExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, InputArgument + 1, iRows, iCols, puiData);
+				sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, nbInputArgument + 1, iRows, iCols, puiData);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -296,16 +295,14 @@ int integerExample(char *fname,unsigned long fname_len)
 		}
 	}
     
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
-    <programlisting role="code_scilab">
-      <![CDATA[ 
+    <programlisting role="code_scilab"><![CDATA[ 
 i8_1 = int8(1);
 i8_2 = int8([1,2,3;4,5,6]);
 ui8_1 = uint8(1);
@@ -335,7 +332,6 @@ if integerExample(i8_1) <> i16_1 then pause;end
 if integerExample(i8_2) <> i16_2 then pause;end
 if integerExample(ui8_1) <> ui16_1 then pause;end
 if integerExample(ui8_2) <> ui16_2 then pause;end
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

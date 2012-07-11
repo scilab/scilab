@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Graphics" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="Graphics" xml:lang="en">
   <refnamediv>
     <refname>Graphics</refname>
     <refpurpose>contenu de la bibliothèque graphique</refpurpose>
@@ -31,7 +28,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d.png"/>
+            <scilab:image>plot2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -45,7 +42,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d2.png"/>
+            <scilab:image>plot2d2();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -61,7 +58,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d3.png"/>
+            <scilab:image>plot2d3();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -77,7 +74,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot2d4.png"/>
+            <scilab:image>plot2d4();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -91,7 +88,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot2d.png"/>
+            <scilab:image>fplot2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -105,7 +102,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/champ.png"/>
+            <scilab:image>champ();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -119,7 +116,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/champ1.png"/>
+            <scilab:image>champ1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -135,7 +132,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fchamp.png"/>
+            <scilab:image>fchamp();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -159,7 +156,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fcontour2d.png"/>
+            <scilab:image>fcontour2d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -175,7 +172,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/grayplot.png"/>
+            <scilab:image>grayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -191,7 +188,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fgrayplot.png"/>
+            <scilab:image>fgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -207,7 +204,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Sgrayplot.png"/>
+            <scilab:image>Sgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -223,7 +220,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Sfgrayplot.png"/>
+            <scilab:image>Sfgrayplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -237,7 +234,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xgrid.png"/>
+            <scilab:image>xgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -251,7 +248,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/errbar.png"/>
+            <scilab:image>errbar();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -265,7 +262,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/histplot.png"/>
+            <scilab:image>histplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -279,7 +276,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/Matplot.png"/>
+            <scilab:image>Matplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -298,7 +295,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot3d.png"/>
+            <scilab:image>plot3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -312,7 +309,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plot3d1.png"/>
+            <scilab:image>plot3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -328,7 +325,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot3d.png"/>
+            <scilab:image>fplot3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -344,7 +341,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fplot3d1.png"/>
+            <scilab:image>fplot3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -358,7 +355,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/param3d.png"/>
+            <scilab:image>param3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -372,7 +369,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/param3d1.png"/>
+            <scilab:image>param3d1();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -386,7 +383,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/contour.png"/>
+            <scilab:image>contour();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -402,7 +399,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/fcontour.png"/>
+            <scilab:image>fcontour();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -416,7 +413,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/hist3d.png"/>
+            <scilab:image>hist3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -430,7 +427,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/genfac3d.png"/>
+            <scilab:image>genfac3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -444,7 +441,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/eval3dp.png"/>
+            <scilab:image>eval3dp();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -458,7 +455,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/geom3d.png"/>
+            <scilab:image>geom3d();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -625,7 +622,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xstringb.png"/>
+            <scilab:image>xstringb();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -639,7 +636,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/xtitle.png"/>
+            <scilab:image>xtitle();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -862,10 +859,26 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <link linkend="xs2fig">xs2fig</link>
+          <link linkend="xs2bmp">xs2bmp</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format XFig</para>
+          <para>Exporte un graphique vers un fichier au format BMP</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2emf">xs2emf</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format EMF</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2eps">xs2eps</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format EPS</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -873,7 +886,31 @@
           <link linkend="xs2gif">xs2gif</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format Gif</para>
+          <para>Exporte un graphique vers un fichier au format GIF</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2jpg">xs2jpg</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format JPG</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2pdf">xs2pdf</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PDF</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2png">xs2png</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PNG</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -881,7 +918,23 @@
           <link linkend="xs2ppm">xs2ppm</link>
         </term>
         <listitem>
-          <para>envoie des graphiques dans un fichier au format PPM</para>
+          <para>Exporte un graphique vers un fichier au format PPM</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2ps">xs2ps</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format PS</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <link linkend="xs2svg">xs2svg</link>
+        </term>
+        <listitem>
+          <para>Exporte un graphique vers un fichier au format SVG</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1031,14 +1084,6 @@
           <para>éditeur graphique interactif</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <link linkend="sd2sci">sd2sci</link>
-        </term>
-        <listitem>
-          <para>conversion d'objets gr_menu en instructions Scilab</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -1054,7 +1099,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/bode.png"/>
+            <scilab:image>bode();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1068,7 +1113,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/gainplot.png"/>
+            <scilab:image>gainplot();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1082,7 +1127,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/nyquist.png"/>
+            <scilab:image>nyquist();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1096,7 +1141,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/m_circle.png"/>
+            <scilab:image>m_circle();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1110,7 +1155,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/chart.png"/>
+            <scilab:image>chart();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1124,7 +1169,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/black.png"/>
+            <scilab:image>black();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1138,7 +1183,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/evans.png"/>
+            <scilab:image>evans();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1152,7 +1197,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/sgrid.png"/>
+            <scilab:image>sgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1166,7 +1211,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/plzr.png"/>
+            <scilab:image>plzr();</scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1180,7 +1225,7 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <imagedata fileref="../images/zgrid.png"/>
+            <scilab:image>zgrid();</scilab:image>
           </para>
         </listitem>
       </varlistentry>

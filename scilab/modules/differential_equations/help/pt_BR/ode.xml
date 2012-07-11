@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode</refname>
     <refpurpose>Solucionador de equações diferenciais ordinárias</refpurpose>
@@ -21,7 +18,7 @@
       <varlistentry>
         <term>y0</term>
         <listitem>
-          <para>vetor coluna de reais (condições iniciais).</para>
+          <para>matriz ou vetor de reais (condições iniciais).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,14 +45,15 @@
         <term>type</term>
         <listitem>
           <para>
-            um dos strings seguintes: <literal>"adams" "stiff" "rk" "rkf"
-              "fix" "discrete" "roots"
-            </literal>
+            um dos strings seguintes: <literal>"adams"</literal>,
+            <literal>"stiff"</literal>, <literal>"rk"</literal>,
+            <literal>"rkf"</literal>, <literal>"fix"</literal>,
+            <literal>"discrete"</literal>, <literal>"roots"</literal>.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
           <para>constantes reais ou vetores com o mesmo tamanho que
             <literal>y</literal>.
@@ -69,7 +67,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
           <para>vetores de reais</para>
         </listitem>
@@ -115,7 +113,7 @@
         <term>&lt;not given&gt;:</term>
         <listitem>
           <para>
-            <literal>Olsoda</literal>, solucionador do pacote ODEPACK é
+            O solucionador <literal>lsoda</literal> do pacote ODEPACK é
             chamado por padrão. Ele escolhe automaticamente entre o método
             preditor-corretor não-rígido de Adams e a Fórmula de Diferenciação
             Retroativa (FDR) rígida. Ele utiliza o método não rígido
@@ -162,7 +160,9 @@
       <varlistentry>
         <term>"fix":</term>
         <listitem>
-          <para>Mesmo solucionador que "rkf", mas a interface do usuário é bem
+          <para>
+            Mesmo solucionador que <literal>"rkf"</literal>, mas a
+            interface do usuário é bem
             simples, i.e. apenas os parâmetros <literal>rtol</literal> e
             <literal>atol</literal> podem ser passados ao solucionador. Este é o
             método mais simples a se tentar.
@@ -176,14 +176,15 @@
             solucionador <literal>lsodar</literal> do pacote ODEPACK é
             utilizado. É uma variante do solucionador <literal>lsoda</literal>
             onde se acha raízes de uma dada função vetorial. Ver ajuda em
-            ode_root para mais detalhes.
+            <link linkend="ode_root">ode_root</link> para mais detalhes.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"discrete":</term>
         <listitem>
-          <para>Simulação de tempo discreto. Ver ajuda em ode_discrete para
+          <para>
+            Simulação de tempo discreto. Ver ajuda em <link linkend="ode_discrete">ode_discrete</link> para
             mais detalhes.
           </para>
         </listitem>

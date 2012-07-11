@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-02-09 17:03+0000\n"
+"PO-Revision-Date: 2012-03-10 03:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -98,34 +98,6 @@ msgstr "Не удалось открыть файл!\n"
 
 msgid "Read error\n"
 msgstr "Ошибка чтения\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "SCOPE ERROR : Ошибка в scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"SCOPE ERROR : нельзя выполнить sciDrawObj, по неизвестной причине pShortDraw "
-"является NULL !\n"
-" Может быть, вы уничтожили окна или какую-нибудь из родительских кривых\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "SCOPE ERROR : Неизвестный код ошибки!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Некорректное значение для параметра размерности."
-
-msgid "This scope has the same window id than another."
-msgstr ""
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Невозможно использовать %s с этим типом объекта."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
@@ -483,7 +455,7 @@ msgid "&nbsp; - A binary file if no format given"
 msgstr "&nbsp; - Двоичный файл, если формат не задан"
 
 msgid "Write is done on:"
-msgstr ""
+msgstr "Запись сделана в:"
 
 msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
 msgstr ""
@@ -508,6 +480,8 @@ msgid ""
 "Simulation running !!! You cannot switch<br />between formatted and "
 "unformatted when running"
 msgstr ""
+"Моделирование запущено!!! Вы не можете во время работы переключать<br "
+"/>между форматированным и неформатированным"
 
 msgid "You cannot modify 'Output File Name' when running."
 msgstr "Вы не можете изменить 'Имя файла вывода' во время выполнения."

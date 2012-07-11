@@ -1,26 +1,25 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2007 - Vincent Couvert
- *
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at
+ * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 
 /* GuiManagement.i */
-/**
- * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i
+/** 
+ * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i 
  * Other: Use the option --enable-build-swig to the configure
 */
 %module GuiManagement
 %{
 #include "MALLOC.h"
 #include "../c/GuiManagement.h"
-#include "sci_home.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -29,8 +28,8 @@
 %pragma(java) jniclassclassmodifiers=%{
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /**
-   * All Scilab gui management used in Java console
+ /** 
+   * All Scilab gui management used in Java console 
    * @author Vincent COUVERT
    * @copyright INRIA 2007
    */
@@ -44,7 +43,7 @@ public class%}
   protected GuiManagementJNI() {
     throw new UnsupportedOperationException();
   }";
-
+  
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -70,10 +69,10 @@ public class%}
 
 /* JavaDoc for GuiManagement class */
 %pragma(java) moduleclassmodifiers="
- /**
-   * All Scilab gui management used in Java console
+ /** 
+   * All Scilab gui management used in Java console 
    * @author Vincent COUVERT
-   * @copyright INRIA 2007
+   * @copyright INRIA 2007 
    */
 public class";
 
@@ -96,11 +95,11 @@ public class";
 ";
 void setScilabLines(int nbRows, int nbCols);
 
-/* JavaDoc */
-%javamethodmodifiers getSCIHOME() "
+%javamethodmodifiers setScilabLines(int nbRows, int nbCols) "
  /**
-   * Get SCIHOME variable from Scilab
-   * @return SCIHOME value
+   * Set Scilab parameters used to display data
+   * @param nbRows number of rows that can be used to display data
+   * @param nbCols number of columns that can be used to display data
    */
-public";
-char* getSCIHOME();
+";
+void forceScilabLines(int nbRows, int nbCols);

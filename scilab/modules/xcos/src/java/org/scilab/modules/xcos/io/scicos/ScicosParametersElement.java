@@ -31,12 +31,13 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 /**
  * Default element used to handle Scicos simulation parameters
  */
-public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
-    private static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc");
+public final class ScicosParametersElement extends AbstractElement<ScicosParameters> {
+    protected static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3",
+            "doc");
 
-    private static final int TOL_INDEX = 3;
-    private static final int TF_INDEX = 4;
-    private static final int CONTEXT_INDEX = 5;
+    private static final int TOL_INDEX = DATA_FIELD_NAMES.indexOf("tol");
+    private static final int TF_INDEX = DATA_FIELD_NAMES.indexOf("tf");
+    private static final int CONTEXT_INDEX = DATA_FIELD_NAMES.indexOf("context");
 
     private static final int TOL_SIZE = 7;
 
@@ -85,7 +86,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         fillContext(local);
@@ -223,7 +224,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setIntegratorAbsoluteTolerance(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -231,7 +232,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setIntegratorRelativeTolerance(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -239,7 +240,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setToleranceOnTime(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -247,7 +248,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setMaxIntegrationTimeInterval(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -255,7 +256,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setRealTimeScaling(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -263,7 +264,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setSolver(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -272,7 +273,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setMaximumStepSize(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         } catch (ArrayIndexOutOfBoundsException e) {
             // do nothing as the maximum step size will keep its default value.
             return;
@@ -295,7 +296,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
             try {
                 into.setContext(new String[] { "" });
             } catch (PropertyVetoException e) {
-                Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+                Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
             }
             return;
         }
@@ -318,7 +319,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setContext(context);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
     }
 
@@ -362,19 +363,25 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
          * fill the tol field
          */
         int field = 0;
-        final double[][] tolField = new double[1][TOL_SIZE];
+        final double[][] tolField = new double[TOL_SIZE][1];
 
-        tolField[0][field++] = from.getIntegratorAbsoluteTolerance();
-        tolField[0][field++] = from.getIntegratorRelativeTolerance();
-        tolField[0][field++] = from.getToleranceOnTime();
-        tolField[0][field++] = from.getMaxIntegrationTimeInterval();
-        tolField[0][field++] = from.getRealTimeScaling();
-        tolField[0][field++] = from.getSolver();
-        tolField[0][field++] = from.getMaximumStepSize();
+        tolField[field++][0] = from.getIntegratorAbsoluteTolerance();
+        tolField[field++][0] = from.getIntegratorRelativeTolerance();
+        tolField[field++][0] = from.getToleranceOnTime();
+        tolField[field++][0] = from.getMaxIntegrationTimeInterval();
+        tolField[field++][0] = from.getRealTimeScaling();
+        int solver = (int) from.getSolver();
+        // FIXME: implement compat. with future values
+        solver--;
+        if (solver == -1 || solver == 4) {
+            solver = 0;
+        }
+        tolField[field++][0] = solver;
+        tolField[field++][0] = from.getMaximumStepSize();
 
         assert field == TOL_SIZE;
 
-        ScilabDouble scilabTolField = new ScilabDouble(tolField);
+        final ScilabDouble scilabTolField = new ScilabDouble(tolField);
         data.set(TOL_INDEX, scilabTolField);
 
         /*
@@ -385,8 +392,13 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         /*
          * fill the context
          */
-        if (from.getContext().length > 0) {
-            data.set(CONTEXT_INDEX, new ScilabString(from.getContext()));
+        final String[] realCtx = from.getContext();
+        if (realCtx != null && (realCtx.length > 1 || (realCtx.length == 1 && (realCtx[0] != null || realCtx[0].isEmpty())))) {
+            final String[][] ctx = new String[realCtx.length][];
+            for (int i = 0; i < ctx.length; i++) {
+                ctx[i] = new String[] { realCtx[i] };
+            }
+            data.set(CONTEXT_INDEX, new ScilabString(ctx));
         } else {
             data.set(CONTEXT_INDEX, new ScilabDouble());
         }

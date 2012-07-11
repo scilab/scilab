@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intl" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>intl</refname>
     <refpurpose>コーシー積分</refpurpose>
@@ -32,7 +29,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a,b</term>
+        <term>a, b</term>
         <listitem>
           <para>実数</para>
         </listitem>
@@ -57,7 +54,7 @@
       <literal>f</literal> が複素数を値とする関数の場合,
       <literal>intl(a,b,z0,r,f)</literal> は
       <literal>a&lt;=t&lt;=b</literal>のもとで
-      <literal>z0 + r.exp(%i*t)</literal>で定義される複素平面における曲線
+      <literal>z0 + r.*exp(%i*t)</literal>で定義される複素平面における曲線
       (中心<literal>z0</literal>,半径<literal>r</literal>の円における
       位相が<literal>a</literal>と<literal>b</literal>の間となる部分)
       に沿った

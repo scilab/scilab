@@ -21,6 +21,7 @@ extern "C"
 {
 #include <stdio.h>
 #include <string.h>
+#include "MALLOC.h"
 //#include "removedir.h"
 //#include "isdir.h"
 #include "expandPathVariable.h"

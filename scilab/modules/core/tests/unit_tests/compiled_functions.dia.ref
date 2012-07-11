@@ -19,7 +19,7 @@ exec(toto)
  
  y  =
  
-    5003000.  
+    10003000.  
  
  
 if y<>a+1000 then bugmes();quit;end

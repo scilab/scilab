@@ -188,7 +188,7 @@ int gw_dynamic_preferences(void)
         &hPreferencesLib,
         &ptr_gw_preferences);
 }
-/*--------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/
 /* xml module */
 #define XML_MODULE_NAME "xml"
 static DynLibHandle hXmlLib = NULL;
@@ -199,6 +199,34 @@ static char* gatewayname_xml = NULL;
 int gw_dynamic_xml(void)
 {
     return 0;
+}
+/*--------------------------------------------------------------------------*/
+/* graphic_objects module */
+#define GRAPHIC_OBJECTS_MODULE_NAME "graphic_objects"
+static DynLibHandle hGraphic_objectsLib = NULL;
+static PROC_GATEWAY ptr_gw_graphic_objects = NULL;
+static char* dynlibname_graphic_objects = NULL;
+static char* gatewayname_graphic_objects = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_graphic_objects(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+/* history_browser module */
+#define HISTORY_BROWSER_MODULE_NAME "history_browser"
+static DynLibHandle hHistory_browserLib = NULL;
+static PROC_GATEWAY ptr_gw_history_browser = NULL;
+static char* dynlibname_history_browser = NULL;
+static char* gatewayname_history_browser = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_history_browser(void)
+{
+    return gw_dynamic_generic(HISTORY_BROWSER_MODULE_NAME,
+        &dynlibname_history_browser,
+        &gatewayname_history_browser,
+        &hHistory_browserLib,
+        &ptr_gw_history_browser);
 }
 /*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)

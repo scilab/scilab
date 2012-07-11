@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dot" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dot</refname>
     <refpurpose>(.) symbol</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>123.33
+    <synopsis>
+      123.33
       a.*b
+      
       [123,..
       456]
     </synopsis>
@@ -30,25 +29,20 @@
         <term>.&lt;op&gt;</term>
         <listitem>
           <para>
-            used in conjunction with other operator symbols (<literal>*/
-              \ ^ '
-            </literal>
-            )to form other operators. Element-by-element
-            multiplicative operations are obtained using <literal> .* , .^ , ./
-              , .\
-            </literal>
-            or <literal>.'</literal>. For example, C = A ./ B is
-            the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product
-            is noted .*. . Note that when dot follows a number it is alway prt
-            of the number so 2.*x is evaluated as 2.0*x and 2 .*x is evaluated
-            as (2).*x
+            used in conjunction with other operator symbols (<literal>*/ \ ^ '</literal>) to form other operators. Element-by-element
+            multiplicative operations are obtained using <literal> .* , .^ , ./ , .\</literal>
+            or <literal>.'</literal>. For example,  <literal>C = A ./ B</literal> is
+            the matrix with elements <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Kronecker product
+            is noted <literal>.*.</literal> . Note that when dot follows a number it is always a part
+            of the number so <literal>2.*x</literal> is evaluated as <literal>2.0*x</literal> and <literal>2 .*x</literal> is evaluated
+            as <literal>(2).*x</literal>.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>..</term>
         <listitem>
-          <para>Continuation mark. Two or more decimal points at the end of a
+          <para>Continuation mark. Two or more dots at the end of a
             line (or followed by a comment) causes the following line to be a
             continuation.
           </para>
@@ -56,7 +50,9 @@
             a long logical line from a sequence of continuation lines. So the
             continuation marks can be used to cut a line at any point.
           </para>
-          <para>The following function foo:</para>
+          <para>
+            The following function <literal>foo</literal>:
+          </para>
           <programlisting role=""><![CDATA[ 
 function foo
   a=1

@@ -22,12 +22,15 @@ public interface ScilabVariablesListener extends EventListener {
 
     /**
      * Prevent the listener that a variable has been updated
-     * @param event the event
+     *
+     * @param event
+     *            the event
      */
     public void scilabVariableUpdated(ScilabVariablesEvent event);
 
     /**
      * Gets the listened variables
+     *
      * @return the listened variables name
      */
     public Set<String> getListenedVariables();

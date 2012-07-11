@@ -13,12 +13,12 @@
 // <-- Short Description -->
 // Under Scilex, the completion of paths is incorrect
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then pause, end
-ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
+ierr = exec(TMPDIR + "/completion/loader.sce","errcatch",-1);
 if ierr<>0 then pause, end
 
 

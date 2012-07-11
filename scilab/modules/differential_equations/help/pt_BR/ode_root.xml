@@ -12,16 +12,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode_root" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ode_root</refname>
     <refpurpose>solucionador de EDOs com busca de raízes</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-    <synopsis>y,rd[,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+    <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parâmemtros</title>
@@ -53,7 +50,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>rtol,atol</term>
+        <term>rtol, atol</term>
         <listitem>
           <para>constantes reais ou vetores reais com o mesmo tamanho que
             <literal>y</literal>.
@@ -67,7 +64,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>w,iw</term>
+        <term>w, iw</term>
         <listitem>
           <para>vetores de reais</para>
         </listitem>
@@ -103,7 +100,7 @@
       Se <literal>g</literal> é uma função, a sintaxe deve ser como
       segue:
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 z=g(t,y)
  ]]></programlisting>
     <para>
@@ -115,7 +112,7 @@ z=g(t,y)
       <literal>g(n,t,y,ng,gout)</literal> onde <literal>ng</literal> é o número
       de restrições e <literal>gout</literal> é o valor de <literal>g</literal>
       (saída do programa). Se <literal>g</literal> é uma lista, as mesmas
-      convenções para <literal>f</literal> se aplicam (ver ajuda de ode).
+      convenções para <literal>f</literal> se aplicam (ver ajuda de <link linkend="ode">ode</link>).
     </para>
     <para>
       A saída <literal>rd</literal> é um vetor <literal>1 x k</literal> .
@@ -126,7 +123,7 @@ z=g(t,y)
       atravessadas.
     </para>
     <para>Outros argumentos e opções são os mesmos que para
-      <literal>ode</literal>, ver a página de ajuda de ode.
+      <literal>ode</literal>, ver a página de ajuda de <link linkend="ode">ode</link>.
     </para>
   </refsection>
   <refsection>

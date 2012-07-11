@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="meof">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>meof</refname>
     <refpurpose>ファイルの終端に達したかどうかを確認する</refpurpose>
@@ -29,10 +26,12 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>スカラー. 関数 <literal>mopen</literal>により返された
-	<literal>fd</literal> パラメータ.
-	-1 は直近にオープンされたファイルを意味します.
-	デフォルト値は -1です.</para>
+          <para>
+            スカラー. 関数 <literal>mopen</literal>により返された
+            <literal>fd</literal> パラメータ.
+            -1 は直近にオープンされたファイルを意味します.
+            デフォルト値は -1です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,11 +45,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    関数 <literal>meof</literal> は,
-	<literal>mget</literal> または <literal>mgetstr</literal>のコールにより
-	ファイル終端に達している場合にヌル以外の値を返します.
-	関数 <literal>clearerr</literal> はエラーフラグおよびEOFフラグを 0 にリセットする
-	ために使用されます.</para>
+      関数 <literal>meof</literal> は,
+      <literal>mget</literal> または <literal>mgetstr</literal>のコールにより
+      ファイル終端に達している場合にヌル以外の値を返します.
+      関数 <literal>clearerr</literal> はエラーフラグおよびEOFフラグを 0 にリセットする
+      ために使用されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

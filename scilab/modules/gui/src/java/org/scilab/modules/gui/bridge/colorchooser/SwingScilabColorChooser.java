@@ -38,117 +38,115 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  */
 public class SwingScilabColorChooser extends JDialog implements SimpleColorChooser {
 
-        private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-        private static final int HGAP = 10;
-        private static final int VGAP = 2;
+    private static final int HGAP = 10;
+    private static final int VGAP = 2;
 
-        private int elementId;
+    private int elementId;
 
-        private Color selectedColor;
+    private Color selectedColor;
 
-        private final JColorChooser colorChooser;
+    private final JColorChooser colorChooser;
 
-        /**
-         * Default constructor
-         * @param color the default Color
-         */
-        public SwingScilabColorChooser(Color color) {
-                super(new JFrame(), "Color Chooser", true);
-        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+    /**
+     * Default constructor
+     * @param color the default Color
+     */
+    public SwingScilabColorChooser(Color color) {
+        super(new JFrame(), "Color Chooser", true);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-                getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        /* Color chooser panel */
+        JPanel chooserPanel = new JPanel(new BorderLayout());
+        chooserPanel.setBorder(new TitledBorder(new EtchedBorder(), "Color"));
+        colorChooser = new JColorChooser();
+        chooserPanel.add(colorChooser);
+        if (color != null) {
+            colorChooser.setColor(color);
+        }
 
-                /* Color chooser panel */
-                JPanel chooserPanel = new JPanel(new BorderLayout());
-                chooserPanel.setBorder(new TitledBorder(new EtchedBorder(), "Color"));
-                colorChooser = new JColorChooser();
-                chooserPanel.add(colorChooser);
-                if (color != null) {
-                        colorChooser.setColor(color);
-                }
+        getContentPane().add(chooserPanel);
 
-            getContentPane().add(chooserPanel);
+        ScilabSwingUtilities.closeOnEscape(this);
 
-            ScilabSwingUtilities.closeOnEscape(this);
+        /* Buttons panel */
+        JPanel buttonsContainer = new JPanel(new FlowLayout());
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 2, HGAP, VGAP));
 
-                /* Buttons panel */
-            JPanel buttonsContainer = new JPanel(new FlowLayout());
-            JPanel buttonsPanel = new JPanel(new GridLayout(1, 2, HGAP, VGAP));
-
-            JButton okButton = new JButton("Ok");
-            buttonsPanel.add(okButton);
-            getRootPane().setDefaultButton(okButton);
-            okButton.addActionListener(new ActionListener() {
-              @Override
+        JButton okButton = new JButton("Ok");
+        buttonsPanel.add(okButton);
+        getRootPane().setDefaultButton(okButton);
+        okButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 selectedColor = colorChooser.getColor();
                 dispose();
                 setVisible(false);
-              }
-            });
+            }
+        });
 
-            JButton canButton = new JButton("Cancel");
-            buttonsPanel.add(canButton);
-            canButton.addActionListener(new ActionListener() {
-              @Override
+        JButton canButton = new JButton("Cancel");
+        buttonsPanel.add(canButton);
+        canButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 selectedColor = null;
                 dispose();
                 setVisible(false);
-              }
-            });
+            }
+        });
 
-            buttonsContainer.add(buttonsPanel);
-            getContentPane().add(buttonsContainer);
+        buttonsContainer.add(buttonsPanel);
+        getContentPane().add(buttonsContainer);
 
-            pack();
+        pack();
 
-            setResizable(false);
-        }
+        setResizable(false);
+    }
 
-        /**
-         * Set the element id for this file chooser
-         * @param id the id of the corresponding color chooser object
-         */
-        @Override
-        public void setElementId(int id) {
-                this.elementId = id;
-        }
+    /**
+     * Set the element id for this file chooser
+     * @param id the id of the corresponding color chooser object
+     */
+    @Override
+    public void setElementId(int id) {
+        this.elementId = id;
+    }
 
-        /**
-         * Get the element id for this chooser
-         * @return id the id of the corresponding chooser object
-         */
-        @Override
-        public int getElementId() {
-                return this.elementId;
-        }
+    /**
+     * Get the element id for this chooser
+     * @return id the id of the corresponding chooser object
+     */
+    @Override
+    public int getElementId() {
+        return this.elementId;
+    }
 
-        /**
-         * Retrieve the selected color, or null
-         * @return the selected color
-         */
-        @Override
-        public Color getSelectedColor() {
-                return selectedColor;
-        }
+    /**
+     * Retrieve the selected color, or null
+     * @return the selected color
+     */
+    @Override
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
 
-        /**
-         * Set the default color
-         * @param color the default color
-         */
-        @Override
-        public void setDefaultColor(Color color) {
-                colorChooser.setColor(color);
-        }
+    /**
+     * Set the default color
+     * @param color the default color
+     */
+    @Override
+    public void setDefaultColor(Color color) {
+        colorChooser.setColor(color);
+    }
 
-        /**
-         * Display the font chooser and wait for a user input
-         */
-        @Override
-        public void displayAndWait() {
-                setVisible(true);
-        }
+    /**
+     * Display the font chooser and wait for a user input
+     */
+    @Override
+    public void displayAndWait() {
+        setVisible(true);
+    }
 
 }

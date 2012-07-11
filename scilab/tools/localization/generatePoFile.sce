@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Allan CORNET
-// Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2011-2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,57 +9,61 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function  generatePoFile(LANGUAGE)
-  PATH_GETTEXT_TOOLS = "/usr/bin/";
+  if getos() <> 'Windows' then
+    error(999, 'Used only under Windows');
+  end
+
+  if ~isdef('%c_a_c') then
+    exec('SCI/modules/overloading/macros/%c_a_c.sci');
+  end
+
   LC = "LC_MESSAGES";
   DEST_FILE_MO = SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC + filesep() + "scilab.mo";
   DEST_FILE_PO = strsubst(DEST_FILE_MO, "scilab.mo", "scilab.po");
   LC = "LC_MESSAGES";
-
-  if getos() == 'Windows' then
-    PATH_GETTEXT_TOOLS = SCI + filesep() + "tools/gettext";
-  end
+  PATH_GETTEXT_TOOLS = SCI + filesep() + "tools/gettext";
 
   // make destination directories
-
   if ~isdir(SCI + filesep() + "locale") then
-    mkdir(SCI, "locale");
+    createdir(SCI + filesep() + "locale");
   end
 
   if ~isdir(SCI + filesep() + "locale" + filesep() + LANGUAGE) then
-    mkdir(SCI + filesep() + "locale", LANGUAGE);
+    createdir(SCI + filesep() + "locale" + filesep() + LANGUAGE);
   end
 
   if ~isdir(SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC) then
-    mkdir(SCI + filesep() + "locale" + filesep() + LANGUAGE, LC);
+    createdir(SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC);
+  end
+
+  Modules = getmodules();
+  PATH_PO = SCI + filesep() + "modules" + filesep() + Modules + filesep() + "locales" + filesep();
+  if LANGUAGE ==  "en_US" then
+    FILENAME_PO = Modules + ".pot";
+  else
+    FILENAME_PO = LANGUAGE + ".po";
   end
 
   List_files = [];
-  j = 1;
-
-  for MODULE = getmodules()'
-    PATH_PO = SCI + filesep() + "modules" + filesep() + MODULE + filesep() + "locales" + filesep();
+  for k = 1:size(PATH_PO, '*')
     if LANGUAGE ==  "en_US" then
-      FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".pot";
+      if findfiles(PATH_PO(k), FILENAME_PO(k)) <> [] then
+        List_files = [List_files ; fullpath(PATH_PO(k) +  FILENAME_PO(k))];
+      end
     else
-      FULLFILENAMEPO = PATH_PO + filesep() + LANGUAGE + ".po";
-    end
-    FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
-
-    if FINDFULLFILENAMEPO <> [] then
-      if isfile(FINDFULLFILENAMEPO) then
-        ext = fileext(FINDFULLFILENAMEPO);
-        if ( ( ext == ".pot" ) | (ext == ".po") ) then
-          // '""' path windows with blank
-          List_files(j) = '""' + FINDFULLFILENAMEPO + '""';
-          j = j + 1;
-        end
+      if findfiles(PATH_PO(k), FILENAME_PO) <> [] then
+        List_files = [List_files ; fullpath(PATH_PO(k) +  FILENAME_PO)];
       end
     end
   end
 
   if (List_files <> []) then
-    unix(PATH_GETTEXT_TOOLS + filesep() + "msgcat -o " + DEST_FILE_PO + " " + strcat(List_files, " "));
-    unix(PATH_GETTEXT_TOOLS + filesep() + "msgfmt --statistics -o " + DEST_FILE_MO + " " + DEST_FILE_PO);
+    if newest([DEST_FILE_MO; List_files]) <> 1 then
+      cmdline_msgcat = PATH_GETTEXT_TOOLS + filesep() + "msgcat -o " + DEST_FILE_PO + " " + strcat("""" + List_files + """", " ");
+      unix(cmdline_msgcat);
+      cmline_msgfmt = PATH_GETTEXT_TOOLS + filesep() + "msgfmt --statistics -o " + DEST_FILE_MO + " " + DEST_FILE_PO;
+      unix(cmline_msgfmt);
+    end
   end
 
 endfunction
@@ -85,7 +89,7 @@ LANGUAGES = findLanguagesToBuild();
 mprintf("-- Build localization (.mo from .po) --\n");
 
 for L = LANGUAGES
-  mprintf("        -- Building for ""%s"" --\n", L);
+  mprintf("    -- Building for ""%s"" --\n", L);
   generatePoFile(L);
 end
 // ======================================

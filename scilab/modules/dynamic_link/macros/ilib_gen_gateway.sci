@@ -1,7 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
-// Copyright (C) DIGITEO - 2011 - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -64,60 +63,41 @@ function gateway_filename = ilib_gen_gateway(name,tables)
       nt = 3;
     end
 
-    prototype = '(char* fname, int* _piKey);';
-    addGWFunction = "addGatewayInContext";
-    if isdef("ismex") & ismex == %t then
-        prototype = '(int nlhs, int* plhs[], int nrhs, int* prhs[]);';
-        addGWFunction = "addMexGatewayInContext";
-    end
-
     if ( nt <> 3 ) then
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end
     [gate,names] = new_names(table);
     t = [
-            '#ifdef __cplusplus';
-            'extern ""C"" {';
-            '#endif';
-            '#include <wchar.h> ';
-            '#include ""mex.h"" ';
-            '#include ""sci_gateway.h""';
-            '#include ""api_scilab.h""';
-            '#include ""MALLOC.h""';
-            '#include ""addGatewayInContext.h""';
-            '';
-            '#define MODULE_NAME L""' + tname + '""';
-            '';
-            'extern int ' + names(:) + prototype;
-            '';
-            'int ' + tname + '(wchar_t* _pwstName)';
-            '{';
-            '   if(wcscmp(_pwstName, L""' + table(:,1) + '"") == 0){' + addGWFunction + '(L""' + table(:,1) + '"", &' + names(:) + ', MODULE_NAME);}';
-            '}'];
-        
-    old = [ 'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
-            'extern Gatefunc ' + names(:) + ';';
-            'static GenericTable Tab[]={';
-            '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
-            '};';
-            ' ';
-            'int C2F(' + tname + ')()';
-            '{';
-            '  Rhs = Max(0, Rhs);';
-            '  if (*(Tab[Fin-1].f) != NULL) '
-            '  {';
-            '     if(pvApiCtx == NULL)';
-            '     {'
-            '       pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));';
-            '     }';
-            '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
-            '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
-            '  }';
-            '  return 0;';
-            '}'
-            '#ifdef __cplusplus';
-            '}';
-            '#endif'];
+          '#ifdef __cplusplus';
+          'extern ""C"" {';
+          '#endif';
+          '#include <mex.h> ';
+          '#include <sci_gateway.h>';
+          '#include <api_scilab.h>';
+          '#include <MALLOC.h>';
+          'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
+          'extern Gatefunc ' + names(:) + ';';
+          'static GenericTable Tab[]={';
+          '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
+          '};';
+          ' ';
+          'int C2F(' + tname + ')()';
+          '{';
+          '  Rhs = Max(0, Rhs);';
+          '  if (*(Tab[Fin-1].f) != NULL) '
+          '  {';
+          '     if(pvApiCtx == NULL)';
+          '     {'
+          '       pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));';
+          '     }';
+          '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
+          '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+          '  }';
+          '  return 0;';
+          '}';
+          '#ifdef __cplusplus';
+          '}';
+          '#endif'];
 
     gateway_filename = path + tname + '.c';
     // first check if we have already a gateway

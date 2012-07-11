@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
- * 
+ * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="overloading" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>overloading</refname>
-    <refpurpose>display, functions and operators overloading capabilities</refpurpose>
+    <refpurpose>display, functions and operators overloading
+      capabilities
+    </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>In scilab, variable display, functions and operators may be defined for new objects using functions (scilab coded or primitives).</para>
+    <para>In scilab, variable display, functions and operators may be defined
+      for new objects using functions (scilab coded or primitives).
+    </para>
     <variablelist>
       <varlistentry>
         <term>Display</term>
@@ -59,9 +59,9 @@
     <para>extraction and insertion operators which are n-nary operators are
       described below.
     </para>
-    <para>Be careful, only the types registered by
-      the <literal>typename</literal> function can be used in an
-      overloading macros
+    <para>Be careful, only the types registered by the
+      <literal>typename</literal> function can be used in an overloading
+      macros
     </para>
     <para>
       <literal>&lt;operand_type&gt;</literal>,
@@ -71,9 +71,7 @@
     </para>
     <informaltable border="1">
       <tr>
-        <td>
-          data type
-        </td>
+        <td>data type</td>
         <td>char code</td>
         <td>typeof</td>
         <td>comments</td>
@@ -191,7 +189,7 @@
       <tr>
         <td>library</td>
         <td>
-          <literal>l</literal>
+          <literal>f</literal>
         </td>
         <td>
           <literal>library</literal>
@@ -296,7 +294,7 @@
         <td>
           <literal>size implicit</literal>
         </td>
-        <td>1:$</td>
+        <td>1:1:$</td>
       </tr>
     </informaltable>
     <para>
@@ -305,9 +303,9 @@
     </para>
     <informaltable border="1">
       <tr>
-        <td>op</td>
-        <td>char code</td>
-        <td>op</td>
+        <td>
+          <literal>op</literal>
+        </td>
         <td>char code</td>
       </tr>
       <tr>
@@ -315,13 +313,23 @@
           <literal>'</literal>
         </td>
         <td>t</td>
-        <td>+</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>+</literal>
+        </td>
         <td>a</td>
       </tr>
       <tr>
-        <td>-</td>
+        <td>
+          <literal>-</literal>
+        </td>
         <td>s</td>
-        <td>*</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>*</literal>
+        </td>
         <td>m</td>
       </tr>
       <tr>
@@ -329,7 +337,11 @@
           <literal>/</literal>
         </td>
         <td>r</td>
-        <td>\</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>\</literal>
+        </td>
         <td>l</td>
       </tr>
       <tr>
@@ -337,19 +349,35 @@
           <literal>^</literal>
         </td>
         <td>p</td>
-        <td>.*</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>.*</literal>
+        </td>
         <td>x</td>
       </tr>
       <tr>
-        <td>./</td>
+        <td>
+          <literal>./</literal>
+        </td>
         <td>d</td>
-        <td>.\</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>.\</literal>
+        </td>
         <td>q</td>
       </tr>
       <tr>
-        <td>.*.</td>
+        <td>
+          <literal>.*.</literal>
+        </td>
         <td>k</td>
-        <td>./.</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>./.</literal>
+        </td>
         <td>y</td>
       </tr>
       <tr>
@@ -357,13 +385,23 @@
           <literal>.\.</literal>
         </td>
         <td>z</td>
-        <td>:</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>:</literal>
+        </td>
         <td>b</td>
       </tr>
       <tr>
-        <td>*.</td>
+        <td>
+          <literal>*.</literal>
+        </td>
         <td>u</td>
-        <td>/.</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>/.</literal>
+        </td>
         <td>v</td>
       </tr>
       <tr>
@@ -371,82 +409,132 @@
           <literal>\.</literal>
         </td>
         <td>w</td>
-        <td>[a,b]</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>[a,b]</literal>
+        </td>
         <td>c</td>
       </tr>
       <tr>
-        <td>[a;b]</td>
+        <td>
+          <literal>[a;b]</literal>
+        </td>
         <td>f</td>
-        <td>() extraction</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>() extraction</literal>
+        </td>
         <td>e</td>
       </tr>
       <tr>
-        <td>() insertion</td>
+        <td>
+          <literal>() insertion</literal>
+        </td>
         <td>i</td>
-        <td>==</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>==</literal>
+        </td>
         <td>o</td>
       </tr>
       <tr>
-        <td>&lt;&gt;</td>
+        <td>
+          <literal>&lt;&gt;</literal>
+        </td>
         <td>n</td>
-        <td>|</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>|</literal>
+        </td>
         <td>g</td>
       </tr>
       <tr>
-        <td>&amp;</td>
+        <td>
+          <literal>&amp;</literal>
+        </td>
         <td>h</td>
+      </tr>
+      <tr>
         <td>
           <literal>.^</literal>
         </td>
         <td>j</td>
       </tr>
       <tr>
-        <td>~</td>
-        <td>5</td>
-        <td>.'</td>
+        <td>
+          <literal>.'</literal>
+        </td>
         <td>0</td>
       </tr>
       <tr>
-        <td>&lt;</td>
+        <td>
+          <literal>&lt;</literal>
+        </td>
         <td>1</td>
-        <td>&gt;</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>&gt;</literal>
+        </td>
         <td>2</td>
       </tr>
       <tr>
-        <td>&lt;=</td>
+        <td>
+          <literal>&lt;=</literal>
+        </td>
         <td>3</td>
-        <td>&gt;=</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>&gt;=</literal>
+        </td>
         <td>4</td>
       </tr>
       <tr>
-        <td/>
-        <td/>
-        <td>iext</td>
+        <td>
+          <literal>~</literal>
+        </td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>iext</literal>
+        </td>
         <td>6</td>
       </tr>
     </informaltable>
-    <para>The overloading function for extraction syntax
-      <literal>b=a(i1,...,in)</literal> has the following calling sequence:
-      <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+    <para>
+      The overloading function for extraction syntax <literal>b= a(i1,
+        ..., in)
+      </literal>
+      has the following calling sequence: <literal>b =
+        %&lt;type_of_a&gt;_e_(i1, ..., in, a)
+      </literal>
     </para>
     <para>
-      and the syntax <literal>[x1,..,xm]=a(i1,...,in)</literal> has the
-      following calling sequence:
-      <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+      and the syntax <literal>[x1, .., xm] = a(i1, ..., in)</literal> has
+      the following calling sequence: <literal>[x1, .., xm] =
+        %&lt;type_of_a&gt;_e_(i1, ..., in, a)
+      </literal>
     </para>
-    <para/>
     <para>The overloading function associated to the insertion syntax
-      <literal>a(i1,...,in)=b</literal> has the following calling sequence:
-      <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>.
+      <literal>a(i1, ..., in) = b</literal> has the following calling sequence:
+      <literal>a = %&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1, ..., in, b,
+        a)
+      </literal>
+      .
     </para>
-    <para/>
     <para>
       The <literal>6</literal> char code may be used for some complex
-      insertion algorithm like <literal>x.b(2)=33</literal> where
+      insertion algorithm like <literal>x.b(2) = 33</literal> where
       <literal>b</literal> field is not defined in the structure
       <literal>x</literal>. The insertion is automatically decomposed into
-      <literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
-      <literal>x.b=temp</literal>. The <literal>6</literal> char code is used
+      <literal>temp = x.b;</literal> <literal>temp(2) = 33;</literal>
+      <literal>x.b = temp</literal>. The <literal>6</literal> char code is used
       for the first step of this algorithm. The <literal>6</literal> overloading
       function is very similar to the <literal>e</literal>'s one.
     </para>
@@ -467,19 +555,33 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-//DISPLAY
-deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
-tlist('tab',['a','b'],['x';'y'],rand(2,2))
-
-//OPERATOR
-deff('x=%c_a_s(a,b)','x=a+string(b)')
-'s'+1
-
-//FUNCTION
-deff('x=%c_sin(a)','x=''sin(''+a+'')''')
-sin('2*x')
- ]]></programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//DISPLAY
+      function [] = %tab_p(l)
+      disp([[' '; l(3)] [l(2); string(l(4))]])
+      endfunction
+      
+      tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2))
+    </programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//OPERATOR
+      function x = %c_a_s(a, b)
+      x = a + string(b);
+      endfunction
+      
+      's' + 1
+    </programlisting>
+  </refsection>
+  <refsection>
+    <programlisting role="example">//FUNCTION
+      function x = %c_sin(a)
+      x = 'sin(' + a + ')'
+      endfunction
+      
+      sin('2 * x')
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

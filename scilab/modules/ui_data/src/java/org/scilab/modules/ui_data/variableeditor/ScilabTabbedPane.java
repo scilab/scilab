@@ -49,16 +49,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 
 /**
  * Class for a tabbedpane with close-button
  * @author Calixte DENIZET
  */
 public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
-                                                             DragSourceListener,
-                                                             DropTargetListener,
-                                                             Transferable {
+    DragSourceListener,
+    DropTargetListener,
+    Transferable {
 
     private static final ImageIcon CLOSEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab.png");
     private static final int BUTTONSIZE = 18;
@@ -85,11 +85,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         DragSource dragsource = DragSource.getDefaultDragSource();
         dragsource.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, this);
         DropTarget droptarget = new DropTarget(this, this);
-	addFocusListener(new FocusAdapter() {
-		public void focusGained(FocusEvent e) {
-		    ((JScrollPane) getComponentAt(getSelectedIndex())).getViewport().getView().requestFocus();
-		}
-	    });
+        addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent e) {
+                if (getSelectedIndex() > 0) {
+                    ((JScrollPane) getComponentAt(getSelectedIndex())).getViewport().getView().requestFocus();
+                }
+            }
+        });
     }
 
     /**
@@ -162,7 +164,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      * @return the supported flavors
      */
     public DataFlavor[] getTransferDataFlavors() {
-        return new DataFlavor[]{DATAFLAVOR};
+        return new DataFlavor[] {DATAFLAVOR};
     }
 
     /**
@@ -370,13 +372,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setRolloverEnabled(true);
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
-                addActionListener(new CallBack("") {
-                        public void callBack() {
-                            String name = CloseTabButton.this.getText().substring(SwingScilabVariableEditor.PREFIX.length());
-                            removeTabAt(indexOfTabComponent(CloseTabButton.this));
-                            ScilabVariableEditor.close(name);
-                        }
-                    });
+                addActionListener(new CommonCallBack("") {
+                    public void callBack() {
+                        String name = CloseTabButton.this.getText().substring(SwingScilabVariableEditor.PREFIX.length());
+                        removeTabAt(indexOfTabComponent(CloseTabButton.this));
+                        ScilabVariableEditor.close(name);
+                    }
+                });
             }
         }
     }

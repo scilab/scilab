@@ -1,0 +1,18 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+
+ callFunctionFromGateway
+ com_
+ putlhsvar_
+ intersci_
+ createvarfromptr_ 
+ stack_
+ getrhsvar_
+ gettype_
+ vstk_
+ checklhs_
+ checkrhs_
+ createvar_
+ freeArrayOfString 

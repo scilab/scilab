@@ -21,12 +21,14 @@ import java.util.Vector;
 import javax.swing.event.EventListenerList;
 
 /**
- * Class to handle the Scilab data retrievment and conversion to a ScilabType object.
- * All the functions sendFoo are used from C++ and should not be used on the Java side.
+ * Class to handle the Scilab data retrievment and conversion to a ScilabType
+ * object. All the functions sendFoo are used from C++ and should not be used on
+ * the Java side.
  *
- * An handler which implements ScilabVariablesHandler must be used to achieve the retrievment.
- * The id returned by addScilabVariablesHandler must be passed from C/C++ to functions in the
- * class org_modules_types::ScilabToJava to guarantee that the correct handler would receive its datas.
+ * An handler which implements ScilabVariablesHandler must be used to achieve
+ * the retrievment. The id returned by addScilabVariablesHandler must be passed
+ * from C/C++ to functions in the class org_modules_types::ScilabToJava to
+ * guarantee that the correct handler would receive its datas.
  */
 public final class ScilabVariables {
 
@@ -35,7 +37,9 @@ public final class ScilabVariables {
 
     /**
      * Register a new handler
-     * @param handler the handler
+     *
+     * @param handler
+     *            the handler
      * @return the id to use from C/C++
      */
     public static final int addScilabVariablesHandler(ScilabVariablesHandler handler) {
@@ -56,7 +60,9 @@ public final class ScilabVariables {
 
     /**
      * Unregister an handler (the id must be considered as lost !!)
-     * @param handler the handler to remove
+     *
+     * @param handler
+     *            the handler to remove
      */
     public static final void removeScilabVariablesHandler(ScilabVariablesHandler handler) {
         if (handler != null) {
@@ -69,8 +75,11 @@ public final class ScilabVariables {
     }
 
     /**
-     * Unregister an handler with a given id (the id must be considered as lost !!)
-     * @param id the handler id to remove
+     * Unregister an handler with a given id (the id must be considered as lost
+     * !!)
+     *
+     * @param id
+     *            the handler id to remove
      */
     public static final void removeScilabVariablesHandler(int id) {
         if (id >= 0 && id < handlers.size()) {
@@ -80,11 +89,18 @@ public final class ScilabVariables {
 
     /**
      * Send double matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, double[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -96,12 +112,20 @@ public final class ScilabVariables {
 
     /**
      * Send complex matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param real the real data
-     * @param img the imaginary data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param real
+     *            the real data
+     * @param img
+     *            the imaginary data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, double[][] real, double[][] img, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -113,11 +137,18 @@ public final class ScilabVariables {
 
     /**
      * Send int32 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, int[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -129,11 +160,18 @@ public final class ScilabVariables {
 
     /**
      * Send uint16 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendUnsignedData(String varName, int[] indexes, short[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -145,11 +183,18 @@ public final class ScilabVariables {
 
     /**
      * Send int16 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, short[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -161,11 +206,18 @@ public final class ScilabVariables {
 
     /**
      * Send uint8 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendUnsignedData(String varName, int[] indexes, byte[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -177,11 +229,18 @@ public final class ScilabVariables {
 
     /**
      * Send boolean matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, boolean[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -193,11 +252,18 @@ public final class ScilabVariables {
 
     /**
      * Send int8 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, byte[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -209,11 +275,18 @@ public final class ScilabVariables {
 
     /**
      * Send int64 or uint64 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, long[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -225,11 +298,18 @@ public final class ScilabVariables {
 
     /**
      * Send uint32 matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendUnsignedData(String varName, int[] indexes, int[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -241,11 +321,18 @@ public final class ScilabVariables {
 
     /**
      * Send string matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, String[][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -257,15 +344,26 @@ public final class ScilabVariables {
 
     /**
      * Send double sparse matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param row the row number
-     * @param col the col number
-     * @param nbItem the number of non null elements
-     * @param nbItemRow the number by row of non null elements
-     * @param colPos the column position of the non null elements
-     * @param data the data
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param row
+     *            the row number
+     * @param col
+     *            the col number
+     * @param nbItem
+     *            the number of non null elements
+     * @param nbItemRow
+     *            the number by row of non null elements
+     * @param colPos
+     *            the column position of the non null elements
+     * @param data
+     *            the data
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, int row, int col, int nbItem, int[] nbItemRow, int[] colPos, double[] data, int handlerId) {
         if (indexes.length != 0) {
@@ -277,18 +375,31 @@ public final class ScilabVariables {
 
     /**
      * Send double sparse matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param row the row number
-     * @param col the col number
-     * @param nbItem the number of non null elements
-     * @param nbItemRow the number by row of non null elements
-     * @param colPos the column position of the non null elements
-     * @param real the real data
-     * @param imag the imaginary data
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param row
+     *            the row number
+     * @param col
+     *            the col number
+     * @param nbItem
+     *            the number of non null elements
+     * @param nbItemRow
+     *            the number by row of non null elements
+     * @param colPos
+     *            the column position of the non null elements
+     * @param real
+     *            the real data
+     * @param imag
+     *            the imaginary data
+     * @param handlerId
+     *            the handler id
      */
-    public static final void sendData(String varName, int[] indexes, int row, int col, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag, int handlerId) {
+    public static final void sendData(String varName, int[] indexes, int row, int col, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag,
+                                      int handlerId) {
         if (indexes.length != 0) {
             addElement(indexes, new ScilabSparse(null, row, col, nbItem, nbItemRow, colPos, real, imag));
         } else {
@@ -298,14 +409,24 @@ public final class ScilabVariables {
 
     /**
      * Send boolean sparse matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param row the row number
-     * @param col the col number
-     * @param nbItem the number of true elements
-     * @param nbItemRow the number by row of true elements
-     * @param colPos the column position of the true elements
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param row
+     *            the row number
+     * @param col
+     *            the col number
+     * @param nbItem
+     *            the number of true elements
+     * @param nbItemRow
+     *            the number by row of true elements
+     * @param colPos
+     *            the column position of the true elements
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, int row, int col, int nbItem, int[] nbItemRow, int[] colPos, int handlerId) {
         if (indexes.length != 0) {
@@ -317,12 +438,20 @@ public final class ScilabVariables {
 
     /**
      * Send double polynomial matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param polyVarName the polynomial variable name
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param polyVarName
+     *            the polynomial variable name
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendPolynomial(String varName, int[] indexes, String polyVarName, double[][][] data, boolean swaped, int handlerId) {
         if (indexes.length != 0) {
@@ -334,15 +463,25 @@ public final class ScilabVariables {
 
     /**
      * Send complex polynomial matrix
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param polyVarName the polynomial variable name
-     * @param real the real data
-     * @param img the imaginary data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param polyVarName
+     *            the polynomial variable name
+     * @param real
+     *            the real data
+     * @param img
+     *            the imaginary data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
      */
-    public static final void sendPolynomial(String varName, int[] indexes, String polyVarName, double[][][] real, double[][][] img, boolean swaped, int handlerId) {
+    public static final void sendPolynomial(String varName, int[] indexes, String polyVarName, double[][][] real, double[][][] img, boolean swaped,
+                                            int handlerId) {
         if (indexes.length != 0) {
             addElement(indexes, new ScilabPolynomial(null, polyVarName, real, img, swaped));
         } else {
@@ -352,10 +491,17 @@ public final class ScilabVariables {
 
     /**
      * Send list, tlist and mlist
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param type a char which must take the values 'l' for list or 'm' for mlist or 't' for tlist
-     * @param handlerId the handler id
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param type
+     *            a char which must take the values 'l' for list or 'm' for
+     *            mlist or 't' for tlist
+     * @param handlerId
+     *            the handler id
      */
     public static final void sendData(String varName, int[] indexes, char type, int handlerId) {
         String name = null;
@@ -365,13 +511,13 @@ public final class ScilabVariables {
 
         ScilabType var = null;
         switch (type) {
-            case 'l' :
+            case 'l':
                 var = new ScilabList(name);
                 break;
-            case 'm' :
+            case 'm':
                 var = new ScilabMList(name);
                 break;
-            case 't' :
+            case 't':
                 var = new ScilabTList(name);
                 break;
         }
@@ -384,9 +530,11 @@ public final class ScilabVariables {
     }
 
     /**
-     * Call when the list filling is finished
-    a     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param handlerId the handler id
+     * Call when the list filling is finished a * @param indexes an integer
+     * array with the indexes of the (sub)*-list which will contain the data
+     *
+     * @param handlerId
+     *            the handler id
      */
     public static final void closeList(int[] indexes, int handlerId) {
         Thread t = Thread.currentThread();
@@ -399,8 +547,11 @@ public final class ScilabVariables {
 
     /**
      * Add an element to the list
-     * @param indexes the indexes where to put the variable
-     * @param var the variable to put
+     *
+     * @param indexes
+     *            the indexes where to put the variable
+     * @param var
+     *            the variable to put
      */
     private static final void addElement(int[] indexes, ScilabType data) {
         ArrayList<ScilabType> list = lists.get(Thread.currentThread());

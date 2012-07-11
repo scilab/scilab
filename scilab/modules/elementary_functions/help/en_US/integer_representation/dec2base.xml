@@ -11,11 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>dec2base</refname>
     <refpurpose>Convert decimal to base N number in string</refpurpose>
@@ -23,7 +18,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>str = dec2base(d, base)</synopsis>
-    <synopsis>str = dec2basedec2base(d, base, n)</synopsis>
+    <synopsis>str = dec2base(d, base, n)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -51,16 +46,16 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>str = dec2base(d, base)</literal> converts the nonnegative integer d to the specified base <literal>base</literal>.
+      <literal>str = dec2base(d, base)</literal> converts the nonnegative integer values of <literal>d</literal> to the specified base <literal>base</literal>.
     </para>
     <para>
-      <literal>d</literal> must be a nonnegative integer smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
+      <literal>d</literal> must have a nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
     </para>
     <para>
-      The returned argument <literal>str</literal> is a string.
+      The returned argument <literal>str</literal> is a matrix of strings.
     </para>
     <para>
-      <literal>str = dec2base(d, base, n)</literal> produces a representation with at least n digits.
+      <literal>str = dec2base(d, base, n)</literal> produces a representation with at least <literal>n</literal> digits.
     </para>
   </refsection>
   <refsection>

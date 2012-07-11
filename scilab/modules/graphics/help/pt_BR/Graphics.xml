@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Graphics" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>Graphics</refname>
     <refpurpose>Resumo da biblioteca de gráficos</refpurpose>
@@ -531,12 +528,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xs2fig</term>
-        <listitem>
-          <para>envia gráficos para um arquivo em sintaxe Xfig</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xs2gif</term>
         <listitem>
           <para>envia gráficos a um arquivo em sintaxe GIF</para>
@@ -659,12 +650,6 @@
         <term>gr_menu</term>
         <listitem>
           <para>editor gráfico interativo simples</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sd2sci</term>
-        <listitem>
-          <para>estrutura gr_menu para conversor de instrução Scilab</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.Set;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -47,6 +48,8 @@ public class MatchingBlockManager {
     private boolean ocIncluded;
     private boolean kwIncluded;
     private boolean lr;
+    private boolean isOCMouseover;
+    private boolean isKWMouseover;
     private MouseOverMatcher mouseover;
 
     /**
@@ -104,15 +107,13 @@ public class MatchingBlockManager {
      * The contents between the matchings is highlighted.
      **/
     public void setPainterForOpenClose() {
-        Parameters param = ConfigSciNotesManager.getDefaultForMatcher("OpenCloseHighlighter");
-        if (param.inside) {
-            boolean b = param.type == ScilabKeywordsPainter.FILLED;
-            setPainterForOpenClose(b, param.included, param.color);
-        } else {
-            setPainterForOpenClose(param.type, param.color);
-        }
-        if (param.onmouseover) {
+        setPainterForOpenClose(SciNotesOptions.getSciNotesDisplay().bracketsHighlightment, SciNotesOptions.getSciNotesDisplay().bracketsColor);
+        if (SciNotesOptions.getSciNotesDisplay().bracketsOnmouseover) {
+            isOCMouseover = true;
             activateMouseOver();
+        } else {
+            isOCMouseover = false;
+            disableMouseOver();
         }
     }
 
@@ -149,15 +150,13 @@ public class MatchingBlockManager {
      * The contents between the matchings is highlighted.
      **/
     public void setPainterForKeywords() {
-        Parameters param = ConfigSciNotesManager.getDefaultForMatcher("KeywordsHighlighter");
-        if (param.inside) {
-            boolean b = param.type == ScilabKeywordsPainter.FILLED;
-            setPainterForKeywords(b, param.strict, param.included, param.color);
-        } else {
-            setPainterForKeywords(param.type, param.color);
-        }
-        if (param.onmouseover) {
+        setPainterForKeywords(SciNotesOptions.getSciNotesDisplay().keywordsHighlightment == ScilabKeywordsPainter.FILLED, true, false, SciNotesOptions.getSciNotesDisplay().keywordsColor);
+        if (SciNotesOptions.getSciNotesDisplay().keywordsOnmouseover) {
+            isKWMouseover = true;
             activateMouseOver();
+        } else {
+            isKWMouseover = false;
+            disableMouseOver();
         }
     }
 
@@ -165,8 +164,18 @@ public class MatchingBlockManager {
      * Set the defaults from scinotesConfiguration.xml
      */
     public void setDefaults() {
-        setPainterForKeywords();
-        setPainterForOpenClose();
+        if (SciNotesOptions.getSciNotesDisplay().highlightKeywords) {
+            setPainterForKeywords();
+        }
+        if (SciNotesOptions.getSciNotesDisplay().highlightBrackets) {
+            setPainterForOpenClose();
+        }
+    }
+
+    public void configurationChanged(SciNotesConfiguration.Conf conf) {
+        if (conf.display) {
+            setDefaults();
+        }
     }
 
     /**
@@ -177,6 +186,16 @@ public class MatchingBlockManager {
             mouseover = new MouseOverMatcher();
         }
         pane.addKeywordListener(mouseover);
+    }
+
+    /**
+     * Activate this MatchingBlockManager to listen to the KeywordEvent generate by a MouseOver.
+     */
+    public void disableMouseOver() {
+        if (mouseover != null && !isOCMouseover && !isKWMouseover) {
+            pane.removeKeywordListener(mouseover);
+            mouseover = null;
+        }
     }
 
     /**
@@ -192,7 +211,7 @@ public class MatchingBlockManager {
     /**
      * Remove the highlights if they exist.
      */
-    private void update() {
+    private synchronized void update() {
         if (first != null) {
             highlighter.removeHighlight(first);
             first = null;
@@ -208,24 +227,26 @@ public class MatchingBlockManager {
      * @param tok the type of the token at the position pos in the document
      * @param pos the positon in the doc
      */
-    public void searchMatchingBlock(int tok, int pos) {
+    public synchronized void searchMatchingBlock(boolean isMouse, int tok, int pos) {
         MatchingBlockScanner.MatchingPositions mpos = null;
         if (ScilabLexerConstants.isMatchable(tok)) {
             mpos = scanner.getMatchingBlock(pos, lr);
         }
         if (mpos != this.smpos) {
             this.smpos = mpos;
-            if (first != null) {
-                highlighter.removeHighlight(first);
-                if (second != null) {
-                    highlighter.removeHighlight(second);
+            try {
+                if (first != null) {
+                    highlighter.removeHighlight(first);
+                    if (second != null) {
+                        highlighter.removeHighlight(second);
+                    }
                 }
-            }
-            if (mpos != null && ScilabLexerConstants.isOpenClose(tok)) {
-                createHighlights(mpos, insideOc, ocIncluded, ocPainter);
-            } else if (mpos != null) {
-                createHighlights(mpos, insideKw, kwIncluded, kwPainter);
-            }
+                if (mpos != null && ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
+                    createHighlights(mpos, insideOc, ocIncluded, ocPainter);
+                } else if (mpos != null && kwPainter != null && (!isMouse || isKWMouseover)) {
+                    createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                }
+            } catch (NullPointerException e) { }
         }
     }
 
@@ -361,20 +382,20 @@ public class MatchingBlockManager {
                                 Shape bounds, JTextComponent c, View view) {
             try {
                 Rectangle r = (Rectangle) view.modelToView(offs0, Position.Bias.Forward,
-                                                           offs1, Position.Bias.Backward, bounds);
+                              offs1, Position.Bias.Backward, bounds);
                 g.setColor(color);
 
                 switch (type) {
-                case UNDERLINED :
-                    g.drawLine(r.x, r.y + r.height - 1, r.x + r.width - 1, r.y + r.height - 1);
-                    return r;
-                case FRAMED :
-                    g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
-                    return r;
-                case FILLED :
-                default :
-                    g.fillRect(r.x, r.y, r.width, r.height);
-                    return r;
+                    case UNDERLINED :
+                        g.drawLine(r.x, r.y + r.height - 1, r.x + r.width - 1, r.y + r.height - 1);
+                        return r;
+                    case FRAMED :
+                        g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
+                        return r;
+                    case FILLED :
+                    default :
+                        g.fillRect(r.x, r.y, r.width, r.height);
+                        return r;
                 }
             } catch (BadLocationException e) {
                 return null;
@@ -490,9 +511,9 @@ public class MatchingBlockManager {
          */
         public void caughtKeyword(KeywordEvent e) {
             if (lr) {
-                searchMatchingBlock(e.getType(), e.getStart());
+                searchMatchingBlock(true, e.getType(), e.getStart());
             } else {
-                searchMatchingBlock(e.getType(), e.getStart() + e.getLength());
+                searchMatchingBlock(true, e.getType(), e.getStart() + e.getLength());
             }
         }
     }

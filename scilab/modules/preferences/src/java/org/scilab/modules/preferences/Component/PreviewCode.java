@@ -24,6 +24,7 @@ import javax.swing.text.DefaultCaret;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
@@ -60,40 +61,41 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.setEditorKit(kit);
         previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
-            + "// Email: <scilab.support@scilab.org>\n"
-            + "// Scilab editor: http://www.scilab.org/\n"
-            + "//\n"
-            + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
-            + "function [a, b] = myfunction(d, e, f)\n"
-            + "\ta = 2.71828 + %pi + f($, :);\n"
-            + "\tb = cos(a) + cosh(a);\n"
-            + "\tif d == e then\n"
-            + "\t\tb = 10 - e.field;\n"
-            + "\telse\n"
-            + "\t\tb = \"\t\ttest     \" + home\n"
-            + "\t\treturn\n"
-            + "\tend\n"
-            + "\tmyvar = 1.23e-45;\n"
-            + "endfunction";
+                            + "// Email: <scilab.support@scilab.org>\n"
+                            + "// Scilab editor: http://www.scilab.org/\n"
+                            + "//\n"
+                            + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
+                            + "function [a, b] = myfunction(d, e, f)\n"
+                            + "\ta = 2.71828 + %pi + f($, :);\n"
+                            + "\tb = cos(a) + cosh(a);\n"
+                            + "\tif d == e then\n"
+                            + "\t\tb = 10 - e.field;\n"
+                            + "\telse\n"
+                            + "\t\tb = \"\t\ttest     \" + home\n"
+                            + "\t\treturn\n"
+                            + "\tend\n"
+                            + "\tmyvar = 1.23e-45;\n"
+                            + "endfunction";
         previewEditorPane.setText(codeSample);
         previewEditorPane.setCaret(new DefaultCaret() {
-                public void mouseDragged(MouseEvent e) {
-                    e.consume();
-                }
-            });
+            public void mouseDragged(MouseEvent e) {
+                e.consume();
+            }
+        });
+        previewEditorPane.setBackground(Color.WHITE);
         previewEditorPane.getCaret().setBlinkRate(500);
         previewEditorPane.getCaret().setVisible(true);
         previewEditorPane.setEditable(false);
         previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
-                public void caughtKeyword(KeywordEvent e) {
-                    previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
-                }
-            });
+            public void caughtKeyword(KeywordEvent e) {
+                previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
+            }
+        });
         previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
-                public void caughtKeyword(KeywordEvent e) {
-                    PreviewCode.this.keywordClicked(e);
-                }
-            });
+            public void caughtKeyword(KeywordEvent e) {
+                PreviewCode.this.keywordClicked(e);
+            }
+        });
         JScrollPane scrollPane = new JScrollPane(previewEditorPane);
         previewEditorPane.setRequestFocusEnabled(true);
         previewEditorPane.setFocusable(true);
@@ -164,7 +166,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         if (actionListener != null) {
             int choosedIndex = e.getType();
             chosenItem = ScilabLexerConstants.getStringRep(choosedIndex);
-            ActionEvent transmit  = new ActionEvent(this, 0,"Keyword changed", System.currentTimeMillis(), 0);
+            ActionEvent transmit  = new ActionEvent(this, 0, "Keyword changed", System.currentTimeMillis(), 0);
             actionListener.actionPerformed(transmit);
         }
     }

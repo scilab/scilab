@@ -13,7 +13,6 @@
 #include <string.h>
 #include <jni.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "sci_types.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -22,10 +21,10 @@
 extern "C" {
 #endif
 
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
     SciErr sendList(JNIEnv * jenv, jobject list, int * parentList, int pos, char * varName, char listType);
     JNIEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putList(JNIEnv *jenv, jclass cl, jstring jvarName, jobject list, jchar type);
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
 
     JNIEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putList(JNIEnv *jenv, jclass cl, jstring jvarName, jobject list, jchar type)
     {
@@ -54,15 +53,15 @@ extern "C" {
         {
             switch (listType)
             {
-            case 'l' :
-                sciErr = createListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
-                break;
-            case 't' :
-                sciErr = createTListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
-                break;
-            case 'm' :
-                sciErr = createMListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
-                break;
+                case 'l' :
+                    sciErr = createListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
+                    break;
+                case 't' :
+                    sciErr = createTListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
+                    break;
+                case 'm' :
+                    sciErr = createMListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
+                    break;
             }
         }
         else
@@ -70,15 +69,15 @@ extern "C" {
             //cleanStackListAddress();
             switch (listType)
             {
-            case 'l' :
-                sciErr = createNamedList(NULL, varName, listLen - 1, &currentList);
-                break;
-            case 't' :
-                sciErr = createNamedTList(NULL, varName, listLen - 1, &currentList);
-                break;
-            case 'm' :
-                sciErr = createNamedMList(NULL, varName, listLen - 1, &currentList);
-                break;
+                case 'l' :
+                    sciErr = createNamedList(NULL, varName, listLen - 1, &currentList);
+                    break;
+                case 't' :
+                    sciErr = createNamedTList(NULL, varName, listLen - 1, &currentList);
+                    break;
+                case 'm' :
+                    sciErr = createNamedMList(NULL, varName, listLen - 1, &currentList);
+                    break;
             }
         }
 
@@ -95,7 +94,7 @@ extern "C" {
         {
             switch (types[i])
             {
-            case sci_matrix :
+                case sci_matrix :
                 {
                     int nbCol = 0;
                     int j = 0, k = 0;
@@ -189,21 +188,35 @@ extern "C" {
                     (*jenv)->DeleteLocalRef(jenv, infos);
                     break;
                 }
-            case sci_poly :
+                case sci_poly :
                 {
                     jobjectArray infos = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, list, i + 1);
-                    int isReal = (*jenv)->GetArrayLength(jenv, infos) == 2;
-                    jstring js = (jstring)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
-                    char * polyVarName = (char*)(*jenv)->GetStringUTFChars(jenv, js, 0);
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
-
                     int nbRow = (*jenv)->GetArrayLength(jenv, data);
+                    int isReal = 0;
+                    jstring js;
+                    char * polyVarName = NULL;
                     int nbCol = 0;
-                    int j = 0, k;
-                    double ** real = 0;
-                    double ** imag = 0;
-                    int * nbCoef = 0;
+                    int j = 0, k = 0;
+                    double ** real = NULL;
+                    double ** imag = NULL;
+                    int * nbCoef = NULL;
 
+                    if (!data || nbRow == 0)
+                    {
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                        if (!data)
+                        {
+                            (*jenv)->DeleteLocalRef(jenv, data);
+                        }
+                        (*jenv)->DeleteLocalRef(jenv, infos);
+                        break;
+                    }
+
+                    isReal = (*jenv)->GetArrayLength(jenv, infos) == 2;
+                    js = (jstring)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
+                    polyVarName = (char*)(*jenv)->GetStringUTFChars(jenv, js, 0);
+                 
                     if (isReal)
                     {
                         // Get the matrix rows
@@ -302,13 +315,23 @@ extern "C" {
                     (*jenv)->DeleteLocalRef(jenv, infos);
                     break;
                 }
-            case sci_boolean :
+                case sci_boolean :
                 {
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     int nbRow = (*jenv)->GetArrayLength(jenv, data);
                     int nbCol = 0;
                     int j = 0, k;
                     int * b = 0;
+
+                    if (!data || nbRow == 0)
+                    {
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                        if (!data)
+                        {
+                            (*jenv)->DeleteLocalRef(jenv, data);
+                        }
+                        break;
+                    }
 
                     // Get the matrix rows
                     for (; j < nbRow; j++)
@@ -338,7 +361,7 @@ extern "C" {
                     FREE(b);
                     break;
                 }
-            case sci_sparse :
+                case sci_sparse :
                 {
                     jboolean isCopy1 = JNI_FALSE;
                     int* dims = NULL;
@@ -402,7 +425,7 @@ extern "C" {
 
                     break;
                 }
-            case sci_boolean_sparse :
+                case sci_boolean_sparse :
                 {
                     jobjectArray infos = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     jintArray jdims = (jintArray)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
@@ -434,7 +457,7 @@ extern "C" {
 
                     break;
                 }
-            case sci_ints :
+                case sci_ints :
                 {
                     jobjectArray infos = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     jintArray jtype = (jintArray)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
@@ -446,13 +469,23 @@ extern "C" {
 
                     switch (type)
                     {
-                    case sci_int8 :
+                        case sci_int8 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             char * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -482,13 +515,23 @@ extern "C" {
                             FREE(data);
                             break;
                         }
-                    case sci_uint8 :
+                        case sci_uint8 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             unsigned char * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -519,13 +562,23 @@ extern "C" {
 
                             break;
                         }
-                    case sci_int16 :
+                        case sci_int16 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             short * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -556,13 +609,23 @@ extern "C" {
 
                             break;
                         }
-                    case sci_uint16 :
+                        case sci_uint16 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             unsigned short * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -593,13 +656,23 @@ extern "C" {
 
                             break;
                         }
-                    case sci_int32 :
+                        case sci_int32 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             int * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -630,13 +703,23 @@ extern "C" {
 
                             break;
                         }
-                    case sci_uint32 :
+                        case sci_uint32 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             unsigned int * data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -668,13 +751,23 @@ extern "C" {
                             break;
                         }
 #ifdef __SCILAB_INT64__
-                    case sci_int64 :
+                        case sci_int64 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
                             long long* data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -687,7 +780,7 @@ extern "C" {
                                     nbCol = (*jenv)->GetArrayLength(jenv, oneDim);
                                     data = (long long*)MALLOC(sizeof(long long) * nbRow * nbCol);
                                 }
-
+                                isCopy1 = JNI_FALSE;
                                 element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
 
                                 // Get the matrix element
@@ -705,13 +798,23 @@ extern "C" {
 
                             break;
                         }
-                    case sci_uint64 :
+                        case sci_uint64 :
                         {
                             jobject jdata = (*jenv)->GetObjectArrayElement(jenv, infos, 1);
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
-                            unsigned long long * data = 0;
+                            unsigned long long* data = 0;
+
+                            if (!jdata || nbRow == 0)
+                            {
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                                if (!jdata)
+                                {
+                                    (*jenv)->DeleteLocalRef(jenv, jdata);
+                                }
+                                break;
+                            }
 
                             // Get the matrix rows
                             for (; j < nbRow; j++)
@@ -724,7 +827,7 @@ extern "C" {
                                     nbCol = (*jenv)->GetArrayLength(jenv, oneDim);
                                     data = (unsigned long long*)MALLOC(sizeof(unsigned long long) * nbRow * nbCol);
                                 }
-                                
+                                isCopy1 = JNI_FALSE;
                                 element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
 
                                 // Get the matrix element
@@ -746,13 +849,23 @@ extern "C" {
                     (*jenv)->DeleteLocalRef(jenv, infos);
                     break;
                 }
-            case sci_strings :
+                case sci_strings :
                 {
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     int nbRow = (*jenv)->GetArrayLength(jenv, data);
                     int nbCol = 0;
                     int j = 0, k;
                     char ** strings = 0;
+
+                    if (!data || nbRow == 0)
+                    {
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
+                        if (!data)
+                        {
+                            (*jenv)->DeleteLocalRef(jenv, data);
+                        }
+                        break;
+                    }
 
                     // Get the matrix rows
                     for (; j < nbRow; j++)
@@ -770,7 +883,7 @@ extern "C" {
                             jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, oneDim, k);
                             jboolean isCopy1 = JNI_FALSE;
                             char *str = (char *)(*jenv)->GetStringUTFChars(jenv, j_string, &isCopy1);
-                            strings[k * nbRow + j] = (char*)MALLOC(sizeof(char)*(strlen(str) + 1));
+                            strings[k * nbRow + j] = (char*)MALLOC(sizeof(char) * (strlen(str) + 1));
                             strcpy(strings[k * nbRow + j], str);
                             if (isCopy1)
                             {
@@ -790,21 +903,21 @@ extern "C" {
                     FREE(strings);
                     break;
                 }
-            case sci_list :
+                case sci_list :
                 {
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     sciErr = sendList(jenv, data, currentList, i + 1, varName, 'l');
                     (*jenv)->DeleteLocalRef(jenv, data);
                     break;
                 }
-            case sci_tlist :
+                case sci_tlist :
                 {
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     sciErr = sendList(jenv, data, currentList, i + 1, varName, 't');
                     (*jenv)->DeleteLocalRef(jenv, data);
                     break;
                 }
-            case sci_mlist :
+                case sci_mlist :
                 {
                     jobject data = (*jenv)->GetObjectArrayElement(jenv, list, i + 1);
                     sciErr = sendList(jenv, data, currentList, i + 1, varName, 'm');

@@ -15,13 +15,14 @@
 #ifndef __GETSCILABJAVAVM_H__
 #define __GETSCILABJAVAVM_H__
 
+#include "dynlib_jvm.h"
 #include <jni.h> /* JavaVM */
 
 /**
 * returns Scilab JavaVM
 * @return JavaVM
 */
-JavaVM *getScilabJavaVM(void);
+JVM_IMPEXP JavaVM *getScilabJavaVM(void);
 
 #endif /* __GETSCILABJAVAVM_H__ */
 /*--------------------------------------------------------------------------*/ 

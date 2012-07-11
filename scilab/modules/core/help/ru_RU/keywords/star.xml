@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="star">
+  <refnamediv>
+    <refname>звёздочка</refname>
+    <refpurpose>(*) оператор умножения</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Умножение в обычном смысле. Корректно для констант, матриц логических, полиномиальных, рациональных значений и для списков <literal>syslin</literal> (со значением последовательного соединения).
+    </para>
+    <para>
+      Поэлементное умножение обозначается как <literal>x.*y</literal>. Если 
+      <literal>x</literal> или <literal>y</literal> являются скаляром, то <literal> .* </literal>
+      то же самое, что и <literal>*</literal>.
+    </para>
+    <para>
+      Произведение Кронекера обозначается как <literal>x.*.y</literal>.
+    </para>
+    <para>
+      <literal>A*.B</literal>  оператор без предопределённого значения. Можно использовать для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом, что и у <literal>*</literal> или <literal>/</literal>.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="dot">точка</link>
+      </member>
+      <member>
+        <link linkend="slash">слэш</link>
+      </member>
+      <member>
+        <link linkend="backslash">обратный слэш</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="overloading">перегрузка</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

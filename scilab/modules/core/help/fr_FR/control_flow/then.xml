@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="then">
+  <refnamediv>
+    <refname>then</refname>
+    <refpurpose> mot-clé dans une structure 'if' et 'select' </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Utilisé dans les instructions de contrôle <literal>if</literal> et <literal>select</literal>.
+      Chaque mot-clé <literal>then</literal> doit être sur la même ligne que le <literal>if</literal>, <literal>elseif</literal> ou <literal>case</literal> correspondant.
+    </para>
+    <para>
+      Le mot-clé <literal>then</literal> peut être remplacé par un retour à la ligne ou une virgule.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="elseif">elseif</link>
+      </member>
+      <member>
+        <link linkend="select">select</link>
+      </member>
+      <member>
+        <link linkend="case">case</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

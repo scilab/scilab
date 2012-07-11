@@ -51,14 +51,14 @@ public final class CutAction extends DefaultAction {
         ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
         doc.mergeEditsBegin();
         if (!getEditor().getTextPane().copyColumnSelectionInClipBoard() || !getEditor().getTextPane().removeColumnSelection()) {
-	    String selection = getEditor().getTextPane().getSelectedText();
-	    if (selection != null) {
-		CopyAsHTMLAction.HTMLSelection sel = new CopyAsHTMLAction.HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, false);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
-		getEditor().getTextPane().replaceSelection("");
-	    }
-	}
-	doc.mergeEditsEnd();
+            String selection = getEditor().getTextPane().getSelectedText();
+            if (selection != null) {
+                CopyAsHTMLAction.HTMLSelection sel = new CopyAsHTMLAction.HTMLSelection(getEditor().getTextPane(), selection, false);
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
+                getEditor().getTextPane().replaceSelection("");
+            }
+        }
+        doc.mergeEditsEnd();
     }
 
     /**

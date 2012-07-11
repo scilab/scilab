@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -46,7 +45,7 @@ import com.mxgraph.util.mxConstants;
 // CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final Logger LOG = Logger.getLogger(BasicPortCodec.class.toString());
+    private static final Logger LOG = Logger.getLogger(BasicPortCodec.class.getName());
     private static final String DATA_TYPE = "dataType";
     private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE, "connectedLinkId" };
 
@@ -151,7 +150,7 @@ public class BasicPortCodec extends XcosObjectCodec {
      * @param obj
      *            Object decoded.
      * @return The Object transformed
-     * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
+     * @see org.scilab.modules.xcos.io.codec.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
      *      org.w3c.dom.Node, java.lang.Object)
      */
     @Override

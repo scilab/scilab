@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scilab" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scilab</refname>
     <refpurpose>
@@ -311,8 +308,7 @@
     <para>より多くのオプションが利用可能です.
       これにより性能を改善したり,ルックアンドフィールを変更したり,
       メモリ管理を変更したりといったことが可能です.
-      参照: <ulink url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
-      or <ulink url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink>
+      参照:  <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>
     </para>
   </refsection>
   <refsection>
@@ -320,7 +316,7 @@
     <programlisting role="example"> 
       # Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
       # We are under Bash shell
-      export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
+      export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
       scilab -profiling
       
       # Let's start Scilab in debug mode without stopping after each SIGSEGV

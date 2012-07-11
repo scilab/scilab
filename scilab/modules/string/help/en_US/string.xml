@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="string" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
     <refname>string</refname>
     <refpurpose>conversion to string</refpurpose>
@@ -32,8 +28,8 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>Boolean, complex, real, integer, polynomial matrix, library or
-            function
+          <para>Boolean, complex, real, integer, polynomial matrix, implicit
+            size, library or function
           </para>
         </listitem>
       </varlistentry>
@@ -43,17 +39,19 @@
     <title>Description</title>
     <para>converts a matrix into a matrix of strings.</para>
     <para>
-      If <literal>x</literal> is a function
-      <literal>[out, in, text]=string(x)</literal> returns three vectors strings :
-      <literal>out</literal> is the vector of output variables,
-      <literal>in</literal> is the vector of input variables, and
-      <literal>text</literal> is the (column) vector of the source code of the
-      function.
+      If <literal>x</literal> is a function <literal>[out, in, text] =
+        string(x)
+      </literal>
+      returns three vectors strings : <literal>out</literal>
+      is the vector of output variables, <literal>in</literal> is the vector of
+      input variables, and <literal>text</literal> is the (column) vector of the
+      source code of the function.
     </para>
     <para>
-      If <literal>x</literal> is a <literal>lib</literal> variable (library), text
-      is a character string column vector. The first element contains the path
-      of library file and the other the name of functions it defines.
+      If <literal>x</literal> is a <literal>lib</literal> variable
+      (library), text is a character string column vector. The first element
+      contains the path of library file and the other the name of functions it
+      defines.
     </para>
     <para>
       Character strings are defined as <literal>'string'</literal>
@@ -64,8 +62,8 @@
       Concatenation of strings is made by the <literal>+</literal>
       operation.
     </para>
-    <para>
-      For complex, real, integer, polynomial matrix <literal>string</literal> output is managed by <link linkend="format">format</link> function (see examples).
+    <para>For complex, real, integer, polynomial matrix
+      <literal>string</literal> output is managed by <link linkend="format">format</link> function (see examples).
     </para>
   </refsection>
   <refsection>
@@ -74,7 +72,7 @@
       
       deff("y = mymacro(x)", "y = x + 1")
       [out, in, text] = string(mymacro)
-      x = 123.356; 
+      x = 123.356;
       disp("Result is " + string(x));
       
       disp("/" + string(~%t) + "/");
@@ -89,6 +87,8 @@
       format(24);
       disp(string(%pi))
       format(v(2))
+      
+      string(1:4:$)
     </programlisting>
   </refsection>
   <refsection role="see also">
@@ -125,5 +125,14 @@
         <link linkend="format">format</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>implicit size type managed as input argument.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

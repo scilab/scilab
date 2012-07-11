@@ -6,9 +6,9 @@ EXPORTS
 ;elementary_functions_f
 iset_
 dset_
-wwpow_
-dwpow_
-ddpow_
-wscal_
 entier_
+wscal_
+ddpow_
 wdpow_
+dwpow_
+wwpow_

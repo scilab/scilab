@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 7093 -->
 //
@@ -17,7 +17,7 @@
 //
 
 nm = neldermead_new ();
-save(fullfile(TMPDIR,"pb.dat"),nm)
+save(fullfile(TMPDIR,"pb.dat"),"nm")
 clear
 load(fullfile(TMPDIR,"pb.dat"))
 computed = exists("nm");

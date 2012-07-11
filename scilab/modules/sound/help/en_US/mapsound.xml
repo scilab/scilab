@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mapsound">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mapsound</refname>
     <refpurpose> Plots a sound map</refpurpose>
@@ -36,10 +33,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Plots a sound map for a sound. It does FFT at time increments dt.
-    <literal>rate</literal> is the sampling rate. <literal>simpl</literal> points are collected for
-    speed reasons. <literal>fmin</literal> and <literal>fmax</literal> are used for graphic
-    boundaries.</para>
+      Plots a sound map for a sound. It does FFT at time increments dt.
+      <literal>rate</literal> is the sampling rate. <literal>simpl</literal> points are collected for
+      speed reasons. <literal>fmin</literal> and <literal>fmax</literal> are used for graphic
+      boundaries.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -552,7 +552,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         {
             return (hobj_ref_t)(-1);
         }
-    
+
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
         dset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
@@ -660,7 +660,7 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     hsize_t dims[1]     = {1};
     hid_t iCompress     = 0;
     hobj_ref_t pRef[1]  = {0};
-    
+
     hid_t group         = 0;
     char* pstGroupName  = NULL;
     pstGroupName        = createGroupName(_pstDatasetName);
@@ -683,7 +683,7 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     {
         return 0;
     }
-        
+
     if(pRef[0] == 0)
     {
         return -1;
@@ -1054,7 +1054,7 @@ int writePolyComplexMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName,
     return writeCommonPolyMatrix(_iFile, _pstDatasetName, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char* _pcData)
+int writeInteger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char* _pcData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1125,7 +1125,7 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
     return 0;
 }
 
-int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, short* _psData)
+int writeInteger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, short* _psData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1195,7 +1195,7 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     return 0;
 }
 
-int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData)
+int writeInteger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1209,7 +1209,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     {
         return -1;
     }
-    
+
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
     iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
@@ -1267,7 +1267,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     return 0;
 }
 
-int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _pllData)
+int writeInteger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _pllData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1339,7 +1339,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned char* _pucData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned char* _pucData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1353,7 +1353,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatase
     {
         return -1;
     }
-    
+
     //Create the dataset and write the array data to it.
     iCompress    = enableCompression(9, 1, piDims);
     iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT8, iSpace, iCompress);
@@ -1411,7 +1411,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatase
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned short* _pusData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned short* _pusData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1483,7 +1483,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatas
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned int* _puiData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned int* _puiData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1555,7 +1555,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatas
     return 0;
 }
 
-HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned long long* _pullData)
+HDF5_SCILAB_IMPEXP int writeUnsignedInteger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, unsigned long long* _pullData)
 {
     hsize_t piDims[1]   = {_iRows * _iCols};
     herr_t status       = 0;
@@ -1569,7 +1569,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatas
     {
         return -1;
     }
-    
+
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
     iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT64, iSpace, iCompress);
@@ -1656,7 +1656,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);
-    status = writeInterger32Matrix(_iFile, pstRowPath, 1, _iRows, _piNbItemRow);
+    status = writeInteger32Matrix(_iFile, pstRowPath, 1, _iRows, _piNbItemRow);
     if(status < 0)
     {
         return -1;
@@ -1669,7 +1669,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
     }
 
     pstColPath = createPathName(pstGroupName, 1);
-    status = writeInterger32Matrix(_iFile, pstColPath, 1, _iNbItem, _piColPos);
+    status = writeInteger32Matrix(_iFile, pstColPath, 1, _iNbItem, _piColPos);
     if(status < 0)
     {
         return -1;
@@ -1759,7 +1759,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
         if(status < 0)
         {
             return -1;
-        }    
+        }
     }
 
     //Close and release resources.
@@ -1819,7 +1819,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);
-    status = writeInterger32Matrix(_iFile, pstRowPath, 1, _iRows, _piNbItemRow);
+    status = writeInteger32Matrix(_iFile, pstRowPath, 1, _iRows, _piNbItemRow);
     if(status < 0)
     {
         return -1;
@@ -1832,7 +1832,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     }
 
     pstColPath  = createPathName(pstGroupName, 1);
-    status      = writeInterger32Matrix(_iFile, pstColPath, 1, _iNbItem, _piColPos);
+    status      = writeInteger32Matrix(_iFile, pstColPath, 1, _iNbItem, _piColPos);
     if(status < 0)
     {
         return -1;
@@ -2004,7 +2004,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
             return -1;
         }
 
-    
+
         status = addAttribute(dset, g_SCILAB_CLASS_EMPTY, "true");
         if(status < 0)
         {
@@ -2019,7 +2019,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
         {
             return -1;
         }
-        
+
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
         dset = DynHDF5::dynH5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);

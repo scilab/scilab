@@ -513,49 +513,49 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
         case types::InternalType::RealInt8 :
         {
             types::Int8* pInt    = pIT->getAs<types::Int8>();
-            iRet = writeInterger8Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeInteger8Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealUInt8 :
         {
             types::UInt8* pInt    = pIT->getAs<types::UInt8>();
-            iRet = writeUnsignedInterger8Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeUnsignedInteger8Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealInt16 :
         {
             types::Int16* pInt    = pIT->getAs<types::Int16>();
-            iRet = writeInterger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeInteger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealUInt16 :
         {
             types::UInt16* pInt    = pIT->getAs<types::UInt16>();
-            iRet = writeUnsignedInterger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeUnsignedInteger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealInt32 :
         {
             types::Int32* pInt    = pIT->getAs<types::Int32>();
-            iRet = writeInterger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeInteger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealUInt32 :
         {
             types::UInt32* pInt    = pIT->getAs<types::UInt32>();
-            iRet = writeUnsignedInterger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeUnsignedInteger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealInt64 :
         {
             types::Int64* pInt    = pIT->getAs<types::Int64>();
-            iRet = writeInterger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeInteger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         case types::InternalType::RealUInt64 :
         {
             types::UInt64* pInt    = pIT->getAs<types::UInt64>();
-            iRet = writeUnsignedInterger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
+            iRet = writeUnsignedInteger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
         default :

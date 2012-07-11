@@ -27,8 +27,7 @@
     <!--Lib_name: sparseExample-->
     <!--Func_list: sparseExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int sparseExample(char *fname,unsigned long fname_len)
 {
@@ -66,7 +65,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createComplexSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+			sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
 			if(sciErr.iErr)
 			{
 				freeAllocatedComplexSparseMatrix(piNbItemRow, piColPos, pdblReal, pdblImg);
@@ -85,7 +84,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+			sciErr = createSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
 			if(sciErr.iErr)
 			{
 				freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
@@ -95,7 +94,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 
 			freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
 		}
-		AssignOutputVariable(1) = InputArgument + 1;
+		AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 	else
 	{
@@ -103,8 +102,7 @@ int sparseExample(char *fname,unsigned long fname_len)
 	}
 	return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

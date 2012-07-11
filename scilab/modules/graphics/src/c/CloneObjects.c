@@ -4,27 +4,28 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
  *    This file contains all functions used to CLONE an object, it means make
  *    a copy of an object under the same subwin.
  --------------------------------------------------------------------------*/
+
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
-#include "CurrentObjectsManagement.h"
 #include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
@@ -32,329 +33,217 @@
 #include "Scierror.h"
 #include "BasicAlgos.h"
 
-
-/**CloneText
- * 
- * @param sciPointObj * pthis: the pointer to the entity
- */
-sciPointObj *
-CloneText (sciPointObj * pthis)
-{
-  sciPointObj * pobj        ;
-  sciPointObj * subwinparent;
-  sciText     * ppThisText  ;
-  sciText     * ppCopyText  ;
-  int foreground = sciGetForeground(pthis);
-  int background = sciGetBackground(pthis);
-  int nbRow ;
-  int nbCol ;
-  double textPos[3];
- 
-  subwinparent = pthis;
-
-  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-	 && ((int) sciGetEntityType(subwinparent) != -1));
-  if ((int) sciGetEntityType(subwinparent) == -1)
-  {
-    return (sciPointObj *)NULL;
-  }
-  
-  sciGetTextSize( pthis, &nbRow, &nbCol ) ;
-  sciGetTextPos(pthis, textPos);
-  if (!(pobj = ConstructText (subwinparent, getStrMatData( sciGetText(pthis) ), nbRow, nbCol, 
-			      textPos[0], textPos[1], sciGetAutoSize(pthis),
-                              pTEXT_FEATURE(pthis)->userSize,pTEXT_FEATURE(pthis)->centeredPos,
-			      &foreground,&background,pTEXT_FEATURE(pthis)->isboxed,
-			      sciGetIsLine(pthis), sciGetIsFilled(pthis), sciGetAlignment(pthis))))
-  {
-    return (sciPointObj *)NULL;
-  }
-  else
-  {
-    sciSetCurrentObj(pobj);
-  } /* F.Leray Adding 26.03.04*/
-  
-  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
-  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
-  if (sciSetFontSize(pobj, sciGetFontSize(pthis)) < 0.0)
-    return (sciPointObj *)NULL;
-  
-  if (sciSetFontOrientation(pobj, sciGetFontOrientation (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
-  if (sciSetFontStyle(pobj,sciGetFontStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
-  /* get the pointer on features */
-  ppThisText = pTEXT_FEATURE( pthis ) ;
-  ppCopyText = pTEXT_FEATURE( pobj  ) ;
-
-  ppCopyText->userSize[0] = ppThisText->userSize[0];
-  ppCopyText->userSize[1] = ppThisText->userSize[1];
-
-  /* copy user data */
-	cloneUserData(pthis, pobj);
-  
-  return (sciPointObj *)pobj;
-}
-
-
-
-/**sciCloneObj
- */
-sciPointObj *
-sciCloneObj (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return CloneText(pobj);
-      break;
-    case SCI_POLYLINE:
-      return ClonePolyline(pobj);
-      break;
-    case SCI_ARC:
-      return CloneArc(pobj);
-      break;
-    case SCI_RECTANGLE:
-      return CloneRectangle(pobj);
-      break;
-    case SCI_AGREG:
-
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_LEGEND:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      Scierror (999, _("This object cannot be cloned.\n"));
-      return (sciPointObj *)NULL;
-      break;
-    }
-}
-
-
-
-/**CloneRectangle
- * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-sciPointObj *
-CloneRectangle (sciPointObj * pthis)
-{
-  sciPointObj * pobj, *subwinparent;
-  int foreground = sciGetForeground(pthis);
-  int background = sciGetBackground(pthis);
- 
-  subwinparent = pthis;
-  
-  
-  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-	 && ((int)sciGetEntityType(subwinparent) != -1));
-  if ((int)sciGetEntityType(subwinparent) == -1)
-    return (sciPointObj *)NULL;
-  if (!(pobj = ConstructRectangle (subwinparent, pRECTANGLE_FEATURE(pthis)->x, 
-				   pRECTANGLE_FEATURE(pthis)->y, pRECTANGLE_FEATURE(pthis)->height,pRECTANGLE_FEATURE(pthis)->width, 
-				   &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis)))){
-    return (sciPointObj *)NULL;
-  }
-  else {
-    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
-  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
-  cloneUserData(pthis, pobj);
-  
-  return (sciPointObj *)pobj;
-}
-
-
-/**ClonePolyline
- * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-sciPointObj *
-ClonePolyline (sciPointObj * pthis)
-{
-  sciPointObj * pobj, *subwinparent;
-  int foreground = sciGetForeground(pthis);
-  int background = sciGetBackground(pthis);
-  int mark_foreground = sciGetMarkForeground(pthis);
-  int mark_background = sciGetMarkBackground(pthis);
-  int mark_style = sciGetMarkStyle(pthis);
-  
-  subwinparent = pthis;
-  
-  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-	 && ((int)sciGetEntityType(subwinparent) != -1));
-  if ((int)sciGetEntityType(subwinparent) == -1)
-    return (sciPointObj *)NULL;
-  /* DJ.A 2003 */
-  if (!(pobj = ConstructPolyline (subwinparent, pPOLYLINE_FEATURE(pthis)->pvx, pPOLYLINE_FEATURE(pthis)->pvy,pPOLYLINE_FEATURE(pthis)->pvz,
-				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->plot,
-				  &foreground, &background,
-				  &mark_style, &mark_foreground, &mark_background,
-				  sciGetIsLine(pthis),  sciGetIsFilled(pthis), 
-				  sciGetIsMark(pthis),pPOLYLINE_FEATURE(pthis)->isinterpshaded))){
-    return (sciPointObj *)NULL;
-  }
-  else {
-    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
-  
-  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
-    return (sciPointObj *)NULL;
-
-	cloneUserData(pthis, pobj);
-  
-  return (sciPointObj *)pobj;
-}
-
-
-/**CloneArc
- * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-sciPointObj *
-CloneArc (sciPointObj * pthis)
-{
-  sciPointObj * pobj, *subwinparent;
-
-  int foreground = sciGetForeground(pthis);
-  int background = sciGetBackground(pthis);
-
-  subwinparent = pthis;
-  
- 
-  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-	 && ((int)sciGetEntityType(subwinparent) != -1));
-  if ((int)sciGetEntityType(subwinparent) == -1)
-    return (sciPointObj *)NULL;
-  if (!(pobj = ConstructArc (subwinparent, pARC_FEATURE(pthis)->x, 
-			     pARC_FEATURE(pthis)->y, pARC_FEATURE(pthis)->height,pARC_FEATURE(pthis)->width,
-			     pARC_FEATURE(pthis)->alphabegin, pARC_FEATURE(pthis)->alphaend,
-			     &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis)))){
-    return (sciPointObj *)NULL;
-  }
-  else {
-    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
-  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
-    return (sciPointObj *)NULL;
-
-	cloneUserData(pthis, pobj);
- 
-  return (sciPointObj *)pobj;
-}
-
-
-
-/**sciCopyObj
- */
-sciPointObj *
-sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
-{
-  sciPointObj *pcopyobj;
-
-  pcopyobj = sciCloneObj ((sciPointObj *)pobj);
-  sciDelThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)sciGetParent(pcopyobj));
-  sciAddThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)psubwinparenttarget);
-  return (sciPointObj *)pcopyobj;
-}
+#include "createGraphicObject.h" /* cloneGraphicObject */
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+/*
+ * Copies the ContouredObject properties from the source object to the destination object
+ * This code ought to be moved into the Java Model, either in the relevant
+ * constructor (ContouredObject) or into an initialization function.
+ */
+int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
 {
-  /* struct affectation */
-  *(sciGetGraphicContext(pObjDest)) = *(sciGetGraphicContext(pObjSource)) ;
-  return 0 ;
+    double dblTmp = 0.0;
+    double *pdblTmp = &dblTmp;
+    int iTmp = 0;
+    int *piTmp = &iTmp;
+
+    int lineMode = 0;
+    int foreground = 0;
+    int lineStyle = 0;
+    int background = 0;
+    int markForeground = 0;
+    int markBackground = 0;
+    int markStyle = 0;
+    int markSize = 0;
+    int markSizeUnit = 0;
+    double lineThickness = 0.;
+
+    /*
+     * All these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     */
+
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool, (void **)&piTmp);
+    lineMode = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int, (void **)&piTmp);
+    foreground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_THICKNESS__, jni_double, (void **)&pdblTmp);
+    lineThickness = dblTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_STYLE__, jni_int, (void **)&piTmp);
+    lineStyle = iTmp;
+
+    /*
+     * Commented out since there is a confusion between Axes' FILLED property
+     * and the FILL_MODE ContouredObject property
+     * To be corrected
+     */
+#if 0
+    tmp = (int*) setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+    fillMode = *tmp;
+#endif
+
+    getGraphicObjectProperty(sourceIdentifier, __GO_BACKGROUND__, jni_int, (void **)&piTmp);
+    background = iTmp;
+
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_FOREGROUND__, jni_int, (void **)&piTmp);
+    markForeground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_BACKGROUND__, jni_int, (void **)&piTmp);
+    markBackground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_STYLE__, jni_int, (void **)&piTmp);
+    markStyle = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE__, jni_int, (void **)&piTmp);
+    markSize = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE_UNIT__, jni_int, (void **)&piTmp);
+    markSizeUnit = iTmp;
+
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+
+    /* Commented out due to the confusion between Axes' FILLED and the FILL_MODE Contoured property */
+#if 0
+    setGraphicObjectProperty(destIdentifier, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+#endif
+
+    setGraphicObjectProperty(destIdentifier, __GO_BACKGROUND__, &background, jni_int, 1);
+
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )
+int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
 {
-  int ** srcUserData ;
-  int *  srcSize   ;
-  int ** dstUserData ;
-  int *  dstSize     ;
-	
-	/* Get pointer and data of both source and destination */
-  sciGetPointerToUserData( pObjSource, &srcUserData, &srcSize ) ;
-  sciGetPointerToUserData( pObjDest  , &dstUserData, &dstSize ) ;
+    double dblTmp = 0.0;
+    double *pdblTmp = &dblTmp;
+    double fontSize = 0.;
+    int fontColor = 0;
+    int fontStyle = 0;
+    int fontFractional = 0;
+    int iTmp = 0;
+    int *piTmp = &iTmp;
 
-	/* Deallocate current user data */
-	if (*dstUserData != NULL)
-	{
-		FREE(*dstUserData);
-		*dstUserData = NULL;
-		*dstSize = 0;
-	}
+    /*
+     * All these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     */
 
-	/* Reallocate if needed */
-  if ( *srcSize > 0 )
-  {
-		/* update size */
-    *dstSize = *srcSize ;
-    
-		/* reallocation */
-    *dstUserData = MALLOC( *srcSize * sizeof(int) ) ;
-    if ( *dstUserData == NULL )
-    {
-		  Scierror(999, _("%s: No more memory.\n"),"CloneUserData");
-		  *dstSize     = 0 ;
-		  *dstUserData = NULL ;
-		  return -1 ;
-    }
+    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_COLOR__, jni_int, (void **)&piTmp);
+    fontColor = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_STYLE__, jni_int, (void **)&piTmp);
+    fontStyle = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_SIZE__, jni_double, (void **)&pdblTmp);
+    fontSize = dblTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&piTmp);
+    fontFractional = iTmp;
 
-		/* copy */
-    intArrayCopy( *dstUserData, *srcUserData, *srcSize ) ;
-  }
+    setGraphicObjectProperty(destIdentifier, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
 
-  return 0 ;
+    return 0;
 }
-/*--------------------------------------------------------------------------*/
-int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+
+char* clonePolyline(char* sourcePolyline)
 {
-  
-  /* struct affectation, doesn't copy the font name */
-  /* *(sciGetFontContext(pObjDest)) = *(sciGetFontContext(pObjSource)) ; */
+    char *clonedPolylineUID = NULL;
+    char* parentAxes = NULL;
 
-  sciFont * sourceFC = sciGetFontContext( pObjSource ) ;
-  sciFont * destFC   = sciGetFontContext( pObjDest   ) ;
+    double* dataX = NULL;
+    double* dataY = NULL;
+    double* dataZ = NULL;
 
-  destFC->backgroundcolor      = sourceFC->backgroundcolor     ;
-  destFC->foregroundcolor      = sourceFC->foregroundcolor     ;
-  destFC->fonttype             = sourceFC->fonttype            ;
-  destFC->fontSize             = sourceFC->fontSize            ;
-  destFC->textorientation      = sourceFC->textorientation     ;
-  destFC->useFractionalMetrics = sourceFC->useFractionalMetrics;
-  return 0 ;
+    double lineThickness = 0.0;
+    double* pLineThickness = &lineThickness;
+
+    int nPoints = 0;
+    int* pNPoints = &nPoints;
+
+    int closed = 0;
+    int* pClosed = &closed;
+
+    int polylineStyle = 0;
+    int* pPolylineStyle = &polylineStyle;
+
+    int tmp = 0;
+    int* pTmp = &tmp;
+
+    int lineStyle = 0;
+    int foreground = 0;
+    int background = 0;
+    int markForeground = 0;
+    int markBackground = 0;
+    int markStyle = 0;
+
+    int lineMode = 0;
+    int fillMode = 0;
+    int markMode = 0;
+    int interpShaded = 0;
+
+    getGraphicObjectProperty(sourcePolyline, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **)&pNPoints);
+
+    getGraphicObjectProperty(sourcePolyline, __GO_CLOSED__, jni_bool, (void **)&pClosed);
+    getGraphicObjectProperty(sourcePolyline, __GO_POLYLINE_STYLE__, jni_int, (void **)&pPolylineStyle);
+
+    /* ContouredObject properties */
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_THICKNESS__, jni_double, (void **)&pLineThickness);
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_STYLE__, jni_int, (void **)&pTmp);
+    lineStyle = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_COLOR__, jni_int, (void **)&pTmp);
+    foreground = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_BACKGROUND__, jni_int, (void **)&pTmp);
+    background = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_STYLE__, jni_int, (void **)&pTmp);
+    markStyle = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_FOREGROUND__, jni_int, (void **)&pTmp);
+    markForeground = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_BACKGROUND__, jni_int, (void **)&pTmp);
+    markBackground = tmp;
+
+    getGraphicObjectProperty(sourcePolyline, __GO_LINE_MODE__, jni_bool, (void **)&pTmp);
+    lineMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_FILL_MODE__, jni_bool, (void **)&pTmp);
+    fillMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_MARK_MODE__, jni_bool, (void **)&pTmp);
+    markMode = tmp;
+    getGraphicObjectProperty(sourcePolyline, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&pTmp);
+    interpShaded = tmp;
+
+    clonedPolylineUID = allocatePolyline(parentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
+                                         &foreground, &background, &markStyle, &markForeground, &markBackground,
+                                         lineMode, fillMode, markMode, interpShaded);
+
+    /* These properties must be aditionally set as this is not done by allocatePolyline */
+    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+
+    /*
+     * Some these properties are passed by value thus do not care to release them
+     * and do not call releaseGraphicObjectProperty on purpose.
+     *
+     * releaseGraphicObjectProperty has a real impact for the following :
+     *  - jni_string
+     *  - jni_double_vector out of the DATA_MODEL
+     */
+    releaseGraphicObjectProperty(__GO_PARENT_AXES__, parentAxes, jni_string, 1);
+
+
+    return clonedPolylineUID;
 }
+

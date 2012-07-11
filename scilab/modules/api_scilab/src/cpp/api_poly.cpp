@@ -31,6 +31,12 @@ extern "C"
 }
 using namespace types;
 
+static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+
+
 SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
@@ -163,7 +169,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     InternalType** out = pStr->m_pOut;
 	int *piAddr     = NULL;
-    int rhs = _iVar - *getInputArgument(_pvCtx);
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 	int iSize       = _iRows * _iCols;
 	int iTotalLen   = 0;
 
@@ -537,56 +543,50 @@ int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, const char* _pstName, int
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
-    SciErr sciErr;
-    int iRows	= 0;
-    int iCols	= 0;
+	SciErr sciErr;
 
-    double* pdblReal = NULL;
-    double* pdblImg	 = NULL;
+	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
 
+	*_piNbCoef = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
 
-    sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
-    if(sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
-        printError(&sciErr, 0);
-        return sciErr.iErr;
-    }
+	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, *_piNbCoef, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
 
-    *_piNbCoef = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
+	*_pdblReal = (double**)MALLOC(sizeof(double*) * *_piRows * *_piCols);
+	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
+	{
+		(*_pdblReal)[i] = (double*)MALLOC(sizeof(double) * (*_piNbCoef)[i]);
+	}
 
-    sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, *_piNbCoef, NULL, NULL);
-    if(sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
-        printError(&sciErr, 0);
-        return sciErr.iErr;
-    }
+	if(_iComplex)
+	{
+		*_pdblImg	= (double**)MALLOC(sizeof(double*) * *_piRows * *_piCols);
+		for(int i = 0 ; i < *_piRows * *_piCols ; i++)
+		{
+			(*_pdblImg)[i] = (double*)MALLOC(sizeof(double) * (*_piNbCoef)[i]);
+		}
+	}
 
-    *_pdblReal = (double**)MALLOC(sizeof(double*) * *_piRows * *_piCols);
-    for(int i = 0 ; i < *_piRows * *_piCols ; i++)
-    {
-        (*_pdblReal)[i] = (double*)MALLOC(sizeof(double) * (*_piNbCoef)[i]);
-    }
+	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, *_piNbCoef, *_pdblReal, _pdblImg == NULL ? NULL : *_pdblImg);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
 
-    if(_iComplex)
-    {
-        *_pdblImg	= (double**)MALLOC(sizeof(double*) * *_piRows * *_piCols);
-        for(int i = 0 ; i < *_piRows * *_piCols ; i++)
-        {
-            (*_pdblImg)[i] = (double*)MALLOC(sizeof(double) * (*_piNbCoef)[i]);
-        }
-    }
-
-    sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, *_piNbCoef, *_pdblReal, _pdblImg == NULL ? NULL : *_pdblImg);
-    if(sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY, _("%s: Unable to get argument \"%s\""), _iComplex ? "getAllocatedNamedMatrixOfComplexPoly" : "getAllocatedNamedMatrixOfPoly", _pstName);
-        printError(&sciErr, 0);
-        return sciErr.iErr;
-    }
-
-    return 0;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 void freeAllocatedSinglePoly(double* _pdblReal)

@@ -1,0 +1,13 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;core
+disp_scilab_version
+settexmacs
+setCommandLineArgs
+with_module
+setSCIpath
+InitializeLaunchScilabSignal
+sciquit
+StoreCommand

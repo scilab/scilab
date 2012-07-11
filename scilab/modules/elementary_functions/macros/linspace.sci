@@ -35,6 +35,7 @@ function y = linspace(d1, d2, n)
 
     if int(n) <> n then
       warning(msprintf('%s: Using a non integer value for input argument #%d is deprecated and will produce an error in version 5.4.1.\n',"linspace",3));
+      n = int(n);
     end
   
   end
@@ -42,6 +43,10 @@ function y = linspace(d1, d2, n)
   if (n - 1) <= 0 then
     y = d2;
   else
-    y = (d2-d1) * (0:n-1) / (n-1) + d1 * ones(0:n-1);
+    y = ((d2-d1) * (0:n-1)) / (n-1) + d1 * ones(1,n);
+	
+	// forces the last value to be in the interval
+    y(:,$) = d2;
   end
 endfunction
+

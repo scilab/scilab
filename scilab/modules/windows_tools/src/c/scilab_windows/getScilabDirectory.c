@@ -30,7 +30,7 @@ char *getScilabDirectory(BOOL UnixStyle)
 	wchar_t *DirTmp = NULL;
 
 
-	if (!GetModuleFileNameW ((HINSTANCE)GetModuleHandleW(L"libScilab"), (wchar_t*) ScilabModuleName, MAX_PATH))
+	if (!GetModuleFileNameW ((HINSTANCE)GetModuleHandleW(L"core"), (wchar_t*) ScilabModuleName, MAX_PATH))
 	{
 		return NULL;
 	}

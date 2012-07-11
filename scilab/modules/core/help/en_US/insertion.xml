@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="insertion">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>insertion</refname>
     <refpurpose>  partial variable assignation
@@ -64,7 +61,7 @@
         <term>MATRIX CASE</term>
         <listitem>
           <para>
-            if <literal>x</literal> is a matrix the indices <literal>i</literal> and <literal>j</literal>, may be:
+            If <literal>x</literal> is a matrix the indices <literal>i</literal> and <literal>j</literal>, may be:
           </para>
           <variablelist>
             <varlistentry>
@@ -76,7 +73,7 @@
                 <itemizedlist>
                   <listitem>
                     <para>
-                      if <literal>a</literal> is a matrix with
+                      If <literal>a</literal> is a matrix with
                       dimensions
                       <literal>(size(i,'*'),size(j,'*'))</literal>,
                       <literal>x(i,j)=a</literal> returns a new <literal>x</literal> matrix
@@ -89,7 +86,7 @@
                   </listitem>
                   <listitem>
                     <para>
-                      if <literal>a</literal> is a scalar
+                      If <literal>a</literal> is a scalar
                       <literal>x(i,j)=a</literal> returns a new <literal>x</literal> matrix
                       such as <literal>x(int(i(l)),int(j(k)))=a</literal> for
                       <literal>l</literal> from 1 to <literal>size(i,'*')</literal>
@@ -120,19 +117,19 @@
                   </listitem>
                   <listitem>
                     <para>
-                      <literal>x(i)=a</literal> with <literal>a</literal> a
+                      <literal>x(i)=a</literal> with an <literal>a</literal>
                       vector returns a new <literal>x</literal> matrix such as
                       <literal>x(int(i(l)))=a(l)</literal> for <literal>l</literal> from 1 to
-                      <literal>size(i,'*')</literal> , other initial entries
+                      <literal>size(i,'*')</literal>, other initial entries
                       of <literal>x</literal> are unchanged. 
                     </para>
                   </listitem>
                   <listitem>
                     <para>
-                      <literal>x(i)=a</literal> with <literal>a</literal> a
+                      <literal>x(i)=a</literal> with an <literal>a</literal>
                       scalar returns a new <literal>x</literal> matrix such as
                       <literal>x(int(i(l)))=a</literal> for <literal>l</literal> from 1 to
-                      <literal>size(i,'*')</literal> , other initial entries
+                      <literal>size(i,'*')</literal>, other initial entries
                       of <literal>x</literal> are unchanged. 
                     </para>
                     <para>
@@ -192,7 +189,7 @@
                             matrix <literal>a</literal> must be a row or column vector
                             with dimension <literal>size(i,'*')</literal> and
                             <literal>i</literal> maximum value cannot exceed
-                            <literal>size(x,'*')</literal>,
+                            <literal>size(x,'*')</literal>.
                           </para>
                         </listitem>
                       </varlistentry>
@@ -211,7 +208,7 @@
               <term>The : symbol</term>
               <listitem>
                 <para>
-                  the <literal>:</literal> symbol stands for "all elements".
+                  The <literal>:</literal> symbol stands for "all elements".
                 </para>
                 <itemizedlist>
                   <listitem>
@@ -230,9 +227,9 @@
                     <para>
                       <literal>x(:)=a</literal> returns in
                       <literal>x</literal> the <literal>a</literal> matrix reshaped
-                      according to x
+                      according to <literal>x</literal>
                       dimensions. <literal>size(x,'*')</literal> must be
-                      equal to <literal>size(a,'*')</literal>
+                      equal to <literal>size(a,'*')</literal>.
                     </para>
                   </listitem>
                 </itemizedlist>
@@ -242,9 +239,9 @@
               <term>Vectors of boolean</term>
               <listitem>
                 <para>
-                  If an index (<literal>i</literal> or <literal>j</literal> )is a vector
+                  If an index (<literal>i</literal> or <literal>j</literal>) is a vector
                   of booleans it is interpreted as <literal>find(i)</literal> or
-                  respectively <literal>find(j)</literal>
+                  respectively <literal>find(j)</literal>.
                 </para>
               </listitem>
             </varlistentry>
@@ -252,7 +249,7 @@
               <term>Polynomials</term>
               <listitem>
                 <para>
-                  If an index (<literal>i</literal> or <literal>j</literal> )is a vector of
+                  If an index (<literal>i</literal> or <literal>j</literal>) is a vector of
                   polynomials or implicit polynomial vector it is interpreted
                   as <literal>horner(i,m)</literal> or respectively
                   <literal>horner(j,n)</literal> where <literal>m</literal> and
@@ -280,15 +277,23 @@
               </para>
               <para>
                 <literal>lk1 = l(k1)</literal>
+              </para>
+              <para>
                 <literal> ..  = ..  </literal>
               </para>
               <para>
                 <literal>lkn = lkn-1(kn)</literal>
-                <literal> lkn(i) = a</literal>
+              </para>
+              <para>
+                <literal>lkn(i) = a</literal>
               </para>
               <para>
                 <literal>lkn-1(kn) = lkn</literal>
+              </para>
+              <para>
                 <literal> ..  = ..  </literal>
+              </para>
+              <para>
                 <literal>l(k1) = lk1</literal>
               </para>
               <para>
@@ -297,15 +302,23 @@
               </para>
               <para>
                 <literal>lk1 = l(k1)</literal>
+              </para>
+              <para>
                 <literal> ..  = ..  </literal>
               </para>
               <para>
                 <literal>lkn = lkn-1(kn)</literal>
+              </para>
+              <para>
                 <literal>lkn(i,j) = a</literal>
               </para>
               <para>
                 <literal>lkn-1(kn) = lkn</literal>
+              </para>
+              <para>
                 <literal> ..  = ..  </literal>
+              </para>
+              <para>
                 <literal>l(k1)= lk1</literal>
               </para>
             </listitem>
@@ -317,11 +330,11 @@
                 <listitem>
                   <para> a real non negative scalar.
                     <literal>l(0)=a</literal> adds an entry on the "left"
-                    of the list <literal>l(i)=a</literal> sets the <literal>i</literal>
-                    entry of the list <literal>l</literal> to <literal>a</literal>. if
+                    of the list. <literal>l(i)=a</literal> sets the <literal>i</literal>
+                    entry of the list <literal>l</literal> to <literal>a</literal>. If
                     <literal>i&gt;size(l)</literal>, <literal>l</literal> is previously
                     extended with zero length entries (undefined).
-                    <literal>l(i)=null()</literal> suppress the <literal>i</literal>th list
+                    <literal>l(i)=null()</literal> deletes the <literal>i</literal>th list
                     entry.
                   </para>
                 </listitem>
@@ -347,7 +360,7 @@
                   </para>
                 </listitem>
                 <listitem>
-                  <para> a polynomial,interpreted as
+                  <para> a polynomial, interpreted as
                     <literal>horner(ki,m)</literal> where <literal>m</literal> is the
                     corresponding sub-list size.
                   </para>
@@ -367,7 +380,7 @@
   <refsection>
     <title>Remarks</title>
     <para>
-      For soft coded matrix types such as rational functions and state space linear systems, <literal>x(i)</literal> syntax may not be used for vector entry insertion due to confusion with list entry insertion. <literal>x(1,j)</literal> or <literal>x(i,1)</literal> syntax must be used.
+      For soft coded matrix types such as rational functions and state space linear systems, <literal>x(i)</literal> syntax must not be used for vector entry insertion due to confusion with list entry insertion. <literal>x(1,j)</literal> or <literal>x(i,1)</literal> syntax must be used.
     </para>
   </refsection>
   <refsection>

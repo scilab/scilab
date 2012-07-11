@@ -25,93 +25,105 @@ extern "C"
 namespace org_modules_xml
 {
 
-    std::string * XMLValidation::errorBuffer = 0;
-    std::list<XMLValidation *>& XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
+std::string * XMLValidation::errorBuffer = 0;
+std::list<XMLValidation *>& XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
 
-    XMLValidation::XMLValidation():XMLObject()
-    {
-        scilabType = XMLVALID;
-    }
+XMLValidation::XMLValidation(): XMLObject()
+{
+    scilabType = XMLVALID;
+}
 
-    void XMLValidation::errorFunction(void *ctx, const char *msg, ...)
-    {
-        char str[BUFFER_SIZE];
-        va_list args;
+void XMLValidation::errorFunction(void *ctx, const char *msg, ...)
+{
+    char str[BUFFER_SIZE];
+    va_list args;
 
-        va_start(args, msg);
+    va_start(args, msg);
 #ifdef _MSC_VER
-        _vsnprintf(str, BUFFER_SIZE, msg, args);
+    _vsnprintf(str, BUFFER_SIZE, msg, args);
 #else
-        std::vsnprintf(str, BUFFER_SIZE, msg, args);
+    std::vsnprintf(str, BUFFER_SIZE, msg, args);
 #endif
-        va_end(args);
-        errorBuffer->append(str);
+    va_end(args);
+    errorBuffer->append(str);
+}
+
+void XMLValidation::errorReaderFunction(void * arg, const char * msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator)
+{
+    std::ostringstream oss;
+
+    oss << xmlTextReaderLocatorBaseURI(locator) << gettext(" at line ")
+        << xmlTextReaderLocatorLineNumber(locator) << std::endl
+        << msg << std::endl;
+
+    errorBuffer->append(oss.str());
+}
+
+
+bool XMLValidation::validate(const std::string & xmlCode, std::string * error) const
+{
+    xmlParserInputBuffer * buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), (int)xmlCode.size(), (xmlCharEncoding) 0);
+    if (!buffer)
+    {
+        error->append(gettext("Cannot create a buffer"));
+        return false;
     }
 
-    bool XMLValidation::validate(const std::string & xmlCode, std::string * error) const
+    xmlTextReader * reader = xmlNewTextReader(buffer, 0);
+    if (!reader)
     {
-        xmlParserInputBuffer * buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), (int)xmlCode.size(), (xmlCharEncoding) 0);
-        if (!buffer)
-        {
-            error->append(gettext("Cannot create a buffer"));
-            return false;
-        }
+        xmlFreeParserInputBuffer(buffer);
+        error->append(gettext("Cannot create a reader"));
+        return false;
+    }
 
-        xmlTextReader * reader = xmlNewTextReader(buffer, 0);
+    bool valid = validate(reader, error);
+    xmlFreeParserInputBuffer(buffer);
+
+    return valid;
+}
+
+bool XMLValidation::validate(const char *path, std::string * error)const
+{
+    char *expandedPath = expandPathVariable(const_cast<char *>(path));
+    if (expandedPath)
+    {
+        xmlTextReader *reader = xmlNewTextReaderFilename(expandedPath);
+        FREE(expandedPath);
         if (!reader)
         {
-            xmlFreeParserInputBuffer(buffer);
-            error->append(gettext("Cannot create a reader"));
+            error->append(gettext("Invalid file"));
             return false;
         }
 
-        bool valid = validate(reader, error);
-        xmlFreeParserInputBuffer(buffer);
-
-        return valid;
+        return validate(reader, error);
     }
-
-    bool XMLValidation::validate(const char *path, std::string * error)const
+    else
     {
-        char *expandedPath = expandPathVariable(const_cast<char *>(path));
-        if (expandedPath)
-        {
-            xmlTextReader *reader = xmlNewTextReaderFilename(expandedPath);
-            FREE(expandedPath);
-            if (!reader)
-            {
-                error->append(gettext("Invalid file"));
-                return false;
-            }
-
-            return validate(reader, error);
-        }
-        else
-        {
-            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
-            return false;
-        }
+        *error = std::string(gettext("Invalid file name: ")) + std::string(path);
+        return false;
     }
+}
 
-    const std::list<XMLValidation *>& XMLValidation::getOpenValidationFiles()
+const std::list<XMLValidation *>& XMLValidation::getOpenValidationFiles()
+{
+    return openValidationFiles;
+}
+
+void XMLValidation::closeAllValidationFiles()
+{
+    int size = (int)openValidationFiles.size();
+    XMLValidation **arr = new XMLValidation *[size];
+    int j = 0;
+
+    for (std::list < XMLValidation * >::iterator i = openValidationFiles.begin(); i != openValidationFiles.end(); i++, j++)
     {
-        return openValidationFiles;
+        arr[j] = *i;
     }
-
-    void XMLValidation::closeAllValidationFiles()
+    for (j = 0; j < size; j++)
     {
-        int size = (int)openValidationFiles.size();
-        XMLValidation **arr = new XMLValidation *[size];
-        int j = 0;
-
-        for (std::list < XMLValidation * >::iterator i = openValidationFiles.begin(); i != openValidationFiles.end(); i++, j++)
-        {
-            arr[j] = *i;
-        }
-        for (j = 0; j < size; j++)
-        {
-            delete arr[j];
-        }
-        delete[]arr;
+        delete arr[j];
     }
+    delete[]arr;
+}
 }

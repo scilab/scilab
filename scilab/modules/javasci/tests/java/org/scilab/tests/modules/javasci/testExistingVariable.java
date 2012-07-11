@@ -11,8 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -24,35 +24,35 @@ import org.scilab.modules.types.ScilabDouble;
 public class testExistingVariable {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void existVariableTest() throws NullPointerException, JavasciException {
-        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+        double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
-        sci.put("a",aOriginal);
+        sci.put("a", aOriginal);
         assertTrue(sci.isExistingVariable("a"));
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void notExistVariableTest() throws NullPointerException, JavasciException {
         assertEquals(sci.isExistingVariable("a"), false);
         assertEquals(sci.isExistingVariable("b"), false);
     }
 
 
-    @Test(sequential = true) 
+    @Test()
     public void existVariableAfterExecTest() throws NullPointerException, JavasciException {
         assertTrue(sci.exec("a=rand(20,20);"));
         assertTrue(sci.isExistingVariable("a"));
@@ -64,9 +64,9 @@ public class testExistingVariable {
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

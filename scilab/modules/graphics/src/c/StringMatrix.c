@@ -26,7 +26,7 @@
 /*----------------------------------------------------------------------------------*/
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
 {
-  int i ;
+  int i = 0;
   /* create the matrix */
   StringMatrix * newMat = newMatrix( nbRow, nbCol ) ;
 
@@ -43,7 +43,7 @@ StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
 /*----------------------------------------------------------------------------------*/
 StringMatrix * newEmptyStringMatrix(int nbRow, int nbCol)
 {
-  int i ;
+  int i = 0;
   /* create the matrix */
   StringMatrix * newMat = newMatrix( nbRow, nbCol ) ;
 
@@ -86,12 +86,12 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
 /*----------------------------------------------------------------------------------*/
 void printStrMat(StringMatrix * mat)
 {
-  int i;
-  int j;
+  int i = 0;
   int nbRow = getMatNbRow(mat);
   int nbCol = getMatNbCol(mat);
   for (i = 0; i < nbRow; i++)
   {
+    int j = 0;
     for (j = 0; j < nbCol; j++)
     {
       printf("%s ", getStrMatElement(mat, i, j));

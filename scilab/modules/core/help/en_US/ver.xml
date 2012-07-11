@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ver">
-  <info>
-    <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
-  </info>
   <refnamediv>
     <refname>ver</refname>
     <refpurpose>Version information for Scilab</refpurpose>
@@ -36,12 +33,26 @@
   <refsection>
     <title>Description</title>
     <para>Version information for Scilab.</para>
-    <para>returns a matrix of string with information about Scilab.</para>
+    <para>Returns a matrix of string with information about Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-ver
+r = ver()
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getversion">getversion</link>
+      </member>
+      <member>
+        <link linkend="getdebuginfo">getdebuginfo</link>
+      </member>
+      <member>
+        <link linkend="getos">getos</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

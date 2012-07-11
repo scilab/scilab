@@ -21,6 +21,7 @@ parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
+tag = 
 e.children(1).mark_style=9
  e  =
  
@@ -30,6 +31,7 @@ parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
+tag = 
 e.children(1).mark_size_unit='tabulated'
  e  =
  
@@ -39,6 +41,7 @@ parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
+tag = 
 e.children(1).mark_size=4
  e  =
  
@@ -48,6 +51,7 @@ parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
+tag = 
 e.children(1).mark_background=0
  e  =
  
@@ -57,6 +61,7 @@ parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
+tag = 
 // check that marks are transparent.
 if e.children(1).mark_background<>0 then
   pause;

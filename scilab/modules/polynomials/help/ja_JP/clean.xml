@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clean">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>clean</refname>
     <refpurpose>行列を消去 (小さなエントリをゼロに丸める)    </refpurpose>
@@ -42,18 +39,21 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,
-	多項式(もしくは多項式行列または有理行列)において
-	絶対値&lt; <literal>epsa</literal>または
-	相対値&lt; <literal>epsr</literal>の係数を全て消去(ゼロに設定)します.
-    (相対とは係数の1次ノルムに関する相対値を意味します)</para>
+      この関数は,
+      多項式(もしくは多項式行列または有理行列)において
+      絶対値&lt; <literal>epsa</literal>または
+      相対値&lt; <literal>epsr</literal>の係数を全て消去(ゼロに設定)します.
+      (相対とは係数の1次ノルムに関する相対値を意味します)
+    </para>
     <para>
-    デフォルト値は <literal>epsa=1.d-10</literal> および
-	 <literal>epsr=1.d-10;</literal>です.</para>
+      デフォルト値は <literal>epsa=1.d-10</literal> および
+      <literal>epsr=1.d-10;</literal>です.
+    </para>
     <para>
-	(多項式でない)定数行列の場合,<literal>clean(A,epsa)</literal>は
-	<literal>epsa</literal>より小さな<literal>A</literal>のエントリを
-	全てゼロに設定します.</para>
+      (多項式でない)定数行列の場合,<literal>clean(A,epsa)</literal>は
+      <literal>epsa</literal>より小さな<literal>A</literal>のエントリを
+      全てゼロに設定します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

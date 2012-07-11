@@ -8,18 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-09 15:17+0000\n"
+"PO-Revision-Date: 2012-06-20 12:16+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au plus %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -37,6 +33,25 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
 
 #, c-format
+msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
+msgstr ""
+"%s : Version du format de fichier HDF5 erronée. Attendu : %d depuis le "
+"fichier : %d\n"
+
+#, c-format
+msgid "%s: Variable '%s' already exists in file '%s'."
+msgstr "%s : La variable '%s' existe déjà dans le fichier '%s'."
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s : Impossible de mettre à jour la version de Scilab dans \"%s\"."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr ""
+"%s : Impossible de mettre à jour la version du format HDF5 dans \"%s\"."
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
@@ -49,16 +64,9 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Type: %dx%d\n"
-msgstr "%s : Type : %dx%d\n"
-
-#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s : Impossible d'ouvrir le fichier : %s\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s : Format Scilab HDF5 invalide.\n"
-
-msgid "HDF5 is not installed"
-msgstr "HDF5 n'est pas installé"

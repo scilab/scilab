@@ -10,6 +10,8 @@ MEXLIB_CPP_SOURCES = \
 
 MEXLIB_FLAGS = \
     -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
@@ -37,9 +39,8 @@ libmex_la_LIBADD = $(MEXLIB_DEP)
 
 libmex_la_CPPFLAGS =  \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS)
-
-libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+    $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 libmat_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
@@ -47,7 +48,8 @@ libmat_la_LIBADD = $(MEXLIB_DEP)
 
 libmat_la_CPPFLAGS = \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS)
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -57,7 +59,8 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 
 libmx_la_CPPFLAGS = \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS)
+    $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -66,7 +69,7 @@ modulename=mexlib
 
 # For the code check (splint)
 CHECK_SRC= $(MEXLIB_CPP_SOURCES)
-INCLUDE_FLAGS = $(MEXLIB_FLAGS)
+INCLUDE_FLAGS = $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)

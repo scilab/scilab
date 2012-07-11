@@ -2,10 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sech" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="sech" xml:lang="en">
   <refnamediv>
     <refname>sech</refname>
     <refpurpose>Compute the element-wise hyperbolic secant of the
@@ -39,6 +36,13 @@
       hyperbolic secant is defined as 1/cosh. For real data the results are real
       and in <literal> [0 1]</literal>.
     </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=linspace(-10,10,1000)
+      plot(x,sech(x))
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>

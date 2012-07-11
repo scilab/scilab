@@ -4,11 +4,12 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,47 +30,40 @@
 #include "MALLOC.h"
 #include "string.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_format_n_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_format_n_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  char* format;
-  int formatLength;
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "format_n");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status = FALSE;
+    char* format = NULL;
+    if ( !isParameterStringMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "format_n");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( sciGetEntityType(pobj) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n") ;
-    return SET_PROPERTY_ERROR ;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_AXES )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
-  if(pAXES_FEATURE(pobj)->format != NULL)
-    FREE(pAXES_FEATURE(pobj)->format);
+    format = getStringFromStack(stackPointer);
 
-  format = getStringFromStack(stackPointer);
-  formatLength = (int)strlen(format);
+    status = setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);
 
-  if(formatLength <= 1)
-  {
-    pAXES_FEATURE(pobj)->format = NULL;
-    return SET_PROPERTY_SUCCEED;
-  }
-
-  pAXES_FEATURE(pobj)->format = MALLOC((formatLength + 1) * sizeof(char));
-  if(pAXES_FEATURE(pobj)->format != NULL)
-  {
-    strcpy(pAXES_FEATURE(pobj)->format, format);
-    return SET_PROPERTY_SUCCEED ;
-  }
-  else
-  {
-    Scierror(999, _("%s: No more memory.\n"),"set_format_n_property");
-
-  }
-  return SET_PROPERTY_SUCCEED ;
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

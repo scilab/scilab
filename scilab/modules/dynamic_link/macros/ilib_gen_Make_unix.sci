@@ -148,11 +148,11 @@ function ilib_gen_Make_unix(names,   ..
                       mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"ilib_gen_Make",x,pathFrom);
                     end
                 end
-
-                if ~isfile(file_name + file_extension) then
-                  error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
+                
+                if ~isfile(pathFrom + "/" + file_name + file_extension) then
+                  error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected. Provided: %s\n"), "ilib_gen_Make_unix", 2, pathFrom + "/" + file_name + file_extension));
                 end
-
+                
                 filelist = filelist + " " + file_name + file_extension;
 
             else
@@ -164,7 +164,7 @@ function ilib_gen_Make_unix(names,   ..
                 // Not that we don't want to copy working files
                 ignoredFileExtension=[".lo",".la",".lai"]
                 for f=filesMatching(:)'
-
+                
                   if ~isfile(f) then
                     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
                   end
@@ -187,7 +187,7 @@ function ilib_gen_Make_unix(names,   ..
         end
     end
 
-    if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | ~isfile(commandpath+"/Makefile.orig") | ~isfile(commandpath+"/libtool") then
+    if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | fileinfo(commandpath+"/Makefile.orig") == [] | fileinfo(commandpath+"/libtool") == [] then
         // Makefile.orig doesn't exists or may be invalid regarding the flags
         // run the ./configure with the flags
 
@@ -266,13 +266,10 @@ function generateConfigure(workingPath, ..
     cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, "configure")
     cmd = workingPath+"/compilerDetection.sh "+cmd
 
-    if ( ilib_verbose() == 2 ) then
-      mprintf(gettext("   %s: Command: %s\n"),"ilib_gen_Make", cmd);
-    end
-
     [msg,ierr,stderr] = unix_g(cmd);
 
     if ( ilib_verbose() == 2 ) then
+       mprintf(gettext("   %s: Command: %s\n"),"ilib_gen_Make",cmd);
        mprintf(gettext("   Output: %s\n"),msg);
        mprintf(gettext("   stderr: %s\n"),stderr);
     end

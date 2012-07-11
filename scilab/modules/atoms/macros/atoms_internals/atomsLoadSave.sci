@@ -77,6 +77,9 @@ function  atomsLoadSave(loaded_mat)
     // =========================================================================
 
     mputl( loaded_str , loaded_txt);
+    wMode = warning("query");
+    warning("off");
     save( loaded_bin  , loaded_mat);
+    warning(wMode);
 
 endfunction

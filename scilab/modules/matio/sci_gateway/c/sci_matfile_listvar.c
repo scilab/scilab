@@ -1,25 +1,26 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
+#include "api_scilab.h"
 #include "matfile_manager.h"
-#include "MALLOC.h"
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
 
-#include "api_scilab.h"
+
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \
@@ -40,15 +41,15 @@ int sci_matfile_listvar(char* fname, void* pvApiCtx)
   int * fd_addr = NULL;
   double tmp_dbl;
   SciErr _SciErr;
-  
+
   CheckRhs(1, 1);
   CheckLhs(1, 3);
-  
+
   /* First Rhs is the index of the file to read */
-  
+
   _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
   _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
-  
+
   if (var_type == sci_matrix)
     {
       getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
@@ -64,17 +65,17 @@ int sci_matfile_listvar(char* fname, void* pvApiCtx)
       Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
       return 1;
     }
-  
+
   /* Gets the corresponding matfile */
   matfile_manager(MATFILEMANAGER_GETFILE, &fileIndex, &matfile);
-  
+
   /* Back to the beginning of the file */
   if (Mat_Rewind(matfile) != 0)
     {
       Scierror(999, _("%s: Could not rewind the file %s.\n"), "matfile_listvar", matfile->filename);
       return 1;
     }
-  
+
   matvar = Mat_VarReadNext(matfile);
   while (matvar != NULL && matvar->name != NULL)
     {
@@ -100,37 +101,37 @@ int sci_matfile_listvar(char* fname, void* pvApiCtx)
 	  return 1;
 	}
       vartypes[nbvar-1] = (double) matvar->data_type;
-      
+
       Mat_VarFree(matvar);
       matvar = Mat_VarReadNext(matfile);
     }
-  
+
   Mat_VarFree(matvar);
-  
+
   /* Return the variable names list */
   nbRow = nbvar; nbCol = 1;
   _SciErr = createMatrixOfString(pvApiCtx, Rhs+1, nbRow, nbCol, varnames); MATIO_ERROR;
   LhsVar(1) = Rhs+1;
-  
+
   /* Return the variable classes */
   if (Lhs >= 2)
     {
       _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+2, nbRow, nbCol, varclasses); MATIO_ERROR;
       LhsVar(2) = Rhs+2;
     }
-  
+
   /* Return the variable types */
   if (Lhs >= 3)
     {
       _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+3, nbRow, nbCol, vartypes); MATIO_ERROR;
       LhsVar(3) = Rhs+3;
     }
-  
+
   freeArrayOfString(varnames, nbvar);
   FREE(varclasses);
   FREE(vartypes);
 
   PutLhsVar();
-  
+
   return 0;
 }

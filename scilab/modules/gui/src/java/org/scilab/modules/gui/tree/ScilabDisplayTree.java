@@ -14,6 +14,7 @@ package org.scilab.modules.gui.tree;
 
 import java.util.StringTokenizer;
 import java.util.Hashtable;
+import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 
 /**
  * Display a graphical tree
@@ -40,6 +41,15 @@ public class ScilabDisplayTree {
 
 		// Display the GUI tree
 		createGraphicTree();
+	}
+
+	public static Tree uicontrolScilabDisplayTree(String[] treeData) {
+		// Get depth and parent node for each node
+		myShapedTree = treeShaping(treeData);
+		// Create the ScilabTree
+		ScilabTree t = createTree(myShapedTree);
+
+		return t;
 	}
 
 	/**

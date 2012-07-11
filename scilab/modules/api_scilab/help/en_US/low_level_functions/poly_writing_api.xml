@@ -121,8 +121,7 @@
     <!--Lib_name: poly_writing-->
     <!--Func_list: write_poly-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int write_poly(char *fname,unsigned long fname_len)
 {
@@ -151,7 +150,7 @@ int write_poly(char *fname,unsigned long fname_len)
     pdblReal[4]             = pdblPoly4;
     pdblReal[5]             = pdblPoly5;
 
-    sciErr = createMatrixOfPoly(pvApiCtx, InputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+    sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -159,11 +158,10 @@ int write_poly(char *fname,unsigned long fname_len)
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(1) = nbInputArgument + 1;
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

@@ -184,7 +184,9 @@ public class ScilabTabFactory extends DockableFactory.Stub {
     }
 
     public void addToCache(SwingScilabTab tab) {
-        cache.put(tab.getPersistentId(), tab);
+        if (tab != null) {
+            cache.put(tab.getPersistentId(), tab);
+        }
     }
 
     /**

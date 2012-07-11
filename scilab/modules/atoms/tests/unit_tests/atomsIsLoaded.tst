@@ -5,7 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
+
 
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");

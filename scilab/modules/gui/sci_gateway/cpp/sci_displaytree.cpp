@@ -16,21 +16,24 @@
 #include <iostream>
 #include <string>
 
+#include "displaytree.hxx"
+#include "ScilabDisplayTree.hxx"
+#include "GiwsException.hxx"
+
 extern "C"
 {
 #include "stack-c.h"
+#include <stdlib.h>
 #include "gw_gui.h"
-#include "stdlib.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
-}
 #include "os_strdup.h"
-#include "displaytree.hxx"
-#include "ScilabDisplayTree.hxx"
-#include "GiwsException.hxx"
+}
+
+
 
 using namespace std;
 
@@ -137,7 +140,7 @@ int sci_displaytree(char *fname, unsigned long fname_len)
 
     for (i = 0; i < struct_size; ++i)
     {
-        tab[i] = strdup(StructList.at(i).c_str());
+        tab[i] = os_strdup(StructList.at(i).c_str());
     }
 
     try

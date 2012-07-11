@@ -125,6 +125,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Makefile.am" />
+    <None Include="types.iss" />
+    <None Include="locales\types.pot" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="includes\alltypes.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

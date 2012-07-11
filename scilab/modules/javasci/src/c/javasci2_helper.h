@@ -253,7 +253,7 @@ int putUnsignedInt(char* variableName, unsigned int *variable, int nbRow, int nb
  * @param[out] nbCol Number of cols
  * @return The matrix of long (column sorted)
  */
-long long* getLong(char* variableName, int *nbRow, int *nbCol);
+long long * getLong(char* variableName, int *nbRow, int *nbCol);
 
 /**
  * Set a matrix of long (int64)
@@ -264,7 +264,7 @@ long long* getLong(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putLong(char* variableName, long long* variable, int nbRow, int nbCol);
+int putLong(char* variableName, long *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of unsigned long (uint64)
@@ -274,7 +274,7 @@ int putLong(char* variableName, long long* variable, int nbRow, int nbCol);
  * @param[out] nbCol Number of cols
  * @return The matrix of unsigned long (column sorted)
  */
-unsigned long long* getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
+unsigned long * getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
 
 /**
  * Set a matrix of unsigned long (int64)
@@ -285,15 +285,7 @@ unsigned long long* getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putUnsignedLong(char* variableName, unsigned long long *variable, int nbRow, int nbCol);
-
-
-/**
- * Return the last error message as a single string
- *
- * @return The last error message
- */
-char* getLastErrorMessageSingle();
+int putUnsignedLong(char* variableName, unsigned long *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of string

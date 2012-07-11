@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-23 12:38+0000\n"
+"PO-Revision-Date: 2012-03-08 10:33+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: fr\n"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
@@ -224,6 +224,9 @@ msgstr "Impossible d'exécuter la procédure de fermeture. Erreur :\n"
 
 msgid "Error with Scilab.canClose():\n"
 msgstr "Erreur dans Scilab.canClose() :\n"
+
+msgid "Error with Scilab.forceClose():\n"
+msgstr "Erreur avec Scilab.forceClose() :\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"

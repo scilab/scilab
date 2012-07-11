@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int3d" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int3d</refname>
     <refpurpose>integral definida 3d pelo método da quadratura e
@@ -121,12 +118,12 @@
     <para>A função calcula uma aproximação a um dado vetor de integrais
       definidas
     </para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
     <para>onde a região de integração são os NUMTET tetraedros e onde</para>
-    <programlisting role=""><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
@@ -186,7 +183,7 @@ Z=[0;0;0;1];
 // computa o integrando exp(x*x+y*y+z*z) sobre o 
 //tetraedro (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-//integração sobre um cubo  -1&lt;=x&lt;=1;-1&lt;=y&lt;=1;-1&lt;=z&lt;=1
+ //integração sobre um cubo  -1<=x<=1;-1<=y<=1;-1<=z<=1
 
 //  fundo  -topo-    direita -esquerda- frente  -traseira- 
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
@@ -222,37 +219,5 @@ function v=f(xyz,numfun),v=1,endfunction
         <link linkend="int2d">int2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Autores</title>
-    <variablelist>
-      <varlistentry>
-        <term>Jarle Berntsen</term>
-        <listitem>
-          <para>The Computing Centre, University of Bergen, Thormohlens gt.
-            55, N-5008 Bergen, Noruega Fone.. 47-5-544055 Email..
-            jarle@eik.ii.uib.no,
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Ronald Cools</term>
-        <listitem>
-          <para>Dept. of Computer Science, Katholieke Universiteit Leuven,
-            Celestijnenlaan 200A, B-3030 Heverlee, Belgium Fone.. 32-16-201015
-            (3562) Email.. ronald@cs.kuleuven.ac.be,
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Terje O. Espelid</term>
-        <listitem>
-          <para>Department of Informatics, University of Bergen, Thormohlens
-            gt. 55, N-5008 Bergen, Norway Fone.. 47-5-544180 Email..
-            terje@eik.ii.uib.no
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

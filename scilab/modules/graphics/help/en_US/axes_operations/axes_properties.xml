@@ -3,18 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="axes_properties">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="axes_properties">
   <refnamediv>
     <refname>axes_properties</refname>
     <refpurpose>description of the axes entity
@@ -462,11 +459,9 @@
               <term>tight_limits: </term>
               <listitem>
                 <para>
-                  If this property value is <literal>"on"</literal> axes adapt to fit
-                  exactly with the minima and maxima values of the
-                  <literal>data_bounds</literal>. If this field value is
-                  <literal>"off"</literal>, axes may enlarge boundaries such as to produce
-                  pretty tics labels.
+                  If this property value is <literal>"on"</literal> axes adapt to fit exactly with the minima and
+                  maxima values of the data bounds. If this field value is <literal>"off"</literal>, axes may
+                  enlarge boundaries such as to produce pretty tics labels.
                 </para>
               </listitem>
             </varlistentry>
@@ -479,6 +474,7 @@
                   <literal>[xmin,ymin;xmax,ymax]</literal>. Note that, to stricly have the
                   specified data bounds, <literal>tight_limits</literal> must be set to
                   <literal>"on"</literal> value (see above).
+                  To manually set data_bounds set <literal>auto_scale="off"</literal>
                 </para>
               </listitem>
             </varlistentry>
@@ -608,7 +604,7 @@
                   This field contains the default <literal>line_style</literal>
                   property value for Segs, Arcs, Rectangle and Polyline objects.
                   <literal>line_style</literal> selects the type of line to be used to
-                  draw lines . Its value should be an integer in [0 8]. 0 and 1
+                  draw lines . Its value should be an integer in [1 8]. 1
                   stand for solid, the other values stand for a selection of dashes
                   (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot).
                 </para>
@@ -820,8 +816,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-lines(0) // disables vertical paging 
+    <programlisting role="example"><![CDATA[
+lines(0) // disables vertical paging
 a=get("current_axes")//get the handle of the newly created axes
 a.axes_visible="on"; // makes the axes visible
 a.font_size=3; //set the tics label font size
@@ -831,7 +827,7 @@ a.sub_tics=[5,0];
 a.labels_font_color=5;
 a.grid=[2,2];
 a.box="off";
-   
+
 // Example with 3D axes
 clf(); //clear the graphics window
 x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
@@ -840,7 +836,7 @@ a.grid=[1 -1 -1]; //make x-grid
 a.rotation_angles=[70 250]; //turn the axes with giving angles
 a.grid=[1 6 -1]; //make y-grid
 a.view="2d"; //return te the 2d view
-a.box="back_half"; 
+a.box="back_half";
 a.labels_font_color=5;
 a.children.children.thickness=4;
 a.children.children.polyline_style=3;
@@ -862,9 +858,9 @@ a.labels_font_size=4;
 a.parent.background=8;
 a.parent.figure_size= [400,200];
 a.rotation_angles=[0 260];
-delete(a.children(2)); 
+delete(a.children(2));
 delete(); // delete current object
-   
+
 a = gca();
 a.labels_font_size=1;
 a.auto_clear= "on";
@@ -874,7 +870,7 @@ a.data_bounds(:,1) = [1;15] ; // set positive bounds for X axe
 a.log_flags = "lnn" ; // set X axes to logarithmic scale
 a.log_flags = "nnn" ; // switch back to linear scale
 
-a=gca(); 
+a=gca();
 a.rotation_angles=[45 45];
 a.data_bounds=[-20,-3,-2;20 3 ,2];
 xrect([-4 0.5 8 1]);
@@ -894,7 +890,7 @@ s.segs_color=5;
 a.data_bounds //the boundary values for the x,y and z coordinates
 a.view="2d";
 a.data_bounds=[-10,-1; 10,1]; // set the boundary values for the two-dimensional views
-   
+
 // Example on axes model
 da=gda() // get the handle on axes model to view and edit the fields
 // title by default
@@ -929,10 +925,10 @@ a=gca();
 mathml="<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>..
 <mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
 // Only LaTeX expression
-a.x_ticks.labels=["0";"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6"]);
 
 // Mixed expression: MathML and LaTex
-a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
+a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"]);
 
  ]]></programlisting>
   </refsection>
@@ -970,5 +966,14 @@ a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

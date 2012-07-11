@@ -15,10 +15,10 @@ function %Block_xcosUpdateBlock(blk)
 
     // generate a unique temp path
     timestamp = getdate();
-    tempfile = TMPDIR + filesep() + "xcosUpdateBlock_" + string(timestamp(10)) + ".h5";
+    tempfile = TMPDIR + filesep() + "xcosUpdateBlock_" + string(timestamp(10)) + ".sod";
     while isfile(tempfile)
         timestamp = timestamp + 1;
-        tempfile = TMPDIR + filesep() + "xcosUpdateBlock_" + string(timestamp(10)) + ".h5";
+        tempfile = TMPDIR + filesep() + "xcosUpdateBlock_" + string(timestamp(10)) + ".sod";
     end    
 
     // export to hdf5

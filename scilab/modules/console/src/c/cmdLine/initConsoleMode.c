@@ -107,5 +107,11 @@ int initConsoleMode(int bin)
         return -1;
     }
 
+    if (!isatty(fileno(stdin)))
+    {
+        /* We are in a pipe, no need to init the console */
+        return 0;
+    }
+
     return setAttr(bin);
 }

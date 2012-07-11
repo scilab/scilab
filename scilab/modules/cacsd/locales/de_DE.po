@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: de\n"
 
 #, c-format
@@ -97,6 +97,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: %s Datenstruktur erwartet.\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -54,7 +54,11 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         }
         /* Add the new character to the command line. */
         (*CommandLine)[*cursorLocation] = (wchar_t) key;
-        printf("%lc", (*CommandLine)[*cursorLocation]);
+        if (isatty(fileno(stdin)))
+        {
+            /* We are in a pipe */
+            printf("%lc", (*CommandLine)[*cursorLocation]);
+        }
         sizeOfCmd++;
         (*CommandLine)[sizeOfCmd] = L'\0';
         (*cursorLocation)++;
@@ -82,10 +86,10 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
     unsigned int sizeOfCmd = 0;
 
     sizeOfCmd = wcslen(CommandLine);
-/*
- * Case Backspace is pressed -> cursor must not be at the beginning of the command line
- * Case Delete is pressed -> cursor must not be at the end of line
- */
+    /*
+     * Case Backspace is pressed -> cursor must not be at the beginning of the command line
+     * Case Delete is pressed -> cursor must not be at the end of line
+     */
     if ((*cursorLocation && key == SCI_BACKSPACE) || ((sizeOfCmd != *cursorLocation) && key == SCI_DELETE))
     {
         if (key == SCI_BACKSPACE)

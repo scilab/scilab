@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lmitool">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lmitool</refname>
     <refpurpose>LMIを解くためのツール</refpurpose>
@@ -21,10 +18,11 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>lmitool()
-
-lmitool(filename)
-
-txt=lmitool(probname,varlist,datalist)</synopsis>
+      
+      lmitool(filename)
+      
+      txt=lmitool(probname,varlist,datalist)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -32,7 +30,9 @@ txt=lmitool(probname,varlist,datalist)</synopsis>
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para><literal>.sci</literal>関数を指す文字列</para>
+          <para>
+            <literal>.sci</literal>関数を指す文字列
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,15 +63,17 @@ txt=lmitool(probname,varlist,datalist)</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>lmitool()</literal> または <literal>lmitool(filename)</literal> は,
-	LMI問題を対話的に定義する際に使用されます.
-	非対話モードでは,
-    <literal>txt=lmitool(probname,varlist,datalist)</literal>
-	はカレントのディレクトリにファイルを生成します.
-	このファイルの名前は,<literal>probname</literal>の末尾に
-	<literal>.sci</literal>を付加することにより得られます.
-	このファイルはソルバー関数のスケルトンで,
-	<literal>lmisolver</literal>により必要とされる評価関数です.</para>
+    <para>
+      <literal>lmitool()</literal> または <literal>lmitool(filename)</literal> は,
+      LMI問題を対話的に定義する際に使用されます.
+      非対話モードでは,
+      <literal>txt=lmitool(probname,varlist,datalist)</literal>
+      はカレントのディレクトリにファイルを生成します.
+      このファイルの名前は,<literal>probname</literal>の末尾に
+      <literal>.sci</literal>を付加することにより得られます.
+      このファイルはソルバー関数のスケルトンで,
+      <literal>lmisolver</literal>により必要とされる評価関数です.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

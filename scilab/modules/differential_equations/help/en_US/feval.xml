@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="feval" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>feval</refname>
     <refpurpose>multiple evaluation</refpurpose>
@@ -37,7 +34,7 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>function or character string (for Fortran or C call)</para>
+          <para>a function or a character string (for Fortran or C call)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,12 +65,12 @@
       </varlistentry>
     </variablelist>
     <para>
-      <literal>f</literal> is an external (function or routine) accepting
-      on one or two arguments which are supposed to be real. The result returned
-      by <literal>f</literal> can be real or complex. In case of a Fortran call,
-      the function <literal> 'f' </literal> must be defined in the subroutine
+      <literal>f</literal> is an <link linkend="external">external</link> 
+      (function or routine) accepting on one or two arguments which are supposed to be real. The
+      result returned  by <literal>f</literal> can be real or complex. In case of a Fortran call,
+      the function <literal>f</literal> must be defined in the subroutine
       <literal>fevaltable.c</literal> (in directory
-      <literal>SCI/modules/differential_equations/src/c</literal>)
+      <literal>SCI/modules/differential_equations/src/c</literal>).
     </para>
   </refsection>
   <refsection>
@@ -87,7 +84,7 @@ feval(1:10,1:5,'parab')   //See ffeval.f file
 feval(1:10,'parab')
 // For dynamic link (see example ftest in ffeval.f)
 // you can use the link command (the parameters depend on the machine):
-// unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest') 
+// unix('make ftest.o');link('ftest.o','ftest'); feval(1:10,1:5,'ftest') 
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

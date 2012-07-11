@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="plot3d" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plot3d</refname>
     <refpurpose>曲面の3次元プロット</refpurpose>
@@ -544,12 +541,6 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-    <para>前の例の結果:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch.png"/>
-      </imageobject>
-    </mediaobject>
     <para>頂点と面により一連のパッチをプロットするために
       plot3d関数を使用することもできます.
     </para>
@@ -610,12 +601,6 @@ xtitle('A triangle set of patches - vertex / face mode - 2D');
 a = gca();
 a.view = '2d';
  ]]></programlisting>
-    <para>前の例の結果:</para>
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png"/>
-      </imageobject>
-    </mediaobject>
     <para>マニュアルで目盛を設定する方法</para>
     <programlisting role="example"><![CDATA[ 
 plot3d();

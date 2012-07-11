@@ -14,97 +14,97 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-06-20 17:53+0100\n"
 
-# File: sci_gateway/c/gw_ui_data.c, line: 38
+# File: sci_gateway/c/gw_ui_data.c, line: 39
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 165
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 164
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 174
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 182
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 197
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 213
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 225
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 263
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 274
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 291
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 301
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 318
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 333
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 353
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 407
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 445
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 458
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 475
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 516
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 555
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 566
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 598
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 630
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 662
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 694
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 726
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 767
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 800
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 834
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 173
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 181
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 196
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 212
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 224
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 262
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 273
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 290
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 300
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 317
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 332
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 352
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 406
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 444
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 457
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 474
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 515
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 554
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 565
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 597
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 629
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 661
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 693
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 725
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 766
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 799
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 833
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 188
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 187
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 204
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 203
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 231
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 230
 #, c-format
 msgid "%s: ans cannot be edited.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 240
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 251
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 239
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 250
 #, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 281
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 308
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 280
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 307
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 393
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 430
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 499
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 540
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 586
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 618
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 650
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 682
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 714
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 746
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 787
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 821
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 854
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 392
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 429
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 498
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 539
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 585
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 617
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 649
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 681
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 713
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 745
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 786
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 820
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 853
 #, c-format
 msgid ""
 "%s: Java exception arisen:\n"
@@ -112,8 +112,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 755
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 862
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 754
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 861
 #, c-format
 msgid "%s: Type not handle yet"
 msgstr ""
@@ -296,7 +296,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 57
-# File: src/java/org/scilab/modules/ui_data/variableeditor/ScilabVariableEditor.java, line: 162
+# File: src/java/org/scilab/modules/ui_data/variableeditor/ScilabVariableEditor.java, line: 152
 msgid "Variable Editor"
 msgstr ""
 
@@ -570,12 +570,12 @@ msgid "Open with default application"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 164
+# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 156
 msgid "Scilab type:"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 174
+# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 166
 msgid "Bytes:"
 msgstr ""
 

@@ -11,8 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import java.awt.GraphicsEnvironment;
 
@@ -24,20 +24,20 @@ import org.scilab.modules.types.ScilabTypeEnum;
 public class testGraphics {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab(true); // True = enable advanced mode
         assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void isGraphicOpenedTest() throws NullPointerException, JavasciException {
         if (!GraphicsEnvironment.isHeadless()) {
             sci.exec("plot3d();");
@@ -45,7 +45,7 @@ public class testGraphics {
         }
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void isGraphicNotOpenedTest() throws NullPointerException, JavasciException {
 
         sci.exec("a=1+1;");
@@ -55,9 +55,9 @@ public class testGraphics {
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

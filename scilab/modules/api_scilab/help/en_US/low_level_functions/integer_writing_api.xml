@@ -181,8 +181,7 @@
     <!--Lib_name: integer_writing-->
     <!--Func_list: read_integer-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
@@ -373,7 +372,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	puiDataOut  = (unsigned int*)create_output(64, 4, iRowsu32, iColsu32, (void*)puiData);
 
 	//create new variable
-	sciErr = createMatrixOfInteger8(pvApiCtx, InputArgument + 1, iRows8, iCols8, pcDataOut);
+	sciErr = createMatrixOfInteger8(pvApiCtx, nbInputArgument + 1, iRows8, iCols8, pcDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -381,7 +380,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, InputArgument + 2, iRowsu8, iColsu8, pucDataOut);
+	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, nbInputArgument + 2, iRowsu8, iColsu8, pucDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -389,7 +388,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfInteger16(pvApiCtx, InputArgument + 3, iRows16, iCols16, psDataOut);
+	sciErr = createMatrixOfInteger16(pvApiCtx, nbInputArgument + 3, iRows16, iCols16, psDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -397,7 +396,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, InputArgument + 4, iRowsu16, iColsu16, pusDataOut);
+	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, nbInputArgument + 4, iRowsu16, iColsu16, pusDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -405,7 +404,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfInteger32(pvApiCtx, InputArgument + 5, iRows32, iCols32, piDataOut);
+	sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 5, iRows32, iCols32, piDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -413,7 +412,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, InputArgument + 6, iRowsu32, iColsu32, puiDataOut);
+	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, nbInputArgument + 6, iRowsu32, iColsu32, puiDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -421,12 +420,12 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//assign allocated variables to Lhs position
-	AssignOutputVariable(1) = InputArgument + 1;
-	AssignOutputVariable(2) = InputArgument + 2;
-	AssignOutputVariable(3) = InputArgument + 3;
-	AssignOutputVariable(4) = InputArgument + 4;
-	AssignOutputVariable(5) = InputArgument + 5;
-	AssignOutputVariable(6) = InputArgument + 6;
+	AssignOutputVariable(1) = nbInputArgument + 1;
+	AssignOutputVariable(2) = nbInputArgument + 2;
+	AssignOutputVariable(3) = nbInputArgument + 3;
+	AssignOutputVariable(4) = nbInputArgument + 4;
+	AssignOutputVariable(5) = nbInputArgument + 5;
+	AssignOutputVariable(6) = nbInputArgument + 6;
 	return 0;
 }
 
@@ -443,8 +442,7 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
 	}
 	return pvDataOut;
 }
-]]>
-    </programlisting>
+]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

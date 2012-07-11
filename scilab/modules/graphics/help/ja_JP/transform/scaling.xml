@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scaling">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scaling</refname>
     <refpurpose>点の集合をアフィン変換する</refpurpose>
@@ -53,8 +50,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>scaling</literal> は座標<literal>xy</literal>で
-	定義された点の集合に関して次のアフィン変換を行ないます:</para>
-    <para><literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.</para>
+    <para>
+      <literal>scaling</literal> は座標<literal>xy</literal>で
+      定義された点の集合に関して次のアフィン変換を行ないます:
+    </para>
+    <para>
+      <literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.
+    </para>
   </refsection>
 </refentry>

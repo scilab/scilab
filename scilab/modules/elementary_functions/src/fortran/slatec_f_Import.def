@@ -1,0 +1,5 @@
+LIBRARY    slatec_f.dll
+
+
+EXPORTS
+balanc_

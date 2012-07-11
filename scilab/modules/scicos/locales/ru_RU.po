@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-20 14:59+0000\n"
+"PO-Revision-Date: 2012-06-13 15:54+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1201,8 +1201,12 @@ msgstr ""
 " ошибка в якобиане"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Error: невозможно найти '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Ошибка: Невозможно найти файл '%s'.\n"
+
+#, c-format
+msgid "Error: cannot find file '%s'.\n"
+msgstr "Ошибка: Невозможно найти файл '%s'.\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1383,42 +1387,6 @@ msgstr "Блок подключил входной порт<br />с несовм
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Ошибка: блок scifunc не определён."
 
-#, c-format
-msgid "%s: flat failed"
-msgstr ""
-
-#, c-format
-msgid "%s: global case failed"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid connection matrix"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build modelica block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to build block"
-msgstr ""
-
-#, c-format
-msgid "%s: unable to sample the whole diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: invalid links table size"
-msgstr ""
-
-#, c-format
-msgid "%s: implicit block with event port"
-msgstr ""
-
-#, c-format
-msgid "%s: build the modelica meta-block failed"
-msgstr ""
-
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 "Один из этих выходов блока имеет отрицательный размер.<br />Пожалуйста, "
@@ -1476,7 +1444,7 @@ msgid "Evaluation problem: value not updated from context."
 msgstr "Проблема вычисления: значение не обновлено из контекста."
 
 msgid "Evaluation problem: Unknown block"
-msgstr ""
+msgstr "Проблема выполнения: Неизвестный блок"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Извините: поддерживаются только языки C или FORTRAN"
@@ -1485,31 +1453,7 @@ msgid "Sorry file name not defined in "
 msgstr "Извините, имя файла не определено в "
 
 #, c-format
-msgid "%s: goto tag not unique"
-msgstr ""
-
-#, c-format
-msgid "%s: Port out of hierarchy"
-msgstr ""
-
-#, c-format
-msgid "%s: Not connected super block input"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid super block at %d"
-msgstr ""
-
-#, c-format
 msgid "%s: Empty diagram"
-msgstr ""
-
-#, c-format
-msgid "%s: Multiple GotoTagVisibility at the same level"
-msgstr ""
-
-#, c-format
-msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #, c-format

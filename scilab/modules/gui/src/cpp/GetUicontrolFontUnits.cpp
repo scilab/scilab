@@ -13,33 +13,23 @@
 
 #include "GetUicontrolFontUnits.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolFontUnits(sciPointObj* sciObj)
+int GetUicontrolFontUnits(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* fontUnits = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTUNITS__), jni_string, (void**) &fontUnits);
+
+    if (fontUnits == NULL)
     {
-      // Get the font units from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->fontUnits)
-        {
-        case POINTS_UNITS:
-          return sciReturnString("points");
-        case NORMALIZED_UNITS:
-          return sciReturnString("normalized");
-        case INCHES_UNITS:
-          return sciReturnString("inches");
-        case CENTIMETERS_UNITS:
-          return sciReturnString("centimeters");
-        case PIXELS_UNITS:
-          return sciReturnString("pixels");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontUnits");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontUnits");
-      return FALSE;
+        status = sciReturnString(_pvCtx, fontUnits);
+        delete[] fontUnits;
+        return status;
     }
+
 }

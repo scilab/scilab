@@ -94,5 +94,6 @@
 #include BinariesSourcePath + "\modules\threads\threads.iss"
 #include BinariesSourcePath + "\modules\xml\xml.iss"
 #include BinariesSourcePath + "\modules\preferences\preferences.iss"
+#include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
 ;-------------------------------------------------------------------------------
 ;

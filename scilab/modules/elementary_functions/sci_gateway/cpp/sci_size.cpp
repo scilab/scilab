@@ -11,8 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "funcmanager.hxx"
-#include "context.hxx"
 #include "types.hxx"
 #include "string.hxx"
 #include "container.hxx"

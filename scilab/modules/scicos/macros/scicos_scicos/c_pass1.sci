@@ -15,7 +15,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -58,12 +58,12 @@ MaxBlock=countblocks(scs_m);
 blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]
 [cor,corinvt,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m);
 if ~ok then
-  disp(mprintf(gettext("%s: flat failed"), "c_pass1"));
+  disp(mprintf("%s: flat failed", "c_pass1"));
   return;
 end
 [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
 if ~ok then
-  disp(mprintf(gettext("%s: global case failed"), "c_pass1"));
+  disp(mprintf("%s: global case failed", "c_pass1"));
   return;
 end
 index1=find((sco_mat(:,2)=='-1')& (sco_mat(:,5)<>'10'))
@@ -74,7 +74,7 @@ if index1<>[] then
     if flgcdgen<>-1 then full_path=[numk full_path];scs_m=all_scs_m;end
     hilite_path(full_path,"Error in compilation, There is a FROM ''"+(sco_mat(i,3))+ "'' without a GOTO",%t)
     ok=%f;
-    disp(mprintf(gettext("%s: invalid connection matrix"), "c_pass1"));
+    disp(mprintf("%s: invalid connection matrix", "c_pass1"));
     return;
   end
 end
@@ -98,13 +98,13 @@ for kb=1:nb
     ind(kb)=-km;
     [modelx,ok]=build_block(o); // compile modelica block type 30004
     if ~ok then
-      disp(mprintf(gettext("%s: unable to build modelica block"), "c_pass1"));
+      disp(mprintf("%s: unable to build modelica block", "c_pass1"));
       return
     end
   else
     [model,ok]=build_block(o);
     if ~ok then
-      disp(mprintf(gettext("%s: unable to build block"), "c_pass1"));
+      disp(mprintf("%s: unable to build block", "c_pass1"));
       return,
     end
 
@@ -125,7 +125,7 @@ if (find(sco_mat(:,5)==string(4))<>[]) then
     [links_table,blklst,corinvt,ind,ok,scs_m,flgcdgen,freof]=sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
   end
   if ~ok then
-    disp(mprintf(gettext("%s: unable to sample the whole diagram"), "c_pass1"));
+    disp(mprintf("%s: unable to sample the whole diagram", "c_pass1"));
     return,
   end
 end
@@ -138,7 +138,7 @@ if(size(links_table(:,1:3), "r") == size(matrix([1;1]*(1:nl),-1,1), "r") ..
   links_table=[links_table(:,1:3) matrix([1;1]*(1:nl),-1,1) ..
   links_table(:,4) ];
 else
-  disp(mprintf(gettext("%s: invalid links table size"), "c_pass1"));
+  disp(mprintf("%s: invalid links table size", "c_pass1"));
   return
 end
 imp=find(ind<0)
@@ -196,7 +196,7 @@ else // mixed diagram
   if size(ccmat,1)>0 then
     if or(dsearch(ccmat(:,[1 3]),imp,'d')>0) then
       messagebox('An implicit block has an event port',"modal","error");
-      disp(mprintf(gettext("%s: implicit block with event port"), "c_pass1"));
+      disp(mprintf("%s: implicit block with event port", "c_pass1"));
       ok=%f;return
     end
   end
@@ -252,7 +252,7 @@ else // mixed diagram
   [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,TMPDIR+'/');
 
   if ~ok then
-    disp(mprintf(gettext("%s: build the modelica meta-block failed"), "c_pass1"));
+    disp(mprintf("%s: build the modelica meta-block failed", "c_pass1"));
     return
   end
 

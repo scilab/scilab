@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sparse">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sparse</refname>
     <refpurpose>疎行列を定義</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>sp=sparse(X)
-sp=sparse(ij,v [,mn])</synopsis>
+      sp=sparse(ij,v [,mn])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -60,31 +58,40 @@ sp=sparse(ij,v [,mn])</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sparse</literal>は疎行列を作成するために使用されます.
-	ゼロでないエントリのみが保存されます.</para>
-    <para><literal>sp = sparse(X)</literal>  は,
-	0要素を除外することにより,通常の行列を疎行列に変換します.
-	(<literal>X</literal>が既に疎行列の場合,
-    <literal>sp</literal>は<literal>X</literal>となります).</para>
-    <para><literal>sp=sparse(ij,v [,mn])</literal>は,
-	<literal>sp(ij(k,1),ij(k,2))=v(k)</literal>となる
-	<literal>mn(1)</literal>行<literal>mn(2)</literal>列の疎行列
-	を作成します.
-    <literal>ij</literal> および <literal>v</literal>は列の次元が
-	同じである必要があります.
-	オプションの<literal>mn</literal>パラメータが指定されない場合,
-	行列<literal>sp</literal>の次元は,それぞれ
-	<literal>ij(:,1)</literal> および <literal>ij(:,2)</literal>の
-	最大値となります.</para>
     <para>
-	疎行列に関する操作(結合,加算,等,)は通常の行列と同じ構文により
-	行ないます.</para>
+      <literal>sparse</literal>は疎行列を作成するために使用されます.
+      ゼロでないエントリのみが保存されます.
+    </para>
     <para>
-	基本的な関数(<literal>abs,maxi,sum,diag,...</literal>)は疎行列でも
-	利用可能です.</para>
+      <literal>sp = sparse(X)</literal>  は,
+      0要素を除外することにより,通常の行列を疎行列に変換します.
+      (<literal>X</literal>が既に疎行列の場合,
+      <literal>sp</literal>は<literal>X</literal>となります).
+    </para>
     <para>
-	(通常の行列と疎行列の)混用も可能です.
-	結果は処理に応じて通常または疎行列となります.</para>
+      <literal>sp=sparse(ij,v [,mn])</literal>は,
+      <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>となる
+      <literal>mn(1)</literal>行<literal>mn(2)</literal>列の疎行列
+      を作成します.
+      <literal>ij</literal> および <literal>v</literal>は列の次元が
+      同じである必要があります.
+      オプションの<literal>mn</literal>パラメータが指定されない場合,
+      行列<literal>sp</literal>の次元は,それぞれ
+      <literal>ij(:,1)</literal> および <literal>ij(:,2)</literal>の
+      最大値となります.
+    </para>
+    <para>
+      疎行列に関する操作(結合,加算,等,)は通常の行列と同じ構文により
+      行ないます.
+    </para>
+    <para>
+      基本的な関数(<literal>abs,maxi,sum,diag,...</literal>)は疎行列でも
+      利用可能です.
+    </para>
+    <para>
+      (通常の行列と疎行列の)混用も可能です.
+      結果は処理に応じて通常または疎行列となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

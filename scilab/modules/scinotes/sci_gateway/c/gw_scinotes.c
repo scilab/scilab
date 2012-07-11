@@ -10,15 +10,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_scinotes.h"
-#include "api_scilab.h"
-#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
-#include "sci_mode.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/

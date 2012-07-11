@@ -67,10 +67,9 @@ TYPES_CPP_SOURCES = \
 			src/cpp/graphichandle.cpp \
             src/cpp/types_tools.cpp
 
-TYPES_JAVA_CPP_SOURCES = \
-			src/cpp/ScilabToJava.cpp \
-	        src/jni/ScilabVariables.cpp \
-	        src/jni/ScilabVariablesRefresh.cpp \
+TYPES_JAVA_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
+	            src/jni/ScilabVariables.cpp \
+	            src/jni/ScilabVariablesRefresh.cpp \
 		    src/jni/ScilabPolynomialToJava.cpp
 
 if ENABLE_DEBUG
@@ -79,8 +78,9 @@ endif
 
 GIWS_WRAPPERS = src/jni/ScilabVariables.giws.xml
 
+BUILT_SOURCES =
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
 
 TYPES_GATEWAY_CPP_SOURCES = \
@@ -130,14 +130,17 @@ libscitypes_java_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
                -I$(srcdir)/includes \
                -I$(top_srcdir)/modules/commons/src/jni/ \
                -I$(top_srcdir)/modules/jvm/includes/ \
-               -I$(top_srcdir)/modules/output_stream/includes \
-               -I$(top_srcdir)/modules/api_scilab/includes \
-               -I$(top_srcdir)/modules/operations/includes
+               -I$(top_srcdir)/modules/output_stream/includes/ \
+               -I$(top_srcdir)/modules/api_scilab/includes/ \
+               -I$(top_srcdir)/modules/operations/includes/ \
+				$(AM_CPPFLAGS)
 
 
 libscitypes_la_CPPFLAGS = \
 	-I$(srcdir)/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/operations/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/ast/includes \
@@ -149,7 +152,8 @@ libscitypes_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes \
 	-I src/cpp \
-    $(EIGEN_CPPFLAGS)
+    $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscitypes.la
 if GUI
@@ -157,11 +161,9 @@ pkglib_LTLIBRARIES += libscitypes-java.la
 endif
 noinst_LTLIBRARIES = libscitypes-algo.la
 
-# Without the types module
-libscitypes_disable_la_CFLAGS =
 
-libscitypes_algo_la_CFLAGS = $(libscitypes_la_CFLAGS)
-libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
+libscitypes_algo_la_CPPFLAGS = 	$(libscitypes_la_CPPFLAGS) \
+								$(AM_CPPFLAGS)
 
 libscitypes_la_LIBADD = libscitypes-algo.la
 
@@ -169,28 +171,21 @@ libscitypes_java_la_LIBADD = \
 			$(top_builddir)/modules/commons/libscicommons.la \
 			$(top_builddir)/modules/jvm/libscijvm.la
 
-libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-
 libscitypes_algo_la_SOURCES = $(TYPES_CPP_SOURCES)
 libscitypes_java_la_SOURCES = $(TYPES_JAVA_C_SOURCES) $(TYPES_JAVA_CPP_SOURCES)
-libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES) #$(GATEWAY_C_SOURCES)
+libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
+INCLUDE_FLAGS = $(libscitypes_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/sci_types.i \
 		src/jni/getScilabVariable.i
 
-
 if SWIG
-BUILT_SOURCES=swig
-endif
-
-if GIWS
-BUILT_SOURCES += giws-exception
+BUILT_SOURCES+=swig
 endif
 
 #### types : gateway declaration ####

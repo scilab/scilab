@@ -20,19 +20,8 @@ function %diagram_xcos(scs_m)
 // Parameters
 //  scs_m: the diagram instance
 
-    // generate a unique temp path
-    timestamp = getdate();
-    tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(timestamp(10)) + ".h5";
-    while isfile(tempfile)
-        timestamp = timestamp + 1;
-        tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(timestamp(10)) + ".h5";
-    end
-
-    // export to hdf5
-    if export_to_hdf5(tempfile, "scs_m") then
-        // load the exported diagram
-        xcos(tempfile);
-    else
-        error(msprintf(gettext("%s: Unable to export %s to %s.\n"), "xcos", "`scs_m''", tempfile));
-    end
+    // allocate a local copy
+    scs_m = scs_m;
+    // call xcos with the copy and name
+    xcos(scs_m, "scs_m");
 endfunction

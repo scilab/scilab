@@ -12,14 +12,9 @@
 
 package org.scilab.modules.core;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
-import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
-import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
  * The main Tab factory.
@@ -32,7 +27,6 @@ public class ConsoleTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "Console";
     public static final String PACKAGE = "Console";
     public static final String CLASS = "org.scilab.modules.core.ConsoleTabFactory";
-    public static final String NULLUUID = new UUID(0L, 0L).toString();
 
     private static ConsoleTabFactory instance;
 
@@ -42,26 +36,26 @@ public class ConsoleTabFactory extends AbstractScilabTabFactory {
     public ConsoleTabFactory() { }
 
     public SwingScilabTab getTab(String uuid) {
-	if (isAValidUUID(uuid)) {
-	    return (SwingScilabTab) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
-	}
-	return null;
+        if (isAValidUUID(uuid)) {
+            return (SwingScilabTab) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
+        }
+        return null;
     }
 
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     public boolean isAValidUUID(String uuid) {
-	return uuid.equals(NULLUUID);
+        return uuid.equals(SwingView.NULLUUID);
     }
 
     /**

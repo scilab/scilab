@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -29,7 +30,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.utils.XcosFileType;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -90,14 +91,18 @@ public final class OpenAction extends DefaultAction {
         configureFileFilters(fc);
         ConfigurationManager.configureCurrentDirectory(fc);
 
-        displayAndOpen(fc, getGraph(e).getAsComponent());
+        try {
+            displayAndOpen(fc, getGraph(e).getAsComponent());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     /*
      * Helpers functions to share file chooser code
      */
 
-    protected static SwingScilabFileChooser createFileChooser() {
+    public static SwingScilabFileChooser createFileChooser() {
         final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
         fc.setTitle(XcosMessages.OPEN);
@@ -106,17 +111,17 @@ public final class OpenAction extends DefaultAction {
         return fc;
     }
 
-    protected static void configureFileFilters(final JFileChooser fc) {
+    public static void configureFileFilters(final JFileChooser fc) {
         fc.setAcceptAllFileFilterUsed(true);
 
-        final FileFilter[] filters = XcosFileType.getValidFilters();
+        final FileFilter[] filters = XcosFileType.getLoadingFilters();
         for (FileFilter fileFilter : filters) {
             fc.addChoosableFileFilter(fileFilter);
         }
-        fc.setFileFilter(filters[0]);
+        fc.setFileFilter(fc.getAcceptAllFileFilter());
     }
 
-    protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) {
+    protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) throws IOException {
         final int status = fc.showOpenDialog(component);
         if (status != JFileChooser.APPROVE_OPTION) {
             return;
@@ -124,13 +129,13 @@ public final class OpenAction extends DefaultAction {
 
         final File onlySelected = fc.getSelectedFile();
         if (onlySelected != null) {
-            Xcos.getInstance().open(onlySelected);
+            Xcos.getInstance().open(onlySelected.getCanonicalPath(), null);
         }
 
         final File[] multiSelected = fc.getSelectedFiles();
         for (File file : multiSelected) {
             if (file != onlySelected) {
-                Xcos.getInstance().open(file);
+                Xcos.getInstance().open(file.getCanonicalPath(), null);
             }
         }
     }

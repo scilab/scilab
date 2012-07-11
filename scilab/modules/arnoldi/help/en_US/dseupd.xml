@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dseupd" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-01 10:59:08 +0200 (ven., 01 sept. 2006)
-      $
-    </pubdate>
-  </info>
   <refnamediv>
-    <refname>dsaupd</refname>
+    <refname>dseupd</refname>
     <refpurpose>Interface for the Implicitly Restarted Arnoldi Iteration, to
       compute approximations to the converged approximations to eigenvalues of
       A*z = lambda*B*z
@@ -425,6 +420,6 @@ printf('The convergence criterion is %d\n', tol);
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para>Based on ARPACK routine dsaupd</para>
+    <para>Based on ARPACK routine dseupd</para>
   </refsection>
 </refentry>

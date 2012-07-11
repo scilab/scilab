@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="try" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>try</refname>
     <refpurpose>beginning of try block in try-catch control
@@ -17,7 +14,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>try
+    <synopsis>
+      try
       statements
       catch
       statements
@@ -42,7 +40,7 @@
       executed using the default error handling mode (see <link linkend="errcatch">errcatch</link>).
     </para>
     <para>
-      The recorded error can be retreived using the <link linkend="lasterror">lasterror</link> function.
+      The recorded error can be retrieved using the <link linkend="lasterror">lasterror</link> function.
     </para>
     <para>
       The <literal>catch</literal> statements as well as the
@@ -68,7 +66,7 @@ end
       <emphasis>execstr(...,"errcatch")</emphasis> cannot be included in
       <literal>try</literal>-<literal>catch</literal> control structures. This
       context is detected and produces a specific error message (this error is
-      catched and stored like any other error if it is triggered in the
+      caught and stored like any other error if it is triggered in the
       <literal>try</literal> block).
     </para>
     <para>
@@ -85,12 +83,12 @@ try
   u=mopen(file_path,'r')
   x=mget(10,'c',u)
 catch
-  disp(['file '+file_path+ 'cannot be read',
-        'using default values for x'])
+  disp(['file '+file_path+ ' cannot be read','using default values for x'])
   x=1:10
 end 
  [error_message,error_number]=lasterror(%t)
-
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
 // example 2 (nested try/catch structures)
 function nestedtry(a,b)
 disp("START")

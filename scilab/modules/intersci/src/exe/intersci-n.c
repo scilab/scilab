@@ -15,6 +15,7 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
+#include <stdio.h>
 #include "intersci-n.h"
 #include "getrhs.h"
 #include "crerhs.h"
@@ -47,36 +48,38 @@ int main(int argc, char **argv)
     char *file;
     int SciLabinterface = 0;
 
+    fprintf(stderr, "WARNING: This program is deprecated and will be removed with Scilab 6.0.0. Please use SWIG ( http://www.swig.org/ ) instead.\n\n");
+
     switch (argc)
     {
-    case 2:
-        file = argv[1];
-        target = 'C';
-        SciLabinterface = 0;
-        files = NULL;
-        libs = NULL;
-        break;
-    case 3:
-        file = argv[1];
-        target = 'C';
-        SciLabinterface = 0;
-        files = argv[2];
-        libs = NULL;
-        break;
-    case 4:
-        file = argv[1];
-        target = 'C';
-        SciLabinterface = 0;
-        files = argv[2];
-        libs = argv[3];
-        break;
-    default:
-        printf("Usage:  intersci <interface file> 'files' 'libs'\n");
-        printf("intersci is a program for building an interface file between Scilab\n");
-        printf("and C/Fortran functions/subroutines.\n");
-        printf("See : http://www.scilab.org/doc/intersci.pdf\n");
-        exit(1);
-        break;
+        case 2:
+            file = argv[1];
+            target = 'C';
+            SciLabinterface = 0;
+            files = NULL;
+            libs = NULL;
+            break;
+        case 3:
+            file = argv[1];
+            target = 'C';
+            SciLabinterface = 0;
+            files = argv[2];
+            libs = NULL;
+            break;
+        case 4:
+            file = argv[1];
+            target = 'C';
+            SciLabinterface = 0;
+            files = argv[2];
+            libs = argv[3];
+            break;
+        default:
+            printf("Usage:  intersci <interface file> 'files' 'libs'\n");
+            printf("intersci is a program for building an interface file between Scilab\n");
+            printf("and C/Fortran functions/subroutines.\n");
+            printf("See : http://www.scilab.org/doc/intersci.pdf\n");
+            exit(1);
+            break;
     }
     basfun = BasfunAlloc();
     if (basfun == 0)
@@ -290,18 +293,18 @@ void WriteFunctionCode(FILE * f)
     {
         switch (variables[i]->type)
         {
-        case LIST:
-            WriteListAnalysis(f, i, "l");
-            break;
-        case TLIST:
-            WriteListAnalysis(f, i, "t");
-            break;
-        case MLIST:
-            WriteListAnalysis(f, i, "m");
-            break;
-        default:
-            WriteArgCheck(f, i);
-            break;
+            case LIST:
+                WriteListAnalysis(f, i, "l");
+                break;
+            case TLIST:
+                WriteListAnalysis(f, i, "t");
+                break;
+            case MLIST:
+                WriteListAnalysis(f, i, "m");
+                break;
+            default:
+                WriteArgCheck(f, i);
+                break;
         }
     }
 
@@ -347,38 +350,38 @@ void WriteInfoCode(FILE * f)
 
     switch (vout->type)
     {
-    case LIST:
-    case TLIST:
-        /* loop on output variables */
-        printf("list(");
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
-            printf("%s", var->name);
-            if (i != vout->length - 1)
-                printf(",");
-            else
-                printf(")");
-        }
-        break;
-    case SEQUENCE:
-        /* loop on output variables */
-        printf("[");
-        for (i = 0; i < vout->length; i++)
-        {
-            ivar = vout->el[i];
-            var = variables[ivar - 1];
-            printf("%s", var->name);
-            if (i != vout->length - 1)
-                printf(",");
-            else
-                printf("]");
-        }
-        break;
-    case EMPTY:
-        printf("[]\n");
-        break;
+        case LIST:
+        case TLIST:
+            /* loop on output variables */
+            printf("list(");
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                printf("%s", var->name);
+                if (i != vout->length - 1)
+                    printf(",");
+                else
+                    printf(")");
+            }
+            break;
+        case SEQUENCE:
+            /* loop on output variables */
+            printf("[");
+            for (i = 0; i < vout->length; i++)
+            {
+                ivar = vout->el[i];
+                var = variables[ivar - 1];
+                printf("%s", var->name);
+                if (i != vout->length - 1)
+                    printf(",");
+                else
+                    printf("]");
+            }
+            break;
+        case EMPTY:
+            printf("[]\n");
+            break;
     }
 
     printf("=%s(", basfun->name);
@@ -399,10 +402,8 @@ void WriteInfoCode(FILE * f)
 
 void WriteArgCheck(FILE * f, int i)
 {
-    int i1;
     VARPTR var = variables[basfun->in[i] - 1];
 
-    i1 = i + 1;
 
     Fprintf(f, indent, "/*  checking variable %s */\n", var->name);
 
@@ -534,7 +535,7 @@ void CheckCreateOrder()
     {
         ivar = forsub->arg[i];
         if (variables[ivar - 1]->list_el == 0
-            && variables[ivar - 1]->is_sciarg == 0 && variables[ivar - 1]->for_type != EXTERNAL && variables[ivar - 1]->for_type != CSTRINGV)
+                && variables[ivar - 1]->is_sciarg == 0 && variables[ivar - 1]->for_type != EXTERNAL && variables[ivar - 1]->for_type != CSTRINGV)
         {
             count++;
             if (min != 10000 && variables[ivar - 1]->stack_position != 0 && variables[ivar - 1]->stack_position < min)
@@ -552,7 +553,7 @@ void CheckCreateOrder()
 
 void WriteFortranCall(FILE * f)
 {
-    int i, ind;
+    int i;
     IVAR ivar, iivar;
     char call[MAXCALL];
 
@@ -565,7 +566,6 @@ void WriteFortranCall(FILE * f)
     for (i = 0; i < forsub->narg; i++)
     {
         ivar = forsub->arg[i];
-        ind = 0;
         if (variables[ivar - 1]->list_el != 0)
         {
             /* FORTRAN argument is a list element */
@@ -666,36 +666,36 @@ void WriteOutput(FILE * f)
         vout = variables[iout - 1];
         switch (vout->type)
         {
-        case LIST:
-        case TLIST:
-        case MLIST:
-            Fprintf(f, indent, "/* Creation of output %s of length %d*/\n", SGetSciType(vout->type), vout->length);
-            vout->stack_position = icre;
-            icre++;
-            Fprintf(f, indent, "Create%s(%d,%d);\n", SGetSciType(vout->type), vout->stack_position, vout->length);
-            /* loop on output variables */
-            for (i = 0; i < vout->length; i++)
-            {
-                ivar = vout->el[i];
-                var = variables[ivar - 1];
-                Fprintf(f, indent, "/* Element %d: %s*/\n", i + 1, var->name);
-                WriteVariable(f, var, ivar, 1, i + 1);
-            }
-            Fprintf(f, indent, "LhsVar(1)= %d;\nreturn 0;", vout->stack_position);
-            break;
-        case SEQUENCE:
-            /* loop on output variables */
-            for (i = 0; i < vout->length; i++)
-            {
-                ivar = vout->el[i];
-                var = variables[ivar - 1];
-                WriteVariable(f, var, ivar, 0, 0);
-            }
-            Fprintf(f, indent, "return 0;\n");
-            break;
-        case EMPTY:
-            Fprintf(f, indent, "LhsVar(1)=0;\n;return 0;\n");
-            break;
+            case LIST:
+            case TLIST:
+            case MLIST:
+                Fprintf(f, indent, "/* Creation of output %s of length %d*/\n", SGetSciType(vout->type), vout->length);
+                vout->stack_position = icre;
+                icre++;
+                Fprintf(f, indent, "Create%s(%d,%d);\n", SGetSciType(vout->type), vout->stack_position, vout->length);
+                /* loop on output variables */
+                for (i = 0; i < vout->length; i++)
+                {
+                    ivar = vout->el[i];
+                    var = variables[ivar - 1];
+                    Fprintf(f, indent, "/* Element %d: %s*/\n", i + 1, var->name);
+                    WriteVariable(f, var, ivar, 1, i + 1);
+                }
+                Fprintf(f, indent, "LhsVar(1)= %d;\nreturn 0;", vout->stack_position);
+                break;
+            case SEQUENCE:
+                /* loop on output variables */
+                for (i = 0; i < vout->length; i++)
+                {
+                    ivar = vout->el[i];
+                    var = variables[ivar - 1];
+                    WriteVariable(f, var, ivar, 0, 0);
+                }
+                Fprintf(f, indent, "return 0;\n");
+                break;
+            case EMPTY:
+                Fprintf(f, indent, "LhsVar(1)=0;\n;return 0;\n");
+                break;
         }
     }
     Fprintf(f, --indent, "}\n");

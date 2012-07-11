@@ -15,9 +15,10 @@
 function z = myplus(x, y), z = x + y,endfunction
 function z = yourplus(x, y), x = x - y,endfunction
 // =============================================================================
-cd TMPDIR
+cd TMPDIR;
 mkdir('bug_6550');
 libdir = TMPDIR + '/bug_6550';
+warning("off");
 save(libdir + '/myplus.bin', myplus);
 save(libdir + '/yourplus.bin', yourplus);
 //create the name file

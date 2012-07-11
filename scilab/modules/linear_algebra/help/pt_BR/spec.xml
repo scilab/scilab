@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="spec" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spec</refname>
     <refpurpose>autovalores de matrizes e feixes</refpurpose>
@@ -107,7 +104,7 @@
         <term>evals=spec(A)</term>
         <listitem>
           <para>
-             retorna no vetor <literal>evals</literal> os
+            retorna no vetor <literal>evals</literal> os
             autovalores.
           </para>
         </listitem>
@@ -155,7 +152,7 @@
         <term>[alpha,beta,R] = spec(A,B)</term>
         <listitem>
           <para>
-             retorna, ainda, a matriz <literal>R</literal> de autovetores
+            retorna, ainda, a matriz <literal>R</literal> de autovetores
             direitos generalizados do feixe.
           </para>
         </listitem>

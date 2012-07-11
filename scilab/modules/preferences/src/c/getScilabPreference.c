@@ -1,0 +1,195 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+/*--------------------------------------------------------------------------*/
+#include <stdlib.h>
+#include <libxml/xpath.h>
+#include <libxml/xmlreader.h>
+#include "getScilabPreference.h"
+#include "GetXmlFileEncoding.h"
+#include "MALLOC.h"
+#include "FileExist.h"
+#include "stricmp.h"
+#include "os_strdup.h"
+#include "getshortpathname.h"
+#include "BOOL.h"
+#include "sci_home.h"
+
+#define XCONF "%s/XConfiguration.xml"
+
+#define PRODUCES_ERROR "Produces an error"
+#define PRODUCES_WARNING "Produces a warning"
+#define PRODUCES_INFNAN "Produces Inf or Nan"
+#define SCIENTIFIC_FORMAT "Scientific format"
+
+/*--------------------------------------------------------------------------*/
+static unsigned char isInit = 0;
+static ScilabPreferences scilabPref;
+static char * emptyAttribute = "";
+/*--------------------------------------------------------------------------*/
+static void getPrefs();
+static char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath);
+static void initPrefs();
+/*--------------------------------------------------------------------------*/
+const ScilabPreferences * getScilabPreferences()
+{
+    getPrefs();
+    return &scilabPref;
+}
+/*--------------------------------------------------------------------------*/
+void initPrefs()
+{
+    scilabPref.heapSize = NULL;
+    scilabPref.columnsToDisplay = NULL;
+    scilabPref.linesToDisplay = NULL;
+    scilabPref.historySaveAfter = NULL;
+    scilabPref.historyFile = NULL;
+    scilabPref.historyLines = NULL;
+    scilabPref.historyEnable = NULL;
+    scilabPref.ieee = NULL;
+    scilabPref.format = NULL;
+    scilabPref.formatWidth = NULL;
+}
+/*--------------------------------------------------------------------------*/
+void reloadScilabPreferences()
+{
+    clearScilabPreferences();
+    getPrefs();
+}
+/*--------------------------------------------------------------------------*/
+void clearScilabPreferences()
+{
+    if (isInit == 1)
+    {
+        if (scilabPref.heapSize) FREE((void*)scilabPref.heapSize);
+        if (scilabPref.columnsToDisplay) FREE((void*)scilabPref.columnsToDisplay);
+        if (scilabPref.linesToDisplay) FREE((void*)scilabPref.linesToDisplay);
+        if (scilabPref.historySaveAfter) FREE((void*)scilabPref.historySaveAfter);
+        if (scilabPref.historyFile) FREE((void*)scilabPref.historyFile);
+        if (scilabPref.historyLines) FREE((void*)scilabPref.historyLines);
+        if (scilabPref.historyEnable) FREE((void*)scilabPref.historyEnable);
+        if (scilabPref.ieee) FREE((void*)scilabPref.ieee);
+        if (scilabPref.format) FREE((void*)scilabPref.format);
+        if (scilabPref.formatWidth) FREE((void*)scilabPref.formatWidth);
+        initPrefs();
+    }
+    isInit = 0;
+}
+/*--------------------------------------------------------------------------*/
+void getPrefs()
+{
+    xmlDocPtr doc = NULL;
+    xmlXPathContextPtr xpathCtxt = NULL;
+    char * SCIHOME = NULL;
+    char * path = NULL;
+    BOOL bConvert = FALSE;
+    char * shortfilename_xml_conf = NULL;
+    char * attr = NULL;
+
+    if (!isInit)
+    {
+        initPrefs();
+
+        SCIHOME = getSCIHOME();
+        path = (char *)MALLOC(strlen(SCIHOME) + strlen(XCONF));
+
+        sprintf(path, XCONF, SCIHOME);
+
+        if (FileExist(path))
+        {
+            shortfilename_xml_conf = getshortpathname(path, &bConvert);
+            if (shortfilename_xml_conf)
+            {
+                doc = xmlParseFile(shortfilename_xml_conf);
+                FREE(shortfilename_xml_conf);
+                shortfilename_xml_conf = NULL;
+            }
+            FREE(path);
+            path = NULL;
+        }
+
+        if (doc == NULL)
+        {
+            return;
+        }
+
+        if (stricmp(doc->encoding, "utf-8"))
+        {
+            return;
+        }
+
+        xpathCtxt = xmlXPathNewContext(doc);
+
+        if (xpathCtxt)
+        {
+            scilabPref.heapSize = os_strdup(getAttribute(doc, xpathCtxt, HEAPSIZE_XPATH));
+            scilabPref.columnsToDisplay = os_strdup(getAttribute(doc, xpathCtxt, COLUMNSTODISPLAY_XPATH));
+            scilabPref.linesToDisplay = os_strdup(getAttribute(doc, xpathCtxt, LINESTODISPLAY_XPATH));
+            scilabPref.historySaveAfter = os_strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));
+            scilabPref.historyFile = os_strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
+            scilabPref.historyLines = os_strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
+            scilabPref.historyEnable = os_strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
+
+            attr = (char*)getAttribute(doc, xpathCtxt, IEEE_XPATH);
+            if (attr)
+            {
+                if (!stricmp(attr, PRODUCES_ERROR))
+                {
+                    scilabPref.ieee = os_strdup("0");
+                }
+                else if (!stricmp(attr, PRODUCES_ERROR))
+                {
+                    scilabPref.ieee = os_strdup("1");
+                }
+                else
+                {
+                    scilabPref.ieee = os_strdup("2");
+                }
+            }
+
+            attr = (char*)getAttribute(doc, xpathCtxt, FORMAT_XPATH);
+            if (attr)
+            {
+                if (!stricmp(attr, SCIENTIFIC_FORMAT))
+                {
+                    scilabPref.format = os_strdup("e");
+                }
+                else
+                {
+                    scilabPref.format = os_strdup("v");
+                }
+            }
+
+            scilabPref.formatWidth = os_strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
+
+            xmlXPathFreeContext(xpathCtxt);
+        }
+        xmlFreeDoc(doc);
+
+        isInit = 1;
+    }
+}
+/*--------------------------------------------------------------------------*/
+char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xpath)
+{
+    char * value = emptyAttribute;
+    xmlXPathObjectPtr xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
+    if (xpathObj && xpathObj->nodesetval->nodeMax)
+    {
+        value = (char *)((xmlAttrPtr)xpathObj->nodesetval->nodeTab[0])->children->content;
+    }
+
+    if (xpathObj) xmlXPathFreeObject(xpathObj);
+
+    return value;
+}
+/*--------------------------------------------------------------------------*/

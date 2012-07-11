@@ -307,14 +307,22 @@
         <term>String</term>
         <listitem>
           <para>String.</para>
-          <para>This property represents the text appearing in a uicontrol
-            (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
+          <para>
+            This property represents the text appearing in a uicontrol
+            (Except for Frame and Slider styles). For tables, the value is a string matrix. For ListBoxes and PopupMenus,
             the value can be a vector of string or a string where the items are
             separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.
           </para>
-          <para>For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
+          <para>
+            For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
             considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
             as a MathML one.
+          </para>
+          <para>
+            For Image, the value specifies the path of the image file.
+          </para>
+          <para>
+            For Table, the value specifies the whole table data: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -322,7 +330,7 @@
         <term>Style</term>
         <listitem>
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
-            frame | listbox | popupmenu
+            frame | listbox | popupmenu | image | table
           </para>
           <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
             one:
@@ -369,6 +377,12 @@
               <para>Popupmenu: a button which make a menu appear when
                 clicked.
               </para>
+            </listitem>
+            <listitem>
+              <para>Image: a sub-window where the image specified is displayed.</para>
+            </listitem>
+            <listitem>
+              <para>Table: an editable table.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -420,6 +434,11 @@
             </listitem>
             <listitem>
               <para>Sliders: value indicated by the slider bar.</para>
+            </listitem>
+            <listitem>
+              <para>
+                Images: value is used to set some image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>

@@ -95,7 +95,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -123,7 +123,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -148,7 +148,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -176,7 +176,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
-      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -267,6 +267,11 @@
     <ClInclude Include="includes\uint8.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="locales\types.pot" />
+    <None Include="Makefile.am" />
+    <None Include="types.iss" />
+  </ItemGroup>
+  <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
     <Library Include="..\..\bin\lapack.lib" />
     <Library Include="..\..\bin\libintl.lib" />
@@ -274,6 +279,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">
       <Project>{77154919-8a20-4f35-b7c7-6b3b957bdca1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ast\ast-tools\ast-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>

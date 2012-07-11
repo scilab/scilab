@@ -1,25 +1,216 @@
-            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =================================================================
-
-
-Scilab Desktop
-==============
-
-* Add a button in dockbar to get the help about the component.
-
-* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
-
-
-XML
-===
-
-* Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
+﻿            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
+            ===============================================================
 
 
 Xcos
 ====
 
-* New examples are provided in the documentation for the blocks:
+* Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
+                    stopped from user interface.
+
+
+Preferences
+===========
+
+* Add a function preferences() to open the Preferences window.
+
+
+Javasci
+=======
+
+* Javasci version 1 removed (deprecated in Scilab 5.3.0).
+
+
+Bug Fixes
+=========
+
+* Buf #10150 fixed - Completion help page moved to the console chapter.
+
+* Bug #11346 fixed - Add error messages in the cosm function in case of bad
+                     usage.
+
+* Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in 
+                     the parameter section.
+
+* Bug #11349 fixed - There was an error when path to external editor contained
+                     white spaces.
+
+
+            Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
+            ================================================================
+
+
+Graphics
+========
+
+* Entire refactoring of Scilab graphic capabilities in order to solve the known issues
+  of graphical cards compatibilities and many Scilab crashes.
+
+* Based on SciRenderer (rendering library based on JoGL), Scilab graphics have
+  been rewritten to provide new graphic functionalities with:
+  - better performances,
+  - better stability,
+  - 2-D zoom using the mouse wheel,
+  - new 3-D zoom capabilities,
+  - rotation available through the mouse right-click.
+  SciRenderer is a free and open-source library developed by Scilab Enterprises
+  for 2-D and 3-D rendering of scientific data.
+
+* Improved graphic exports:
+  - Off-screen export (Scilab will not open a window to export with driver).
+  - New bitmap formats supported: PNG, JPEG and BMP in the driver function.
+  - New vectorial formats supported: PDF and SVG in the driver function.
+  - Many portability issues fixed.
+
+
+* Bug #4289 fixed - Graphic exports were not working when the drawlater or the
+                    pixmap modes were activated.
+
+* Bug #4339 fixed - listvarinfile did not manage graphic handles.
+
+* Bug #4818 fixed - Scilab could not export graphics which contained a lot of information.
+
+* Bug #6582 fixed - A copy of a handle did not keep foreground property.
+
+* Bug #6644 fixed - New graphic windows take care of default figure properties (uimenu).
+
+* Bug #7998 fixed - %h_get failed on heterogeneous handle matrix.
+
+* Bug #8241 fixed - Graphical properties were not always inherited.
+
+* Bug #8250, #10567, #10614 fixed - Artefacts dropped on the
+                                    vectorial (EPS/PDF/SVG) exports.
+
+* Bug #8705 fixed - Some specific graphics could not be saved.
+
+* Bug #8916 fixed - Menu to export in PS format was missing in graphic figures.
+
+* Bug #9721 fixed - Documentation improved on tight_limits. Thanks to Samuel
+                    Gougeon.
+
+* Bug #10240 fixed - In a Scilab localized in French, SVG export could use "," instead
+                     of "." for numerical separator.
+
+* Bug #10290 fixed - Error message for bad assignement of interp_color_vector updated.
+
+* Bug #10360 fixed - Default format for export is now PNG instead of BMP.
+
+* Bug #10365 fixed - To copy a handle to a figure (instead of an axes) crashed Scilab.
+
+* Bug #10395 fixed - xset("clipping", [1,2,3,4]) returned an error.
+
+* Bug #10417 fixed - xget("background") returned a wrong value.
+
+* Bug #10637 fixed - xs2svg crashed when first input argument was not a figure handle.
+                     An error message is now displayed.
+
+
+GUI
+===
+
+* A 'Console' handle has been created and can be obtained by calling get(0):
+  - uimenus now appear as 'Children' of this handle when they are added to the
+    console,
+  - the 'ShowHiddenHandles' property enables the user to make some hidden
+    graphic objects visible.
+
+* Scilab Console and graphic figure menus are now uimenus. They are hidden by
+  default. To see them in the children list, use set(get(0), "ShowHiddenHandles", "on") 
+
+* New uicontrols added:
+  - 'image' style uicontrol: display, transformation and various other
+    operations on images.
+  - 'table' style uicontrol: display data in a table form (read-only in Scilab
+    5.4.0-BETA-1 version).
+
+* The 'Value' property can now contain non-integer values and allows to take full
+  advantage of 'slider' style uicontrols (See bug #7380).
+
+* Figure resizing can now be managed by the user (uicontrol position setting, ...)
+  through the 'resizefcn' property.
+
+
+Scilab
+======
+
+* save/load functions can export/import Scilab data to SOD format:
+ - Scilab data are saved and loaded using a standard, HDF5-based, documented,
+   and fully tested: Scilab Open Data format (SOD).
+ - Graphic handles can be saved under the SOD format.
+ - 'save' writes data to HDF5 format when using new calling sequence
+   save("filename.sod", "a", "b", "c"). This format is Scilab 6 compatible.
+ - 'save' displays a message when using old calling sequence
+   save("filename", a, b, c) and writes data in old Scilab binary format.
+   This format will not be supported by Scilab 6.
+ - The 'matfile2sci' function now converts MAT-files to SOD files.
+
+* Calling load with a file descriptor as first input argument is now obsolete.
+  Please replace the file descriptor by the corresponding file name.
+  This feature will be removed in Scilab 6.0.0
+
+* Update the default size of the Scilab stack to 100 million elements (instead of 
+  50M). See stacksize help page for more information.
+
+* Scilab Desktop provides a button in dockbar to get the help about the component.
+
+* External modules are managed out of the box by test_run function. See bug #9834.
+Example: test_run('SCI/contrib/toolbox_skeleton')
+
+
+XML
+===
+
+* xmlClose renamed in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
+
+* Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
+
+* Bug #10594 fixed - size could not be used with two arguments on XMLList.
+
+* Bug #10630 fixed - Typo fixed in an error message.
+
+* Bug #10670 fixed - Crash avoided when xmlRead had an argument with a bad size.
+
+* Bug #11250 fixed - Avoid a crash when an error is met during xmlValidation.
+
+
+Documentation
+=============
+
+* Management of Docbook tags <note>, <caution>, <warning>, <important> and
+ <tip>. See bug #10505.
+
+* Function help_skeleton extended to suggest the <revhistory>, <latex>, <note>,
+  <caution>, <warning>, <important> and <tip> tags in examples.
+
+* Scilab documentation is now available in Russian. Many thanks to Stanislav Kroter.
+
+* Many errors have been fixed in Scilab documentation:
+  - Wrong calling sequences
+  - Errors in examples
+  - Bad formatting
+  - Typos
+
+
+Dynamic Link
+=============
+
+* DEBUG_SCILAB_DYNAMIC_LINK was not available under GNU/Linux or Mac OS X.
+  See bug #11142
+
+Xcos
+====
+
+* Major performance improvements on the simulation start-up. On important diagrams,
+  the gain is very important (from minutes to milliseconds). See bug #8188.
+
+* Performance improvements on diagram saving/loading.
+
+* A compressed file format is now available (ZCOS) and allows more flexibility on 
+  data format.
+
+* Ports styles and labels are now available to external modules. 
+
+* New examples are provided in the help pages of the following blocks:
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay
   - AFFICH_m - Display value
@@ -27,8 +218,28 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
-* Bug #8744 fixed - Solving the initialization problem more than once crash
+* External modules should be updated to use the new Scilab Open Data format
+  instead of the previous HDF5 format.
+
+* Bug #6201 fixed - Block help menu had no shortcut.
+
+* Bug #6733 fixed - Each call to Xcos created an empty diagram.
+
+* Bug #7539 fixed - Interaction with some blocks was slowed down.
+
+* Bug #7863 fixed - Default path for code generation was SCI instead of pwd() or 
+                    TMPDIR.
+
+* Bug #8188 fixed - Xcos to Scilab export took too much time.
+
+* Bug #8295 fixed - Save compressed Xcos file set as default.
+
+* Bug #8600 fixed - Closing Xcos did not end the simulation.
+
+* Bug #8744 fixed - Solving the initialization problem more than once crashed
                     Scilab.
+
+* Bug #9131 fixed - PULSE_SC has been added to the Source palette.
 
 * Bug #10081 fixed - Palette configuration saving could produce an invalid
                      file.
@@ -36,92 +247,157 @@ Xcos
 * Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
-* Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+* Bug #10246 fixed - PROD_f block was broken.
+
+* Bug #10333 fixed - Labeling I/O blocks on a super block produced wrong port
                      labeling when ports had not the same types.
 
-* Bug #10340 fixed - Exception occured while moving the palette split pane to
+* Bug #10340 fixed - Exception occurred while moving the palette split pane to
                      hide the block list and while using a palette diagram.
 
-* Bug #10419 fixed - Exception occured while refusing to create a new empty
+* Bug #10393 fixed - Block style was not updated on palette loading.
+
+* Bug #10419 fixed - Exception occurred while refusing to create a new empty
                      file.
 
-* Bug #10422 fixed - Exception occured when exporting with an unspecified
+* Bug #10422 fixed - Exception occurred when exporting with an unspecified
                      format.
 
+* Bug #10461 fixed - Canceling a Quit operation did not work.
 
-Unitary testing
-===============
+* Bug #10486 fixed - importXcosDiagram opened a tab.
 
-* external modules are now managed by out of the box by test_run
-Example: test_run('SCI/contrib/toolbox_skeleton')
-(See bug #9834)
+* Bug #10496 fixed - Wrong error message fixed in xcosValidateBlockSet.
+
+* Bug #10510 fixed - Unused variables were generated by Xcos at start-up.
+
+* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
+                     block.
+
+* Bug #10657 fixed - CONSTRAINT_c had no icons on a graph.
+
+* Bug #10679 fixed - blocks_link.tst failed.
+
+* Bug #10697 fixed - post_xcos_simulate function did not work with a TOWS_c block
+                     in a diagram.
+
+* Bug #10800 fixed - xcosPalAddBlock help example did not work.
+
+* Bug #10812 fixed - cos and cosf files loading did not use a direct handler.
+
+* Bug #10848 fixed - The first Drag'n Drop of a block produced an exception.
+
+* Bug #11094 fixed - Image creation of blocks did not use xinit / xend.
 
 
-Graphical User Interface
-========================
+Compilation
+===========
 
-* Bug #4978 fixed - Icons did not follow the Tango norm.
+* Scilab now uses the ARPACK-ng package maintained by Scilab Enterprises.
+
+* An option --without-arpack-ng has been added to disable the Arnoldi features.
+
+* HDF5 is now a mandatory dependency of Scilab (even in a minimal build)
+
+* Bug #11060 fixed - ccache use can be disabled with --disable-ccache .
 
 
-CLI console:
-============
+Elementary Functions
+====================
 
-* bug 3400 fixed - Long lines in the history breaks the display.
+* New functions:
+  - dec2base function added (See SEP #75)
+  - nthroot function added (See SEP #78)
 
-* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
+* linspace and logspace deprecate the use of non-integer values as third input argument.
 
-* bug 3108 fixed - Some specific chars in the terminal are not correctly
-                   removed by the backspace.
+* The toeplitz macro is now vectorized.
 
-* Support wide characters.
 
-* Support multiline command.
+Sparse
+======
 
-* Improve command line display.
+* qmr function updated and modified.
+   Calling qmr(F, Fp, x) where F is a function returning A*x
+   and Fp a function returning A'*x is deprecated.
+   Use qmr(F, x) instead where F prototype is
+   function y = F(x, t)
+   [...]
+   endfunction
+   where t is used to make F return A*x or A'*x.
+   Same behavior has been implemented for qmr( ..., M1, M1p, M2, M2p).
+   See qmr help page for examples and details.
+
+
+CLI Console (GNU/Linux and Mac OS X only)
+=========================================
+
+* Wide characters supported.
+
+* Multiline command supported.
+
+* Command line display improved.
 
 * List of shortcuts in NW/NWNI mode:
-  - CTRL+W: Remove the previous word.
-  - CTRL+U: Remove everything from the current position to the beginning of
+  - CTRL+W removes the previous word.
+  - CTRL+U removes everything from the current position to the beginning of
             the line.
-  - UP or Ctrl+P: recall previous line.
-  - DOWN or Ctrl+N: recall next line.
-  - TAB: completion : Scilab displays a list of all names that start with some
-characters.
-  - Ctrl + A or HOME: move to beginning of current line.
-  - Ctrl + B or LEFT: moves the cursor one character to the left.
-  - Ctrl + D or DELETE: deletes the current character.
-  - Ctrl + E or END: moves the cursor to the end of command line.
-  - Ctrl + F or RIGHT: moves the cursor one character to the right.
-  - Ctrl + H or BACKSPACE: deletes the previous character.
-  - Ctrl + K: kills command line from cursor to the end.
-  - Alt+B or Ctrl+LEFT: move left one word.
-  - Alt+F or Ctrl+RIGHT: move right one word.
+  - UP or Ctrl+P recalls previous line.
+  - DOWN or Ctrl+N recalls next line.
+  - TAB for completion. Scilab displays a list of all names (functions, variables) that
+    start with the characters already typed by the user.
+  - Ctrl + A or HOME moves the cursor to beginning of current line.
+  - Ctrl + B or LEFT moves the cursor one character to the left.
+  - Ctrl + D or DELETE deletes the current character.
+  - Ctrl + E or END moves the cursor to the end of command line.
+  - Ctrl + F or RIGHT moves the cursor one character to the right.
+  - Ctrl + H or BACKSPACE deletes the previous character.
+  - Ctrl + K kills command line from cursor to the end.
+  - Alt+B or Ctrl+LEFT moves left one word.
+  - Alt+F or Ctrl+RIGHT moves right one word.
 
-* bug 3108 fixed - Some specific chars in the terminal were not correctly
-                   removed by the backspace.
+* Bug #3108 fixed - Some specific chars in the terminal were not correctly
+                    removed by the backspace.
 
-* bug 3400 fixed - Long lines in the history broke the display.
+* Bug #3400 fixed - Long lines in the history broke the display.
 
-* bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
+* Bug #6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
 
 
 Scinotes
 ========
 
-* Add shortcuts META+(UP|DOWN) to navigate between paragraphs
+* Shortcuts META+(UP|DOWN) added to navigate between paragraphs.
 
-* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+* Bug #10442 fixed - Sometimes a crash occurred at start-up when Scinotes was
                      restoring.
+
+* Bug #10647 fixed - An error message did not respect Scilab localization standard.
+
+* Bug #10889 fixed - Exception about block highlighters was thrown by Scinotes.
+
+
+Performances
+============
+
+* 'hank' function performances improved.
+
+* Using api_scilab, construction of any type of lists is now much faster (300x in some cases).
 
 
 Javasci
 =======
 
-* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-a sparse but not to send it to Scilab).
+* New datatypes are now supported:
+  - sparse and boolean sparse
+  - tlists, mlists and lists
+  - polynomial
 
-* Javasci supports struct datatypes under the form of an MList  (Javasci is
-able to retrieve a struct but not to send it to Scilab).
+* If Scilab fails to start because of a memory issue (stacksize), an
+  InitializationException Java exception is now displayed.
+
+* Bug #10794 fixed - With Scilab built on an Ubuntu 11.10, javasci failed to
+                     load with an undefined symbol
 
 
 CACSD & Signal Processing
@@ -132,26 +408,30 @@ CACSD & Signal Processing
   - conv2 - discrete 2-D convolution.
   - convol2d - discrete 2-D convolution, using fft.
   - phaseplot - frequency phase plot.
+  - xcorr - auto and cross correlation of signals (superseeds corr).
+  - xcov - auto and cross correlationvariance of signals (superseeds corr).
+  - arma2ss - conversion of an arma data structure into a state space one.
 
-* Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
+* 'mtlb_conv' compatibility function is now obsolete. Please use 'conv' instead.
 
+* Bug #10562 fixed - The "CACSD/Robust Control" demo failed.
 
-Compatibility Functions
-=======================
-
-* 'mtlb_conv' obsolete. Please use 'conv' instead.
+* Bug #11340 fixed - bode, gainplot, nyquist and plzr without arguments did not show an example.
 
 ATOMS
 =======
 
 * 'atomsQuit' function added to allow to call .quit of modules loaded by ATOMS
-  when user closes Scilab session. see SEP #77.
+  when user closes Scilab session. See SEP #77.
 
-* tbx_build_loader generates also a unloader.sce to allow to call .quit file of
+* tbx_build_loader generates also an unloader.sce to allow to call .quit file of
    an ATOMS module.
 
-* Bug #9798 fixed - .quit script of atoms modules were not evaluated when 
-                    leaving Scilab.
+* ATOMS option 'offLine' has been renamed to 'offline'.
+
+* Bug #9078 fixed - atomsGui took time to start gui.
+
+* Bug #9798 fixed - .quit script of Atoms modules were not evaluated at Scilab quit.
 
 * Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
                      in the documentation.
@@ -161,114 +441,235 @@ ATOMS
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
+* Bug #10846 fixed - atomsSystemUpdate failed.
+                     documentation about 'downloadTimeout' added.
 
-Bug fixes
+* Bug #10864 fixed - atomsRemove required a network connection to remove a package.
+
+* Bug #10933 fixed - atomsGetConfig did not check the value of input arguments.
+
+* Bug #10957 fixed - atomsInstall required a network connection to install
+                     a local package.
+
+Call_Scilab
+===========
+
+* CallScilab.h removed (was deprecated since Scilab 5.2.0). 
+  Please use call_scilab.h instead.
+
+* 'int getLastErrorValue(void)' function added. 
+  It now returns the last error code generated by Scilab.
+
+* Function 'const char* getLastErrorMessageSingle();' added. 
+  It now returns the last error message generated by Scilab.
+
+* Deprecated functions in call_scilab.h removed : C2F(readmat), C2F(creadmat), 
+  C2F(creadbmat), C2F(creadcmat), C2F(readchain), C2F(creadchain),  C2F(creadchains),
+  GetLengthStringMatrixByName, C2F(matptr), C2F(cmatptr), C2F(cmatcptr),  C2F(cmatsptr),
+  C2F(cmatbptr), getlengthchain
+
+
+Bug Fixes
 =========
 
-* Bug #4806 fixed - If A is a sparse matrix, A^0 returned A and not the identity
+* Bug #2479 fixed - Graphic editor could not be used when format was not format("v",18).
+
+* Bug #2853 fixed - sd2sci.sci removed from sources.
+
+* Bug #3811 fixed - The overloading charcode was wrong for libraries.
+
+* Bug #4806 fixed - If A was a sparse matrix, A^0 returned A and not the identity
                     matrix as expected.
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #4978 fixed - Icons did not follow the Tango norm.
+
+* Bug #6009 fixed - conv, conv2 and convol2d functions were missing.
+
+* Bug #7167 fixed - Typo fixed in pdiv help page.
+
+* Bug #7380 fixed - 'Value' property for uicontrol was rounded.
+
+* Bug #7490 fixed - %inf had not always the same display.
+
+* Bug #7289 fixed - The handle of the menu was still valid after calling delmenu(console_menu_handle).
+
+* Bug #7728 fixed - rubberbox(): Instantaneous pointer's coordinates are now displayed in the status bar.
+
+* Bug #7779 fixed - genlib did not check input arguments and did not use current
+                    path as default.
+
+* Bug #7859 fixed - Improvements of "exists" help page.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
-* Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
+* Bug #8339 fixed - Default path for the Mac OS X version is now HOME instead
+                    of "/".
+
+* Bug #8592 fixed - Explicit error message added when macros are not available.
+
+* Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
+                    simplified and optimized.
+
+* Bug #8651 fixed - The error message of write_csv was wrong.
+
+* Bug #8682 fixed - funcprot did not return the previous value when called with
+                    an argument.
+
+* Bug #8685 fixed - Lack of consistency in keyword help page.
+
+* Bug #8724 fixed - A critical error with uiget(file|dir) could have occurred.
+
+* Bug #8859 fixed - Some comparison operators between hyper-matrices and 2-D arrays
                     were missing.
+
+* Bug #9002 fixed - bsplin3val, cshep2d, eval_cshep2d,interp, interp2d, interp3d,
+                    linear_interp, splin, splin2d, splin3d functions ignored imaginary
+                    part of input arguments without returning an error.
 
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
-* Bug #9328 fixed - Fix of random crashes under Mac OS X.
+* Bug #9255 fixed - Correct bad calling sequence in list_double_writing api help page.
+
+* Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
+
+* Bug #9328 fixed - Scilab randomly crached at start-up under Mac OS X when calling
+                    functions returning no value (lines, modes, banner, ...).
+
+* Bug #9424 fixed - gettext("") did not return "".
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
-* Bug #9572 fixed - assert_checkerror did not check multi lines errors.
+* Bug #9520 fixed - Missing named functions added in "API Scilab" help pages.
+
+* Bug #9549 fixed - nthroot function added.
+
+* Bug #9572 fixed - assert_checkerror did not check multi-lines errors.
 
 * Bug #9643 fixed - genetic algorithms demo was not vectorized.
 
-* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
+* Bug #9654 fixed - An example in optim help page was poorly implemented.
 
-* Bug #9700 fixed - optim help page had a mistake about bounds management.
+* Bug #9700 fixed - optim help page contained a mistake about bounds management.
 
-* Bug #9734 fixed - intsplin help pages moved from interpolation to
+* Bug #9734 fixed - intsplin help page moved from interpolation to
                     elementary functions chapter.
 
-* Bug #9735 fixed - Remove some old stack api examples.
+* Bug #9735 fixed - Old stack api examples removed.
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
+
+* Bug #9954 fixed - Example added in gmres help page.
+
+* Bug #9953 fixed - Documentation added to the fre input argument of stdevf.
+
+* Bug #9992 fixed - gcbo was not initialized in callbacks for uimenus in console.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
+* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
+                     parent axes.
+
+* Bug #10139 fixed - 'atomsTest' function did not manage specific test names.
+
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
+
+* Bug #10241 fixed - A .scg file could not be opened when a non-ascii character was in the legend.
+
+* Bug #10244 fixed - The install of call_scilab could fail in some cases under
+                     GNU/Linux.
 
 * Bug #10250 fixed - Bug in the detection of the Java path under GNU/Linux fixed.
 
-* Bug #10267 fixed - The help browser did not use the default language on restoration.
+* Bug #10267 fixed - The help browser did not use the default language at new session start-up.
 
-* Bug #10281 fixed - In some cases, the function lyap was crashing.
+* Bug #10272 fixed - Examples added in squeeze help page.
+
+* Bug #10281 fixed - lyap function could crash.
 
 * Bug #10303 fixed - test_run ignored "enable_lt" option.
 
-* Bug #10304 fixed - test_run did not return an error when using an invalid option.
+* Bug #10304 fixed - test_run did not return an error if an invalid option was used.
 
 * Bug #10306 fixed - 'isempty' could fail with empty elements in a list.
 
 * Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
-                     but 'lasterror' returned vector of strings.
+                     'lasterror' returned vector of strings.
 
 * Bug #10341 fixed - font in help was bold when the font of a text uicontrol
                      was set to bold.
 
 * Bug #10342 fixed - assert_checkerror help file had a wrong format.
 
+* Bug #10345 fixed - uicontrols were not always drawn at the right place.
+
+* Bug #10372 fixed - Dependencies of MALLOC.h removed on Windows.h and machine.h
+                     under Windows.
+
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
-* Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
+* Bug #10384 fixed - In exiting, "Close Console" was suggested rather than "Close
                      Scilab".
+
+* Bug #10396 fixed - Display of a structure with large matrix took too much time.
 
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
 
-* Bug #10408 fixed - In the history browser, the contents was scrolled even if the
+* Bug #10408 fixed - In the history browser, the contents were scrolled even if the
                      knob was not at the bottom.
+
+* Bug #10416 fixed - xmltoformat did not return at the root directory in case of error.
 
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
-* Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
+* Bug #10423 fixed - The function browsehistory() to open the history browser was missing.
+
+* Bug #10431 fixed - Navigation in history using CTRL+P or CTRL+N was not available.
+
+* Bug #10439 fixed - stacksize('max') crashed under Windows 64 bit.
 
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
 
-* Bug #10449 fixed - On restoration, empty tabs could appear if the previous
-                     session was not cleanly exited.
+* Bug #10444 fixed - fullfile did not manage string matrix as last input argument.
+
+* Bug #10449 fixed - At new session start-up, empty tabs could appear if the previous
+                     session has not been properly exited.
 
 * Bug #10450 fixed - Overloading for gamma, dlgamma and gammaln functions for list,
                      tlist, mlist and hypermatrices types was not allowed.
 
-* Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
+* Bug #10457 fixed - Reference in fftw help page pointed to a wrong version.
 
-* Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
+* Bug #10458 fixed - demo_gui did not clear its variables when closing the figure.
+
+* Bug #10465 fixed - Typo fixed in isreal help page.
 
 * Bug #10466 fixed - mgetl detected an error but it did not return an error
                      message in Scilab.
 
 * Bug #10471 fixed - %helps_modules was not ignored by default by browsevar.
 
-* Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
+* Bug #10473 fixed - Error fixed in factorial function help page bibliography.
 
-* Bug #10474 fixed - Sometimes an exception was thrown at history browser
-                     restoration.
+* Bug #10474 fixed - An exception could be thrown at the history browser
+                     restoring.
 
-* Bug #10475 fixed - Error in perms function help page fixed.
+* Bug #10475 fixed - Error fixed in perms function help page.
 
 * Bug #10477 fixed - In ilib_for_link, the display of the error message generated
                      at configure time made mprintf fail.
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
+
+* Bug #10499 fixed - lincos example in help file returned warning and error.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
@@ -276,49 +677,58 @@ Bug fixes
 
 * Bug #10518 fixed - odeoptions help page was inaccurate.
 
-* Bug #10519 fixed - spec returned a wrong error message when a input argument
+* Bug #10519 fixed - spec returned a wrong error message when an input argument
                      was not square.
 
 * Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
                      matrices was not clearly stated in the documentation.
 
-* Bug #10521 fixed - frexp returned an wrong error message.
+* Bug #10521 fixed - frexp returned a wrong error message.
 
 * Bug #10523 fixed - The fact that flipdim could manage complex matrices was
                      not clearly stated in the documentation.
 
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
 
-* Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
+* Bug #10532 fixed - In some cases, browsevar cloud crash with some unknown
                      Scilab types.
 
 * Bug #10536 fixed - A string was in French in the English help page of cumsum.
 
-* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+* Bug #10538 fixed - Typos fixed in the help pages of prod and cumprod.
+
+* Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
+
+* Bug #10544 fixed - debug did not return the previous value when called with
+                     an argument.
+
+* Bug #10551 fixed - Issues fixed in the Russian localization.
 
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
-* Bug #10560 fixed - genetic algorithms demos failed.
+* Bug #10560 fixed - genetic algorithms demonstrations failed.
 
-* Bug #10564 fixed - atan graphic demo was failing due to a too strong test
+* Bug #10564 fixed - atan graphic demonstration was failing due to a too restrictive test
                      in the linspace function.
 
-* Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
+* Bug #10565 fixed - The demonstration simulation --> bicycle simulation --> unstable
                      trajectory failed.
 
 * Bug #10574 fixed - Runge-Kutta-Method failed for vector [x, 1] with x > 9.
 
-* Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
+* Bug #10576 fixed - getdate (under Windows) did not manage dates after January 19, 2038
 
-* Bug #10577 fixed - getdate did not check input argument.
+* Bug #10577 fixed - getdate did not check input arguments.
 
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
 
-* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
-                     than gettext.
+* Bug #10588 fixed - Update of waitbar help page to precise that the function returns 
+                     a handle.
 
 * Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
+
+* Bug #10628 fixed - Reference to sci_types enum changed and "see also" section added.
 
 * Bug #10631 fixed - The # sign was missing in some error cases.
 
@@ -335,63 +745,180 @@ Bug fixes
 
 * Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
 
-* Bug #10656 fixed - Exception when an empty help browser was closed.
+* Bug #10654 fixed - dgettext with "scilab" domain did not return the same result
+                     as gettext.
 
-* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+* Bug #10656 fixed - Exception occurred when an empty help browser was closed.
 
-* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
+* Bug #10662 fixed - xload did not support tlist for user_data property.
+
+* Bug #10673 fixed - Typos fixed in ssrand help page.
+
+* Bug #10685 fixed - inttrap help page moved to differential equations module.
 
 * Bug #10710 fixed - Wrong error message fixed in xml module.
 
 * Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
 
-* Bug #10717 fixed - Typos fixed in the help page of acosd.
+* Bug #10717 fixed - Typos fixed in acosd help page.
 
-* Bug #10720 fixed - Typos fixed in the help page of acosh.
+* Bug #10720 fixed - Typos fixed in acosh help page.
 
-* Bug #10724 fixed - Missing links in the help page of acot added.
+* Bug #10724 fixed - Missing links added in acot help page.
 
-* Bug #10725 fixed - Typos fixed in the help page of acot.
+* Bug #10725 fixed - Typos fixed in acot help page.
 
-* Bug #10726 fixed - Missing links in the help page of acsc added.
+* Bug #10726 fixed - Missing links added in acsc help page.
 
-* Bug #10727 fixed - Missing links in the help page of asech added.
+* Bug #10727 fixed - Missing links added in asech help page.
 
-* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+* Bug #10728 fixed - Wrong link fixed in asind help page.
 
-* Bug #10729 fixed - Missing links in the help page of asinh added.
+* Bug #10729 fixed - Missing links added in asinh help page.
 
-* Bug #10730 fixed - Missing links in the help page of asinhm added.
+* Bug #10730 fixed - Missing links added in asinhm help page.
 
-* Bug #10731 fixed - Typos fixed in the help page of atan.
+* Bug #10731 fixed - Typos fixed in atan help page.
 
-* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+* Bug #10732 fixed - Wrong link fixed in atand help page.
 
-* Bug #10733 fixed - Missing link in the help page of atanm added.
+* Bug #10733 fixed - Missing link added in atanm help page.
 
-* Bug #10734 fixed - Missing link in the help page of cos added.
+* Bug #10734 fixed - Missing link added in cos help page.
 
-* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
+* Bug #10735 fixed - Missing information added about input argument in cotd help page.
 
-* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+* Bug #10736 fixed - Missing "Arguments" section added in coth help page.
 
-* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
+* Bug #10737 fixed - Missing "Arguments" section added in cothm help page.
 
-* Bug #10738 fixed - Typos fixed in the help page of cscd.
+* Bug #10738 fixed - Typos fixed in cscd help page.
 
-* Bug #10739 fixed - Typos fixed in the help page of csgn.
+* Bug #10739 fixed - Typos fixed in csgn help page.
 
-* Bug #10740 fixed - Typos fixed in the help page of sec.
+* Bug #10740 fixed - Typos fixed in sec help page.
 
-* Bug #10741 fixed - Typos fixed in the help page of secd.
+* Bug #10741 fixed - Typos fixed in secd help page.
 
-* Bug #10742 fixed - Missing link in the help page of sin added.
+* Bug #10742 fixed - Missing link added in sin help page.
 
-* Bug #10743 fixed - Wrong link in the help page of sind fixed.
+* Bug #10743 fixed - Wrong link fixed in sind help page.
 
-* Bug #10744 fixed - Typos fixed in the help page of sinh.
+* Bug #10744 fixed - Typos fixed in sinh help page.
 
-* Bug #10745 fixed - Typos fixed in the help page of tand.
+* Bug #10745 fixed - Typos fixed in tand help page.
+
+* Bug #10769 fixed - Dead code removed from bsplin3val.
+
+* Bug #10775 fixed - Scilab icons in filebrowser had a wrong size.
+
+* Bug #10782 fixed - 'iconvert' did not check input arguments.
+
+* Bug #10797 fixed - contour, contour2d, contourf did not check input arguments.
+
+* Bug #10807 fixed - It was not possible to overload fft and fftw for list,
+                     tlist, mlist type.
+
+* Bug #10809, #10810 fixed - error_table help page was not up-to-date.
+
+* Bug #10820 fixed - datatipscurve generator was freezing Scilab.
+
+* Bug #10828 fixed - Developer arguments were not displayed in the help of
+                     Scilab scripts.
+
+* Bug #10831 fixed - set("auto_clear", "on") and set("auto_clear", "off") returned an error.
+
+* Bug #10835 fixed - Typo that made the 'atanm' function unusable fixed.
+
+* Bug #10836 fixed - resize_matrix with boolean failed.
+
+* Bug #10839 fixed - dec2hex function was limited to 32 bits.
+
+* Bug #10841 fixed - sliderStep property could not be set with "big" default value.
+
+* Bug #10845 fixed - $ was not documented.
+
+* Bug #10847 fixed - dec2base returned a wrong error message with a complex
+                     number as input argument.
+
+* Bug #10861 fixed - debug([]) returned a wrong error message.
+
+* Bug #10867 fixed - Loading a .scg file failed when the legend contained accentuated characters.
+
+* Bug #10879 fixed - Typo fixed in dec2base help page.
+
+* Bug #10880 fixed - Default start-up directory moved to "My Documents folder"
+                     under Windows for icon shortcut.
+
+* Bug #10881 fixed - Typo fixed in ftest and ftuneq help pages.
+
+* Bug #10904 fixed - Error messages of and() and or() builtin were not standard.
+
+* Bug #10913 fixed - The "View code" button was missing in GUI demos.
+
+* Bug #10928 fixed - Examples of save updated with information to fix trouble under Windows.
+
+* Bug #10966 fixed - linspace was producing some numerical errors on the last
+                     element.
+
+* Bug #10982 fixed - Completion failed when a space was used before the command.
+
+* Bug #11010 fixed - Examples of preconditioning added in gmres help page.
+
+* Bug #11029 fixed - Execution path to TMPDIR fixed in the example given in dae help page.
+
+* Bug #11055 fixed - 'string' function did not manage implicit size type as
+                     input argument.
+
+* Bug #11076 fixed -  mlist('r'), tlist('r') returned a wrong error message.
+
+* Bug #11077 fixed - rlist() returned an error.
+
+* Bug #11081 fixed -  movefile, copyfile did not support '~', 'TMPDIR',
+                      shortcuts in filenames.
+
+* Bug #11090 fixed - Typo fixed in event_handler_function help page.
+
+* Bug #11093 fixed - isNamedVarExist() did not search in builtin functions names.
+
+* Bug #11105 fixed - Crash with color_flag 3 fixed.
+
+* Bug #11114 fixed - Using load(file_descriptor, ...) is now obsolete.
+
+* Bug #11115 fixed - A graphic window was opened with two xend().
+
+* Bug #11126 fixed - Error messages improved.
+
+* Bug #11129 fixed - lapackscilab.sce could not be run outside its location.
+
+* Bug #11138 fixed - a = list() crashed under Windows 64 bits.
+
+* Bug #11154 fixed - Grid color hid the plots in Graphics/2D & 3D plots/plot2d demonstrations.
+
+* Bug #11166 fixed - datatipRemove example did not work.
+
+* Bug #11167 fixed - datatipRemoveAll example did not work.
+
+* Bug #11175 fixed - xstringl example did not work.
+
+* Bug #11186 fixed - 'typeof' of a type 130 returned an error.
+
+* Bug #11194 fixed - A browsevar exception could occur at start-up.
+
+* Bug #11205 fixed - A rare exception at Scilab start-up could occur.
+
+* Bug #11222 fixed - Links added between xdel, close and delete help pages.
+
+* Bug #11223 fixed - Deletion of datatips.
+
+* Bug #11265 fixed - msprintf crashed on a huge string.
+
+* Bug #11281 fixed - References to x_left & y_top were false in reversed axes
+                     cases in rubberbox help page.
+
+* Bug #11289 fixed - swap_handles function modified the properties.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -563,7 +1090,7 @@ Xcos
                    exception.
 
 * Bug #9506 fixed - Some libraries dependencies were not loaded at
-                   xcos_toolbox_skeleton startup.
+                   xcos_toolbox_skeleton start-up.
 
 * Bug #9532 fixed - User-defined blocks had no icons when saved.
 
@@ -842,6 +1369,13 @@ Obsolete Functions
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed in Scilab 5.4.1.
 
+* 'showalluimenushandles' function (graphics) was undocumented. This function is
+  obsolete and will be removed on 5.4.
+  Use set(get(0), "ShowHiddenHandles", "on"); instead.
+
+* 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use
+  'ascii' instead.
+
 
 Removed Functions (previously declared as obsolete)
 ====================================================
@@ -859,7 +1393,7 @@ Removed Functions (previously declared as obsolete)
 Performance
 ============
 
-* Under GNU/Linux and Mac OS X, Scilab startup speed of scilab-cli and
+* Under GNU/Linux and Mac OS X, Scilab start-up speed of scilab-cli and
   scilab-adv-cli has been improved by 15 to 20 % (see Compilation for more
   information).
 
@@ -879,7 +1413,7 @@ Compilation
 * Under Windows, Scilab uses VS 2010 Pro and Express solution.
 
 * Under GNU/Linux and Mac OS X, engine libraries have been merged into a single
-  library named libscilab-cli.so. This greatly improves the startup
+  library named libscilab-cli.so. This greatly improves the start-up
   performances.
   Note that the --enable-maintainer-mode enables the previous behavior (simply
   the development process).
@@ -959,6 +1493,13 @@ History
 
 Graphics
 =========
+
+* Obsolete value for line_style property:
+  0 and 1 are equivalent values for SOLID rendering.
+  A warning message will be displayed if the user tries to set this property to 0.
+  Setting this property to 0 will no more be supported in Scilab 5.4.1.
+
+* getcallbackobject: Input argument must be an UID (String) and no more an index (Constant).
 
 * datatips tool improved on several aspects:
   - It is now possible to manage directional arrows as well as
@@ -1045,6 +1586,15 @@ returns the value of the ScilabTypeEnum enum.
                    EDT was crashing the execution of a Java program.
 
 
+API Scilab
+==========
+
+* Add functions to identify list datatypes:
+  isListType, isNamedListType, isTListType, isNamedTListType, isMListType,
+  isNamedMListType
+  See bug #11106
+
+
 CACSD and Signal Processing
 ===========================
 
@@ -1066,7 +1616,7 @@ CACSD and Signal Processing
 
 * Bug #9321 fixed - Missing tests and help info for some CACSD functions.
 
-* Bug #9647 fixed - At Scilab startup, the variable fft was declared by default
+* Bug #9647 fixed - At Scilab start-up, the variable fft was declared by default
                    while it should not have been.
 
 * Bug #9675 fixed - iir generated bad results.
@@ -1081,6 +1631,8 @@ CACSD and Signal Processing
 
 * Bug #10169 fixed - Bad clipping option in evans.
 
+* Bug #11092 fixed - Incorrect argument check in h_inf
+
 
 Misc
 =====
@@ -1093,7 +1645,7 @@ Misc
 
 * Change the buffering display mode.
 
-* SEP #67: lines(0) by default at startup.
+* SEP #67: lines(0) by default at start-up.
 
 * Options -disable-exception-catching added under GNU/Linux & Mac OS X.
   Disables the Scilab exception catching system.
@@ -1217,7 +1769,7 @@ Bug Fixes
 
 * Bug #9479 fixed - Typo fixed (intput => input).
 
-* Bug #9498 fixed - A long history caused Scilab startup to be very long.
+* Bug #9498 fixed - A long history caused Scilab start-up to be very long.
 
 * Bug #9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged types (function, macro, ...).
@@ -1245,7 +1797,7 @@ Bug Fixes
 
 * Bug #9635 fixed - Some temp. variables were not removed when test_run was used.
 
-* Bug #9647 fixed - At Scilab startup, the variable fft was declared by default
+* Bug #9647 fixed - At Scilab start-up, the variable fft was declared by default
                    while it should not have been.
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
@@ -1375,12 +1927,13 @@ Bug Fixes
                     when we used "Edit label generator" and click "Ok".
 
 
+
 Known Issues
 ============
-* Random crash under Mac OS X at startup.
-  Some random crash can occur at first Scilab startup. Try to restart Scilab.
+* Random crash under Mac OS X at start-up.
+  Some random crash can occur at first Scilab start-up. Try to restart Scilab.
 
-* Some issues at startup under Mac OS X 10.6.7 (and previous 10.6 versions)
+* Some issues at start-up under Mac OS X 10.6.7 (and previous 10.6 versions)
   have been reported.
   If you have "Audio Hijack" installed on your Mac OS X, it prevents some
   applications to work including Scilab. See Bug #7012.

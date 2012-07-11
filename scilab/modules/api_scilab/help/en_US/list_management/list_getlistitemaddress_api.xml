@@ -76,8 +76,7 @@
     <!--Lib_name: common_list-->
     <!--Func_list: common_list-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int get_list_info(int* _piAddress);
@@ -170,8 +169,7 @@ void insert_indent(void)
         sciprint("\t");
     }
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

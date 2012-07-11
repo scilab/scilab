@@ -1301,7 +1301,13 @@ endfunction
 // Customize the style
 style = struct();
 style.fillColor="red";
-style.image="file://" + SCI + "/modules/xcos/images/blocks/RAMP.svg";
+
+block_img = SCI + "/modules/xcos/images/blocks/RAMP.svg";
+// protect drive letter
+if getos() == "Windows" then
+    block_img = "/" + block_img;
+end
+style.image="file://" + block_img;
 
 //create an instance of a new block
 o = MyBlock("define");

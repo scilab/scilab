@@ -5,49 +5,33 @@
 
 # List of the cpp files
 HISTORY_MANAGER_CPP_SOURCES = \
-    src/cpp/HistoryFile.cpp \
-    src/cpp/HistoryManager.cpp \
-    src/cpp/HistorySearch.cpp
+src/cpp/HistoryFile.cpp \
+src/cpp/HistoryManager.cpp \
+src/cpp/HistorySearch.cpp
 # List of the c files
-HISTORY_MANAGER_C_SOURCES = \
-    src/c/getCommentDateSession.c
+HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_history_manager.c
-#sci_gateway/c/sci_displayhistory.c  \
-#sci_gateway/c/sci_gethistory.c  \
-#sci_gateway/c/sci_gethistoryfile.c  \
-#sci_gateway/c/sci_historysize.c  \
-#sci_gateway/c/sci_removelinehistory.c  \
-#sci_gateway/c/sci_resethistory.c  \
-#sci_gateway/c/sci_saveafterncommands.c  \
-#sci_gateway/c/sci_saveconsecutivecommands.c  \
-#sci_gateway/c/sci_savehistory.c  \
-#sci_gateway/c/sci_sethistoryfile.c  \
-#sci_gateway/c/sci_historymanager.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c
 
-GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/history_manager_gw.cpp \
-    sci_gateway/cpp/sci_loadhistory.cpp \
-    sci_gateway/cpp/sci_displayhistory.cpp \
-    sci_gateway/cpp/sci_gethistory.cpp \
-    sci_gateway/cpp/sci_gethistoryfile.cpp \
-    sci_gateway/cpp/sci_historymanager.cpp \
-    sci_gateway/cpp/sci_historysize.cpp \
-    sci_gateway/cpp/sci_removelinehistory.cpp \
-    sci_gateway/cpp/sci_resethistory.cpp \
-    sci_gateway/cpp/sci_saveafterncommands.cpp \
-    sci_gateway/cpp/sci_saveconsecutivecommands.cpp \
-    sci_gateway/cpp/sci_savehistory.cpp \
-    sci_gateway/cpp/sci_sethistoryfile.cpp \
-    sci_gateway/cpp/sci_addhistory.cpp
-
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/history_manager_gw.cpp \
+sci_gateway/cpp/sci_addhistory.cpp \
+sci_gateway/cpp/sci_displayhistory.cpp \
+sci_gateway/cpp/sci_gethistory.cpp \
+sci_gateway/cpp/sci_gethistoryfile.cpp \
+sci_gateway/cpp/sci_historysize.cpp \
+sci_gateway/cpp/sci_loadhistory.cpp \
+sci_gateway/cpp/sci_removelinehistory.cpp \
+sci_gateway/cpp/sci_resethistory.cpp \
+sci_gateway/cpp/sci_saveafterncommands.cpp \
+sci_gateway/cpp/sci_saveconsecutivecommands.cpp \
+sci_gateway/cpp/sci_savehistory.cpp \
+sci_gateway/cpp/sci_sethistoryfile.cpp \
+sci_gateway/cpp/sci_historymanager.cpp
 if GUI
 
 # List of the c files
-HISTORY_MANAGER_C_SOURCES += \
-    src/jni/HistoryManagement_wrap.c
+HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
 USEANT=1
 
@@ -60,48 +44,43 @@ endif
 endif
 
 
-libscihistory_manager_la_CFLAGS = \
-    -I$(top_srcdir)/modules/string/includes/
-
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS = \
-    $(JAVA_JNI_INCLUDE) \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
-    -I$(srcdir)/src/c/ \
-    -I$(srcdir)/src/jni/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/console/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
-    -I$(top_srcdir)/modules/history_browser/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/localization/includes \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/history_browser/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
 noinst_LTLIBRARIES = libscihistory_manager-algo.la
 
-libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES)
 libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscihistory_manager_algo_la_CFLAGS = $(libscihistory_manager_la_CFLAGS)
 libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
+INCLUDE_FLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 ## Libraries necessary
 libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la

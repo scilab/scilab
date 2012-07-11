@@ -1,0 +1,11 @@
+LIBRARY    linpack_f.dll
+
+
+EXPORTS
+dgeco_
+dgedi_
+dgefa_
+dgesl_
+icopy_
+wgeco_
+wgesl_

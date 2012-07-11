@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spchol">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spchol</refname>
     <refpurpose>疎行列コレスキー分解</refpurpose>
@@ -47,9 +44,11 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[R,P] = spchol(X)</literal> は,
-	<literal>P*R*R'*P' = X</literal>となるような
-	上三角行列<literal>R</literal> を出力します.</para>
+    <para>
+      <literal>[R,P] = spchol(X)</literal> は,
+      <literal>P*R*R'*P' = X</literal>となるような
+      上三角行列<literal>R</literal> を出力します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

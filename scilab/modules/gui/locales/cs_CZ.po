@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-08 14:47+0000\n"
+"PO-Revision-Date: 2012-06-13 19:15+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -419,23 +419,32 @@ msgstr "&Uložit..."
 msgid "&Export to..."
 msgstr "&Exportovat do..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "&Export vektoru"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr "Export &vektoru do..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr "&PS"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -445,12 +454,6 @@ msgstr "&EPS"
 
 msgid "&FIG"
 msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Kopírovat do schránky"
@@ -473,8 +476,8 @@ msgstr "Zobrazit/Skrýt &Panel Nástrojů"
 msgid "&Zoom"
 msgstr "&Přiblížit"
 
-msgid "&UnZoom"
-msgstr "&Vzdálit"
+msgid "&Original View"
+msgstr "&Původní zobrazení"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D &Otáčení"
@@ -508,6 +511,18 @@ msgstr "&Spustit správce datových popisků"
 
 msgid "Stop datatip manager"
 msgstr "Zastavit správce datových popisků"
+
+msgid "&MVC"
+msgstr "&MPŘ"
+
+msgid "&Log View (Trace all View notifications)"
+msgstr "&Zobrazení záznamu (Sledovat všechna oznámení"
+
+msgid "&All Objects View (All objects with properties)"
+msgstr "Zobrazení všech &objektů (Všechny objekty s vlastnostmi)"
+
+msgid "&Ged-like View (Future ged)"
+msgstr "Zobrazení podobné &ged (Budoucí ged)"
 
 msgid "&?"
 msgstr "&?"
@@ -565,6 +580,9 @@ msgstr "&Vyprázdnit schránku"
 
 msgid "&Select all"
 msgstr "&Vybrat vše"
+
+msgid "P&references"
+msgstr "Př&edvolby"
 
 msgid "&Preferences"
 msgstr "&Nastavení"
@@ -708,50 +726,34 @@ msgid "Scilab Demonstrations"
 msgstr "Ukázky Scilab"
 
 #, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: Nelze vytvořit uicontrol typu %s."
-
-#, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: Nelze zrušit tento objekt.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Vlastnost '%s' pro tuto obslužnou rutinu neexistuje.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "Žádná vlastnost '%s' pro tento objekt.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s: Špatný typ pro nadřazeného: Očekávána obslužná rutina nebo 0.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: v tomto režimu nelze přidat menu do konzole.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr "%s: Špatný typ pro nadřazeného: Očekávána obslužná rutina.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
 msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
+"%s: Špatný typ pro nadřazeného: Očekáváno číslo nebo obslužná rutina "
+"uimenu.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekáváno 'light', 'normal', 'demi' nebo "
-"'bold'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
-"'%s'.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s: Špatný typ nadřazeného: Očekávána obslužná rutina nebo uimenu.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s: Špatná hodnota pro nadřazeného: Očekávána 0.\n"
 
 #, c-format
 msgid ""
@@ -770,10 +772,6 @@ msgstr ""
 "'R|G|B'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekávána čísla mezi 0 a 1.\n"
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
@@ -782,12 +780,8 @@ msgstr ""
 "'R|G|B'.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekávána čísla mezi 0 a 1.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -798,30 +792,22 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáván řetězec.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "Špatná velikost vlastnosti '%s': Očekáváno reálné číslo.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "Špatný typ vlastnosti '%s': Očekáváno reálné číslo.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo "
-"'%s'.\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
+"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
@@ -829,8 +815,12 @@ msgstr ""
 "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -884,6 +874,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -892,11 +890,15 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
+"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
 "'%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
@@ -904,14 +906,23 @@ msgstr ""
 "Špatná velikost vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
-
-#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 "Špatná velikost vlastnosti '%s': Očekáván řetězec nebo vektor řetězců.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -932,32 +943,32 @@ msgstr ""
 "Špatný typ vlastnosti '%s': Očekáván reálný řádkový vektor nebo řetězec.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
+"Varování: Vlastnost '%s' 'Value' by měla být celé číslo, hodnota bude "
+"zkrácena.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáván 2-položkový seznam.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáván řetězec.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: Špatná hodnota vlastnosti '%s': Očekávány body, palce, normalizované, "
-"centimetry nebo pixely.\n"
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
 
 msgid "Console Font..."
 msgstr "Písmo Konzole..."
@@ -965,9 +976,7 @@ msgstr "Písmo Konzole..."
 msgid "Console Background..."
 msgstr "Pozadí Konzole..."
 
-msgid "No print service found."
-msgstr "Žádná služba tisku nenalezena."
-
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -977,6 +986,7 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1136,14 +1146,6 @@ msgstr "Další"
 msgid "Tree Overview"
 msgstr "Stromový Přehled"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr ""
-"Levým kliknutím zahájíte výběr oblasti přiblížení. Pravým kliknutím zrušíte."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "Levým kliknutím ukončíte výběr. Pravým kliknutím zrušíte."
-
 msgid "OK"
 msgstr "OK"
 
@@ -1159,6 +1161,7 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1166,9 +1169,11 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1223,6 +1228,7 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
@@ -1284,6 +1290,9 @@ msgstr "Ovládání rozhraní 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "Ovládání rozhraní s LaTeX/MathML"
+
+msgid "Show images with uicontrols "
+msgstr "Zobrazit obrázky s uicontrols "
 
 msgid "<Enter color name here>"
 msgstr "<Zde zadejte jméno barvy>"

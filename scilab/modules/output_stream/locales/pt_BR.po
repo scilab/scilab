@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-10 14:14+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2012-05-06 00:28+0000\n"
+"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -26,6 +26,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
+"%s: Número incorreto de argumentos de entrada: dados não compatíveis com "
+"formato.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -51,6 +53,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
+"%s: Valor errado de argumento de entrada #%d: dado não compatível com "
+"formato.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -165,7 +169,7 @@ msgid "Incorrect assignment.\n"
 msgstr "Atribuição incorreta.\n"
 
 msgid "Invalid factor.\n"
-msgstr ""
+msgstr "Fator inválido.\n"
 
 msgid "Waiting for right parenthesis.\n"
 msgstr "Aguardando pelo fecha-parênteses.\n"
@@ -382,7 +386,7 @@ msgstr ""
 "argumento de entrada.\n"
 
 msgid "Wrong number of input arguments."
-msgstr ""
+msgstr "Número errado de argumentos de entrada."
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
@@ -391,7 +395,7 @@ msgstr ""
 "argumentos de saída.\n"
 
 msgid "Wrong number of output arguments.\n"
-msgstr ""
+msgstr "Número errado de argumentos de saída.\n"
 
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr "Tamanho errado para o argumento: Dimensões incompatíveis.\n"
@@ -422,13 +426,13 @@ msgstr "Formato de arquivo desconhecido.\n"
 
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
-msgstr ""
+msgstr "Erro fatal!!! Suas variáveis estão sendo salvas no arquivo: %s\n"
 
 msgid "Bad call to a scilab function ?\n"
-msgstr ""
+msgstr "Chamada ruim para uma função scilab?\n"
 
 msgid "Otherwise, send a bug report to :"
-msgstr ""
+msgstr "Caso contrário, envie um relatório de bug para:"
 
 msgid "Floating point exception.\n"
 msgstr "Exceção de ponto flutuante.\n"
@@ -502,7 +506,7 @@ msgstr "Sistem inobservável.\n"
 
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
-msgstr ""
+msgstr "%s: problema singular ou assimétrico.\n"
 
 #, c-format
 msgid "Wrong size for argument %d.\n"
@@ -595,7 +599,7 @@ msgstr "A variável %s não é uma função racional válida.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "A variável %s não é uma representação de espaço de estados válida.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Função indefinida.\n"
 
 msgid "Function name already used.\n"
@@ -1058,10 +1062,10 @@ msgstr ""
 "%s: Os argumentos de entrada devem ter o mesmo nome de variável formal.\n"
 
 msgid "Input arguments should have the same formal variable name.\n"
-msgstr ""
+msgstr "Argumentos de entrada deveria ter o mesmo nome da variável formal.\n"
 
 msgid "Unknown data.\n"
-msgstr ""
+msgstr "Dado desconhecido.\n"
 
 msgid "Warning :\n"
 msgstr "Aviso:\n"
@@ -1292,6 +1296,7 @@ msgstr "Aviso: singularidade da função 'log' ou 'tan'.\n"
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
+"No instante:%s. Iterações excessivas para alcançar a precisão requerida.\n"
 
 msgid "stepsize not significant in rkqc.\n"
 msgstr "stepsize não é significante em rkqc.\n"
@@ -1307,6 +1312,8 @@ msgid ""
 "Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
+"Alerta: integração incompleta! Verifique os parâmetros de tolerância ou o "
+"tamanho do passo.\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
@@ -1480,11 +1487,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong export format: %s"
-msgstr ""
+msgstr "%s: Formato de exportação incorreto: %s"
 
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
+msgstr "%s: Tipo %s não é suportado: defina a função %s2%s."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -1505,4 +1512,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
-msgstr ""
+msgstr "%s: o sistema não pode ser exibido nesta página.\n"

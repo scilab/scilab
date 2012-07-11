@@ -17,7 +17,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -28,7 +28,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Close action
  * @author Calixte DENIZET
  */
-public class CloseAction extends CallBack {
+public class CloseAction extends CommonCallBack {
 
     private static final KeyStroke KEY = ScilabKeyStroke.getKeyStroke("OSSCKEY W");
 

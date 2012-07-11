@@ -178,8 +178,7 @@
     <!--Lib_name: double_writing-->
     <!--Func_list: write_double-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-      <![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int write_double(char *fname,unsigned long fname_len)
 {
@@ -220,7 +219,7 @@ int write_double(char *fname,unsigned long fname_len)
 	//}
 	//create a variable from a existing data array
 
-	sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows1, iCols1, pdblReal1);
+	sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows1, iCols1, pdblReal1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -235,7 +234,7 @@ int write_double(char *fname,unsigned long fname_len)
 	*************************/
 
 	//reserve space in scilab memory and fill it
-	sciErr = allocComplexMatrixOfDouble(pvApiCtx, InputArgument + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -265,13 +264,12 @@ int write_double(char *fname,unsigned long fname_len)
 	// /!\ DO NOT FREE MEMORY, in this case, it's the Scilab memory
 	//assign allocated variables to Lhs position
 
-    AssignOutputVariable(1) = InputArgument + 1;
-    AssignOutputVariable(2) = InputArgument + 2;
+    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(2) = nbInputArgument + 2;
 
     return 0;
 }
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

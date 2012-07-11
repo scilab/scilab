@@ -14,13 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "Language: es\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban a lo sumo %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -39,6 +34,22 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: No se puede abrir el archivo %s.\n"
 
 #, c-format
+msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Variable '%s' already exists in file '%s'."
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
@@ -49,16 +60,9 @@ msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Type: %dx%d\n"
-msgstr "%s: Tipo: %dx%d\n"
-
-#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: Imposible abrir el archivo: %s\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Formato HDF5 de Scilab inválido.\n"
-
-msgid "HDF5 is not installed"
-msgstr "HDF5 no está instalado"

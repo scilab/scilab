@@ -11,8 +11,8 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
-<!-- 
-Scilab Java dependencies can be load in different ways. 
+<!--
+Scilab Java dependencies can be load in different ways.
 It can be:
 * startup - Load immediatly the dep when Scilab starts (default behaviour)
 * background - After Scilab engine is loaded, load the dep in the background
@@ -21,8 +21,8 @@ It can be:
 Some deps can be also disabled only for a specific mode.
 The option is "disableUnderMode" and can be:
 * STD - Normal mode
-* NW - No Window mode (ie command line but with graphics 
-* API - Scilab as an API 
+* NW - No Window mode (ie command line but with graphics
+* API - Scilab as an API
 -->
 
 <classpaths>
@@ -49,13 +49,19 @@ The option is "disableUnderMode" and can be:
 	<load on="Xcos"/>
 </path>
 
-<path value="@JOGL@" load="onUse">
+<path value="@SCIRENDERER@" load="onUse">
+	<load on="graphics"/>
+    <load on="graphic_ojects"/>
+    <load on="Xcos"/>
+</path>
+
+<path value="@JOGL2@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>
 </path>
 
-<path value="@GLUEGEN_RT@" load="onUse">
+<path value="@GLUEGEN2_RT@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
 	<load on="Xcos"/>
@@ -172,6 +178,10 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">
 	<load on="SciNotes"/>
 </path>
+
+
+<!-- TO DO Load only when we need -->
+<path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>

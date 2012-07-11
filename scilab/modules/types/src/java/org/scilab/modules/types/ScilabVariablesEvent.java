@@ -21,7 +21,9 @@ public class ScilabVariablesEvent {
 
     /**
      * Constructor
-     * @param var the new refreshed variable
+     *
+     * @param var
+     *            the new refreshed variable
      */
     public ScilabVariablesEvent(ScilabType var) {
         this.var = var;

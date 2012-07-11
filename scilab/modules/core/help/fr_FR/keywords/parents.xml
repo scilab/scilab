@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="parents">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>parents ( )</refname>
     <refpurpose> parenthèses droite et gauche  </refpurpose>
@@ -68,20 +65,20 @@
     </para>
     <para>
       *
-      Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules. 
+      Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules, 
     </para>
     <para>
       *
       Sélectionner des éléments dans les vecteurs, matrices et listes.
     </para>
     <para>
-      Voir <literal>extraction</literal> et <literal>insertion</literal> pour de plus amples précisions.
+      Voir l'aide pour l'<link linkend="extraction">extraction</link> et l'<link linkend="insertion">insertion</link> pour de plus amples précisions.
     </para>
     <para>
       *
-      [x1,x2,...]=(e1,e2,...) est équivalent aux commandes préalables %t_1 = e1,
-      %t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ..., où les
-      variables %t_i, i = 1, 2, ... sont "invisibles" pour l'utilisateur.
+      <literal>[x1,x2,...]=(e1,e2,...)</literal> est équivalent aux commandes préalables %t_1 = e1,
+      <literal>%t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ...</literal>, où les
+      variables <literal>%t_i, i = 1, 2, ...</literal> sont "invisibles" pour l'utilisateur.
     </para>
     <para>
     </para>

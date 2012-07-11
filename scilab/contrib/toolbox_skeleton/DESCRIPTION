@@ -21,7 +21,7 @@ WebSite: http://www.scilab.org
 
 License: CeCILL
 
-ScilabVersion: >= 5.2
+ScilabVersion: >= 5.4
 
 Depends: 
 

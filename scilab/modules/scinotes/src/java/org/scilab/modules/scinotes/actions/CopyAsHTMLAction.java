@@ -58,7 +58,7 @@ public class CopyAsHTMLAction extends DefaultAction {
         if (!getEditor().getTextPane().copyColumnSelectionInClipBoard()) {
             String selection = getEditor().getTextPane().getSelectedText();
             if (selection != null) {
-                HTMLSelection sel = new HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, printLineNumber);
+                HTMLSelection sel = new HTMLSelection(getEditor().getTextPane(), selection, printLineNumber);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
             }
         }
@@ -134,7 +134,7 @@ public class CopyAsHTMLAction extends DefaultAction {
          * {@inheritDoc}
          */
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[]{htmlFlavor, DataFlavor.stringFlavor};
+            return new DataFlavor[] {htmlFlavor, DataFlavor.stringFlavor};
         }
 
         /**

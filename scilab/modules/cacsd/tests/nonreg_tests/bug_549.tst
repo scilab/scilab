@@ -25,7 +25,7 @@
 //    France
 //    November 18, 2003 at 15:38:42
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 p = poly(0,'p');
 G = syslin('c', (1-p)/((p+1)*(p+3)));

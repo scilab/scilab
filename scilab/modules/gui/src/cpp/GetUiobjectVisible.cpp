@@ -13,24 +13,23 @@
 
 #include "GetUiobjectVisible.hxx"
 
-extern "C"
-{
-#include "os_strdup.h"
-}
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUiobjectVisible(sciPointObj* sciObj)
+int GetUiobjectVisible(void* _pvCtx, sciPointObj* sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
       if (CallScilabBridge::isWidgetVisible(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex))
         {
-          return sciReturnString(os_strdup("on"));
+          return sciReturnString(_pvCtx, strdup("on"));
         }
       else
         {
-          return sciReturnString(os_strdup("off"));
+          return sciReturnString(_pvCtx, strdup("off"));
         }
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -39,22 +38,22 @@ int GetUiobjectVisible(sciPointObj* sciObj)
         {
           if (CallScilabBridge::isFrameVisible(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
             {
-              return sciReturnString(os_strdup("on"));
+              return sciReturnString(_pvCtx, strdup("on"));
             }
           else
             {
-              return sciReturnString(os_strdup("off"));
+              return sciReturnString(_pvCtx, strdup("off"));
             }
         }
       else
         {
           if (CallScilabBridge::isWidgetVisible(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
             {
-              return sciReturnString(os_strdup("on"));
+              return sciReturnString(_pvCtx, strdup("on"));
             }
           else
             {
-              return sciReturnString(os_strdup("off"));
+              return sciReturnString(_pvCtx, strdup("off"));
             }
         }
 

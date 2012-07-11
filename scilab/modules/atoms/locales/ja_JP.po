@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-15 14:47+0000\n"
+"PO-Revision-Date: 2012-04-06 14:49+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Generator: Launchpad (build 15435)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -105,57 +105,67 @@ msgid ""
 "\n"
 "%s Installing ...\n"
 msgstr ""
+"\n"
+"%s インストール中...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Loading ...\n"
 msgstr ""
+"\n"
+"%s 読み込み中...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Testing ...\n"
 msgstr ""
+"\n"
+"%s 確認中...\n"
 
 #, c-format
 msgid ""
 "\n"
 "%s Removing ...\n"
 msgstr ""
+"\n"
+"%s 削除中 ...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Module %s is already installed. Please remove it before checking it.\n"
-msgstr ""
+msgstr "%s: モジュール %s はインストール済みです. 確認する前に削除してください.\n"
 
 #, c-format
 msgid "%s: Module %s does not exist in current repositories.\n"
-msgstr ""
+msgstr "%s: モジュール %s は現在のレポジトリには存在しません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: some unique module names "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 何らかのユニークなモジュール名を指定してください.\n"
 
 #, c-format
 msgid ""
 "\n"
 "Number of modules to check: %d\n"
 msgstr ""
+"\n"
+"確認するモジュールの数: %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -165,6 +175,10 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 msgid ""
 "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2　の文字列行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
@@ -198,6 +212,13 @@ msgstr "%s: ファイル '%s' は存在しないか、または、読み取り�
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: DESCRIPTION ファイルはパッケージ '%s' に見つかりません。\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"ATOMSの設定のofflineオプションがTrueに設定されています. atomsSystemUpdate "
+"は利用可能な最新のモジュールをチェックしません."
 
 #, c-format
 msgid ""
@@ -266,6 +287,10 @@ msgstr "%s: ファイル '%s' が存在しないか、読み取り可能では�
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: '%s-%s' をロード中にエラーが起こりました:\n"
+
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr "%s: '%s-%s' をアンロードする際にエラーが発生しました:\n"
 
 #, c-format
 msgid ""
@@ -425,13 +450,6 @@ msgstr "インストール・ディレクトリ"
 msgid "Description"
 msgstr "記述"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-"ATOMSの設定のoffLineオプションがTrueに設定されています. atomsSystemUpdate "
-"は利用可能な最新のモジュールをチェックしません."
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: '%s - %s' はインストールされていません。\n"
@@ -480,6 +498,9 @@ msgstr "ファイル"
 
 msgid "Installed modules"
 msgstr "インストール済みのモジュール"
+
+msgid "Update List of Packages"
+msgstr "パッケージのリストを更新"
 
 msgid "Close"
 msgstr "閉じる"
@@ -623,6 +644,10 @@ msgstr "%s: gzipが見つかりません.\n"
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: 記述ファイル('%s')の抽出に失敗しました。\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
@@ -29,7 +30,7 @@
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../system_env/includes/lasterror.h"
-#include "../../../modules/graphics/includes/WindowList.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"

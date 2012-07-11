@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -2414,6 +2414,7 @@ L30:
                         }
                         if (C2F(coshlt).halt != 0)
                         {
+                            if (C2F(coshlt).halt == 2) *told = *tf; /* end simulation */
                             C2F(coshlt).halt = 0;
                             freeallx;
                             return;
@@ -2742,6 +2743,7 @@ L30:
 
                 if (C2F(coshlt).halt != 0)
                 {
+                    if (C2F(coshlt).halt == 2) *told = *tf; /* end simulation */
                     C2F(coshlt).halt = 0;
                     freeallx;
                     return;
@@ -5558,8 +5560,8 @@ int read_xml_initial_states(int nvar, const char * xmlfile, char **ids, double *
 
     if (model == NULL)
     {
-        sciprint(_("Error: cannot find '%s'  \n"), xmlfile);
-        return -1;/* file does not existe*/
+        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
+        return -1;/* file does not exist*/
     }
 
     elements = ezxml_child(model, "elements");
@@ -5666,8 +5668,13 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     model = ezxml_parse_file(xmlfile);
     if (model == NULL)
     {
-        sciprint(_("Error: cannot find '%s'  \n"), xmlfile);
-        return -1;/* file does not existe*/
+        sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
+        for (i = 0; i < nvar; i++)
+        {
+            FREE(xv[i]);
+        }
+        FREE(xv);
+        return -1;/* file does not exist */
     }
 
     elements = ezxml_child(model, "elements");
@@ -5679,7 +5686,7 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
         if (result == 0 )
         {
             /* sciprint(_("cannot find %s in '%s' \n"),ids[i],xmlfile);      */
-            /* err= -1;*/ /* Varaible does not exist*/
+            /* err= -1;*/ /* Variable does not exist*/
         }
     }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -87,15 +87,20 @@
     <None Include="interpolation_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\interpolation.iss" />
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\interpolation.pot" />
     <None Include="elementary_functions_f_Import.def">
-      <Filter>Source Files</Filter>
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="slatec_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\interpolation.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

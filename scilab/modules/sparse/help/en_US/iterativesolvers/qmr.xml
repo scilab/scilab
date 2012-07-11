@@ -11,16 +11,15 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qmr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>qmr</refname>
     <refpurpose> quasi minimal resiqual method with preconditioning  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x,flag,err,iter,res] = qmr(A,b,x0,M1,M1p,M2,M2p,maxi,tol)</synopsis>
+    <synopsis>[x,flag,err,iter,res] = qmr(A,Ap,b,x0,M1,M1p,M2,M2p,maxi,tol)
+      [x,flag,err,iter,res] = qmr(A,b,x0,M1,M2,maxi,tol)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,8 +28,45 @@
         <term>A</term>
         <listitem>
           <para>
-            matrix of size n-by-n or function returning <literal>A*x</literal>
+            matrix of size n-by-n or function.		   
           </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <literal>matrix.</literal>If A is a matrix, it can be
+                dense or sparse
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>function.</literal>If A is a function which returns <literal>A*x</literal>, it must
+                have the following header :
+              </para>
+              <programlisting role=""><![CDATA[ 
+function y = A ( x )
+ ]]></programlisting>
+              <para>
+                If A is a function which returns <literal>A*x</literal> or <literal>A'*x</literal> depending t. 
+                If <literal>t = "notransp"</literal>, the function returns <literal>A*x</literal>. 
+                If <literal>t = "transp"</literal>, the function returns <literal>A'*x</literal>. It must
+                have the following header :
+              </para>
+              <programlisting role=""><![CDATA[ 
+function y = A ( x, t )
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ap</term>
+        <listitem>
+          <para>
+            function returning <literal>A'*x</literal>. It must have the followinf header :
+          </para>
+          <programlisting role=""><![CDATA[ 
+function y = Ap ( x )
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,15 +85,30 @@
         <term>M1</term>
         <listitem>
           <para>
-            left preconditioner: matrix or function returning <literal>M1*x</literal> (In the first case, default: eye(n,n))
+            left preconditioner : matrix or function (In the first case, default: eye(n,n)). If <literal>M1</literal> is a function, she returns either,
           </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                only <literal>M1*x</literal>
+              </para>
+            </listitem>
+            <para> or
+            </para>
+            <listitem>
+              <para>
+                <literal>M1*x</literal> or <literal>M1'*x</literal> depending <literal>t</literal>.
+              </para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>M1p</term>
         <listitem>
           <para>
-            must only be provided when <literal>M1</literal> is a function. In this case <literal>M1p</literal> is the function which returns <literal>M1'*x</literal>
+            must only be provided when <literal>M1</literal> is a function returning  <literal>M1*x</literal>. 
+            In this case <literal>M1p</literal> is the function which returns <literal>M1'*x</literal>. 
           </para>
         </listitem>
       </varlistentry>
@@ -65,15 +116,30 @@
         <term>M2</term>
         <listitem>
           <para>
-            right preconditioner: matrix or function returning <literal>M2*x</literal> (In the first case, default: eye(n,n))
+            right preconditioner : matrix or function (In the first case, default: eye(n,n)). If <literal>M2</literal> is a function, she returns either
           </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                only <literal>M2*x</literal>
+              </para>
+            </listitem>
+            <para> or
+            </para>
+            <listitem>
+              <para>
+                <literal>M2*x</literal> or <literal>M2'*x</literal> depending <literal>t</literal>.
+              </para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>M2p</term>
         <listitem>
           <para>
-            must only be provided when <literal>M2</literal> is a function. In this case <literal>M2p</literal> is the function which returns <literal>M2'*x</literal>
+            must only be provided when <literal>M2</literal> is a function returning  <literal>M2*x</literal>. 
+            In this case <literal>M2p</literal> is the function which returns <literal>M2'*x</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -145,12 +211,163 @@
       Solves the linear system <literal>Ax=b</literal> using the Quasi Minimal Residual Method with preconditioning.
     </para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+	// If A is a matrix
+A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+b=ones(10,1);
+[x,flag,err,iter,res] = qmr(A, b)
+
+[x,flag,err,iter,res] = qmr(A, b, zeros(10,1), eye(10,10), eye(10,10), 10, 1d-12)
+
+	// If A is a function
+	function y = Atimesx(x,t)
+	A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 if (t == 'notransp') then
+        y = A*x;
+    elseif (t ==  'transp') then
+        y = A'*x;
+    end
+	endfunction
+	 
+	 [x,flag,err,iter,res] = qmr(Atimesx, b)
+	 
+	 [x,flag,err,iter,res] = qmr(Atimesx, b, zeros(10,1), eye(10,10), eye(10,10), 10, 1d-12)
+	 
+	 // OR
+	 
+	 function y = funA(x)
+	A = [ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A*x
+	endfunction
+	
+	 function y = funAp(x)
+	A = [ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+	 y = A'*x
+	endfunction
+	 
+	 [x,flag,err,iter,res] = qmr(funA, funAp, b)
+	 
+	 [x,flag,err,iter,res] = qmr(funA, funAp, b, zeros(10,1), eye(10,10), eye(10,10), 10, 1d-12)
+	 
+	 // If A is a matrix, M1 and M2 are functions
+	 function y = M1timesx(x,t)
+	 M1 = eye(10,10);
+    if(t=="notransp") then
+        y = M1*x;
+    elseif (t=="transp") then
+        y = M1'*x;
+    end
+	endfunction
+	
+	function y = M2timesx(x,t)
+	 M2 = eye(10,10);
+    if(t=="notransp") then
+        y = M2*x;
+    elseif (t=="transp") then
+        y = M2'*x;
+    end
+	endfunction
+	
+	[x,flag,err,iter,res] = qmr(A, b, zeros(10,1), M1timesx, M2timesx, 10, 1d-12)
+	
+	// OR
+	
+	function y = funM1(x)
+	M1 = eye(10,10);
+	y = M1*x;
+	endfunction
+	
+	function y = funM1p(x)
+	M1 = eye(10,10);
+	y = M1'*x;
+	endfunction
+	
+	function y = funM2(x)
+	M2 = eye(10,10);
+	y = M2*x;
+	endfunction
+	
+	function y = funM2p(x)
+	M2 = eye(10,10);
+	y = M2'*x;
+	endfunction
+	
+	[x,flag,err,iter,res] = qmr(A, b, zeros(10,1), funM1, funM1p, funM2, funM2p, 10, 1d-12)
+	
+	// If A, M1, M2 are functions
+	[x,flag,err,iter,res] = qmr(funA, funAp, b, zeros(10,1), funM1, funM1p, funM2, funM2p, 10, 1d-12)
+	[x,flag,err,iter,res] = qmr(Atimesx, b, zeros(10,1), M1timesx, M2timesx, 10, 1d-12)
+
+ ]]></programlisting>
+  </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gmres">gmres</link>
       </member>
+      <member>
+        <link linkend="pcg">pcg</link>
+      </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>
+          Calling qmr(A, Ap) is deprecated. qmr(A) should be used instead. The following function is an example :
+          <programlisting role=""><![CDATA[ 
+function y = A ( x, t )
+Amat = eye(2,2);
+if ( t== "notransp") then
+y = Amat*x;
+elseif (t == "transp") then
+y = Amat'*x;
+end
+endfunction
+ ]]></programlisting>
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

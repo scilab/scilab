@@ -13,6 +13,7 @@
 #define SETCHARDISPLAY_H_
 
 #include <stdlib.h>
+#include "BOOL.h"
 
 /*
  * Here you find some defines related to character display.
@@ -54,4 +55,20 @@ void setForegroundColor(int color);
  * @param color define in (n)curses.h
  */
 void setBackgroundColor(int color);
+
+/**
+ * Return the color mode for the CLI (true with color, false otherwise)
+ *
+ * @return TRUE if color should be printed
+ */
+BOOL getCLIColor(void);
+
+/**
+ * Enable or disable color in the term
+ *
+ * @param CLIColor True for color, False without
+ */
+void setCLIColor(BOOL CLIColor);
+
+
 #endif /* SETCHARDISPLAY_H_ */

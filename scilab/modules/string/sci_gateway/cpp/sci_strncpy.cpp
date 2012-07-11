@@ -20,6 +20,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"

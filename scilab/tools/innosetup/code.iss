@@ -1,6 +1,6 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -43,59 +43,44 @@ function getExecNameForDesktop(Param: String): String;
             end;
     end;
 //------------------------------------------------------------------------------
-function DoTasksJustAfterInstall: Boolean;
-  var
-    bOK : Boolean;
-
+function DoTaskInstall_MKL: Boolean;
   begin
     Result := true;
-
-    bOK := CreateModulesFile();
-    if (bOK = false) then
-      begin
-        Result := false;
-      end;
-
     if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
       begin
-        bOK := Install_commons_MKL();
-        if (bOK = false) then
+        Result := Install_commons_MKL();
+        if (Result = true) then
           begin
-            SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
-            Result := false;
+            Result := Install_MKL();
           end
-        else
-          begin
-            bOK := Install_MKL();
-            if (bOK = false) then
-              begin
-                SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
-                Result := false;
-              end;
-          end;
       end;
-
+  end;
+//------------------------------------------------------------------------------
+function DoTaskInstall_MKL_FFTW: Boolean;
+  begin
+    Result := true;
     if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
       begin
-        bOK := Install_MKL_FFTW();
-        if (bOK = false) then
-          begin
-            SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg3'),mbError, MB_OK, MB_OK );
-            Result := false;
-          end;
+        Result := Install_MKL_FFTW();
       end;
-
+  end;
+//------------------------------------------------------------------------------
+function DoTaskInstall_CHM: Boolean;
+  begin
+    Result := true;
     if (IsComponentSelected( ExpandConstant('{#COMPN_CHM}') ) = true) then
       begin
-        bOK := Install_CHM();
-        if (bOK = false) then
-          begin
-            SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg4'),mbError, MB_OK, MB_OK );
-            Result := false;
-          end;
+        Result := Install_CHM();
       end;
-
-      
+  end;
+//------------------------------------------------------------------------------
+function DoTasksJustAfterInstall: Boolean;
+  begin
+    Result := true;
+    Result := CreateModulesFile();
+    Result := DoTaskInstall_MKL();
+    Result := DoTaskInstall_MKL_FFTW();
+    Result := DoTaskInstall_CHM();
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
@@ -111,18 +96,17 @@ function GetJREVersion(): String;
     begin
       // Scilab 32 bits sur Windows 64 bits
       RegQueryStringValue( HKLM, 'SOFTWARE\Wow6432Node\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
-    end 
+    end
   else
     begin
       // Scilab 32 bits sur Windows 32 bits
       RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
     end;
-
   end;
 //------------------------------------------------------------------------------
  function CheckJREVersion(): Boolean;
   var
-    jreVersion:       String;
+    jreVersion:  String;
     minJREVersionRegistry:  String;
   begin
     //
@@ -130,10 +114,9 @@ function GetJREVersion(): String;
     //
     minJREVersionRegistry := ExpandConstant('{#javaSpecificationVersion}');
     //
-    //
     // now we check the version of the installed JRE
-    jreVersion := GetJREVersion();
     //
+    jreVersion := GetJREVersion();
     if ( jreVersion = '' ) then begin
       Result := false;
     end else if ( jreVersion < minJREVersionRegistry ) then begin
@@ -182,7 +165,44 @@ end;
       end;
   end;
 //------------------------------------------------------------------------------
- function NextButtonClick(CurPageID: Integer): Boolean;
+function NextButtonClick_Download_MKL(): Boolean;
+  Var
+    bRes : Boolean;
+  begin
+    Result := true;
+    if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
+      begin
+        bRes := Download_commons_MKL();
+        if ( bRes = true ) then
+          begin
+            bRes := Download_MKL();
+          end;
+      end;
+  end;
+//------------------------------------------------------------------------------
+function NextButtonClick_Download_MKL_FFTW(): Boolean;
+  Var
+    bRes : Boolean;
+  begin
+    Result := true;
+    if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
+      begin
+        bRes := Download_MKL_FFTW();
+      end;
+  end;
+//------------------------------------------------------------------------------
+function NextButtonClick_Download_CHM(): Boolean;
+  Var
+    bRes : Boolean;
+  begin
+    Result := true;
+    if (IsComponentSelected( ExpandConstant('{#COMPN_CHM}') ) = true) then
+      begin
+        bRes := Download_CHM();
+      end;
+  end;
+//------------------------------------------------------------------------------
+function NextButtonClick(CurPageID: Integer): Boolean;
   Var
     bRes : Boolean;
 
@@ -216,41 +236,9 @@ end;
 
     if (CurPageID =  wpReady) then
       begin
-        if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
-          begin
-            bRes := Download_commons_MKL();
-            if ( bRes = false ) then
-              begin
-                SuppressibleMsgBox(CustomMessage('NextButtonClickwpReadyMsg1'), mbError, MB_OK, MB_OK );
-              end
-            else
-              begin
-                bRes := Download_MKL();
-                if ( bRes = false ) then
-                  begin
-                    SuppressibleMsgBox(CustomMessage('NextButtonClickwpReadyMsg1'), mbError, MB_OK, MB_OK );
-                  end;
-              end;
-          end;
-          
-        if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
-          begin
-            bRes := Download_MKL_FFTW();
-            if ( bRes = false ) then
-              begin
-                SuppressibleMsgBox(CustomMessage('NextButtonClickwpReadyMsg2'), mbError, MB_OK, MB_OK );
-              end;
-          end;
-          
-        if (IsComponentSelected( ExpandConstant('{#COMPN_CHM}') ) = true) then
-          begin
-            bRes := Download_CHM();
-            if ( bRes = false ) then
-              begin
-                SuppressibleMsgBox(CustomMessage('NextButtonClickwpReadyMsg3'), mbError, MB_OK, MB_OK );
-              end;
-          end;
-          
+        bRes := NextButtonClick_Download_MKL();
+        bRes := NextButtonClick_Download_MKL_FFTW();
+        bRes := NextButtonClick_Download_CHM();
       end;
 
     if (CurPageId = wpSelectComponents) then
@@ -283,7 +271,7 @@ end;
       end;
   end;
 //------------------------------------------------------------------------------
- function InitializeSetup: Boolean;
+function InitializeSetup: Boolean;
   Var
     Version: TWindowsVersion;
 #ifdef SCILAB_WITHOUT_JRE
