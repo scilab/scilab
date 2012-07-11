@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 1604 -->
@@ -14,7 +13,7 @@
 //
 // <-- Short Description -->
 //Bug in parser while manipulating tlist inside list.
-//Note that the bug is only visible/reproducible in release mode under 
+//Note that the bug is only visible/reproducible in release mode under
 //Windows. It should also happen in debug but can't be easily seen...
 
 
