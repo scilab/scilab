@@ -839,9 +839,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__.equals(property)) {
-                    if (canvas instanceof JoGLCanvas) {
-                        ((JoGLCanvas) canvas).setAntiAliasingLevel(figure.getAntialiasing());
-                    }
+                    canvas.setAntiAliasingLevel(figure.getAntialiasing());
                 }
 
                 if (isImmediateDrawing(id)) {
