@@ -24,6 +24,9 @@ Javasci
 Documentation
 =============
 
+* Management of Docbook tags <varname>, <command> and <constant>.
+  See bug #11459.
+
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
 
@@ -66,7 +69,7 @@ Bug Fixes
 
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
-                     
+
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
@@ -79,8 +82,11 @@ Bug Fixes
 * Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
                      rather than only the variable "a".
 
-* Bug #11443 fixed: There was no way to set default language via prefs under
+* Bug #11443 fixed - There was no way to set default language via prefs under
                     Windows.
+
+* Bug #11459 fixed - Docbook tags varname, command, constant and option were not
+                     handled.
 
 
 Known Incompatibilities

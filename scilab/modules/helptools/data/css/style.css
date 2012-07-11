@@ -56,7 +56,32 @@ h3 {
 }
 
 .literal {
+    font-family: monospace;
     font-size: 100%;
+}
+
+.option {
+    font-family: monospace;
+    font-style: italic;
+    font-size: 100%;
+}
+
+.command {
+    font-family: monospace;
+    font-size: 100%;
+    color: #32b9b9
+}
+
+.varname {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.constant {
+    font-family: monospace;
+    font-size: 100%;
+    color: #da70d6
 }
 
 a {
