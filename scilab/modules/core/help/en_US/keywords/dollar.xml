@@ -39,8 +39,7 @@ b($,2)
 b($,$)
 
 // Add a row at the end of the matrix b
-b($+1,:) = [1 1 1];
-b
+b($+1,:) = [1 1 1]
 
 // The $ symbol as a LaTeX delimiter
 titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
