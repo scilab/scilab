@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 
 tab_ref = [
 "世界您好",
@@ -24,7 +23,7 @@ for i = 1 : size(tab_ref,'*')
   exec(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   mdelete(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   rmdir(TMPDIR + filesep() + tab_ref(i));
-end  
+end
 
 // create a script file
 mputl('a=1;b=2',TMPDIR+'/myscript')
