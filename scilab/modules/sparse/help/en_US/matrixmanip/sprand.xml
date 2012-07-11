@@ -168,7 +168,7 @@ nnzs=nnz(s);
       we can compute elementary statistics to check that the algorithm performed
       well.
     </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="no-scilab-exec"><![CDATA[
   // The expectation of A_ij is
   density * kmax
   // Compare this with the actual events :
