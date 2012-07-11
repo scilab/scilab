@@ -42,7 +42,7 @@ b($,$)
 b($+1,:) = [1 1 1]
  
 // Символ $ в качестве обособления LaTeX
-titlepage(['$\Huge\textrm{Это~--- }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
+titlepage(['$\Huge\textrm{Это } \LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
