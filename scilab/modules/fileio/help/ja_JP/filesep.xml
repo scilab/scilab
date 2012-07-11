@@ -35,7 +35,7 @@
   <refsection>
     <title>説明</title>
     <para>rディレクトのリセパレータを返します.
-      ( Linuxでは'/', Windowsでは'\' )
+      ( GNU/Linuxでは'/', Windowsでは'\' )
     </para>
   </refsection>
   <refsection>

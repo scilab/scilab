@@ -33,7 +33,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>returns directory separator. ( '/' on Linux or '\' on Windows )</para>
+    <para>Returns directory separator ( '/' on GNU/Linux or '\' on Windows ).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
