@@ -28,7 +28,7 @@
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="strong">Configure ATOMS to display extra-informations</emphasis>
+            <emphasis role="strong">Configure ATOMS to display extra-information</emphasis>
             <programlisting><![CDATA[-->atomsSetConfig('Verbose','True');]]></programlisting>
           </para>
         </listitem>

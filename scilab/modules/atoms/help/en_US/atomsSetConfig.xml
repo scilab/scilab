@@ -147,7 +147,7 @@
         </tr>
         <tr>
           <td>Verbose</td>
-          <td>Display or not extra-informations</td>
+          <td>Display or not extra-information</td>
           <td>
             True/<emphasis role="strong">False</emphasis>
           </td>
@@ -174,7 +174,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">// Display extra-informations
+    <programlisting role="example">// Display extra-information
       atomsSetConfig('Verbose','True')
       
       // Disable autoload system

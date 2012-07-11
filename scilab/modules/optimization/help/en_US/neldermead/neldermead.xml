@@ -106,7 +106,7 @@
     </para>
     <para>
       See the "Nelder-Mead User's Manual" on Scilab's wiki and on the
-      Scilab forge for further informations.
+      Scilab forge for further information.
     </para>
   </refsection>
   <refsection>
@@ -2006,7 +2006,7 @@ Sort
       There are several ways to print intermediate messages or plots during the 
       optimization process. 
       The first method is to set the "-verbose" option to 1, 
-      which prints a lot of detailed informations. 
+      which prints a lot of detailed information. 
       The other method is to use the <literal>"-outputcommand"</literal> option. 
       We can either set it to the <literal>neldermead_defaultoutput</literal> or 
       define our own function. 
@@ -2016,7 +2016,7 @@ Sort
       In the following example, we use the <literal>"-outputcommand"</literal>option and 
       set it to the <literal>neldermead_defaultoutput</literal> 
       default output function. 
-      This function prints one line by iteration, with the main optimization informations.
+      This function prints one line by iteration, with the main optimization information.
     </para>
     <programlisting role="example"><![CDATA[ 
 function [ f , index ] = quadratic ( x , index )

@@ -212,7 +212,7 @@
       <emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
     </para>
     <programlisting role="example"><![CDATA[
-// Display some additionnal informations
+// Display some additionnal information
 atomsSetConfig("Verbose","True");
 
 // Load the test repository
@@ -253,7 +253,7 @@ atomsRemove(["toolbox_1"; ..
       modules directly from your own machine.
     </para>
     <programlisting role="example"><![CDATA[
-// Display some additionnal informations
+// Display some additionnal information
 atomsSetConfig("Verbose","True");
 
 // Install a module

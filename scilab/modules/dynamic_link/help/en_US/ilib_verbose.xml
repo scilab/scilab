@@ -46,7 +46,7 @@
       functions.
     </para>
     <para>All dynamic functions in dynamic link module check this value and
-      display or not some informations.
+      display or not some information.
     </para>
   </refsection>
   <refsection>
