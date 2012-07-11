@@ -35,14 +35,14 @@
         <term>sel</term>
         <listitem>
           <para>a optional character string selector, with possible values:
-            'path' 'fname' or 'extension'
+            <literal>'path'</literal>, <literal>'fname'</literal> or <literal>'extension'</literal>
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string, the path of the directory pointed to by fullpath</para>
+          <para>a character string, the path of the directory pointed to by <literal>fullpath</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,7 +60,7 @@
       <varlistentry>
         <term>value</term>
         <listitem>
-          <para>a character string, depending on sel value</para>
+          <para>a character string, depending on <literal>sel</literal> value</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -69,7 +69,7 @@
     <title>Description</title>
     <para>
       <literal>[path,fname,extension]=fileparts(fullpath)</literal> splits the
-      fullpath character string in its three parts: the path of the
+      <literal>fullpath</literal> character string in its three parts: the path of the
       directory pointed to, the filename part, the extension part
       including the dot.
     </para>
