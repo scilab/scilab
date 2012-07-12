@@ -110,6 +110,8 @@ Bug Fixes
 * Bug #11443 fixed - There was no way to set default language via prefs under
                     Windows.
 
+* Bug #11457 fixed - fscanf was not set as obsolete but called an obsolete function.
+
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
