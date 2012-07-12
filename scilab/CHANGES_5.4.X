@@ -35,6 +35,8 @@ Obsolete Functions
 
 * createpopup function is now obsolete. Please use 'uicontextmenu' instead.
 
+* uipopup function is now obsolete. Please use 'uicontextmenu' instead.
+
 
 Bug Fixes
 =========

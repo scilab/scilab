@@ -24,6 +24,7 @@
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname, unsigned long fname_len)
 {
@@ -41,6 +42,13 @@ int sci_mpopup(char *fname, unsigned long fname_len)
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if (getWarningMode())
+    {
+        sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "uicontextmenu");
+        sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+    }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
