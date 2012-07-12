@@ -30,6 +30,12 @@ Documentation
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
 
+Obsolete Functions
+===================
+
+* createpopup function is now obsolete. Please use 'uicontextmenu' instead.
+
+
 Bug Fixes
 =========
 
@@ -1426,7 +1432,7 @@ Documentation
 
 
 Obsolete Functions
-===================
+==================
 
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed in Scilab 5.4.1.
