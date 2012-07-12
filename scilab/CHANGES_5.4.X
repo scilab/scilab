@@ -75,6 +75,8 @@ Bug Fixes
 * Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
                      the parameter section.
 
+* Bug #11372 fixed - Calling odeoptions() returned an error.
+
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
