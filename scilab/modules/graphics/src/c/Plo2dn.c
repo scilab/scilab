@@ -108,12 +108,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     double drect[6];
     char dataflag = 0;
 
-
-
-    /* To be removed */
-#if 0
-    sciSubWindow *ppsubwin = NULL;
-#endif
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;
 
@@ -128,46 +122,13 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int newFirstPlot = 0;
     int autoSubticks = 0;
 
-
-    /* Deactivated since it uses synchronization */
-#if 0
-    startGraphicDataWriting();
-#endif
-
     psubwinUID = (char*)getOrCreateDefaultSubwin();
 
-#if 0
-    ppsubwin = pSUBWIN_FEATURE(psubwin);
-#endif
-
-#if 0
-    endGraphicDataWriting();
-    startFigureDataWriting(curFigure);
-#endif
     /*
      * Check if the auto_clear property is on and then erase everything
      * To be implemented
      */
     checkRedrawing();
-
-    /*
-     * Deactivated for now
-     * Searches the object hierarchy until it finds a Surface object
-     * in order to specify the view type (2D or 3D)
-     * To be implemented
-     */
-#if 0
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
-    {
-        ppsubwin->is3d = FALSE;
-        ppsubwin->project[2] = 0;
-    }
-    else
-    {
-        ppsubwin->theta_kp = ppsubwin->theta;
-        ppsubwin->alpha_kp = ppsubwin->alpha;
-    }
-#endif
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
@@ -390,15 +351,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_SUBTICKS__, aaint, jni_int, 1);
             setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_SUBTICKS__, &aaint[2], jni_int, 1);
 
-            /*
-             * Creates user-defined ticks using the Nax values
-             * The MVC does not distinguish yet between automatically computed ticks
-             * and user-defined ones.
-             * To be implemented using the MVC framework
-             */
-#if 0
-            CreatePrettyGradsFromNax(psubwin, aaint);
-#endif
         }
         else
         {
@@ -406,11 +358,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
 
     }
-
-    /* Deactivated (synchronization) */
-#if 0
-    endFigureDataWriting(curFigure);
-#endif
 
     /*
      * This was already commented out
@@ -440,11 +387,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
                 return -1;
             }
         }
-
-        /* Deactivated */
-#if 0
-        startFigureDataWriting(curFigure);
-#endif
 
         /*A.Djalel 3D axes */
         for (jj = 0; jj < *n1; jj++)
@@ -494,19 +436,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 
         }
 
-        /* Deactivated since it involves drawing */
-#if 0
-        endFigureDataWriting(curFigure);
-        forceRedraw(psubwin);
-#endif
-
         /*---- Drawing the Legends ----*/
-
-        /* Deactivated (synchronization) */
-#if 0
-        startFigureDataWriting(curFigure);
-#endif
-
         if (with_leg)
         {
             char *legUID;
@@ -518,11 +448,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
                 FREE(tabofhandles);
                 FREE(hdltab);
                 Scierror(999, _("%s: No more memory.\n"), "plot2d");
-
-                /* Deactivated (synchronization) */
-#if 0
-                endFigureDataWriting(curFigure);
-#endif
                 return 0;
             }
 
@@ -557,21 +482,9 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
         FREE(hdltab);
 
-        /* Deactivated (synchronization) */
-#if 0
-        endFigureDataWriting(curFigure);
-#endif
-
     }
     /* End of the curves and legend block */
 
-    /*
-     * Deactivated since it involves drawing operations
-     * To be implemented
-     */
-#if 0
-    sciDrawObj(curFigure);
-#endif
     return (0);
 }
 

@@ -1770,26 +1770,6 @@ BOOL sciGetCenterPos( sciPointObj * pObj )
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* return wether the current object is displayed in 2d or 3d mode.
-*/
-BOOL sciGetIs3d( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->is3d ;
-        case SCI_TEXT:
-            return pTEXT_FEATURE( pObj )->is3d ;
-        case SCI_LABEL:
-            return sciGetIs3d( pLABEL_FEATURE( pObj )->text ) ;
-        default:
-            printSetGetErrorMessage("view");
-            return FALSE ;
-    }
-    return FALSE ;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
 * get the number of children of a graphic object
 * @return number of children of object pObj
 */

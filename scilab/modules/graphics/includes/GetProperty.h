@@ -33,7 +33,7 @@
 #include "StringMatrix.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
+GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj, int ***user_data_ptr, int **size_ptr); /* GET */
 GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
@@ -100,8 +100,6 @@ GRAPHICS_IMPEXP BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
 GRAPHICS_IMPEXP BOOL sciGetCenterPos( sciPointObj * pObj ) ;
-
-GRAPHICS_IMPEXP BOOL sciGetIs3d( sciPointObj * pObj ) ;
 
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
@@ -178,13 +176,13 @@ GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]);
 GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
 
 GRAPHICS_IMPEXP void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-                             double corner3[2], double corner4[2]); /* GET */
+        double corner3[2], double corner4[2]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3]); /* GET */
+        double corner3[3], double corner4[3]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2]); /* GET */
+        int corner3[2], int corner4[2]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
 

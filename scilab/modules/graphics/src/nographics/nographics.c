@@ -537,12 +537,6 @@ BOOL sciGetAutoSubticks(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIs3d(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetSubwinIndex(sciPointObj * pSubwin)
 {
     return -1;

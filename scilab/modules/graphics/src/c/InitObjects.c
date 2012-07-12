@@ -58,7 +58,8 @@
 
 static char error_message[70];  /* DJ.A 08/01/04 */
 
-unsigned short defcolors[] = {
+unsigned short defcolors[] =
+{
     0, 0, 0,                    /* Black: DEFAULTBLACK */
     0, 0, 255,                  /* Blue */
     0, 255, 0,                  /* Green */
@@ -281,7 +282,7 @@ int sciInitGraphicContext(sciPointObj * pobj)
 
     getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
 
-//  switch (sciGetEntityType (pobj))
+    //  switch (sciGetEntityType (pobj))
     {
 
         /*
@@ -397,7 +398,7 @@ int sciInitGraphicContext(sciPointObj * pobj)
         else if (strcmp(type, __GO_SEGS__) == 0)
         {
             char *parent = NULL;
- 
+
             getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
             cloneGraphicContext(parent, pobj->UID);
         }
@@ -465,20 +466,20 @@ int sciInitGraphicContext(sciPointObj * pobj)
         /* Deactivated for now */
         /* This must be implemented within the MVC */
 #if 0
-case SCI_ARC:
-case SCI_SEGS:
-case SCI_FEC:
-case SCI_GRAYPLOT:
-case SCI_POLYLINE:
-case SCI_RECTANGLE:
-case SCI_SURFACE:
-case SCI_AXES:
-case SCI_LEGEND:               /* Adding a graphic context to legend object F.Leray 21.01.05 */
-case SCI_TEXT:
+    case SCI_ARC:
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_LEGEND:               /* Adding a graphic context to legend object F.Leray 21.01.05 */
+    case SCI_TEXT:
         cloneGraphicContext(sciGetParent(pobj), pobj);
         return 0;
         break;
-case SCI_LABEL:                /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
+    case SCI_LABEL:                /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
         if (sciGetParent(pobj) == paxesmdl)
         {
             /* this is a label model */
@@ -491,29 +492,29 @@ case SCI_LABEL:                /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
 
             switch (pLABEL_FEATURE(pobj)->ptype)
             {
-            case 1:
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-                break;
-            case 2:
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-                break;
-            case 3:
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-                break;
-            case 4:
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-                break;
-            default:
-                /* arrgh */
-                return -1;
-                break;
+                case 1:
+                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
+                    break;
+                case 2:
+                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
+                    break;
+                case 3:
+                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
+                    break;
+                case 4:
+                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+                    break;
+                default:
+                    /* arrgh */
+                    return -1;
+                    break;
             }
             cloneGraphicContext(plabelmdl, pobj);
             return 0;
         }
-case SCI_AGREG:
-case SCI_UIMENU:
-default:
+    case SCI_AGREG:
+    case SCI_UIMENU:
+    default:
         return -1;
         break;
 #endif
@@ -558,20 +559,20 @@ int sciInitFontContext(sciPointObj * pobj)
 
     getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
 
-//  switch (sciGetEntityType (pobj))
+    //  switch (sciGetEntityType (pobj))
 
-/* Deactivated for now */
-/* This must be implemented within the MVC */
+    /* Deactivated for now */
+    /* This must be implemented within the MVC */
 #if 0
     {
-case SCI_TEXT:
-case SCI_LEGEND:
-case SCI_AXES:
+    case SCI_TEXT:
+    case SCI_LEGEND:
+    case SCI_AXES:
         {
             initFCfromCopy(sciGetParent(pobj), pobj);
         }
         break;
-case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 */
+    case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 */
         if (sciGetParent(pobj) == paxesmdl)
         {
             initFCfromCopy(sciGetParent(pobj), pobj);
@@ -685,16 +686,16 @@ case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 *
 
         /* Deactivated for now */
 #if 0
-case SCI_ARC:
-case SCI_SEGS:
-case SCI_FEC:
-case SCI_GRAYPLOT:
-case SCI_POLYLINE:
-case SCI_RECTANGLE:
-case SCI_SURFACE:
-case SCI_AGREG:
-case SCI_UIMENU:
-default:
+    case SCI_ARC:
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_AGREG:
+    case SCI_UIMENU:
+    default:
         return -1;
         break;
     }
@@ -773,9 +774,9 @@ int InitAxesModel()
 #endif
 
     /* These functions have been adapted to the MVC framework */
-//  sciInitGraphicContext (paxesmdl);
-//  sciInitGraphicMode (paxesmdl);
-//  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
+    //  sciInitGraphicContext (paxesmdl);
+    //  sciInitGraphicMode (paxesmdl);
+    //  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
     char *labelUID = NULL;
 
@@ -1053,7 +1054,7 @@ int sciInitGraphicMode(char *pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-//  switch (sciGetEntityType (pobj))
+    //  switch (sciGetEntityType (pobj))
 
     /*
      * The GO_FIGURE block is never reached as InitFigureModel
@@ -1209,13 +1210,6 @@ char *initLabel(char *parentObjUID)
 
     /* Sets the label's parent */
     setGraphicObjectRelationship(parentObjUID, newLabel);
-
-    /* Not used anymore */
-#if 0
-    ppLabel->isselected = TRUE;
-    ppLabel->ptype = 0;         /* must be changed : 1 for title, 2 x_label, 3 y_label, 4 z_label */
-    sciInitIs3d(newLabel, FALSE);
-#endif
 
     cloneGraphicContext(parentObjUID, newLabel);
     cloneFontContext(parentObjUID, newLabel);

@@ -110,26 +110,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
     checkRedrawing();
 
-    /*
-     * Deactivated for now
-     * Searches the object hierarchy until a Surface object is found
-     * in order to specify the view type (2D or 3D)
-     * To be implemented
-     */
-#if 0
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-    {
-        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
-    }
-    else
-    {
-        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
-    }
-#endif
-
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
@@ -238,32 +218,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
             autoTicks = 0;
             setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
             setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-
-            /*
-             * Creates user-defined ticks using the Nax values
-             * The MVC does not distinguish yet between automatically computed ticks
-             * and user-defined ones.
-             * To be implemented using the MVC framework
-             */
-#if 0
-            CreatePrettyGradsFromNax(psubwin, aaint);
-#endif
         }
         else
         {
             sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
-    }
-
-    if (bounds_changed || axes_properties_changed )
-    {
-        /*
-         * Deactivated since it tells the renderer module that the object has changed
-         * To be implemented
-         */
-#if 0
-        forceRedraw(psubwin);
-#endif
     }
 
     /* Construct the object */
@@ -293,15 +252,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     parentCompoundUID = ConstructCompound (hdltab, cmpt);
     setCurrentObject(parentCompoundUID);  /** construct Compound **/
     releaseGraphicObjectProperty(__GO_PARENT__, parentCompoundUID, jni_string, 1);
-
-    /*
-     * Deactivated since it involves drawing via the renderer module
-     * To be implemented
-     */
-    /* draw every one */
-#if 0
-    sciDrawObj(parentCompound);
-#endif
 
     return(0);
 
