@@ -57,6 +57,9 @@ Bug Fixes
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
+* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
+                     logarithm scale.
+
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
                               when executed.
 
@@ -103,7 +106,7 @@ Known Incompatibilities
 =======================
 
 * In previous versions, the newest() function could be called with a string vector
-  as second (up to last) input argument. In these cases, only the first string of 
+  as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
 
