@@ -815,12 +815,6 @@ void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetXorMode(sciPointObj * pobj)
 {
     return -1;
