@@ -62,16 +62,6 @@ void sciRedrawFigure( void )
 }
 
 
-void sciClearFigure(sciPointObj * pFigure)
-{
-  destroyGraphicsSons(pFigure);
-
-  /* recreate the subwindow */
-  //createFirstSubwin(pFigure);
-
-  //forceHierarchyRedraw(pFigure);
-}
-
 /* get the displayed bounds of an axis */
 void sciGetDisplayedBounds( char * pSubWinUID,
                             double      * xmin   ,
