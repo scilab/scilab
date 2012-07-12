@@ -56,6 +56,9 @@ Unitary tests
 Bug Fixes
 =========
 
+* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
+                    was always calculated its own, arbitrary, internal value.
+
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
 * Bug #9830 fixed - leastsq did not match the information of optim.
