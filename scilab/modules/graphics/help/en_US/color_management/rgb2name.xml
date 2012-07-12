@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2name">
   <refnamediv>
     <refname>rgb2name</refname>
-    <refpurpose> returns the name of a color</refpurpose>
+    <refpurpose>returns the name of a color</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -59,16 +59,6 @@
     <para>
       The list of all known colors is given by <link linkend="color_list">color_list</link>.
     </para>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image> 
-      rgb2name(255,128,128)
-      rgb2name([255 215 0])
-      // get color #10 of the current colormap and find its name
-      cmap=get(gcf(),"color_map");
-      rgb2name(cmap(10,:)*255)
-    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
