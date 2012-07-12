@@ -66,8 +66,9 @@
       <varlistentry>
         <term>text</term>
         <listitem>
-          <para>матрица строк, указываеющая нечисловые комментарии в
-          начале файла.
+          <para>
+            вектор-строка или вектор-столбец строк, указывающий
+            нечисловые комментарии в начале файла.
           </para>
         </listitem>
       </varlistentry>
@@ -79,17 +80,21 @@
       Функция <literal>fprintfMat</literal> записывает матрицу в
       форматированном файле. Каждая строка матрицы даёт строчку в
       файле. Если указан <literal>text</literal>, то его элементы
-      вносятся постолбцово в начало файла один элемент на строку.
+      вносятся (поэлементно) в начало файла, один элемент на строку.
     </para>
   </refsection>
   <refsection>
     <title>Примеры</title>
-    <programlisting role="example"> 
-      n = 50;
-      a = rand(n, n, "u");
-      fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
-      a1 = fscanfMat(TMPDIR + '/Mat');
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+n = 50;
+a = rand(n, n, "u");
+fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
+a1 = fscanfMat(TMPDIR + "/Mat");
+
+// Создадим файл Mat1 и внесём в него комментарий
+some_comment = ["Это комментарий.","Это вторая строчка комментария.","Это третья строчка комментария."];
+fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
+   ]]> </programlisting>
   </refsection>
   <refsection role="see also">
     <title>Смотрите также</title>

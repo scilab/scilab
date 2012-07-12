@@ -62,8 +62,9 @@
       <varlistentry>
         <term>text</term>
         <listitem>
-          <para>a string matrix giving non numerical comments stored at the
-            beginning of the file.
+          <para>
+            a row (column) vector of strings giving non numerical
+            comments stored at the beginning of the file. 
           </para>
         </listitem>
       </varlistentry>
@@ -75,18 +76,22 @@
       The <literal>fprintfMat</literal> function writes a matrix in a
       formated file. Each row of the matrix give a line in the file. If
       <literal>text</literal> is given then the elements of
-      <literal>text</literal> are inserted columnwise at the beginning of the
+      <literal>text</literal> are inserted elementwise at the beginning of the
       file one element per line.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"> 
-      n = 50;
-      a = rand(n, n, "u");
-      fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
-      a1 = fscanfMat(TMPDIR + '/Mat');
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+n = 50;
+a = rand(n, n, "u");
+fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
+a1 = fscanfMat(TMPDIR + "/Mat");
+
+// Lets we create a file Mat1 and insert a comment into it
+some_comment = ["This is a comment","This the second line of the comment.","This is the third line of the comment."];
+fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
+   ]]> </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
