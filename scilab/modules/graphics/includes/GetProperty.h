@@ -175,9 +175,6 @@ GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]);
 
 GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-        double corner3[2], double corner4[2]); /* GET */
-
 GRAPHICS_IMPEXP void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
         double corner3[3], double corner4[3]); /* GET */
 

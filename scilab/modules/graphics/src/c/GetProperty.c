@@ -2437,26 +2437,6 @@ void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the 4 corners of the boundng box of a text object in 2D view user coordinates.
-*/
-void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-                             double corner3[2], double corner4[2])
-{
-    sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
-    double corners3d[4][3];
-
-    /* get bounding box */
-    sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
-
-    /* convert it to 2d view coordinates */
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[0], corner1);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[1], corner2);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[2], corner3);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[3], corner4);
-
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */
