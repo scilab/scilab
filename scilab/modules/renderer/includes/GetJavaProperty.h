@@ -46,11 +46,6 @@ RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * 
                            int * width, int * height);
 
 /**
- * Get the auto resize status od a figure object
- */
-RENDERER_IMPEXP BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure);
-
-/**
  * Get the viewport on the canvas
  * @param viewport [x,y,w,h] array
  */

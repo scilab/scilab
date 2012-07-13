@@ -87,19 +87,6 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
 }
 
 /*---------------------------------------------------------------------------------*/
-BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
-{
-    //if (getFigureDrawer(pFigure)->getAutoResizeMode())
-    {
-        return TRUE;
-    }
-    //else
-    {
-        return FALSE;
-    }
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 {
     //getFigureDrawer(pFigure)->getViewport(viewport);
