@@ -74,11 +74,6 @@ void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], d
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3], double corner3[3], double corner4[3])
-{
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, int *height)
 {
     double *tmp = NULL;

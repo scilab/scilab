@@ -40,12 +40,6 @@ RENDERER_IMPEXP void sciGetJava2dViewCoordinates(char * pSubwinUID, const double
 RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], double userCoords2D[2]);
 
 /**
- * Get the bounding box of a text object.
- */
-RENDERER_IMPEXP void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3]);
-
-/**
  * Get the viewing area in pixels of a subwin object
  */
 RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * yPos,
