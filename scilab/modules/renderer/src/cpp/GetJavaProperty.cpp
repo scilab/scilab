@@ -27,12 +27,6 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
-{
-    //getFigureDrawer(pFigure)->getWindowPosition(pos);
-}
-
-/*---------------------------------------------------------------------------------*/
 int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
 {
     //return getFigureDrawer(pFigure)->getAntialiasingQuality();

@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Set the position in pixels of a window enclosing a figure.
- */
-RENDERER_IMPEXP void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
-
-/**
  * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
  */
 RENDERER_IMPEXP int sciGetJavaAntialiasingQuality(sciPointObj * pFigure);
