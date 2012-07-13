@@ -573,12 +573,6 @@ int sciSetXorMode(char *pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetVisibility(char *pobj, BOOL value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
