@@ -27,12 +27,6 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowSize(sciPointObj * pFigure, int size[2])
-{
-    //getFigureDrawer(pFigure)->getWindowSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
 {
     //getFigureDrawer(pFigure)->getWindowPosition(pos);
