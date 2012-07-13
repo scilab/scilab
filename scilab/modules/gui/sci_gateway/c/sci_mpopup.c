@@ -25,6 +25,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname, unsigned long fname_len)
 {
