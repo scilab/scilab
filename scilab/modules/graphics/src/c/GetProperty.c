@@ -2061,27 +2061,6 @@ void sciGetTextPos(sciPointObj * pObj, double position[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Convert user coordinates to pixel ones (relative to the viewing canvas).
-* @param pObj subwindow handle
-* @param userCoord user coordinates
-* @param pixCoord result in pixels.
-*/
-void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            sciGetJavaPixelCoordinates(pObj, userCoord, pixCoord);
-            break;
-        default:
-            Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
-            pixCoord[0] = -1;
-            pixCoord[1] = -1;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Convert user coordinates to user cooordinates (2D).
 * @param pObjUID subwindow identifier
 * @param userCoord3D user coordinates
