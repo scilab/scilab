@@ -87,7 +87,6 @@ GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
 
 GRAPHICS_IMPEXP void sciSelectFirstSubwin( char* parentFigure ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitSelectedSubWin (char* psubwinobj);
 GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetOriginalSubWin (char* pfigure, char* psubwin); /* SET */

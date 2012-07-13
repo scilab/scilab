@@ -643,19 +643,6 @@ void sciSelectFirstSubwin( char * parentFigure )
 #endif
 }
 
-
-int sciInitSelectedSubWin( char * psubwinobj )
-{
-    // FIXME
-    abort();
-#if 0
-    sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
-
-    sciInitSelectedObject( psubwinobj ) ;
-#endif
-    return 0 ;
-}
-
 /**sciSetSelectedSubWin
  * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
  * It has been adapted to the MVC. Its should be implemented entirely
