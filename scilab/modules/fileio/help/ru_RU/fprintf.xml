@@ -140,10 +140,10 @@ fprintf(0,'Моя ошибка, которая будет отображена �
         <link linkend="file">file</link>
       </member>
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
-        <link linkend="sprintf">sprintf</link>
+        <link linkend="msprintf">msprintf</link>
       </member>
       <member>
         <link linkend="printf_conversion">printf_conversion</link>
