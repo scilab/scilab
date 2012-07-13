@@ -49,26 +49,6 @@
 #include "deleteGraphicObject.h"
 #include "CurrentFigure.h"
 
-/*----------------------------------------------------------------------------*/
-
-/**
- * Destroy only the sons of an object.
- * Does not delete the object itself.
- */
-int destroyGraphicsSons(sciPointObj * pthis)
-{
-  /* to destroy only the sons put the while into the switch !*/
-  sciSons * toto = NULL;
-
-  toto = sciGetSons (pthis);
-  while ((toto != NULL) && (toto->pointobj != NULL))
-  {
-    destroyGraphicHierarchy((char*)(toto->pointobj));
-    toto = sciGetSons(pthis);
-  }
-  return 0;
-}
-
 /********************* modifie le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure
  * pour cette version, on considere qu'il y'a 1 seule sous fenetre et

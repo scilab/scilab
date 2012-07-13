@@ -31,7 +31,6 @@
 #include "machine.h" /* C2F */
 
 
-GRAPHICS_IMPEXP int destroyGraphicsSons(sciPointObj * pthis);
 GRAPHICS_IMPEXP int destroyGraphicHierarchy(char * pthis); /* DESTROY */
 GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 
