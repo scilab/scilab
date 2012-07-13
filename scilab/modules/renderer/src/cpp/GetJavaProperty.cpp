@@ -27,12 +27,6 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
-{
-
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords[3], int pixCoords[2])
 {
     double *tmp = NULL;

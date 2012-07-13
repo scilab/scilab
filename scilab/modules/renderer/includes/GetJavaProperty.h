@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Convert user Coordinate to pixel coordinates.
- */
-RENDERER_IMPEXP void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
-
-/**
  * Convert user Coordinate to pixel coordinates using 2d view.
  */
 RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords[3], int pixCoords[2]);
