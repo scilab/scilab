@@ -77,8 +77,6 @@ GRAPHICS_IMPEXP BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
 
 /* Window Functions */
 GRAPHICS_IMPEXP int sciGetNum (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
-GRAPHICS_IMPEXP int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
 
 

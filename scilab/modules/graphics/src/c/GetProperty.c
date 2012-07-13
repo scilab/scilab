@@ -821,57 +821,6 @@ sciGetNum (sciPointObj * pobj)
 #endif
 }
 
-/**
-* Get the size of the window enclosing a figure object
-*/
-int sciGetWindowWidth(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                return pFIGURE_FEATURE(pObj)->pModelData->windowWidth ;
-            }
-            else
-            {
-                int size[2] ;
-                sciGetJavaWindowSize(pObj, size) ;
-                return size[0] ;
-            }
-            break;
-        default:
-            printSetGetErrorMessage("figure_size");
-            break;
-    }
-    return -1;
-}
-
-
-int sciGetWindowHeight(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                return pFIGURE_FEATURE(pObj)->pModelData->windowHeight ;
-            }
-            else
-            {
-                int size[2] ;
-                sciGetJavaWindowSize(pObj, size) ;
-                return size[1] ;
-            }
-            break;
-        default:
-            printSetGetErrorMessage("figure_size");
-            break;
-    }
-    return -1;
-}
-
-
 /**sciIsExistingSubWin
 * Determines if this SubWindow is an existing one in the current SCI_FIGURE
 * in association with the wrect and frect....
