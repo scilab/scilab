@@ -38,7 +38,6 @@
 #include "CloneObjects.h"
 #include "BuildObjects.h"
 #include "sciprint.h"
-#include "ObjectSelection.h"
 #include "HandleManagement.h"
 #include "BasicAlgos.h"
 

@@ -37,7 +37,6 @@
 #include "DestroyObjects.h"
 #include "PloEch.h"
 #include "sciprint.h"
-#include "ObjectSelection.h"
 #include "math_graphics.h"
 #include "Format.h"
 #include "HandleManagement.h"

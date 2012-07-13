@@ -31,7 +31,6 @@
 #include "Scierror.h"
 #include "InitObjects.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
 #include "localization.h"
@@ -465,37 +464,8 @@ sciGetParentFigure (sciPointObj * pobj)
 sciPointObj *
 sciGetParentSubwin (sciPointObj * pobj)
 {
-    sciPointObj *subwin = NULL;
-
-    subwin = pobj;
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return sciGetFirstTypedSelectedSon( pobj, SCI_SUBWIN );
-            break;
-        case SCI_SUBWIN:
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-            while (sciGetEntityType(subwin) != SCI_SUBWIN)
-                subwin = sciGetParent(subwin);
-            return (sciPointObj *) subwin;
-            break;
-        default:
-            return NULL;
-            break;
-    }
-    return (sciPointObj *) NULL;
+    abort();
+    return NULL;
 }
 
 /**sciGetNumfigure

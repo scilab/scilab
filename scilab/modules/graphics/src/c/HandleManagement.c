@@ -25,7 +25,6 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "WindowList.h"
-#include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
 #include "SetJavaProperty.h"
 #include "DrawingBridge.h"

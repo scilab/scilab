@@ -25,7 +25,6 @@
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
 #include "Format.h"
-#include "ObjectSelection.h"
 #include "msgs.h"
 #include "localization.h"
 #include "Scierror.h"

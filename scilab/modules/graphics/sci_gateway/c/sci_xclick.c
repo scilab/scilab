@@ -21,7 +21,6 @@
 #include "stack-c.h"
 #include "CallJxclick.h"
 #include "GetProperty.h"
-#include "ObjectSelection.h"
 #include "FigureList.h"
 #include "axesScale.h"
 #include "HandleManagement.h"

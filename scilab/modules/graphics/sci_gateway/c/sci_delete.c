@@ -26,7 +26,6 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "Interaction.h"
-#include "ObjectSelection.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"

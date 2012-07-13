@@ -22,7 +22,6 @@
 #include "getDictionaryGetProperties.h"
 #include "getDictionarySetProperties.h"
 #include "DrawObjects.h"
-#include "ObjectSelection.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "math_graphics.h"
@@ -154,12 +153,6 @@ sciPointObj *sciGetCurrentFigure(void)
 int sciAddNewHandle(sciPointObj * pobj)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciInitSelectedSons(sciPointObj * pObj)
-{
-
 }
 
 /*--------------------------------------------------------------------------*/

@@ -48,7 +48,6 @@
 #include "math_graphics.h"
 #include "Scierror.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "BasicAlgos.h"
 #include "FigureList.h"
 #include "localization.h"

@@ -37,7 +37,6 @@
 #include "StringMatrix.h"
 #include "Scierror.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "FigureList.h"
 #include "localization.h"
 #include "Interaction.h"
