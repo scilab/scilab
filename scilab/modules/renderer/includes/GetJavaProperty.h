@@ -46,44 +46,6 @@ RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * 
                            int * width, int * height);
 
 /**
- * Get number of subticks along each axis of a subwindow.
- */
-RENDERER_IMPEXP void sciGetJavaNbSubticks(sciPointObj * pSubwin, double subtics[3]);
-
-/**
- * Get number of ticks along X axis of a subwindow.
- */
-RENDERER_IMPEXP int sciGetJavaNbXTicks(sciPointObj * pSubwin);
-
-/**
- * Get the labels and positions of ticks along X axis.
- * String composing ticksLabels are allocated with MALLOC.
- */
-RENDERER_IMPEXP void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
-
-/**
- * Get number of ticks along Y axis of a subwindow.
- */
-RENDERER_IMPEXP int sciGetJavaNbYTicks(sciPointObj * pSubwin);
-
-/**
- * Get the labels and positions of ticks along Y axis.
- * String composing ticksLabels are allocated with MALLOC.
- */
-RENDERER_IMPEXP void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
-
-/**
- * Get number of ticks along Z axis of a subwindow.
- */
-RENDERER_IMPEXP int sciGetJavaNbZTicks(sciPointObj * pSubwin);
-
-/**
- * Get the labels and positions of ticks along Z axis.
- * String composing ticksLabels are allocated with MALLOC.
- */
-RENDERER_IMPEXP void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
-
-/**
  * Check wether it is possible to create a graphic window or not
  */
 RENDERER_IMPEXP BOOL sciGetJavaIsAbleToCreateWindow(void);
