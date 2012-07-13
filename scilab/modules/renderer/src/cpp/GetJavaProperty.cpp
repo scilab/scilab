@@ -104,11 +104,6 @@ void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2], int corner3[2], int corner4[2])
-{
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, int *height)
 {
     double *tmp = NULL;

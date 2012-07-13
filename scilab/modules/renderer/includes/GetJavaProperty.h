@@ -66,12 +66,6 @@ RENDERER_IMPEXP void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3
                            double corner3[3], double corner4[3]);
 
 /**
- * Get the bounding box in pixels of a text object.
- */
-RENDERER_IMPEXP void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
-                                int corner3[2], int corner4[2]);
-
-/**
  * Get the viewing area in pixels of a subwin object
  */
 RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * yPos,
