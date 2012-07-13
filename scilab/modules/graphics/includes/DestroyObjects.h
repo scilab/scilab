@@ -27,11 +27,7 @@
 #define __SCI_DESTROY__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
-#include "machine.h" /* C2F */
 
-
-GRAPHICS_IMPEXP int destroyGraphicHierarchy(char * pthis); /* DESTROY */
 GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 
 GRAPHICS_IMPEXP void sciDeleteWindow( int winNum ) ;
