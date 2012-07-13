@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-06-20 17:53+0100\n"
+"Revision-Date: 2012-07-13 11:27+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -290,7 +290,7 @@ msgstr ""
 # File: macros/cosd.sci, line: 16
 # File: macros/cosh.sci, line: 33
 # File: macros/coshm.sci, line: 16
-# File: macros/cosm.sci, line: 21
+# File: macros/cosm.sci, line: 22
 # File: macros/cotd.sci, line: 15
 # File: macros/cotg.sci, line: 19
 # File: macros/coth.sci, line: 18
@@ -374,7 +374,7 @@ msgstr ""
 # File: macros/atanm.sci, line: 25
 # File: macros/cosh.sci, line: 37
 # File: macros/coshm.sci, line: 20
-# File: macros/cosm.sci, line: 25
+# File: macros/cosm.sci, line: 26
 # File: macros/cotg.sci, line: 23
 # File: macros/coth.sci, line: 22
 # File: macros/cothm.sci, line: 20
@@ -394,6 +394,9 @@ msgstr ""
 # File: macros/asinm.sci, line: 26
 # File: macros/atanhm.sci, line: 28
 # File: macros/atanm.sci, line: 32
+# File: macros/coshm.sci, line: 25
+# File: macros/cothm.sci, line: 25
+# File: macros/sinhm.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
@@ -582,7 +585,17 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/cothm.sci, line: 28
+# File: macros/cosm.sci, line: 31
+# File: macros/logm.sci, line: 29
+# File: macros/signm.sci, line: 30
+# File: macros/tanhm.sci, line: 23
+# File: macros/tanm.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/cothm.sci, line: 30
 # File: macros/tanhm.sci, line: 29
 # File: macros/tanm.sci, line: 30
 #, c-format
@@ -655,15 +668,6 @@ msgstr ""
 # File: macros/logspace.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-
-#
-# File: macros/logm.sci, line: 29
-# File: macros/signm.sci, line: 30
-# File: macros/tanhm.sci, line: 23
-# File: macros/tanm.sci, line: 23
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
