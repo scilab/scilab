@@ -67,20 +67,6 @@ int destroyGraphicHierarchy(char * pthis)
 }
 
 /*---------------------------------------------------------------------------*/
-/* free the user_data */
-void clearUserData( sciPointObj * pObj )
-{
-  int ** pUserData = NULL;
-  int *  pSizeUD = NULL;
-  sciGetPointerToUserData( pObj, &pUserData, &pSizeUD ) ;
-  if ( pUserData != NULL && *pUserData != NULL )
-  {
-    FREE( *pUserData ) ;
-    *pUserData = NULL ;
-    *pSizeUD = 0 ;
-  }
-}
-/*---------------------------------------------------------------------------*/
 /**
  * Close the figure with number winNum.
  */

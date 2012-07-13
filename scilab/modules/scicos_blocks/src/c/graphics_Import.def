@@ -60,6 +60,5 @@ printStrMat
 copyStrMatElement
 sciSetVisibility
 sciDelGraphicObj
-clearUserData
 sciGetTextSize
 sciGetPointerToUserData
