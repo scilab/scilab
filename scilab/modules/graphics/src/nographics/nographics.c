@@ -96,12 +96,6 @@ int sciSetViewport(char *pObj, const int viewport[4])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetViewport(sciPointObj * pObj, int viewport[4])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 double Maxi(const double vect[], int n)
 {
     return 0.0;

@@ -1760,34 +1760,6 @@ BOOL sciGetImmediateDrawingMode(sciPointObj * pobj)
     return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
 }
 /*----------------------------------------------------------------------------------*/
-/**
-* To retrieve the viewport property
-* viewport property is only enable when the auto_resize property of the figure is
-* disable.
-*/
-void sciGetViewport( sciPointObj * pObj, int viewport[4] )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-            if (isFigureModel(pObj->UID))
-            {
-                viewport[0] = pFIGURE_FEATURE(pObj)->pModelData->viewport[0];
-                viewport[1] = pFIGURE_FEATURE(pObj)->pModelData->viewport[1];
-                viewport[2] = pFIGURE_FEATURE(pObj)->pModelData->viewport[2];
-                viewport[3] = pFIGURE_FEATURE(pObj)->pModelData->viewport[3];
-            }
-            else
-            {
-                sciGetJavaViewport(pObj, viewport);
-            }
-            break;
-        default:
-            printSetGetErrorMessage("viewport");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )
