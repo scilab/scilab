@@ -45,12 +45,6 @@ RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int
 RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * yPos,
                            int * width, int * height);
 
-/**
- * Check wether it is possible to create a graphic window or not
- */
-RENDERER_IMPEXP BOOL sciGetJavaIsAbleToCreateWindow(void);
-
-
 #ifdef __cplusplus
 }
 #endif

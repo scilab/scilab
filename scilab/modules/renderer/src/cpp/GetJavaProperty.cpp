@@ -87,16 +87,3 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
 }
 
 /*---------------------------------------------------------------------------------*/
-BOOL sciGetJavaIsAbleToCreateWindow(void)
-{
-    //if (DrawableFigure::isAbleToCreateFigure())
-    {
-        return booltoBOOL(true);
-    }
-    //else
-    {
-        return booltoBOOL(false);
-    }
-}
-
-/*---------------------------------------------------------------------------------*/
