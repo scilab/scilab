@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -64,6 +64,16 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
     }
 
     /**
+     * Makes the menu visible as the mouse pointer position
+     */
+    private void setVisibleAndLocation() {
+        if (!isVisible()) {
+            setVisible(true);
+            setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+        }
+    }
+
+    /**
      * Append a MenuItem to a Scilab Menu
      * @param newMenuItem the MenuItem to add to the Menu
      * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
@@ -86,8 +96,6 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @return the label of the menu selected
      */
     public String displayAndWait() {
-        setVisible(true);
-        setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
         return StringBlockingResult.getInstance().getResult();
     }
 
@@ -333,7 +341,8 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      */
     public void update(String property, Object value) {
         if (property.equals(__GO_CHILDREN__)) {
-            
+            setVisibleAndLocation();
+            pack();
         }
     }
 
