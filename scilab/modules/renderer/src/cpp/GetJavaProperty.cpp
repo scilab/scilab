@@ -27,13 +27,6 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
-{
-    //return getFigureDrawer(pFigure)->getAntialiasingQuality();
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
 

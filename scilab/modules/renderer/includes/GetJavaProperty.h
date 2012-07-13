@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
- */
-RENDERER_IMPEXP int sciGetJavaAntialiasingQuality(sciPointObj * pFigure);
-
-/**
  * Convert user Coordinate to pixel coordinates.
  */
 RENDERER_IMPEXP void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
