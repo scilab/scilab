@@ -169,8 +169,6 @@ GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GE
 
 GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsAbleToCreateWindow(void);
-
 GRAPHICS_IMPEXP int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);

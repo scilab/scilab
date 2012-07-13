@@ -2328,15 +2328,6 @@ char sciGetyLocation(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the labels and positions of ticks along Z axis.
-* String composing ticksLabels are allocated with C++ new.
-*/
-BOOL sciGetIsAbleToCreateWindow(void)
-{
-    return sciGetJavaIsAbleToCreateWindow();
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return index of the subwin between all the subwins lying below its parent figure
 */
 int sciGetSubwinIndex(sciPointObj * pSubwin)
