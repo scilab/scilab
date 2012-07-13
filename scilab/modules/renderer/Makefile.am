@@ -29,10 +29,8 @@ RENDERER_CXX_SOURCES = \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
-src/cpp/BasicAlgos.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
-src/cpp/rendererBasicAlgos.cpp \
 src/jni/CallRenderer.cpp
 
 # Includes need for the compilation

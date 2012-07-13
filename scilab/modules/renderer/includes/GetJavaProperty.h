@@ -21,8 +21,6 @@ extern "C" {
 #endif
 
 #include "dynlib_renderer.h"
-#include "ObjectStructure.h"
-#include "BOOL.h"
 
 /**
  * Convert user Coordinate to pixel coordinates using 2d view.

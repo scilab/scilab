@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -80,11 +80,6 @@ GRAPHICS_IMPEXP double * createNewArrayFromSource( int destSize, const double sr
  * free an array of strings
  */
 GRAPHICS_IMPEXP void destroyStringArray( char * src[], int nbStrings ) ;
-
-/**
- * Free a string allocated by new
- */
-GRAPHICS_IMPEXP void destroyCppString(char * string);
 
 /**
  * allocate a copy of a double array
