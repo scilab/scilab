@@ -259,6 +259,18 @@ set(h, "string", "");
 assert_checkequal(get(h, "string"), "");
 // TODO test with wrong values
 
+// --- TooltipString ---
+assert_checkequal(get(h, "tooltipstring"), "");  // Default value
+set(h, "tooltipstring", ["test for tooltipstring"]);
+assert_checkequal(get(h, "tooltipstring"), "test for tooltipstring");
+set(h, "tooltipstring", ["test;for;tooltipstring"]);
+assert_checkequal(get(h, "tooltipstring"), ["test,for,tooltipstring"]);
+set(h, "tooltipstring", ["test,for,tooltipstring"]);
+assert_checkequal(get(h, "tooltipstring"), ["test,for,tooltipstring"]);
+set(h, "tooltipstring", "");
+assert_checkequal(get(h, "tooltipstring"), "");
+// TODO test with wrong values
+
 // --- Style ---
 assert_checkequal(get(h, "style"), uicontrol_style);
 // TODO style changes tests (when implemented)

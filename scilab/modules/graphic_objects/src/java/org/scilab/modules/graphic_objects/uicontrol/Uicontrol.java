@@ -44,6 +44,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
@@ -94,6 +96,7 @@ public class Uicontrol extends GraphicObject {
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables
+    private String[] tooltipString = {""};
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
@@ -124,6 +127,8 @@ public class Uicontrol extends GraphicObject {
         STRING_SIZE,
         STRING_COLNB,
         RELIEF,
+        TOOLTIPSTRING,
+        TOOLTIPSTRING_SIZE,
         UNITS,
         VALUE,
         VALUE_SIZE,
@@ -290,6 +295,10 @@ public class Uicontrol extends GraphicObject {
             return UicontrolProperty.STRING_SIZE;
         } else if (propertyName.equals(__GO_UI_STRING_COLNB__)) {
             return UicontrolProperty.STRING_COLNB;
+        } else if (propertyName.equals(__GO_UI_TOOLTIPSTRING__)) {
+            return UicontrolProperty.TOOLTIPSTRING;
+        } else if (propertyName.equals(__GO_UI_TOOLTIPSTRING_SIZE__)) {
+            return UicontrolProperty.TOOLTIPSTRING_SIZE;
         } else if (propertyName.equals(__GO_UI_UNITS__)) {
             return UicontrolProperty.UNITS;
         } else if (propertyName.equals(__GO_UI_VALUE__)) {
@@ -349,6 +358,10 @@ public class Uicontrol extends GraphicObject {
             return getString().length;
         } else if (property == UicontrolProperty.STRING_COLNB) {
             return getStringColNb();
+        } else if (property == UicontrolProperty.TOOLTIPSTRING) {
+            return getTooltipString();
+        } else if (property == UicontrolProperty.TOOLTIPSTRING_SIZE) {
+            return getTooltipString().length;
         } else if (property == UicontrolProperty.UNITS) {
             return getUnits();
         } else if (property == UicontrolProperty.VALUE) {
@@ -405,6 +418,8 @@ public class Uicontrol extends GraphicObject {
             setString((String[]) value);
         } else if (property == UicontrolProperty.STRING_COLNB) {
             setStringColNb((Integer) value);
+        } else if (property == UicontrolProperty.TOOLTIPSTRING) {
+            setTooltipString((String[]) value);
         } else if (property == UicontrolProperty.UNITS) {
             setUnits((String) value);
         } else if (property == UicontrolProperty.VALUE) {
@@ -596,6 +611,22 @@ public class Uicontrol extends GraphicObject {
         this.stringColNb = stringColNb;
     }
 
+
+    /**
+     * Get the tooltip string
+     * @return the tooltip string
+     */
+    public String[] getTooltipString() {
+        return this.tooltipString;
+    }
+
+    /**
+     * Set the tooltip string
+     * @param tooltipString the tooltip string
+     */
+    public void setTooltipString(String[] tooltipString) {
+        this.tooltipString = tooltipString;
+    }
 
     /* Slider Step */
     public Double[] getSliderStep() {

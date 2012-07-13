@@ -43,6 +43,7 @@
 #include "GetUicontrolSliderStep.h"
 #include "GetUimenuChecked.h"
 #include "GetConsoleShowHiddenHandles.h"
+#include "GetUicontrolTooltipString.h"
 
 int get_figures_id_property(void* _pvCtx, char* pobjUID);
 int get_visible_property(void* _pvCtx, char* pobjUID);

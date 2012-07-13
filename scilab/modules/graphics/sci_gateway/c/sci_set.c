@@ -108,100 +108,100 @@ int sci_set(char *fname, unsigned long fname_len)
         /*  set or create a graphic window */
         switch (VarType(1))
         {
-        case sci_handles:
-            /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
-            /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles */
-            CheckRhs(3, 3);
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
-            if (m1 != 1 || n1 != 1)
-            {
-                lw = 1 + Top - Rhs;
-                C2F(overload) (&lw, "set", 3);
+            case sci_handles:
+                /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
+                /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles */
+                CheckRhs(3, 3);
+                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
+                if (m1 != 1 || n1 != 1)
+                {
+                    lw = 1 + Top - Rhs;
+                    C2F(overload) (&lw, "set", 3);
+                    return 0;
+                }
+
+                hdl = (long) * hstk(l1);
+                pobjUID = (char*)getObjectFromHandle(hdl);
+
+                GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
+
+                valueType = VarType(3);
+                if ((strcmp(cstk(l2), "user_data") == 0) || (stricmp(cstk(l2), "userdata") == 0))
+                {
+                    /* in this case set_user_data_property
+                     * directly uses the  third position in the stack
+                     * to get the variable which is to be set in
+                     * the user_data property (any data type is allowed) S. Steer */
+                    l3 = 3;         /*position in the stack */
+                    numrow3 = -1;   /*unused */
+                    numcol3 = -1;   /*unused */
+                }
+                else if (valueType == sci_matrix)
+                {
+                    GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &numrow3, &numcol3, &l3);
+                }
+                else if (valueType == sci_boolean)
+                {
+                    GetRhsVar(3, MATRIX_OF_BOOLEAN_DATATYPE, &numrow3, &numcol3, &l3);
+                }
+                else if (valueType == sci_handles)
+                {
+                    GetRhsVar(3, GRAPHICAL_HANDLE_DATATYPE, &numrow3, &numcol3, &l3);
+                }
+                else if (valueType == sci_strings)
+                {
+                    if (strcmp(cstk(l2), "tics_labels") != 0 && strcmp(cstk(l2), "auto_ticks") != 0 && strcmp(cstk(l2), "axes_visible") != 0 && strcmp(cstk(l2), "axes_reverse") != 0 && strcmp(cstk(l2), "text") != 0 && stricmp(cstk(l2), "string") != 0 && stricmp(cstk(l2), "tooltipstring") != 0) /* Added for uicontrols */
+                    {
+                        GetRhsVar(3, STRING_DATATYPE, &numrow3, &numcol3, &l3);
+                    }
+                    else
+                    {
+                        isMatrixOfString = 1;
+                        GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &numrow3, &numcol3, &l3);
+                    }
+                }
+                else if (valueType == sci_list) /* Added for callbacks */
+                {
+                    GetRhsVar(3, LIST_DATATYPE, &numrow3, &numcol3, &l3);
+                    l3 = 3;         /* In this case l3 is the list position in stack */
+                }
+                break;
+
+            case sci_strings:      /* first is a string argument so it's a set("command",[param]) */
+                CheckRhs(2, 2);
+                GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
+                hdl = 0;
+                pobjUID = NULL;
+                valueType = VarType(2);
+
+                if (valueType == sci_matrix)
+                {
+                    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &numrow3, &numcol3, &l3);
+                }
+                else if (valueType == sci_handles)
+                {
+                    GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE, &numrow3, &numcol3, &l3);
+                }
+                else if (valueType == sci_strings)
+                {
+                    if (strcmp(cstk(l2), "tics_labels") == 0
+                            || strcmp(cstk(l2), "auto_ticks") == 0
+                            || strcmp(cstk(l2), "axes_visible") == 0 || strcmp(cstk(l2), "axes_reverse") == 0 || strcmp(cstk(l2), "text") == 0)
+                    {
+                        isMatrixOfString = 1;
+                        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &numrow3, &numcol3, &l3);
+                    }
+                    else
+                    {
+                        GetRhsVar(2, STRING_DATATYPE, &numrow3, &numcol3, &l3);
+                    }
+                }
+                break;
+
+            default:
+                Scierror(999, _("%s: Wrong type for input argument #%d: String or handle expected.\n"), fname, 1);
                 return 0;
-            }
-
-            hdl = (long)*hstk(l1);
-            pobjUID = (char*)getObjectFromHandle(hdl);
-
-            GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
-
-            valueType = VarType(3);
-            if ((strcmp(cstk(l2), "user_data") == 0) || (stricmp(cstk(l2), "userdata") == 0))
-            {
-                /* in this case set_user_data_property
-                 * directly uses the  third position in the stack
-                 * to get the variable which is to be set in
-                 * the user_data property (any data type is allowed) S. Steer */
-                l3 = 3;         /*position in the stack */
-                numrow3 = -1;   /*unused */
-                numcol3 = -1;   /*unused */
-            }
-            else if (valueType == sci_matrix)
-            {
-                GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &numrow3, &numcol3, &l3);
-            }
-            else if (valueType == sci_boolean)
-            {
-                GetRhsVar(3, MATRIX_OF_BOOLEAN_DATATYPE, &numrow3, &numcol3, &l3);
-            }
-            else if (valueType == sci_handles)
-            {
-                GetRhsVar(3, GRAPHICAL_HANDLE_DATATYPE, &numrow3, &numcol3, &l3);
-            }
-            else if (valueType == sci_strings)
-            {
-                if (strcmp(cstk(l2), "tics_labels") != 0 && strcmp(cstk(l2), "auto_ticks") != 0 && strcmp(cstk(l2), "axes_visible") != 0 && strcmp(cstk(l2), "axes_reverse") != 0 && strcmp(cstk(l2), "text") != 0 && stricmp(cstk(l2), "string") != 0) /* Added for uicontrols */
-                {
-                    GetRhsVar(3, STRING_DATATYPE, &numrow3, &numcol3, &l3);
-                }
-                else
-                {
-                    isMatrixOfString = 1;
-                    GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &numrow3, &numcol3, &l3);
-                }
-            }
-            else if (valueType == sci_list) /* Added for callbacks */
-            {
-                GetRhsVar(3, LIST_DATATYPE, &numrow3, &numcol3, &l3);
-                l3 = 3;         /* In this case l3 is the list position in stack */
-            }
-            break;
-
-        case sci_strings:      /* first is a string argument so it's a set("command",[param]) */
-            CheckRhs(2, 2);
-            GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
-            hdl = 0;
-            pobjUID = NULL;
-            valueType = VarType(2);
-
-            if (valueType == sci_matrix)
-            {
-                GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &numrow3, &numcol3, &l3);
-            }
-            else if (valueType == sci_handles)
-            {
-                GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE, &numrow3, &numcol3, &l3);
-            }
-            else if (valueType == sci_strings)
-            {
-                if (strcmp(cstk(l2), "tics_labels") == 0
-                    || strcmp(cstk(l2), "auto_ticks") == 0
-                    || strcmp(cstk(l2), "axes_visible") == 0 || strcmp(cstk(l2), "axes_reverse") == 0 || strcmp(cstk(l2), "text") == 0)
-                {
-                    isMatrixOfString = 1;
-                    GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &numrow3, &numcol3, &l3);
-                }
-                else
-                {
-                    GetRhsVar(2, STRING_DATATYPE, &numrow3, &numcol3, &l3);
-                }
-            }
-            break;
-
-        default:
-            Scierror(999, _("%s: Wrong type for input argument #%d: String or handle expected.\n"), fname, 1);
-            return 0;
-            break;
+                break;
         }
 
         if (hdl != 0)
@@ -232,13 +232,13 @@ int sci_set(char *fname, unsigned long fname_len)
             char *propertyField = cstk(l2);
 
             char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = { "current_entity",
-                "hdl",
-                "current_figure",
-                "current_axes",
-                "figure_style",
-                "default_values",
-                "auto_clear"
-            };
+                    "hdl",
+                    "current_figure",
+                    "current_axes",
+                    "figure_style",
+                    "default_values",
+                    "auto_clear"
+                                                                 };
             int i = 0;
             int iPropertyFounded = 0;
 

@@ -158,6 +158,8 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-GetUicontrolStyle.lo \
 	libscigui_algo_la-SetUicontrolString.lo \
 	libscigui_algo_la-GetUicontrolString.lo \
+	libscigui_algo_la-SetUicontrolTooltipString.lo \
+	libscigui_algo_la-GetUicontrolTooltipString.lo \
 	libscigui_algo_la-SetUicontrolBackgroundColor.lo \
 	libscigui_algo_la-GetUicontrolBackgroundColor.lo \
 	libscigui_algo_la-SetUiobjectForegroundColor.lo \
@@ -591,6 +593,8 @@ src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
 src/cpp/SetUicontrolString.cpp \
 src/cpp/GetUicontrolString.cpp \
+src/cpp/SetUicontrolTooltipString.cpp \
+src/cpp/GetUicontrolTooltipString.cpp \
 src/cpp/SetUicontrolBackgroundColor.cpp \
 src/cpp/GetUicontrolBackgroundColor.cpp \
 src/cpp/SetUiobjectForegroundColor.cpp \
@@ -1066,6 +1070,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolSliderStep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolStyle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolTooltipString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolVerticalAlignment.Plo@am__quote@
@@ -1097,6 +1102,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolRelief.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolSliderStep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolTooltipString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUicontrolVerticalAlignment.Plo@am__quote@
@@ -1581,6 +1587,20 @@ libscigui_algo_la-GetUicontrolString.lo: src/cpp/GetUicontrolString.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolString.cpp' object='libscigui_algo_la-GetUicontrolString.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-GetUicontrolString.lo `test -f 'src/cpp/GetUicontrolString.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolString.cpp
+
+libscigui_algo_la-SetUicontrolTooltipString.lo: src/cpp/SetUicontrolTooltipString.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-SetUicontrolTooltipString.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-SetUicontrolTooltipString.Tpo -c -o libscigui_algo_la-SetUicontrolTooltipString.lo `test -f 'src/cpp/SetUicontrolTooltipString.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolTooltipString.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-SetUicontrolTooltipString.Tpo $(DEPDIR)/libscigui_algo_la-SetUicontrolTooltipString.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolTooltipString.cpp' object='libscigui_algo_la-SetUicontrolTooltipString.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-SetUicontrolTooltipString.lo `test -f 'src/cpp/SetUicontrolTooltipString.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolTooltipString.cpp
+
+libscigui_algo_la-GetUicontrolTooltipString.lo: src/cpp/GetUicontrolTooltipString.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-GetUicontrolTooltipString.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-GetUicontrolTooltipString.Tpo -c -o libscigui_algo_la-GetUicontrolTooltipString.lo `test -f 'src/cpp/GetUicontrolTooltipString.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolTooltipString.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-GetUicontrolTooltipString.Tpo $(DEPDIR)/libscigui_algo_la-GetUicontrolTooltipString.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolTooltipString.cpp' object='libscigui_algo_la-GetUicontrolTooltipString.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-GetUicontrolTooltipString.lo `test -f 'src/cpp/GetUicontrolTooltipString.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolTooltipString.cpp
 
 libscigui_algo_la-SetUicontrolBackgroundColor.lo: src/cpp/SetUicontrolBackgroundColor.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-SetUicontrolBackgroundColor.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-SetUicontrolBackgroundColor.Tpo -c -o libscigui_algo_la-SetUicontrolBackgroundColor.lo `test -f 'src/cpp/SetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolBackgroundColor.cpp

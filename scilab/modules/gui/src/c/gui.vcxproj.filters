@@ -383,6 +383,12 @@
     <ClCompile Include="..\jni\SwingView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -825,6 +831,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\UIElementMapper.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\GetUicontrolTooltipString.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\SetUicontrolTooltipString.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetUicontrolTooltipString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\SetUicontrolTooltipString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -278,4 +278,9 @@ public class ScilabUiTable extends ScilabWidget implements UiTable {
     public void setData(String text) {
         ScilabBridge.setData(this, text);
     }
+
+    @Override
+    public void setToolTipText(String tooltipText) {
+        // TODO Auto-generated method stub
+    }
 }

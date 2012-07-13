@@ -30,6 +30,12 @@ Documentation
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
 
+GUI
+===
+
+* Uicontrols tooltip can now be managed using the new "TooltipString" property.
+
+
 Obsolete Functions
 ===================
 

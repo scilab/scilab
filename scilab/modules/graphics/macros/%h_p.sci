@@ -884,6 +884,7 @@ function %h_p(h)
             "SliderStep = "+sci2exp(h.sliderstep)
             "String = "+fmtuser_data(h.string)
             "Style = "+h.style
+            "TooltipString = "+fmtuser_data(h.tooltipstring)
             "Units = "+h.units
             "Value = "+sci2exp(h.value,0)
             "VerticalAlignment = "+h.verticalalignment

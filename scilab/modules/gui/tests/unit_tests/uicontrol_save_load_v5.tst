@@ -34,6 +34,7 @@ h.position = [100 100 200 200]; // Default is [20 20 80 40]
 h.relief = "sunken"; // Default is "ridge" for frames
 h.sliderstep = [1 2]; // Default is [0.01,0.1]
 h.string = "titi"; // Default is ""
+h.tooltipstring = "Tooltip"; // Default is ""
 h.units = "points"; // Default is pixels
 h.value = 10; // Default is []
 h.verticalalignment = "top"; // Default is "center"
@@ -70,6 +71,7 @@ if abs(sum(h.position-hsaved.position)) > 4 then pause; end // TODO FIX ME !! Ca
 if or(h.relief<>hsaved.relief) then pause; end
 if or(h.sliderstep<>hsaved.sliderstep) then pause; end
 if or(h.string<>hsaved.string) then pause; end
+if or(h.tooltipstring<>hsaved.tooltipstring) then pause; end
 if or(h.units<>hsaved.units) then pause; end
 if or(h.value<>hsaved.value) then pause; end
 if or(h.verticalalignment<>hsaved.verticalalignment) then pause; end

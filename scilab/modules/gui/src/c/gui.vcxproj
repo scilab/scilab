@@ -195,7 +195,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
@@ -410,6 +412,7 @@
     <ClInclude Include="..\..\includes\GetUicontrolSliderStep.h" />
     <ClInclude Include="..\..\includes\GetUicontrolString.h" />
     <ClInclude Include="..\..\includes\GetUicontrolStyle.h" />
+    <ClInclude Include="..\..\includes\GetUicontrolTooltipString.h" />
     <ClInclude Include="..\..\includes\GetUicontrolUnits.h" />
     <ClInclude Include="..\..\includes\GetUicontrolValue.h" />
     <ClInclude Include="..\..\includes\GetUicontrolVerticalAlignment.h" />
@@ -436,6 +439,7 @@
     <ClInclude Include="..\..\includes\SetUicontrolRelief.h" />
     <ClInclude Include="..\..\includes\SetUicontrolSliderStep.h" />
     <ClInclude Include="..\..\includes\SetUicontrolString.h" />
+    <ClInclude Include="..\..\includes\SetUicontrolTooltipString.h" />
     <ClInclude Include="..\..\includes\SetUicontrolUnits.h" />
     <ClInclude Include="..\..\includes\SetUicontrolValue.h" />
     <ClInclude Include="..\..\includes\SetUicontrolVerticalAlignment.h" />
@@ -472,6 +476,7 @@
     <ClInclude Include="..\cpp\GetUicontrolSliderStep.hxx" />
     <ClInclude Include="..\cpp\GetUicontrolString.hxx" />
     <ClInclude Include="..\cpp\GetUicontrolStyle.hxx" />
+    <ClInclude Include="..\cpp\GetUicontrolTooltipString.hxx" />
     <ClInclude Include="..\cpp\GetUicontrolUnits.hxx" />
     <ClInclude Include="..\cpp\GetUicontrolValue.hxx" />
     <ClInclude Include="..\cpp\GetUicontrolVerticalAlignment.hxx" />
@@ -494,6 +499,7 @@
     <ClInclude Include="..\cpp\SetUicontrolRelief.hxx" />
     <ClInclude Include="..\cpp\SetUicontrolSliderStep.hxx" />
     <ClInclude Include="..\cpp\SetUicontrolString.hxx" />
+    <ClInclude Include="..\cpp\SetUicontrolTooltipString.hxx" />
     <ClInclude Include="..\cpp\SetUicontrolUnits.hxx" />
     <ClInclude Include="..\cpp\SetUicontrolValue.hxx" />
     <ClInclude Include="..\cpp\SetUicontrolVerticalAlignment.hxx" />

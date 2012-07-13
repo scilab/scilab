@@ -37,6 +37,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
@@ -294,6 +295,21 @@ public final class SwingViewWidget {
                 ((SwingScilabPopupMenu) uiControl).setText((String[]) value);
             } else {
                 uiControl.setText(((String[]) value)[0]);
+            }
+        } else if (property.equals(__GO_UI_TOOLTIPSTRING__)) {
+            String[] tooltipString = ((String[]) value);
+            String tooltipText = tooltipString[0];
+            if (tooltipString.length > 1) {
+                tooltipText = "<html>" + tooltipText;
+                for (int kString = 1; kString < tooltipString.length; kString++) {
+                    tooltipText = tooltipText + "<br>" + tooltipString[kString];
+                }
+                tooltipText = tooltipText + "</html>";
+            }
+            if (tooltipText.equals("")) {
+                uiControl.setToolTipText(null);
+            } else {
+                uiControl.setToolTipText(tooltipText);
             }
         } else if (property.equals(__GO_UI_STRING_COLNB__)) {
             /* Nothing to do */

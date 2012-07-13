@@ -329,6 +329,8 @@ public class GraphicObjectProperties {
     public static final String __GO_UI_STRING__ =              "UIString";
     public static final String __GO_UI_STRING_SIZE__ =         "UIStringSize";
     public static final String __GO_UI_STRING_COLNB__ =        "UIStringColNb";
+    public static final String __GO_UI_TOOLTIPSTRING__ =       "UITooltipString";
+    public static final String __GO_UI_TOOLTIPSTRING_SIZE__ =  "UITooltipStringSize";
     public static final String __GO_UI_SLIDERSTEP__ =          "UISliderStep";
     public static final String __GO_UI_UNITS__ =               "UIUnits";
     public static final String __GO_UI_VALUE__ =               "UIValue";

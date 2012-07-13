@@ -1062,6 +1062,9 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
                 totalSize = seekString(fd, totalSize); // Relief
                 totalSize = seekMatrix(fd, totalSize); // SliderStep
                 totalSize = seekStringMatrix(fd, totalSize); // String
+                if is_higher_than( [5 2 0 0] ) then  // Added in 5.4.0 version
+                    totalSize = seekStringMatrix(fd, totalSize); // TooltipString
+                end
                 totalSize = seekString(fd, totalSize); // Units
                 totalSize = seekMatrix(fd, totalSize); // Value
                 totalSize = seekString(fd, totalSize); // VerticalAlignment
