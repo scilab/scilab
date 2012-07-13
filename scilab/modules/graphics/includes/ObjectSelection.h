@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,7 @@
 #include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
-#include "DoublyLinkedList.h" 
+#include "DoublyLinkedList.h"
 
 /**
  * The set of selected sons is lade as follow:
@@ -32,7 +32,7 @@
  * Moreover each element of the main contains also the type of objects wich will be stored in.
  * Consequentely, the selected sons are stored in a list of typedSonsList.
  */
-typedef struct  
+typedef struct
 {
   sciEntityType      sonType   ; /* type of the sons in the list */
   DoublyLinkedList * typedSons ; /* list of all selected sons with type sonType */
@@ -43,13 +43,6 @@ typedef struct
  * Be careful, pObj should be a son of pParent.
  */
 GRAPHICS_IMPEXP int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj ) ;
-
-/**
- * Add an object in the set of selected son of the parent.
- * If an other object with the same type is already inserted,
- * it will be destroyed to let the place for this one.
- */
-GRAPHICS_IMPEXP int sciAddUniqueSelectedSon( sciPointObj * pParent, sciPointObj * pObj ) ;
 
 /**
  * Initialize the set of sons

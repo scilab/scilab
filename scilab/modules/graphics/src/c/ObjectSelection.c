@@ -58,12 +58,6 @@ int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
 
 }
 /*--------------------------------------------------------------------------*/
-int sciAddUniqueSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
-{
-  sciUnselectTypedSons( pParent, sciGetEntityType(pObj) ) ;
-  return sciAddSelectedSon( pParent, pObj ) ;
-}
-/*--------------------------------------------------------------------------*/
 void sciInitSelectedSons( sciPointObj * pObj )
 {
     abort();
