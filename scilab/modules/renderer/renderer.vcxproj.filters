@@ -59,9 +59,6 @@
     <ClInclude Include="includes\JavaInteraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\RendererFontManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

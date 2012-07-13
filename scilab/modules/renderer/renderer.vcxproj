@@ -218,7 +218,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\dynlib_renderer.h" />
     <ClInclude Include="includes\GetJavaProperty.h" />
     <ClInclude Include="includes\JavaInteraction.h" />
-    <ClInclude Include="src\cpp\Observer.h" />
     <ClInclude Include="includes\RendererFontManager.h" />
     <ClInclude Include="includes\SetJavaProperty.h" />
     <ClInclude Include="src\jni\CallRenderer.hxx" />
