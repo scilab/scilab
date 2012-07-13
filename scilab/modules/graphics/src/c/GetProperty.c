@@ -2461,41 +2461,6 @@ void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the axis aligned bounding box a graphic object
-* @param bounds [xmin, xmax, ymin, ymax, zmin, zmax] bounds.
-*/
-void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            sciGetDataBounds(pObj, bounds);
-            break;
-        case SCI_SEGS:
-            sciGetJavaSegsBoundingBox(pObj, bounds);
-            break;
-        case SCI_TEXT:
-        {
-            double corners[4][3];
-            sciGetTextBoundingBox(pObj, corners[0], corners[1], corners[2], corners[3]);
-            bounds[0] = Min(corners[0][0], Min(corners[1][0], Min(corners[2][0], corners[3][0])));
-            bounds[1] = Max(corners[0][0], Max(corners[1][0], Max(corners[2][0], corners[3][0])));
-            bounds[2] = Min(corners[0][1], Min(corners[1][1], Min(corners[2][1], corners[3][1])));
-            bounds[3] = Max(corners[0][1], Max(corners[1][1], Max(corners[2][1], corners[3][1])));
-            bounds[4] = Min(corners[0][2], Min(corners[1][2], Min(corners[2][2], corners[3][2])));
-            bounds[5] = Max(corners[0][2], Max(corners[1][2], Max(corners[2][2], corners[3][2])));
-        }
-        break;
-        case SCI_LABEL:
-            sciGetAABoundingBox(pLABEL_FEATURE(pObj)->text, bounds);
-            break;
-        default:
-            Scierror(999, _("Unable to compute data bounds for this kind of object."));
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the x_position value
 * @param bounds [xmin, xmax, ymin, ymax, zmin, zmax] bounds.
 */
