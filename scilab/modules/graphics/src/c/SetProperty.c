@@ -673,12 +673,6 @@ sciSetSelectedSubWin (char * psubwinobjUID)
 }
 
 /*-------------------------------------------------------------------------------*/
-int sciInitSelectedObject( char * pobjUID )
-{
-    sciAddUniqueSelectedSon((sciPointObj *)sciGetParent(pobjUID), (sciPointObj *)pobjUID ) ;
-    return 0 ;
-}
-/*-------------------------------------------------------------------------------*/
 
 /**sciSetOriginalSubWin
  * DO NOT USE !!!

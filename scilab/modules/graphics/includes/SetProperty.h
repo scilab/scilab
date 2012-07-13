@@ -115,7 +115,6 @@ GRAPHICS_IMPEXP int sciSetUserSize(  char* pObj, double width, double height ) ;
 GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 
-GRAPHICS_IMPEXP int sciInitSelectedObject( char* pObj ) ;
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
 GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
