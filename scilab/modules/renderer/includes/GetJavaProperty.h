@@ -46,11 +46,6 @@ RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * 
                            int * width, int * height);
 
 /**
- * Get the bounding box used by a segs or champ object
- */
-RENDERER_IMPEXP void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6]);
-
-/**
  * Get the auto resize status od a figure object
  */
 RENDERER_IMPEXP BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure);

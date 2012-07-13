@@ -87,12 +87,6 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
-{
-
-}
-
-/*---------------------------------------------------------------------------------*/
 BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 {
     //if (getFigureDrawer(pFigure)->getAutoResizeMode())
