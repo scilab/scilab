@@ -1788,31 +1788,6 @@ void sciGetViewport( sciPointObj * pObj, int viewport[4] )
     }
 }
 /*----------------------------------------------------------------------------------*/
-void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                *posX = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[0] ;
-                *posY = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[1] ;
-            }
-            else
-            {
-                int pos[2];
-                sciGetJavaWindowPosition(pObj, pos) ;
-                *posX = pos[0] ;
-                *posY = pos[1] ;
-            }
-            break ;
-        default:
-            printSetGetErrorMessage("figure_position");
-            *posX = -1 ;
-            *posY = -1 ;
-    }
-}
-/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )

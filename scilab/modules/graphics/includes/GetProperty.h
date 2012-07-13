@@ -123,8 +123,6 @@ GRAPHICS_IMPEXP BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
 
 GRAPHICS_IMPEXP void sciGetViewport( sciPointObj * pObj, int viewport[4] );
 
-GRAPHICS_IMPEXP void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
-
 GRAPHICS_IMPEXP BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP char * sciGetEventHandler( sciPointObj * pObj ) ;
 
