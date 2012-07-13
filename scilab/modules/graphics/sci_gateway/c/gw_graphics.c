@@ -85,7 +85,7 @@ static gw_generic_table Tab[] = {
     {sci_drawnow, "drawnow"},
     {sci_drawlater, "drawlater"},
     {sci_draw, "draw"},
-    {sci_addcb, "addcb"},
+    {NULL, ""}, // was addcb, unusable.
     {sci_copy, "copy"},
     {sci_delete, "delete"},
     {sci_get, "get"},

@@ -79,7 +79,6 @@
   <PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="drawnow"/>
   <PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="drawlater"/>
   <PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="draw"/>
-  <PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="addcb"/>
   <PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="copy"/>
   <PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="delete"/>
   <PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="get"/>

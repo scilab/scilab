@@ -384,7 +384,6 @@ sci_gateway/c/sci_param3d.c \
 sci_gateway/c/sci_contour2di.c \
 sci_gateway/c/sci_xdel.c \
 sci_gateway/c/sci_winsid.c \
-sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
