@@ -46,12 +46,6 @@ RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * 
                            int * width, int * height);
 
 /**
- * Get the viewport on the canvas
- * @param viewport [x,y,w,h] array
- */
-RENDERER_IMPEXP void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4]);
-
-/**
  * Get number of subticks along each axis of a subwindow.
  */
 RENDERER_IMPEXP void sciGetJavaNbSubticks(sciPointObj * pSubwin, double subtics[3]);

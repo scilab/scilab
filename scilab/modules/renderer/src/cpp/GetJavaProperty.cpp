@@ -87,12 +87,6 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
-{
-    //getFigureDrawer(pFigure)->getViewport(viewport);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
 {
 
