@@ -23,41 +23,6 @@
 #include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
-int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
-{
-// ???
-    abort();
-#if 0
-  sciEntityType sonType = sciGetEntityType( pObj ) ;
-  /* first search if there are already objects with the specified type */
-  TypedSonsList * typedList = sciGetTypedList( pParent, sonType ) ;
-
-  if ( typedList == NULL )
-  {
-    /* first item with this type to be inserted */
-    DoublyLinkedList * newTypedList = NULL ;
-    TypedSonsList    * newItem      = NULL ;
-
-    /* first create the list of objects with the son type */
-    newTypedList = DoublyLinkedList_new() ;
-    newTypedList = List_append( newTypedList, pObj ) ;
-
-    /* then create a new entry in the main list for this type */
-    newItem = newTypedSonList( sonType, newTypedList ) ;
-
-    /* add it to the main list */
-    sciGetRelationship(pParent)->pSelectedSon = List_append( sciGetRelationship(pParent)->pSelectedSon, newItem ) ;
-
-  }
-  else
-  {
-    typedList->typedSons = List_append( typedList->typedSons, pObj ) ;
-  }
-#endif
-  return 0 ;
-
-}
-/*--------------------------------------------------------------------------*/
 void sciInitSelectedSons( sciPointObj * pObj )
 {
     abort();

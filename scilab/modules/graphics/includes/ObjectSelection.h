@@ -39,12 +39,6 @@ typedef struct
 } TypedSonsList ;
 
 /**
- * Add an object in the set of selected son of the parent.
- * Be careful, pObj should be a son of pParent.
- */
-GRAPHICS_IMPEXP int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj ) ;
-
-/**
  * Initialize the set of sons
  */
 GRAPHICS_IMPEXP void sciInitSelectedSons( sciPointObj * pObj ) ;
