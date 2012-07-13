@@ -2397,15 +2397,6 @@ void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the 4 corners of the bounding box of a text object in pixels
-*/
-void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2])
-{
-    sciGetJavaPixelBoundingBox(pObj, corner1, corner2, corner3, corner4);
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */
