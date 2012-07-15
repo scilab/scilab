@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-26 08:50+0000\n"
+"PO-Revision-Date: 2012-07-13 15:14+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -115,6 +115,29 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または�
 
 msgid "Scilab Message"
 msgstr "Scilab メッセージ"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s:  %s 機能は廃止されています.\n"
+
+msgid "Warning"
+msgstr "警告"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: 代わりに %s を使用してください.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: この機能は Scilab %s 以降廃止されます\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -432,7 +455,7 @@ msgid "&PDF"
 msgstr "PDF(&P)"
 
 msgid "&PS"
-msgstr ""
+msgstr "&PS"
 
 #
 # File: scilab_fake_localization_file.c, line: 16
@@ -448,11 +471,6 @@ msgstr "EMF(&E)"
 # File: scilab_fake_localization_file.c, line: 13
 msgid "&EPS"
 msgstr "EPS(&E)"
-
-#
-# File: scilab_fake_localization_file.c, line: 14
-msgid "&FIG"
-msgstr "FIG(&F)"
 
 #
 # File: scilab_fake_localization_file.c, line: 17
@@ -647,32 +665,6 @@ msgstr "クリップボードを空(&E)"
 msgid "&Select all"
 msgstr "全て選択(&S)"
 
-msgid "P&references"
-msgstr "プリファレンス(&r)"
-
-msgid "&Preferences"
-msgstr "設定(&P)"
-
-#
-# File: scilab_fake_localization_file.c, line: 58
-msgid "&Colors"
-msgstr "色(&C)"
-
-#
-# File: scilab_fake_localization_file.c, line: 59
-msgid "Console &Background..."
-msgstr "バックグランド・コンソール(&B)..."
-
-#
-# File: scilab_fake_localization_file.c, line: 60
-msgid "Console &Font..."
-msgstr "コンソールフォント(&F)..."
-
-#
-# File: scilab_fake_localization_file.c, line: 61
-msgid "&Font..."
-msgstr "フォント(&F)..."
-
 #
 # File: scilab_fake_localization_file.c, line: 63
 msgid "Clear &History"
@@ -682,6 +674,9 @@ msgstr "ヒストリークリア(&H)"
 # File: scilab_fake_localization_file.c, line: 64
 msgid "Clear C&onsole"
 msgstr "コンソールクリア(&C)"
+
+msgid "P&references"
+msgstr "プリファレンス(&r)"
 
 #
 # File: scilab_fake_localization_file.c, line: 65
@@ -812,11 +807,6 @@ msgid "Paste"
 msgstr "貼り付け"
 
 #
-# File: scilab_fake_localization_file.c, line: 92
-msgid "Choose Font..."
-msgstr "フォント選択..."
-
-#
 # File: scilab_fake_localization_file.c, line: 93
 msgid "Print..."
 msgstr "印刷..."
@@ -826,6 +816,9 @@ msgstr "モジュール管理 - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr "Scilab設定"
 
 #
 # File: scilab_fake_localization_file.c, line: 75
@@ -930,18 +923,6 @@ msgid ""
 msgstr "警告: '%s' 'Value' プロパティは '%s' または '%s' プロパティの値のどちらかと等しい必要があります.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています: グラフィック・ハンドルを指定してください.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' ハンドルを指定してください.\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "以下のuicontrolには'%s'プロパティがありません : %s.\n"
-
-#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
@@ -1036,14 +1017,6 @@ msgstr "'%s'プロパティの大きさが間違っています: '%s', '%s', ま
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "'%s' プロパティの値が間違っています: '%s', '%s'または '%s' を指定してください.\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "'%s'プロパティの大きさが間違っています: 2要素のリストを指定してください.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
-
 #
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2181
 msgid "Console Font..."
@@ -1054,7 +1027,9 @@ msgstr "コンソール フォント..."
 msgid "Console Background..."
 msgstr "バックグランド・コンソール..."
 
-#, c-format
+msgid "No print service found."
+msgstr "印刷サービスが見つかりません."
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1063,7 +1038,6 @@ msgstr ""
 "警告: 設定ファイルの制限のため, Scilab は uicontrolとグラフィックスが利用できないモードに変更されました.詳細な情報については %s "
 "と入力ください."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "いくつかのケースでは, %s は問題を修正します"
 
@@ -1083,14 +1057,20 @@ msgstr ""
 "詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
 
 #
-# File: scilab_fake_localization_file.c, line: 63
-msgid "Clear History"
-msgstr "ヒストリークリア"
-
-#
 # File: scilab_fake_localization_file.c, line: 64
 msgid "Clear Console"
 msgstr "コンソールクリア"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr "コンソールを消去してもよろしいですか?"
+
+msgid "Do not show this message again"
+msgstr "次回からこのメッセージを表示しない"
+
+#
+# File: scilab_fake_localization_file.c, line: 63
+msgid "Clear History"
+msgstr "ヒストリークリア"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
@@ -1250,7 +1230,6 @@ msgstr "保存して実行"
 msgid "Empty tab"
 msgstr "空のタブ"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1258,11 +1237,9 @@ msgstr ""
 "uuid %s のタブは回復できません.\n"
 "前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "%s を閉じても良ろしいですか?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "%s と %s を閉じても宜しいですか?"
 
@@ -1317,7 +1294,6 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
-#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 

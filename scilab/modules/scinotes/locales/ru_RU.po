@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-11 01:03+0000\n"
+"PO-Revision-Date: 2012-07-13 13:15+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: ru\n"
 
 #, c-format
@@ -208,12 +208,6 @@ msgstr "Сделать отступ"
 msgid "Shift Left"
 msgstr "Убрать отступ"
 
-msgid "Configure Tabulation"
-msgstr "Параметры табуляции"
-
-msgid "Horizontal wrapping"
-msgstr "Режим переноса текста"
-
 msgid "Correct Indentation"
 msgstr "Исправить отступы"
 
@@ -250,11 +244,17 @@ msgstr "Настройки"
 msgid "Current file encoding"
 msgstr "Текущая кодировка файла"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr "Кодировка файла по умолчанию;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Конец строки"
+
+msgid "Auto-completion on"
+msgstr "Автодополнение включить"
+
+msgid "(, [, ..."
+msgstr "(, [, ..."
+
+msgid "if, function, ..."
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Нумерация строк;Нет;Абсолютная;Относительная"
@@ -703,6 +703,18 @@ msgstr "Проблемы с кодировкой"
 msgid "Cannot guess the file encoding."
 msgstr "Не удалось определить кодировку файла."
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+"Нельзя сохранить файл %s... Прекращение процесса резервного копирования"
+
+msgid "Backup finished..."
+msgstr "Резервирование завершено..."
+
+#, c-format
+msgid "%s occurences found."
+msgstr "Найдено %s мест."
+
 msgid "Change Colors"
 msgstr "Настройка цветов"
 
@@ -786,6 +798,9 @@ msgstr "Восстановить файлы из предыдущей сесси
 
 msgid "Restore the last sessions"
 msgstr "Восстановить последнюю сессию"
+
+msgid "Configure Tabulation"
+msgstr "Параметры табуляции"
 
 msgid "Tab style"
 msgstr "Стиль табуляции"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: es\n"
 
 #, c-format
@@ -349,6 +349,12 @@ msgstr ""
 "tamaño.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba una matriz "
+"cuadrada.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
@@ -415,12 +421,6 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector "
 "columna.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba una matriz "
-"cuadrada.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"

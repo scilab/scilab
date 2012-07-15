@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -137,18 +137,3 @@ msgstr "%s：无法创建导出文件，权限不足。\n"
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s：不能执行pstoedit。\n"
-
-msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr "请安装32位的Ghostscript以导出为.FIG文件"
-
-msgid "Scilab error"
-msgstr "Scilab错误"
-
-msgid "error"
-msgstr "错误"
-
-#, c-format
-msgid ""
-"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
-"to be able to use this feature.\n"
-msgstr "%s：无法找到pstoedit，如使用这个功能请安装pstoedit或者添加它所在目录到PATH中。\n"

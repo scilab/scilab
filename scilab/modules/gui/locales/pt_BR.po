@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -139,6 +139,27 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Mensagem do Scilab"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -497,9 +518,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&Copiar para a área de transferência"
 
@@ -626,29 +644,14 @@ msgstr "Es&vaziar a área de transferência"
 msgid "&Select all"
 msgstr "&Selecionar tudo"
 
-msgid "P&references"
-msgstr "P&referências"
-
-msgid "&Preferences"
-msgstr "&Preferências"
-
-msgid "&Colors"
-msgstr "&Cores"
-
-msgid "Console &Background..."
-msgstr "&Plano de fundo do console..."
-
-msgid "Console &Font..."
-msgstr "&Fonte do console..."
-
-msgid "&Font..."
-msgstr "&Fonte..."
-
 msgid "Clear &History"
 msgstr "Limpar &histórico"
 
 msgid "Clear C&onsole"
 msgstr "Limpar o c&onsole"
+
+msgid "P&references"
+msgstr "P&referências"
 
 msgid "&Control"
 msgstr "&Controle"
@@ -755,9 +758,6 @@ msgstr "Copiar"
 msgid "Paste"
 msgstr "Colar"
 
-msgid "Choose Font..."
-msgstr "Escolher fonte..."
-
 msgid "Print..."
 msgstr "Imprimir..."
 
@@ -766,6 +766,9 @@ msgstr "Gerenciador de módulos - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr ""
 
 msgid "Scilab Demonstrations"
 msgstr "Demonstrações do Scilab"
@@ -885,22 +888,6 @@ msgid ""
 msgstr ""
 "Aviso: A propriedade 'Value' de '%s' deve ser igual ao valor da propriedade "
 "'%s' ou '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr ""
-"Tamanho incorreto para a propriedade '%s': esperava-se um manipulador "
-"gráfico.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Valor incorreto para a propriedade '%s': esperava-se um manipulador '%s' ou "
-"'%s'.\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Não existe a propriedade '%s' para uicontrol do estilo: %s.\n"
 
 #, c-format
 msgid ""
@@ -1025,23 +1012,15 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 "Valor incorreto para a propriedade '%s': esperava-se '%s',  '%s' ou '%s'.\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr ""
-"Tamanho incorreto para a propriedade '%s': esperava-se uma lista com 2 "
-"itens.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Valor incorreto para a propriedade '%s': esperava-se '%s' ou '%s'.\n"
-
 msgid "Console Font..."
 msgstr "Fonte do Console..."
 
 msgid "Console Background..."
 msgstr "Plano de fundo do Console..."
 
-#, c-format
+msgid "No print service found."
+msgstr ""
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1051,7 +1030,6 @@ msgstr ""
 "modo onde mixar uicontrols e gráficos não está disponível. Digite %s para "
 "mais informações."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Em alguns casos, %s resolve o caso"
 
@@ -1073,11 +1051,17 @@ msgstr ""
 "capacidades gráficas avançadas. Digite \"\"help usecanvas\"\" para maiores "
 "informações.\")"
 
-msgid "Clear History"
-msgstr "Limpar o histórico"
-
 msgid "Clear Console"
 msgstr "Limpar console"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr ""
+
+msgid "Do not show this message again"
+msgstr ""
+
+msgid "Clear History"
+msgstr "Limpar o histórico"
 
 msgid "Select All"
 msgstr "Selecionar todos"
@@ -1227,7 +1211,6 @@ msgstr "Salvar e executar"
 msgid "Empty tab"
 msgstr "Aba vazia"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1235,11 +1218,9 @@ msgstr ""
 "A aba com uuid %s não pode ser restaurada.\n"
 "Por favor, relate o erro com a mensagem anterior e anexe o arquivo %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Tem certeza de que deseja fechar %s?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Tem certeza de que deseja fechar %s e %s?"
 
@@ -1294,7 +1275,6 @@ msgstr "Todas as imagens PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Todos os arquivos RTF"
 
-#, c-format
 msgid "All %s files"
 msgstr "Todos os arquivos %s"
 

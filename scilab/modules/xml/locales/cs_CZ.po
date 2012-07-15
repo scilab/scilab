@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-23 21:45+0000\n"
+"PO-Revision-Date: 2012-07-13 20:24+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -291,6 +291,9 @@ msgstr "Neplatný název souboru: "
 
 msgid "Cannot create a parser context"
 msgstr "Nelze vytvořit kontext zpracovatele"
+
+msgid " at line "
+msgstr " na řádku "
 
 msgid "Cannot create a buffer"
 msgstr "Nelze vytvořit mezipaměť"

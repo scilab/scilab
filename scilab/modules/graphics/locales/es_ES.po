@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: es\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -444,6 +444,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 
 #, c-format
+msgid "Figure n%d"
+msgstr ""
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Argumento de entrada no reconocido'%s'.\n"
 
@@ -667,10 +671,6 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: por favor use %s en su lugar.\n"
 
 #, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: No se puede habilitar el manejador de eventos vacíos.\n"
-
-#, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "la propiedad '%s' no existe para este manejador.\n"
 
@@ -823,9 +823,6 @@ msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
 "Tipo incorrecto para la propiedad '%s': Se esperaba un real o un manejador "
 "'%s'.\n"
-
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr "Imposible crear la figura pedida: Memoria insuficiente.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
@@ -1045,6 +1042,24 @@ msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Módulo gráfico de Scilab no instalado.\n"
+
+msgid "Average monthly temperatures in french cities"
+msgstr ""
+
+msgid "Computing in progress..."
+msgstr ""
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr ""
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr ""
+
+msgid "Real part"
+msgstr ""
+
+msgid "Imaginary part"
+msgstr ""
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "Gráficos con dos escalas Y diferentes"

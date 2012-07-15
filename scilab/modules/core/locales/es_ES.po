@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-06 00:03+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2012-06-25 23:36+0000\n"
+"Last-Translator: gustavoreyes <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: es\n"
 
 #, c-format
@@ -49,10 +49,12 @@ msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -124,6 +126,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A string or a scalar integer value "
 "expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba una cadena "
+"o un valor escalar entero.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
@@ -259,6 +263,8 @@ msgid ""
 "%s: Cannot allocate memory.\n"
 "%s\n"
 msgstr ""
+"%s: No se puede asignar memoria.\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Cannot allocate this quantity of memory.\n"
@@ -272,6 +278,8 @@ msgstr "%s: El tamaño requerido es menor que el mínimo.\n"
 msgid ""
 "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
+"%s: Incapaz de crear (o cambiar el tamaño) de la pila (probablemente un "
+"error malloc).\n"
 
 #, c-format
 msgid "%s: Unknown error.\n"
@@ -359,16 +367,16 @@ msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "Error: Imposible definir la variable de entorno %s.\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Consorcio Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
-msgstr ""
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
+msgstr "Copyright (c) 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
@@ -554,6 +562,13 @@ msgid ""
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
+"Ops. Scilab ha detectado un error fatal.\n"
+"Su instancia probablemente fallará pronto.\n"
+"Por favor, informe del error en %s con:\n"
+"* un código de ejemplo que repita el problema\n"
+"* el resultado de [a, b] = getdebuginfo()\n"
+"* la siguiente información:\n"
+"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -913,7 +928,7 @@ msgstr "Argumento %s"
 
 #, c-format
 msgid "argument #%d"
-msgstr ""
+msgstr "argumento #%d"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -921,11 +936,11 @@ msgstr "argumentos %s y %s"
 
 #, c-format
 msgid "%s argument and argument #%d"
-msgstr ""
+msgstr "%s argumento y argumento #%d"
 
 #, c-format
 msgid "arguments #%d and #%d"
-msgstr ""
+msgstr "argumentos #%d y #%d"
 
 msgid "should be square"
 msgstr "debe ser cuadrada."
@@ -1016,6 +1031,8 @@ msgid ""
 "Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
+"Por favor, instale el módulo texmacs ATOMS: atomsInstall('texmacs')\n"
+"\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No se pudo encontrar el directorio temporal de Windows (1)."
@@ -1119,6 +1136,8 @@ msgstr "Empezando con Scilab"
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr ""
+"%s: No puedo encontrar '%s': Por favor compruebe que las macros han sido "
+"construídas.\n"
 
 #, c-format
 msgid "Checking: %s\n"
@@ -1131,10 +1150,6 @@ msgstr "%s: Por favor revise: %s.\n"
 #, c-format
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: Archivo inexistente: %s"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Requiere el editor de scilab.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

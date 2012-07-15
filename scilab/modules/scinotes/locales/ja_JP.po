@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-18 05:37+0000\n"
+"PO-Revision-Date: 2012-07-03 14:48+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: ja\n"
 
 #, c-format
@@ -204,12 +204,6 @@ msgstr "右シフト"
 msgid "Shift Left"
 msgstr "左シフト"
 
-msgid "Configure Tabulation"
-msgstr "設定の一覧表化"
-
-msgid "Horizontal wrapping"
-msgstr "水平方向のラッピング"
-
 msgid "Correct Indentation"
 msgstr "インデントを修正"
 
@@ -246,11 +240,17 @@ msgstr "オプション"
 msgid "Current file encoding"
 msgstr "カレントのファイルエンコーディング"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr "デフォルトのSciNotesファイルエンコーディング; UTF-8; Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "行末コード"
+
+msgid "Auto-completion on"
+msgstr "オートコンプリート有効"
+
+msgid "(, [, ..."
+msgstr "(, [, ..."
+
+msgid "if, function, ..."
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行番号付け; オフ;通常; whereami 互換"
@@ -691,6 +691,17 @@ msgstr "エンコーディングの問題"
 msgid "Cannot guess the file encoding."
 msgstr "ファイルのエンコーディングを推定できません."
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr "ファイル %s を保存できません... バックアップ処理を停止します"
+
+msgid "Backup finished..."
+msgstr "バックアップを終了しました..."
+
+#, c-format
+msgid "%s occurences found."
+msgstr ""
+
 msgid "Change Colors"
 msgstr "色を変更"
 
@@ -774,6 +785,9 @@ msgstr "直近のSciNotesセッションからファイルを復元しますか?
 
 msgid "Restore the last sessions"
 msgstr "直近のセッションを復元する"
+
+msgid "Configure Tabulation"
+msgstr "設定の一覧表化"
 
 msgid "Tab style"
 msgstr "タブ形式"

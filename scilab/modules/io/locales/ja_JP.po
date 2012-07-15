@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-15 14:32+0000\n"
+"PO-Revision-Date: 2012-07-03 14:57+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -141,34 +141,38 @@ msgstr "%s: 環境変数 %s は定義されていません。\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
+msgstr "%s:  %s 機能は廃止されています.\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: See help('load') for the rational.\n"
-msgstr ""
+msgstr "%s: 詳細は help('load') を参照ください.\n"
 
 #, c-format
 msgid ""
 "%s: This feature will be permanently removed in Scilab %s\n"
 "\n"
 msgstr ""
+"%s: この機能は Scilab %s 以降廃止されます\n"
+"\n"
 
 #, c-format
 msgid "%s: Scilab 6 will not support the file format used.\n"
-msgstr ""
+msgstr "%s: Scilab 6 ではこのファイル形式のサポートは廃止されます.\n"
 
 #, c-format
 msgid ""
 "%s: Please quote the variable declaration. Example, save('myData.sod',a) "
 "becomes save('myData.sod','a').\n"
 msgstr ""
+"%s: 変数宣言をクオートしてください. 例えば, save('myData.sod',a) は save('myData.sod','a') "
+"となります.\n"
 
 #, c-format
 msgid "%s: See help('save') for the rational.\n"
-msgstr ""
+msgstr "%s: 詳細は, help('save') を参照ください.\n"
 
 #
 # File: src/c/getenvc.c, line: 37

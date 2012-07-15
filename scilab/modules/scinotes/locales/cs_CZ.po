@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-12 06:33+0000\n"
+"PO-Revision-Date: 2012-07-13 20:23+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -206,12 +206,6 @@ msgstr "Posun vpravo"
 msgid "Shift Left"
 msgstr "Posun vlevo"
 
-msgid "Configure Tabulation"
-msgstr "Nastavit Tabulaci"
-
-msgid "Horizontal wrapping"
-msgstr "Vodorovné"
-
 msgid "Correct Indentation"
 msgstr "Spravit odsazení"
 
@@ -248,12 +242,17 @@ msgstr "Možnosti"
 msgid "Current file encoding"
 msgstr "Kódování současného souboru"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Výchozí kódování souboru SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Konce řádků"
+
+msgid "Auto-completion on"
+msgstr "Autodokončení zapnuto"
+
+msgid "(, [, ..."
+msgstr "(, [, ..."
+
+msgid "if, function, ..."
+msgstr "if, funkce, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Číslování řádků;Vypnuto;Normální;Kompatibilní s Whereami"
@@ -701,6 +700,17 @@ msgstr "Problémy s kódováním"
 msgid "Cannot guess the file encoding."
 msgstr "Nelze odhadnout kódování souboru."
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr "Nelze uložit soubor %s... zastavte proces zálohování"
+
+msgid "Backup finished..."
+msgstr "Zálohování dokončeno..."
+
+#, c-format
+msgid "%s occurences found."
+msgstr "nalezeno %s výskytů."
+
 msgid "Change Colors"
 msgstr "Změnit Barvy"
 
@@ -784,6 +794,9 @@ msgstr "Obnovit soubory z Vaší poslední relace SciNotes ?"
 
 msgid "Restore the last sessions"
 msgstr "Obnovit poslední relace"
+
+msgid "Configure Tabulation"
+msgstr "Nastavit Tabulaci"
 
 msgid "Tab style"
 msgstr "Styl karty"
