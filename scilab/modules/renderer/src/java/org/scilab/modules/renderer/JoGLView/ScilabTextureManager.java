@@ -13,8 +13,8 @@ package org.scilab.modules.renderer.JoGLView;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.data.AbstractDataProvider;
+import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
-import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
@@ -58,7 +58,7 @@ public class ScilabTextureManager {
     }
 
 
-    private class ScilabTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider, GraphicView {
+    private class ScilabTextureDataProvider extends AbstractTextureDataProvider implements GraphicView {
         private final String identifier;
         private Dimension dimension;
         private boolean isValid;

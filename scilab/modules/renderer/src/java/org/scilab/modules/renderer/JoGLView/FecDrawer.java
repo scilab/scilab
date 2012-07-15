@@ -6,8 +6,8 @@ import org.scilab.forge.scirenderer.data.AbstractDataProvider;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
+import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
-import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
@@ -30,11 +30,11 @@ class FecDrawer {
 
     /** Set of properties that affect the texture. */
     private static final Set<String> TEXTURE_PROPERTIES = new HashSet<String>(Arrays.asList(
-            GraphicObjectProperties.__GO_Z_BOUNDS__,
-            GraphicObjectProperties.__GO_DATA_MODEL__,
-            GraphicObjectProperties.__GO_COLOR_RANGE__,
-            GraphicObjectProperties.__GO_OUTSIDE_COLOR__
-    ));
+                GraphicObjectProperties.__GO_Z_BOUNDS__,
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_COLOR_RANGE__,
+                GraphicObjectProperties.__GO_OUTSIDE_COLOR__
+            ));
 
     /** The parent drawer visitor. */
     private final DrawerVisitor drawerVisitor;
@@ -54,7 +54,7 @@ class FecDrawer {
     /**
      * Draw the given fec.
      * @param fec given fec object.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException
      */
     public void draw(Fec fec) throws ObjectRemovedException, OutOfMemoryException {
         if (fec.getVisible()) {
@@ -136,7 +136,7 @@ class FecDrawer {
     /**
      * Update all texture.
      * Reset all texture data provider.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException
      */
     void updateAll() throws ObjectRemovedException, OutOfMemoryException {
         for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
@@ -173,7 +173,7 @@ class FecDrawer {
      *  .As user defined outside colors if any.
      *  .As minimal and maximal color from the main colors otherwise.
      */
-    private class FecColorTexture extends AbstractDataProvider<Texture> implements TextureDataProvider {
+    private class FecColorTexture extends AbstractTextureDataProvider {
 
         /** The fec object for which this class provide texture data */
         private final Fec fec;
