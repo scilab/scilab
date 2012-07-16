@@ -43,8 +43,13 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     long hdl = 0;
 
     char *pstSubWinUID = NULL;
+    char *pstFigureUID = NULL;
     int iSubWinForeground = 0;
     int *piSubWinForeground = &iSubWinForeground;
+
+    int iImmediateDrawing = 0;
+    int *piImmediateDrawing = &iImmediateDrawing;
+    int iFalse = 0;
 
     CheckRhs(2, 3);
 
@@ -94,6 +99,9 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     }
 
     pstSubWinUID = (char*)getOrCreateDefaultSubwin();
+    getGraphicObjectProperty(pstSubWinUID, __GO_PARENT__, jni_string, (void**)&pstFigureUID);
+    getGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
+    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
 
     for (i = 0; i < n1; ++i)
     {
@@ -141,12 +149,16 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         }
     }
 
+
+
     /** Construct Compound and make it current object**/
     {
         char * o = ConstructCompoundSeq(n1);
         setCurrentObject(o);
         releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
     }
+
+    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &piImmediateDrawing, jni_bool, 1);
 
     LhsVar(1) = 0;
     PutLhsVar();
