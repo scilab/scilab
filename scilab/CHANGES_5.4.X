@@ -106,12 +106,15 @@ Bug Fixes
                      rather than only the variable "a".
 
 * Bug #11443 fixed - There was no way to set default language via prefs under
-                    Windows.
+                     Windows.
 
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
 * Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
+
+* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
+                              into itself. 
 
 
 
