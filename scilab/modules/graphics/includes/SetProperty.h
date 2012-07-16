@@ -53,9 +53,6 @@ GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP int sciInitAutoPosition( char* pObj, BOOL value ) ;
-GRAPHICS_IMPEXP int sciSetAutoPosition ( char* pObj, BOOL value ) ;
-
 GRAPHICS_IMPEXP int sciInitAutoSize( char* pObj, BOOL autoSize ) ;
 GRAPHICS_IMPEXP int sciSetAutoSize(  char* pObj, BOOL autoSize ) ;
 

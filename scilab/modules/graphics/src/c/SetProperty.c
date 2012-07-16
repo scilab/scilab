@@ -628,53 +628,6 @@ case SCI_UIMENU:
 }
 
 /*----------------------------------------------------------------------------------*/
-int sciInitAutoPosition( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_LABEL:
-            pLABEL_FEATURE(pobjUID)->auto_position = value ;
-            return 0;
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_ARC:
-        case SCI_TEXT:
-        case SCI_FIGURE:
-        case SCI_SUBWIN:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_FEC:
-        case SCI_SEGS:
-        case SCI_LEGEND:
-        case SCI_GRAYPLOT:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("auto_position");
-            return -1 ;
-            break;
-    }
-#endif
-    return -1 ;
-}
-
-/* set the auto_position property of an object */
-int sciSetAutoPosition ( char * pobjUID, BOOL value )
-{
-
-    if ( sciGetAutoPosition((sciPointObj*) pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAutoPosition( pobjUID, value ) ;
-
-}
-
-/*---------------------------------------------------------------------------*/
 int checkPercent( char * string )
 {
     /* check for the percent in the string */
