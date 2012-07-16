@@ -1620,39 +1620,6 @@ int sciSetCenterPos( char * pobjUID, BOOL newCP )
     return sciInitCenterPos( pobjUID, newCP ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-/**
- * Set the viewport property of a figure.
- * Effective only if the auto_resize property is enable
- */
-int sciSetViewport( char * pobjUID, const int viewport[4] )
-{
-    // FIXME
-    abort();
-#if 0
-    switch ( sciGetEntityType( pobjUID ) )
-    {
-        case SCI_FIGURE:
-            if (isFigureModel(pobjUID))
-            {
-                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[0] = viewport[0];
-                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[1] = viewport[1];
-                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[2] = viewport[2];
-                pFIGURE_FEATURE(pobjUID)->pModelData->viewport[3] = viewport[3];
-            }
-            else
-            {
-                sciSetJavaViewport(pobjUID, viewport);
-            }
-            return 0;
-        default:
-            printSetGetErrorMessage("viewport");
-            return -1 ;
-    }
-#endif
-    return -1;
-}
-
-/*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( char * pobjUID, char * name )
 {
     // FIXME

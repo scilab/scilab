@@ -90,12 +90,6 @@ BOOL TerminateGraphics(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetViewport(char *pObj, const int viewport[4])
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
 double Maxi(const double vect[], int n)
 {
     return 0.0;

@@ -121,8 +121,6 @@ GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 
-GRAPHICS_IMPEXP int sciSetViewport(  char* pObj, const int viewport[4] ) ; /* SET */
-
 GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
 GRAPHICS_IMPEXP int sciSetEventHandler(  char* pObj, char * name ) ;
 
