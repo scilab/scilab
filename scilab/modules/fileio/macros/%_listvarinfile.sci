@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2001  - INRIA - Serge Steer
+// Copyright (C) 2012  - Scilab Enterprises - Antoine ELIAS
 // Copyright (C) Enrico Segre
 // 
 // This file must be used under the terms of the CeCILL.
