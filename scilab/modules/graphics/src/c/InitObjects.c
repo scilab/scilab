@@ -533,177 +533,6 @@ int initFCfromCopy(sciPointObj * pObjSource, sciPointObj * pObjDest)
 }
 
 /*
- * This function has been partially adapted to the MVC framework.
- * Its code ought to be moved to the Java Model implementation,
- * either within the Font constructor or an initialization method.
- */
-/**sciInitFontContext
- * Inits the graphic context of this object with the default value
- * @param sciPointObj * pobj: the pointer to the entity
- */
-int sciInitFontContext(sciPointObj * pobj)
-{
-    char *type = NULL;
-
-    /*
-     * initialisation du contexte font par defaut
-     * que l'on peut recuperer sur les structures de base de scilab
-     * la colormap des fils est heritee du parent
-     * nous prenons le couleur de background et foreground
-     * plutot que fontforeground pour l'initialisation
-     */
-
-    /* unknown function initfontname "Win-stand"!! */
-    /* static TCHAR inifontname[] = TEXT ("Times New Roman"); */
-
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
-
-    //  switch (sciGetEntityType (pobj))
-
-    /* Deactivated for now */
-    /* This must be implemented within the MVC */
-#if 0
-    {
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_AXES:
-        {
-            initFCfromCopy(sciGetParent(pobj), pobj);
-        }
-        break;
-    case SCI_LABEL:                /* Re-init here must be better F.Leray 28.05.04 */
-        if (sciGetParent(pobj) == paxesmdl)
-        {
-            initFCfromCopy(sciGetParent(pobj), pobj);
-        }
-        else
-        {
-            sciPointObj *plabelmdl = NULL;
-
-            if (pLABEL_FEATURE(pobj)->ptype == 1)   /* title */
-            {
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-            }
-            else if (pLABEL_FEATURE(pobj)->ptype == 2)  /* x_label */
-            {
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-            }
-            else if (pLABEL_FEATURE(pobj)->ptype == 3)  /* y_label */
-            {
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-            }
-            else if (pLABEL_FEATURE(pobj)->ptype == 4)  /* z_label */
-            {
-                plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-            }
-
-            initFCfromCopy(plabelmdl, pobj);
-
-        }
-        break;
-#endif
-
-        if (strcmp(type, __GO_AXES__) == 0)
-        {
-            /*
-             * Font properties are not copied from the parent Figure for now
-             * and are instead explicitely set here, in order to initialize the
-             * default Axes' font properties.
-             */
-            if (isAxesModel(pobj->UID))
-            {
-                int fontColor = -1;
-                double fontSize = 1.0;
-                int fontFractional = 0;
-
-                /* 6: Helvetica */
-                int fontStyle = 6;
-
-                setGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
-
-                /* Deactivated for now since it causes a crash */
-#if 0
-                initFCfromCopy(sciGetParent(pobj), pobj);
-#endif
-            }
-            else
-            {
-                /*
-                 * This block is never reached at all since since the Axes model
-                 * is now cloned within the MVC via a C call.
-                 */
-#if 0
-                initFCfromCopy(paxesmdl, pobj);
-#endif
-            }
-        }
-        else if (strcmp(type, __GO_FIGURE__) == 0)
-        {
-            if (isFigureModel(pobj->UID))
-            {
-#if 0
-                sciInitFontStyle(pobj, 6);  /* set helvetica font */
-                (sciGetFontContext(pobj))->backgroundcolor = 33;
-                (sciGetFontContext(pobj))->foregroundcolor = 32;
-                (sciGetFontContext(pobj))->fontSize = 1.0;
-                (sciGetFontContext(pobj))->textorientation = 0.0;
-                (sciGetFontContext(pobj))->useFractionalMetrics = FALSE;
-#endif
-                /* END ADDING F.Leray 08.04.04 */
-            }
-            else
-            {
-#if 0
-                initFCfromCopy(pfiguremdl, pobj);
-#endif
-            }
-        }
-        else if (strcmp(type, __GO_LEGEND__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneFontContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_TEXT__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneFontContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_AXIS__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneFontContext(parent, pobj->UID);
-        }
-
-        /* Deactivated for now */
-#if 0
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-        return -1;
-        break;
-    }
-#endif
-
-    return 0;
-}
-
-/*
  * This function has been adapted to the MVC framework, using the
  * MVC's property set/get calls.
  */
@@ -771,11 +600,6 @@ int InitAxesModel()
 #if 0
     char linLogFlags[3] = { 'n', 'n', 'n' };
 #endif
-
-    /* These functions have been adapted to the MVC framework */
-    //  sciInitGraphicContext (paxesmdl);
-    //  sciInitGraphicMode (paxesmdl);
-    //  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
     char *labelUID = NULL;
 
@@ -957,13 +781,6 @@ int InitAxesModel()
     setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
     destroyStringArray(stringVector, defaultNumberTicks);
-
-    /*
-     * Initializing Font properties must be done after the labels have been set
-     * as it directly sets the Labels' font properties.
-     * To be modified.
-     */
-    //sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
     /*
      * Indicates the direction of projection (0 for the axis corresponding to the direction,
