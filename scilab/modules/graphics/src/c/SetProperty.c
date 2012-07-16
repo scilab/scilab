@@ -627,38 +627,6 @@ case SCI_UIMENU:
     return 0;
 }
 
-/*----------------------------------------------------------------------------------*/
-int checkPercent( char * string )
-{
-    /* check for the percent in the string */
-    char * firstPercent  = strchr( string, '%' ) ;
-
-    if ( firstPercent == NULL )
-    {
-        /* no % character found */
-        return 0 ;
-    }
-    else if ( firstPercent[1] != 'd' )
-    {
-        /* a %something with something != d has been found */
-        return -1 ;
-    }
-    else
-    {
-        /* here we have found a first %d, check if there is not any more % */
-        firstPercent++ ;
-        firstPercent = strchr( firstPercent, '%' ) ;
-        if ( firstPercent == NULL )
-        {
-            /* no other % character found */
-            return 1 ;
-        }
-        else
-        {
-            return -1 ;
-        }
-    }
-}
 /*---------------------------------------------------------------------------*/
 int sciInitAutoSize( char * pobjUID, BOOL autoSize )
 {

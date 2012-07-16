@@ -95,9 +95,5 @@ GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(char* pObj, BOOL autoRedraw);
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/
-/* return 0 if the string contains any % character, 1 if a %d has been found */
-/* and -1 otherwise. */
-GRAPHICS_IMPEXP int checkPercent( char * string ) ;
-/*---------------------------------------------------------------------------*/
 
 #endif /* __SCI_SET_PROPERTY__ */
