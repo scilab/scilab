@@ -628,27 +628,6 @@ case SCI_UIMENU:
 }
 
 /*----------------------------------------------------------------------------------*/
-/**
- * In new graphic style, select a window and create one if not already done.
- */
-int sciSetUsedWindow( int winNum )
-{
-    // FIXME
-    abort();
-#if 0
-    return 1;
-    /* select or create the window in the driver */
-    if ( sciHasFigures() && sciGetNum( sciGetCurrentFigure() ) == winNum )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-
-    return sciInitUsedWindow( winNum ) ;
-#endif
-    return 1;
-}
-
 int sciInitBoxType( char * pobjUID, EAxesBoxType type )
 {
     // FIXME

@@ -8,7 +8,6 @@ sciSetPixmapMode
 sciSetIsBoxed
 sciGetCurrentFigure
 sciGetPixmapMode
-sciSetUsedWindow
 sciSetLineWidth
 sciSetMarkForeground
 sciGetBackground
