@@ -721,7 +721,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
 
     /**
      * Update the line numbering on a change in the document
-     * @param offset offset where the event occured
+     * @param offset offset where the event occurred
      * @param length length of inserted or removed text
      */
     private void handleEvent(int offset, int length) {

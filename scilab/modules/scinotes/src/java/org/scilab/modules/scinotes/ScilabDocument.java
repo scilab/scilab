@@ -772,7 +772,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
-            // change occured only on one line
+            // change occurred only on one line
             Element root = getDefaultRootElement();
             int index = root.getElementIndex(ev.getOffset());
             ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);

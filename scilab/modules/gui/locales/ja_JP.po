@@ -1246,7 +1246,7 @@ msgstr "%s と %s を閉じても宜しいですか?"
 msgid "Exit"
 msgstr "終了"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "エラーが発生しました: "
 
 msgid "Scilab SCI files"

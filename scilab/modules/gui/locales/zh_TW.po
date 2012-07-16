@@ -1059,7 +1059,7 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "錯誤發生了: "
 
 msgid "Scilab SCI files"

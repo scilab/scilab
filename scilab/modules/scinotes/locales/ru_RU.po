@@ -353,10 +353,10 @@ msgstr "У вас нет разрешения на запись этого фа�
 msgid "You do not have the permissions to read this file"
 msgstr "У вас нет разрешения на чтение этого файла"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Произошла ошибка при экспортировании кода, использующего FOP"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Произошла ошибка при печати"
 
 msgid "Tools"

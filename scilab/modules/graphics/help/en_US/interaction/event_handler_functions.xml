@@ -27,19 +27,19 @@
       <varlistentry>
         <term>win</term>
         <listitem>
-          <para>window number where the event had occured.</para>
+          <para>window number where the event had occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>X coordinate in pixels of the mouse pointer when the events occured.</para>
+          <para>X coordinate in pixels of the mouse pointer when the events occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>Y coordinate in pixels of the mouse pointer when the events occured.</para>
+          <para>Y coordinate in pixels of the mouse pointer when the events occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,7 +55,7 @@
     <para>
       When the event handler mode is enable, Scilab will call the specified event handler
       function each time an event occures in the graphic window. The event handler function
-      must comply with the above prototype. Each time an event occured, the function is called
+      must comply with the above prototype. Each time an event occurred, the function is called
       and its four parameters are set accordingly to the window number, mouse position and
       type of event.
     </para>

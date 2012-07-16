@@ -24,7 +24,7 @@
  *      necessary to do so.
  *    - The returning status of each functions is as follow :
  *      0 for correct execution, 1 if no change was made
- *      and -1 if an error occured.
+ *      and -1 if an error occurred.
  --------------------------------------------------------------------------*/
 
 
@@ -40,12 +40,6 @@ GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET *
 GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
-
-GRAPHICS_IMPEXP int sciInitBoxType( char* pobj, EAxesBoxType type ) ;
-GRAPHICS_IMPEXP int sciSetBoxType ( char* pobj, EAxesBoxType type ) ; /* SET */
-
-GRAPHICS_IMPEXP int sciInitIsBoxed(char* pobj, BOOL isboxed);
-GRAPHICS_IMPEXP int sciSetIsBoxed (char* pobj, BOOL isboxed); /* SET */
 
 GRAPHICS_IMPEXP int sciInitNbXSubTics(char* pobj, int nbsubtics);
 GRAPHICS_IMPEXP int sciSetNbXSubTics (char* pobj, int nbsubtics); /* SET */
@@ -67,8 +61,6 @@ GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
-
-GRAPHICS_IMPEXP int sciSetUsedWindow( int winNum ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetInterpVector(char* pobj, int size, int * value);
 

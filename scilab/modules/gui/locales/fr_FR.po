@@ -1206,7 +1206,7 @@ msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
 msgid "Exit"
 msgstr "Quitter"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "Une erreur est survenue : "
 
 msgid "Scilab SCI files"

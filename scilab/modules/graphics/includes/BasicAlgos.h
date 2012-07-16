@@ -72,7 +72,7 @@ GRAPHICS_IMPEXP void setDoubleArraySingleValue( double dest[], double value, int
  * the elements are copied beginning with the first
  * if the array is longer than the other, then the last values are set to 0.0
  * @param destSize the wanted size for the new array
- * @return  the newly created array or NULL if an error occured
+ * @return  the newly created array or NULL if an error occurred
  */
 GRAPHICS_IMPEXP double * createNewArrayFromSource( int destSize, const double src[], int srcSize ) ;
 

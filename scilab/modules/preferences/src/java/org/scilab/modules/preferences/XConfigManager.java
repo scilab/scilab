@@ -164,7 +164,7 @@ public final class XConfigManager extends XCommonManager {
 
         document = XConfiguration.getXConfigurationDocument();
 
-        // We remove all the previous tags (should be empty but an error could have occured...)
+        // We remove all the previous tags (should be empty but an error could have occurred...)
         NodeList toolboxes = document.getElementsByTagName("toolboxes");
         for (int i = 0; i < toolboxes.getLength(); i++) {
             try {

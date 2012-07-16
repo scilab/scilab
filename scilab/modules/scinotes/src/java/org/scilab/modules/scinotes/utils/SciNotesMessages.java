@@ -52,8 +52,8 @@ public class SciNotesMessages {
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
-    public static final String EXPORTERROR = Messages.gettext("An error occured when exporting the code using FOP");
-    public static final String PRINTERERROR = Messages.gettext("An error occured when printing");
+    public static final String EXPORTERROR = Messages.gettext("An error occurred when exporting the code using FOP");
+    public static final String PRINTERERROR = Messages.gettext("An error occurred when printing");
     public static final String CLOSE = Messages.gettext("Close");
     public static final String CLOSEALL = Messages.gettext("Close All");
     public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");

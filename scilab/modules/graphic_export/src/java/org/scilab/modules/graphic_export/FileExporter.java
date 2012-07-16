@@ -37,7 +37,7 @@ public class FileExporter {
      * @param fileType kind of the file
      * @param jpegCompressionQuality the JPEG compression quality
      * @param fileOrientation orientation of the file
-     * @return 0 if everything worked fine, a non null integer if an exception occured
+     * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
     public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation, boolean headless) {
@@ -66,7 +66,7 @@ public class FileExporter {
      * @param fileType kind of the file
      * @param jpegCompressionQuality the JPEG compression quality
      * @param fileOrientation orientation of the file
-     * @return 0 if everything worked fine, a non null integer if an exception occured
+     * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
     public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
@@ -80,7 +80,7 @@ public class FileExporter {
      * @param fileType kind of the file
      * @param jpegCompressionQuality the JPEG compression quality
      * @param fileOrientation orientation of the file
-     * @return 0 if everything worked fine, a non null integer if an exception occured
+     * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
     public static String fileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
@@ -95,7 +95,7 @@ public class FileExporter {
      * @param fileType kind of the file
      * @param jpegCompressionQuality the JPEG compression quality
      * @param fileOrientation orientation of the file
-     * @return 0 if everything worked fine, a non null integer if an exception occured
+     * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
     public static String headlessFileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {

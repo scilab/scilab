@@ -347,10 +347,10 @@ msgstr "Nemáte oprávnění zapsat tento soubor"
 msgid "You do not have the permissions to read this file"
 msgstr "Nemáte oprávnění přečíst tento soubor"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Při exportu kódu pomocí FOP nastala chyba"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Při tisku nastala chyba"
 
 msgid "Tools"

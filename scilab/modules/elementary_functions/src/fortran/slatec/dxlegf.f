@@ -21,10 +21,10 @@
 *          210 :  DNU1, NUDIFF, MU1, MU2, or ID not valid
 *          211 :  X out of range (must be in [0,1)
 *          201, 202, 203, 204 : invalid input was provided to DXSET
-*                       (should not occured in IEEE floating point)
+*                       (should not occurred in IEEE floating point)
 *          205, 206 : internal consistency error occurred in DXSET 
 *                     (probably due to a software malfunction in the 
-*                      library routine I1MACH) Should not occured  
+*                      library routine I1MACH) Should not occurred  
 *                      in IEEE floating point, if dlamch works well.
 *          207 : an overflow or underflow of an extended-range number
 *                was detected in DXADJ.

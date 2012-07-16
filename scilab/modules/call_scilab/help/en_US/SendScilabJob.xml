@@ -58,7 +58,7 @@
 // A simple SendScilabJob example
 
 if (SendScilabJob("disp('unfinished quote)")!=0){ // This will fail
- printf("An error occured\n");
+ printf("An error occurred\n");
 }
 SendScilabJob("myMatrix=['sample','for the help']");
  ]]></programlisting>

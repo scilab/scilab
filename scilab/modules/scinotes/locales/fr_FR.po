@@ -357,10 +357,10 @@ msgstr "Vous n'avez pas les droits suffisants pour écrire sur ce fichier"
 msgid "You do not have the permissions to read this file"
 msgstr "Vous n'avez pas les droits suffisants pour ouvrir ce fichier"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Une erreur s'est produite pendant l'exécution du code avec FOP"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Une erreur s'est produite pendant l'impression"
 
 msgid "Tools"

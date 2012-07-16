@@ -28,7 +28,7 @@ function test_run_level(severity)
     if (status == %f) then
       error("At least one error has been detected. Failing all tests.");
       // Since make check is launched by the build system
-      // It checks if any error occured and fails if it happens
+      // It checks if any error occurred and fails if it happens
     end
   end
   

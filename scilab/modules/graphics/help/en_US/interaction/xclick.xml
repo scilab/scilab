@@ -35,7 +35,7 @@
         <term>xcoord</term>
         <listitem>
           <para>Real scalar: x-ccordinate of the mouse pointer when
-            the click or event occured, in current graphic scale (see <link linkend="gca">gca()</link>).
+            the click or event occurred, in current graphic scale (see <link linkend="gca">gca()</link>).
           </para>
         </listitem>
       </varlistentry>
@@ -43,7 +43,7 @@
         <term>ycoord</term>
         <listitem>
           <para>Real scalar: x-ccordinate of the mouse pointer when
-            the click or event occured, in current graphic scale (see <link linkend="gca">gca()</link>).
+            the click or event occurred, in current graphic scale (see <link linkend="gca">gca()</link>).
           </para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
         <term>iwin</term>
         <listitem>
           <para>Real scalar (integer value): number of the window where the
-            action occured.
+            action occurred.
           </para>
         </listitem>
       </varlistentry>

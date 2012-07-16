@@ -41,7 +41,7 @@ namespace GiwsException {
 /**
 * Each subclass of JniExcpetion should call the super constructor
 * and the setErrorMessage function to set the message.
-* @param curEnv java envirnonment where the exception occured.
+* @param curEnv java envirnonment where the exception occurred.
 */
 JniException::JniException(JNIEnv * curEnv) throw() : exception()
 {
@@ -90,7 +90,7 @@ return m_oJavaMessage;
 }
 
 /**
-* @return Java stack trace where the exception occured.
+* @return Java stack trace where the exception occurred.
 */
 std::string JniException::getJavaStackTrace(void) const throw()
 {
@@ -152,7 +152,7 @@ return res;
   }
 
   /**
-   * @return full stack trace when the exception occured.
+   * @return full stack trace when the exception occurred.
    */
   std::string JniException::retrieveStackTrace(JNIEnv * curEnv)
   {
@@ -300,7 +300,7 @@ return res;
   */
   
   /**
-  * @param curEnv java environment where the exception occured.
+  * @param curEnv java environment where the exception occurred.
   */
   JniCallMethodException::JniCallMethodException(JNIEnv * curEnv) throw() : JniException(curEnv)
   {
@@ -334,7 +334,7 @@ setErrorMessage(errorMessage);
   JniMethodNotFoundException::~JniMethodNotFoundException(void) throw() {}
   
   /**
-   * @param curEnv java envirnonment where the exception occured.
+   * @param curEnv java envirnonment where the exception occurred.
    */
   JniObjectCreationException::JniObjectCreationException(JNIEnv * curEnv, const std::string & className) throw() : JniException(curEnv)
   {
@@ -345,7 +345,7 @@ setErrorMessage(errorMessage);
   JniObjectCreationException::~JniObjectCreationException(void) throw() {}
 
   /**
-   * @param curEnv java envirnonment where the exception occured.
+   * @param curEnv java envirnonment where the exception occurred.
    */
   JniMonitorException::JniMonitorException(JNIEnv * curEnv, const std::string & className) throw() : JniException(curEnv)
   {

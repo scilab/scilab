@@ -5,10 +5,8 @@ EXPORTS
 ;
 ; graphics
 sciSetPixmapMode
-sciSetIsBoxed
 sciGetCurrentFigure
 sciGetPixmapMode
-sciSetUsedWindow
 sciSetLineWidth
 sciSetMarkForeground
 sciGetBackground
@@ -20,7 +18,6 @@ sciDeleteWindow
 sciGetRelationship
 sciGetHandle
 sciInitScreenPosition
-sciSetBoxType
 sciInitFontSize
 ConstructSubWin
 sciGetFirstTypedSelectedSon

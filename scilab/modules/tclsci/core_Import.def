@@ -4,7 +4,6 @@ LIBRARY    core.dll
 EXPORTS
 callFunctionFromGateway 
 com_
-getSCIpath
 putlhsvar_
 intersci_
 checklhs_

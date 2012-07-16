@@ -36,7 +36,7 @@ msgid "%s: Invalid driver: %s.\n"
 msgstr "%s: Neplatný ovladač: %s.\n"
 
 #, c-format
-msgid "%s: An error occured: %s\n"
+msgid "%s: An error occurred: %s\n"
 msgstr "%s: Nastala chyba: %s\n"
 
 #, c-format

@@ -34,7 +34,7 @@ void destroyScilabGetHashTable( void ) ;
 /**
  * call the function which the property propertyName of object pObj
  * @return  0 if successful
- *         -1 if an error occured in the get function
+ *         -1 if an error occurred in the get function
  *          1 if the property was not found
  */
 int callGetProperty(void* _pvCtx, char *pObjUID, char * propertyName ) ;

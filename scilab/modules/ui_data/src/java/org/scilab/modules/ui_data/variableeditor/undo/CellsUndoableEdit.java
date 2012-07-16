@@ -36,16 +36,16 @@ public class CellsUndoableEdit extends AbstractUndoableEdit {
 
     /**
      * Constructor
-     * @param model the model where the edit occured
+     * @param model the model where the edit occurred
      */
     public CellsUndoableEdit(SwingEditvarTableModel model, Object newValue, Object oldValue, int row, int col) {
         this.model = model;
-	this.oldValue = oldValue;
-	this.newValue = newValue;
-	this.row = row;
-	this.col = col;
-	this.newRow = model.getScilabMatrixRowCount();
-	this.newCol = model.getScilabMatrixColCount();
+        this.oldValue = oldValue;
+        this.newValue = newValue;
+        this.row = row;
+        this.col = col;
+        this.newRow = model.getScilabMatrixRowCount();
+        this.newCol = model.getScilabMatrixColCount();
 
     }
 
@@ -54,11 +54,11 @@ public class CellsUndoableEdit extends AbstractUndoableEdit {
      */
     public void undo() {
         super.undo();
-	if (oldValue instanceof Vector) {
-	    model.changeData((Vector) oldValue, row, col);
-	} else {
-	    model.setValueAtAndUpdate(true, false, oldValue, row, col);
-	}
+        if (oldValue instanceof Vector) {
+            model.changeData((Vector) oldValue, row, col);
+        } else {
+            model.setValueAtAndUpdate(true, false, oldValue, row, col);
+        }
     }
 
     /**
@@ -66,10 +66,10 @@ public class CellsUndoableEdit extends AbstractUndoableEdit {
      */
     public void redo() {
         super.redo();
-	if (newValue instanceof Vector) {
-	    model.changeData((Vector) newValue, newRow, newCol);
-	} else {
-	    model.setValueAtAndUpdate(true, false, newValue, row, col);
-	}
+        if (newValue instanceof Vector) {
+            model.changeData((Vector) newValue, newRow, newCol);
+        } else {
+            model.setValueAtAndUpdate(true, false, newValue, row, col);
+        }
     }
 }

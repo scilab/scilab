@@ -1988,7 +1988,7 @@ Bug Fixes:
 * Bug 7348 fixed - ATOMS: A module was loaded twice if it was installed both in
                    the "user" and the "allusers" section.
 
-* Bug 7405 fixed - The toolbar was not updated when an undocking occured.
+* Bug 7405 fixed - The toolbar was not updated when an undocking occurred.
 
 * Bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
                    -> nmplot* did not work.
