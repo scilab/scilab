@@ -392,12 +392,6 @@ int sciInitIsClipping(char *pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetLegendPos(char *pobj, double position[])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciSetClipping(char *pobj, double pclip[4])
 {
     return -1;

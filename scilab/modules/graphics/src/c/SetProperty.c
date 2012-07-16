@@ -175,58 +175,6 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
     }
 }
 
-int sciInitLegendPos( char * pobjUID, double position[] )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_LEGEND:
-            pLEGEND_FEATURE (pobjUID)->pos.x = position[0];
-            pLEGEND_FEATURE (pobjUID)->pos.y = position[1];
-            break;
-        case SCI_FIGURE:
-        case SCI_SUBWIN:
-        case SCI_TEXT:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL:
-        case SCI_UIMENU:
-        default:
-            Scierror(999, _("You are not using a legend object.\n"));
-            return -1;
-            break;
-    }
-#endif
-    return 0;
-}
-
-/**sciSetLegendPos
- * Sets the Legend Position in the window
- * @param char * pobjUID: the pointer to the entity
- * @return 0 if ok, -1 if not
- */
-int
-sciSetLegendPos (char * pobjUID, double position[])
-{
-    double position_old[2] ;
-    sciGetLegendPos((sciPointObj *) pobjUID , position_old) ;
-    if ( position[0] ==  position_old[0] && position[1] == position_old[1] )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitLegendPos( pobjUID, position ) ;
-}
-
 int sciInitIsClipping( char * pobjUID, int value )
 {
     // FIXME
