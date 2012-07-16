@@ -386,18 +386,6 @@ BOOL sciGetAutoPosition(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitIsClipping(char *pobj, int value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetClipping(char *pobj, double pclip[4])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciSetTextPos(char *pObj, double posX, double posY, double posZ)
 {
     return -1;
@@ -595,12 +583,6 @@ char *ConstructPolyline(char *pparentsubwin, double *pvecx, double *pvecy, doubl
                         int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetIsClipping(char *pobj, int value)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/

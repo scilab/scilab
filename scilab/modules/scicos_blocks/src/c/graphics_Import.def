@@ -26,7 +26,6 @@ ConstructSubWin
 sciGetFirstTypedSelectedSon
 sciIsExistingFigure
 sciSetSelectedSubWin
-sciSetIsClipping
 sciSetMarkBackground
 sciSetMarkSizeUnit
 sciSetIsMark

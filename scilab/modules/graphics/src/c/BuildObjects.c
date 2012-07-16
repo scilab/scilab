@@ -1725,7 +1725,7 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-    /* this must be done prior to the call of sciSetClipping to know */
+    /* this must be done prior to the call of Set Clipping property to know */
     /* if the clip_state has been set */
 
     /*
