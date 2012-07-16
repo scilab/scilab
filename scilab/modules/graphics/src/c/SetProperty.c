@@ -628,35 +628,6 @@ case SCI_UIMENU:
 }
 
 /*---------------------------------------------------------------------------*/
-int sciInitAutoSize( char * pobjUID, BOOL autoSize )
-{
-    // FIXME
-#if 0
-    switch ( sciGetEntityType (pobjUID) )
-    {
-        case SCI_TEXT:
-            pTEXT_FEATURE(pobjUID)->autoSize = autoSize ;
-            return 0 ;
-        default:
-            printSetGetErrorMessage("text_box_mode");
-            return -1 ;
-            break;
-    }
-#endif
-    return -1;
-
-}
-/*---------------------------------------------------------------------------*/
-int sciSetAutoSize( char * pobjUID, BOOL autoSize )
-{
-    if ( sciGetAutoSize((sciPointObj*) pobjUID ) == autoSize )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAutoSize( pobjUID, autoSize ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitAlignment( char * pobjUID, sciTextAlignment align )
 {
     // FIXME
