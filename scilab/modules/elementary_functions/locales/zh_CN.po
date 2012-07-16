@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 #, c-format
@@ -281,6 +281,10 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同尺寸。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为方阵。\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s：第%d个输入参数的值错误：矩阵不是对角阵。\n"
@@ -328,10 +332,6 @@ msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为列向量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为方阵。\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"

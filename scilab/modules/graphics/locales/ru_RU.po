@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-19 15:08+0000\n"
+"PO-Revision-Date: 2012-07-13 12:53+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -432,6 +432,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
+msgid "Figure n%d"
+msgstr "Рисунок №%d"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Нераспознанный входной параметр «%s».\n"
 
@@ -650,10 +654,6 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: используйте %s.\n"
 
 #, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: Не удалось включить пустой обработчик событий.\n"
-
-#, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Свойство «%s» не существует для этого дескриптора.\n"
 
@@ -800,11 +800,6 @@ msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
 "Неверный тип свойства «%s»: ожидалось вещественное число или дескриптор "
 "«%s».\n"
-
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr ""
-"Невозможно создать запрошенное графического окно: не осталось доступной "
-"памяти.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
@@ -1011,6 +1006,24 @@ msgstr "%s: вектор y не монотонный.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графический модуль Scilab не установлен.\n"
+
+msgid "Average monthly temperatures in french cities"
+msgstr "Среднемесячные температуры во франзузских городах"
+
+msgid "Computing in progress..."
+msgstr "Идёт вычисление..."
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr "(здесь область множества Мандельброта)"
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr ""
+
+msgid "Real part"
+msgstr "Вещественная часть"
+
+msgid "Imaginary part"
+msgstr "Мнимая часть"
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "Графики с 2 разными масштабами по оси Y"

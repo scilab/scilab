@@ -26,7 +26,6 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "Interaction.h"
-#include "ObjectSelection.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
@@ -99,10 +98,6 @@ int sci_delete(char *fname, unsigned long fname_len)
                 GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
                 if (strcmp(cstk(l2), "all") == 0)
                 {
-                    //startGraphicDataWriting();
-                    //sciClearFigure(sciGetCurrentFigure());
-                    //endGraphicDataWriting();
-                    //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
                     int i = 0;
                     int iFigureNumber = sciGetNbFigure();
 

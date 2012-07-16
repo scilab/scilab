@@ -13,15 +13,16 @@
 package org.scilab.modules.preferences.Component;
 
 import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XConfigManager;
 import javax.swing.JComboBox;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-//TODO ScilabSwing class for this?
 
 /** Implementation of Select compliant with extended management.
 *
@@ -34,6 +35,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
      *
      */
     private static final long serialVersionUID = -6127289363733321914L;
+    private Map<String, String> map;
 
     /** Define the set of actuators.
     *
@@ -55,16 +57,23 @@ public class Select extends JComboBox implements XComponent, XChooser {
         NodeList nodelist = peer.getChildNodes();
         int select = 0;
         int index = 0;
+        map = new HashMap<String, String>();
         for (int i = 0; i < nodelist.getLength(); i++) {
             Node node = nodelist.item(i);
             if (node.getNodeName().equals("option")) {
                 String value = XConfigManager.getAttribute(node, "value");
+                String key = XConfigManager.getAttribute(node, "key");
                 String selected = XConfigManager.getAttribute(node, "selected");
                 addItem(value);
                 if (selected.equals("selected")) {
                     select = index;
                 }
-                index += 1;
+                ++index;
+                if (key.equals(XCommonManager.NAV)) {
+                    map.put(value, value);
+                } else {
+                    map.put(value, key);
+                }
             }
         }
 
@@ -88,14 +97,14 @@ public class Select extends JComboBox implements XComponent, XChooser {
                 if (selected.equals("selected")) {
                     select = index;
                 }
-                index += 1;
+                ++index;
             }
         }
         if (select != getSelectedIndex() && select < getItemCount()) {
             setEnabled(false);
             setSelectedIndex(select);
         }
-        String enable = XConfigManager.getAttribute(peer , "enable", "true");
+        String enable = XConfigManager.getAttribute(peer, "enable", "true");
         setEnabled(enable.equals("true"));
     }
 
@@ -105,7 +114,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
     */
     public final Object choose() {
         if (isEnabled()) {
-            return (String) getSelectedItem();
+            return map.get((String) getSelectedItem());
         }
         return null;
     }

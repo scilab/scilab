@@ -243,7 +243,7 @@
         C++ compilers is cdecl.
       </para>
       <para>
-        For more informations, see the  <ulink url="http://msdn.microsoft.com/en-us/library/k2b2ssfy.aspx">MSDN®
+        For more information, see the  <ulink url="http://msdn.microsoft.com/en-us/library/k2b2ssfy.aspx">MSDN®
           Calling Conventions
         </ulink>
         and  <ulink url="http://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">

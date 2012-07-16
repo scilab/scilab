@@ -74,7 +74,7 @@
       <emphasis role="strong">Example 1</emphasis>: Test a module already
       installed
     </para>
-    <programlisting role="example">// Display some additionnal informations
+    <programlisting role="example">// Display some additionnal information
       atomsSetConfig("Verbose","True");
       
       // Get the list of loaded modules:

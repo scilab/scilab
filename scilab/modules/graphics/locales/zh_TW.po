@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -364,6 +364,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
 
 #, c-format
+msgid "Figure n%d"
+msgstr ""
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: 無法辨識之輸入參數: '%s'.\n"
 
@@ -557,10 +561,6 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: 請改用 %s .\n"
 
 #, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: 無法使用一個空事件 (void event) 代碼(handler).\n"
-
-#, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "此代碼 (handle) 之 '%s' 屬性不存在.\n"
 
@@ -697,9 +697,6 @@ msgstr "'%s' 代碼 (handle) 不存在或不再存在.\n"
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr "'%s' 屬性之型態錯誤:應該為實數或  '%s' 代碼(handle).\n"
-
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
@@ -889,6 +886,24 @@ msgid "%s: y vector is not monotonous.\n"
 msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
+msgstr ""
+
+msgid "Average monthly temperatures in french cities"
+msgstr ""
+
+msgid "Computing in progress..."
+msgstr ""
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr ""
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr ""
+
+msgid "Real part"
+msgstr ""
+
+msgid "Imaginary part"
 msgstr ""
 
 msgid "Graphics with 2 different Y-scales"

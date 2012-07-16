@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-20 12:13+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2012-07-12 12:42+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: fr\n"
 
 #, c-format
@@ -129,6 +129,27 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Message Scilab"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -481,9 +502,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&Copier dans le presse-papier"
 
@@ -610,29 +628,14 @@ msgstr "&Vider le presse-papier"
 msgid "&Select all"
 msgstr "&Sélectionner tout"
 
-msgid "P&references"
-msgstr "P&références"
-
-msgid "&Preferences"
-msgstr "&Préférences"
-
-msgid "&Colors"
-msgstr "&Couleurs"
-
-msgid "Console &Background..."
-msgstr "&Arrière-plan de la console..."
-
-msgid "Console &Font..."
-msgstr "&Police de la console..."
-
-msgid "&Font..."
-msgstr "&Police..."
-
 msgid "Clear &History"
 msgstr "Effacer l'&Historique"
 
 msgid "Clear C&onsole"
 msgstr "Effacer la c&onsole"
+
+msgid "P&references"
+msgstr "P&références"
 
 msgid "&Control"
 msgstr "&Contrôle"
@@ -739,9 +742,6 @@ msgstr "Copier"
 msgid "Paste"
 msgstr "Coller"
 
-msgid "Choose Font..."
-msgstr "Choisir la police..."
-
 msgid "Print..."
 msgstr "Imprimer..."
 
@@ -750,6 +750,9 @@ msgstr "Gestionnaire de modules - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr "Préférences de Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Démonstrations"
@@ -865,21 +868,6 @@ msgid ""
 msgstr ""
 "Attention : '%s' la propriété 'Value' doit être égale à la valeur de la "
 "propriété '%s' ou '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : Un handle graphique attendu.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Valeur erronée de la propriété '%s' : Un '%s' ou un handle de type '%s' "
-"attendu.\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Pas de propriété '%s' pour les uicontrols de style : %s.\n"
 
 #, c-format
 msgid ""
@@ -1002,23 +990,15 @@ msgstr ""
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "Valeur erronée de la propriété '%s' : '%s', '%s', ou '%s' attendu.\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : Une liste à deux éléments "
-"attendue.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Valeur erronée de la propriété '%s' : '%s' ou '%s' attendu.\n"
-
 msgid "Console Font..."
 msgstr "Police de la console..."
 
 msgid "Console Background..."
 msgstr "Arrière-plan de la console..."
 
-#, c-format
+msgid "No print service found."
+msgstr ""
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1028,7 +1008,6 @@ msgstr ""
 "sous un mode dans lequel mixer des uicontrols et des graphiques n''est pas "
 "possible. Taper %s pour plus d''informations."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Dans certains cas, %s corrige le problème."
 
@@ -1050,11 +1029,17 @@ msgstr ""
 "d'utiliser Scilab avec des capacités graphiques avancées. Tapez \"\"help "
 "usecanvas\"\" pour plus d'informations.\"\")"
 
-msgid "Clear History"
-msgstr "Effacer l’historique"
-
 msgid "Clear Console"
 msgstr "Effacer la console"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr ""
+
+msgid "Do not show this message again"
+msgstr "Ne plus afficher ce message"
+
+msgid "Clear History"
+msgstr "Effacer l’historique"
 
 msgid "Select All"
 msgstr "Sélectionner tout"
@@ -1204,7 +1189,6 @@ msgstr "Enregistrer et exécuter"
 msgid "Empty tab"
 msgstr "Onglet vide"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1213,16 +1197,11 @@ msgstr ""
 "Veuillez signaler un bug avec le message précédent et en joignant le fichier "
 "%s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
-
-msgid "Do not show this message again"
-msgstr "Ne plus afficher ce message"
 
 msgid "Exit"
 msgstr "Quitter"
@@ -1275,7 +1254,6 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
 

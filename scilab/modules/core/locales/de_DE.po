@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: de\n"
 
 #, c-format
@@ -1078,10 +1078,6 @@ msgstr "%s: überprüfen Sie: %s.\n"
 #, c-format
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: Datei existiert nicht: %s"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: benötigt Scilab Editor.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-24 14:32+0000\n"
+"PO-Revision-Date: 2012-07-13 15:13+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -219,6 +219,8 @@ msgid ""
 "%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
 "option. See help for more information.\n"
 msgstr ""
+"%s: オプションinitial_rect またはedition_modeを指定した3次元ビュー上でラバーボックスを実行できません. "
+"詳細はヘルプを参照ください.\n"
 
 #, c-format
 msgid ""
@@ -355,16 +357,20 @@ msgstr "%s : '%s' を設定してください\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d個の要素を有するベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "Figure n%d"
+msgstr "図 n%d"
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -617,12 +623,6 @@ msgstr "列の数は %d とする必要があります.\n"
 #, c-format
 msgid "%s: please use %s instead.\n"
 msgstr "%s: どうぞ代わりに %s を使ってください。\n"
-
-#
-# File: src/c/SetProperty.c, line: 3369
-#, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: VOIDイベントハンドラは使えません。\n"
 
 #
 # File: src/c/getHandleProperty/get_alignment_property.c, line: 46
@@ -925,9 +925,6 @@ msgstr "'%s' ハンドルは、見つからないか、もうありません。\
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 実数または '%s'ハンドルを指定してください.\n"
 
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr "要求された図を作成できません: メモリ不足です.\n"
-
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' プロパティの大きさが間違っています: 集合 {%s} の中から指定してください.\n"
@@ -1139,7 +1136,7 @@ msgstr "このオブジェクトには %s  を指定する必要があります.
 msgid ""
 "The number of column of the color vector must match the number of points "
 "defining the line (which must be %d or %d).\n"
-msgstr ""
+msgstr "色ベクトルの列の数は線を定義する点の数(%d または %d)に一致する必要があります.\n"
 
 #, c-format
 msgid "WARNING: %s\n"
@@ -1311,6 +1308,24 @@ msgstr "%s: ベクトルy は単調ではありません.\n"
 # File: src/nographics/nographics.c, line: 23
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Scilabグラフィックモジュールはインストールされていません。\n"
+
+msgid "Average monthly temperatures in french cities"
+msgstr "フランス都市部の月単位の平均気温"
+
+msgid "Computing in progress..."
+msgstr "計算中..."
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr "(マンデルブロ集合の面積)"
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr "Matplot1(..) は SCALED AXES の面積を表示します"
+
+msgid "Real part"
+msgstr "実部"
+
+msgid "Imaginary part"
+msgstr "虚部"
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "異なるYスケールを有するグラフィックス"

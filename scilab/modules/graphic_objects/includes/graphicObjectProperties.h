@@ -328,6 +328,8 @@
 #define __GO_UI_STRING__                   "UIString"
 #define __GO_UI_STRING_SIZE__              "UIStringSize"
 #define __GO_UI_STRING_COLNB__             "UIStringColNb"
+#define __GO_UI_TOOLTIPSTRING__            "UITooltipString"
+#define __GO_UI_TOOLTIPSTRING_SIZE__       "UITooltipStringSize"
 #define __GO_UI_SLIDERSTEP__               "UISliderStep"
 #define __GO_UI_UNITS__                    "UIUnits"
 #define __GO_UI_VALUE__                    "UIValue"

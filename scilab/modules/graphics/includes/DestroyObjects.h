@@ -27,16 +27,8 @@
 #define __SCI_DESTROY__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
-#include "machine.h" /* C2F */
 
-
-GRAPHICS_IMPEXP int destroyGraphicsSons(sciPointObj * pthis);
-GRAPHICS_IMPEXP int destroyGraphicHierarchy(char * pthis); /* DESTROY */
 GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
-
-/* free the user_data */
-GRAPHICS_IMPEXP void clearUserData( sciPointObj * pObj ) ;
 
 GRAPHICS_IMPEXP void sciDeleteWindow( int winNum ) ;
 

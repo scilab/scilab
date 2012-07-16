@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullfile">
   <refnamediv>
     <refname>fullfile</refname>
-    <refpurpose>Build a full filename from parts</refpurpose>
+    <refpurpose>builds a full filename from parts</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -26,13 +26,19 @@
       <varlistentry>
         <term>varargin</term>
         <listitem>
-          <para>all directories and filename used to build the full filename (at least one directory and filename)</para>
+          <para>
+            character strings, all directories and filename used to
+            build the full filename (at least one directory and
+            filename).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>full filename</para>
+          <para>
+            a character string or matrix of strings, full filename.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

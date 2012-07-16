@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\BasicAlgos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\DllmainRenderer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\JavaInteraction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rendererBasicAlgos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\RendererFontManager.cpp">
@@ -56,9 +50,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cpp\BasicAlgos.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\dynlib_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,12 +57,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\JavaInteraction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\rendererBasicAlgos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\RendererFontManager.h">

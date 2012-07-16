@@ -78,6 +78,8 @@ src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
 src/cpp/SetUicontrolString.cpp \
 src/cpp/GetUicontrolString.cpp \
+src/cpp/SetUicontrolTooltipString.cpp \
+src/cpp/GetUicontrolTooltipString.cpp \
 src/cpp/SetUicontrolBackgroundColor.cpp \
 src/cpp/GetUicontrolBackgroundColor.cpp \
 src/cpp/SetUiobjectForegroundColor.cpp \

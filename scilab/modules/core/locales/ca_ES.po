@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: ca\n"
 
 #, c-format
@@ -1128,10 +1128,6 @@ msgstr "%s: Comproveu: %s.\n"
 #, c-format
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: No existeix el fitxer: %s"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Requereix l'editor de l'Scilab.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

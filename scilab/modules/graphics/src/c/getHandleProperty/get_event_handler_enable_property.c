@@ -21,9 +21,7 @@
 /*        of a handle                                                     */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-
-#include "ObjectStructure.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -41,7 +39,7 @@ int get_event_handler_enable_property(void* _pvCtx, char* pobjUID)
 
     if ( piEventHandlerEnable == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable") ;
         return -1 ;
     }
 

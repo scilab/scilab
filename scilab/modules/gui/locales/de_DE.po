@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: de\n"
 
 #, c-format
@@ -126,6 +126,27 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Scilab Nachricht"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -463,9 +484,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&In die Zwischenablage kopieren"
 
@@ -592,29 +610,14 @@ msgstr "&Zwischenablage leeren"
 msgid "&Select all"
 msgstr "&Alles auswählen"
 
-msgid "P&references"
-msgstr ""
-
-msgid "&Preferences"
-msgstr "&Voreinstellungen"
-
-msgid "&Colors"
-msgstr "&Farben"
-
-msgid "Console &Background..."
-msgstr "Konsole &Hintergrund"
-
-msgid "Console &Font..."
-msgstr "Konsole &Zeichensatz"
-
-msgid "&Font..."
-msgstr "&Zeichensatz ..."
-
 msgid "Clear &History"
 msgstr "Verlaufsspeicher &leeren"
 
 msgid "Clear C&onsole"
 msgstr "&Konsole leeren"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Control"
 msgstr "&Steuerung"
@@ -721,9 +724,6 @@ msgstr "Kopieren"
 msgid "Paste"
 msgstr "Einfügen"
 
-msgid "Choose Font..."
-msgstr "Schriftart auswählen ..."
-
 msgid "Print..."
 msgstr "Drucken ..."
 
@@ -732,6 +732,9 @@ msgstr "Modulmanager - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr ""
 
 msgid "Scilab Demonstrations"
 msgstr "Scilab Demos"
@@ -843,19 +846,6 @@ msgid ""
 msgstr ""
 "Warnung: '%s' 'Wert' Eigenschaft sollte gleich oder entweder '%s' oder '%s' "
 "Eigenschaftswert sein.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "Falsche Größe für '%s' Eigenschaft: ein Grafik-Handle erwartet.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Falscher Wert für Eigenschaft '%s': ein '%s' oder '%s' Handle erwartet.\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Keine '%s' Eigenschaft für Uicontrol des Designs: %s.\n"
 
 #, c-format
 msgid ""
@@ -976,29 +966,21 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 "Falscher Wert für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr ""
-"Falsche Größe für Eigenschaft '%s': eine Liste mit zwei Elementen erwartet.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Falscher Wert für Eigenschaft '%s': '%s' oder '%s' erwartet.\n"
-
 msgid "Console Font..."
 msgstr "Zeichensatz der Konsole"
 
 msgid "Console Background..."
 msgstr "Hintergrund der Konsole..."
 
-#, c-format
+msgid "No print service found."
+msgstr ""
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1014,11 +996,17 @@ msgid ""
 "information.\")"
 msgstr ""
 
-msgid "Clear History"
-msgstr "Verlauf löschen"
-
 msgid "Clear Console"
 msgstr "Konsole leeren"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr ""
+
+msgid "Do not show this message again"
+msgstr ""
+
+msgid "Clear History"
+msgstr "Verlauf löschen"
 
 msgid "Select All"
 msgstr "Alle auswählen"
@@ -1168,17 +1156,14 @@ msgstr "Speichern und ausführen"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1233,7 +1218,6 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, c-format
 msgid "All %s files"
 msgstr "Alle %s Dateien"
 

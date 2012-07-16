@@ -48,7 +48,6 @@
 #include "math_graphics.h"
 #include "Scierror.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "BasicAlgos.h"
 #include "FigureList.h"
 #include "localization.h"
@@ -574,79 +573,6 @@ sciSetDefaultValues (void)
     return 0;
 }
 
-int sciInitVisibility( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_FIGURE:
-            pFIGURE_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_SUBWIN:
-            pSUBWIN_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_LEGEND:
-            pLEGEND_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_ARC:
-            pARC_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_POLYLINE:
-            pPOLYLINE_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_RECTANGLE:
-            pRECTANGLE_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_SURFACE:
-            pSURFACE_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_SEGS:
-            pSEGS_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_FEC:
-            pFEC_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_GRAYPLOT:
-            pGRAYPLOT_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_TEXT:
-            pTEXT_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_AXES:
-            pAXES_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_AGREG:
-            pAGREG_FEATURE (pobjUID)->visible = value;
-            break;
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-            return sciInitVisibility( pLABEL_FEATURE(pobjUID)->text, value ) ;
-            break;
-        case SCI_UIMENU:
-        case SCI_UICONTROL:
-        default:
-            return -1 ;
-            break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetVisibility*/
-int
-sciSetVisibility (char * pobjUID, BOOL value)
-{
-    if ( sciGetVisibility((sciPointObj *) pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitVisibility( pobjUID, value ) ;
-
-}
-
 int sciInitNum( char * pobjUID, int value )
 {
     // FIXME
@@ -716,19 +642,6 @@ void sciSelectFirstSubwin( char * parentFigure )
 #endif
 }
 
-
-int sciInitSelectedSubWin( char * psubwinobj )
-{
-    // FIXME
-    abort();
-#if 0
-    sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
-
-    sciInitSelectedObject( psubwinobj ) ;
-#endif
-    return 0 ;
-}
-
 /**sciSetSelectedSubWin
  * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
  * It has been adapted to the MVC. Its should be implemented entirely
@@ -758,12 +671,6 @@ sciSetSelectedSubWin (char * psubwinobjUID)
     return 0;
 }
 
-/*-------------------------------------------------------------------------------*/
-int sciInitSelectedObject( char * pobjUID )
-{
-    sciAddUniqueSelectedSon((sciPointObj *)sciGetParent(pobjUID), (sciPointObj *)pobjUID ) ;
-    return 0 ;
-}
 /*-------------------------------------------------------------------------------*/
 
 /**sciSetOriginalSubWin

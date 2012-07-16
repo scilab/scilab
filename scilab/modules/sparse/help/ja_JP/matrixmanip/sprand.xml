@@ -168,7 +168,7 @@ nnzs=nnz(s);
       アルゴリズムが正しく実行されていることを確認するために
       要素の統計値を計算することができます.
     </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="no-scilab-exec"><![CDATA[
   // A_ijの期待値は
   density * kmax
   // この値を実際のイベントと比較 :

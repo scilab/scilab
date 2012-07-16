@@ -846,7 +846,7 @@ int readPolyComplexMatrix(int _iDatasetId, char *_pstVarname, int _iRows, int _i
     return readCommonPolyMatrix(_iDatasetId, _pstVarname, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char *_pcData)
+int readInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, char *_pcData)
 {
     herr_t status = 0;
 
@@ -868,7 +868,7 @@ int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char *_pcData)
     return 0;
 }
 
-int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short *_psData)
+int readInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, short *_psData)
 {
     herr_t status = 0;
 
@@ -890,7 +890,7 @@ int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short *_psData
     return 0;
 }
 
-int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int *_piData)
+int readInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, int *_piData)
 {
     herr_t status = 0;
 
@@ -912,7 +912,7 @@ int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int *_piData)
     return 0;
 }
 
-int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long *_pllData)
+int readInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long *_pllData)
 {
     herr_t status = 0;
 
@@ -934,7 +934,7 @@ int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long *_pl
     return 0;
 }
 
-int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char *_pucData)
+int readUnsignedInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char *_pucData)
 {
     herr_t status = 0;
 
@@ -956,7 +956,7 @@ int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
     return 0;
 }
 
-int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short *_pusData)
+int readUnsignedInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short *_pusData)
 {
     herr_t status = 0;
 
@@ -978,7 +978,7 @@ int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
     return 0;
 }
 
-int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int *_puiData)
+int readUnsignedInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int *_puiData)
 {
     herr_t status = 0;
 
@@ -1000,7 +1000,7 @@ int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
     return 0;
 }
 
-int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long *_pullData)
+int readUnsignedInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long *_pullData)
 {
     herr_t status = 0;
 
@@ -1040,7 +1040,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
 
     //read Row data
     obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[0]);
-    status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+    status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
     if (status < 0)
     {
         return -1;
@@ -1048,7 +1048,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
 
     //read cols data
     obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+    status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
     if (status < 0)
     {
         return -1;
@@ -1102,7 +1102,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
     //read Row data
     obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[0]);
-    status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+    status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
     if (status < 0)
     {
         return -1;
@@ -1110,7 +1110,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
     //read cols data
     obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+    status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
     if (status < 0)
     {
         return -1;

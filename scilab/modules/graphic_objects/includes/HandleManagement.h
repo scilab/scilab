@@ -26,42 +26,6 @@
 
 #include "dynlib_graphic_objects.h"
 
-/* Handle functions */
-/*
-GRAPHICS_IMPEXP void sciSetHandle (sciPointObj * pobj, long value);
-GRAPHICS_IMPEXP int sciAddNewHandle (sciPointObj * pobj);
-GRAPHICS_IMPEXP int sciDelHandle (sciPointObj * pobj);
-GRAPHICS_IMPEXP sciPointObj *sciGetPointerFromHandle (long handle);
-
-GRAPHICS_IMPEXP sciRelationShip *sciGetRelationship (sciPointObj * pobj);
-GRAPHICS_IMPEXP int sciSetParent (sciPointObj * pson, sciPointObj * pparent);
-GRAPHICS_IMPEXP sciPointObj *sciGetParent (sciPointObj * pobj);
-GRAPHICS_IMPEXP BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent);
-GRAPHICS_IMPEXP BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent);
-GRAPHICS_IMPEXP BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent);
-GRAPHICS_IMPEXP BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent);
-GRAPHICS_IMPEXP sciSons *sciGetSons (sciPointObj * pobj);
-GRAPHICS_IMPEXP sciSons *sciGetLastSons (sciPointObj * pobj);
-GRAPHICS_IMPEXP sciSons * sciGetNextAccessibleSon( sciSons * son ) ;
-
-GRAPHICS_IMPEXP sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
-*/
-
-/**
- * Check if a handle is still valid
- */
-/*
-GRAPHICS_IMPEXP BOOL isHandleValid(long handle);
-
-GRAPHICS_IMPEXP sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int lindex);
-*/
-/**
- * Generate a new handle index for an object.
- */
-/*
-GRAPHICS_IMPEXP long generateNewHandle(sciPointObj * pObj);
-*/
-
 GRAPHIC_OBJECTS_IMPEXP void *sciGetPointerFromHandle(long handle);
 
 /**

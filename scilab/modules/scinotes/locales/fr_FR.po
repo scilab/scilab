@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-27 10:34+0000\n"
+"PO-Revision-Date: 2012-07-12 12:43+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: fr\n"
 
 #, c-format
@@ -212,12 +212,6 @@ msgstr "Décaler à droite"
 msgid "Shift Left"
 msgstr "Décaler à gauche"
 
-msgid "Configure Tabulation"
-msgstr "Configurer la tabulation"
-
-msgid "Horizontal wrapping"
-msgstr "Justifier horizontalement"
-
 msgid "Correct Indentation"
 msgstr "Corriger l'indentation"
 
@@ -254,12 +248,17 @@ msgstr "Options"
 msgid "Current file encoding"
 msgstr "Encodage du fichier actuel"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Encodage du fichier par défaut SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Fin de lignes"
+
+msgid "Auto-completion on"
+msgstr ""
+
+msgid "(, [, ..."
+msgstr "(, [, ..."
+
+msgid "if, function, ..."
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numérotation de lignes;Désactivée;Normale;Compatible whereami"
@@ -714,6 +713,17 @@ msgstr "Problèmes d'encodage"
 msgid "Cannot guess the file encoding."
 msgstr "Impossible de supposer l'encodage du fichier."
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+
+msgid "Backup finished..."
+msgstr ""
+
+#, c-format
+msgid "%s occurences found."
+msgstr ""
+
 msgid "Change Colors"
 msgstr "Changer les couleurs"
 
@@ -797,6 +807,9 @@ msgstr "Restaurer les fichiers de la session précédente ?"
 
 msgid "Restore the last sessions"
 msgstr "Restaurer la dernière session"
+
+msgid "Configure Tabulation"
+msgstr "Configurer la tabulation"
 
 msgid "Tab style"
 msgstr "Style de tabulation"

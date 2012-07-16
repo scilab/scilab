@@ -27,10 +27,41 @@ Javasci
 * Javasci version 1 removed (deprecated in Scilab 5.3.0).
 
 
+Documentation
+=============
+
+* Management of Docbook tags <varname>, <command> and <constant>.
+  See bug #11459.
+
+* help_from_sci updated to manage recent changes in docbook Scilab files.
+
+
+GUI
+===
+
+* Uicontrols tooltip can now be managed using the new "TooltipString" property.
+
+
+Obsolete Functions
+===================
+
+* createpopup function is now obsolete. Please use 'uicontextmenu' instead.
+
+* uipopup function is now obsolete. Please use 'uicontextmenu' instead.
+
+
+Unitary tests
+=============
+
+* A fourth argument added to test_run to export test results to XUnit format.
+
+
 Bug Fixes
 =========
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
+
+* Bug #7912 fixed - convert_to_float did not have documentation.
 
 * Bug #9830 fixed - leastsq did not match the information of optim.
 
@@ -43,6 +74,9 @@ Bug Fixes
                      button.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
+
+* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
+                     logarithm scale.
 
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
                               when executed.
@@ -62,9 +96,11 @@ Bug Fixes
 * Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
                      the parameter section.
 
+* Bug #11372 fixed - Calling odeoptions() returned an error.
+
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
-                     
+
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
@@ -77,12 +113,20 @@ Bug Fixes
 * Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
                      rather than only the variable "a".
 
+* Bug #11443 fixed - There was no way to set default language via prefs under
+                    Windows.
+
+* Bug #11457 fixed - fscanf was not set as obsolete but called an obsolete function.
+
+* Bug #11459 fixed - Docbook tags varname, command, constant and option were not
+                     handled.
+
 
 Known Incompatibilities
 =======================
 
 * In previous versions, the newest() function could be called with a string vector
-  as second (up to last) input argument. In these cases, only the first string of 
+  as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
 
@@ -1415,7 +1459,7 @@ Documentation
 
 
 Obsolete Functions
-===================
+==================
 
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed in Scilab 5.4.1.

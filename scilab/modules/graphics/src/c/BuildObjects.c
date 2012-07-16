@@ -37,7 +37,6 @@
 #include "StringMatrix.h"
 #include "Scierror.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "FigureList.h"
 #include "localization.h"
 #include "Interaction.h"
@@ -266,14 +265,6 @@ char * allocateText(char * pparentsubwinUID,
     /* Required to initialize the default contour properties */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    /* To be implemented */
-#if 0
-    ppText->callback = (char *)NULL;
-    ppText->callbacklen = 0;
-    ppText->callbackevent = 100;
-    ppText->visible = sciGetVisibility(pparentsubwin);
-#endif
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, piVisible, jni_bool, 1);
     releaseGraphicObjectProperty(__GO_VISIBLE__, piVisible, jni_bool, 1);
@@ -307,29 +298,6 @@ char * allocateText(char * pparentsubwinUID,
     position[2] = 0.0;
 
     setGraphicObjectProperty(pobjUID, __GO_POSITION__, position, jni_double_vector, 3);
-
-    /*
-     * Possibly useless.
-     * To be deleted
-     */
-#if 0
-    ppText->is3d = TRUE;
-#endif
-
-    /*
-     * This was used by the previous renderer to return the Text
-     * object's bounding box, but has no present equivalent within the MVC.
-     * To be implemented when needed
-     */
-#if 0
-    /* initialize to a not too weird value */
-    for (i = 0; i < 4; i++)
-    {
-        ppText->corners[i][0] = ppText->x;
-        ppText->corners[i][1] = ppText->y;
-        ppText->corners[i][2] = ppText->z;
-    }
-#endif
 
     setGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, &centerPos, jni_int, 1);
     setGraphicObjectProperty(pobjUID, __GO_AUTO_DIMENSIONING__, &autoSize, jni_bool, 1);
@@ -412,21 +380,6 @@ char * ConstructText(char * pparentsubwinUID, char **text, int nbRow, int nbCol,
     pobjUID = allocateText(pparentsubwinUID, text, nbRow, nbCol, x, y,
                            autoSize, userSize, centerPos, foreground, background, isboxed, isline, isfilled, align);
 
-    /* allocateText never returns NULL, to be deleted. */
-#if 0
-    if (pobjUID == NULL)
-    {
-        return NULL;
-    }
-#endif
-
-    //    if (sciAddNewHandle (pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return NULL;
-    //    }
-
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
     setCurrentObject(pobjUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
@@ -493,18 +446,6 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     /* Required to initialize the default contour and font properties */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    /* To be implemented */
-#if 0
-    ppLegend->text.callback = (char *)NULL;
-    ppLegend->text.callbacklen = 0;
-    ppLegend->text.callbackevent = 100;
-#endif
-
-    /* To be implemented, probably useless */
-#if 0
-    ppLegend->text.isboxed = FALSE;
-#endif
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
@@ -551,11 +492,6 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     /* 9: LOWER_CAPTION */
     legendLocation = 9;
     setGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
-
-    /* To be implemented */
-#if 0
-    ppLegend->isselected = TRUE;
-#endif
 
     /* Clipping: to be checked for consistency */
     clipRegionSet = 0;
@@ -649,23 +585,9 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
     barWidth = 0.0;
     setGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
 
-    /* To be implemented */
-#if 0
-    pPOLYLINE_FEATURE(pobj)->callback = (char *)NULL;
-    pPOLYLINE_FEATURE(pobj)->callbacklen = 0;
-    pPOLYLINE_FEATURE(pobj)->callbackevent = 100;
-#endif
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-    /* To be deleted, see the MVC corresponding calls below */
-#if 0
-    pPOLYLINE_FEATURE(pobj)->clip_region_set = 0;
-    sciInitIsClipping(pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)));
-    sciSetClipping(pobj, sciGetClipping(sciGetParentSubwin(pobj)));
-#endif
 
     /* Clip state and region */
     /* To be checked for consistency */
@@ -686,11 +608,6 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
 
     arrowSizeFactor = 1.0;
     setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
-
-    /* To be implemented */
-#if 0
-    pPOLYLINE_FEATURE(pobj)->isselected = TRUE;
-#endif
 
     /*
      * First element: number of gons (always 1 for a Polyline)
@@ -925,13 +842,6 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
      */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    /* To be implemented */
-#if 0
-    ppArc->callback = (char *)NULL;
-    ppArc->callbacklen = 0;
-    ppArc->callbackevent = 100;
-#endif
-
     upperLeftPoint[0] = x;
     upperLeftPoint[1] = y;
     upperLeftPoint[2] = 0.0;
@@ -944,11 +854,6 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
     setGraphicObjectProperty(pobjUID, __GO_START_ANGLE__, &alphabegin, jni_double, 1);
     setGraphicObjectProperty(pobjUID, __GO_END_ANGLE__, &alphaend, jni_double, 1);
 
-    /* To be implemented */
-#if 0
-    ppArc->isselected = TRUE;
-#endif
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
@@ -956,15 +861,6 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
     getGraphicObjectProperty(pparentsubwinUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     setGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
-
-    /* To be checked for consistency */
-#if 0
-    ppArc->clip_region_set = 0;
-    /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-    sciInitIsClipping(pobj, sciGetIsClipping(pparentsubwin));
-    sciSetClipping(pobj, sciGetClipping(pparentsubwin));
-    /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
-#endif
 
     /*
      * Clip state and region
@@ -1061,13 +957,6 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
      */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    /* To be implemented */
-#if 0
-    pRECTANGLE_FEATURE(pobj)->callback = (char *)NULL;
-    pRECTANGLE_FEATURE(pobj)->callbacklen = 0;
-    pRECTANGLE_FEATURE(pobj)->callbackevent = 100;
-#endif
-
     upperLeftPoint[0] = x;
     upperLeftPoint[1] = y;
     upperLeftPoint[2] = 0.0;
@@ -1077,20 +966,8 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     setGraphicObjectProperty(pobjUID, __GO_HEIGHT__, &height, jni_double, 1);
     setGraphicObjectProperty(pobjUID, __GO_WIDTH__, &width, jni_double, 1);
 
-    /* To be implemented */
-#if 0
-    pRECTANGLE_FEATURE(pobj)->isselected = TRUE;
-#endif
-
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-    /* Clipping: to be checked */
-#if 0
-    pRECTANGLE_FEATURE(pobj)->clip_region_set = 0;
-    sciInitIsClipping(pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)));
-    sciSetClipping(pobj, sciGetClipping(sciGetParentSubwin(pobj)));
-#endif
 
     /* Clip state and region */
     /* To be checked for consistency */
@@ -1229,22 +1106,8 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
         return NULL;
     }
 
-    /* To be implemented */
-#if 0
-    psurf->callback = (char *)NULL;
-    psurf->callbacklen = 0;
-    psurf->callbackevent = 100;
-#endif
-
     pobjUID = (char *)createGraphicObject(surfaceTypes[*isfac]);
     createDataObject(pobjUID, surfaceTypes[*isfac]);
-
-    /*Adding F.Leray 19.03.04 */
-    /* Dimension of the color matrix, to be implemented (vector case) */
-#if 0
-    psurf->m3n = *m3n;
-    psurf->n3n = *n3n;
-#endif
 
     /* Clip state and region */
     /* To be checked for consistency */
@@ -1324,29 +1187,6 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     }
 
     /*-------END Replaced by: --------*/
-
-    /* To be implemented */
-#if 0
-    psurf->isselected = TRUE;
-#endif
-
-    /* The flag array is apparently now useless (flag[0] == COLOR_MODE, the two remaining ones are unused) */
-#if 0
-    psurf->flag[0] = flag[0];   /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */
-    psurf->flag[1] = flag[1];
-    psurf->flag[2] = flag[2];
-#endif
-
-    /* DJ.A 2003 */
-    /* Apparently useless */
-#if 0
-    psurf->ebox[0] = ebox[0];
-    psurf->ebox[1] = ebox[1];
-    psurf->ebox[2] = ebox[2];
-    psurf->ebox[3] = ebox[3];
-    psurf->ebox[4] = ebox[4];
-    psurf->ebox[5] = ebox[5];
-#endif
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_HIDDEN_COLOR__, jni_int, (void **)&piHiddenColor);
     setGraphicObjectProperty(pobjUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
@@ -1428,15 +1268,6 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
         releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
         return NULL;
     }
-
-    /* To be implemented */
-#if 0
-    pGRAYPLOT_FEATURE(pobj)->callback = (char *)NULL;
-    pGRAYPLOT_FEATURE(pobj)->callbacklen = 0;
-    pGRAYPLOT_FEATURE(pobj)->callbackevent = 100;
-
-    pGRAYPLOT_FEATURE(pobj)->isselected = TRUE;
-#endif
 
     /* 0: scaled; only used for Grayplot */
     if (type == 0)
@@ -1576,14 +1407,6 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
 
     /* Required to initialize the default contour properties */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
-
-    /* To be implemented */
-#if 0
-    pAXES_FEATURE(pobj)->callback = (char *)NULL;
-    pAXES_FEATURE(pobj)->callbacklen = 0;
-    pAXES_FEATURE(pobj)->callbackevent = 100;
-    pAXES_FEATURE(pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-#endif
 
     /* Clipping: to be checked for consistency */
     clipRegionSet = 0;
@@ -1783,15 +1606,6 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
         return (char *)NULL;
     }
 
-    /* To be implemented */
-#if 0
-    pFEC_FEATURE(pobj)->callback = (char *)NULL;
-    pFEC_FEATURE(pobj)->callbacklen = 0;
-    pFEC_FEATURE(pobj)->callbackevent = 100;
-
-    pFEC_FEATURE(pobj)->isselected = TRUE;
-#endif
-
     /* Allocates the coordinates array */
     result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
 
@@ -1844,12 +1658,6 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
-
-    /* Clipping: to be checked */
-#if 0
-    sciInitIsClipping(pobj, sciGetIsClipping(pparentsubwin));
-    sciSetClipping(pobj, sciGetClipping(pparentsubwin));
-#endif
 
     /*
      * Clip state and region
@@ -1912,15 +1720,6 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     {
         return (char *)NULL;
     }
-
-    /* To be implemented */
-#if 0
-    ppSegs->callback = (char *)NULL;
-    ppSegs->callbacklen = 0;
-    ppSegs->callbackevent = 100;
-
-    ppSegs->isselected = TRUE;
-#endif
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
@@ -2033,17 +1832,6 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
         setGraphicObjectProperty(pobjUID, __GO_BASE_X__, vx, jni_double_vector, Nbr1);
         setGraphicObjectProperty(pobjUID, __GO_BASE_Y__, vy, jni_double_vector, Nbr2);
 
-        /*
-         * Foreground color
-         * It has no apparent effect in Scilab 5.3.X and is therefore
-         * commented out for now.
-         */
-#if 0
-        tmp = (int *)getGraphicObjectProperty(pparentsubwinUID, __GO_LINE_COLOR__, jni_int);
-        foreground = *tmp;
-        setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
-#endif
-
         for (i = 0; i < numberArrows; i++)
         {
             arrowCoords[3 * i] = vfx[i];
@@ -2120,32 +1908,10 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
     /* Sets the parent-child relationship for the Compound */
     setGraphicObjectRelationship(parentAxesUID, compoundUID);
 
-    /* Deactivated */
-#if 0
-    ppCompound->callback = (char *)NULL;
-    ppCompound->callbacklen = 0;
-#endif
-
-    /*
-     * To be checked: difference between sciGetParentSubwin and directly getting
-     * the Compound's parent's visible property
-     */
-#if 0
-    ppCompound->visible = sciGetVisibility(sciGetParentSubwin(compound));
-#endif
-
     getGraphicObjectProperty(parentAxesUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
     setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     releaseGraphicObjectProperty(__GO_PARENT__, parentAxesUID, jni_string, 1);
-
-    /*
-     * Not implemented within the MVC yet
-     * To be implemented
-     */
-#if 0
-    ppCompound->isselected = TRUE;
-#endif
 
     return (char *)compoundUID;
 }
@@ -2217,11 +1983,6 @@ char *ConstructCompoundSeq(int number)
     releaseGraphicObjectProperty(__GO_PARENT_FIGURE__, parentFigure, jni_string, 1);
 
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-    /* To be implemented */
-#if 0
-    ppagr->isselected = TRUE;
-#endif
 
     return (char *)pobjUID;
 }

@@ -27,7 +27,6 @@
 #include "GetProperty.h"
 #include "Format.h"
 #include "Scierror.h"
-#include "ObjectSelection.h"
 #include "localization.h"
 #include "returnProperty.h"
 #include "HandleManagement.h"

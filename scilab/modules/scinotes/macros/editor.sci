@@ -21,8 +21,8 @@ function editor(varargin)
     elseif prefsNode.attributes("external-cmd") == "true" then
         cmd = prefsNode.attributes.cmd;
         xmlDelete(doc);
-        for item=varargin
-            cmd = cmd + " " + string(item); 
+        if ~isempty(varargin) then
+            cmd = cmd + " """ + string(varargin(1)) + """";
         end
         unix_w(cmd);
     else
@@ -59,3 +59,5 @@ function cmd = makeCommand(name, args)
     end
     cmd = cmd + ")";
 endfunction
+
+

@@ -7,6 +7,9 @@
 
 // <-- INTERACTIVE TEST -->
 
+wMode = warning("query");
+warning("off");
+
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string vector expected.\n"), "uipopup", 1);
 assert_checkerror("res = uipopup(1);", refMsg);
 
@@ -21,3 +24,5 @@ assert_checkequal(res, "Item1");
 res = uipopup(["Item1";"Item2";"Item3"])
 // Clic on Item2
 assert_checkequal(res, "Item2");
+
+warning(wMode);

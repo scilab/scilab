@@ -36,7 +36,7 @@
   <refsection>
     <title>説明</title>
     <para>
-      dispfiles は,
+      <literal>dispfiles</literal> は,
       現在オープンされているファイルのプロパティを表示します.
     </para>
   </refsection>

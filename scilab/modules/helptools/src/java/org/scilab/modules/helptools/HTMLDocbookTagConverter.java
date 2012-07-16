@@ -639,6 +639,50 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a varname
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleVarname(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "varname", contents);
+    }
+
+    /**
+     * Handle a command
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleCommand(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "command", contents);
+    }
+
+    /**
+     * Handle a constant
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleConstant(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "constant", contents);
+    }
+
+    /**
+     * Handle a option
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleOption(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "option", contents);
+    }
+
+    /**
      * Handle a refnamediv
      * @param attributes the tag attributes
      * @param contents the tag contents

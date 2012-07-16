@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dir">
   <refnamediv>
     <refname>dir</refname>
-    <refpurpose> get file list </refpurpose>
+    <refpurpose>gets file list </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,7 +29,8 @@
         <term>path</term>
         <listitem>
           <para>a string matrix giving a directory pathname (eventually  ended
-            by a pattern built with <literal>*</literal>). Default value is <literal>.</literal>
+            by a pattern built with <literal>*</literal>). Default
+            value is <literal>.</literal> (a dot) 
           </para>
         </listitem>
       </varlistentry>
@@ -49,11 +50,12 @@
     <para>
       <literal>dir</literal> can be used to get the files which match 
       the patterns given by the path argument. 
-      Patterns are given to the unix <literal>ls</literal> or to the windows
-      <literal>dir</literal> commands in order to get information on files. 
+      Patterns are given to the Unix <literal>ls</literal> or to the Windows
+      <literal>dir</literal> commands in order to get information about files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
-      for both os are to be given. Note that Pathname conversion is
-      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid pattern for both unix and windows.
+      for both OS are to be given. Note that pathname conversion is
+      performed and for example <literal>SCI/modules/core/macros/*.sci</literal>
+	  is a valid pattern for both Unix and Windows.
     </para>
     <para>
       The <literal>name</literal> field of the returned variable is the column vector
@@ -73,7 +75,7 @@
     </para>
     <para>
       The default display of the returned structure is a column formatted list
-      of files. It can be changed redefining the function <literal>%dir_p</literal>
+      of files. It can be changed redefining the function <literal>%dir_p</literal>.
     </para>
     <para>
       Since Scilab 5.3.1, a trailing "/" or "\" (See <link linkend="filesep">filesep</link>) is displayed for each directory.

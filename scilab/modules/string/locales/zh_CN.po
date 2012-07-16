@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"PO-Revision-Date: 2012-06-09 05:50+0000\n"
+"PO-Revision-Date: 2012-06-22 03:37+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 msgid "WARNING : \n"
@@ -32,10 +32,10 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或者整�
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
+msgstr "%s：特性%s已废弃。\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
@@ -224,11 +224,11 @@ msgstr "%s：输入参数#%d的大小错误：应该为非空矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小出错：应该为单字符串（即不是字符串矩阵）。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为单字符串（即不是字符串矩阵）。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -240,7 +240,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
@@ -252,7 +252,7 @@ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
@@ -369,7 +369,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

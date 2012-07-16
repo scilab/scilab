@@ -1424,6 +1424,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       ndata = mget(1,"il",fd); // SliderStep (size)
       h.sliderstep = mget(ndata,"dl",fd); // SliderStep (data)
       h.string = load_text_matrix(fd) ; // String
+      if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
+          h.tooltipstring = load_text_matrix(fd) ; // TooltipString
+      end
       h.units = ascii(mget(mget(1,"c",fd),"c",fd)); // Units
       h.position = position_in_units; // Position written after 'Units' to avoid them to be computed again
       ndata = mget(1,"il",fd); // Value (size)

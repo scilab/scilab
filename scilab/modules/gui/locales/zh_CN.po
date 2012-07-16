@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-30 10:07+0000\n"
+"PO-Revision-Date: 2012-06-23 08:50+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 #, c-format
@@ -23,16 +23,16 @@ msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'或者'%s'。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -106,6 +106,27 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串或者一�
 
 msgid "Scilab Message"
 msgstr "Scilab消息"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -390,9 +411,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "复制到剪切板(&C)"
 
@@ -519,29 +537,14 @@ msgstr "清空剪切板(&E)"
 msgid "&Select all"
 msgstr "全选(&S)"
 
-msgid "P&references"
-msgstr ""
-
-msgid "&Preferences"
-msgstr "首选项(&P)"
-
-msgid "&Colors"
-msgstr "颜色(&C)"
-
-msgid "Console &Background..."
-msgstr "控制台背景...(&B)"
-
-msgid "Console &Font..."
-msgstr "控制台字体...(&F)"
-
-msgid "&Font..."
-msgstr "字体...(&F)"
-
 msgid "Clear &History"
 msgstr "清除历史(&H)"
 
 msgid "Clear C&onsole"
 msgstr "清除控制台(&o)"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Control"
 msgstr "控制(&C)"
@@ -648,9 +651,6 @@ msgstr "复制"
 msgid "Paste"
 msgstr "粘贴"
 
-msgid "Choose Font..."
-msgstr "选择字体..."
-
 msgid "Print..."
 msgstr "打印..."
 
@@ -659,6 +659,9 @@ msgstr "模块管理器 - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr ""
 
 msgid "Scilab Demonstrations"
 msgstr ""
@@ -761,18 +764,6 @@ msgid ""
 msgstr "警告：'%s'的'Value'属性应该等于'%s'或'%s'属性值。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个图形句柄。\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr "属性'%s'的值错误：应该为一个'%s'或'%s'句柄。\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "不存在属性'%s'，此属性用于风格为%s的uicontrol。\n"
-
-#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
@@ -864,28 +855,21 @@ msgstr "属性'%s'的大小错误：应该为'%s'、'%s'或'%s'。\n"
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "属性'%s'的值错误：应该为'%s'、'%s'或'%s'。\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "属性'%s'的大小错误：应该为一个具有两个元素的列表（list）。\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "属性'%s'的值错误：应该为'%s'或'%s'。\n"
-
 msgid "Console Font..."
 msgstr "控制台字体..."
 
 msgid "Console Background..."
 msgstr "控制台背景..."
 
-#, c-format
+msgid "No print service found."
+msgstr ""
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -901,11 +885,17 @@ msgid ""
 "information.\")"
 msgstr ""
 
-msgid "Clear History"
-msgstr "清空历史"
-
 msgid "Clear Console"
 msgstr "清空控制台"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr ""
+
+msgid "Do not show this message again"
+msgstr ""
+
+msgid "Clear History"
+msgstr "清空历史"
 
 msgid "Select All"
 msgstr "全选"
@@ -1053,17 +1043,14 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr "空标签"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1118,7 +1105,6 @@ msgstr "所有PNG图像文件"
 msgid "All RTF (Rich Text Format) files"
 msgstr "所有RTF (Rich Text Format) 文件"
 
-#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 

@@ -49,7 +49,7 @@ public class ScilabTree implements Tree {
     public ScilabTree(String label, String iconPath, String callbackString) {
         this.label = label;
 
-        // Creating an Iconimage with the image's path 
+        // Creating an Iconimage with the image's path
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         if (iconPath.equals("default")) {
             this.icon = ScilabTreeCellRenderer.iconDefaut;
@@ -68,10 +68,10 @@ public class ScilabTree implements Tree {
     }
 
     /**
-     * GUI display of this tree 
+     * GUI display of this tree
      */
     public void showTree() {
-        ScilabBridge.showTree(this);		
+        ScilabBridge.showTree(this);
     }
 
     /**
@@ -120,12 +120,12 @@ public class ScilabTree implements Tree {
      */
     public void setCallback(CommonCallBack callback) {
         this.callback = callback;
-    }	
+    }
 
     /**
      * Get children of a tree
      * @return children
-     */	
+     */
     public Vector<Tree> getChildren() {
         return children;
     }
@@ -291,6 +291,11 @@ public class ScilabTree implements Tree {
     public void setVisible(boolean newVisibleState) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void setToolTipText(String tooltipText) {
+        // TODO Auto-generated method stub
     }
 
 }

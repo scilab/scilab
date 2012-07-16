@@ -8,7 +8,6 @@
 // <-- Non-regression test for bug 8826 -->
 //
 // <-- TEST WITH GRAPHIC -->
-// <-- NOT FIXED -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8826

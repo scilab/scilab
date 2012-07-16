@@ -135,10 +135,6 @@ int sci_stringbox( char * fname, unsigned long fname_len )
      * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
      * but using a rotation matrix corresponding to the default rotation angles (view == 2d)
      */
-#if 0
-    /* get the string box */
-    sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
-#endif
 
     getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
 

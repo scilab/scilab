@@ -22,7 +22,6 @@
 #include "getDictionaryGetProperties.h"
 #include "getDictionarySetProperties.h"
 #include "DrawObjects.h"
-#include "ObjectSelection.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "math_graphics.h"
@@ -97,12 +96,6 @@ int sciSetViewport(char *pObj, const int viewport[4])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetViewport(sciPointObj * pObj, int viewport[4])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 double Maxi(const double vect[], int n)
 {
     return 0.0;
@@ -154,12 +147,6 @@ sciPointObj *sciGetCurrentFigure(void)
 int sciAddNewHandle(sciPointObj * pobj)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciInitSelectedSons(sciPointObj * pObj)
-{
-
 }
 
 /*--------------------------------------------------------------------------*/
@@ -537,12 +524,6 @@ BOOL sciGetAutoSubticks(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIs3d(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetSubwinIndex(sciPointObj * pSubwin)
 {
     return -1;
@@ -574,12 +555,6 @@ int getPixelModeIndex(const char *modeName)
 
 /*--------------------------------------------------------------------------*/
 int sciSetXorMode(char *pobj, int value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetVisibility(char *pobj, BOOL value)
 {
     return -1;
 }
@@ -812,12 +787,6 @@ void unzoomSubwin(sciPointObj * pSubwin)
 void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
-{
-    return NULL;
 }
 
 /*--------------------------------------------------------------------------*/

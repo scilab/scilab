@@ -41,6 +41,7 @@ Relief = flat
 SliderStep = [0.01,0.1]
 String = "\Q\q"
 Style = listbox
+TooltipString = ""
 Units = pixels
 Value = 0
 VerticalAlignment = middle

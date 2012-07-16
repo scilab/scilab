@@ -37,7 +37,6 @@
 #include "DestroyObjects.h"
 #include "PloEch.h"
 #include "sciprint.h"
-#include "ObjectSelection.h"
 #include "math_graphics.h"
 #include "Format.h"
 #include "HandleManagement.h"
@@ -61,16 +60,6 @@ void sciRedrawFigure( void )
 //  sciDrawObj(sciGetCurrentFigure ());
 }
 
-
-void sciClearFigure(sciPointObj * pFigure)
-{
-  destroyGraphicsSons(pFigure);
-
-  /* recreate the subwindow */
-  //createFirstSubwin(pFigure);
-
-  //forceHierarchyRedraw(pFigure);
-}
 
 /* get the displayed bounds of an axis */
 void sciGetDisplayedBounds( char * pSubWinUID,

@@ -33,7 +33,7 @@
 #include "StringMatrix.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
+GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj, int ***user_data_ptr, int **size_ptr); /* GET */
 GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
@@ -77,8 +77,6 @@ GRAPHICS_IMPEXP BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
 
 /* Window Functions */
 GRAPHICS_IMPEXP int sciGetNum (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
-GRAPHICS_IMPEXP int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
 
 
@@ -101,8 +99,6 @@ GRAPHICS_IMPEXP BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
 GRAPHICS_IMPEXP BOOL sciGetCenterPos( sciPointObj * pObj ) ;
 
-GRAPHICS_IMPEXP BOOL sciGetIs3d( sciPointObj * pObj ) ;
-
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
@@ -124,10 +120,6 @@ GRAPHICS_IMPEXP int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type
 
 GRAPHICS_IMPEXP BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 GRAPHICS_IMPEXP BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
-
-GRAPHICS_IMPEXP void sciGetViewport( sciPointObj * pObj, int viewport[4] );
-
-GRAPHICS_IMPEXP void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 
 GRAPHICS_IMPEXP BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP char * sciGetEventHandler( sciPointObj * pObj ) ;
@@ -153,8 +145,6 @@ GRAPHICS_IMPEXP BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
 
 GRAPHICS_IMPEXP void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
 
-GRAPHICS_IMPEXP void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
-
 GRAPHICS_IMPEXP void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2]); /* GET */
 
 GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double userCoords2D[2]); /* GET */
@@ -177,20 +167,7 @@ GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]);
 
 GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-                             double corner3[2], double corner4[2]); /* GET */
-
-GRAPHICS_IMPEXP void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3]); /* GET */
-
-GRAPHICS_IMPEXP void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2]); /* GET */
-
 GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
-
-GRAPHICS_IMPEXP void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); /* GET */
-
-GRAPHICS_IMPEXP BOOL sciGetIsAbleToCreateWindow(void);
 
 GRAPHICS_IMPEXP int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
 

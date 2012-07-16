@@ -14,7 +14,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "localization.h"
-#include "ObjectSelection.h" /* sciInitSelectedSons... */
 #include "HandleManagement.h" /* sciGetRelationship... */
 #include "SetProperty.h" /* sciInitVisibility... */
 #include "GetProperty.h" /* sciGetPointerToUserData */

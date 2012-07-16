@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-13 15:34+0000\n"
+"PO-Revision-Date: 2012-07-13 12:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: ru\n"
 
 #, c-format
@@ -123,6 +123,29 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Сообщение"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: Возможность %s является устаревшей.\n"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Эта возможность будет навсегда удалена в Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -453,9 +476,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&Копировать в буфер обмена"
 
@@ -582,29 +602,14 @@ msgstr "&Очистить буфер обмена"
 msgid "&Select all"
 msgstr "Вы&делить всё"
 
-msgid "P&references"
-msgstr "Н&астройки"
-
-msgid "&Preferences"
-msgstr "&Настройки"
-
-msgid "&Colors"
-msgstr "&Цвета"
-
-msgid "Console &Background..."
-msgstr "&Фон..."
-
-msgid "Console &Font..."
-msgstr "&Текст..."
-
-msgid "&Font..."
-msgstr "&Шрифт..."
-
 msgid "Clear &History"
 msgstr "&Очистить журнал команд"
 
 msgid "Clear C&onsole"
 msgstr "О&чистить командное окно"
+
+msgid "P&references"
+msgstr "Н&астройки"
 
 msgid "&Control"
 msgstr "&Управление"
@@ -711,9 +716,6 @@ msgstr "Копировать"
 msgid "Paste"
 msgstr "Вставить"
 
-msgid "Choose Font..."
-msgstr "Выбрать шрифт"
-
 msgid "Print..."
 msgstr "Печать"
 
@@ -722,6 +724,9 @@ msgstr "Управление модулями"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr "Настройки Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Примеры"
@@ -834,19 +839,6 @@ msgid ""
 msgstr ""
 "Внимание: свойство «Value» для «%s» должно быть равно значению свойства «%s» "
 "или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался графический дескриптор.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидался дескриптор «%s» или «%s».\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Не существует свойства «%s» для uicontrol'ов стиля: %s.\n"
 
 #, c-format
 msgid ""
@@ -965,21 +957,15 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 "Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался список из двух элементов.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось «%s» или «%s».\n"
-
 msgid "Console Font..."
 msgstr "Цвет шрифта"
 
 msgid "Console Background..."
 msgstr "Цвет фона"
 
-#, c-format
+msgid "No print service found."
+msgstr "Служба печати не найдена."
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -989,7 +975,6 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1011,11 +996,17 @@ msgstr ""
 "выбрали использование Scilab с передовыми графическими возможностями. "
 "Пропишите \"\"help usecanvas\"\" для получения дополнительной информации.\")"
 
-msgid "Clear History"
-msgstr "Очистить журнал команд"
-
 msgid "Clear Console"
 msgstr "Очистить командное окно"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr "Вы действительно хотите очистить консоль?"
+
+msgid "Do not show this message again"
+msgstr "Больше не показывать это сообщение"
+
+msgid "Clear History"
+msgstr "Очистить журнал команд"
 
 msgid "Select All"
 msgstr "Выделить всё"
@@ -1165,7 +1156,6 @@ msgstr "Сохранить и выполнить"
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1174,11 +1164,9 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
 
@@ -1233,7 +1221,6 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 

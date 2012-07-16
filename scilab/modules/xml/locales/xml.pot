@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-06-20 17:53+0100\n"
+"Revision-Date: 2012-07-13 11:28+0100\n"
 
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 53
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 87
@@ -512,7 +512,7 @@ msgstr ""
 
 #
 # File: src/cpp/XMLDocument.cpp, line: 53
-# File: src/cpp/XMLValidation.cpp, line: 91
+# File: src/cpp/XMLValidation.cpp, line: 103
 # File: src/cpp/XMLValidationDTD.cpp, line: 54
 # File: src/cpp/XMLValidationRelaxNG.cpp, line: 67
 # File: src/cpp/XMLValidationSchema.cpp, line: 67
@@ -526,17 +526,22 @@ msgid "Cannot create a parser context"
 msgstr ""
 
 #
-# File: src/cpp/XMLValidation.cpp, line: 56
+# File: src/cpp/XMLValidation.cpp, line: 55
+msgid " at line "
+msgstr ""
+
+#
+# File: src/cpp/XMLValidation.cpp, line: 68
 msgid "Cannot create a buffer"
 msgstr ""
 
 #
-# File: src/cpp/XMLValidation.cpp, line: 64
+# File: src/cpp/XMLValidation.cpp, line: 76
 msgid "Cannot create a reader"
 msgstr ""
 
 #
-# File: src/cpp/XMLValidation.cpp, line: 83
+# File: src/cpp/XMLValidation.cpp, line: 95
 msgid "Invalid file"
 msgstr ""
 

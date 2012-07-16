@@ -39,6 +39,7 @@ Relief = sunken
 SliderStep = [0.01,0.1]
 String = ""
 Style = edit
+TooltipString = ""
 Units = pixels
 Value = []
 VerticalAlignment = middle

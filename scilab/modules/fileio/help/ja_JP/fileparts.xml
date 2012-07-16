@@ -35,7 +35,7 @@
         <term>sel</term>
         <listitem>
           <para>オプションの文字列セレクタ, 以下の値を指定可能:
-            'path' 'fname' または 'extension'
+            <literal>'path'</literal>, <literal>'fname'</literal> または <literal>'extension'</literal>
           </para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@
       <varlistentry>
         <term>value</term>
         <listitem>
-          <para>文字列, selの値に依存</para>
+          <para>文字列, <literal>sel</literal>の値に依存</para>
         </listitem>
       </varlistentry>
     </variablelist>

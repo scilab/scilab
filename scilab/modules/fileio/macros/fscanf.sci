@@ -64,7 +64,7 @@ function varargout = fscanf(fil, frmt)
     buf = mgetl(fil, 1);
   end
 
-  execstr("[" + args + "] = sscanf(buf, frmt);");
+  execstr("[" + args + "] = msscanf(buf, frmt);");
   execstr("varargout = list(" + args + ");");
 
 endfunction

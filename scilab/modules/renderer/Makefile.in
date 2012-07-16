@@ -130,10 +130,8 @@ libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-GetJavaProperty.lo \
 	libscirenderer_la-SetJavaProperty.lo \
 	libscirenderer_la-JavaInteraction.lo \
-	libscirenderer_la-BasicAlgos.lo \
 	libscirenderer_la-RendererFontManager.lo \
 	libscirenderer_la-XlFontManager.lo \
-	libscirenderer_la-rendererBasicAlgos.lo \
 	libscirenderer_la-CallRenderer.lo
 am_libscirenderer_la_OBJECTS = $(am__objects_1)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
@@ -427,10 +425,8 @@ RENDERER_CXX_SOURCES = \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
-src/cpp/BasicAlgos.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
-src/cpp/rendererBasicAlgos.cpp \
 src/jni/CallRenderer.cpp
 
 
@@ -618,14 +614,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CallRenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -669,13 +663,6 @@ libscirenderer_la-JavaInteraction.lo: src/cpp/JavaInteraction.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-JavaInteraction.lo `test -f 'src/cpp/JavaInteraction.cpp' || echo '$(srcdir)/'`src/cpp/JavaInteraction.cpp
 
-libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-BasicAlgos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/BasicAlgos.cpp' object='libscirenderer_la-BasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
-
 libscirenderer_la-RendererFontManager.lo: src/cpp/RendererFontManager.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RendererFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo $(DEPDIR)/libscirenderer_la-RendererFontManager.Plo
@@ -689,13 +676,6 @@ libscirenderer_la-XlFontManager.lo: src/jni/XlFontManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XlFontManager.cpp' object='libscirenderer_la-XlFontManager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XlFontManager.lo `test -f 'src/jni/XlFontManager.cpp' || echo '$(srcdir)/'`src/jni/XlFontManager.cpp
-
-libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-rendererBasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rendererBasicAlgos.cpp' object='libscirenderer_la-rendererBasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
 
 libscirenderer_la-CallRenderer.lo: src/jni/CallRenderer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CallRenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CallRenderer.Tpo -c -o libscirenderer_la-CallRenderer.lo `test -f 'src/jni/CallRenderer.cpp' || echo '$(srcdir)/'`src/jni/CallRenderer.cpp

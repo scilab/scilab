@@ -50,10 +50,6 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     /* Update subwin scale if needed */
     updateSubwinScale(parentSubwinUID);
 
-#if 0
-    startFigureDataWriting(parentFigure);
-#endif
-
     pTextUID = allocateText(parentSubwinUID,
                             text, nbRow, nbCol,
                             xPos, yPos,
@@ -86,9 +82,6 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
      * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
      * but using a rotation matrix corresponding to the default rotation angles (view == 2d)
      */
-#if 0
-    sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
-#endif
 
     corners[1][0] = textCorners[0];
     corners[1][1] = textCorners[1];
@@ -105,10 +98,6 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     deleteGraphicObject(pTextUID);
 
     releaseGraphicObjectProperty(__GO_PARENT__, pTextUID, jni_string, 1);
-
-#if 0
-    endFigureDataWriting(parentFigure);
-#endif
 }
 /*-------------------------------------------------------------------------------*/
 

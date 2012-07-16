@@ -327,6 +327,15 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>TooltipString</term>
+        <listitem>
+          <para>String or String vector</para>
+          <para>
+            This property represents the text of the uicontrol tooltip appearing when the mouse is over the uicontrol.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Style</term>
         <listitem>
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |

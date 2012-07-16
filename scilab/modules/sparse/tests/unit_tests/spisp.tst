@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
-
 // <-- CLI SHELL MODE -->
 
 m = 200;
@@ -43,7 +41,7 @@ for i=1:5
 	    D = evstr(switchB(l));
             Df = full(D);
 	    AA(indi,indj) = D;
-	    Af(indi,indj) = Df;      
+	    Af(indi,indj) = Df;
 	    if max(abs(Af - full(AA))) > 0 then
 	       mprintf('\n\r test (%d,%d,%d,%d) fails',i,j,k,l)
 	    end

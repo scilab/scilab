@@ -203,68 +203,6 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
           && yCoord > yPos && yCoord < yPos + height);
 }
 /*--------------------------------------------------------------------------------*/
-sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
-{
-  int nbItem = 0;
-  sciPointObj * res = NULL;
-
-  /* First get the list of subwindow that are under the click */
-  /* Might be several if some are hidding others */
-  DoublyLinkedList * foundSubwins = DoublyLinkedList_new();
-  sciSons * pSons = sciGetSons(pFigure);
-  while (pSons != NULL)
-  {
-    sciPointObj * curObj = pSons->pointobj;
-    if (sciGetEntityType(curObj) == SCI_SUBWIN)
-    {
-      updateSubwinScale((char*)curObj);
-      if (isSubwinUnderPixel(curObj, xCoord, yCoord))
-      {
-        foundSubwins = List_push(foundSubwins, curObj);
-      }
-    }
-    pSons = pSons->pnext;
-  }
-
-  /* all the subwindows that are under the clicked pixel has been found */
-
-  nbItem = List_nb_item(foundSubwins);
-  if (nbItem == 0)
-  {
-    res = NULL;
-  }
-  else if (nbItem == 1)
-  {
-    /* index starts to 1 */
-    res = List_item(foundSubwins, 1);
-  }
-  else
-  {
-    /* select the one whose middle is closer the point */
-    int minDist = 0;
-    int i;
-
-    res = (sciPointObj *) List_item(foundSubwins, 1);
-    minDist = getSqDistanceToCenter(res, xCoord, yCoord);
-
-    for (i = 2; i <= nbItem; i++)
-    {
-      sciPointObj * curSubwin = (sciPointObj *) List_item(foundSubwins, i);
-      int curDist = getSqDistanceToCenter(curSubwin, xCoord, yCoord);
-      if (curDist < minDist)
-      {
-        res = curSubwin;
-        minDist = curDist;
-      }
-    }
-  }
-
-  List_free(foundSubwins);
-
-  return res;
-
-}
-/*--------------------------------------------------------------------------------*/
 sciLegendPlace propertyNameToLegendPlace(const char * string)
 {
 	if ( strcmp(string, "in_upper_right" ) == 0 )

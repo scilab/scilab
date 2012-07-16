@@ -297,6 +297,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
     }
 
+    /**
+     * @return true if it is a 2D view
+     */
+    public boolean is2DView() {
+        return currentAxes.getViewAsEnum() == ViewType.VIEW_2D;
+    }
+
     @Override
     public void visit(Axes axes) {
         synchronized (axes) {
