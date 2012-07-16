@@ -628,54 +628,6 @@ case SCI_UIMENU:
 }
 
 /*----------------------------------------------------------------------------------*/
-int sciInitAutoRotation( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_LABEL:
-            pLABEL_FEATURE(pobjUID)->auto_rotation = value ;
-            return 0;
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_ARC:
-        case SCI_TEXT:
-        case SCI_FIGURE:
-        case SCI_SUBWIN:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_FEC:
-        case SCI_SEGS:
-        case SCI_LEGEND:
-        case SCI_GRAYPLOT:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("auto_rotation");
-            return -1 ;
-            break;
-    }
-#endif
-    return -1;
-
-}
-
-/* set the auto_rotation property of an object */
-int sciSetAutoRotation ( char * pobjUID, BOOL value )
-{
-
-    if ( sciGetAutoRotation((sciPointObj*) pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAutoRotation( pobjUID, value ) ;
-
-}
-
-
 int sciInitAutoPosition( char * pobjUID, BOOL value )
 {
     // FIXME
