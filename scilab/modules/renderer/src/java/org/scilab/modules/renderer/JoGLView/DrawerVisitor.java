@@ -22,8 +22,8 @@ import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
+import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
-import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -967,7 +967,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return interactionManager;
     }
 
-    private class ColorMapTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
+    private class ColorMapTextureDataProvider extends AbstractTextureDataProvider {
         byte[] whiteColor = {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
         byte[] blackColor = {0x00, 0x00, 0x00, (byte) 0xFF};
 

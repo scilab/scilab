@@ -539,59 +539,6 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     return (scigMode *) NULL;
 }
 
-
-/**sciGetIsClipRegionValuated*/
-/* To know if clip_region has been set at least once */
-/* (using sciSetClipping) */
-int
-sciGetIsClipRegionValuated (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_ARC:
-            return pARC_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_RECTANGLE:
-            return pRECTANGLE_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_SEGS:
-            return pSEGS_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_TEXT:
-            return pTEXT_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_AXES:
-            return pAXES_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_SURFACE:
-            return pSURFACE_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_FEC:
-            return pFEC_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_GRAYPLOT:
-            return pGRAYPLOT_FEATURE (pobj)->clip_region_set;
-            break;
-        case SCI_LEGEND:
-            return pLEGEND_FEATURE(pobj)->clip_region_set;
-        case SCI_AGREG:
-        case SCI_FIGURE:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-        default:
-            return -2;
-            break;
-    }
-    return -2;
-}
-
-
 /**sciGetIsClipping*/
 int
 sciGetIsClipping (sciPointObj * pobj)

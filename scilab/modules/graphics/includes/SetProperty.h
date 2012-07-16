@@ -59,37 +59,12 @@ GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 /* Text Functions */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitFontStyle(char* pobj, int iAttributes ) ;
-GRAPHICS_IMPEXP int sciSetFontStyle (char* pobj, int iAttributes ) ; /* SET */
-
-/* Legend */
-GRAPHICS_IMPEXP int sciInitLegendPlace(char* pobj, sciLegendPlace place);
-GRAPHICS_IMPEXP int sciSetLegendPlace (char* pobj, sciLegendPlace place); /* SET */
-
-GRAPHICS_IMPEXP int sciInitLegendPos(char* pobj, double position[]);
-GRAPHICS_IMPEXP int sciSetLegendPos (char* pobj, double position[]); /* SET */
-
 /* GMODE */
-GRAPHICS_IMPEXP int sciInitIsClipping(char* pobj, int value) ;
-GRAPHICS_IMPEXP int sciSetIsClipping (char* pobj, int value); /* SET */
-
-GRAPHICS_IMPEXP int sciSetClipping (char* pobj, double pclip[4] ); /* SET */
-
-GRAPHICS_IMPEXP int sciInitZooming(char* pobj, BOOL value);
-GRAPHICS_IMPEXP int sciSetZooming (char* pobj, BOOL value); /* SET */
-
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciInitNum( char* pobj, int value ) ;
-GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
-
-GRAPHICS_IMPEXP void sciSelectFirstSubwin( char* parentFigure ) ; /* SET */
-
 GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
-
-GRAPHICS_IMPEXP int sciSetOriginalSubWin (char* pfigure, char* psubwin); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
@@ -116,8 +91,6 @@ GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
-
-GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 

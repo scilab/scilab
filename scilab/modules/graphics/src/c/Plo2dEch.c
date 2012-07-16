@@ -54,51 +54,6 @@
  *
  *-------------------------------------------*/
 
-extern void unzoom()
-{
-  /** 17/09/2002 ***/
-  double fmin = 0., fmax = 0, lmin = 0., lmax = 0.;
-  int min = 0, max = 0, puiss = 0, deux = 2, dix = 10;
-  sciPointObj *psousfen = NULL;
-  sciSons *psonstmp = NULL;
-
-  /***** 02/10/2002 ****/
-  psonstmp = sciGetSons(sciGetCurrentFigure());
-  while (psonstmp != (sciSons *) NULL)
-  {
-    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-    {
-      psousfen= (sciPointObj *)psonstmp->pointobj;
-      if (sciGetZooming(psousfen))
-      {
-        sciSetZooming((char*)psousfen, 0);
-
-        pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
-        pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
-        pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
-        pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
-
-        /*}  SS: moved below because if sciGetZooming(psousfen)==0
-        ZRect is undefined -> code may enter in infinite recursion loop to compute graduation
-        and there is no use to regraduate */
-
-        /** regraduation de l'axe des axes ***/
-        fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
-        fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
-        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-
-        fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
-        fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
-        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-        /*****/
-      }
-    }
-    psonstmp = psonstmp->pnext;
-  }
-
-  //sciDrawObj(sciGetCurrentFigure());
-}
-
 /*--------------------------------------------------------------------------*/
 /**
  * Interface to function xchange "f2i". Convert user 2d coordinates

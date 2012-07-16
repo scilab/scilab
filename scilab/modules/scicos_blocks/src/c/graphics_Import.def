@@ -26,7 +26,6 @@ ConstructSubWin
 sciGetFirstTypedSelectedSon
 sciIsExistingFigure
 sciSetSelectedSubWin
-sciSetIsClipping
 sciSetMarkBackground
 sciSetMarkSizeUnit
 sciSetIsMark
@@ -47,7 +46,6 @@ ConstructSurface
 sciSetAutoSize
 sciSetUserSize
 sciSetTextPos
-sciSetFontStyle
 sciGetIndexedSon
 sciGetCurrentSubWin
 sciGetNum

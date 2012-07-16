@@ -20,7 +20,6 @@ extern "C" {
 #include "localization.h"
 #include "Scierror.h"
 #include "GetUicontrolTooltipString.h"
-#include "UicontrolStyleToString.h"
 }
 
 #endif /* __GET_UICONTROL_TOOLTIPSTRING_HXX__ */

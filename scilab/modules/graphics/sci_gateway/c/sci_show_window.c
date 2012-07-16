@@ -30,12 +30,15 @@
 #include "FigureList.h"
 #include "CurrentFigure.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
+#include "CurrentSubwin.h"
 /*--------------------------------------------------------------------------*/
 int sci_show_window( char *fname,unsigned long fname_len )
 {
     char* pFigureUID = NULL;
+    char* pstrAxesUID = NULL;
 
     CheckRhs(0,1);
     CheckLhs(0,1);
@@ -91,13 +94,12 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
             if (pFigureUID == NULL)
             {
-                /* No window with this number, create one */
-                if(sciSetUsedWindow(winNum) < 0)
-                {
-                    Scierror(999, _("%s: Unable to create requested figure: No more memory.\n"), fname);
-                    return -1;
-                }
-                pFigureUID = (char*)getCurrentFigure();
+                pFigureUID = createNewFigureWithAxes();
+                setGraphicObjectProperty(pFigureUID, __GO_ID__, &winNum, jni_int, 1);
+                setCurrentFigure(pFigureUID);
+
+                getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
+                setCurrentSubWin(pstrAxesUID);
             }
         }
         else

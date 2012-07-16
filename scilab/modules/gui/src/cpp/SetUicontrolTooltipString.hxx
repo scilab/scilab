@@ -23,7 +23,6 @@ extern "C" {
 #include "localization.h"
 #include "Scierror.h"
 #include "SetUicontrolTooltipString.h"
-#include "UicontrolStyleToString.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
