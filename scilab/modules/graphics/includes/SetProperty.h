@@ -41,15 +41,6 @@ GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
 
-GRAPHICS_IMPEXP int sciInitNbXSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbXSubTics (char* pobj, int nbsubtics); /* SET */
-
-GRAPHICS_IMPEXP int sciInitNbYSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbYSubTics (char* pobj, int nbsubtics); /* SET */
-
-GRAPHICS_IMPEXP int sciInitNbZSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
-
 /* Text Functions */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
