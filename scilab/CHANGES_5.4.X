@@ -93,6 +93,9 @@ Bug Fixes
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
+* Bug #11385 fixed - length() returned a wrong error message when called without
+                     input argument.
+
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
