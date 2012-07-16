@@ -175,47 +175,6 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
     }
 }
 
-int sciInitLegendPlace( char * pobjUID, sciLegendPlace place )
-{
-    // FIXME
-    abort();
-#if 0
-    double position[2] = {0.0, 0.0};
-
-    if (sciGetEntityType (pobjUID) == SCI_LEGEND)
-    {
-        pLEGEND_FEATURE (pobjUID)->place = place;
-        /* calcul de l emplacement relatif du titre
-         * en fonction de la taille de la police
-         * de la fenetre...
-         */
-        return sciInitLegendPos (pobjUID, position );
-    }
-
-    Scierror(999, _("You are not using a legend object.\n"));
-#endif
-    return -1;
-}
-
-/**sciSetLegendPlace
- * Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
- * @param char * pobjUID: the pointer to the entity
- * @return 0 if ok, -1 if not
- */
-int
-sciSetLegendPlace (char * pobjUID, sciLegendPlace place)
-{
-
-
-    if ( sciGetLegendPlace((sciPointObj *)pobjUID ) == place )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitLegendPlace( pobjUID, place ) ;
-
-}
-
 int sciInitLegendPos( char * pobjUID, double position[] )
 {
     // FIXME
