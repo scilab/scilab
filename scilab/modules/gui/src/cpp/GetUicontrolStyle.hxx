@@ -20,7 +20,6 @@ extern "C"
 #include "returnProperty.h"
 #include "GetProperty.h"
 #include "localization.h"
-#include "UicontrolStyleToString.h"
 #include "Scierror.h"
 }
 
