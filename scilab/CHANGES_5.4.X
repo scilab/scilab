@@ -125,6 +125,8 @@ Bug Fixes
 * Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
                               into itself. 
 
+* Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
+                     something in the console.
 
 
 Known Incompatibilities

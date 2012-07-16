@@ -119,6 +119,14 @@ BOOL appendLineToScilabHistory(char *line)
         int i = 0;
         char *cleanedline = NULL;
 
+        if (ScilabHistory && ScilabHistory->getNumberOfLines() == 0)
+        {
+            char * commentbeginsession = getCommentDateSession(FALSE);
+            ScilabHistory->appendLine(commentbeginsession);
+            FREE(commentbeginsession);
+            CommandHistoryExpandAll();
+        }
+
         /* remove space & carriage return at the end of line */
         cleanedline = strdup(line);
 
