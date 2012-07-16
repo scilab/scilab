@@ -628,38 +628,6 @@ case SCI_UIMENU:
 }
 
 /*-----------------------------------------------------------------------------------*/
-int sciInitUserSize( char * pobjUID, double width, double height )
-{
-    // FIXME
-    abort();
-#if 0
-    switch ( sciGetEntityType( pobjUID ) )
-    {
-        case SCI_TEXT:
-            pTEXT_FEATURE(pobjUID)->userSize[0] = width ;
-            pTEXT_FEATURE(pobjUID)->userSize[1] = height ;
-            return 0 ;
-        default:
-            printSetGetErrorMessage("text_box");
-            return -1 ;
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetUserSize( char * pobjUID, double width, double height )
-{
-    double curWidth  = 0.;
-    double curHeight = 0.;
-    sciGetUserSize((sciPointObj*) pobjUID, &curWidth, &curHeight ) ;
-    if ( curWidth == width && curHeight == height )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitUserSize( pobjUID, width, height ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitCenterPos( char * pobjUID, BOOL newCP )
 {
     // FIXME

@@ -53,9 +53,6 @@ GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP int sciInitUserSize( char* pObj, double width, double height ) ;
-GRAPHICS_IMPEXP int sciSetUserSize(  char* pObj, double width, double height ) ;
-
 GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 
