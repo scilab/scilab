@@ -175,59 +175,6 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
     }
 }
 
-int sciInitZooming( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_FIGURE:
-            (sciGetGraphicMode (pobjUID))->zooming = value;
-            break;
-        case SCI_SUBWIN:
-            (sciGetGraphicMode (pobjUID))->zooming = value;
-            /* the value is inhirated by the parent */
-            sciSetZooming (sciGetParentFigure (pobjUID), value);
-            break;
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("zoom");
-            return -1 ;
-            break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetZooming
- * Sets the zooming state of the object. Is it or not zommed right now
- */
-int
-sciSetZooming (char * pobjUID, BOOL value)
-{
-    if ( sciGetZooming((sciPointObj *) pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitZooming( pobjUID, value ) ;
-
-}
-
-
 /**sciSetDefaultValue
  * Sets the default values of figure properties
  * (graphics context, graphics mode, and graphics font)

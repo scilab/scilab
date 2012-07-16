@@ -60,9 +60,6 @@ GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
 /* GMODE */
-GRAPHICS_IMPEXP int sciInitZooming(char* pobj, BOOL value);
-GRAPHICS_IMPEXP int sciSetZooming (char* pobj, BOOL value); /* SET */
-
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
