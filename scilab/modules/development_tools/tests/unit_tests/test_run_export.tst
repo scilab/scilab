@@ -33,3 +33,13 @@ assert_checkequal(xmlElem.root.children(2).children.size, evstr(xmlElem.root.chi
 
 assert_checkequal(xmlElem.root.children(2).children(1).name, "testcase");
 assert_checktrue(length(xmlElem.root.children(2).children(1).attributes.name) > 0);
+listModule = xmlXPath(xmlElem,"//testsuites/testsuite");
+assert_checkequal(listModule.size, 2);
+
+test_run(["time"],["datenum"],["show_diff","show_error"], targetXML);
+doc=xmlRead(targetXML);
+listModule = xmlXPath(doc,"//testsuites/testsuite");
+// Check that the append worked
+assert_checkequal(listModule.size, 3);
+
+xmlDelete(doc);
