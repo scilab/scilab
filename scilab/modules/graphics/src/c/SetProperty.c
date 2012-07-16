@@ -628,35 +628,6 @@ case SCI_UIMENU:
 }
 
 /*-----------------------------------------------------------------------------------*/
-int sciInitCenterPos( char * pobjUID, BOOL newCP )
-{
-    // FIXME
-    abort();
-#if 0
-    switch ( sciGetEntityType( pobjUID ) )
-    {
-        case SCI_TEXT:
-            pTEXT_FEATURE(pobjUID)->centeredPos = newCP ;
-            return 0 ;
-        default:
-            printSetGetErrorMessage("data");
-            return -1 ;
-    }
-#endif
-    return -1;
-
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetCenterPos( char * pobjUID, BOOL newCP )
-{
-    if ( sciGetCenterPos((sciPointObj*) pobjUID ) == newCP )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitCenterPos( pobjUID, newCP ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( char * pobjUID, char * name )
 {
     // FIXME
