@@ -187,38 +187,6 @@ sciSetDefaultValues (void)
     return 0;
 }
 
-/*--------------------------------------------------------------------------*/
-/* sciSelectFirstSubwin                                                              */
-/* select under the first window found under the current figure                      */
-/*--------------------------------------------------------------------------*/
-void sciSelectFirstSubwin( char * parentFigure )
-{
-    // FIXME
-    abort();
-#if 0
-    sciSons * figureSons = sciGetSons ( parentFigure ) ;
-    if ( figureSons != (sciSons *) NULL )
-    {
-        /* look for the first subwindow */
-        while (   (figureSons->pnext != (sciSons *) NULL)
-                  && (sciGetEntityType (figureSons->pointobj) != SCI_SUBWIN))
-        {
-            figureSons = figureSons->pnext;
-        }
-
-        if ( sciGetEntityType (figureSons->pointobj) == SCI_SUBWIN )
-        {
-            /* we found another valid subwindow */
-            sciSetSelectedSubWin (figureSons->pointobj);
-        }
-        else
-        {
-            sciSetSelectedSubWin(NULL);
-        }
-    }
-#endif
-}
-
 /**sciSetSelectedSubWin
  * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
  * It has been adapted to the MVC. Its should be implemented entirely
