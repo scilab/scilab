@@ -187,43 +187,6 @@ sciSetDefaultValues (void)
     return 0;
 }
 
-int sciInitNum( char * pobjUID, int value )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_FIGURE:
-            pFIGURE_FEATURE(pobjUID)->number = value;
-            break;
-        default:
-            printSetGetErrorMessage("figure_id");
-            return -1 ;
-            break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetNum
- * Sets the number of the Figure.
- * @param char * pobjUID: the pointer to the entity
- * @param int value: the value of the number of the windows
- */
-int
-sciSetNum (char * pobjUID, int value )
-{
-
-    if ( sciGetNum((sciPointObj *)pobjUID) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitNum( pobjUID, value ) ;
-
-}
-
 /*--------------------------------------------------------------------------*/
 /* sciSelectFirstSubwin                                                              */
 /* select under the first window found under the current figure                      */

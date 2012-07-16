@@ -64,9 +64,6 @@ GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciInitNum( char* pobj, int value ) ;
-GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
-
 GRAPHICS_IMPEXP void sciSelectFirstSubwin( char* parentFigure ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
