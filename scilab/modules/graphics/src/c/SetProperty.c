@@ -627,16 +627,6 @@ case SCI_UIMENU:
     return 0;
 }
 
-int sciInitdrawmode( BOOL mode )
-{
-#if 0
-    static sciPointObj * pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
-    pSUBWIN_FEATURE(pobj)->visible = mode ;
-    sciDrawObj(sciGetCurrentFigure ());
-#endif
-    return 0;
-}
-
 /*----------------------------------------------------------------------------------*/
 /**
  * In new graphic style, select a window and create one if not already done.

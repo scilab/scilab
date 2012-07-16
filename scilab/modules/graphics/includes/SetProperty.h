@@ -92,8 +92,6 @@ GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
-GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
-
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 
 GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
