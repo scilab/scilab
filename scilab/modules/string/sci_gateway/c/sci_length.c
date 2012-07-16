@@ -48,6 +48,7 @@ static int lengthSparse(int *piAddressVar);
 /*----------------------------------------------------------------------------*/
 int sci_length(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
     int *piAddressVarOne = NULL;
     int iScilabType = 0;
 
@@ -55,7 +56,7 @@ int sci_length(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
 
     /* get Address of inputs */
-    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
