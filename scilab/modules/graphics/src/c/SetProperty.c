@@ -218,23 +218,6 @@ sciSetSelectedSubWin (char * psubwinobjUID)
 
 /*-------------------------------------------------------------------------------*/
 
-/**sciSetOriginalSubWin
- * DO NOT USE !!!
- * @param char * pfigure, the parent figure,
- * @param char * psubwin: the pointer to the entity subwindow
- * @return 0 if OK -1 if not
- */
-int
-sciSetOriginalSubWin (char * pfigure, char * psubwin)
-{
-    // FIXME
-    abort();
-#if 0
-    pFIGURE_FEATURE(pfigure)->originalsubwin0011 = psubwin;
-#endif
-    return 0;
-}
-
 /**sciSetPoint
  * sets points of the entity, and a pointer to the number of points
  */
