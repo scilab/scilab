@@ -631,6 +631,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_objects", "modules\graphic_objects\src\nographic_objects\nographic_objects.vcxproj", "{A910BD0C-8FAF-4382-B06A-F767E4752733}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui_gw", "modules\gui\sci_gateway\cpp\gui_gw.vcxproj", "{83C04253-B152-4EF6-BB36-35A7B0FDFB98}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics_gw", "modules\graphics\sci_gateway\cpp\graphics_gw.vcxproj", "{61B23D9B-3F73-4204-98F7-6F41218F4564}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1927,6 +1931,22 @@ Global
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|Win32.Build.0 = Release|Win32
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.ActiveCfg = Release|x64
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.Build.0 = Release|x64
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Debug|Win32.ActiveCfg = Debug|Win32
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Debug|Win32.Build.0 = Debug|Win32
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Debug|x64.ActiveCfg = Debug|x64
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Debug|x64.Build.0 = Debug|x64
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Release|Win32.ActiveCfg = Release|Win32
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Release|Win32.Build.0 = Release|Win32
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Release|x64.ActiveCfg = Release|x64
+		{83C04253-B152-4EF6-BB36-35A7B0FDFB98}.Release|x64.Build.0 = Release|x64
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Debug|Win32.ActiveCfg = Debug|Win32
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Debug|Win32.Build.0 = Debug|Win32
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Debug|x64.ActiveCfg = Debug|x64
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Debug|x64.Build.0 = Debug|x64
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|Win32.ActiveCfg = Release|Win32
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|Win32.Build.0 = Release|Win32
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|x64.ActiveCfg = Release|x64
+		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

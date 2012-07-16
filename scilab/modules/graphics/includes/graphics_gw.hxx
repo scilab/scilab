@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,21 +10,20 @@
  *
  */
 
-#ifndef __GUI_GW_HXX__
-#define __GUI_GW_HXX__
+#ifndef __GRAPHICS_GW_HXX__
+#define __GRAPHICS_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_gui_gw.h"
+#include "dynlib_graphics_gw.h"
 
-class GuiModule
+class GraphicsModule
 {
 private :
-	GuiModule(){};
-	~GuiModule(){};
+	GraphicsModule(){};
+	~GraphicsModule(){};
 public :
-	GUI_GW_IMPEXP static int Load();
+	GRAPHICS_GW_IMPEXP static int Load();
 };
 
-CPP_GATEWAY_PROTOTYPE(sci_helpbrowser);
 
 #endif /* !__GUI_GW_HXX__ */

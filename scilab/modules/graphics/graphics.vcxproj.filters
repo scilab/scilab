@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -1261,6 +1261,9 @@
     <ClInclude Include="src\c\loadTextRenderingAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\graphics_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui_Import.def">
@@ -1278,6 +1281,7 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
   </ItemGroup>
   <ItemGroup>

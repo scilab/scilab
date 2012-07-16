@@ -431,7 +431,8 @@ libscigraphics_algo_la_OBJECTS = $(am_libscigraphics_algo_la_OBJECTS)
 @GUI_TRUE@am_libscigraphics_algo_la_rpath =
 libscigraphics_disable_la_LIBADD =
 am_libscigraphics_disable_la_OBJECTS =  \
-	libscigraphics_disable_la-nographics.lo
+	libscigraphics_disable_la-nographics.lo \
+	libscigraphics_disable_la-nographics_gw.lo
 libscigraphics_disable_la_OBJECTS =  \
 	$(am_libscigraphics_disable_la_OBJECTS)
 libscigraphics_la_DEPENDENCIES = libscigraphics-algo.la
@@ -486,7 +487,8 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_is_handle_valid.lo \
 	libscigraphics_la-sci_show_pixmap.lo \
 	libscigraphics_la-sci_Legend.lo
-am_libscigraphics_la_OBJECTS = $(am__objects_2)
+am__objects_3 = libscigraphics_la-graphics_gw.lo
+am_libscigraphics_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 @GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -501,6 +503,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscigraphics_algo_la_SOURCES) \
 	$(libscigraphics_disable_la_SOURCES) \
@@ -1154,12 +1165,14 @@ sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_show_pixmap.c \
 sci_gateway/c/sci_Legend.c
 
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/graphics_gw.cpp
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
@@ -1176,12 +1189,18 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/types/includes/ \
+	-I$(top_srcdir)/modules/core/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/symbol/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	$(EIGEN_CPPFLAGS) \
 	$(TCL_INC_PATH) \
 	$(TK_INC_PATH) \
 	$(AM_CPPFLAGS)
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)
-libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigraphics_algo_la_CPPFLAGS = $(libscigraphics_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -1231,12 +1250,16 @@ tcl/ged/images/rectangle.gif \
 tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
-libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
+libscigraphics_disable_la_SOURCES = \
+	src/nographics/nographics.c \
+	src/nographics/nographics_gw.cpp
+
 libscigraphics_disable_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
@@ -1244,6 +1267,14 @@ libscigraphics_disable_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/types/includes/ \
+	-I$(top_srcdir)/modules/core/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/symbol/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 
@@ -1327,7 +1358,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1402,9 +1433,9 @@ clean-pkglibLTLIBRARIES:
 libscigraphics-algo.la: $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_DEPENDENCIES) $(EXTRA_libscigraphics_algo_la_DEPENDENCIES) 
 	$(LINK) $(am_libscigraphics_algo_la_rpath) $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_LIBADD) $(LIBS)
 libscigraphics-disable.la: $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_DEPENDENCIES) $(EXTRA_libscigraphics_disable_la_DEPENDENCIES) 
-	$(LINK) -rpath $(pkglibdir) $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_LIBADD) $(LIBS)
+	$(CXXLINK) -rpath $(pkglibdir) $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_LIBADD) $(LIBS)
 libscigraphics.la: $(libscigraphics_la_OBJECTS) $(libscigraphics_la_DEPENDENCIES) $(EXTRA_libscigraphics_la_DEPENDENCIES) 
-	$(LINK) $(am_libscigraphics_la_rpath) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscigraphics_la_rpath) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1714,6 +1745,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_zoom_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_zoom_state_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_disable_la-nographics.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_disable_la-nographics_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-graphics_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gw_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_Legend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_StringBox.Plo@am__quote@
@@ -4353,6 +4386,41 @@ libscigraphics_la-sci_Legend.lo: sci_gateway/c/sci_Legend.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_Legend.c' object='libscigraphics_la-sci_Legend.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_Legend.lo `test -f 'sci_gateway/c/sci_Legend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_Legend.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscigraphics_disable_la-nographics_gw.lo: src/nographics/nographics_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_disable_la-nographics_gw.lo -MD -MP -MF $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Tpo -c -o libscigraphics_disable_la-nographics_gw.lo `test -f 'src/nographics/nographics_gw.cpp' || echo '$(srcdir)/'`src/nographics/nographics_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Tpo $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/nographics/nographics_gw.cpp' object='libscigraphics_disable_la-nographics_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_disable_la-nographics_gw.lo `test -f 'src/nographics/nographics_gw.cpp' || echo '$(srcdir)/'`src/nographics/nographics_gw.cpp
+
+libscigraphics_la-graphics_gw.lo: sci_gateway/cpp/graphics_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-graphics_gw.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-graphics_gw.Tpo -c -o libscigraphics_la-graphics_gw.lo `test -f 'sci_gateway/cpp/graphics_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/graphics_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_la-graphics_gw.Tpo $(DEPDIR)/libscigraphics_la-graphics_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/graphics_gw.cpp' object='libscigraphics_la-graphics_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-graphics_gw.lo `test -f 'sci_gateway/cpp/graphics_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/graphics_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

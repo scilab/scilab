@@ -21,6 +21,9 @@
     <ClCompile Include="nographics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nographics_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nographics.rc">

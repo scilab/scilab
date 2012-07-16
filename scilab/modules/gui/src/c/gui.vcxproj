@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -194,8 +194,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\cpp\gui_gw.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_helpbrowser.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_about.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
@@ -253,7 +252,6 @@
     <ClCompile Include="..\jni\Jxgetmouse.cpp" />
     <ClCompile Include="..\jni\LookAndFeelManager.cpp" />
     <ClCompile Include="messageboxoptions.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_about.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_displaytree.cpp" />
@@ -431,7 +429,6 @@
     <ClInclude Include="..\..\includes\GetUiobjectEnable.h" />
     <ClInclude Include="..\..\includes\GetUiobjectForegroundColor.h" />
     <ClInclude Include="..\..\includes\GraphicWindow.h" />
-    <ClInclude Include="..\..\includes\gui_gw.hxx" />
     <ClInclude Include="..\..\includes\gw_gui.h" />
     <ClInclude Include="..\..\includes\InitializeGUI.h" />
     <ClInclude Include="..\..\includes\InitUIMenu.h" />

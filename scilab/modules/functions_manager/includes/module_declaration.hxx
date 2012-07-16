@@ -43,4 +43,5 @@
 #include "../../differential_equations/includes/differential_equations_gw.hxx"
 #include "../../spreadsheet/includes/spreadsheet_gw.hxx"
 #include "../../randlib/includes/randlib_gw.hxx"
+#include "../../graphics/includes/graphics_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

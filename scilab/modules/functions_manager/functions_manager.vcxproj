@@ -239,9 +239,11 @@
       <Project>{67ff36d3-ec5a-4f0d-bf3b-a84a66d77294}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\gui\src\c\gui.vcxproj">
-      <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\graphics\sci_gateway\cpp\graphics_gw.vcxproj">
+      <Project>{61b23d9b-3f73-4204-98f7-6f41218f4564}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gui\sci_gateway\cpp\gui_gw.vcxproj">
+      <Project>{83c04253-b152-4ef6-bb36-35a7b0fdfb98}</Project>
     </ProjectReference>
     <ProjectReference Include="..\hdf5\src\c\hdf5.vcxproj">
       <Project>{a824ea62-af07-4f43-9036-0e63990556bd}</Project>
