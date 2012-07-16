@@ -35,6 +35,9 @@ GUI
 
 * Uicontrols tooltip can now be managed using the new "TooltipString" property.
 
+* Figure closure can now be managed by the user (confirmation, ...) through the
+  'closerequestfcn' property.
+
 
 Obsolete Functions
 ===================

@@ -313,6 +313,7 @@ function %h_p(h)
                 "event_handler_enable = " + sci2exp( h.event_handler_enable ) ;
                 "user_data = "+fmtuser_data(u)
                 "resizefcn = "+sci2exp(h.resizefcn)
+                "closerequestfcn = "+sci2exp(h.closerequestfcn)
                 "tag = "+sci2exp(h.tag)
             ]
 

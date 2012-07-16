@@ -50,8 +50,8 @@ public class SciNotesTab {
                 new ClosingOperationsManager.ClosingOperation() {
 
                     @Override
-                    public boolean canClose() {
-                        return ed.canClose();
+                    public int canClose() {
+                        return ed.canClose() ? 1 : 0;
                     }
 
                     @Override

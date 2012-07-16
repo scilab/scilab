@@ -58,8 +58,8 @@ public class ConsoleTab {
 
             ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperationsManager.ClosingOperation() {
 
-                    public boolean canClose() {
-                        return true;
+                    public int canClose() {
+                        return 1;
                     }
 
                     public void destroy() { }
@@ -94,10 +94,10 @@ public class ConsoleTab {
 
             ClosingOperationsManager.registerClosingOperation(consoleTab, new ClosingOperationsManager.ClosingOperation() {
 
-                    public boolean canClose() {
+                    public int canClose() {
                         CallScilabBridge.unblockConsole();
 
-                        return true;
+                        return 1;
                     }
 
                     public void destroy() {

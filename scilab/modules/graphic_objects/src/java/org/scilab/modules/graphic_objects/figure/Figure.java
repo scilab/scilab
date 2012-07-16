@@ -19,6 +19,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
@@ -43,7 +44,7 @@ public class Figure extends GraphicObject {
     /** Figure properties names */
     private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
-        BACKGROUND, TAG, ROTATIONTYPE, RESIZEFCN
+        BACKGROUND, TAG, ROTATIONTYPE, RESIZEFCN, CLOSEREQUESTFCN
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -343,6 +344,9 @@ public class Figure extends GraphicObject {
     /** ResizeFcn */
     private String resizeFcn;
 
+    /** CloseRequestFcn */
+    private String closeRequestFcn;
+
     /** Tag */
     private String tag;
 
@@ -362,6 +366,7 @@ public class Figure extends GraphicObject {
         background = 0;
         eventHandler = new EventHandler();
         resizeFcn = "";
+        closeRequestFcn = "";
         tag = "";
         rotation = RotationType.UNARY;
     }
@@ -434,6 +439,8 @@ public class Figure extends GraphicObject {
             return FigureProperty.ROTATIONTYPE;
         } else if (propertyName.equals(__GO_RESIZEFCN__)) {
             return FigureProperty.RESIZEFCN;
+        } else if (propertyName.equals(__GO_CLOSEREQUESTFCN__)) {
+            return FigureProperty.CLOSEREQUESTFCN;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -485,6 +492,8 @@ public class Figure extends GraphicObject {
             return getRotation();
         } else if (property == FigureProperty.RESIZEFCN) {
             return getResizeFcn();
+        } else if (property == FigureProperty.CLOSEREQUESTFCN) {
+            return getCloseRequestFcn();
         } else {
             return super.getProperty(property);
         }
@@ -535,6 +544,8 @@ public class Figure extends GraphicObject {
             setRotation((Integer) value);
         } else if (property == FigureProperty.RESIZEFCN) {
             setResizeFcn((String) value);
+        } else if (property == FigureProperty.CLOSEREQUESTFCN) {
+            setCloseRequestFcn((String) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -910,6 +921,20 @@ public class Figure extends GraphicObject {
      */
     public void setResizeFcn(String resizeFcn) {
         this.resizeFcn = resizeFcn;
+    }
+
+    /**
+     * @return the close request function
+     */
+    public String getCloseRequestFcn() {
+        return closeRequestFcn;
+    }
+
+    /**
+     * @param closeRequestFcn the close request function to set
+     */
+    public void setCloseRequestFcn(String closeRequestFcn) {
+        this.closeRequestFcn = closeRequestFcn;
     }
 
     /**

@@ -56,6 +56,10 @@ public class ClosingOperationsManager {
     private static final Map<SwingScilabTab, ClosingOperation> closingOps = new HashMap<SwingScilabTab, ClosingOperation>();
     private static final Map<SwingScilabTab, List<SwingScilabTab>> deps = new HashMap<SwingScilabTab, List<SwingScilabTab>>();
 
+    private static final List<SwingScilabTab> dunnoList = new ArrayList<SwingScilabTab>();
+    private static List<SwingScilabTab> savedList;
+    private static boolean savedMustSave;
+
     private static SwingScilabTab root;
 
     static {
@@ -89,6 +93,36 @@ public class ClosingOperationsManager {
         if (tab != null) {
             registerClosingOperation((SwingScilabTab) tab.getAsSimpleTab(), op);
         }
+    }
+
+    /**
+     * Unregister a closing operation for a tab
+     *
+     * @param tab the associated tab
+     */
+    public static void unregisterClosingOperation(SwingScilabTab tab) {
+        if (tab != null) {
+            closingOps.remove(tab);
+        }
+    }
+
+    public static void checkTabForClosing(SwingScilabTab tab) {
+	if (tab != null && !dunnoList.isEmpty()) {
+	    if (dunnoList.contains(tab)) {
+		dunnoList.remove(tab);
+	    }
+	    if (dunnoList.isEmpty() && savedList != null) {
+		close(savedList, null, false, savedMustSave);
+		savedList = null;
+		savedMustSave = false;
+	    }
+	}
+    }
+
+    public static void removeFromDunnoList(SwingScilabTab tab) {
+	if (tab != null && !dunnoList.isEmpty() && dunnoList.contains(tab)) {
+	    dunnoList.remove(tab);
+	}
     }
 
     /**
@@ -303,6 +337,19 @@ public class ClosingOperationsManager {
     }
 
     /**
+     * Remove the given children from its parent
+     * @param child teh child to remove
+     */
+    public static void removeDependency(SwingScilabTab child) {
+	for (SwingScilabTab tab : deps.keySet()) {
+	    List<SwingScilabTab> children = deps.get(tab);
+	    if (children != null) {
+		children.remove(child);
+	    }
+	}
+    }
+
+    /**
      * Add a dependency between two tabs
      *
      * @param parent
@@ -453,7 +500,7 @@ public class ClosingOperationsManager {
      */
     private static final boolean close(List<SwingScilabTab> list, SwingScilabWindow window, boolean askToExit, boolean mustSave) {
         boolean ret = false;
-        if (!askToExit || canClose(list, window)) {
+        if (!askToExit || canClose(list, window, mustSave)) {
             ret = true;
             SwingScilabTab console = null;
             try {
@@ -624,8 +671,12 @@ public class ClosingOperationsManager {
      * @return true if all the tabs can be closed
      */
     private static final boolean canClose(List<SwingScilabTab> list,
-                                          SwingScilabWindow window) {
+                                          SwingScilabWindow window,
+					  boolean mustSave) {
         CheckExitConfirmation cec = XConfiguration.get(CheckExitConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
+	dunnoList.clear();
+	savedList = null;
+	savedMustSave = false;
 
         if (cec.checked) {
             String question = makeQuestion(list);
@@ -652,12 +703,30 @@ public class ClosingOperationsManager {
 
         for (SwingScilabTab t : list) {
             ClosingOperation op = closingOps.get(t);
-            if (op != null && !op.canClose()) {
-                return false;
-            }
+            if (op != null) {
+		int ret = op.canClose();
+		if (ret == 0) {
+		    dunnoList.clear();
+		    return false;
+		}
+		if (ret == -1) {
+		    dunnoList.add(t);
+		}
+	    }
         }
 
-        return true;
+	if (dunnoList.isEmpty()) {
+	    return true;
+	}
+	
+	for (SwingScilabTab tab : dunnoList) {
+	    list.remove(tab);
+	}
+
+	savedList = list;
+	savedMustSave = mustSave;
+
+	return false;
     }
 
     /**
@@ -781,9 +850,9 @@ public class ClosingOperationsManager {
     public interface ClosingOperation {
 
         /**
-         * @return true if the associated tab can be closed or not
+         * @return 0 or 1 if the associated tab can be closed or not, and -1 if the answer is unknown
          */
-        public boolean canClose();
+        public int canClose();
 
         /**
          * Destroy the resources associated to the tab

@@ -57,6 +57,7 @@ int get_figure_size_property(void* _pvCtx, char* pobjUID);
 int get_figure_name_property(void* _pvCtx, char* pobjUID);
 int get_figure_id_property(void* _pvCtx, char* pobjUID);
 int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID);
+int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID);
 int get_rotation_style_property(void* _pvCtx, char* pobjUID);
 int get_immediate_drawing_property(void* _pvCtx, char* pobjUID);
 int get_pixmap_property(void* _pvCtx, char* pobjUID);

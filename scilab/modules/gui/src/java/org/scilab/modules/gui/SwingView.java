@@ -111,6 +111,7 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
@@ -530,6 +531,9 @@ public final class SwingView implements GraphicView {
                             SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
                             DockingManager.close(tab);
                             DockingManager.unregisterDockable((Dockable) tab);
+			    ClosingOperationsManager.unregisterClosingOperation(tab);
+			    ClosingOperationsManager.removeDependency(tab);
+			    ClosingOperationsManager.checkTabForClosing(tab);
                             tab.close();
                         }
                     });

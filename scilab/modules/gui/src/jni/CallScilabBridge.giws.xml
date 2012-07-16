@@ -213,5 +213,8 @@
     </method>
     <method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
     <method name="scilabAboutBox" returnType="void" modifier="static"/>
+    <method name="fireClosingFinished" returnType="void" modifier="static">
+      <parameter type="String" name="figUID"/>
+    </method>
   </object>
 </package>
