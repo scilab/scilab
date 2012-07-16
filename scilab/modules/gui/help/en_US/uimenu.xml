@@ -169,6 +169,9 @@ mm2=uimenu(mmathml,'label', '<mrow><msup><mn>a</mn><mi>2</mi></msup><mo>+</mo><m
         <link linkend="uicontrol">uicontrol</link>
       </member>
       <member>
+        <link linkend="uicontextmenu">uicontextmenu</link>
+      </member>
+      <member>
         <link linkend="set">set</link>
       </member>
       <member>

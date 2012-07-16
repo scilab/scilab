@@ -199,7 +199,7 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-// Display some additionnal informations
+// Display some additionnal information
 atomsSetConfig("Verbose","True");
 
 // Load the test repository

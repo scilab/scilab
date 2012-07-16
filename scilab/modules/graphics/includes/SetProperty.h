@@ -78,9 +78,6 @@ GRAPHICS_IMPEXP int sciSetClipping (char* pobj, double pclip[4] ); /* SET */
 GRAPHICS_IMPEXP int sciInitZooming(char* pobj, BOOL value);
 GRAPHICS_IMPEXP int sciSetZooming (char* pobj, BOOL value); /* SET */
 
-GRAPHICS_IMPEXP int sciInitVisibility (char* pobj, BOOL value);
-GRAPHICS_IMPEXP int sciSetVisibility (char* pobj, BOOL value); /* SET */
-
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
@@ -90,7 +87,6 @@ GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
 
 GRAPHICS_IMPEXP void sciSelectFirstSubwin( char* parentFigure ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitSelectedSubWin (char* psubwinobj);
 GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetOriginalSubWin (char* pfigure, char* psubwin); /* SET */
@@ -119,14 +115,11 @@ GRAPHICS_IMPEXP int sciSetUserSize(  char* pObj, double width, double height ) ;
 GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
 
-GRAPHICS_IMPEXP int sciInitSelectedObject( char* pObj ) ;
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
 GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
-
-GRAPHICS_IMPEXP int sciSetViewport(  char* pObj, const int viewport[4] ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
 GRAPHICS_IMPEXP int sciSetEventHandler(  char* pObj, char * name ) ;

@@ -235,9 +235,11 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="c\InitializeLocalization.c" />
     <ClCompile Include="c\LanguagePreferences_Windows.c" />
     <ClCompile Include="c\LocaleNameToLCID_Windows.c" />
+    <ClCompile Include="c\setdefaultlanguage.c" />
     <ClCompile Include="jni\LocaleToLCID_wrap.c" />
     <ClCompile Include="jni\Messages_wrap.c" />
     <ClCompile Include="c\setgetlanguage.c" />
+    <ClCompile Include="jni\setdefaultlanguage_wrap.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">

@@ -29,6 +29,7 @@ Source: modules\{#PREFERENCES}\sci_gateway\{#PREFERENCES}_gateway.xml; DestDir: 
 Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.quit; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.start; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#PREFERENCES}\etc\*.xml; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#PREFERENCES}\etc\*.xsl; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#PREFERENCES}\src\xslt\*.xsl; DestDir: {app}\modules\{#PREFERENCES}\src\xslt; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

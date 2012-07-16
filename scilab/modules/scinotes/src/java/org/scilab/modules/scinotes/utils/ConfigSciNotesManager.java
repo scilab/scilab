@@ -47,6 +47,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
@@ -172,8 +173,8 @@ public final class ConfigSciNotesManager {
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
     private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
 
-    private static final String USER_SCINOTES_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabCommons.getSCIHOME() + "/keysConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/scinotesConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabConstants.SCIHOME.toString() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;
@@ -825,17 +826,17 @@ public final class ConfigSciNotesManager {
             if ("Tabulation".equals(style.getAttribute(NAME))) {
                 String type = "none";
                 switch (cfg.type) {
-                case ScilabView.TABVERTICAL:
-                    type = "vertical";
-                    break;
-                case ScilabView.TABHORIZONTAL:
-                    type = "horizontal";
-                    break;
-                case ScilabView.TABDOUBLECHEVRONS:
-                    type = "doublechevrons";
-                    break;
-                default:
-                    break;
+                    case ScilabView.TABVERTICAL:
+                        type = "vertical";
+                        break;
+                    case ScilabView.TABHORIZONTAL:
+                        type = "horizontal";
+                        break;
+                    case ScilabView.TABDOUBLECHEVRONS:
+                        type = "doublechevrons";
+                        break;
+                    default:
+                        break;
                 }
 
                 style.setAttribute("rep", type);
@@ -1472,7 +1473,7 @@ public final class ConfigSciNotesManager {
             int y = Integer.parseInt(mainWindowPosition.getAttribute(YCOORD));
             /* Avoid SciNotes Main Window to be out of the screen */
             if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
-                && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
+                    && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
                 return new Position(x, y);
             } else {
                 return new Position(0, 0);
@@ -1749,7 +1750,7 @@ public final class ConfigSciNotesManager {
      */
     public static List<File> getOpenFilesByEditor(UUID editorID) {
         List<File> files = new ArrayList<File>();
-	readDocument();
+        readDocument();
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
         if (root != null) {
             NodeList openFiles = root.getElementsByTagName(DOCUMENT);
@@ -1821,7 +1822,7 @@ public final class ConfigSciNotesManager {
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep, int pos) {
         readDocument();
-        removeFromOpenFiles(editorInstance.getUUID(), Arrays.asList(new String[]{filePath}));
+        removeFromOpenFiles(editorInstance.getUUID(), Arrays.asList(new String[] {filePath}));
         UUID nil = new UUID(0, 0);
 
         // Find the element containing the list of open files
@@ -1886,7 +1887,7 @@ public final class ConfigSciNotesManager {
         for (int i = openFiles.getLength() - 1; i >= 0; i--) {
             Element doc = (Element) openFiles.item(i);
             if (editorID.equals(UUID.fromString(doc.getAttribute(EDITORINST)))
-                && toRemove.contains(doc.getAttribute(PATH))) {
+                    && toRemove.contains(doc.getAttribute(PATH))) {
                 root.removeChild((Node) doc);
             }
         }
@@ -1915,7 +1916,7 @@ public final class ConfigSciNotesManager {
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
             if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
-                && (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                    && (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 root.removeChild((Node) style);
             }
         }
@@ -2005,7 +2006,7 @@ public final class ConfigSciNotesManager {
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
             if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
-                && (sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                    && (sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 return style;
             }
         }
@@ -2160,7 +2161,7 @@ public final class ConfigSciNotesManager {
         }
 
         if (!update) {
-            ScilabXMLUtilities.createNode(document, root, CODENAVIGATOR, new String[]{"uuid", navUUID, "depends", editorUUID});
+            ScilabXMLUtilities.createNode(document, root, CODENAVIGATOR, new String[] {"uuid", navUUID, "depends", editorUUID});
         }
 
         writeDocument();
@@ -2219,7 +2220,7 @@ public final class ConfigSciNotesManager {
         }
 
         if (!update) {
-            ScilabXMLUtilities.createNode(document, root, SEARCHINFILES, new String[]{"uuid", sfUUID, "depends", editorUUID});
+            ScilabXMLUtilities.createNode(document, root, SEARCHINFILES, new String[] {"uuid", sfUUID, "depends", editorUUID});
         }
 
         writeDocument();
@@ -2274,7 +2275,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        ScilabXMLUtilities.createNode(document, root, EDITORUUID, new String[]{"uuid", editorUUID});
+        ScilabXMLUtilities.createNode(document, root, EDITORUUID, new String[] {"uuid", editorUUID});
 
         writeDocument();
     }

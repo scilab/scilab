@@ -17,7 +17,6 @@
 #include <stddef.h>
 
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the font size of a uicontrol

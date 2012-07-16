@@ -47,14 +47,15 @@ int get_links_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    if (iLinksCount == 0) {
+    if (iLinksCount == 0)
+    {
         return sciReturnEmptyMatrix(_pvCtx);
     }
 
-    handles = (long *)MALLOC(iLinksCount*sizeof(long));
-    if (handles==NULL)
+    handles = (long *)MALLOC(iLinksCount * sizeof(long));
+    if (handles == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"get_links_property");
+        Scierror(999, _("%s: No more memory.\n"), "get_links_property");
         return -1;
     }
 
@@ -66,10 +67,6 @@ int get_links_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    /*
-     * Temporary, as sciPointObj structures should not be allocated.
-     * To be modified
-     */
     for (i = 0; i < iLinksCount; i++)
     {
         handles[i] = getHandle(links[i]);

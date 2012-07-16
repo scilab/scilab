@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -242,23 +242,18 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\BasicAlgos.cpp" />
     <ClCompile Include="src\c\DllmainRenderer.c" />
     <ClCompile Include="src\cpp\GetJavaProperty.cpp" />
     <ClCompile Include="src\cpp\JavaInteraction.cpp" />
-    <ClCompile Include="src\cpp\rendererBasicAlgos.cpp" />
     <ClCompile Include="src\cpp\RendererFontManager.cpp" />
     <ClCompile Include="src\cpp\SetJavaProperty.cpp" />
     <ClCompile Include="src\jni\CallRenderer.cpp" />
     <ClCompile Include="src\jni\XlFontManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cpp\BasicAlgos.hxx" />
     <ClInclude Include="includes\dynlib_renderer.h" />
     <ClInclude Include="includes\GetJavaProperty.h" />
     <ClInclude Include="includes\JavaInteraction.h" />
-    <ClInclude Include="src\cpp\Observer.h" />
-    <ClInclude Include="includes\rendererBasicAlgos.h" />
     <ClInclude Include="includes\RendererFontManager.h" />
     <ClInclude Include="includes\SetJavaProperty.h" />
     <ClInclude Include="src\jni\CallRenderer.hxx" />

@@ -14,7 +14,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fprintf">
   <refnamediv>
     <refname>fprintf</refname>
-    <refpurpose> Emulator of C language fprintf function</refpurpose>
+    <refpurpose>
+      Emulator of C language fprintf function. <emphasis>This function
+      is obsolete</emphasis>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -26,28 +29,22 @@
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>a Scilab string. Specifies a character string combining literal characters with conversion specifications.</para>
+          <para>a Scilab string. It specifies a character string combining literal characters with conversion specifications.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value_i</term>
         <listitem>
-          <para>Specifies the data to be converted according to the format parameter.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>column vector of character strings</para>
+          <para>specifies the data to be converted according to the <literal>format</literal> parameter.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>file</term>
         <listitem>
           <para>
-            a Scilab string specifying a file name or a logical unit number (see <literal>file</literal>)
+            a Scilab string specifying a file name or a logical unit number (see<link linkend="file">file</link>)
           </para>
-          <para>Note that is file=0, the message will be display on standard error stream (stderr).</para>
+          <para>Note that if file=0, the message will be display on standard error stream (stderr).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,8 +52,11 @@
   <refsection>
     <title>Description</title>
     <para>
-      Obsolete function, use preferabily the <link linkend="mfprintf">mfprintf</link> function
-      which is much more compatible with the C <literal>fprintf</literal> functionalities.
+      <caution>
+        This function is obsolete, use preferabily the <link
+        linkend="mfprintf">mfprintf</link> function which is much more
+        compatible with the C <literal>fprintf</literal> functionalities.
+      </caution>
     </para>
     <para>
       The <literal>fprintf</literal> function converts, formats, and writes
@@ -78,7 +78,7 @@
         <term>Conversion specifications</term>
         <listitem>
           <para>
-            each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. see <link linkend="printf_conversion">printf_conversion</link> for details
+            each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. See <link linkend="printf_conversion">printf_conversion</link> for details.
           </para>
         </listitem>
       </varlistentry>
@@ -91,7 +91,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-u=file('open','results','unknown') //open the result file
+u=file('open',fullfile(TMPDIR,'results'),'unknown') //open the result file
 t=0:0.1:2*%pi;
 for tk=t
   fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line

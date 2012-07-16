@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-13 21:10+0000\n"
+"PO-Revision-Date: 2012-07-13 11:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: uk\n"
 
 #, c-format
@@ -136,6 +136,31 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Повідомлення Scilab"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: можливість %s є застарілою.\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: будь ласка, скористайтеся %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: цю можливість буде остаточно вилучено з Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор-"
+"рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -497,9 +522,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&Копіювати до буфера"
 
@@ -626,29 +648,14 @@ msgstr "Спо&рожнити буфер обміну даними"
 msgid "&Select all"
 msgstr "&Вибрати все"
 
-msgid "P&references"
-msgstr "Н&алаштування"
-
-msgid "&Preferences"
-msgstr "П&араметри"
-
-msgid "&Colors"
-msgstr "&Кольори"
-
-msgid "Console &Background..."
-msgstr "&Тло консолі…"
-
-msgid "Console &Font..."
-msgstr "&Шрифт консолі…"
-
-msgid "&Font..."
-msgstr "&Шрифт…"
-
 msgid "Clear &History"
 msgstr "Спорожнити &журнал"
 
 msgid "Clear C&onsole"
 msgstr "Спорожнити &консоль"
+
+msgid "P&references"
+msgstr "Н&алаштування"
 
 msgid "&Control"
 msgstr "&Керування"
@@ -755,9 +762,6 @@ msgstr "Копіювати"
 msgid "Paste"
 msgstr "Вставити"
 
-msgid "Choose Font..."
-msgstr "Вибрати шрифт…"
-
 msgid "Print..."
 msgstr "Надрукувати…"
 
@@ -766,6 +770,9 @@ msgstr "Керування модулями — ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr "Налаштування Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Демонстрації Scilab"
@@ -897,22 +904,6 @@ msgstr ""
 "властивості «%s» або «%s».\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr ""
-"Помилковий розмір властивості «%s»: слід використовувати графічний елемент "
-"керування.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати елемент керування "
-"«%s» або «%s».\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Властивість «%s» не визначено для елементів керування стилю: %s.\n"
-
-#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
@@ -1039,24 +1030,15 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати «%s», «%s» або "
 "«%s».\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати список з "
-"двох елементів.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
-
 msgid "Console Font..."
 msgstr "Шрифт консолі…"
 
 msgid "Console Background..."
 msgstr "Тло консолі…"
 
-#, c-format
+msgid "No print service found."
+msgstr "Службу друку не знайдено."
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1066,7 +1048,6 @@ msgstr ""
 "показ графічних елементів керування неможливий. Віддайте команду %s, щоб "
 "дізнатися більше."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Іноді, проблему можна усунути за допомогою команди %s"
 
@@ -1088,11 +1069,17 @@ msgstr ""
 "використовувати додаткові графічні властивості. Введіть команду «help "
 "usecanvas», щоб дізнатися більше.\")"
 
-msgid "Clear History"
-msgstr "Спорожнити журнал"
-
 msgid "Clear Console"
 msgstr "Спорожнити консоль"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr "Ви справді бажаєте спорожнити консоль?"
+
+msgid "Do not show this message again"
+msgstr "Не показувати більше це повідомлення"
+
+msgid "Clear History"
+msgstr "Спорожнити журнал"
 
 msgid "Select All"
 msgstr "Позначити все"
@@ -1242,7 +1229,6 @@ msgstr "Зберегти і виконати"
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1251,11 +1237,9 @@ msgstr ""
 "Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
 "долученим файлом %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Ви справді бажаєте закрити %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Ви справді бажаєте закрити %s і %s ?"
 
@@ -1310,7 +1294,6 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
 

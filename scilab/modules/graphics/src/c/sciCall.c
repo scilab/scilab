@@ -85,10 +85,6 @@ void Objrect ( double * x         ,
 
     if (newObjUID == NULL)
     {
-        /* Deactivated for now (synchronization) */
-#if 0
-        endFigureDataWriting(pFigure);
-#endif
         /* an error occured */
         *hdl = -1;
         return;
@@ -192,7 +188,7 @@ void Objfpoly ( double  * x    ,
 
     int closed = 1; /* we close the polyline by default */
 
-    psubwinUID = (char*)getCurrentSubWin();
+    psubwinUID = (char*)getOrCreateDefaultSubwin();
 
     checkRedrawing();
 
@@ -301,25 +297,10 @@ void Objstring( char            ** fname      ,
     char * pobjUID = NULL;
     char * pfigureUID = NULL;
 
-    /* Deactivated (synchronization) */
-#if 0
-    startGraphicDataWriting();
-#endif
-
     pfigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
 
-    /* Deactivated (synchronization) */
-#if 0
-    endGraphicDataWriting();
-#endif
-
     checkRedrawing();
-
-    /* Deactivated (synchronization) */
-#if 0
-    startFigureDataWriting(pFigure);
-#endif
 
     pobjUID = ConstructText( psubwinUID   ,
                              fname     ,
@@ -343,23 +324,9 @@ void Objstring( char            ** fname      ,
         return;
     }
 
-    /* Deactivated (synchronization) */
-#if 0
-    endFigureDataWriting(pFigure);
-
-    startFigureDataReading(pFigure);
-#endif
-
     *hdl = getHandle(pobjUID);
 
     setGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, angle, jni_double, 1);
-
-    /* Deactivated (drawing and synchronization) */
-#if 0
-    sciDrawObj(pobj);
-    endFigureDataReading(pFigure);
-#endif
-
 }
 
 
@@ -502,32 +469,14 @@ void Objplot3d ( char    * fname ,
      * Force SubWindow properties according to arguments
      * ================================================= */
 
-    /* Deactivated (synchronization) */
-#if 0
-    startGraphicDataWriting();
-#endif
     parentFigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
-    /* Deactivated (synchronization) */
-#if 0
-    endGraphicDataWriting();
-#endif
-
-    /* Deactivated for now (synchronization) */
-#if 0
-    startFigureDataWriting(parentFigure);
-#endif
 
     checkRedrawing();
 
     /* Force 3D view */
     view = 1;
     setGraphicObjectProperty(psubwinUID, __GO_VIEW__, &view, jni_int, 1);
-
-    /* project: to be implemented within the MVC */
-#if 0
-    pSUBWIN_FEATURE (psubwin)->project[2] = 1; /* to force z axis display */
-#endif
 
     if ( legend != NULL )
     {
@@ -581,23 +530,6 @@ void Objplot3d ( char    * fname ,
     setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
 
 
-    /*
-     * Flag[0]: apparently superseded by color mode
-     * Probably useless now
-     * flag[1]: also apparently useless
-     */
-#if 0
-    pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
-
-    if (iflag[1] != 0)
-    {
-        if (iflag[1] < 7)
-            pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]; /* type: scaling (no more useful)  */
-        else
-            pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1] - 6; /* type: scaling (no more useful)  */
-    }
-#endif
-
     getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 
     if (firstPlot == 0 && (iflag[2] == 0 || iflag[2] == 1))
@@ -607,11 +539,6 @@ void Objplot3d ( char    * fname ,
     else
     {
         int labelVisible;
-
-        /* Apparently now redundant with the MVC BOX_TYPE property */
-#if 0
-        pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
-#endif
 
         if (iflag[2] == 0 || iflag[2] == 1)
         {
@@ -840,10 +767,6 @@ void Objplot3d ( char    * fname ,
             int monotony = checkMonotony( x, dimvectx );
             if ( monotony == 0 )
             {
-                /* Deactivated for now (synchronization) */
-#if 0
-                endFigureDataWriting(parentFigure);
-#endif
                 Scierror(999, _("%s: x vector is not monotonous.\n"), "Objplot3d");
                 return;
             }
@@ -875,10 +798,6 @@ void Objplot3d ( char    * fname ,
             int monotony = checkMonotony( y, dimvecty );
             if ( monotony == 0 )
             {
-                /* Deactivated for now (synchronization) */
-#if 0
-                endFigureDataWriting(parentFigure);
-#endif
                 Scierror(999, _("%s: y vector is not monotonous.\n"), "Objplot3d");
                 return;
             }
@@ -892,21 +811,11 @@ void Objplot3d ( char    * fname ,
 
         if ( pNewSurfaceUID == NULL )
         {
-            /* Deactivated for now (synchronization) */
-#if 0
-            endFigureDataWriting(parentFigure);
-#endif
             Scierror(999, _("%s: No more memory.\n"), "Objplot3d");
             return;
         }
 
         setCurrentObject( pNewSurfaceUID );
-
-        /* To be implemented within the MVC (indicate whether the x and y vectors are increasing or decreasing) */
-#if 0
-        pSURFACE_FEATURE (pNewSurface)->flag_x = flag_x;
-        pSURFACE_FEATURE (pNewSurface)->flag_y = flag_y;
-#endif
 
         /* Force clipping, 1: CLIPGRF */
         clipState = 1;
@@ -921,10 +830,6 @@ void Objplot3d ( char    * fname ,
 
         if ((hdltab = MALLOC (*n * sizeof (long))) == NULL)
         {
-            /* Deactivated for now (synchronization) */
-#if 0
-            endFigureDataWriting(parentFigure);
-#endif
             Scierror(999, "%s: No more memory.\n", fname);
             return;
         }
@@ -1005,13 +910,6 @@ void Objplot3d ( char    * fname ,
     * ================================================= */
 
     // subwin has been modified
-
-    /* Deactivated since it involves drawing */
-#if 0
-    forceRedraw(psubwin);
-    endFigureDataWriting(parentFigure);
-    sciDrawObj(sciGetCurrentFigure ());
-#endif
 
     firstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);

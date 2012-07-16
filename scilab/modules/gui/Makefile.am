@@ -53,7 +53,6 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
-src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
@@ -69,22 +68,9 @@ src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
-src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
-src/cpp/PushButton.cpp \
-src/cpp/EditBox.cpp \
-src/cpp/Label.cpp \
-src/cpp/CheckBox.cpp \
-src/cpp/RadioButton.cpp \
-src/cpp/UiTable.cpp \
-src/cpp/UiDisplayTree.cpp \
-src/cpp/Slider.cpp \
-src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
-src/cpp/ListBox.cpp \
-src/cpp/Frame.cpp \
 src/cpp/Toolbar.cpp \
 src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
@@ -92,7 +78,8 @@ src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
 src/cpp/SetUicontrolString.cpp \
 src/cpp/GetUicontrolString.cpp \
-src/cpp/SetUicontrolParent.cpp \
+src/cpp/SetUicontrolTooltipString.cpp \
+src/cpp/GetUicontrolTooltipString.cpp \
 src/cpp/SetUicontrolBackgroundColor.cpp \
 src/cpp/GetUicontrolBackgroundColor.cpp \
 src/cpp/SetUiobjectForegroundColor.cpp \
@@ -109,8 +96,6 @@ src/cpp/SetUicontrolFontSize.cpp \
 src/cpp/GetUicontrolFontSize.cpp \
 src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
-src/cpp/SetUiobjectCallback.cpp \
-src/cpp/GetUiobjectCallback.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUimenuChecked.cpp \
@@ -133,8 +118,6 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
-src/cpp/SetUiobjectVisible.cpp \
-src/cpp/GetUiobjectVisible.cpp \
 src/cpp/SetConsoleShowHiddenHandles.cpp \
 src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \
@@ -145,8 +128,7 @@ src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp \
-src/cpp/displayUiTree.cpp
+src/jni/ScilabDisplayTree.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \

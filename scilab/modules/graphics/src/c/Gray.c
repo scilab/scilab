@@ -72,26 +72,6 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 
     isRedrawn = checkRedrawing();
 
-    /*
-     * Deactivated for now
-     * Searches the object hierarchy until a Surface object is found
-     * in order to specify the view type (2D or 3D)
-     * To be implemented
-     */
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-#if 0
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-    {
-        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
-    }
-    else
-    {
-        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
-    }
-#endif
-
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
@@ -192,32 +172,11 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             autoTicks = 0;
             setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
             setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-
-            /*
-             * Creates user-defined ticks using the Nax values
-             * The MVC does not distinguish yet between automatically computed ticks
-             * and user-defined ones.
-             * To be implemented using the MVC framework
-             */
-#if 0
-            CreatePrettyGradsFromNax(psubwin, aaint);
-#endif
         }
         else
         {
             sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
-    }
-
-    if ( bounds_changed || axes_properties_changed )
-    {
-        /*
-         * Deactivated since it tells the renderer module that the object has changed
-         * To be implemented
-         */
-#if 0
-        forceRedraw(psubwin);
-#endif
     }
 
     /* Constructs the object */
@@ -233,22 +192,6 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     /* Sets the grayplot as current */
     setCurrentObject(pgrayplotUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pgrayplotUID, jni_string, 1);
-
-    /*
-     * Deactivated as it performs redrawing.
-     * To be implemented
-     */
-#if 0
-    /* if the auto_clear is on we must redraw everything */
-    if ( isRedrawn )
-    {
-        sciDrawObj( sciGetCurrentFigure() );
-    }
-    else
-    {
-        sciDrawObj( sciGetCurrentObj() );
-    }
-#endif
 
     return(0);
 }
@@ -287,22 +230,6 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
-
-    /* Deactivated */
-    /* To be implemented */
-#if 0
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-    {
-        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
-    }
-    else
-    {
-        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
-    }
-#endif
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
@@ -405,33 +332,11 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
             autoTicks = 0;
             setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
             setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-
-            /*
-             * Creates user-defined ticks using the Nax values
-             * The MVC does not distinguish yet between automatically computed ticks
-             * and user-defined ones.
-             * To be implemented using the MVC framework
-             */
-#if 0
-            CreatePrettyGradsFromNax(psubwin, aaint);
-#endif
         }
         else
         {
             sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
-    }
-
-    if ( bounds_changed || axes_properties_changed )
-    {
-        /* subwin has been modified by the above code */
-        /*
-         * Deactivated since it tells the renderer module that the object has changed
-         * To be implemented
-         */
-#if 0
-        forceRedraw(psubwin);
-#endif
     }
 
     /* Construct the grayplot object */
@@ -447,14 +352,6 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     setCurrentObject(pGrayplotUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pGrayplotUID, jni_string, 1);
     /* if the auto_clear is on we must redraw everything */
-
-    /*
-     * Deactivated as it performs redrawing.
-     * To be implemented
-     */
-#if 0
-    sciDrawObj(pGrayplot);
-#endif
 
     return 0;
 }
@@ -484,11 +381,6 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     clipState = 1;
     setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    /* Deactivated as it performs redrawing */
-#if 0
-    sciDrawObj(psubwin);
-#endif
-
     pGrayplotUID = ConstructGrayplot
                    ((char *) psubwinUID,
                     xrect, &y, z, *n1 + 1, *n2 + 1, 2);
@@ -504,22 +396,6 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     releaseGraphicObjectProperty(__GO_PARENT__, pGrayplotUID, jni_string, 1);
 
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
-
-    /* if the auto_clear is on we must redraw everything */
-    /*
-     * Deactivated as it performs redrawing.
-     * To be implemented
-     */
-#if 0
-    if ( isRedrawn )
-    {
-        sciDrawObj( sciGetCurrentFigure() );
-    }
-    else
-    {
-        sciDrawObj(sciGetCurrentObj ());
-    }
-#endif
 
     return (0);
 }

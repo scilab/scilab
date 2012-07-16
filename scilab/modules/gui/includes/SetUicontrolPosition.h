@@ -14,7 +14,6 @@
 #ifndef __SETUICONTROLPOSITION_H__
 #define __SETUICONTROLPOSITION_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "SetProperty.h"
 
 /**

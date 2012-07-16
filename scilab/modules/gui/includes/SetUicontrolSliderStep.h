@@ -17,7 +17,6 @@
 #include <stddef.h>
 
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the slider step property of a uicontrol (slider)

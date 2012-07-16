@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fscanfMat" xml:lang="en">
   <refnamediv>
     <refname>fscanfMat</refname>
-    <refpurpose>Reads a Matrix from a text file.</refpurpose>
+    <refpurpose>reads a matrix from a text file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,39 +28,50 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>a character string giving the name of the file to be
-            scanned.
+          <para>
+            a character string giving the name of the file to be scanned.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fmt</term>
         <listitem>
-          <para>a character string giving the format. This is an optional
+          <para>
+            a character string giving the format. This is an optional
             parameter, the default value is <literal>"%lg"</literal>.
           </para>
-          <para>supported format: %[width].[precision]type or %type</para>
           <para>
-            <literal>width</literal>: Optional number that specifies the minimum number of characters output.
+            Supported format: <literal>%[width].[precision]type</literal> or <literal>%type</literal> where:
           </para>
           <para>
-            <literal>precision</literal>: Optional number that specifies the maximum number of characters printed for all or part of the output field, or the minimum number of digits printed for integer values.
+            <literal>width</literal>: optional number that specifies
+            the minimum number of characters output;
           </para>
           <para>
-            <literal>type</literal>: lf, lg, d, i, e, f, g
+            <literal>precision</literal>: optional number that
+            specifies the maximum number of characters printed for all
+            or part of the output field, or the minimum number of
+            digits printed for integer values.
+          </para>
+          <para>
+            <literal>type</literal>: lf, lg, d, i, e, f, g (see <link
+            linkend="scanf_conversion">scanf_conversion</link>).
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>M</term>
         <listitem>
-          <para>Output variable. A matrix of real numbers.</para>
+          <para>output variable. A matrix of real numbers.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>text</term>
         <listitem>
-          <para>Output variable. A string matrix.</para>
+          <para>
+            output variable. A column vector of strings. It is
+            comments in the beginning of the file <literal>filename</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,7 +79,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      The <literal>fscanfMat</literal> function is used to read a scalar
+      The <literal>fscanfMat</literal> function is used to read a real
       matrix from a text file. The first non-numeric lines of the file are
       returned in <literal>text</literal> if requested and all the remaining
       lines must have the same number of columns (column separator are assumed

@@ -414,7 +414,7 @@ static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, d
 /*--------------------------------------------------------------------------*/
 int getNamedScalarDouble(void* _pvCtx, const char* _pstName, double* _pdblReal)
 {
-    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, NULL);
+    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, 0);
 }
 /*--------------------------------------------------------------------------*/
 int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdblReal, double* _pdblImg)

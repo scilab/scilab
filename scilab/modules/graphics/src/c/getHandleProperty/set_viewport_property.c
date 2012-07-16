@@ -39,14 +39,6 @@ int set_viewport_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   if ( nbRow * nbCol != 2 )
   {
     Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "viewport", 2);
@@ -71,20 +63,5 @@ int set_viewport_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
     return SET_PROPERTY_ERROR;
   }
-
-/* deactivated for now since it involves drawing operations, to be implemented */
-#if 0
-
-  /* force auto_resize. With auto_resize disable, resize does not work */
-
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  status = sciSetViewport(pobj, values);
-  enableFigureSynchronization(pobj);
-
-  /* return set property unchanged since repaint is not really needed */
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
-#endif
-
 }
 /*------------------------------------------------------------------------*/

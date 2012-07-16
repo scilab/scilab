@@ -75,3 +75,6 @@ SEP #075: New dec2base function
 SEP #076: atomsCheckModule function
 SEP #077: atomsQuit function
 SEP #078: nthroot function
+SEP #079: arma2ss function
+SEP #080: xcorr & xcov functions
+SEP #081: new argument for test_run to generate a xunit report

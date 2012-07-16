@@ -50,6 +50,7 @@ Relief = raised
 SliderStep = [0.01,0.1]
 String = ""
 Style = pushbutton
+TooltipString = ""
 Units = pixels
 Value = []
 VerticalAlignment = middle

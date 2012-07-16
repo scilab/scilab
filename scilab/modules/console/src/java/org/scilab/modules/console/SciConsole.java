@@ -619,7 +619,7 @@ public abstract class SciConsole extends JPanel {
      * @param font the font to set
      */
     public void setFont(Font font) {
-        if (sciConsole != null) {
+        if (sciConsole != null && !font.equals(getFont())) {
             sciConsole.setFont(font);
 
             /* Have to update the output view contents with new font */
@@ -630,7 +630,7 @@ public abstract class SciConsole extends JPanel {
                 outputDoc.remove(0, outputDoc.getLength());
                 config.getOutputView().append(txt);
             } catch (BadLocationException e) {
-                System.out.println(Messages.gettext("Could not change the Console Font."));
+                System.err.println(Messages.gettext("Could not change the Console Font."));
                 return;
             }
 

@@ -62,7 +62,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c \
-@NEED_JAVA_TRUE@src/jni/LocaleToLCID_wrap.c
+@NEED_JAVA_TRUE@src/jni/LocaleToLCID_wrap.c \
+@NEED_JAVA_TRUE@src/jni/setdefaultlanguage_wrap.c
 
 @IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
 
@@ -134,17 +135,20 @@ libscilocalization_algo_la_LIBADD =
 am__libscilocalization_algo_la_SOURCES_DIST =  \
 	src/c/InitializeLocalization.c src/c/setgetlanguage.c \
 	src/c/getLcidString.c src/c/charEncoding.c \
-	src/jni/Messages_wrap.c src/jni/LocaleToLCID_wrap.c \
+	src/c/setdefaultlanguage.c src/jni/Messages_wrap.c \
+	src/jni/LocaleToLCID_wrap.c src/jni/setdefaultlanguage_wrap.c \
 	src/c/getLocaleInfo_Apple.c
 @NEED_JAVA_TRUE@am__objects_1 =  \
 @NEED_JAVA_TRUE@	libscilocalization_algo_la-Messages_wrap.lo \
-@NEED_JAVA_TRUE@	libscilocalization_algo_la-LocaleToLCID_wrap.lo
+@NEED_JAVA_TRUE@	libscilocalization_algo_la-LocaleToLCID_wrap.lo \
+@NEED_JAVA_TRUE@	libscilocalization_algo_la-setdefaultlanguage_wrap.lo
 @IS_MACOSX_TRUE@am__objects_2 = libscilocalization_algo_la-getLocaleInfo_Apple.lo
 am__objects_3 = libscilocalization_algo_la-InitializeLocalization.lo \
 	libscilocalization_algo_la-setgetlanguage.lo \
 	libscilocalization_algo_la-getLcidString.lo \
-	libscilocalization_algo_la-charEncoding.lo $(am__objects_1) \
-	$(am__objects_2)
+	libscilocalization_algo_la-charEncoding.lo \
+	libscilocalization_algo_la-setdefaultlanguage.lo \
+	$(am__objects_1) $(am__objects_2)
 am_libscilocalization_algo_la_OBJECTS = $(am__objects_3)
 libscilocalization_algo_la_OBJECTS =  \
 	$(am_libscilocalization_algo_la_OBJECTS)
@@ -457,7 +461,8 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
 	src/c/setgetlanguage.c src/c/getLcidString.c \
-	src/c/charEncoding.c $(am__append_1) $(am__append_2)
+	src/c/charEncoding.c src/c/setdefaultlanguage.c \
+	$(am__append_1) $(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 	sci_gateway/c/sci_dgettext.c
 
@@ -695,6 +700,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-charEncoding.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-getLcidString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-getLocaleInfo_Apple.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-setgetlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-localization_gw.Plo@am__quote@
@@ -754,6 +761,13 @@ libscilocalization_algo_la-charEncoding.lo: src/c/charEncoding.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilocalization_algo_la-charEncoding.lo `test -f 'src/c/charEncoding.c' || echo '$(srcdir)/'`src/c/charEncoding.c
 
+libscilocalization_algo_la-setdefaultlanguage.lo: src/c/setdefaultlanguage.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilocalization_algo_la-setdefaultlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Tpo -c -o libscilocalization_algo_la-setdefaultlanguage.lo `test -f 'src/c/setdefaultlanguage.c' || echo '$(srcdir)/'`src/c/setdefaultlanguage.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Tpo $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setdefaultlanguage.c' object='libscilocalization_algo_la-setdefaultlanguage.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilocalization_algo_la-setdefaultlanguage.lo `test -f 'src/c/setdefaultlanguage.c' || echo '$(srcdir)/'`src/c/setdefaultlanguage.c
+
 libscilocalization_algo_la-Messages_wrap.lo: src/jni/Messages_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilocalization_algo_la-Messages_wrap.lo -MD -MP -MF $(DEPDIR)/libscilocalization_algo_la-Messages_wrap.Tpo -c -o libscilocalization_algo_la-Messages_wrap.lo `test -f 'src/jni/Messages_wrap.c' || echo '$(srcdir)/'`src/jni/Messages_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_algo_la-Messages_wrap.Tpo $(DEPDIR)/libscilocalization_algo_la-Messages_wrap.Plo
@@ -767,6 +781,13 @@ libscilocalization_algo_la-LocaleToLCID_wrap.lo: src/jni/LocaleToLCID_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/LocaleToLCID_wrap.c' object='libscilocalization_algo_la-LocaleToLCID_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilocalization_algo_la-LocaleToLCID_wrap.lo `test -f 'src/jni/LocaleToLCID_wrap.c' || echo '$(srcdir)/'`src/jni/LocaleToLCID_wrap.c
+
+libscilocalization_algo_la-setdefaultlanguage_wrap.lo: src/jni/setdefaultlanguage_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilocalization_algo_la-setdefaultlanguage_wrap.lo -MD -MP -MF $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage_wrap.Tpo -c -o libscilocalization_algo_la-setdefaultlanguage_wrap.lo `test -f 'src/jni/setdefaultlanguage_wrap.c' || echo '$(srcdir)/'`src/jni/setdefaultlanguage_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage_wrap.Tpo $(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/setdefaultlanguage_wrap.c' object='libscilocalization_algo_la-setdefaultlanguage_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilocalization_algo_la-setdefaultlanguage_wrap.lo `test -f 'src/jni/setdefaultlanguage_wrap.c' || echo '$(srcdir)/'`src/jni/setdefaultlanguage_wrap.c
 
 libscilocalization_algo_la-getLocaleInfo_Apple.lo: src/c/getLocaleInfo_Apple.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilocalization_algo_la-getLocaleInfo_Apple.lo -MD -MP -MF $(DEPDIR)/libscilocalization_algo_la-getLocaleInfo_Apple.Tpo -c -o libscilocalization_algo_la-getLocaleInfo_Apple.lo `test -f 'src/c/getLocaleInfo_Apple.c' || echo '$(srcdir)/'`src/c/getLocaleInfo_Apple.c

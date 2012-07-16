@@ -25,6 +25,7 @@ GetUiobjectForegroundColor
 GetUicontrolBackgroundColor
 GetUicontrolStyle
 GetUicontrolString
+GetUicontrolTooltipString
 GetUimenuLabel
 GetUiobjectEnable
 GetScreenProperty
@@ -62,5 +63,6 @@ SetUicontrolFontWeight
 SetUiobjectForegroundColor
 SetUicontrolBackgroundColor
 SetUicontrolString
+SetUicontrolTooltipString
 SetUimenuLabel
 SetUiobjectEnable

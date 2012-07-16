@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-13 21:20+0000\n"
+"PO-Revision-Date: 2012-07-13 11:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: uk\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -452,6 +452,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
+msgid "Figure n%d"
+msgstr "Рисунок %d"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: невідомий вхідний параметр «%s».\n"
 
@@ -679,10 +683,6 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: будь ласка, скористайтеся %s.\n"
 
 #, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: неможливо увімкнути порожній обробник подій.\n"
-
-#, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Для цього елемента керування властивості «%s» не передбачено.\n"
 
@@ -862,9 +862,6 @@ msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати дійсне "
 "значення або елемент керування «%s».\n"
-
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr "Не вдалося створити потрібний рисунок. Вичерпано доступну пам’ять.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
@@ -1102,6 +1099,24 @@ msgstr "%s: вектор y не є монотонним.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графічний модуль Scilab не встановлено.\n"
+
+msgid "Average monthly temperatures in french cities"
+msgstr "Середньорічні температури у містах Франції"
+
+msgid "Computing in progress..."
+msgstr "Виконуються обчислення…"
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr "(область множини Мандельброта)"
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr "Matplot1(..) показує область у МАСШТАБОВАНИХ ВІСЯХ"
+
+msgid "Real part"
+msgstr "Дійсна частина"
+
+msgid "Imaginary part"
+msgstr "Уявна частина"
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "Графіки з 2 різними масштабами за Y"

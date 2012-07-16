@@ -36,8 +36,8 @@
             情報を含む大きさ13の整数ベクトルまたは
             ファイルが存在しない場合に空の行列.
           </para>
-          <para>'files' が文字列の列ベクトルの場合, x は
-            m x 13の大きさの行列となります.
+          <para><literal>files</literal>' が文字列の列ベクトルの場合, <literal>x</literal> は
+            <literal>m x 13</literal>の大きさの行列となります.
           </para>
           <para>filename が存在しない場合, 出力情報として
             13行を返し,その各行にはNaNが含まれます.
@@ -54,7 +54,7 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para>x = fileinfo(file) は以下を返します</para>
+    <para><literal>x = fileinfo(file)</literal> は以下を返します</para>
     <variablelist>
       <varlistentry>
         <term>x(1)</term>
@@ -139,7 +139,7 @@
   <refsection>
     <title>参考</title>
     <para>この関数はCの関数statへのインターフェイスです.</para>
-    <para>許可属性は,通常,8進数で指定されます : 変換にはdec2oct(x(2))
+    <para>許可属性は,通常,8進数で指定されます : 変換には<literal>dec2oct(x(2))</literal>
       を使用します
     </para>
     <para>

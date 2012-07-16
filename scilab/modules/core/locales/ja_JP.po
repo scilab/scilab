@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1174,10 +1174,6 @@ msgstr "%s: %s を確認してください.\n"
 #, c-format
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: ファイルは存在しません: %s"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Scilabエディタが必要です.\n"
 
 #
 # File: macros/edit.sci, line: 24

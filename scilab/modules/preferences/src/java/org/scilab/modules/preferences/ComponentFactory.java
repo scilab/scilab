@@ -43,7 +43,7 @@ class ComponentFactory {
 
     private static final String X_PACKAGE = "org.scilab.modules.preferences.Component.";
     private static final int SPACE = 5;
-    private static final Map<String, Constructor<Component>> cache = new HashMap<String, Constructor<Component>>();
+    private static final Map < String, Constructor <? extends Component >> cache = new HashMap < String, Constructor <? extends Component >> ();
     private static final Map<String, MyAction> actions = new HashMap<String, MyAction>();
 
     static {
@@ -64,7 +64,7 @@ class ComponentFactory {
         });
         actions.put("HSpace", new MyAction() {
             public Component getComponent(final Node node) {
-                return Box.createHorizontalStrut(XConfigManager.getInt(node, "height", SPACE));
+                return Box.createHorizontalStrut(XConfigManager.getInt(node, "width", SPACE));
             }
         });
         actions.put("Glue", new MyAction() {
@@ -83,15 +83,15 @@ class ComponentFactory {
             return component;
         }
 
-        Constructor constructor = cache.get(tag);
+        Constructor <? extends Component > constructor = cache.get(tag);
         if (constructor == null) {
             if ("PreviewCode".equals(tag)) {
                 ScilabCommonsUtils.loadOnUse("SciNotes");
             }
 
-            Class<Component> componentClass;
+            Class <? extends Component > componentClass;
             try {
-                componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);
+                componentClass = Class.forName(X_PACKAGE + tag).asSubclass(Component.class);
             } catch (ClassNotFoundException e) {
                 System.err.println(e);
                 return new XStub(node, "ClassNotFoundException");

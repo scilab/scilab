@@ -130,7 +130,7 @@ function [varValues] = %__convertHandles__(varValues)
         fields = fieldnames(figureProperties);
         fields(1) = [];
 
-        h = scf(figureProperties.figure_id);
+        h = gcf();
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;

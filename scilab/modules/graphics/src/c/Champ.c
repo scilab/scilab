@@ -141,11 +141,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     clipState = 1;
     setGraphicObjectProperty(newSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    /* Deactivated since it tells the renderer module that the object has changed */
-#if 0
-    forceRedraw(newSegs); /* update drawer */
-#endif
-
     /* Get segs bounding box */
     getGraphicObjectProperty(newSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
 
@@ -156,21 +151,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     releaseGraphicObjectProperty(__GO_BOUNDING_BOX__, boundingBox, jni_double_vector, 4);
     releaseGraphicObjectProperty(__GO_PARENT__, newSegsUID, jni_string, 1);
-
-    /* To be implemented */
-#if 0
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-    {
-        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-        pSUBWIN_FEATURE (psubwin)->project[2] = 0;
-    }
-    else
-    {
-        pSUBWIN_FEATURE (psubwin)->theta_kp = pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp = pSUBWIN_FEATURE (psubwin)->alpha;
-    }
-#endif
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
@@ -250,25 +230,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     /* just after strflag2axes_properties */
     firstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
-
-    /*
-     * Deactivated since it tells the renderer module that the object has changed
-     * To be implemented
-     */
-#if 0
-    if ( bounds_changed || axes_properties_changed )
-    {
-        forceRedraw(psubwin);
-    }
-#endif
-
-    /*
-     * Deactivated since it involves drawing via the renderer module
-     */
-#if 0
-    sciDrawObj(sciGetCurrentFigure());
-#endif
-
 }
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 #, c-format
@@ -204,12 +204,6 @@ msgstr "右移"
 msgid "Shift Left"
 msgstr "左移"
 
-msgid "Configure Tabulation"
-msgstr "配置制表符"
-
-msgid "Horizontal wrapping"
-msgstr "水平包绕"
-
 msgid "Correct Indentation"
 msgstr "纠正缩进"
 
@@ -246,11 +240,17 @@ msgstr "选项"
 msgid "Current file encoding"
 msgstr "当前文件编码"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr "SciNotes文件默认编码；UTF-8；Windows 1252 (ANSI)；ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "行结束符"
+
+msgid "Auto-completion on"
+msgstr ""
+
+msgid "(, [, ..."
+msgstr ""
+
+msgid "if, function, ..."
+msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行号；关；普通；Whereami兼容"
@@ -693,6 +693,17 @@ msgstr "编码问题"
 msgid "Cannot guess the file encoding."
 msgstr "不能猜出文件编码"
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+
+msgid "Backup finished..."
+msgstr ""
+
+#, c-format
+msgid "%s occurences found."
+msgstr ""
+
 msgid "Change Colors"
 msgstr "更改颜色"
 
@@ -776,6 +787,9 @@ msgstr "从最后一次SciNotes会话恢复文件？"
 
 msgid "Restore the last sessions"
 msgstr "恢复最后一次会话"
+
+msgid "Configure Tabulation"
+msgstr "配置制表符"
 
 msgid "Tab style"
 msgstr "制表符样式"

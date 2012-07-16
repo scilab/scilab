@@ -30,7 +30,6 @@
 #include "SetUicontrolString.h"
 #include "SetUicontrolBackgroundColor.h"
 #include "SetUiobjectForegroundColor.h"
-#include "SetUiobjectCallback.h"
 #include "SetUicontrolFontWeight.h"
 #include "SetUicontrolFontUnits.h"
 #include "SetUicontrolFontSize.h"
@@ -48,6 +47,7 @@
 #include "SetUicontrolSliderStep.h"
 #include "SetUimenuChecked.h"
 #include "SetConsoleShowHiddenHandles.h"
+#include "SetUicontrolTooltipString.h"
 
 int set_color_map_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_old_style_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);

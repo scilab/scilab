@@ -31,7 +31,6 @@
 #include "Scierror.h"
 #include "InitObjects.h"
 #include "CurrentFigure.h"
-#include "ObjectSelection.h"
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
 #include "localization.h"
@@ -465,37 +464,8 @@ sciGetParentFigure (sciPointObj * pobj)
 sciPointObj *
 sciGetParentSubwin (sciPointObj * pobj)
 {
-    sciPointObj *subwin = NULL;
-
-    subwin = pobj;
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return sciGetFirstTypedSelectedSon( pobj, SCI_SUBWIN );
-            break;
-        case SCI_SUBWIN:
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-            while (sciGetEntityType(subwin) != SCI_SUBWIN)
-                subwin = sciGetParent(subwin);
-            return (sciPointObj *) subwin;
-            break;
-        default:
-            return NULL;
-            break;
-    }
-    return (sciPointObj *) NULL;
+    abort();
+    return NULL;
 }
 
 /**sciGetNumfigure
@@ -850,57 +820,6 @@ sciGetNum (sciPointObj * pobj)
     }
 #endif
 }
-
-/**
-* Get the size of the window enclosing a figure object
-*/
-int sciGetWindowWidth(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                return pFIGURE_FEATURE(pObj)->pModelData->windowWidth ;
-            }
-            else
-            {
-                int size[2] ;
-                sciGetJavaWindowSize(pObj, size) ;
-                return size[0] ;
-            }
-            break;
-        default:
-            printSetGetErrorMessage("figure_size");
-            break;
-    }
-    return -1;
-}
-
-
-int sciGetWindowHeight(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                return pFIGURE_FEATURE(pObj)->pModelData->windowHeight ;
-            }
-            else
-            {
-                int size[2] ;
-                sciGetJavaWindowSize(pObj, size) ;
-                return size[1] ;
-            }
-            break;
-        default:
-            printSetGetErrorMessage("figure_size");
-            break;
-    }
-    return -1;
-}
-
 
 /**sciIsExistingSubWin
 * Determines if this SubWindow is an existing one in the current SCI_FIGURE
@@ -1770,26 +1689,6 @@ BOOL sciGetCenterPos( sciPointObj * pObj )
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* return wether the current object is displayed in 2d or 3d mode.
-*/
-BOOL sciGetIs3d( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->is3d ;
-        case SCI_TEXT:
-            return pTEXT_FEATURE( pObj )->is3d ;
-        case SCI_LABEL:
-            return sciGetIs3d( pLABEL_FEATURE( pObj )->text ) ;
-        default:
-            printSetGetErrorMessage("view");
-            return FALSE ;
-    }
-    return FALSE ;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
 * get the number of children of a graphic object
 * @return number of children of object pObj
 */
@@ -1859,59 +1758,6 @@ BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 BOOL sciGetImmediateDrawingMode(sciPointObj * pobj)
 {
     return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* To retrieve the viewport property
-* viewport property is only enable when the auto_resize property of the figure is
-* disable.
-*/
-void sciGetViewport( sciPointObj * pObj, int viewport[4] )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-            if (isFigureModel(pObj->UID))
-            {
-                viewport[0] = pFIGURE_FEATURE(pObj)->pModelData->viewport[0];
-                viewport[1] = pFIGURE_FEATURE(pObj)->pModelData->viewport[1];
-                viewport[2] = pFIGURE_FEATURE(pObj)->pModelData->viewport[2];
-                viewport[3] = pFIGURE_FEATURE(pObj)->pModelData->viewport[3];
-            }
-            else
-            {
-                sciGetJavaViewport(pObj, viewport);
-            }
-            break;
-        default:
-            printSetGetErrorMessage("viewport");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-            if ( pObj == (sciPointObj *)getFigureModel() )
-            {
-                *posX = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[0] ;
-                *posY = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[1] ;
-            }
-            else
-            {
-                int pos[2];
-                sciGetJavaWindowPosition(pObj, pos) ;
-                *posX = pos[0] ;
-                *posY = pos[1] ;
-            }
-            break ;
-        default:
-            printSetGetErrorMessage("figure_position");
-            *posX = -1 ;
-            *posY = -1 ;
-    }
 }
 /*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
@@ -2187,27 +2033,6 @@ void sciGetTextPos(sciPointObj * pObj, double position[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Convert user coordinates to pixel ones (relative to the viewing canvas).
-* @param pObj subwindow handle
-* @param userCoord user coordinates
-* @param pixCoord result in pixels.
-*/
-void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            sciGetJavaPixelCoordinates(pObj, userCoord, pixCoord);
-            break;
-        default:
-            Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
-            pixCoord[0] = -1;
-            pixCoord[1] = -1;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Convert user coordinates to user cooordinates (2D).
 * @param pObjUID subwindow identifier
 * @param userCoord3D user coordinates
@@ -2447,66 +2272,6 @@ void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the 4 corners of the bounding box of a text object in 3D
-*/
-void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_TEXT:
-        {
-            int i;
-            for (i = 0; i < 3; i++)
-            {
-                // should be up to date
-                corner1[i] = pTEXT_FEATURE(pObj)->corners[0][i];
-                corner2[i] = pTEXT_FEATURE(pObj)->corners[1][i];
-                corner3[i] = pTEXT_FEATURE(pObj)->corners[2][i];
-                corner4[i] = pTEXT_FEATURE(pObj)->corners[3][i];
-            }
-        }
-        break;
-        case SCI_LABEL:
-            sciGetTextBoundingBox(pLABEL_FEATURE(pObj)->text, corner1, corner2, corner3, corner4);
-            break;
-
-        default:
-            printSetGetErrorMessage("bounding box");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get the 4 corners of the bounding box of a text object in pixels
-*/
-void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2])
-{
-    sciGetJavaPixelBoundingBox(pObj, corner1, corner2, corner3, corner4);
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get the 4 corners of the boundng box of a text object in 2D view user coordinates.
-*/
-void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
-                             double corner3[2], double corner4[2])
-{
-    sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
-    double corners3d[4][3];
-
-    /* get bounding box */
-    sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
-
-    /* convert it to 2d view coordinates */
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[0], corner1);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[1], corner2);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[2], corner3);
-    sciGetJava2dViewCoordinates((char*)parentSubwin, corners3d[3], corner4);
-
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */
@@ -2527,41 +2292,6 @@ void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int 
         *width = -1;
         *height = -1;
         Scierror(999, _("Only axes handles have a viewing area."));
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get the axis aligned bounding box a graphic object
-* @param bounds [xmin, xmax, ymin, ymax, zmin, zmax] bounds.
-*/
-void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            sciGetDataBounds(pObj, bounds);
-            break;
-        case SCI_SEGS:
-            sciGetJavaSegsBoundingBox(pObj, bounds);
-            break;
-        case SCI_TEXT:
-        {
-            double corners[4][3];
-            sciGetTextBoundingBox(pObj, corners[0], corners[1], corners[2], corners[3]);
-            bounds[0] = Min(corners[0][0], Min(corners[1][0], Min(corners[2][0], corners[3][0])));
-            bounds[1] = Max(corners[0][0], Max(corners[1][0], Max(corners[2][0], corners[3][0])));
-            bounds[2] = Min(corners[0][1], Min(corners[1][1], Min(corners[2][1], corners[3][1])));
-            bounds[3] = Max(corners[0][1], Max(corners[1][1], Max(corners[2][1], corners[3][1])));
-            bounds[4] = Min(corners[0][2], Min(corners[1][2], Min(corners[2][2], corners[3][2])));
-            bounds[5] = Max(corners[0][2], Max(corners[1][2], Max(corners[2][2], corners[3][2])));
-        }
-        break;
-        case SCI_LABEL:
-            sciGetAABoundingBox(pLABEL_FEATURE(pObj)->text, bounds);
-            break;
-        default:
-            Scierror(999, _("Unable to compute data bounds for this kind of object."));
-            break;
     }
 }
 /*----------------------------------------------------------------------------------*/
@@ -2595,15 +2325,6 @@ char sciGetyLocation(sciPointObj * pObj)
             break;
     }
     return NULL;
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get the labels and positions of ticks along Z axis.
-* String composing ticksLabels are allocated with C++ new.
-*/
-BOOL sciGetIsAbleToCreateWindow(void)
-{
-    return sciGetJavaIsAbleToCreateWindow();
 }
 /*----------------------------------------------------------------------------------*/
 /**

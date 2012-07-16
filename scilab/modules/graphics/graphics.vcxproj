@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -397,11 +397,9 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
     </ClCompile>
-    <ClCompile Include="src\c\ObjectSelection.c" />
     <ClCompile Include="src\c\pixel_mode.c" />
     <ClCompile Include="src\c\Plo2dEch.c" />
     <ClCompile Include="src\c\Plo2dn.c" />
-    <ClCompile Include="sci_gateway\c\sci_addcb.c" />
     <ClCompile Include="sci_gateway\c\sci_champ.c" />
     <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_contour2di.c" />
@@ -634,7 +632,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\InitObjects.h" />
     <ClInclude Include="includes\Interaction.h" />
     <ClInclude Include="includes\math_graphics.h" />
-    <ClInclude Include="includes\ObjectSelection.h" />
     <ClInclude Include="includes\ObjectStructure.h" />
     <ClInclude Include="includes\pixel_mode.h" />
     <ClInclude Include="includes\PloEch.h" />

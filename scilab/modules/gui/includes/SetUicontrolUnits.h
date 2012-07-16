@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_UNITS_H__
 #define __SET_UICONTROL_UNITS_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the units of a uicontrol

@@ -258,7 +258,7 @@
           <emphasis role="bold">in_label</emphasis>
         </para>
         <para> A vector of strings including ports labels.</para>
-        <para>These labels can be used to update text or to trace informations.</para>
+        <para>These labels can be used to update text or to trace information.</para>
         <para> 
           Size : nul or number of regular input ports.
         </para>
@@ -271,7 +271,7 @@
           <emphasis role="bold">out_label</emphasis>
         </para>
         <para> A vector of strings including ports labels.</para>
-        <para>These labels can be used to update text or to trace informations.</para>
+        <para>These labels can be used to update text or to trace information.</para>
         <para> 
           Size : nul or number of regular output ports.
         </para>

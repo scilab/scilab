@@ -21,14 +21,12 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-
-#include "ObjectStructure.h"
-#include "GetProperty.h"
-#include "pixel_mode.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+
+#include "pixel_mode.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

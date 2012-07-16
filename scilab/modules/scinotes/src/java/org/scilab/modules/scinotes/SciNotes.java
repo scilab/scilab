@@ -1353,6 +1353,19 @@ public class SciNotes extends SwingScilabTab {
      * @return the text component inside the tab
      */
     public ScilabEditorPane addTab(String title, int index) {
+        return addTab(title, index, 0);
+    }
+
+    /**
+     * Create a new tab in SciNotes.
+     *
+     * @param title
+     *            the title of the tab
+     * @param index
+     *            the index where to put the new tab
+     * @return the text component inside the tab
+     */
+    public ScilabEditorPane addTab(String title, int index, int caretPos) {
         ScilabEditorPane sep = new ScilabEditorPane(this);
         initPane(sep);
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
@@ -1362,7 +1375,7 @@ public class SciNotes extends SwingScilabTab {
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
         repaint();
-        sep.init();
+        sep.init(caretPos);
         return sep;
     }
 
@@ -1519,6 +1532,16 @@ public class SciNotes extends SwingScilabTab {
         sep.setShortName(SciNotesMessages.UNTITLED + n);
         sep.setTitle(SciNotesMessages.UNTITLED + n);
         setTitle(sep.getTitle());
+        SciNotesOptions.Header header = SciNotesOptions.getSciNotesHeader();
+        if (header.header != null) {
+            ((ScilabDocument) sep.getDocument()).disableUndoManager();
+            try {
+                sep.getDocument().insertString(0, header.header, null);
+            } catch (BadLocationException e) { }
+            sep.init(header.header.length());
+            ((ScilabDocument) sep.getDocument()).setContentModified(false);
+            ((ScilabDocument) sep.getDocument()).enableUndoManager();
+        }
 
         return sep;
     }

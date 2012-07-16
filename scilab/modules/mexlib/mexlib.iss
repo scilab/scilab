@@ -19,8 +19,11 @@
 #define MEXLIB "mexlib"
 ;
 Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
+Source: bin\libmx.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmex.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
+Source: bin\libmex.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmat.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
+Source: bin\libmat.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 ;
 Source: modules\{#MEXLIB}\license.txt; DestDir: {app}\modules\{#MEXLIB}; Components: {#COMPN_MEXLIB}
 ;

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-13 19:20+0000\n"
+"PO-Revision-Date: 2012-07-13 20:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -410,6 +410,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
+msgid "Figure n%d"
+msgstr "Číslo n%d"
+
+#, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
 msgstr "%s: Nerozpoznaný vstupní argument '%s'.\n"
 
@@ -619,10 +623,6 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: použijte, prosím, místo toho %s.\n"
 
 #, c-format
-msgid "%s: Can't enable a void event handler.\n"
-msgstr "%s: Nelze povolit obslužnou rutinu prázdné události.\n"
-
-#, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Vlastnost '%s' pro tuto obslužnou rutinu neexistuje.\n"
 
@@ -766,9 +766,6 @@ msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
 "Špatný typ vlastnosti '%s': Očekáváno reálné číslo nebo obslužná rutina "
 "'%s'.\n"
-
-msgid "Unable to create requested figure: No more memory.\n"
-msgstr "Nelze vytvořit požadovaný obrazec: Není více paměti.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
@@ -974,6 +971,24 @@ msgstr "%s: vektor y není monotónní.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Grafický modul Scilab není nainstalován.\n"
+
+msgid "Average monthly temperatures in french cities"
+msgstr "Průměrné měsíční teploty ve francouzských městech"
+
+msgid "Computing in progress..."
+msgstr "Probíhá výpočet..."
+
+msgid "(here an area of the Mandelbrot set)"
+msgstr "(zde je oblast Mandelbrotovy množiny)"
+
+msgid "Matplot1(..) displays an area with SCALED AXES"
+msgstr "Matplot1(..) zobrazuje oblast ZMENŠENÝCH OS"
+
+msgid "Real part"
+msgstr "Reálná část"
+
+msgid "Imaginary part"
+msgstr "Imaginární část"
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "Grafika 2 různými škálami Y"

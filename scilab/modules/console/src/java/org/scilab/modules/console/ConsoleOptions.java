@@ -17,6 +17,7 @@ import java.awt.Font;
 
 import org.w3c.dom.Document;
 
+import org.scilab.modules.commons.ScilabGeneralPrefs;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.commons.xml.XConfiguration;
 
@@ -27,6 +28,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
 public class ConsoleOptions {
 
     public static final String COLORSPATH = "//colors/body/desktop-colors";
+    public static final String CONSOLEFONTPATH = "//fonts/body/fonts/item[@xconf-uid=\"console-font\"]";
     public static final String FONTPATH = "//fonts/body/fonts";
     public static final String DISPLAYPATH = "//console/body/display";
     public static final String KEYMAPPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"console\"]/action";
@@ -88,10 +90,10 @@ public class ConsoleOptions {
 
         private ConsoleFont() { }
 
-        @XConfAttribute(tag = "fonts", attributes = {"font-face", "font-name", "font-size", "system"})
-        private void set(String fontFace, String fontName, int fontSize, boolean useSystemFont) {
-            if (useSystemFont) {
-                this.font = new Font("monospaced", Font.PLAIN, 13);
+        @XConfAttribute(tag = "item", attributes = {"font-face", "font-name", "font-size", "desktop"})
+        private void set(String fontFace, String fontName, int fontSize, boolean desktopFont) {
+            if (desktopFont) {
+                this.font = ScilabGeneralPrefs.getDesktopFont();
             } else {
                 this.font = new Font(fontName, Font.PLAIN, fontSize);
                 int style = Font.PLAIN;
@@ -138,7 +140,7 @@ public class ConsoleOptions {
             if (doc == null) {
                 doc = XConfiguration.getXConfigurationDocument();
             }
-            font = XConfiguration.get(ConsoleOptions.ConsoleFont.class, doc, FONTPATH)[0];
+            font = XConfiguration.get(ConsoleOptions.ConsoleFont.class, doc, CONSOLEFONTPATH)[0];
         }
 
         return font;

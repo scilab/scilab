@@ -140,7 +140,7 @@
         </tr>
         <tr>
           <td>verbose</td>
-          <td>Display or not extra-informations</td>
+          <td>Display or not extra-information</td>
           <td>
             True/<emphasis role="strong">False</emphasis>
           </td>

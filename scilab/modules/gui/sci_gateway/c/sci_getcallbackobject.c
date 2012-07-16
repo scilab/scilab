@@ -17,7 +17,6 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
-#include "ObjectStructure.h"
 #include "stack-c.h"
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/

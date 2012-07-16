@@ -17,15 +17,11 @@
 
 /*------------------------------------------------------------------------*/
 /* file: get_figure_id_property.c                                         */
-/* Copyright INRIA 2006                                                   */
-/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
 /* desc : function to retrieve in Scilab the figure_id field of a         */
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-
-#include "ObjectStructure.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -42,7 +38,7 @@ int get_figure_id_property(void* _pvCtx, char* pobjUID)
 
     if ( piFigureId == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_id");
         return -1;
     }
 

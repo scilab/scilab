@@ -13,43 +13,15 @@
  *
  */
 
-#include "GetJavaProperty.h"
-#include "BasicAlgos.hxx"
-
 extern "C"
 {
-#include "BasicAlgos.h"
 #include "getScilabJavaVM.h"
+#include "GetJavaProperty.h"
 }
 
 #include "CallRenderer.hxx"
 
 using namespace org_scilab_modules_renderer;
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowSize(sciPointObj * pFigure, int size[2])
-{
-    //getFigureDrawer(pFigure)->getWindowSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
-{
-    //getFigureDrawer(pFigure)->getWindowPosition(pos);
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
-{
-    //return getFigureDrawer(pFigure)->getAntialiasingQuality();
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
-{
-
-}
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords[3], int pixCoords[2])
@@ -99,16 +71,6 @@ void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], d
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3], double corner3[3], double corner4[3])
-{
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2], int corner3[2], int corner4[2])
-{
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, int *height)
 {
     double *tmp = NULL;
@@ -119,114 +81,6 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
     *yPos = (int) tmp[1];
     *width = (int) tmp[2];
     *height = (int) tmp[3];
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
-{
-
-}
-
-/*---------------------------------------------------------------------------------*/
-BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
-{
-    //if (getFigureDrawer(pFigure)->getAutoResizeMode())
-    {
-        return TRUE;
-    }
-    //else
-    {
-        return FALSE;
-    }
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
-{
-    //getFigureDrawer(pFigure)->getViewport(viewport);
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
-{
-
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciGetJavaNbXTicks(sciPointObj * pSubwin)
-{
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
-{
-    // ticksLabels comes from graphics so is allocated with MALLOC
-    // however getTicksPos will use new to allocate
-    int nbTicks = sciGetJavaNbXTicks(pSubwin);
-    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
-
-
-    // copy it into ticksLabels
-    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
-
-    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciGetJavaNbYTicks(sciPointObj * pSubwin)
-{
-    abort();
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
-{
-    // ticksLabels comes from graphics so is allocated with MALLOC
-    // however getTicksPos will use new to allocate
-    int nbTicks = sciGetJavaNbYTicks(pSubwin);
-    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
-
-
-    // copy it into ticksLabels
-    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
-
-    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciGetJavaNbZTicks(sciPointObj * pSubwin)
-{
-    abort();
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
-void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
-{
-    // ticksLabels comes from graphics so is allocated with MALLOC
-    // however getTicksPos will use new to allocate
-    int nbTicks = sciGetJavaNbZTicks(pSubwin);
-    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
-
-    // copy it into ticksLabels
-    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
-
-    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
-}
-
-/*---------------------------------------------------------------------------------*/
-BOOL sciGetJavaIsAbleToCreateWindow(void)
-{
-    //if (DrawableFigure::isAbleToCreateFigure())
-    {
-        return booltoBOOL(true);
-    }
-    //else
-    {
-        return booltoBOOL(false);
-    }
 }
 
 /*---------------------------------------------------------------------------------*/

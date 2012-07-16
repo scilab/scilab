@@ -22,7 +22,6 @@
 #include "stack-c.h"
 #include "GetProperty.h" /* sciGetNum */
 #include "CallJxgetmouse.h"
-#include "ObjectSelection.h"
 #include "FigureList.h"
 #include "axesScale.h"
 #include "sciprint.h"

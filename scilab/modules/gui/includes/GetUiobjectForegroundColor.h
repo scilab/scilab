@@ -13,8 +13,8 @@
 #ifndef __GET_UIOBJECT_FOREGROUNDCOLOR_H__
 #define __GET_UIOBJECT_FOREGROUNDCOLOR_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the foreground color of a uicontrol

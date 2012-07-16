@@ -38,6 +38,7 @@ import org.flexdock.perspective.persist.xml.LayoutNodeSerializer;
 import org.flexdock.perspective.persist.xml.PersistenceConstants;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
@@ -70,7 +71,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     private static final String SCI = "SCI";
     private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
-    private static final String USER_WINDOWS_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/windowsConfiguration.xml";
+    private static final String USER_WINDOWS_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/windowsConfiguration.xml";
     private static final String NULLUUID = new UUID(0L, 0L).toString();
     private static final Map<SwingScilabTab, EndedRestoration> endedRestoration = new HashMap<SwingScilabTab, EndedRestoration>();
     private static final List<String> alreadyRestoredWindows = new ArrayList<String>();

@@ -6,7 +6,7 @@
   </button>
   <!-- Open File -->
   <button icon="document-open" tooltiptext="Open a file">
-    <callback instruction="           %fileToOpen = uigetfile(&quot;*.sc*&quot;, pwd(), gettext(&quot;Select a file to open with SciNotes&quot;));           if ~(%fileToOpen == &quot;&quot;) then             editor(%fileToOpen);           end           clear(&quot;%fileToOpen&quot;);" type="0"/>
+    <callback instruction="           %fileToOpen = uigetfile(&quot;*.sc*&quot;, pwd(), gettext(&quot;Select a file to open with SciNotes&quot;),%t);           if %fileToOpen ~= [] then             editor(%fileToOpen);           end           clear(&quot;%fileToOpen&quot;);" type="0"/>
   </button>
   <separator/>
   <!-- Copy -->

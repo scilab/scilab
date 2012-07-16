@@ -58,8 +58,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class to retrieve object from the xml configuration file
@@ -70,12 +72,14 @@ import org.scilab.modules.commons.gui.ScilabKeyStroke;
 public class XConfiguration {
 
     // User configuration file
-    private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
+    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
     private static final String SCI = System.getenv("SCI");
     private static final String SCILAB_CONFIG_FILE = SCI + "/modules/preferences/etc/XConfiguration.xml";
 
-    private static final String ERROR_READ = "Could not load file: ";
-    private static final String ERROR_WRITE = "Could not write the file: ";
+    private static final String ERROR_READ = Messages.gettext("Could not load file: ");
+    private static final String ERROR_WRITE = Messages.gettext("Could not write the file: ");
+    private static final String SEVERE_ERROR = Messages.gettext("A severe error occured: cannot load the preferences file.");
+    private static final String PARSING_ERROR = Messages.gettext("An error occured when loading the preferences file, try to reload the default one.");
 
     private static final XPathFactory xpathFactory = XPathFactory.newInstance();
     private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();
@@ -84,6 +88,7 @@ public class XConfiguration {
     private static final Set<String> modifiedPaths = new HashSet<String>();
 
     private static Document doc;
+    private static boolean hasBeenRead;
 
     static {
         addXConfigurationListener(ScilabGeneralPrefs.getInstance());
@@ -105,6 +110,7 @@ public class XConfiguration {
      */
     public static Document getXConfigurationDocument() {
         if (doc == null) {
+            boolean error = false;
             File xml = new File(USER_CONFIG_FILE);
             if (!xml.exists()) {
                 ScilabXMLUtilities.writeDocument(createDocument(), USER_CONFIG_FILE);
@@ -116,15 +122,39 @@ public class XConfiguration {
                 DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
                 docBuilder = factory.newDocumentBuilder();
                 doc = docBuilder.parse(xml);
-                return doc;
+                float version = getDocumentVersion(doc);
+                float defaultVersion = getDocumentVersion(getDefaultDocument());
+                if (defaultVersion != version) {
+                    xml.delete();
+                    doc = null;
+                    return getXConfigurationDocument();
+                } else {
+                    return doc;
+                }
             } catch (ParserConfigurationException pce) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             } catch (SAXException se) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             } catch (IOException ioe) {
-                System.err.println(ERROR_READ + USER_CONFIG_FILE);
+                error = true;
             }
-            return null;
+
+            if (error) {
+                if (hasBeenRead) {
+                    System.err.println(SEVERE_ERROR);
+                    doc = null;
+                    xml.delete();
+                    return docBuilder.newDocument();
+                }
+
+                hasBeenRead = true;
+                doc = null;
+                xml.delete();
+                System.err.println(PARSING_ERROR);
+                return getXConfigurationDocument();
+            }
+
+            return docBuilder.newDocument();
         }
 
         return doc;
@@ -197,13 +227,31 @@ public class XConfiguration {
     }
 
     /**
-     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
-     * @return the built document
+     * Get the document version
+     * @param doc the document
+     * @return the version
      */
-    public static Document createDocument() {
+    private static float getDocumentVersion(Document doc) {
+        if (doc != null) {
+            Element root = doc.getDocumentElement();
+            String version = root.getAttribute("version");
+
+            try {
+                return Float.parseFloat(version);
+            } catch (NumberFormatException e) { }
+        }
+
+        return 0.0f;
+    }
+
+    /**
+     * Get the default document
+     * @return the document
+     */
+    private static Document getDefaultDocument() {
         DocumentBuilder docBuilder;
         DocumentBuilderFactory factory;
-        Document mainDoc;
+        Document mainDoc = null;
 
         try {
             factory = ScilabDocumentBuilderFactory.newInstance();
@@ -220,7 +268,31 @@ public class XConfiguration {
             return null;
         }
 
+        return mainDoc;
+    }
+
+    /**
+     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
+     * @return the built document
+     */
+    public static Document createDocument() {
+        DocumentBuilder docBuilder;
+        DocumentBuilderFactory factory;
+        Document mainDoc = getDefaultDocument();
+        if (mainDoc == null) {
+            return null;
+        }
+
         Element root = mainDoc.getDocumentElement();
+
+        factory = ScilabDocumentBuilderFactory.newInstance();
+
+        try {
+            docBuilder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException pce) {
+            System.err.println("Cannot create a XML DocumentBuilder:\n" + pce);
+            return null;
+        }
 
         List<File> etcs = getEtcDir();
         for (File etc : etcs) {

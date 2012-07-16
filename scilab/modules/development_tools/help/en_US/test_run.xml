@@ -21,8 +21,8 @@
     <synopsis>
       status = test_run()
       status = test_run(module)
-      status = test_run(module,test_name)
-      status = test_run(module,test_name,options)
+      status = test_run(module, test_name)
+      status = test_run(module, test_name, options, exportToFile)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -149,6 +149,15 @@
               </listitem>
             </varlistentry>
           </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>exportToFile</term>
+        <listitem>
+          <para>
+            Export to a XML file the result of the test. This file follows the specification of the XUnit format.
+            Note that the usage of this option enables <literal>show_diff</literal> and <literal>show_error</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -406,6 +415,17 @@ test_run('boolean','bug_2799','no_check_error_output');
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
  ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[
+// Run unitary tests of an external module (with his path)
+test_run('SCI/contrib/toolbox_skeleton')
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
+// Export to a XML Xunit file
+test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
+test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Internal Design</title>
@@ -442,6 +462,13 @@ test_run([],[],['no_check_ref','mode_nw']);
           </para>
           <para>
             <literal>CLI SHELL MODE</literal> tag is added. Replaces <literal>JVM NOT MANDATORY</literal> (still supported)
+          </para>
+          <para>
+            <literal>test_run</literal> can work on an external module.
+          </para>
+           
+          <para>
+            Fourth argument added to export to a XML file
           </para>
         </revdescription>
       </revision>

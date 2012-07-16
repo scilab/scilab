@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-10 23:26+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2012-07-13 11:16+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: uk\n"
 
 #, c-format
@@ -214,12 +214,6 @@ msgstr "Зсунути праворуч"
 msgid "Shift Left"
 msgstr "Зсунути ліворуч"
 
-msgid "Configure Tabulation"
-msgstr "Налаштування табуляції"
-
-msgid "Horizontal wrapping"
-msgstr "Горизонтальна розбивка на рядки"
-
 msgid "Correct Indentation"
 msgstr "Виправити відступи"
 
@@ -256,12 +250,17 @@ msgstr "Параметри"
 msgid "Current file encoding"
 msgstr "Кодування поточного файла"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Типове кодування файлів SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Завершення рядків"
+
+msgid "Auto-completion on"
+msgstr "Автодоповнення"
+
+msgid "(, [, ..."
+msgstr "(, [, …"
+
+msgid "if, function, ..."
+msgstr "if, function, …"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Нумерація рядків;Вимкнено;Звичайна;Сумісна з Whereami"
@@ -712,6 +711,18 @@ msgstr "Проблеми з кодуванням"
 msgid "Cannot guess the file encoding."
 msgstr "Не вдалося визначити кодування даних файла."
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+"Не вдалося зберегти файл %s… Процедуру створення резервної копії перервано."
+
+msgid "Backup finished..."
+msgstr "Створення резервної копії завершено…"
+
+#, c-format
+msgid "%s occurences found."
+msgstr "Знайдено відповідники %s."
+
 msgid "Change Colors"
 msgstr "Змінити кольори"
 
@@ -795,6 +806,9 @@ msgstr "Відкрити файли з вашого попереднього с�
 
 msgid "Restore the last sessions"
 msgstr "Відновлення попереднього сеансу"
+
+msgid "Configure Tabulation"
+msgstr "Налаштування табуляції"
 
 msgid "Tab style"
 msgstr "Стиль табуляції"

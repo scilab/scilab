@@ -21,9 +21,7 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-
-#include "ObjectStructure.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -41,7 +39,7 @@ int get_immediate_drawing_property(void* _pvCtx, char* pobjUID)
 
     if ( piImmediateDrawing == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "immediate_drawing") ;
         return -1;
     }
 

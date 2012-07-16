@@ -40,15 +40,15 @@ typedef struct hashtable SetPropertyHashTable ;
 /*--------------------------------------------------------------------------*/
 /**
  * Prototype of functions used to get a specific property of an handle.
- * The sciPointObj is the object to get the property from
+ * The char* is the UID of the object to get the property from
  * The return value is 0 if the call was successful and -1 otherwise.
  */
 typedef int (*getPropertyFunc)(void*, char *) ;
 
 /**
 * Prototype of functions used to set a specific property of an handle.
-* The sciPointObj is the object to get the property from
-* The return value is SET_PROERTY_SUCEED if the call was successful and a redraw is needed
+* The char* is the UID of the object to get the property from
+* The return value is SET_PROPERTY_SUCCEED if the call was successful and a redraw is needed
 * SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
 * an error occurred.
 */

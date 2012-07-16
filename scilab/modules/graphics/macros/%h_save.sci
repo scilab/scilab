@@ -669,6 +669,7 @@ function save_graphichandle(h,fd)
     mput(size(h.sliderstep,'*'),"il",fd); // SliderStep (size)
     mput(h.sliderstep,"dl",fd); // SliderStep (data)
     save_text_matrix( h.string, fd ) ; // String
+    save_text_matrix( h.tooltipstring, fd ) ; // TooltipString
     mput(length(h.units),"c",fd);mput(ascii(h.units),"c",fd); // Units
     mput(size(h.value,'*'),"il",fd); // Value (size)
     mput(h.value,"dl",fd); // Value (data)

@@ -14,8 +14,8 @@
 #ifndef __GET_UICONTROL_SLIDERSTEP_H__
 #define __GET_UICONTROL_SLIDERSTEP_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 #include "returnProperty.h"
+#include "BOOL.h"
 
 /**
  * Get the slider step property of a uicontrol (slider)

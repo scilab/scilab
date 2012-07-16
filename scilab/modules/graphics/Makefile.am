@@ -323,7 +323,6 @@ src/c/Interaction.c \
 src/c/StringBox.c \
 src/c/axesScale.c \
 src/c/TerminateGraphics.c \
-src/c/ObjectSelection.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
 src/c/get_ticks_utils.c
@@ -385,7 +384,6 @@ sci_gateway/c/sci_param3d.c \
 sci_gateway/c/sci_contour2di.c \
 sci_gateway/c/sci_xdel.c \
 sci_gateway/c/sci_winsid.c \
-sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \

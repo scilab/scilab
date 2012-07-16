@@ -12,11 +12,13 @@ LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
 src/c/getLcidString.c \
-src/c/charEncoding.c
+src/c/charEncoding.c \
+src/c/setdefaultlanguage.c
 
 if NEED_JAVA
 LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c \
-src/jni/LocaleToLCID_wrap.c
+src/jni/LocaleToLCID_wrap.c \
+src/jni/setdefaultlanguage_wrap.c
 endif
 
 if IS_MACOSX

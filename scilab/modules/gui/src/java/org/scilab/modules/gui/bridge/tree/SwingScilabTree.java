@@ -138,15 +138,15 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
      */
     public JComponent getAsComponent() {
         // Tree Model
-        DefaultTreeModel model = new DefaultTreeModel(this);		
+        DefaultTreeModel model = new DefaultTreeModel(this);
         // Renderer
         ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
         // Swing tree component
-        JTree jtree = new JTree();	
+        JTree jtree = new JTree();
         // Show Root Handles
         jtree.setShowsRootHandles(true);
         // Set model to the JTree
-        jtree.setModel(model);		
+        jtree.setModel(model);
         // Set renderer
         jtree.setCellRenderer(renderer);
 
@@ -160,15 +160,15 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 
     public JTree getJTree() {
         // Tree Model
-        DefaultTreeModel model = new DefaultTreeModel(this);		
+        DefaultTreeModel model = new DefaultTreeModel(this);
         // Renderer
         ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
         // Swing tree component
-        JTree jtree = new JTree();	
+        JTree jtree = new JTree();
         // Show Root Handles
         jtree.setShowsRootHandles(true);
         // Set model to the JTree
-        jtree.setModel(model);		
+        jtree.setModel(model);
         // Set renderer
         jtree.setCellRenderer(renderer);
 
@@ -353,5 +353,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
     public void setVisible(boolean newVisibleState) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void setToolTipText(String tooltipText) {
+        // TODO Auto-generated method stub
     }
 }

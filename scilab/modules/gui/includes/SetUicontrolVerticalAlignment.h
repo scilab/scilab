@@ -14,7 +14,6 @@
 #ifndef __SET_UICONTROL_VERTICALALIGNMENT_H__
 #define __SET_UICONTROL_VERTICALALIGNMENT_H__
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the vertical alignment property of a uicontrol (text...)

@@ -21,9 +21,7 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-
-#include "ObjectStructure.h"
+#include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -40,7 +38,7 @@ int get_pixmap_property(void* _pvCtx, char* pobjUID)
 
     if ( piPixmap == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixmap");
         return -1;
     }
 

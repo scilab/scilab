@@ -16,7 +16,6 @@
 #include <stddef.h>
 
 #include "dynlib_gui.h"
-#include "ObjectStructure.h"
 
 /**
  * Set the max property of a uicontrol

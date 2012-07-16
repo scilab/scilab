@@ -125,7 +125,7 @@ libscilinear_algebra_algo_la_CPPFLAGS = $(libscilinear_algebra_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
+INCLUDE_FLAGS = $(libscilinear_algebra_la_CPPFLAGS)
 
 libscilinear_algebra_la_LIBADD = libscilinear_algebra-algo.la
 
@@ -135,7 +135,7 @@ modulename=linear_algebra
 
 #### linear_algebra : Conf files ####
 libscilinear_algebra_la_rootdir = $(mydatadir)
-libscilinear_algebra_la_root_DATA =  license.txt 
+libscilinear_algebra_la_root_DATA =  license.txt
 
 
 #### linear_algebra : init scripts ####

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: pl\n"
 
 #, c-format
@@ -207,12 +207,6 @@ msgstr "Zwiększ wcięcie"
 msgid "Shift Left"
 msgstr "Zminiejsz wcięcie"
 
-msgid "Configure Tabulation"
-msgstr "Konfiguracja tabulacji"
-
-msgid "Horizontal wrapping"
-msgstr "Zawijanie tekstu"
-
 msgid "Correct Indentation"
 msgstr "Popraw wcięcie"
 
@@ -249,12 +243,17 @@ msgstr "Ustawienia"
 msgid "Current file encoding"
 msgstr "Kodowanie bieżącego pliku"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Domyślne kodowanie pliku w SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Zakończenie linii"
+
+msgid "Auto-completion on"
+msgstr ""
+
+msgid "(, [, ..."
+msgstr ""
+
+msgid "if, function, ..."
+msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeracja wierszy;Brak;Zwykła;Whereami compatible"
@@ -703,6 +702,17 @@ msgstr "Problemy z kodowaniem"
 msgid "Cannot guess the file encoding."
 msgstr "NIe rozpoznano kodowania pliku"
 
+#, c-format
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+
+msgid "Backup finished..."
+msgstr ""
+
+#, c-format
+msgid "%s occurences found."
+msgstr ""
+
 msgid "Change Colors"
 msgstr "Zmienić kolory"
 
@@ -786,6 +796,9 @@ msgstr "Odczytać pliki z ostatniej sesji SciNotes?"
 
 msgid "Restore the last sessions"
 msgstr "Wznów ostatnie sesje"
+
+msgid "Configure Tabulation"
+msgstr "Konfiguracja tabulacji"
 
 msgid "Tab style"
 msgstr "Styl zakładki"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-13 19:15+0000\n"
+"PO-Revision-Date: 2012-07-13 20:24+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -116,6 +116,30 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Zpráva Scilab"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: Funkce %s je zastaralá.\n"
+
+msgid "Warning"
+msgstr "Varování"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Prosím namísto toho použijte %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Tato funkce bude natrvalo odstraněna v Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězcový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -452,9 +476,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&FIG"
-msgstr "&FIG"
-
 msgid "&Copy to clipboard"
 msgstr "&Kopírovat do schránky"
 
@@ -581,29 +602,14 @@ msgstr "&Vyprázdnit schránku"
 msgid "&Select all"
 msgstr "&Vybrat vše"
 
-msgid "P&references"
-msgstr "Př&edvolby"
-
-msgid "&Preferences"
-msgstr "&Nastavení"
-
-msgid "&Colors"
-msgstr "&Barvy"
-
-msgid "Console &Background..."
-msgstr "P&ozadí Konzole"
-
-msgid "Console &Font..."
-msgstr "&Písmo Konzole..."
-
-msgid "&Font..."
-msgstr "&Písmo..."
-
 msgid "Clear &History"
 msgstr "Vyčistit &Historii"
 
 msgid "Clear C&onsole"
 msgstr "Vyčistit &Konzoli"
+
+msgid "P&references"
+msgstr "Př&edvolby"
 
 msgid "&Control"
 msgstr "&Ovládání"
@@ -710,9 +716,6 @@ msgstr "Kopirovat"
 msgid "Paste"
 msgstr "Vložit"
 
-msgid "Choose Font..."
-msgstr "Zvolit písmo..."
-
 msgid "Print..."
 msgstr "Tisk…"
 
@@ -721,6 +724,9 @@ msgstr "Správce Modulů - ATOMS"
 
 msgid "Xcos"
 msgstr "Xcos"
+
+msgid "Scilab Preferences"
+msgstr "Předvolby Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Ukázky Scilab"
@@ -833,20 +839,6 @@ msgid ""
 msgstr ""
 "Varování: Vlastnost 'Value' '%s' by se měla rovnat buď hodnotě vlastnosti "
 "'%s' nebo '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr ""
-"Špatná velikost vlastnosti '%s': Očekávána grafická obslužná rutina.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekávána obslužná rutina '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Žádná vlastnost '%s' pro uicontrols stylu: %s.\n"
 
 #, c-format
 msgid ""
@@ -962,21 +954,15 @@ msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
 
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "Špatná velikost vlastnosti '%s': Očekáván 2-položkový seznam.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
-
 msgid "Console Font..."
 msgstr "Písmo Konzole..."
 
 msgid "Console Background..."
 msgstr "Pozadí Konzole..."
 
-#, c-format
+msgid "No print service found."
+msgstr "Žádna služba tisku nenalezena."
+
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -986,7 +972,6 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1007,11 +992,17 @@ msgstr ""
 "s pokročilými grafickými možnostmi. Zadejte \"\"help usecanvas\"\" pro více "
 "informací.\")"
 
-msgid "Clear History"
-msgstr "Vyčistit Historii"
-
 msgid "Clear Console"
 msgstr "Vyčistit Konzoli"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr "Jste si jisti, že chcete vyčistit konzoli ?"
+
+msgid "Do not show this message again"
+msgstr "Tuto zprávu již nezobrazovat"
+
+msgid "Clear History"
+msgstr "Vyčistit Historii"
 
 msgid "Select All"
 msgstr "Vybrat Vše"
@@ -1161,7 +1152,6 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1169,11 +1159,9 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1228,7 +1216,6 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 

@@ -140,13 +140,6 @@ public class ScilabPlainView extends PlainView {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public float nextTabStop(float x, int tabOffset) {
-        return x + whiteWidth * tabLength;
-    }
-
-    /**
      * This method can be used to draw anything you want in the editor (such as
      * the line of maximum recommanded chars).
      * @param g the graphics where to draw

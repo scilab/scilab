@@ -49,11 +49,7 @@ public class TabManager {
      */
     public void setTabulation(char tab, int n) {
         if (tab == ' ') {
-            char[] str = new char[n];
-            for (int i = 0; i < n; i++) {
-                str[i] = ' ';
-            }
-            this.tab = new String(str);
+            this.tab = " ";
             lengthTab = n;
         } else {
             this.tab = "\t";
@@ -62,6 +58,25 @@ public class TabManager {
         doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         if (indent != null) {
             indent.setProperties(tab, n);
+        }
+    }
+
+    public String getTabulationString(int position) {
+        if (tab.equals(" ")) {
+            Element startL = elem.getElement(elem.getElementIndex(position));
+            int sstart = position - startL.getStartOffset();
+            int len = (sstart / lengthTab + 1) * lengthTab - (sstart + 1);
+            if (len == 0) {
+                len = lengthTab;
+            }
+            char[] str = new char[len];
+            for (int i = 0; i < len; i++) {
+                str[i] = ' ';
+            }
+
+            return new String(str);
+        } else {
+            return tab;
         }
     }
 
@@ -103,7 +118,10 @@ public class TabManager {
     public int insertTab(int position) {
         try {
             if (isTabInsertable) {
+                String tab = getTabulationString(position);
                 doc.insertString(position, tab, null);
+
+                return tab.length();
             } else {
                 tabifyLines(position, position - 1);
             }
@@ -133,9 +151,11 @@ public class TabManager {
                 str = str.substring(0, str.length() - 1);
                 ret[1]++;
             }
-            String rep = EOL + tab;
+            String tab = getTabulationString(start);
+            String plainTab = getTabulationString(0);
+            String rep = EOL + plainTab;
             str = tab + str.replaceAll(EOL, rep);
-            ret[0] = start + lengthTab;
+            ret[0] = start + tab.length();
             ret[1] += sstart + str.length();
             doc.replace(sstart, send - sstart + 1, str, null);
             return ret;

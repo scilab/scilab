@@ -22,6 +22,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeModelListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -63,7 +64,15 @@ public class Tree extends Panel implements XComponent, XChooser, TreeSelectionLi
         tree.getSelectionModel().addTreeSelectionListener(this);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setRootVisible(false);
+        tree.setShowsRootHandles(true);
         tree.setExpandsSelectedPaths(true);
+
+        // Under Windows the directory icon is used: bad....
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+        renderer.setLeafIcon(null);
+        renderer.setClosedIcon(null);
+        renderer.setOpenIcon(null);
+
         JScrollPane scrollPane = new JScrollPane(tree);
         this.add(scrollPane);
     }
@@ -208,7 +217,7 @@ class XAdapterNode {
         final int size = nodelist.getLength();
         for (int i = 0; i < size; i++) {
             Node node = nodelist.item(i);
-            if (node.getNodeName().startsWith("#")) {
+            if (node.getNodeName().startsWith("#") || node.getNodeName().equals("actionPerformed")) {
                 continue;
             }
             if (count == 0) {
@@ -224,7 +233,8 @@ class XAdapterNode {
         int count = 0;
         final int size = nodelist.getLength();
         for (int i = 0; i < size; i++) {
-            if (nodelist.item(i).getNodeName().startsWith("#")) {
+            Node node = nodelist.item(i);
+            if (node.getNodeName().startsWith("#") || node.getNodeName().equals("actionPerformed")) {
                 continue;
             }
             count++;
@@ -238,7 +248,7 @@ class XAdapterNode {
         final int size = nodelist.getLength();
         for (int i = 0; i < size; i++) {
             Node node = nodelist.item(i);
-            if (node.getNodeName().startsWith("#")) {
+            if (node.getNodeName().startsWith("#") || node.getNodeName().equals("actionPerformed")) {
                 continue;
             }
             if (child.peer == node) {
@@ -266,13 +276,17 @@ class XTreeModel implements TreeModel {
      * Data source.
      */
     private XAdapterNode root;
+    private Node peer;
 
     public XTreeModel(Node peer) {
         setRoot(peer);
     }
 
     public void setRoot(final Node input) {
-        root = new XAdapterNode(input);
+        if (input != peer) {
+            peer = input;
+            root = new XAdapterNode(input);
+        }
     }
 
     public Object getChild(Object node, int index) {

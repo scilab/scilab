@@ -26,7 +26,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
-#include "SetUiobjectVisible.h"
 #include "GetProperty.h"
 #include "BOOL.h"
 
@@ -53,7 +52,7 @@ int set_visible_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "visible");
         return SET_PROPERTY_ERROR;
     }
 }

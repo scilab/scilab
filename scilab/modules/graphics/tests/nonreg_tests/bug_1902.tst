@@ -35,6 +35,7 @@ clf();
 
 // same as first part but wthout drawlater
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
+sleep(200)//Wait for MVC update
 
 e             = gce();
 box12         = stringbox(e);

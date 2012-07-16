@@ -27,6 +27,7 @@ typedef struct
     const char * ieee;
     const char * format;
     const char * formatWidth;
+    const char * language;
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
@@ -39,6 +40,7 @@ typedef struct
 #define IEEE_XPATH (const xmlChar*)"//general/body/environment/@fpe"
 #define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
 #define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"
+#define LANGUAGE_XPATH (const xmlChar*)"//general/body/languages/@lang"
 
 PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);

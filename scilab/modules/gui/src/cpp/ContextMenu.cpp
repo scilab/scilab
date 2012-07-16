@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,16 +14,6 @@
 #include "ContextMenu.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
-
-// char* createContextMenu(char **menuLabels, int nbLabels)
-// {
-//   return CallScilabBridge::newContextMenu(getScilabJavaVM(), menuLabels, nbLabels);
-// }
-
-void createContextMenu(sciPointObj * sciObj)
-{
-    pUICONTEXTMENU_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newContextMenu(getScilabJavaVM());
-}
 
 char *uiWaitContextMenu(char *pObjUID)
 {

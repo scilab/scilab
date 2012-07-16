@@ -36,13 +36,6 @@ GRAPHICS_IMPEXP void initSubWinBounds(char * pSubWinUID);
 GRAPHICS_IMPEXP BOOL checkRedrawing(void);
 
 /**
- * Find which subwindow is selected by clincking at pixel coordinates (xCoord, yCoord).
- * @param pFigure index of parent figure in which the subwindow will be selected
- * @return NULL if no subwindow could be selected, the seleceted subwindow otherwise
- */
-GRAPHICS_IMPEXP sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord);
-
-/**
  * Convert property name into a sciLegendPlace
  */
 GRAPHICS_IMPEXP sciLegendPlace propertyNameToLegendPlace(const char * string);

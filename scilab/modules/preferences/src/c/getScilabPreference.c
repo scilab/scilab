@@ -26,11 +26,6 @@
 
 #define XCONF "%s/XConfiguration.xml"
 
-#define PRODUCES_ERROR "Produces an error"
-#define PRODUCES_WARNING "Produces a warning"
-#define PRODUCES_INFNAN "Produces Inf or Nan"
-#define SCIENTIFIC_FORMAT "Scientific format"
-
 /*--------------------------------------------------------------------------*/
 static unsigned char isInit = 0;
 static ScilabPreferences scilabPref;
@@ -58,6 +53,7 @@ void initPrefs()
     scilabPref.ieee = NULL;
     scilabPref.format = NULL;
     scilabPref.formatWidth = NULL;
+    scilabPref.language = NULL;
 }
 /*--------------------------------------------------------------------------*/
 void reloadScilabPreferences()
@@ -80,6 +76,7 @@ void clearScilabPreferences()
         if (scilabPref.ieee) FREE((void*)scilabPref.ieee);
         if (scilabPref.format) FREE((void*)scilabPref.format);
         if (scilabPref.formatWidth) FREE((void*)scilabPref.formatWidth);
+        if (scilabPref.language) FREE((void*)scilabPref.language);
         initPrefs();
     }
     isInit = 0;
@@ -138,38 +135,10 @@ void getPrefs()
             scilabPref.historyFile = os_strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
             scilabPref.historyLines = os_strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
             scilabPref.historyEnable = os_strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
-
-            attr = (char*)getAttribute(doc, xpathCtxt, IEEE_XPATH);
-            if (attr)
-            {
-                if (!stricmp(attr, PRODUCES_ERROR))
-                {
-                    scilabPref.ieee = os_strdup("0");
-                }
-                else if (!stricmp(attr, PRODUCES_ERROR))
-                {
-                    scilabPref.ieee = os_strdup("1");
-                }
-                else
-                {
-                    scilabPref.ieee = os_strdup("2");
-                }
-            }
-
-            attr = (char*)getAttribute(doc, xpathCtxt, FORMAT_XPATH);
-            if (attr)
-            {
-                if (!stricmp(attr, SCIENTIFIC_FORMAT))
-                {
-                    scilabPref.format = os_strdup("e");
-                }
-                else
-                {
-                    scilabPref.format = os_strdup("v");
-                }
-            }
-
+            scilabPref.ieee = os_strdup(getAttribute(doc, xpathCtxt, IEEE_XPATH));
+            scilabPref.format = os_strdup(getAttribute(doc, xpathCtxt, FORMAT_XPATH));
             scilabPref.formatWidth = os_strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
+            scilabPref.language = os_strdup(getAttribute(doc, xpathCtxt, LANGUAGE_XPATH));
 
             xmlXPathFreeContext(xpathCtxt);
         }
@@ -183,7 +152,7 @@ char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xp
 {
     char * value = emptyAttribute;
     xmlXPathObjectPtr xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
-    if (xpathObj && xpathObj->nodesetval->nodeMax)
+    if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)
     {
         value = (char *)((xmlAttrPtr)xpathObj->nodesetval->nodeTab[0])->children->content;
     }

@@ -21,9 +21,10 @@ x=linspace(0,1,100); plot(x,x)
 
 // and now make a zoom on a part of the plot not including the (0,0) point
 zoom_rect([0.5,0.5,0.6,0.6]);
- 
+
 // check that 0 is not included in the frame
 a.margins = [0,0,0,0];
+sleep(200)//Wait for MVC update
 
 // get user coordinates of the upper left point of the window
 [x, y] = xchange(0, 0, "i2f");

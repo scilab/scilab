@@ -8,78 +8,78 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-06-23 07:52+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Generator: Launchpad (build 15614)\n"
 "Language: \n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
-msgstr ""
+msgstr "%s：参数类型错误。应该为%s。返回默认值%d。\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
-msgstr ""
+msgstr "%s：参数未找到。返回默认值%d。\n"
 
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
-msgstr ""
+msgstr "%s：参数%s的最小边界错误：最小边界%d，值%d。\n"
 
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
-msgstr ""
+msgstr "%s：参数%s的最大边界错误：最大边界%d，值%d。\n"
 
 #, c-format
 msgid "%s: wrong value for parameter %s: value %d\n"
-msgstr ""
+msgstr "%s：参数%s的值错误：值%d\n"
 
 #, c-format
 msgid "%s: awaited parameters: "
-msgstr ""
+msgstr "%s：等待参数： "
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
-msgstr ""
+msgstr "%s：参数类型错误。应该为%s。返回默认值%f。\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %f.\n"
-msgstr ""
+msgstr "%s：参数未找到。返回默认值%f。\n"
 
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
-msgstr ""
+msgstr "%s：参数%s的最小边界错误：最小边界%f，值%f\n"
 
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
-msgstr ""
+msgstr "%s：参数%s的最大边界错误：最大边界%f，值%f\n"
 
 #, c-format
 msgid "%s: wrong value for parameter %s: value %f\n"
-msgstr ""
+msgstr "%s：参数%s的值错误：值%f\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
-msgstr ""
+msgstr "%s：参数类型错误。应该为%s。返回默认值%s。\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"
-msgstr ""
+msgstr "%s：参数未找到。返回默认值%s。\n"
 
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
-msgstr ""
+msgstr "%s：参数%s的值错误：值%s\n"
 
 #, c-format
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
-msgstr ""
+msgstr "%s：参数%s的大小错误： 要求为%d，得到%d\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为%s。\n"
 
 #, c-format
 msgid "%s: parameter %s not defined"
@@ -87,11 +87,11 @@ msgstr "%s：参数%s未定义。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr ""
+msgstr "%s：输入参数的输入错误：应该为偶数个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: parameter doesn't exist"

@@ -14,23 +14,19 @@
 //
 // <-- Short Description -->
 // Some problems come when an axis is set in log scale.
-// 
+//
 
 // first check axes
 a = gca();
 a.data_bounds = [1e-9,-20;10,10];
 a.axes_visible = "on";
 a.log_flags = "lnn";
-for i=-9:1
- expectedLocations(i + 10) = 10^(i);
-end
+
+expectedLocations = 10^(-10:2)';
+sleep(200)//Wait for MVC update
 
 // compare the expected locations and the real ones
-for i=1:11,
-  if  abs(  (expectedLocations(i) - a.x_ticks.locations(i)) ..
-           / max(expectedLocations(i), a.x_ticks.locations(i))) > 1000 * %eps then pause; end
-end
-
+assert_checkalmostequal(expectedLocations, a.x_ticks.locations);
 
 // now draw a segs object using this scale
 xarrows([0.0001,0.01],[-15,1],5,1);

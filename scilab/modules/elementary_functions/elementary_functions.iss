@@ -27,7 +27,9 @@ Source: bin\elem_func.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\elem_func_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\{#ELEMFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#ELEMFUNCTIONS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#ELEMFUNCTIONS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\license.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;

@@ -21,7 +21,7 @@
       Символ <literal>$</literal> обозначает последний индекс массива (строки или столбца). Он равен количеству строк или столбцов.
     </para>
     <para>
-      Символ <literal>$</literal>может также использоваться для текстов в формате LaTeX, которые должны начинаться и заканчиваться символом <literal>$</literal>. См. также  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
+      Символ <literal>$</literal> может также использоваться для текстов в формате LaTeX, которые должны начинаться и заканчиваться символом <literal>$</literal>. См. также  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
     </para>
   </refsection>
   <refsection>
@@ -38,12 +38,11 @@ b($,2)
 // Доступ к последнему элементу b, т.е. 9
 b($,$)
  
-// Add a row at the end of the matrix b
-b($+1,:) = [1 1 1];
-b
+// Добавление строки к концу матрицы b
+b($+1,:) = [1 1 1]
  
 // Символ $ в качестве обособления LaTeX
-titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
+titlepage(['$\Huge\textrm{Это } \LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
