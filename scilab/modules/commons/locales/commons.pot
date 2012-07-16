@@ -33,12 +33,12 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 81
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 82
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr ""

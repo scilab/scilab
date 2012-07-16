@@ -1207,7 +1207,7 @@ msgstr "Jesteś pewny, że chcesz zamknąć %s  i %s ?"
 msgid "Exit"
 msgstr "Wyjście"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "Wystąpił błąd: "
 
 msgid "Scilab SCI files"

@@ -78,8 +78,8 @@ public class XConfiguration {
 
     private static final String ERROR_READ = Messages.gettext("Could not load file: ");
     private static final String ERROR_WRITE = Messages.gettext("Could not write the file: ");
-    private static final String SEVERE_ERROR = Messages.gettext("A severe error occured: cannot load the preferences file.");
-    private static final String PARSING_ERROR = Messages.gettext("An error occured when loading the preferences file, try to reload the default one.");
+    private static final String SEVERE_ERROR = Messages.gettext("A severe error occurred: cannot load the preferences file.");
+    private static final String PARSING_ERROR = Messages.gettext("An error occurred when loading the preferences file, try to reload the default one.");
 
     private static final XPathFactory xpathFactory = XPathFactory.newInstance();
     private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();

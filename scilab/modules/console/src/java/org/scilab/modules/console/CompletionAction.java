@@ -30,59 +30,59 @@ import org.scilab.modules.completion.Completion;
  * @author Allan CORNET
  */
 public class CompletionAction extends AbstractConsoleAction {
-        private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-        /**
-         * Constructor
-         */
-        public CompletionAction() {
-                super();
+    /**
+     * Constructor
+     */
+    public CompletionAction() {
+        super();
+    }
+
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        int caretPosition = configuration.getInputParsingManager().getCaretPosition();
+        if (caretPosition == 0) {
+            return;
         }
 
-        /**
-         * Threats the event
-         * @param e the action event that occured
-         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-         */
-        public void actionPerformed(ActionEvent e) {
-	        int caretPosition = configuration.getInputParsingManager().getCaretPosition();
-		if (caretPosition == 0) {
-		    return;
-		}
+        Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
+        List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
+        AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
 
-                Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
-                List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
-                AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
+        if (completionItems != null && completionItems.size() == 1) {
+            /* Only one item returned, autoselected and appended to command line */
+            configuration.getCompletionWindow().show(completionItems, location);
+            win.addCompletedWord(caretPosition);
 
-                if (completionItems != null && completionItems.size() == 1) {
-                        /* Only one item returned, autoselected and appended to command line */
-                        configuration.getCompletionWindow().show(completionItems, location);
-                        win.addCompletedWord(caretPosition);
+            ((AbstractSciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
+        } else if (completionItems != null && completionItems.size() != 0) {
+            String [] completionArray = new String [completionItems.size()];
 
-                        ((AbstractSciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
-                } else if (completionItems != null && completionItems.size() != 0) {
-                        String [] completionArray = new String [completionItems.size()];
+            int i = 0;
+            Iterator < CompletionItem >  it = completionItems.iterator();
+            while  (it.hasNext()) {
+                CompletionItem currentItem = it.next();
+                completionArray[i] = currentItem.getReturnValue();
+                i++;
+            }
 
-                        int i = 0;
-                        Iterator < CompletionItem >  it = completionItems.iterator();
-                        while  (it.hasNext()) {
-                                CompletionItem currentItem = it.next();
-                                completionArray[i] = currentItem.getReturnValue();
-                                i++;
-                        }
+            java.util.Arrays.sort(completionArray);
+            String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
 
-                        java.util.Arrays.sort(completionArray);
-                        String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
+            caretPosition = configuration.getInputParsingManager().getCaretPosition();
+            String currentLine = configuration.getInputParsingManager().getCommandLine();
 
-                        caretPosition = configuration.getInputParsingManager().getCaretPosition();
-                        String currentLine = configuration.getInputParsingManager().getCommandLine();
-
-                        if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
-                                if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
-                                    win.addCompletedWord(commonPartOfWord, caretPosition);
-                                }
-                        }
-                        configuration.getCompletionWindow().show(completionItems, location);
+            if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
+                if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
+                    win.addCompletedWord(commonPartOfWord, caretPosition);
                 }
+            }
+            configuration.getCompletionWindow().show(completionItems, location);
         }
+    }
 }

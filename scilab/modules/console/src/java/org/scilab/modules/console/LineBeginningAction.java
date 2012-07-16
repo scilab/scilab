@@ -23,22 +23,22 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  */
 public class LineBeginningAction extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public LineBeginningAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public LineBeginningAction() {
+        super();
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		configuration.getInputCommandView().setCaretPositionToBeginning();
-	}
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        configuration.getInputCommandView().setCaretPositionToBeginning();
+    }
 
 }

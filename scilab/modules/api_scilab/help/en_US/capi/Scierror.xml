@@ -68,7 +68,7 @@
 
 int sci_myscierror(char * fname)
 {
-  Scierror(133,"An error has occured: %d\n", 1);
+  Scierror(133,"An error has occurred: %d\n", 1);
 
   return 0;
 }

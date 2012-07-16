@@ -37,7 +37,7 @@ public class PageDownAction extends AbstractConsoleAction {
 
     /**
      * Threats the event
-     * @param e the action event that occured
+     * @param e the action event that occurred
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {

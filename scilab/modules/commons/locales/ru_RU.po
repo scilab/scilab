@@ -25,11 +25,11 @@ msgstr "Не удаётся загрузить файл: "
 msgid "Could not write the file: "
 msgstr "Не удалось записать файл: "
 
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr "Произошла серьёзная ошибка: нельзя загрузить файл настроек."
 
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr ""
 "Во время загрузки файла настроек произошла ошибка, попытайтесь перезагрузить "

@@ -36,7 +36,7 @@ GRAPHICS_IMPEXP void destroyScilabSetHashTable( void ) ;
 /**
  * call the function which the property propertyName of object pObj
  * @return  0 if successful
- *         -1 if an error occured in the get function
+ *         -1 if an error occurred in the get function
  *          1 if the property was not found
  */
 GRAPHICS_IMPEXP int callSetProperty(void* _pvCtx, char *pObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;

@@ -13,7 +13,7 @@
 package org.scilab.modules.types;
 
 /**
- * Exception which can occured when a Sparse matrix is created
+ * Exception which can occurred when a Sparse matrix is created
  */
 public class ScilabSparseException extends Exception {
 

@@ -1941,7 +1941,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/PrinterHelper.java, line: 64
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr ""
 
 #

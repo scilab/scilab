@@ -18,4 +18,4 @@
 
 scinotes();
 
-// Choose menu File > Reload and no exception should occured.
+// Choose menu File > Reload and no exception should occurred.

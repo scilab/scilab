@@ -23,26 +23,26 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  */
 public class PreviousCharAction extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public PreviousCharAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public PreviousCharAction() {
+        super();
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		int currentPosition = configuration.getInputCommandView().getCaretPosition();
-		/* Current position is not changed if already at the beginning of the line */
-		if (currentPosition > 0) {
-			configuration.getInputCommandView().setCaretPosition(currentPosition - 1);
-		}
-	}
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        int currentPosition = configuration.getInputCommandView().getCaretPosition();
+        /* Current position is not changed if already at the beginning of the line */
+        if (currentPosition > 0) {
+            configuration.getInputCommandView().setCaretPosition(currentPosition - 1);
+        }
+    }
 
 }

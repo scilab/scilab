@@ -38,7 +38,7 @@ int sci_xend(char * fname, unsigned long fname_len)
 
         if (*ret != '\0')
         {
-            Scierror(999, _("%s: An error occured: %s\n"), fname, ret);
+            Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
             return 0;
         }
     }

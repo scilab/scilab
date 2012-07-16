@@ -50,7 +50,7 @@
       <varlistentry>
         <term>ierr</term>
         <listitem>
-          <para>error indicator, 0, if no error has occured</para>
+          <para>error indicator, 0, if no error has occurred</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -145,7 +145,7 @@
     <title>References</title>
     <para>This function is an interface to the C function stat.</para>
     <para>
-	  Permissions are typically specified as octal numbers: <literal>dec2oct(x(2))</literal> to convert.
+      Permissions are typically specified as octal numbers: <literal>dec2oct(x(2))</literal> to convert.
     </para>
     <para>Numeric mode is from one to four octal digits (0-7), derived by
       adding up the bits with values 4, 2, and 1. Any omitted digits are assumed

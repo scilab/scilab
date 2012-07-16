@@ -1168,7 +1168,7 @@ msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 msgid "Exit"
 msgstr "Ukončit"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "Nastala chyba: "
 
 msgid "Scilab SCI files"

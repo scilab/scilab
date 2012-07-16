@@ -25,11 +25,11 @@ msgstr "Nelze načíst soubor: "
 msgid "Could not write the file: "
 msgstr "Nelze zapisovat do souboru: "
 
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr "Udála se závažná chyba: nelze načíst soubor s nastavením."
 
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr ""
 "Při načítání souboru s nastavením se udála chyba, zkuste načíst výchozí."

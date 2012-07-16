@@ -33,48 +33,48 @@ import com.artenum.rosetta.util.StringConstants;
  */
 public class InterruptScilabWorkOrCut extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public InterruptScilabWorkOrCut() {
-		super();
+    /**
+     * Constructor
+     */
+    public InterruptScilabWorkOrCut() {
+        super();
 
-	}
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
 
-		if (((JTextPane) configuration.getInputCommandView()).getSelectedText() != null) {
-			/* Text selected in the input --> Copy */
-			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
-			JTextPane input = (JTextPane) configuration.getInputCommandView();
-			StyledDocument doc = input.getStyledDocument();
-			try {
-				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
-			} catch (BadLocationException e1) {
-				e1.printStackTrace();
-			}
-		} else {
-			/* Interrupt Scilab */
-			InterpreterManagement.interruptScilab();
+        if (((JTextPane) configuration.getInputCommandView()).getSelectedText() != null) {
+            /* Text selected in the input --> Copy */
+            StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+            JTextPane input = (JTextPane) configuration.getInputCommandView();
+            StyledDocument doc = input.getStyledDocument();
+            try {
+                doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
+            } catch (BadLocationException e1) {
+                e1.printStackTrace();
+            }
+        } else {
+            /* Interrupt Scilab */
+            InterpreterManagement.interruptScilab();
 
-			// If Scilab is on prompt, then emulate a user entry
-			if (((JPanel) configuration.getPromptView()).isVisible()) {
-				configuration.getOutputView().append(StringConstants.NEW_LINE);
-				configuration.getOutputView().append(configuration.getPromptView().getDefaultPrompt());
-				configuration.getOutputView().append(configuration.getInputParsingManager().getCommandLine());
-				configuration.getOutputView().append(StringConstants.NEW_LINE);
-				((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab("", false, false);
-				configuration.getInputParsingManager().reset();
-			}
-		}
-	}
+            // If Scilab is on prompt, then emulate a user entry
+            if (((JPanel) configuration.getPromptView()).isVisible()) {
+                configuration.getOutputView().append(StringConstants.NEW_LINE);
+                configuration.getOutputView().append(configuration.getPromptView().getDefaultPrompt());
+                configuration.getOutputView().append(configuration.getInputParsingManager().getCommandLine());
+                configuration.getOutputView().append(StringConstants.NEW_LINE);
+                ((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab("", false, false);
+                configuration.getInputParsingManager().reset();
+            }
+        }
+    }
 
 }

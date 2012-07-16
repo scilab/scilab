@@ -29,7 +29,7 @@
  *      necessary to do so.
  *    - The returning status of each functions is as follow :
  *      0 for correct execution, 1 if no change was made
- *      and -1 if an error occured.
+ *      and -1 if an error occurred.
  --------------------------------------------------------------------------*/
 
 

@@ -506,7 +506,7 @@ public class MatchingBlockManager {
     class MouseOverMatcher extends KeywordAdapter.MouseOverAdapter {
 
         /**
-         * What to do when the event occured
+         * What to do when the event occurred
          * @param e the event
          */
         public void caughtKeyword(KeywordEvent e) {

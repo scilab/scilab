@@ -1246,7 +1246,7 @@ msgstr "Ви справді бажаєте закрити %s і %s ?"
 msgid "Exit"
 msgstr "Вийти"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "Сталася помилка: "
 
 msgid "Scilab SCI files"

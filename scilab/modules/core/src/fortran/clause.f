@@ -441,7 +441,7 @@ c     *call* parse (for the try instructions)
 
 c     end of try reached or an error occurred
       if (max(err2,err1).gt.0) then
-c     .  an error occured in the try part
+c     .  an error occurred in the try part
 c     .  skip remaining instructions up to catch or end keywords
          errct=-1
          call skpins(0)
@@ -496,7 +496,7 @@ c     *call* parse
       endif
 
 C       if (max(err2,err1).gt.0) then
-C c     .  an error occured in the try part, execute next instructions
+C c     .  an error occurred in the try part, execute next instructions
 C          errct=ids(2,pt)
 C          err2=ids(3,pt)
 C          err1=ids(4,pt)
@@ -507,7 +507,7 @@ C c     *call* parse
 C          return
 C       else
 
-c     .  no error occured in the try part, skip next instructions
+c     .  no error occurred in the try part, skip next instructions
          if(.not.eqid(syn,ennd)) then
             call skpins(1)
             if(err.gt.0.or.err1.gt.0) return

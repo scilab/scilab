@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
- * 
+ *
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  */
@@ -12,11 +12,11 @@ import org.scilab.modules.types.ScilabDouble;
 class Example1 {
 
     public static void main(String[] args) {
-		try {
+        try {
 
-			Scilab sci = new Scilab();
+            Scilab sci = new Scilab();
 
-			if (sci.open()) {
+            if (sci.open()) {
                 /* Send a Scilab instruction */
                 sci.exec("foo = [ 2, 4, 6; 4, 0, 10; 6, 10, 12 ];");
 
@@ -24,7 +24,7 @@ class Example1 {
                 ScilabType foo = sci.get("foo");
 
                 /* Display the variable */
-                System.out.println("Representation of  : "+foo);
+                System.out.println("Representation of  : " + foo);
 
                 /* Get the data and retrieve the 2,2 value */
                 double[][] aReal = ((ScilabDouble)foo).getRealPart();
@@ -37,7 +37,7 @@ class Example1 {
                 ScilabDouble bar = new ScilabDouble(aReal);
 
                 /* Send it to Scilab */
-                sci.put("bar",bar);
+                sci.put("bar", bar);
 
                 /* Display it through Scilab */
                 sci.exec("disp(bar)");
@@ -53,7 +53,7 @@ class Example1 {
              * UnknownTypeException, etc
              */
         } catch (org.scilab.modules.javasci.JavasciException e) {
-            System.err.println("An exception occured: " + e.getLocalizedMessage());
+            System.err.println("An exception occurred: " + e.getLocalizedMessage());
         }
 
     }

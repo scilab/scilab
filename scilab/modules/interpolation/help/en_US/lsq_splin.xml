@@ -104,7 +104,7 @@
       is selected. When this occurs a warning message is displayed in the Scilab
       command window. This function is intended to be used when
       <emphasis>m</emphasis> is much larger than <emphasis>n</emphasis> and in
-      this case no such problem may occured.
+      this case no such problem may occurred.
     </para>
   </refsection>
   <refsection>
