@@ -53,8 +53,6 @@ GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP int sciSetInterpVector(char* pobj, int size, int * value);
-
 GRAPHICS_IMPEXP int sciInitAutoRotation( char* pObj, BOOL value ) ;
 GRAPHICS_IMPEXP int sciSetAutoRotation ( char* pObj, BOOL value ) ;
 

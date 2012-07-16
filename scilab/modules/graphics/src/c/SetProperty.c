@@ -628,28 +628,6 @@ case SCI_UIMENU:
 }
 
 /*----------------------------------------------------------------------------------*/
-int
-sciSetInterpVector(char * pobjUID, int size, int * value)
-{
-    // FIXME
-    abort();
-#if 0
-    int i;
-
-    FREE(pPOLYLINE_FEATURE(pobjUID)->scvector);
-
-    if ((pPOLYLINE_FEATURE(pobjUID)->scvector = MALLOC(size * sizeof(int))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "sciSetInterpVector") ;
-        return -1;
-    }
-
-    for (i = 0; i < size; i++)
-        pPOLYLINE_FEATURE(pobjUID)->scvector[i] = value[i];
-#endif
-    return 0;
-}
-
 int sciInitAutoRotation( char * pobjUID, BOOL value )
 {
     // FIXME
