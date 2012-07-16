@@ -627,34 +627,6 @@ case SCI_UIMENU:
     return 0;
 }
 
-/*---------------------------------------------------------------------------*/
-int sciInitAlignment( char * pobjUID, sciTextAlignment align )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_TEXT:
-            pTEXT_FEATURE(pobjUID)->stringsAlign = align ;
-            return 0 ;
-        default:
-            printSetGetErrorMessage("alignment");
-            return -1 ;
-    }
-#endif
-    return -1 ;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetAlignment( char * pobjUID, sciTextAlignment align )
-{
-    if ( sciGetAlignment((sciPointObj*) pobjUID ) == align )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAlignment( pobjUID, align ) ;
-}
 /*-----------------------------------------------------------------------------------*/
 int sciInitUserSize( char * pobjUID, double width, double height )
 {
