@@ -386,12 +386,6 @@ BOOL sciGetAutoPosition(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetFontStyle(char *pobj, int iAttributes)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitIsClipping(char *pobj, int value)
 {
     return -1;

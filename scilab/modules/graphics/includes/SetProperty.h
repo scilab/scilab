@@ -59,9 +59,6 @@ GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 /* Text Functions */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitFontStyle(char* pobj, int iAttributes ) ;
-GRAPHICS_IMPEXP int sciSetFontStyle (char* pobj, int iAttributes ) ; /* SET */
-
 /* Legend */
 GRAPHICS_IMPEXP int sciInitLegendPlace(char* pobj, sciLegendPlace place);
 GRAPHICS_IMPEXP int sciSetLegendPlace (char* pobj, sciLegendPlace place); /* SET */

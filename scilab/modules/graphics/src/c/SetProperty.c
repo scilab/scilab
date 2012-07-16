@@ -175,58 +175,6 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
     }
 }
 
-int sciInitFontStyle( char * pobjUID, int iAttributes )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_SUBWIN:
-        case SCI_FIGURE:
-        case SCI_LABEL: /* F.Leray 10.06.04 */
-            (sciGetFontContext(pobjUID))->fonttype = iAttributes;
-            break;
-        case SCI_UIMENU:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        default:
-            printSetGetErrorMessage("font_style");
-            return -1;
-            break;
-    }
-#endif
-    return 0;
-}
-
-/**sciSetFontStyle
- * Sets the font style
- * @param char * pobjUID: the pointer to the entity
- * @param  int iAttributes (a logical mask with SCI_ATTR_BOLD|SCI_ATTR_ITALIC|SCI_ATTR_UNDERLINE|SCI_ATTR_STRIKEOUT)
- * @return  int 0 if OK, -1 if not
- */
-int
-sciSetFontStyle (char * pobjUID, int iAttributes )
-{
-    if ( sciGetFontStyle((sciPointObj *)pobjUID ) == iAttributes )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitFontStyle( pobjUID, iAttributes ) ;
-
-}
-
-
 int sciInitLegendPlace( char * pobjUID, sciLegendPlace place )
 {
     // FIXME
@@ -560,16 +508,7 @@ sciSetZooming (char * pobjUID, BOOL value)
 int
 sciSetDefaultValues (void)
 {
-    // ???
-#if 0
-    if ((sciInitGraphicContext (sciGetCurrentFigure()) == -1) ||
-            (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
-            (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
-    {
-        Scierror(999, _("Unable to load default values.\n"));
-        return -1 ;
-    }
-#endif
+    // FIXME : To be removed
     return 0;
 }
 

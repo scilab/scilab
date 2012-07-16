@@ -47,24 +47,6 @@ int set_labels_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     return SET_PROPERTY_ERROR ;
   }
 
-  /*
-   * sciSetFontStyle does not check whether the font size is within the correct range
-   * whereas the set_font_style function does. That may cause a problem since set_labels_font_style_property
-   * and set_font_style_property are duplicate.
-   */
-
-#if 0
-  if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
-  {
-    return sciSetFontStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
     fontStyle = (int) getDoubleFromStack(stackPointer);
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);

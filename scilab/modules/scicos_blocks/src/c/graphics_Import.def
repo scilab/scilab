@@ -47,7 +47,6 @@ ConstructSurface
 sciSetAutoSize
 sciSetUserSize
 sciSetTextPos
-sciSetFontStyle
 sciGetIndexedSon
 sciGetCurrentSubWin
 sciGetNum
