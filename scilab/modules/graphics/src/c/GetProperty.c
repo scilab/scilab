@@ -755,19 +755,6 @@ void sciGetLogFlags(char * pObjUID, char flags[3])
     }
 }
 /*----------------------------------------------------------------------------------*/
-int sciGetPolylineStyle(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE(pObj)->plot;
-        default:
-            printSetGetErrorMessage("polyline_style");
-            break;
-    }
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsClosed(sciPointObj * pObj)
 {
     switch (sciGetEntityType(pObj))

@@ -526,12 +526,6 @@ void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetPolylineStyle(sciPointObj * pObj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void unzoomSubwin(sciPointObj * pSubwin)
 {
 
