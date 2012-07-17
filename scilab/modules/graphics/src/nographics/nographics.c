@@ -436,12 +436,6 @@ void scalarMult3D(const double v[3], double scalar, double res[3])
 }
 
 /*--------------------------------------------------------------------------*/
-int TheTicks(double *xminv, double *xmaxv, double *grads, int *ngrads, int compNgrads)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
 
