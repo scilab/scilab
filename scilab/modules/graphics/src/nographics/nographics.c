@@ -356,18 +356,6 @@ void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetAutoSubticks(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetSubwinIndex(sciPointObj * pSubwin)
 {
     return -1;

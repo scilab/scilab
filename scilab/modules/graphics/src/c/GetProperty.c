@@ -830,44 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get auto_ticks property for each axis
-*/
-void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            autoTicks[0] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[0];
-            autoTicks[1] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[1];
-            autoTicks[2] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[2];
-            break;
-        default:
-            autoTicks[0] = FALSE;
-            autoTicks[1] = FALSE;
-            autoTicks[2] = FALSE;
-            printSetGetErrorMessage("auto_ticks");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get auto_ticks property for each axis
-*/
-BOOL sciGetAutoSubticks(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return !(pSUBWIN_FEATURE(pObj)->flagNax);
-            break;
-        default:
-            return FALSE;
-            printSetGetErrorMessage("auto_subticks");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get nbsubtics for each axis
 */
 void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3])
