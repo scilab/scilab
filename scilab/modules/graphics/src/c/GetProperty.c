@@ -61,63 +61,6 @@ sciGetEntityType (sciPointObj * pobj)
     return (sciEntityType) - 1;
 }
 
-
-/**sciGetGraphicContext
-* Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
-*/
-sciGraphicContext *
-sciGetGraphicContext (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return &(pFIGURE_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_SUBWIN:
-            return  &(pSUBWIN_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_ARC:
-            return  &(pARC_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_SEGS:
-            return  &(pSEGS_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_FEC:
-            return  &(pFEC_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_GRAYPLOT:
-            return  &(pGRAYPLOT_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_POLYLINE:
-            return  &(pPOLYLINE_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_RECTANGLE:
-            return  &(pRECTANGLE_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_SURFACE:
-            return  &(pSURFACE_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_AXES:
-            return  &(pAXES_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_LEGEND:
-            return  &(pLEGEND_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_TEXT:
-            return  &(pTEXT_FEATURE (pobj)->graphiccontext);
-            break;
-        case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/06 */
-            return sciGetGraphicContext( pLABEL_FEATURE(pobj)->text );
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            return (sciGraphicContext *) NULL;
-            break;
-    }
-    return (sciGraphicContext *) NULL;
-}
-
-
 /**sciGetNumColors
 * This function gets the number of the color defined in colormap
 */

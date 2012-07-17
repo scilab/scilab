@@ -37,7 +37,6 @@ GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj, int ***user_da
 GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
-GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 
 GRAPHICS_IMPEXP double sciGetArrowSize (sciPointObj * pobj); /* GET */

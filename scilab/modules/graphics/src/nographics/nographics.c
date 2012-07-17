@@ -670,12 +670,6 @@ double sciGetArrowSize(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciGraphicContext *sciGetGraphicContext(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 int *sciGetInterpVector(sciPointObj * pobj)
 {
     return NULL;
