@@ -130,28 +130,6 @@ BOOL sciisTextEmpty(char* identifier)
     return FALSE;
 }
 
-/**sciGetLegendPlace
-* Returns the Title place with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
-* @param sciPointObj * pobj: the pointer to the entity
-* @return sciTitlePlace
-*/
-sciLegendPlace
-sciGetLegendPlace (sciPointObj * pobj)
-{
-    if ( sciGetEntityType(pobj) == SCI_LEGEND )
-    {
-        return pLEGEND_FEATURE (pobj)->place ;
-    }
-    else
-    {
-        Scierror(999, _("You are not using a legend object.\n"));
-        return SCI_LEGEND_OUT_LOWER_LEFT;
-    }
-    return SCI_LEGEND_OUT_LOWER_LEFT;
-}
-
-
-
 /**sciGetLegendPos
 * Returns the Title Position
 */

@@ -302,12 +302,6 @@ char sciGetyLocation(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciLegendPlace sciGetLegendPlace(sciPointObj * pobj)
-{
-    return (sciLegendPlace) 0;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
 {
 

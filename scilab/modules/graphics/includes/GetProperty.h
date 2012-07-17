@@ -42,7 +42,6 @@ GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
 /* Legend */
-GRAPHICS_IMPEXP sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
 GRAPHICS_IMPEXP void sciGetLegendPos (sciPointObj * pobj , double position[]);
 
 /* Figure / Subwin main functions */
