@@ -392,12 +392,6 @@ void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsBoxed(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetAutoSize(sciPointObj * pObj)
 {
     return FALSE;

@@ -38,8 +38,6 @@ GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 /* Graphic Context Functions */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
-
 /* Text Functions */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 

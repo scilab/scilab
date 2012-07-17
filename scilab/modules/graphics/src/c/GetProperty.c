@@ -1099,40 +1099,6 @@ sciGetOriginalSubWin (sciPointObj * pfigure)
     return (sciPointObj *)pFIGURE_FEATURE(pfigure)->originalsubwin0011;
 }
 
-/**sciGetIsBoxed
-* Returns the box existence
-*/
-BOOL
-sciGetIsBoxed (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_TEXT:
-            return pTEXT_FEATURE(pobj)->isboxed;
-            break;
-        case SCI_SUBWIN:
-            return ( pSUBWIN_FEATURE(pobj)->axes.rect == BT_ON || pSUBWIN_FEATURE(pobj)->axes.rect == BT_BACK_HALF ) ;
-        case SCI_LABEL:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_ARC:
-        case SCI_FIGURE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_LEGEND:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("box_type");
-            return 0;
-            break;
-    }
-    return 0;
-}
-
 int * sciGetInterpVector(sciPointObj * pobj)
 {
 
