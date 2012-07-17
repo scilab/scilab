@@ -47,8 +47,6 @@ GRAPHICS_IMPEXP sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
 /* GMODE */
 GRAPHICS_IMPEXP scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
-
 
 /* Window Functions */
 GRAPHICS_IMPEXP int sciGetNum (sciPointObj * pobj);  /* GET */

@@ -350,12 +350,6 @@ void stringArrayCopy(char *dest[], char *src[], int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetVisibility(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetLogFlags(char *pObjUID, char flags[3])
 {
 

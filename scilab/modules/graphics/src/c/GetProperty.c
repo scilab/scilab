@@ -241,18 +241,6 @@ sciGetZooming (sciPointObj * pobj)
     return FALSE;
 }
 
-
-/**sciGetVisibility*/
-BOOL
-sciGetVisibility (sciPointObj * pobj)
-{
-    int visible = 0;
-    int* piVisible = &visible;
-    getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
-
-    return visible;
-}
-
 /**sciGetNum
 * Returns the number of the Figure.
 * @param sciPointObj * pobj: the pointer to the entity
