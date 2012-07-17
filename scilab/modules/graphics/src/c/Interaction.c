@@ -477,29 +477,6 @@ int Objmove (char *pobjUID, double d[], int m, BOOL opt)
 }
 
 /*---------------------------------------------------------------------------------*/
-void interactiveZoom(sciPointObj * pObj)
-{
-    if (sciGetEntityType(pObj) == SCI_FIGURE)
-    {
-        interactiveJavaZoom(pObj);
-    }
-    else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-    {
-        interactiveJavaSubwinZoom(pObj);
-    }
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveRotation(sciPointObj * pFigure)
-{
-    interactiveJavaRotation(pFigure);
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveSubwinRotation(sciPointObj * pSubwin)
-{
-    /* get coordinates of first mouse click */
-    interactiveJavaSubwinRotation(pSubwin);
-}
-/*---------------------------------------------------------------------------------*/
 void showWindow(char * pFigureUID)
 {
     // @TODO: Call SwingView to raise window.

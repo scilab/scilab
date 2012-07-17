@@ -66,22 +66,6 @@ GRAPHICS_IMPEXP void pixelRubberBox(char * pFigure, BOOL isClick,
 GRAPHICS_IMPEXP void rubberBox(char * pSubwin, BOOL isClick,
                                const double initialRect[4], double endRect[4], int * usedButton);
 
-
-/**
- * Perform an interative zoom on a subwin or figure handle;
- */
-GRAPHICS_IMPEXP void interactiveZoom(sciPointObj * pObj);
-
-/**
- * Interactive rotation of a subwin within the figure.
- */
-GRAPHICS_IMPEXP void interactiveRotation(sciPointObj * pFigure);
-
-/**
- * Interactive rotation of a subwindow
- */
-GRAPHICS_IMPEXP void interactiveSubwinRotation(sciPointObj * pSubwin);
-
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
