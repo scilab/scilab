@@ -20,16 +20,10 @@
 #define __SCI_AXES_H__
 
 #include "dynlib_graphics.h"
+#include "BOOL.h"
 #include "ObjectStructure.h"
 
-
 /*-----------------------------------------------------------------------------*/
-
-/* reinit the viewing angles of a subwindow */
-GRAPHICS_IMPEXP void initSubWinAngles(char * pSubWinUID);
-
-/* set the data_bounds of the axes to the default value */
-GRAPHICS_IMPEXP void initSubWinBounds(char * pSubWinUID);
 
 /* reinit the selected subwindow if the auto_clear property is set to on */
 /* return TRUE if the window has been redrawn */
