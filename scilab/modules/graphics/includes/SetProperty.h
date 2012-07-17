@@ -57,8 +57,6 @@ GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 
-GRAPHICS_IMPEXP int sciSetRealDataBounds(char* pObj, const double bounds[6]); /* SET */
-
 GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);
 GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */
 

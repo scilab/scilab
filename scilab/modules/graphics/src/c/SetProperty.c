@@ -629,32 +629,6 @@ case SCI_UIMENU:
 
 /*-----------------------------------------------------------------------------------*/
 /**
- * Set the displayed data bounds of a subwin object.
- */
-int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
-{
-    // FIXME
-    abort();
-#if 0
-    int i;
-    switch ( sciGetEntityType(pobjUID) )
-    {
-        case SCI_SUBWIN:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                pSUBWIN_FEATURE(pobjUID)->FRect[i] = bounds[i] ;
-            }
-            return 0;
-        default:
-            printSetGetErrorMessage("data_bounds");
-            return -1 ;
-
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
  * To set the pixmap mode of a figure to on or off
  */
 int sciInitPixmapMode(char * pobjUID, BOOL onOrOff)
