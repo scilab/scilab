@@ -50,4 +50,3 @@ newEmptyStringMatrix
 printStrMat
 copyStrMatElement
 sciDelGraphicObj
-sciGetPointerToUserData

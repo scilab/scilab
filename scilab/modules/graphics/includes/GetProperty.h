@@ -33,7 +33,6 @@
 #include "StringMatrix.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP void sciGetPointerToUserData (sciPointObj * pobj, int ***user_data_ptr, int **size_ptr); /* GET */
 GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
