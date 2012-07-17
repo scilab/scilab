@@ -18,23 +18,26 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.*;
 
+import org.scilab.modules.gui.datatip.DatatipCreate;
+import org.scilab.modules.gui.datatip.DatatipDelete;
+import org.scilab.modules.gui.datatip.DatatipManagerMode;
+import org.scilab.modules.gui.datatip.DatatipSelect;
+import org.scilab.modules.gui.datatip.MarkerCreate;
+
+import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.PolylineHandler;
 import org.scilab.modules.gui.editor.ObjectSearcher;
 
-import org.scilab.modules.gui.datatip.DatatipCreate;
-import org.scilab.modules.gui.datatip.MarkerCreate;
-import org.scilab.modules.gui.datatip.DatatipSelect;
-import org.scilab.modules.gui.datatip.DatatipDelete;
-import org.scilab.modules.gui.datatip.DatatipManagerMode;
+import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwapObject;
 
-import java.util.ArrayList;
-import org.scilab.modules.gui.editor.AxesHandler;
 
 /**
 * Event listener for the figure editor.
@@ -153,11 +156,18 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     */
     public void mousePressed(MouseEvent arg0) {
         if (arg0.getButton() == 1) {
-            picked = ep.pick( windowUid, arg0.getX(), arg0.getY() );
+            picked = ep.pick(windowUid, arg0.getX(), arg0.getY());
             editor.setSelected(picked);
-        } else if (arg0.getButton() == 3) {
-
-        }
+            // Part responsible for the exchange of properties of the GED.
+            //If the GED is open, so the code is executed.
+            if (Inspector.window != null) {
+                if (picked == null) {
+                    new SwapObject("axes or figure", windowUid, (Integer) arg0.getX(), (Integer) arg0.getY());
+            } else {
+                    new SwapObject("curve", picked, 0, 0);
+		}
+            }
+        } else if (arg0.getButton() == 3) { }
     }
 
     /**

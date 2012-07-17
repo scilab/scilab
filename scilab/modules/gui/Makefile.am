@@ -262,7 +262,8 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/document-new.png \
+nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/color-fill.png \
+images/icons/16x16/actions/document-new.png \
 images/icons/16x16/actions/document-open.png \
 images/icons/16x16/actions/document-open-sci.png \
 images/icons/16x16/actions/document-print.png \
@@ -300,6 +301,7 @@ images/icons/16x16/actions/short.png \
 images/icons/16x16/actions/SizeColumnsToFit.png \
 images/icons/16x16/actions/system-search.png \
 images/icons/16x16/actions/transform-rotate.png \
+images/icons/16x16/actions/tree-collapse.png \
 images/icons/16x16/actions/variable-from-selection.png \
 images/icons/16x16/actions/variable-new.png \
 images/icons/16x16/actions/view-refresh.png \
@@ -340,12 +342,9 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
-images/icons/256x256/apps/accessories-text-editor.png \
-images/icons/256x256/apps/puffin.png \
-images/icons/256x256/apps/rrze_table.png \
-images/icons/256x256/apps/system-search.png \
-images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
+images/icons/32x32/actions/tree-diagramm.png \
+images/icons/32x32/actions/tree-diagramm-delete.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/datatips.png \
 images/icons/32x32/apps/graphic-window.png \
@@ -367,6 +366,11 @@ images/icons/64x40/mimetypes/application-x-scilab-plot2d.png \
 images/icons/64x40/mimetypes/application-x-scilab-plot3d.png \
 images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
 images/icons/64x40/mimetypes/application-x-scilab-surf.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/puffin.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/system-search.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/aboutscilab.png \
 images/icons/check-icon.png \
 images/icons/close-tab-on.png \

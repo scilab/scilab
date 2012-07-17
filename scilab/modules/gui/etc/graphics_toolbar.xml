@@ -19,6 +19,10 @@
   <button icon="datatips" tooltiptext="toggle datatip mode">
     <callback instruction="org.scilab.modules.gui.datatip.DatatipManagerMode.setDatatipManagerModeToggle" type="3"/>
   </button>
+  <!-- Scilab Graphic Editor -->
+  <button icon="plot" tooltiptext="Initialize the graphics editor">
+    <callback instruction="org.scilab.modules.gui.ged.StartGED.quickGED" type="3"/>
+  </button>
   <separator/>
   <!-- Help -->
   <button icon="help-browser" tooltiptext="Help Browser">

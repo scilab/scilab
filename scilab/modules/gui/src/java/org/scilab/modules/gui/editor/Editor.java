@@ -28,7 +28,7 @@ import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
 import org.scilab.modules.gui.editor.LabelHandler;
 import org.scilab.modules.gui.editor.LegendHandler;
-
+import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.localization.Messages;
 
 
@@ -49,12 +49,12 @@ import org.scilab.modules.localization.Messages;
 public class Editor {
 
     JPopupMenu menu;
-    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove;
+    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove, ged;
     JMenu labels, legends;
 
     String selected = null;
     String figureUid = null;
-    Integer oriColor = 0;
+    private static Integer oriColor = 0;
     Integer[] lastClick = { 0, 0 };
 
     Component dialogComponent;
@@ -119,6 +119,9 @@ public class Editor {
         insert.setToolTipText(Messages.gettext("Insert a legend to current selected item"));
         remove = new JMenuItem(Messages.gettext("Remove"));
         remove.setToolTipText(Messages.gettext("Remove a legend of current selected item"));
+        ged = new JMenuItem("Open Quick Editor");
+        ged.setToolTipText(Messages.gettext("Initialize the graphics editor"));
+
 
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -198,6 +201,11 @@ public class Editor {
             }
         });
 
+        ged.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickGED();
+            }
+        });
 
         labels.add(labelX);
         labels.add(labelY);
@@ -218,6 +226,7 @@ public class Editor {
         menu.addSeparator();
         menu.add(labels);
         menu.add(legends);
+        menu.add(ged);
 
     }
 
@@ -252,6 +261,24 @@ public class Editor {
             hide.setEnabled(false);
             legends.setEnabled(false);
         }
+    }
+
+    /**
+    * Get current color of the polyline line/mark.
+    *
+    * @return Returns the current color of the polyline.
+    */
+    public static Integer getOriColor() {
+        return oriColor;
+    }
+
+    /**
+    * Set current color of the polyline line/mark.
+    *
+    * @param newScilabColor Color selected by user.
+    */
+    public static void setOriColor(Integer newScilabColor) {
+        oriColor = newScilabColor;
     }
 
     /**
@@ -402,5 +429,11 @@ public class Editor {
         String axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
         LegendHandler.removeLegend(axesTo, selected);
     }
-}
 
+    /**
+    * Starts the GED with the property of the Figure.
+    */
+    public void onClickGED() {
+	Inspector.createGuiInspector("figure" , figureUid);
+    }
+}
