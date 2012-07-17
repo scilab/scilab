@@ -56,8 +56,6 @@ GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
 
 /* UNUSED ? */
-GRAPHICS_IMPEXP sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
-
 GRAPHICS_IMPEXP int * sciGetInterpVector(sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsColorInterpolated(sciPointObj * pobj); /* GET */
 

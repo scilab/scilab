@@ -697,17 +697,6 @@ case SCI_UIMENU:
 
 /*-------------------------------------------------------------------------------*/
 
-/**sciGetOriginalSubWin
-* PRIVATE.
-* @param sciPointObj * pfigure: the pointer to the parent figure
-* @return the pointer of the original subwindow
-*/
-sciPointObj *
-sciGetOriginalSubWin (sciPointObj * pfigure)
-{
-    return (sciPointObj *)pFIGURE_FEATURE(pfigure)->originalsubwin0011;
-}
-
 int * sciGetInterpVector(sciPointObj * pobj)
 {
 
