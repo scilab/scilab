@@ -128,45 +128,6 @@ sciGetFontContext (sciPointObj * pobj)
 
 /****************************************** TEXT ******************************
 
-/**sciGetText
-* Gets the Text in TEXT, TITLE or LEGEND. Be Carreful,
-* this return a unterminated string (without \0)
-* To obtain the length of the text, use sciGetTextLength@param  sciPointObj *pobj
-* @param sciPointObj * pobj: the pointer to the entity
-* @return  point to char[] if OK or NULL if not
-*/
-StringMatrix * sciGetText( sciPointObj * pobj )
-{
-
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_TEXT:
-            return pTEXT_FEATURE (pobj)->pStrings;
-            break;
-        case SCI_LEGEND:
-            return pLEGEND_FEATURE (pobj)->text.pStrings;
-            break;
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-            return sciGetText( pLABEL_FEATURE (pobj)->text ) ;
-            break;
-        case SCI_UIMENU:
-        case SCI_FIGURE:
-        case SCI_SUBWIN:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        default:
-            return  NULL;
-            break;
-    }
-}
-
 /**
 * Checks if a text object is empty #rows*#columns==0 or #rows*#columns==1 and entry is  zero length
 * This function has been adapted to the MVC: its parameter's type has been changed from sciPointObj to char*

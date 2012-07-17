@@ -47,7 +47,6 @@ deleteMatrix
 sciSetStrings
 newMatrix
 newEmptyStringMatrix
-sciGetText
 printStrMat
 copyStrMatElement
 sciDelGraphicObj

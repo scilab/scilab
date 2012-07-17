@@ -422,12 +422,6 @@ sciTextAlignment sciGetAlignment(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-StringMatrix *sciGetText(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 int getMatNbCol(const sciMatrix * mat)
 {
     return -1;

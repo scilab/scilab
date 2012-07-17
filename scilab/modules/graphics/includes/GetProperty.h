@@ -46,9 +46,7 @@ GRAPHICS_IMPEXP BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
-GRAPHICS_IMPEXP unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP int sciGetFontStyle (sciPointObj * pobj); /* GET */
 
