@@ -629,40 +629,6 @@ case SCI_UIMENU:
 
 /*-----------------------------------------------------------------------------------*/
 /**
- * To set the pixmap mode of a figure to on or off
- */
-int sciInitPixmapMode(char * pobjUID, BOOL onOrOff)
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType(pobjUID))
-    {
-        case SCI_FIGURE:
-            pFIGURE_FEATURE(pobjUID)->pixmapMode = onOrOff;
-            return 0;
-        default:
-            printSetGetErrorMessage("pixmap");
-            return -1;
-    }
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * To set the pixmap mode of a figure to on or off
- */
-int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
-{
-    if (sciGetPixmapMode((sciPointObj*)pobjUID) == onOrOff)
-    {
-        /* Nothing to do */
-        return 1;
-    }
-    return sciInitPixmapMode(pobjUID, onOrOff);
-}
-/*----------------------------------------------------------------------------------*/
-/**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color
  */

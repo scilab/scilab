@@ -60,8 +60,6 @@ GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
 GRAPHICS_IMPEXP void sciGetLogFlags(char *pObjUID, char flags[3]); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */
-
 GRAPHICS_IMPEXP int sciGetNbPoints(sciPointObj * pObj); /* GET */
 
 GRAPHICS_IMPEXP int sciGetPolylineStyle(sciPointObj * pObj); /* GET */

@@ -145,17 +145,8 @@ void sciGetDisplayedBounds( char * pSubWinUID,
 /*---------------------------------------------------------------------------------*/
 void showPixmap(char *pFigureUID)
 {
-#if 0
   /* Hack here. Pixmap has same action as drawlater() */
   /* So we just draw the figure here to make it appear */
-  if (sciGetPixmapMode(pFigure))
-  {
-    sciSetPixmapMode(pFigure, FALSE);
-    sciDrawObj(pFigure);
-    sciSetPixmapMode(pFigure, TRUE);
-    sciDrawObj(pFigure);
-  }
-#endif
 }
 /*---------------------------------------------------------------------------------*/
 void clearPixmap(sciPointObj * pFigure)

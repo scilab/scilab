@@ -4,9 +4,7 @@ LIBRARY    graphics.dll
 EXPORTS
 ;
 ; graphics
-sciSetPixmapMode
 sciGetCurrentFigure
-sciGetPixmapMode
 sciSetLineWidth
 sciSetMarkForeground
 sciGetBackground

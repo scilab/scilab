@@ -756,23 +756,6 @@ void sciGetLogFlags(char * pObjUID, char flags[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* To know if the pixmap mode a figure is on or off.
-*/
-BOOL sciGetPixmapMode(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_FIGURE:
-            return pFIGURE_FEATURE(pObj)->pixmapMode;
-            break;
-        default:
-            printSetGetErrorMessage("pixmap");
-            break;
-    }
-    return FALSE;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return number of vertices of a pointObj
 */
 int sciGetNbPoints(sciPointObj * pObj)
