@@ -460,12 +460,6 @@ void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 }
 
 /*--------------------------------------------------------------------------*/
-double *sciGetMargins(sciPointObj * pObj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetViewingAngles(sciPointObj * pObj, double *alpha, double *theta)
 {
 

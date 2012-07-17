@@ -724,18 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-double * sciGetMargins( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->ARect;
-        default:
-            printSetGetErrorMessage("margins");
-            return NULL ;
-    }
-}
-/*----------------------------------------------------------------------------------*/
 /**
 * To get the computed data bounds of a subwin.
 * * @param bounds [Xmin,Xmax,Ymin,Ymax,Zmin,Zmax] vector.
