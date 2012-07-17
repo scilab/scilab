@@ -598,12 +598,6 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetNbPoints(sciPointObj * pObj)
 {
     return -1;

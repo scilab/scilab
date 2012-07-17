@@ -696,20 +696,6 @@ case SCI_UIMENU:
 }
 
 /*-------------------------------------------------------------------------------*/
-
-BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
-{
-    switch ( sciGetEntityType (pobj) )
-    {
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE(pobj)->isinterpshaded;
-        default:
-            printSetGetErrorMessage("interp_vector");
-            break;
-    }
-    return FALSE;
-}
-
 BOOL sciGetAutoRotation ( sciPointObj * pObj )
 {
     switch (sciGetEntityType (pObj))
