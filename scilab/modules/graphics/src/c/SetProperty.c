@@ -662,41 +662,6 @@ int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
     return sciInitPixmapMode(pobjUID, onOrOff);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType(pobjUID))
-    {
-        case SCI_SUBWIN:
-            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[0] = autoTicksX;
-            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[1] = autoTicksY;
-            pSUBWIN_FEATURE(pobjUID)->axes.auto_ticks[2] = autoTicksZ;
-            return 0;
-        default:
-            printSetGetErrorMessage("auto_ticks");
-            return -1;
-    }
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
-int sciSetAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
-{
-    BOOL curAutoTicks[3];
-    sciGetAutoTicks((sciPointObj*)pobjUID, curAutoTicks);
-
-    if (curAutoTicks[0] == autoTicksX && curAutoTicks[1] == autoTicksY && curAutoTicks[2] == autoTicksZ)
-    {
-        // nothing to do
-        return 1;
-    }
-
-    return sciInitAutoTicks(pobjUID, autoTicksX, autoTicksY, autoTicksZ);
-
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Specify a new zoom box for a subwin object.
  * @param zoomBox [xMin, xMax, yMin, yMax, zMin, zMax] vector.

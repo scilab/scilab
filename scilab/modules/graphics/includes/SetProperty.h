@@ -60,9 +60,6 @@ GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);
 GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */
 
-GRAPHICS_IMPEXP int sciInitAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
-GRAPHICS_IMPEXP int sciSetAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
-
 GRAPHICS_IMPEXP int sciSetZoomBox(char* pObj, const double zoomBox[6]); /* SET */
 
 GRAPHICS_IMPEXP int sciInitImmediateDrawingMode(char* pObj, BOOL autoRedraw);
