@@ -416,12 +416,6 @@ BOOL sciisTextEmpty(char *identifier)
 }
 
 /*--------------------------------------------------------------------------*/
-double sciGetFontOrientation(sciPointObj * pobj)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
 sciTextAlignment sciGetAlignment(sciPointObj * pObj)
 {
     return (sciTextAlignment) 0;

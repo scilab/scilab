@@ -127,45 +127,6 @@ sciGetFontContext (sciPointObj * pobj)
 
 
 /****************************************** TEXT ******************************
-**sciGetFontSize
-* Gets the Font Size
-*/
-double sciGetFontSize(char * pobjUID)
-{
-    abort();
-#if 0
-    if (sciGetFontContext(pobj) != NULL)
-    {
-        return (sciGetFontContext(pobj))->fontSize;
-    }
-    else
-    {
-        printSetGetErrorMessage("font_size");
-        return -1.0;
-    }
-#endif
-    return -1.0;
-}
-
-
-/*sciGetFontOrientation
-* gets the Font Orientation
-*/
-double
-sciGetFontOrientation (sciPointObj * pobj)
-{
-
-    if (sciGetFontContext(pobj) != NULL)
-    {
-        return (sciGetFontContext(pobj))->textorientation;
-    }
-    printSetGetErrorMessage("font_angle");
-    return 0.0;
-
-}
-
-
-
 
 /**sciGetText
 * Gets the Text in TEXT, TITLE or LEGEND. Be Carreful,
