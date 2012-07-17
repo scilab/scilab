@@ -21,6 +21,9 @@ extern "C"
 {
 #ifdef _MSC_VER
 #include <process.h>
+#else
+#include <sys/types.h> /* getpid */
+#include <unistd.h> /* getpid */
 #endif
 #include "sci_tmpdir.h"
 #include "os_wcsdup.h"
@@ -85,15 +88,15 @@ void putenvTMPDIR(const char *_sci_tmpdir)
         bool bConvertOK = false;
         ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
         //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
-        AntislashToSlash(ShortPath,CopyOfDefaultPath);
+        AntislashToSlash(ShortPath, CopyOfDefaultPath);
         setenvc("TMPDIR", ShortPath);
-        if(CopyOfDefaultPath)
+        if (CopyOfDefaultPath)
         {
             delete[] CopyOfDefaultPath;
             CopyOfDefaultPath = NULL;
         }
 
-        if(ShortPath)
+        if (ShortPath)
         {
             delete[] ShortPath;
             ShortPath = NULL;
@@ -117,11 +120,11 @@ char* getenvTMPDIR()
     int lbuf = PATH_MAX;
     char *SciPath = new char[PATH_MAX];
 
-    if(SciPath)
+    if (SciPath)
     {
         getenvc(&ierr, "TMPDIR", SciPath, &lbuf, &iflag);
 
-        if(ierr == 1)
+        if (ierr == 1)
         {
             return NULL;
         }
@@ -145,21 +148,21 @@ char* computeTMPDIR()
 #ifdef _MSC_VER
     wchar_t wcTmpDirDefault[PATH_MAX];
 
-    if(!GetTempPathW(PATH_MAX,wcTmpDirDefault))
+    if (!GetTempPathW(PATH_MAX, wcTmpDirDefault))
     {
         MessageBox(NULL, _("Cannot find Windows temporary directory (1)."), _("Error"), MB_ICONERROR);
         exit(1);
     }
     else
     {
-        wchar_t wctmp_dir[PATH_MAX+FILENAME_MAX + 1];
+        wchar_t wctmp_dir[PATH_MAX + FILENAME_MAX + 1];
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
-        os_swprintf(wctmp_dir, PATH_MAX+FILENAME_MAX + 1, L"%lsSCI_TMP_%d_", wcTmpDirDefault, _getpid());
-        if( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
+        os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_", wcTmpDirDefault, _getpid());
+        if ( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
         {
             DWORD attribs = GetFileAttributesW(wctmp_dir);
-            if(attribs & FILE_ATTRIBUTE_DIRECTORY)
+            if (attribs & FILE_ATTRIBUTE_DIRECTORY)
             {
                 /* Repertoire existant */
             }
@@ -202,7 +205,7 @@ char* computeTMPDIR()
     char* env_dir = (char*)MALLOC(sizeof(char) * (PATH_MAX + 16));
     /* If the env variable TMPDIR is set, honor this preference */
     tmpdir = getenv("TMPDIR");
-    if(tmpdir != NULL && strlen(tmpdir) < (PATH_MAX))
+    if (tmpdir != NULL && strlen(tmpdir) < (PATH_MAX))
     {
         strcpy(env_dir, tmpdir);
     }
@@ -216,9 +219,9 @@ char* computeTMPDIR()
     sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int) getpid());
     free(env_dir_strdup);
 
-    if(mkdtemp(env_dir) == NULL)
+    if (mkdtemp(env_dir) == NULL)
     {
-        fprintf(stderr,_("Error: Could not create %s: %s\n"), env_dir, strerror(errno));
+        fprintf(stderr, _("Error: Could not create %s: %s\n"), env_dir, strerror(errno));
     }
 
     setenvc("TMPDIR", env_dir);

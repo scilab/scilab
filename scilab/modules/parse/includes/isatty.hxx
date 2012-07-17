@@ -15,6 +15,8 @@
 
 #ifdef _MSC_VER
 int isatty (int desc);
+#else
+#include <unistd.h>
 #endif
 
 #endif /* !_ISATTY_HH_ */
