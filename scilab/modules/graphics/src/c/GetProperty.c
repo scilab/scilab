@@ -851,28 +851,6 @@ void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the current zoom box of a subwin object
-* @param[out] zoomBox output parameter with thte zoom box
-*/
-void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            zoomBox[0] = pSUBWIN_FEATURE(pObj)->ZRect[0] ;
-            zoomBox[1] = pSUBWIN_FEATURE(pObj)->ZRect[1] ;
-            zoomBox[2] = pSUBWIN_FEATURE(pObj)->ZRect[2] ;
-            zoomBox[3] = pSUBWIN_FEATURE(pObj)->ZRect[3] ;
-            zoomBox[4] = pSUBWIN_FEATURE(pObj)->ZRect[4] ;
-            zoomBox[5] = pSUBWIN_FEATURE(pObj)->ZRect[5] ;
-            break;
-        default:
-            printSetGetErrorMessage("zoom_box");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */
