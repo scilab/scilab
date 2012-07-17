@@ -514,12 +514,6 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetNbPoints(sciPointObj * pObj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void doubleArrayCopy(double dest[], const double src[], int nbElement)
 {
 

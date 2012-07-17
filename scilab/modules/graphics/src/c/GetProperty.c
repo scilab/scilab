@@ -755,22 +755,6 @@ void sciGetLogFlags(char * pObjUID, char flags[3])
     }
 }
 /*----------------------------------------------------------------------------------*/
-/**
-* @return number of vertices of a pointObj
-*/
-int sciGetNbPoints(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE(pObj)->n1;
-        default:
-            printSetGetErrorMessage("points");
-            break;
-    }
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
 int sciGetPolylineStyle(sciPointObj * pObj)
 {
     switch (sciGetEntityType(pObj))
