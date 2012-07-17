@@ -662,33 +662,6 @@ int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
     return sciInitPixmapMode(pobjUID, onOrOff);
 }
 /*----------------------------------------------------------------------------------*/
-/**
- * Specify a new zoom box for a subwin object.
- * @param zoomBox [xMin, xMax, yMin, yMax, zMin, zMax] vector.
- */
-int sciSetZoomBox(char * pobjUID, const double zoomBox[6])
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType(pobjUID))
-    {
-        case SCI_SUBWIN:
-            pSUBWIN_FEATURE(pobjUID)->ZRect[0] = zoomBox[0];
-            pSUBWIN_FEATURE(pobjUID)->ZRect[1] = zoomBox[1];
-            pSUBWIN_FEATURE(pobjUID)->ZRect[2] = zoomBox[2];
-            pSUBWIN_FEATURE(pobjUID)->ZRect[3] = zoomBox[3];
-            pSUBWIN_FEATURE(pobjUID)->ZRect[4] = zoomBox[4];
-            pSUBWIN_FEATURE(pobjUID)->ZRect[5] = zoomBox[5];
-            return 0;
-        default:
-            printSetGetErrorMessage("zoom_box");
-            return -1;
-    }
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
 int sciInitImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
 {
     // FIXME

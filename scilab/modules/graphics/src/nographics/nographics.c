@@ -598,12 +598,6 @@ void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetZoomBox(char *pObj, const double zoomBox[6])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 double *sciGetMargins(sciPointObj * pObj)
 {
     return NULL;
