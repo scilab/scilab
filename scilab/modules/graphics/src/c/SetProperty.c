@@ -662,43 +662,6 @@ int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
     return sciInitPixmapMode(pobjUID, onOrOff);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitTextPos( char * pobjUID, double posX, double posY, double posZ)
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType(pobjUID))
-    {
-        case SCI_TEXT:
-            pTEXT_FEATURE(pobjUID)->x = posX;
-            pTEXT_FEATURE(pobjUID)->y = posY;
-            pTEXT_FEATURE(pobjUID)->z = posZ;
-            return 0;
-        case SCI_LABEL:
-            return sciInitTextPos(pLABEL_FEATURE(pobjUID)->text, posX, posY, posZ);
-        default:
-            printSetGetErrorMessage("data");
-            return -1;
-    }
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Set the position of a label or text object.
- */
-int sciSetTextPos( char * pobjUID, double posX, double posY, double posZ)
-{
-    double curPos[3];
-    sciGetTextPos((sciPointObj*)pobjUID, curPos);
-    if ( curPos[0] == posX && curPos[1] == posY && curPos[2] == posZ )
-    {
-        /* nothing to do */
-        return 1;
-    }
-    return sciInitTextPos(pobjUID, posX, posY, posZ);
-}
-/*----------------------------------------------------------------------------------*/
 int sciInitAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
 {
     // FIXME

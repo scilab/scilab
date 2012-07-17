@@ -40,7 +40,6 @@ sciSetFontSize
 sciSetText
 ConstructGrayplot
 ConstructSurface
-sciSetTextPos
 sciGetIndexedSon
 sciGetCurrentSubWin
 sciGetNum

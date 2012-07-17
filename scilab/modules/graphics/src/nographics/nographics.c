@@ -386,12 +386,6 @@ BOOL sciGetAutoPosition(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetTextPos(char *pObj, double posX, double posY, double posZ)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 {
 
