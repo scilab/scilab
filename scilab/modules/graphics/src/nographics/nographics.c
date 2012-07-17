@@ -454,6 +454,7 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
+// FIXME : Kill me
 void intArrayCopy(int dest[], const int src[], int nbElement)
 {
 
@@ -466,33 +467,10 @@ void doubleArrayCopy(double dest[], const double src[], int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
+// FIXME : Kill me
 void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-void unzoomSubwin(sciPointObj * pSubwin)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetXorMode(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-sciSons *sciGetLastSons(sciPointObj * pobj)
-{
-    return NULL;
 }
 
 /*--------------------------------------------------------------------------*/

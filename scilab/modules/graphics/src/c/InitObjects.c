@@ -666,12 +666,6 @@ int sciInitGraphicMode(char *pobjUID)
              * As it has no corresponding MVC property, this call will not set anything.
              */
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = sciGetAddPlot(sciGetParent(pobj));
-            (sciGetGraphicMode(pobj))->zooming = sciGetZooming(sciGetParent(pobj));
-            (sciGetGraphicMode(pobj))->xormode = sciGetXorMode(sciGetParent(pobj));
-#endif
         }
         /*
          * This block is never reached at all since since the Axes model
