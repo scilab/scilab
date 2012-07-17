@@ -416,12 +416,6 @@ int sciSetXorMode(char *pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetZooming(sciPointObj * pobj)
 {
     return FALSE;

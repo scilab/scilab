@@ -907,21 +907,6 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the bounds we need to use for a subwin (between user defined one and zoomed ones).
-*/
-void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
-{
-    if (sciGetZooming(pObj))
-    {
-        sciGetZoomBox(pObj, bounds);
-    }
-    else
-    {
-        sciGetDataBounds(pObj, bounds);
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get data-bounds defined by the user and not modified for pretty print by scilab.
 * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
 */
