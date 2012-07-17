@@ -628,24 +628,6 @@ case SCI_UIMENU:
 }
 
 /*-----------------------------------------------------------------------------------*/
-int sciInitIsEventHandlerEnable( char * pobjUID, BOOL enable )
-{
-    // FIXME
-    abort();
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetIsEventHandlerEnable( char * pobjUID, BOOL enable )
-{
-    if ( sciGetIsEventHandlerEnable((sciPointObj*)pobjUID) == enable )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-
-    return sciInitIsEventHandlerEnable( pobjUID, enable ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 /**
  * Set data-bounds defined by the user.
  * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.

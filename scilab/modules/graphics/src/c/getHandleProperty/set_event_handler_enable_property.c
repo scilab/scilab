@@ -35,14 +35,6 @@ int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, size_t stackP
 	int b =  (int)FALSE;
 	BOOL status = FALSE;
 
-#if 0
-	if ( sciGetEntityType( pobj ) != SCI_FIGURE )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
-		return SET_PROPERTY_ERROR ;
-	}
-#endif
-
 	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "event_handler_enable");
 	if (b == NOT_A_BOOLEAN_VALUE)
     {
@@ -60,10 +52,5 @@ int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, size_t stackP
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
 		return SET_PROPERTY_ERROR;
 	}
-
-/* deactivated for now sinces it involves drawing operations, to be implemented */
-#if 0
-	return (int)sciSetNoRedrawStatus((SetPropertyStatus)sciSetIsEventHandlerEnable(pobj, b));
-#endif
 }
 /*------------------------------------------------------------------------*/
