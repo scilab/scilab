@@ -42,7 +42,6 @@ ConstructGrayplot
 ConstructSurface
 sciGetIndexedSon
 sciGetCurrentSubWin
-sciGetNum
 deleteMatrix
 sciSetStrings
 newMatrix

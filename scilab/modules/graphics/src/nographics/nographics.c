@@ -120,12 +120,6 @@ int sciGetHeight(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetNum(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciAddThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
 {
     return FALSE;

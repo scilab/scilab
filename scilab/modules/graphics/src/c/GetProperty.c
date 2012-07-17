@@ -241,50 +241,6 @@ sciGetZooming (sciPointObj * pobj)
     return FALSE;
 }
 
-/**sciGetNum
-* Returns the number of the Figure.
-* @param sciPointObj * pobj: the pointer to the entity
-* @return the number of the windows contening this entity
-*/
-int
-sciGetNum (sciPointObj * pobj)
-{
-    int iFigureId = 0;
-    int* piFigureId = &iFigureId;
-
-    getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int, (void**)&piFigureId);
-
-    if (piFigureId == NULL)
-    {
-        printSetGetErrorMessage("figure_id");
-        return -1;
-    }
-
-    return iFigureId;
-
-    /*
-     * Deactivated for now.
-     * The SUBWIN (Axes) case must be taken into account.
-     * To be implemented using the MVC framework.
-     */
-#if 0
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return pFIGURE_FEATURE (pobj)->number;
-            break;
-        case SCI_SUBWIN:
-            return sciGetNum (sciGetParent(pobj));
-            break;
-        case SCI_AGREG:
-        default:
-            printSetGetErrorMessage("figure_id");
-            return -1;
-            break;
-    }
-#endif
-}
-
 /**sciIsExistingSubWin
 * Determines if this SubWindow is an existing one in the current SCI_FIGURE
 * in association with the wrect and frect....
