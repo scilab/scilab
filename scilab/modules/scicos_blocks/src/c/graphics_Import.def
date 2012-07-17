@@ -51,5 +51,4 @@ sciGetText
 printStrMat
 copyStrMatElement
 sciDelGraphicObj
-sciGetTextSize
 sciGetPointerToUserData

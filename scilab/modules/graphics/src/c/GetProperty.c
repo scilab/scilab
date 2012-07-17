@@ -168,26 +168,6 @@ StringMatrix * sciGetText( sciPointObj * pobj )
 }
 
 /**
-* Get the size of the string matrix of a text object
-* @param nbRow, number of row of the text conatianed in pobj
-*        If an error occures, the value is negative.
-* @param nbCol, same as nbRow for columns.
-*/
-void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
-{
-    StringMatrix * text = sciGetText( pobj ) ;
-    if ( text == NULL )
-    {
-        *nbRow = -1 ;
-        *nbCol = -1 ;
-    }
-    else
-    {
-        *nbRow = getMatNbRow( text ) ;
-        *nbCol = getMatNbCol( text ) ;
-    }
-}
-/**
 * Checks if a text object is empty #rows*#columns==0 or #rows*#columns==1 and entry is  zero length
 * This function has been adapted to the MVC: its parameter's type has been changed from sciPointObj to char*
 * (MVC identifier), the reason being that it is exclusively used to get the properties of Label objects,
