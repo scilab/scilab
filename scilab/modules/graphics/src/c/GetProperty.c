@@ -724,20 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
-{
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_TEXT:
-            *width  = pTEXT_FEATURE(pObj)->userSize[0] ;
-            *height = pTEXT_FEATURE(pObj)->userSize[1] ;
-            break ;
-        default:
-            printSetGetErrorMessage("text_box");
-            break ;
-    }
-}
-/*-----------------------------------------------------------------------------------*/
 /**
 * get the number of children of a graphic object
 * @return number of children of object pObj

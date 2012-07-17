@@ -332,12 +332,6 @@ void sciGetLogFlags(char *pObjUID, char flags[3])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciisTextEmpty(char *identifier)
 {
     return FALSE;
