@@ -117,6 +117,9 @@ Bug Fixes
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
+* Bug #11460 fixed - In the console, scrollbar was not updated before something was
+                     entered at the prompt.
+
 * Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
 
 * Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
