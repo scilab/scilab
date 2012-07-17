@@ -21719,7 +21719,7 @@ fi
 save_CPPFLAGS="$CPPFLAGS"
 
 if test "x$with_eigen_include" != "xyes"; then
-	CPPFLAGS="-I$with_eigen_include -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
+	CPPFLAGS="-I$with_eigen_include"
 	ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
 if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS="$CPPFLAGS"
@@ -21736,7 +21736,7 @@ if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS=""
 else
          $as_unset ac_cv_header_Eigen_Sparse
-                CPPFLAGS="-I/usr/include/eigen3/ -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
+                CPPFLAGS="-I/usr/include/eigen3/"
                 ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
 if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS=$CPPFLAGS

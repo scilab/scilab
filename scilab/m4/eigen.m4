@@ -25,7 +25,7 @@ AC_ARG_WITH(eigen_include,
 save_CPPFLAGS="$CPPFLAGS"
 
 if test "x$with_eigen_include" != "xyes"; then
-	CPPFLAGS="-I$with_eigen_include -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
+	CPPFLAGS="-I$with_eigen_include"
 	AC_CHECK_HEADER([Eigen/Sparse],
 		[EIGEN_CPPFLAGS="$CPPFLAGS"],
 		[AC_MSG_ERROR([Cannot find headers (Eigen/Sparse) of the library EIGEN in $with_eigen_include. Please install the dev package (Debian : libeigen3-dev)])]
@@ -35,7 +35,7 @@ else
 	AC_CHECK_HEADER([Eigen/Sparse],
 		[EIGEN_CPPFLAGS=""],
 		[       $as_unset ac_cv_header_Eigen_Sparse 
-                CPPFLAGS="-I/usr/include/eigen3/ -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
+                CPPFLAGS="-I/usr/include/eigen3/"
                 AC_CHECK_HEADER([Eigen/Sparse],
                                 [EIGEN_CPPFLAGS=$CPPFLAGS],
                                 AC_MSG_ERROR([Cannot find headers (Eigen/Sparse) of the library eigen. Please install the dev package (Debian : libeigen3-dev)])
