@@ -344,12 +344,6 @@ BOOL sciisTextEmpty(char *identifier)
 }
 
 /*--------------------------------------------------------------------------*/
-sciTextAlignment sciGetAlignment(sciPointObj * pObj)
-{
-    return (sciTextAlignment) 0;
-}
-
-/*--------------------------------------------------------------------------*/
 int getMatNbCol(const sciMatrix * mat)
 {
     return -1;

@@ -724,20 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-sciTextAlignment sciGetAlignment( sciPointObj * pObj )
-{
-    switch (sciGetEntityType (pObj))
-    {
-        case SCI_TEXT:
-            return pTEXT_FEATURE(pObj)->stringsAlign ;
-            break;
-        default:
-            printSetGetErrorMessage("text_alignment");
-            return ALIGN_NONE ;
-    }
-    return ALIGN_NONE ;
-}
-/*-----------------------------------------------------------------------------------*/
 void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
 {
     switch ( sciGetEntityType( pObj ) )
