@@ -830,21 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return TRUE if subwindow pObj tight_limit mode is on.
-*/
-BOOL sciGetTightLimitsOn(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->tight_limits;
-        default:
-            return FALSE;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get auto_ticks property for each axis
 */
 void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])

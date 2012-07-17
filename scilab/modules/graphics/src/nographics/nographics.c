@@ -392,12 +392,6 @@ BOOL sciGetZooming(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetTightLimitsOn(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
 
