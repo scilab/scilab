@@ -356,12 +356,6 @@ BOOL sciGetAutoSize(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetCenterPos(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciisTextEmpty(char *identifier)
 {
     return FALSE;

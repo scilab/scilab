@@ -767,24 +767,6 @@ void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* get how is displayed the text around its position.
-* If TRUE, the position is the middle of the displayed string.
-* If FALSE, it is the lower right corner.
-*/
-BOOL sciGetCenterPos( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType( pObj ) )
-    {
-        case SCI_TEXT:
-            return pTEXT_FEATURE(pObj)->centeredPos ;
-            break ;
-        default:
-            printSetGetErrorMessage("text_box_mode");
-            return FALSE ;
-    }
-}
-/*-----------------------------------------------------------------------------------*/
-/**
 * get the number of children of a graphic object
 * @return number of children of object pObj
 */

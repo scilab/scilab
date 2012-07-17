@@ -55,9 +55,6 @@ GRAPHICS_IMPEXP char sciGetxLocation(sciPointObj * pObj);
 GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
 
-/* UNUSED ? */
-GRAPHICS_IMPEXP BOOL sciGetCenterPos( sciPointObj * pObj ) ;
-
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
