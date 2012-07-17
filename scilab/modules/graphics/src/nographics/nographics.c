@@ -688,12 +688,6 @@ void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
 }
 
 /*--------------------------------------------------------------------------*/
-double *sciGetClipping(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;

@@ -205,65 +205,6 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     return (scigMode *) NULL;
 }
 
-/**sciGetClipping
-* Gets the clipping area
-* 29/11/2002
-*/
-double *
-sciGetClipping (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_ARC:
-            return pARC_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_RECTANGLE:
-            return pRECTANGLE_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_SEGS:
-            return pSEGS_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_TEXT:
-            return pTEXT_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_AXES:
-            return pAXES_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_LABEL:
-            return sciGetClipping( pLABEL_FEATURE(pobj)->text ) ;
-            break;
-        case SCI_LEGEND:
-            return pLEGEND_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_SURFACE:
-            return pSURFACE_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_FEC:
-            return pFEC_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_GRAYPLOT:
-            return pGRAYPLOT_FEATURE (pobj)->clip_region;
-            break;
-        case SCI_UIMENU:
-        case SCI_AGREG:
-        case SCI_FIGURE:
-        default:
-            printSetGetErrorMessage("clip_box");
-            return (double *) NULL;
-            break;
-    }
-    printSetGetErrorMessage("clip_box");
-    return (double *) NULL;
-
-}
-
 /**sciGetZooming
 * Returns the zooming state of the object is it or not zoomed.
 */
