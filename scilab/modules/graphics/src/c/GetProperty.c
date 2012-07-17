@@ -830,27 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get nbsubtics for each axis
-*/
-void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            nbsubtics[0] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[0];
-            nbsubtics[1] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[1];
-            nbsubtics[2] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[2];
-            break;
-        default:
-            nbsubtics[0] = 0;
-            nbsubtics[1] = 0;
-            nbsubtics[2] = 0;
-            printSetGetErrorMessage("nbsubtics");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */

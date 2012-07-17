@@ -70,6 +70,4 @@ GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, i
 
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
-GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]);
-
 #endif /* __SCI_GET_PROPERTY__ */
