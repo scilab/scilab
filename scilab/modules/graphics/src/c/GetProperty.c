@@ -1099,22 +1099,6 @@ sciGetOriginalSubWin (sciPointObj * pfigure)
     return (sciPointObj *)pFIGURE_FEATURE(pfigure)->originalsubwin0011;
 }
 
-
-/* get the property of the axes box */
-EAxesBoxType sciGetBoxType( sciPointObj * pobj )
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pobj)->axes.rect ;
-        default:
-            printSetGetErrorMessage("box_type");
-            return (EAxesBoxType)0 ;
-    }
-    return (EAxesBoxType)0;
-}
-
-
 /**sciGetIsBoxed
 * Returns the box existence
 */

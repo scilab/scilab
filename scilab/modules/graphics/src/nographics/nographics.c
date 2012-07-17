@@ -470,12 +470,6 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 }
 
 /*--------------------------------------------------------------------------*/
-EAxesBoxType sciGetBoxType(sciPointObj * pobj)
-{
-    return (EAxesBoxType) 0;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetRealVisibility(sciPointObj * pobj)
 {
     return FALSE;
