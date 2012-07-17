@@ -875,27 +875,6 @@ void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return index of the subwin between all the subwins lying below its parent figure
-*/
-int sciGetSubwinIndex(sciPointObj * pSubwin)
-{
-    sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
-    int subwinIndex = 0;
-    sciSons * pSons = sciGetSons(parentFigure);
-
-    while (pSons->pointobj != pSubwin)
-    {
-        if (sciGetEntityType(pSons->pointobj) == SCI_SUBWIN)
-        {
-            // subwin found
-            subwinIndex++;
-        }
-        pSons = pSons->pnext;
-    }
-    return subwinIndex;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return TRUE if the object is automatically redraw and does not
 *         need to be explicitely drawn (using sciDrawObj).
 */

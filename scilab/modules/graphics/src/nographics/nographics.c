@@ -350,12 +350,6 @@ BOOL isFigureModel(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetSubwinIndex(sciPointObj * pSubwin)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int getPixelModeIndex(const char *modeName)
 {
     return -1;
