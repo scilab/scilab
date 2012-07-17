@@ -410,12 +410,6 @@ void setToIdentity(double mat4D[4][4])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsIsoView(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void vectAdd3D(const double v1[3], const double v2[3], double res[3])
 {
 

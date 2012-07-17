@@ -830,21 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return TRUE if pObj is a subwin with isoview mode on.
-*/
-BOOL sciGetIsIsoView(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->isoview;
-        default:
-            return FALSE;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return TRUE if pObj is a subwindow with cube scaling mode on.
 */
 BOOL sciGetIsCubeScaled(sciPointObj * pObj)
