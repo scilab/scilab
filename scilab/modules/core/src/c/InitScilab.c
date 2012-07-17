@@ -32,6 +32,8 @@ int C2F(initscilab) (void)
 
     InitializeString();
 
+    InitializeLocalization();
+
 #ifdef _MSC_VER
     InitializeWindows_tools();
 #endif
@@ -46,8 +48,6 @@ int C2F(initscilab) (void)
         /* create needed data structure if not already created */
         loadGraphicModule();
     }
-
-    InitializeLocalization();
 
     /* Initialize console: lines... */
     InitializeConsole();
