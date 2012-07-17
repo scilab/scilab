@@ -494,12 +494,6 @@ EAxesBoxType sciGetBoxType(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetTextPos(sciPointObj * pObj, double position[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetRealVisibility(sciPointObj * pobj)
 {
     return FALSE;

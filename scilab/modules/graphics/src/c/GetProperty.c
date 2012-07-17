@@ -1842,27 +1842,6 @@ double sciGetArrowSize(sciPointObj * pObj)
     return -1;
 }
 /*----------------------------------------------------------------------------------*/
-void sciGetTextPos(sciPointObj * pObj, double position[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_TEXT:
-            position[0] = pTEXT_FEATURE(pObj)->x;
-            position[1] = pTEXT_FEATURE(pObj)->y;
-            position[2] = pTEXT_FEATURE(pObj)->z;
-            break;
-        case SCI_LABEL:
-            sciGetTextPos(pLABEL_FEATURE(pObj)->text, position);
-            break;
-        default:
-            printSetGetErrorMessage("data");
-            position[0] = 0.0;
-            position[1] = 0.0;
-            position[2] = 0.0;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
 /**
 * Convert user coordinates to user cooordinates (2D).
 * @param pObjUID subwindow identifier
