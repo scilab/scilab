@@ -332,12 +332,6 @@ void rotate2D(double from[2], double center[2], double angle, double dest[2])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoRotation(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void stringArrayCopy(char *dest[], char *src[], int nbElement)
 {
 
