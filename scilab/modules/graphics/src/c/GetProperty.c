@@ -697,15 +697,6 @@ case SCI_UIMENU:
 
 /*-------------------------------------------------------------------------------*/
 
-int * sciGetInterpVector(sciPointObj * pobj)
-{
-
-    if (sciGetEntityType(pobj) != SCI_POLYLINE)
-        return (int *) NULL;
-
-    return pPOLYLINE_FEATURE(pobj)->scvector;
-}
-
 BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
 {
     switch ( sciGetEntityType (pobj) )

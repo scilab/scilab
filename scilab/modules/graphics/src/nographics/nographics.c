@@ -586,12 +586,6 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-int *sciGetInterpVector(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 void intArrayCopy(int dest[], const int src[], int nbElement)
 {
 

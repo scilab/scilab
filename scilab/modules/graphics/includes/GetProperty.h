@@ -56,7 +56,6 @@ GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
 
 /* UNUSED ? */
-GRAPHICS_IMPEXP int * sciGetInterpVector(sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsColorInterpolated(sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
