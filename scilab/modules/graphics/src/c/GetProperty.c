@@ -175,44 +175,6 @@ BOOL sciisTextEmpty(char* identifier)
     return FALSE;
 }
 
-/**sciGetFontStyle
-* Gets the font style
-
-* @param sciPointObj * pobj: the pointer to the entity
-* @return  int 0 OK, -1 if not
-*/
-int
-sciGetFontStyle (sciPointObj * pobj)
-{
-
-
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_SUBWIN:
-        case SCI_FIGURE:
-        case SCI_LABEL: /* F.Leray 10.06.04 */
-        case SCI_AXES:
-            return sciGetFontContext(pobj)->fonttype;
-            break;
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            printSetGetErrorMessage("font_style");
-            return -1;
-            break;
-    }
-}
-
-
 /**sciGetLegendPlace
 * Returns the Title place with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
 * @param sciPointObj * pobj: the pointer to the entity

@@ -48,8 +48,6 @@ GRAPHICS_IMPEXP BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
-GRAPHICS_IMPEXP int sciGetFontStyle (sciPointObj * pobj); /* GET */
-
 /* Legend */
 GRAPHICS_IMPEXP sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
 GRAPHICS_IMPEXP void sciGetLegendPos (sciPointObj * pobj , double position[]);

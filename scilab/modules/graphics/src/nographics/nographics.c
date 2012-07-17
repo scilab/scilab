@@ -452,12 +452,6 @@ sciFont *sciGetFontContext(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetFontStyle(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
 {
 
