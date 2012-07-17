@@ -830,21 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return TRUE if pObj is a subwindow with cube scaling mode on.
-*/
-BOOL sciGetIsCubeScaled(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->cube_scaling;
-        default:
-            return FALSE;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get axes reverse property for each axis of a subwin object
 */
 void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])

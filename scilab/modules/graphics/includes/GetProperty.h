@@ -66,8 +66,6 @@ GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelC
 
 GRAPHICS_IMPEXP void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], int pixelCoords[2]); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */
-
 GRAPHICS_IMPEXP void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3]); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */

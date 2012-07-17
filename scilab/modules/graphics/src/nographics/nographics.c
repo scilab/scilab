@@ -454,12 +454,6 @@ void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsCubeScaled(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
 {
 
