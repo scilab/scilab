@@ -696,35 +696,6 @@ case SCI_UIMENU:
 }
 
 /*-------------------------------------------------------------------------------*/
-/**
-* Return the first surface found within the descendant of the object.
-* @param[in] psubwin Object from which the surface will be searched.
-* @return The first surface object if found, NULL otherwise.
-*/
-sciPointObj * sciGetSurface( sciPointObj * pObj )
-{
-    sciSons * psonstmp = NULL;
-    sciPointObj * sonSurface = NULL ;
-
-    psonstmp = sciGetSons( pObj ) ;
-    while ( psonstmp != NULL )
-    {
-        if ( sciGetEntityType( psonstmp->pointobj ) == SCI_SURFACE )
-        {
-            /* We found one, return it.*/
-            return psonstmp->pointobj ;
-        }
-        /* check the sons of this children */
-        sonSurface = sciGetSurface( psonstmp->pointobj ) ;
-        if ( sonSurface != NULL )
-        {
-            return sonSurface ;
-        }
-        psonstmp = psonstmp->pnext;
-    }
-    /* nothing has been found */
-    return NULL;
-}
 
 /**sciGetOriginalSubWin
 * PRIVATE.

@@ -51,8 +51,6 @@ GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
 /* Window Functions */
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
-GRAPHICS_IMPEXP sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
-
 GRAPHICS_IMPEXP char sciGetxLocation(sciPointObj * pObj);
 GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
