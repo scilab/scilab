@@ -682,12 +682,6 @@ BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetIsClipping(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
