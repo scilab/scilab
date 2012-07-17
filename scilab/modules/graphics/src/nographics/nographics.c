@@ -344,12 +344,6 @@ void sciGetLogFlags(char *pObjUID, char flags[3])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoPosition(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 {
 

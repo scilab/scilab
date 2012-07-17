@@ -56,8 +56,6 @@ GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
 
 /* UNUSED ? */
-GRAPHICS_IMPEXP BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
-
 GRAPHICS_IMPEXP BOOL sciGetCenterPos( sciPointObj * pObj ) ;
 
 /**

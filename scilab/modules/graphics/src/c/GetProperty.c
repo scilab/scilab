@@ -696,35 +696,6 @@ case SCI_UIMENU:
 }
 
 /*-------------------------------------------------------------------------------*/
-BOOL sciGetAutoPosition ( sciPointObj * pObj )
-{
-    switch (sciGetEntityType (pObj))
-    {
-        case SCI_LABEL:
-            return pLABEL_FEATURE(pObj)->auto_position ;
-            break;
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_ARC:
-        case SCI_TEXT:
-        case SCI_FIGURE:
-        case SCI_SUBWIN:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_FEC:
-        case SCI_SEGS:
-        case SCI_LEGEND:
-        case SCI_GRAYPLOT:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            return FALSE;
-            break;
-    }
-    return FALSE;
-}
-
-/*-----------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined(char * pObjUID)
 {
     char* xLabelId = NULL;
