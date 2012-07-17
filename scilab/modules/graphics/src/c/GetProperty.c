@@ -81,51 +81,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-/**sciGetFontContext
-* Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
-* @param sciPointObj * pobj: the pointer to the entity
-* @return the pointer to the font context structure if ok, NULL if not
-*/
-sciFont *
-sciGetFontContext (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_TEXT:
-            return  &(pTEXT_FEATURE (pobj)->fontcontext);
-            break;
-        case SCI_LEGEND:
-            return  &(pLEGEND_FEATURE (pobj)->text.fontcontext);
-            break;
-        case SCI_SUBWIN: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
-            return &(pSUBWIN_FEATURE (pobj)->axes.fontcontext);
-            break;
-        case SCI_AXES:
-            return  &(pAXES_FEATURE (pobj)->fontcontext);
-            break;
-        case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
-            return &(pFIGURE_FEATURE (pobj)->fontcontext);
-            break;
-        case SCI_LABEL: /* F.Leray 27.05.04 */
-            return sciGetFontContext( pLABEL_FEATURE(pobj)->text ) ;
-            break;
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        default:
-            return (sciFont *)NULL;
-            break;
-    }
-}
-
-
-
 /****************************************** TEXT ******************************
 
 /**

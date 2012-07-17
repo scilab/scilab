@@ -446,12 +446,6 @@ BOOL isFigureModel(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciFont *sciGetFontContext(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
 {
 
