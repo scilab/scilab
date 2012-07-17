@@ -259,16 +259,6 @@ int C2F(graphicsmodels) (void)
     return 1;
 }
 
-/**
- * Inits the font context of an object by copying the one of an other.
- * @param pObjSource the object from which the FC is taken
- * @param pObjDest the object in which the FC is paste
- */
-int initFCfromCopy(sciPointObj * pObjSource, sciPointObj * pObjDest)
-{
-    return cloneFontContext(pObjSource->UID, pObjDest->UID);
-}
-
 /*
  * This function has been adapted to the MVC framework, using the
  * MVC's property set/get calls.
@@ -769,81 +759,4 @@ char *initLabel(char *parentObjUID)
 
     return newLabel;
 }
-
-/*---------------------------------------------------------------------------------*/
-void destroyDefaultObjects(void)
-{
-    // ???
-    /* will destroy the figure and its children (so the axes). */
-    //destroyGraphicHierarchy( pfiguremdl ) ;
-    //pfiguremdl = NULL ;
-    //paxesmdl = NULL;
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * Create new data with defautl properties.
- */
-FigureModelData *newFigureModelData(void)
-{
-    FigureModelData *modelData = MALLOC(sizeof(FigureModelData));
-
-    if (modelData == NULL)
-    {
-        return NULL;
-    }
-
-    modelData->figureWidth = 610;
-    modelData->figureHeight = 460;
-    modelData->windowWidth = 620;
-    modelData->windowHeight = 590;
-    modelData->windowPosition[0] = 200; /* Set [-1,-1] to let the os use the position */
-    modelData->windowPosition[1] = 200;
-    modelData->colorMap = NULL;
-    modelData->numColors = 0;
-    modelData->autoResizeMode = TRUE;
-    modelData->viewport[0] = 0;
-    modelData->viewport[1] = 0;
-    modelData->viewport[2] = 610;
-    modelData->viewport[3] = 461;
-    modelData->infoMessage = NULL;
-    modelData->antialiasingQuality = 0;
-
-    return modelData;
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * Free an existing model Data
- */
-void destroyFigureModelData(FigureModelData * data)
-{
-    if (data != NULL)
-    {
-        if (data->colorMap != NULL)
-        {
-            FREE(data->colorMap);
-            data->colorMap = NULL;
-        }
-
-        if (data->infoMessage != NULL)
-        {
-            FREE(data->infoMessage);
-            data->infoMessage = NULL;
-        }
-
-        FREE(data);
-        data = NULL;
-    }
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * @return TRUE if pObj is one of the model objects, FALSE otherwise
- */
-BOOL isModelObject(sciPointObj * pObj)
-{
-    return isFigureModel(pObj->UID) || isAxesModel(pObj->UID);
-}
-
 /*---------------------------------------------------------------------------------*/

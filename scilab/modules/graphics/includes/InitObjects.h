@@ -26,7 +26,6 @@
 #define __SCI_INIT_GRAPHICS__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 #include "BOOL.h"
 #include "machine.h" /* C2F */
 
@@ -36,18 +35,7 @@ GRAPHICS_IMPEXP int sciInitGraphicMode (char* pobjUID);
 
 GRAPHICS_IMPEXP char * initLabel(char * parentObjUID) ; /* INITOBJECT */
 
-GRAPHICS_IMPEXP void reinitSubwin( void ) ;
-
-GRAPHICS_IMPEXP FigureModelData * newFigureModelData( void ) ;
-GRAPHICS_IMPEXP void destroyFigureModelData( FigureModelData * data ) ;
-
 GRAPHICS_IMPEXP void InitFigureModel(char* pfiguremdlUID); /* INITOBJECT */
 GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
-
-GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
-
-GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
-
-GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;
 
 #endif /* __SCI_INIT_GRAPHICS__ */
