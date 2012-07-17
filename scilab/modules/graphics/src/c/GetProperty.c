@@ -171,16 +171,6 @@ sciGetParentFigure (sciPointObj * pobj)
     }
     return NULL;
 }
-/** 19/09/2002 ***/
-/**sciGetParentSubwin
-* Returns the the Subwin parent
-*/
-sciPointObj *
-sciGetParentSubwin (sciPointObj * pobj)
-{
-    abort();
-    return NULL;
-}
 
 /**sciGetNumfigure
 * Returns the the Number of parent figure

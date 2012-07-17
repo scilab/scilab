@@ -688,12 +688,6 @@ int sciGetIsClipping(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentSubwin(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
 {
 

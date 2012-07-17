@@ -43,7 +43,6 @@ GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
 /* Figure / Subwin main functions */
 GRAPHICS_IMPEXP sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetNumFigure (sciPointObj * pobj); /* GET */
 
 /* GMODE */

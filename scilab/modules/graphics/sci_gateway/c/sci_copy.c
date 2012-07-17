@@ -71,7 +71,6 @@ int sci_copy(char *fname, unsigned long fname_len)
         C2F(overload)(&lw, "copy", 4);
         return 0;
     }
-    //psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
 
     if (strcmp(pstType, __GO_POLYLINE__) == 0)
     {
@@ -111,7 +110,6 @@ int sci_copy(char *fname, unsigned long fname_len)
     numrow   = 1;
     numcol   = 1;
     CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
-    //*hstk(outindex) = sciGetHandle(pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
 
     if (isPolyline)
     {
@@ -126,8 +124,6 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     setGraphicObjectRelationship(psubwinparenttargetUID, pcopyobjUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pcopyobjUID, jni_string, 1);
-
-    //sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
