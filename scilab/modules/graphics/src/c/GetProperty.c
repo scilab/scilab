@@ -724,17 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-/**
-* Return if an object directly accessible as a son of an other in Scilab.
-* For instance, Label objects are not accessible.
-* @return TRUE if the object is accessible, FALSE otherwise.
-*/
-BOOL sciGetIsAccessibleChild( sciPointObj * pObj )
-{
-    return sciGetEntityType( pObj ) != SCI_LABEL
-           && GetHandleVisibilityOnUimenu( pObj ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
 {
     if (sciGetEntityType(pobj) != SCI_UIMENU)

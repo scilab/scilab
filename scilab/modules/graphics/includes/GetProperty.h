@@ -58,8 +58,6 @@ GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET
  */
 GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
-GRAPHICS_IMPEXP BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ; /* GET */
-
 GRAPHICS_IMPEXP BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
 
 GRAPHICS_IMPEXP int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
