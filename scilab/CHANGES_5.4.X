@@ -122,6 +122,9 @@ Bug Fixes
 
 * Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
 
+* Bug #11484 fixed - display was shorten for lists including elements whose display
+                     is overloaded
+
 * Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
                               into itself. 
 
