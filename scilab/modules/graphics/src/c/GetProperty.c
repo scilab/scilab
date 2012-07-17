@@ -172,44 +172,6 @@ sciGetParentFigure (sciPointObj * pobj)
     return NULL;
 }
 
-/**sciGetNumfigure
-* Returns the the Number of parent figure
-*/
-int
-sciGetNumFigure (sciPointObj * pobj)
-{
-    sciPointObj *figure = pobj;
-
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return  sciGetNum(figure) ;
-            break;
-        case SCI_SUBWIN:
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-            while (sciGetEntityType(figure) != SCI_FIGURE)
-                figure = sciGetParent(figure);
-            return sciGetNum(figure);
-            break;
-        default:
-            return -1;
-            break;
-    }
-    return -1;
-}
-
 /**sciGetGraphicMode
 * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
 */
