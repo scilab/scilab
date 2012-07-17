@@ -150,11 +150,6 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     setGraphicObjectProperty(pobjUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-    /* To be implemented using the MVC framework */
-#if 0
-    ppSubWin->FirstPlot = FALSE;
-#endif
-
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;
@@ -164,26 +159,5 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
         return SET_PROPERTY_ERROR;
     }
-
-
-  /*
-   * To be implemented using the MVC framework,
-   * though it's probably not relevant nor used anymore
-   * by Surface objects.
-   */
-#if 0
-    if ( sciGetEntityType(pobj) == SCI_SURFACE )
-    {
-        if ( nbRow * nbCol != 6 )
-        {
-            Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "data_bounds", 6);
-            return SET_PROPERTY_ERROR;
-        }
-        sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) );
-
-        return SET_PROPERTY_SUCCEED;
-    }
-#endif
-
 }
 /*------------------------------------------------------------------------*/

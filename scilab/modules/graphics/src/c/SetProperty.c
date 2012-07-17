@@ -629,39 +629,6 @@ case SCI_UIMENU:
 
 /*-----------------------------------------------------------------------------------*/
 /**
- * Set data-bounds defined by the user.
- * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
- */
-int sciSetDataBounds( char * pobjUID, double bounds[6] )
-{
-    // FIXME
-    abort();
-#if 0
-    int i;
-    switch ( sciGetEntityType(pobjUID) )
-    {
-        case SCI_SUBWIN:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                pSUBWIN_FEATURE(pobjUID)->SRect[i] = bounds[i] ;
-            }
-            return 0;
-        case SCI_SURFACE:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                pSURFACE_FEATURE(pobjUID)->ebox[i] = bounds[i] ;
-            }
-            return 0;
-        default:
-            printSetGetErrorMessage("data_bounds");
-            return -1 ;
-
-    }
-#endif
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
  * Set the displayed data bounds of a subwin object.
  */
 int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
