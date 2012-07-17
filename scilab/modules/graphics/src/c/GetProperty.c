@@ -1624,21 +1624,6 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
     return FALSE;
 }
 /*----------------------------------------------------------------------------------*/
-double sciGetArrowSize(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE(pObj)->arsize_factor;
-        case SCI_SEGS:
-            return pSEGS_FEATURE(pObj)->arrowsize;
-        default:
-            printSetGetErrorMessage("arrow_size");
-            break;
-    }
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
 /**
 * Convert user coordinates to user cooordinates (2D).
 * @param pObjUID subwindow identifier

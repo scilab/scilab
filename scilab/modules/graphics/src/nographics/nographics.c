@@ -634,12 +634,6 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-double sciGetArrowSize(sciPointObj * pobj)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
 int *sciGetInterpVector(sciPointObj * pobj)
 {
     return NULL;
