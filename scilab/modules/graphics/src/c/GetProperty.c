@@ -725,22 +725,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* get the number of children of a graphic object
-* @return number of children of object pObj
-*/
-int sciGetNbChildren( sciPointObj * pObj )
-{
-    int nbChildren = 0 ;
-    sciSons * curSon = sciGetSons( pObj ) ;
-    while ( curSon != NULL && curSon->pointobj != NULL )
-    {
-        nbChildren++ ;
-        curSon = curSon->pnext ;
-    }
-    return nbChildren ;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
 * Return if an object directly accessible as a son of an other in Scilab.
 * For instance, Label objects are not accessible.
 * @return TRUE if the object is accessible, FALSE otherwise.
