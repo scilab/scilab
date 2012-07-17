@@ -51,10 +51,6 @@ GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
 /* Window Functions */
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
-GRAPHICS_IMPEXP char sciGetxLocation(sciPointObj * pObj);
-GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
-
-
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.

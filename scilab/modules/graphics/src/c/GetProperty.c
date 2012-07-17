@@ -1325,38 +1325,6 @@ void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the x_position value
-* @param bounds [xmin, xmax, ymin, ymax, zmin, zmax] bounds.
-*/
-char sciGetxLocation(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->axes.xdir;
-            break;
-        default:
-            Scierror(999, _("Unable to compute x_location for this kind of object."));
-            break;
-    }
-    return NULL;
-}
-/*----------------------------------------------------------------------------------*/
-char sciGetyLocation(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->axes.ydir;
-            break;
-        default:
-            Scierror(999, _("Unable to compute y_location for this kind of object."));
-            break;
-    }
-    return NULL;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return index of the subwin between all the subwins lying below its parent figure
 */
 int sciGetSubwinIndex(sciPointObj * pSubwin)

@@ -278,18 +278,6 @@ int deallocateText(sciPointObj * pthis)
 }
 
 /*--------------------------------------------------------------------------*/
-char sciGetxLocation(sciPointObj * pObj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
-char sciGetyLocation(sciPointObj * pObj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
