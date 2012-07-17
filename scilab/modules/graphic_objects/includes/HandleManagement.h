@@ -51,7 +51,6 @@ GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
 GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetParent(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetSons(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentFigure(void);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentSubWin(void);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentObj(void);
 GRAPHIC_OBJECTS_IMPEXP void sciSetCurrentObj(void* pobj);

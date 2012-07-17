@@ -60,13 +60,6 @@ void * sciGetSons(void *pobj)
     return NULL;
 }
 
-void *sciGetCurrentFigure(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentFigure" << std::endl;
-    abort();
-    return NULL;
-}
-
 void *sciGetCurrentSubWin(void)
 {
     std::cerr << "[ERROR] Should not call sciGetCurrentSubWin" << std::endl;

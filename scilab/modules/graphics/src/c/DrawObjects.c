@@ -53,14 +53,6 @@
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
-
-void sciRedrawFigure( void )
-{
-// ???
-//  sciDrawObj(sciGetCurrentFigure ());
-}
-
-
 /* get the displayed bounds of an axis */
 void sciGetDisplayedBounds( char * pSubWinUID,
                             double      * xmin   ,

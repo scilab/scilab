@@ -29,7 +29,7 @@ int sci_clear_pixmap(char *fname, unsigned long fname_len )
   CheckLhs(0,1);
 
   /* call show_pixmap function */
-  clearPixmap(sciGetCurrentFigure());
+  //clearPixmap(sciGetCurrentFigure());
 
   LhsVar(1)=0;
   PutLhsVar();

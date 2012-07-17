@@ -359,16 +359,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 
     }
 
-    /*
-     * This was already commented out
-     * To be removed.
-     */
-    /*if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-     * {
-     *
-     * sciDrawObj(sciGetCurrentFigure());
-     * } */
-
     /*---- Drawing the curves and the legends ----*/
     if (*n1 != 0)
     {

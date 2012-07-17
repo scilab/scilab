@@ -31,8 +31,6 @@
 
 /*******************************************************/
 
-GRAPHICS_IMPEXP void sciRedrawFigure(void); /* DRAWINGS */
-
 GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * xmin   ,
                                    double      * xmax   ,

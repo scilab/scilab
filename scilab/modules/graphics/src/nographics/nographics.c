@@ -114,24 +114,6 @@ char **getDictionarySetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetHeight(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciAddThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetCurrentFigure(void)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciAddNewHandle(sciPointObj * pobj)
 {
     return -1;
