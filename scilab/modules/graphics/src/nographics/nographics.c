@@ -448,12 +448,6 @@ void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
 {
 

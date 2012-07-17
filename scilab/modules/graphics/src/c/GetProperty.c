@@ -830,24 +830,6 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get axes reverse property for each axis of a subwin object
-*/
-void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            axesReverse[0] = pSUBWIN_FEATURE(pObj)->axes.reverse[0];
-            axesReverse[1] = pSUBWIN_FEATURE(pObj)->axes.reverse[1];
-            axesReverse[2] = pSUBWIN_FEATURE(pObj)->axes.reverse[2];
-            break;
-        default:
-            printSetGetErrorMessage("axes_reverse");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * @return TRUE if subwindow pObj tight_limit mode is on.
 */
 BOOL sciGetTightLimitsOn(sciPointObj * pObj)
