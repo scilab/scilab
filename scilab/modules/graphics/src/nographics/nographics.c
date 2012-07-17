@@ -508,12 +508,6 @@ void intArrayCopy(int dest[], const int src[], int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsClosed(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void doubleArrayCopy(double dest[], const double src[], int nbElement)
 {
 

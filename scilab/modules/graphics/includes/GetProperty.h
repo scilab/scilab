@@ -60,8 +60,6 @@ GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
 GRAPHICS_IMPEXP void sciGetLogFlags(char *pObjUID, char flags[3]); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
-
 GRAPHICS_IMPEXP void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2]); /* GET */
 
 GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double userCoords2D[2]); /* GET */

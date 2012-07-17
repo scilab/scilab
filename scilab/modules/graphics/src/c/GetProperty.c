@@ -755,19 +755,6 @@ void sciGetLogFlags(char * pObjUID, char flags[3])
     }
 }
 /*----------------------------------------------------------------------------------*/
-BOOL sciGetIsClosed(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_POLYLINE:
-            return pPOLYLINE_FEATURE(pObj)->closed;
-        default:
-            printSetGetErrorMessage("closed");
-            break;
-    }
-    return FALSE;
-}
-/*----------------------------------------------------------------------------------*/
 /**
 * Convert user coordinates to user cooordinates (2D).
 * @param pObjUID subwindow identifier
