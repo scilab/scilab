@@ -60,9 +60,6 @@ GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);
 GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */
 
-GRAPHICS_IMPEXP int sciInitImmediateDrawingMode(char* pObj, BOOL autoRedraw);
-GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(char* pObj, BOOL autoRedraw);
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

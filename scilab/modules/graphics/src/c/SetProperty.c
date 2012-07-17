@@ -662,39 +662,6 @@ int sciSetPixmapMode(char * pobjUID, BOOL onOrOff)
     return sciInitPixmapMode(pobjUID, onOrOff);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType(pobjUID))
-    {
-        case SCI_FIGURE:
-            pFIGURE_FEATURE(pobjUID)->auto_redraw = autoRedraw;
-            return 0;
-        default:
-            printSetGetErrorMessage("immediate_drawing");
-            return -1;
-    }
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
-int sciSetImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
-{
-    // FIXME
-    abort();
-#if 0
-    if (sciGetImmediateDrawingMode(pobjUID) == autoRedraw)
-    {
-        // nothing to do
-        return 1;
-    }
-    return sciInitImmediateDrawingMode(pobjUID, autoRedraw);
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color
