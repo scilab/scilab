@@ -540,7 +540,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @return true if an external modif occured
+     * @return true if an external modif occurred
      */
     public boolean checkExternalModif() {
         String path = getName();
@@ -1238,9 +1238,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Prevents the different KeywordListener that a MouseEvent occured
+     * Prevents the different KeywordListener that a MouseEvent occurred
      * @param position of the mouse
-     * @param ev the event which occured
+     * @param ev the event which occurred
      * @param type of the event : KeywordListener.ONMOUSECLICKED or KeywordListener.ONMOUSEOVER
      */
     protected void preventConcernedKeywordListener(int position, EventObject ev, int type) {

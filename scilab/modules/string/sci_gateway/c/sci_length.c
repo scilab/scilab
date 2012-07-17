@@ -48,15 +48,18 @@ static int lengthSparse(int *piAddressVar);
 /*----------------------------------------------------------------------------*/
 int sci_length(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
     int *piAddressVarOne = NULL;
     int iScilabType = 0;
 
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
+
     /* get Address of inputs */
-    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -64,7 +67,6 @@ int sci_length(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -122,7 +124,6 @@ static int lengthStrings(int *piAddressVar)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -308,7 +309,6 @@ static int lengthSparse(int *piAddressVar)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -407,7 +407,6 @@ static int lengthList(int *piAddressVar)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -450,7 +449,6 @@ static int lengthDefault(int *piAddressVar)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 

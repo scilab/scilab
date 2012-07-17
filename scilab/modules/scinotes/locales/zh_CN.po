@@ -345,10 +345,10 @@ msgstr "您没有权限写此文件"
 msgid "You do not have the permissions to read this file"
 msgstr "您没有权限读此文件"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "使用FOP导出代码时发生错误"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "打印出错"
 
 msgid "Tools"

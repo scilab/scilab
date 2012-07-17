@@ -39,7 +39,7 @@
       <varlistentry>
         <term>error</term>
         <listitem>
-          <para>a matrix of string if an error occured or []</para>
+          <para>a matrix of string if an error occurred or []</para>
         </listitem>
       </varlistentry>
     </variablelist>

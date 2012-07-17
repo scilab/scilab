@@ -25,10 +25,10 @@ msgstr "无法加载文件 "
 msgid "Could not write the file: "
 msgstr ""
 
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr ""
 
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr ""

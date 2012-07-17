@@ -88,7 +88,7 @@ int sci_get(char *fname, unsigned long fname_len)
                 {
                     if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
-                        /* An error has occured */
+                        /* An error has occurred */
                         PutLhsVar();
                         return 0;
                     }
@@ -108,7 +108,7 @@ int sci_get(char *fname, unsigned long fname_len)
                         return SET_PROPERTY_ERROR;
                     }
 
-                    status = GetScreenProperty(pvApiCtx,stkAdr[0]);
+                    status = GetScreenProperty(pvApiCtx, stkAdr[0]);
 
                     if (status != SET_PROPERTY_SUCCEED) /* Return property */
                     {
@@ -189,7 +189,7 @@ int sci_get(char *fname, unsigned long fname_len)
         /* No handle specified */
         if (sciGet(pvApiCtx, NULL, cstk(l2)) != 0)
         {
-            /* An error has occured */
+            /* An error has occurred */
             PutLhsVar();
             return 0;
         }
@@ -202,7 +202,7 @@ int sci_get(char *fname, unsigned long fname_len)
 
             if (sciGet(pvApiCtx, pobjUID, cstk(l2)) != 0)
             {
-                /* An error has occured */
+                /* An error has occurred */
                 PutLhsVar();
                 return 0;
             }

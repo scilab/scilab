@@ -25,11 +25,11 @@ msgstr "Не вдалося завантажити файл: "
 msgid "Could not write the file: "
 msgstr "Не вдалося виконати запис до файла: "
 
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr "Сталася критична помилка: не вдалося завантажити файл налаштувань."
 
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr ""
 "Під час спроби завантаження файла налаштувань сталася помилка. Спробуйте "

@@ -349,10 +349,10 @@ msgstr "No tiene permisos para escribir este archivo"
 msgid "You do not have the permissions to read this file"
 msgstr "No tiene permisos para leer este archivo"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Ocurrió un error al exportar el código usando FOP"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Ocurrió un error al imprimir"
 
 msgid "Tools"

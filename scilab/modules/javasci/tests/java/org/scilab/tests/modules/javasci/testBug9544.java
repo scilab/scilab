@@ -97,7 +97,7 @@ public class testBug9544 {
             try {
                 sci = new Scilab(true);
             } catch (org.scilab.modules.javasci.JavasciException f) {
-                System.err.println("An exception occured: " + f.getLocalizedMessage());
+                System.err.println("An exception occurred: " + f.getLocalizedMessage());
             }
             this.setTitle("bug 9544 non reg test");
             this.setSize(200, 100);

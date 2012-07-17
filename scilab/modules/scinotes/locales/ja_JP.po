@@ -345,10 +345,10 @@ msgstr "このファイルへの書込みが許可されていません"
 msgid "You do not have the permissions to read this file"
 msgstr "このファイルの読み込みが許可されていません"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "FOPによりコードをエクスポートする際にエラーが発生しました"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "印刷時にエラーが発生しました"
 
 msgid "Tools"

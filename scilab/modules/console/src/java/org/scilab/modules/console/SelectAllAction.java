@@ -22,29 +22,29 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  * @author Allan CORNET
  */
 public class SelectAllAction extends AbstractConsoleAction {
-        private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-        /**
-         * Constructor
-         */
-        public SelectAllAction() {
-                super();
-        }
+    /**
+     * Constructor
+     */
+    public SelectAllAction() {
+        super();
+    }
 
-        /**
-         * Threats the event
-         * @param e the action event that occured
-         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-         */
-        public void actionPerformed(ActionEvent e) {
-                JEditorPane outputPane = (JEditorPane) configuration.getOutputView();
-                JTextPane inputPane = (JTextPane) configuration.getInputCommandView();
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        JEditorPane outputPane = (JEditorPane) configuration.getOutputView();
+        JTextPane inputPane = (JTextPane) configuration.getInputCommandView();
 
-                outputPane.setSelectionStart(0);
-                outputPane.setSelectionEnd(outputPane.getText().length());
+        outputPane.setSelectionStart(0);
+        outputPane.setSelectionEnd(outputPane.getText().length());
 
-                inputPane.setSelectionStart(0);
-                inputPane.setSelectionEnd(inputPane.getText().length());
+        inputPane.setSelectionStart(0);
+        inputPane.setSelectionEnd(inputPane.getText().length());
 
-        }
+    }
 }

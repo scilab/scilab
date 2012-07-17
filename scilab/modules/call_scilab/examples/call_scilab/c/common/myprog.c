@@ -50,7 +50,7 @@ static int first_example(void)
 
     if ( SendScilabJob("A,b,x=A\\b;") != 0)
     {
-        fprintf(stdout, "Error occured during scilab execution (SendScilabJob)\n");
+        fprintf(stdout, "Error occurred during scilab execution (SendScilabJob)\n");
     }
     else
     {

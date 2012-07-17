@@ -30,59 +30,59 @@ import com.artenum.rosetta.util.StringConstants;
  */
 public class ValidationAction extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public ValidationAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public ValidationAction() {
+        super();
+    }
 
-	/**
-	 * Execute a command received
-	 * @param e the event to threat
-	 */
-	public synchronized void actionPerformed(ActionEvent e) {
-		
-		/* If occured during a "more" message */
-		if (!((JTextPane) configuration.getInputCommandView()).isEditable()) {
-			return;
-		}
-		
-		// Init
-		InputParsingManager inputParsingManager = configuration.getInputParsingManager();
-		PromptView promptView = configuration.getPromptView();
-		String cmdToExecute = null;
-		String histEntry = null;
+    /**
+     * Execute a command received
+     * @param e the event to threat
+     */
+    public synchronized void actionPerformed(ActionEvent e) {
 
-		// Do the job
-		if (inputParsingManager.isBlockEditing()) {
-			// Create new line
-			inputParsingManager.append(StringConstants.NEW_LINE);
-			promptView.updatePrompt();
-		} else {
+        /* If occurred during a "more" message */
+        if (!((JTextPane) configuration.getInputCommandView()).isEditable()) {
+            return;
+        }
 
-			// Command to execute
-			cmdToExecute = inputParsingManager.getCommandLine();
+        // Init
+        InputParsingManager inputParsingManager = configuration.getInputParsingManager();
+        PromptView promptView = configuration.getPromptView();
+        String cmdToExecute = null;
+        String histEntry = null;
 
-			// Special case: line begins with a !
-			if ((cmdToExecute.length() > 0) && (cmdToExecute.charAt(0) == '!')) {
-				// Cast HistoryManager to SciHistoryManager
-				// because searchBackward will not to be implemented in all not-generic console
-				((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
-				histEntry = ((SciHistoryManager) configuration.getHistoryManager()).getPreviousEntry(cmdToExecute.substring(1));
-				if (histEntry != null) {
-					configuration.getInputCommandView().reset();
-					configuration.getInputCommandView().append(histEntry);
-				}
-				return;
-			}
+        // Do the job
+        if (inputParsingManager.isBlockEditing()) {
+            // Create new line
+            inputParsingManager.append(StringConstants.NEW_LINE);
+            promptView.updatePrompt();
+        } else {
 
-			// Send data to Scilab (Commands print in output view is done in sendCommandsToScilab since bug 2510 fix)
-			((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, true, true);
+            // Command to execute
+            cmdToExecute = inputParsingManager.getCommandLine();
 
-		}
+            // Special case: line begins with a !
+            if ((cmdToExecute.length() > 0) && (cmdToExecute.charAt(0) == '!')) {
+                // Cast HistoryManager to SciHistoryManager
+                // because searchBackward will not to be implemented in all not-generic console
+                ((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
+                histEntry = ((SciHistoryManager) configuration.getHistoryManager()).getPreviousEntry(cmdToExecute.substring(1));
+                if (histEntry != null) {
+                    configuration.getInputCommandView().reset();
+                    configuration.getInputCommandView().append(histEntry);
+                }
+                return;
+            }
 
-	}
+            // Send data to Scilab (Commands print in output view is done in sendCommandsToScilab since bug 2510 fix)
+            ((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, true, true);
+
+        }
+
+    }
 }

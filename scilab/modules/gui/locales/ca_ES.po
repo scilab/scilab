@@ -1203,7 +1203,7 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "S'ha produït un error: "
 
 msgid "Scilab SCI files"

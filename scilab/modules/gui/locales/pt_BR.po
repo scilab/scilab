@@ -1227,7 +1227,7 @@ msgstr "Tem certeza de que deseja fechar %s e %s?"
 msgid "Exit"
 msgstr "Sair"
 
-msgid "An error occured: "
+msgid "An error occurred: "
 msgstr "Ocorreu um erro: "
 
 msgid "Scilab SCI files"

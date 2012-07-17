@@ -266,7 +266,7 @@ msgstr "Попередження: не вдалося знайти файл ог
 
 #, c-format
 msgid ""
-"Some problems during the loading of the Java libraries occured.\n"
+"Some problems during the loading of the Java libraries occurred.\n"
 "This could lead to inconsistent behaviours.\n"
 "Please check SCI/etc/classpath.xml.\n"
 msgstr ""

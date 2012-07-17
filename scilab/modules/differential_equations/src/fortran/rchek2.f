@@ -60,7 +60,7 @@ c          irt = 1  means a legitimate root was found (job = 2 or 3).
 c                   on return, t0 is the root location, and y is the
 c                   corresponding solution vector.
 c          irt = 2 means a change from zero to a non-zero value has been
-c          occured, so do a cold restart to reevaluate the modes
+c          occurred, so do a cold restart to reevaluate the modes
 c          of if-then-else, because they have mode
 c t0     = value of t at one endpoint of interval of interest.  only
 c          roots beyond t0 in the direction of integration are sought.

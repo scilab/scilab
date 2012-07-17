@@ -90,12 +90,6 @@ BOOL TerminateGraphics(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetViewport(char *pObj, const int viewport[4])
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
 double Maxi(const double vect[], int n)
 {
     return 0.0;
@@ -392,36 +386,6 @@ BOOL sciGetAutoPosition(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetFontStyle(char *pobj, int iAttributes)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitIsClipping(char *pobj, int value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetLegendPos(char *pobj, double position[])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetClipping(char *pobj, double pclip[4])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetTextPos(char *pObj, double posX, double posY, double posZ)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 {
 
@@ -578,12 +542,6 @@ BOOL sciGetTightLimitsOn(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetRealDataBounds(char *pObj, const double bounds[6])
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
 
@@ -613,12 +571,6 @@ char *ConstructPolyline(char *pparentsubwin, double *pvecx, double *pvecy, doubl
                         int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetIsClipping(char *pobj, int value)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/

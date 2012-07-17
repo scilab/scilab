@@ -139,11 +139,11 @@ nnzs=nnz(s);
       uniform distribution.
       For each matrix, we consider the indices of the nonzero
       entries which were generated, i.e. we see if the event
-      <literal>Aij = {the entry (i,j) is nonzero}</literal> occured for
+      <literal>Aij = {the entry (i,j) is nonzero}</literal> occurred for
       each <literal>i</literal> and <literal>j</literal>, for <literal>i=1,2,...,nrows</literal>
       and <literal>j=1,2,...,ncols</literal>.
       The matrix <literal>C(i,j)</literal> stores the number of times that the event <literal>Aij</literal>
-      occured.
+      occurred.
       The matrix <literal>R(k)</literal> stores the actual density of the try number <literal>k</literal>,
       where <literal>k=1,2,...,kmax</literal>.
     </para>

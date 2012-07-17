@@ -74,7 +74,7 @@ public class GlobalEventFilter {
      *
      * @param command : the callback that was supposed to be called.
      * @param returnCode : used for closing windows.
-     * @param figureUID : the figure ID where callback occured.
+     * @param figureUID : the figure ID where callback occurred.
      */
     public static void filterCallback(String command, int returnCode, String figureUID) {
         synchronized (ClickInfos.getInstance()) {

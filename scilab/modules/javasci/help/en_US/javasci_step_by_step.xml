@@ -83,7 +83,7 @@
       * UnknownTypeException, etc
       */
       } catch (org.scilab.modules.javasci.JavasciException e) {
-      System.err.println("An exception occured: " + e.getLocalizedMessage());
+      System.err.println("An exception occurred: " + e.getLocalizedMessage());
       }
       }
       }

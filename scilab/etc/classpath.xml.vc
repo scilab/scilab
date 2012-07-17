@@ -67,7 +67,7 @@ The option is "disableUnderMode" and can be:
 	<load on="HDF5"/>
 </path>
 
-<path value="$SCILAB/thirdparty/scirenderer-0.5.0.jar" load="onUse">
+<path value="$SCILAB/thirdparty/scirenderer-0.5.1.jar" load="onUse">
     <load on="graphics"/>
     <load on="graphic_ojects"/>
     <load on="Xcos"/>

@@ -40,7 +40,7 @@ msgid "%s: Invalid driver: %s.\n"
 msgstr "%s : Pilote invalide : %s.\n"
 
 #, c-format
-msgid "%s: An error occured: %s\n"
+msgid "%s: An error occurred: %s\n"
 msgstr "%s: Une erreur s'est produite: %s\n"
 
 #, c-format

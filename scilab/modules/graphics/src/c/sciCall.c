@@ -85,7 +85,7 @@ void Objrect ( double * x         ,
 
     if (newObjUID == NULL)
     {
-        /* an error occured */
+        /* an error occurred */
         *hdl = -1;
         return;
     }

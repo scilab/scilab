@@ -503,9 +503,6 @@
     <ClCompile Include="src\c\Plo2dn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_addcb.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_champ.c">
       <Filter>Source Files</Filter>
     </ClCompile>

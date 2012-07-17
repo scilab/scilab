@@ -39,13 +39,6 @@ typedef enum
 } EResizeStatus;
 
 
-
-GRAPHICS_IMPEXP int sciAddCallback (sciPointObj * pthis, char *code, int len, int mevent); /* INTERACTION */
-GRAPHICS_IMPEXP int sciGetCallbackMouseEvent (sciPointObj * pthis); /* INTERACTION */
-GRAPHICS_IMPEXP int sciSetCallbackMouseEvent (sciPointObj * pthis, int mevent); /* INTERACTION */
-GRAPHICS_IMPEXP char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
-GRAPHICS_IMPEXP int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
-
 GRAPHICS_IMPEXP int Objmove(char* pobjUID, double d[], int m, BOOL opt); /* INTERACTION */
 
 /**

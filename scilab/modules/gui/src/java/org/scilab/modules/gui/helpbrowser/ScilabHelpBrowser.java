@@ -118,7 +118,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
                         char chr = e.getKeyChar();
 
                         if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
-                                && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
+                        && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
                             if (chr == '-' || chr == '_') {
                                 ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
                             } else {
@@ -165,7 +165,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
             if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
                 if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
-                    // An error occured
+                    // An error occurred
                     ScilabConsole.getConsole().getInfoBar().setText("");
                     return null;
                 }
@@ -197,7 +197,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             try {
                 browser.displayHomePage();
             } catch (Exception e) {
-                System.err.println("This error should not occured, please report it at bugzilla.scilab.org\n" + e);
+                System.err.println("This error should not occurred, please report it at bugzilla.scilab.org\n" + e);
             }
         }
     }

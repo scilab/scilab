@@ -22,21 +22,21 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * @author Allan CORNET
  */
 public class ClearConsoleAction extends AbstractConsoleAction {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public ClearConsoleAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public ClearConsoleAction() {
+        super();
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		InterpreterManagement.putCommandInScilabQueue("clc();");
-	}
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        InterpreterManagement.putCommandInScilabQueue("clc();");
+    }
 }

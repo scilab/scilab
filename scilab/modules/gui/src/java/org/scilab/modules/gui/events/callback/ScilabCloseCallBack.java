@@ -35,7 +35,7 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
 
     /**
      * Constructor
-     * @param figureIndex : the figure ID where callback occured.
+     * @param figureIndex : the figure ID where callback occurred.
      * @param command : the command to execute.
      */
     private ScilabCloseCallBack(String figureUID, String command) {
@@ -46,7 +46,7 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
     /**
      * Callback Factory to easily create a callback
      * just like in scilab.
-     * @param figureIndex : the figure ID where callback occured.
+     * @param figureIndex : the figure ID where callback occurred.
      * @param command : the command to execute.
      * @return a usable Scilab callback
      */
@@ -74,11 +74,11 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
     public void actionPerformed(ActionEvent e) {
         /**
          * !! WARNING !!
-         * 
+         *
          * We need a special behaviour when asking the window to close.
          * We really need to close it (i.e exec the callback)
          * THEN to inform the global listener close command has been activated (i.e filterCallback).
-         * 
+         *
          */
         callBack();
         if (GlobalEventWatcher.isActivated()) {

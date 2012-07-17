@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7564
 //
 // <-- Short Description -->
-// No message was displayed when an unsuccessful search occured.
+// No message was displayed when an unsuccessful search occurred.
 
 // Open SciNotes
 // Make a search on "toto", a message is displayed at the bottom of the search

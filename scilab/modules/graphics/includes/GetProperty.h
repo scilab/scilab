@@ -67,7 +67,6 @@ GRAPHICS_IMPEXP int sciGetNumFigure (sciPointObj * pobj); /* GET */
 
 /* GMODE */
 GRAPHICS_IMPEXP scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP int sciGetIsClipRegionValuated (sciPointObj * pobj);
 GRAPHICS_IMPEXP int sciGetIsClipping (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP double *sciGetClipping (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */

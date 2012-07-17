@@ -14,7 +14,7 @@
 
 #include "CallScilabBridge.hxx"
 
-extern "C"{
+extern "C" {
 #include "sci_types.h"
 #include "getScilabJavaVM.h"
 #include "GetProperty.h"
@@ -23,7 +23,6 @@ extern "C"{
 #include "localization.h"
 #include "Scierror.h"
 #include "SetUicontrolString.h"
-#include "UicontrolStyleToString.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

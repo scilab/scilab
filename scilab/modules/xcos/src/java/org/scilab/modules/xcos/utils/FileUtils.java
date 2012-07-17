@@ -58,7 +58,7 @@ public final class FileUtils {
      * @param out
      *            the output file
      * @throws IOException
-     *             when an errors has occured
+     *             when an errors has occurred
      */
     public static void copy(File in, File out) throws IOException {
         FileChannel inChannel = new FileInputStream(in).getChannel();

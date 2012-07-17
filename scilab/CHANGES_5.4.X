@@ -61,8 +61,6 @@ Bug Fixes
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
-* Bug #7912 fixed - convert_to_float did not have documentation.
-
 * Bug #9830 fixed - leastsq did not match the information of optim.
 
 * Bug #9884 fixed - Add in prefs the possibility to add a default header on
@@ -101,6 +99,9 @@ Bug Fixes
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
+* Bug #11385 fixed - length() returned a wrong error message when called without
+                     input argument.
+
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
@@ -114,12 +115,16 @@ Bug Fixes
                      rather than only the variable "a".
 
 * Bug #11443 fixed - There was no way to set default language via prefs under
-                    Windows.
-
-* Bug #11457 fixed - fscanf was not set as obsolete but called an obsolete function.
+                     Windows.
 
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
+
+* Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
+
+* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
+                              into itself. 
+
 
 
 Known Incompatibilities

@@ -32,7 +32,7 @@ public class KeywordEvent extends EventObject {
 
     /**
      * Constructor
-     * @param source the Object where the event occured
+     * @param source the Object where the event occurred
      * @param event the MouseEvent which generated this event
      * @param type the type of the keyword
      * @param start the position of the keyword in the doc

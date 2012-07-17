@@ -25,10 +25,10 @@ msgstr "ファイルを読み込めません: "
 msgid "Could not write the file: "
 msgstr "ファイルに書き込めません: "
 
-msgid "A severe error occured: cannot load the preferences file."
+msgid "A severe error occurred: cannot load the preferences file."
 msgstr "深刻なエラーが発生しました: 設定ファイルを読み込めません."
 
 msgid ""
-"An error occured when loading the preferences file, try to reload the "
+"An error occurred when loading the preferences file, try to reload the "
 "default one."
 msgstr "設定ファイルを読み込む際にエラーが発生しました, デフォルトの設定ファイルをリロードます."

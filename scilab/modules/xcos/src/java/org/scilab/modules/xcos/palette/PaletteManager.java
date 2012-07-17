@@ -204,7 +204,7 @@ public final class PaletteManager {
      * Initialize the shared unmarshaller instance
      *
      * @throws JAXBException
-     *             when an unsupported error has occured
+     *             when an unsupported error has occurred
      */
     private void initUnmarshaller() throws JAXBException {
         final String schemaPath = ScilabConstants.SCI.getAbsolutePath() + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
@@ -248,7 +248,7 @@ public final class PaletteManager {
      * Initialize the shared marshaller instance
      *
      * @throws JAXBException
-     *             when an unsupported error has occured
+     *             when an unsupported error has occurred
      */
     private void initMarshaller() throws JAXBException {
         final String schemaPath = ScilabConstants.SCI.getAbsolutePath() + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;

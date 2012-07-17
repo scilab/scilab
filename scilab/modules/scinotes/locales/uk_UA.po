@@ -355,10 +355,10 @@ msgstr "У вас немає прав доступу до запису дани�
 msgid "You do not have the permissions to read this file"
 msgstr "У вас немає прав доступу до читання цього файла"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Під час експортування коду за допомогою FOP сталася помилка"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Під час спроби друку сталася помилка"
 
 msgid "Tools"

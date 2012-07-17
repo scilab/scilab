@@ -37,7 +37,7 @@ msgid "%s: Invalid driver: %s.\n"
 msgstr "%s: Неверный драйвер: %s.\n"
 
 #, c-format
-msgid "%s: An error occured: %s\n"
+msgid "%s: An error occurred: %s\n"
 msgstr "%s: Произошла ошибка: %s\n"
 
 #, c-format

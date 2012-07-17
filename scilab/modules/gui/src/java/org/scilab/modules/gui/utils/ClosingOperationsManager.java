@@ -552,7 +552,7 @@ public class ClosingOperationsManager {
                         try {
                             closingOps.get(tab).destroy();
                         } catch (Exception e) {
-                            // An error can occured during the destroy operation
+                            // An error can occurred during the destroy operation
                             // We show it but it mustn't avoid the window
                             // destruction
                             e.printStackTrace();

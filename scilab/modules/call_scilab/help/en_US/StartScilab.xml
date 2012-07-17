@@ -72,7 +72,7 @@
         <term>returns</term>
         <listitem>
           <para>1 (TRUE) if the operation is successfull.</para>
-          <para>0 (FALSE) if an error during initialization occured.</para>
+          <para>0 (FALSE) if an error during initialization occurred.</para>
         </listitem>
       </varlistentry>
     </variablelist>

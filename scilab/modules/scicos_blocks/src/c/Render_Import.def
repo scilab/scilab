@@ -4,8 +4,7 @@ LIBRARY    scirenderer.dll
 EXPORTS
 ;
 ; renderer
-sciDrawObj  
+sciDrawObj
 sciDrawSingleObj
 forceRedraw
 sciDrawSetOfObj
-sciSetJavaUseSingleBuffer

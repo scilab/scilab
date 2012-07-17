@@ -25,29 +25,29 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  */
 public class DelEndOfLineAction extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public DelEndOfLineAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public DelEndOfLineAction() {
+        super();
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		int currentPosition = configuration.getInputCommandView().getCaretPosition();
-		int textLength = configuration.getInputCommandViewStyledDocument().getLength();
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        int currentPosition = configuration.getInputCommandView().getCaretPosition();
+        int textLength = configuration.getInputCommandViewStyledDocument().getLength();
 
-		try {
-			configuration.getInputCommandViewStyledDocument().remove(currentPosition, textLength - currentPosition);
-		} catch (BadLocationException e1) {
-			e1.printStackTrace();
-		}
-	}
+        try {
+            configuration.getInputCommandViewStyledDocument().remove(currentPosition, textLength - currentPosition);
+        } catch (BadLocationException e1) {
+            e1.printStackTrace();
+        }
+    }
 
 }

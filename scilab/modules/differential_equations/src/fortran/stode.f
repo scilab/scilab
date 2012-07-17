@@ -435,7 +435,7 @@ c-----------------------------------------------------------------------
       iret = 2
       go to 150
 c-----------------------------------------------------------------------
-c control reaches this section if 3 or more failures have occured.
+c control reaches this section if 3 or more failures have occurred.
 c if 10 failures have occurred, exit with kflag = -1.
 c it is assumed that the derivatives that have accumulated in the
 c yh array have errors of the wrong order.  hence the first

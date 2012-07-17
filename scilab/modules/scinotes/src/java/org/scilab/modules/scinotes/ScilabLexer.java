@@ -491,7 +491,7 @@ public final class ScilabLexer extends ScilabLexerConstants {
 
 
     /**
-     * Reports an error that occured while scanning.
+     * Reports an error that occurred while scanning.
      *
      * In a wellformed scanner (no or only correct usage of
      * yypushback(int) and a match-all fallback rule) this method
@@ -9520,7 +9520,8 @@ public final class ScilabLexer extends ScilabLexerConstants {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 34 : {
+                case 34 :
+                {
                     transposable = false;
                     return ScilabLexerConstants.SKEYWORD;
                 }

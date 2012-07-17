@@ -59,7 +59,7 @@
         <term>"continue"</term>
         <listitem>
           <para>next instruction in the function or exec files is executed,
-            current instruction is ignored. It is possible to check if an error has occured
+            current instruction is ignored. It is possible to check if an error has occurred
             using the <link linkend="iserror">iserror</link> function. Do not forget to clear the  
             error using the <link linkend="errclear">errclear</link> function as soon as possible.  
             This option is useful for error recovery. In many cases, usage of 

@@ -56,7 +56,7 @@
       If <literal>m</literal> is given <literal>mgetl</literal> tries to read exactly m lines. This
       option is useful to sequentialy read part of a file. In this case if
       an end of file (EOF) occurs before <literal>m</literal> lines are read the read lines are
-      returned (it is possible to check if EOF had occured using the meof
+      returned (it is possible to check if EOF had occurred using the meof
       function) issued.
     </para>
     <para>

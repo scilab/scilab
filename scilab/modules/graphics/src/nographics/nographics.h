@@ -29,8 +29,6 @@ int GetDriverId(void);
 
 void scig_unzoom(int win_num);
 
-int sciSetViewport( sciPointObj * pObj, int xSize, int ySize );
-
 int get_window_scale( int i, double * subwin );
 
 double Maxi(double *vect,int n);
