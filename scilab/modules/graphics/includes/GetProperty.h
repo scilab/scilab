@@ -58,9 +58,6 @@ GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET
  */
 GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
-GRAPHICS_IMPEXP BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
-GRAPHICS_IMPEXP char * sciGetEventHandler( sciPointObj * pObj ) ;
-
 GRAPHICS_IMPEXP double * sciGetAxesBounds( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP double * sciGetMargins( sciPointObj * pObj ) ;
 

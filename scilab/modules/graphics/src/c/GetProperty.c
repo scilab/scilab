@@ -724,38 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-        {
-            return pFIGURE_FEATURE( pObj )->isEventHandlerEnable ;
-        }
-        break ;
-        default:
-            printSetGetErrorMessage("event_handler");
-            return FALSE ;
-    }
-    return FALSE ;
-}
-/*----------------------------------------------------------------------------------*/
-char * sciGetEventHandler( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_FIGURE:
-        {
-            return pFIGURE_FEATURE(pObj)->eventHandler ;
-        }
-        break ;
-        default:
-            printSetGetErrorMessage("event_handler");
-            return NULL ;
-    }
-    return NULL ;
-}
-/*----------------------------------------------------------------------------------*/
 double * sciGetAxesBounds( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )
