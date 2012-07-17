@@ -725,25 +725,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* Get the viewing angles of a subwindow in degrees.
-*/
-void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_SUBWIN:
-            *alpha = pSUBWIN_FEATURE(pObj)->alpha;
-            *theta = pSUBWIN_FEATURE(pObj)->theta;
-            break;
-        default:
-            printSetGetErrorMessage("rotation_angles");
-            *alpha = 0.0;
-            *theta = 0.0;
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Copy the logflags of a subwin to an array of size 3.
 */
 void sciGetLogFlags(char * pObjUID, char flags[3])

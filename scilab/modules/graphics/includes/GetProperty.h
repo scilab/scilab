@@ -58,8 +58,6 @@ GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET
  */
 GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
-GRAPHICS_IMPEXP void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
-
 GRAPHICS_IMPEXP void sciGetLogFlags(char *pObjUID, char flags[3]); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */

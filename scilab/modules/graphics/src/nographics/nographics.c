@@ -454,12 +454,6 @@ void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetViewingAngles(sciPointObj * pObj, double *alpha, double *theta)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
 {
 
