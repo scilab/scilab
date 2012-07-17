@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -52,26 +52,26 @@
     <itemizedlist>
       <listitem>
         <para>
-          <literal>name</literal> must be the name of a known color (see <link linkend="color_list">color_list</link>). 
+          <literal>name</literal> must be the name of a known color (see <link linkend="color_list">color_list</link>).
         </para>
       </listitem>
       <listitem>
         <para>
           <literal>r</literal>, <literal>g</literal> and <literal>b</literal> must be integers between 0 and 255
-          corresponding to colors components red, green and blue. As usual 0 means no intensity and 
-          255 means all the intensity of the color. 
+          corresponding to colors components red, green and blue. As usual 0 means no intensity and
+          255 means all the intensity of the color.
         </para>
       </listitem>
     </itemizedlist>
     <para> If the requested color does not exist in the current colormap it is added to the
-      colormap.
+      colormap. If no window exists, the color is added to the default figure colormap.
     </para>
-    <para> This function can be used to specify the foreground or background colors when plotting. 
+    <para> This function can be used to specify the foreground or background colors when plotting.
     </para>
   </refsection>
   <refsection>
     <title>Sample</title>
-    <scilab:image> 
+    <scilab:image>
       x=linspace(-2*%pi,2*%pi,100)';
       // using existing colors
       plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
@@ -84,7 +84,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 x=linspace(-2*%pi,2*%pi,100)';
 // using existing colors
 plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);

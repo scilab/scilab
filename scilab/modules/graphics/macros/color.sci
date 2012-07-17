@@ -3,14 +3,14 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function id=color(varargin)
 // get a color from the current colormap
 // or add it to current colormap if it does not exist
 
-if size(varargin)==1 then 
+if size(varargin)==1 then
   c1=varargin(1);
   if (type(c1)<>10 | size(c1,"*")<>1) then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "color", 1));
@@ -26,7 +26,7 @@ elseif size(varargin)==3 then
     if type(varargin(i))<>1 then
       error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "color", i));
     end
-    if size(varargin(i),"*")<>1 then 
+    if size(varargin(i),"*")<>1 then
       error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"), "color", i));
     end
     if varargin(i)<0 | varargin(i)>255 then
@@ -38,16 +38,21 @@ else
     error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "color", 1, 3));
 end
 
-f=gcf();
+if winsid() == [] then
+    f=gdf();
+else
+    f=gcf();
+end
+
 cmap=f.color_map;
 
 ncol=max(size(cmap,"r"));
 k=find(abs(cmap-ones(ncol,1)*c)*ones(3,1)<=1.d-5);
 if k==[] then
-  // color does not exist, add it
-  cmap=[cmap;c];
-  id=ncol+1;
-  f.color_map=cmap;
+    // color does not exist, add it
+    cmap=[cmap;c];
+    id=ncol+1;
+    f.color_map=cmap;
 else
   id=k(1);
 end

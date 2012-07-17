@@ -179,6 +179,9 @@ Bug Fixes
 
 * Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
 
+* Bug #11449 fixed - The color function created a figure when it did not already
+                     exist.
+
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
