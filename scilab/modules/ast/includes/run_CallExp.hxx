@@ -451,6 +451,12 @@ void visitprivate(const CallExp &e)
             case InternalType::RealCell :
                 pOut = pIT->getAs<Cell>()->extract(pArgs);
                 break;
+            case types::InternalType::RealSparse :
+                pOut = pIT->getAs<types::Sparse>()->extract(pArgs);
+                break;
+            case types::InternalType::RealSparseBool :
+                //pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
+                break;
             case types::InternalType::RealStruct :
                 {
                     types::Struct* pStr = pIT->getAs<types::Struct>();

@@ -129,8 +129,8 @@ namespace
         }
         ostr << L" sparse matrix\n\n";
 
-        const typename Eigen::internal::traits<T>::Index* pInner = m._innerIndexPtr();
-        const typename Eigen::internal::traits<T>::Index* pOuter = m._outerIndexPtr();
+        const typename Eigen::internal::traits<T>::Index* pInner = m.innerIndexPtr();
+        const typename Eigen::internal::traits<T>::Index* pOuter = m.outerIndexPtr();
 
         int iRow = 0;
         int iCol = 0;
@@ -155,7 +155,7 @@ namespace
                     addUnsignedIntValue<unsigned long long>(&ostr, iRow + 1, iWidthRows);
                     ostr << L",";
                     addUnsignedIntValue<unsigned long long>(&ostr, iCol, iWidthCols);
-                    ostr << L")\t"<< p(m._valuePtr()[i]) << std::endl;
+                    ostr << L")\t"<< p(m.valuePtr()[i]) << std::endl;
                 }
             }
         }
@@ -369,11 +369,11 @@ namespace types
             matrixReal= new RealSparse_t(rows, cols);
             matrixReal->reserve(n);
             matrixCplx=  0;
-            Finalizer<RealSparse_t> f(*matrixReal);
             mycopy_n(makeMatrixIterator<double >(src,  RowWiseFullIterator(src.getRows(), src.getCols())), n
                    , makeMatrixIterator<double>(*matrixReal, o));
-
+            Finalizer<RealSparse_t> f(*matrixReal);
         }
+        finalize();
     }
 
     void Sparse::fill(Double& dest, int r, int c) CONST
@@ -1211,11 +1211,13 @@ namespace types
         std::size_t res;
         if(matrixReal)
         {
-            res = matrixReal->innerNonZeros(static_cast<int>(r));
+            int* piIndex = matrixReal->outerIndexPtr();
+            res = piIndex[r + 1]-piIndex[r];
         }
         else
         {
-            res = matrixCplx->innerNonZeros(static_cast<int>(r));
+            int* piIndex = matrixCplx->outerIndexPtr();
+            res = piIndex[r + 1]-piIndex[r];
         }
 
         return res;
@@ -1291,11 +1293,11 @@ namespace types
     {
         if(isComplex())
         {
-            mycopy_n(matrixCplx->_innerIndexPtr(), nonZeros(), out);
+            mycopy_n(matrixCplx->innerIndexPtr(), nonZeros(), out);
         }
         else
         {
-            mycopy_n(matrixReal->_innerIndexPtr(), nonZeros(), out);
+            mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), out);
         }
 
         return std::transform(out, out, out, std::bind2nd(std::plus<double>(), 1));
@@ -1549,7 +1551,8 @@ namespace types
     }
     std::size_t SparseBool::nbTrue(std::size_t r) const
     {
-        return matrixBool->innerNonZeros(r) ;
+        int* piIndex = matrixBool->outerIndexPtr();
+        return piIndex[r + 1]-piIndex[r];
     }
 
 
