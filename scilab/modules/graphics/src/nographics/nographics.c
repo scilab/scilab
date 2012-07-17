@@ -260,12 +260,6 @@ int sciInitMarkForeground(char *pobj, int colorindex)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetNumColors(char *pobjUID)
 {
     return -1;

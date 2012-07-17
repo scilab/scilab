@@ -724,28 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-/**
-* return the number of object of a certain type which can be found among the descendants
-* of an object.
-* To get the number of surfaces of a subwindow, it is much faster to use the
-* sciGetSubwinNbSurf funtion.
-*/
-int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
-{
-    int nbFound = 0 ;
-    sciSons * curSon = sciGetSons( pObj ) ;
-    while ( curSon != NULL )
-    {
-        if ( sciGetEntityType( curSon->pointobj ) == type )
-        {
-            nbFound++ ;
-        }
-        nbFound += sciGetNbTypedObjects( curSon->pointobj, type ) ;
-        curSon = curSon->pnext ;
-    }
-    return nbFound ;
-}
-/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )
