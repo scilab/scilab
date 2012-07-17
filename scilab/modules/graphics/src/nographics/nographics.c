@@ -350,12 +350,6 @@ BOOL isFigureModel(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetSubwinIndex(sciPointObj * pSubwin)
 {
     return -1;

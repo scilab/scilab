@@ -851,27 +851,6 @@ void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the axes visible property for each axis.
-*/
-void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
-{
-    switch (sciGetEntityType(pObj))
-    {
-        case SCI_SUBWIN:
-            axesVisible[0] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[0];
-            axesVisible[1] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[1];
-            axesVisible[2] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[2];
-            break;
-        default:
-            axesVisible[0] = FALSE;
-            axesVisible[1] = FALSE;
-            axesVisible[2] = FALSE;
-            printSetGetErrorMessage("axes_visible");
-            break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the current zoom box of a subwin object
 * @param[out] zoomBox output parameter with thte zoom box
 */
