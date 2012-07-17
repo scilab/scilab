@@ -344,12 +344,6 @@ BOOL sciGetAutoRotation(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsAutoDrawable(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void stringArrayCopy(char *dest[], char *src[], int nbElement)
 {
 

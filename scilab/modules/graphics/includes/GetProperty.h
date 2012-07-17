@@ -98,9 +98,6 @@ GRAPHICS_IMPEXP BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET 
 
 GRAPHICS_IMPEXP int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
-GRAPHICS_IMPEXP BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
-GRAPHICS_IMPEXP BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
-
 GRAPHICS_IMPEXP BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP char * sciGetEventHandler( sciPointObj * pObj ) ;
 

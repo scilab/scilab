@@ -1277,19 +1277,6 @@ int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
     return nbFound ;
 }
 /*----------------------------------------------------------------------------------*/
-/**
-* return if the drawlater mode is on for the parent figure.
-*/
-BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
-{
-    return (sciGetImmediateDrawingMode(pobj) && !sciGetPixmapMode(pobj));
-}
-/*----------------------------------------------------------------------------------*/
-BOOL sciGetImmediateDrawingMode(sciPointObj * pobj)
-{
-    return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
-}
-/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )
