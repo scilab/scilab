@@ -724,20 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL sciGetAutoSize( sciPointObj * pObj )
-{
-    switch (sciGetEntityType (pObj))
-    {
-        case SCI_TEXT:
-            return pTEXT_FEATURE(pObj)->autoSize ;
-            break;
-        default:
-            return FALSE;
-            break;
-    }
-    return FALSE;
-}
-/*-----------------------------------------------------------------------------------*/
 sciTextAlignment sciGetAlignment( sciPointObj * pObj )
 {
     switch (sciGetEntityType (pObj))

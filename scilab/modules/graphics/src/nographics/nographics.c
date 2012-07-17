@@ -338,12 +338,6 @@ void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoSize(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciisTextEmpty(char *identifier)
 {
     return FALSE;
