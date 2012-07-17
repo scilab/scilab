@@ -628,24 +628,6 @@ case SCI_UIMENU:
 }
 
 /*-----------------------------------------------------------------------------------*/
-int sciInitEventHandler( char * pobjUID, char * name )
-{
-    // FIXME
-    abort();
-    return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciSetEventHandler( char * pobjUID, char * name )
-{
-    if ( strcmp( sciGetEventHandler((sciPointObj*)pobjUID), name ) == 0 )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-
-    return sciInitEventHandler( pobjUID, name ) ;
-}
-/*-----------------------------------------------------------------------------------*/
 int sciInitIsEventHandlerEnable( char * pobjUID, BOOL enable )
 {
     // FIXME

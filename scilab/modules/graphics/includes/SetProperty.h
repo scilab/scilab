@@ -57,9 +57,6 @@ GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
 
 GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
 
-GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
-GRAPHICS_IMPEXP int sciSetEventHandler(  char* pObj, char * name ) ;
-
 GRAPHICS_IMPEXP int sciInitIsEventHandlerEnable( char* pObj, BOOL enable ) ;
 GRAPHICS_IMPEXP int sciSetIsEventHandlerEnable(  char* pObj, BOOL enable ) ;
 

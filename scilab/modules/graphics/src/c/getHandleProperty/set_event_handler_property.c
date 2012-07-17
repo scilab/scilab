@@ -43,14 +43,6 @@ int set_event_handler_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType( pobj ) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   pstHandler = getStringFromStack(stackPointer);
   status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, pstHandler, jni_string, 1);
 
@@ -70,11 +62,5 @@ int set_event_handler_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler");
     return SET_PROPERTY_ERROR;
   }
-
-/* deactivated for now since it involves drawing operations, to be implemented later */
-#if 0
-  return sciSetNoRedrawStatus((SetPropertyStatus) sciSetEventHandler( pobj, getStringFromStack( stackPointer ) )) ;
-#endif
-
 }
 /*------------------------------------------------------------------------*/
