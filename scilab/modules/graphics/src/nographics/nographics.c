@@ -496,12 +496,6 @@ sciSons *sciGetLastSons(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
-{
-    return TRUE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;

@@ -68,8 +68,6 @@ GRAPHICS_IMPEXP void sciGet2dViewPixelCoordinates(char * pObjUID, const double u
 
 GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
-
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
 GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]);
