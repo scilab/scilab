@@ -272,12 +272,6 @@ int deallocateText(sciPointObj * pthis)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetViewingArea(char * pObjUID, int *xPos, int *yPos, int *width, int *height)
 {
 
@@ -577,12 +571,6 @@ sciSons *sciGetLastSons(sciPointObj * pobj)
 BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
 {
     return TRUE;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
 }
 
 /*--------------------------------------------------------------------------*/

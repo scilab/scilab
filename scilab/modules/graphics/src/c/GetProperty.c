@@ -725,62 +725,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
 }
 /*-----------------------------------------------------------------------------------*/
 /**
-* To get the computed data bounds of a subwin.
-* * @param bounds [Xmin,Xmax,Ymin,Ymax,Zmin,Zmax] vector.
-*/
-void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
-{
-    int i = 0;
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_SUBWIN:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                bounds[i] = pSUBWIN_FEATURE(pObj)->FRect[i] ;
-            }
-            return ;
-        default:
-            printSetGetErrorMessage("data_bounds");
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                bounds[i] = 0.0 ;
-            }
-    }
-    return ;
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* Get data-bounds defined by the user and not modified for pretty print by scilab.
-* @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
-*/
-void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
-{
-    int i = 0;
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_SUBWIN:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                bounds[i] = pSUBWIN_FEATURE(pObj)->SRect[i] ;
-            }
-            return ;
-        case SCI_SURFACE:
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                bounds[i] = pSURFACE_FEATURE(pObj)->ebox[i] ;
-            }
-            return ;
-        default:
-            printSetGetErrorMessage("data_bounds");
-            for ( i = 0 ; i < 6 ; i++ )
-            {
-                bounds[i] = 0.0 ;
-            }
-    }
-    return ;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get the viewing angles of a subwindow in degrees.
 */
 void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
