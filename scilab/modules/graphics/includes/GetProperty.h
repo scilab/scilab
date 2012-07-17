@@ -58,7 +58,6 @@ GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET
  */
 GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
-GRAPHICS_IMPEXP double * sciGetAxesBounds( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP double * sciGetMargins( sciPointObj * pObj ) ;
 
 GRAPHICS_IMPEXP void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */

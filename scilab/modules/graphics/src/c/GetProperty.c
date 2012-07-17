@@ -724,18 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-double * sciGetAxesBounds( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-        case SCI_SUBWIN:
-            return pSUBWIN_FEATURE(pObj)->WRect;
-        default:
-            printSetGetErrorMessage("axes_bounds");
-            return NULL ;
-    }
-}
-/*----------------------------------------------------------------------------------*/
 double * sciGetMargins( sciPointObj * pObj )
 {
     switch ( sciGetEntityType(pObj) )

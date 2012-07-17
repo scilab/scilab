@@ -466,12 +466,6 @@ double *sciGetMargins(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-double *sciGetAxesBounds(sciPointObj * pObj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetViewingAngles(sciPointObj * pObj, double *alpha, double *theta)
 {
 
