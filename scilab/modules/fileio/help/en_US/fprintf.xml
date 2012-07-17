@@ -16,7 +16,8 @@
     <refname>fprintf</refname>
     <refpurpose>
       Emulator of C language fprintf function. <emphasis>This function
-      is obsolete</emphasis>
+        is obsolete
+      </emphasis>
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -35,7 +36,9 @@
       <varlistentry>
         <term>value_i</term>
         <listitem>
-          <para>specifies the data to be converted according to the <literal>format</literal> parameter.</para>
+          <para>
+            specifies the data to be converted according to the <varname>format</varname> parameter.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,7 +47,9 @@
           <para>
             a Scilab string specifying a file name or a logical unit number (see<link linkend="file">file</link>)
           </para>
-          <para>Note that if file=0, the message will be display on standard error stream (stderr).</para>
+          <para>
+            Note that if <varname>file</varname>=0, the message will be display on standard error stream (stderr).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,16 +60,16 @@
       <caution>
         This function is obsolete, use preferabily the <link
         linkend="mfprintf">mfprintf</link> function which is much more
-        compatible with the C <literal>fprintf</literal> functionalities.
+        compatible with the C <function>fprintf</function> functionalities.
       </caution>
     </para>
     <para>
-      The <literal>fprintf</literal> function converts, formats, and writes
-      its <literal>value</literal> parameters, under control of the <literal>format</literal>
-      parameter, to the file specified by its <literal>file</literal> parameter.
+      The <function>fprintf</function> function converts, formats, and writes
+      its <varname>value</varname> parameters, under control of the <varname>format</varname>
+      parameter, to the file specified by its <varname>file</varname> parameter.
     </para>
     <para>
-      The <literal>format</literal> parameter is a character string that contains two
+      The <varname>format</varname> parameter is a character string that contains two
       types of objects:
     </para>
     <variablelist>
@@ -78,13 +83,13 @@
         <term>Conversion specifications</term>
         <listitem>
           <para>
-            each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. See <link linkend="printf_conversion">printf_conversion</link> for details.
+            each of which causes zero or more items to be fetched from the <varname>value</varname> parameter list. See <link linkend="printf_conversion">printf_conversion</link> for details.
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-      If any <literal>value</literal>s remain after the entire <literal>format</literal> has been
+      If any <varname>value</varname>s remain after the entire <varname>format</varname> has been
       processed, they are ignored.
     </para>
   </refsection>
