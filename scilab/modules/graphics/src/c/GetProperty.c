@@ -724,16 +724,6 @@ BOOL sciGetLegendDefined(char * pObjUID)
     }
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
-{
-    if (sciGetEntityType(pobj) != SCI_UIMENU)
-    {
-        return TRUE ;
-    }
-
-    return pUIMENU_FEATURE(pobj)->handle_visible;
-}
-/*-----------------------------------------------------------------------------------*/
 /**
 * return the number of object of a certain type which can be found among the descendants
 * of an object.
