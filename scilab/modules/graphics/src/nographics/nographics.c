@@ -284,12 +284,6 @@ int deallocateText(sciPointObj * pthis)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetLegendPos(sciPointObj * pobj, double position[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 char sciGetxLocation(sciPointObj * pObj)
 {
     return 0;

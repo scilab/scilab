@@ -41,9 +41,6 @@ GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 /* Text Functions */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
-/* Legend */
-GRAPHICS_IMPEXP void sciGetLegendPos (sciPointObj * pobj , double position[]);
-
 /* Figure / Subwin main functions */
 GRAPHICS_IMPEXP sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */

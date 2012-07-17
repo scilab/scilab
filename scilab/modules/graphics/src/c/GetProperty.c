@@ -130,32 +130,6 @@ BOOL sciisTextEmpty(char* identifier)
     return FALSE;
 }
 
-/**sciGetLegendPos
-* Returns the Title Position
-*/
-
-void sciGetLegendPos (sciPointObj * pobj, double position[2])
-{
-    POINT2D tmppoint;
-    if (sciGetEntityType (pobj) == SCI_LEGEND)
-    {
-        tmppoint = pLEGEND_FEATURE (pobj)->pos;
-        position[0] = tmppoint.x;
-        position[1] = tmppoint.y;
-    }
-
-    else
-    {
-        position[0] = -1;
-        position[1] = -1;
-        Scierror(999, _("You are not using a legend object.\n"));
-        return;
-    }
-}
-
-
-
-
 /**sciGetParentFigure
 * Returns the the Figure parent
 */
