@@ -242,33 +242,6 @@ sciGetZooming (sciPointObj * pobj)
 }
 
 
-/**
-* To know wether an object will be displayed on the screen or not.
-* Because if one of its parent is not visible then it won't be displayed.
-*/
-BOOL
-sciGetRealVisibility (sciPointObj * pobj)
-{
-
-    if ( pobj == NULL )
-    {
-        return FALSE ;
-    }
-
-    if ( sciGetEntityType( pobj ) == SCI_FIGURE )
-    {
-        return sciGetVisibility( pobj ) ;
-    }
-
-    if ( !sciGetVisibility( pobj ) )
-    {
-        return FALSE ;
-    }
-
-    return sciGetRealVisibility( sciGetParent( pobj ) ) ;
-
-}
-
 /**sciGetVisibility*/
 BOOL
 sciGetVisibility (sciPointObj * pobj)

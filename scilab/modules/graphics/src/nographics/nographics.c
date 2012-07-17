@@ -446,12 +446,6 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetRealVisibility(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 int getPixelModeIndex(const char *modeName)
 {
     return -1;
