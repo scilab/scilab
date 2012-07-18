@@ -27,7 +27,7 @@ function test_run_result = test_run(varargin)
   end
 
   status.detailled_failures     = "";
-  status.testsuites             = [];
+  //status.testsuites             = [];
   status.test_count             = 0;
   status.test_passed_count      = 0;
   status.test_failed_count      = 0;
@@ -159,7 +159,7 @@ function test_run_result = test_run(varargin)
 
       if params.reference <> "list" then
         status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
-        status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
+        //status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
         status.test_count           = status.test_count + result.test_count;
         status.test_passed_count    = status.test_passed_count + result.test_passed_count;
         status.test_failed_count    = status.test_failed_count + result.test_failed_count;
@@ -199,7 +199,7 @@ function test_run_result = test_run(varargin)
       status.test_count   = status.test_count + result.test_count;
       if params.reference <> "list" then
         status.detailled_failures       = [status.detailled_failures; result.detailled_failures];
-        status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
+        //status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
         status.test_passed_count    = status.test_passed_count + result.test_passed_count;
         status.test_failed_count    = status.test_failed_count + result.test_failed_count;
         status.test_skipped_count   = status.test_skipped_count + result.test_skipped_count;
@@ -233,7 +233,7 @@ function test_run_result = test_run(varargin)
     if params.reference <> "list" then
       status.totalTime            = result.totalTime;
       status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
-      status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
+      //status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
       status.test_count           = status.test_count + result.test_count;
       status.test_passed_count    = status.test_passed_count + result.test_passed_count;
       status.test_failed_count    = status.test_failed_count + result.test_failed_count;
@@ -266,7 +266,7 @@ function test_run_result = test_run(varargin)
   end
 
   if isfield(params, "exportFile") then
-     exportToXUnitFormat(params.exportFile, status.testsuites);
+     //exportToXUnitFormat(params.exportFile, status.testsuites);
   end
 
   if params.full_summary then
@@ -392,11 +392,11 @@ function status = test_module(_params)
     end
   end
 
- // For the XML export
-  testsuite.name=moduleName
-  testsuite.time=0
-  testsuite.tests=0
-  testsuite.errors=0
+  // For the XML export
+  //testsuite.name=moduleName
+  //testsuite.time=0
+  //testsuite.tests=0
+  //testsuite.errors=0
 
   //don't test only return list of tests.
   if _params.reference == "list" then
@@ -440,10 +440,9 @@ function status = test_module(_params)
 
     result = test_single(_params, tests(i,1), tests(i,2));
 
-    testsuite.tests = testsuite.tests + 1
-
-    testsuite.testcase(i).name=tests(i,2);
-//    testsuite.testcase(i).time= DONT HAVE YET
+    //testsuite.tests = testsuite.tests + 1
+    //testsuite.testcase(i).name=tests(i,2);
+////    testsuite.testcase(i).time= DONT HAVE YET
 
     if result.id == 0 then
       printf("passed\n");
@@ -463,9 +462,9 @@ function status = test_module(_params)
         detailled_failures = [ detailled_failures ; result.details ];
         detailled_failures = [ detailled_failures ; "" ];
 
-        testsuite.errors = testsuite.errors + 1
-        testsuite.testcase(i).failure.type=result.message
-        testsuite.testcase(i).failure.content=result.details
+        //testsuite.errors = testsuite.errors + 1
+        //testsuite.testcase(i).failure.type=result.message
+        //testsuite.testcase(i).failure.content=result.details
 
       elseif (result.id >= 10) & (result.id < 20) then
 // skipped
@@ -476,7 +475,7 @@ function status = test_module(_params)
 
   status.totalTime = toc();
 
-  testsuite.time=status.totalTime;
+  //testsuite.time=status.totalTime;
 
   clearglobal TICTOC;
   status.test_passed_count  = test_passed_count;
@@ -486,7 +485,7 @@ function status = test_module(_params)
 // Summary
   status.test_count     = test_count;
   status.detailled_failures   = detailled_failures;
-  status.testsuite   = testsuite;
+  //status.testsuite   = testsuite;
 endfunction
 
 function status = test_single(_module, _testPath, _testName)
@@ -776,9 +775,9 @@ end
 //create tmp test file
 mputl(sciFile, tmp_tst);
 
+
 //execute test
 host(test_cmd);
-
 //Check errors
 if (error_output == "check") & (_module.error_output == "check") then
   if getos() == "Darwin" then
