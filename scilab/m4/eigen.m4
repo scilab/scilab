@@ -30,6 +30,7 @@ if test "x$with_eigen_include" != "xyes"; then
 		[EIGEN_CPPFLAGS="$CPPFLAGS"],
 		[AC_MSG_ERROR([Cannot find headers (Eigen/Sparse) of the library EIGEN in $with_eigen_include. Please install the dev package (Debian : libeigen3-dev)])]
 	)
+    PATH_TO_EIGEN=$with_eigen_include
 else
 	AC_CHECK_HEADER([Eigen/Sparse],
 		[EIGEN_CPPFLAGS=""],
@@ -40,10 +41,31 @@ else
                                 AC_MSG_ERROR([Cannot find headers (Eigen/Sparse) of the library eigen. Please install the dev package (Debian : libeigen3-dev)])
                 )
          ])
+    PATH_TO_EIGEN="/usr/include/eigen3/"
 fi
 CPPFLAGS="$save_CPPFLAGS"
 
+CHK_EIGEN_WORLD=3
+CHK_EIGEN_MAJOR=1
+CHK_EIGEN_MINOR=0
+
+AC_MSG_CHECKING([if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later])
+AC_GREP_CPP(EIGEN_VERSION_OK,
+[
+#include "$PATH_TO_EIGEN/Eigen/Sparse"
+#if EIGEN_VERSION_AT_LEAST(3,1,0)
+EIGEN_VERSION_OK
+#endif
+],\
+EIGEN_VERSION_OK=1,\
+EIGEN_VERSION_OK=0 )
+if test $EIGEN_VERSION_OK = 0; then
+   AC_MSG_ERROR([Version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR of Eigen expected (at least)])
+else
+   AC_MSG_RESULT([yes])
+fi
 AC_SUBST(EIGEN_CPPFLAGS)
+
 AC_DEFINE([WITH_EIGEN], [], [With the EIGEN library])
 AC_LANG_POP([C++])
 ])
