@@ -272,7 +272,7 @@ char **getStrMatData(const StringMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL isFigureModel(sciPointObj * pObj)
+BOOL isFigureModel(char *pObjUID)
 {
     return FALSE;
 }
