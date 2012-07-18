@@ -34,14 +34,6 @@
 /*------------------------------------------------------------------------*/
 int get_z_label_property(void* _pvCtx, char* pobjUID)
 {
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_label");
-        return -1;
-    }
-#endif
-
     char* labelUID = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LABEL__, jni_string, (void **) &labelUID);
@@ -53,9 +45,5 @@ int get_z_label_property(void* _pvCtx, char* pobjUID)
     }
 
     return sciReturnHandle(_pvCtx, getHandle(labelUID));
-
-#if 0
-    return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_z_label ) );
-#endif
 }
 /*------------------------------------------------------------------------*/

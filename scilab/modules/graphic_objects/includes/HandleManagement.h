@@ -46,7 +46,6 @@ GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
 GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
 
 // DEPRECATED functions : Should be removed
-GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetParent(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetSons(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentSubWin(void);

@@ -198,12 +198,6 @@ char **getStringMatrixFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-long sciGetHandle(sciPointObj * pobj)
-{
-    return (long)0;
-}
-
-/*--------------------------------------------------------------------------*/
 char *allocateText(char *pparentsubwinUID,
                    char **text,
                    int nbRow,

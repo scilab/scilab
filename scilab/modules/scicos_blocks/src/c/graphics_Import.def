@@ -12,7 +12,6 @@ sciSetColormap
 sciGetEntityType
 sciDeleteWindow
 sciGetRelationship
-sciGetHandle
 sciInitScreenPosition
 sciInitFontSize
 ConstructSubWin

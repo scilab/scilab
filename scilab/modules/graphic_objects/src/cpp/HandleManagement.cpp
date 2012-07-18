@@ -30,14 +30,6 @@ char const* getObjectFromHandle(long handle)
     return ScilabView::getObjectFromHandle(handle);
 }
 
-// FIXME : remove me
-long sciGetHandle(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciGetHandle" << std::endl;
-    abort();
-    return 0;
-}
-
 void * sciGetParent(void *pobj)
 {
     std::cerr << "[ERROR] Should not call sciGetParent" << std::endl;
