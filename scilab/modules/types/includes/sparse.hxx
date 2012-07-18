@@ -13,11 +13,6 @@
 #ifndef __SPARSE_HH__
 #define __SPARSE_HH__
 
-#ifndef EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET
-// Force UNSTABLE eigen if not defined through compiler flags.
-#define EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET
-#endif /* !EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET */
-
 //#define EIGEN_SUPERLU_SUPPORT
 #include <Eigen/Core>
 #include <Eigen/Sparse>
