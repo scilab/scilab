@@ -113,16 +113,6 @@ BOOL sciisTextEmpty(char* identifier)
     return FALSE;
 }
 
-/**sciGetGraphicMode
-* Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
-*/
-scigMode *sciGetGraphicMode (sciPointObj * pobj)
-{
-    // FIXME: remove me
-    abort();
-    return (scigMode *) NULL;
-}
-
 /*--------------------------------------------------------------------------*/
 
 /**sciGetPoint

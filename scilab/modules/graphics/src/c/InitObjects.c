@@ -607,28 +607,7 @@ int sciInitGraphicMode(char *pobjUID)
              * These 3 properties are not used by the Figure object proper, but
              * rather serve to initialize its children Axes' ones.
              */
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = TRUE;
-            (sciGetGraphicMode(pobj))->zooming = FALSE;
-#endif
-
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->xormode = 3; /* copy */
-#endif
-        }
-        /*
-         * Useless now since the Figure model
-         * is cloned within the MVC via a C call
-         */
-        else
-        {
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(pfiguremdl))->addplot;
-            (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(pfiguremdl))->zooming;
-            (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(pfiguremdl))->xormode;
-#endif
         }
     }
     else if (strcmp(type, __GO_AXES__) == 0)
@@ -689,12 +668,6 @@ int sciInitGraphicMode(char *pobjUID)
             xormode = iTmp;
 
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(paxesmdl))->addplot;
-            (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(paxesmdl))->zooming;
-            (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(paxesmdl))->xormode;
-#endif
         }
     }
 

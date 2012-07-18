@@ -39,9 +39,6 @@ GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 /* Text Functions */
 GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
-/* GMODE */
-GRAPHICS_IMPEXP scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
-
 /* Window Functions */
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
