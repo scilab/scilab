@@ -114,6 +114,8 @@ Bug Fixes
 * Bug #11443 fixed - There was no way to set default language via prefs under
                      Windows.
 
+* Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
+
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 

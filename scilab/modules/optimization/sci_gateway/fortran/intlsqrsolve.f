@@ -100,7 +100,7 @@ c     checking variable tol (number 5)
 
 c     checking variable diag (number 6)
       if(rhs.ge.6-iskip) then
-         if(.not.getrmat(fname,topk,top-rhs+5-iskip,m6,n6,lr6))return
+         if(.not.getrmat(fname,topk,top-rhs+6-iskip,m6,n6,lr6))return
          ldiag=lr6
          if (m6*n6.ne.n) then
             err=6-iskip
