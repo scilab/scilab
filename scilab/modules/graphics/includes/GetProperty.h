@@ -41,7 +41,6 @@ GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 
 /* GMODE */
 GRAPHICS_IMPEXP scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
 
 /* Window Functions */
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */

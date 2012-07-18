@@ -123,18 +123,7 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     return (scigMode *) NULL;
 }
 
-/**sciGetZooming
-* Returns the zooming state of the object is it or not zoomed.
-*/
-BOOL
-sciGetZooming (sciPointObj * pobj)
-{
-    // FIXME: remove me
-    abort();
-    return FALSE;
-}
 /*--------------------------------------------------------------------------*/
-
 
 /**sciGetPoint
 * returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it

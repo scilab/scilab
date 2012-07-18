@@ -290,12 +290,6 @@ int sciSetXorMode(char *pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetZooming(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
 
