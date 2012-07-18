@@ -114,12 +114,6 @@ char **getDictionarySetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciAddNewHandle(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack(size_t stackPointer)
 {
     return (unsigned long)(-1);

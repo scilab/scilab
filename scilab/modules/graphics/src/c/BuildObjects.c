@@ -207,13 +207,6 @@ char const* ConstructSubWin(char const* pparentfigureUID)
 
     pCloneUID = cloneGraphicObject(paxesmdlUID);
 
-    //    if ( sciAddNewHandle(pClone) == -1 )
-    //    {
-    //        deleteGraphicObject(pClone->UID);
-    //        FREE(pClone);
-    //        return (sciPointObj*) NULL;
-    //    }
-
     /* Clone the Axes model's labels and attach them to the newly created Axes */
     ConstructLabel(pCloneUID, "", 1);
     ConstructLabel(pCloneUID, "", 2);
@@ -515,13 +508,6 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
 
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return NULL;
-    //    }
-
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
     setCurrentObject(pobjUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
@@ -789,14 +775,6 @@ char * ConstructPolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, 
         return NULL;
     }
 
-    //  if (sciAddNewHandle(pobj) == -1)
-    //  {
-    //    deleteGraphicObject(pobj->UID);
-    //    deleteDataObject(pobj->UID);
-    //    FREE(pobj);
-    //    return NULL;
-    //  }
-
     /*
      * Sets the Axes as the polyline's parent and adds the polyline to
      * its parent's list of children.
@@ -899,13 +877,6 @@ char * ConstructArc(char * pparentsubwinUID, double x, double y,
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return NULL;
-    //    }
-
     /*
      * Sets the Axes as the arc's parent and adds the arc to
      * its parent's list of children.
@@ -1004,13 +975,6 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
 
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
-
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return NULL;
-    //    }
 
     /*
      * Sets the Axes as the rectangle's parent and adds the rectangle to
@@ -1204,14 +1168,6 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        deleteDataObject(pobj->UID);
-    //        FREE(pobj);
-    //        return (sciPointObj*) NULL;
-    //    }
-
     // Here we init old 'graphicContext' by cloning it from parent.
     cloneGraphicContext(pparentsubwinUID, pobjUID);
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
@@ -1341,12 +1297,6 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return (sciPointObj*) NULL;
-    //    }
 
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
@@ -1544,14 +1494,6 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        deleteDataObject(pobj->UID);
-    //        FREE(pobj);
-    //        return (sciPointObj*) NULL;
-    //    }
-
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     doubleFontSize = (double)fontsize;
@@ -1646,14 +1588,6 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        deleteDataObject(pobj->UID);
-    //        FREE(pobj);
-    //        return (sciPointObj*) NULL;
-    //    }
-
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
@@ -1851,14 +1785,6 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     /* Initializes the default Contour values */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    //    if ( sciAddNewHandle(pobj) == -1 )
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(arrowCoords);
-    //        FREE(pobj);
-    //        return (sciPointObj *) NULL;
-    //    }
-
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
@@ -1886,13 +1812,6 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
     compoundUID = createGraphicObject(__GO_COMPOUND__);
 
     /* Add the Compound's handle */
-    //  if (sciAddNewHandle(compound) == -1)
-    //  {
-    //    deleteGraphicObject(compound->UID);
-    //    FREE(compound);
-    //    return NULL;
-    //  }
-
     /* The Compound's parent Axes is considered to be the Compound's first child's own parent */
     firstMovedObjectUID = (char*)getObjectFromHandle((long)handelsvalue[0]);
     getGraphicObjectProperty(firstMovedObjectUID, __GO_PARENT__, jni_string, (void **)&parentAxesUID);
@@ -1944,13 +1863,6 @@ char *ConstructCompoundSeq(int number)
     pobjUID = createGraphicObject(__GO_COMPOUND__);
 
     /* Add the Compound's handle */
-    //    if (sciAddNewHandle(pobj) == -1)
-    //    {
-    //        deleteGraphicObject(pobj->UID);
-    //        FREE(pobj);
-    //        return NULL;
-    //    }
-
     getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piNumberChildren);
 
     getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, (void **)&children);

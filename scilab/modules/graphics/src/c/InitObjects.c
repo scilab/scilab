@@ -237,12 +237,6 @@ int C2F(graphicsmodels) (void)
     clipRegionSet = 0;
     setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    /* add the handle in the handle list */
-    //if ( sciAddNewHandle(paxesmdl) == -1 )
-    //{
-    //  return NULL;
-    //}
-
     /*
      * Specifies that no high-level drawing function has been called yet.
      */
