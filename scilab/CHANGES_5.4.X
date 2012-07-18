@@ -85,6 +85,8 @@ Bug Fixes
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
 
+* Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 

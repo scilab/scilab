@@ -175,9 +175,9 @@
             <varlistentry>
               <term>1</term>
               <listitem>
-                <para>algorithm estimates that the relative error between
-                  <literal>x</literal> and the solution is at most
-                  <literal>tol</literal>.
+                <para> both actual and predicted relative reductions
+                  in the sum of squares are at most
+                  <literal>ftol</literal>.
                 </para>
               </listitem>
             </varlistentry>
@@ -185,7 +185,8 @@
               <term>2</term>
               <listitem>
                 <para>
-                  number of calls to <literal>fcn</literal> reached
+                  relative error between two consecutive iterates is
+                  at most <literal>xtol</literal>.
                 </para>
               </listitem>
             </varlistentry>
@@ -193,16 +194,19 @@
               <term>3</term>
               <listitem>
                 <para>
-                  <literal>tol</literal> is too small. No further
-                  improvement in the approximate solution <literal>x</literal>
-                  is possible.
+                  conditions for <literal>info = 1</literal> and
+                  <literal>info = 2</literal> both hold.
                 </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>4</term>
               <listitem>
-                <para>iteration is not making good progress.</para>
+                <para>
+                  the cosine of the angle between <literal>fvec</literal> and any 
+                  column of the jacobian is at most <literal>gtol</literal> in c absolute
+                  value.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
