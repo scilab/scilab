@@ -144,12 +144,6 @@ sciEntityType sciGetEntityType(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentFigure(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetWidth(sciPointObj * pobj)
 {
     return 0;

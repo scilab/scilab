@@ -130,48 +130,6 @@ BOOL sciisTextEmpty(char* identifier)
     return FALSE;
 }
 
-/**sciGetParentFigure
-* Returns the the Figure parent
-*/
-sciPointObj *
-sciGetParentFigure (sciPointObj * pobj)
-{
-
-    if (pobj == NULL)
-    {
-        return NULL;
-    }
-
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return pobj ;
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_SUBWIN:
-        case SCI_AGREG:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UICONTROL:
-        case SCI_UIMENU:
-        {
-            return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */
-        }
-        break;
-        default:
-            return NULL;
-            break;
-    }
-    return NULL;
-}
-
 /**sciGetGraphicMode
 * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
 */
