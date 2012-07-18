@@ -126,21 +126,9 @@ int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetWidth(sciPointObj * pobj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitScreenPosition(char *pobj, int pposx, int pposy)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciDelThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
-{
-    return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -207,12 +195,6 @@ int sciInitMarkForeground(char *pobj, int colorindex)
 
 /*--------------------------------------------------------------------------*/
 int sciGetNumColors(char *pobjUID)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int deallocateText(sciPointObj * pthis)
 {
     return -1;
 }
