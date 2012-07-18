@@ -126,12 +126,6 @@ sciPointObj *sciGetParent(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetPointerFromHandle(long handle)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack(size_t stackPointer)
 {
     return (unsigned long)(-1);

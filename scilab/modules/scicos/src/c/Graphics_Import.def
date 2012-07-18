@@ -2,4 +2,3 @@ LIBRARY    graphics.dll
 
 
 EXPORTS
-sciGetPointerFromHandle

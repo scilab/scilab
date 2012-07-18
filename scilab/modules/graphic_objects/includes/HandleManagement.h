@@ -26,8 +26,6 @@
 
 #include "dynlib_graphic_objects.h"
 
-GRAPHIC_OBJECTS_IMPEXP void *sciGetPointerFromHandle(long handle);
-
 /**
  * @brief Get the handle for an UID.
  *

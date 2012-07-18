@@ -20,13 +20,6 @@ extern "C"
 #include "HandleManagement.h"
 }
 
-// FIXME : remove this function
-void *sciGetPointerFromHandle(long handle)
-{
-    abort();
-    return NULL;
-}
-
 long getHandle(char const* UID)
 {
     return ScilabView::getObjectHandle(UID);
