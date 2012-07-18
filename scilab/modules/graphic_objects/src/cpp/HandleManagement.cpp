@@ -30,13 +30,6 @@ char const* getObjectFromHandle(long handle)
     return ScilabView::getObjectFromHandle(handle);
 }
 
-void *sciGetCurrentSubWin(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentSubWin" << std::endl;
-    abort();
-    return NULL;
-}
-
 void *sciGetCurrentObj(void)
 {
     std::cerr << "[ERROR] Should not call sciGetCurrentObj" << std::endl;

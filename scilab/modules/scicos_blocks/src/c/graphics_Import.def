@@ -36,7 +36,6 @@ sciSetText
 ConstructGrayplot
 ConstructSurface
 sciGetIndexedSon
-sciGetCurrentSubWin
 deleteMatrix
 sciSetStrings
 newMatrix
