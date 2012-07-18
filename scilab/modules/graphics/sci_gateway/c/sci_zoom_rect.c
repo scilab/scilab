@@ -204,7 +204,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         /* zoom_rect(handle, [xmin,ymin,xmax,ymax]) */
 
         double rect[4];
-        sciPointObj * zoomedObject = NULL;
+        char *zoomedObject = NULL;
 
         if (GetType(1) != sci_handles || GetType(2) != sci_matrix)
         {
@@ -212,13 +212,13 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        zoomedObject = (sciPointObj *)getZoomedObject(fname);
+        zoomedObject = getZoomedObject(fname);
         if (zoomedObject == NULL || !getZoomRect(fname, 2, rect))
         {
             return -1;
         }
 
-        if (sciZoomRect((char*)zoomedObject, rect) == SET_PROPERTY_ERROR)
+        if (sciZoomRect(zoomedObject, rect) == SET_PROPERTY_ERROR)
         {
             /* error on rectangle bounds */
             Scierror(999, _("%s: Error on input argument #%d: Specified bounds are not correct.\n"), fname, 1);
