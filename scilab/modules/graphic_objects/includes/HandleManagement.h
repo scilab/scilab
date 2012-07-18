@@ -45,7 +45,4 @@ GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
  */
 GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
 
-// DEPRECATED functions : Should be removed
-GRAPHIC_OBJECTS_IMPEXP void sciSetCurrentObj(void* pobj);
-
 #endif /* !__HANDLE_MANAGEMENT_H__ */

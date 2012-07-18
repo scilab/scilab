@@ -10,9 +10,6 @@
  *
  */
 
-#include <iostream>
-#include <stdlib.h>
-
 #include "ScilabView.hxx"
 
 extern "C"
@@ -28,10 +25,4 @@ long getHandle(char const* UID)
 char const* getObjectFromHandle(long handle)
 {
     return ScilabView::getObjectFromHandle(handle);
-}
-
-void sciSetCurrentObj(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciSetCurrentObj" << std::endl;
-    abort();
 }
