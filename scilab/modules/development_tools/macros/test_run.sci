@@ -788,6 +788,12 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
+      else // Remove messages due to JOGL2 RC8
+        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
+        txt(toRemove) = [];
+        if isempty(txt) then
+          deletefile(tmp_err);
+        end
       end
     end
   end
