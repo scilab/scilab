@@ -30,13 +30,6 @@ char const* getObjectFromHandle(long handle)
     return ScilabView::getObjectFromHandle(handle);
 }
 
-void *sciGetCurrentObj(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentObj" << std::endl;
-    abort();
-    return NULL;
-}
-
 void sciSetCurrentObj(void *pobj)
 {
     std::cerr << "[ERROR] Should not call sciSetCurrentObj" << std::endl;
