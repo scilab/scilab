@@ -68,6 +68,8 @@ Bug Fixes
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
 
+* Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
+
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
 * Bug #10711 fixed - The textbox of datatip was not displayed in graphics using

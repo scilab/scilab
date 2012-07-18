@@ -14,21 +14,21 @@ function [x,k]=%hm_mini(varargin)
   else
     if n==2 then
       d=varargin(2)
-      if type(d)==1|type(d)==10 then
+      if type(d)==10 then
 	[x,k]=%hm_oriented_min(varargin(1),d)
 	return
       end
     end
-    x=varargin(1).entries
-    dims=varargin(1).dims
-    for kk=2:n
-      if or(dims<>varargin(kk).dims) then 
-	if prod(dims)<>1&prod(varargin(kk).dims)<>1 then
+    x=varargin(1)(:)
+    dims=size(varargin(1))
+     for kk=2:n
+      if or(dims<>sz) then 
+	if prod(dims)<>1&prod(sz)<>1 then
 	  error(42)
 	end
-	if prod(dims)==1 then dims=varargin(kk).dims,end
+	if prod(dims)==1 then dims=sz,end
       end
-      [x,k]=min(x,varargin(kk).entries)
+      [x,k]=min(x,varargin(kk)(:))
     end
     x=hypermat(dims,x)
     k=hypermat(dims,k)
