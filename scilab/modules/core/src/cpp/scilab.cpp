@@ -23,7 +23,7 @@ extern "C"
 #include "initConsoleMode.h"
 #endif
 
-//#include "SetScilabEnvironment.h"
+    //#include "SetScilabEnvironment.h"
 #include "prompt.h"
 #include "InitializeLocalization.h"
 #include "MALLOC.h"
@@ -67,9 +67,9 @@ extern "C"
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
 #endif
-/*
-** HACK HACK HACK
-*/
+    /*
+    ** HACK HACK HACK
+    */
     extern char *getCmdLine(void);
 }
 
@@ -140,17 +140,17 @@ static Parser::ControlStatus processCommand(char *_pstCommand);
 
 extern "C"
 {
-/* Defined without include to avoid useless header dependency */
+    /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
 }
 
 static void checkForLinkerErrors(void)
 {
-/*
-   Depending on the linking order, sometime, libs are not loaded the right way.
-   This can cause painful debugging tasks for packager or developer, we are
-   doing the check to help them.
-*/
+    /*
+       Depending on the linking order, sometime, libs are not loaded the right way.
+       This can cause painful debugging tasks for packager or developer, we are
+       doing the check to help them.
+    */
 #define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
 #define LINKER_ERROR_2 "If you do not know what it means, please report a bug on http://bugzilla.scilab.org/. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
     if (getScilabMode() != SCILAB_NWNI)
@@ -338,56 +338,56 @@ static void stateShow(Parser::ControlStatus status)
 {
     switch (status)
     {
-    case Parser::WithinFor:
-        SetTemporaryPrompt("-for       ->");
-        break;
-    case Parser::WithinWhile:
-        SetTemporaryPrompt("-while     ->");
-        break;
-    case Parser::WithinIf:
-        SetTemporaryPrompt("-if        ->");
-        break;
-    case Parser::WithinElse:
-        SetTemporaryPrompt("-else      ->");
-        break;
-    case Parser::WithinElseIf:
-        SetTemporaryPrompt("-elseif    ->");
-        break;
-    case Parser::WithinTry:
-        SetTemporaryPrompt("-try       ->");
-        break;
-    case Parser::WithinCatch:
-        SetTemporaryPrompt("-catch     ->");
-        break;
-    case Parser::WithinFunction:
-        SetTemporaryPrompt("-function  ->");
-        break;
-    case Parser::WithinSelect:
-        SetTemporaryPrompt("-select    ->");
-        break;
-    case Parser::WithinCase:
-        SetTemporaryPrompt("-case      ->");
-        break;
-    case Parser::WithinSwitch:
-        SetTemporaryPrompt("-switch    ->");
-        break;
-    case Parser::WithinOtherwise:
-        SetTemporaryPrompt("-otherwise ->");
-        break;
-    case Parser::WithinMatrix:
-        SetTemporaryPrompt("- [        ->");
-        break;
-    case Parser::WithinCell:
-        SetTemporaryPrompt("- {        ->");
-        break;
-    case Parser::WithinBlockComment:
-        SetTemporaryPrompt("- /*       ->");
-        break;
-    case Parser::WithinDots:
-        SetTemporaryPrompt("- ...      ->");
-        break;
-    case Parser::AllControlClosed:
-        break;
+        case Parser::WithinFor:
+            SetTemporaryPrompt("-for       ->");
+            break;
+        case Parser::WithinWhile:
+            SetTemporaryPrompt("-while     ->");
+            break;
+        case Parser::WithinIf:
+            SetTemporaryPrompt("-if        ->");
+            break;
+        case Parser::WithinElse:
+            SetTemporaryPrompt("-else      ->");
+            break;
+        case Parser::WithinElseIf:
+            SetTemporaryPrompt("-elseif    ->");
+            break;
+        case Parser::WithinTry:
+            SetTemporaryPrompt("-try       ->");
+            break;
+        case Parser::WithinCatch:
+            SetTemporaryPrompt("-catch     ->");
+            break;
+        case Parser::WithinFunction:
+            SetTemporaryPrompt("-function  ->");
+            break;
+        case Parser::WithinSelect:
+            SetTemporaryPrompt("-select    ->");
+            break;
+        case Parser::WithinCase:
+            SetTemporaryPrompt("-case      ->");
+            break;
+        case Parser::WithinSwitch:
+            SetTemporaryPrompt("-switch    ->");
+            break;
+        case Parser::WithinOtherwise:
+            SetTemporaryPrompt("-otherwise ->");
+            break;
+        case Parser::WithinMatrix:
+            SetTemporaryPrompt("- [        ->");
+            break;
+        case Parser::WithinCell:
+            SetTemporaryPrompt("- {        ->");
+            break;
+        case Parser::WithinBlockComment:
+            SetTemporaryPrompt("- /*       ->");
+            break;
+        case Parser::WithinDots:
+            SetTemporaryPrompt("- ...      ->");
+            break;
+        case Parser::AllControlClosed:
+            break;
     }
 }
 
@@ -401,7 +401,16 @@ static int interactiveMain(void)
 
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
-//    checkForLinkerErrors();
+#ifndef WITH_GUI
+    if (getScilabMode() != SCILAB_NWNI)
+    {
+        fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or us the -nwni option.\n");
+        initConsoleMode(ATTR_RESET);
+        exit(1);
+    }
+#endif
+
+    //    checkForLinkerErrors();
     if (noBanner == false)
     {
         //banner();
@@ -558,13 +567,13 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-// if WITHOUT_GUI is defined
-// force Terminal IO -> Terminal IO + StartScilabEngine
+    // if WITHOUT_GUI is defined
+    // force Terminal IO -> Terminal IO + StartScilabEngine
 
-// WITHOUT_GUI (All Platform) => Terminal IO + StartScilabEngine
-// GUI (MacOSX) =>      [no option]     -> Console IO + InitMacOSXEnv
-//                      | [-nwni]       -> Terminal IO + StartScilabEngine
-//                      | [-nw]         -> Terminal IO + InitMacOSXEnv
+    // WITHOUT_GUI (All Platform) => Terminal IO + StartScilabEngine
+    // GUI (MacOSX) =>      [no option]     -> Console IO + InitMacOSXEnv
+    //                      | [-nwni]       -> Terminal IO + StartScilabEngine
+    //                      | [-nw]         -> Terminal IO + InitMacOSXEnv
 #ifndef WITHOUT_GUI
     if (consoleMode)
     {
@@ -719,12 +728,14 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     try
     {
         if (execCommand)
-        {                       //-e option
+        {
+            //-e option
 
             processCommand(argv[iFileIndex]);
         }
         else if (execFile)
-        {                       //-f option execute exec('%s',-1)
+        {
+            //-f option execute exec('%s',-1)
             char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(argv[iFileIndex]) + 1));
 
             sprintf(pstCommand, "exec(\"%s\",-1)", argv[iFileIndex]);
@@ -732,7 +743,7 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
             FREE(pstCommand);
         }
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
     }
