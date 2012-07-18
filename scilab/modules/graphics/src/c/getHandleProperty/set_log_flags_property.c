@@ -153,16 +153,6 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR ;
     }
 
-    /* To be deleted */
-#if 0
-    ppSubWin = pSUBWIN_FEATURE (pobj);
-#endif
-
-    // get a copy of current log flags
-#if 0
-    sciGetLogFlags(pobj, curLogFlags);
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)

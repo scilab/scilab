@@ -30,26 +30,6 @@
 #define SCI_FIGURE_NAME_LENGTH 256
 /* Renvoi le pointeur sur la structure */
 
-#define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */
-#define pSUBWIN_FEATURE(pointobj)      ((sciSubWindow     *)pointobj->pfeatures)/** */
-#define pTEXT_FEATURE(pointobj)        ((sciText          *)pointobj->pfeatures)/** */
-#define pLEGEND_FEATURE(pointobj)      ((sciLegend        *)pointobj->pfeatures)/** */
-#define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline      *)pointobj->pfeatures)/** */
-#define pARC_FEATURE(pointobj)         ((sciArc           *)pointobj->pfeatures)/** */
-#define pRECTANGLE_FEATURE(pointobj)   ((sciRectangle     *)pointobj->pfeatures)/** */
-#define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
-#define pAXES_FEATURE(pointobj)        ((sciAxes          *)pointobj->pfeatures)/** */
-#define pGRAYPLOT_FEATURE(pointobj)    ((sciGrayplot      *)pointobj->pfeatures)/** */
-#define pFEC_FEATURE(pointobj)         ((sciFec           *)pointobj->pfeatures)/** */
-#define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
-#define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
-#define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
-#define pUIMENU_FEATURE(pointobj)      ((sciUimenu        *)pointobj->pfeatures)/** */
-#define pUICONTEXTMENU_FEATURE(pointobj)      ((sciUicontextmenu *)pointobj->pfeatures)/** */
-#define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol     *)pointobj->pfeatures)/** */
-#define pWAITBAR_FEATURE(pointobj)     ((sciWaitbar        *)pointobj->pfeatures)/** */
-#define pPROGRESSIONBAR_FEATURE(pointobj)     ((sciProgressionbar        *)pointobj->pfeatures)/** */
-
 typedef struct tagPOINT2D
 {
     double x;

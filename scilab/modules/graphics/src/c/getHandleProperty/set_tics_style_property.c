@@ -57,23 +57,6 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
      /* get the character 'v', 'r' or 'i' */
     xy_type = getStringFromStack( stackPointer )[0];
 
-    /* Deactivated for now since it involves ticks computation */
-#if 0
-    if( pAXES_FEATURE (pobj)->str != NULL )
-    {
-        if( ComputeXIntervals(pobj,xy_type,&vector,&N,1) != 0 )
-        {
-            Scierror(999, _("Error: Bad size in %s ; you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
-            return SET_PROPERTY_ERROR;
-        }
-        if( pAXES_FEATURE(pobj)->nb_tics_labels < N )
-        {
-            sciprint(_("Warning: %s has been set by user ; you must first increase the size of the %s string vector before switching to the new %s mode.\n"),"tics_labels","tics_labels","tics_style");
-            return SET_PROPERTY_ERROR;
-        }
-    }
-#endif
-
     if (xy_type == 'v')
     {
         ticksStyle = 0;

@@ -310,18 +310,6 @@ int InitAxesModel()
     /* 0: point, 1: tabulated */
     int markSizeUnit = 1;
 
-    /*
-     * Not needed any more since the MVC equivalent is now used
-     * To be deleted
-     */
-#if 0
-    sciSubWindow *ppaxesmdl = pSUBWIN_FEATURE(paxesmdl);
-#endif
-
-#if 0
-    char linLogFlags[3] = { 'n', 'n', 'n' };
-#endif
-
     char *labelUID = NULL;
 
     char *pfiguremdlUID = (char*)getFigureModel();

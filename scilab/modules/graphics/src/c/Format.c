@@ -1115,18 +1115,6 @@ StringMatrix * computeDefaultTicsLabels( char * pobjUID )
   FREE(vector);
   vector = NULL;
 
-  /* I recompute the nb_tics_labels */
-  /* Why ??? jb Silvy */
-  /*
-   * This was required as the number of labels
-   * was -1, before this function's execution.
-   * It is now set within the MVC, when setting
-   * the labels.
-   */
-#if 0
-  pAXES_FEATURE (pobj)->nb_tics_labels = nbTics;
-#endif
-
   return ticsLabels;
 
 }
