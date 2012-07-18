@@ -25,11 +25,6 @@
 #define __SCI_DRAWINGS__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
-#include "BOOL.h"
-
-
-/*******************************************************/
 
 GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * xmin   ,
@@ -38,15 +33,5 @@ GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * ymax   ,
                                    double      * zmin   ,
                                    double      * zmax    ) ;
-/**
- * Show the pixmap buffer of a figure
- */
-GRAPHICS_IMPEXP void showPixmap(char* pFigureUID);
-
-/**
- * Clear the pixmap buffer of a figure
- */
-GRAPHICS_IMPEXP void clearPixmap(sciPointObj * pFigure);
-
 
 #endif /* __SCI_DRAWINGS__ */
