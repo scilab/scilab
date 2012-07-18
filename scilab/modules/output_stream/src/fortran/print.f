@@ -51,7 +51,7 @@ c
       endif
 c     
       if(id(1).ne.0) call prntid(dname,-1,lunit)
-      nlist=0
+ 01   nlist=0
 C     topk : free stack zone for working areas 
       topk=top+1
       lstk(topk+1)=lstk(topk)
@@ -64,8 +64,7 @@ C     topk : free stack zone for working areas
 c     
 
 
- 05   continue
-      goto (20,10,75,55,25,26,75,75,75,30,60,75,60,70,40,40,40)
+ 05   goto (20,10,75,55,25,26,75,75,75,30,60,75,60,70,40,40,40)
      $     ,abs(itype)
       goto 75
 c     
@@ -144,15 +143,14 @@ C     working area
       call strdsp(istk(lr),istk(lr-m*n-1),m,n,lineln,lunit,istk(lw),buf)
       goto 48
 c     -------matrices of handle 
-      ilog=gethmat("print",lk,lk,m,n,lr)
+ 35   ilog=gethmat("print",lk,lk,m,n,lr)
       if (.not.crewimat("print",topk,1,m*n+2*n,lw)) return
       call dmdsp(stk(lr),m,m,n,ndgt,mode,lineln,lunit,buf,istk(lw))
       goto 48 
 
 c     -------lists 
  40   continue
-      nlist=nlist+1
-      itype=gettype(lk) 
+      itype=gettype(lk)
       call listtype(lk,itypel)
       if (itypel.eq.1) then
          if (lunit.eq.wte.and.intexmacs().ne.0) goto 41
@@ -199,8 +197,7 @@ c     look for the function
       endif
 
 c     copy tlist to top of stack
- 43   continue
-      if(lk.ne.top) then
+ 43   if(lk.ne.top) then
          top=topk
          ilt1=iadr(lstk(top))
          lt1=sadr(ilt1+3+nw)
@@ -219,8 +216,8 @@ c     check for typed lists
  45   continue
       ilog=getilist("print",lk,lk,nl,1,ilt)
       illist=lstk(lk)
-C     list ( we must deal with recursion nlist is the current recusrion level) 
-     
+C     list ( we must deal with recursion ) 
+      nlist=nlist+1
       if(nlist.le.1) then
          if(dname(1).ne.0) then
             call cvnamel(dname,ligne,1,li1)
@@ -236,8 +233,7 @@ C     list ( we must deal with recursion nlist is the current recusrion level)
       kl=0
  47   continue
       if(nl.eq.0) call basout(io,lunit,'     ()')
- 48   continue
-      if(nlist.le.0) goto 99
+ 48   if(nlist.le.0) goto 99
       if(lct(1).lt.0) goto 99
       kl=kl+1
       if(kl.gt.nl) goto 49
@@ -433,7 +429,7 @@ c     ------------macros---- a changer
                il=il+nsiz
  63         continue
             l=l-1
-         endif
+         endif	
          buf(l:l)=alfa(is2+1)
          l=l+1
          if(i.eq.2) goto 64
@@ -549,7 +545,6 @@ c     preserve data for recursion
 
       if ( eptover(3,psiz)) return
       rstk(pt-2)= 0
-
       call putid(ids(1,pt-2),dname)
       rstk(pt-1)= 0
       ids(1,pt-1)= lhs
@@ -609,7 +604,7 @@ c     set back preserved data
       logical crewimat 
       integer topk,il,kl,li1
       clsave=.false.
-      if (.not.crewimat("print",topk,1,4,lr)) return  
+      if (.not.crewimat("print",topk,1,4,lr)) return     
       clsave=.true.
       istk(lr)=il
       istk(lr+1)=kl
@@ -654,7 +649,7 @@ c
                itype=1
                goto  999
             endif
-            if (nlr.eq.3.and.istk(ilc).eq.21.and.istk(ilc+1).eq.28.
+            if (istk(ilc).eq.21.and.istk(ilc+1).eq.28.
      +           and.istk(ilc+2).eq.28) then 
                itype=2
                goto 999
