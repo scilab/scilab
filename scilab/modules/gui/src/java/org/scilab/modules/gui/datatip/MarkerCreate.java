@@ -16,9 +16,10 @@ import org.scilab.modules.gui.editor.AxesHandler;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.renderer.CallRenderer;
+import java.util.ArrayList;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
 
@@ -28,29 +29,27 @@ import org.scilab.modules.gui.datatip.DatatipCreate;
  */
 public class MarkerCreate {
 
-    public static String axesUid;
-    public static double[] pixelMouseCoordDouble = { 0.0 , 0.0 };
-    public static double[] graphicCoord = { 0.0 , 0.0 };
-    public static String newMarker;
-    public static String[] markerLabel;
-    public static Integer[] markerBounds = { 0 , 0 };
+    private static Integer[] markerBounds = { 0 , 0 };
     public static Double[] markerPosition = { 0.0 , 0.0 , 0.0 };
+    private static double[] pixelMouseCoordDouble = { 0.0 , 0.0 };
 
     /**
     * Given a mouse coordinate point x, y in pixels
     * create a datatip marker.
     *
     * @param figureUid Figure unique identifier.
-    * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
+    * @param coordIntX Integer with pixel mouse position x.
+    * @param coordIntY Integer with pixel mouse position y.
     * @return Marker handler string.
     */
-    public static String createMarker (String figureUid, Integer[] pixelMouseCoordInt) {
+    public static String createMarker (String figureUid, Integer coordIntX, Integer coordIntY) {
 
-        axesUid = DatatipCreate.datatipAxesHandler (figureUid, pixelMouseCoordInt);
-        pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble (pixelMouseCoordInt);
-        graphicCoord = DatatipCreate.transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
-        newMarker = DatatipCreate.askToCreateObject ();
-        markerLabel = setMarkerLabel ();
+        Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
+        String axesUid = DatatipCreate.datatipAxesHandler (figureUid, pixelMouseCoordInt);
+        double[] pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble (pixelMouseCoordInt);
+        double[] graphicCoord = DatatipCreate.transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
+        String newMarker = DatatipCreate.askToCreateObject ();
+        String[] markerLabel = setMarkerLabel ();
         markerBounds = DatatipCreate.getDatatipBounds (markerLabel);
         markerPosition = DatatipCreate.setDatatipPosition (graphicCoord);
         GraphicController.getController().setGraphicObjectRelationship(axesUid, newMarker);
@@ -71,12 +70,24 @@ public class MarkerCreate {
     *
     * @return String vector with datatip marker label.
     */
-    public static String[] setMarkerLabel ()
-    {
+    private static String[] setMarkerLabel () {
+
         String markerLabelUp = "  ";
         String markerLabelDown = "  ";
         String[] markerLabel = { markerLabelUp , markerLabelDown };
         return markerLabel;
     }
 
+    /**
+    * Save all created markers unique identifiers into an ArrayList
+    *
+    * @param markersUid ArrayList containing all created markers unique identifiers
+    * @param markerid marker unique identifier string
+    * @return ArrayList containing all created markers unique identifiers updated
+    */
+    public static ArrayList<String> getAllMarkersUid (ArrayList<String> markersUid, String markerUid) {
+
+        markersUid.add(markerUid);
+        return markersUid;
+    }
 }

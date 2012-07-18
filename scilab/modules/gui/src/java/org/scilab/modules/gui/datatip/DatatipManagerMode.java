@@ -14,9 +14,8 @@ package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
-
-import org.scilab.modules.gui.editor.EditorEventListener;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 /**
  * Manage the datatip mode activation
@@ -24,8 +23,13 @@ import org.scilab.modules.gui.editor.EditorEventListener;
  */
 public class DatatipManagerMode {
 
+    public static String figureUid = null;
     public static boolean datatipManagerModeStatus = false;
     public static String datatipMessage = "Left click on the curve creates a datatip and right click on the datatip removes it.";
+
+    public DatatipManagerMode() {
+        setFigure(null);
+    }
 
     /**
     * Set the datatip manager mode between on/off
@@ -36,10 +40,10 @@ public class DatatipManagerMode {
     public static boolean setDatatipManagerModeToggle() {
         if(datatipManagerModeStatus) {
             datatipManagerModeStatus = false;
-            GraphicController.getController().setProperty(EditorEventListener.windowUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
+            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
         } else {
             datatipManagerModeStatus = true;
-            GraphicController.getController().setProperty(EditorEventListener.windowUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
+            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
         }
         return datatipManagerModeStatus;
     }
@@ -53,7 +57,7 @@ public class DatatipManagerMode {
     public static boolean setDatatipManagerModeButtonOn() {
         if(!datatipManagerModeStatus) {
             datatipManagerModeStatus = true;
-            GraphicController.getController().setProperty(EditorEventListener.windowUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
+            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
         }
         return datatipManagerModeStatus;
     }
@@ -67,7 +71,7 @@ public class DatatipManagerMode {
     public static boolean setDatatipManagerModeButtonOff() {
         if(datatipManagerModeStatus) {
             datatipManagerModeStatus = false;
-            GraphicController.getController().setProperty(EditorEventListener.windowUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
+            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
         }
         return datatipManagerModeStatus;
     }
@@ -83,5 +87,14 @@ public class DatatipManagerMode {
         } else {
             return false;
         }
+    }
+
+    /**
+    * Set figure uid
+    *
+    * @param uid Figure unique identifier.
+    */
+    public static void setFigure(String uid) {
+        figureUid = uid;
     }
 }

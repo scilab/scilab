@@ -14,13 +14,16 @@ package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 
 import java.util.ArrayList;
+import java.lang.String;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
+import org.scilab.modules.gui.datatip.DatatipHighlight;
 
 /**
  * Select a datatip
@@ -28,34 +31,36 @@ import org.scilab.modules.gui.datatip.DatatipCreate;
  */
 public class DatatipSelect {
 
-    public static Double[] axesSizeGraph = { 0.0 , 0.0 };
-    public static Double[] axesOrigin = { 0.0 , 0.0 };
-    public static Double[] datatipPosAxes = { 0.0 , 0.0 };
-    public static double[] deltaDatatip = { 0.0 , 0.0 };
-    public static double[] deltaClick = { 0.0 , 0.0 };
-    public static Double[] clickPosAxes = { 0.0 , 0.0 };
-    public static boolean zoomEnabled = false;
-    public static Integer datatip_index = 0;
+    public static Double[] axesSizeGraph = new Double[2];
+    public static Double[] axesOrigin = new Double[2];
+    public static Double[] datatipPosAxes = new Double[2];
+    public static double[] deltaDatatip = new double[2];
+    public static double[] deltaClick = new double[2];
+    public static Double[] clickPosAxes = new Double[2];
+    public static Integer sizeClick = 0;
+    public static Integer datatipIndex = null;
 
     /**
     * Select a datatip when click on it
     *
     * @param figureUid Figure unique identifier.
-    * @param axesUid Axes unique identifier.
-    * @param clickPosition Vector with pixel mouse position x and y.
+    * @param coordIntX Integer with pixel mouse position x.
+    * @param coordIntY Integer with pixel mouse position y.
     * @param datatipsCoord Arraylist containing all created datatip's user coordinates.
     * @param datatipsUid Arraylist containing all created datatip's unique identifier.
     * @param markersUid Arraylist containing all created merker's unique identifier.
     * @return Integer index of selected datatip.
     */
-    public static Integer selectDatatip(String figureUid, String axesUid, Integer[] clickPosition, ArrayList<Double> datatipsCoord, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
+    public static Integer selectDatatip(String figureUid, Integer coordIntX, Integer coordIntY, ArrayList<Double> datatipsCoord, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
 
-        double[] clickPositionDouble = DatatipCreate.transformPixelCoordToDouble(clickPosition);
+        Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
+        String axesUid = DatatipCreate.datatipAxesHandler(figureUid, pixelMouseCoordInt);
+        double[] clickPositionDouble = DatatipCreate.transformPixelCoordToDouble(pixelMouseCoordInt);
         double[] graphicPosition = DatatipCreate.transformPixelCoordToGraphic(axesUid, clickPositionDouble);
 
         Double[] axesDataBounds = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_DATA_BOUNDS__);
         Double[] axesZoomBox = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_ZOOM_BOX__);
-        zoomEnabled = AxesHandler.isZoomBoxEnabled(axesUid);
+        boolean zoomEnabled = AxesHandler.isZoomBoxEnabled(axesUid);
         
         Integer[] axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
         Double[] axesDimensionDouble = {1.0 * axesDimension[0], 1.0 * axesDimension[1]};
@@ -64,19 +69,22 @@ public class DatatipSelect {
         axesOrigin = getAxesOriginPoint (axesDataBounds, axesZoomBox, zoomEnabled);
 
         clickPosAxes = getAxesClickPosition(graphicPosition, axesOrigin, axesSizeGraph, axesDimensionDouble);
-    
+
         for (int i = 0 ; i < datatipsCoord.size() ; i = i + 2) {
 
-            datatipPosAxes = getAxesDatatipPosition(i, datatipsCoord, axesOrigin, axesSizeGraph, axesDimensionDouble);
+            Double[] datatipPosAxes = getAxesDatatipPosition(i, datatipsCoord, axesOrigin, axesSizeGraph, axesDimensionDouble);
 
             if (clickPosAxes[0] >= datatipPosAxes[0] & clickPosAxes[0] <= (datatipPosAxes[0] + 74)) {
                 if (clickPosAxes[1] >= datatipPosAxes[1] & clickPosAxes[1] <= (datatipPosAxes[1] + 30)) {
-                    datatip_index = i;
-                    return datatip_index;
+                    datatipIndex = i;
+                    DatatipHighlight.highlightSelected (datatipIndex, datatipsUid, markersUid);
+                    return datatipIndex;
                 }
             }
         }
-        return null;
+        datatipIndex = null;
+        DatatipHighlight.highlightSelected (datatipIndex, datatipsUid, markersUid);
+        return datatipIndex;
     }
 
     /**

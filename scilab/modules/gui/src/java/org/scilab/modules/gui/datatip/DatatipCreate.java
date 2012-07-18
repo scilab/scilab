@@ -14,12 +14,14 @@ package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.renderer.CallRenderer;
 
 import java.lang.String;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 
@@ -29,29 +31,27 @@ import org.scilab.modules.gui.editor.AxesHandler;
  */
 public class DatatipCreate {
 
-    public static double[] pixelMouseCoordDouble = { 0.0 , 0.0 };
-    public static double[] graphicCoord = { 0.0 , 0.0 };
-    public static Integer[] datatipBounds = { 0 , 0 };
-    public static Double[] datatipPosition = { 0.0 , 0.0 , 0.0 };
-    public static String newDatatip;
-    public static String axesUid;
-    public static String[] datatipLabel;
+    private static Integer[] datatipBounds = new Integer[2];
+    public static Double[] datatipPosition = new Double[3];
+    private static double[] pixelMouseCoordDouble = new double[2];
 
     /**
     * Given a mouse coordinate point x, y in pixels
     * create a datatip.
     *
     * @param figureUid Figure unique identifier.
-    * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
+    * @param coordIntX Integer with pixel mouse position x.
+    * @param coordIntY Integer with pixel mouse position y.
     * @return Datatip handler string.
     */
-    public static String createDatatip(String figureUid, Integer[] pixelMouseCoordInt) {
+    public static String createDatatip(String figureUid, Integer coordIntX, Integer coordIntY) {
 
-        axesUid = datatipAxesHandler(figureUid, pixelMouseCoordInt);
-        pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
-        graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
-        newDatatip = askToCreateObject();
-        datatipLabel = setDatatipLabel(graphicCoord);
+        Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
+        String axesUid = datatipAxesHandler(figureUid, pixelMouseCoordInt);
+        double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
+        double[] graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
+        String newDatatip = askToCreateObject();
+        String[] datatipLabel = setDatatipLabel(graphicCoord);
         datatipBounds = getDatatipBounds(datatipLabel);
         datatipPosition = setDatatipPosition(graphicCoord);
         GraphicController.getController().setGraphicObjectRelationship(axesUid, newDatatip);
@@ -103,7 +103,7 @@ public class DatatipCreate {
     */
     public static double[] transformPixelCoordToGraphic(String axesUid, double[] pixelMouseCoordDouble) {
 
-        graphicCoord = CallRenderer.get2dViewFromPixelCoordinates(axesUid, pixelMouseCoordDouble);
+        double[] graphicCoord = CallRenderer.get2dViewFromPixelCoordinates(axesUid, pixelMouseCoordDouble);
         return graphicCoord;
     }
 
@@ -114,7 +114,7 @@ public class DatatipCreate {
     */
     public static String askToCreateObject() {
 
-        newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
+        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
         return newDatatip;
     }
 
@@ -124,8 +124,8 @@ public class DatatipCreate {
     * @param graphicCoord Vector containing the graphic coordinates in double precision.
     * @return String vector with datatip label.
     */
-    public static String[] setDatatipLabel(double[] graphicCoord)
-    {
+    public static String[] setDatatipLabel(double[] graphicCoord) {
+
         DecimalFormat numDecimal = new DecimalFormat("#.#####");
         String datatipLabelX = numDecimal.format(graphicCoord[0]);
         datatipLabelX = "X:" + datatipLabelX;
@@ -141,8 +141,8 @@ public class DatatipCreate {
     * @param datatipLabel Vector containing the graphic coordinates in double precision.
     * @return String vector with datatip label.
     */
-    public static Integer[] getDatatipBounds(String[] datatipLabel)
-    {
+    public static Integer[] getDatatipBounds(String[] datatipLabel) {
+
         datatipBounds[0] = datatipLabel.length;
         datatipBounds[1] = 1;
         return datatipBounds;
@@ -154,11 +154,52 @@ public class DatatipCreate {
     * @param graphicCoord Vector containing the graphic coordinates in double precision.
     * @return Graphic coordinates x, y that datatip will be shown.
     */
-    public static Double[] setDatatipPosition (double[] graphicCoord)
-    {
+    public static Double[] setDatatipPosition (double[] graphicCoord) {
+
         datatipPosition[0] = graphicCoord[0];
         datatipPosition[1] = graphicCoord[1];
         datatipPosition[2] = 0.0;
         return datatipPosition;
+    }
+
+    /**
+    * Save all created datatips coordinates into an ArrayList
+    *
+    * @param datatipsCoord ArrayList containing all created datatips coordinates
+    * @param datatipid datatip unique identifier to get its coordinates
+    * @return ArrayList containing all created datatips coordinates updated
+    */
+    public static ArrayList<Double> getAllDatatipsCoord (ArrayList<Double> datatipsCoord, String datatipUid) {
+
+        Double[] graphicCoord = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_POSITION__);
+        datatipsCoord.add(graphicCoord[0]);
+        datatipsCoord.add(graphicCoord[1]);
+        return datatipsCoord;
+    }
+
+    /**
+    * Save all created datatips unique identifiers into an ArrayList
+    *
+    * @param datatipsUid ArrayList containing all created datatips unique identifiers
+    * @param datatipid datatip unique identifier
+    * @return ArrayList containing all created datatips unique identifiers updated
+    */
+    public static ArrayList<String> getAllDatatipsUid (ArrayList<String> datatipsUid, String datatipUid) {
+
+        datatipsUid.add(datatipUid);
+        return datatipsUid;
+    }
+
+    /**
+    * Save all polylines unique identifiers on which datatips were created
+    *
+    * @param polylinesUid ArrayList containing all polylines unique identifiers
+    * @param polylineid polyline unique identifier string
+    * @return ArrayList containing all polylines unique identifiers updated
+    */
+    public static ArrayList<String> getAllPolylinesUid (ArrayList<String> polylinesUid, String uid) {
+
+        polylinesUid.add(uid);
+        return polylinesUid;
     }
 }

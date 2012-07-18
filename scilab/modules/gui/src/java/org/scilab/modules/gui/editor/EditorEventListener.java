@@ -25,10 +25,11 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.*;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
-import org.scilab.modules.gui.datatip.DatatipDelete;
-import org.scilab.modules.gui.datatip.DatatipManagerMode;
-import org.scilab.modules.gui.datatip.DatatipSelect;
 import org.scilab.modules.gui.datatip.MarkerCreate;
+import org.scilab.modules.gui.datatip.DatatipSelect;
+import org.scilab.modules.gui.datatip.DatatipDelete;
+import org.scilab.modules.gui.datatip.DatatipMove;
+import org.scilab.modules.gui.datatip.DatatipManagerMode;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.Editor;
@@ -52,32 +53,34 @@ import org.scilab.modules.gui.ged.SwapObject;
 public class EditorEventListener implements KeyListener, MouseListener, MouseMotionListener {
 
     public static String windowUid;
-    Editor editor;
-    String picked;
-    EntityPicker ep;
     boolean isInRotation = false;
-    Integer[] newDatatipPosition = { 0 , 0 };
-    public static String axesUid;
-    double[] pixelMouseCoordDouble = { 0.0 , 0.0 };
-    double[] datatipGraphicCoord = { 0.0 , 0.0 };
-    double[] clickGraphicCoord = { 0.0 , 0.0 };
-    ArrayList<Double> saveDatatipCoord;
-    ArrayList<String> saveDatatipUid;
-    ArrayList<String> saveMarkerUid;
-    Integer[] newClickPosition = { 0 , 0 };
-    public static Integer indexToDelete;
+    String picked;
+    Editor editor;
+    EntityPicker ep;
+    ArrayList<Double> getDatatipsCoord = new ArrayList<Double>();
+    ArrayList<String> getDatatipsUid = new ArrayList<String>();
+    ArrayList<String> getMarkersUid = new ArrayList<String>();
+    ArrayList<String> getPolylinesUid = new ArrayList<String>();
+    Integer indexToMove;
 
     public EditorEventListener(String uid) {
         windowUid = uid;
         editor = new Editor();
         ep = new EntityPicker();
         editor.setFigure(uid);
-        saveDatatipCoord = new ArrayList<Double>();
-        saveDatatipUid = new ArrayList<String>();
-        saveMarkerUid = new ArrayList<String>();
+        DatatipManagerMode.setFigure(uid);
     }
 
-    public void keyPressed(KeyEvent keyEvent) {
+    public void keyPressed(KeyEvent arg0) {
+        if (DatatipManagerMode.getDatatipManagerMode()) {
+            if (indexToMove != null) {
+                if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    getDatatipsCoord = DatatipMove.moveRight (windowUid, getPolylinesUid, indexToMove, getDatatipsCoord, getDatatipsUid, getMarkersUid);
+                } else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+                    getDatatipsCoord = DatatipMove.moveLeft (windowUid, getPolylinesUid, indexToMove, getDatatipsCoord, getDatatipsUid, getMarkersUid);
+                }
+            }
+        }
     }
 
     public void keyReleased(KeyEvent arg0) {
@@ -103,40 +106,31 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     * @param arg0 MouseEvent
     */
     public void mouseClicked(MouseEvent arg0) {
-        if (arg0.getButton() == 1) {
-            if (DatatipManagerMode.getDatatipManagerMode()) {
+        if (DatatipManagerMode.getDatatipManagerMode()) {
+            if (arg0.getButton() == 1) {
                 if (arg0.getClickCount() == 1) {
                     picked = ep.pick( windowUid, arg0.getX(), arg0.getY() );
-                    newDatatipPosition[0] = arg0.getX();
-                    newDatatipPosition[1] = arg0.getY();
-                    axesUid = DatatipCreate.datatipAxesHandler(windowUid, newDatatipPosition);
-                    pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble(newDatatipPosition);
-                    datatipGraphicCoord = DatatipCreate.transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
                     if (picked != null) {
-                        String newDatatip = DatatipCreate.createDatatip (windowUid, newDatatipPosition);
-                        String newMarker = MarkerCreate.createMarker (windowUid, newDatatipPosition);
-                        saveDatatipCoord.add(datatipGraphicCoord[0]);
-                        saveDatatipCoord.add(datatipGraphicCoord[1]);
-                        saveDatatipUid.add(newDatatip);
-                        saveMarkerUid.add(newMarker);
+                        String datatipUid = DatatipCreate.createDatatip ( windowUid, arg0.getX(), arg0.getY() );
+                        String markerUid = MarkerCreate.createMarker ( windowUid, arg0.getX(), arg0.getY() );
+                        getDatatipsCoord = DatatipCreate.getAllDatatipsCoord (getDatatipsCoord, datatipUid);
+                        getDatatipsUid = DatatipCreate.getAllDatatipsUid (getDatatipsUid, datatipUid);
+                        getMarkersUid = MarkerCreate.getAllMarkersUid (getMarkersUid, markerUid);
+                        getPolylinesUid = DatatipCreate.getAllPolylinesUid (getPolylinesUid, picked);
+                    } else {
+                        indexToMove = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY(), getDatatipsCoord, getDatatipsUid, getMarkersUid);
                     }
-                } else if (arg0.getClickCount() == 2) {
-                
                 }
-            }
-        } else if (arg0.getButton() == 3) {
-            if (DatatipManagerMode.getDatatipManagerMode()) {
-                newClickPosition[0] = arg0.getX();
-                newClickPosition[1] = arg0.getY();
-                axesUid = DatatipCreate.datatipAxesHandler(windowUid, newClickPosition);
-                if (saveDatatipCoord.size() > 0) {
-                    indexToDelete = DatatipSelect.selectDatatip(windowUid, axesUid, newClickPosition, saveDatatipCoord, saveDatatipUid, saveMarkerUid);
+            } else if (arg0.getButton() == 3) {
+                if (getDatatipsCoord.size() > 0) {
+                    Integer indexToDelete = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY(), getDatatipsCoord, getDatatipsUid, getMarkersUid);
                     if (indexToDelete != null) {
-                        DatatipDelete.deleteDatatip (indexToDelete, saveDatatipUid, saveMarkerUid);
-                        saveDatatipCoord.remove(indexToDelete+1);
-                        saveDatatipCoord.remove(indexToDelete+1-1);
-                        saveDatatipUid.remove(indexToDelete/2);
-                        saveMarkerUid.remove(indexToDelete/2);
+                        DatatipDelete.deleteDatatip (indexToDelete, getDatatipsUid, getMarkersUid);
+                        getDatatipsCoord = DatatipDelete.romoveDatatipCoords (indexToDelete, getDatatipsCoord);
+                        getDatatipsUid = DatatipDelete.romoveDatatipUid (indexToDelete, getDatatipsUid);
+                        getMarkersUid = DatatipDelete.romoveMarkerUid (indexToDelete, getMarkersUid);
+                        getPolylinesUid = DatatipDelete.romovePolylineUid (indexToDelete, getPolylinesUid);
+                        indexToMove = null;
                     }
                 }
             }
