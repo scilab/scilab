@@ -42,15 +42,6 @@ int set_view_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  /* DJ.A 2003 */
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
-    return  SET_PROPERTY_ERROR ;
-  }
-#endif
-
   if ( isStringParamEqual( stackPointer, "2d" ) )
   {
     viewType = 0;

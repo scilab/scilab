@@ -42,14 +42,6 @@ int set_polyline_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_POLYLINE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"polyline_style");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     value = (int) getDoubleFromStack( stackPointer );
     if ( value < 1 || value > 7 )
     {

@@ -45,14 +45,6 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **) &piYNumberTicks);
 
     if (piYNumberTicks == NULL)

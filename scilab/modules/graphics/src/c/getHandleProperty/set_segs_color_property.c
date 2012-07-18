@@ -46,14 +46,6 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
 
     if (piNbSegs == NULL)

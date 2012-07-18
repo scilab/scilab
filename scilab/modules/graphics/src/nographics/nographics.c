@@ -126,12 +126,6 @@ int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType
 }
 
 /*--------------------------------------------------------------------------*/
-sciEntityType sciGetEntityType(sciPointObj * pobj)
-{
-    return (sciEntityType) 0;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetWidth(sciPointObj * pobj)
 {
     return 0;

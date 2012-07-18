@@ -33,18 +33,6 @@ int get_fractional_font_property(void* _pvCtx, char* pobjUID)
     int iFractionalFont = 0;
     int* fractionalFont = &iFractionalFont;
 
-#if 0
-    if (   sciGetEntityType(pobj) != SCI_SUBWIN
-        && sciGetEntityType(pobj) != SCI_TEXT
-        && sciGetEntityType(pobj) != SCI_LABEL
-        && sciGetEntityType(pobj) != SCI_AXES
-        && sciGetEntityType(pobj) != SCI_LEGEND)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "fractional_font");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
 
     if (fractionalFont == NULL)

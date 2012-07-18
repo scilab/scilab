@@ -33,14 +33,6 @@ int get_arc_drawing_method_property(void* _pvCtx, char* pobjUID)
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     if (piArcDrawingMethod == NULL)

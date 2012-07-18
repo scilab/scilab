@@ -33,14 +33,6 @@ int get_color_range_property(void* _pvCtx, char* pobjUID)
 {
     int* range = NULL;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_FEC)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_COLOR_RANGE__, jni_int_vector, (void **)&range);
 
     if (range == NULL)

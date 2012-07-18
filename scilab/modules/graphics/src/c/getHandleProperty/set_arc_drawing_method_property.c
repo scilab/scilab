@@ -35,14 +35,6 @@ int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, size_t stackPoi
     BOOL status = FALSE;
     int arcDrawingMethod = 0;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if ( !isParameterStringMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "arc_drawing_method");

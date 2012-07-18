@@ -33,8 +33,6 @@
 #include "StringMatrix.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
-
 /* Graphic Context Functions */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 

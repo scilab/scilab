@@ -46,14 +46,6 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_style");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if (    !isStringParamEqual( stackPointer, "v" )
          && !isStringParamEqual( stackPointer, "r" )
          && !isStringParamEqual( stackPointer, "i" ) )

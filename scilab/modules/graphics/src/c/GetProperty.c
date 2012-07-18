@@ -44,23 +44,6 @@
 #include "getGraphicObjectProperty.h"
 #include "FigureModel.h"
 
-/**sciGetEntityType
-* Gets the type of this Scilab graphic object return -1 if bad param !
-*/
-sciEntityType
-sciGetEntityType (sciPointObj * pobj)
-{
-    // TODO
-    // Call assert to force no more call to this method.
-    printf("[ABORT] sciGetEntityType must no more be called.\n");
-    printf("[ABORT] scilab will now abort.\n");
-    abort();
-
-    if (pobj != (sciPointObj *) NULL)
-        return pobj->entitytype;
-    return (sciEntityType) - 1;
-}
-
 /**sciGetNumColors
 * This function gets the number of the color defined in colormap
 */
@@ -135,31 +118,8 @@ BOOL sciisTextEmpty(char* identifier)
 */
 scigMode *sciGetGraphicMode (sciPointObj * pobj)
 {
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return &(pFIGURE_FEATURE (pobj)->gmode);
-            break;
-        case SCI_SUBWIN:
-            return &(pSUBWIN_FEATURE (pobj)->gmode);
-            break;
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        case SCI_UIMENU:
-        default:
-            return (scigMode *) NULL;
-            break;
-    }
+    // FIXME: remove me
+    abort();
     return (scigMode *) NULL;
 }
 
@@ -169,33 +129,8 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
 BOOL
 sciGetZooming (sciPointObj * pobj)
 {
-    switch (sciGetEntityType (pobj))
-    {
-        case SCI_FIGURE:
-            return (sciGetGraphicMode (pobj))->zooming;
-            break;
-        case SCI_SUBWIN:
-            /* the value is inherited by the parent */
-            return (sciGetGraphicMode (pobj))->zooming;
-            break;
-        case SCI_TEXT:
-        case SCI_LEGEND:
-        case SCI_ARC:
-        case SCI_SEGS:
-        case SCI_FEC:
-        case SCI_GRAYPLOT:
-        case SCI_POLYLINE:
-        case SCI_RECTANGLE:
-        case SCI_SURFACE:
-        case SCI_AXES:
-        case SCI_AGREG:
-        case SCI_UIMENU:
-        case SCI_LABEL: /* F.Leray 28.05.04 */
-        default:
-            printSetGetErrorMessage("zoom");
-            return FALSE;
-            break;
-    }
+    // FIXME: remove me
+    abort();
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/

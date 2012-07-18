@@ -137,14 +137,6 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR ;
     }
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags") ;
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
     if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
     {
         Scierror(999, _("Wrong size for '%s' property: Must be %s or %s.\n"), "log_flags", "2", "3");

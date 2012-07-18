@@ -35,14 +35,6 @@ int get_data_mapping_property(void* _pvCtx, char* pobjUID)
     int iDataMapping = 0;
     int* piDataMapping = &iDataMapping;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_GRAYPLOT)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
 
     if (piDataMapping == NULL)

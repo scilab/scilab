@@ -37,18 +37,6 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     char* type = NULL;
     double* position = NULL;
 
-  /* Deactivated for now */
-#if 0
-    if (sciGetEntityType(pobj) == SCI_UIMENU )
-    {
-        return sciReturnDouble( pUIMENU_FEATURE(pobj)->MenuPosition ) ;
-    }
-    else if (sciGetEntityType(pobj) == SCI_UICONTROL)
-    {
-        return  GetUicontrolPosition(pobj);
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
 
     /* Special figure case */

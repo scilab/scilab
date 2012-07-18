@@ -43,14 +43,6 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
     if (strcmp(type, __GO_AXES__) != 0)

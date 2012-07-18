@@ -37,14 +37,6 @@ int get_zoom_box_property(void* _pvCtx, char* pobjUID)
     int iZoomEnabled = 0;
     int* zoomEnabled = &iZoomEnabled;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&zoomEnabled);
 
     getGraphicObjectProperty(pobjUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&zoomBox);

@@ -38,14 +38,6 @@ int get_segs_color_property(void* _pvCtx, char* pobjUID)
     int *piNbSegs = &iNbSegs;
     int status = -1;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color") ;
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, jni_int_vector, (void **)&segsColors);
 
     if (segsColors == NULL)

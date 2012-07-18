@@ -35,14 +35,6 @@ int get_colored_property(void* _pvCtx, char* pobjUID)
     int colored = 0;
     int* piColored = &colored;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE (pobj)->ptype == 0 )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"colored");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_COLORED__, jni_bool, (void **)&piColored);
 
     if (piColored == NULL)

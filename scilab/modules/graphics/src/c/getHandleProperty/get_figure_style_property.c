@@ -29,17 +29,6 @@
 /*------------------------------------------------------------------------*/
 int get_figure_style_property(void* _pvCtx, char* pobjUID)
 {
-  //
-  // FIXME
-  //
-#if 0
-  /* might be get("figure_style") or f.figure_style */
-  if ( pobj != NULL && sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_style");
-    return -1;
-  }
-#endif
   /* no more old style */
   sciReturnString(_pvCtx, "new") ;
   return 0 ;

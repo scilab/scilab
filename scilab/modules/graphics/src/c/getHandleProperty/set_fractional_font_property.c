@@ -34,17 +34,6 @@ int set_fractional_font_property(void* _pvCtx, char* pobjUID, size_t stackPointe
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
-#if 0
-    if (   sciGetEntityType(pobj) != SCI_SUBWIN
-        && sciGetEntityType(pobj) != SCI_TEXT
-        && sciGetEntityType(pobj) != SCI_LABEL
-        && sciGetEntityType(pobj) != SCI_AXES
-        && sciGetEntityType(pobj) != SCI_LEGEND)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"fractional_font");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
 
     b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "fractional_font");
     if(b == NOT_A_BOOLEAN_VALUE)

@@ -50,14 +50,6 @@ int set_legend_location_property(void* _pvCtx, char* pobjUID, size_t stackPointe
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_LEGEND )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     legendLocation = getStringFromStack(stackPointer);
 
     for (i = 0; i < 11; i++)

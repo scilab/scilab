@@ -9,7 +9,6 @@ sciSetMarkForeground
 sciGetBackground
 sciSetMarkSize
 sciSetColormap
-sciGetEntityType
 sciDeleteWindow
 sciGetRelationship
 sciInitScreenPosition

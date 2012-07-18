@@ -591,8 +591,6 @@ int sciInitGraphicMode(char *pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-    //  switch (sciGetEntityType (pobj))
-
     /*
      * The GO_FIGURE block is never reached as InitFigureModel
      * is not called at all (was previously called by

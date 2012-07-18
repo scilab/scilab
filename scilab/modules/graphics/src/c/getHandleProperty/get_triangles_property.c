@@ -36,14 +36,6 @@ int get_triangles_property(void* _pvCtx, char* pobjUID)
     int numTriangles = 0;
     int *piNumTriangles = &numTriangles;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_FEC )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void **)&triangles);
 
     if (triangles == NULL)

@@ -40,14 +40,6 @@ int get_labels_font_style_property(void* _pvCtx, char* pobjUID)
     int iFontStyle = 0;
     int* piFontStyle = &iFontStyle;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SUBWIN && sciGetEntityType( pobj ) != SCI_FIGURE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style");
-        return -1 ;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void **)&piFontStyle);
 
     if (piFontStyle == NULL)

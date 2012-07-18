@@ -31,25 +31,6 @@ int get_bar_layout_property(void* _pvCtx, char* pobjUID)
     //
     // FIXME
     //
-#if 0
-    if ( sciGetEntityType (pobj) == SCI_POLYLINE )
-    {
-        if( pPOLYLINE_FEATURE (pobj)->bar_layout == 0 )
-        {
-            /* 0 grouped; 1 stacked */
-            return sciReturnString(_pvCtx, "grouped" ) ;
-        }
-        else
-        {
-            return sciReturnString(_pvCtx, "stacked" ) ;
-        }
-    }
-    else
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_layout") ;
-        return -1 ;
-    }
-#endif
     return -1 ;
 }
 /*------------------------------------------------------------------------*/

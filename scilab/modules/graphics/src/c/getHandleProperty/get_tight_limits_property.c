@@ -34,14 +34,6 @@ int get_tight_limits_property(void* _pvCtx, char* pobjUID)
     int iTightLimits = 0;
     int* piTightLimits = &iTightLimits;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
-        return -1 ;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTightLimits);
 
     if (piTightLimits == NULL)

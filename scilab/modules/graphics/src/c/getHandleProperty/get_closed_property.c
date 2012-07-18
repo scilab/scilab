@@ -35,14 +35,6 @@ int get_closed_property(void* _pvCtx, char* pobjUID)
     int iClosed = 0;
     int* piClosed = &iClosed;
 
-#if 0
-    if(sciGetEntityType(pobj) != SCI_POLYLINE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"closed");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_CLOSED__, jni_bool, (void **)&piClosed);
 
     if (piClosed == NULL)

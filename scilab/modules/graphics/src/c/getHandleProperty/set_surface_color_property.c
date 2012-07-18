@@ -29,57 +29,7 @@
 /*------------------------------------------------------------------------*/
 int set_surface_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-
     // FIXME
-#if 0
-    if ( !isParameterDoubleMatrix( valueType ) )
-    {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "surface_color");
-        return SET_PROPERTY_ERROR ;
-    }
-
-    if (sciGetEntityType (pobj) != SCI_SURFACE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_color") ;
-        return SET_PROPERTY_ERROR ;
-    }
-
-    if ( pSURFACE_FEATURE(pobj)->typeof3d == SCI_PARAM3D1 )
-    {
-        if (pSURFACE_FEATURE (pobj)->dimzy != nbRow * nbCol )
-        {
-            Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "surface_color", pSURFACE_FEATURE (pobj)->dimzy);
-            return SET_PROPERTY_ERROR ;
-        }
-        copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->zcol, pSURFACE_FEATURE (pobj)->dimzy ) ;
-    }
-    else if ( pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D && pSURFACE_FEATURE (pobj)->flagcolor >= 2 )
-    {
-        int N;
-        if ( pSURFACE_FEATURE(pobj)->flagcolor == 2 )
-        {
-            N = pSURFACE_FEATURE (pobj)->dimzy ;
-        }
-        else
-        {
-            N = pSURFACE_FEATURE(pobj)->dimzy * pSURFACE_FEATURE (pobj)->dimzx;
-        }
-        if ( nbRow * nbCol != N)
-        {
-            Scierror(999, _("Argument #%d must have %d elements.\n"),2,N) ;
-            Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "surface_color", N);
-            return SET_PROPERTY_ERROR ;
-        }
-        copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE (pobj)->zcol, N ) ;
-    }
-    else
-    {
-        Scierror(999, _("%s cannot be set in this case.\n"),"'surface_color'");
-        return SET_PROPERTY_ERROR ;
-    }
-
-    return SET_PROPERTY_SUCCEED ;
-#endif
     return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
