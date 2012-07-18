@@ -58,6 +58,7 @@ host_triplet = @host@
 @JAVASCI_TRUE@am__append_2 = javasci
 @GUI_TRUE@am__append_3 = $(GUI_LIBS)
 @GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
+@GUI_TRUE@am__append_5 = $(top_builddir)/modules/types/libscitypes-java.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -120,9 +121,8 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libscilab_la_DEPENDENCIES = $(am__append_3) $(am__append_4) \
-	$(EXTERNAL_LIBS) \
-	$(top_builddir)/modules/types/libscitypes-java.la \
-	$(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la \
+	$(am__append_5)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -589,9 +589,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 # Core modules
 libscilab_la_LIBADD = $(am__append_3) $(am__append_4) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) \
-	$(top_builddir)/modules/types/libscitypes-java.la \
-	$(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la \
+	$(am__append_5)
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 

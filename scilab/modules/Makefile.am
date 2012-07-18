@@ -244,7 +244,10 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes-java.la $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)  $(top_builddir)/modules/libscilab-cli.la
+if GUI
+libscilab_la_LIBADD +=$(top_builddir)/modules/types/libscitypes-java.la
+endif
 
 ################## libscilab-cli  ##################
 

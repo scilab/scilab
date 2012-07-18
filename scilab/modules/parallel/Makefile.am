@@ -26,7 +26,7 @@ libsciparallel_la_CFLAGS= $(OPENMP_CFLAGS) \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/localization/includes
 
 libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
