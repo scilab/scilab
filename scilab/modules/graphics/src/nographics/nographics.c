@@ -120,12 +120,6 @@ int sciAddNewHandle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParent(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack(size_t stackPointer)
 {
     return (unsigned long)(-1);
