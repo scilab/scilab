@@ -1467,7 +1467,7 @@ Obsolete Functions
    removed in Scilab 5.4.1.
 
 * 'showalluimenushandles' function (graphics) was undocumented. This function is
-  obsolete and will be removed on 5.4.
+  obsolete and will be removed on 5.4.1.
   Use set(get(0), "ShowHiddenHandles", "on"); instead.
 
 * 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use
