@@ -20,7 +20,7 @@
     <callback instruction="org.scilab.modules.gui.datatip.DatatipManagerMode.setDatatipManagerModeToggle" type="3"/>
   </button>
   <!-- Scilab Graphic Editor -->
-  <button icon="plot" tooltiptext="Initialize the graphics editor">
+  <button icon="plot" tooltiptext="Open the graphics editor">
     <callback instruction="org.scilab.modules.gui.ged.StartGED.quickGED" type="3"/>
   </button>
   <separator/>
