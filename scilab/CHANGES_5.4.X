@@ -1049,6 +1049,8 @@ Bug Fixes
 
 * Bug #11289 fixed - swap_handles function modified the properties.
 
+* Bug #11461 fixed - api_list was not able to create lists and sub lists with undefined items.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
