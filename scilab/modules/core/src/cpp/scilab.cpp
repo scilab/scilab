@@ -402,12 +402,14 @@ static int interactiveMain(void)
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
 #ifndef WITH_GUI
+#ifndef _MSC_VER
     if (getScilabMode() != SCILAB_NWNI)
     {
         fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or us the -nwni option.\n");
         initConsoleMode(ATTR_RESET);
         exit(1);
     }
+#endif
 #endif
 
     //    checkForLinkerErrors();
