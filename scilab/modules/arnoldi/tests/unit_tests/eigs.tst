@@ -20,7 +20,6 @@ assert_checkfalse(execstr("eigs(%inf)", "errcatch") == 0);
 assert_checkfalse(execstr("eigs(%eps)", "errcatch") == 0);
 
 assert_checkfalse(execstr("eigs([%f %f])", "errcatch") == 0);
-assert_checkfalse(execstr("eigs([%f %f])", "errcatch") == 0);
 assert_checkfalse(execstr("eigs(sparse([%f %f]))", "errcatch") == 0);
 assert_checkfalse(execstr("eigs([1 2])", "errcatch") == 0);
 assert_checkfalse(execstr("eigs([1; 2])", "errcatch") == 0);
@@ -571,6 +570,7 @@ d1 = eigs(fn, n, [], k, 'LM', opts );
 d0 = spec(full(A));
 assert_checkalmostequal(d1, d0(($-k+1):$), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -581,6 +581,7 @@ opts.issym = 1;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(d1, d0(1:k), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -598,6 +599,7 @@ A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(n-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(n-1,1));
 A = sparse(A);
 
+clear fn
 function y = fn(x)
     y = A * x;
 endfunction
@@ -609,6 +611,7 @@ d1 = eigs(fn, n, [], k, 'LM', opts );
 d0 = gsort(spec(full(A)));
 assert_checkalmostequal(abs(d1), abs(d0(k+2-1:-1:2)), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -619,6 +622,7 @@ opts.issym = 0;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(abs(d1), abs(d0($-k:$-1)), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -637,6 +641,7 @@ A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(n-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(n-1,1));
 A = sparse(A);
 
+clear fn
 function y = fn(x)
     y = A * x;
 endfunction
@@ -650,7 +655,7 @@ r = gsort(real(d0));
 im = gsort(imag(d0));
 assert_checkalmostequal(abs(d1), abs(d0(k:-1:1)), 1.e-10);
 
-
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -661,6 +666,7 @@ opts.issym = 0;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(abs(d1), abs(d0($-k+1:$)), 1.e-10); 
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -671,7 +677,8 @@ opts.issym = 0;
 d1 = eigs(fn, n, [], k, 2, opts );
 assert_checkalmostequal(gsort(abs(d1)), gsort(abs(d0($-1:-1:$-k))), 1.e-10);
 
-
+
+
 clear opts
 // Full matrix tests
 n = 20;
@@ -680,6 +687,7 @@ A            = diag(10*ones(n,1));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(n-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6*ones(n-1,1));
 
+clear fn
 function y = fn(x)
     y = A * x;
 endfunction
@@ -691,6 +699,7 @@ d1 = eigs(fn, n, [], k, 'LM', opts );
 d0 = spec(A);
 assert_checkalmostequal(d1, d0(($-k+1):$), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -701,6 +710,7 @@ opts.issym = 1;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(d1, d0(1:k), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -717,6 +727,7 @@ A            = diag((1:n));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(n-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(n-1,1));
 
+clear fn
 function y = fn(x)
     y = A * x;
 endfunction
@@ -728,6 +739,7 @@ d1 = eigs(fn, n, [], k, 'LM', opts );
 d0 = gsort(spec(A));
 assert_checkalmostequal(abs(d1), abs(d0(k+2-1:-1:2)), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -738,6 +750,7 @@ opts.issym = 0;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(abs(d1), abs(d0($-k:$-1)), 1.e-10);
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -755,6 +768,7 @@ A            = diag((1:n) + %i * ones(1,n));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(n-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(n-1,1));
 
+clear fn
 function y = fn(x)
     y = A * x;
 endfunction
@@ -768,7 +782,7 @@ r = gsort(real(d0));
 im = gsort(imag(d0));
 assert_checkalmostequal(abs(d1), abs(d0(k:-1:1)), 1.e-10);
 
-
+clear fn
 function y = fn(x)
     y = A \x;
 endfunction
@@ -779,6 +793,7 @@ opts.issym = 0;
 d1 = eigs(fn, n, [], k, 'SM', opts );
 assert_checkalmostequal(abs(d1), abs(d0($-k+1:$)), 1.e-10); 
 
+clear fn
 function y = fn(x)
     y = (A - 2 * speye(n,n)) \x;
 endfunction
@@ -788,4 +803,6 @@ opts.issym = 0;
 
 d1 = eigs(fn, n, [], k, 2, opts );
 assert_checkalmostequal(gsort(abs(d1)), gsort(abs(d0($-1:-1:$-k))), 1.e-10);
+
+
 
