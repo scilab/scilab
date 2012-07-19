@@ -22,6 +22,7 @@
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
+#include "BOOL.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

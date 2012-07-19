@@ -27,6 +27,7 @@
 #ifndef __SCI_BUILD__
 #define __SCI_BUILD__
 
+#include "dynlib_graphics.h"
 #include "BOOL.h"
 #include "ObjectStructure.h"
 
