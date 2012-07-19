@@ -39,7 +39,6 @@
 #include "MALLOC.h"
 #include "Interaction.h"
 #include "InitObjects.h"
-#include "ObjectStructure.h"
 
 /*--------------------------------------------------------------------------*/
 

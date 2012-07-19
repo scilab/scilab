@@ -21,7 +21,6 @@
 
 #include "dynlib_graphics.h"
 #include "machine.h" /* C2F */
-#include "ObjectStructure.h"
 #include "StringMatrix.h"
 
 /**

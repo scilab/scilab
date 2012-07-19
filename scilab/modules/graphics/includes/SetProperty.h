@@ -32,7 +32,6 @@
 #define __SCI_SET_PROPERTY__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 #include "BOOL.h"
 
 GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */

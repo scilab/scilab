@@ -29,7 +29,6 @@
 #define __SCI_GET_PROPERTY__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 #include "StringMatrix.h"
 #include "BOOL.h"
 

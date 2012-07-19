@@ -24,8 +24,6 @@ extern "C" {
 #endif
 
 #include "dynlib_renderer.h"
-#include "ObjectStructure.h"
-#include "BOOL.h"
 
 /**
  * Start interactive zoom on given figure

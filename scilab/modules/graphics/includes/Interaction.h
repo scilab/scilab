@@ -24,7 +24,6 @@
 #define __SCI_INTERACTION__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 #include "BOOL.h"
 
 /**

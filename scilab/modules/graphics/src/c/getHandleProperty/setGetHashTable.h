@@ -23,7 +23,6 @@
 #include <stdlib.h>
 
 #include "hashtable.h"
-#include "ObjectStructure.h"
 
 /*--------------------------------------------------------------------------*/
 /**
