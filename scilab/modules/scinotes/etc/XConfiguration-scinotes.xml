@@ -3,12 +3,12 @@
   <body>
     <scinotes-preferences restart-reopen="true" add-line-termination="true" number-of-recently-open="5" encoding="utf-8" eol="Unix (LF)" scinotes="true" cmd="" macro="" external-cmd="true"/>
   </body>
-  <display title="Display">
+  <display title="_(Display)">
     <body>
       <scinotes-display highlight-current-line="false" current-line-color="#FACADE" show-line-numbers="true" wrap-lines="true" keywords-colorization="true" highlight-brackets="true" brackets-color="#E40087" brackets-highlightment="Framed" brackets-onmouseover="true" highlight-keywords="true" keywords-color="#FFF3D2" keywords-highlightment="Filled" keywords-onmouseover="true" whereami="false" tab-size="4" tab-representation="chevrons" use-spaces="true" indent-size="4" automatic-indent="true" auto-complete-openers="true" auto-complete-keywords="true"/>
     </body>
   </display>
-  <header title="Header">
+  <header title="_(Header)">
     <body>
       <scinotes-header enable="false"><![CDATA[// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) {$current-year} - Scilab Enterprises - Mr Puffin
@@ -24,7 +24,7 @@
 ]]></scinotes-header>
     </body>
   </header>
-  <autosave title="Autosave">
+  <autosave title="_(Autosave)">
     <body>
       <scinotes-autosave enable="true" save-every="5" automatic-delete="true" append-filename="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
     </body>

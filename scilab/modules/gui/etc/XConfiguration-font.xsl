@@ -21,11 +21,11 @@
     </xsl:variable>
     <xsl:variable name="desktop-font" select="nodeset($core-desktop-font)/font"/>
 
-    <Title text="Desktop font">
+    <Title text="_(Desktop font)">
       <VBox>
         <HBox>
           <xsl:call-template name="BooleanCheckBox">
-            <xsl:with-param name="text" select="'Use system font'"/>
+            <xsl:with-param name="text" select="'_(Use system font)'"/>
             <xsl:with-param name="attr-name" select="'system'"/>
           </xsl:call-template>
           <Glue/>
@@ -41,7 +41,7 @@
           </xsl:choose>
         </xsl:variable>
         <Grid>
-          <Label text="Desktop text font: " gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
+          <Label text="_(Desktop text font: )" gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
           <Panel gridx="2" gridy="1" weightx="1"/>
           <FontSelector gridx="3" gridy="1" weightx="0" anchor="above_baseline"
                         font-name="{@font-name}"
@@ -57,7 +57,7 @@
       </VBox>
     </Title>
     <VSpace height="10"/>
-    <Title text="Custom font">
+    <Title text="_(Custom font)">
       <Grid>
         <List gridx="1" gridy="1" weightx="0" item="{@item}" nb-visible-rows="5" listener="ActionListener">
           <actionPerformed choose="item">
@@ -71,16 +71,16 @@
         <xsl:variable name="var" select="@item"/>
         <xsl:for-each select="item[@name=$var]">
           <VBox gridx="3" gridy="1" weightx="0" anchor="North">
-	    <Label text="Fonts to use:"/>
+	    <Label text="_(Fonts to use:)"/>
             <HBox>
               <xsl:call-template name="BooleanRadio">
-                <xsl:with-param name="text" select="'Desktop text font'"/>
+                <xsl:with-param name="text" select="'_(Desktop text font)'"/>
                 <xsl:with-param name="attr-name" select="'desktop'"/>
               </xsl:call-template>
             </HBox>
             <HBox>
               <xsl:call-template name="InvertedRadio">
-                <xsl:with-param name="text" select="'Custom:'"/>
+                <xsl:with-param name="text" select="'_(Custom:)'"/>
                 <xsl:with-param name="attr-name" select="'desktop'"/>
               </xsl:call-template>
             </HBox>
