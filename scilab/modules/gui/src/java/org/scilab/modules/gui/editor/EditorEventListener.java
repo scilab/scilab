@@ -62,16 +62,6 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     ArrayList<String> getMarkersUid = new ArrayList<String>();
     ArrayList<String> getPolylinesUid = new ArrayList<String>();
     Integer indexToMove;
-    Integer[] newDatatipPosition = { 0 , 0 };
-    public static String axesUid;
-    double[] pixelMouseCoordDouble = { 0.0 , 0.0 };
-    double[] datatipGraphicCoord = { 0.0 , 0.0 };
-    double[] clickGraphicCoord = { 0.0 , 0.0 };
-    ArrayList<Double> saveDatatipCoord;
-    ArrayList<String> saveDatatipUid;
-    ArrayList<String> saveMarkerUid;
-    Integer[] newClickPosition = { 0 , 0 };
-    public static Integer indexToDelete;
 
 
     Editor editor;
@@ -80,14 +70,13 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
     public EditorEventListener(String uid) {
         windowUid = uid;
-
         editor = EditorManager.newEditor(uid);
         ep = new EntityPicker();
         DatatipManagerMode.setFigure(uid);
+    }
 
-        saveDatatipCoord = new ArrayList<Double>();
-        saveDatatipUid = new ArrayList<String>();
-        saveMarkerUid = new ArrayList<String>();
+    public void onExit() {
+        EditorManager.deleteEditor(editor.getFigureUid());
     }
 
     public void keyPressed(KeyEvent arg0) {
@@ -100,10 +89,6 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                 }
             }
         }
-    }
-
-    public void onExit() {
-        EditorManager.deleteEditor(editor.getFigureUid());
     }
 
     public void keyReleased(KeyEvent arg0) {

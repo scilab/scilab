@@ -50,7 +50,7 @@ import org.scilab.modules.localization.Messages;
 public class Editor {
 
     JPopupMenu menu;
-    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove, ged;
+    JMenuItem copy, cut, paste, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove, ged, editdata;
     JMenu labels, legends;
 
     EntityPicker.LegendInfo selectedLegend = null;
@@ -252,6 +252,8 @@ public class Editor {
         remove.setToolTipText(Messages.gettext("Remove a legend of current selected item"));
         ged = new JMenuItem(Messages.gettext("Open Quick Editor"));
         ged.setToolTipText(Messages.gettext("Initialize the graphics editor"));
+        editdata = new JMenuItem(Messages.gettext("Edit curve data"));
+        editdata.setToolTipText(Messages.gettext("Enables curve data modify"));
 
 
         copy.addActionListener(new ActionListener() {
@@ -338,6 +340,12 @@ public class Editor {
             }
         });
 
+        editdata.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                setDataModifyEnabled(true);
+            }
+        });
+
         labels.add(labelX);
         labels.add(labelY);
         labels.add(labelZ);
@@ -357,6 +365,8 @@ public class Editor {
         menu.addSeparator();
         menu.add(labels);
         menu.add(legends);
+        menu.add(editdata);
+        menu.addSeparator();
         menu.add(ged);
     }
 
@@ -385,6 +395,7 @@ public class Editor {
                 delete.setEnabled(true);
                 hide.setEnabled(true);
                 legends.setEnabled(true);
+                editdata.setEnabled(true);
             }
             delete.setEnabled(true);
         } else {
@@ -393,6 +404,7 @@ public class Editor {
             delete.setEnabled(false);
             hide.setEnabled(false);
             legends.setEnabled(false);
+            editdata.setEnabled(false);
         }
     }
 

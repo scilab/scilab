@@ -122,7 +122,7 @@ public class DataEditor {
             markEnabled = true;
             markStyle = 11;
             markSizeUnit = 0;
-            markSize = 4;
+            markSize = 6;
             canRestore = true;
             return this;
         }
