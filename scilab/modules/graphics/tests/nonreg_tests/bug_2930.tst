@@ -66,6 +66,7 @@ curAxe.rotation_angles=[152 62];
 K=20:4:n;
 realtimeinit(0.1);//set time step (0.1 seconds)  and date reference
 for k=2:size(K,'*')
+  drawlater();
   realtime(k);
   //compute more facets
   u=U(K(k-1):K(k));
@@ -79,9 +80,9 @@ for k=2:size(K,'*')
   data.z=[data.z zz];
 
   e.data=data;// update the Fac3d entity
-  show_pixmap();//send  buffer to screen
+  drawnow();
 end
-	
+
 // Reset initial properties
 //--------------------------------
 toolbar(id,tb);

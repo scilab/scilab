@@ -81,19 +81,19 @@ c( 9)= 35;
 c(10)= 65;
 
 hf = scf (1);
-hf.pixmap = "on";
 hf.color_map = jetcolormap (100);
 ha = gca ();
 ha.view = "3d";
 ha.tight_limits = "on";
 ha.isoview = "on";
 plot3d (tx, ty, list (tz,c));
-    
+
 alpha = 80;
-for alpha = -250:0.1:0 do
-  ha.rotation_angles(2) = alpha;
-  show_pixmap ();
-end;      
-   
+for alpha = -250:0.1:0
+    drawlater();
+    ha.rotation_angles(2) = alpha;
+    drawnow();
+end
+
 // chack that 5 facets of the cube are correctly drawn.
 

@@ -27,18 +27,18 @@
 int sci_draw( char * fname, unsigned long fname_len )
 {
 
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
+    CheckRhs(0, 1) ;
+    CheckLhs(0, 1) ;
 
-  if (getWarningMode())
-  {
-      sciprint(_("WARNING: %s\n"), _("draw function is obsolete."));
-      sciprint(_("WARNING: %s\n"), _("It will be removed after Scilab 5.4.0."));
-      sciprint(_("WARNING: %s\n"), _("Please see documentation for more details."));
-  }
+    if (getWarningMode())
+    {
+        sciprint(_("%s: Function %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: Please see documentation for more details.\n"), _("Warning"));
+        sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+    }
 
-  LhsVar(1) = 0;
-  PutLhsVar();
-  return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

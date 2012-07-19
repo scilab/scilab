@@ -191,5 +191,4 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
   end
   set('current_entity', a);
   fig.immediate_drawing = v;
-  draw(fig);
 endfunction
