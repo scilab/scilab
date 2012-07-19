@@ -19,6 +19,7 @@
 #include "os_wcsdup.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
+	#include <Windows.h> /* GetShortPathNameW */
 	#ifndef MAX_PATH_SHORT
 		#define MAX_PATH_SHORT 260
 	#endif

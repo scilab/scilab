@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA/ENPC
 * Copyright (C) DIGITEO - 2011 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -17,7 +17,7 @@
 
 extern "C"
 {
-#include <string.h> 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "dynamic_link.h"
@@ -35,6 +35,23 @@ extern "C"
 #ifdef _MSC_VER
 #include "getenvc.h"
 #include "dllinfo.h"
+
+/* struct used by fortran (F2C) */
+/* required to be defined in C */
+
+typedef struct {
+    char name[nlgh+1];
+} CINTER_struct;
+
+__declspec (dllexport) CINTER_struct C2F(cinter);
+
+/* struct used by fortran (F2C) */
+/* required to be defined in C */
+typedef struct {
+    int ibuf[lsiz];
+} IBFU_struct;
+__declspec (dllexport) CINTER_struct C2F(ibfu);
+
 #endif
 #include "getshortpathname.h"
 #include "BOOL.h"

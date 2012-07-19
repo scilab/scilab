@@ -54,16 +54,7 @@
     <ClCompile Include="formatnumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\intdisp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\intprint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="print.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prntid.c">
@@ -110,16 +101,7 @@
     <f2c_rule Include="formatnumber.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\intdisp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\intprint.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="print.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="prntid.f">

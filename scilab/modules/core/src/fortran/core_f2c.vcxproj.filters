@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="allops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="allowptr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
     <ClCompile Include="btofm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clause.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clunit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cmplxt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="command.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="compcl.c">
@@ -93,9 +84,6 @@
     <ClCompile Include="extlarg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fact.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="find.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,9 +97,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="funnam.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="funs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getch.c">
@@ -174,19 +159,10 @@
     <ClCompile Include="lst2vars.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="misops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mkindx.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mklist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mrknmd.c">
@@ -196,9 +172,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ptover.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ptrback.c">
@@ -249,9 +222,6 @@
     <ClCompile Include="stacki2d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stackp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stackr2d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,13 +252,7 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c">
@@ -298,12 +262,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_exists.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_global.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ieee.c">
@@ -324,9 +282,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -343,9 +298,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="allops.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="allowptr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -361,9 +313,6 @@
     <f2c_rule Include="btofm.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="clause.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="clunit.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -371,9 +320,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="cmplxt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="command.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="compcl.f">
@@ -415,9 +361,6 @@
     <f2c_rule Include="extlarg.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="fact.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="find.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -431,9 +374,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="funnam.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="funs.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="getch.f">
@@ -496,19 +436,10 @@
     <f2c_rule Include="lst2vars.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="macro.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="misops.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="mkindx.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="mklist.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mname.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="mrknmd.f">
@@ -518,9 +449,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="prompt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ptover.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="ptrback.f">
@@ -571,9 +499,6 @@
     <f2c_rule Include="stacki2d.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="stackp.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="stackr2d.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -604,13 +529,7 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f">
@@ -620,12 +539,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_exists.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_global.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ieee.f">
@@ -644,9 +557,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f">

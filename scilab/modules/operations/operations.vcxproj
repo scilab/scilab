@@ -94,7 +94,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -128,7 +128,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -160,7 +160,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -197,7 +197,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -24,9 +24,6 @@
     <ClCompile Include="extractfields.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="followpath.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="forcerhs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,16 +33,7 @@
     <ClCompile Include="insertfield.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="intl_e.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="intl_i.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lsstyp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lstops.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mlist.c">
@@ -60,9 +48,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_definedfields.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getfield.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_list.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,15 +57,9 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lstsize.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setfield.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="extractfields.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="followpath.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="forcerhs.f">
@@ -92,16 +71,7 @@
     <f2c_rule Include="insertfield.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="intl_e.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="intl_i.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lsstyp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="lstops.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mlist.f">
@@ -116,9 +86,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_definedfields.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getfield.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_list.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -126,9 +93,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lstsize.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setfield.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

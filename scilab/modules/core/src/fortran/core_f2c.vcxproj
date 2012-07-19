@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -321,34 +321,26 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dispbpt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_exists.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_global.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ieee.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_intppty.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_iserror.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c" />
     <ClCompile Include="..\c\withf2c.c" />
-    <ClCompile Include="allops.c" />
     <ClCompile Include="allowptr.c" />
     <ClCompile Include="basnms.c" />
     <ClCompile Include="bexec.c" />
     <ClCompile Include="btof.c" />
     <ClCompile Include="btofm.c" />
-    <ClCompile Include="clause.c" />
     <ClCompile Include="clunit.c" />
     <ClCompile Include="cmdstr.c" />
     <ClCompile Include="cmplxt.c" />
-    <ClCompile Include="command.c" />
     <ClCompile Include="compcl.c" />
     <ClCompile Include="compil.c" />
     <ClCompile Include="copyvar.c" />
@@ -362,13 +354,11 @@ cd ..
     <ClCompile Include="error.c" />
     <ClCompile Include="expsum.c" />
     <ClCompile Include="extlarg.c" />
-    <ClCompile Include="fact.c" />
     <ClCompile Include="find.c" />
     <ClCompile Include="findequal.c" />
     <ClCompile Include="folhp.c" />
     <ClCompile Include="ftob.c" />
     <ClCompile Include="funnam.c" />
-    <ClCompile Include="funs.c" />
     <ClCompile Include="getch.c" />
     <ClCompile Include="getfun.c" />
     <ClCompile Include="getfunction.c" />
@@ -389,15 +379,11 @@ cd ..
     <ClCompile Include="istrue.c" />
     <ClCompile Include="itosci.c" />
     <ClCompile Include="lst2vars.c" />
-    <ClCompile Include="macro.c" />
-    <ClCompile Include="misops.c" />
     <ClCompile Include="mkindx.c" />
     <ClCompile Include="mklist.c" />
-    <ClCompile Include="mname.c" />
     <ClCompile Include="mrknmd.c" />
     <ClCompile Include="nextj.c" />
     <ClCompile Include="prompt.c" />
-    <ClCompile Include="ptover.c" />
     <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="ref2val.c" />
@@ -414,7 +400,6 @@ cd ..
     <ClCompile Include="stackg.c" />
     <ClCompile Include="stackgl.c" />
     <ClCompile Include="stacki2d.c" />
-    <ClCompile Include="stackp.c" />
     <ClCompile Include="stackr2d.c" />
     <ClCompile Include="storeglobal.c" />
     <ClCompile Include="termf.c" />
@@ -431,33 +416,25 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dispbpt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_exists.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_global.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ieee.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_intppty.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_iserror.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f" />
-    <f2c_rule Include="allops.f" />
     <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="basnms.f" />
     <f2c_rule Include="bexec.f" />
     <f2c_rule Include="btof.f" />
     <f2c_rule Include="btofm.f" />
-    <f2c_rule Include="clause.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="cmdstr.f" />
     <f2c_rule Include="cmplxt.f" />
-    <f2c_rule Include="command.f" />
     <f2c_rule Include="compcl.f" />
     <f2c_rule Include="compil.f" />
     <f2c_rule Include="copyvar.f" />
@@ -471,13 +448,11 @@ cd ..
     <f2c_rule Include="error.f" />
     <f2c_rule Include="expsum.f" />
     <f2c_rule Include="extlarg.f" />
-    <f2c_rule Include="fact.f" />
     <f2c_rule Include="find.f" />
     <f2c_rule Include="findequal.f" />
     <f2c_rule Include="folhp.f" />
     <f2c_rule Include="ftob.f" />
     <f2c_rule Include="funnam.f" />
-    <f2c_rule Include="funs.f" />
     <f2c_rule Include="getch.f" />
     <f2c_rule Include="getfun.f" />
     <f2c_rule Include="getfunction.f" />
@@ -498,15 +473,11 @@ cd ..
     <f2c_rule Include="istrue.f" />
     <f2c_rule Include="itosci.f" />
     <f2c_rule Include="lst2vars.f" />
-    <f2c_rule Include="macro.f" />
-    <f2c_rule Include="misops.f" />
     <f2c_rule Include="mkindx.f" />
     <f2c_rule Include="mklist.f" />
-    <f2c_rule Include="mname.f" />
     <f2c_rule Include="mrknmd.f" />
     <f2c_rule Include="nextj.f" />
     <f2c_rule Include="prompt.f" />
-    <f2c_rule Include="ptover.f" />
     <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="ref2val.f" />
@@ -523,7 +494,6 @@ cd ..
     <f2c_rule Include="stackg.f" />
     <f2c_rule Include="stackgl.f" />
     <f2c_rule Include="stacki2d.f" />
-    <f2c_rule Include="stackp.f" />
     <f2c_rule Include="stackr2d.f" />
     <f2c_rule Include="storeglobal.f" />
     <f2c_rule Include="termf.f" />

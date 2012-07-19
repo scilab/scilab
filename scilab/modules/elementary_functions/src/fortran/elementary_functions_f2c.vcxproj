@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -89,7 +89,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -112,7 +114,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,6 +141,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -164,7 +167,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -190,7 +193,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -214,7 +219,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -243,6 +248,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -269,7 +275,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -294,8 +300,6 @@ cd ..
     <ClCompile Include="corth.c" />
     <ClCompile Include="cortr.c" />
     <ClCompile Include="coshin.c" />
-    <ClCompile Include="cupro.c" />
-    <ClCompile Include="cuproi.c" />
     <ClCompile Include="cusum.c" />
     <ClCompile Include="d1mach.c" />
     <ClCompile Include="dad.c" />
@@ -315,9 +319,7 @@ cd ..
     <ClCompile Include="dmmul.c" />
     <ClCompile Include="dmmul1.c" />
     <ClCompile Include="dmprod.c" />
-    <ClCompile Include="dmsum.c" />
     <ClCompile Include="drdiv.c" />
-    <ClCompile Include="dsearch.c" />
     <ClCompile Include="dset.c" />
     <ClCompile Include="dsort.c" />
     <ClCompile Include="dsum.c" />
@@ -352,10 +354,10 @@ cd ..
     <ClCompile Include="magic.c" />
     <ClCompile Include="mtran.c" />
     <ClCompile Include="nearfloat.c" />
+    <ClCompile Include="old_pythag.c" />
     <ClCompile Include="orthes.c" />
     <ClCompile Include="ortran.c" />
     <ClCompile Include="psi.c" />
-    <ClCompile Include="pythag.c" />
     <ClCompile Include="rat.c" />
     <ClCompile Include="rcopy.c" />
     <ClCompile Include="rcsort.c" />
@@ -369,10 +371,8 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clean.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_conj.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cos.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cumprod.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cumsum.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_diag.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dsearch.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_exp.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_expm.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_eye.c" />
@@ -381,7 +381,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_imag.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_imult.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_int.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isequal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isreal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_kron.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_log.c" />
@@ -401,7 +400,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_size.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spones.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sqrt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sum.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tan.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_testmatrix.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tril.c" />
@@ -461,8 +459,6 @@ cd ..
     <f2c_rule Include="corth.f" />
     <f2c_rule Include="cortr.f" />
     <f2c_rule Include="coshin.f" />
-    <f2c_rule Include="cupro.f" />
-    <f2c_rule Include="cuproi.f" />
     <f2c_rule Include="cusum.f" />
     <f2c_rule Include="d1mach.f" />
     <f2c_rule Include="dad.f" />
@@ -482,9 +478,7 @@ cd ..
     <f2c_rule Include="dmmul.f" />
     <f2c_rule Include="dmmul1.f" />
     <f2c_rule Include="dmprod.f" />
-    <f2c_rule Include="dmsum.f" />
     <f2c_rule Include="drdiv.f" />
-    <f2c_rule Include="dsearch.f" />
     <f2c_rule Include="dset.f" />
     <f2c_rule Include="dsort.f" />
     <f2c_rule Include="dsum.f" />
@@ -519,10 +513,10 @@ cd ..
     <f2c_rule Include="magic.f" />
     <f2c_rule Include="mtran.f" />
     <f2c_rule Include="nearfloat.f" />
+    <f2c_rule Include="old_pythag.f" />
     <f2c_rule Include="orthes.f" />
     <f2c_rule Include="ortran.f" />
     <f2c_rule Include="psi.f" />
-    <f2c_rule Include="pythag.f" />
     <f2c_rule Include="rat.f" />
     <f2c_rule Include="rcopy.f" />
     <f2c_rule Include="rcsort.f" />
@@ -536,10 +530,8 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clean.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_conj.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cos.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cumprod.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cumsum.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_diag.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dsearch.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_exp.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_expm.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_eye.f" />
@@ -548,7 +540,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_imag.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_imult.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_int.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isequal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isreal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_kron.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_log.f" />
@@ -568,7 +559,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_size.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spones.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sqrt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sum.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tan.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_testmatrix.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tril.f" />
@@ -621,6 +611,7 @@ cd ..
     <None Include="cacsd_f_Import.def" />
     <None Include="Core_f_Import.def" />
     <None Include="eispack_f_Import.def" />
+    <None Include="elementary_functions_gw_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="Integer_Import.def" />
     <None Include="core_import.def" />

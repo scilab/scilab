@@ -279,10 +279,7 @@ cd ..
     <ClCompile Include="fmt.c" />
     <ClCompile Include="fmttyp.c" />
     <ClCompile Include="formatnumber.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intdisp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intprint.c" />
     <ClCompile Include="lspdsp.c" />
-    <ClCompile Include="print.c" />
     <ClCompile Include="prntid.c" />
     <ClCompile Include="strdsp.c" />
     <ClCompile Include="wmdsp.c" />
@@ -299,10 +296,7 @@ cd ..
     <f2c_rule Include="fmt.f" />
     <f2c_rule Include="fmttyp.f" />
     <f2c_rule Include="formatnumber.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intdisp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intprint.f" />
     <f2c_rule Include="lspdsp.f" />
-    <f2c_rule Include="print.f" />
     <f2c_rule Include="prntid.f" />
     <f2c_rule Include="strdsp.f" />
     <f2c_rule Include="wmdsp.f" />

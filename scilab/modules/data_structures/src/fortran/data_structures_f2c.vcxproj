@@ -265,40 +265,28 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_definedfields.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getfield.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_list.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lstcat.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lstsize.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setfield.c" />
     <ClCompile Include="extractfields.c" />
-    <ClCompile Include="followpath.c" />
     <ClCompile Include="forcerhs.c" />
     <ClCompile Include="gratyp.c" />
     <ClCompile Include="insertfield.c" />
-    <ClCompile Include="intl_e.c" />
-    <ClCompile Include="intl_i.c" />
     <ClCompile Include="lsstyp.c" />
-    <ClCompile Include="lstops.c" />
     <ClCompile Include="mlist.c" />
     <ClCompile Include="rattyp.c" />
     <ClCompile Include="udptr.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_definedfields.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getfield.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_list.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lstcat.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lstsize.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setfield.f" />
     <f2c_rule Include="extractfields.f" />
-    <f2c_rule Include="followpath.f" />
     <f2c_rule Include="forcerhs.f" />
     <f2c_rule Include="gratyp.f" />
     <f2c_rule Include="insertfield.f" />
-    <f2c_rule Include="intl_e.f" />
-    <f2c_rule Include="intl_i.f" />
     <f2c_rule Include="lsstyp.f" />
-    <f2c_rule Include="lstops.f" />
     <f2c_rule Include="mlist.f" />
     <f2c_rule Include="rattyp.f" />
     <f2c_rule Include="udptr.f" />

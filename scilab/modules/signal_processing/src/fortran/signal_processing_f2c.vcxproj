@@ -256,14 +256,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_amell.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_corr.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delip.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fft.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fiir.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_remez.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rpem.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_syredi.c" />
     <ClCompile Include="amell.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bgety.c" />
@@ -326,14 +318,6 @@ cd ..
     <ClCompile Include="tscccf.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_amell.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_corr.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delip.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fft.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fiir.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_remez.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rpem.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_syredi.f" />
     <f2c_rule Include="amell.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bgety.f" />

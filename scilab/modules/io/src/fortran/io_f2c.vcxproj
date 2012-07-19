@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -281,7 +281,6 @@ cd ..
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\intwrite4b.c" />
-    <ClCompile Include="newsave.c" />
     <ClCompile Include="v2cunit.c" />
     <ClCompile Include="v2unit.c" />
   </ItemGroup>
@@ -292,7 +291,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\intwritb.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intwrite.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intwrite4b.f" />
-    <f2c_rule Include="newsave.f" />
     <f2c_rule Include="v2cunit.f" />
     <f2c_rule Include="v2unit.f" />
   </ItemGroup>

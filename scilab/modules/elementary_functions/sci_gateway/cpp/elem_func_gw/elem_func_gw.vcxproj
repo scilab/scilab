@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -95,7 +95,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -129,7 +129,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -161,7 +161,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -198,7 +198,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

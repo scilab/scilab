@@ -84,7 +84,7 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -112,7 +112,7 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmdd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,7 +139,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib;$(IFORT_COMPILER12)\compiler\lib\ia32\libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -167,7 +167,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(IFORT_COMPILER12)\compiler\lib\intel64\ifconsol.lib;elementary_functions_f.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libifcoremd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libmmd.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libirc.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\svml_disp.lib;$(IFORT_COMPILER12)\compiler\lib\intel64\libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <TargetMachine>MachineX64</TargetMachine>

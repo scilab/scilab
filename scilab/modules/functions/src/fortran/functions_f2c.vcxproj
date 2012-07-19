@@ -268,14 +268,12 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\intdeff.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intexec.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intexecstr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intlib.c" />
     <ClCompile Include="whereis.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\intdeff.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intexec.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intexecstr.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intlib.f" />
