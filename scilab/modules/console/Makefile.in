@@ -26,7 +26,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -142,7 +142,7 @@ am__libsciconsole_disable_la_SOURCES_DIST = src/noconsole/noconsole.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
 	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
 	src/c/others/clrscr_nw.c src/c/prompt.c src/c/promptecho.c \
-	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/catstr.c \
+	src/c/cmdLine/autoCompletionCli.c \
 	src/c/cmdLine/charactersManagement.c \
 	src/c/cmdLine/cliDisplayManagement.c \
 	src/c/cmdLine/cliHistory.c src/c/cmdLine/cliPrompt.c \
@@ -169,7 +169,6 @@ am_libsciconsole_disable_la_OBJECTS =  \
 	libsciconsole_disable_la-prompt.lo \
 	libsciconsole_disable_la-promptecho.lo \
 	libsciconsole_disable_la-autoCompletionCli.lo \
-	libsciconsole_disable_la-catstr.lo \
 	libsciconsole_disable_la-charactersManagement.lo \
 	libsciconsole_disable_la-cliDisplayManagement.lo \
 	libsciconsole_disable_la-cliHistory.lo \
@@ -188,7 +187,7 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
 	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
 	src/c/others/clrscr_nw.c src/c/prompt.c src/c/promptecho.c \
-	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/catstr.c \
+	src/c/cmdLine/autoCompletionCli.c \
 	src/c/cmdLine/charactersManagement.c \
 	src/c/cmdLine/cliDisplayManagement.c \
 	src/c/cmdLine/cliHistory.c src/c/cmdLine/cliPrompt.c \
@@ -216,7 +215,6 @@ am__objects_4 = libsciconsole_la-InitializeConsole.lo \
 	libsciconsole_la-gotoxy_nw.lo libsciconsole_la-clrscr_nw.lo \
 	libsciconsole_la-prompt.lo libsciconsole_la-promptecho.lo \
 	libsciconsole_la-autoCompletionCli.lo \
-	libsciconsole_la-catstr.lo \
 	libsciconsole_la-charactersManagement.lo \
 	libsciconsole_la-cliDisplayManagement.lo \
 	libsciconsole_la-cliHistory.lo libsciconsole_la-cliPrompt.lo \
@@ -532,7 +530,7 @@ modulename = console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA = license.txt 
+libsciconsole_la_root_DATA = license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -569,7 +567,7 @@ CONSOLE_C_SOURCES = src/c/InitializeConsole.c src/c/GuiManagement.c \
 	src/c/scilines.c src/c/GetCommandLine.c \
 	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
 	src/c/prompt.c src/c/promptecho.c \
-	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/catstr.c \
+	src/c/cmdLine/autoCompletionCli.c \
 	src/c/cmdLine/charactersManagement.c \
 	src/c/cmdLine/cliDisplayManagement.c \
 	src/c/cmdLine/cliHistory.c src/c/cmdLine/cliPrompt.c \
@@ -597,7 +595,7 @@ libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
 	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
 	src/c/others/clrscr_nw.c src/c/prompt.c src/c/promptecho.c \
-	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/catstr.c \
+	src/c/cmdLine/autoCompletionCli.c \
 	src/c/cmdLine/charactersManagement.c \
 	src/c/cmdLine/cliDisplayManagement.c \
 	src/c/cmdLine/cliHistory.c src/c/cmdLine/cliPrompt.c \
@@ -818,7 +816,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-GetCommandLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-autoCompletionCli.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-catstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-charactersManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-cliDisplayManagement.Plo@am__quote@
@@ -860,7 +857,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-autoCompletionCli.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-catstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-charactersManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-cliDisplayManagement.Plo@am__quote@
@@ -1026,13 +1022,6 @@ libsciconsole_disable_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/autoCompletionCli.c' object='libsciconsole_disable_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
-
-libsciconsole_disable_la-catstr.lo: src/c/cmdLine/catstr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-catstr.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-catstr.Tpo -c -o libsciconsole_disable_la-catstr.lo `test -f 'src/c/cmdLine/catstr.c' || echo '$(srcdir)/'`src/c/cmdLine/catstr.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-catstr.Tpo $(DEPDIR)/libsciconsole_disable_la-catstr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/catstr.c' object='libsciconsole_disable_la-catstr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-catstr.lo `test -f 'src/c/cmdLine/catstr.c' || echo '$(srcdir)/'`src/c/cmdLine/catstr.c
 
 libsciconsole_disable_la-charactersManagement.lo: src/c/cmdLine/charactersManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-charactersManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-charactersManagement.Tpo -c -o libsciconsole_disable_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c
@@ -1208,13 +1197,6 @@ libsciconsole_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/autoCompletionCli.c' object='libsciconsole_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
-
-libsciconsole_la-catstr.lo: src/c/cmdLine/catstr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-catstr.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-catstr.Tpo -c -o libsciconsole_la-catstr.lo `test -f 'src/c/cmdLine/catstr.c' || echo '$(srcdir)/'`src/c/cmdLine/catstr.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-catstr.Tpo $(DEPDIR)/libsciconsole_la-catstr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/catstr.c' object='libsciconsole_la-catstr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-catstr.lo `test -f 'src/c/cmdLine/catstr.c' || echo '$(srcdir)/'`src/c/cmdLine/catstr.c
 
 libsciconsole_la-charactersManagement.lo: src/c/cmdLine/charactersManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-charactersManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-charactersManagement.Tpo -c -o libsciconsole_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c

@@ -264,6 +264,7 @@ int sci_xset( char *fname, unsigned long fname_len )
             setCurrentFigure(pFigureUID);
             LhsVar(1) = 0;
             PutLhsVar();
+            free(pdblColorMap);
             return 0;
         }
 

@@ -12,10 +12,6 @@
 
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
@@ -47,6 +43,6 @@ int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    return sciReturnString(_pvCtx, strdup(closeRequestFcn));
+    return sciReturnString(_pvCtx, closeRequestFcn);
 }
 /*------------------------------------------------------------------------*/

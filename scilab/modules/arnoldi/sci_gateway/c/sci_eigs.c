@@ -221,6 +221,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        free(Acplx);
         return 0;
     }
 
@@ -339,6 +340,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 5);
+        free(SIGMA);
         return 0;
     }
 
@@ -640,6 +642,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "ZNEUPD", INFO_EUPD);
             }
             PutLhsVar();
+            free(mat_eigenvalue);
             return 0;
     }
 

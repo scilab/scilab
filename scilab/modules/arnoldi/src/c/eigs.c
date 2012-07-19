@@ -27,7 +27,7 @@ extern int C2F(dgemm)(char* transa, char* transb, int* m, int* n, int* k, double
 
 // zgemm performs one of the matrix-matrix operations
 extern int C2F(zgemm)(char* transa, char* transb, int* m, int* n, int* k, doublecomplex* alpha, doublecomplex* A, int* lda,
-    doublecomplex* B, int* ldb, doublecomplex* beta, doublecomplex* C, int* ldc);
+                      doublecomplex* B, int* ldb, doublecomplex* beta, doublecomplex* C, int* ldc);
 
 // dgetrf computes an LU factorization of a general M by N matrix A (double) using partial pivoting with row interchanges
 extern int C2F(dgetrf)(int* m, int* n, double* A, int* lda, int* ipiv, int* info);
@@ -54,57 +54,57 @@ extern int C2F(zgetri)(int* n, doublecomplex* A, int* lda, int* ipiv, doublecomp
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dsaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
-    double *tol, double *resid, int *ncv, double *v,
-    int *ldv, int *iparam, int *ipntr, double *workd,
-    double *workl, int *lworkl, int *info);
+                       double *tol, double *resid, int *ncv, double *v,
+                       int *ldv, int *iparam, int *ipntr, double *workd,
+                       double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dseupd)(int *rvec, char *howmny, int *select, double *d,
-    double *z, int *ldz, double *sigma, char *bmat,
-    int *n, char *which, int *nev , double *tol,
-    double *resid, int *ncv, double *v , int *ldv,
-    int *iparam, int *ipntr, double *workd, double *workl,
-    int *lworkl, int *info, unsigned long rvec_length,
-    unsigned long howmany_length,
-    unsigned long bmat_length, unsigned long which_len);
+                       double *z, int *ldz, double *sigma, char *bmat,
+                       int *n, char *which, int *nev , double *tol,
+                       double *resid, int *ncv, double *v , int *ldv,
+                       int *iparam, int *ipntr, double *workd, double *workl,
+                       int *lworkl, int *info, unsigned long rvec_length,
+                       unsigned long howmany_length,
+                       unsigned long bmat_length, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dnaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
-    double *tol, double *resid, int *ncv, double *v,
-    int *ldv, int *iparam, int *ipntr, double *workd,
-    double *workl, int *lworkl, int *info,
-    unsigned long bmat_len, unsigned long which_len);
+                       double *tol, double *resid, int *ncv, double *v,
+                       int *ldv, int *iparam, int *ipntr, double *workd,
+                       double *workl, int *lworkl, int *info,
+                       unsigned long bmat_len, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr,
-    double *di, double *z, int *ldz, double *sigmar,
-    double *sigmai, double *workev, char *bmat, int *n,
-    char *which, int *nev, double *tol, double *resid,
-    int *ncv, double *v, int *ldv, int *iparam, int *ipntr,
-    double *workd, double *workl, int *lworkl, int *info);
+                       double *di, double *z, int *ldz, double *sigmar,
+                       double *sigmai, double *workev, char *bmat, int *n,
+                       char *which, int *nev, double *tol, double *resid,
+                       int *ncv, double *v, int *ldv, int *iparam, int *ipntr,
+                       double *workd, double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which,
-    int * nev, double * tol, doublecomplex * resid,
-    int * ncv, doublecomplex * v, int * ldv, int * iparam,
-    int * ipntr, doublecomplex * workd,
-    doublecomplex * workl, int * lworkl, double * rwork,
-    int * info);
+                       int * nev, double * tol, doublecomplex * resid,
+                       int * ncv, doublecomplex * v, int * ldv, int * iparam,
+                       int * ipntr, doublecomplex * workd,
+                       doublecomplex * workl, int * lworkl, double * rwork,
+                       int * info);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(zneupd)(int * rvec, char * howmny, int * select,
-    doublecomplex * d, doublecomplex * z, int * ldz,
-    doublecomplex * sigma, doublecomplex * workev,
-    char * bmat, int * n, char * which, int * nev,
-    double *  tol, doublecomplex * resid, int * ncv,
-    doublecomplex * v, int * ldv, int * iparam, int * ipntr,
-    doublecomplex * workd, doublecomplex * workl,
-    int * lworkl, double * rwork, int * info);
+                       doublecomplex * d, doublecomplex * z, int * ldz,
+                       doublecomplex * sigma, doublecomplex * workev,
+                       char * bmat, int * n, char * which, int * nev,
+                       double *  tol, doublecomplex * resid, int * ncv,
+                       doublecomplex * v, int * ldv, int * iparam, int * ipntr,
+                       doublecomplex * workd, doublecomplex * workl,
+                       int * lworkl, double * rwork, int * info);
 /*--------------------------------------------------------------------------*/
 
 static double alpha = 1.;
@@ -114,9 +114,9 @@ static doublecomplex alphac = {1., 0.};
 static doublecomplex betac = {0., 0.};
 
 int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B,
-    doublecomplex* BC, int Bcomplex, int matB, int nev, doublecomplex* SIGMA,
-    char* which, double* maxiter, double* tol, double* NCV, double* RESID, doublecomplex* RESIDC,
-    int* INFO, double* cholB, int INFO_EUPD, doublecomplex* eigenvalue, doublecomplex* eigenvector)
+         doublecomplex* BC, int Bcomplex, int matB, int nev, doublecomplex* SIGMA,
+         char* which, double* maxiter, double* tol, double* NCV, double* RESID, doublecomplex* RESIDC,
+         int* INFO, double* cholB, int INFO_EUPD, doublecomplex* eigenvalue, doublecomplex* eigenvector)
 {
 
     int index = 0;
@@ -246,7 +246,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B
     {
         if (Asym == 0 && !Acomplex && !Bcomplex) // if dnaupd  ncv = 2*nev+1
         {
-            ncv = Max(2 * nev + 1, 20);            
+            ncv = Max(2 * nev + 1, 20);
         }
         else // if dsaupd or znaupd ncv = 2*nev
         {
@@ -254,7 +254,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B
         }
         if (ncv > N)
         {
-            ncv = N; 
+            ncv = N;
         }
     }
     else
@@ -562,7 +562,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B
         WORKD = (double*)malloc(3 * N * sizeof(double));
         memset(WORKD, 0, 3 * N * sizeof(double));
 
-        V = (double*)malloc(N * ncv * sizeof(double));  
+        V = (double*)malloc(N * ncv * sizeof(double));
         memset(V, 0, N * ncv * sizeof(double));
 
         while (IDO != 99)
@@ -725,7 +725,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B
                         free(U);
                         free(L);
                         free(E);
-                        
+
                         return -5;
                     }
                 }
@@ -1233,6 +1233,8 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym, double* B
         free(WORKEVC);
 
         free(VC);
+        free(tmp_WORKDC);
+        free(tmp_WORKD);
         free(WORKDC);
         free(WORKLC);
         free(RWORK);

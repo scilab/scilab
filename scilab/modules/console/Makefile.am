@@ -9,7 +9,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -19,7 +19,7 @@ modulename=console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA =  license.txt 
+libsciconsole_la_root_DATA =  license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -63,7 +63,6 @@ src/c/others/clrscr_nw.c \
 src/c/prompt.c \
 src/c/promptecho.c \
 src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/catstr.c \
 src/c/cmdLine/charactersManagement.c \
 src/c/cmdLine/cliDisplayManagement.c \
 src/c/cmdLine/cliHistory.c \
@@ -117,7 +116,6 @@ src/c/others/clrscr_nw.c \
 src/c/prompt.c \
 src/c/promptecho.c \
 src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/catstr.c \
 src/c/cmdLine/charactersManagement.c \
 src/c/cmdLine/cliDisplayManagement.c \
 src/c/cmdLine/cliHistory.c \

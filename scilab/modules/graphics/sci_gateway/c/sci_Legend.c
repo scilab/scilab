@@ -124,6 +124,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
         if (strcmp(psubwinUID, subwinUID) != 0)
         {
             Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
+            FREE(tabofhandles);
             return 0;
         }
 
