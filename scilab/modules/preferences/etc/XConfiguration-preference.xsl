@@ -6,7 +6,7 @@
     <xsl:variable name="name" select="@name"/>
     <Title text="_(Preferences backup)">
     <Grid>
-      <Label gridx="1" gridy="1" weightx="0" text="_(Select a backup file )"/>
+      <Label gridx="1" gridy="1" weightx="0" text="_(Select a backup file)"/>
       <FileSelector gridx="2" gridy="1" weightx="1" anchor="above_baseline"
                     listener="EntryListener"
                     href="{@restore-path}"
@@ -27,7 +27,7 @@
 	  <xsl:call-template name="context"/>
         </actionPerformed>
       </Button>
-      <Label gridx="1" gridy="2" weightx="0" text="_(Create a backup file )"/>
+      <Label gridx="1" gridy="2" weightx="0" text="_(Create a backup file)"/>
       <FileSelector gridx="2" gridy="2" weightx="1" anchor="above_baseline"
                     listener="EntryListener"
                     href="{@save-path}"

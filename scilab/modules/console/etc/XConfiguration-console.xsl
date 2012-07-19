@@ -26,7 +26,7 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Checkbox>
-        <Label gridx="1" gridy="3" weightx="0" text="_(Lines to display: )" enable="{$enable}"/>
+        <Label gridx="1" gridy="3" weightx="0" text="_(Lines to display:)" enable="{$enable}"/>
 	<Panel gridx="2" gridy="3" gridheight="4" fill="both"/>
 	<NumericalSpinner gridx="3"
                           gridy="3"
@@ -41,7 +41,7 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-        <Label gridx="1" gridy="4" weightx="0" text="_(Columns to display: )" enable="{$enable}"/>
+        <Label gridx="1" gridy="4" weightx="0" text="_(Columns to display:)" enable="{$enable}"/>
 	<NumericalSpinner gridx="3"
                           gridy="4"
 			  weightx="0"
@@ -55,7 +55,7 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-        <Label gridx="1" gridy="5" weightx="0" text="_(Number of lines in console scroll buffer: )"/>
+        <Label gridx="1" gridy="5" weightx="0" text="_(Number of lines in console scroll buffer:)"/>
 	<NumericalSpinner gridx="3"
                           gridy="5"
 			  weightx="0"

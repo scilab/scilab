@@ -14,9 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-13 11:27+0100\n"
+"Revision-Date: 2012-07-19 17:06+0100\n"
 
-# File: sci_gateway/c/gw_gui.c, line: 72
+# File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
@@ -54,7 +54,7 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetdir.c, line: 72
 # File: sci_gateway/c/sci_uigetdir.c, line: 89
 # File: sci_gateway/c/sci_uigetfont.c, line: 58
-# File: sci_gateway/c/sci_uimenu.c, line: 144
+# File: sci_gateway/c/sci_uimenu.c, line: 141
 # File: sci_gateway/c/sci_unsetmenu.c, line: 47
 # File: sci_gateway/c/sci_unsetmenu.c, line: 129
 # File: sci_gateway/c/sci_waitbar.c, line: 184
@@ -314,7 +314,7 @@ msgstr ""
 # File: sci_gateway/c/sci_toolbar.c, line: 89
 # File: sci_gateway/c/sci_uicontrol.c, line: 111
 # File: sci_gateway/c/sci_uicontrol.c, line: 214
-# File: sci_gateway/c/sci_uimenu.c, line: 94
+# File: sci_gateway/c/sci_uimenu.c, line: 91
 # File: sci_gateway/c/sci_uiwait.c, line: 42
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -378,7 +378,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 133
 # File: sci_gateway/c/sci_uicontrol.c, line: 417
-# File: sci_gateway/c/sci_uimenu.c, line: 225
+# File: sci_gateway/c/sci_uimenu.c, line: 222
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
@@ -452,15 +452,15 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 85
+# File: sci_gateway/c/sci_uimenu.c, line: 82
 # File: sci_gateway/c/sci_uiwait.c, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 103
-# File: sci_gateway/c/sci_uimenu.c, line: 115
+# File: sci_gateway/c/sci_uimenu.c, line: 100
+# File: sci_gateway/c/sci_uimenu.c, line: 112
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
@@ -1238,6 +1238,154 @@ msgid "Scilab Demonstrations"
 msgstr ""
 
 #
+# File: scilab_fake_localization_file.c, line: 196
+# File: etc/graphics_menubar.xml, line: 15
+msgid "Select a file to load"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 199
+# File: etc/graphics_menubar.xml, line: 18
+msgid "Figure loaded.\n"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 207
+# File: etc/graphics_menubar.xml, line: 26
+msgid "Select a file to write"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 213
+# File: etc/graphics_menubar.xml, line: 32
+msgid "Figure saved.\n"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 225
+# File: scilab_fake_localization_file.c, line: 236
+# File: scilab_fake_localization_file.c, line: 247
+# File: scilab_fake_localization_file.c, line: 258
+# File: scilab_fake_localization_file.c, line: 269
+# File: scilab_fake_localization_file.c, line: 282
+# File: scilab_fake_localization_file.c, line: 293
+# File: scilab_fake_localization_file.c, line: 304
+# File: scilab_fake_localization_file.c, line: 315
+# File: scilab_fake_localization_file.c, line: 326
+# File: etc/graphics_menubar.xml, line: 44
+# File: etc/graphics_menubar.xml, line: 55
+# File: etc/graphics_menubar.xml, line: 66
+# File: etc/graphics_menubar.xml, line: 77
+# File: etc/graphics_menubar.xml, line: 88
+# File: etc/graphics_menubar.xml, line: 101
+# File: etc/graphics_menubar.xml, line: 112
+# File: etc/graphics_menubar.xml, line: 123
+# File: etc/graphics_menubar.xml, line: 134
+# File: etc/graphics_menubar.xml, line: 145
+msgid "Select a file name"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 769
+msgid "Colors"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 814
+msgid "Desktop color"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 825
+msgid "Use system color"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 843
+msgid "Text "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 850
+msgid "Background "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 857
+msgid "Cursor "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 869
+msgid "Syntax highlighting colors"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 885
+msgid "Keyword color "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 897
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 904
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 911
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 918
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 946
+msgid "Fonts"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 981
+msgid "Desktop font"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 985
+msgid "Use system font"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1001
+msgid "Desktop text font: "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1017
+msgid "Custom font"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1031
+msgid "Fonts to use:"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1034
+msgid "Desktop text font"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1040
+msgid "Custom:"
+msgstr ""
+
+#
 # File: src/cpp/GetConsoleShowHiddenHandles.cpp, line: 35
 # File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 26
 # File: src/cpp/GetUicontrolFontAngle.cpp, line: 26
@@ -1281,6 +1429,8 @@ msgstr ""
 # File: src/cpp/SetUicontrolString.cpp, line: 29
 # File: src/cpp/SetUicontrolString.cpp, line: 64
 # File: src/cpp/SetUicontrolString.cpp, line: 76
+# File: src/cpp/SetUicontrolTooltipString.cpp, line: 28
+# File: src/cpp/SetUicontrolTooltipString.cpp, line: 56
 # File: src/cpp/SetUicontrolUnits.cpp, line: 37
 # File: src/cpp/SetUicontrolUnits.cpp, line: 70
 # File: src/cpp/SetUicontrolValue.cpp, line: 39
@@ -1296,8 +1446,8 @@ msgstr ""
 
 #
 # File: src/cpp/GetUicontrolString.cpp, line: 39
-# File: src/cpp/GetUicontrolString.cpp, line: 115
 # File: src/cpp/GetUicontrolStyle.cpp, line: 38
+# File: src/cpp/GetUicontrolTooltipString.cpp, line: 39
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr ""
@@ -1523,9 +1673,17 @@ msgstr ""
 
 #
 # File: src/cpp/SetUicontrolString.cpp, line: 47
+# File: src/cpp/SetUicontrolTooltipString.cpp, line: 44
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolTooltipString.cpp, line: 35
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 
 #
@@ -1589,23 +1747,24 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2485
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2486
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2504
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2505
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2638
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2639
 msgid "No print service found."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1616,6 +1775,7 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 74
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 154
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 164
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1919,6 +2079,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1926,11 +2087,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 50
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 51
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -2022,6 +2185,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
+#, c-format
 msgid "All %s files"
 msgstr ""
 
@@ -2062,40 +2226,6 @@ msgstr ""
 #
 # File: src/nogui/nogui.c, line: 120
 msgid "Error. A signal has been caught.\n"
-msgstr ""
-
-#
-# File: etc/graphics_menubar.xml, line: 15
-msgid "Select a file to load"
-msgstr ""
-
-#
-# File: etc/graphics_menubar.xml, line: 18
-msgid "Figure loaded.\n"
-msgstr ""
-
-#
-# File: etc/graphics_menubar.xml, line: 26
-msgid "Select a file to write"
-msgstr ""
-
-#
-# File: etc/graphics_menubar.xml, line: 32
-msgid "Figure saved.\n"
-msgstr ""
-
-#
-# File: etc/graphics_menubar.xml, line: 44
-# File: etc/graphics_menubar.xml, line: 55
-# File: etc/graphics_menubar.xml, line: 66
-# File: etc/graphics_menubar.xml, line: 77
-# File: etc/graphics_menubar.xml, line: 88
-# File: etc/graphics_menubar.xml, line: 101
-# File: etc/graphics_menubar.xml, line: 112
-# File: etc/graphics_menubar.xml, line: 123
-# File: etc/graphics_menubar.xml, line: 134
-# File: etc/graphics_menubar.xml, line: 145
-msgid "Select a file name"
 msgstr ""
 
 #

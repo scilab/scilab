@@ -1,4 +1,4 @@
-# Localization of the module symbolic
+# Localization of the module graphic_objects
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
@@ -16,7 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2012-07-19 17:06+0100\n"
 
-# File: sci_gateway/c/gw_symbolic.c, line: 33
+# File: sci_gateway/c/gw_graphic_objects.c, line: 33
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#
+# File: src/nographic_objects/nographic_objects.c, line: 20
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""
