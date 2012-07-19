@@ -18,3 +18,6 @@ getrhsvar_
 checklhs_
 checkrhs_
 GetData
+iIsComplex
+gettype_
+vstk_
