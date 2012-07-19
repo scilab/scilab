@@ -165,7 +165,7 @@ function process_module {
         # It is Scilab code... xgettext does not how to process it
         XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
     fi
-echo    $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES 
+
     $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
     if test ! -f $MODULE_NAME.pot.tmp -a $IS_MACROS -eq 1; then
         # Empty file => no string found

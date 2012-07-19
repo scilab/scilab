@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-19 17:06+0100\n"
+"Revision-Date: 2012-07-20 00:21+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 205
@@ -122,17 +122,17 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 214
-msgid "Lines to display: "
+msgid "Lines to display:"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 229
-msgid "Columns to display: "
+msgid "Columns to display:"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 243
-msgid "Number of lines in console scroll buffer: "
+msgid "Number of lines in console scroll buffer:"
 msgstr ""
 
 #
@@ -738,7 +738,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 410
-msgid "Evalute selection"
+msgid "Evaluate selection"
 msgstr ""
 
 #
@@ -808,7 +808,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 424
-msgid "Keyword cmppletion"
+msgid "Keyword completion"
 msgstr ""
 
 #
