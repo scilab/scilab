@@ -30,7 +30,7 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_preferences.cpp, line: 39
-msgid "An error occurend in opening Preferences window: "
+msgid "An error occurred while opening Preferences window:"
 msgstr ""
 
 #

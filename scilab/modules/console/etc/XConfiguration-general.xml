@@ -147,7 +147,7 @@
           <action key="OSSCKEY F1" description="_(Help on keyword)" name="scinotes-help-keyword"/>
           <action key="OSSCKEY L" description="_(Load in Scilab)" name="scinotes-load-scilab"/>
           <action key="OSSCKEY Shift E" description="_(Execute in Scilab)" name="scinotes-execute-scilab"/>
-          <action key="OSSCKEY E" description="_(Evalute selection)" name="scinotes-evaluate-selection"/>
+          <action key="OSSCKEY E" description="_(Evaluate selection)" name="scinotes-evaluate-selection"/>
           <action key="F5" description="_(Save and execute)" name="scinotes-save-execute"/>
           <action key="OSSCKEY F5" description="_(Save and execute all)" name="scinotes-save-execute-all"/>
           <action key="OSSCKEY F" description="_(Find)" name="scinotes-find"/>
@@ -161,7 +161,7 @@
           <action key="OSSCKEY G" description="_(Start Code Navigator)" name="scinotes-code-navigator"/>
           <action key="OSSCKEY Shift F" description="_(Search word in file)" name="scinotes-word-file"/>
           <action key="OSSCKEY Shift B" description="_(Search files)" name="scinotes-search-files"/>
-          <action key="OSSCKEY SPACE" description="_(Keyword cmppletion)" name="scinotes-completion"/>
+          <action key="OSSCKEY SPACE" description="_(Keyword completion)" name="scinotes-completion"/>
           <action key="F1" description="_(Help)" name="scinotes-help"/>
           <action key="Shift F1" description="_(About)" name="scinotes-about"/>
           <action key="OSSCKEY PAGE_DOWN" description="_(Next tab)" name="scinotes-next-tab"/>
