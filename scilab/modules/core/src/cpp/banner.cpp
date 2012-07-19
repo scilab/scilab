@@ -44,7 +44,7 @@ void banner(void)
     scilabForcedWriteW(L"\n");
 
     scilabForcedWriteW(L"\n");
-    centerPrint(L"-*- THIS IS YaSp -*-");
+    centerPrint(L"-*- This is the future version 6 of Scilab. Only for testing -*-");
     scilabForcedWriteW(L"\n");
 
     scilabForcedWriteW(line);
@@ -55,10 +55,10 @@ void banner(void)
 static void centerPrint(wchar_t *str)
 {
     int i = 0;
-    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(str)/2)));
+    int startVersion = (int)(floor((double)(wcslen(line) / 2)) - floor((double)(wcslen(str) / 2)));
 
     /* To center the version name */
-    for(i = 0 ; i < startVersion ; i++ )
+    for (i = 0 ; i < startVersion ; i++ )
     {
         scilabForcedWriteW(L" ");
     }
