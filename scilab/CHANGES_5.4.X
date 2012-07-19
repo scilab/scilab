@@ -31,7 +31,10 @@ Documentation
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
-* Bug #11514 fixed - Better categorization of the genetic algo modules.
+* Categories have been created for the following modules help pages:
+    - statistics. See bug #9108.
+    - genetic algorithms. See bug #11514.
+
 
 GUI
 ===
