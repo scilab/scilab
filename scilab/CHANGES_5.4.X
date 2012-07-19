@@ -24,7 +24,7 @@ Javasci
 Documentation
 =============
 
-* Management of Docbook tags <varname>, <command> and <constant>.
+* Management of Docbook tags <varname>, <command>, <function> and <constant>.
   See bug #11459.
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
