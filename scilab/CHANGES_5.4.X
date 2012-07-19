@@ -31,6 +31,7 @@ Documentation
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
+* Bug #11514 fixed - Better categorization of the genetic algo modules.
 
 GUI
 ===
