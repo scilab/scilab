@@ -50,7 +50,8 @@ EXTENSIONS_MACROS=( sci sce start quit )
 TARGETDIR=locales/
 TARGETDIR_MACROS=locales_macros/
 HEADER_TEMPLATE=$SCI/modules/localization/data/header.pot
-GUI_FILES="etc/*.xml"
+GUI_FILES="etc/*.x*l"
+PREFERENCE_FILES="src/*.xsl"
 FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
 # Gettext arg
@@ -63,8 +64,12 @@ process_XML_files() {
 # Please note that it will only extract string from the label tag
     if test -n "$(ls $GUI_FILES 2>/dev/null)"; then
         COMMON_SED='s/&amp;/\&/g'
-        sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES > $FAKE_C_FILE
-        sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
+	sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES > $FAKE_C_FILE
+	sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
+	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $GUI_FILES >> $FAKE_C_FILE
+    fi
+    if test -n "$(ls PREFERENCE_FILES 2>/dev/null)"; then
+	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $PREFERENCE_FILES  >> $FAKE_C_FILE
     fi
 }
 
@@ -160,7 +165,7 @@ function process_module {
         # It is Scilab code... xgettext does not how to process it
         XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
     fi
-
+echo    $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES 
     $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
     if test ! -f $MODULE_NAME.pot.tmp -a $IS_MACROS -eq 1; then
         # Empty file => no string found
