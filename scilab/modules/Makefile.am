@@ -233,7 +233,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 #libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
-libscilab_la_LIBADD =
+# Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
+libscilab_la_LIBADD = 	$(top_builddir)/modules/jvm/libscijvm.la
 
 if GUI
 libscilab_la_LIBADD += $(GUI_LIBS)
