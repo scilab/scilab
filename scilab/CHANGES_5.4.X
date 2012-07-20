@@ -120,6 +120,8 @@ Bug Fixes
 
 * Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
 
+* Bug #11333 fixed - Missing argument number checking in comet added.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
@@ -168,6 +170,8 @@ Bug Fixes
 
 * Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
                      something in the console.
+
+* Bug #11490 fixed - comet produced wrong display with matrix inputs.
 
 * Bug #11506 fixed - "Rendu d'équations mathématiques dans le graphique Scilab"
                      were missing some closure tags in the examples.
