@@ -198,7 +198,7 @@ msgstr "Vidage terminé\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
 msgstr ""
-"%s : Nombre erroné du ou des argument(s) d'entrée : Au moins un attendu.\n"
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins un attendu.\n"
 
 #, c-format
 msgid "Tcl Error : %s\n"
@@ -232,11 +232,11 @@ msgstr "Échelle"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"

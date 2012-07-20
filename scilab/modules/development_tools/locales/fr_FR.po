@@ -60,11 +60,11 @@ msgstr "%s : Échec de l'assertion : attendu = %s, cependant calculé = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"

@@ -165,7 +165,7 @@ function [varargout]=dae(varargin)
             end
 
         else,
-          error(sprintf(gettext("%s: %s: Wrong number of input argument(s): %d to %d expected.\n"), "dae",4,8));
+          error(sprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "dae",4,8));
         end
         
      if (%DAEOPTIONS(2)==0),   

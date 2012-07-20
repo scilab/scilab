@@ -127,4 +127,4 @@ msgstr "Powershell 1.0 non trouvé."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"

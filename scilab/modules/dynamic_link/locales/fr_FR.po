@@ -234,7 +234,7 @@ msgstr "%s : Fonction non disponible sous Microsoft Windows.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
@@ -447,7 +447,7 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
@@ -480,4 +480,4 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"

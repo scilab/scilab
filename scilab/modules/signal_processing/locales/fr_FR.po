@@ -243,7 +243,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -256,7 +256,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -276,7 +276,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
@@ -308,7 +308,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""

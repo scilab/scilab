@@ -91,19 +91,19 @@ msgstr "Code d'équations différentielles généré par Maple"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : %s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus.\n"
+msgstr "%s : %s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
@@ -111,7 +111,7 @@ msgstr "%s : Option %s invalide : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
