@@ -10,21 +10,11 @@
  *
  */
 
-#include <iostream>
-#include <stdlib.h>
-
 #include "ScilabView.hxx"
 
 extern "C"
 {
 #include "HandleManagement.h"
-}
-
-// FIXME : remove this function
-void *sciGetPointerFromHandle(long handle)
-{
-    abort();
-    return NULL;
 }
 
 long getHandle(char const* UID)
@@ -35,54 +25,4 @@ long getHandle(char const* UID)
 char const* getObjectFromHandle(long handle)
 {
     return ScilabView::getObjectFromHandle(handle);
-}
-
-// FIXME : remove me
-long sciGetHandle(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciGetHandle" << std::endl;
-    abort();
-    return 0;
-}
-
-void * sciGetParent(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciGetParent" << std::endl;
-    abort();
-    return NULL;
-
-}
-
-void * sciGetSons(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciGetSons" << std::endl;
-    abort();
-    return NULL;
-}
-
-void *sciGetCurrentFigure(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentFigure" << std::endl;
-    abort();
-    return NULL;
-}
-
-void *sciGetCurrentSubWin(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentSubWin" << std::endl;
-    abort();
-    return NULL;
-}
-
-void *sciGetCurrentObj(void)
-{
-    std::cerr << "[ERROR] Should not call sciGetCurrentObj" << std::endl;
-    abort();
-    return NULL;
-}
-
-void sciSetCurrentObj(void *pobj)
-{
-    std::cerr << "[ERROR] Should not call sciSetCurrentObj" << std::endl;
-    abort();
 }

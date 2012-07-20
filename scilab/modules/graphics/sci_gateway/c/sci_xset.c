@@ -38,6 +38,9 @@
 #include "AxesModel.h"
 #include "getGraphicObjectProperty.h"
 #include "deleteGraphicObject.h"
+//#include "warningmode.h"
+#include "sci_warning.h"
+#include "sciprint.h"
 
 /*--------------------------------------------------------------------------*/
 int xsetg(char * str, char * str1, int lx0, int lx1) ;
@@ -47,7 +50,6 @@ int sci_xset( char *fname, unsigned long fname_len )
     int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, xm[5], xn[5], x[5] = {0, 0, 0, 0, 0}, i = 0, v = 0;
     int lr = 0;
     double  xx[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
-    sciPointObj *subwin = NULL;
     char * subwinUID = NULL;
     BOOL keyFound = FALSE ;
 
@@ -263,6 +265,7 @@ int sci_xset( char *fname, unsigned long fname_len )
             setCurrentFigure(pFigureUID);
             LhsVar(1) = 0;
             PutLhsVar();
+            free(pdblColorMap);
             return 0;
         }
 
@@ -453,8 +456,12 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1), "wshow") == 0)
     {
-        /* a supprimer ce n'est pas une propriete mais une action */
-        showPixmap((char*)sciGetParentFigure(subwin));
+        //        if (getWarningMode())
+        {
+            sciprint(_("WARNING: %s\n"), _("xset(\"wshow\") is obsolete."));
+            sciprint(_("WARNING: %s\n"), _("It will be removed after Scilab 5.4.0."));
+            sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
+        }
     }
     else if (strcmp(cstk(l1), "viewport") == 0)
     {
@@ -464,8 +471,12 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if (strcmp(cstk(l1), "wwpc") == 0)
     {
-        // clear pixmap
-        clearPixmap(sciGetParentFigure(subwin));
+        if (getWarningMode())
+        {
+            sciprint(_("WARNING: %s\n"), _("xset(\"wwpc\") is obsolete."));
+            sciprint(_("WARNING: %s\n"), _("It will be removed after Scilab 5.4.0."));
+            sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
+        }
     }
     else if (strcmp(cstk(l1), "line mode") == 0)
     {

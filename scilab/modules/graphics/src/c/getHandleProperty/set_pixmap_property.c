@@ -36,14 +36,6 @@ int set_pixmap_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
 	int b =  (int)FALSE;
 	BOOL status = FALSE;
 
-#if 0
-	if ( sciGetEntityType (pobj) != SCI_FIGURE )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
-		return SET_PROPERTY_ERROR;
-	}
-#endif
-
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "pixmap");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 

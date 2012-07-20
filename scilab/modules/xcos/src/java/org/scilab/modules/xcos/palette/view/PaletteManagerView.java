@@ -75,8 +75,8 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public boolean canClose() {
-            return true;
+        public int canClose() {
+            return 1;
         }
 
         @Override

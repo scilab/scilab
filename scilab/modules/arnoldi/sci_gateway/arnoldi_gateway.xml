@@ -39,4 +39,5 @@
 <PRIMITIVE gatewayId="35" primitiveId="4" primitiveName="dseupd" />
 <PRIMITIVE gatewayId="35" primitiveId="5" primitiveName="dneupd" />
 <PRIMITIVE gatewayId="35" primitiveId="6" primitiveName="zneupd" />
+<PRIMITIVE gatewayId="35" primitiveId="7" primitiveName="%_eigs" />
 </GATEWAY>

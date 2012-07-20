@@ -297,6 +297,8 @@ src/c/getHandleProperty/set_anti_aliasing_property.c \
 src/c/getHandleProperty/set_tag_property.c \
 src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
+src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

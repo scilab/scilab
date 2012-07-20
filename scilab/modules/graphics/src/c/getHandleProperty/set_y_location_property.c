@@ -42,14 +42,6 @@ int set_y_location_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_location") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   if ( isStringParamEqual( stackPointer, "left" ) )
   {
     axisLocation = 4;

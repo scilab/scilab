@@ -241,7 +241,8 @@ am__objects_6 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
 	libscigui_la-sci_about.lo libscigui_la-sci_raise_window.lo \
 	libscigui_la-sci_usecanvas.lo libscigui_la-sci_helpbrowser.lo \
-	libscigui_la-gui_gw.lo
+	libscigui_la-gui_gw.lo \
+	libscigui_la-sci_fire_closing_finished.lo
 am_libscigui_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
@@ -703,7 +704,8 @@ sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 sci_gateway/cpp/sci_helpbrowser.cpp \
-sci_gateway/cpp/gui_gw.cpp
+sci_gateway/cpp/gui_gw.cpp \
+sci_gateway/cpp/sci_fire_closing_finished.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -1143,6 +1145,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_fire_closing_finished.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
@@ -2063,6 +2066,13 @@ libscigui_la-gui_gw.lo: sci_gateway/cpp/gui_gw.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/gui_gw.cpp' object='libscigui_la-gui_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp
+
+libscigui_la-sci_fire_closing_finished.lo: sci_gateway/cpp/sci_fire_closing_finished.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_fire_closing_finished.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo -c -o libscigui_la-sci_fire_closing_finished.lo `test -f 'sci_gateway/cpp/sci_fire_closing_finished.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fire_closing_finished.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_fire_closing_finished.cpp' object='libscigui_la-sci_fire_closing_finished.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_fire_closing_finished.lo `test -f 'sci_gateway/cpp/sci_fire_closing_finished.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fire_closing_finished.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

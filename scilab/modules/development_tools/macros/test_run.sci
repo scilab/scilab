@@ -789,6 +789,12 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
+      else // Remove messages due to JOGL2 RC8
+        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
+        txt(toRemove) = [];
+        if isempty(txt) then
+          deletefile(tmp_err);
+        end
       end
     end
   end
@@ -1056,16 +1062,16 @@ function msg = comparethefiles ( filename1 , filename2 )
   msg(2) = "   - "+filename1
   msg(3) = "   - "+filename2
   if params.show_diff == %t then
-    if getos() <> "Windows" then
-      targetFile=TMPDIR + "/tempdiff.diff";
-      unix("diff -u " +filename1 + " " +filename2 + " > " + targetFile);
-      // unix_g is failing to return the output into a variable
-      fd = mopen(targetFile,"r");
-      msg=[msg; mgetl(fd)]
-      disp(msg(4:$));
-      mclose(fd);
-      deletefile(targetFile);
+    if getos() == "Windows" then
+        diffTool = SCI + "\tools\diff\diff.exe";
+    else
+        diffTool = "diff";
     end
+    targetFile=TMPDIR + filesep() + "tempdiff.diff";
+    unix(diffTool + " -u " + filename1 + " " + filename2 + " > " + targetFile);
+    // unix_g is failing to return the output into a variable
+    msg=[msg; mgetl(targetFile)]
+    deletefile(targetFile);
   end
 endfunction
 
@@ -1130,33 +1136,57 @@ endfunction
 
 
 function result =  exportToXUnitFormat(exportToFile, testsuites)
-         doc = xmlDocument(exportToFile);
-         root = xmlElement(doc, "testsuites");
-         for i=1:size(testsuites, "*") // Export module by module
-          module = testsuites(i);
-          root.children(i) = xmlElement(doc,"testsuite");
-          root.children(i).attributes.name = module.name;
 
-          root.children(i).attributes.time  = string(module.time);
+  if isfile(exportToFile) then
+    // File already existing. Append the results
+    doc = xmlRead(exportToFile);
+    appendIntoFile = %t;
+    node = xmlXPath(doc, "//testsuites");
+    if node.size == 0 then
+      error(msprintf(gettext("The file ''%s'' is not following the XUnit XML format. Root tag expected ''testsuites''"),exportToFile))
+      end
+  else
+    doc = xmlDocument(exportToFile);
 
-          root.children(i).attributes.tests = string(module.tests);
-          root.children(i).attributes.errors = string(module.errors);
+    appendIntoFile = %f;
+  end
+  root = xmlElement(doc, "testsuites");
 
-          for j=1:size(module.testcase,"*") // Export test by test
-           root.children(i).children(j) = xmlElement(doc,"testcase");
-           unitTest = module.testcase(j);
-           root.children(i).children(j).attributes.name = unitTest.name;
+  for i=1:size(testsuites, "*") // Export module by module
+    module = testsuites(i);
+    testsuite = xmlElement(doc,"testsuite");
+    testsuite.attributes.name = module.name;
 
-           if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
-             root.children(i).children(j).children(1) = xmlElement(doc,"failure");
-             root.children(i).children(j).children(1).attributes.type = unitTest.failure.type;
-             root.children(i).children(j).children(1).content = unitTest.failure.content;
-           end
-          end
-         end
-         // if failure
-         doc.root=root
-         xmlWrite(doc);
+    testsuite.attributes.time  = string(module.time);
 
+    testsuite.attributes.tests = string(module.tests);
+    testsuite.attributes.errors = string(module.errors);
 
+    for j=1:size(module.testcase,"*") // Export test by test
+      testsuite.children(j) = xmlElement(doc,"testcase");
+      unitTest = module.testcase(j);
+      testsuite.children(j).attributes.name = unitTest.name;
+
+      if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
+        testsuite.children(j).children(1) = xmlElement(doc,"failure");
+        testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
+        testsuite.children(j).children(1).content = unitTest.failure.content;
+      end
+    end
+
+    if appendIntoFile then
+      // We will add the new elements into 'testsuites'
+      c=node(1).children;
+      nb=size(c,"*");
+      c(nb + 1)=testsuite; // Add the new results into the list of results
+      root.children=c;
+    else
+      root.children(i)=testsuite
+    end
+  end // list of modules
+
+  doc.root=root
+
+  xmlWrite(doc);
 endfunction
+

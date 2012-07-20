@@ -36,7 +36,7 @@ function assert_cmatview()
     assert_checkequal(size(g.data.y), [100 1]);
     assert_checkequal(size(g.data.z), [100 100]);
 
-    assert_checkequal(g.clip_state, "off");
+    assert_checkequal(g.clip_state, "clipgrf");
     assert_checkequal(g.clip_box, []);
 endfunction
 assert_cmatview()

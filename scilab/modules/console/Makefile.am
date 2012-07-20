@@ -10,7 +10,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -20,7 +20,7 @@ modulename=console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA =  license.txt 
+libsciconsole_la_root_DATA =  license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -45,53 +45,11 @@ src/cpp/ConsoleIsWaitingForInput.cpp \
 src/cpp/GetCharWithoutOutput.cpp \
 src/cpp/PromptToHome.cpp \
 src/cpp/ScilabLinesUpdate.cpp \
-src/cpp/SetConsolePrompt.cpp \
-src/cpp/scilabRead.cpp
+src/cpp/SetConsolePrompt.cpp
 
 #### console : List of the c files ####
 CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
-
-CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-src/c/GuiManagement.c \
-src/c/dropFiles.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c \
-src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/catstr.c \
-src/c/cmdLine/charactersManagement.c \
-src/c/cmdLine/cliDisplayManagement.c \
-src/c/cmdLine/cliHistory.c \
-src/c/cmdLine/cliPrompt.c \
-src/c/cmdLine/getKey.c \
-src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/gotoFunctions.c \
-src/c/cmdLine/initConsoleMode.c \
-src/c/cmdLine/termcapManagement.c
-
-if IS_MACOSX
-CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
-endif
-
-# List of the gateway cpp files
-CONSOLE_GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/console_gw.cpp \
-    sci_gateway/cpp/sci_clc.cpp \
-    sci_gateway/cpp/sci_iswaitingforinput.cpp \
-    sci_gateway/cpp/sci_lines.cpp \
-    sci_gateway/cpp/sci_prompt.cpp \
-    sci_gateway/cpp/sci_tohome.cpp
-
-
-# List of the gateway c files
-CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
@@ -105,44 +63,46 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-
 # List of the c files
-libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
-    src/cpp/scilabRead.cpp \
-    sci_gateway/cpp/console_gw.cpp \
-    sci_gateway/cpp/sci_clc.cpp \
-    sci_gateway/cpp/sci_tohome.cpp \
-    sci_gateway/cpp/sci_lines.cpp \
-    sci_gateway/cpp/sci_prompt.cpp \
-    sci_gateway/cpp/sci_iswaitingforinput.cpp \
-    sci_gateway/c/gw_console.c \
-    src/c/clc.c \
-    src/c/tohome.c \
-    src/c/more.c \
-    src/c/scilines.c \
-    src/c/GetCommandLine.c \
-    src/c/others/gotoxy_nw.c \
-    src/c/others/clrscr_nw.c \
-    src/c/prompt.c \
-    src/c/promptecho.c \
-    src/c/cmdLine/autoCompletionCli.c \
-    src/c/cmdLine/catstr.c \
-    src/c/cmdLine/charactersManagement.c \
-    src/c/cmdLine/cliDisplayManagement.c \
-    src/c/cmdLine/cliHistory.c \
-    src/c/cmdLine/cliPrompt.c \
-    src/c/cmdLine/getKey.c \
-    src/c/cmdLine/getNbrLine.c \
-    src/c/cmdLine/gotoFunctions.c \
-    src/c/cmdLine/initConsoleMode.c \
-    src/c/cmdLine/termcapManagement.c
+
+libsciconsole_minimal_la_SOURCES = src/noconsole/noconsole.c \
+sci_gateway/c/gw_console.c \
+sci_gateway/cpp/sci_clc.cpp \
+sci_gateway/cpp/sci_tohome.cpp \
+sci_gateway/cpp/sci_lines.cpp \
+sci_gateway/cpp/sci_prompt.cpp \
+sci_gateway/cpp/sci_iswaitingforinput.cpp \
+src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/scilines.c \
+src/c/GetCommandLine.c \
+src/c/others/gotoxy_nw.c \
+src/c/others/clrscr_nw.c \
+src/c/prompt.c \
+src/c/promptecho.c \
+src/c/cmdLine/autoCompletionCli.c \
+src/c/cmdLine/charactersManagement.c \
+src/c/cmdLine/cliDisplayManagement.c \
+src/c/cmdLine/cliHistory.c \
+src/c/cmdLine/cliPrompt.c \
+src/c/cmdLine/getKey.c \
+src/c/cmdLine/getNbrLine.c \
+src/c/cmdLine/gotoFunctions.c \
+src/c/cmdLine/initConsoleMode.c \
+src/c/cmdLine/termcapManagement.c \
+src/cpp/scilabRead.cpp \
+sci_gateway/cpp/console_gw.cpp
+
+CONSOLE_C_SOURCES = src/c/GuiManagement.c \
+	src/c/dropFiles.c
 
 if IS_MACOSX
-libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
+CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libsciconsole_minimal_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
                 -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
@@ -204,12 +164,13 @@ libsciconsole_la_CPPFLAGS += -msse2
 endif
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole-disable.la
+pkglib_LTLIBRARIES = libsciconsole-minimal.la
 
 if GUI
-pkglib_LTLIBRARIES += libsciconsole.la 
+pkglib_LTLIBRARIES += libsciconsole.la
 endif
 
+libsciconsole_la_LIBADD = libsciconsole-minimal.la
 
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES) $(CONSOLE_GATEWAY_CPP_SOURCES)

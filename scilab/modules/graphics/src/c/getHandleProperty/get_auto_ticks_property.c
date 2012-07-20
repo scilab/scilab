@@ -44,14 +44,6 @@ int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
   int j = 0;
   int status = -1;
 
-#if 0
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
-      return -1;
-  }
-#endif
-
   for ( i = 0 ; i < 3 ; i++ )
   {
       getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);

@@ -26,8 +26,6 @@
 
 #include "dynlib_graphic_objects.h"
 
-GRAPHIC_OBJECTS_IMPEXP void *sciGetPointerFromHandle(long handle);
-
 /**
  * @brief Get the handle for an UID.
  *
@@ -46,14 +44,5 @@ GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
  * @return a reference to an existing uid or null if invalid.
  */
 GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
-
-// DEPRECATED functions : Should be removed
-GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetParent(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetSons(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentFigure(void);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentSubWin(void);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentObj(void);
-GRAPHIC_OBJECTS_IMPEXP void sciSetCurrentObj(void* pobj);
 
 #endif /* !__HANDLE_MANAGEMENT_H__ */

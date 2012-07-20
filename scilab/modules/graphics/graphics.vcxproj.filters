@@ -1115,6 +1115,12 @@
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h">
@@ -1202,9 +1208,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\math_graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\ObjectStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\pixel_mode.h">

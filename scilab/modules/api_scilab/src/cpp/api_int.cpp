@@ -1013,7 +1013,7 @@ int getScalarUnsignedInteger64(void* _pvCtx, int* _piAddress, unsigned long long
 /*--------------------------------------------------------------------------*/
 static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -1153,7 +1153,7 @@ int getNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned
 /*--------------------------------------------------------------------------*/
 static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -1177,7 +1177,7 @@ static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int 
 /*--------------------------------------------------------------------------*/
 int createScalarInteger8(void* _pvCtx, int _iVar, char _cData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfInteger8(_pvCtx, _iVar, 1, 1, &_cData);
 	if(sciErr.iErr)
@@ -1192,7 +1192,7 @@ int createScalarInteger8(void* _pvCtx, int _iVar, char _cData)
 /*--------------------------------------------------------------------------*/
 int createScalarInteger16(void* _pvCtx, int _iVar, short _sData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfInteger16(_pvCtx, _iVar, 1, 1, &_sData);
 	if(sciErr.iErr)
@@ -1207,7 +1207,7 @@ int createScalarInteger16(void* _pvCtx, int _iVar, short _sData)
 /*--------------------------------------------------------------------------*/
 int createScalarInteger32(void* _pvCtx, int _iVar, int _iData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfInteger32(_pvCtx, _iVar, 1, 1, &_iData);
 	if(sciErr.iErr)
@@ -1223,7 +1223,7 @@ int createScalarInteger32(void* _pvCtx, int _iVar, int _iData)
 #ifdef __SCILAB_INT64__
 int createScalarInteger64(void* _pvCtx, int _iVar, long long _llData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfInteger64(_pvCtx, _iVar, 1, 1, &_llData);
 	if(sciErr.iErr)
@@ -1239,7 +1239,7 @@ int createScalarInteger64(void* _pvCtx, int _iVar, long long _llData)
 /*--------------------------------------------------------------------------*/
 int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char _ucData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfUnsignedInteger8(_pvCtx, _iVar, 1, 1, &_ucData);
 	if(sciErr.iErr)
@@ -1254,7 +1254,7 @@ int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char _ucData)
 /*--------------------------------------------------------------------------*/
 int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfUnsignedInteger16(_pvCtx, _iVar, 1, 1, &_usData);
 	if(sciErr.iErr)
@@ -1269,7 +1269,7 @@ int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usDat
 /*--------------------------------------------------------------------------*/
 int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfUnsignedInteger32(_pvCtx, _iVar, 1, 1, &_uiData);
 	if(sciErr.iErr)
@@ -1285,7 +1285,7 @@ int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData)
 #ifdef __SCILAB_INT64__
 int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _ullData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createMatrixOfUnsignedInteger64(_pvCtx, _iVar, 1, 1, &_ullData);
 	if(sciErr.iErr)
@@ -1301,7 +1301,7 @@ int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _u
 /*--------------------------------------------------------------------------*/
 int createNamedScalarInteger8(void* _pvCtx, const char* _pstName, char _cData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfInteger8(_pvCtx, _pstName, 1, 1, &_cData);
 	if(sciErr.iErr)
@@ -1316,7 +1316,7 @@ int createNamedScalarInteger8(void* _pvCtx, const char* _pstName, char _cData)
 /*--------------------------------------------------------------------------*/
 int createNamedScalarInteger16(void* _pvCtx, const char* _pstName, short _sData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfInteger16(_pvCtx, _pstName, 1, 1, &_sData);
 	if(sciErr.iErr)
@@ -1331,7 +1331,7 @@ int createNamedScalarInteger16(void* _pvCtx, const char* _pstName, short _sData)
 /*--------------------------------------------------------------------------*/
 int createNamedScalarInteger32(void* _pvCtx, const char* _pstName, int _iData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfInteger32(_pvCtx, _pstName, 1, 1, &_iData);
 	if(sciErr.iErr)
@@ -1347,7 +1347,7 @@ int createNamedScalarInteger32(void* _pvCtx, const char* _pstName, int _iData)
 #ifdef __SCILAB_INT64__
 int createNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long _llData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfInteger64(_pvCtx, _pstName, 1, 1, &_llData);
 	if(sciErr.iErr)
@@ -1363,7 +1363,7 @@ int createNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long _ll
 /*--------------------------------------------------------------------------*/
 int createNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned char _ucData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfUnsignedInteger8(_pvCtx, _pstName, 1, 1, &_ucData);
 	if(sciErr.iErr)
@@ -1378,7 +1378,7 @@ int createNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsign
 /*--------------------------------------------------------------------------*/
 int createNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned short _usData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfUnsignedInteger16(_pvCtx, _pstName, 1, 1, &_usData);
 	if(sciErr.iErr)
@@ -1393,7 +1393,7 @@ int createNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsig
 /*--------------------------------------------------------------------------*/
 int createNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned int _uiData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfUnsignedInteger32(_pvCtx, _pstName, 1, 1, &_uiData);
 	if(sciErr.iErr)
@@ -1409,7 +1409,7 @@ int createNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsig
 #ifdef __SCILAB_INT64__
 int createNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned long long _ullData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfUnsignedInteger64(_pvCtx, _pstName, 1, 1, &_ullData);
 	if(sciErr.iErr)

@@ -15,10 +15,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "MALLOC.h"             /* MALLOC */
 #include "BuildObjects.h"
 #include "gw_gui.h"
 #include "localization.h"
@@ -36,6 +32,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "api_scilab.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu(char *fname, void *pvApiCtx)
 {

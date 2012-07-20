@@ -661,6 +661,17 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a function
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleFunction(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "function", contents);
+    }
+
+    /**
      * Handle a constant
      * @param attributes the tag attributes
      * @param contents the tag contents

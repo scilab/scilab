@@ -18,10 +18,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
-import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -32,8 +32,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
-public final class BlockDocumentationAction extends
-        VertexSelectionDependantAction {
+public final class BlockDocumentationAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
     /** Icon name of the action */
@@ -45,7 +44,7 @@ public final class BlockDocumentationAction extends
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -55,7 +54,7 @@ public final class BlockDocumentationAction extends
 
     /**
      * Create a button for a graph toolbar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the button
@@ -66,7 +65,7 @@ public final class BlockDocumentationAction extends
 
     /**
      * Create a menu for a graph menubar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the menu
@@ -77,7 +76,7 @@ public final class BlockDocumentationAction extends
 
     /**
      * Action associated
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -91,10 +90,15 @@ public final class BlockDocumentationAction extends
         if (comp.isEditing()) {
             return;
         }
-        
+
         Object selected = graph.getSelectionCell();
         if (selected instanceof BasicBlock) {
-            CallScilabBridge.openHelp(((BasicBlock) selected).getInterfaceFunctionName());
+            try {
+                ScilabInterpreterManagement.asynchronousScilabExec(null, "help", ((BasicBlock) selected).getInterfaceFunctionName());
+            } catch (InterpreterException ex) {
+                ex.printStackTrace();
+            }
+
         } else {
             XcosDialogs.noBlockSelected(graph);
         }

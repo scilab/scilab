@@ -55,6 +55,8 @@ GUI_IMPEXP int sci_raise_window ( char * fname, unsigned long fname_len ) ;
 // YaSp
 GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_mpopup( char * fname, void* pvApiCtx);
+GUI_IMPEXP int sci_fire_closing_finished ( char * fname, unsigned long fname_len ) ;
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

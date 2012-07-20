@@ -36,7 +36,7 @@ int sci_preferences(char * fname, void *pvApiCtx)
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("An error occurend in opening Preferences window: "), fname, e.getJavaDescription().c_str());
+        Scierror(999, _("An error occurred while opening Preferences window:"), fname, e.getJavaDescription().c_str());
     }
 
     LhsVar(1) = 0;

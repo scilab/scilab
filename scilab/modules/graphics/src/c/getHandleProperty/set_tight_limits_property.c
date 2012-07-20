@@ -36,14 +36,6 @@ int set_tight_limits_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 
 	int b =  (int)FALSE;
 
-#if 0
-	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
-		return SET_PROPERTY_ERROR ;
-	}
-#endif
-
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tight_limits");
 	if(b == NOT_A_BOOLEAN_VALUE)
     {

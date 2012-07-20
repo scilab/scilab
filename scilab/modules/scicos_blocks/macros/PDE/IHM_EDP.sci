@@ -67,6 +67,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
   
   f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4]);
   f.axes_size=[670,620];
+  f.closerequestfcn = "do_quitter()";
   //m=uimenu(f,'label', 'Model EDP');
   // create an item on the menu bar
   //m1=uimenu(f,'label', 'Methode');

@@ -128,6 +128,7 @@
 #define __GO_TAG__                         "Tag"
 #define __GO_ROTATION_TYPE__               "RotationType"
 #define __GO_RESIZEFCN__                   "ResizeFcn"
+#define __GO_CLOSEREQUESTFCN__             "CloseRequestFcn"
 
 #define __GO_UPPER_LEFT_POINT__            "UpperLeftPoint"
 #define __GO_WIDTH__                       "Width"

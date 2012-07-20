@@ -5,8 +5,12 @@
 Xcos
 ====
 
+* Bug #9290 fixed - HALT blocks displayed STOP
+
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
+
+* Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter 
 
 
 Preferences
@@ -24,16 +28,23 @@ Javasci
 Documentation
 =============
 
-* Management of Docbook tags <varname>, <command> and <constant>.
+* Management of Docbook tags <varname>, <command>, <function> and <constant>.
   See bug #11459.
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
+
+* Categories have been created for the following modules help pages:
+    - statistics. See bug #9108.
+    - genetic algorithms. See bug #11514.
 
 
 GUI
 ===
 
 * Uicontrols tooltip can now be managed using the new "TooltipString" property.
+
+* Figure closure can now be managed by the user (confirmation, ...) through the
+  'closerequestfcn' property.
 
 
 Obsolete Functions
@@ -44,6 +55,13 @@ Obsolete Functions
 * uipopup function is now obsolete. Please use 'uicontextmenu' instead.
 
 
+Arnoldi Package
+====================
+
+* New function:
+  - eigs function added (See SEP #82)
+
+
 Unitary tests
 =============
 
@@ -52,6 +70,9 @@ Unitary tests
 
 Bug Fixes
 =========
+
+* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
+                    was always calculated its own, arbitrary, internal value.
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
@@ -64,6 +85,8 @@ Bug Fixes
 
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
+
+* Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
@@ -82,6 +105,8 @@ Bug Fixes
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
 
+* Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
@@ -92,6 +117,9 @@ Bug Fixes
 
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
+
+* Bug #11385 fixed - length() returned a wrong error message when called without
+                     input argument.
 
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
@@ -106,13 +134,28 @@ Bug Fixes
                      rather than only the variable "a".
 
 * Bug #11443 fixed - There was no way to set default language via prefs under
-                    Windows.
+                     Windows.
+
+* Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
 
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
+* Bug #11460 fixed - In the console, scrollbar was not updated before something was
+                     entered at the prompt.
+
 * Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
 
+* Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of draw at the end of the update.
+
+* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
+                              into itself.
+
+* Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
+                     something in the console.
+
+* Bug #11506 fixed - "Rendu d'équations mathématiques dans le graphique Scilab"
+                     were missing some closure tags in the examples.
 
 
 Known Incompatibilities
@@ -1008,6 +1051,8 @@ Bug Fixes
 
 * Bug #11289 fixed - swap_handles function modified the properties.
 
+* Bug #11461 fixed - api_list was not able to create lists and sub lists with undefined items.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
@@ -1458,7 +1503,7 @@ Obsolete Functions
    removed in Scilab 5.4.1.
 
 * 'showalluimenushandles' function (graphics) was undocumented. This function is
-  obsolete and will be removed on 5.4.
+  obsolete and will be removed on 5.4.1.
   Use set(get(0), "ShowHiddenHandles", "on"); instead.
 
 * 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use

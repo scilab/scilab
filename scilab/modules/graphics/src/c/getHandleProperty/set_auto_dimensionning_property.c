@@ -37,13 +37,6 @@ int set_auto_dimensionning_property(void* _pvCtx, char* pobjUID, size_t stackPoi
     BOOL status = FALSE;
 
     int b =  (int)FALSE;
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_TEXT )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_dimensionning");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_dimensionning");
     if(b == NOT_A_BOOLEAN_VALUE)

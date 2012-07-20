@@ -32,7 +32,6 @@
 #define __SCI_SET_PROPERTY__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 #include "BOOL.h"
 
 GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */
@@ -40,15 +39,6 @@ GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET *
 GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
-
-GRAPHICS_IMPEXP int sciInitNbXSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbXSubTics (char* pobj, int nbsubtics); /* SET */
-
-GRAPHICS_IMPEXP int sciInitNbYSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbYSubTics (char* pobj, int nbsubtics); /* SET */
-
-GRAPHICS_IMPEXP int sciInitNbZSubTics(char* pobj, int nbsubtics);
-GRAPHICS_IMPEXP int sciSetNbZSubTics (char* pobj, int nbsubtics); /* SET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
@@ -62,59 +52,8 @@ GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP int sciSetInterpVector(char* pobj, int size, int * value);
-
-GRAPHICS_IMPEXP int sciInitAutoRotation( char* pObj, BOOL value ) ;
-GRAPHICS_IMPEXP int sciSetAutoRotation ( char* pObj, BOOL value ) ;
-
-GRAPHICS_IMPEXP int sciInitAutoPosition( char* pObj, BOOL value ) ;
-GRAPHICS_IMPEXP int sciSetAutoPosition ( char* pObj, BOOL value ) ;
-
-GRAPHICS_IMPEXP int sciInitAutoSize( char* pObj, BOOL autoSize ) ;
-GRAPHICS_IMPEXP int sciSetAutoSize(  char* pObj, BOOL autoSize ) ;
-
-GRAPHICS_IMPEXP int sciInitAlignment( char* pObj, sciTextAlignment align ) ;
-GRAPHICS_IMPEXP int sciSetAlignment(  char* pObj, sciTextAlignment align ) ;
-
-GRAPHICS_IMPEXP int sciInitUserSize( char* pObj, double width, double height ) ;
-GRAPHICS_IMPEXP int sciSetUserSize(  char* pObj, double width, double height ) ;
-
-GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
-GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
-
-GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;
-
-GRAPHICS_IMPEXP int sciInitGraphicsStyle( char* pobj, BOOL value );
-
-GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
-GRAPHICS_IMPEXP int sciSetEventHandler(  char* pObj, char * name ) ;
-
-GRAPHICS_IMPEXP int sciInitIsEventHandlerEnable( char* pObj, BOOL enable ) ;
-GRAPHICS_IMPEXP int sciSetIsEventHandlerEnable(  char* pObj, BOOL enable ) ;
-
-GRAPHICS_IMPEXP int sciSetDataBounds( char* pObj, double bounds[6] ) ; /* SET */
-GRAPHICS_IMPEXP int sciSetRealDataBounds(char* pObj, const double bounds[6]); /* SET */
-
-GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);
-GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */
-
-GRAPHICS_IMPEXP int sciInitTextPos( char* pObj, double posX, double posY, double posZ);
-GRAPHICS_IMPEXP int sciSetTextPos( char* pObj, double posX, double posY, double posZ);
-
-GRAPHICS_IMPEXP int sciInitAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
-GRAPHICS_IMPEXP int sciSetAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
-
-GRAPHICS_IMPEXP int sciSetZoomBox(char* pObj, const double zoomBox[6]); /* SET */
-
-GRAPHICS_IMPEXP int sciInitImmediateDrawingMode(char* pObj, BOOL autoRedraw);
-GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(char* pObj, BOOL autoRedraw);
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
-/*---------------------------------------------------------------------------*/
-/* return 0 if the string contains any % character, 1 if a %d has been found */
-/* and -1 otherwise. */
-GRAPHICS_IMPEXP int checkPercent( char * string ) ;
 /*---------------------------------------------------------------------------*/
 
 #endif /* __SCI_SET_PROPERTY__ */

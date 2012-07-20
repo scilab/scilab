@@ -35,14 +35,6 @@ int get_auto_rotation_property(void* _pvCtx, char* pobjUID)
     int iAutoRotation = 0;
     int* piAutoRotation = &iAutoRotation;
 
-#if 0
-    if( sciGetEntityType(pobj) != SCI_LABEL )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_rotation");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_AUTO_ROTATION__, jni_bool, (void **)&piAutoRotation);
 
     if (piAutoRotation == NULL)

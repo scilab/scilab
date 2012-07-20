@@ -33,36 +33,4 @@ double *javaDragRubberBox(char *pstObjUID)
 {
     return org_scilab_modules_renderer::CallRenderer::dragRubberBox(getScilabJavaVM(), pstObjUID);
 }
-
-
-/*---------------------------------------------------------------------------------*/
-void interactiveJavaZoom(sciPointObj * pFigure)
-{
-    //getFigureDrawer(pFigure)->interactiveZoom();
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveJavaSubwinZoom(sciPointObj * pSubwin)
-{
-    //getSubwinDrawer(pSubwin)->interactiveZoom();
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveJavaRotation(sciPointObj * pFigure)
-{
-    //getFigureDrawer(pFigure)->interactiveRotation();
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveJavaSubwinRotation(sciPointObj * pSubwin)
-{
-    //getSubwinDrawer(pSubwin)->interactiveRotation();
-}
-/*---------------------------------------------------------------------------------*/
-void javaUnzoomSubwin(sciPointObj * pSubwin)
-{
-    //getSubwinDrawer(pSubwin)->unzoom();
-}
-/*---------------------------------------------------------------------------------*/
-void javaShowWindow(sciPointObj * pFigure)
-{
-    //getFigureDrawer(pFigure)->showWindow();
-}
 /*---------------------------------------------------------------------------------*/

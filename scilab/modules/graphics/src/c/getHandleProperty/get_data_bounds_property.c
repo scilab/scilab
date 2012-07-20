@@ -54,21 +54,5 @@ int get_data_bounds_property(void* _pvCtx, char* pobjUID)
     {
       return sciReturnMatrix(_pvCtx, dataBounds, 2, 2);
     }
-
-  /*
-   * FIXME
-   * To be implemented using the MVC framework,
-   * though it's probably not relevant nor used anymore
-   * by Surface objects.
-   */
-#if 0
-  {
-    double bounds[6] ;
-    sciGetDataBounds(pobj, bounds) ;
-    /* used for what ? F.Leray 20.04.05 */
-    return sciReturnMatrix( bounds, 3, 2 ) ;
-  }
-#endif
-
 }
 /*------------------------------------------------------------------------*/

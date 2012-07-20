@@ -35,14 +35,6 @@ int get_arrow_size_factor_property(void* _pvCtx, char* pobjUID)
     double dblArrowSizeFactor = 0;
     double* pdblArrowSizeFactor = &dblArrowSizeFactor;
 
-#if 0
-    if( sciGetEntityType(pobj) != SCI_POLYLINE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "arrow_size_factor");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE_FACTOR__, jni_double, (void **)&pdblArrowSizeFactor);
 
     if (pdblArrowSizeFactor == NULL)

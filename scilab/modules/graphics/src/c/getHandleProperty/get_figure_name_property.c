@@ -22,8 +22,6 @@
 
 #include <string.h>
 
-#include "os_strdup.h"
-
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
@@ -41,10 +39,10 @@ int get_figure_name_property(void* _pvCtx, char* pobjUID)
 
     if ( figureName == NULL )
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_name");
         return -1;
     }
 
-    return sciReturnString(_pvCtx, os_strdup(figureName));
+    return sciReturnString(_pvCtx, figureName);
 }
 /*------------------------------------------------------------------------*/

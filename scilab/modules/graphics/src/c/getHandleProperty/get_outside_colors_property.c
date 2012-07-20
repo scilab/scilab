@@ -32,13 +32,6 @@
 int get_outside_colors_property(void* _pvCtx, char* pobjUID)
 {
     int* colors = NULL;
-#if 0
-    if (sciGetEntityType (pobj) != SCI_FEC)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors");
-        return -1;
-    }
-#endif
 
     getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
 

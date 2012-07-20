@@ -235,12 +235,6 @@ int C2F(graphicsmodels) (void)
     clipRegionSet = 0;
     setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    /* add the handle in the handle list */
-    //if ( sciAddNewHandle(paxesmdl) == -1 )
-    //{
-    //  return NULL;
-    //}
-
     /*
      * Specifies that no high-level drawing function has been called yet.
      */
@@ -255,279 +249,6 @@ int C2F(graphicsmodels) (void)
     setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
 
     return 1;
-}
-
-/*
- * This function has been adapted to the MVC framework.
- * Its code ought to be moved to the Java Model implementation,
- * either within the relevant constructors (Axes, ContouredObject)
- * or initialization methods.
- */
-
-/**sciInitGraphicContext
- * Inits the graphic context of this object with the default value. the new graphic object inherits parent's features by sciGetParent()
- */
-int sciInitGraphicContext(sciPointObj * pobj)
-{
-    char *type = NULL;
-
-    /*
-     * initialisation du contexte graphique par defaut
-     * que l'on peut recuperer sur les structure de base de scilab
-     * la colormap des fils est heritee du parent
-     */
-
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **)&type);
-
-    //  switch (sciGetEntityType (pobj))
-    {
-
-        /*
-         * The GO_FIGURE block is never reached as InitFigureModel
-         * is not called any more.
-         */
-        if (strcmp(type, __GO_FIGURE__) == 0)
-        {
-            /*
-             * The Figure GraphicContext properties (MVC Contoured properties) were not
-             * directly used by the Figure object (except backgroundcolor) but served to
-             * initialize its children Axes' ones.
-             */
-            if (isFigureModel(pobj->UID))
-            {
-#if 0
-                (sciGetGraphicContext(pobj))->backgroundcolor = /*-3;*/ 33; /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method */
-                (sciGetGraphicContext(pobj))->foregroundcolor = /*-2;*/ 32; /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method */
-                (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
-                (sciGetGraphicContext(pobj))->linewidth = 1;
-                (sciGetGraphicContext(pobj))->linestyle = 0;    /* solid */
-                (sciGetGraphicContext(pobj))->ismark = FALSE;
-                (sciGetGraphicContext(pobj))->isline = TRUE;
-                (sciGetGraphicContext(pobj))->isfilled = FALSE;
-                (sciGetGraphicContext(pobj))->markstyle = 0;
-                (sciGetGraphicContext(pobj))->marksize = 0; /* New F.Leray 21.01.05 */
-                (sciGetGraphicContext(pobj))->markbackground = /*-3;*/ 33;  /* New F.Leray 21.01.05 */
-                (sciGetGraphicContext(pobj))->markforeground = /*-2;*/ 32;  /* New F.Leray 21.01.05 */
-                (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 *//* 1 : points, 2 : tabulated */
-#endif
-            }
-            else
-            {
-#if 0
-                cloneGraphicContext(pfiguremdl, pobj);
-#endif
-            }
-            return 0;
-        }
-        else if (strcmp(type, __GO_AXES__) == 0)
-        {
-
-            /*
-             * This block is reached as InitGraphicContext is called by InitAxesModel
-             * The property set calls it performs should be moved to the Java Model.
-             * Contoured properties are not copied from the parent Figure any more for now
-             * and are instead explicitely set here, in order to initialize the default
-             * Axes' ones.
-             */
-            if (isAxesModel(pobj->UID))
-            {
-                int background = -2;
-                int foreground = -1;
-                double lineWidth = 1.0;
-
-                /* 0: solid */
-                int lineStyle = 0;
-
-                int markMode = 0;
-                int lineMode = 1;
-                int fillMode = 0;
-                int markStyle = 0;
-                int markSize = 0;
-
-                /* 0: point, 1: tabulated */
-                int markSizeUnit = 1;
-
-                setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, &background, jni_int, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
-
-                setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
-
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
-
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
-
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
-                setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
-
-#if 0
-                cloneGraphicContext(sciGetParent(pobj), pobj);
-
-                sciGetGraphicContext(pobj)->backgroundcolor = /*-3 ;*/ 33;
-                sciGetGraphicContext(pobj)->foregroundcolor = /*-2 ;*/ 32;
-                sciGetGraphicContext(pobj)->markbackground = /*-3*/ 33;
-                sciGetGraphicContext(pobj)->markforeground = /*-2*/ 32;
-#endif
-            }
-            /*
-             * This block is never reached since the Axes model
-             * is now cloned within the MVC.
-             */
-            else
-            {
-#if 0
-                cloneGraphicContext(paxesmdl, pobj);
-#endif
-            }
-            return 0;
-        }
-        else if (strcmp(type, __GO_ARC__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_SEGS__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_CHAMP__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        /*
-         * Copies the parent object's contour properties values
-         */
-        else if (strcmp(type, __GO_POLYLINE__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-
-            /*
-             * Previously done by copying the deprecated C GraphicContext structure.
-             * To be deleted.
-             */
-#if 0
-            cloneGraphicContext(sciGetParent(pobj), pobj);
-#endif
-        }
-        else if (strcmp(type, __GO_RECTANGLE__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_AXIS__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_LEGEND__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-        else if (strcmp(type, __GO_TEXT__) == 0)
-        {
-            char *parent = NULL;
-
-            getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, (void **)&parent);
-            cloneGraphicContext(parent, pobj->UID);
-        }
-
-        /* Deactivated for now */
-        /* This must be implemented within the MVC */
-#if 0
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_LEGEND:               /* Adding a graphic context to legend object F.Leray 21.01.05 */
-    case SCI_TEXT:
-        cloneGraphicContext(sciGetParent(pobj), pobj);
-        return 0;
-        break;
-    case SCI_LABEL:                /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
-        if (sciGetParent(pobj) == paxesmdl)
-        {
-            /* this is a label model */
-            cloneGraphicContext(sciGetParent(pobj), pobj);
-            return 0;
-        }
-        else
-        {
-            sciPointObj *plabelmdl = NULL;
-
-            switch (pLABEL_FEATURE(pobj)->ptype)
-            {
-                case 1:
-                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-                    break;
-                case 2:
-                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-                    break;
-                case 3:
-                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-                    break;
-                case 4:
-                    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-                    break;
-                default:
-                    /* arrgh */
-                    return -1;
-                    break;
-            }
-            cloneGraphicContext(plabelmdl, pobj);
-            return 0;
-        }
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-        return -1;
-        break;
-#endif
-    }
-
-    return 0;
-}
-
-/**
- * Inits the font context of an object by copying the one of an other.
- * @param pObjSource the object from which the FC is taken
- * @param pObjDest the object in which the FC is paste
- */
-int initFCfromCopy(sciPointObj * pObjSource, sciPointObj * pObjDest)
-{
-    return cloneFontContext(pObjSource->UID, pObjDest->UID);
 }
 
 /*
@@ -586,18 +307,6 @@ int InitAxesModel()
 
     /* 0: point, 1: tabulated */
     int markSizeUnit = 1;
-
-    /*
-     * Not needed any more since the MVC equivalent is now used
-     * To be deleted
-     */
-#if 0
-    sciSubWindow *ppaxesmdl = pSUBWIN_FEATURE(paxesmdl);
-#endif
-
-#if 0
-    char linLogFlags[3] = { 'n', 'n', 'n' };
-#endif
 
     char *labelUID = NULL;
 
@@ -868,8 +577,6 @@ int sciInitGraphicMode(char *pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
-    //  switch (sciGetEntityType (pobj))
-
     /*
      * The GO_FIGURE block is never reached as InitFigureModel
      * is not called at all (was previously called by
@@ -886,28 +593,7 @@ int sciInitGraphicMode(char *pobjUID)
              * These 3 properties are not used by the Figure object proper, but
              * rather serve to initialize its children Axes' ones.
              */
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = TRUE;
-            (sciGetGraphicMode(pobj))->zooming = FALSE;
-#endif
-
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->xormode = 3; /* copy */
-#endif
-        }
-        /*
-         * Useless now since the Figure model
-         * is cloned within the MVC via a C call
-         */
-        else
-        {
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(pfiguremdl))->addplot;
-            (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(pfiguremdl))->zooming;
-            (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(pfiguremdl))->xormode;
-#endif
         }
     }
     else if (strcmp(type, __GO_AXES__) == 0)
@@ -937,12 +623,6 @@ int sciInitGraphicMode(char *pobjUID)
              * As it has no corresponding MVC property, this call will not set anything.
              */
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = sciGetAddPlot(sciGetParent(pobj));
-            (sciGetGraphicMode(pobj))->zooming = sciGetZooming(sciGetParent(pobj));
-            (sciGetGraphicMode(pobj))->xormode = sciGetXorMode(sciGetParent(pobj));
-#endif
         }
         /*
          * This block is never reached at all since since the Axes model
@@ -974,12 +654,6 @@ int sciInitGraphicMode(char *pobjUID)
             xormode = iTmp;
 
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
-
-#if 0
-            (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(paxesmdl))->addplot;
-            (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(paxesmdl))->zooming;
-            (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(paxesmdl))->xormode;
-#endif
         }
     }
 
@@ -1030,81 +704,4 @@ char *initLabel(char *parentObjUID)
 
     return newLabel;
 }
-
-/*---------------------------------------------------------------------------------*/
-void destroyDefaultObjects(void)
-{
-    // ???
-    /* will destroy the figure and its children (so the axes). */
-    //destroyGraphicHierarchy( pfiguremdl ) ;
-    //pfiguremdl = NULL ;
-    //paxesmdl = NULL;
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * Create new data with defautl properties.
- */
-FigureModelData *newFigureModelData(void)
-{
-    FigureModelData *modelData = MALLOC(sizeof(FigureModelData));
-
-    if (modelData == NULL)
-    {
-        return NULL;
-    }
-
-    modelData->figureWidth = 610;
-    modelData->figureHeight = 460;
-    modelData->windowWidth = 620;
-    modelData->windowHeight = 590;
-    modelData->windowPosition[0] = 200; /* Set [-1,-1] to let the os use the position */
-    modelData->windowPosition[1] = 200;
-    modelData->colorMap = NULL;
-    modelData->numColors = 0;
-    modelData->autoResizeMode = TRUE;
-    modelData->viewport[0] = 0;
-    modelData->viewport[1] = 0;
-    modelData->viewport[2] = 610;
-    modelData->viewport[3] = 461;
-    modelData->infoMessage = NULL;
-    modelData->antialiasingQuality = 0;
-
-    return modelData;
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * Free an existing model Data
- */
-void destroyFigureModelData(FigureModelData * data)
-{
-    if (data != NULL)
-    {
-        if (data->colorMap != NULL)
-        {
-            FREE(data->colorMap);
-            data->colorMap = NULL;
-        }
-
-        if (data->infoMessage != NULL)
-        {
-            FREE(data->infoMessage);
-            data->infoMessage = NULL;
-        }
-
-        FREE(data);
-        data = NULL;
-    }
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * @return TRUE if pObj is one of the model objects, FALSE otherwise
- */
-BOOL isModelObject(sciPointObj * pObj)
-{
-    return isFigureModel(pObj->UID) || isAxesModel(pObj->UID);
-}
-
 /*---------------------------------------------------------------------------------*/

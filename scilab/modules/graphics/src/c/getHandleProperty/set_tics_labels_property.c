@@ -46,14 +46,6 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void**)&piNbTicksLabels);
 
     if (piNbTicksLabels == NULL)
@@ -72,10 +64,6 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(stringVector, nbRow*nbCol, 1);
-
-#if 0
-    pAXES_FEATURE(pobj)->nb_tics_labels = nbRow*nbCol ; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
-#endif
 
     status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow*nbCol);
 

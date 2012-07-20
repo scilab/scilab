@@ -207,7 +207,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid ""
@@ -367,7 +367,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid ""
@@ -410,7 +410,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au plus %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au plus %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -530,7 +530,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
@@ -548,7 +548,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"

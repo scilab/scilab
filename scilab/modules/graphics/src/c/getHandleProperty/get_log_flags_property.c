@@ -37,14 +37,6 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
     int logFlags[3];
     char logFlagsString[4];
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)

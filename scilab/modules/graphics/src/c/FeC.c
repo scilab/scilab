@@ -115,15 +115,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
     setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    /* Force psubwin->axes.aaint to those given by argument aaint*/
-    /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-
     /* Force "cligrf" clipping (1) */
     clipState = 1;
     setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-    /* Force  axes_visible property */
-    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
     getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 

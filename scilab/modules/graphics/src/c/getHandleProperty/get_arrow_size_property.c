@@ -35,14 +35,6 @@ int get_arrow_size_property(void* _pvCtx, char* pobjUID)
     double arrowSize = 0.0;
     double* pdblArrowSize = &arrowSize;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SEGS )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, jni_double, (void **)&pdblArrowSize);
 
     if (pdblArrowSize == NULL)

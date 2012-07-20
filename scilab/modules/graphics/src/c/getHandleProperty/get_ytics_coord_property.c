@@ -35,14 +35,6 @@ int get_ytics_coord_property(void* _pvCtx, char* pobjUID)
     int* piYNumberTicks = &iYNumberTicks;
     double* yTicksCoords = NULL;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&yTicksCoords);
 
     if (yTicksCoords == NULL)

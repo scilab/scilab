@@ -35,14 +35,6 @@ int get_auto_scale_property(void* _pvCtx, char* pobjUID)
     int iAutoScale = 0;
     int* piAutoScale = &iAutoScale;
 
-#if 0
-    if (sciGetEntityType(pobj) != SCI_FIGURE && sciGetEntityType(pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_scale");
-        return -1 ;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (piAutoScale == NULL)

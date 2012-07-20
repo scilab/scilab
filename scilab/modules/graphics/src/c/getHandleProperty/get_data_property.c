@@ -166,23 +166,6 @@ int get3ddata(char *pobjUID)
             }
 
         }
-        else if (strcmp(type, __GO_PLOT3D__) == 0)
-        {
-            /*
-             * Deactivated for now.
-             * The color matrix is not implemented yet within the MVC for Plot 3D objects (and possibly
-             * useless regarding rendering).
-             * To be implemented.
-             */
-#if 0
-            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 );
-            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 );
-            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 );
-
-            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n );
-#endif
-        }
-
         destroyReturnedList( tList );
     }
     else /* no color provided in input*/

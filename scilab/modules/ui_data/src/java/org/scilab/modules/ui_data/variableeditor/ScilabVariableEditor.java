@@ -19,9 +19,8 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
-import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.localization.Messages;
@@ -31,8 +30,6 @@ import org.scilab.modules.localization.Messages;
  * Implements a ScilabWindow containing Variable Editor (JTable)
  */
 public final class ScilabVariableEditor extends SwingScilabWindow implements VariableEditor {
-
-    private static final String MENUBARXMLFILE = System.getenv("SCI") + "/modules/ui_data/etc/variableeditor_menubar.xml";
 
     private static Map<String, Component> map = new HashMap();
 
@@ -180,5 +177,18 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
     public void setVisible(boolean status) {
         super.setVisible(status);
         editorTab.setVisible(status);
+    }
+
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X about menu is called. It is the only case where this method
+     * should be used
+     */
+    public void OSXabout() {
+        InterpreterManagement.requestScilabExec("about()");
+    }
+
+    public void OSXquit() {
+        InterpreterManagement.requestScilabExec("exit()");
     }
 }

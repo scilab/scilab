@@ -38,11 +38,9 @@
 #include "CurrentSubwin.h"
 
 #include "deleteGraphicObject.h"
-
 /*--------------------------------------------------------------------------------*/
-static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
-static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
-
+static void initSubWinAngles(char * pSubWinUID);
+static void initSubWinBounds(char * pSubWinUID);
 /*--------------------------------------------------------------------------------*/
 /* reinit a subwindow (but don't change position ) */
 static void reinitSubWin(char * pSubWinUID)
@@ -99,7 +97,7 @@ static void reinitSubWin(char * pSubWinUID)
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the viewing angles of a subwindow */
-void initSubWinAngles(char * pSubWinUID)
+static void initSubWinAngles(char * pSubWinUID)
 {
     int iViewType = 0;
     int* piViewType = &iViewType;
@@ -117,22 +115,8 @@ void initSubWinAngles(char * pSubWinUID)
 }
 
 /*--------------------------------------------------------------------------------*/
-/* set the size and position of the subwindow to the default */
-void initSubWinSize( sciPointObj * pSubWin )
-{
-// ???
-#if 0
-  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
-  ppSubWin->WRect[0] = ppAxesMdl->WRect[0] ;
-  ppSubWin->WRect[1] = ppAxesMdl->WRect[1] ;
-  ppSubWin->WRect[2] = ppAxesMdl->WRect[2] ;
-  ppSubWin->WRect[3] = ppAxesMdl->WRect[3] ;
-#endif
-}
-/*--------------------------------------------------------------------------------*/
 /* set the data_bounds of the axes to the default value */
-void initSubWinBounds(char * pSubWinUID)
+static void initSubWinBounds(char * pSubWinUID)
 {
     double* dataBounds = NULL;
     double* realDataBounds = NULL;
@@ -165,42 +149,6 @@ BOOL checkRedrawing( void )
     }
 
     return FALSE;
-}
-/*--------------------------------------------------------------------------------*/
-/**
- * Return the square distance between the center of axes box anf point (xCoord, yCoord);
- */
-static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
-{
-  int xPos = 0;
-  int yPos = 0;
-  int width = 0;
-  int height = 0;
-  /* get area used by the subwindow */
-  sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
-
-  /* get coordinate sof middle */
-  xPos = xPos + width / 2;
-  yPos = yPos + height / 2;
-
-  return (xCoord - xPos) * (xCoord - xPos) + (yCoord - yPos) * (yCoord - yPos);
-
-}
-/*--------------------------------------------------------------------------------*/
-/**
- * @return TRUE if the point in pixel (xCoord, yCoord) is above the subwin
- */
-static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
-{
-  int xPos = 0;
-  int yPos = 0;
-  int width = 0;
-  int height = 0;
-  /* get area used by the subwindow */
-  sciGetViewingArea((char*)pSubwin, &xPos, &yPos, &width, &height);
-
-  return (   xCoord > xPos && xCoord < xPos + width
-          && yCoord > yPos && yCoord < yPos + height);
 }
 /*--------------------------------------------------------------------------------*/
 sciLegendPlace propertyNameToLegendPlace(const char * string)

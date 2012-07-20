@@ -48,14 +48,6 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SURFACE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if ( nbRow * nbCol != 1 )
     {
         Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "color_flag");

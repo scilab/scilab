@@ -56,6 +56,15 @@ void CommandHistoryInitialize (void)
     }
 }
 /*------------------------------------------------------------------------*/
+void CommandHistoryExpandAll (void)
+{
+    if (getScilabMode() == SCILAB_STD)
+    {
+        CommandHistory::expandAll(getScilabJavaVM());
+    }
+}
+
+/*------------------------------------------------------------------------*/
 void CommandHistoryReset(void)
 {
     if (getScilabMode() == SCILAB_STD)

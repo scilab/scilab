@@ -108,19 +108,6 @@ int sci_stringbox( char * fname, unsigned long fname_len )
 
     getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_string, (void **)&type);
 
-#if 0
-    if ( sciGetEntityType( pTextUID ) == SCI_LABEL )
-    {
-      // a label, get the real text
-      pTextUID = pLABEL_FEATURE( pTextUID )->text ;
-    }
-    else if ( sciGetEntityType( pTextUID ) != SCI_TEXT )
-    {
-      Scierror(999,_("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
-      return 0 ;
-    }
-#endif
-
     if (strcmp(type, __GO_LABEL__) != 0 && strcmp(type, __GO_TEXT__) != 0)
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);

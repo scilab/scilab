@@ -37,14 +37,6 @@ int get_y_location_property(void* _pvCtx, char* pobjUID)
     int iLocation = 0;
     int* piLocation = &iLocation;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_location");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piLocation);
 
     if (piLocation == NULL)

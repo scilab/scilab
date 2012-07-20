@@ -117,7 +117,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -246,7 +246,7 @@ msgstr "%s : Impossible de créer un handle de type 'Uicontrol'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -1500,7 +1500,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"

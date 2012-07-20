@@ -32,14 +32,6 @@ int get_filled_property(void* _pvCtx, char* pobjUID)
     int iFilled = 0;
     int* piFilled = &iFilled;
 
-#if 0
-    if (sciGetEntityType(pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_FILLED__, jni_bool, (void **)&piFilled);
 
     if (piFilled == NULL)

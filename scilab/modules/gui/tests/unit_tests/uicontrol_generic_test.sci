@@ -264,7 +264,7 @@ assert_checkequal(get(h, "tooltipstring"), "");  // Default value
 set(h, "tooltipstring", ["test for tooltipstring"]);
 assert_checkequal(get(h, "tooltipstring"), "test for tooltipstring");
 set(h, "tooltipstring", ["test;for;tooltipstring"]);
-assert_checkequal(get(h, "tooltipstring"), ["test,for,tooltipstring"]);
+assert_checkequal(get(h, "tooltipstring"), ["test;for;tooltipstring"]);
 set(h, "tooltipstring", ["test,for,tooltipstring"]);
 assert_checkequal(get(h, "tooltipstring"), ["test,for,tooltipstring"]);
 set(h, "tooltipstring", "");

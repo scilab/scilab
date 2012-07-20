@@ -47,25 +47,25 @@
         <VBox>
           <Grid>
             <Panel gridx="1" gridy="1" weightx="1"/>
-            <Button gridx="2" gridy="1" weightx="0" text="Default" listener="ActionListener">
+            <Button gridx="2" gridy="1" weightx="0" text="_(Default)" listener="ActionListener">
               <actionPerformed callback="Default"/>
             </Button>
             <Panel gridx="3" gridy="1" weightx="0">
               <HSpace width="10"/>
             </Panel>
-            <Button gridx="4" gridy="1" weightx="0" text="Cancel" listener="ActionListener">
+            <Button gridx="4" gridy="1" weightx="0" text="_(Cancel)" listener="ActionListener">
               <actionPerformed callback="Cancel"/>
             </Button>
             <Panel gridx="5" gridy="1" weightx="0">
               <HSpace width="10"/>
             </Panel>
-            <Button gridx="6" gridy="1" weightx="0" text="OK" listener="ActionListener">
+            <Button gridx="6" gridy="1" weightx="0" text="_(OK)" listener="ActionListener">
               <actionPerformed callback="Ok"/>
             </Button>
             <Panel gridx="7" gridy="1" weightx="0">
               <HSpace width="10"/>
             </Panel>
-            <Button gridx="8" gridy="1" weightx="0" text="Apply" listener="ActionListener">
+            <Button gridx="8" gridy="1" weightx="0" text="_(Apply)" listener="ActionListener">
               <actionPerformed callback="Apply"/>
             </Button>
             <Panel gridx="9" gridy="1" weightx="0">

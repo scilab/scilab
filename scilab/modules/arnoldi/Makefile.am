@@ -1,34 +1,42 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2012 - Scilab Enterprises- Cedric Delamarre
 #
 # This file is distributed under the same license as the Scilab package.
 
+ARNOLDI_C_SOURCES = \
+    src/c/eigs.c \
+    src/c/eigs_dependencies.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_zneupd \
-sci_gateway/c/sci_dseupd.c \
-sci_gateway/c/sci_zneupd.c \
-sci_gateway/c/gw_arnoldi.c \
-sci_gateway/c/sci_dnaupd.c \
-sci_gateway/c/sci_dneupd.c \
-sci_gateway/c/sci_dsaupd.c \
-sci_gateway/c/sci_znaupd.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_zneupd \
+    sci_gateway/c/sci_dseupd.c \
+    sci_gateway/c/sci_zneupd.c \
+    sci_gateway/c/gw_arnoldi.c \
+    sci_gateway/c/sci_dnaupd.c \
+    sci_gateway/c/sci_dneupd.c \
+    sci_gateway/c/sci_dsaupd.c \
+    sci_gateway/c/sci_znaupd.c \
+    sci_gateway/c/sci_eigs.c
 
-libsciarnoldi_la_CPPFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				$(AM_CPPFLAGS)
+libsciarnoldi_la_CPPFLAGS = \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
 libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
 
-libsciarnoldi_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciarnoldi_la_SOURCES = $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciarnoldi_la_CPPFLAGS)
 
 #### Target ######
@@ -37,7 +45,7 @@ modulename=arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(mydatadir)
-libsciarnoldi_la_root_DATA =  license.txt 
+libsciarnoldi_la_root_DATA =  license.txt
 
 
 #### arnoldi : init scripts ####

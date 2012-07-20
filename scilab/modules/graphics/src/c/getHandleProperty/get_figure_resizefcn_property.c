@@ -12,8 +12,6 @@
 
 #include <string.h>
 
-#include "os_strdup.h"
-
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
@@ -45,6 +43,6 @@ int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    return sciReturnString(_pvCtx, os_strdup(resizeFcn));
+    return sciReturnString(_pvCtx, resizeFcn);
 }
 /*------------------------------------------------------------------------*/

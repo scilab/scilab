@@ -158,6 +158,9 @@
             Export to a XML file the result of the test. This file follows the specification of the XUnit format.
             Note that the usage of this option enables <literal>show_diff</literal> and <literal>show_error</literal>.
           </para>
+          <para>
+            If the file pointed by <varname>exportToFile</varname> already exists, the new result will be added to the existing file.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -466,7 +469,7 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
           <para>
             <literal>test_run</literal> can work on an external module.
           </para>
-           
+          
           <para>
             Fourth argument added to export to a XML file
           </para>

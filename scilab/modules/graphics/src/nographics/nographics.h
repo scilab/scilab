@@ -14,8 +14,6 @@
 #define __NOGRAPHICS_H__
 
 #include "machine.h"
-#include "ObjectStructure.h"
-
 
 int gw_graphics(void);
 

@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-13 11:28+0100\n"
+"Revision-Date: 2012-07-20 00:21+0100\n"
 
 # File: sci_gateway/c/sci_ascii.c, line: 250
 msgid "WARNING : \n"
@@ -78,13 +78,13 @@ msgstr ""
 # File: sci_gateway/c/sci_code2str.c, line: 85
 # File: sci_gateway/c/sci_convstr.c, line: 116
 # File: sci_gateway/c/sci_grep.c, line: 318
-# File: sci_gateway/c/sci_length.c, line: 146
-# File: sci_gateway/c/sci_length.c, line: 163
-# File: sci_gateway/c/sci_length.c, line: 175
-# File: sci_gateway/c/sci_length.c, line: 200
+# File: sci_gateway/c/sci_length.c, line: 147
+# File: sci_gateway/c/sci_length.c, line: 164
+# File: sci_gateway/c/sci_length.c, line: 176
+# File: sci_gateway/c/sci_length.c, line: 201
 # File: sci_gateway/c/sci_length.c, line: 320
-# File: sci_gateway/c/sci_length.c, line: 419
-# File: sci_gateway/c/sci_length.c, line: 462
+# File: sci_gateway/c/sci_length.c, line: 418
+# File: sci_gateway/c/sci_length.c, line: 460
 # File: sci_gateway/c/sci_part.c, line: 114
 # File: sci_gateway/c/sci_regexp.c, line: 255
 # File: sci_gateway/c/sci_regexp.c, line: 293
@@ -147,7 +147,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 76
-# File: sci_gateway/c/sci_length.c, line: 131
+# File: sci_gateway/c/sci_length.c, line: 132
 # File: sci_gateway/c/sci_strchr.c, line: 123
 # File: sci_gateway/c/sci_strcmp.c, line: 63
 # File: sci_gateway/c/sci_strindex.c, line: 318
@@ -220,8 +220,6 @@ msgstr ""
 # File: sci_gateway/c/sci_isascii.c, line: 186
 # File: sci_gateway/c/sci_isascii.c, line: 222
 # File: sci_gateway/c/sci_isdigit.c, line: 37
-# File: sci_gateway/c/sci_length.c, line: 59
-# File: sci_gateway/c/sci_length.c, line: 67
 # File: sci_gateway/c/sci_strchr.c, line: 107
 # File: sci_gateway/c/sci_strchr.c, line: 116
 # File: sci_gateway/c/sci_string.c, line: 42
@@ -267,10 +265,10 @@ msgstr ""
 # File: sci_gateway/c/sci_isascii.c, line: 292
 # File: sci_gateway/c/sci_isdigit.c, line: 57
 # File: sci_gateway/c/sci_isdigit.c, line: 80
-# File: sci_gateway/c/sci_length.c, line: 278
+# File: sci_gateway/c/sci_length.c, line: 279
 # File: sci_gateway/c/sci_length.c, line: 331
-# File: sci_gateway/c/sci_length.c, line: 430
-# File: sci_gateway/c/sci_length.c, line: 473
+# File: sci_gateway/c/sci_length.c, line: 429
+# File: sci_gateway/c/sci_length.c, line: 471
 # File: sci_gateway/c/sci_strchr.c, line: 78
 # File: sci_gateway/c/sci_strchr.c, line: 133
 # File: sci_gateway/c/sci_strsplit.c, line: 194
@@ -299,24 +297,15 @@ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_length.c, line: 125
-# File: sci_gateway/c/sci_length.c, line: 311
-# File: sci_gateway/c/sci_length.c, line: 410
-# File: sci_gateway/c/sci_length.c, line: 453
-#, c-format
-msgid "%s: Can not read input argument.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_length.c, line: 139
-# File: sci_gateway/c/sci_length.c, line: 156
-# File: sci_gateway/c/sci_length.c, line: 187
+# File: sci_gateway/c/sci_length.c, line: 140
+# File: sci_gateway/c/sci_length.c, line: 157
+# File: sci_gateway/c/sci_length.c, line: 188
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_length.c, line: 293
+# File: sci_gateway/c/sci_length.c, line: 294
 #, c-format
 msgid "%s: Wrong type for input argument(s).\n"
 msgstr ""

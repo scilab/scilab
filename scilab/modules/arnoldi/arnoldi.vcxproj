@@ -186,6 +186,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_eigs.c" />
     <ClCompile Include="src\c\DllmainArnoldi.c" />
     <ClCompile Include="sci_gateway\c\gw_arnoldi.c" />
     <ClCompile Include="sci_gateway\c\sci_dnaupd.c" />
@@ -194,9 +195,13 @@
     <ClCompile Include="sci_gateway\c\sci_dseupd.c" />
     <ClCompile Include="sci_gateway\c\sci_znaupd.c" />
     <ClCompile Include="sci_gateway\c\sci_zneupd.c" />
+    <ClCompile Include="src\c\eigs.c" />
+    <ClCompile Include="src\c\eigs_dependencies.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_arnoldi.h" />
+    <ClInclude Include="includes\eigs.h" />
+    <ClInclude Include="includes\eigs_dependencies.h" />
     <ClInclude Include="includes\gw_arnoldi.h" />
   </ItemGroup>
   <ItemGroup>

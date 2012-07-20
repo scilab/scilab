@@ -436,7 +436,7 @@ int getAllocatedComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piNbItemRow	= NULL;
 	int* piColPos		= NULL;
 	int iOne		= 1;
@@ -481,8 +481,7 @@ int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int
 /*--------------------------------------------------------------------------*/
 static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	SciErr sciErr;
-
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, NULL, NULL, NULL, NULL);
 	if(sciErr.iErr)
 	{

@@ -282,7 +282,7 @@ int isNamedBooleanSparseType(void* _pvCtx, const char* _pstName)
 /*--------------------------------------------------------------------------*/
 int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 
@@ -305,7 +305,7 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
 /*--------------------------------------------------------------------------*/
 int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = readNamedBooleanSparseMatrix(_pvCtx, _pstName, _piRows, _piCols, _piNbItem, NULL, NULL);
 	if(sciErr.iErr)

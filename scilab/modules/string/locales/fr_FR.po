@@ -303,7 +303,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -390,7 +390,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
@@ -443,7 +443,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

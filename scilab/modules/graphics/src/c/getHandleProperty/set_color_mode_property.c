@@ -45,14 +45,6 @@ int set_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SURFACE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_mode") ;
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     colorMode = (int) getDoubleFromStack(stackPointer);
 
     status = setGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, &colorMode, jni_int, 1);

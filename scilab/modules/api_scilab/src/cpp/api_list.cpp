@@ -248,9 +248,7 @@ char* getListTypeName(int _iType)
 
 SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iType = 0;
 
     sciErr = getVarType(_pvCtx, _piAddress, &iType);
@@ -275,9 +273,7 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
 
 SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iItem      = 0;
     int* piOffset    = NULL;
     int* piItemAddress = NULL;
@@ -362,12 +358,13 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
 static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress)
 {
-    SciErr sciErr;
+	SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
@@ -377,9 +374,7 @@ static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNb
 
 SciErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbItem)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piOffset = NULL;
 
     _piAddress[0] = _iListType;
@@ -413,9 +408,7 @@ SciErr readNamedMList(void* _pvCtx, const char* _pstName, int* _piNbItem, int** 
 
 static SciErr readCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int* _piNbItem, int** _piAddress)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
     int iNbItem  = 0;
 
@@ -462,9 +455,7 @@ SciErr getMListInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piAddr
 
 SciErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, _piAddress);
     if (sciErr.iErr)
@@ -498,9 +489,7 @@ SciErr getMListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, i
 
 SciErr getCommomListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -537,10 +526,12 @@ SciErr createMListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos,
 
 static SciErr createCommonListInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed)
 {
+
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 	// FIXME
+
     return sciErr;
 }
 
@@ -565,14 +556,13 @@ SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piP
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
 SciErr allocCommonItemInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piChildAddr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piOffset = NULL;
 
     //Does previous items was already inserted
@@ -603,6 +593,7 @@ SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* /*_piParen
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -612,6 +603,7 @@ SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* /*_pi
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -631,9 +623,7 @@ SciErr getComplexMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPo
 
 static SciErr getCommonMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -673,9 +663,7 @@ static SciErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* /*_p
 
 static SciErr fillCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piOffset   = NULL;
     int* piChildAddr = NULL;
@@ -727,9 +715,7 @@ SciErr createComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent
 
 SciErr createComplexZMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     double *pdblReal = NULL;
     double *pdblImg  = NULL;
 
@@ -747,9 +733,7 @@ SciErr createComplexZMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParen
 
 SciErr createCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     double *pdblReal = NULL;
     double *pdblImg  = NULL;
 
@@ -788,6 +772,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstNam
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -813,9 +798,7 @@ SciErr readComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, 
 
 static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
@@ -871,9 +854,7 @@ static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pst
 
 SciErr getMatrixOfStringInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -903,9 +884,7 @@ SciErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* /*_piParent*/, i
 
 SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings, int* _piTotalLen)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem   = 0;
 
     int* piAddr   = NULL;
@@ -941,18 +920,18 @@ SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, i
 
 SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)
 {
+
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
 SciErr readMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
     int iNbItem    = 0;
@@ -995,9 +974,7 @@ SciErr readMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _p
 
 SciErr getMatrixOfBooleanInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -1019,9 +996,7 @@ SciErr getMatrixOfBooleanInList(void* _pvCtx, int* _piParent, int _iItemPos, int
 
 SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, const int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int *piBool   = NULL;
 
     sciErr = allocMatrixOfBooleanInList(_pvCtx, _iVar, NULL/*_piParent*/, _iItemPos, _iRows, _iCols, &piBool);
@@ -1047,9 +1022,7 @@ SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* /*_piParent*/, i
 
 static SciErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piOffset   = NULL;
     int* piChildAddr = NULL;
@@ -1095,14 +1068,13 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int*
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
 SciErr readMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
     int iNbItem    = 0;
@@ -1164,9 +1136,7 @@ SciErr getComplexMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos,
 
 SciErr getCommonMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -1235,9 +1205,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* /*_piParent*
 
 static SciErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg, int* _piTotalLen)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int iTotalLen   = 0;
     int* piOffset   = NULL;
@@ -1300,6 +1268,7 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, i
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -1315,9 +1284,7 @@ SciErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, in
 
 SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
     int iNbItem    = 0;
@@ -1360,9 +1327,7 @@ SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int
 
 static SciErr fillCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piOffset   = NULL;
     int* piChildAddr = NULL;
@@ -1418,6 +1383,7 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const ch
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -1467,9 +1433,7 @@ SciErr allocMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int
 
 static SciErr createCommomMatrixOfIntegerInList(void* _pvCtx, int _iVar, const char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     void *pvData = NULL;
 
     sciErr = allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _pstName, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, &pvData);
@@ -1532,9 +1496,7 @@ SciErr createMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, in
 
 static SciErr getCommonMatrixOfIntegerInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -1604,6 +1566,7 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -1653,9 +1616,7 @@ SciErr createMatrixOfInteger64InNamedList(void* _pvCtx, const char* _pstName, in
 
 static SciErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
@@ -1749,9 +1710,7 @@ SciErr readMatrixOfIntger64InNamedList(void* _pvCtx, const char* _pstName, int* 
 
 static SciErr fillCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg, int* _piTotalSize)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int iTotalLen   = 0;
     int* piOffset   = NULL;
@@ -1812,9 +1771,7 @@ static SciErr fillCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPare
 
 static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr     = NULL;
     int *piEnd      = NULL;
     int iItemLen    = 0;
@@ -1874,6 +1831,7 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, i
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -1889,9 +1847,7 @@ SciErr createComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
 
 static SciErr getCommonSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -1923,9 +1879,7 @@ SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos,
 
 static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
@@ -2005,9 +1959,7 @@ SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 *****************************/
 static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piOffset   = NULL;
     int* piNbItemRow = NULL;
@@ -2067,9 +2019,7 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char*
 
 SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr     = NULL;
     int *piEnd      = NULL;
     int iItemLen    = 0;
@@ -2108,14 +2058,13 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
 SciErr getBooleanSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -2137,9 +2086,7 @@ SciErr getBooleanSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos,
 
 SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
@@ -2195,9 +2142,7 @@ SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 *********************/
 SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int* piAddr  = NULL;
 
     sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -2226,9 +2171,7 @@ SciErr createPointerInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iIt
 
 SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iNbItem    = 0;
     int* piAddr    = NULL;
     int* piRoot    = NULL;
@@ -2271,6 +2214,7 @@ SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* /*_piPa
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     // FIXME
+
     return sciErr;
 }
 
@@ -2294,6 +2238,7 @@ static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _
 static void updateCommunListOffset(void* _pvCtx, int _iVar, const char* _pstName, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
     // FIXME
+
 }
 
 static void closeList(int _iVar, int *_piEnd)

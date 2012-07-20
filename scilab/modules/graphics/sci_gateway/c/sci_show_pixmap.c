@@ -17,22 +17,29 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "DrawObjects.h"
-#include "CurrentFigure.h"
-
+//#include "warningmode.h"
+#include "sciprint.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
+//
+// FIXME: Remove GW after Scilab 5.4.0
+//
 int sci_show_pixmap(char *fname, unsigned long fname_len )
 {
-  /* call show_pixmap */
+    /* call show_pixmap */
 
-  CheckRhs(0,0);
-  CheckLhs(0,1);
+    CheckRhs(0, 0);
+    CheckLhs(0, 1);
 
-  /* call show_pixmap function */
-  showPixmap((char*)getCurrentFigure());
+    //    if (getWarningMode())
+    {
+        sciprint(_("%s: Function %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "drawlater/drawnow");
+        sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+    }
 
-  LhsVar(1) = 0;
-  PutLhsVar();
-  return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

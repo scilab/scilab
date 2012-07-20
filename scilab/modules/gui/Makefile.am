@@ -188,7 +188,8 @@ sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 sci_gateway/cpp/sci_helpbrowser.cpp \
-sci_gateway/cpp/gui_gw.cpp
+sci_gateway/cpp/gui_gw.cpp \
+sci_gateway/cpp/sci_fire_closing_finished.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

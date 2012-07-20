@@ -39,14 +39,6 @@ int get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
     int iNumElements = 0;
     int *piNumElements = &iNumElements;
 
-#if 0
-    if( sciGetEntityType(pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, (void **)&piInterpVectorSet);
 
     if (piInterpVectorSet == NULL)

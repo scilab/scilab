@@ -385,9 +385,9 @@ int getAllocatedSingleComplexPoly(void* _pvCtx, int* _piAddress, int* _piNbCoef,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    int iRows	= 0;
-    int iCols	= 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	int iRows	= 0;
+	int iCols	= 0;
 
     double* pdblReal = NULL;
     double* pdblImg	 = NULL;
@@ -437,9 +437,9 @@ int getAllocatedNamedSingleComplexPoly(void* _pvCtx, const char* _pstName, int* 
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    int iRows	= 0;
-    int iCols	= 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	int iRows	= 0;
+	int iCols	= 0;
 
     double* pdblReal = NULL;
     double* pdblImg	 = NULL;
@@ -482,8 +482,7 @@ int getAllocatedMatrixOfComplexPoly(void* _pvCtx, int* _piAddress, int* _piRows,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
-    SciErr sciErr;
-
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     double* pdblReal	= NULL;
     double* pdblImg		= NULL;
 
@@ -543,7 +542,7 @@ int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, const char* _pstName, int
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
 	if(sciErr.iErr)

@@ -35,14 +35,6 @@ int get_color_mode_property(void* _pvCtx, char* pobjUID)
     int iColorMode = 0;
     int* piColorMode = &iColorMode;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_SURFACE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_mode");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, jni_int, (void **)&piColorMode);
 
     if (piColorMode == NULL)

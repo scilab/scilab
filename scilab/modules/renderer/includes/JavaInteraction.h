@@ -24,8 +24,6 @@ extern "C" {
 #endif
 
 #include "dynlib_renderer.h"
-#include "ObjectStructure.h"
-#include "BOOL.h"
 
 /**
  * Start interactive zoom on given figure
@@ -39,43 +37,7 @@ RENDERER_IMPEXP void startInteractiveZoom(char *pstObjUID);
  * @return [usedButton x y z l L h]
  */
 RENDERER_IMPEXP double *javaClickRubberBox(char *pstObjUID, double *initialRect, int iRectSize);
-    RENDERER_IMPEXP double *javaDragRubberBox(char *pstObjUID);
-
-/**
- * Perform an interactive zoom of the figure using a rectangular selection.
- * @param pFigure figure to zoom.
- */
-RENDERER_IMPEXP void interactiveJavaZoom(sciPointObj * pFigure);
-
-/**
- * Perform an interactive zoom of the subwin using a rectangular selection.
- * @param pSubwin subwin to zoom.
- */
-RENDERER_IMPEXP void interactiveJavaSubwinZoom(sciPointObj * pSubwin);
-
-/**
- * Perform an interactive rotation of a subwin contained in the figure.
- * @param pFigure figure corresponding to the canvas
- */
-RENDERER_IMPEXP void interactiveJavaRotation(sciPointObj * pFigure);
-
-/**
- * Perform an interactive rotation of a subwin with the mouse.
- * @param pSubwin subwin to rotate
- */
-RENDERER_IMPEXP void interactiveJavaSubwinRotation(sciPointObj * pSubwin);
-
-/**
- * Unzoom a subwindow
- * @param pSubwin subwin to unzoom
- */
-RENDERER_IMPEXP void javaUnzoomSubwin(sciPointObj * pSubwin);
-
-/**
- * Put the figure in top of other windows.
- * @pram pFigure figure corresponding to the window
- */
-RENDERER_IMPEXP void javaShowWindow(sciPointObj * pFigure);
+RENDERER_IMPEXP double *javaDragRubberBox(char *pstObjUID);
 
 #ifdef __cplusplus
 }

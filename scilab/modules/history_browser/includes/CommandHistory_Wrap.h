@@ -23,18 +23,20 @@ extern "C"
 
 HISTORY_BROWSER_IMPEXP void CommandHistoryAppendLine (char* _pstLine);
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryLoadFromFile (void);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryLoadFromFile (void);
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryInitialize (void);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryInitialize (void);
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryReset(void);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryExpandAll (void);
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryDeleteLine(int lineNumber);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryReset(void);
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryLaunch(void);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryDeleteLine(int lineNumber);
+
+    HISTORY_BROWSER_IMPEXP void CommandHistoryLaunch(void);
 
 #ifdef __cplusplus
-}; 
+};
 #endif
 
 #endif /* __COMMANDHISTORY_WRAP_H__ */

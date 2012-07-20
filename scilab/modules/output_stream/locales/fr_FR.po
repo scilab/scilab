@@ -1489,7 +1489,7 @@ msgstr "     (fin) %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -1511,7 +1511,7 @@ msgstr "%s : Type erroné de l'argument n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s : Nombre erroné d'arguments d'entrée : De %d à %d attendu."
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus."
 
 #, c-format
 msgid "%s: Wrong export format: %s"

@@ -39,13 +39,6 @@ int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     int b =  (int)FALSE;
     int iInterpColorVectorSet = 0;
     int* piInterpColorVectorSet = &iInterpColorVectorSet;
-#if 0
-    if( sciGetEntityType(pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "interp_color_mode");
     if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;

@@ -135,6 +135,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
         h.resizefcn = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // resizefcn
+        h.closerequestfcn = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // closerequestfcn
     end
 
     // children

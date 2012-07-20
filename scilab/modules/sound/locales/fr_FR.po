@@ -96,7 +96,7 @@ msgstr "Format de données non reconnu."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
@@ -126,7 +126,7 @@ msgstr "Format de données inconnu."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 msgid "Requires 2-D values only."
 msgstr "Requiert des valeurs 2D seulement."

@@ -39,7 +39,6 @@
 #include "MALLOC.h"
 #include "Interaction.h"
 #include "InitObjects.h"
-#include "ObjectStructure.h"
 
 /*--------------------------------------------------------------------------*/
 
@@ -114,48 +113,6 @@ char **getDictionarySetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetHeight(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetNum(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciAddThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetCurrentFigure(void)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciAddNewHandle(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParent(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetPointerFromHandle(long handle)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack(size_t stackPointer)
 {
     return (unsigned long)(-1);
@@ -168,33 +125,9 @@ int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType
 }
 
 /*--------------------------------------------------------------------------*/
-sciEntityType sciGetEntityType(sciPointObj * pobj)
-{
-    return (sciEntityType) 0;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentFigure(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetWidth(sciPointObj * pobj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitScreenPosition(char *pobj, int pposx, int pposy)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciDelThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
-{
-    return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -225,12 +158,6 @@ char *getFigureFromIndex(int figNum)
 char **getStringMatrixFromStack(size_t stackPointer)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-long sciGetHandle(sciPointObj * pobj)
-{
-    return (long)0;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -266,51 +193,9 @@ int sciInitMarkForeground(char *pobj, int colorindex)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetNumColors(char *pobjUID)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int deallocateText(sciPointObj * pthis)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetLegendPos(sciPointObj * pobj, double position[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-char sciGetxLocation(sciPointObj * pObj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
-char sciGetyLocation(sciPointObj * pObj)
-{
-    return 0;
-}
-
-/*--------------------------------------------------------------------------*/
-sciLegendPlace sciGetLegendPlace(sciPointObj * pobj)
-{
-    return (sciLegendPlace) 0;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
 }
 
 /*--------------------------------------------------------------------------*/
@@ -350,27 +235,9 @@ void rotate2D(double from[2], double center[2], double angle, double dest[2])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoRotation(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsAutoDrawable(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void stringArrayCopy(char *dest[], char *src[], int nbElement)
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetVisibility(sciPointObj * pobj)
-{
-    return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -380,63 +247,9 @@ void sciGetLogFlags(char *pObjUID, char flags[3])
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoPosition(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetTextPos(char *pObj, double posX, double posY, double posZ)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsBoxed(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetAutoSize(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetCenterPos(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciisTextEmpty(char *identifier)
 {
     return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-double sciGetFontOrientation(sciPointObj * pobj)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
-sciTextAlignment sciGetAlignment(sciPointObj * pObj)
-{
-    return (sciTextAlignment) 0;
-}
-
-/*--------------------------------------------------------------------------*/
-StringMatrix *sciGetText(sciPointObj * pobj)
-{
-    return NULL;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -458,61 +271,7 @@ char **getStrMatData(const StringMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL isFigureModel(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-sciFont *sciGetFontContext(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetFontStyle(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetAutoSubticks(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetSubwinIndex(sciPointObj * pSubwin)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-EAxesBoxType sciGetBoxType(sciPointObj * pobj)
-{
-    return (EAxesBoxType) 0;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetTextPos(sciPointObj * pObj, double position[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetRealVisibility(sciPointObj * pobj)
+BOOL isFigureModel(char *pObjUID)
 {
     return FALSE;
 }
@@ -530,30 +289,6 @@ int sciSetXorMode(char *pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetZooming(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetTightLimitsOn(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetRealDataBounds(char *pObj, const double bounds[6])
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
 
@@ -563,12 +298,6 @@ void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 void setToIdentity(double mat4D[4][4])
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsIsoView(sciPointObj * pObj)
-{
-    return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -610,42 +339,6 @@ void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetZoomBox(char *pObj, const double zoomBox[6])
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-double *sciGetMargins(sciPointObj * pObj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-double *sciGetAxesBounds(sciPointObj * pObj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetViewingAngles(sciPointObj * pObj, double *alpha, double *theta)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsCubeScaled(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
 {
 
@@ -664,12 +357,6 @@ void scalarMult3D(const double v[3], double scalar, double res[3])
 }
 
 /*--------------------------------------------------------------------------*/
-int TheTicks(double *xminv, double *xmaxv, double *grads, int *ngrads, int compNgrads)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
 
@@ -682,45 +369,10 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-double sciGetArrowSize(sciPointObj * pobj)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
-sciGraphicContext *sciGetGraphicContext(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int *sciGetInterpVector(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
+// FIXME : Kill me
 void intArrayCopy(int dest[], const int src[], int nbElement)
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsClosed(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetNbPoints(sciPointObj * pObj)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -730,69 +382,10 @@ void doubleArrayCopy(double dest[], const double src[], int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
+// FIXME : Kill me
 void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 {
 
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetPolylineStyle(sciPointObj * pObj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void unzoomSubwin(sciPointObj * pSubwin)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetXorMode(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-sciSons *sciGetLastSons(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
-{
-    return TRUE;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciGetIsClipping(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentSubwin(sciPointObj * pobj)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-double *sciGetClipping(sciPointObj * pobj)
-{
-    return NULL;
 }
 
 /*--------------------------------------------------------------------------*/

@@ -35,14 +35,6 @@ int get_auto_position_property(void* _pvCtx, char* pobjUID)
     int iAutoPosition = 0;
     int* piAutoPosition = &iAutoPosition;
 
-#if 0
-    if( sciGetEntityType(pobj) != SCI_LABEL )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_position");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, jni_bool, (void **)&piAutoPosition);
 
     if (piAutoPosition == NULL)

@@ -8,7 +8,7 @@
   -->
 
   <xsl:template match="desktop-colors">
-    <Title text="Desktop color">
+    <Title text="_(Desktop color)">
       <Grid>
 	<xsl:choose>
 	  <xsl:when test="@*[local-name()='use-system-color']='true'">
@@ -19,7 +19,7 @@
 	    </Checkbox>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <Checkbox gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline" checked="unchecked" listener="ActionListener" text="Use system color">
+	    <Checkbox gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline" checked="unchecked" listener="ActionListener" text="_(Use system color)">
 	      <actionPerformed set="use-system-color" value="true">
 		<xsl:call-template name="context"/>
 	      </actionPerformed>
@@ -37,21 +37,21 @@
 	  </xsl:choose>
 	</xsl:variable>
 	<Panel gridx="2" gridy="1" weightx="1"/>
-	<Label text="Text " gridx="3" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
+	<Label text="_(Text )" gridx="3" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
 	<Color color="{@text}" gridx="4" gridy="1" fill="none" weightx="0" anchor="above_baseline" listener="ActionListener" enable="{$enable}">
 	  <actionPerformed choose="text">
 	    <xsl:call-template name="context"/>
 	  </actionPerformed>
 	</Color>
 	<Panel gridx="5" gridy="1" weightx="1"/>
-	<Label text="Background " gridx="6" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
+	<Label text="_(Background )" gridx="6" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
 	<Color color="{@background}" gridx="7" gridy="1" fill="none" weightx="0" anchor="above_baseline" listener="ActionListener" enable="{$enable}">
 	  <actionPerformed choose="background">
 	    <xsl:call-template name="context"/>
 	  </actionPerformed>
 	</Color>
 	<Panel gridx="8" gridy="1" weightx="1"/>
-	<Label text="Cursor " gridx="9" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
+	<Label text="_(Cursor )" gridx="9" gridy="1" fill="none" weightx="0" anchor="above_baseline" enable="{$enable}"/>
 	<Color color="{@cursor}" gridx="10" gridy="1" fill="none" weightx="0" anchor="above_baseline" listener="ActionListener" enable="{$enable}">
 	  <actionPerformed choose="cursor">
 	    <xsl:call-template name="context"/>
@@ -63,7 +63,7 @@
   </xsl:template>
 
   <xsl:template match="syntax-highlighting-colors">
-    <Title text="Syntax highlighting colors" fixed-height="false">
+    <Title text="_(Syntax highlighting colors)" fixed-height="false">
       <VBox fixed-height="false">
 	<Grid>
 	  <List gridx="1" gridy="1" weightx="0" item="{@name}" nb-visible-rows="4" listener="ActionListener">
@@ -79,7 +79,7 @@
 	    <xsl:variable name="var" select="@name"/>
 	    <xsl:for-each select="item[@name=$var]">
 	      <Grid>
-		<Label text="Keyword color " gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline"/>
+		<Label text="_(Keyword color )" gridx="1" gridy="1" fill="none" weightx="0" anchor="above_baseline"/>
 		<Color color="{@color}" gridx="2" gridy="1" fill="none" weightx="0" anchor="above_baseline" listener="ActionListener">
 		  <actionPerformed choose="color">
 		    <xsl:call-template name="context"/>
@@ -91,28 +91,28 @@
 	      <HBox>
 		<xsl:call-template name="BooleanCheckBox">
 		  <xsl:with-param name="attr-name" select="'bold'"/>
-		  <xsl:with-param name="text" select="'&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;'"/>
+		  <xsl:with-param name="text" select="'_(&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;)'"/>
 		</xsl:call-template>
 	      </HBox>
 	      <Glue/>
 	      <HBox>
 		<xsl:call-template name="BooleanCheckBox">
 		  <xsl:with-param name="attr-name" select="'italic'"/>
-		  <xsl:with-param name="text" select="'&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;'"/>
+		  <xsl:with-param name="text" select="'_(&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;)'"/>
 		</xsl:call-template>
 	      </HBox>
 	      <Glue/>
 	      <HBox>
 		<xsl:call-template name="BooleanCheckBox">
 		  <xsl:with-param name="attr-name" select="'underline'"/>
-		  <xsl:with-param name="text" select="'&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;'"/>
+		  <xsl:with-param name="text" select="'_(&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;)'"/>
 		</xsl:call-template>
 	      </HBox>
 	      <Glue/>
 	      <HBox>
 		<xsl:call-template name="BooleanCheckBox">
 		  <xsl:with-param name="attr-name" select="'strike-through'"/>
-		  <xsl:with-param name="text" select="'&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;'"/>
+		  <xsl:with-param name="text" select="'_(&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;)'"/>
 		</xsl:call-template>
 	      </HBox>
 	      <Glue/>

@@ -32,14 +32,6 @@ int get_grid_position_property(void* _pvCtx, char* pobjUID)
     int iGridPosition = 0;
     int* piGridPosition = &iGridPosition;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, jni_int, (void **)&piGridPosition);
 
     if (piGridPosition == NULL)

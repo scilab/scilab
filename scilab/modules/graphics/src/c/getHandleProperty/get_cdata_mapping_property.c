@@ -35,14 +35,6 @@ int get_cdata_mapping_property(void* _pvCtx, char* pobjUID)
     int iCDataMapping = 0;
     int* piCDataMapping = &iCDataMapping;
 
-#if 0
-    if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
-    {
-        Scierror(999, _("%s property only exists for %s surfaces.\n"),"'cdata_mapping'","Fac3d");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piCDataMapping);
 
     if (piCDataMapping == NULL)

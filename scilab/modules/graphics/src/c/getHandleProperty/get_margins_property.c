@@ -33,14 +33,6 @@ int get_margins_property(void* _pvCtx, char* pobjUID)
 {
   double* margins = NULL;
 
-#if 0
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"margins") ;
-    return -1 ;
-  }
-#endif
-
   getGraphicObjectProperty(pobjUID, __GO_MARGINS__, jni_double_vector, (void **)&margins);
 
   if (margins == NULL)

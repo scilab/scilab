@@ -14,12 +14,12 @@
 //
 // <-- Short Description -->
 // When figure has property pixmap='on' then the window is cleared when resized.
-
+warning("off");
 f=gcf();
 f.pixmap="on";
 xrect([0.2 0.7 0.5 0.5]);
 show_pixmap();
-
+warning("on");
 // Resize the figure, it should not be cleared...
 
 

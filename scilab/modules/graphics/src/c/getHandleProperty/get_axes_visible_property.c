@@ -43,14 +43,6 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
     int j = 0;
     int status = -1;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
-        return -1;
-    }
-#endif
-
     for ( i = 0 ; i < 3 ; i++ )
     {
         getGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], jni_bool, (void **)&piAxesVisible);

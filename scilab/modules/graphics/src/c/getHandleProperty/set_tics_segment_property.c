@@ -36,14 +36,6 @@ int set_tics_segment_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 	BOOL status = FALSE;
 	int b =  (int)FALSE;
 
-#if 0
-	if ( sciGetEntityType(pobj) != SCI_AXES )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_segment");
-		return SET_PROPERTY_ERROR;
-	}
-#endif
-
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tics_segment");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 

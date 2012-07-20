@@ -161,8 +161,8 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public boolean canClose() {
-            return Xcos.getInstance().canClose(graph);
+        public int canClose() {
+            return Xcos.getInstance().canClose(graph) ? 1 : 0;
         }
 
         @Override

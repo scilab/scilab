@@ -76,7 +76,7 @@ int sci_addModulePreferences(char * fname, void *pvApiCtx)
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: %s"), fname, e.getJavaDescription().c_str());
+        Scierror(999, "%s: %s", fname, e.getJavaDescription().c_str());
         for (int i = 0; i < Rhs; i++)
         {
             if (array[i])

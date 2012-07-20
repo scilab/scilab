@@ -301,7 +301,7 @@ function %h_p(h)
                 "figure_name = "+sci2exp(h.figure_name,0)
                 "figure_id = "+sci2exp(h.figure_id,0)
                 "info_message = "+sci2exp(h.info_message)
-                "color_map= matrix "+strcat(string(size(h.color_map)),'x')
+                "color_map = matrix "+strcat(string(size(h.color_map)),'x')
                 "pixmap = "+sci2exp(h.pixmap)
                 "pixel_drawing_mode = "+sci2exp(h.pixel_drawing_mode,0)
                 "anti_aliasing = " + sci2exp(h.anti_aliasing)
@@ -313,6 +313,7 @@ function %h_p(h)
                 "event_handler_enable = " + sci2exp( h.event_handler_enable ) ;
                 "user_data = "+fmtuser_data(u)
                 "resizefcn = "+sci2exp(h.resizefcn)
+                "closerequestfcn = "+sci2exp(h.closerequestfcn)
                 "tag = "+sci2exp(h.tag)
             ]
 

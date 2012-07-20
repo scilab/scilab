@@ -263,11 +263,11 @@ msgstr "%s : Couleur inconnue trouvée dans '%s' -> fixé à noir.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
@@ -275,7 +275,7 @@ msgstr "%s : Le mode trait n'est pas diagonalisable.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"

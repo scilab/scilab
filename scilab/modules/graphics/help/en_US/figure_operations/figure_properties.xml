@@ -237,6 +237,12 @@
                 <para>This field can be use to store the name of a Scilab function as a character string. This Scilab function will be called whenever you resize the figure and when the figure is created. </para>
               </listitem>
             </varlistentry>
+            <varlistentry>
+              <term>closerequestfcn: </term>
+              <listitem>
+                <para>This field can be use to store the name of a Scilab function as a character string. This Scilab function will be called whenever the user tries to close the figure using the top-right cross.</para>
+              </listitem>
+            </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
@@ -371,7 +377,7 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>New resizefcn property introduced.</revremark>
+        <revremark>New resizefcn &amp; closerequestfcn properties introduced.</revremark>
       </revision>
     </revhistory>
   </refsection>

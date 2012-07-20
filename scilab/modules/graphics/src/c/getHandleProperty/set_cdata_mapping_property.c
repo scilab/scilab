@@ -45,14 +45,6 @@ int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_SURFACE || pSURFACE_FEATURE(pobj)->typeof3d != SCI_FAC3D )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
     if (isStringParamEqual( stackPointer, "scaled" ))
     {
         cdataMapping = 0;

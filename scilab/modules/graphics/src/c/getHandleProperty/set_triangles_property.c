@@ -46,14 +46,6 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_FEC )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     /*
      * Discriminating between a failed allocation and the non-existing property case
      * is not done for now.

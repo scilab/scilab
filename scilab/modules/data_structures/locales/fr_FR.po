@@ -70,11 +70,11 @@ msgstr "%s: Le nombre d'entrées ne correspond pas au produit des dimensions"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"

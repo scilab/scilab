@@ -501,7 +501,7 @@ msgstr "%s : Le module %s n'est pas installé.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 msgid "OFF"
 msgstr "Désactivé"

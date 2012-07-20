@@ -35,14 +35,6 @@ int get_interp_color_mode_property(void* _pvCtx, char* pobjUID)
     int iInterpColorMode = 0;
     int* piInterpColorMode = &iInterpColorMode;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&piInterpColorMode);
 
     if (piInterpColorMode == NULL)

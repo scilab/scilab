@@ -77,6 +77,8 @@ function save_graphichandle(h,fd)
     
     mput(length(ascii(h.resizefcn)),characterFormat,fd) ; // resizefcn
     mput(ascii(h.resizefcn),characterFormat,fd) ;
+    mput(length(ascii(h.closerequestfcn)),characterFormat,fd) ; // closerequestfcn
+    mput(ascii(h.closerequestfcn),characterFormat,fd) ;
 
     // children
     c=h.children;

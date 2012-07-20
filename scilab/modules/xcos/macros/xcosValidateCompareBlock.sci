@@ -74,7 +74,11 @@ function [status, message] = xcosValidateCompareBlock(block1, block2)
     end
 
     if ~isempty(unconsistantFields)
-        message = "Field "+unconsistantFields+" has different values.";
+        message = [];
+        for i=1:size(unconsistantFields, "*")
+            msg = sprintf(_("Field %s has different values."), unconsistantFields(i));
+            message = [message; msg];
+        end
     end
 
 endfunction
