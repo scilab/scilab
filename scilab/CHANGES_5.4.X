@@ -10,6 +10,8 @@ Xcos
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
 
+* Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter 
+
 
 Preferences
 ===========
