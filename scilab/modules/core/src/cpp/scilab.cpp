@@ -146,6 +146,7 @@ extern "C"
 
 static void checkForLinkerErrors(void)
 {
+#ifndef _MSC_VER
     /*
        Depending on the linking order, sometime, libs are not loaded the right way.
        This can cause painful debugging tasks for packager or developer, we are
@@ -177,6 +178,7 @@ static void checkForLinkerErrors(void)
     }
 #undef LINKER_ERROR_1
 #undef LINKER_ERROR_2
+#endif
 }
 
 /*
@@ -412,7 +414,6 @@ static int interactiveMain(void)
 #endif
 #endif
 
-    //    checkForLinkerErrors();
     if (noBanner == false)
     {
         //banner();
@@ -660,6 +661,8 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     int iMainRet = 0;
 
     Runner::init();
+
+    checkForLinkerErrors();
 
     /* Scilab Startup */
     InitializeEnvironnement();
