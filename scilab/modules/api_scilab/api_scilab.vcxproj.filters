@@ -143,12 +143,6 @@
     <ClInclude Include="includes\overload.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\api_internal_boolean.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\api_internal_string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\api_handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>

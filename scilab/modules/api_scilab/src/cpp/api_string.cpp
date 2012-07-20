@@ -15,9 +15,10 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "function.hxx"
+#include "gatewaystruct.hxx"
 #include "string.hxx"
 #include "double.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -27,7 +28,6 @@ extern "C"
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
-#include "api_internal_string.h"
 #include "api_internal_common.h"
 #include "call_scilab.h"
 #include "localization.h"
@@ -35,12 +35,6 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "os_wcsdup.h"
 }
-
-//extern "C"
-//{
-//#include "code2str.h"
-//#include "freeArrayOfString.h"
-//};
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
@@ -140,6 +134,8 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
         }
 
         out[rhs - 1] = pDbl;
+
+        return sciErr;
     }
 
     String* pS = new String(_iRows, _iCols);
@@ -161,81 +157,59 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, const char* const* _pstStrings, int* _piTotalLen)
+SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    int* piOffset = NULL;
-    int* piData		= NULL;
-    int iOffset		= 0;
-
-    _piAddress[0]	= sci_strings;
-    _piAddress[1] = _iRows;
-    _piAddress[2] = _iCols;
-    _piAddress[3] = 0; //always 0
-
-    piOffset	= _piAddress + 4;
-    piOffset[0] = 1; //Always 1
-    piData		= piOffset + _iRows * _iCols + 1;
-
-    if (_pstStrings == NULL)
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillMatrixOfString");
-        return sciErr;
-    }
-
-    for (int i = 0 ; i < _iRows * _iCols ; i++)
-    {
-        if (_pstStrings[i] == NULL)
+        
+        if(createNamedEmptyMatrix(_pvCtx, _pstName))
         {
-            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
             return sciErr;
         }
 
-        int iLen = (int)strlen(_pstStrings[i]);
-        iOffset += iLen;
-        piData[iOffset] = 0;
-        piOffset[i + 1] = piOffset[i] + iLen;
+        return sciErr;
     }
 
-    *_piTotalLen	= piOffset[_iRows * _iCols] - 1;
-    return sciErr;
-}
-/*--------------------------------------------------------------------------*/
-SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
-{
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+	String* pS = new String(_iRows, _iCols);
+	if(pS == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
+		return sciErr;
+	}
 
-    // FIX ME
+	for(int i = 0 ; i < pS->getSize() ; i++)
+	{
+        wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
+		pS->set(i, pstTemp);
+        FREE(pstTemp);
+	}
 
-    return sciErr;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr readNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    int* piAddr				= NULL;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	int* piAddr				= NULL;
 
-    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
-    if (sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
-        return sciErr;
-    }
+	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
+		return sciErr;
+	}
 
-    sciErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
-    if (sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
-        return sciErr;
-    }
+	sciErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
+		return sciErr;
+	}
 
-    return sciErr;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)

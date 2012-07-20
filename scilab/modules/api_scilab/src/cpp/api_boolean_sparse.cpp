@@ -13,6 +13,10 @@
  * still available and supported in Scilab 6.
  */
 
+
+#include "sparse.hxx"
+#include "gatewaystruct.hxx"
+
 extern "C"
 {
 #include <string.h>
@@ -25,6 +29,9 @@ extern "C"
 #include "api_internal_boolean_sparse.h"
 #include "localization.h"
 }
+
+using namespace std;
+using namespace types;
 
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
@@ -51,19 +58,22 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 		return sciErr;
 	}
 
-	*_piNbItem = _piAddress[4];
+    SparseBool* pSpBool = ((InternalType*)_piAddress)->getAs<SparseBool>();
+    *_piNbItem = (int)pSpBool->nbTrue();
 
 	if(_piNbItemRow == NULL)
 	{
 		return sciErr;
 	}
-	*_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
+
+    *_piNbItemRow = pSpBool->getNbItemByRow();
 
 	if(_piColPos == NULL)
 	{
 		return sciErr;
 	}
-	*_piColPos = *_piNbItemRow + *_piRows;
+
+    *_piColPos = pSpBool->getColPos();
 
 	return sciErr;
 }

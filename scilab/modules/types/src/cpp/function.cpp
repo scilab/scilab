@@ -14,6 +14,7 @@
 #include <sstream>
 #include <vector>
 #include "function.hxx"
+#include "gatewaystruct.hxx"
 
 extern "C"
 {
@@ -184,7 +185,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     std::fill_n(tmpOut, MAX_OUTPUT_VARIABLE, static_cast<typed_list::value_type>(0));
     gStr.m_pOut = tmpOut;
     gStr.m_piRetCount = &_iRetCount;
-    gStr.m_pstName = const_cast<wchar_t*>(m_wstName.c_str());
+    gStr.m_pstName = wide_string_to_UTF8(m_wstName.c_str());
     gStr.m_pVisitor = execFunc;
     // we should use a stack array of the max size to avoid dynamic alloc.
     std::vector<int> outOrder(_iRetCount < 1 ? 1 : _iRetCount, -1);
@@ -220,6 +221,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
         delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
     }
 
+    FREE(gStr.m_pstName);
     return retVal;
 }
 

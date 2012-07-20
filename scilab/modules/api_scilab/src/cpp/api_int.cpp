@@ -13,8 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "function.hxx"
+#include "gatewaystruct.hxx"
 #include "int.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -28,7 +29,7 @@ extern "C"
 
 using namespace types;
 static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData);
-static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData);
+static int getCommonNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData);
 
 
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)
@@ -416,7 +417,7 @@ SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, ch
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT8, _iRows, _iCols, (void**)&pcData8);
 	if(sciErr.iErr)
@@ -447,7 +448,7 @@ SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, s
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT16, _iRows, _iCols, (void**)&psData16);
 	if(sciErr.iErr)
@@ -478,7 +479,7 @@ SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, i
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&piData32);
 	if(sciErr.iErr)
@@ -510,7 +511,7 @@ SciErr allocMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, l
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT64, _iRows, _iCols, (void**)&pllData64);
 	if(sciErr.iErr)
@@ -542,7 +543,7 @@ SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _i
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT8, _iRows, _iCols, (void**)&pucData8);
 	if(sciErr.iErr)
@@ -573,7 +574,7 @@ SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT16, _iRows, _iCols, (void**)&pusData16);
 	if(sciErr.iErr)
@@ -604,7 +605,7 @@ SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT32, _iRows, _iCols, (void**)&puiData32);
 	if(sciErr.iErr)
@@ -636,7 +637,7 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
         return sciErr;
     }
 
-	getNewVarAddressFromPosition(_pvCtx, 0/*iNewPos*/, &piAddr);
+	getNewVarAddressFromPosition(_pvCtx, _iVar/*iNewPos*/, &piAddr);
 
 	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT64, _iRows, _iCols, (void**)&pullData64);
 	if(sciErr.iErr)
@@ -653,12 +654,6 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
 SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-//	int iNewPos     = api_Top((int*)_pvCtx) - *getInputArgument(_pvCtx) + _iVar;
-	int iRate       = (sizeof(double) / (_iPrecision % 10));
-	int iSize       = _iRows * _iCols;
-	int iDouble     = iSize / iRate;
-	int iMod        = (iSize % iRate) == 0 ? 0 : 1;
-	int iTotalSize  = iDouble + iMod;
 
     //return empty matrix
     if(_iRows == 0 && _iCols == 0)
@@ -721,19 +716,6 @@ SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int 
     return sciErr;
 }
 
-SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pvData)
-{
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-
-    _piAddress[0]   = sci_ints;
-	_piAddress[1]   = Min(_iRows, _iRows * _iCols);
-	_piAddress[2]   = Min(_iCols, _iRows * _iCols);
-	_piAddress[3]   = _iPrecision;
-	*_pvData        = (void*)(_piAddress + 4);
-
-	return sciErr;
-}
-
 SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT8, _iRows, _iCols, _pucData8);
@@ -780,8 +762,62 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRo
 
 SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-    // FIXME
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    wchar_t* pwstName   = to_wide_string(_pstName);
+
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        if (createNamedEmptyMatrix(_pvCtx, _pstName))
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    if(_pvCtx == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfInteger");
+        return sciErr;
+    }
+
+    InternalType *pIT;
+    switch(_iPrecision)
+    {
+    case SCI_INT8 :
+        pIT = new Int8(_iRows, _iCols, (char**)_pvData);
+        break;
+    case SCI_UINT8 :
+        pIT = new UInt8(_iRows, _iCols, (unsigned char**)_pvData);
+        break;
+    case SCI_INT16 :
+        pIT = new Int16(_iRows, _iCols, (short**)_pvData);
+        break;
+    case SCI_UINT16 :
+        pIT = new UInt16(_iRows, _iCols, (unsigned short**)_pvData);
+        break;
+    case SCI_INT32 :
+        pIT = new Int32(_iRows, _iCols, (int**)_pvData);
+        break;
+    case SCI_UINT32 :
+        pIT = new UInt32(_iRows, _iCols, (unsigned int**)_pvData);
+        break;
+    case SCI_INT64 :
+        pIT = new Int64(_iRows, _iCols, (long long**)_pvData);
+        break;
+    case SCI_UINT64 :
+        pIT = new UInt64(_iRows, _iCols, (unsigned long long**)_pvData);
+        break;
+    }
+
+    if(pIT == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfInteger");
+        return sciErr;
+    }
+
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pIT);
+    FREE(pwstName);
     return sciErr;
 }
 
@@ -797,14 +833,47 @@ SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int*
 		return sciErr;
 	}
 
+    InternalType* pIT = (InternalType*)piAddr;
+
 	//check variable type
-	if(piAddr[0] != sci_ints)
+    if(pIT->isInt() == false)
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getNamedMatrixOfIntegerPrecision", _("int matrix"));
 		return sciErr;
 	}
 
-	*_piPrecision = piAddr[3];
+    switch(pIT->getType())
+    {
+    case InternalType::RealInt8 : 
+        *_piPrecision = sci_int8;
+        break;
+    case InternalType::RealUInt8 : 
+        *_piPrecision = sci_uint8;
+        break;
+    case InternalType::RealInt16 : 
+        *_piPrecision = sci_int16;
+        break;
+    case InternalType::RealUInt16 : 
+        *_piPrecision = sci_uint16;
+        break;
+    case InternalType::RealInt32 : 
+        *_piPrecision = sci_int32;
+        break;
+    case InternalType::RealUInt32 : 
+        *_piPrecision = sci_uint32;
+        break;
+    case InternalType::RealInt64 : 
+        *_piPrecision = sci_int64;
+        break;
+    case InternalType::RealUInt64 : 
+        *_piPrecision = sci_uint64;
+        break;
+    default : 
+        // That never occurs, the previous test prevents that.
+        *_piPrecision = -1;
+        break;
+    }
+
 	return sciErr;
 }
 
@@ -872,6 +941,7 @@ SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _i
 		addErrorMessage(&sciErr, API_ERROR_READ_NAMED_INT, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfInteger", _pstName);
 		return sciErr;
 	}
+
 	iSize = *_piRows * *_piCols;
 
 	if(pvData == NULL || _pvData == NULL)
@@ -1039,7 +1109,7 @@ int getNamedScalarInteger8(void* _pvCtx, const char* _pstName, char* _pcData)
 {
 	char* pcData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT8, (void**)&pcData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_INT8, (void**)&pcData);
 	if(iRet)
 	{
 		return iRet;
@@ -1053,7 +1123,7 @@ int getNamedScalarInteger16(void* _pvCtx, const char* _pstName, short* _psData)
 {
 	short* psData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT16, (void**)&psData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_INT16, (void**)&psData);
 	if(iRet)
 	{
 		return iRet;
@@ -1067,7 +1137,7 @@ int getNamedScalarInteger32(void* _pvCtx, const char* _pstName, int* _piData)
 {
 	int* piData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT32, (void**)&piData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_INT32, (void**)&piData);
 	if(iRet)
 	{
 		return iRet;
@@ -1082,7 +1152,7 @@ int getNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long* _pllD
 {
 	long long* pllData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT64, (void**)&pllData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_INT64, (void**)&pllData);
 	if(iRet)
 	{
 		return iRet;
@@ -1097,7 +1167,7 @@ int getNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned 
 {
 	unsigned char* pucData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT8, (void**)&pucData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_UINT8, (void**)&pucData);
 	if(iRet)
 	{
 		return iRet;
@@ -1111,7 +1181,7 @@ int getNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned
 {
 	unsigned short* pusData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT16, (void**)&pusData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_UINT16, (void**)&pusData);
 	if(iRet)
 	{
 		return iRet;
@@ -1125,7 +1195,7 @@ int getNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned
 {
 	unsigned int* puiData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT32, (void**)&puiData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_UINT32, (void**)&puiData);
 	if(iRet)
 	{
 		return iRet;
@@ -1140,7 +1210,7 @@ int getNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned
 {
 	unsigned long long* pullData = NULL;
 
-	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT64, (void**)&pullData);
+	int iRet = getCommonNamedScalarInteger(_pvCtx, _pstName, SCI_UINT64, (void**)&pullData);
 	if(iRet)
 	{
 		return iRet;
@@ -1151,7 +1221,7 @@ int getNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned
 }
 #endif
 /*--------------------------------------------------------------------------*/
-static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData)
+static int getCommonNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;

@@ -237,6 +237,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\file.hxx" />
     <ClInclude Include="includes\float.hxx" />
     <ClInclude Include="includes\function.hxx" />
+    <ClInclude Include="includes\gatewaystruct.hxx" />
     <ClInclude Include="includes\graphichandle.hxx" />
     <ClInclude Include="includes\implicitlist.hxx" />
     <ClInclude Include="includes\inspector.hxx" />

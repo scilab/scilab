@@ -10,6 +10,7 @@
  */
 
 #include "function.hxx"
+#include "gatewaystruct.hxx"
 
 extern "C"
 {

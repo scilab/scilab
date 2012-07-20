@@ -15,6 +15,7 @@
 
 #include "graphichandle.hxx"
 #include "function.hxx"
+#include "gatewaystruct.hxx"
 
 extern "C"
 {
@@ -77,7 +78,6 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
     typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
     int*	piRetCount = pStr->m_piRetCount;
-    wchar_t* pstName = pStr->m_pstName;
 
     GraphicHandle *pHandle = new GraphicHandle(_iRows, _iCols);
     if(pHandle == NULL)

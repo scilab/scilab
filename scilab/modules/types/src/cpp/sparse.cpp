@@ -2073,6 +2073,15 @@ std::size_t SparseBool::nbTrue(std::size_t r) const
     return piIndex[r + 1] - piIndex[r];
 }
 
+int* SparseBool::getNbItemByRow()
+{
+    return matrixBool->outerIndexPtr();
+}
+
+int* SparseBool::getColPos()
+{
+    return matrixBool->innerIndexPtr();
+}
 
 double* SparseBool::outputRowCol(double* out)const
 {

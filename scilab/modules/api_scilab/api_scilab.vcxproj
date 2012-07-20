@@ -292,7 +292,6 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_optional.h" />
     <ClInclude Include="includes\returnProperty.h" />
     <ClInclude Include="includes\returnPropertyList.h" />
-    <ClInclude Include="src\cpp\api_internal_boolean.h" />
     <ClInclude Include="src\cpp\api_internal_boolean_sparse.h" />
     <ClInclude Include="src\cpp\api_internal_common.h" />
     <ClInclude Include="src\cpp\api_internal_double.h" />
@@ -300,7 +299,6 @@ cd .. &gt;nul
     <ClInclude Include="src\cpp\api_internal_pointer.h" />
     <ClInclude Include="src\cpp\api_internal_poly.h" />
     <ClInclude Include="src\cpp\api_internal_sparse.h" />
-    <ClInclude Include="src\cpp\api_internal_string.h" />
     <ClInclude Include="includes\api_list.h" />
     <ClInclude Include="includes\api_pointer.h" />
     <ClInclude Include="includes\api_poly.h" />

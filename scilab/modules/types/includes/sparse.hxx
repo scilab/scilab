@@ -13,8 +13,6 @@
 #ifndef __SPARSE_HH__
 #define __SPARSE_HH__
 
-//#define EIGEN_SUPERLU_SUPPORT
-#include <Eigen/Core>
 #include <Eigen/Sparse>
 #include <complex>
 #include "double.hxx"
@@ -508,6 +506,9 @@ struct TYPES_IMPEXP SparseBool : GenericType
        @return the nb of non zero values in row i
      */
     std::size_t nbTrue(std::size_t i) const;
+
+        int* getNbItemByRow();
+        int* getColPos();
     /**
        output 1-base column numbers of the non zero elements
        @param out : ptr used as an output iterator over double values

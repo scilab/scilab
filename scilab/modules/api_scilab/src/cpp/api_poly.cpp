@@ -13,8 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "function.hxx"
+#include "gatewaystruct.hxx"
 #include "polynom.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -217,65 +218,6 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     return sciErr;
 }
 
-SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg, int* _piTotalLen)
-{
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-    int* piOffset			= NULL;
-    int *piVarName		= NULL;
-    int iSize					= _iRows * _iCols;
-
-    double *pdblReal	= NULL;
-    double *pdblImg		= NULL;
-
-    //header
-    _piAddress[0] = sci_poly;
-    _piAddress[1] = _iRows;
-    _piAddress[2] = _iCols;
-    _piAddress[3] = _iComplex;
-
-
-    //4 for header
-    piVarName = _piAddress + 4;//4 for header
-    if(strlen(_pstVarName) > 4)//4 characters max
-    {
-        addErrorMessage(&sciErr, API_ERROR_TOO_LONG_VAR, _("%s: Formal variable name of polynomial can't exceed 4 characters"));
-        return sciErr;
-    }
-
-    //fill variable name with space ( 40 sergescii )
-    piVarName[0] = 40;
-    piVarName[1] = 40;
-    piVarName[2] = 40;
-    piVarName[3] = 40;
-    //str2code(piVarName, &_pstVarName);
-
-    piOffset = _piAddress + 8; //4 for header and 4 for variable name
-    piOffset[0] = 1;
-    for(int i = 0 ; i < iSize ; i++)
-    {
-        piOffset[i + 1] = piOffset[i] + _piNbCoef[i];
-    }
-
-    pdblReal = (double*)(piOffset + iSize + 1 + ((iSize + 1) % 2 == 0 ? 0 : 1 ));
-
-    for(int i = 0 ; i < iSize ; i++)
-    {
-        memcpy(pdblReal + piOffset[i] - 1, _pdblReal[i], _piNbCoef[i] * sizeof(double));
-    }
-
-    if(_iComplex == 1)
-    {
-        pdblImg = pdblReal + piOffset[iSize] - 1;
-        for(int i = 0 ; i < iSize ; i++)
-        {
-            memcpy(pdblImg + piOffset[i] - 1, _pdblImg[i], _piNbCoef[i] * sizeof(double));
-        }
-    }
-
-    *_piTotalLen = (piOffset[iSize] - 1) * (_iComplex + 1) * 2;
-    return sciErr;
-}
-
 SciErr createNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)
 {
     return createCommonNamedMatrixOfPoly(_pvCtx, _pstName, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
@@ -288,35 +230,48 @@ SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, char* 
 
 SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-#if 0
-	int iVarID[nsiz];
-    int iSaveRhs    = Rhs;
-	int iSaveTop    = Top;
-	int *piAddr     = NULL;
-	int iTotalLen   = 0;
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    wchar_t* pwstName   = to_wide_string(_pstName);
 
-    //return named empty matrix
+    //return empty matrix
     if(_iRows == 0 && _iCols == 0)
     {
-        double dblReal = 0;
-        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
-        if (sciErr.iErr)
+        if (createNamedEmptyMatrix(_pvCtx, _pstName))
         {
-            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+            return sciErr;
         }
+
         return sciErr;
     }
 
-    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    wchar_t* pstTemp = to_wide_string(_pstVarName);
+    Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
+    FREE(pstTemp);
+    if(pP == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfPoly");
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
         return sciErr;
     }
 
-	Top = iSaveTop;
-    Rhs = iSaveRhs;
-#endif
+    if(_iComplex)
+    {
+        pP->setComplex(true);
+    }
+
+    for(int i = 0 ; i < pP->getSize() ; i++)
+    {
+        Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
+        pD->set(_pdblReal[i]);
+        if(_iComplex)
+        {
+            pD->setImg(_pdblImg[i]);
+        }
+        pP->setCoef(i, pD);
+    }
+
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pP);
+    FREE(pwstName);
     return sciErr;
 }
 

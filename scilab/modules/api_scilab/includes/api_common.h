@@ -35,10 +35,12 @@ extern "C" {
         char* pstMsg[MESSAGE_STACK_SIZE]; /**< The error message */
     } SciErr;
 
+#if SCI_VERSION_MAJOR < 6
     typedef struct api_Ctx
     {
         char* pstName; /**< Function name */
     } StrCtx, *pStrCtx;
+#endif
 
 //#if SCI_VERSION_MAJOR < 6
 //    #ifdef _MSC_VER
