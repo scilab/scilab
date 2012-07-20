@@ -23,7 +23,6 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "do_error_number.h"
-#include "libinter.h"
 
 /* Table of constant values */
 
@@ -284,7 +283,7 @@ static int C2F(cremati) (char *fname, int *stlw, int *it, int *m, int *n, int *l
 {
     int ix1;
     int il;
-    double size = ((double)*m) * ((double)*n) * ((double)(*it + 1));
+    double size = ((double) * m) * ((double) * n) * ((double)(*it + 1));
 
     il = iadr(*stlw);
     ix1 = il + 4;
@@ -560,7 +559,7 @@ int C2F(creimati) (char *fname, int *stlw, int *it, int *m, int *n, int *lr, int
 {
     int ix1;
     int il;
-    double size = memused(*it, ((double)*m) * ((double)*n));
+    double size = memused(*it, ((double) * m) * ((double) * n));
 
     il = iadr(*stlw);
     ix1 = il + 4;
@@ -759,7 +758,7 @@ int C2F(fakecrebmat) (int *lw, int *m, int *n, int *lr)
 
 static int C2F(crebmati) (char *fname, int *stlw, int *m, int *n, int *lr, int *flagx, unsigned long fname_len)
 {
-    double size = ((double)*m) * ((double)*n);
+    double size = ((double) * m) * ((double) * n);
     int il;
 
     il = iadr(*stlw);
@@ -1530,16 +1529,16 @@ int C2F(cresmati) (char *fname, int *stlw, int *m, int *n, int *nchar, int *job,
     *sz = 0;
     switch (*job)
     {
-    case 1:
-        *sz = mn * nchar[0];
-        break;
-    case 2:
-        for (ix = 0; ix < mn; ++ix)
-            *sz += nchar[ix];
-        break;
-    case 3:
-        *sz = nchar[mn] - 1;
-        break;
+        case 1:
+            *sz = mn * nchar[0];
+            break;
+        case 2:
+            for (ix = 0; ix < mn; ++ix)
+                *sz += nchar[ix];
+            break;
+        case 3:
+            *sz = nchar[mn] - 1;
+            break;
     }
     /* check the stack for space */
     ix1 = il + 4 + mn + 1 + *sz;
@@ -1558,23 +1557,23 @@ int C2F(cresmati) (char *fname, int *stlw, int *m, int *n, int *nchar, int *job,
     *istk(ilp) = 1;
     switch (*job)
     {
-    case 1:
-        ix1 = mn + ilp;
-        for (kij = ilp + 1; kij <= ix1; ++kij)
-        {
-            *istk(kij) = *istk(kij - 1) + nchar[0];
-        }
-        break;
-    case 2:
-        ix = 0;
-        ix1 = mn + ilp;
-        for (kij = ilp + 1; kij <= ix1; ++kij)
-        {
-            *istk(kij) = *istk(kij - 2 + 1) + nchar[ix];
-            ++ix;
-        }
-        break;
-    case 3:
+        case 1:
+            ix1 = mn + ilp;
+            for (kij = ilp + 1; kij <= ix1; ++kij)
+            {
+                *istk(kij) = *istk(kij - 1) + nchar[0];
+            }
+            break;
+        case 2:
+            ix = 0;
+            ix1 = mn + ilp;
+            for (kij = ilp + 1; kij <= ix1; ++kij)
+            {
+                *istk(kij) = *istk(kij - 2 + 1) + nchar[ix];
+                ++ix;
+            }
+            break;
+        case 3:
         {
             ix1 = mn + 1;
             C2F(icopy) (&ix1, nchar, &cx1, istk(ilp), &cx1);
@@ -2320,7 +2319,7 @@ int C2F(crewmat) (char *fname, int *lw, int *m, int *lr, unsigned long fname_len
 
 int C2F(crewimat) (char *fname, int *lw, int *m, int *n, int *lr, unsigned long fname_len)
 {
-    double size = ((double)*m) * ((double)*n);
+    double size = ((double) * m) * ((double) * n);
     int ix1, il;
 
     if (*lw + 1 >= Bot)
@@ -2371,33 +2370,6 @@ int C2F(getwimat) (char *fname, int *topk, int *lw, int *m, int *n, int *lr, uns
     *m = *istk(il + 1);
     *n = *istk(il + 2);
     *lr = il + 3;
-    return TRUE;
-}
-
-/*------------------------------------------------------------------
-*     creation of an object of type pointer at spos position on the stack
-*     the pointer points to an object of type char matrix created by
-*     the c routine stringc and is filled with a scilab stringmat
-*     which was stored at istk(ilorig)
-*     stk(lw) is used to transmit the pointer
-*     F: transforme une stringmat scilab en un objet de type
-*     pointeur qui pointe vers une traduction en C de la stringMat
-*------------------------------------------------------------------- */
-
-int C2F(crestringv) (char *fname, int *spos, int *ilorig, int *lw, unsigned long fname_len)
-{
-    int ierr;
-
-    if (C2F(crepointer) (fname, spos, lw, fname_len) == FALSE)
-        return FALSE;
-
-    C2F(stringc) (istk(*ilorig), (char ***)stk(*lw), &ierr);
-
-    if (ierr != 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return FALSE;
-    }
     return TRUE;
 }
 
@@ -2464,65 +2436,6 @@ static int C2F(crepointeri) (char *fname, int *stlw, int *lr, int *flagx, unsign
     }
     ix1 = il + 4;
     *lr = sadr(ix1);
-    return TRUE;
-}
-
-/*-------------------------------------------------------------------
-*     creates a Scilab stringpointer on the stack at position spos
-*     of size mxn the stringpointer is filled with the data stored
-*     in stk(lorig) ( for example created with cstringv )
-*     and the data stored at stk(lorig) is freed
-*------------------------------------------------------------------- */
-
-int C2F(lcrestringmatfromc) (char *fname, int *spos, int *numi, int *stlw, int *lorig, int *m, int *n, unsigned long fname_len)
-{
-    int ix1;
-    int ierr;
-    int il, ilw;
-
-    ilw = iadr(*stlw);
-    ix1 = *Lstk(Bot) - *stlw;
-    C2F(cstringf) ((char ***)stk(*lorig), istk(ilw), m, n, &ix1, &ierr);
-    if (ierr > 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return FALSE;
-    }
-    ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n) - 1;
-    *stlw = sadr(ix1);
-    il = iadr(*Lstk(*spos));
-    ix1 = il + *istk(il + 1) + 3;
-    *istk(il + 2 + *numi) = *stlw - sadr(ix1) + 1;
-    if (*numi == *istk(il + 1))
-    {
-        *Lstk(*spos + 1) = *stlw;
-    }
-    return TRUE;
-}
-
-/*-------------------------------------------------------------------
-*     creates a Scilab stringmat on the stack at position spos
-*     of size mxn the stringmat is filled with the data stored
-*     in stk(lorig) ( for example created with cstringv )
-*     and the data stored at stk(lorig) is freed
-*------------------------------------------------------------------- */
-
-int C2F(crestringmatfromc) (char *fname, int *spos, int *lorig, int *m, int *n, unsigned long fname_len)
-{
-    int ix1;
-    int ierr;
-    int ilw;
-
-    ilw = iadr(*Lstk(*spos));
-    ix1 = *Lstk(Bot) - *Lstk(*spos);
-    C2F(cstringf) ((char ***)stk(*lorig), istk(ilw), m, n, &ix1, &ierr);
-    if (ierr > 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return FALSE;
-    }
-    ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n) - 1;
-    *Lstk(*spos + 1) = sadr(ix1);
     return TRUE;
 }
 
@@ -2711,7 +2624,8 @@ static int C2F(getpointeri) (char *fname, int *topk, int *spos, int *lw, int *lr
     if (*istk(il) < 0)
         il = iadr(*istk(il + 1));
     if (*istk(il) != sci_pointer)
-    {                           /* used to be sci_lufact_pointer before Scilab 5.2 */
+    {
+        /* used to be sci_lufact_pointer before Scilab 5.2 */
         sciprint("----%d\n", *istk(il));
         if (*inlistx)
             Scierror(197, _("%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"), get_fname(fname, fname_len),
@@ -3123,34 +3037,34 @@ int C2F(getexternal) (char *fname, int *topk, int *lw, char *namex, int *typex, 
     il = C2F(gettype) (lw);
     switch (il)
     {
-    case sci_u_function:
-    case sci_c_function:
-    case sci_list:
-        ret_value = TRUE;
-        *typex = FALSE;
-        break;
-    case sci_strings:
-        ret_value = C2F(getsmat) (fname, topk, lw, &m, &n, &cx1, &cx1, &lr, &nlr, fname_len);
-        *typex = TRUE;
-        for (i = 0; i < (int)name_len; i++)
-            namex[i] = ' ';
-        if (ret_value == TRUE)
-        {
-            C2F(cvstr) (&nlr, istk(lr), namex, &cx1, name_len);
-            namex[nlr] = '\0';
-            (*setfun) (namex, &irep);   /* , name_len); */
-            if (irep == 1)
+        case sci_u_function:
+        case sci_c_function:
+        case sci_list:
+            ret_value = TRUE;
+            *typex = FALSE;
+            break;
+        case sci_strings:
+            ret_value = C2F(getsmat) (fname, topk, lw, &m, &n, &cx1, &cx1, &lr, &nlr, fname_len);
+            *typex = TRUE;
+            for (i = 0; i < (int)name_len; i++)
+                namex[i] = ' ';
+            if (ret_value == TRUE)
             {
-                Scierror(50, _("%s: entry point %s not found in predefined tables or link table.\n"), get_fname(fname, fname_len), namex);
-                ret_value = FALSE;
+                C2F(cvstr) (&nlr, istk(lr), namex, &cx1, name_len);
+                namex[nlr] = '\0';
+                (*setfun) (namex, &irep);   /* , name_len); */
+                if (irep == 1)
+                {
+                    Scierror(50, _("%s: entry point %s not found in predefined tables or link table.\n"), get_fname(fname, fname_len), namex);
+                    ret_value = FALSE;
+                }
             }
-        }
-        break;
-    default:
-        Scierror(211, _("%s: Wrong type for argument %d: Function or string (external function) expected.\n"), get_fname(fname, fname_len),
-                 Rhs + (*lw - *topk));
-        ret_value = FALSE;
-        break;
+            break;
+        default:
+            Scierror(211, _("%s: Wrong type for argument %d: Function or string (external function) expected.\n"), get_fname(fname, fname_len),
+                     Rhs + (*lw - *topk));
+            ret_value = FALSE;
+            break;
     }
     return ret_value;
 }
@@ -3260,7 +3174,7 @@ static int C2F(crehmati) (char *fname, int *stlw, int *m, int *n, int *lr, int *
 {
     int ix1;
     int il;
-    double size = ((double)*m) * ((double)*n);
+    double size = ((double) * m) * ((double) * n);
 
     il = iadr(*stlw);
     ix1 = il + 4;

@@ -41,7 +41,6 @@
 #include "call_scilab.h"
 #include "recursionFunction.h"
 #include "doublecomplex.h"
-#include "libinter.h"
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x))  /* pour abs  C2F(mvfromto) line 2689 */

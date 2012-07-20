@@ -7,10 +7,13 @@ File input/output:
 
 * The use of I/O consol is now allowed with functions : mget, mgetl, mgetstr, mput, mputl and mputstr.
 
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
 * maxfile function is now obsolete.
+
+* intersci has been removed. Please use swig instead
 
 Functions modified:
 ===================

@@ -422,9 +422,6 @@ cd ..
     <ProjectReference Include="..\..\..\integer\src\c\integer.vcxproj">
       <Project>{c7865caa-ec7c-41eb-8324-2b81c384ca20}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\intersci\src\lib\intersci.vcxproj">
-      <Project>{dfa0d75b-f7ef-4d02-b33f-486829405315}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\io\src\c\io.vcxproj">
       <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>
     </ProjectReference>
