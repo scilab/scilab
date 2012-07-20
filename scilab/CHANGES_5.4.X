@@ -108,6 +108,8 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
 
+* Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
