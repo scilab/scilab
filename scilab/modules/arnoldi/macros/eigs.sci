@@ -359,7 +359,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
 
     //Check if B is a square matrix
     if(mB * nB == 1 | mB <> nB)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"), "speigs", 2));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "speigs", 2));
     end
 
     //check if B is complex
@@ -815,7 +815,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
 
     //Check if B is a square matrix
     if(mB * nB == 1 | mB <> nB)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"), "feigs", 3));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "feigs", 3));
     end
 
     //check if B is complex

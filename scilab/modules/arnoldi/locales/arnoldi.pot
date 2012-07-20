@@ -118,7 +118,7 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 176
 #, c-format
 msgid ""
-"%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
 
 #
@@ -137,7 +137,7 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 242
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: k must be int the range 1 to N.\n"
+"%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
 
 #

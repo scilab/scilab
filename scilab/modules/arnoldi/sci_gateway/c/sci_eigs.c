@@ -173,7 +173,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
     sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &iRowsTwo, &iColsTwo);
     if (iRowsTwo * iColsTwo == 1 || iRowsTwo != iColsTwo)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), fname, 2);
         return 0;
     }
 
@@ -240,7 +240,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
 
     if (!finite(dblNEV))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: k must be int the range 1 to N.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"), fname, 3);
         return 0;
     }
 
