@@ -163,7 +163,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
+            if(execMe.result_get() != NULL && execMe.result_get()->isCallable())
             {
                 Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
