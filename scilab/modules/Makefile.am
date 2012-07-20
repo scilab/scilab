@@ -143,7 +143,7 @@ GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
-	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \

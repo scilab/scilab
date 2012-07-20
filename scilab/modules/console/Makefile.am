@@ -50,33 +50,6 @@ src/cpp/SetConsolePrompt.cpp
 CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
 
-CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-src/c/GuiManagement.c \
-src/c/dropFiles.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c \
-src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/charactersManagement.c \
-src/c/cmdLine/cliDisplayManagement.c \
-src/c/cmdLine/cliHistory.c \
-src/c/cmdLine/cliPrompt.c \
-src/c/cmdLine/getKey.c \
-src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/gotoFunctions.c \
-src/c/cmdLine/initConsoleMode.c \
-src/c/cmdLine/termcapManagement.c
-
-if IS_MACOSX
-CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
-endif
-
 # List of the gateway c files
 CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
 sci_gateway/c/sci_clc.c \
@@ -99,7 +72,7 @@ endif
 
 
 # List of the c files
-libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
+libsciconsole_minimal_la_SOURCES = src/noconsole/noconsole.c \
 sci_gateway/c/gw_console.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c \
@@ -126,12 +99,19 @@ src/c/cmdLine/gotoFunctions.c \
 src/c/cmdLine/initConsoleMode.c \
 src/c/cmdLine/termcapManagement.c
 
+
+CONSOLE_C_SOURCES = src/c/GuiManagement.c \
+	src/c/dropFiles.c
 if IS_MACOSX
-libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
+CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
+
+if IS_MACOSX
+libsciconsole_minimal_la_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libsciconsole_minimal_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
@@ -179,12 +159,13 @@ libsciconsole_la_CPPFLAGS += -msse2
 endif
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole-disable.la
+pkglib_LTLIBRARIES = libsciconsole-minimal.la
 
 if GUI
-pkglib_LTLIBRARIES += libsciconsole.la 
+pkglib_LTLIBRARIES += libsciconsole.la
 endif
 
+libsciconsole_la_LIBADD = libsciconsole-minimal.la
 
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CXX_JNI_SOURCES) $(CONSOLE_CXX_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
