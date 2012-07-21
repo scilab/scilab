@@ -52,6 +52,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
     private MouseEvent previousEvent;
     private Axes currentAxes;
 
+
     /**
      * Default constructor.
      * @param drawerVisitor parent drawer visitor.
@@ -76,6 +77,10 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 component.removeMouseWheelListener(mouseWheelListener);
             }
         }
+    }
+
+    public void setTranslationEnable(boolean status) {
+        ((FigureMouseMotionListener)mouseMotionListener).setTranslateEnable(status);
     }
 
     /**
@@ -152,6 +157,12 @@ public class DragZoomRotateInteraction extends FigureInteraction {
      */
     private class FigureMouseMotionListener extends MouseMotionAdapter implements MouseMotionListener {
 
+        private boolean translateEnabled = true;
+
+        public void setTranslateEnable(boolean status) {
+            translateEnabled = status;
+        }
+
         @Override
         public void mouseMoved(MouseEvent e) {
             /*
@@ -172,7 +183,9 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         break;
                     }
                 case XY_TRANSLATION_MODIFIER:
-                    doXYTranslation(e);
+                    if (translateEnabled) {
+                        doXYTranslation(e);
+                    }
                     break;
                 case Z_TRANSLATION_MODIFIER:
                     doZTranslation(e);

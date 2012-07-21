@@ -195,6 +195,8 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                     editor.onRightMouseClick(arg0);
                 }
             }
+        } else if (arg0.getButton() == 1) {
+            editor.onLeftMouseRelease(arg0);
         }
         isInRotation = false;
         isLeftButtonPressed = false;

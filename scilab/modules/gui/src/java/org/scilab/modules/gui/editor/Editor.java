@@ -176,6 +176,10 @@ public class Editor {
         }
     }
 
+    public void onLeftMouseRelease(MouseEvent event) {
+        dataEditor.onLeftMouseRelease(event);
+    }
+
     /**
      * On drag move the selected object, if dataEditor 
      * is enabled pass event to it.
@@ -254,7 +258,6 @@ public class Editor {
         ged.setToolTipText(Messages.gettext("Initialize the graphics editor"));
         editdata = new JMenuItem(Messages.gettext("Edit curve data"));
         editdata.setToolTipText(Messages.gettext("Enables curve data modify"));
-
 
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -345,6 +348,7 @@ public class Editor {
                 setDataModifyEnabled(true);
             }
         });
+
 
         labels.add(labelX);
         labels.add(labelY);

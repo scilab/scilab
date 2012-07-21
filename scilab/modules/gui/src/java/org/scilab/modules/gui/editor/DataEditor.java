@@ -21,6 +21,7 @@ import javax.swing.JPopupMenu;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.CallRenderer;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.localization.Messages;
 
@@ -203,6 +204,17 @@ public class DataEditor {
      */
     public void onLeftMouseDown(MouseEvent event) {
         picked = picker.pickPoint(curPolyline, event.getX(), event.getY());
+        if (picked != null && picked.point != -1) {
+            String figureUid = (String) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(false);
+        }
+    }
+
+    public void onLeftMouseRelease(MouseEvent event) {
+        if (picked != null && picked.point != -1) {
+            String figureUid = (String) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(true);
+        }
     }
 
     /**
@@ -211,7 +223,8 @@ public class DataEditor {
      * @param newClick Final mouse position (x, y).
      */
     public void onDrag(Integer[] lastClick, Integer[] newClick) {
-        if (picked != null && picked.point != -1){
+        if (picked != null && picked.point != -1) {
+
             if (!picked.isSegment) {
                 
                 double[] pos = {1.0 * lastClick[0], 1.0 * lastClick[1], 1.0};
