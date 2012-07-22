@@ -11,57 +11,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isdir">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="isdir">
   <refnamediv>
     <refname>isdir</refname>
-    <refpurpose>checks if argument is a directory path</refpurpose>
+    <refpurpose>проверяет является ли аргумент путём до директории</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
+    <title>Последовательность вызова</title>
     <synopsis>r=isdir(path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Arguments</title>
+    <title>Аргументы</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string or a matrix of strings: a directory pathname.</para>
+          <para>символьная строка или матрица строк: имя пути до директории</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
           <para>
-            a boolean: <literal>%t</literal> if <varname>path</varname> is a path to a directory.
+            логическое значение: <literal>%t</literal>, если <varname>path</varname> является путём до директории.
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Description</title>
+    <title>Описание</title>
     <para>
-      <code>r=isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
+      <function>r=isdir(path)</function> проверяет является ли путь <varname>path</varname> путём до директории.
     </para>
   </refsection>
   <refsection>
-    <title>Reference</title>
+    <title>Сcылка</title>
     <para>
-      This function is based on the C function 
-      <function>stat</function>
-      .The <varname>SCI</varname> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
+      Эта функция основана на C-функции 
+      <function>stat</function>.Можно 
+      использовать краткие обозначения <varname>SCI</varname> и 
+      <literal>~</literal> для директории Scilab'а и домашней директории.
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Примеры</title>
     <programlisting role="example"><![CDATA[ 
 isdir(TMPDIR)
 isdir SCI/etc/scilab.start
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-    <title>See Also</title>
+    <title>Смотрите также</title>
     <simplelist type="inline">
       <member>
         <link linkend="isfile">isfile</link>
@@ -72,3 +73,4 @@ isdir SCI/etc/scilab.start
     </member>
   </refsection>
 </refentry>
+
