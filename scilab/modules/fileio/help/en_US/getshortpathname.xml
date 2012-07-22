@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getshortpathname" xml:lang="en">
   <refnamediv>
     <refname>getshortpathname</refname>
-    <refpurpose>get short path name (Only for Windows)</refpurpose>
+    <refpurpose>gets short path name (only for Windows)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,22 +28,23 @@
       <varlistentry>
         <term>longpath</term>
         <listitem>
-          <para>A character string or matrix of strings the long path</para>
+          <para>a character string or matrix of strings: the long path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>shortpath</term>
         <listitem>
-          <para>A character string or a matrix of strings the short
-            path
+          <para>
+            a character string or a matrix of strings: the short path.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bOK</term>
         <listitem>
-          <para>A boolean %T or a matrix of boolean if path has been converted
-            else %F
+          <para>
+            a boolean or a matrix of boolean: <literal>%T</literal> if
+            path has been converted else <literal>%F</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -51,8 +52,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>The getshortpathname primitive converts the specified path to its
-      short form.
+    <para>
+      The <function>getshortpathname</function> primitive converts the
+      specified path <varname>longpath</varname> to its short form.
     </para>
   </refsection>
   <refsection>
@@ -67,6 +69,12 @@
     <simplelist type="inline">
       <member>
         <link linkend="getlongpathname">getlongpathname</link>
+      </member>
+      <member>
+        <link linkend="getrelativefilename">getrelativefilehname</link>
+      </member>
+      <member>
+        <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
   </refsection>

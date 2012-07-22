@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getlongpathname" xml:lang="en">
   <refnamediv>
     <refname>getlongpathname</refname>
-    <refpurpose>get long path name (Only for Windows)</refpurpose>
+    <refpurpose>gets long path name (only for Windows)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,20 +28,21 @@
       <varlistentry>
         <term>shortpath</term>
         <listitem>
-          <para>A character string or matrix of strings the short path</para>
+          <para>a character string or matrix of strings: the short path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>longpath</term>
         <listitem>
-          <para>A character string or matrix of strings the long path</para>
+          <para>a character string or matrix of strings: the long path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bOK</term>
         <listitem>
-          <para>A boolean %T or a matrix of boolean if path has been converted
-            else %F
+          <para>
+            a boolean or a matrix of boolean: <literal>%T</literal> if
+            path has been converted else <literal>%F</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -49,9 +50,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>The getlongpathname primitive converts the specified path to its
-      long form. It no long path is found, this primitive returns the specified
-      name.
+    <para>
+      The <function>getlongpathname</function> primitive converts the
+	specified path <varname>shortpath</varname> to its long form. If no long path is found, this
+      primitive returns the specified name.
     </para>
   </refsection>
   <refsection>
@@ -66,6 +68,12 @@
     <simplelist type="inline">
       <member>
         <link linkend="getshortpathname">getshortpathname</link>
+      </member>
+      <member>
+        <link linkend="getrelativefilename">getrelativefilehname</link>
+      </member>
+      <member>
+        <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
   </refsection>

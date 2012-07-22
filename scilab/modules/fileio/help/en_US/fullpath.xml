@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullpath">
   <refnamediv>
     <refname>fullpath</refname>
-    <refpurpose>Creates an full path name for the specified relative path name.</refpurpose>
+    <refpurpose>creates an full path name for the specified relative path name.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -41,8 +41,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Creates an full path name for the specified relative path name.</para>
-    <para>On linux 'relative_path' needs to exist.</para>
+    <para>
+      <code>fullpath(relative_path)</code> сreates an full path name
+      for the specified relative path name.
+    </para>
+    <para>
+      On GNU/Linux <varname>relative_path</varname> needs to exist.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

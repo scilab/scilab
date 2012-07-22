@@ -46,7 +46,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>f= fullfile(varargin)</literal> формирует полное имя
+      <code>f= fullfile(varargin)</code> формирует полное имя
       файла учитывая платформу, на которой она работает и обрабатывает
       случаи, когда директории начинаются или заканчиваются
       разделителем директорий.
@@ -72,4 +72,4 @@ r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci";"toto.sci"])
     </simplelist>
   </refsection>
 </refentry>
- 
+
