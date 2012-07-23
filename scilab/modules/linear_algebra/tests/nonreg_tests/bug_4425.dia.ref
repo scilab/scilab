@@ -1,0 +1,29 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- Non-regression test for bug 4425 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4425
+//
+// <-- Short Description -->
+//    After [U,S] = schur(A), U * S * U' is not equal to A
+// =============================================================================
+function r=Err(x)
+    r=norm(x,1)
+endfunction
+function A = testmat1(a, n)
+    //eigen values are given by a dilation of nth roots of 1
+    A = diag(a * ones(1, n - 1), 1) + diag((1 / a) * ones(1, n - 1), -1)
+    A(1,n) = 1 / a; A(n,1) = a
+endfunction
+A = testmat1(3,5);
+Ac = testmat1(3 + %i,5);
+[U, S] = schur(A);
+assert_checkalmostequal(Err(U*S*U'-A), 0, [], 200 * %eps);
+[U, S] = schur(Ac);
+assert_checkalmostequal(Err(U*S*U'-Ac), 0, [], 200 * %eps);
