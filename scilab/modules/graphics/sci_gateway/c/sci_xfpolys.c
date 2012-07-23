@@ -29,6 +29,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpolys(char *fname, unsigned long fname_len)
