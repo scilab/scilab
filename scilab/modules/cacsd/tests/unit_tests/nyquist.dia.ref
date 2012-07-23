@@ -52,17 +52,9 @@ function r=checknyquist(Args,leg)
     if or(a.children(1).text<>leg(:)) then r=16;return,end
   end
 endfunction
-s=poly(0,'s')
- s  =
- 
-    s   
+s=poly(0,'s');
 n=1+s;d=1+2*s;
-h=syslin('c',n,d)
- h  =
- 
-    1 + s    
-    -----    
-    1 + 2s   
+h=syslin('c',n,d);
 sl=tf2ss(h);
 sld=dscr(sl,0.01);
 hd=ss2tf(sld);
@@ -152,3 +144,11 @@ if checknyquist(list(sld,0.01,100,0.01)) then bugmes();quit;end
 //nyquist given by precmputed freqency response
 clf(); nyquist(w,rf)
 clf(); nyquist(w,20*log(abs(rf))/log(10),(180/%pi)*atan(imag(rf),real(rf)))
+// check legend color
+clf();
+F1=syslin('c',(2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+F2=syslin('c',(0.88*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+F3=syslin('c',(100*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+nyquist ([F1;F2;F3],0.0 ,1000,["F1(Kr=1)";"F2(Kr=0,88)";"F3(Kr=10)"],%f)
+a=gca();
+assert_checkequal(a.children(1).links.foreground, [3, 2, 1]); // [green blue black]

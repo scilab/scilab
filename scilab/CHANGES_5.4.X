@@ -195,6 +195,8 @@ Bug Fixes
 * Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
                      something in the console.
 
+* Bug #11519 fixed - The colored lines in the legend of nyquist plot were inverted.
+
 
 Known Incompatibilities
 =======================
