@@ -85,6 +85,8 @@ Graphics
 * Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
                      logarithm scale.
 
+* Bug #11330 fixed - oldplot function removed.
+
 * Bug #11332 fixed - Default usage of contour2d was producing some errors.
 
 * Bug #11333 fixed - Missing argument number checking in comet added.
