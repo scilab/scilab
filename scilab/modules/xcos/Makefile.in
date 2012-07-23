@@ -150,7 +150,8 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosPalGenerateIcon.lo \
 	libscixcos_la-sci_xcosConfigureXmlFile.lo \
 	libscixcos_la-sci_xcosAddToolsMenu.lo \
-	libscixcos_la-sci_xcosUpdateBlock.lo
+	libscixcos_la-sci_xcosUpdateBlock.lo \
+	libscixcos_la-sci_loadXcos.lo
 am_libscixcos_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
@@ -490,7 +491,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
-	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
+	sci_gateway/cpp/sci_loadXcos.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -990,6 +992,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
@@ -1184,6 +1187,13 @@ libscixcos_la-sci_xcosUpdateBlock.lo: sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosUpdateBlock.cpp' object='libscixcos_la-sci_xcosUpdateBlock.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+
+libscixcos_la-sci_loadXcos.lo: sci_gateway/cpp/sci_loadXcos.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_loadXcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo -c -o libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo $(DEPDIR)/libscixcos_la-sci_loadXcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_loadXcos.cpp' object='libscixcos_la-sci_loadXcos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

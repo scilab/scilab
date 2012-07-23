@@ -40,7 +40,8 @@ static gw_generic_table Tab[] =
     {sci_xcosPalGenerateIcon, "xcosPalGenerateIcon"},
     {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"},
     {sci_xcosAddToolsMenu, "xcosAddToolsMenu"},
-    {sci_xcosUpdateBlock, "xcosUpdateBlock"}
+    {sci_xcosUpdateBlock, "xcosUpdateBlock"},
+    {sci_loadXcos, "loadXcos"}
 };
 
 /*--------------------------------------------------------------------------*/
