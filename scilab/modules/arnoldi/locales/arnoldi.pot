@@ -613,14 +613,6 @@ msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 820
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a empty matrix or full or sparse "
-"square matrix expected.\n"
-msgstr ""
-
-#
 # File: macros/eigs.sci, line: 878
 #, c-format
 msgid "%s: Wrong dimension for input argument(s) #%d: a string expected.\n"

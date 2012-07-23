@@ -809,7 +809,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     //Third variable B :
     //*************************
     if((typeof(B) <> "constant") & (typeof(B) <> "sparse"))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: aa empty matrix or full or sparse square matrix expected.\n"), "feigs", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "feigs", 3));
     end
     [mB, nB] = size(B);
 
